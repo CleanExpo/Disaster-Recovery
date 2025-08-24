@@ -1,9 +1,27 @@
 // Business Constants
 export const BUSINESS_NAME = 'Disaster Recovery Australia';
 export const BUSINESS_SHORT_NAME = 'Disaster Recovery';
-export const PHONE_NUMBER = '1300 DISASTER';
-export const PHONE_NUMBER_FORMATTED = '1300 347 278';
+// No phone number - online forms only
+export const ONLINE_FORM_URL = '/get-help';
+export const CONTRACTOR_PORTAL_URL = '/contractors';
 export const EMAIL = 'info@disasterrecovery.com.au';
+
+// Lead Distribution Radius Options
+export const SERVICE_RADIUS_OPTIONS = [
+  { value: 20, label: '20km - Local Priority' },
+  { value: 25, label: '25km - Extended Local' },
+  { value: 50, label: '50km - Regional' },
+  { value: 100, label: '100km - Wide Area' }
+];
+
+// Contractor Requirements
+export const CONTRACTOR_REQUIREMENTS = {
+  certifications: ['IICRC Certified'],
+  standards: 'Disaster Recovery Standards Compliant',
+  membership: 'Current Disaster Recovery Network Member',
+  insurance: 'Minimum $20M Public Liability',
+  response: '24/7 Emergency Response Capability'
+};
 export const WEBSITE = 'https://disasterrecovery.com.au';
 export const ABN = 'ABN: 12 345 678 901'; // Update with actual ABN
 
