@@ -5,32 +5,32 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage FAQs | FAQ | Disaster Recovery Australia',
-  description: 'Fire and smoke restoration questions answered. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
-  keywords: ['disaster recovery FAQ', 'fire-damage questions', 'restoration help', 'insurance claims FAQ']
+  title: 'Insurance Claims FAQs | FAQ | Disaster Recovery Australia',
+  description: 'Navigate the insurance claim process. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
+  keywords: ['disaster recovery FAQ', 'insurance-claims questions', 'restoration help', 'insurance claims FAQ']
 };
 
-export default function FireSmokeDamageFAQsPage() {
+export default function InsuranceClaimsFAQsPage() {
   const faqs = [
   {
-    "question": "Is it safe to enter after a fire?",
-    "answer": "Never enter until fire services declare it safe and structural integrity is confirmed. Dangers include structural collapse, toxic fumes, electrical hazards, and contaminated air. Wait for professional assessment."
+    "question": "How does direct insurance billing work?",
+    "answer": "Our contractors invoice your insurance company directly. You pay nothing upfront except your excess. We handle all documentation, photos, and reports required for your claim."
   },
   {
-    "question": "How do you remove smoke smell?",
-    "answer": "Complete odour removal requires: Thermal fogging, ozone treatment, hydroxyl generators, HEPA air filtration, sealing affected surfaces, and sometimes removing porous materials. DIY methods only mask odours temporarily."
+    "question": "What if my claim is denied?",
+    "answer": "We can help appeal denials by providing additional documentation, expert reports, and clarification. Many initial denials are overturned with proper supporting evidence."
   },
   {
-    "question": "What can be saved after fire damage?",
-    "answer": "Many items can be restored: Metal and glass items, some electronics after professional cleaning, hard non-porous surfaces, some clothing and textiles. Items usually unsalvageable: Food, medicines, cosmetics, heavily charred materials."
+    "question": "Do I need multiple quotes for insurance?",
+    "answer": "Most insurers accept our contractors' quotes immediately due to their certification and reputation. Our online system provides multiple quotes automatically for comparison."
   },
   {
-    "question": "How long does fire restoration take?",
-    "answer": "Minor smoke damage: 3-7 days. Moderate fire damage: 2-4 weeks. Major structural damage: 2-6 months. Timeline includes assessment, cleaning, repairs, and reconstruction as needed."
+    "question": "What documentation do I need?",
+    "answer": "Keep your policy number, claim number, photos of damage, and any correspondence. Our contractors handle technical documentation, moisture readings, and restoration reports."
   },
   {
-    "question": "Will insurance cover all fire damage?",
-    "answer": "Most policies cover fire damage comprehensively including structure, contents, additional living expenses, and smoke damage. Coverage limits and deductibles apply. Document everything for claims."
+    "question": "How long do insurance claims take?",
+    "answer": "Emergency mitigation starts immediately. Initial approval usually within 24-48 hours. Full claim settlement varies from 1-4 weeks depending on damage extent and insurer."
   }
 ];
 
@@ -42,10 +42,10 @@ export default function FireSmokeDamageFAQsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <HelpCircle className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Fire & Smoke Damage FAQs
+              Insurance Claims FAQs
             </h1>
             <p className="text-xl">
-              Fire and smoke restoration questions answered
+              Navigate the insurance claim process
             </p>
           </div>
         </div>
@@ -102,18 +102,18 @@ export default function FireSmokeDamageFAQsPage() {
                 <p className="text-sm text-gray-600">Everything about water damage restoration</p>
               </Card>
             </Link>
+            <Link href="/faq/fire-damage">
+              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
+                <h3 className="font-bold mb-2">Fire & Smoke Damage FAQs</h3>
+                <p className="text-sm text-gray-600">Fire and smoke restoration questions answered</p>
+              </Card>
+            </Link>
             <Link href="/faq/mould-removal">
               <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
                 <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
                 <h3 className="font-bold mb-2">Mould Remediation FAQs</h3>
                 <p className="text-sm text-gray-600">Important information about mould removal</p>
-              </Card>
-            </Link>
-            <Link href="/faq/insurance-claims">
-              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
-                <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
-                <h3 className="font-bold mb-2">Insurance Claims FAQs</h3>
-                <p className="text-sm text-gray-600">Navigate the insurance claim process</p>
               </Card>
             </Link>
             <Link href="/faq/emergency-response">

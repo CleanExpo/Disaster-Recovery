@@ -5,32 +5,32 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage FAQs | FAQ | Disaster Recovery Australia',
-  description: 'Fire and smoke restoration questions answered. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
-  keywords: ['disaster recovery FAQ', 'fire-damage questions', 'restoration help', 'insurance claims FAQ']
+  title: 'Emergency Response FAQs | FAQ | Disaster Recovery Australia',
+  description: 'Critical information for disaster emergencies. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
+  keywords: ['disaster recovery FAQ', 'emergency-response questions', 'restoration help', 'insurance claims FAQ']
 };
 
-export default function FireSmokeDamageFAQsPage() {
+export default function EmergencyResponseFAQsPage() {
   const faqs = [
   {
-    "question": "Is it safe to enter after a fire?",
-    "answer": "Never enter until fire services declare it safe and structural integrity is confirmed. Dangers include structural collapse, toxic fumes, electrical hazards, and contaminated air. Wait for professional assessment."
+    "question": "What should I do first in an emergency?",
+    "answer": "Ensure safety first - evacuate if necessary. Turn off water/electricity if safe. Document damage with photos. Submit our online form immediately. Do not attempt major cleanup yourself."
   },
   {
-    "question": "How do you remove smoke smell?",
-    "answer": "Complete odour removal requires: Thermal fogging, ozone treatment, hydroxyl generators, HEPA air filtration, sealing affected surfaces, and sometimes removing porous materials. DIY methods only mask odours temporarily."
+    "question": "Are services available 24/7?",
+    "answer": "Yes, our online system and contractor network operate 24/7/365 including weekends and holidays. After-hours surcharges may apply but are insurance covered."
   },
   {
-    "question": "What can be saved after fire damage?",
-    "answer": "Many items can be restored: Metal and glass items, some electronics after professional cleaning, hard non-porous surfaces, some clothing and textiles. Items usually unsalvageable: Food, medicines, cosmetics, heavily charred materials."
+    "question": "What's the difference between emergency and scheduled service?",
+    "answer": "Emergency service: Immediate response for active damage, 30-60 minute response, prevents secondary damage. Scheduled service: For non-urgent repairs, planned within 1-3 days, often lower cost."
   },
   {
-    "question": "How long does fire restoration take?",
-    "answer": "Minor smoke damage: 3-7 days. Moderate fire damage: 2-4 weeks. Major structural damage: 2-6 months. Timeline includes assessment, cleaning, repairs, and reconstruction as needed."
+    "question": "How do I choose between multiple contractor quotes?",
+    "answer": "Consider: Response time, specific experience with your damage type, customer reviews, included services, warranty offered. All our contractors meet minimum standards, so choose based on your specific needs."
   },
   {
-    "question": "Will insurance cover all fire damage?",
-    "answer": "Most policies cover fire damage comprehensively including structure, contents, additional living expenses, and smoke damage. Coverage limits and deductibles apply. Document everything for claims."
+    "question": "What areas do you service?",
+    "answer": "We cover all of Australia through our certified contractor network. Major cities have multiple contractors. Regional and remote areas are serviced through extended radius partnerships."
   }
 ];
 
@@ -42,10 +42,10 @@ export default function FireSmokeDamageFAQsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <HelpCircle className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Fire & Smoke Damage FAQs
+              Emergency Response FAQs
             </h1>
             <p className="text-xl">
-              Fire and smoke restoration questions answered
+              Critical information for disaster emergencies
             </p>
           </div>
         </div>
@@ -102,6 +102,13 @@ export default function FireSmokeDamageFAQsPage() {
                 <p className="text-sm text-gray-600">Everything about water damage restoration</p>
               </Card>
             </Link>
+            <Link href="/faq/fire-damage">
+              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
+                <h3 className="font-bold mb-2">Fire & Smoke Damage FAQs</h3>
+                <p className="text-sm text-gray-600">Fire and smoke restoration questions answered</p>
+              </Card>
+            </Link>
             <Link href="/faq/mould-removal">
               <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
                 <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
@@ -114,13 +121,6 @@ export default function FireSmokeDamageFAQsPage() {
                 <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
                 <h3 className="font-bold mb-2">Insurance Claims FAQs</h3>
                 <p className="text-sm text-gray-600">Navigate the insurance claim process</p>
-              </Card>
-            </Link>
-            <Link href="/faq/emergency-response">
-              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
-                <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
-                <h3 className="font-bold mb-2">Emergency Response FAQs</h3>
-                <p className="text-sm text-gray-600">Critical information for disaster emergencies</p>
               </Card>
             </Link>
           </div>

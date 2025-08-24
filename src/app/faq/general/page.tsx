@@ -5,32 +5,32 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage FAQs | FAQ | Disaster Recovery Australia',
-  description: 'Fire and smoke restoration questions answered. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
-  keywords: ['disaster recovery FAQ', 'fire-damage questions', 'restoration help', 'insurance claims FAQ']
+  title: 'General Questions | FAQ | Disaster Recovery Australia',
+  description: 'Common questions about our disaster recovery services. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
+  keywords: ['disaster recovery FAQ', 'general questions', 'restoration help', 'insurance claims FAQ']
 };
 
-export default function FireSmokeDamageFAQsPage() {
+export default function GeneralQuestionsPage() {
   const faqs = [
   {
-    "question": "Is it safe to enter after a fire?",
-    "answer": "Never enter until fire services declare it safe and structural integrity is confirmed. Dangers include structural collapse, toxic fumes, electrical hazards, and contaminated air. Wait for professional assessment."
+    "question": "How does your online system work?",
+    "answer": "Simply fill out our online form with your damage details and location. We instantly match you with IICRC certified contractors within your selected radius (20-100km). You'll receive multiple quotes within 30-60 minutes."
   },
   {
-    "question": "How do you remove smoke smell?",
-    "answer": "Complete odour removal requires: Thermal fogging, ozone treatment, hydroxyl generators, HEPA air filtration, sealing affected surfaces, and sometimes removing porous materials. DIY methods only mask odours temporarily."
+    "question": "Why is there a $2,200 minimum service fee?",
+    "answer": "The $2,200 minimum covers emergency response, professional assessment, initial mitigation, industrial equipment, certified technicians, and insurance documentation. This ensures proper restoration and prevents secondary damage that could cost thousands more."
   },
   {
-    "question": "What can be saved after fire damage?",
-    "answer": "Many items can be restored: Metal and glass items, some electronics after professional cleaning, hard non-porous surfaces, some clothing and textiles. Items usually unsalvageable: Food, medicines, cosmetics, heavily charred materials."
+    "question": "Are all contractors IICRC certified?",
+    "answer": "Yes, 100% of our network contractors must maintain current IICRC certification, carry $20M public liability insurance, and meet strict Disaster Recovery Network standards."
   },
   {
-    "question": "How long does fire restoration take?",
-    "answer": "Minor smoke damage: 3-7 days. Moderate fire damage: 2-4 weeks. Major structural damage: 2-6 months. Timeline includes assessment, cleaning, repairs, and reconstruction as needed."
+    "question": "How quickly can someone respond?",
+    "answer": "Emergency response times vary by location and contractor availability. Typically: Metro areas 30-60 minutes, Regional areas 1-2 hours, Remote areas 2-4 hours. All contractors offer 24/7 emergency service."
   },
   {
-    "question": "Will insurance cover all fire damage?",
-    "answer": "Most policies cover fire damage comprehensively including structure, contents, additional living expenses, and smoke damage. Coverage limits and deductibles apply. Document everything for claims."
+    "question": "Do you have a phone number to call?",
+    "answer": "We operate exclusively through our online form system to ensure fastest response and proper contractor matching. This system is available 24/7 and connects you directly with qualified local contractors."
   }
 ];
 
@@ -42,10 +42,10 @@ export default function FireSmokeDamageFAQsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <HelpCircle className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Fire & Smoke Damage FAQs
+              General Questions
             </h1>
             <p className="text-xl">
-              Fire and smoke restoration questions answered
+              Common questions about our disaster recovery services
             </p>
           </div>
         </div>
@@ -88,18 +88,18 @@ export default function FireSmokeDamageFAQsPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             
-            <Link href="/faq/general">
-              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
-                <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
-                <h3 className="font-bold mb-2">General Questions</h3>
-                <p className="text-sm text-gray-600">Common questions about our disaster recovery services</p>
-              </Card>
-            </Link>
             <Link href="/faq/water-damage">
               <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
                 <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
                 <h3 className="font-bold mb-2">Water Damage FAQs</h3>
                 <p className="text-sm text-gray-600">Everything about water damage restoration</p>
+              </Card>
+            </Link>
+            <Link href="/faq/fire-damage">
+              <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+                <HelpCircle className="h-8 w-8 text-blue-600 mb-3" />
+                <h3 className="font-bold mb-2">Fire & Smoke Damage FAQs</h3>
+                <p className="text-sm text-gray-600">Fire and smoke restoration questions answered</p>
               </Card>
             </Link>
             <Link href="/faq/mould-removal">
