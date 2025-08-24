@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Agency {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  domain      String?
+  logo        String?
+  primaryColor String  @default("#3B82F6")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  users       User[]
+  clients     Client[]
+  audits      Audit[]
+  proposals   Proposal[]
+  invoices    Invoice[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  role          String    @default("CLIENT")
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  agencyId      String?
+  agency        Agency?   @relation(fields: [agencyId], references: [id])
+  
+  clients       Client[]
+  audits        Audit[]
+  proposals     Proposal[]
+  notifications Notification[]
+}
+
+model Client {
+  id           String   @id @default(cuid())
+  businessName String
+  contactName  String
+  email        String
+  phone        String?
+  website      String?
+  address      String?
+  city         String?
+  state        String?
+  zipCode      String?
+  industry     String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  agencyId     String
+  agency       Agency   @relation(fields: [agencyId], references: [id])
+  
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
+  
+  audits       Audit[]
+  proposals    Proposal[]
+  invoices     Invoice[]
+  enquiries    Enquiry[]
+}
+
+model Audit {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  status      String      @default("DRAFT")
+  version     Int         @default(1)
+  shareToken  String?     @unique
+  findings    String?
+  metrics     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  sharedAt    DateTime?
+  
+  agencyId    String
+  agency      Agency      @relation(fields: [agencyId], references: [id])
+  
+  clientId    String
+  client      Client      @relation(fields: [clientId], references: [id])
+  
+  createdById String
+  createdBy   User        @relation(fields: [createdById], references: [id])
+  
+  proposals   Proposal[]
+}
+
+model Proposal {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  content     String
+  status      String   @default("DRAFT")
+  shareToken  String?  @unique
+  price       Float?
+  validUntil  DateTime?
+  acceptedAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  agencyId    String
+  agency      Agency   @relation(fields: [agencyId], references: [id])
+  
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  
+  auditId     String?
+  audit       Audit?   @relation(fields: [auditId], references: [id])
+  
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  
+  invoice     Invoice?
+}
+
+model Invoice {
+  id          String        @id @default(cuid())
+  invoiceNumber String      @unique
+  amount      Float
+  tax         Float         @default(0)
+  total       Float
+  status      String        @default("PENDING")
+  dueDate     DateTime
+  paidAt      DateTime?
+  stripeInvoiceId String?   @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  agencyId    String
+  agency      Agency        @relation(fields: [agencyId], references: [id])
+  
+  clientId    String
+  client      Client        @relation(fields: [clientId], references: [id])
+  
+  proposalId  String?       @unique
+  proposal    Proposal?     @relation(fields: [proposalId], references: [id])
+}
+
+model Enquiry {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  message     String
+  source      String?
+  metadata    String?
+  responded   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  
+  clientId    String?
+  client      Client?  @relation(fields: [clientId], references: [id])
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  type        String
+  title       String
+  message     String
+  read        Boolean  @default(false)
+  metadata    String?
+  createdAt   DateTime @default(now())
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}

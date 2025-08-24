@@ -1,0 +1,163 @@
+{
+  "downloadedImages": [
+    {
+      "category": "logos",
+      "filename": "disaster-recovery-qld-logo.png",
+      "originalUrl": "https://disasterrecov1.wpengine.com/wp-content/uploads/disaster_recovery_QLD_logo-002-300x259-1.png",
+      "description": "Main Disaster Recovery QLD company logo",
+      "dimensions": "300x259",
+      "localPath": "public/images/logos/disaster-recovery-qld-logo.png"
+    },
+    {
+      "category": "heroes",
+      "filename": "disaster-recovery-hero.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Disaster-Recovery-Qld-1st-Page-Image.webp",
+      "description": "Main hero banner image for homepage",
+      "localPath": "public/images/heroes/disaster-recovery-hero.webp"
+    },
+    {
+      "category": "heroes",
+      "filename": "vehicles-fleet.jpg",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Vehicles-4-1024x477.jpg",
+      "description": "Company service vehicles fleet image",
+      "dimensions": "1024x477",
+      "localPath": "public/images/heroes/vehicles-fleet.jpg"
+    },
+    {
+      "category": "heroes",
+      "filename": "mould-banner.jpg",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Mould-Banner-1024x512.jpg",
+      "description": "Mould remediation service banner",
+      "dimensions": "1024x512",
+      "localPath": "public/images/heroes/mould-banner.jpg"
+    },
+    {
+      "category": "services",
+      "filename": "water-damage-restoration.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Storm-Flooding-Water-Damage-Restoration-Services-300x300.webp",
+      "description": "Water damage restoration service thumbnail",
+      "dimensions": "300x300",
+      "localPath": "public/images/services/water-damage-restoration.webp"
+    },
+    {
+      "category": "services",
+      "filename": "fire-damage-restoration.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Fire-Smoke-Odour-Damage-Restoration-Services-300x300.webp",
+      "description": "Fire and smoke damage restoration service thumbnail",
+      "dimensions": "300x300",
+      "localPath": "public/images/services/fire-damage-restoration.webp"
+    },
+    {
+      "category": "services",
+      "filename": "mould-remediation.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Mould-Remediation-Services-300x300.webp",
+      "description": "Mould remediation service thumbnail",
+      "dimensions": "300x300",
+      "localPath": "public/images/services/mould-remediation.webp"
+    },
+    {
+      "category": "services",
+      "filename": "sewage-sanitisation.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Sewage-Sanitisation-Restoration-Services-300x300.webp",
+      "description": "Sewage sanitisation restoration service thumbnail",
+      "dimensions": "300x300",
+      "localPath": "public/images/services/sewage-sanitisation.webp"
+    },
+    {
+      "category": "services",
+      "filename": "commercial-residential.png",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Residential-Multi-Living-Business-Commercial-Remediation-Services-300x300.png",
+      "description": "Commercial and residential remediation services thumbnail",
+      "dimensions": "300x300",
+      "localPath": "public/images/services/commercial-residential.png"
+    },
+    {
+      "category": "services",
+      "filename": "crime-scene-remediation.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Crime-Scene-Clandestine-Remediation-Services-300x300.webp",
+      "description": "Crime scene and clandestine remediation service thumbnail",
+      "dimensions": "300x300",
+      "localPath": "public/images/services/crime-scene-remediation.webp"
+    },
+    {
+      "category": "services",
+      "filename": "fire-damaged-home.jpg",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Fire-Damaged-Home.jpg",
+      "description": "Fire damaged house example image",
+      "localPath": "public/images/services/fire-damaged-home.jpg"
+    },
+    {
+      "category": "services",
+      "filename": "professional-mould-cleaning.jpg",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Disaster-Recovery-Qld-Professional-Mould-Cleaning.jpg",
+      "description": "Professional mould cleaning service image",
+      "localPath": "public/images/services/professional-mould-cleaning.jpg"
+    },
+    {
+      "category": "icons",
+      "filename": "toxic-smoke-residue.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Toxic-Smoke-Residue-can-cause-CANCER-300x300.webp",
+      "description": "Toxic smoke residue health warning icon",
+      "dimensions": "300x300",
+      "localPath": "public/images/icons/toxic-smoke-residue.webp"
+    },
+    {
+      "category": "icons",
+      "filename": "biohazards-allergens.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Biohazards-and-Allergens-300x300.webp",
+      "description": "Biohazards and allergens warning icon",
+      "dimensions": "300x300",
+      "localPath": "public/images/icons/biohazards-allergens.webp"
+    },
+    {
+      "category": "icons",
+      "filename": "fine-particulates.webp",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Fine-Particulates-300x300.webp",
+      "description": "Fine particulates warning icon",
+      "dimensions": "300x300",
+      "localPath": "public/images/icons/fine-particulates.webp"
+    },
+    {
+      "category": "icons",
+      "filename": "structural-weakness.png",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Structural-Weakness-1024x1024.png",
+      "description": "Structural weakness warning icon",
+      "dimensions": "1024x1024",
+      "localPath": "public/images/icons/structural-weakness.png"
+    },
+    {
+      "category": "icons",
+      "filename": "biohazard-sewage-cleanup.png",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/CAT-3-Cleanup.png",
+      "description": "Category 3 biohazard sewage cleanup service icon",
+      "localPath": "public/images/icons/biohazard-sewage-cleanup.png"
+    },
+    {
+      "category": "icons",
+      "filename": "inspections.png",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Inspections.png",
+      "description": "Microbial remediation inspections service icon",
+      "localPath": "public/images/icons/inspections.png"
+    },
+    {
+      "category": "icons",
+      "filename": "timber-floor-drying.png",
+      "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Timber-Floor-Drying-1.png",
+      "description": "Timber floor drying service icon",
+      "localPath": "public/images/icons/timber-floor-drying.png"
+    }
+  ],
+  "summary": {
+    "totalImages": 19,
+    "categories": {
+      "logos": 1,
+      "heroes": 3,
+      "services": 8,
+      "icons": 7,
+      "partners": 0
+    },
+    "downloadDate": "2025-08-24",
+    "sourceWebsite": "https://disasterrecovery.com.au",
+    "notes": "Images downloaded from Disaster Recovery QLD website for web development purposes. All images preserve original quality and have been organized by category."
+  }
+}

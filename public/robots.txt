@@ -1,0 +1,42 @@
+# Disaster Recovery Australia - Robots.txt
+# https://disasterrecovery.com.au
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /partner-portal/
+Disallow: /_next/
+Disallow: /static/private/
+
+# Allow specific important directories
+Allow: /services/
+Allow: /locations/
+Allow: /knowledge/
+Allow: /emergency/
+Allow: /cost/
+Allow: /insurance/
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Important pages to prioritize
+Allow: /services/water-damage-restoration
+Allow: /services/fire-damage-restoration
+Allow: /services/mould-remediation
+Allow: /services/biohazard-cleanup
+Allow: /services/indoor-environmental-professional
+
+# Sitemap location
+Sitemap: https://disasterrecovery.com.au/sitemap.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-locations.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-services.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-knowledge.xml
