@@ -13,7 +13,7 @@ export default function BurstPipesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Burst Pipe Emergency Services',
+    name: 'Disaster Recovery Australia - Burst Pipe Emergency Services',
     description: 'Emergency burst pipe repair and water damage restoration in Queensland. 24/7 response for pipe bursts, leaks, and flooding.',
     telephone: '1300 814 870',
     address: {

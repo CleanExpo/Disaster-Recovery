@@ -28,13 +28,13 @@ export function generateSEO(config: SEOConfig): Metadata {
       title: config.openGraph?.title || config.title,
       description: config.openGraph?.description || config.description,
       url: config.canonical || baseUrl,
-      siteName: 'Disaster Recovery QLD',
+      siteName: 'Disaster Recovery Australia',
       images: config.openGraph?.images || [
         {
           url: `${baseUrl}/og-image.jpg`,
           width: 1200,
           height: 630,
-          alt: 'Disaster Recovery QLD - 24/7 Emergency Response',
+          alt: 'Disaster Recovery Australia - 24/7 Emergency Response',
         },
       ],
       locale: 'en_AU',
@@ -65,7 +65,7 @@ export const generateLocalBusinessSchema = (businessInfo: any) => ({
   '@context': 'https://schema.org',
   '@type': 'DamageRestorationService',
   '@id': 'https://disasterrecovery.com.au/#organization',
-  name: 'Disaster Recovery QLD',
+  name: 'Disaster Recovery Australia',
   url: 'https://disasterrecovery.com.au',
   logo: {
     '@type': 'ImageObject',
@@ -176,7 +176,7 @@ export const generateServiceSchema = (service: {
   description: service.description,
   provider: service.provider || {
     '@type': 'Organization',
-    name: 'Disaster Recovery QLD',
+    name: 'Disaster Recovery Australia',
     url: 'https://disasterrecovery.com.au',
   },
   areaServed: service.areaServed || ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba'],
@@ -232,11 +232,11 @@ export const generateArticleSchema = (article: {
   image: article.image,
   author: {
     '@type': 'Person',
-    name: article.author || 'Disaster Recovery QLD Team',
+    name: article.author || 'Disaster Recovery Australia Team',
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Disaster Recovery QLD',
+    name: 'Disaster Recovery Australia',
     logo: {
       '@type': 'ImageObject',
       url: 'https://disasterrecovery.com.au/logo.png',

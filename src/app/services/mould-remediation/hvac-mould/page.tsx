@@ -13,7 +13,7 @@ export default function AirConditioningMouldRemovalPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Air Conditioning Mould Removal',
+    name: 'Disaster Recovery Australia - Air Conditioning Mould Removal',
     description: 'Professional air conditioning mould removal services in Queensland. 24/7 emergency response for AC duct mould, HVAC contamination.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function AirConditioningMouldRemovalPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Air Conditioning Mould Removal Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert air conditioning mould removal services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert air conditioning mould removal services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

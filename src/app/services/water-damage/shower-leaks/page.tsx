@@ -13,7 +13,7 @@ export default function ShowerLeakWaterDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Shower Leak Water Damage',
+    name: 'Disaster Recovery Australia - Shower Leak Water Damage',
     description: 'Professional shower leak water damage services in Queensland. 24/7 emergency response for shower pan leak, bathroom flooding.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function ShowerLeakWaterDamagePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Shower Leak Water Damage Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert shower leak water damage services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert shower leak water damage services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

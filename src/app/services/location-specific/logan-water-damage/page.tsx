@@ -13,7 +13,7 @@ export default function LoganWaterDamageServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Logan Water Damage Services',
+    name: 'Disaster Recovery Australia - Logan Water Damage Services',
     description: 'Professional logan water damage services services in Queensland. 24/7 emergency response for Logan flooding, southern Brisbane.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function LoganWaterDamageServicesPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Logan Water Damage Services Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert logan water damage services services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert logan water damage services services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

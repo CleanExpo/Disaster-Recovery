@@ -13,7 +13,7 @@ export default function SmokeOdourRemovalServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Smoke Odour Removal Services',
+    name: 'Disaster Recovery Australia - Smoke Odour Removal Services',
     description: 'Professional smoke odour removal services services in Queensland. 24/7 emergency response for smoke smell, fire odour elimination.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function SmokeOdourRemovalServicesPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Smoke Odour Removal Services Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert smoke odour removal services services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert smoke odour removal services services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

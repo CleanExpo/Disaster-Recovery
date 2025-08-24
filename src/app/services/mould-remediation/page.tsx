@@ -10,7 +10,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Mic
 
 // SEO Metadata with AI optimization
 export const metadata: Metadata = generateSEO({
-  title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery QLD',
+  title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery Australia',
   description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Call 1300 309 361.',
   keywords: [
     'mould remediation Brisbane',

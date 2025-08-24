@@ -13,7 +13,7 @@ export default function NeedleSharpsDisposalPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Needle & Sharps Disposal',
+    name: 'Disaster Recovery Australia - Needle & Sharps Disposal',
     description: 'Professional needle & sharps disposal services in Queensland. 24/7 emergency response for syringe cleanup, medical waste.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function NeedleSharpsDisposalPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Needle & Sharps Disposal Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert needle & sharps disposal services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert needle & sharps disposal services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

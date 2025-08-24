@@ -13,7 +13,7 @@ export default function DocumentWaterDamageRecoveryPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Document Water Damage Recovery',
+    name: 'Disaster Recovery Australia - Document Water Damage Recovery',
     description: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function DocumentWaterDamageRecoveryPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Document Water Damage Recovery Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert document water damage recovery services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert document water damage recovery services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

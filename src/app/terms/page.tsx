@@ -149,7 +149,7 @@ export default function TermsOfService() {
                 <li>Direct negotiation between parties</li>
                 <li>Mediation through a qualified mediator</li>
                 <li>Arbitration under Australian law</li>
-                <li>Legal proceedings in Queensland courts</li>
+                <li>Legal proceedings in Australian courts</li>
               </ol>
             </div>
           </section>
@@ -168,15 +168,15 @@ export default function TermsOfService() {
               <p className="font-semibold">Disaster Recovery Australia</p>
               <p>Email: legal@disasterrecovery.com.au</p>
               <p>Phone: 1300 DISASTER (1300 347 278)</p>
-              <p>Address: Brisbane, Queensland, Australia</p>
+              <p>Address: Brisbane, Australia</p>
               <p>ABN: [To be provided]</p>
             </div>
           </section>
 
           <section className="pt-6 border-t border-gray-200">
             <p className="text-sm text-gray-600">
-              These Terms of Service are governed by the laws of Queensland, Australia. 
-              By using our services, you consent to the exclusive jurisdiction of Queensland courts.
+              These Terms of Service are governed by the laws of Australia.
+              By using our services, you consent to the exclusive jurisdiction of Australian courts.
             </p>
           </section>
         </div>

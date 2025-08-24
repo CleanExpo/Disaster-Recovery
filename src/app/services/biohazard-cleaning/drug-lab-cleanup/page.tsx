@@ -13,7 +13,7 @@ export default function DrugLabDecontaminationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Drug Lab Decontamination',
+    name: 'Disaster Recovery Australia - Drug Lab Decontamination',
     description: 'Professional drug lab decontamination services in Queensland. 24/7 emergency response for meth lab cleanup, chemical remediation.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function DrugLabDecontaminationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Drug Lab Decontamination Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert drug lab decontamination services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert drug lab decontamination services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

@@ -13,7 +13,7 @@ export default function CairnsCycloneRecoveryPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Cairns Cyclone Recovery',
+    name: 'Disaster Recovery Australia - Cairns Cyclone Recovery',
     description: 'Professional cairns cyclone recovery services in Queensland. 24/7 emergency response for tropical damage, FNQ restoration.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function CairnsCycloneRecoveryPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Cairns Cyclone Recovery Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert cairns cyclone recovery services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert cairns cyclone recovery services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

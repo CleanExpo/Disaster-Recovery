@@ -9,15 +9,15 @@ import { Phone, Clock, Shield, Droplets, Flame, AlertTriangle, AlertOctagon, Bui
 
 // SEO Metadata
 export const metadata: Metadata = generateSEO({
-  title: 'Disaster Recovery Services Brisbane | Water, Fire, Mould Restoration | 24/7 Emergency',
-  description: 'Complete disaster recovery services in Brisbane & Queensland. Water damage, fire restoration, mould remediation, sewage cleanup, biohazard cleaning. IICRC certified, insurance approved. Call 1300 309 361.',
+  title: 'Disaster Recovery Services Australia | Water, Fire, Mould Restoration | 24/7 Emergency',
+  description: 'Complete disaster recovery services across Australia. Water damage, fire restoration, mould remediation, sewage cleanup, biohazard cleaning. IICRC certified, insurance approved. Call 1300 309 361.',
   keywords: [
     'disaster recovery Brisbane',
     'emergency restoration services',
     'water damage restoration',
     'fire damage restoration',
     'mould remediation Brisbane',
-    'sewage cleanup Queensland',
+    'sewage cleanup Australia',
     'biohazard cleaning services',
     'storm damage restoration',
     '24 hour emergency restoration',
@@ -91,7 +91,7 @@ const services = [
   },
   {
     title: 'Commercial Services',
-    description: 'Large-scale commercial and industrial disaster recovery for businesses across Queensland.',
+    description: 'Large-scale commercial and industrial disaster recovery for businesses across Australia.',
     icon: Building2,
     color: 'purple',
     href: '/services/commercial',
@@ -121,7 +121,7 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Professional Disaster Recovery Services in Brisbane & Queensland
+              Professional Disaster Recovery Services Across Australia
             </h1>
             <p className="text-xl text-gray-700 mb-8">
               IICRC certified restoration experts providing 24/7 emergency response for water damage, 
@@ -210,7 +210,7 @@ export default function ServicesPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose Disaster Recovery QLD
+            Why Choose Disaster Recovery
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -249,7 +249,7 @@ export default function ServicesPage() {
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Servicing All of South East Queensland
+            Servicing All of Australia
           </h2>
           
           <div className="grid md:grid-cols-5 gap-4 max-w-4xl mx-auto">

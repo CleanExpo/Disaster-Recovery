@@ -13,7 +13,7 @@ export default function TwentyFourHourWaterExtractionPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - 24 Hour Water Extraction',
+    name: 'Disaster Recovery Australia - 24 Hour Water Extraction',
     description: 'Professional 24 hour water extraction services in Queensland. 24/7 emergency response for emergency pumping, rapid extraction.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function TwentyFourHourWaterExtractionPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional 24 Hour Water Extraction Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert 24 hour water extraction services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert 24 hour water extraction services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

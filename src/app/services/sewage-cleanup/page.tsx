@@ -10,7 +10,7 @@ import { Phone, Clock, Shield, AlertOctagon, Droplets, Home, AlertTriangle, Chec
 
 // SEO Metadata with AI optimization
 export const metadata: Metadata = generateSEO({
-  title: 'Sewage Cleanup Brisbane | Emergency Sewage Removal & Sanitization | Disaster Recovery QLD',
+  title: 'Sewage Cleanup Brisbane | Emergency Sewage Removal & Sanitization | Disaster Recovery Australia',
   description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Call 1300 309 361.',
   keywords: [
     'sewage cleanup Brisbane',

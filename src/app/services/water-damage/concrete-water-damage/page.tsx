@@ -13,7 +13,7 @@ export default function ConcreteWaterDamageRestorationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Concrete Water Damage Restoration',
+    name: 'Disaster Recovery Australia - Concrete Water Damage Restoration',
     description: 'Professional concrete water damage restoration services in Queensland. 24/7 emergency response for concrete flooding, slab moisture.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function ConcreteWaterDamageRestorationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Concrete Water Damage Restoration Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert concrete water damage restoration services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert concrete water damage restoration services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

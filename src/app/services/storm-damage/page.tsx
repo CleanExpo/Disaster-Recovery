@@ -13,7 +13,7 @@ export default function StormDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD',
+    name: 'Disaster Recovery Australia',
     description: 'Emergency storm damage restoration services across Queensland. Rapid response for wind, hail, and flood damage recovery.',
     telephone: '1300 814 870',
     address: {

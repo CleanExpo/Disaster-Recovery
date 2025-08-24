@@ -13,7 +13,7 @@ export default function BloodSpillCleanupServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Blood Spill Cleanup Services',
+    name: 'Disaster Recovery Australia - Blood Spill Cleanup Services',
     description: 'Professional blood spill cleanup services services in Queensland. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function BloodSpillCleanupServicesPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Blood Spill Cleanup Services Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert blood spill cleanup services services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert blood spill cleanup services services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

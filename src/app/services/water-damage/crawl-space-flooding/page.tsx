@@ -13,7 +13,7 @@ export default function CrawlSpaceWaterRemovalPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Crawl Space Water Removal',
+    name: 'Disaster Recovery Australia - Crawl Space Water Removal',
     description: 'Professional crawl space water removal services in Queensland. 24/7 emergency response for under house flooding, subfloor water.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function CrawlSpaceWaterRemovalPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Crawl Space Water Removal Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert crawl space water removal services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert crawl space water removal services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

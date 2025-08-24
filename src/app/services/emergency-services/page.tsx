@@ -13,7 +13,7 @@ export default function EmergencyServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD',
+    name: 'Disaster Recovery Australia',
     description: '24/7 emergency disaster response services across Queensland. Immediate response for water, fire, storm, and hazardous material incidents.',
     telephone: '1300 814 870',
     address: {

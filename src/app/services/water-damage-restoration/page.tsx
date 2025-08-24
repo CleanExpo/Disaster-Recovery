@@ -10,11 +10,11 @@ import { Phone, Clock, Shield, Droplets, Wind, Home, AlertTriangle, CheckCircle,
 
 // SEO Metadata with AI optimization
 export const metadata: Metadata = generateSEO({
-  title: 'Water Damage Restoration Brisbane | 24/7 Emergency Response | Disaster Recovery QLD',
-  description: 'Professional water damage restoration services in Brisbane, Gold Coast, Ipswich & Toowoomba. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 309 361.',
+  title: 'Water Damage Restoration Australia | 24/7 Emergency Response | Disaster Recovery',
+  description: 'Professional water damage restoration services across Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 309 361.',
   keywords: [
     'water damage restoration Brisbane',
-    'flood restoration Queensland',
+    'flood restoration Australia',
     'emergency water extraction',
     'water damage repair',
     'flood cleanup Brisbane',
@@ -95,11 +95,11 @@ export default function WaterDamageRestorationPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Water Damage Restoration Services in Brisbane & Queensland
+                Water Damage Restoration Services Across Australia
               </h1>
               <p className="text-xl text-gray-700 mb-8">
                 IICRC certified water damage restoration experts with 25+ years experience. 
-                Fast emergency response, insurance approved, and available 24/7 across Queensland.
+                Fast emergency response, insurance approved, and available 24/7 across Australia.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">

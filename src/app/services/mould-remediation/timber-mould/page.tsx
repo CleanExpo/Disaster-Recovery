@@ -13,7 +13,7 @@ export default function TimberMouldTreatmentPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Timber Mould Treatment',
+    name: 'Disaster Recovery Australia - Timber Mould Treatment',
     description: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function TimberMouldTreatmentPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Timber Mould Treatment Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert timber mould treatment services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert timber mould treatment services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

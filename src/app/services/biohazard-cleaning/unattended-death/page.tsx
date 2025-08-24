@@ -13,7 +13,7 @@ export default function UnattendedDeathCleanupPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery QLD - Unattended Death Cleanup',
+    name: 'Disaster Recovery Australia - Unattended Death Cleanup',
     description: 'Professional unattended death cleanup services in Queensland. 24/7 emergency response for decomposition cleanup, deceased estate.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function UnattendedDeathCleanupPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Unattended Death Cleanup Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert unattended death cleanup services, Disaster Recovery QLD provides comprehensive solutions 
+              When you need expert unattended death cleanup services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

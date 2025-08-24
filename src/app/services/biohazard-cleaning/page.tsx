@@ -10,7 +10,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Heart, Sh
 
 // SEO Metadata with AI optimization
 export const metadata: Metadata = generateSEO({
-  title: 'Biohazard Cleaning Brisbane | Crime Scene & Trauma Cleanup | Disaster Recovery QLD',
+  title: 'Biohazard Cleaning Brisbane | Crime Scene & Trauma Cleanup | Disaster Recovery Australia',
   description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Call 1300 309 361.',
   keywords: [
     'biohazard cleaning Brisbane',

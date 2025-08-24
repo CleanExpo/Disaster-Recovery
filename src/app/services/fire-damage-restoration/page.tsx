@@ -10,7 +10,7 @@ import { Phone, Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, Ar
 
 // SEO Metadata with AI optimization
 export const metadata: Metadata = generateSEO({
-  title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery QLD',
+  title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery Australia',
   description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. Insurance approved, IICRC certified. Call 1300 309 361.',
   keywords: [
     'fire damage restoration Brisbane',

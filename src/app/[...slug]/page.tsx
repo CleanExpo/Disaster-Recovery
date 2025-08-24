@@ -553,7 +553,7 @@ export default function DynamicSEOPage({ params }: DynamicPageProps) {
     const contentStructure = generateContentStructure(matchedKeyword.keyword);
     
     return {
-      title: `${matchedKeyword.keyword} | Expert Solutions | Disaster Recovery QLD`,
+      title: `${matchedKeyword.keyword} | Expert Solutions | Disaster Recovery`,
       metaDescription: `${matchedKeyword.keyword} - Professional service, insurance approved, 24/7 response. Get immediate help from certified experts. Call 1300 814 870.`,
       h1: contentStructure.h1,
       content: {
@@ -561,7 +561,7 @@ export default function DynamicSEOPage({ params }: DynamicPageProps) {
         keyPoints: [
           'Certified professionals with 15+ years experience',
           'Insurance approved and direct billing available',
-          '24/7 emergency response across Queensland',
+          '24/7 emergency response across Australia',
           'Guaranteed workmanship and results',
           'Free assessments and competitive quotes'
         ],
@@ -636,7 +636,7 @@ export default function DynamicSEOPage({ params }: DynamicPageProps) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             generateLocalBusinessSchema({
-              name: 'Disaster Recovery QLD',
+              name: 'Disaster Recovery',
               description: pageContent.metaDescription,
               telephone: '1300 814 870',
               address: {
