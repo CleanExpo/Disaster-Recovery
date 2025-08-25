@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'New Year's Eve Disaster Recovery Services | Disaster Recovery Australia',
+  title: 'New Year\'s Eve Disaster Recovery Services | Disaster Recovery Australia',
   description: 'Expert answers and solutions for "new years eve disaster recovery services". IICRC certified professionals available 24/7 across Australia.',
   keywords: 'new years eve disaster recovery services, disaster recovery, restoration services, Australia, IICRC certified',
 };

@@ -245,8 +245,8 @@ export async function contentGapAnalysis(competitorDomain: string, ourDomain: st
 
 // Track ranking improvements
 export function trackRankingImprovements(previousRankings: any, currentRankings: any) {
-  const improvements = [];
-  const declines = [];
+  const improvements: any[] = [];
+  const declines: any[] = [];
   
   // Compare rankings and identify changes
   // This would be implemented with actual ranking data

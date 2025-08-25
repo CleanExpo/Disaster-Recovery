@@ -30,10 +30,10 @@ export default function CycloneDamageRecoveryPage() {
           <div className="max-w-4xl">
             <div className="flex items-center mb-4">
               <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
-                {disaster.severity.toUpperCase()} PRIORITY
+                EXTREME PRIORITY
               </span>
               <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-                {disaster.responseTime} RESPONSE
+                30-60MIN RESPONSE
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'What's Included in Disaster Recovery Services | Disaster Recovery Australia',
+  title: 'What\'s Included in Disaster Recovery Services | Disaster Recovery Australia',
   description: 'Expert answers and solutions for "what does disaster recovery service include". IICRC certified professionals available 24/7 across Australia.',
   keywords: 'what does disaster recovery service include, disaster recovery, restoration services, Australia, IICRC certified',
 };

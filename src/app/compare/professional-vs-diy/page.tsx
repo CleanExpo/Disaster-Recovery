@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { AlertTriangle, CheckCircle2, XCircle, DollarSign, Clock, Shield, Users, Tool } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, XCircle, DollarSign, Clock, Shield, Users, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
@@ -284,7 +284,7 @@ export default function ProfessionalVsDIYPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card className="p-6">
-              <Tool className="h-10 w-10 text-orange-600 mb-4" />
+              <Wrench className="h-10 w-10 text-orange-600 mb-4" />
               <h3 className="text-xl font-bold mb-3">Wrong Equipment</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Home dehumidifiers too small</li>

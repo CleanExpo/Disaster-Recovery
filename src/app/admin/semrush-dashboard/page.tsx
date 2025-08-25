@@ -89,7 +89,7 @@ export default function SEMrushDashboard() {
     setLoading(false);
   };
 
-  const checkPageExists = async (slug: string): Promise<boolean> {
+  const checkPageExists = async (slug: string): Promise<boolean> => {
     // Check common page patterns
     const patterns = [
       `/services/${slug}`,

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'bushfires cleanup VIC',
     'water damage Victoria',
     'fire damage restoration Melbourne',
-    ...state.cities.map(city => `${city.toLowerCase()} disaster recovery`),
+    ...['Sydney', 'Melbourne', 'Brisbane'].map((city: string) => `${city.toLowerCase()} disaster recovery`),
     'insurance restoration Victoria',
     '24/7 emergency VIC'
   ]
