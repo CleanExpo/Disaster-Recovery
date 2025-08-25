@@ -80,7 +80,7 @@ export default function NorthernTerritoryPage() {
                 <p className="text-gray-600 mb-4">
                   Rapid response and complete restoration for {disaster.toLowerCase()} damage.
                 </p>
-                <Link href={`/services/${disaster.toLowerCase().replace(/s+/g, '-')}`}>
+                <Link href={`/services/${disaster.toLowerCase().replace(/\s+/g, '-')}`}>
                   <Button variant="link" className="p-0">
                     Learn More →
                   </Button>
@@ -105,7 +105,7 @@ export default function NorthernTerritoryPage() {
             {cities.map((city, index) => (
               <Card key={index} className="p-4 hover:bg-gray-50 transition-colors">
                 <MapPin className="h-5 w-5 text-gray-600 inline mr-2" />
-                <Link href={`/locations/${stateCode.toLowerCase()}/${city.toLowerCase().replace(/s+/g, '-')}`}>
+                <Link href={`/locations/nt/${city.toLowerCase().replace(/\s+/g, '-')}`}>
                   <span className="hover:text-blue-600 cursor-pointer">{city}</span>
                 </Link>
               </Card>
