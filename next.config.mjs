@@ -118,11 +118,7 @@ const nextConfig = {
                 return module.size() > 160000 &&
                   /node_modules[/\\]/.test(module.identifier());
               },
-              name(module) {
-                const hash = require('crypto').createHash('sha1');
-                hash.update(module.identifier());
-                return hash.digest('hex').substring(0, 8);
-              },
+              name: 'lib',
               priority: 30,
               minChunks: 1,
               reuseExistingChunk: true,
@@ -133,12 +129,7 @@ const nextConfig = {
               priority: 20,
             },
             shared: {
-              name(module, chunks) {
-                return require('crypto')
-                  .createHash('sha1')
-                  .update(chunks.reduce((acc, chunk) => acc + chunk.name, ''))
-                  .digest('hex') + (module.type === 'css/mini-extract' ? '_CSS' : '');
-              },
+              name: 'shared',
               priority: 10,
               minChunks: 2,
               reuseExistingChunk: true,
