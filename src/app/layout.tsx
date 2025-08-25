@@ -3,6 +3,10 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
 import { Providers } from './providers'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
+import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -95,7 +99,15 @@ export default function RootLayout({
         <meta name="theme-color" content="#0052CC" />
       </head>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <GoogleTagManager />
+        <MicrosoftClarity />
+        <Providers>
+          <Header />
+          <main id="main-content">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}
           strategy="afterInteractive"
