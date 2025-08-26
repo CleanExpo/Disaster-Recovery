@@ -1,0 +1,91 @@
+{
+  "name": "disaster-recovery-staging",
+  "version": 2,
+  "framework": "nextjs",
+  "regions": ["syd1"],
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "NODE_ENV": "staging",
+    "NEXT_PUBLIC_APP_NAME": "Disaster Recovery Australia (Staging)"
+  },
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max_old_space_size=8192",
+      "DATABASE_URL": "@database_url_staging",
+      "NEXTAUTH_SECRET": "@nextauth_secret_staging",
+      "ENCRYPTION_KEY": "@encryption_key_staging"
+    }
+  },
+  "functions": {
+    "app/api/contractor/register/route.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "app/api/clean-claims/sync/route.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://staging.disasterrecovery.com.au"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-Requested-With, Content-Type, Authorization"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Environment",
+          "value": "staging"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/admin",
+      "destination": "/admin/dashboard",
+      "permanent": false
+    },
+    {
+      "source": "/contractor",
+      "destination": "/contractor/dashboard",
+      "permanent": false
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/check-expiring-certifications",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/sync-clean-claims",
+      "schedule": "*/30 * * * *"
+    }
+  ]
+}
