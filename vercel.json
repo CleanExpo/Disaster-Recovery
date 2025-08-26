@@ -9,7 +9,9 @@
     "SKIP_ENV_VALIDATION": "true",
     "NEXT_TELEMETRY_DISABLED": "1",
     "NEXTAUTH_URL": "https://disasterrecovery.com.au",
-    "NEXTAUTH_SECRET": "your-secret-key-here"
+    "NEXTAUTH_SECRET": "your-secret-key-here",
+    "NEXT_PUBLIC_SITE_URL": "https://disasterrecovery.com.au",
+    "NEXT_PUBLIC_APP_URL": "https://disasterrecovery.com.au"
   },
   "build": {
     "env": {
@@ -17,7 +19,11 @@
       "DATABASE_URL": "file:./build.db",
       "NEXT_TELEMETRY_DISABLED": "1",
       "SKIP_ENV_VALIDATION": "true",
-      "CI": "false"
+      "CI": "false",
+      "NEXTAUTH_URL": "https://disasterrecovery.com.au",
+      "NEXTAUTH_SECRET": "build-time-secret",
+      "NEXT_PUBLIC_SITE_URL": "https://disasterrecovery.com.au",
+      "NEXT_PUBLIC_APP_URL": "https://disasterrecovery.com.au"
     }
   },
   "functions": {
