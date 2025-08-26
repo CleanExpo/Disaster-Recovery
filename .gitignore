@@ -49,3 +49,4 @@ prisma/*.db-journal
 
 # OS
 Thumbs.db
+.vercel

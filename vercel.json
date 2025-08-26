@@ -1,0 +1,17 @@
+{
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "functions": {
+    "src/app/api/auth/[...nextauth]/route.ts": {
+      "maxDuration": 10
+    },
+    "src/app/api/**/*.ts": {
+      "maxDuration": 10
+    }
+  },
+  "crons": [],
+  "env": {
+    "NODE_OPTIONS": "--max-old-space-size=4096"
+  }
+}

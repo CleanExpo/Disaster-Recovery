@@ -223,12 +223,12 @@ test.describe('Comprehensive UI/UX Testing - Disaster Recovery Website', () => {
               console.log(`✅ Working link: ${href}`);
             }
           } catch (error) {
-            brokenLinks.push({ href, error: error.message });
-            console.log(`❌ Link error: ${href} - ${error.message}`);
+            brokenLinks.push({ href, error: error instanceof Error ? error.message : String(error) });
+            console.log(`❌ Link error: ${href} - ${error instanceof Error ? error.message : String(error)}`);
           }
         }
       } catch (error) {
-        console.log(`⚠️ Skipping link due to timeout: ${error.message}`);
+        console.log(`⚠️ Skipping link due to timeout: ${error instanceof Error ? error.message : String(error)}`);
         break;
       }
     }
@@ -269,7 +269,7 @@ test.describe('Comprehensive UI/UX Testing - Disaster Recovery Website', () => {
           
           console.log(`📸 Screenshot taken: ${breakpoint.name} (${breakpoint.width}x${breakpoint.height}) for ${page_path}`);
         } catch (error) {
-          console.log(`⚠️ Skipping ${page_path} at ${breakpoint.name}: ${error.message}`);
+          console.log(`⚠️ Skipping ${page_path} at ${breakpoint.name}: ${error instanceof Error ? error.message : String(error)}`);
           continue;
         }
       }

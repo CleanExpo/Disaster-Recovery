@@ -125,7 +125,7 @@ test.describe('Mass WebPage Creations Application Verification', () => {
       homepage: false,
       loginPage: false,
       loginFunction: false,
-      errors: []
+      errors: [] as string[]
     };
     
     try {
@@ -135,7 +135,7 @@ test.describe('Mass WebPage Creations Application Verification', () => {
       results.homepage = true;
       console.log('✓ Homepage: Working');
     } catch (error) {
-      results.errors.push(`Homepage error: ${error.message}`);
+      results.errors.push(`Homepage error: ${error instanceof Error ? error.message : String(error)}`);
       console.log('✗ Homepage: Failed');
     }
     
@@ -155,7 +155,7 @@ test.describe('Mass WebPage Creations Application Verification', () => {
         console.log('✗ Login Page: Missing form elements');
       }
     } catch (error) {
-      results.errors.push(`Login page error: ${error.message}`);
+      results.errors.push(`Login page error: ${error instanceof Error ? error.message : String(error)}`);
       console.log('✗ Login Page: Failed');
     }
     

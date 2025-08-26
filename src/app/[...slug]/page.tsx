@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Phone, Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MapPin, DollarSign, Star } from 'lucide-react';
+import { Phone, Clock, Shield, AlertTriangle, CheckCircle2, MapPin, Star } from 'lucide-react';
 import { generateLocalBusinessSchema, generateFAQSchema } from '@/lib/seo';
-import { easyWinKeywords, generateLocationKeywords, generateContentStructure } from '@/lib/seo-keyword-strategy';
-import { australianCities, regionalCities, generateServiceContent, generateLocalFAQs } from '@/lib/dynamic-content-generator';
+import { easyWinKeywords, generateContentStructure } from '@/lib/seo-keyword-strategy';
+import { australianCities, regionalCities, generateLocalFAQs } from '@/lib/dynamic-content-generator';
 import LeadCaptureForm from '@/components/forms/LeadCaptureForm';
 
 interface DynamicPageProps {

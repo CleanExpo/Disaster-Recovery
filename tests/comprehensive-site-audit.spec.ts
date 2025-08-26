@@ -123,7 +123,7 @@ test.describe('Comprehensive Site Health Audit', () => {
       // Check meta description
       const description = await page.locator('meta[name="description"]').getAttribute('content');
       expect(description).toBeTruthy();
-      expect(description.length).toBeGreaterThan(50);
+      expect(description!.length).toBeGreaterThan(50);
       
       // Check canonical URL
       const canonical = await page.locator('link[rel="canonical"]').count();

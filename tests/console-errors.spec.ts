@@ -2,7 +2,11 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Console Error Detection', () => {
   test('Check for console errors and warnings on key pages', async ({ page }) => {
-    const consoleMessages = [];
+    const consoleMessages: Array<{
+      type: string;
+      text: string;
+      location: any;
+    }> = [];
     
     // Listen for console messages
     page.on('console', msg => {
@@ -31,7 +35,7 @@ test.describe('Console Error Detection', () => {
       await page.goto('/contractors');
       await page.waitForLoadState('networkidle');
     } catch (error) {
-      console.log('⚠️ Error loading contractors page:', error.message);
+      console.log('⚠️ Error loading contractors page:', error instanceof Error ? error.message : String(error));
     }
     
     // Report findings

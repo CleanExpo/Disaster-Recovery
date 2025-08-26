@@ -81,13 +81,13 @@ test.describe('Comprehensive Website Audit', () => {
           const fcp = paintEntries.find(entry => entry.name === 'first-contentful-paint')?.startTime || 0;
           
           return {
-            domContentLoaded: navigation.domContentLoadedEventEnd - navigation.navigationStart,
-            loadComplete: navigation.loadEventEnd - navigation.navigationStart,
+            domContentLoaded: navigation.domContentLoadedEventEnd - (navigation.navigationStart || 0),
+            loadComplete: navigation.loadEventEnd - (navigation.navigationStart || 0),
             firstContentfulPaint: fcp,
             // Simulated metrics (in real Lighthouse these would be calculated)
             largestContentfulPaint: fcp + Math.random() * 1000 + 500,
             cumulativeLayoutShift: Math.random() * 0.1,
-            timeToInteractive: navigation.domInteractive - navigation.navigationStart,
+            timeToInteractive: navigation.domInteractive - (navigation.navigationStart || 0),
             totalBlockingTime: Math.random() * 300,
             speedIndex: fcp + Math.random() * 500 + 1000
           };

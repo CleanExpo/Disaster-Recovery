@@ -86,9 +86,9 @@ test.describe('Mass WebPage Creations - Simple Verification', () => {
     console.log('🏥 Step 4: Running application health check...');
     
     const results = {
-      homepage: { working: false, error: null },
-      loginPage: { working: false, error: null },
-      loginForm: { working: false, error: null }
+      homepage: { working: false, error: null as string | null },
+      loginPage: { working: false, error: null as string | null },
+      loginForm: { working: false, error: null as string | null }
     };
     
     // Test homepage
@@ -98,7 +98,7 @@ test.describe('Mass WebPage Creations - Simple Verification', () => {
       results.homepage.working = true;
       console.log('✅ Homepage: WORKING');
     } catch (error) {
-      results.homepage.error = error.message;
+      results.homepage.error = error instanceof Error ? error.message : String(error);
       console.log('❌ Homepage: FAILED');
     }
     
@@ -121,7 +121,7 @@ test.describe('Mass WebPage Creations - Simple Verification', () => {
         console.log('❌ Login Page: MISSING FORM ELEMENTS');
       }
     } catch (error) {
-      results.loginPage.error = error.message;
+      results.loginPage.error = error instanceof Error ? error.message : String(error);
       console.log('❌ Login Page: FAILED');
     }
     
