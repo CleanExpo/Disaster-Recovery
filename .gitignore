@@ -49,6 +49,18 @@ prisma/*.db-journal
 
 # OS
 Thumbs.db
+
+# Test artifacts and screenshots
+*.png
+*.jpg
+*.jpeg
+contractor-*.html
+build.db
+
+# Test outputs
+/test-results/
+/playwright-report/
+Thumbs.db
 .vercel
 
 nul
