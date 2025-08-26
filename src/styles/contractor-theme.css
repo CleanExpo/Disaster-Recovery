@@ -1,0 +1,338 @@
+/* Contractor CRM - Industry-Specific Theme */
+
+:root {
+  /* Status Colors - Industry Standard */
+  --status-emergency: 0 84% 60%;         /* Deep red for emergencies */
+  --status-urgent: 25 95% 53%;           /* Orange for urgent */
+  --status-routine: 142 71% 45%;         /* Green for routine */
+  --status-completed: 142 76% 36%;       /* Darker green for completed */
+  --status-pending: 217 91% 60%;         /* Blue for pending */
+  
+  /* Job Type Colors */
+  --water-damage: 200 100% 45%;          /* Blue for water */
+  --fire-damage: 15 90% 50%;             /* Orange-red for fire */
+  --mold: 82 60% 40%;                    /* Olive green for mold */
+  --structural: 240 20% 40%;             /* Gray-blue for structural */
+  --biohazard: 350 80% 50%;              /* Dark red for biohazard */
+  
+  /* Performance Indicators */
+  --performance-excellent: 142 71% 45%;  /* Green 90-100% */
+  --performance-good: 60 90% 50%;        /* Yellow 70-89% */
+  --performance-needs-improvement: 25 95% 53%; /* Orange 50-69% */
+  --performance-poor: 0 72% 51%;         /* Red <50% */
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem;               /* 12px - Fine print, metadata */
+  --font-size-sm: 0.875rem;              /* 14px - Secondary text */
+  --font-size-base: 1rem;                /* 16px - Body text */
+  --font-size-lg: 1.125rem;              /* 18px - Emphasis */
+  --font-size-xl: 1.25rem;               /* 20px - Card titles */
+  --font-size-2xl: 1.5rem;               /* 24px - Section headers */
+  --font-size-3xl: 2rem;                 /* 32px - Page titles */
+  
+  /* Industry-specific font weights */
+  --font-weight-job-status: 600;
+  --font-weight-metrics: 700;
+  --font-weight-alerts: 600;
+  
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  
+  /* Animation */
+  --animation-fast: 150ms;
+  --animation-base: 250ms;
+  --animation-slow: 350ms;
+  --animation-slower: 500ms;
+}
+
+/* Status Indicators with Pulse */
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.status-indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-indicator::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+.status-indicator.emergency::before {
+  background-color: hsl(var(--status-emergency));
+  color: hsl(var(--status-emergency) / 0.4);
+}
+
+.status-indicator.urgent::before {
+  background-color: hsl(var(--status-urgent));
+  color: hsl(var(--status-urgent) / 0.4);
+}
+
+.status-indicator.active::before {
+  background-color: hsl(var(--status-routine));
+  color: hsl(var(--status-routine) / 0.4);
+}
+
+/* Job Type Badges */
+.job-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all var(--animation-base);
+}
+
+.job-type-badge.water {
+  background-color: hsl(var(--water-damage) / 0.1);
+  color: hsl(var(--water-damage));
+  border: 1px solid hsl(var(--water-damage) / 0.2);
+}
+
+.job-type-badge.fire {
+  background-color: hsl(var(--fire-damage) / 0.1);
+  color: hsl(var(--fire-damage));
+  border: 1px solid hsl(var(--fire-damage) / 0.2);
+}
+
+.job-type-badge.mold {
+  background-color: hsl(var(--mold) / 0.1);
+  color: hsl(var(--mold));
+  border: 1px solid hsl(var(--mold) / 0.2);
+}
+
+/* Priority Cards */
+.priority-card {
+  transition: all var(--animation-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.priority-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  transition: width var(--animation-base);
+}
+
+.priority-card.critical::before {
+  background: linear-gradient(180deg, 
+    hsl(var(--status-emergency)), 
+    hsl(var(--status-emergency) / 0.8)
+  );
+}
+
+.priority-card.high::before {
+  background: linear-gradient(180deg, 
+    hsl(var(--status-urgent)), 
+    hsl(var(--status-urgent) / 0.8)
+  );
+}
+
+.priority-card:hover::before {
+  width: 6px;
+}
+
+.priority-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Performance Meters */
+.performance-meter {
+  position: relative;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.performance-meter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--animation-slow) ease-out;
+}
+
+.performance-meter[data-value="excellent"]::before {
+  background: linear-gradient(90deg, 
+    hsl(var(--performance-good)), 
+    hsl(var(--performance-excellent))
+  );
+  width: var(--progress, 0%);
+}
+
+.performance-meter[data-value="good"]::before {
+  background-color: hsl(var(--performance-good));
+  width: var(--progress, 0%);
+}
+
+.performance-meter[data-value="needs-improvement"]::before {
+  background-color: hsl(var(--performance-needs-improvement));
+  width: var(--progress, 0%);
+}
+
+/* Mobile Touch Targets */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .touch-target-lg {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Skeleton Loading */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-size: 468px 104px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Smooth Scrolling */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.smooth-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.smooth-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: var(--radius-md);
+}
+
+.smooth-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: var(--radius-md);
+}
+
+.smooth-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Focus Styles for Accessibility */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Animations */
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-from-right var(--animation-base) ease-out;
+}
+
+.animate-slide-in-bottom {
+  animation: slide-in-from-bottom var(--animation-base) ease-out;
+}
+
+.animate-fade-in {
+  animation: fade-in var(--animation-slow) ease-out;
+}

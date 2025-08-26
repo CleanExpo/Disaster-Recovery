@@ -1,4 +1,4 @@
-# NRP Logo Images
+d to  Logo Images
 
 This directory should contain the National Restoration Professionals (NRP) logo images:
 
