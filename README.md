@@ -1,32 +1,33 @@
-# Mass WebPage Creations — CleanExpo SMB Agency Starter
+# Disaster Recovery Services - Australia
 
-A modern SaaS starter for local/trades agencies. Built for SMBs, ready for local dev, and scalable as you grow.
+Professional disaster recovery and restoration services website for water damage, fire damage, mould remediation, and emergency response across Australia.
 
-## 🚀 Core Features (v1)
+## 🚀 Overview
 
-- ✅ Multi-brand/agency support (local/regional focus)
-- ✅ User management: admin, manager, client
-- ✅ Audit/proposal creation, versioning, sharing
-- ✅ Local search/enquiry capture
-- ✅ Simple dashboards & notifications
-- ✅ Billing (Stripe basic)
-- ✅ White-label client portal
-- ✅ CLI admin tools
+This is a comprehensive disaster recovery and restoration services website featuring:
 
-## 🛠️ Getting Started (Local Dev)
+- 24/7 Emergency response services
+- Water damage restoration
+- Fire damage restoration
+- Mould remediation
+- Storm damage repair
+- Biohazard cleaning
+- Insurance claim assistance
+- Location-based services across all Australian states and territories
+
+## 🛠️ Getting Started
 
 ### Prerequisites
 
 - Node.js 18+ 
-- PostgreSQL (or use Docker)
-- Stripe account (for payments)
-- Supabase account (optional, for auth)
+- PostgreSQL (or SQLite for development)
+- Stripe account (for payment processing)
 
 ### Installation
 
 1. **Clone and install:**
 ```bash
-git clone https://github.com/CleanExpo/Mass-WebPage-Creations.git
+git clone https://github.com/CleanExpo/Disaster-Recovery.git
 cd Mass-WebPage-Creations
 npm install
 ```
@@ -37,45 +38,18 @@ Copy `.env.example` to `.env.local` and set your keys:
 cp .env.example .env.local
 ```
 
-Edit `.env.local` with your actual values:
-- `DATABASE_URL`: Your PostgreSQL connection string
-- `NEXTAUTH_SECRET`: Generate with `openssl rand -base64 32`
-- `STRIPE_*`: Your Stripe API keys
-- `SUPABASE_*`: Your Supabase project details (optional)
-
 3. **Set up database:**
-
-Using Docker (recommended):
 ```bash
-docker-compose up -d postgres
+npx prisma generate
+npx prisma db push
 ```
 
-Or use your local PostgreSQL installation.
-
-Then run migrations:
-```bash
-npm run db:push
-```
-
-4. **Seed sample data:**
-```bash
-npm run seed
-```
-
-This creates demo users:
-- Admin: `admin@demo.com` / `admin123`
-- Manager: `manager@demo.com` / `manager123`
-
-5. **Run development server:**
+4. **Run development server:**
 ```bash
 npm run dev
 ```
 
-### Access Points
-
-- **Admin Dashboard**: http://localhost:3000/dashboard
-- **Client Portal**: http://localhost:3000/client
-- **Public Site**: http://localhost:3000
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ## 📁 Project Structure
 
@@ -83,73 +57,67 @@ npm run dev
 Mass-WebPage-Creations/
 ├── src/
 │   ├── app/              # Next.js app router pages
-│   │   ├── api/          # API routes
-│   │   ├── dashboard/    # Admin dashboard
-│   │   ├── client/       # Client portal
-│   │   └── (public)/     # Public pages
+│   │   ├── services/     # Service pages (water damage, fire, mould, etc.)
+│   │   ├── locations/    # Location-specific pages
+│   │   ├── emergency/    # Emergency service pages
+│   │   ├── insurance/    # Insurance provider pages
+│   │   └── api/          # API routes
 │   ├── components/       # React components
-│   │   └── ui/           # UI components
 │   ├── lib/              # Utilities and configs
-│   ├── hooks/            # Custom React hooks
 │   └── types/            # TypeScript types
 ├── prisma/
 │   └── schema.prisma     # Database schema
-├── scripts/
-│   └── seed.ts           # Database seeding
-├── cli/
-│   └── admin.ts          # CLI admin tools
-└── docker-compose.yml    # Docker configuration
+├── public/
+│   └── images/           # Static images
+└── scripts/              # Build and generation scripts
 ```
 
-## 🛠️ CLI Admin Tools
+## 🌟 Key Features
 
-The project includes powerful CLI tools for admin operations:
+### Service Pages
+- Water damage restoration
+- Fire damage restoration
+- Mould remediation
+- Storm damage repair
+- Sewage cleanup
+- Biohazard cleaning
+- Commercial services
+- Emergency services
 
-```bash
-# User management
-npm run admin user:create
-npm run admin user:list
-npm run admin user:delete <email>
+### Location Coverage
+- All Australian states and territories
+- Major cities and regional areas
+- 24/7 emergency response
+- Local contractor network
 
-# Agency management
-npm run admin agency:create
-npm run admin agency:list
-
-# Client management
-npm run admin client:list
-npm run admin client:list --agency <slug>
-
-# Database operations
-npm run admin db:reset    # WARNING: Deletes all data
-npm run admin stats        # Show database statistics
-```
+### Lead Management
+- Lead capture forms
+- Partner/contractor portal
+- Lead scoring and routing
+- Quality assessment
 
 ## 🚀 Deployment
 
-### Using Docker
+### Vercel Deployment
 
-Build and run with Docker:
-```bash
-docker-compose up --build
-```
+The site is configured for automatic deployment to Vercel:
 
-### Manual Deployment
+1. Push changes to the main branch
+2. Vercel automatically builds and deploys
+3. Production URL: [https://disaster-recovery.vercel.app](https://disaster-recovery.vercel.app)
 
-1. Build the application:
+### Build Command
 ```bash
 npm run build
 ```
 
-2. Set production environment variables
-3. Run migrations on production database:
-```bash
-npm run db:push
-```
+### Environment Variables
 
-4. Start the production server:
-```bash
-npm start
-```
+Required environment variables for production:
+- `DATABASE_URL` - Database connection string
+- `NEXTAUTH_SECRET` - Authentication secret
+- `STRIPE_SECRET_KEY` - Stripe API key (if using payments)
+- `STRIPE_PUBLISHABLE_KEY` - Stripe publishable key
 
 ## 🔧 Development Commands
 
@@ -159,39 +127,20 @@ npm run build        # Build for production
 npm run start        # Start production server
 npm run lint         # Run ESLint
 npm run type-check   # TypeScript type checking
-npm run db:migrate   # Run database migrations
-npm run db:studio    # Open Prisma Studio
-npm run seed         # Seed sample data
-npm run admin        # CLI admin tools
 ```
 
 ## 📚 Tech Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS, Radix UI
-- **Database**: PostgreSQL, Prisma ORM
+- **Styling**: Tailwind CSS
+- **Database**: PostgreSQL/SQLite with Prisma ORM
 - **Authentication**: NextAuth.js
-- **Payments**: Stripe
-- **Deployment**: Docker ready
-
-## 🏗️ Future Roadmap
-
-- [ ] Advanced analytics dashboard
-- [ ] Multi-language support
-- [ ] Email automation
-- [ ] Advanced reporting
-- [ ] API for third-party integrations
-- [ ] Mobile app
-- [ ] Enterprise features (multi-region, SSO)
+- **Deployment**: Vercel
 
 ## 📄 License
 
-MIT
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+Proprietary - All rights reserved
 
 ## 💬 Support
 
-For support, email support@cleanexpo.com or open an issue.
+For support, contact the Disaster Recovery team.
