@@ -372,6 +372,17 @@ const Header: React.FC = () => {
                   24/7 Emergency Response
                 </div>
               </div>
+              {/* NRP Certification Badge */}
+              <div className="hidden md:flex items-center ml-4 pl-4 border-l border-gray-300">
+                <img
+                  src="/images/logos/nrp/nrp-badge-3d.png"
+                  alt="National Restoration Professionals Certified"
+                  className="h-12 w-auto"
+                  width="48"
+                  height="48"
+                  title="NRP Certified Network"
+                />
+              </div>
             </Link>
 
             {/* Desktop Navigation */}

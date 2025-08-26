@@ -338,6 +338,19 @@ const Footer: React.FC = () => {
                 <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
                   Certifications & Standards
                 </h4>
+                <div className="flex items-center gap-4 mb-4">
+                  {/* NRP Badge */}
+                  <img
+                    src="/images/logos/nrp/nrp-badge-3d.png"
+                    alt="National Restoration Professionals"
+                    className="h-16 w-auto"
+                    title="NRP Certified Network Member"
+                  />
+                  <div className="text-sm">
+                    <div className="text-white font-semibold">NRP Certified Network</div>
+                    <div className="text-gray-400 text-xs">National Restoration Professionals</div>
+                  </div>
+                </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   <div className="flex items-center gap-2 text-sm">
                     <Award className="h-4 w-4 text-yellow-400" />
