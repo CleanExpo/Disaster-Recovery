@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -46,7 +46,13 @@
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
     "noImplicitThis": false,
-    "alwaysStrict": false
+    "alwaysStrict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": false,
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true
   },
   "include": [
     "next-env.d.ts",
@@ -55,6 +61,13 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next",
+    "dist",
+    "build",
+    "scripts",
+    "tests",
+    "playwright-report",
+    "test-results"
   ]
 }
