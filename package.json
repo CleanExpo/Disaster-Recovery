@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/setup-build-env.js && prisma generate && next build",
-    "vercel-build": "node scripts/setup-build-env.js && prisma generate && NODE_OPTIONS='--max-old-space-size=4096' next build",
+    "build": "node scripts/vercel-build.js",
+    "vercel-build": "node scripts/vercel-build.js",
     "start": "next start",
     "lint": "next lint",
     "seed": "tsx scripts/seed.ts",
