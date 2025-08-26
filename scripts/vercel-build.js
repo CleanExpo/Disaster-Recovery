@@ -10,7 +10,8 @@ const isVercel = process.env.VERCEL || process.env.VERCEL_ENV;
 console.log('Build Environment:', {
   platform: process.platform,
   isVercel: !!isVercel,
-  nodeVersion: process.version
+  nodeVersion: process.version,
+  databaseUrl: process.env.DATABASE_URL ? 'Set' : 'Not set'
 });
 
 // Setup build environment
@@ -22,24 +23,23 @@ if (!process.env.DATABASE_URL) {
   console.log('Using temporary database URL for build');
 }
 
-// On Vercel, generate Prisma client
-if (isVercel) {
-  console.log('Generating Prisma client for Vercel...');
-  try {
-    execSync('npx prisma generate', { 
-      stdio: 'inherit',
-      env: {
-        ...process.env,
-        DATABASE_URL: process.env.DATABASE_URL
-      }
-    });
-    console.log('Prisma client generated successfully');
-  } catch (error) {
-    console.error('Prisma generation warning:', error.message);
-    // Continue anyway for build
+// Always generate Prisma client for build
+console.log('Generating Prisma client...');
+try {
+  execSync('npx prisma generate', { 
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      DATABASE_URL: process.env.DATABASE_URL || 'file:./build.db'
+    }
+  });
+  console.log('Prisma client generated successfully');
+} catch (error) {
+  console.error('Prisma generation warning:', error.message);
+  // Don't fail the build on Vercel
+  if (!isVercel) {
+    console.error('Prisma generation failed locally, continuing anyway...');
   }
-} else {
-  console.log('Skipping Prisma generation for local build');
 }
 
 // Build Next.js
