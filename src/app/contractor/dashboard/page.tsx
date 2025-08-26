@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import ContractorDashboard from '@/components/contractor/dashboard/ContractorDashboard';
+import { EnhancedDashboard } from '@/components/contractor/dashboard/EnhancedDashboard';
 import { 
   LogOut, 
   Shield, 
@@ -111,8 +111,8 @@ export default function ContractorDashboardPage() {
       )}
 
       {/* Main Dashboard Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <ContractorDashboard />
+      <div className="w-full">
+        <EnhancedDashboard />
       </div>
     </div>
   );

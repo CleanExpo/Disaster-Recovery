@@ -30,15 +30,15 @@ import {
 
 import type { ContractorDashboard, ContractorStatus } from '@/types/contractor';
 
-// Import sub-components
-import { KPIMetrics } from './KPIMetrics';
-import { CompliancePanel } from './CompliancePanel';
-import { TerritoryManager } from './TerritoryManager';
-import { DocumentManager } from './DocumentManager';
-import { TrainingTracker } from './TrainingTracker';
-import { BillingSection } from './BillingSection';
-import { SupportTickets } from './SupportTickets';
-import { NotificationCenter } from './NotificationCenter';
+// Import sub-components - temporarily commented out missing components
+// import { KPIMetrics } from './KPIMetrics';
+// import { CompliancePanel } from './CompliancePanel';
+// import { TerritoryManager } from './TerritoryManager';
+// import { DocumentManager } from './DocumentManager';
+// import { TrainingTracker } from './TrainingTracker';
+// import { BillingSection } from './BillingSection';
+// import { SupportTickets } from './SupportTickets';
+// import { NotificationCenter } from './NotificationCenter';
 
 export function ContractorDashboard() {
   const [dashboardData, setDashboardData] = useState<ContractorDashboard | null>(null);
