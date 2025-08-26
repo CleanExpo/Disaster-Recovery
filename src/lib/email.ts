@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer';
 
+// Site URL with fallback
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://disasterrecovery.com.au';
+
 // Email configuration
 const EMAIL_CONFIG = {
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -85,7 +88,7 @@ export const emailTemplates = {
         </div>
         
         <div style="text-align: center; margin: 30px 0;">
-          <a href="${process.env.NEXT_PUBLIC_SITE_URL}/partner-portal/leads/${leadData.id}" 
+          <a href="${SITE_URL}/partner-portal/leads/${leadData.id}" 
              style="display: inline-block; background: #0052CC; color: white; padding: 12px 30px; 
                     text-decoration: none; border-radius: 5px; font-weight: bold;">
             View Lead in Portal
@@ -165,7 +168,7 @@ export const emailTemplates = {
         <div style="background: #f5f5f5; padding: 20px; text-align: center; color: #666; font-size: 12px;">
           <p>This email was sent to ${leadData.email}</p>
           <p>Disaster Recovery Australia | Brisbane, QLD | ABN: [To be provided]</p>
-          <p><a href="${process.env.NEXT_PUBLIC_SITE_URL}" style="color: #0052CC;">www.disasterrecovery.com.au</a></p>
+          <p><a href="${SITE_URL}" style="color: #0052CC;">www.disasterrecovery.com.au</a></p>
         </div>
       </div>
     `,
@@ -234,7 +237,7 @@ export const emailTemplates = {
           </div>
           
           <div style="text-align: center; margin: 30px 0;">
-            <a href="${process.env.NEXT_PUBLIC_SITE_URL}/partner-portal/leads/${leadData.id}/accept" 
+            <a href="${SITE_URL}/partner-portal/leads/${leadData.id}/accept" 
                style="display: inline-block; background: #28a745; color: white; padding: 15px 40px; 
                       text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 16px;">
               Accept Lead & View Full Details
@@ -260,7 +263,7 @@ export const emailTemplates = {
         </div>
         
         <div style="background: #f5f5f5; padding: 20px; text-align: center; color: #666; font-size: 12px;">
-          <p>Partner Portal: <a href="${process.env.NEXT_PUBLIC_SITE_URL}/partner-portal">Login Here</a></p>
+          <p>Partner Portal: <a href="${SITE_URL}/partner-portal">Login Here</a></p>
           <p>Support: partners@disasterrecovery.com.au | 1300 PARTNER</p>
         </div>
       </div>
