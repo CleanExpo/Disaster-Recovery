@@ -41,7 +41,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({
   external = false, 
   className = '' 
 }) => {
-  const linkClasses = `text-gray-300 hover:text-white transition-colors duration-150 flex items-center gap-1 ${className}`;
+  const linkClasses = `text-neutral-300 hover:text-white transition-colors duration-150 flex items-center gap-1 ${className}`;
   
   if (external) {
     return (
@@ -160,9 +160,9 @@ const Footer: React.FC = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <footer className="bg-gray-900 text-gray-300">
+      <footer className="bg-neutral-900 text-neutral-300">
         {/* Main Footer Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="container px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Information */}
             <div className="lg:col-span-1">
@@ -178,35 +178,35 @@ const Footer: React.FC = () => {
                   <div className="text-white font-bold text-lg">
                     {BUSINESS_SHORT_NAME}
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm text-neutral-400">
                     Emergency Response
                   </div>
                 </div>
               </div>
               
-              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+              <p className="text-neutral-300 mb-6 text-sm leading-relaxed">
                 Australia's leading disaster recovery specialists providing 24/7 emergency response 
                 for water damage, fire damage, mould remediation, and biohazard cleanup across all major cities.
               </p>
 
               <div className="space-y-3 mb-6">
                 <div className="flex items-center gap-3">
-                  <Clock className="h-4 w-4 text-red-400 flex-shrink-0" />
+                  <Clock className="h-4 w-4 text-emergency-500 flex-shrink-0" />
                   <span className="text-sm">
-                    <strong className="text-red-400">24/7 Emergency Response</strong>
+                    <strong className="text-emergency-500">24/7 Emergency Response</strong>
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                  <Mail className="h-4 w-4 text-primary-400 flex-shrink-0" />
                   <a 
                     href={`mailto:${EMAIL}`}
-                    className="text-sm text-gray-300 hover:text-white transition-colors duration-150"
+                    className="text-sm text-neutral-300 hover:text-white transition-colors duration-150"
                   >
                     {EMAIL}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
-                  <MapPin className="h-4 w-4 text-green-400 flex-shrink-0" />
+                  <MapPin className="h-4 w-4 text-success-400 flex-shrink-0" />
                   <span className="text-sm">All Australian States & Territories</span>
                 </div>
               </div>
@@ -216,7 +216,7 @@ const Footer: React.FC = () => {
                 <FooterLink 
                   href="https://facebook.com/DisasterRecoveryAustralia" 
                   external
-                  className="hover:text-blue-500"
+                  className="hover:text-primary-500"
                   aria-label="Facebook"
                 >
                   <Facebook className="h-5 w-5" />
@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
                 <FooterLink 
                   href="https://twitter.com/DisasterRecovAU" 
                   external
-                  className="hover:text-blue-400"
+                  className="hover:text-primary-400"
                   aria-label="Twitter"
                 >
                   <Twitter className="h-5 w-5" />
@@ -232,7 +232,7 @@ const Footer: React.FC = () => {
                 <FooterLink 
                   href="https://linkedin.com/company/disaster-recovery-australia" 
                   external
-                  className="hover:text-blue-600"
+                  className="hover:text-primary-600"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="h-5 w-5" />
@@ -240,7 +240,7 @@ const Footer: React.FC = () => {
                 <FooterLink 
                   href="https://instagram.com/disasterrecoveryau" 
                   external
-                  className="hover:text-pink-500"
+                  className="hover:text-primary-500"
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5" />
@@ -248,7 +248,7 @@ const Footer: React.FC = () => {
                 <FooterLink 
                   href="https://youtube.com/c/DisasterRecoveryAustralia" 
                   external
-                  className="hover:text-red-500"
+                  className="hover:text-emergency-500"
                   aria-label="YouTube"
                 >
                   <Youtube className="h-5 w-5" />
@@ -314,7 +314,7 @@ const Footer: React.FC = () => {
               <FooterLink href="/contractors">
                 Contractor Network
               </FooterLink>
-              <div className="pt-2 border-t border-gray-700 mt-4">
+              <div className="pt-2 border-t border-neutral-700 mt-4">
                 <FooterLink href="/privacy">
                   Privacy Policy
                 </FooterLink>
@@ -330,8 +330,8 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Certifications & Partners */}
-        <div className="border-t border-gray-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="border-t border-neutral-700">
+          <div className="container px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Certifications */}
               <div>
@@ -348,32 +348,32 @@ const Footer: React.FC = () => {
                   />
                   <div className="text-sm">
                     <div className="text-white font-semibold">NRP Certified Network</div>
-                    <div className="text-gray-400 text-xs">National Restoration Professionals</div>
+                    <div className="text-neutral-400 text-xs">National Restoration Professionals</div>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   <div className="flex items-center gap-2 text-sm">
-                    <Award className="h-4 w-4 text-yellow-400" />
+                    <Award className="h-4 w-4 text-warning-400" />
                     <span>IICRC Certified</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <Shield className="h-4 w-4 text-blue-400" />
+                    <Shield className="h-4 w-4 text-primary-400" />
                     <span>RIA Member</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <CheckCircle className="h-4 w-4 text-green-400" />
+                    <CheckCircle className="h-4 w-4 text-success-400" />
                     <span>ISO 9001</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <Shield className="h-4 w-4 text-red-400" />
+                    <Shield className="h-4 w-4 text-emergency-400" />
                     <span>WorkSafe Certified</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <Award className="h-4 w-4 text-purple-400" />
+                    <Award className="h-4 w-4 text-primary-400" />
                     <span>HAZMAT Licensed</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <CheckCircle className="h-4 w-4 text-orange-400" />
+                    <CheckCircle className="h-4 w-4 text-warning-400" />
                     <span>Australian Standards</span>
                   </div>
                 </div>
@@ -389,14 +389,14 @@ const Footer: React.FC = () => {
                     <FooterLink 
                       key={index}
                       href={`/insurance/${partner.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
-                      className="text-xs hover:text-blue-300"
+                      className="text-xs hover:text-primary-300"
                     >
                       {partner}
                     </FooterLink>
                   ))}
                 </div>
                 <div className="mt-3">
-                  <FooterLink href="/insurance" className="text-sm font-medium hover:text-blue-300">
+                  <FooterLink href="/insurance" className="text-sm font-medium hover:text-primary-300">
                     View All Insurance Partners →
                   </FooterLink>
                 </div>
@@ -406,10 +406,10 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="border-t border-neutral-700">
+          <div className="container px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-gray-400">
+              <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-neutral-400">
                 <span>
                   © {currentYear} {BUSINESS_NAME}. All rights reserved.
                 </span>
@@ -421,12 +421,12 @@ const Footer: React.FC = () => {
               
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-green-400 font-medium">Available 24/7</span>
+                  <div className="h-2 w-2 bg-success-400 rounded-full animate-pulse"></div>
+                  <span className="text-success-400 font-medium">Available 24/7</span>
                 </div>
                 <FooterLink 
                   href="/get-help" 
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-150"
+                  className="btn btn-emergency btn-sm"
                 >
                   Emergency Response
                 </FooterLink>

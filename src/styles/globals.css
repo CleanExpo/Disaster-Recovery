@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import our comprehensive design system */
+@import './global-design-system.css';
+
 @layer base {
   :root {
+    /* Legacy support - keeping existing variables for backward compatibility */
     --background: 0 0% 100%;
     --foreground: 210 50% 15%; /* Darker for better contrast (WCAG AAA) */
     --card: 0 0% 100%;
