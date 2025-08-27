@@ -1,0 +1,451 @@
+/* Premium Micro-Animations & 10/10 Design Details */
+/* Subtle, sophisticated effects for professional aesthetic */
+
+/* ===========================
+   1. Micro-Animations
+   =========================== */
+
+/* Magnetic Button Effect */
+.magnetic-btn {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  z-index: -1;
+}
+
+.magnetic-btn:hover {
+  transform: scale(1.02) translateY(-2px);
+}
+
+/* Subtle Text Shift on Hover */
+.hover-shift {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-shift:hover {
+  transform: translateX(2px);
+}
+
+/* Smooth Color Transitions */
+.smooth-color {
+  transition: color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Pulse Animation for CTAs */
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(19, 28, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(19, 28, 255, 0.1);
+  }
+}
+
+.pulse-cta {
+  animation: subtlePulse 3s infinite;
+}
+
+/* Floating Elements */
+@keyframes floatSmooth {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+  75% {
+    transform: translateY(3px) rotate(-0.5deg);
+  }
+}
+
+.float-element {
+  animation: floatSmooth 6s ease-in-out infinite;
+}
+
+/* ===========================
+   2. Typography Fine-Tuning
+   =========================== */
+
+/* Optical Alignment for Headlines */
+.optical-align-headline {
+  margin-left: -2px; /* Compensate for visual weight */
+  letter-spacing: -0.02em;
+}
+
+/* Custom Kerning for Problematic Pairs */
+.kern-AV { letter-spacing: -0.09em; }
+.kern-To { letter-spacing: -0.04em; }
+.kern-We { letter-spacing: -0.03em; }
+.kern-Ty { letter-spacing: -0.07em; }
+
+/* Progressive Weight on Hover */
+.weight-hover {
+  font-variation-settings: "wght" 400;
+  transition: font-variation-settings 0.3s ease;
+}
+
+.weight-hover:hover {
+  font-variation-settings: "wght" 450;
+}
+
+/* Text Reveal Animation */
+@keyframes revealText {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-text {
+  animation: revealText 0.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ===========================
+   3. Multi-Layered Shadows
+   =========================== */
+
+/* Professional Card Shadow Stack */
+.shadow-stack {
+  box-shadow: 
+    /* Tight dark shadow */
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    /* Medium spread */
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    /* Large ambient colored shadow */
+    0 16px 48px rgba(19, 28, 255, 0.03);
+  transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.shadow-stack:hover {
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.1),
+    0 24px 64px rgba(19, 28, 255, 0.06);
+  transform: translateY(-4px);
+}
+
+/* Glow Shadow for Key Elements */
+.glow-shadow {
+  box-shadow: 
+    0 0 20px rgba(19, 28, 255, 0.1),
+    0 0 40px rgba(19, 28, 255, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Inset Shadow for Depth */
+.depth-inset {
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* ===========================
+   4. Atmospheric Effects
+   =========================== */
+
+/* Blue Cool Overlay */
+.atmosphere-cool::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(19, 28, 255, 0.02) 0%,
+    rgba(0, 160, 210, 0.01) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Warm Overlay */
+.atmosphere-warm::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 94, 0, 0.02) 0%,
+    rgba(255, 0, 128, 0.01) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animated Grain Texture */
+@keyframes grainShift {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-1%, -1%);
+  }
+  30% {
+    transform: translate(1%, 2%);
+  }
+  50% {
+    transform: translate(-2%, 1%);
+  }
+  70% {
+    transform: translate(2%, -1%);
+  }
+  90% {
+    transform: translate(-1%, 2%);
+  }
+}
+
+.grain-texture::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  animation: grainShift 8s steps(10) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gradient Mesh Background */
+.gradient-mesh {
+  background: 
+    radial-gradient(
+      ellipse 800px 600px at 20% 40%,
+      rgba(120, 119, 198, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 600px 800px at 80% 60%,
+      rgba(255, 119, 198, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 1000px 800px at 50% 90%,
+      rgba(19, 28, 255, 0.08) 0%,
+      transparent 70%
+    );
+  background-attachment: fixed;
+}
+
+/* Animated Gradient Mesh */
+@keyframes meshShift {
+  0%, 100% {
+    background-position: 0% 50%, 100% 50%, 50% 100%;
+  }
+  33% {
+    background-position: 100% 50%, 0% 50%, 50% 0%;
+  }
+  66% {
+    background-position: 50% 0%, 50% 100%, 0% 50%;
+  }
+}
+
+.gradient-mesh-animated {
+  animation: meshShift 30s ease-in-out infinite;
+}
+
+/* ===========================
+   5. Interactive Elements
+   =========================== */
+
+/* Smooth Underline Animation */
+.underline-animate {
+  position: relative;
+  text-decoration: none;
+}
+
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #131cff 0%, #00a0d2 100%);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.underline-animate:hover::after {
+  width: 100%;
+}
+
+/* Card Tilt Effect */
+.card-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-tilt:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
+}
+
+/* Smooth Scroll Reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+   6. Premium Loading States
+   =========================== */
+
+/* Skeleton Loading Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #f8f8f8 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ===========================
+   7. Micro-Interactions
+   =========================== */
+
+/* Button Press Effect */
+.btn-press {
+  transition: transform 0.1s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.98);
+}
+
+/* Icon Spin on Hover */
+.icon-spin {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon-spin:hover {
+  transform: rotate(360deg);
+}
+
+/* Ripple Effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(255, 255, 255, 0.5);
+  animation: ripple 0.6s ease-out;
+}
+
+/* ===========================
+   8. Performance Optimizations
+   =========================== */
+
+/* GPU Acceleration for Smooth Animations */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================
+   9. Special Effects
+   =========================== */
+
+/* Glass Refraction */
+.glass-refraction {
+  backdrop-filter: blur(10px) saturate(180%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Noise Texture Overlay */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+}
+
+/* Smooth Mask Transition */
+.mask-transition {
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
+/* Premium Focus States */
+.focus-premium:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(19, 28, 255, 0.1),
+    0 0 0 6px rgba(19, 28, 255, 0.05);
+}
+
+/* Parallax Layers */
+.parallax-slow {
+  transform: translateZ(-1px) scale(1.5);
+}
+
+.parallax-medium {
+  transform: translateZ(-2px) scale(2);
+}
+
+.parallax-fast {
+  transform: translateZ(-3px) scale(3);
+}

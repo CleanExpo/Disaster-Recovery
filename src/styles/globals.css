@@ -8,6 +8,9 @@
 /* Import R6 Digital Actual Design System - Clean Professional */
 @import './r6-digital-actual.css';
 
+/* Import Premium Micro-Animations for 10/10 Quality */
+@import './premium-micro-animations.css';
+
 /* Legacy design systems for backward compatibility */
 /* @import './r6-design-system.css'; */
 /* @import './premium-design-system.css'; */
