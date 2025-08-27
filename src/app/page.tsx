@@ -17,6 +17,7 @@ import {
   Wind
 } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import AnimatedCounters from '@/components/AnimatedCounters';
 
 export const metadata: Metadata = {
   title: "Professional Restoration Services | Disaster Recovery Australia",
@@ -81,15 +82,15 @@ export default function HomePage() {
                 Working with hundreds of businesses nationwide
               </p>
               <h1 className="r6-hero-title optical-align-headline reveal-text">
-                <span className="kern-Ty">Your perfect</span>
+                <span className="kern-Yo">Your perfect</span>
                 <br />
                 <span className="r6-text-blue glow-shadow">restoration</span>
                 <br />
-                does exist!
+                <span className="kern-do">does exist!</span>
               </h1>
               <p className="r6-text-lead">
-                Our team of IICRC certified technicians will restore your property to pre-loss condition. 
-                We handle all the hard work, so you don't have to.
+                IICRC certified technicians ready 24/7. We handle the entire restoration process 
+                from emergency response to final reconstruction. Insurance approved.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link href="/emergency">
@@ -144,50 +145,126 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - R6 Digital Style */}
       <section className="r6-section r6-section-light relative atmosphere-cool noise-overlay">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="r6-features-grid">
-            <div className="r6-feature-card shadow-stack card-tilt scroll-reveal">
-              <Image
-                src="/images/icons/mobile-icon.png"
-                alt="Mobile First"
-                width={58}
-                height={58}
-                className="r6-feature-icon"
-              />
-              <h3 className="r6-card-title">24/7 Response</h3>
-              <p className="r6-card-text">
-                Emergency disasters don't wait - neither do we. Our teams are ready to respond any time, day or night.
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Mobile First */}
+            <div className="text-center scroll-reveal">
+              <div className="mb-4 flex justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center shadow-stack card-tilt">
+                  <Phone className="h-10 w-10 text-blue-600" />
+                </div>
+              </div>
+              <h3 className="font-bold text-xl mb-2">Mobile First</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Responsive design that looks perfect on every device. Your customers can reach you anywhere.
               </p>
             </div>
             
-            <div className="r6-feature-card shadow-stack card-tilt scroll-reveal">
-              <Image
-                src="/images/icons/inspections.png"
-                alt="IICRC Certified"
-                width={58}
-                height={58}
-                className="r6-feature-icon"
-              />
-              <h3 className="r6-card-title">IICRC Certified</h3>
-              <p className="r6-card-text">
-                All technicians are certified to the highest industry standards, ensuring quality restoration every time.
+            {/* Google Optimised */}
+            <div className="text-center scroll-reveal" style={{animationDelay: '0.1s'}}>
+              <div className="mb-4 flex justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl flex items-center justify-center shadow-stack card-tilt">
+                  <Shield className="h-10 w-10 text-green-600" />
+                </div>
+              </div>
+              <h3 className="font-bold text-xl mb-2">IICRC Certified</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Industry certified professionals ensuring the highest quality restoration standards.
               </p>
             </div>
             
-            <div className="r6-feature-card shadow-stack card-tilt scroll-reveal">
-              <Image
-                src="/images/icons/biohazard-sewage-cleanup.png"
-                alt="Insurance Approved"
-                width={58}
-                height={58}
-                className="r6-feature-icon"
-              />
-              <h3 className="r6-card-title">Insurance Approved</h3>
-              <p className="r6-card-text">
-                We work directly with all major insurance companies to streamline your claim process.
+            {/* WordPress */}
+            <div className="text-center scroll-reveal" style={{animationDelay: '0.2s'}}>
+              <div className="mb-4 flex justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl flex items-center justify-center shadow-stack card-tilt">
+                  <Briefcase className="h-10 w-10 text-purple-600" />
+                </div>
+              </div>
+              <h3 className="font-bold text-xl mb-2">Insurance Ready</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                We handle all insurance paperwork and direct billing for a stress-free experience.
               </p>
+            </div>
+            
+            {/* Brand */}
+            <div className="text-center scroll-reveal" style={{animationDelay: '0.3s'}}>
+              <div className="mb-4 flex justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl flex items-center justify-center shadow-stack card-tilt">
+                  <Users className="h-10 w-10 text-orange-600" />
+                </div>
+              </div>
+              <h3 className="font-bold text-xl mb-2">Your Brand</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Trusted by thousands of property owners and businesses across Australia.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section - Recent Work */}
+      <section className="r6-section bg-gray-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-blue-600 font-semibold mb-2">Our Work</p>
+            <h2 className="r6-heading-xl">
+              Recent Restoration Projects
+            </h2>
+            <p className="r6-text-lead max-w-3xl mx-auto">
+              Every property tells a story of recovery. Here are some of our recent successful restorations.
+            </p>
+          </div>
+          
+          {/* Portfolio Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="group cursor-pointer scroll-reveal">
+              <div className="overflow-hidden rounded-xl shadow-stack">
+                <Image
+                  src="/images/optimized/damage/3D Water Damage.png"
+                  alt="Water Damage Restoration"
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="mt-4">
+                <h3 className="font-bold text-lg">Sydney Water Damage</h3>
+                <p className="text-gray-600 text-sm">Complete restoration in 72 hours</p>
+              </div>
+            </div>
+            
+            <div className="group cursor-pointer scroll-reveal" style={{animationDelay: '0.1s'}}>
+              <div className="overflow-hidden rounded-xl shadow-stack">
+                <Image
+                  src="/images/optimized/damage/3D image of a house fire.png"
+                  alt="Fire Damage Restoration"
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="mt-4">
+                <h3 className="font-bold text-lg">Melbourne Fire Recovery</h3>
+                <p className="text-gray-600 text-sm">Full reconstruction completed</p>
+              </div>
+            </div>
+            
+            <div className="group cursor-pointer scroll-reveal" style={{animationDelay: '0.2s'}}>
+              <div className="overflow-hidden rounded-xl shadow-stack">
+                <Image
+                  src="/images/optimized/damage/3D Vehicle into Home.png"
+                  alt="Storm Damage Restoration"
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="mt-4">
+                <h3 className="font-bold text-lg">Brisbane Storm Repair</h3>
+                <p className="text-gray-600 text-sm">Emergency response & full repair</p>
+              </div>
             </div>
           </div>
         </div>
@@ -296,17 +373,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust Section */}
+      {/* Team & Culture Section */}
       <section className="r6-section r6-section-light relative atmosphere-warm grain-texture">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-blue-600 font-semibold mb-2">Our Team</p>
+            <h2 className="r6-heading-xl mb-6">
+              The people behind your restoration
+            </h2>
+            <p className="r6-text-lead max-w-3xl mx-auto">
+              A dedicated team of certified professionals passionate about helping you recover.
+            </p>
+          </div>
+          
+          {/* Animated Counters */}
+          <AnimatedCounters />
+          
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="r6-heading-xl mb-6 optical-align-headline reveal-text">
-                <span className="kern-To">Trusted by property owners across Australia</span>
-              </h2>
+              <h3 className="text-3xl font-bold mb-6">
+                Trusted by property owners across Australia
+              </h3>
               <p className="r6-text-body mb-6">
-                With over 15 years of experience and thousands of successful restorations, 
-                we're the trusted choice for property owners and insurance companies nationwide.
+                Our IICRC certified teams bring expertise, compassion, and dedication to every restoration project. 
+                We understand the stress of property damage and work tirelessly to make it right.
               </p>
               
               <ul className="r6-list">
@@ -330,7 +420,7 @@ export default function HomePage() {
               
               <Link href="/about">
                 <button className="r6-btn r6-btn-primary mt-8 magnetic-btn shadow-stack pulse-cta">
-                  Learn About Us
+                  Meet Our Team
                   <ArrowRight className="h-4 w-4 icon-spin" />
                 </button>
               </Link>
@@ -339,14 +429,14 @@ export default function HomePage() {
             <div className="relative">
               <Image
                 src="/images/heroes/vehicles-fleet.jpg"
-                alt="Professional Restoration Fleet"
+                alt="Professional Restoration Team"
                 width={600}
                 height={400}
                 className="rounded-2xl shadow-stack card-tilt"
               />
-              <div className="absolute -bottom-8 -right-8 bg-blue-600 text-white p-6 rounded-2xl shadow-stack float-element glow-shadow">
-                <p className="text-4xl font-bold">98%</p>
-                <p className="text-sm">Customer Satisfaction</p>
+              <div className="absolute -bottom-8 -right-8 bg-gradient-to-br from-blue-600 to-blue-700 text-white p-6 rounded-2xl shadow-stack float-element glow-shadow">
+                <p className="text-4xl font-bold">24/7</p>
+                <p className="text-sm">Emergency Response</p>
               </div>
             </div>
           </div>

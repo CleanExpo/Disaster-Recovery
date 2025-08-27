@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
 import { Providers } from './providers'
@@ -17,6 +17,14 @@ const inter = Inter({
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
   variable: '--font-inter'
+})
+
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700', '800'],
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true,
+  variable: '--font-poppins'
 })
 
 export const metadata: Metadata = {
@@ -100,7 +108,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="theme-color" content="#0052CC" />
       </head>
-      <body className={inter.className}>
+      <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
