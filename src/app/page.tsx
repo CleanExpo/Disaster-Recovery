@@ -9,16 +9,15 @@ import {
   Target,
   CheckCircle2,
   MapPin,
-  Droplets,
-  Flame,
-  Wind,
-  ChevronRight,
-  Monitor,
-  Smartphone,
-  Award,
-  Users,
+  AlertTriangle,
+  XCircle,
   Clock,
-  Briefcase
+  Users,
+  Briefcase,
+  ChevronDown,
+  AlertCircle,
+  TrendingDown,
+  DollarSign
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -27,300 +26,346 @@ export const metadata: Metadata = {
   keywords: "NRP, National Restoration Professionals, restoration network, IICRC certified, professional restoration, disaster recovery",
 };
 
-export default function R6HomePage() {
+export default function NRPHomePage() {
   return (
-    <main className="r6-container">
-      {/* R6 Hero Section - Black with Electric Blue */}
-      <section className="r6-hero">
-        <div className="r6-hero-bg"></div>
-        <div className="r6-hero-content">
-          {/* Working with tag */}
-          <div className="r6-tag animate-slide-in-top">
-            Working with hundreds of businesses nationwide
+    <main className="nrp-container">
+      {/* Emergency Banner */}
+      <div className="nrp-emergency-banner">
+        <div className="nrp-badge">
+          <Shield className="h-5 w-5" />
+          <span>IICRC Certified</span>
+          <CheckCircle2 className="h-5 w-5" />
+          <span>Insurance Approved</span>
+          <CheckCircle2 className="h-5 w-5" />
+          <span>Servicing All Queensland</span>
+        </div>
+        <div className="nrp-phone">
+          <Clock className="h-5 w-5" />
+          <span>24/7 Emergency Service</span>
+          <Phone className="h-5 w-5" />
+          <span>1300 566 166</span>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <nav className="nrp-nav">
+        <div className="nrp-nav-logo">
+          <Image 
+            src="/images/disaster-recovery-logo.png" 
+            alt="Disaster Recovery" 
+            width={40} 
+            height={40}
+          />
+          <span>Disaster Recovery</span>
+        </div>
+        
+        <div className="nrp-nav-menu">
+          <div className="nrp-nav-item">
+            Services
+            <ChevronDown className="inline h-4 w-4 ml-1" />
           </div>
-          
-          <h1 className="r6-hero-title">
-            Your perfect <span className="r6-text-gradient">restoration</span>
-            <br />
-            <span className="r6-underline">does exist!</span>
-          </h1>
-          
-          <p className="r6-hero-subtitle">
-            Our team of expert technicians and restoration specialists will
-            bring your property back to life. We handle all the
-            hard work, so you don't have to.
-          </p>
-          
-          <div className="r6-hero-actions">
-            <Link href="/get-help">
-              <button className="r6-btn r6-btn-primary r6-btn-glow">
-                <ArrowRight className="mr-2 h-5 w-5" />
-                Let's get started
-              </button>
-            </Link>
+          <div className="nrp-nav-item">
+            Emergency
+            <ChevronDown className="inline h-4 w-4 ml-1" />
           </div>
+          <div className="nrp-nav-item">
+            About
+            <ChevronDown className="inline h-4 w-4 ml-1" />
+          </div>
+          <Link href="/contact" className="nrp-nav-item">
+            Contact
+          </Link>
+        </div>
+        
+        <div className="nrp-nav-cta">
+          <Link href="/get-help">
+            <button className="nrp-btn nrp-btn-secondary">
+              Get Quote
+            </button>
+          </Link>
+          <Link href="/emergency">
+            <button className="nrp-btn nrp-btn-primary">
+              Emergency Call
+              <Phone className="h-4 w-4" />
+            </button>
+          </Link>
+        </div>
+      </nav>
+
+      {/* Hero Section with NRP Introduction */}
+      <section className="nrp-hero">
+        <div className="nrp-hero-tagline">
+          National Restoration Professionals
+        </div>
+        
+        <h1 className="nrp-hero-title">
+          Australia's First Professional Restoration Network
+        </h1>
+        
+        <div className="nrp-hero-subtitle">
+          When Disaster Strikes, Professionals Respond<br/>
+          <span style={{ fontSize: '1rem', fontWeight: 500 }}>
+            Certified - Insured - Professional - Accountable
+          </span>
+        </div>
+        
+        <p style={{ maxWidth: '800px', margin: '0 auto', marginBottom: '2rem', lineHeight: 1.6 }}>
+          Connect directly with National Restoration Professionals (NRP) - Australia's premier 
+          network of qualified restoration specialists
+        </p>
+        
+        <div className="nrp-cta-group">
+          <Link href="/emergency">
+            <button className="nrp-btn nrp-btn-emergency">
+              <Phone className="h-5 w-5" />
+              Get Emergency Help Now
+            </button>
+          </Link>
+          <Link href="/find-local">
+            <button className="nrp-btn nrp-btn-primary">
+              <MapPin className="h-5 w-5" />
+              Find Your Local NRP Professional
+            </button>
+          </Link>
+          <Link href="/why-nrp">
+            <button className="nrp-btn nrp-btn-secondary">
+              <ArrowRight className="h-5 w-5" />
+              Learn Why We're Different
+            </button>
+          </Link>
         </div>
 
-        {/* Hero Device Mockups */}
-        <div className="r6-hero-devices">
-          <div className="r6-device-laptop">
-            <div className="r6-device-screen">
-              <div className="r6-screen-content">
-                <div className="r6-logo-badge">
-                  <Shield className="h-12 w-12 text-white" />
-                  <span>NRP CERTIFIED</span>
-                </div>
-                <h3>SUPERIOR<br/>RESTORATION</h3>
-                <p>24/7 Emergency Response<br/>IICRC Certified Technicians</p>
-                <button className="r6-btn-small">VIEW MORE</button>
-              </div>
-            </div>
+        {/* Emergency Response Alert */}
+        <div className="nrp-alert">
+          <div className="nrp-alert-title">
+            <AlertTriangle className="h-5 w-5" style={{ color: '#CCBA00' }} />
+            24/7 Emergency Response Available
           </div>
-          
-          <div className="r6-device-phone">
-            <div className="r6-phone-screen">
-              <div className="r6-phone-header">
-                <Clock className="h-4 w-4" />
-                <span>24/7 EMERGENCY</span>
-              </div>
-              <div className="r6-phone-content">
-                <h4>OUR RESTORATION<br/>COLLECTION</h4>
-                <p>Fast response for your home<br/>when disaster strikes</p>
-              </div>
-            </div>
+          <div className="nrp-alert-text">
+            Professional help is just one call away. Our NRP certified technicians are ready to respond.
           </div>
+          <Link href="/emergency">
+            <button className="nrp-btn nrp-btn-secondary" style={{ marginTop: '1rem' }}>
+              Call Now
+            </button>
+          </Link>
         </div>
       </section>
 
-      {/* R6 Features Section */}
-      <section className="r6-features">
-        <div className="r6-container-inner">
-          {/* Feature Cards */}
-          <div className="r6-feature-grid">
-            <div className="r6-feature-card">
-              <div className="r6-feature-icon">
-                <Smartphone className="h-8 w-8" />
-              </div>
-              <h3>Designed for Mobile</h3>
-              <p>Mobile has overtaken Desktop as the most used platform – so we build mobile first to ensure a great experience every time.</p>
-            </div>
-
-            <div className="r6-feature-card">
-              <div className="r6-feature-icon">
-                <Target className="h-8 w-8" />
-              </div>
-              <h3>Google Optimised</h3>
-              <p>We have a team of SEO experts. Ask us about optimising your restoration services for search engines now.</p>
-            </div>
-
-            <div className="r6-feature-card">
-              <div className="r6-feature-icon">
-                <Award className="h-8 w-8" />
-              </div>
-              <h3>IICRC Certified</h3>
-              <p>All our restoration professionals are IICRC certified and follow industry best practices for quality assurance.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* R6 Showcase Section */}
-      <section className="r6-showcase">
-        <div className="r6-showcase-content">
-          <div className="r6-showcase-text">
-            <h2 className="r6-section-title">
-              Designed to work with your
-              <span className="r6-underline"> brand</span>
-            </h2>
-            <p className="r6-section-subtitle">
-              We're more than just restoration technicians; we're
-              recovery specialists too. We recognise the significance of
-              your property and will craft a restoration plan to perfectly
-              capture your needs and meet your
-              insurance requirements.
+      {/* System Failing Section */}
+      <section className="nrp-system-section">
+        <h2 className="nrp-system-title">
+          The Current System Is Failing Australian Homeowners
+        </h2>
+        
+        <div className="nrp-system-cards">
+          {/* Administrative Incompetence */}
+          <div className="nrp-system-card">
+            <XCircle className="nrp-system-icon" />
+            <h3 className="nrp-system-card-title">Administrative Incompetence</h3>
+            <p className="nrp-system-card-text">
+              Third-party administrators without restoration experience making critical decisions from office chairs
             </p>
-            <Link href="/services">
-              <button className="r6-btn-text">
-                <ArrowRight className="mr-2 h-5 w-5" />
-                Get a quote today
-              </button>
-            </Link>
-          </div>
-          
-          <div className="r6-showcase-visual">
-            <div className="r6-visual-card r6-card-blue">
-              <div className="r6-card-header">
-                <span className="r6-card-tag">24/7 SERVICE</span>
-                <h3>WATER DAMAGE<br/>RESTORATION</h3>
+            <div className="nrp-system-stats">
+              <div className="nrp-system-stat">
+                <AlertTriangle className="h-4 w-4" style={{ color: '#FF0000' }} />
+                <span>Claim Delays</span>
               </div>
-              <div className="r6-card-content">
-                <p>Emergency water extraction and complete restoration services. Quick response team available across Queensland.</p>
-                <div className="r6-card-stats">
-                  <div>
-                    <span className="r6-stat-value">2hr</span>
-                    <span className="r6-stat-label">Response</span>
-                  </div>
-                  <div>
-                    <span className="r6-stat-value">100%</span>
-                    <span className="r6-stat-label">Certified</span>
-                  </div>
-                </div>
+              <p style={{ fontSize: '0.875rem', color: '#6B7280', marginTop: '0.5rem' }}>
+                Delayed claims processing due to inexperience and administrative burden
+              </p>
+            </div>
+          </div>
+
+          {/* Unqualified Builders */}
+          <div className="nrp-system-card">
+            <XCircle className="nrp-system-icon" />
+            <h3 className="nrp-system-card-title">Unqualified Builders</h3>
+            <p className="nrp-system-card-text">
+              Builders managing restoration without specialized cleaning and remediation expertise
+            </p>
+            <div className="nrp-system-stats">
+              <div className="nrp-system-stat">
+                <AlertTriangle className="h-4 w-4" style={{ color: '#FF0000' }} />
+                <span>No Accountability</span>
+              </div>
+              <p style={{ fontSize: '0.875rem', color: '#6B7280', marginTop: '0.5rem' }}>
+                No accountability when restoration goes wrong or takes too long
+              </p>
+            </div>
+          </div>
+
+          {/* Cost Cutting Focus */}
+          <div className="nrp-system-card">
+            <XCircle className="nrp-system-icon" />
+            <h3 className="nrp-system-card-title">Cost Cutting Focus</h3>
+            <p className="nrp-system-card-text">
+              Cheapest bidder approach compromising quality and safety standards
+            </p>
+            <div className="nrp-system-stats">
+              <div className="nrp-system-stat">
+                <AlertTriangle className="h-4 w-4" style={{ color: '#FF0000' }} />
+                <span>Statistical Impact</span>
+              </div>
+              <div style={{ fontSize: '0.875rem', color: '#6B7280', marginTop: '0.5rem' }}>
+                <p>• Average delays: 4-12 months</p>
+                <p>• Secondary damage: +45%</p>
+                <p>• Compensation: Up to $6,300</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* R6 Services Grid */}
-      <section className="r6-services">
-        <div className="r6-container-inner">
-          <h2 className="r6-section-title text-center mb-16">
-            Professional Restoration Services
-          </h2>
-          
-          <div className="r6-services-grid">
-            {/* Water Damage */}
-            <Link href="/services/water-damage" className="r6-service-card group">
-              <div className="r6-service-icon">
-                <Droplets className="h-12 w-12 text-[#0040FF] group-hover:text-white transition-colors" />
-              </div>
-              <h3>Water Damage</h3>
-              <p>24/7 emergency water extraction and drying services</p>
-              <div className="r6-service-arrow">
-                <ChevronRight className="h-5 w-5" />
-              </div>
-            </Link>
-
-            {/* Fire Damage */}
-            <Link href="/services/fire-damage" className="r6-service-card group">
-              <div className="r6-service-icon">
-                <Flame className="h-12 w-12 text-[#FF4040] group-hover:text-white transition-colors" />
-              </div>
-              <h3>Fire Damage</h3>
-              <p>Complete fire and smoke damage restoration services</p>
-              <div className="r6-service-arrow">
-                <ChevronRight className="h-5 w-5" />
-              </div>
-            </Link>
-
-            {/* Storm Damage */}
-            <Link href="/services/storm-damage" className="r6-service-card group">
-              <div className="r6-service-icon">
-                <Wind className="h-12 w-12 text-[#40A0FF] group-hover:text-white transition-colors" />
-              </div>
-              <h3>Storm Damage</h3>
-              <p>Emergency storm damage response and repair services</p>
-              <div className="r6-service-arrow">
-                <ChevronRight className="h-5 w-5" />
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* R6 Engagement Section */}
-      <section className="r6-engagement">
-        <div className="r6-engagement-content">
-          <h2 className="r6-section-title">
-            Flexible engagement options<br/>
-            for any size <span className="r6-text-gradient">disaster</span>
-          </h2>
-          
-          <div className="r6-engagement-grid">
-            <div className="r6-engagement-card">
-              <h3>Emergency Response</h3>
-              <ul className="r6-feature-list">
-                <li><CheckCircle2 className="h-5 w-5" /> 24/7 availability</li>
-                <li><CheckCircle2 className="h-5 w-5" /> 2-hour response time</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Direct insurance billing</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Certified technicians</li>
-              </ul>
-              <Link href="/get-help">
-                <button className="r6-btn r6-btn-secondary w-full">
-                  Get Emergency Help
-                </button>
-              </Link>
-            </div>
-
-            <div className="r6-engagement-card r6-card-featured">
-              <div className="r6-badge">MOST POPULAR</div>
-              <h3>Professional Service</h3>
-              <ul className="r6-feature-list">
-                <li><CheckCircle2 className="h-5 w-5" /> Complete restoration</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Insurance coordination</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Progress monitoring</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Quality guarantee</li>
-              </ul>
-              <Link href="/services">
-                <button className="r6-btn r6-btn-primary w-full">
-                  View Services
-                </button>
-              </Link>
-            </div>
-
-            <div className="r6-engagement-card">
-              <h3>Enterprise Solutions</h3>
-              <ul className="r6-feature-list">
-                <li><CheckCircle2 className="h-5 w-5" /> Priority response</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Dedicated team</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Custom contracts</li>
-                <li><CheckCircle2 className="h-5 w-5" /> Volume discounts</li>
-              </ul>
-              <Link href="/contractor">
-                <button className="r6-btn r6-btn-secondary w-full">
-                  Partner With Us
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* R6 CTA Section */}
-      <section className="r6-cta">
-        <div className="r6-cta-content">
-          <h2 className="r6-cta-title">
-            Ready to get started?
-          </h2>
-          <p className="r6-cta-subtitle">
-            Connect with certified restoration professionals 24/7
+        {/* Bottom Banner */}
+        <div style={{ 
+          background: 'linear-gradient(to right, #FFE500, #FFF8CC)', 
+          padding: '2rem',
+          marginTop: '3rem',
+          borderRadius: '1rem',
+          textAlign: 'center'
+        }}>
+          <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>
+            Introducing National Restoration Professionals (NRP)
+          </h3>
+          <p style={{ fontSize: '1.125rem', color: '#374151', marginBottom: '1.5rem' }}>
+            A network of certified professionals committed to excellence in disaster recovery
           </p>
-          <div className="r6-cta-actions">
-            <Link href="/get-help">
-              <button className="r6-btn r6-btn-primary r6-btn-glow">
-                <Phone className="mr-2 h-5 w-5" />
-                1300 566 166
+          <div className="nrp-cta-group">
+            <Link href="/join-nrp">
+              <button className="nrp-btn nrp-btn-primary">
+                Join the NRP Network
               </button>
             </Link>
-            <Link href="/locations">
-              <button className="r6-btn r6-btn-outline">
-                <MapPin className="mr-2 h-5 w-5" />
-                Find Local NRP
+            <Link href="/find-professional">
+              <button className="nrp-btn nrp-btn-secondary">
+                Find an NRP Professional
               </button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* R6 Stats Section */}
-      <section className="r6-stats">
-        <div className="r6-stats-grid">
-          <div className="r6-stat">
-            <div className="r6-stat-number">100%</div>
-            <div className="r6-stat-label">Certified Professionals</div>
+      {/* Statistics Bar */}
+      <div className="nrp-stats-bar">
+        <div className="nrp-stat">
+          <span className="nrp-stat-number">100%</span>
+          <span className="nrp-stat-label">IICRC Certified</span>
+        </div>
+        <div className="nrp-stat">
+          <span className="nrp-stat-number">24/7</span>
+          <span className="nrp-stat-label">Emergency Response</span>
+        </div>
+        <div className="nrp-stat">
+          <span className="nrp-stat-number">2hr</span>
+          <span className="nrp-stat-label">Average Response Time</span>
+        </div>
+        <div className="nrp-stat">
+          <span className="nrp-stat-number">15+</span>
+          <span className="nrp-stat-label">Years Experience</span>
+        </div>
+        <div className="nrp-stat">
+          <span className="nrp-stat-number">4.9/5</span>
+          <span className="nrp-stat-label">Customer Rating</span>
+        </div>
+      </div>
+
+      {/* Why Choose NRP Section */}
+      <section style={{ background: '#FFFFFF', padding: '4rem 2rem' }}>
+        <div className="nrp-max-width">
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 800, textAlign: 'center', marginBottom: '3rem' }}>
+            Why Choose NRP Certified Professionals?
+          </h2>
+          
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+            gap: '2rem',
+            marginBottom: '3rem'
+          }}>
+            <div style={{ textAlign: 'center' }}>
+              <Shield className="h-12 w-12 mx-auto mb-4" style={{ color: '#0040FF' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Fully Certified
+              </h3>
+              <p style={{ color: '#6B7280' }}>
+                All NRP professionals maintain current IICRC certification
+              </p>
+            </div>
+            
+            <div style={{ textAlign: 'center' }}>
+              <Users className="h-12 w-12 mx-auto mb-4" style={{ color: '#0040FF' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Direct Connection
+              </h3>
+              <p style={{ color: '#6B7280' }}>
+                No middleman - deal directly with restoration professionals
+              </p>
+            </div>
+            
+            <div style={{ textAlign: 'center' }}>
+              <CheckCircle2 className="h-12 w-12 mx-auto mb-4" style={{ color: '#0040FF' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Quality Guaranteed
+              </h3>
+              <p style={{ color: '#6B7280' }}>
+                Professional standards backed by comprehensive insurance
+              </p>
+            </div>
+            
+            <div style={{ textAlign: 'center' }}>
+              <Zap className="h-12 w-12 mx-auto mb-4" style={{ color: '#0040FF' }} />
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Fast Response
+              </h3>
+              <p style={{ color: '#6B7280' }}>
+                Emergency teams ready 24/7 across Queensland
+              </p>
+            </div>
           </div>
-          <div className="r6-stat">
-            <div className="r6-stat-number">24/7</div>
-            <div className="r6-stat-label">Emergency Response</div>
+          
+          <div className="nrp-cta-group">
+            <Link href="/get-help">
+              <button className="nrp-btn nrp-btn-primary">
+                Get Professional Help Now
+              </button>
+            </Link>
           </div>
-          <div className="r6-stat">
-            <div className="r6-stat-number">4.9/5</div>
-            <div className="r6-stat-label">Customer Rating</div>
-          </div>
-          <div className="r6-stat">
-            <div className="r6-stat-number">15+</div>
-            <div className="r6-stat-label">Years Experience</div>
-          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section style={{ 
+        background: 'linear-gradient(135deg, #0040FF, #003ACC)', 
+        padding: '4rem 2rem',
+        color: '#FFFFFF',
+        textAlign: 'center'
+      }}>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: 800, marginBottom: '1rem' }}>
+          Ready to Experience Professional Restoration?
+        </h2>
+        <p style={{ fontSize: '1.25rem', marginBottom: '2rem', opacity: 0.9 }}>
+          Join thousands of satisfied customers who chose NRP certified professionals
+        </p>
+        <div className="nrp-cta-group">
+          <Link href="/emergency">
+            <button className="nrp-btn" style={{ 
+              background: '#FFE500', 
+              color: '#000000',
+              fontWeight: 700
+            }}>
+              <Phone className="h-5 w-5" />
+              Call 1300 566 166 Now
+            </button>
+          </Link>
+          <Link href="/get-quote">
+            <button className="nrp-btn" style={{ 
+              background: 'transparent', 
+              color: '#FFFFFF',
+              border: '2px solid #FFFFFF'
+            }}>
+              Get Free Quote
+            </button>
+          </Link>
         </div>
       </section>
     </main>

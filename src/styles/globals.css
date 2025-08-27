@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import R6 Digital-inspired design system - Premium 10/10 Quality */
-@import './r6-design-system.css';
+/* Import NRP - National Restoration Professionals Design System */
+@import './nrp-design-system.css';
 
-/* Legacy design system for backward compatibility */
+/* Legacy design systems for backward compatibility */
+/* @import './r6-design-system.css'; */
 /* @import './premium-design-system.css'; */
 /* @import './global-design-system.css'; */
 
