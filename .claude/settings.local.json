@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Read(C:\\Users\\Disaster Recovery 4\\AppData\\Roaming\\Claude/**)"
     ],
     "deny": [],
     "ask": []
