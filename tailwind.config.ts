@@ -264,6 +264,7 @@ const config: Config = {
         "pulse-dot": "pulse-dot 2s infinite",
         "pulse-subtle": "pulse-subtle 2s infinite",
         "subtle-pulse": "subtle-pulse 4s ease-in-out infinite",
+        "shimmer": "shimmer 3s ease-in-out infinite",
       },
 
       keyframes: {
@@ -309,6 +310,10 @@ const config: Config = {
         "subtle-pulse": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.95" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-1000px 0" },
+          "100%": { backgroundPosition: "1000px 0" },
         },
       },
 

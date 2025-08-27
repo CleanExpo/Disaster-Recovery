@@ -13,7 +13,12 @@ import {
   Clock,
   Award,
   MapPin,
-  ArrowRight
+  ArrowRight,
+  MessageCircle,
+  Zap,
+  Users,
+  AlertTriangle,
+  Headphones
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { R6Button } from '@/components/ui/r6-button';
@@ -125,6 +130,8 @@ export default function R6Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [showLiveChat, setShowLiveChat] = useState(false);
+  const [emergencyMode, setEmergencyMode] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -136,10 +143,39 @@ export default function R6Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Simulate emergency mode activation
+  useEffect(() => {
+    const emergencyKeywords = ['emergency', 'urgent', 'flood', 'fire', 'damage'];
+    const isEmergencyPage = emergencyKeywords.some(keyword => 
+      pathname.toLowerCase().includes(keyword)
+    );
+    setEmergencyMode(isEmergencyPage);
+  }, [pathname]);
+
   return (
     <>
-      {/* Top Bar - R6 Style Info Strip */}
-      <div className="hidden lg:block bg-gradient-to-r from-[#131cff] to-[#00a0d2] text-white relative overflow-hidden">
+      {/* Emergency Alert Banner - Conditional */}
+      {emergencyMode && (
+        <div className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white relative overflow-hidden animate-pulse">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+          <div className="container mx-auto px-6 relative">
+            <div className="flex items-center justify-center py-2">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 animate-bounce" />
+                <span className="text-sm font-bold">🚨 EMERGENCY RESPONSE ACTIVE • TEAMS DISPATCHED WITHIN 60 MINUTES • CALL NOW 🚨</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Top Bar - Enhanced Emergency Focus */}
+      <div className={cn(
+        "hidden lg:block text-white relative overflow-hidden transition-all duration-500",
+        emergencyMode 
+          ? "bg-gradient-to-r from-red-600 to-red-700" 
+          : "bg-gradient-to-r from-[#131cff] to-[#00a0d2]"
+      )}>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
         <div className="container mx-auto px-6 relative">
           <div className="flex items-center justify-between py-3">
@@ -153,34 +189,55 @@ export default function R6Header() {
                 <span className="text-sm font-medium">Insurance Approved</span>
               </div>
               <div className="flex items-center gap-2 group">
-                <MapPin className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium">Servicing All Queensland</span>
+                <Users className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium">
+                  <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-1"></span>
+                  Teams Available Now
+                </span>
+              </div>
+              <div className="flex items-center gap-2 group">
+                <Zap className="w-4 h-4 group-hover:scale-110 transition-transform animate-pulse" />
+                <span className="text-sm font-medium">60-Min Response Guarantee</span>
               </div>
             </div>
-            <div className="flex items-center gap-8">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 animate-pulse" />
-                <span className="text-sm font-medium">24/7 Emergency Service</span>
-              </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setShowLiveChat(true)}
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full hover:bg-white/20 transition-all duration-300 group text-sm font-medium"
+              >
+                <Headphones className="w-4 h-4 group-hover:bounce transition-all" />
+                <span>Live Chat</span>
+              </button>
               <a 
                 href="tel:1300566166" 
-                className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full hover:bg-white/30 transition-all duration-300 group"
+                className={cn(
+                  "flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-300 group font-bold",
+                  emergencyMode 
+                    ? "bg-white text-red-600 hover:bg-red-50 animate-pulse" 
+                    : "bg-white/20 text-white hover:bg-white/30"
+                )}
               >
                 <Phone className="w-4 h-4 group-hover:rotate-12 transition-transform" />
-                <span className="font-bold">1300 566 166</span>
+                <span>1300 566 166</span>
+                {emergencyMode && (
+                  <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full ml-1">
+                    EMERGENCY
+                  </span>
+                )}
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Header - R6 Style */}
+      {/* Main Header - Enhanced Emergency Style */}
       <header 
         className={cn(
           "sticky top-0 z-50 w-full transition-all duration-500",
           isScrolled 
             ? "bg-white/95 backdrop-blur-xl shadow-[0_8px_30px_rgba(19,28,255,0.08)]" 
-            : "bg-white shadow-sm"
+            : "bg-white shadow-sm",
+          emergencyMode && "ring-2 ring-red-500/20"
         )}
       >
         <nav className="container mx-auto px-6">
@@ -275,22 +332,56 @@ export default function R6Header() {
               ))}
             </div>
 
-            {/* CTA Buttons - R6 Style */}
+            {/* Enhanced Emergency CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              <R6Button
-                variant="outline"
-                size="sm"
-                className="hidden xl:inline-flex"
-              >
-                Get Quote
-              </R6Button>
-              <R6Button
-                variant="gradient"
-                size="sm"
-                rightIcon={<Phone className="w-4 h-4" />}
-              >
-                Emergency Call
-              </R6Button>
+              {/* Emergency Quick Actions */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowLiveChat(true)}
+                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#6a6d72] hover:text-[#131cff] hover:bg-[#131cff]/5 rounded-lg transition-all duration-300 group"
+                >
+                  <MessageCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  <span className="hidden xl:inline">Live Chat</span>
+                </button>
+                
+                {/* Response Time Indicator */}
+                <div className="flex items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg border border-green-200">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-semibold hidden xl:inline">Teams Ready</span>
+                  <Clock className="w-4 h-4" />
+                  <span className="text-xs font-bold">60min</span>
+                </div>
+              </div>
+
+              {/* Main CTA Buttons */}
+              <div className="flex items-center gap-2 pl-2 border-l border-gray-200">
+                <R6Button
+                  variant="outline"
+                  size="sm"
+                  className="hidden xl:inline-flex group hover:border-[#131cff] hover:bg-[#131cff]/5"
+                >
+                  <span className="group-hover:scale-105 transition-transform">Free Assessment</span>
+                </R6Button>
+                
+                <a href="tel:1300566166">
+                  <R6Button
+                    variant={emergencyMode ? "danger" : "gradient"}
+                    size="sm"
+                    rightIcon={<Phone className="w-4 h-4" />}
+                    className={cn(
+                      "relative overflow-hidden group",
+                      emergencyMode && "animate-pulse shadow-lg shadow-red-500/25"
+                    )}
+                  >
+                    <span className="relative z-10">
+                      {emergencyMode ? "EMERGENCY CALL" : "Call Now"}
+                    </span>
+                    {emergencyMode && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 opacity-90 group-hover:opacity-100 transition-opacity" />
+                    )}
+                  </R6Button>
+                </a>
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -343,21 +434,140 @@ export default function R6Header() {
               </div>
             ))}
             
+            {/* Mobile Emergency Actions */}
             <div className="pt-4 space-y-3 border-t border-[#eeeeee]">
-              <R6Button variant="gradient" fullWidth>
-                Get Free Quote
-              </R6Button>
-              <R6Button 
-                variant="primary" 
-                fullWidth
-                leftIcon={<Phone className="w-4 h-4" />}
+              {/* Emergency Response Indicator */}
+              <div className={cn(
+                "flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold text-sm",
+                emergencyMode 
+                  ? "bg-red-50 text-red-700 border border-red-200" 
+                  : "bg-green-50 text-green-700 border border-green-200"
+              )}>
+                <div className={cn(
+                  "w-2 h-2 rounded-full animate-pulse",
+                  emergencyMode ? "bg-red-500" : "bg-green-500"
+                )} />
+                <span>
+                  {emergencyMode ? "Emergency Response Active" : "Teams Available Now"}
+                </span>
+                <Clock className="w-4 h-4" />
+                <span className="font-bold">60min</span>
+              </div>
+
+              {/* Live Chat Button */}
+              <button
+                onClick={() => setShowLiveChat(true)}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#00a0d2]/10 text-[#00a0d2] rounded-lg font-semibold hover:bg-[#00a0d2]/20 transition-all duration-300"
               >
-                Call 1300 566 166
+                <MessageCircle className="w-4 h-4" />
+                Start Live Chat
+              </button>
+
+              {/* Emergency Call Button */}
+              <a href="tel:1300566166" className="block">
+                <R6Button 
+                  variant={emergencyMode ? "danger" : "gradient"}
+                  fullWidth
+                  leftIcon={<Phone className="w-4 h-4" />}
+                  className={cn(
+                    "relative overflow-hidden",
+                    emergencyMode && "animate-pulse shadow-lg shadow-red-500/25"
+                  )}
+                >
+                  <span className="relative z-10">
+                    {emergencyMode ? "🚨 EMERGENCY CALL NOW" : "Call 1300 566 166"}
+                  </span>
+                </R6Button>
+              </a>
+
+              {/* Free Assessment */}
+              <R6Button variant="outline" fullWidth className="group">
+                <span className="group-hover:scale-105 transition-transform">
+                  Get Free Assessment
+                </span>
               </R6Button>
             </div>
           </div>
         </div>
       </header>
+
+      {/* Live Chat Modal */}
+      {showLiveChat && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-hidden">
+            {/* Chat Header */}
+            <div className="bg-gradient-to-r from-[#131cff] to-[#00a0d2] text-white p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <Headphones className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold">Emergency Support</h3>
+                  <p className="text-sm opacity-90 flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    Available now • Avg response: 30 seconds
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowLiveChat(false)}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Chat Content */}
+            <div className="p-6 space-y-4">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <p className="text-sm text-gray-600 mb-3">
+                  👋 Hi! I'm here to help with your emergency restoration needs.
+                </p>
+                <p className="text-sm font-semibold text-gray-900 mb-2">
+                  Quick questions to get started:
+                </p>
+                <div className="space-y-2">
+                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colors text-sm">
+                    💧 Water damage emergency
+                  </button>
+                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colors text-sm">
+                    🔥 Fire/smoke damage
+                  </button>
+                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colors text-sm">
+                    ⚠️ Sewage/biohazard cleanup
+                  </button>
+                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colors text-sm">
+                    🏠 Other emergency restoration
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Type your message..."
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:border-[#131cff] focus:ring-1 focus:ring-[#131cff] outline-none"
+                />
+                <button className="bg-[#131cff] text-white px-4 py-2 rounded-lg hover:bg-[#0f17cc] transition-colors">
+                  Send
+                </button>
+              </div>
+
+              <div className="text-center pt-2 border-t">
+                <p className="text-xs text-gray-500 mb-2">
+                  For immediate emergencies, call directly:
+                </p>
+                <a href="tel:1300566166">
+                  <R6Button variant="danger" size="sm" className="animate-pulse">
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call 1300 566 166
+                  </R6Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
