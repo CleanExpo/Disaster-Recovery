@@ -1,10 +1,30 @@
 {
   "mcpServers": {
-    "playwright": {
+    "puppeteer": {
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest"
-      ]
+        "-y",
+        "puppeteer-mcp-server"
+      ],
+      "env": {}
+    },
+    "context7": {
+      "command": "node",
+      "args": [
+        "D:\\Disaster Recovery\\context7\\dist\\index.js"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "sequential-thinking": {
+      "command": "node",
+      "args": [
+        "D:\\Disaster Recovery\\WSL-Deployment-Sequential-Thinking\\dist\\cli.js"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
   }
 }

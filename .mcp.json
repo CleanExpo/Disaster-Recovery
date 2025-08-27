@@ -1,0 +1,44 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "context7/dist/index.js"
+      ]
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "WSL-Deployment-Sequential-Thinking/dist/index.js"
+      ]
+    },
+    "context7-upstash": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "context7-upstash/dist/index.js"
+      ],
+      "env": {
+        "UPSTASH_VECTOR_REST_URL": "${UPSTASH_VECTOR_REST_URL}",
+        "UPSTASH_VECTOR_REST_TOKEN": "${UPSTASH_VECTOR_REST_TOKEN}"
+      }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@executeautomation/playwright-mcp-server"
+      ]
+    },
+    "sequential-thinking-mcp": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "sequential-thinking-mcp/dist/index.js"
+      ]
+    }
+  }
+}

@@ -5,6 +5,9 @@
 /* Import NRP - National Restoration Professionals Design System */
 @import './nrp-design-system.css';
 
+/* Import R6 Digital Dark Theme - Premium Design System */
+@import './r6-dark-theme.css';
+
 /* Legacy design systems for backward compatibility */
 /* @import './r6-design-system.css'; */
 /* @import './premium-design-system.css'; */

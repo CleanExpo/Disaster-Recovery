@@ -128,18 +128,21 @@ export default function WaterDamageRestorationPage() {
       schemaData={schemaData}
     >
       {/* Service Overview Section */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-6">
+      <section className="mb-16 r6-fade-in">
+        <h2 className="r6-heading-xl r6-gradient-text mb-6">
           Professional Water Damage Restoration Following IICRC S500 Standards
         </h2>
-        <div className="prose prose-lg max-w-none text-neutral-700">
-          <p className="lead">
+        <div className="prose prose-lg max-w-none">
+          <p className="r6-text-lead text-gray-300">
             When water damage strikes your property, every minute counts. Our IICRC S500-certified restoration professionals respond immediately to minimize damage, prevent mold growth, and restore your property to pre-loss condition. With advanced equipment and proven methodologies, we handle everything from minor leaks to major flooding disasters.
           </p>
           
-          <div className="bg-primary-50 border-l-4 border-primary-600 p-6 my-8 rounded-r-lg">
-            <h3 className="text-xl font-bold text-primary-900 mb-3">Why Immediate Response Matters</h3>
-            <p className="text-primary-800">
+          <div className="r6-glass-card r6-glow-blue p-8 my-8 border-l-4 border-electric-blue">
+            <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-3">
+              <span className="r6-pulse-dot"></span>
+              Why Immediate Response Matters
+            </h3>
+            <p className="text-gray-300">
               According to ANSI/IICRC S500-2021 standards, water damage can lead to mold growth within 24-48 hours. Our rapid response team arrives within 1 hour to begin extraction and mitigation, preventing secondary damage and reducing restoration costs by up to 40%.
             </p>
           </div>
@@ -147,34 +150,34 @@ export default function WaterDamageRestorationPage() {
       </section>
 
       {/* Water Damage Categories */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in-delay-1">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           Understanding Water Damage Categories
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="h-48 relative">
+          <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
+            <div className="h-48 relative r6-image-container">
               <Image
                 src="/images/optimized/damage/3D Water Damage.png"
                 alt="Category 1 Clean Water Damage"
                 fill
-                className="object-cover"
+                className="object-cover r6-scale-hover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-sm font-semibold">
+                <span className="r6-badge-glow bg-electric-blue">
                   Category 1
                 </span>
               </div>
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold text-neutral-900 mb-3">Clean Water</h3>
-              <p className="text-neutral-700 mb-4">
+              <h3 className="text-xl font-bold text-white mb-3">Clean Water</h3>
+              <p className="text-gray-400 mb-4">
                 Water from sanitary sources like broken water lines, tub overflows, or rainwater. Requires immediate extraction and drying to prevent escalation.
               </p>
-              <ul className="space-y-2 text-sm text-neutral-600">
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <ul className="space-y-2 text-sm text-gray-500">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-electric-blue mr-2 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Broken water supply lines
@@ -195,41 +198,41 @@ export default function WaterDamageRestorationPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="h-48 relative">
+          <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
+            <div className="h-48 relative r6-image-container">
               <Image
                 src="/images/optimized/damage/3D Flood Damage.png"
                 alt="Category 2 Grey Water Damage"
                 fill
-                className="object-cover"
+                className="object-cover r6-scale-hover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <span className="px-3 py-1 bg-yellow-500 text-white rounded-full text-sm font-semibold">
+                <span className="r6-badge-warning">
                   Category 2
                 </span>
               </div>
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold text-neutral-900 mb-3">Grey Water</h3>
-              <p className="text-neutral-700 mb-4">
+              <h3 className="text-xl font-bold text-white mb-3">Grey Water</h3>
+              <p className="text-gray-400 mb-4">
                 Contains significant contamination that could cause illness. Requires PPE, antimicrobial treatment, and disposal of affected porous materials.
               </p>
               <ul className="space-y-2 text-sm text-neutral-600">
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Washing machine overflow
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Dishwasher discharge
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-yellow-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Aquarium water
@@ -238,41 +241,41 @@ export default function WaterDamageRestorationPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="h-48 relative">
+          <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
+            <div className="h-48 relative r6-image-container">
               <Image
                 src="/images/optimized/process/3D Emergency Squalor Cleanup.png"
                 alt="Category 3 Black Water Damage"
                 fill
-                className="object-cover"
+                className="object-cover r6-scale-hover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
               <div className="absolute bottom-4 left-4">
-                <span className="px-3 py-1 bg-red-600 text-white rounded-full text-sm font-semibold">
+                <span className="r6-badge-danger r6-pulse">
                   Category 3
                 </span>
               </div>
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold text-neutral-900 mb-3">Black Water</h3>
-              <p className="text-neutral-700 mb-4">
+              <h3 className="text-xl font-bold text-white mb-3">Black Water</h3>
+              <p className="text-gray-400 mb-4">
                 Grossly contaminated water containing pathogens and toxins. Requires full PPE, containment, and specialized biohazard protocols per IICRC S500.
               </p>
               <ul className="space-y-2 text-sm text-neutral-600">
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-red-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Sewage backup
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-red-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   River/stream flooding
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-red-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-5 h-5 text-red-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Standing water >48 hours
@@ -284,8 +287,8 @@ export default function WaterDamageRestorationPage() {
       </section>
 
       {/* Our Process */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in-delay-2">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           Our IICRC S500-Compliant Restoration Process
         </h2>
         
@@ -293,16 +296,16 @@ export default function WaterDamageRestorationPage() {
           {/* Step 1 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">1</span>
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+                <span className="text-2xl font-bold text-electric-blue r6-text-glow">1</span>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Emergency Contact & Rapid Response
               </h3>
-              <div className="bg-white rounded-lg p-6 shadow-md">
-                <p className="text-neutral-700 mb-4">
+              <div className="r6-glass-card p-6 r6-hover-glow">
+                <p className="text-gray-300 mb-4">
                   Our 24/7 emergency hotline connects you with certified water damage specialists immediately. We dispatch teams within minutes, arriving on-site in under 1 hour for city locations.
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -315,19 +318,19 @@ export default function WaterDamageRestorationPage() {
                       className="rounded-lg mr-4"
                     />
                     <div>
-                      <h4 className="font-semibold text-neutral-900 mb-1">Immediate Assessment</h4>
-                      <p className="text-sm text-neutral-600">
+                      <h4 className="font-semibold text-white mb-1">Immediate Assessment</h4>
+                      <p className="text-sm text-gray-400">
                         Phone triage determines severity and dispatches appropriate resources
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <svg className="w-12 h-12 text-primary-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-12 h-12 text-electric-blue mr-4 r6-icon-glow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div>
-                      <h4 className="font-semibold text-neutral-900 mb-1">Response Time</h4>
-                      <p className="text-sm text-neutral-600">
+                      <h4 className="font-semibold text-white mb-1">Response Time</h4>
+                      <p className="text-sm text-gray-400">
                         Average arrival: 47 minutes in metropolitan areas
                       </p>
                     </div>
@@ -340,16 +343,16 @@ export default function WaterDamageRestorationPage() {
           {/* Step 2 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">2</span>
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+                <span className="text-2xl font-bold text-electric-blue r6-text-glow">2</span>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Inspection & Water Damage Assessment
               </h3>
-              <div className="bg-white rounded-lg p-6 shadow-md">
-                <p className="text-neutral-700 mb-4">
+              <div className="r6-glass-card p-6 r6-hover-glow">
+                <p className="text-gray-300 mb-4">
                   Using advanced moisture detection technology, we map affected areas, determine water category, and develop a comprehensive restoration plan following IICRC S500 protocols.
                 </p>
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
@@ -361,8 +364,8 @@ export default function WaterDamageRestorationPage() {
                       height={80}
                       className="mx-auto mb-2 rounded"
                     />
-                    <h4 className="font-semibold text-sm">Thermal Imaging</h4>
-                    <p className="text-xs text-neutral-600 mt-1">
+                    <h4 className="font-semibold text-sm text-white">Thermal Imaging</h4>
+                    <p className="text-xs text-gray-400 mt-1">
                       Identifies hidden moisture
                     </p>
                   </div>
@@ -400,19 +403,19 @@ export default function WaterDamageRestorationPage() {
           {/* Step 3 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">3</span>
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+                <span className="text-2xl font-bold text-electric-blue r6-text-glow">3</span>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Water Extraction & Removal
               </h3>
-              <div className="bg-white rounded-lg p-6 shadow-md">
-                <p className="text-neutral-700 mb-4">
+              <div className="r6-glass-card p-6 r6-hover-glow">
+                <p className="text-gray-300 mb-4">
                   Powerful truck-mounted and portable extraction units remove thousands of gallons of water quickly, preventing further damage and accelerating the drying process.
                 </p>
-                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mt-4">
+                <div className="r6-glass-card r6-glow-blue border-l-4 border-electric-blue p-4 mt-4">
                   <div className="flex items-center mb-2">
                     <Image
                       src="/images/optimized/equipment/3D Extraction Unit.png"
@@ -422,8 +425,8 @@ export default function WaterDamageRestorationPage() {
                       className="mr-3 rounded"
                     />
                     <div>
-                      <h4 className="font-semibold text-blue-900">Industrial Extraction Power</h4>
-                      <p className="text-sm text-blue-800">
+                      <h4 className="font-semibold text-white">Industrial Extraction Power</h4>
+                      <p className="text-sm text-electric-blue">
                         Our truck-mounted units extract up to 40,000 gallons per day
                       </p>
                     </div>
@@ -436,20 +439,20 @@ export default function WaterDamageRestorationPage() {
           {/* Step 4 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">4</span>
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+                <span className="text-2xl font-bold text-electric-blue r6-text-glow">4</span>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Drying & Dehumidification
               </h3>
-              <div className="bg-white rounded-lg p-6 shadow-md">
-                <p className="text-neutral-700 mb-4">
+              <div className="r6-glass-card p-6 r6-hover-glow">
+                <p className="text-gray-300 mb-4">
                   Strategic placement of industrial dehumidifiers and high-velocity air movers creates optimal drying conditions. Daily monitoring ensures materials reach IICRC-specified moisture levels.
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
-                  <div className="flex items-center p-4 bg-neutral-50 rounded-lg">
+                  <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
                       src="/images/optimized/equipment/3D Dehumidifier.png"
                       alt="Dehumidifier"
@@ -458,13 +461,13 @@ export default function WaterDamageRestorationPage() {
                       className="mr-4 rounded"
                     />
                     <div>
-                      <h4 className="font-semibold text-neutral-900">Dehumidifiers</h4>
-                      <p className="text-sm text-neutral-600">
+                      <h4 className="font-semibold text-white">Dehumidifiers</h4>
+                      <p className="text-sm text-gray-400">
                         Remove up to 30 gallons of moisture daily
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center p-4 bg-neutral-50 rounded-lg">
+                  <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
                       src="/images/optimized/equipment/3D Industrial Fan.png"
                       alt="Air movers"
@@ -473,8 +476,8 @@ export default function WaterDamageRestorationPage() {
                       className="mr-4 rounded"
                     />
                     <div>
-                      <h4 className="font-semibold text-neutral-900">Air Movers</h4>
-                      <p className="text-sm text-neutral-600">
+                      <h4 className="font-semibold text-white">Air Movers</h4>
+                      <p className="text-sm text-gray-400">
                         Create rapid evaporation with targeted airflow
                       </p>
                     </div>
@@ -487,20 +490,20 @@ export default function WaterDamageRestorationPage() {
           {/* Step 5 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">5</span>
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+                <span className="text-2xl font-bold text-electric-blue r6-text-glow">5</span>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Cleaning & Sanitization
               </h3>
-              <div className="bg-white rounded-lg p-6 shadow-md">
-                <p className="text-neutral-700 mb-4">
+              <div className="r6-glass-card p-6 r6-hover-glow">
+                <p className="text-gray-300 mb-4">
                   All affected areas receive antimicrobial treatment to prevent mold and bacteria growth. We clean and sanitize restorable items using IICRC-approved methods and EPA-registered disinfectants.
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mt-6">
-                  <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
                     <div className="flex items-center mb-2">
                       <Image
                         src="/images/optimized/equipment/3D Thermal Fogging.png"
@@ -509,20 +512,20 @@ export default function WaterDamageRestorationPage() {
                         height={50}
                         className="mr-3 rounded"
                       />
-                      <h4 className="font-semibold text-green-900">Thermal Fogging</h4>
+                      <h4 className="font-semibold text-green-400">Thermal Fogging</h4>
                     </div>
-                    <p className="text-sm text-green-800">
+                    <p className="text-sm text-gray-400">
                       Penetrates porous materials for deep deodorization
                     </p>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
                     <div className="flex items-center mb-2">
-                      <svg className="w-12 h-12 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-12 h-12 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <h4 className="font-semibold text-green-900">HEPA Filtration</h4>
+                      <h4 className="font-semibold text-green-400">HEPA Filtration</h4>
                     </div>
-                    <p className="text-sm text-green-800">
+                    <p className="text-sm text-gray-400">
                       Removes 99.97% of airborne particles and mold spores
                     </p>
                   </div>
@@ -534,16 +537,16 @@ export default function WaterDamageRestorationPage() {
           {/* Step 6 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">6</span>
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+                <span className="text-2xl font-bold text-electric-blue r6-text-glow">6</span>
               </div>
             </div>
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-neutral-900 mb-3">
+              <h3 className="text-2xl font-bold text-white mb-3">
                 Restoration & Reconstruction
               </h3>
-              <div className="bg-white rounded-lg p-6 shadow-md">
-                <p className="text-neutral-700 mb-4">
+              <div className="r6-glass-card p-6 r6-hover-glow">
+                <p className="text-gray-300 mb-4">
                   Final phase returns your property to pre-loss condition. From minor repairs like drywall replacement to major reconstruction, our skilled craftsmen complete all necessary work.
                 </p>
                 <div className="flex items-center justify-center mt-6">
@@ -557,20 +560,20 @@ export default function WaterDamageRestorationPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 mt-6 text-center">
                   <div>
-                    <h4 className="font-semibold text-neutral-900">Minor Repairs</h4>
-                    <p className="text-sm text-neutral-600 mt-1">
+                    <h4 className="font-semibold text-white">Minor Repairs</h4>
+                    <p className="text-sm text-gray-400 mt-1">
                       Drywall, paint, carpet
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-neutral-900">Major Repairs</h4>
-                    <p className="text-sm text-neutral-600 mt-1">
+                    <h4 className="font-semibold text-white">Major Repairs</h4>
+                    <p className="text-sm text-gray-400 mt-1">
                       Structural, roofing, rooms
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-neutral-900">Reconstruction</h4>
-                    <p className="text-sm text-neutral-600 mt-1">
+                    <h4 className="font-semibold text-white">Reconstruction</h4>
+                    <p className="text-sm text-gray-400 mt-1">
                       Complete rebuild services
                     </p>
                   </div>
@@ -582,12 +585,12 @@ export default function WaterDamageRestorationPage() {
       </section>
 
       {/* Equipment Showcase */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in-delay-3">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           State-of-the-Art Equipment & Technology
         </h2>
-        <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-2xl p-8">
-          <p className="text-lg text-primary-900 mb-8">
+        <div className="r6-glass-card r6-glow-subtle rounded-2xl p-8">
+          <p className="text-lg text-gray-300 mb-8">
             We invest in the latest IICRC S500-compliant equipment to ensure the fastest, most effective restoration possible. Our arsenal includes:
           </p>
           
@@ -630,18 +633,18 @@ export default function WaterDamageRestorationPage() {
                 image: "/images/optimized/equipment/3D Thermal Fogging.png"
               }
             ].map((item, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="h-32 relative mb-4">
+              <div key={index} className="r6-card-premium r6-hover-lift p-6">
+                <div className="h-32 relative mb-4 r6-image-container">
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-contain"
+                    className="object-contain r6-scale-hover"
                   />
                 </div>
-                <h3 className="font-bold text-neutral-900 mb-2">{item.name}</h3>
-                <p className="text-sm text-primary-600 font-semibold mb-1">{item.specs}</p>
-                <p className="text-sm text-neutral-600">{item.benefit}</p>
+                <h3 className="font-bold text-white mb-2">{item.name}</h3>
+                <p className="text-sm text-electric-blue font-semibold mb-1 r6-text-glow-subtle">{item.specs}</p>
+                <p className="text-sm text-gray-400">{item.benefit}</p>
               </div>
             ))}
           </div>
@@ -649,51 +652,51 @@ export default function WaterDamageRestorationPage() {
       </section>
 
       {/* Insurance Section */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in-delay-4">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           Insurance Claims Assistance
         </h2>
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="r6-card-premium p-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-4">
+              <h3 className="text-xl font-bold text-white mb-4">
                 We Work With All Major Insurance Companies
               </h3>
-              <p className="text-neutral-700 mb-6">
+              <p className="text-gray-300 mb-6">
                 Our team handles the entire claims process, providing detailed documentation that meets IICRC S500 standards and insurance requirements. We ensure you receive maximum coverage for your restoration needs.
               </p>
               <ul className="space-y-3">
-                <li className="flex items-start">
-                  <svg className="w-6 h-6 text-success-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Direct insurance billing - no out-of-pocket expense</span>
+                  <span className="text-gray-300">Direct insurance billing - no out-of-pocket expense</span>
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-6 h-6 text-success-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Complete photo documentation and moisture mapping</span>
+                  <span className="text-gray-300">Complete photo documentation and moisture mapping</span>
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-6 h-6 text-success-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Xactimate estimating for accurate pricing</span>
+                  <span className="text-gray-300">Xactimate estimating for accurate pricing</span>
                 </li>
-                <li className="flex items-start">
-                  <svg className="w-6 h-6 text-success-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <li className="flex items-start r6-list-item">
+                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Daily progress reports to adjusters</span>
+                  <span className="text-gray-300">Daily progress reports to adjusters</span>
                 </li>
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-6">
-              <h4 className="font-bold text-primary-900 mb-4">Documentation We Provide:</h4>
+            <div className="r6-glass-subtle rounded-xl p-6 border border-electric-blue/20">
+              <h4 className="font-bold text-electric-blue mb-4 r6-text-glow-subtle">Documentation We Provide:</h4>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
+                <li className="flex items-center text-gray-400 r6-list-item">
+                  <span className="w-2 h-2 bg-electric-blue rounded-full mr-3 r6-pulse-dot"></span>
                   Pre-mitigation photos and videos
                 </li>
                 <li className="flex items-center">
@@ -727,8 +730,8 @@ export default function WaterDamageRestorationPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in-delay-5">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           Why Property Owners Choose Our Water Damage Services
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -764,10 +767,10 @@ export default function WaterDamageRestorationPage() {
               description: "Over 2,000 satisfied customers with 4.9/5 average rating"
             }
           ].map((item, index) => (
-            <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="text-4xl mb-4">{item.icon}</div>
-              <h3 className="text-xl font-bold text-neutral-900 mb-2">{item.title}</h3>
-              <p className="text-neutral-700">{item.description}</p>
+            <div key={index} className="r6-card-premium r6-hover-lift p-6 group">
+              <div className="text-4xl mb-4 r6-icon-float">{item.icon}</div>
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-electric-blue transition-colors">{item.title}</h3>
+              <p className="text-gray-400">{item.description}</p>
             </div>
           ))}
         </div>

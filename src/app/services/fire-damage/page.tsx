@@ -184,21 +184,21 @@ export default function FireDamagePage() {
       schemaData={schemaData}
     >
       {/* Service Overview */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           Professional Fire & Smoke Damage Restoration
         </h2>
         
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div>
-            <p className="text-lg text-neutral-700 mb-6">
+            <p className="text-lg text-gray-300 mb-6">
               Fire damage extends far beyond what meets the eye. Smoke, soot, and heat can penetrate deep into building materials, 
               HVAC systems, and personal belongings, causing ongoing damage even after flames are extinguished. Our IICRC S700 
               certified specialists provide comprehensive fire damage restoration using industry-leading techniques and equipment.
             </p>
             
-            <h3 className="text-xl font-semibold text-neutral-900 mb-4">Immediate Response Critical</h3>
-            <p className="text-neutral-700 mb-6">
+            <h3 className="text-xl font-semibold text-white mb-4 r6-text-glow-subtle">Immediate Response Critical</h3>
+            <p className="text-gray-400 mb-6">
               Time is crucial in fire damage restoration. Acidic smoke residues become increasingly corrosive, and secondary 
               damage from firefighting efforts can compound the problem. Our 24/7 emergency response team begins mitigation 
               immediately to prevent further damage and reduce restoration costs.
@@ -218,78 +218,78 @@ export default function FireDamagePage() {
       </section>
 
       {/* IICRC S700 Process */}
-      <section className="mb-16 bg-gradient-to-br from-primary-50 to-neutral-50 p-8 rounded-2xl">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-glass-card p-8 rounded-2xl r6-fade-in-delay-1">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           IICRC S700 Restoration Process
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-primary-600">1</span>
+          <div className="r6-card-premium r6-hover-lift p-6">
+            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center mb-4 border-2 border-electric-blue">
+              <span className="text-2xl font-bold text-electric-blue r6-text-glow">1</span>
             </div>
-            <h3 className="text-xl font-semibold text-neutral-900 mb-3">Initial Assessment</h3>
-            <p className="text-neutral-700 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-3">Initial Assessment</h3>
+            <p className="text-gray-400 mb-4">
               Comprehensive damage evaluation following S700 protocols including structural assessment, 
               smoke penetration analysis, and air quality testing.
             </p>
-            <ul className="text-sm text-neutral-600 space-y-1">
-              <li>• Thermal imaging surveys</li>
-              <li>• Moisture content analysis</li>
-              <li>• Contamination level testing</li>
-              <li>• Detailed documentation</li>
+            <ul className="text-sm text-gray-500 space-y-1">
+              <li className="r6-list-item">• Thermal imaging surveys</li>
+              <li className="r6-list-item">• Moisture content analysis</li>
+              <li className="r6-list-item">• Contamination level testing</li>
+              <li className="r6-list-item">• Detailed documentation</li>
             </ul>
           </div>
           
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-primary-600">2</span>
+          <div className="r6-card-premium r6-hover-lift p-6">
+            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center mb-4 border-2 border-electric-blue">
+              <span className="text-2xl font-bold text-electric-blue r6-text-glow">2</span>
             </div>
-            <h3 className="text-xl font-semibold text-neutral-900 mb-3">Stabilization & Cleaning</h3>
-            <p className="text-neutral-700 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-3">Stabilization & Cleaning</h3>
+            <p className="text-gray-400 mb-4">
               Immediate stabilization of the structure followed by systematic cleaning of all affected surfaces 
               using specialized techniques for different materials.
             </p>
-            <ul className="text-sm text-neutral-600 space-y-1">
-              <li>• Emergency board-up/tarping</li>
-              <li>• Soot and residue removal</li>
-              <li>• HVAC system cleaning</li>
-              <li>• Water damage mitigation</li>
+            <ul className="text-sm text-gray-500 space-y-1">
+              <li className="r6-list-item">• Emergency board-up/tarping</li>
+              <li className="r6-list-item">• Soot and residue removal</li>
+              <li className="r6-list-item">• HVAC system cleaning</li>
+              <li className="r6-list-item">• Water damage mitigation</li>
             </ul>
           </div>
           
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-primary-600">3</span>
+          <div className="r6-card-premium r6-hover-lift p-6">
+            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center mb-4 border-2 border-electric-blue">
+              <span className="text-2xl font-bold text-electric-blue r6-text-glow">3</span>
             </div>
-            <h3 className="text-xl font-semibold text-neutral-900 mb-3">Deodorization & Restoration</h3>
-            <p className="text-neutral-700 mb-4">
+            <h3 className="text-xl font-semibold text-white mb-3">Deodorization & Restoration</h3>
+            <p className="text-gray-400 mb-4">
               Complete odor elimination using multiple treatment methods followed by full structural 
               restoration to pre-loss condition.
             </p>
-            <ul className="text-sm text-neutral-600 space-y-1">
-              <li>• Thermal fogging treatment</li>
-              <li>• Ozone/hydroxyl generation</li>
-              <li>• Structural reconstruction</li>
-              <li>• Final quality inspection</li>
+            <ul className="text-sm text-gray-500 space-y-1">
+              <li className="r6-list-item">• Thermal fogging treatment</li>
+              <li className="r6-list-item">• Ozone/hydroxyl generation</li>
+              <li className="r6-list-item">• Structural reconstruction</li>
+              <li className="r6-list-item">• Final quality inspection</li>
             </ul>
           </div>
         </div>
       </section>
 
       {/* Specialized Equipment */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-neutral-900 mb-8">
+      <section className="mb-16 r6-fade-in-delay-2">
+        <h2 className="r6-heading-xl r6-gradient-text mb-8">
           Advanced Fire Damage Equipment
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-3">
+            <div className="r6-glass-card border border-electric-blue/20 rounded-xl p-6 r6-hover-glow">
+              <h3 className="text-xl font-semibold text-white mb-3">
                 Thermal Fogging Systems
               </h3>
-              <p className="text-neutral-700 mb-4">
+              <p className="text-gray-400 mb-4">
                 Professional thermal fogging equipment creates microscopic droplets that penetrate the same 
                 pathways as smoke, neutralizing odors at their source in porous materials and hard-to-reach areas.
               </p>
