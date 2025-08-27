@@ -2,357 +2,324 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
-  CheckCircle, 
-  XCircle, 
-  Shield, 
-  Clock, 
-  AlertTriangle, 
   Phone, 
   ArrowRight,
-  Award,
-  FileCheck,
-  Users,
-  TrendingUp,
+  Shield,
   Zap,
-  Brain,
-  Monitor,
-  DollarSign,
   Target,
-  Building,
-  ChevronRight,
   CheckCircle2,
-  AlertCircle,
-  BadgeCheck,
-  ShieldCheck,
-  UserCheck,
-  Briefcase,
   MapPin,
   Droplets,
   Flame,
   Wind,
-  Home
+  ChevronRight,
+  Monitor,
+  Smartphone,
+  Award,
+  Users,
+  Clock,
+  Briefcase
 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Australia's First Professional Restoration Network | National Restoration Professionals (NRP)",
   description: "Connect directly with certified restoration professionals. No third-party administrators. IICRC certified, fully insured, and accountable. Get professional help now.",
-  keywords: "NRP, National Restoration Professionals, restoration network, IICRC certified, professional restoration, disaster recovery, water damage, fire damage, storm damage",
-  openGraph: {
-    title: "Australia's First Professional Restoration Network - NRP",
-    description: "When Disaster Strikes, Professionals Respond. Certified - Insured - Professional - Accountable",
-    images: ['/images/logos/nrp/nrp-badge-3d.png'],
-  }
+  keywords: "NRP, National Restoration Professionals, restoration network, IICRC certified, professional restoration, disaster recovery",
 };
 
-export default function EnhancedHomePage() {
+export default function R6HomePage() {
   return (
-    <main className="flex min-h-screen flex-col">
-      {/* Hero Section with Enhanced Design */}
-      <section className="hero relative overflow-hidden">
-        <div className="hero-content">
-          {/* NRP Badge */}
-          <div className="flex justify-center mb-6 animate-scale-in">
-            <img
-              src="/images/logos/nrp/nrp-badge-3d.png"
-              alt="National Restoration Professionals"
-              className="h-32 w-auto object-contain"
-            />
+    <main className="r6-container">
+      {/* R6 Hero Section - Black with Electric Blue */}
+      <section className="r6-hero">
+        <div className="r6-hero-bg"></div>
+        <div className="r6-hero-content">
+          {/* Working with tag */}
+          <div className="r6-tag animate-slide-in-top">
+            Working with hundreds of businesses nationwide
           </div>
           
-          <h1 className="hero-title">
-            Australia's First Professional Restoration Network
+          <h1 className="r6-hero-title">
+            Your perfect <span className="r6-text-gradient">restoration</span>
+            <br />
+            <span className="r6-underline">does exist!</span>
           </h1>
-          <p className="text-xl sm:text-2xl text-primary font-semibold mb-2">
-            When Disaster Strikes, Professionals Respond
-          </p>
-          <p className="text-lg text-gray mb-4">
-            Certified - Insured - Professional - Accountable
-          </p>
-          <p className="hero-subtitle max-w-3xl mx-auto">
-            Connect directly with National Restoration Professionals (NRP) - Australia's premier network of qualified restoration specialists
+          
+          <p className="r6-hero-subtitle">
+            Our team of expert technicians and restoration specialists will
+            bring your property back to life. We handle all the
+            hard work, so you don't have to.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link href="/get-help" className="touch-target-lg">
-              <button className="btn btn-emergency btn-lg animate-pulse-emergency w-full sm:w-auto">
-                <Phone className="mr-2 h-5 w-5" />
-                Get Emergency Help Now
-              </button>
-            </Link>
-            <Link href="/locations" className="touch-target-lg">
-              <button className="btn btn-primary btn-lg w-full sm:w-auto">
-                <MapPin className="mr-2 h-5 w-5" />
-                Find Your Local NRP Professional
-              </button>
-            </Link>
-            <Link href="#comparison" className="touch-target">
-              <button className="btn btn-secondary w-full sm:w-auto">
+          <div className="r6-hero-actions">
+            <Link href="/get-help">
+              <button className="r6-btn r6-btn-primary r6-btn-glow">
                 <ArrowRight className="mr-2 h-5 w-5" />
-                Learn Why We're Different
+                Let's get started
               </button>
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* Emergency Alert Banner */}
-      <div className="alert alert-emergency mx-4 sm:mx-6 lg:mx-auto max-w-7xl -mt-8 relative z-10 shadow-lg">
-        <AlertTriangle className="h-5 w-5 flex-shrink-0" />
-        <div className="flex-1">
-          <strong className="block text-base">24/7 Emergency Response Available</strong>
-          <span className="text-sm">Professional help is just one call away. Our NRP certified technicians are ready to respond.</span>
-        </div>
-        <Link href="/get-help" className="touch-target">
-          <button className="btn btn-sm btn-emergency">
-            Call Now
-          </button>
-        </Link>
-      </div>
-
-      {/* Problem Statement Section with Cards */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container">
-          <h2 className="text-center mb-12">The Current System Is Failing Australian Homeowners</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Administrative Incompetence */}
-            <div className="card hover:shadow-xl transition-all">
-              <div className="card-header">
-                <XCircle className="h-12 w-12 text-emergency mb-3" />
-                <h3 className="text-xl font-semibold">Administrative Incompetence</h3>
-              </div>
-              <div className="card-body">
-                <p className="text-gray">Third-party administrators without restoration experience making critical decisions from office chairs</p>
-              </div>
-            </div>
-
-            {/* Unqualified Builders */}
-            <div className="card hover:shadow-xl transition-all">
-              <div className="card-header">
-                <XCircle className="h-12 w-12 text-emergency mb-3" />
-                <h3 className="text-xl font-semibold">Unqualified Builders</h3>
-              </div>
-              <div className="card-body">
-                <p className="text-gray">Builders managing restoration without specialized cleaning and remediation expertise</p>
-              </div>
-            </div>
-
-            {/* Cost Cutting Focus */}
-            <div className="card hover:shadow-xl transition-all">
-              <div className="card-header">
-                <XCircle className="h-12 w-12 text-emergency mb-3" />
-                <h3 className="text-xl font-semibold">Cost Cutting Focus</h3>
-              </div>
-              <div className="card-body">
-                <p className="text-gray">Cheapest bidder approach compromising quality and safety standards</p>
-              </div>
-            </div>
-
-            {/* Claim Delays */}
-            <div className="card hover:shadow-xl transition-all">
-              <div className="card-header">
-                <AlertTriangle className="h-12 w-12 text-warning mb-3" />
-                <h3 className="text-xl font-semibold">Claim Delays</h3>
-              </div>
-              <div className="card-body">
-                <p className="text-gray">Delayed claims processing due to inexperience and administrative burden</p>
-              </div>
-            </div>
-
-            {/* No Accountability */}
-            <div className="card hover:shadow-xl transition-all">
-              <div className="card-header">
-                <AlertTriangle className="h-12 w-12 text-warning mb-3" />
-                <h3 className="text-xl font-semibold">No Accountability</h3>
-              </div>
-              <div className="card-body">
-                <p className="text-gray">No accountability when restoration goes wrong or takes too long</p>
-              </div>
-            </div>
-
-            {/* Statistical Impact */}
-            <div className="card hover:shadow-xl transition-all">
-              <div className="card-header">
-                <AlertTriangle className="h-12 w-12 text-warning mb-3" />
-                <h3 className="text-xl font-semibold">Statistical Impact</h3>
-              </div>
-              <div className="card-body">
-                <ul className="space-y-2">
-                  <li className="text-sm">• Average delays: 4-12 months</li>
-                  <li className="text-sm">• Secondary damage: +45%</li>
-                  <li className="text-sm">• Compensation: Up to $6,300</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* NRP Solution Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-primary-50">
-        <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="mb-4">Introducing National Restoration Professionals (NRP)</h2>
-            <p className="hero-subtitle">Revolutionary Approach to Restoration</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Direct Professional Service */}
-            <div className="card card-water animate-slide-up">
-              <div className="card-header">
-                <CheckCircle2 className="h-12 w-12 text-success mb-3" />
-                <h3 className="text-xl font-semibold">Direct Professional Service</h3>
-              </div>
-              <div className="card-body">
-                <p>No third-party administrators between you and qualified restoration experts</p>
-              </div>
-            </div>
-
-            {/* Certified Specialists */}
-            <div className="card card-fire animate-slide-up" style={{animationDelay: '100ms'}}>
-              <div className="card-header">
-                <Award className="h-12 w-12 text-success mb-3" />
-                <h3 className="text-xl font-semibold">Certified Specialists</h3>
-              </div>
-              <div className="card-body">
-                <p>All contractors hold IICRC certifications and specialized training</p>
-              </div>
-            </div>
-
-            {/* 100% Verified Professionals */}
-            <div className="card card-mold animate-slide-up" style={{animationDelay: '200ms'}}>
-              <div className="card-header">
-                <UserCheck className="h-12 w-12 text-success mb-3" />
-                <h3 className="text-xl font-semibold">100% Verified Professionals</h3>
-              </div>
-              <div className="card-body">
-                <p>Comprehensive background checks by independent investigators</p>
-              </div>
-            </div>
-
-            {/* Real-time Documentation */}
-            <div className="card animate-slide-up" style={{animationDelay: '300ms'}}>
-              <div className="card-header">
-                <FileCheck className="h-12 w-12 text-success mb-3" />
-                <h3 className="text-xl font-semibold">Real-time Documentation</h3>
-              </div>
-              <div className="card-body">
-                <p>Clean Claims integration with technology ensuring complete transparency</p>
-              </div>
-            </div>
-
-            {/* AI-Powered Efficiency */}
-            <div className="card animate-slide-up" style={{animationDelay: '400ms'}}>
-              <div className="card-header">
-                <Brain className="h-12 w-12 text-success mb-3" />
-                <h3 className="text-xl font-semibold">AI-Powered Efficiency</h3>
-              </div>
-              <div className="card-body">
-                <p>Advanced AI algorithms eliminate administrative delays and errors</p>
-              </div>
-            </div>
-
-            {/* Performance Guarantee */}
-            <div className="card animate-slide-up" style={{animationDelay: '500ms'}}>
-              <div className="card-header">
-                <ShieldCheck className="h-12 w-12 text-success mb-3" />
-                <h3 className="text-xl font-semibold">Performance Guarantee</h3>
-              </div>
-              <div className="card-body">
-                <p>Professional standards backed by insurance and performance bonds</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section with Service Cards */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container">
-          <h2 className="text-center mb-12">Professional Services</h2>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Water Damage */}
-            <Link href="/services/water-damage" className="block">
-              <div className="card card-water group hover:scale-105 transition-transform">
-                <div className="card-body text-center">
-                  <Droplets className="h-16 w-16 mx-auto mb-4 text-primary group-hover:animate-pulse" />
-                  <h3 className="text-xl font-semibold mb-2">Water Damage Restoration</h3>
-                  <p className="text-gray">24/7 emergency water extraction and drying services</p>
+        {/* Hero Device Mockups */}
+        <div className="r6-hero-devices">
+          <div className="r6-device-laptop">
+            <div className="r6-device-screen">
+              <div className="r6-screen-content">
+                <div className="r6-logo-badge">
+                  <Shield className="h-12 w-12 text-white" />
+                  <span>NRP CERTIFIED</span>
                 </div>
+                <h3>SUPERIOR<br/>RESTORATION</h3>
+                <p>24/7 Emergency Response<br/>IICRC Certified Technicians</p>
+                <button className="r6-btn-small">VIEW MORE</button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="r6-device-phone">
+            <div className="r6-phone-screen">
+              <div className="r6-phone-header">
+                <Clock className="h-4 w-4" />
+                <span>24/7 EMERGENCY</span>
+              </div>
+              <div className="r6-phone-content">
+                <h4>OUR RESTORATION<br/>COLLECTION</h4>
+                <p>Fast response for your home<br/>when disaster strikes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* R6 Features Section */}
+      <section className="r6-features">
+        <div className="r6-container-inner">
+          {/* Feature Cards */}
+          <div className="r6-feature-grid">
+            <div className="r6-feature-card">
+              <div className="r6-feature-icon">
+                <Smartphone className="h-8 w-8" />
+              </div>
+              <h3>Designed for Mobile</h3>
+              <p>Mobile has overtaken Desktop as the most used platform – so we build mobile first to ensure a great experience every time.</p>
+            </div>
+
+            <div className="r6-feature-card">
+              <div className="r6-feature-icon">
+                <Target className="h-8 w-8" />
+              </div>
+              <h3>Google Optimised</h3>
+              <p>We have a team of SEO experts. Ask us about optimising your restoration services for search engines now.</p>
+            </div>
+
+            <div className="r6-feature-card">
+              <div className="r6-feature-icon">
+                <Award className="h-8 w-8" />
+              </div>
+              <h3>IICRC Certified</h3>
+              <p>All our restoration professionals are IICRC certified and follow industry best practices for quality assurance.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* R6 Showcase Section */}
+      <section className="r6-showcase">
+        <div className="r6-showcase-content">
+          <div className="r6-showcase-text">
+            <h2 className="r6-section-title">
+              Designed to work with your
+              <span className="r6-underline"> brand</span>
+            </h2>
+            <p className="r6-section-subtitle">
+              We're more than just restoration technicians; we're
+              recovery specialists too. We recognise the significance of
+              your property and will craft a restoration plan to perfectly
+              capture your needs and meet your
+              insurance requirements.
+            </p>
+            <Link href="/services">
+              <button className="r6-btn-text">
+                <ArrowRight className="mr-2 h-5 w-5" />
+                Get a quote today
+              </button>
+            </Link>
+          </div>
+          
+          <div className="r6-showcase-visual">
+            <div className="r6-visual-card r6-card-blue">
+              <div className="r6-card-header">
+                <span className="r6-card-tag">24/7 SERVICE</span>
+                <h3>WATER DAMAGE<br/>RESTORATION</h3>
+              </div>
+              <div className="r6-card-content">
+                <p>Emergency water extraction and complete restoration services. Quick response team available across Queensland.</p>
+                <div className="r6-card-stats">
+                  <div>
+                    <span className="r6-stat-value">2hr</span>
+                    <span className="r6-stat-label">Response</span>
+                  </div>
+                  <div>
+                    <span className="r6-stat-value">100%</span>
+                    <span className="r6-stat-label">Certified</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* R6 Services Grid */}
+      <section className="r6-services">
+        <div className="r6-container-inner">
+          <h2 className="r6-section-title text-center mb-16">
+            Professional Restoration Services
+          </h2>
+          
+          <div className="r6-services-grid">
+            {/* Water Damage */}
+            <Link href="/services/water-damage" className="r6-service-card group">
+              <div className="r6-service-icon">
+                <Droplets className="h-12 w-12 text-[#0040FF] group-hover:text-white transition-colors" />
+              </div>
+              <h3>Water Damage</h3>
+              <p>24/7 emergency water extraction and drying services</p>
+              <div className="r6-service-arrow">
+                <ChevronRight className="h-5 w-5" />
               </div>
             </Link>
 
             {/* Fire Damage */}
-            <Link href="/services/fire-damage" className="block">
-              <div className="card card-fire group hover:scale-105 transition-transform">
-                <div className="card-body text-center">
-                  <Flame className="h-16 w-16 mx-auto mb-4 text-warning group-hover:animate-pulse" />
-                  <h3 className="text-xl font-semibold mb-2">Fire Damage Restoration</h3>
-                  <p className="text-gray">Complete fire and smoke damage restoration</p>
-                </div>
+            <Link href="/services/fire-damage" className="r6-service-card group">
+              <div className="r6-service-icon">
+                <Flame className="h-12 w-12 text-[#FF4040] group-hover:text-white transition-colors" />
+              </div>
+              <h3>Fire Damage</h3>
+              <p>Complete fire and smoke damage restoration services</p>
+              <div className="r6-service-arrow">
+                <ChevronRight className="h-5 w-5" />
               </div>
             </Link>
 
             {/* Storm Damage */}
-            <Link href="/services/storm-damage" className="block">
-              <div className="card card-storm group hover:scale-105 transition-transform">
-                <div className="card-body text-center">
-                  <Wind className="h-16 w-16 mx-auto mb-4 text-primary group-hover:animate-pulse" />
-                  <h3 className="text-xl font-semibold mb-2">Storm Damage Repair</h3>
-                  <p className="text-gray">Emergency storm damage response and repair</p>
-                </div>
+            <Link href="/services/storm-damage" className="r6-service-card group">
+              <div className="r6-service-icon">
+                <Wind className="h-12 w-12 text-[#40A0FF] group-hover:text-white transition-colors" />
+              </div>
+              <h3>Storm Damage</h3>
+              <p>Emergency storm damage response and repair services</p>
+              <div className="r6-service-arrow">
+                <ChevronRight className="h-5 w-5" />
               </div>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-primary text-white">
-        <div className="container text-center">
-          <h2 className="text-white mb-6">Get Professional Assessment Now</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Don't let your situation worsen. Connect with NRP certified professionals immediately.
-          </p>
+      {/* R6 Engagement Section */}
+      <section className="r6-engagement">
+        <div className="r6-engagement-content">
+          <h2 className="r6-section-title">
+            Flexible engagement options<br/>
+            for any size <span className="r6-text-gradient">disaster</span>
+          </h2>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/get-help" className="touch-target-xl">
-              <button className="btn btn-emergency btn-lg shadow-xl">
+          <div className="r6-engagement-grid">
+            <div className="r6-engagement-card">
+              <h3>Emergency Response</h3>
+              <ul className="r6-feature-list">
+                <li><CheckCircle2 className="h-5 w-5" /> 24/7 availability</li>
+                <li><CheckCircle2 className="h-5 w-5" /> 2-hour response time</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Direct insurance billing</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Certified technicians</li>
+              </ul>
+              <Link href="/get-help">
+                <button className="r6-btn r6-btn-secondary w-full">
+                  Get Emergency Help
+                </button>
+              </Link>
+            </div>
+
+            <div className="r6-engagement-card r6-card-featured">
+              <div className="r6-badge">MOST POPULAR</div>
+              <h3>Professional Service</h3>
+              <ul className="r6-feature-list">
+                <li><CheckCircle2 className="h-5 w-5" /> Complete restoration</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Insurance coordination</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Progress monitoring</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Quality guarantee</li>
+              </ul>
+              <Link href="/services">
+                <button className="r6-btn r6-btn-primary w-full">
+                  View Services
+                </button>
+              </Link>
+            </div>
+
+            <div className="r6-engagement-card">
+              <h3>Enterprise Solutions</h3>
+              <ul className="r6-feature-list">
+                <li><CheckCircle2 className="h-5 w-5" /> Priority response</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Dedicated team</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Custom contracts</li>
+                <li><CheckCircle2 className="h-5 w-5" /> Volume discounts</li>
+              </ul>
+              <Link href="/contractor">
+                <button className="r6-btn r6-btn-secondary w-full">
+                  Partner With Us
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* R6 CTA Section */}
+      <section className="r6-cta">
+        <div className="r6-cta-content">
+          <h2 className="r6-cta-title">
+            Ready to get started?
+          </h2>
+          <p className="r6-cta-subtitle">
+            Connect with certified restoration professionals 24/7
+          </p>
+          <div className="r6-cta-actions">
+            <Link href="/get-help">
+              <button className="r6-btn r6-btn-primary r6-btn-glow">
                 <Phone className="mr-2 h-5 w-5" />
-                Call 1800 NRP NOW
+                1300 566 166
               </button>
             </Link>
-            <Link href="/contractor" className="touch-target-lg">
-              <button className="btn bg-white text-primary hover:bg-gray-100 btn-lg">
-                <Briefcase className="mr-2 h-5 w-5" />
-                Join NRP Professional Network
+            <Link href="/locations">
+              <button className="r6-btn r6-btn-outline">
+                <MapPin className="mr-2 h-5 w-5" />
+                Find Local NRP
               </button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Trust Indicators */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="animate-fade-in">
-              <div className="text-3xl font-bold text-primary mb-2">100%</div>
-              <p className="text-sm text-gray">Certified Professionals</p>
-            </div>
-            <div className="animate-fade-in" style={{animationDelay: '100ms'}}>
-              <div className="text-3xl font-bold text-success mb-2">24/7</div>
-              <p className="text-sm text-gray">Emergency Response</p>
-            </div>
-            <div className="animate-fade-in" style={{animationDelay: '200ms'}}>
-              <div className="text-3xl font-bold text-warning mb-2">4.9/5</div>
-              <p className="text-sm text-gray">Customer Rating</p>
-            </div>
-            <div className="animate-fade-in" style={{animationDelay: '300ms'}}>
-              <div className="text-3xl font-bold text-primary mb-2">15+</div>
-              <p className="text-sm text-gray">Years Experience</p>
-            </div>
+      {/* R6 Stats Section */}
+      <section className="r6-stats">
+        <div className="r6-stats-grid">
+          <div className="r6-stat">
+            <div className="r6-stat-number">100%</div>
+            <div className="r6-stat-label">Certified Professionals</div>
+          </div>
+          <div className="r6-stat">
+            <div className="r6-stat-number">24/7</div>
+            <div className="r6-stat-label">Emergency Response</div>
+          </div>
+          <div className="r6-stat">
+            <div className="r6-stat-number">4.9/5</div>
+            <div className="r6-stat-label">Customer Rating</div>
+          </div>
+          <div className="r6-stat">
+            <div className="r6-stat-number">15+</div>
+            <div className="r6-stat-label">Years Experience</div>
           </div>
         </div>
       </section>
