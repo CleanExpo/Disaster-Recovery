@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-playwright"
+      ],
+      "env": {}
+    },
+    "context7": {
+      "command": "node",
+      "args": [
+        "D:\\Disaster Recovery\\context7\\dist\\index.js"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "sequential-thinking": {
+      "command": "node",
+      "args": [
+        "D:\\Disaster Recovery\\WSL-Deployment-Sequential-Thinking\\dist\\cli.js"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
