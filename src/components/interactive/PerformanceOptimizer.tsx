@@ -482,15 +482,3 @@ export default function PerformanceOptimizer({
 }
 
 // Exports
-export {
-  LazyLoadComponent,
-  GPUAccelerated,
-  OptimizedAnimation,
-  useOptimizedScroll,
-  MemoizedComponent,
-  VirtualList,
-  OptimizedImage,
-  useResourcePreloader,
-  PerformanceDashboard,
-  usePerformanceMonitor
-};

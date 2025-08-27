@@ -1,6 +1,8 @@
 // Interactive Components Index
 // This file provides easy access to all interactive components
 
+import * as React from 'react';
+
 // Core Interactive Components
 export { default as AnimatedHero } from './AnimatedHero';
 export { default as Interactive3DServiceCards } from './Interactive3DServiceCards';
@@ -138,15 +140,15 @@ export const getInteractivePerformanceMetrics = () => {
 };
 
 // Component factory for creating optimized interactive elements
-export const createOptimizedInteractiveElement = <T extends Record<string, any>>(
+export function createOptimizedInteractiveElement<T extends Record<string, any>>(
   Component: React.ComponentType<T>,
   defaultProps: Partial<T> = {}
-) => {
+) {
   return React.memo(React.forwardRef<any, T>((props, ref) => {
     const mergedProps = { ...defaultProps, ...props } as T;
-    return <Component ref={ref} {...mergedProps} />;
+    return React.createElement(Component, { ref, ...mergedProps });
   }));
-};
+}
 
 // Animation presets
 export const animationPresets = {
@@ -195,25 +197,4 @@ export const glassPresets = {
   emergency: { intensity: 'strong' as const, blur: 'xl' as const, border: true, glow: true, glowColor: 'red' as const },
 };
 
-export default {
-  AnimatedHero,
-  Interactive3DServiceCards,
-  InteractiveBeforeAfterSlider,
-  AnimatedCountersAndWidgets,
-  FloatingActionButtons,
-  ScrollAnimations,
-  EmergencyParticleSystem,
-  GlassMorphismEffects,
-  PerformanceOptimizer,
-  presets: {
-    animation: animationPresets,
-    particles: particlePresets,
-    glass: glassPresets,
-  },
-  utils: {
-    createInteractiveComponent,
-    preloadInteractiveComponents,
-    getInteractivePerformanceMetrics,
-    createOptimizedInteractiveElement,
-  },
-};
+// Default export removed - use named exports instead
