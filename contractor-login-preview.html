@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Login Page - Visual Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div class="max-w-md w-full">
+        <!-- Logo and Title -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
+                <i class="fas fa-building text-white text-2xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">Contractor Portal</h1>
+            <p class="text-gray-600 mt-2">Sign in to access your dashboard</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <!-- Demo Notice -->
+            <div class="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div class="flex items-start">
+                    <i class="fas fa-shield-alt text-blue-600 mt-0.5 mr-3"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-semibold text-blue-900">Demo Access Available</p>
+                        <p class="text-sm text-blue-700 mt-1">
+                            Username: <code class="bg-blue-100 px-1 rounded">demo</code><br />
+                            Password: <code class="bg-blue-100 px-1 rounded">Demo123!</code>
+                        </p>
+                        <button type="button" class="mt-2 text-sm text-blue-600 hover:text-blue-800 underline">
+                            Fill demo credentials
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                        Username or Email
+                    </label>
+                    <div class="relative">
+                        <input
+                            id="username"
+                            type="text"
+                            class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your username"
+                            required
+                        />
+                        <i class="fas fa-user absolute left-3 top-2.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input
+                            id="password"
+                            type="password"
+                            class="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder="Enter your password"
+                            required
+                        />
+                        <i class="fas fa-lock absolute left-3 top-2.5 text-gray-400"></i>
+                        <button type="button" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2" />
+                        <span class="text-sm text-gray-600">Remember me</span>
+                    </label>
+                    <a href="#" class="text-sm text-blue-600 hover:text-blue-800">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center"
+                >
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Sign In
+                </button>
+            </form>
+
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <p class="text-center text-sm text-gray-600">
+                    Don't have an account?
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">
+                        Apply to join
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Back to Home -->
+        <div class="mt-6 text-center">
+            <a href="#" class="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to homepage
+            </a>
+        </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="fixed bottom-4 right-4 bg-white rounded-lg shadow-lg p-4 max-w-sm">
+        <h3 class="font-bold text-gray-900 mb-2">🔍 This is the Contractor Login Page</h3>
+        <p class="text-sm text-gray-600 mb-3">
+            This HTML preview shows exactly what the contractor login page looks like.
+        </p>
+        <div class="bg-gray-50 rounded p-3 text-sm">
+            <p class="font-semibold mb-1">To access the actual page:</p>
+            <ol class="list-decimal list-inside space-y-1 text-gray-700">
+                <li>Open your browser</li>
+                <li>Navigate to: <code class="bg-gray-200 px-1 rounded text-xs">https://disaster-recovery-5vp7a533p-unite-group.vercel.app/contractor/login</code></li>
+                <li>Use demo credentials to sign in</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
