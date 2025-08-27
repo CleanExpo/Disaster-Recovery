@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R6 Digital Design System - Component Showcase</title>
+  <meta name="description" content="Complete component library showcasing the R6 Digital inspired design system with interactive examples.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../src/styles/r6-design-system.css">
+  <link rel="stylesheet" href="../src/styles/animations.css">
+  <link rel="stylesheet" href="../src/styles/responsive.css">
+  
+  <!-- Prism CSS for code highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+  
+  <style>
+    /* Component showcase specific styles */
+    :root {
+      --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    .component-section {
+      border-bottom: 1px solid var(--color-neutral-200);
+      padding: var(--space-16) 0;
+    }
+    
+    .component-demo {
+      background: var(--color-neutral-50);
+      border: 1px solid var(--color-neutral-200);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      margin: var(--space-6) 0;
+    }
+    
+    .code-block {
+      background: var(--color-neutral-900);
+      color: var(--color-neutral-100);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      font-family: var(--font-monospace);
+      font-size: var(--text-sm);
+      overflow-x: auto;
+      margin: var(--space-4) 0;
+    }
+    
+    .color-swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-neutral-300);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: var(--space-2);
+      font-size: var(--text-xs);
+      font-weight: var(--font-semibold);
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .typography-demo {
+      margin: var(--space-4) 0;
+    }
+    
+    .nav-demo {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-neutral-200);
+      z-index: 40;
+      padding: var(--space-4) 0;
+    }
+    
+    .section-nav {
+      display: flex;
+      gap: var(--space-4);
+      overflow-x: auto;
+      padding: var(--space-2);
+    }
+    
+    .section-nav a {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      background: var(--color-neutral-100);
+      white-space: nowrap;
+      transition: all var(--duration-200) var(--ease-out);
+    }
+    
+    .section-nav a:hover,
+    .section-nav a.active {
+      background: var(--color-primary);
+      color: var(--color-text-white);
+    }
+  </style>
+</head>
+<body class="font-secondary">
+  
+  <!-- Header -->
+  <header class="bg-white border-b border-neutral-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-neutral-900">R6 Digital Design System</h1>
+          <p class="text-neutral-600">Component Showcase & Documentation</p>
+        </div>
+        <div class="flex space-x-4">
+          <a href="index.html" class="btn btn-outline">View Demo Site</a>
+          <a href="https://github.com" class="btn btn-primary">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Navigation -->
+  <nav class="nav-demo">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="section-nav">
+        <a href="#colors" class="active">Colors</a>
+        <a href="#typography">Typography</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#cards">Cards</a>
+        <a href="#forms">Forms</a>
+        <a href="#navigation">Navigation</a>
+        <a href="#layout">Layout</a>
+        <a href="#animations">Animations</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Colors Section -->
+    <section id="colors" class="component-section">
+      <h2 class="text-3xl font-bold mb-6 text-neutral-900">Color System</h2>
+      <p class="text-lg text-neutral-600 mb-8">Based on R6 Digital's sophisticated color palette with professional blue accent and neutral grays.</p>
+      
+      <!-- Primary Colors -->
+      <h3 class="text-xl font-semibold mb-4">Primary Colors</h3>
+      <div class="component-demo">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4">
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-primary);">#131CFF</div>
+            <p class="text-sm mt-2 font-medium">Primary</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-primary-hover);">#0F17CC</div>
+            <p class="text-sm mt-2 font-medium">Primary Hover</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-primary-light);">#3D4BFF</div>
+            <p class="text-sm mt-2 font-medium">Primary Light</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-primary-dark);">#0D14B3</div>
+            <p class="text-sm mt-2 font-medium">Primary Dark</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Neutral Colors -->
+      <h3 class="text-xl font-semibold mb-4 mt-8">Neutral Colors</h3>
+      <div class="component-demo">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-neutral-50); color: var(--color-neutral-900);">#FFFFFF</div>
+            <p class="text-sm mt-2 font-medium">Neutral 50</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-neutral-200); color: var(--color-neutral-900);">#EEEEEE</div>
+            <p class="text-sm mt-2 font-medium">Neutral 200</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-neutral-300);">#C7CFDB</div>
+            <p class="text-sm mt-2 font-medium">Neutral 300</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-neutral-500);">#999A9B</div>
+            <p class="text-sm mt-2 font-medium">Neutral 500</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-neutral-600);">#6A6D72</div>
+            <p class="text-sm mt-2 font-medium">Neutral 600</p>
+          </div>
+          <div>
+            <div class="color-swatch" style="background-color: var(--color-neutral-900);">#000000</div>
+            <p class="text-sm mt-2 font-medium">Neutral 900</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <pre><code class="language-css">/* Primary Colors */
+--color-primary: #131cff;
+--color-primary-hover: #0f17cc;
+--color-primary-light: #3d4bff;
+--color-primary-dark: #0d14b3;
+
+/* Neutral Grays */
+--color-neutral-50: #ffffff;
+--color-neutral-200: #eeeeee;
+--color-neutral-300: #c7cfdb;
+--color-neutral-500: #999a9b;
+--color-neutral-600: #6a6d72;
+--color-neutral-900: #000000;</code></pre>
+      </div>
+    </section>
+    
+    <!-- Typography Section -->
+    <section id="typography" class="component-section">
+      <h2 class="text-3xl font-bold mb-6 text-neutral-900">Typography</h2>
+      <p class="text-lg text-neutral-600 mb-8">Clean, modern typography using Poppins for headings and Inter for body text, inspired by R6 Digital's professional approach.</p>
+      
+      <!-- Headings -->
+      <h3 class="text-xl font-semibold mb-4">Headings</h3>
+      <div class="component-demo">
+        <div class="typography-demo">
+          <h1 class="mb-4">Heading 1 - Professional Disaster Recovery</h1>
+          <h2 class="mb-4">Heading 2 - Emergency Response Services</h2>
+          <h3 class="mb-4">Heading 3 - Water Damage Restoration</h3>
+          <h4 class="mb-4">Heading 4 - Fire Damage Cleanup</h4>
+          <h5 class="mb-4">Heading 5 - Mold Remediation</h5>
+          <h6 class="mb-4">Heading 6 - Storm Damage Repair</h6>
+        </div>
+      </div>
+      
+      <!-- Body Text -->
+      <h3 class="text-xl font-semibold mb-4 mt-8">Body Text</h3>
+      <div class="component-demo">
+        <div class="typography-demo">
+          <p class="text-large mb-4">
+            Large text - When disaster strikes your property, immediate professional response is crucial to minimize damage and begin the recovery process.
+          </p>
+          <p class="mb-4">
+            Regular paragraph - Our certified disaster recovery specialists provide comprehensive restoration services including water damage, fire damage, mold remediation, and complete property restoration with 24/7 emergency response.
+          </p>
+          <p class="text-small mb-4">
+            Small text - Licensed, bonded, and insured disaster recovery professionals serving residential and commercial properties nationwide.
+          </p>
+          <p class="text-xs">
+            Extra small text - All services performed by IICRC certified technicians with advanced equipment and proven restoration techniques.
+          </p>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <pre><code class="language-css">/* Font Families */
+--font-primary: 'Poppins', sans-serif;    /* Headings */
+--font-secondary: 'Inter', sans-serif;     /* Body text */
+
+/* Responsive Font Sizes */
+--text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+--text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+--text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+--text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+--text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);</code></pre>
+      </div>
+    </section>
+    
+    <!-- Buttons Section -->
+    <section id="buttons" class="component-section">
+      <h2 class="text-3xl font-bold mb-6 text-neutral-900">Buttons</h2>
+      <p class="text-lg text-neutral-600 mb-8">Professional button components with R6 Digital's signature pill shape, smooth transitions, and multiple variants.</p>
+      
+      <!-- Button Variants -->
+      <h3 class="text-xl font-semibold mb-4">Button Variants</h3>
+      <div class="component-demo">
+        <div class="flex flex-wrap gap-4 items-center">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-outline">Outline Button</button>
+          <button class="btn btn-ghost">Ghost Button</button>
+        </div>
+      </div>
+      
+      <!-- Button Sizes -->
+      <h3 class="text-xl font-semibold mb-4 mt-8">Button Sizes</h3>
+      <div class="component-demo">
+        <div class="flex flex-wrap gap-4 items-center">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Base</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+          <button class="btn btn-primary btn-xl">Extra Large</button>
+        </div>
+      </div>
+      
+      <!-- Button States -->
+      <h3 class="text-xl font-semibold mb-4 mt-8">Button States</h3>
+      <div class="component-demo">
+        <div class="flex flex-wrap gap-4 items-center">
+          <button class="btn btn-primary">Normal</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+          <button class="btn btn-primary loading">Loading</button>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <pre><code class="language-html">&lt;!-- Primary Button --&gt;
+&lt;button class="btn btn-primary"&gt;Get Emergency Help&lt;/button&gt;
+
+&lt;!-- Secondary Button --&gt;
+&lt;button class="btn btn-secondary"&gt;Learn More&lt;/button&gt;
+
+&lt;!-- Outline Button --&gt;
+&lt;button class="btn btn-outline"&gt;View Services&lt;/button&gt;
+
+&lt;!-- Large Primary Button --&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Call Now&lt;/button&gt;</code></pre>
+      </div>
+    </section>
+    
+    <!-- Cards Section -->
+    <section id="cards" class="component-section">
+      <h2 class="text-3xl font-bold mb-6 text-neutral-900">Cards</h2>
+      <p class="text-lg text-neutral-600 mb-8">Flexible card components with subtle shadows, hover effects, and multiple layouts perfect for services and content.</p>
+      
+      <!-- Basic Cards -->
+      <h3 class="text-xl font-semibold mb-4">Basic Cards</h3>
+      <div class="component-demo">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card">
+            <h4 class="text-lg font-semibold mb-2">Water Damage Restoration</h4>
+            <p class="text-neutral-600">24/7 emergency water extraction and drying services for residential and commercial properties.</p>
+          </div>
+          
+          <div class="card">
+            <h4 class="text-lg font-semibold mb-2">Fire Damage Cleanup</h4>
+            <p class="text-neutral-600">Complete fire damage restoration including smoke removal and structural repairs.</p>
+          </div>
+          
+          <div class="card">
+            <h4 class="text-lg font-semibold mb-2">Mold Remediation</h4>
+            <p class="text-neutral-600">Safe and effective mold removal to protect your property and health.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Service Cards with Icons -->
+      <h3 class="text-xl font-semibold mb-4 mt-8">Service Cards</h3>
+      <div class="component-demo">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="text-lg font-semibold mb-2">Emergency Response</h4>
+                <p class="text-neutral-600 mb-4">Immediate 24/7 response to minimize damage and begin recovery process.</p>
+                <ul class="text-sm text-neutral-500 space-y-1">
+                  <li>• Rapid assessment</li>
+                  <li>• Damage mitigation</li>
+                  <li>• Emergency boarding</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="text-lg font-semibold mb-2">Professional Restoration</h4>
+                <p class="text-neutral-600 mb-4">Complete restoration services by certified technicians with advanced equipment.</p>
+                <ul class="text-sm text-neutral-500 space-y-1">
+                  <li>• IICRC certified</li>
+                  <li>• Advanced equipment</li>
+                  <li>• Quality guarantee</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <pre><code class="language-html">&lt;!-- Basic Card --&gt;
+&lt;div class="card"&gt;
+  &lt;h4 class="text-lg font-semibold mb-2"&gt;Card Title&lt;/h4&gt;
+  &lt;p class="text-neutral-600"&gt;Card content goes here...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Service Card with Icon --&gt;
+&lt;div class="card"&gt;
+  &lt;div class="flex items-start space-x-4"&gt;
+    &lt;div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center"&gt;
+      &lt;!-- Icon here --&gt;
+    &lt;/div&gt;
+    &lt;div class="flex-1"&gt;
+      &lt;h4 class="text-lg font-semibold mb-2"&gt;Service Title&lt;/h4&gt;
+      &lt;p class="text-neutral-600"&gt;Service description...&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+    
+    <!-- Forms Section -->
+    <section id="forms" class="component-section">
+      <h2 class="text-3xl font-bold mb-6 text-neutral-900">Forms</h2>
+      <p class="text-lg text-neutral-600 mb-8">Clean, accessible form components with proper spacing and mobile-optimized inputs.</p>
+      
+      <!-- Contact Form Example -->
+      <h3 class="text-xl font-semibold mb-4">Emergency Contact Form</h3>
+      <div class="component-demo">
+        <form class="max-w-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="firstName" class="block text-sm font-semibold text-neutral-700 mb-2">First Name *</label>
+              <input 
+                type="text" 
+                id="firstName" 
+                class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                placeholder="Enter your first name"
+              >
+            </div>
+            <div>
+              <label for="lastName" class="block text-sm font-semibold text-neutral-700 mb-2">Last Name *</label>
+              <input 
+                type="text" 
+                id="lastName" 
+                class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+                placeholder="Enter your last name"
+              >
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <label for="email" class="block text-sm font-semibold text-neutral-700 mb-2">Email Address *</label>
+            <input 
+              type="email" 
+              id="email" 
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              placeholder="your@email.com"
+            >
+          </div>
+          
+          <div class="mb-6">
+            <label for="phone" class="block text-sm font-semibold text-neutral-700 mb-2">Phone Number *</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              placeholder="(555) 123-4567"
+            >
+          </div>
+          
+          <div class="mb-6">
+            <label for="emergency" class="block text-sm font-semibold text-neutral-700 mb-2">Type of Emergency *</label>
+            <select 
+              id="emergency" 
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+            >
+              <option value="">Select emergency type</option>
+              <option value="water">Water Damage</option>
+              <option value="fire">Fire Damage</option>
+              <option value="mold">Mold Issue</option>
+              <option value="storm">Storm Damage</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label for="message" class="block text-sm font-semibold text-neutral-700 mb-2">Emergency Details</label>
+            <textarea 
+              id="message" 
+              rows="4" 
+              class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              placeholder="Describe the emergency situation and location..."
+            ></textarea>
+          </div>
+          
+          <div class="mb-6">
+            <label class="flex items-start space-x-3">
+              <input 
+                type="checkbox" 
+                class="mt-1 h-4 w-4 text-primary border-neutral-300 rounded focus:ring-2 focus:ring-primary"
+              >
+              <span class="text-sm text-neutral-600">
+                I agree to be contacted by DisasterPro emergency response team for immediate assistance and understand this is for emergency services only.
+              </span>
+            </label>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button type="submit" class="btn btn-primary btn-lg flex-1">Submit Emergency Request</button>
+            <button type="button" class="btn btn-outline btn-lg">Call: 1-800-DISASTER</button>
+          </div>
+        </form>
+      </div>
+      
+      <div class="code-block">
+        <pre><code class="language-html">&lt;!-- Form Input --&gt;
+&lt;div class="mb-6"&gt;
+  &lt;label for="email" class="block text-sm font-semibold text-neutral-700 mb-2"&gt;
+    Email Address *
+  &lt;/label&gt;
+  &lt;input 
+    type="email" 
+    id="email" 
+    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+    placeholder="your@email.com"
+  &gt;
+&lt;/div&gt;
+
+&lt;!-- Select Dropdown --&gt;
+&lt;select class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"&gt;
+  &lt;option&gt;Choose option...&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+      </div>
+    </section>
+    
+    <!-- Animations Section -->
+    <section id="animations" class="component-section">
+      <h2 class="text-3xl font-bold mb-6 text-neutral-900">Animations</h2>
+      <p class="text-lg text-neutral-600 mb-8">Smooth, professional animations and micro-interactions that enhance user experience without being distracting.</p>
+      
+      <!-- Entrance Animations -->
+      <h3 class="text-xl font-semibold mb-4">Entrance Animations</h3>
+      <div class="component-demo">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card animate-fade-in">
+            <h4 class="font-semibold mb-2">Fade In</h4>
+            <p class="text-sm text-neutral-600">Gentle fade in animation</p>
+          </div>
+          
+          <div class="card animate-slide-in-up">
+            <h4 class="font-semibold mb-2">Slide Up</h4>
+            <p class="text-sm text-neutral-600">Slides up from bottom</p>
+          </div>
+          
+          <div class="card animate-scale-in">
+            <h4 class="font-semibold mb-2">Scale In</h4>
+            <p class="text-sm text-neutral-600">Scales in from center</p>
+          </div>
+        </div>
+        
+        <div class="mt-6">
+          <button onclick="restartAnimations()" class="btn btn-outline btn-sm">Restart Animations</button>
+        </div>
+      </div>
+      
+      <!-- Hover Effects -->
+      <h3 class="text-xl font-semibold mb-4 mt-8">Hover Effects</h3>
+      <div class="component-demo">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="card hover-lift cursor-pointer">
+            <div class="text-center py-4">
+              <div class="text-2xl mb-2">🚀</div>
+              <h4 class="font-semibold text-sm">Lift Effect</h4>
+            </div>
+          </div>
+          
+          <div class="card hover-scale cursor-pointer">
+            <div class="text-center py-4">
+              <div class="text-2xl mb-2">🔍</div>
+              <h4 class="font-semibold text-sm">Scale Effect</h4>
+            </div>
+          </div>
+          
+          <div class="card tilt cursor-pointer">
+            <div class="text-center py-4">
+              <div class="text-2xl mb-2">✨</div>
+              <h4 class="font-semibold text-sm">Tilt Effect</h4>
+            </div>
+          </div>
+          
+          <div class="card magnetic cursor-pointer">
+            <div class="text-center py-4">
+              <div class="text-2xl mb-2">🧲</div>
+              <h4 class="font-semibold text-sm">Magnetic</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <pre><code class="language-html">&lt;!-- Entrance Animations --&gt;
+&lt;div class="animate-fade-in"&gt;Fade in content&lt;/div&gt;
+&lt;div class="animate-slide-in-up"&gt;Slide up content&lt;/div&gt;
+&lt;div class="animate-scale-in"&gt;Scale in content&lt;/div&gt;
+
+&lt;!-- Hover Effects --&gt;
+&lt;div class="card hover-lift"&gt;Lifts on hover&lt;/div&gt;
+&lt;div class="card hover-scale"&gt;Scales on hover&lt;/div&gt;
+&lt;div class="card tilt"&gt;Tilts on hover&lt;/div&gt;
+&lt;div class="card magnetic"&gt;Magnetic effect&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- Footer -->
+  <footer class="bg-neutral-900 text-white py-12 mt-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h3 class="text-xl font-semibold mb-4">R6 Digital Inspired Design System</h3>
+        <p class="text-neutral-300 mb-6">
+          Professional design system for disaster recovery services with premium quality components and smooth animations.
+        </p>
+        <div class="flex justify-center space-x-4">
+          <a href="index.html" class="btn btn-outline text-white border-white hover:bg-white hover:text-neutral-900">
+            View Demo Site
+          </a>
+          <a href="https://github.com" class="btn btn-primary">
+            GitHub Repository
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
+  <script src="../src/utils/animations.js"></script>
+  
+  <script>
+    // Section navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.section-nav a');
+      const sections = document.querySelectorAll('section[id]');
+      
+      // Update active nav link based on scroll position
+      function updateActiveNavLink() {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', updateActiveNavLink);
+      updateActiveNavLink();
+      
+      // Smooth scroll for nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    });
+    
+    // Restart animations function
+    function restartAnimations() {
+      const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-in-up, .animate-scale-in');
+      animatedElements.forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // Trigger reflow
+        el.style.animation = null;
+      });
+    }
+    
+    // Copy code function
+    function copyCode(button) {
+      const codeBlock = button.nextElementSibling.querySelector('code');
+      const text = codeBlock.textContent;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+          button.textContent = 'Copy';
+        }, 2000);
+      });
+    }
+  </script>
+  
+</body>
+</html>
