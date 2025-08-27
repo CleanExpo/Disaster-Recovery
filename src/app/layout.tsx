@@ -4,7 +4,8 @@ import Script from 'next/script'
 import '@/styles/globals.css'
 import { Providers } from './providers'
 // import Header from '@/components/Header' // Old header - replaced with Premium
-import PremiumHeader from '@/components/layout/PremiumHeader'
+// import PremiumHeader from '@/components/layout/PremiumHeader' // Replaced with R6
+import R6Header from '@/components/layout/R6Header'
 import Footer from '@/components/Footer'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
@@ -103,7 +104,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <PremiumHeader />
+          <R6Header />
           <main id="main-content">
             {children}
           </main>

@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import our premium design system - This takes precedence */
-@import './premium-design-system.css';
+/* Import R6 Digital-inspired design system - Premium 10/10 Quality */
+@import './r6-design-system.css';
 
 /* Legacy design system for backward compatibility */
-@import './global-design-system.css';
+/* @import './premium-design-system.css'; */
+/* @import './global-design-system.css'; */
 
 @layer base {
   :root {
@@ -17,19 +18,19 @@
     --card-foreground: 38 38 38;
     --popover: 255 255 255;
     --popover-foreground: 38 38 38;
-    --primary: 2 132 199; /* Premium primary-600 */
+    --primary: 19 28 255; /* R6 Digital primary #131cff */
     --primary-foreground: 240 249 255;
     --secondary: 245 245 245; /* Premium secondary-100 */
     --secondary-foreground: 38 38 38;
     --muted: 229 229 229; /* Premium secondary-200 */
     --muted-foreground: 82 82 82; /* Premium secondary-600 */
-    --accent: 5 150 105; /* Premium accent-600 */
+    --accent: 0 160 210; /* R6 Digital success #00a0d2 */
     --accent-foreground: 236 253 245;
     --destructive: 220 38 38; /* Premium error */
     --destructive-foreground: 255 255 255;
     --border: 212 212 212; /* Premium secondary-300 */
     --input: 212 212 212;
-    --ring: 2 132 199; /* Premium primary-600 */
+    --ring: 19 28 255; /* R6 Digital primary #131cff */
     --radius: 0.5rem; /* Premium radius-lg */
   }
 
