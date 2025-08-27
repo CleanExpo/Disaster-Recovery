@@ -1,0 +1,34 @@
+{
+  "id": "cleanup-hazardous-01",
+  "title": "3D Hazardous Cleaning Services",
+  "filename": "3D Hazardous Cleaning.png",
+  "category": "process",
+  "seo": {
+    "altText": "3D Hazardous Cleaning Services - Professional disaster recovery and restoration services",
+    "description": "High-quality 3D Hazardous Cleaning Services showcasing our process expertise",
+    "keywords": [
+      "disaster recovery",
+      "restoration services",
+      "emergency response",
+      "24/7 availability",
+      "restoration process",
+      "recovery steps",
+      "professional methods"
+    ],
+    "schema": {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "name": "3D Hazardous Cleaning Services",
+      "contentUrl": "/images/optimized/process/3D Hazardous Cleaning.png",
+      "thumbnail": "/images/optimized/thumbnails/3D Hazardous Cleaning.png",
+      "description": "3D Hazardous Cleaning Services - Professional disaster recovery services",
+      "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, restoration process, recovery steps, professional methods"
+    }
+  },
+  "technical": {
+    "format": "png",
+    "optimization": "web-ready",
+    "responsive": true
+  },
+  "created": "2025-08-26T23:55:13.095Z"
+}

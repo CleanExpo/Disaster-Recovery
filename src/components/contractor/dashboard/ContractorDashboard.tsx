@@ -30,15 +30,13 @@ import {
 
 import type { ContractorDashboard, ContractorStatus } from '@/types/contractor';
 
-// Import sub-components - temporarily commented out missing components
-// import { KPIMetrics } from './KPIMetrics';
-// import { CompliancePanel } from './CompliancePanel';
-// import { TerritoryManager } from './TerritoryManager';
-// import { DocumentManager } from './DocumentManager';
-// import { TrainingTracker } from './TrainingTracker';
-// import { BillingSection } from './BillingSection';
-// import { SupportTickets } from './SupportTickets';
-// import { NotificationCenter } from './NotificationCenter';
+// Import sub-components
+import { KPIMetrics } from './sections/KPIMetrics';
+import { CompliancePanel } from './sections/CompliancePanel';
+import { TerritoryManager } from './sections/TerritoryManager';
+import { BillingSection } from './sections/BillingSection';
+import { SupportTickets } from './sections/SupportTickets';
+import { TrainingTracker } from './sections/TrainingTracker';
 
 export function ContractorDashboard() {
   const [dashboardData, setDashboardData] = useState<ContractorDashboard | null>(null);
@@ -325,13 +323,27 @@ export function ContractorDashboard() {
 
           {/* Performance/KPI Tab */}
           <TabsContent value="kpi">
-            <KPIMetrics data={dashboardData.kpi} />
+            <KPIMetrics data={{
+              ...dashboardData.kpi,
+              activeJobs: dashboardData.kpi.totalJobs - dashboardData.kpi.completedJobs
+            }} />
           </TabsContent>
 
           {/* Compliance Tab */}
           <TabsContent value="compliance">
             <CompliancePanel 
-              compliance={dashboardData.compliance}
+              compliance={{
+                ...dashboardData.compliance,
+                items: dashboardData.compliance.items.map((item, index) => ({
+                  id: `comp-${index}`,
+                  name: item.name,
+                  status: item.status,
+                  expiryDate: item.expiryDate ? item.expiryDate.toString() : undefined,
+                  lastUpdated: undefined,
+                  required: true,
+                  category: item.type
+                }))
+              }}
               certifications={dashboardData.profile.certifications}
               insurance={dashboardData.profile.insurance}
             />
@@ -339,22 +351,51 @@ export function ContractorDashboard() {
 
           {/* Territory Tab */}
           <TabsContent value="territory">
-            <TerritoryManager territories={dashboardData.profile.territories} />
+            <TerritoryManager territories={dashboardData.profile.territories.map((territory, index) => ({
+              id: `territory-${index}`,
+              name: territory.name,
+              type: territory.type === 'RADIUS' ? 'PRIMARY' : 'SECONDARY' as any,
+              status: 'ACTIVE' as any,
+              coverage: {
+                radius: territory.radiusKm || 25,
+                unit: 'km' as const
+              },
+              postcode: territory.postcodes?.[0],
+              state: 'NSW',
+              responseTime: territory.emergencyResponse ? '1 hour' : '2 hours'
+            }))} />
           </TabsContent>
 
           {/* Training Tab */}
           <TabsContent value="training">
-            <TrainingTracker trainings={dashboardData.training} />
+            <TrainingTracker trainings={dashboardData.training.map(training => ({
+              ...training,
+              type: 'OTHER' as const,
+              status: training.status.toLowerCase().replace('_', '-') as any
+            }))} />
           </TabsContent>
 
           {/* Billing Tab */}
           <TabsContent value="billing">
-            <BillingSection subscription={dashboardData.subscription} />
+            <BillingSection subscription={{
+              ...dashboardData.subscription,
+              nextBillingDate: dashboardData.subscription.nextBillingDate?.toString()
+            }} />
           </TabsContent>
 
           {/* Support Tab */}
           <TabsContent value="support">
-            <SupportTickets tickets={dashboardData.support} />
+            <SupportTickets tickets={dashboardData.support.recentTickets.map(ticket => ({
+              id: ticket.id,
+              subject: ticket.subject,
+              description: ticket.subject,
+              status: ticket.status.toUpperCase() as any,
+              priority: ticket.priority.toUpperCase() as any,
+              category: 'General',
+              createdAt: ticket.createdAt.toString(),
+              updatedAt: ticket.updatedAt.toString(),
+              responseCount: 0
+            }))} />
           </TabsContent>
         </Tabs>
       </div>

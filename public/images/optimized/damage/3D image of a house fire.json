@@ -1,0 +1,35 @@
+{
+  "id": "fire-damage-house-01",
+  "title": "3D House Fire Damage",
+  "filename": "3D image of a house fire.png",
+  "category": "damage",
+  "seo": {
+    "altText": "3D House Fire Damage - Professional disaster recovery and restoration services",
+    "description": "High-quality 3D House Fire Damage showcasing our damage expertise",
+    "keywords": [
+      "disaster recovery",
+      "restoration services",
+      "emergency response",
+      "24/7 availability",
+      "damage assessment",
+      "property damage",
+      "restoration",
+      "remediation"
+    ],
+    "schema": {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "name": "3D House Fire Damage",
+      "contentUrl": "/images/optimized/damage/3D image of a house fire.png",
+      "thumbnail": "/images/optimized/thumbnails/3D image of a house fire.png",
+      "description": "3D House Fire Damage - Professional disaster recovery services",
+      "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, damage assessment, property damage, restoration, remediation"
+    }
+  },
+  "technical": {
+    "format": "png",
+    "optimization": "web-ready",
+    "responsive": true
+  },
+  "created": "2025-08-26T23:55:13.057Z"
+}

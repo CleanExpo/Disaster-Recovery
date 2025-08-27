@@ -1,0 +1,151 @@
+{
+  "version": "1.0.0",
+  "generated": "2025-08-26T23:55:13.098Z",
+  "totalImages": 23,
+  "categories": {
+    "damage": 8,
+    "equipment": 7,
+    "process": 6,
+    "branding": 2
+  },
+  "images": [
+    {
+      "id": "damage-fire-001",
+      "title": "3D Fire Damage Assessment",
+      "filename": "3D Fire Damage.png",
+      "category": "damage"
+    },
+    {
+      "id": "damage-flood-001",
+      "title": "3D Flood & Water Damage",
+      "filename": "3D Flood Damage.png",
+      "category": "damage"
+    },
+    {
+      "id": "damage-hurricane-001",
+      "title": "3D Hurricane & Wind Damage",
+      "filename": "3D Hurricane Damage.png",
+      "category": "damage"
+    },
+    {
+      "id": "damage-mold-001",
+      "title": "3D Mold Remediation",
+      "filename": "3D Mold Damage.png",
+      "category": "damage"
+    },
+    {
+      "id": "damage-smoke-001",
+      "title": "3D Smoke Damage Restoration",
+      "filename": "3D Smoke Damage.png",
+      "category": "damage"
+    },
+    {
+      "id": "damage-water-001",
+      "title": "3D Water Extraction",
+      "filename": "3D Water Damage.png",
+      "category": "damage"
+    },
+    {
+      "id": "equipment-dehumidifier-001",
+      "title": "3D Industrial Dehumidifier",
+      "filename": "3D Dehumidifier.png",
+      "category": "equipment"
+    },
+    {
+      "id": "equipment-extraction-001",
+      "title": "3D Water Extraction Unit",
+      "filename": "3D Extraction Unit.png",
+      "category": "equipment"
+    },
+    {
+      "id": "equipment-fan-001",
+      "title": "3D Industrial Drying Fan",
+      "filename": "3D Industrial Fan.png",
+      "category": "equipment"
+    },
+    {
+      "id": "equipment-thermal-001",
+      "title": "3D Thermal Imaging Camera",
+      "filename": "3D Thermal Camera.png",
+      "category": "equipment"
+    },
+    {
+      "id": "equipment-moisture-001",
+      "title": "3D Moisture Detection Meter",
+      "filename": "3D Moisture Meter.png",
+      "category": "equipment"
+    },
+    {
+      "id": "process-assessment-001",
+      "title": "3D Initial Assessment",
+      "filename": "3D Assessment.png",
+      "category": "process"
+    },
+    {
+      "id": "process-drying-001",
+      "title": "3D Structural Drying",
+      "filename": "3D Drying Process.png",
+      "category": "process"
+    },
+    {
+      "id": "process-remediation-001",
+      "title": "3D Remediation Process",
+      "filename": "3D Remediation.png",
+      "category": "process"
+    },
+    {
+      "id": "process-restoration-001",
+      "title": "3D Complete Restoration",
+      "filename": "3D Restoration.png",
+      "category": "process"
+    },
+    {
+      "id": "branding-logo-3d",
+      "title": "3D Disaster Recovery Logo",
+      "filename": "3D Disaster Recovery Logo.png",
+      "category": "branding"
+    },
+    {
+      "id": "branding-logo-main",
+      "title": "Disaster Recovery Logo",
+      "filename": "Disaster Recovery Logo.png",
+      "category": "branding"
+    },
+    {
+      "id": "equipment-moisture-reading-01",
+      "title": "3D Moisture Meter Reading",
+      "filename": "3D Moisture Meter Reading.png",
+      "category": "equipment"
+    },
+    {
+      "id": "fire-damage-house-01",
+      "title": "3D House Fire Damage",
+      "filename": "3D image of a house fire.png",
+      "category": "damage"
+    },
+    {
+      "id": "damage-vehicle-impact-01",
+      "title": "3D Vehicle Into Home Impact",
+      "filename": "3D Vehicle into Home.png",
+      "category": "damage"
+    },
+    {
+      "id": "cleanup-squalor-emergency-01",
+      "title": "3D Emergency Squalor Cleanup",
+      "filename": "3D Emergency Squalor Cleanup.png",
+      "category": "process"
+    },
+    {
+      "id": "equipment-thermal-fogging-01",
+      "title": "3D Thermal Fogging Equipment",
+      "filename": "3D Thermal Fogging.png",
+      "category": "equipment"
+    },
+    {
+      "id": "cleanup-hazardous-01",
+      "title": "3D Hazardous Cleaning Services",
+      "filename": "3D Hazardous Cleaning.png",
+      "category": "process"
+    }
+  ]
+}

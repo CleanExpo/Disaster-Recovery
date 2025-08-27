@@ -1,0 +1,128 @@
+{
+  "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"\n        xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\">\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Fire Damage.png</image:loc>\n      <image:title>3D Fire Damage Assessment</image:title>\n      <image:caption>Professional damage services - 3D Fire Damage Assessment</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Flood Damage.png</image:loc>\n      <image:title>3D Flood & Water Damage</image:title>\n      <image:caption>Professional damage services - 3D Flood & Water Damage</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Hurricane Damage.png</image:loc>\n      <image:title>3D Hurricane & Wind Damage</image:title>\n      <image:caption>Professional damage services - 3D Hurricane & Wind Damage</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Mold Damage.png</image:loc>\n      <image:title>3D Mold Remediation</image:title>\n      <image:caption>Professional damage services - 3D Mold Remediation</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Smoke Damage.png</image:loc>\n      <image:title>3D Smoke Damage Restoration</image:title>\n      <image:caption>Professional damage services - 3D Smoke Damage Restoration</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Water Damage.png</image:loc>\n      <image:title>3D Water Extraction</image:title>\n      <image:caption>Professional damage services - 3D Water Extraction</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Dehumidifier.png</image:loc>\n      <image:title>3D Industrial Dehumidifier</image:title>\n      <image:caption>Professional equipment services - 3D Industrial Dehumidifier</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Extraction Unit.png</image:loc>\n      <image:title>3D Water Extraction Unit</image:title>\n      <image:caption>Professional equipment services - 3D Water Extraction Unit</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Industrial Fan.png</image:loc>\n      <image:title>3D Industrial Drying Fan</image:title>\n      <image:caption>Professional equipment services - 3D Industrial Drying Fan</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Thermal Camera.png</image:loc>\n      <image:title>3D Thermal Imaging Camera</image:title>\n      <image:caption>Professional equipment services - 3D Thermal Imaging Camera</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Moisture Meter.png</image:loc>\n      <image:title>3D Moisture Detection Meter</image:title>\n      <image:caption>Professional equipment services - 3D Moisture Detection Meter</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/process</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/process/3D Assessment.png</image:loc>\n      <image:title>3D Initial Assessment</image:title>\n      <image:caption>Professional process services - 3D Initial Assessment</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/process</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/process/3D Drying Process.png</image:loc>\n      <image:title>3D Structural Drying</image:title>\n      <image:caption>Professional process services - 3D Structural Drying</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/process</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/process/3D Remediation.png</image:loc>\n      <image:title>3D Remediation Process</image:title>\n      <image:caption>Professional process services - 3D Remediation Process</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/process</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/process/3D Restoration.png</image:loc>\n      <image:title>3D Complete Restoration</image:title>\n      <image:caption>Professional process services - 3D Complete Restoration</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/branding</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/branding/3D Disaster Recovery Logo.png</image:loc>\n      <image:title>3D Disaster Recovery Logo</image:title>\n      <image:caption>Professional branding services - 3D Disaster Recovery Logo</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/branding</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/branding/Disaster Recovery Logo.png</image:loc>\n      <image:title>Disaster Recovery Logo</image:title>\n      <image:caption>Professional branding services - Disaster Recovery Logo</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Moisture Meter Reading.png</image:loc>\n      <image:title>3D Moisture Meter Reading</image:title>\n      <image:caption>Professional equipment services - 3D Moisture Meter Reading</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D image of a house fire.png</image:loc>\n      <image:title>3D House Fire Damage</image:title>\n      <image:caption>Professional damage services - 3D House Fire Damage</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/damage</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/damage/3D Vehicle into Home.png</image:loc>\n      <image:title>3D Vehicle Into Home Impact</image:title>\n      <image:caption>Professional damage services - 3D Vehicle Into Home Impact</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/process</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/process/3D Emergency Squalor Cleanup.png</image:loc>\n      <image:title>3D Emergency Squalor Cleanup</image:title>\n      <image:caption>Professional process services - 3D Emergency Squalor Cleanup</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/equipment</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/equipment/3D Thermal Fogging.png</image:loc>\n      <image:title>3D Thermal Fogging Equipment</image:title>\n      <image:caption>Professional equipment services - 3D Thermal Fogging Equipment</image:caption>\n    </image:image>\n  </url>\n  <url>\n    <loc>https://yourdomain.com/process</loc>\n    <image:image>\n      <image:loc>https://yourdomain.com/images/optimized/process/3D Hazardous Cleaning.png</image:loc>\n      <image:title>3D Hazardous Cleaning Services</image:title>\n      <image:caption>Professional process services - 3D Hazardous Cleaning Services</image:caption>\n    </image:image>\n  </url>\n</urlset>",
+  "robotsTxt": "User-agent: *\nAllow: /images/optimized/\nSitemap: /images/optimized/images-sitemap.xml",
+  "structuredData": {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "Disaster Recovery Services Gallery",
+    "description": "Professional disaster recovery and restoration services imagery",
+    "numberOfItems": 23,
+    "associatedMedia": [
+      {
+        "@type": "ImageObject",
+        "name": "3D Fire Damage Assessment",
+        "contentUrl": "/images/optimized/damage/3D Fire Damage.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Flood & Water Damage",
+        "contentUrl": "/images/optimized/damage/3D Flood Damage.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Hurricane & Wind Damage",
+        "contentUrl": "/images/optimized/damage/3D Hurricane Damage.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Mold Remediation",
+        "contentUrl": "/images/optimized/damage/3D Mold Damage.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Smoke Damage Restoration",
+        "contentUrl": "/images/optimized/damage/3D Smoke Damage.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Water Extraction",
+        "contentUrl": "/images/optimized/damage/3D Water Damage.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Industrial Dehumidifier",
+        "contentUrl": "/images/optimized/equipment/3D Dehumidifier.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Water Extraction Unit",
+        "contentUrl": "/images/optimized/equipment/3D Extraction Unit.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Industrial Drying Fan",
+        "contentUrl": "/images/optimized/equipment/3D Industrial Fan.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Thermal Imaging Camera",
+        "contentUrl": "/images/optimized/equipment/3D Thermal Camera.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Moisture Detection Meter",
+        "contentUrl": "/images/optimized/equipment/3D Moisture Meter.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Initial Assessment",
+        "contentUrl": "/images/optimized/process/3D Assessment.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Structural Drying",
+        "contentUrl": "/images/optimized/process/3D Drying Process.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Remediation Process",
+        "contentUrl": "/images/optimized/process/3D Remediation.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Complete Restoration",
+        "contentUrl": "/images/optimized/process/3D Restoration.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Disaster Recovery Logo",
+        "contentUrl": "/images/optimized/branding/3D Disaster Recovery Logo.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "Disaster Recovery Logo",
+        "contentUrl": "/images/optimized/branding/Disaster Recovery Logo.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Moisture Meter Reading",
+        "contentUrl": "/images/optimized/equipment/3D Moisture Meter Reading.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D House Fire Damage",
+        "contentUrl": "/images/optimized/damage/3D image of a house fire.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Vehicle Into Home Impact",
+        "contentUrl": "/images/optimized/damage/3D Vehicle into Home.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Emergency Squalor Cleanup",
+        "contentUrl": "/images/optimized/process/3D Emergency Squalor Cleanup.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Thermal Fogging Equipment",
+        "contentUrl": "/images/optimized/equipment/3D Thermal Fogging.png"
+      },
+      {
+        "@type": "ImageObject",
+        "name": "3D Hazardous Cleaning Services",
+        "contentUrl": "/images/optimized/process/3D Hazardous Cleaning.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "damage-vehicle-impact-01",
+  "title": "3D Vehicle Into Home Impact",
+  "filename": "3D Vehicle into Home.png",
+  "category": "damage",
+  "seo": {
+    "altText": "3D Vehicle Into Home Impact - Professional disaster recovery and restoration services",
+    "description": "High-quality 3D Vehicle Into Home Impact showcasing our damage expertise",
+    "keywords": [
+      "disaster recovery",
+      "restoration services",
+      "emergency response",
+      "24/7 availability",
+      "damage assessment",
+      "property damage",
+      "restoration",
+      "remediation"
+    ],
+    "schema": {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "name": "3D Vehicle Into Home Impact",
+      "contentUrl": "/images/optimized/damage/3D Vehicle into Home.png",
+      "thumbnail": "/images/optimized/thumbnails/3D Vehicle into Home.png",
+      "description": "3D Vehicle Into Home Impact - Professional disaster recovery services",
+      "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, damage assessment, property damage, restoration, remediation"
+    }
+  },
+  "technical": {
+    "format": "png",
+    "optimization": "web-ready",
+    "responsive": true
+  },
+  "created": "2025-08-26T23:55:13.064Z"
+}

@@ -29,11 +29,14 @@ Allow: /
 Crawl-delay: 1
 
 # Important pages to prioritize
-Allow: /services/water-damage-restoration
-Allow: /services/fire-damage-restoration
-Allow: /services/mould-remediation
+Allow: /services/water-damage
+Allow: /services/fire-damage
+Allow: /services/mold-remediation
+Allow: /services/emergency-response
 Allow: /services/biohazard-cleanup
-Allow: /services/indoor-environmental-professional
+Allow: /services/storm-damage
+Allow: /services/commercial
+Allow: /services/structural-drying
 
 # Sitemap location
 Sitemap: https://disasterrecovery.com.au/sitemap.xml

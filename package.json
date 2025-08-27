@@ -16,6 +16,12 @@
     "type-check": "tsc --noEmit",
     "admin": "tsx cli/admin.ts",
     "optimize-images": "node optimize-images-cli/index.js",
+    "process-images": "node scripts/process-images.js",
+    "process-images:downloads": "node scripts/process-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
+    "seo-images": "node scripts/seo-process-images.js",
+    "seo-images:downloads": "node scripts/seo-process-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
+    "web-optimize": "node scripts/web-optimize-images.js",
+    "web-optimize:downloads": "node scripts/web-optimize-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug"

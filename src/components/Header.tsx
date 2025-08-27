@@ -78,35 +78,60 @@ const Header: React.FC = () => {
       title: "Emergency Services",
       items: [
         {
-          href: "/services/water-damage-restoration",
+          href: "/services/water-damage",
           label: "Water Damage Restoration",
-          description: "24/7 water extraction & drying",
+          description: "IICRC S500 certified restoration",
           icon: <Droplets className="h-4 w-4 text-water-600" />,
           badge: "24/7"
         },
         {
-          href: "/services/fire-damage-restoration",
-          label: "Fire Damage Restoration",
-          description: "Smoke & fire damage cleanup",
-          icon: <Flame className="h-4 w-4 text-fire-600" />
+          href: "/services/fire-damage",
+          label: "Fire & Smoke Damage",
+          description: "IICRC S700 fire restoration",
+          icon: <Flame className="h-4 w-4 text-fire-600" />,
+          badge: "24/7"
         },
         {
           href: "/services/storm-damage",
-          label: "Storm Damage Repair",
-          description: "Wind, hail & structural damage",
+          label: "Storm & Natural Disasters",
+          description: "Complete disaster recovery",
           icon: <Wind className="h-4 w-4 text-storm-600" />
         },
         {
-          href: "/services/mould-remediation",
-          label: "Mould Remediation",
-          description: "Professional mould removal",
+          href: "/services/mold-remediation",
+          label: "Mold Remediation",
+          description: "IICRC S520 mold removal",
           icon: <Shield className="h-4 w-4 text-mould-600" />
         },
         {
-          href: "/services/biohazard-cleaning",
+          href: "/services/emergency-response",
+          label: "Emergency Response",
+          description: "Rapid 24/7 deployment",
+          icon: <AlertTriangle className="h-4 w-4 text-emergency-600" />,
+          badge: "1 Hour"
+        }
+      ]
+    },
+    {
+      title: "Specialized Services",
+      items: [
+        {
+          href: "/services/biohazard-cleanup",
           label: "Biohazard Cleanup",
-          description: "Sewage, trauma & hazmat cleanup",
+          description: "IICRC S540 trauma cleaning",
           icon: <AlertTriangle className="h-4 w-4 text-biohazard-600" />
+        },
+        {
+          href: "/services/structural-drying",
+          label: "Structural Drying",
+          description: "Advanced drying technology",
+          icon: <Wind className="h-4 w-4 text-primary-600" />
+        },
+        {
+          href: "/services/commercial",
+          label: "Commercial Restoration",
+          description: "Business continuity services",
+          icon: <Users className="h-4 w-4 text-commercial-600" />
         }
       ]
     }
