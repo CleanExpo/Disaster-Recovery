@@ -2,54 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import our comprehensive design system */
+/* Import our premium design system - This takes precedence */
+@import './premium-design-system.css';
+
+/* Legacy design system for backward compatibility */
 @import './global-design-system.css';
 
 @layer base {
   :root {
-    /* Legacy support - keeping existing variables for backward compatibility */
-    --background: 0 0% 100%;
-    --foreground: 210 50% 15%; /* Darker for better contrast (WCAG AAA) */
-    --card: 0 0% 100%;
-    --card-foreground: 210 50% 15%; /* Darker for better contrast */
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 50% 15%; /* Darker for better contrast */
-    --primary: 211 100% 40%; /* Darker blue for better contrast */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 95%;
-    --secondary-foreground: 210 50% 15%; /* Darker for better contrast */
-    --muted: 210 20% 95%;
-    --muted-foreground: 210 40% 30%; /* Darker for better contrast */
-    --accent: 210 20% 95%;
-    --accent-foreground: 210 50% 15%; /* Darker for better contrast */
-    --destructive: 0 72% 45%; /* Darker red for better contrast */
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 20% 85%;
-    --input: 214 20% 85%;
-    --ring: 211 100% 40%;
-    --radius: 0.5rem;
+    /* Map Tailwind/shadcn variables to our premium design system */
+    --background: 250 250 250; /* Premium secondary-50 */
+    --foreground: 38 38 38; /* Premium secondary-800 */
+    --card: 255 255 255;
+    --card-foreground: 38 38 38;
+    --popover: 255 255 255;
+    --popover-foreground: 38 38 38;
+    --primary: 2 132 199; /* Premium primary-600 */
+    --primary-foreground: 240 249 255;
+    --secondary: 245 245 245; /* Premium secondary-100 */
+    --secondary-foreground: 38 38 38;
+    --muted: 229 229 229; /* Premium secondary-200 */
+    --muted-foreground: 82 82 82; /* Premium secondary-600 */
+    --accent: 5 150 105; /* Premium accent-600 */
+    --accent-foreground: 236 253 245;
+    --destructive: 220 38 38; /* Premium error */
+    --destructive-foreground: 255 255 255;
+    --border: 212 212 212; /* Premium secondary-300 */
+    --input: 212 212 212;
+    --ring: 2 132 199; /* Premium primary-600 */
+    --radius: 0.5rem; /* Premium radius-lg */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --background: 23 23 23; /* Premium secondary-900 dark */
+    --foreground: 245 245 245; /* Premium secondary-100 dark */
+    --card: 38 38 38; /* Premium secondary-800 dark */
+    --card-foreground: 245 245 245;
+    --popover: 38 38 38;
+    --popover-foreground: 245 245 245;
+    --primary: 56 189 248; /* Premium primary-400 dark */
+    --primary-foreground: 8 47 73;
+    --secondary: 64 64 64; /* Premium secondary-700 dark */
+    --secondary-foreground: 245 245 245;
+    --muted: 82 82 82; /* Premium secondary-600 dark */
+    --muted-foreground: 212 212 212;
+    --accent: 52 211 153; /* Premium accent-400 dark */
+    --accent-foreground: 6 78 59;
+    --destructive: 239 68 68; /* Brighter red for dark mode */
+    --destructive-foreground: 254 242 242;
+    --border: 82 82 82;
+    --input: 82 82 82;
+    --ring: 56 189 248;
   }
 }
 
@@ -57,7 +60,30 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
+    /* Apply premium font stack */
+    font-family: var(--font-sans);
+    /* Smooth animations globally */
+    transition: background-color var(--duration-normal) var(--ease-smooth);
+  }
+  
+  /* Premium focus styles for all interactive elements */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-primary-500));
+    outline-offset: 2px;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Better text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
