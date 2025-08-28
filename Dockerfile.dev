@@ -1,0 +1,23 @@
+# Development Dockerfile
+FROM node:20-alpine
+
+# Install OpenSSL for Prisma compatibility with Alpine Linux
+RUN apk add --no-cache openssl
+
+WORKDIR /app
+
+# Install dependencies first for caching
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the application
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Expose port
+EXPOSE 3000
+
+# Run in development mode
+CMD ["npm", "run", "dev"]

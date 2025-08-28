@@ -265,6 +265,11 @@ const config: Config = {
         "pulse-subtle": "pulse-subtle 2s infinite",
         "subtle-pulse": "subtle-pulse 4s ease-in-out infinite",
         "shimmer": "shimmer 3s ease-in-out infinite",
+        "gradient-x": "gradient-x 15s ease infinite",
+        "float": "float 6s ease-in-out infinite",
+        "underline": "underline 0.5s ease-out forwards",
+        "scroll": "scroll 1.5s ease-in-out infinite",
+        "spin-slow": "spin 20s linear infinite",
       },
 
       keyframes: {
@@ -314,6 +319,22 @@ const config: Config = {
         "shimmer": {
           "0%": { backgroundPosition: "-1000px 0" },
           "100%": { backgroundPosition: "1000px 0" },
+        },
+        "gradient-x": {
+          "0%, 100%": { transform: "translateX(0%)" },
+          "50%": { transform: "translateX(100%)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "underline": {
+          "from": { transform: "scaleX(0)" },
+          "to": { transform: "scaleX(1)" },
+        },
+        "scroll": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(8px)" },
         },
       },
 

@@ -36,5 +36,22 @@ services:
     volumes:
       - ./uploads:/app/uploads
 
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: disaster-recovery-dev
+    restart: unless-stopped
+    ports:
+      - "3002:3000"
+    environment:
+      DATABASE_URL: file:./dev.db
+      NODE_ENV: development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
 volumes:
   postgres_data:

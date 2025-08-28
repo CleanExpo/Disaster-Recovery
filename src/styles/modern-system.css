@@ -1,0 +1,459 @@
+/* Modern Design System - Based on Stripe, Linear, Vercel patterns */
+
+:root {
+  /* === Color System === */
+  /* Background levels for depth (Linear-inspired) */
+  --bg-level-0: #08090a;
+  --bg-level-1: #0f1011; 
+  --bg-level-2: #141516;
+  --bg-level-3: #191a1b;
+  --bg-primary: #08090a;
+  --bg-secondary: #1c1c1f;
+  --bg-glass: rgba(255, 255, 255, 0.02);
+  
+  /* Text hierarchy */
+  --text-primary: #f7f8f8;
+  --text-secondary: #d0d6e0;
+  --text-tertiary: #8a8f98;
+  --text-quaternary: #62666d;
+  
+  /* Accent colors (Stripe-inspired gradients) */
+  --accent-primary: #635bff;
+  --accent-secondary: #7170ff;
+  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --accent-glow: linear-gradient(135deg, #00d4ff 0%, #090979 100%);
+  
+  /* === Typography System === */
+  --font-sans: 'Inter Variable', 'SF Pro Display', -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  
+  /* Font sizes (Linear scale) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  
+  /* === Spacing System === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* === Animation System (Vercel-inspired) === */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+  
+  /* === Shadow System (Stripe-inspired) === */
+  --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 5px -1px rgba(50,50,93,0.25), 0 1px 3px -1px rgba(0,0,0,0.3);
+  --shadow-md: 0 13px 27px -5px rgba(50,50,93,0.25), 0 8px 16px -8px rgba(0,0,0,0.3);
+  --shadow-lg: 0 30px 60px -12px rgba(50,50,93,0.25), 0 18px 36px -18px rgba(0,0,0,0.3);
+  --shadow-xl: 0 50px 100px -20px rgba(50,50,93,0.25), 0 30px 60px -30px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 40px rgba(99, 91, 255, 0.3);
+  
+  /* === Border Radius === */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+/* === Base Resets === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg-level-0);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* === Advanced Gradients === */
+.gradient-radial {
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(99, 91, 255, 0.15) 0%,
+    transparent 50%
+  );
+}
+
+.gradient-conic {
+  background: conic-gradient(
+    from 180deg at 50% 70%,
+    rgba(250, 250, 250, 0) 0deg,
+    rgb(238, 195, 255) 30deg,
+    rgb(0, 112, 243) 180deg,
+    rgba(250, 250, 250, 0) 360deg
+  );
+}
+
+.gradient-mesh {
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(270, 60%, 70%, 0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(189, 60%, 70%, 0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(355, 60%, 70%, 0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(340, 60%, 70%, 0.3) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(22, 60%, 70%, 0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(242, 60%, 70%, 0.3) 0px, transparent 50%);
+}
+
+/* === Glassmorphism Components === */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* === 3D Transform Utilities === */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.hover-3d {
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+  transform: perspective(1000px) rotateX(0) rotateY(0);
+}
+
+.hover-3d:hover {
+  transform: perspective(1000px) rotateX(-10deg) rotateY(10deg) scale(1.05);
+}
+
+/* === Modern Animations === */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  33% { transform: translateY(-30px) rotate(-5deg); opacity: 0.8; }
+  66% { transform: translateY(20px) rotate(5deg); opacity: 0.9; }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes gradient-y {
+  0%, 100% { background-position: 50% 0%; }
+  50% { background-position: 50% 100%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(99, 91, 255, 0.4);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 0 20px rgba(99, 91, 255, 0);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes beam {
+  0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(200%) rotate(45deg); opacity: 0; }
+}
+
+/* === Utility Classes === */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 15s ease infinite;
+}
+
+.animate-gradient-y {
+  background-size: 200% 200%;
+  animation: gradient-y 15s ease infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, 
+    var(--bg-level-1) 25%, 
+    var(--bg-level-2) 50%, 
+    var(--bg-level-1) 75%);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.6s var(--ease-spring) forwards;
+}
+
+.animate-beam {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-beam::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99, 91, 255, 0.4),
+    transparent
+  );
+  animation: beam 3s infinite;
+}
+
+/* === Interactive States === */
+.interactive {
+  position: relative;
+  transition: all var(--duration-fast) var(--ease-out-quart);
+  cursor: pointer;
+}
+
+.interactive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+  opacity: 0;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.interactive:hover::before {
+  opacity: 1;
+}
+
+.interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* === Modern Button Styles === */
+.btn-modern {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-fast) var(--ease-out-quart);
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* === Card Components === */
+.card-modern {
+  background: var(--bg-level-1);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out-quart);
+}
+
+.card-modern:hover {
+  background: var(--bg-level-2);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+}
+
+/* === Text Effects === */
+.text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-glow {
+  text-shadow: 
+    0 0 10px rgba(99, 91, 255, 0.5),
+    0 0 20px rgba(99, 91, 255, 0.3),
+    0 0 30px rgba(99, 91, 255, 0.2);
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-level-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-level-3);
+  border-radius: 6px;
+  border: 2px solid var(--bg-level-1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* === Focus States === */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* === Selection === */
+::selection {
+  background: var(--accent-primary);
+  color: white;
+}
+
+/* === Loading States === */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-level-1) 25%,
+    var(--bg-level-2) 50%,
+    var(--bg-level-1) 75%
+  );
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* === Responsive Utilities === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --text-7xl: 3rem;
+    --text-6xl: 2.5rem;
+    --text-5xl: 2rem;
+    --text-4xl: 1.75rem;
+  }
+}

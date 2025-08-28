@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { 
   PhoneIcon, 
   EnvelopeIcon, 
@@ -10,7 +9,6 @@ import {
   ClockIcon,
   ShieldCheckIcon,
   ArrowUpIcon,
-  SparklesIcon,
   ChevronRightIcon,
   GlobeAltIcon,
   BoltIcon
@@ -19,12 +17,6 @@ import {
 export default function UltraModernFooter() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
-
-  // Mouse tracking for interactive effects
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const smoothMouseX = useSpring(mouseX, { stiffness: 300, damping: 30 });
-  const smoothMouseY = useSpring(mouseY, { stiffness: 300, damping: 30 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,19 +27,11 @@ export default function UltraModernFooter() {
       setIsVisible(scrollPosition > windowHeight && scrollPosition < documentHeight - windowHeight * 2);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-    
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [mouseX, mouseY]);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -106,52 +90,32 @@ export default function UltraModernFooter() {
       <footer className="relative z-20 mt-auto">
         {/* Animated gradient border */}
         <div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
-          <motion.div
-            className="h-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent"
-            animate={{ x: ['-100%', '100%'] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          />
+          <div className="h-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
         </div>
 
         {/* Main Footer Content */}
-        <div className="glass border-t border-white/10">
+        <div className="bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             {/* Top Section with Emergency CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
+            <div className="text-center mb-16">
               <div className="inline-flex items-center gap-3 mb-6">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                >
+                <div className="animate-spin-slow">
                   <ShieldCheckIcon className="w-16 h-16 text-cyan-400" />
-                </motion.div>
+                </div>
                 <div className="text-left">
-                  <h2 className="text-3xl font-bold gradient-text">Disaster Recovery Pro</h2>
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    Disaster Recovery Pro
+                  </h2>
                   <p className="text-gray-400">Australia's #1 Emergency Response Team</p>
                 </div>
               </div>
 
               {/* Emergency Hotline Banner */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="relative inline-block"
-              >
-                <div className="glow-border rounded-full">
-                  <div className="glass rounded-full px-8 py-4 flex items-center gap-4 bg-gradient-to-r from-red-900/20 to-orange-900/20">
+              <div className="relative inline-block transition-transform hover:scale-105">
+                <div className="relative rounded-full border border-red-500/30 bg-gradient-to-r from-red-900/20 to-orange-900/20">
+                  <div className="backdrop-blur-sm rounded-full px-8 py-4 flex items-center gap-4">
                     <div className="relative">
                       <BoltIcon className="w-8 h-8 text-yellow-400 animate-pulse" />
-                      <motion.div
-                        className="absolute inset-0 w-8 h-8"
-                        animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        <BoltIcon className="w-8 h-8 text-yellow-400" />
-                      </motion.div>
                     </div>
                     <div>
                       <p className="text-sm text-gray-400 uppercase tracking-wider">24/7 Emergency Hotline</p>
@@ -165,88 +129,59 @@ export default function UltraModernFooter() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Footer Links Grid */}
             <div className="grid md:grid-cols-4 gap-8 mb-12">
-              {footerSections.map((section, sectionIndex) => (
-                <motion.div
-                  key={section.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: sectionIndex * 0.1 }}
-                >
+              {footerSections.map((section) => (
+                <div key={section.title}>
                   <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
                     <div className={`w-1 h-6 bg-gradient-to-b ${section.gradient} rounded-full`} />
-                    <span className="gradient-text">{section.title}</span>
+                    <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                      {section.title}
+                    </span>
                   </h3>
                   <ul className="space-y-3">
-                    {section.links.map((link, linkIndex) => (
-                      <motion.li
-                        key={link.label}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: sectionIndex * 0.1 + linkIndex * 0.05 }}
-                      >
+                    {section.links.map((link) => (
+                      <li key={link.label}>
                         <Link
                           href={link.href}
                           onMouseEnter={() => setHoveredLink(`${section.title}-${link.label}`)}
                           onMouseLeave={() => setHoveredLink(null)}
                           className="group flex items-center gap-2 text-gray-400 hover:text-white transition-all"
                         >
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ 
-                              scale: hoveredLink === `${section.title}-${link.label}` ? 1 : 0 
-                            }}
-                            className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
-                          />
+                          <span className={`w-1.5 h-1.5 bg-cyan-400 rounded-full transition-transform ${
+                            hoveredLink === `${section.title}-${link.label}` ? 'scale-100' : 'scale-0'
+                          }`} />
                           <span className="relative">
                             {link.label}
-                            <motion.div
-                              className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-cyan-400 to-blue-400"
-                              initial={{ scaleX: 0 }}
-                              animate={{ 
-                                scaleX: hoveredLink === `${section.title}-${link.label}` ? 1 : 0 
-                              }}
-                              transition={{ duration: 0.3 }}
-                            />
+                            <span className={`absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-cyan-400 to-blue-400 transition-all origin-left ${
+                              hoveredLink === `${section.title}-${link.label}` ? 'scale-x-100' : 'scale-x-0'
+                            }`} />
                           </span>
                         </Link>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="border-t border-white/10 pt-8 mb-8"
-            >
+            <div className="border-t border-white/10 pt-8 mb-8">
               <div className="flex flex-wrap justify-center items-center gap-8">
-                {certifications.map((cert, index) => (
-                  <motion.div
+                {certifications.map((cert) => (
+                  <div
                     key={cert}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
-                    className="glass px-4 py-2 rounded-lg flex items-center gap-2"
+                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-2 rounded-lg flex items-center gap-2 transition-transform hover:-translate-y-1"
                   >
                     <ShieldCheckIcon className="w-5 h-5 text-green-400" />
                     <span className="text-sm font-medium text-gray-300">{cert}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Contact Info Row */}
             <div className="grid md:grid-cols-3 gap-6 py-8 border-t border-white/10">
@@ -272,23 +207,18 @@ export default function UltraModernFooter() {
                   href: '#',
                   color: 'text-green-400'
                 }
-              ].map((item, index) => (
-                <motion.a
+              ].map((item) => (
+                <a
                   key={item.label}
                   href={item.href}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="glass-card !p-4 flex items-center gap-4 group"
+                  className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-4 flex items-center gap-4 group transition-all hover:bg-slate-700/30 hover:scale-105"
                 >
                   <item.icon className={`w-8 h-8 ${item.color} group-hover:scale-110 transition-transform`} />
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider">{item.label}</p>
                     <p className="text-white font-semibold">{item.value}</p>
                   </div>
-                </motion.a>
+                </a>
               ))}
             </div>
 
@@ -316,56 +246,36 @@ export default function UltraModernFooter() {
                 <div className="flex items-center gap-4">
                   <span className="text-sm text-gray-400">Follow Us:</span>
                   {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map((social) => (
-                    <motion.a
+                    <a
                       key={social}
                       href="#"
-                      whileHover={{ scale: 1.2, rotate: 5 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 glass rounded-lg flex items-center justify-center hover:bg-white/10 transition-colors"
+                      className="w-10 h-10 bg-slate-800/50 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110 hover:rotate-6"
                     >
-                      <span className="text-xs font-bold gradient-text">
+                      <span className="text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         {social.charAt(0)}
                       </span>
-                    </motion.a>
+                    </a>
                   ))}
                 </div>
               </div>
             </div>
 
             {/* Animated Bottom Gradient Line */}
-            <div className="mt-8 h-[2px] overflow-hidden rounded-full">
-              <motion.div
-                className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-                }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                style={{ backgroundSize: '200% 100%' }}
-              />
-            </div>
+            <div className="mt-8 h-[2px] overflow-hidden rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
           </div>
         </div>
       </footer>
 
       {/* Back to Top Button */}
-      <motion.button
+      <button
         onClick={scrollToTop}
-        className="fixed bottom-6 left-6 z-50 glass rounded-full p-4 hover:bg-white/10 transition-all"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ 
-          opacity: isVisible ? 1 : 0,
-          scale: isVisible ? 1 : 0
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        className={`fixed bottom-6 left-6 z-50 bg-slate-800/50 backdrop-blur-sm rounded-full p-4 hover:bg-white/10 transition-all ${
+          isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+        } hover:scale-110`}
       >
         <ArrowUpIcon className="w-6 h-6 text-cyan-400" />
-        <motion.div
-          className="absolute inset-0 rounded-full border-2 border-cyan-400"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      </motion.button>
+        <div className="absolute inset-0 rounded-full border-2 border-cyan-400 animate-ping" />
+      </button>
     </>
   );
 }

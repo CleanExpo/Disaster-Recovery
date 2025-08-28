@@ -3,11 +3,8 @@ import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
 import { Providers } from './providers'
-// import Header from '@/components/Header' // Old header - replaced with Premium
-// import PremiumHeader from '@/components/layout/PremiumHeader' // Replaced with R6
-// import R6Header from '@/components/layout/R6Header' // Replaced with Modern
-import UltraModernHeader from '@/components/ModernHeader'
-import UltraModernFooter from '@/components/ModernFooter'
+import UltraModernHeader from '@/components/UltraModernHeader'
+import UltraModernFooter from '@/components/UltraModernFooter'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 

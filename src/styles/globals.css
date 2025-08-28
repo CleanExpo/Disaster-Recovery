@@ -1,6 +1,34 @@
+@import './modern-system.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom animations to replace framer-motion */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-slide {
+  animation: slide 3s linear infinite;
+}
 
 /* Modern CSS Variables for 2025 Design System */
 :root {
@@ -139,6 +167,21 @@ body {
 @keyframes pulse-glow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+@keyframes gradient-x {
+  0%, 100% { transform: translateX(0%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes underline {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
 }
 
 @keyframes gradient-border {
