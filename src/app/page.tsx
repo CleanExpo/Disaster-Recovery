@@ -101,25 +101,25 @@ export default function OptimizedHomePage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
-                size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-6 text-lg"
-                asChild
-              >
-                <Link href="/get-help" aria-label="Get emergency help now">
+              <Link href="/get-help">
+                <Button 
+                  size="lg" 
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-6 text-lg"
+                  aria-label="Get emergency help now"
+                >
                   Get Emergency Help Now
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-blue-900 font-bold px-8 py-6 text-lg"
-                asChild
-              >
-                <Link href="/insurance-claims" aria-label="Insurance claim assistance">
+                </Button>
+              </Link>
+              <Link href="/insurance-claims">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white text-white hover:bg-white hover:text-blue-900 font-bold px-8 py-6 text-lg"
+                  aria-label="Insurance claim assistance"
+                >
                   Insurance Claims Help
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
 
             {/* Trust Indicators */}
@@ -232,11 +232,11 @@ export default function OptimizedHomePage() {
             </div>
             
             <div className="text-center mt-8">
-              <Button size="lg" asChild>
-                <Link href="/why-independent-professionals">
+              <Link href="/why-independent-professionals">
+                <Button size="lg">
                   See Our Qualifications
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -255,16 +255,15 @@ export default function OptimizedHomePage() {
           <p className="text-xl mb-8">
             Get connected with certified professionals in your area
           </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="bg-white text-orange-500 hover:bg-gray-100"
-            asChild
-          >
-            <Link href="/get-help">
+          <Link href="/get-help">
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="bg-white text-orange-500 hover:bg-gray-100"
+            >
               Get Immediate Assistance
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </section>
     </>
