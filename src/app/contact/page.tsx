@@ -81,11 +81,44 @@ export default function ModernContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setSubmitted(true);
+    try {
+      const response = await fetch('/api/contact/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          urgency: formData.urgency || 'routine',
+          service: formData.service.toLowerCase().replace(/ /g, '').includes('water') ? 'water' :
+                  formData.service.toLowerCase().includes('fire') ? 'fire' :
+                  formData.service.toLowerCase().includes('mould') ? 'mould' :
+                  formData.service.toLowerCase().includes('storm') ? 'storm' :
+                  formData.service.toLowerCase().includes('biohazard') ? 'biohazard' : 'other',
+          propertyType: 'residential',
+          hasInsurance: true,
+          preferredContact: 'both'
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        // Store submission ID for tracking
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('lastSubmissionId', data.submissionId);
+        }
+      } else {
+        console.error('Submission failed:', data.message);
+        alert(`Error: ${data.message}. Please try again or call 1300 123 456.`);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      alert('Network error. Please check your connection or call 1300 123 456.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
