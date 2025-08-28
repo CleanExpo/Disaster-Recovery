@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam } from '@/lib/lead-scoring';
+import { sendEmail, emailTemplates } from '@/lib/email';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -36,11 +37,49 @@ export async function POST(request: NextRequest) {
     // Generate unique submission ID
     const submissionId = `CONTACT-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     
-    // In production, you would:
+    // Send notification email to team
+    const notificationEmail = emailTemplates.leadNotification({
+      id: submissionId,
+      fullName: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      serviceType: validatedData.service,
+      urgencyLevel: validatedData.urgency,
+      propertyType: validatedData.propertyType || 'residential',
+      suburb: 'Brisbane',
+      state: 'QLD',
+      postcode: '4000',
+      hasInsurance: validatedData.hasInsurance || false,
+      leadScore,
+      leadValue: Math.round(leadScore * 10),
+      description: validatedData.message,
+      createdAt: new Date().toISOString(),
+    });
+    
+    // Send confirmation email to customer
+    const confirmationEmail = emailTemplates.leadConfirmation({
+      id: submissionId,
+      fullName: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      serviceType: validatedData.service,
+      urgencyLevel: validatedData.urgency,
+      suburb: 'Brisbane',
+      state: 'QLD',
+      postcode: '4000',
+    });
+    
+    // Send emails asynchronously
+    Promise.all([
+      sendEmail('team@disasterrecovery.com.au', notificationEmail),
+      sendEmail(validatedData.email, confirmationEmail),
+    ]).catch(error => {
+      console.error('Email sending error:', error);
+    });
+    
+    // In production, also:
     // 1. Save to database
-    // 2. Send notification email to team
-    // 3. Send confirmation email to customer
-    // 4. Trigger SMS alerts for emergency cases
+    // 2. Trigger SMS alerts for emergency cases
     
     // For now, we'll simulate a successful submission
     const submission = {

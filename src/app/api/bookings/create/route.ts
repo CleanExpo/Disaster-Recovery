@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam, getResponseTime } from '@/lib/lead-scoring';
+import { sendEmail, emailTemplates } from '@/lib/email';
 
 const bookingSchema = z.object({
   // Service Details
@@ -91,12 +92,38 @@ export async function POST(request: NextRequest) {
       estimatedArrival: calculateEstimatedArrival(validatedData.date, validatedData.time, validatedData.urgency),
     };
     
-    // In production, you would:
+    // Send notification email to team
+    const leadData = {
+      id: bookingRef,
+      fullName: `${validatedData.firstName} ${validatedData.lastName}`,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      serviceType: validatedData.serviceType,
+      urgencyLevel: validatedData.urgency,
+      propertyType: validatedData.propertyType,
+      suburb: validatedData.suburb,
+      state: validatedData.state,
+      postcode: validatedData.postcode,
+      hasInsurance: validatedData.hasInsurance,
+      leadScore,
+      leadValue: Math.round(leadScore * 10),
+      description: validatedData.additionalNotes || 'Booking via online form',
+      address: `${validatedData.streetAddress}, ${validatedData.suburb}, ${validatedData.state} ${validatedData.postcode}`,
+      createdAt: new Date().toISOString(),
+    };
+    
+    // Send emails
+    Promise.all([
+      sendEmail('bookings@disasterrecovery.com.au', emailTemplates.leadNotification(leadData)),
+      sendEmail(validatedData.email, emailTemplates.leadConfirmation(leadData)),
+    ]).catch(error => {
+      console.error('Email sending error:', error);
+    });
+    
+    // In production, also:
     // 1. Save to database
-    // 2. Send confirmation email/SMS
-    // 3. Update calendar/scheduling system
-    // 4. Notify assigned team
-    // 5. Create job in CRM system
+    // 2. Update calendar/scheduling system
+    // 3. Create job in CRM system
     
     console.log('Booking created:', booking);
     
