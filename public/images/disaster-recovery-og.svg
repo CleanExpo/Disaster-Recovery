@@ -1,0 +1,68 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f87171;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Semi-transparent overlay -->
+  <rect width="1200" height="630" fill="black" opacity="0.3"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Main content container -->
+  <g transform="translate(600, 315)">
+    <!-- Logo area -->
+    <circle cx="0" cy="-150" r="50" fill="white" opacity="0.1"/>
+    <circle cx="0" cy="-150" r="40" fill="none" stroke="white" stroke-width="2" opacity="0.5"/>
+    
+    <!-- Shield icon -->
+    <path d="M -20 -165 L -20 -145 C -20 -135 -10 -125 0 -120 C 10 -125 20 -135 20 -145 L 20 -165 C 20 -170 15 -175 0 -180 C -15 -175 -20 -170 -20 -165 Z" 
+          fill="white" opacity="0.9"/>
+    
+    <!-- Main Title -->
+    <text x="0" y="-40" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="white">
+      DISASTER RECOVERY
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="10" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="white" opacity="0.9">
+      24/7 Emergency Response • IICRC Certified
+    </text>
+    
+    <!-- Services -->
+    <text x="0" y="60" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="white" opacity="0.8">
+      Water Damage • Fire Restoration • Mould Remediation
+    </text>
+    
+    <!-- Call to action -->
+    <rect x="-150" y="100" width="300" height="60" rx="30" fill="white" opacity="0.2"/>
+    <rect x="-150" y="100" width="300" height="60" rx="30" fill="none" stroke="white" stroke-width="2"/>
+    <text x="0" y="138" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      1300 RESTORE
+    </text>
+    
+    <!-- Australian emphasis -->
+    <text x="0" y="200" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="white" opacity="0.7">
+      Proudly Serving All of Australia
+    </text>
+  </g>
+  
+  <!-- Corner accents -->
+  <circle cx="100" cy="100" r="150" fill="white" opacity="0.05"/>
+  <circle cx="1100" cy="530" r="150" fill="white" opacity="0.05"/>
+</svg>

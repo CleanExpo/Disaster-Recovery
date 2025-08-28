@@ -1,14 +1,19 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import ModernHeroSection from '@/components/ModernHeroSection';
 import ModernServiceCards from '@/components/ModernServiceCards';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { 
   Building,
   Users,
   Award,
   MapPin,
-  Star
+  Star,
+  Shield,
+  Phone
 } from 'lucide-react';
 
 

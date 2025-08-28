@@ -101,8 +101,27 @@ class ErrorBoundary extends Component<Props, State> {
     }
   }
 
+  private logToService = async (errorData: any) => {
+    // In production, send to a real logging service (e.g., Sentry, LogRocket)
+    if (process.env.NODE_ENV === 'production') {
+      try {
+        // Example: Send to logging endpoint
+        await fetch('/api/log-error', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(errorData)
+        });
+      } catch (logError) {
+        // Silently fail if logging fails - avoid creating more errors
+      }
+    } else {
+      // Development only - log to console for debugging
+      console.error('Error captured by boundary:', errorData);
+    }
+  };
+
   logErrorToService = (error: Error, errorInfo: React.ErrorInfo) => {
-    // Send error to monitoring service (e.g., Sentry, LogRocket)
+    // Send error to monitoring service
     const errorData = {
       message: error.message,
       stack: error.stack,
@@ -113,8 +132,8 @@ class ErrorBoundary extends Component<Props, State> {
       level: this.props.level || 'component'
     };
 
-    // TODO: Send to actual logging service
-    console.error('Error logged to service:', errorData);
+    // Send to logging service
+    this.logToService(errorData);
   };
 
   resetErrorBoundary = () => {
