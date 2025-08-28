@@ -5,8 +5,9 @@ import '@/styles/globals.css'
 import { Providers } from './providers'
 // import Header from '@/components/Header' // Old header - replaced with Premium
 // import PremiumHeader from '@/components/layout/PremiumHeader' // Replaced with R6
-import R6Header from '@/components/layout/R6Header'
-import Footer from '@/components/Footer'
+// import R6Header from '@/components/layout/R6Header' // Replaced with Modern
+import UltraModernHeader from '@/components/ModernHeader'
+import UltraModernFooter from '@/components/ModernFooter'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 
@@ -112,11 +113,11 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <R6Header />
+          <UltraModernHeader />
           <main id="main-content">
             {children}
           </main>
-          <Footer />
+          <UltraModernFooter />
         </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}

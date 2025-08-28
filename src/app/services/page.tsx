@@ -1,503 +1,539 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
-import { 
-  Phone, 
-  Clock, 
-  Shield, 
-  Droplets, 
-  Flame, 
-  AlertTriangle, 
-  AlertOctagon, 
-  Building2, 
-  ArrowRight,
-  Wind,
-  CheckCircle,
-  Zap,
-  BadgeCheck,
-  Home,
-  Users
-} from 'lucide-react'
-import ScrollReveal from '@/components/ScrollReveal'
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Professional Restoration Services | Disaster Recovery Australia',
-  description: 'Complete disaster recovery services across Australia. Water damage, fire restoration, mould remediation. IICRC certified, insurance approved. Available 24/7.',
-  keywords: 'disaster recovery, water damage, fire damage, mould remediation, emergency restoration, IICRC certified',
+import React, { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { 
+  HomeIcon,
+  FireIcon,
+  BeakerIcon,
+  ShieldCheckIcon,
+  BoltIcon,
+  WrenchIcon,
+  TruckIcon,
+  ClockIcon,
+  CheckCircleIcon,
+  ChartBarIcon,
+  CubeIcon,
+  SparklesIcon,
+  ArrowRightIcon,
+  PhoneIcon,
+  DocumentCheckIcon,
+  UserGroupIcon
+} from '@heroicons/react/24/outline';
+
+interface Service {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: any;
+  gradient: string;
+  features: string[];
+  process: string[];
+  stats: { label: string; value: string }[];
+  image: string;
 }
 
-export default function ServicesPage() {
+export default function UltraModernServicesPage() {
+  const [activeService, setActiveService] = useState<string | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Advanced mouse tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothMouseX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+
+  // Scroll animations
+  const { scrollYProgress } = useScroll();
+  const headerY = useTransform(scrollYProgress, [0, 0.2], ['0%', '-100%']);
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const services: Service[] = [
+    {
+      id: 'water-damage',
+      title: 'Water Damage Restoration',
+      subtitle: 'Advanced Hydro Extraction Technology',
+      description: 'Cutting-edge water damage restoration using molecular drying technology and AI-powered moisture mapping.',
+      icon: HomeIcon,
+      gradient: 'from-blue-600 via-cyan-500 to-teal-400',
+      features: [
+        '24/7 Emergency Response',
+        'Thermal Imaging Detection',
+        'Molecular Drying Systems',
+        'Anti-Microbial Treatment',
+        'Insurance Direct Billing',
+        'Real-time Progress Tracking'
+      ],
+      process: [
+        'Emergency Assessment',
+        'Water Extraction',
+        'Structural Drying',
+        'Dehumidification',
+        'Sanitization',
+        'Final Restoration'
+      ],
+      stats: [
+        { label: 'Response Time', value: '< 60 min' },
+        { label: 'Drying Efficiency', value: '99.9%' },
+        { label: 'Success Rate', value: '100%' }
+      ],
+      image: '/images/services/water-damage-restoration.webp'
+    },
+    {
+      id: 'fire-damage',
+      title: 'Fire & Smoke Restoration',
+      subtitle: 'Complete Fire Damage Recovery',
+      description: 'Comprehensive fire restoration with advanced soot removal and odor elimination technology.',
+      icon: FireIcon,
+      gradient: 'from-orange-600 via-red-500 to-pink-400',
+      features: [
+        'Smoke Odor Elimination',
+        'Soot & Debris Removal',
+        'Structural Repairs',
+        'Content Restoration',
+        'Air Quality Testing',
+        'Insurance Coordination'
+      ],
+      process: [
+        'Damage Assessment',
+        'Board-up Services',
+        'Soot Removal',
+        'Odor Treatment',
+        'Deep Cleaning',
+        'Reconstruction'
+      ],
+      stats: [
+        { label: 'Properties Restored', value: '5,000+' },
+        { label: 'Odor Elimination', value: '100%' },
+        { label: 'Certified Technicians', value: '50+' }
+      ],
+      image: '/images/services/fire-damage-restoration.webp'
+    },
+    {
+      id: 'mold-remediation',
+      title: 'Mold Remediation',
+      subtitle: 'Advanced Microbial Control',
+      description: 'Professional mold removal using HEPA filtration and antimicrobial treatments.',
+      icon: BeakerIcon,
+      gradient: 'from-green-600 via-emerald-500 to-teal-400',
+      features: [
+        'HEPA Air Filtration',
+        'Containment Barriers',
+        'Antimicrobial Treatment',
+        'Humidity Control',
+        'Air Quality Testing',
+        'Prevention Planning'
+      ],
+      process: [
+        'Inspection & Testing',
+        'Containment Setup',
+        'Air Filtration',
+        'Mold Removal',
+        'Cleaning & Sanitizing',
+        'Prevention Measures'
+      ],
+      stats: [
+        { label: 'Mold Types Treated', value: '200+' },
+        { label: 'Air Quality Improvement', value: '95%' },
+        { label: 'Recurrence Rate', value: '< 1%' }
+      ],
+      image: '/images/services/mould-remediation.webp'
+    },
+    {
+      id: 'storm-damage',
+      title: 'Storm & Disaster Recovery',
+      subtitle: 'Emergency Storm Response',
+      description: 'Rapid response storm damage restoration with structural stabilization and debris removal.',
+      icon: BoltIcon,
+      gradient: 'from-purple-600 via-indigo-500 to-blue-400',
+      features: [
+        'Emergency Tarping',
+        'Tree & Debris Removal',
+        'Structural Repairs',
+        'Roof Restoration',
+        'Flooding Mitigation',
+        'Power Restoration Support'
+      ],
+      process: [
+        'Emergency Response',
+        'Safety Assessment',
+        'Temporary Protection',
+        'Debris Clearing',
+        'Structural Repairs',
+        'Full Restoration'
+      ],
+      stats: [
+        { label: 'Response Fleet', value: '30+ Vehicles' },
+        { label: 'Coverage Area', value: 'National' },
+        { label: 'Average Response', value: '45 min' }
+      ],
+      image: '/images/heroes/vehicles-fleet.jpg'
+    }
+  ];
+
   return (
-    <main className="r6-container gradient-mesh-animated grain-texture">
-      <ScrollReveal />
-      
+    <div ref={containerRef} className="min-h-screen relative overflow-hidden noise-overlay">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950" />
+        
+        {/* Dynamic Grid Pattern */}
+        <motion.div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            scale: backgroundScale
+          }}
+        />
+
+        {/* Floating Orbs */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+      </div>
+
+      {/* Interactive Mouse Follower */}
+      <motion.div
+        className="pointer-events-none fixed w-4 h-4 z-50"
+        style={{
+          x: smoothMouseX,
+          y: smoothMouseY,
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <div className="w-full h-full bg-cyan-400 rounded-full opacity-50 blur-sm" />
+      </motion.div>
+
+      {/* Header */}
+      <motion.header 
+        style={{ y: headerY }}
+        className="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-white/10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <Link href="/" className="text-2xl font-bold gradient-text">
+              Disaster Recovery
+            </Link>
+            <nav className="hidden md:flex space-x-8">
+              {['Home', 'Services', 'About', 'Contact'].map((item) => (
+                <Link
+                  key={item}
+                  href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                  className="text-gray-300 hover:text-white transition-colors relative group"
+                >
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 group-hover:w-full transition-all" />
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href="tel:1-800-DISASTER"
+              className="neon-button bg-gradient-to-r from-red-600 to-orange-500 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
+            >
+              <PhoneIcon className="w-5 h-5" />
+              Emergency
+            </Link>
+          </div>
+        </div>
+      </motion.header>
+
       {/* Hero Section */}
-      <section className="r6-hero bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <p className="r6-hero-badge">
-              IICRC Certified Restoration Professionals
-            </p>
-            <h1 className="r6-hero-title optical-align-headline reveal-text">
-              Professional
+      <section className="relative z-10 pt-32 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring" }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-6 py-2 rounded-full mb-6 border border-blue-500/30"
+            >
+              <SparklesIcon className="w-5 h-5 text-blue-400" />
+              <span className="text-blue-400 font-semibold">Professional Restoration Services</span>
+            </motion.div>
+            
+            <h1 className="text-6xl md:text-8xl font-bold mb-6">
+              <span className="gradient-text">Advanced Recovery</span>
               <br />
-              <span className="r6-text-blue glow-shadow">Restoration Services</span>
+              <span className="text-white">Solutions</span>
             </h1>
-            <p className="r6-text-lead max-w-3xl mx-auto">
-              Complete disaster recovery solutions with certified professionals ready to respond 24/7 to your emergency.
+            
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Industry-leading disaster recovery services with cutting-edge technology, 
+              24/7 emergency response, and certified restoration experts.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center mt-8">
-              <a href="tel:1300566166">
-                <button className="r6-btn r6-btn-primary magnetic-btn pulse-cta btn-press shadow-stack">
-                  <Phone className="h-4 w-4" />
-                  Emergency: 1300 566 166
-                </button>
-              </a>
-              <Link href="/get-quote">
-                <button className="r6-btn r6-btn-outline magnetic-btn hover-shift">
-                  Get Free Assessment
-                </button>
+          </motion.div>
+
+          {/* Service Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-20">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2 }}
+                onHoverStart={() => setHoveredCard(service.id)}
+                onHoverEnd={() => setHoveredCard(null)}
+                className="relative group"
+              >
+                <motion.div
+                  className="glass-card rounded-2xl p-8 h-full cursor-pointer overflow-hidden"
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => setActiveService(activeService === service.id ? null : service.id)}
+                >
+                  {/* Card Background Gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity`} />
+                  
+                  {/* Card Content */}
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center gap-4">
+                        <motion.div
+                          className={`p-4 rounded-xl bg-gradient-to-br ${service.gradient}`}
+                          animate={hoveredCard === service.id ? { rotate: 360 } : {}}
+                          transition={{ duration: 0.8 }}
+                        >
+                          <service.icon className="w-8 h-8 text-white" />
+                        </motion.div>
+                        <div>
+                          <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                          <p className="text-sm text-gray-400">{service.subtitle}</p>
+                        </div>
+                      </div>
+                      <motion.div
+                        animate={{ rotate: activeService === service.id ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ArrowRightIcon className="w-6 h-6 text-gray-400" />
+                      </motion.div>
+                    </div>
+
+                    <p className="text-gray-300 mb-6">{service.description}</p>
+
+                    {/* Stats Row */}
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+                      {service.stats.map((stat, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.1 * i }}
+                          className="text-center"
+                        >
+                          <div className="text-2xl font-bold gradient-text">{stat.value}</div>
+                          <div className="text-xs text-gray-500">{stat.label}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Features Preview */}
+                    <div className="flex flex-wrap gap-2">
+                      {service.features.slice(0, 3).map((feature, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-400 border border-white/10"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                      {service.features.length > 3 && (
+                        <span className="px-3 py-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-xs text-blue-400 border border-blue-500/30">
+                          +{service.features.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Hover Effect Border */}
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl pointer-events-none"
+                    animate={hoveredCard === service.id ? {
+                      boxShadow: '0 0 40px rgba(59, 130, 246, 0.3)',
+                    } : {}}
+                  />
+                </motion.div>
+
+                {/* Expanded Details */}
+                <AnimatePresence>
+                  {activeService === service.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-4"
+                    >
+                      <div className="glass-card rounded-2xl p-8">
+                        <h4 className="text-xl font-bold text-white mb-6">Our Process</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                          {service.process.map((step, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="flex items-center gap-3"
+                            >
+                              <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white font-bold text-sm`}>
+                                {i + 1}
+                              </div>
+                              <span className="text-gray-300 text-sm">{step}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        <h4 className="text-xl font-bold text-white mb-4">All Features</h4>
+                        <div className="grid grid-cols-2 gap-3 mb-8">
+                          {service.features.map((feature, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: i * 0.05 }}
+                              className="flex items-center gap-2"
+                            >
+                              <CheckCircleIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
+                              <span className="text-gray-300 text-sm">{feature}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+
+                        <div className="flex gap-4">
+                          <Link
+                            href={`/services/${service.id}`}
+                            className="flex-1 text-center py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+                          >
+                            Learn More
+                          </Link>
+                          <Link
+                            href="/contact"
+                            className={`flex-1 text-center py-3 rounded-xl bg-gradient-to-r ${service.gradient} text-white font-semibold hover:shadow-lg transition-all`}
+                          >
+                            Get Quote
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Why Choose Us Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-card rounded-3xl p-12 mb-20"
+          >
+            <h2 className="text-4xl font-bold text-center mb-12">
+              <span className="gradient-text">Why Industry Leaders</span>
+              <span className="text-white"> Choose Us</span>
+            </h2>
+
+            <div className="grid md:grid-cols-4 gap-8">
+              {[
+                { icon: ClockIcon, title: '24/7 Response', value: 'Always Available' },
+                { icon: ShieldCheckIcon, title: 'Certified Experts', value: 'IICRC Certified' },
+                { icon: ChartBarIcon, title: 'Success Rate', value: '99.9%' },
+                { icon: UserGroupIcon, title: 'Happy Clients', value: '15,000+' }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-center group"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 360 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400/50"
+                  >
+                    <item.icon className="w-10 h-10 text-blue-400" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-white mb-2">{item.value}</h3>
+                  <p className="text-gray-400">{item.title}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-5xl font-bold mb-8">
+              <span className="text-white">Need Emergency </span>
+              <span className="gradient-text">Assistance?</span>
+            </h2>
+            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+              Our certified restoration experts are standing by 24/7 to respond to your emergency
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
+              <Link
+                href="tel:1-800-DISASTER"
+                className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-orange-500 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
+              >
+                <PhoneIcon className="w-8 h-8" />
+                Call 1-800-DISASTER
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  className="w-3 h-3 bg-white rounded-full"
+                />
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
-
-      {/* Trust Badges */}
-      <section className="r6-section r6-section-light relative atmosphere-cool">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <BadgeCheck className="h-12 w-12 text-blue-600 mx-auto mb-2" />
-              <p className="font-semibold">IICRC Certified</p>
-            </div>
-            <div className="text-center">
-              <Clock className="h-12 w-12 text-blue-600 mx-auto mb-2" />
-              <p className="font-semibold">24/7 Emergency</p>
-            </div>
-            <div className="text-center">
-              <Shield className="h-12 w-12 text-blue-600 mx-auto mb-2" />
-              <p className="font-semibold">Insurance Approved</p>
-            </div>
-            <div className="text-center">
-              <Zap className="h-12 w-12 text-blue-600 mx-auto mb-2" />
-              <p className="font-semibold">Rapid Response</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Services Grid */}
-      <section className="r6-section bg-white relative gradient-mesh">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="r6-heading-xl">
-              Our Restoration Services
-            </h2>
-            <p className="r6-text-lead max-w-3xl mx-auto">
-              Comprehensive disaster recovery solutions with certified professionals ready to respond 24/7 to your emergency
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Water Damage */}
-            <div className="r6-service-card shadow-stack card-tilt scroll-reveal">
-              <div className="absolute top-4 right-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                24/7 Emergency
-              </div>
-              <div className="h-48 relative overflow-hidden">
-                <Image
-                  src="/images/optimized/damage/3D Water Damage.png"
-                  alt="Water Damage"
-                  width={400}
-                  height={200}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-              <div className="r6-service-content">
-                <div className="flex items-center gap-2 mb-4">
-                  <Droplets className="h-8 w-8 text-blue-600" />
-                  <h3 className="r6-card-title">Water Damage Restoration</h3>
-                </div>
-                <p className="r6-card-text mb-4">
-                  Emergency water extraction, drying, and complete restoration from floods and burst pipes.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">24/7 Emergency Response</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Water Extraction</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Structural Drying</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Mould Prevention</span>
-                  </li>
-                </ul>
-                <Link href="/services/water-damage-restoration">
-                  <button className="r6-btn-text underline-animate">
-                    Learn More
-                    <ArrowRight className="h-4 w-4 inline ml-1" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Fire Damage */}
-            <div className="r6-service-card shadow-stack card-tilt scroll-reveal" style={{animationDelay: '0.1s'}}>
-              <div className="absolute top-4 right-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                24/7 Emergency
-              </div>
-              <div className="h-48 relative overflow-hidden">
-                <Image
-                  src="/images/optimized/damage/3D image of a house fire.png"
-                  alt="Fire Damage"
-                  width={400}
-                  height={200}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-              <div className="r6-service-content">
-                <div className="flex items-center gap-2 mb-4">
-                  <Flame className="h-8 w-8 text-orange-600" />
-                  <h3 className="r6-card-title">Fire Damage Restoration</h3>
-                </div>
-                <p className="r6-card-text mb-4">
-                  Complete fire and smoke damage restoration including soot removal and odour elimination.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Emergency Board-up</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Smoke & Soot Removal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Odour Elimination</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Full Restoration</span>
-                  </li>
-                </ul>
-                <Link href="/services/fire-damage-restoration">
-                  <button className="r6-btn-text underline-animate">
-                    Learn More
-                    <ArrowRight className="h-4 w-4 inline ml-1" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Mould Remediation */}
-            <div className="r6-service-card shadow-stack card-tilt scroll-reveal" style={{animationDelay: '0.2s'}}>
-              <div className="h-48 relative overflow-hidden">
-                <Image
-                  src="/images/services/professional-mould-cleaning.jpg"
-                  alt="Mould Remediation"
-                  width={400}
-                  height={200}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-              <div className="r6-service-content">
-                <div className="flex items-center gap-2 mb-4">
-                  <Shield className="h-8 w-8 text-green-600" />
-                  <h3 className="r6-card-title">Mould Remediation</h3>
-                </div>
-                <p className="r6-card-text mb-4">
-                  Professional mould inspection, testing, and complete remediation to protect your health.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Mould Inspection</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Air Quality Testing</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Safe Removal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Prevention Treatment</span>
-                  </li>
-                </ul>
-                <Link href="/services/mould-remediation">
-                  <button className="r6-btn-text underline-animate">
-                    Learn More
-                    <ArrowRight className="h-4 w-4 inline ml-1" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Storm Damage */}
-            <div className="r6-service-card shadow-stack card-tilt scroll-reveal" style={{animationDelay: '0.3s'}}>
-              <div className="absolute top-4 right-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                24/7 Emergency
-              </div>
-              <div className="h-48 relative overflow-hidden">
-                <Image
-                  src="/images/optimized/damage/3D Vehicle into Home.png"
-                  alt="Storm Damage"
-                  width={400}
-                  height={200}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-              <div className="r6-service-content">
-                <div className="flex items-center gap-2 mb-4">
-                  <Wind className="h-8 w-8 text-purple-600" />
-                  <h3 className="r6-card-title">Storm Damage</h3>
-                </div>
-                <p className="r6-card-text mb-4">
-                  Rapid response to storm, wind, and hail damage with complete restoration services.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Emergency Tarping</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Debris Removal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Structural Repairs</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Insurance Support</span>
-                  </li>
-                </ul>
-                <Link href="/services/storm-damage">
-                  <button className="r6-btn-text underline-animate">
-                    Learn More
-                    <ArrowRight className="h-4 w-4 inline ml-1" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Sewage Cleanup */}
-            <div className="r6-service-card shadow-stack card-tilt scroll-reveal" style={{animationDelay: '0.4s'}}>
-              <div className="absolute top-4 right-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                24/7 Emergency
-              </div>
-              <div className="h-48 relative overflow-hidden bg-gray-100">
-                <div className="flex items-center justify-center h-full">
-                  <AlertOctagon className="h-24 w-24 text-yellow-600" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-              <div className="r6-service-content">
-                <div className="flex items-center gap-2 mb-4">
-                  <AlertOctagon className="h-8 w-8 text-yellow-600" />
-                  <h3 className="r6-card-title">Sewage Cleanup</h3>
-                </div>
-                <p className="r6-card-text mb-4">
-                  Safe and thorough sewage backup cleanup with complete sanitization.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Emergency Response</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Sewage Extraction</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Sanitization</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Decontamination</span>
-                  </li>
-                </ul>
-                <Link href="/services/sewage-cleanup">
-                  <button className="r6-btn-text underline-animate">
-                    Learn More
-                    <ArrowRight className="h-4 w-4 inline ml-1" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Biohazard Cleaning */}
-            <div className="r6-service-card shadow-stack card-tilt scroll-reveal" style={{animationDelay: '0.5s'}}>
-              <div className="h-48 relative overflow-hidden bg-gray-100">
-                <div className="flex items-center justify-center h-full">
-                  <AlertTriangle className="h-24 w-24 text-red-600" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </div>
-              <div className="r6-service-content">
-                <div className="flex items-center gap-2 mb-4">
-                  <AlertTriangle className="h-8 w-8 text-red-600" />
-                  <h3 className="r6-card-title">Biohazard Cleaning</h3>
-                </div>
-                <p className="r6-card-text mb-4">
-                  Specialized cleaning for crime scenes, trauma incidents, and hazardous materials.
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Crime Scene Cleanup</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Trauma Cleaning</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Hazmat Removal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">Safe Disposal</span>
-                  </li>
-                </ul>
-                <Link href="/services/biohazard-cleaning">
-                  <button className="r6-btn-text underline-animate">
-                    Learn More
-                    <ArrowRight className="h-4 w-4 inline ml-1" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Commercial Services */}
-      <section className="r6-section r6-section-light relative atmosphere-warm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="r6-heading-xl">
-              Commercial & Industrial Services
-            </h2>
-            <p className="r6-text-lead max-w-3xl mx-auto">
-              Large-scale disaster recovery for businesses with minimal downtime and comprehensive documentation for insurance claims
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="flex items-start gap-4">
-              <Building2 className="h-12 w-12 text-blue-600 flex-shrink-0" />
-              <div>
-                <h3 className="text-xl font-bold mb-2">Commercial Properties</h3>
-                <p className="text-gray-600">Offices, retail stores, restaurants, hotels, and more</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Users className="h-12 w-12 text-blue-600 flex-shrink-0" />
-              <div>
-                <h3 className="text-xl font-bold mb-2">Minimal Downtime</h3>
-                <p className="text-gray-600">Priority response to get your business operational quickly</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <Link href="/services/commercial-services">
-              <button className="r6-btn r6-btn-primary magnetic-btn shadow-stack pulse-cta">
-                View Commercial Services
-                <ArrowRight className="h-4 w-4 inline ml-2" />
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="r6-section bg-white relative gradient-mesh">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="r6-heading-xl">
-              Why Choose Our Services
-            </h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center scroll-reveal">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-10 w-10 text-blue-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">24/7 Emergency</h3>
-              <p className="text-gray-600 text-sm">Round-the-clock emergency response teams</p>
-            </div>
-            
-            <div className="text-center scroll-reveal" style={{animationDelay: '0.1s'}}>
-              <div className="w-20 h-20 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BadgeCheck className="h-10 w-10 text-green-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">IICRC Certified</h3>
-              <p className="text-gray-600 text-sm">Industry certified restoration professionals</p>
-            </div>
-            
-            <div className="text-center scroll-reveal" style={{animationDelay: '0.2s'}}>
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-50 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-10 w-10 text-purple-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Insurance Approved</h3>
-              <p className="text-gray-600 text-sm">Direct insurance billing available</p>
-            </div>
-            
-            <div className="text-center scroll-reveal" style={{animationDelay: '0.3s'}}>
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-50 to-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-10 w-10 text-orange-600" />
-              </div>
-              <h3 className="font-bold text-lg mb-2">Rapid Response</h3>
-              <p className="text-gray-600 text-sm">On-site within 2 hours guaranteed</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="r6-section-blue py-20 relative noise-overlay atmosphere-cool">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6 optical-align-headline reveal-text">
-            Need Emergency Restoration Services?
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Don't wait - water, fire, and mould damage worsen rapidly. Our certified professionals are ready to respond immediately.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a href="tel:1300566166">
-              <button className="r6-btn bg-white text-blue-600 hover:bg-gray-100 magnetic-btn shadow-stack pulse-cta btn-press">
-                <Phone className="h-5 w-5" />
-                Call Now: 1300 566 166
-              </button>
-            </a>
-            <Link href="/get-quote">
-              <button className="r6-btn bg-transparent text-white border-2 border-white hover:bg-white hover:text-blue-600 magnetic-btn hover-shift smooth-color">
-                Request Online Assessment
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
-  )
+    </div>
+  );
 }

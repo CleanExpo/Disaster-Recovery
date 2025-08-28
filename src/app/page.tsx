@@ -1,429 +1,579 @@
 'use client';
 
-import { Metadata } from 'next';
-import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import { Phone, Mail, MapPin, Clock, Shield, CheckCircle, ArrowRight, AlertTriangle, Droplets, Flame, Wind, Users, Star, Award, Zap, FileSearch, Wrench, Truck, ClipboardCheck, MessageCircle } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import Link from 'next/link';
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { 
+  ShieldCheckIcon, 
+  ClockIcon, 
+  PhoneIcon,
+  FireIcon,
+  HomeIcon,
+  BuildingOfficeIcon,
+  CheckCircleIcon,
+  ArrowRightIcon,
+  SparklesIcon,
+  BeakerIcon,
+  BoltIcon,
+  GlobeAltIcon,
+  StarIcon,
+  ChartBarIcon
+} from '@heroicons/react/24/outline';
 
-// Import our interactive components
-import {
-  AnimatedHero,
-  Interactive3DServiceCards,
-  InteractiveBeforeAfterSlider,
-  AnimatedCountersAndWidgets,
-  FloatingActionButtons,
-  EmergencyParticleSystem,
-  ScrollAnimations,
-  FadeInOnScroll,
-  ParallaxSection,
-  ScrollCounter,
-  GlassMorphismCard,
-  NeonGlowButton,
-} from '@/components/interactive';
+export default function UltraModernHomepage() {
+  const [mounted, setMounted] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [activeService, setActiveService] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Smooth mouse tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothMouseX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const smoothMouseY = useSpring(mouseY, { stiffness: 300, damping: 30 });
 
-export default function LandingPage() {
+  // Scroll animations
   const { scrollYProgress } = useScroll();
-  const heroParallax = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  
-  const [isEmergency, setIsEmergency] = useState(true);
-  
+  const parallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsEmergency(prev => !prev);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+    setMounted(true);
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach((el) => observer.observe(el));
+
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      animatedElements.forEach((el) => observer.unobserve(el));
+    };
+  }, []); // Remove mouseX and mouseY from dependencies to prevent infinite re-renders
+
+  const services = [
+    {
+      title: 'Water Damage',
+      description: 'Advanced hydro extraction & molecular drying technology',
+      icon: HomeIcon,
+      gradient: 'from-blue-500 via-cyan-500 to-teal-500',
+      stats: '2hr Response',
+      features: ['AI Moisture Detection', 'Thermal Imaging', 'Nano-Drying Tech']
+    },
+    {
+      title: 'Fire & Smoke',
+      description: 'Complete restoration with HEPA filtration systems',
+      icon: FireIcon,
+      gradient: 'from-orange-500 via-red-500 to-pink-500',
+      stats: '24/7 Ready',
+      features: ['Ozone Treatment', 'Molecular Cleaning', 'Air Purification']
+    },
+    {
+      title: 'Biohazard',
+      description: 'EPA-certified decontamination protocols',
+      icon: BeakerIcon,
+      gradient: 'from-green-500 via-emerald-500 to-teal-500',
+      stats: '99.9% Clean',
+      features: ['CDC Compliance', 'UV-C Sterilization', 'Hazmat Certified']
+    },
+    {
+      title: 'Commercial',
+      description: 'Enterprise-grade disaster recovery solutions',
+      icon: BuildingOfficeIcon,
+      gradient: 'from-purple-500 via-indigo-500 to-blue-500',
+      stats: 'Fortune 500',
+      features: ['Project Management', 'Business Continuity', 'Insurance Direct']
+    }
+  ];
+
+  const stats = [
+    { label: 'Properties Restored', value: '15,000', icon: ChartBarIcon, color: 'text-blue-400' },
+    { label: 'Response Time', value: '< 2hrs', icon: ClockIcon, color: 'text-green-400' },
+    { label: 'Customer Rating', value: '4.9★', icon: StarIcon, color: 'text-yellow-400' },
+    { label: 'Coverage Area', value: 'National', icon: GlobeAltIcon, color: 'text-purple-400' }
+  ];
+
+  if (!mounted) return null;
 
   return (
-    <>
-      {/* Emergency Particle Background */}
-      <EmergencyParticleSystem 
-        type={isEmergency ? "fire" : "water"} 
-        intensity="medium" 
-        className="fixed inset-0 z-0"
-      />
-      
-      {/* Emergency Banner with Real Animation */}
-      <motion.div 
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 100 }}
-        className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white py-2 px-4 text-center relative overflow-hidden z-50 sticky top-0"
-      >
-        <motion.div 
-          animate={{ x: ["0%", "100%", "0%"] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-        />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-center justify-center space-x-4">
-            <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity }}>
-              🚨
-            </motion.span>
-            <p className="font-bold text-sm md:text-base tracking-wide">
-              EMERGENCY RESPONSE ACTIVE • 24/7 TEAMS READY • CALL 1300 566 166 NOW
-            </p>
-            <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, delay: 0.25 }}>
-              🚨
-            </motion.span>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Hero Section with Real Background Image and Parallax */}
-      <ParallaxSection speed={0.5} className="relative min-h-screen overflow-hidden">
-        <motion.div style={{ y: heroParallax, opacity: heroOpacity }} className="absolute inset-0">
-          <Image
-            src="/images/heroes/disaster-recovery-hero.webp"
-            alt="Emergency Disaster Recovery Services"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
-        </motion.div>
+    <div ref={containerRef} className="min-h-screen relative overflow-hidden noise-overlay">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 z-0">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-purple-950 to-gray-950" />
         
-        <div className="relative z-10 flex items-center justify-center min-h-screen">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.h1 
-                className="text-5xl md:text-7xl font-bold text-white mb-6"
-                animate={{ 
-                  textShadow: [
-                    "0px 0px 20px rgba(255,0,0,0)",
-                    "0px 0px 40px rgba(255,0,0,0.8)",
-                    "0px 0px 20px rgba(255,0,0,0)"
-                  ]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                24/7 Emergency
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-orange-400">
-                  Disaster Recovery
-                </span>
-              </motion.h1>
-              
-              <motion.p 
-                className="text-xl md:text-2xl text-gray-200 mb-8"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                Professional Restoration Services for Water, Fire & Storm Damage
-              </motion.p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <NeonGlowButton
-                  color="red"
-                  size="lg"
-                  animated={true}
-                  onClick={() => window.location.href = 'tel:1300566166'}
-                >
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call 1300 566 166
-                </NeonGlowButton>
-                
-                <NeonGlowButton
-                  color="blue"
-                  size="lg"
-                  animated={false}
-                >
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  Get Free Quote
-                </NeonGlowButton>
-              </div>
-              
-              {/* Trust Indicators */}
-              <motion.div 
-                className="mt-12 grid grid-cols-3 gap-4 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1 }}
-              >
-                <GlassMorphismCard intensity="medium" glow={true} glowColor="green">
-                  <div className="text-white p-4">
-                    <Shield className="h-8 w-8 mx-auto mb-2 text-green-400" />
-                    <p className="text-sm font-semibold">IICRC Certified</p>
-                  </div>
-                </GlassMorphismCard>
-                
-                <GlassMorphismCard intensity="medium" glow={true} glowColor="blue">
-                  <div className="text-white p-4">
-                    <Award className="h-8 w-8 mx-auto mb-2 text-blue-400" />
-                    <p className="text-sm font-semibold">Insurance Approved</p>
-                  </div>
-                </GlassMorphismCard>
-                
-                <GlassMorphismCard intensity="medium" glow={true} glowColor="purple">
-                  <div className="text-white p-4">
-                    <Zap className="h-8 w-8 mx-auto mb-2 text-purple-400" />
-                    <p className="text-sm font-semibold">Rapid Response</p>
-                  </div>
-                </GlassMorphismCard>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="text-white text-center">
-            <p className="text-sm mb-2">Scroll to explore</p>
-            <ArrowRight className="h-6 w-6 mx-auto rotate-90" />
-          </div>
-        </motion.div>
-      </ParallaxSection>
-
-      {/* Main Services Section with Interactive Cards */}
-      <section className="py-20 relative z-10 bg-gradient-to-b from-gray-900 to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInOnScroll direction="up">
-            <h2 className="text-4xl font-bold text-center text-white mb-12">
-              Emergency Services Available 24/7
-            </h2>
-          </FadeInOnScroll>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Water Damage Card */}
-            <FadeInOnScroll delay={0.1}>
-              <motion.div
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative group"
-              >
-                <GlassMorphismCard intensity="strong" glow={true} glowColor="blue">
-                  <div className="relative h-64 overflow-hidden rounded-t-lg">
-                    <Image
-                      src="/images/services/water-damage-restoration.webp"
-                      alt="Water Damage Restoration"
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    <Droplets className="absolute top-4 right-4 h-12 w-12 text-blue-400" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-3">Water Damage</h3>
-                    <p className="text-gray-300 mb-4">
-                      Rapid water extraction, structural drying, and mold prevention
-                    </p>
-                    <ul className="text-sm text-gray-400 space-y-2">
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> 24/7 Emergency Response</li>
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Advanced Drying Equipment</li>
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Insurance Direct Billing</li>
-                    </ul>
-                  </div>
-                </GlassMorphismCard>
-              </motion.div>
-            </FadeInOnScroll>
-            
-            {/* Fire Damage Card */}
-            <FadeInOnScroll delay={0.2}>
-              <motion.div
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative group"
-              >
-                <GlassMorphismCard intensity="strong" glow={true} glowColor="red">
-                  <div className="relative h-64 overflow-hidden rounded-t-lg">
-                    <Image
-                      src="/images/services/fire-damage-restoration.webp"
-                      alt="Fire Damage Restoration"
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    <Flame className="absolute top-4 right-4 h-12 w-12 text-orange-400" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-3">Fire Damage</h3>
-                    <p className="text-gray-300 mb-4">
-                      Smoke removal, soot cleanup, and complete restoration
-                    </p>
-                    <ul className="text-sm text-gray-400 space-y-2">
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Smoke Odor Elimination</li>
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Structural Repairs</li>
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Content Restoration</li>
-                    </ul>
-                  </div>
-                </GlassMorphismCard>
-              </motion.div>
-            </FadeInOnScroll>
-            
-            {/* Storm Damage Card */}
-            <FadeInOnScroll delay={0.3}>
-              <motion.div
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative group"
-              >
-                <GlassMorphismCard intensity="strong" glow={true} glowColor="purple">
-                  <div className="relative h-64 overflow-hidden rounded-t-lg">
-                    <Image
-                      src="/images/heroes/vehicles-fleet.jpg"
-                      alt="Storm Damage Response"
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    <Wind className="absolute top-4 right-4 h-12 w-12 text-purple-400" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-3">Storm Damage</h3>
-                    <p className="text-gray-300 mb-4">
-                      Emergency tarping, debris removal, and full reconstruction
-                    </p>
-                    <ul className="text-sm text-gray-400 space-y-2">
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Emergency Board-Up</li>
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Tree & Debris Removal</li>
-                      <li className="flex items-center"><CheckCircle className="h-4 w-4 mr-2 text-green-400" /> Roof Repairs</li>
-                    </ul>
-                  </div>
-                </GlassMorphismCard>
-              </motion.div>
-            </FadeInOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section with Animated Counters */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-purple-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <EmergencyParticleSystem type="emergency" intensity="low" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <FadeInOnScroll>
-              <div className="text-center">
-                <ScrollCounter
-                  end={15}
-                  duration={2}
-                  className="text-5xl font-bold text-white"
-                  suffix="+"
-                />
-                <p className="text-gray-200 mt-2">Years Experience</p>
-              </div>
-            </FadeInOnScroll>
-            
-            <FadeInOnScroll delay={0.1}>
-              <div className="text-center">
-                <ScrollCounter
-                  end={5000}
-                  duration={2}
-                  className="text-5xl font-bold text-white"
-                  suffix="+"
-                />
-                <p className="text-gray-200 mt-2">Properties Restored</p>
-              </div>
-            </FadeInOnScroll>
-            
-            <FadeInOnScroll delay={0.2}>
-              <div className="text-center">
-                <ScrollCounter
-                  end={30}
-                  duration={2}
-                  className="text-5xl font-bold text-white"
-                  prefix="<"
-                  suffix="min"
-                />
-                <p className="text-gray-200 mt-2">Response Time</p>
-              </div>
-            </FadeInOnScroll>
-            
-            <FadeInOnScroll delay={0.3}>
-              <div className="text-center">
-                <ScrollCounter
-                  end={98}
-                  duration={2}
-                  className="text-5xl font-bold text-white"
-                  suffix="%"
-                />
-                <p className="text-gray-200 mt-2">Satisfaction Rate</p>
-              </div>
-            </FadeInOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* Before/After Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FadeInOnScroll>
-            <h2 className="text-4xl font-bold text-center text-white mb-12">
-              See The Difference We Make
-            </h2>
-          </FadeInOnScroll>
-          
-          <InteractiveBeforeAfterSlider />
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 relative overflow-hidden">
+        {/* Animated Gradient Orbs */}
         <motion.div
-          className="absolute inset-0 opacity-10"
+          className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
           animate={{
-            backgroundImage: [
-              "radial-gradient(circle at 20% 50%, white 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 50%, white 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, white 0%, transparent 50%)",
-            ]
+            x: [0, 100, 0],
+            y: [0, -100, 0],
           }}
-          transition={{ duration: 5, repeat: Infinity }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
         />
-        
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Emergency? We're Here 24/7
-          </motion.h2>
-          
-          <motion.p 
-            className="text-xl text-white/90 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            Don't wait for damage to worsen. Our emergency response team is standing by.
-          </motion.p>
-          
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
+          animate={{
+            x: [-100, 100, -100],
+            y: [100, -100, 100],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+        />
+      </div>
+      
+      {/* Mouse Follower */}
+      <motion.div
+        className="pointer-events-none fixed w-96 h-96 rounded-full"
+        style={{
+          left: smoothMouseX,
+          top: smoothMouseY,
+          x: '-50%',
+          y: '-50%',
+          background: 'radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+          zIndex: 1
+        }}
+      />
+
+      {/* Hero Section */}
+      <section className="relative z-10 min-h-screen flex items-center justify-center px-6 pt-24">
+        <motion.div 
+          style={{ y: parallaxY, opacity }}
+          className="max-w-7xl mx-auto text-center"
+        >
+          {/* Floating Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="inline-block mb-8"
+          >
+            <div className="glass px-6 py-3 rounded-full flex items-center gap-3">
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-ping absolute" />
+                <div className="w-3 h-3 bg-green-500 rounded-full" />
+              </div>
+              <span className="text-sm font-medium bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                Live 24/7 Emergency Response Active
+              </span>
+              <BoltIcon className="w-4 h-4 text-yellow-400 animate-pulse" />
+            </div>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-6xl md:text-8xl font-bold mb-6 leading-tight perspective-1000"
+          >
+            <span className="block gradient-text text-transparent mb-2">
+              Disaster Recovery
+            </span>
+            <span className="block text-3xl md:text-5xl text-gray-300">
+              Reimagined for {new Date().getFullYear()}
+            </span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            Experience the future of property restoration with{' '}
+            <span className="text-cyan-400 font-semibold">AI-powered diagnostics</span>,{' '}
+            <span className="text-purple-400 font-semibold">predictive analytics</span>, and{' '}
+            <span className="text-pink-400 font-semibold">quantum-speed response</span>.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          >
+            {/* Primary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative px-10 py-5 overflow-hidden rounded-2xl font-bold text-lg"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+              <span className="relative z-10 flex items-center gap-3">
+                <PhoneIcon className="w-6 h-6" />
+                Get Immediate Help
+                <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </span>
+            </motion.button>
+
+            {/* Secondary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="glass-card !py-5 !px-10 border-2 border-white/20 hover:border-white/40"
+            >
+              <span className="font-bold text-lg flex items-center gap-3">
+                <SparklesIcon className="w-6 h-6 text-yellow-400" />
+                AI Damage Assessment
+              </span>
+            </motion.button>
+          </motion.div>
+
+          {/* Floating Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 + index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="glass-card !p-6 group"
+              >
+                <stat.icon className={`w-8 h-8 ${stat.color} mb-3 group-hover:scale-110 transition-transform`} />
+                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Animated scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center"
+          >
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Services Grid - Ultra Modern */}
+      <section className="relative z-10 py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-20 animate-on-scroll">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              className="inline-block mb-4"
+            >
+              <div className="glass px-4 py-2 rounded-full text-sm font-medium text-cyan-400">
+                ✨ Powered by AI & Machine Learning
+              </div>
+            </motion.div>
+            <h2 className="text-5xl md:text-6xl font-bold gradient-text mb-6">
+              Next-Gen Services
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Revolutionary restoration technology that predicts, prevents, and perfects
+            </p>
+          </div>
+
+          {/* Services Cards */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                onMouseEnter={() => setActiveService(index)}
+                onMouseLeave={() => setActiveService(null)}
+                className="group relative"
+              >
+                {/* Card Background Glow */}
+                <div 
+                  className={`absolute inset-0 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 rounded-3xl`}
+                />
+                
+                {/* Card Content */}
+                <div className="relative glass-card rounded-3xl p-8 border border-white/10 hover:border-white/30 transition-all duration-500 h-full">
+                  {/* Icon & Badge */}
+                  <div className="flex justify-between items-start mb-6">
+                    <motion.div
+                      animate={{ rotate: activeService === index ? 360 : 0 }}
+                      transition={{ duration: 0.8 }}
+                      className={`p-4 rounded-2xl bg-gradient-to-r ${service.gradient} bg-opacity-20`}
+                    >
+                      <service.icon className="w-10 h-10 text-white" />
+                    </motion.div>
+                    <div className="glass px-3 py-1 rounded-full text-sm font-bold text-green-400">
+                      {service.stats}
+                    </div>
+                  </div>
+
+                  {/* Title & Description */}
+                  <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
+                  <p className="text-gray-400 mb-6">{service.description}</p>
+
+                  {/* Features */}
+                  <div className="space-y-3">
+                    {service.features.map((feature, fi) => (
+                      <motion.div
+                        key={fi}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ 
+                          opacity: activeService === index ? 1 : 0.7,
+                          x: activeService === index ? 0 : -20
+                        }}
+                        transition={{ delay: fi * 0.05 }}
+                        className="flex items-center gap-3"
+                      >
+                        <CheckCircleIcon className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-sm text-gray-300">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Learn More Link */}
+                  <motion.div
+                    className="mt-8 flex items-center gap-2 text-cyan-400 font-semibold group/link"
+                    whileHover={{ x: 5 }}
+                  >
+                    <span>Explore Service</span>
+                    <ArrowRightIcon className="w-5 h-5 group-hover/link:translate-x-2 transition-transform" />
+                  </motion.div>
+
+                  {/* Floating particles on hover */}
+                  <AnimatePresence>
+                    {activeService === index && (
+                      <>
+                        {[...Array(3)].map((_, pi) => (
+                          <motion.div
+                            key={pi}
+                            className={`absolute w-2 h-2 bg-gradient-to-r ${service.gradient} rounded-full blur-sm`}
+                            initial={{ 
+                              opacity: 0,
+                              x: Math.random() * 200 - 100,
+                              y: Math.random() * 200 - 100
+                            }}
+                            animate={{ 
+                              opacity: [0, 1, 0],
+                              y: -150,
+                              x: Math.random() * 200 - 100
+                            }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 2, delay: pi * 0.2 }}
+                          />
+                        ))}
+                      </>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Demo Section */}
+      <section className="relative z-10 py-32 px-6 animate-on-scroll">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4, type: "spring" }}
+            className="relative"
           >
-            <NeonGlowButton
-              color="yellow"
-              size="xl"
-              animated={true}
-              onClick={() => window.location.href = 'tel:1300566166'}
-              className="text-2xl"
-            >
-              <Phone className="mr-3 h-7 w-7" />
-              Call 1300 566 166 Now
-            </NeonGlowButton>
+            {/* Glowing Border Container */}
+            <div className="glow-border">
+              <div className="glass rounded-3xl p-12 md:p-20 text-center bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", duration: 0.8 }}
+                >
+                  <ShieldCheckIcon className="w-20 h-20 mx-auto mb-8 text-cyan-400" />
+                </motion.div>
+                
+                <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-8">
+                  Experience the Difference
+                </h2>
+                
+                <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                  Our AI-powered assessment tool can analyze damage in seconds, 
+                  providing instant quotes and dispatching teams automatically.
+                </p>
+
+                {/* Interactive Process Steps */}
+                <div className="grid md:grid-cols-3 gap-8 mb-12">
+                  {['Upload Photos', 'AI Analysis', 'Instant Quote'].map((step, index) => (
+                    <motion.div
+                      key={step}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.2 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="glass-card rounded-2xl p-6"
+                    >
+                      <div className="text-5xl font-bold gradient-text mb-3">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <div className="text-xl font-semibold text-white">{step}</div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur-lg group-hover:blur-xl transition-all opacity-70" />
+                  <div className="relative bg-gradient-to-r from-cyan-500 to-blue-500 px-12 py-6 rounded-2xl font-bold text-xl text-white">
+                    Try AI Assessment Now
+                  </div>
+                </motion.button>
+              </div>
+            </div>
+
+            {/* Animated Background Orbs */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
+              <motion.div
+                animate={{ 
+                  x: [0, 100, 0],
+                  y: [0, -100, 0]
+                }}
+                transition={{ duration: 20, repeat: Infinity }}
+                className="absolute top-20 left-20 w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-10"
+              />
+              <motion.div
+                animate={{ 
+                  x: [0, -100, 0],
+                  y: [0, 100, 0]
+                }}
+                transition={{ duration: 15, repeat: Infinity }}
+                className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-10"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Floating Action Buttons */}
-      <FloatingActionButtons />
-    </>
+      {/* Trust Indicators */}
+      <section className="relative z-10 py-32 px-6 animate-on-scroll">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-16">
+            Trusted by Industry Leaders
+          </h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {['ISO 9001', 'IICRC Certified', 'EPA RRP', 'BBB A+ Rated'].map((cert, index) => (
+              <motion.div
+                key={cert}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="glass-card rounded-2xl p-8 group"
+              >
+                <ShieldCheckIcon className="w-12 h-12 mx-auto mb-4 text-green-400 group-hover:scale-110 transition-transform" />
+                <div className="font-bold text-white">{cert}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="relative z-10 py-32 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl md:text-6xl font-bold mb-8">
+              <span className="gradient-text">Ready to Experience</span>
+              <br />
+              <span className="text-white">The Future of Recovery?</span>
+            </h2>
+            
+            <p className="text-xl text-gray-400 mb-12">
+              Join thousands who&apos;ve discovered faster, smarter disaster recovery
+            </p>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
+              <Link
+                href="tel:1-800-DISASTER"
+                className="flex items-center gap-4 bg-gradient-to-r from-green-500 to-emerald-500 px-10 py-6 rounded-full font-bold text-xl text-white shadow-2xl hover:shadow-green-500/25 transition-all"
+              >
+                <PhoneIcon className="w-8 h-8" />
+                Call 1-800-DISASTER
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-white rounded-full animate-ping" />
+                  <span className="text-sm">Live Now</span>
+                </div>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   );
 }
