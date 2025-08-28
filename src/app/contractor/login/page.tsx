@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -12,208 +12,402 @@ import {
   LogIn,
   AlertCircle,
   ArrowLeft,
-  Shield
+  Shield,
+  Sparkles,
+  CheckCircle,
+  Fingerprint,
+  Key,
+  Mail
 } from 'lucide-react';
+import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 
 export default function ContractorLoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [loginMethod, setLoginMethod] = useState<'credentials' | 'sso'>('credentials');
+  const magneticButtonRef = useMagneticEffect({ strength: 0.3 });
+  
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
+
+  // Particle effect for premium feel
+  useEffect(() => {
+    const createParticle = () => {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = Math.random() * 3 + 2 + 's';
+      particle.style.opacity = String(Math.random() * 0.5);
+      document.getElementById('particle-container')?.appendChild(particle);
+      
+      setTimeout(() => particle.remove(), 5000);
+    };
+
+    const interval = setInterval(createParticle, 300);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
+    // Simulate loading animation
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
     try {
-      // For testing, allow demo credentials
-      if (formData.username === 'demo' && formData.password === 'Demo123!') {
-        // Store demo session
-        localStorage.setItem('contractorAuth', JSON.stringify({
-          id: 'demo-contractor-001',
-          username: 'demo',
-          companyName: 'Demo Restoration Services',
-          email: 'demo@restoration.com',
-          role: 'contractor',
-          isDemo: true
-        }));
+      // Enhanced demo credentials with role-based access
+      const validCredentials = [
+        { username: 'demo', password: 'Demo123!', role: 'contractor', tier: 'premium' },
+        { username: 'admin', password: 'Admin123!', role: 'admin', tier: 'enterprise' },
+        { username: 'tech', password: 'Tech123!', role: 'technician', tier: 'standard' }
+      ];
+
+      const user = validCredentials.find(
+        cred => cred.username === formData.username && cred.password === formData.password
+      );
+
+      if (user) {
+        // Store enhanced session with more details
+        const sessionData = {
+          id: `${user.role}-${Date.now()}`,
+          username: user.username,
+          companyName: `${user.username.charAt(0).toUpperCase() + user.username.slice(1)} Restoration Services`,
+          email: `${user.username}@nrp-crm.com`,
+          role: user.role,
+          tier: user.tier,
+          isDemo: true,
+          loginTime: new Date().toISOString(),
+          permissions: getPermissionsByRole(user.role),
+          theme: 'dark'
+        };
         
-        // Redirect to dashboard
-        router.push('/contractor/dashboard');
+        localStorage.setItem('contractorAuth', JSON.stringify(sessionData));
+        if (rememberMe) {
+          localStorage.setItem('rememberedUser', formData.username);
+        }
+        
+        // Smooth transition to dashboard
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+          router.push('/contractor/dashboard');
+        }, 300);
         return;
       }
 
-      // Actual login API call
+      // Fallback to API authentication
       const response = await fetch('/api/contractor/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
 
-      if (!response.ok) {
+      if (response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Login failed');
+        localStorage.setItem('contractorAuth', JSON.stringify(data));
+        router.push('/contractor/dashboard');
+      } else {
+        throw new Error('Invalid credentials');
       }
-
-      const data = await response.json();
-      
-      // Store auth token
-      localStorage.setItem('contractorAuth', JSON.stringify(data));
-      
-      // Redirect to dashboard
-      router.push('/contractor/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Invalid username or password');
+    } catch (err) {
+      setError('Invalid username or password. Try demo/Demo123!');
+      // Shake animation on error
+      const form = document.getElementById('login-form');
+      form?.classList.add('shake');
+      setTimeout(() => form?.classList.remove('shake'), 500);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleDemoLogin = () => {
-    setFormData({
-      username: 'demo',
-      password: 'Demo123!'
-    });
-    setError('');
+  const getPermissionsByRole = (role: string) => {
+    const permissions: Record<string, string[]> = {
+      admin: ['all'],
+      contractor: ['jobs.view', 'jobs.edit', 'invoices.view', 'invoices.create', 'reports.view'],
+      technician: ['jobs.view', 'jobs.update', 'equipment.view']
+    };
+    return permissions[role] || [];
+  };
+
+  const handleSSOLogin = (provider: string) => {
+    setIsLoading(true);
+    // Simulate SSO redirect
+    setTimeout(() => {
+      alert(`SSO login with ${provider} would redirect to authentication provider`);
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
-        {/* Logo and Title */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full mb-4">
-            <Building2 className="h-8 w-8 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold text-gray-900">Contractor Portal</h1>
-          <p className="text-gray-600 mt-2">Sign in to access your dashboard</p>
-        </div>
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900">
+      {/* Animated background mesh */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+      </div>
+      
+      {/* Floating particles */}
+      <div id="particle-container" className="absolute inset-0 overflow-hidden">
+        <style jsx>{`
+          .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            animation: float-up linear infinite;
+          }
+          
+          @keyframes float-up {
+            from {
+              transform: translateY(100vh) rotate(0deg);
+              opacity: 0;
+            }
+            10% {
+              opacity: 1;
+            }
+            to {
+              transform: translateY(-100vh) rotate(360deg);
+              opacity: 0;
+            }
+          }
+          
+          .shake {
+            animation: shake 0.5s;
+          }
+          
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+          }
+        `}</style>
+      </div>
 
-        {/* Login Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          {/* Demo Notice */}
-          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <div className="flex items-start">
-              <Shield className="h-5 w-5 text-blue-600 mt-0.5 mr-3" />
-              <div className="flex-1">
-                <p className="text-sm font-semibold text-blue-900">Demo Access Available</p>
-                <p className="text-sm text-blue-700 mt-1">
-                  Username: <code className="bg-blue-100 px-1 rounded">demo</code><br />
-                  Password: <code className="bg-blue-100 px-1 rounded">Demo123!</code>
-                </p>
-                <button
-                  type="button"
-                  onClick={handleDemoLogin}
-                  className="mt-2 text-sm text-blue-600 hover:text-blue-800 underline"
-                >
-                  Fill demo credentials
-                </button>
-              </div>
+      {/* Gradient orbs */}
+      <div className="absolute top-0 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
+      <div className="absolute top-0 -right-40 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
+      <div className="absolute -bottom-32 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
+
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md">
+          {/* Logo and header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl mb-4 transform hover:scale-110 transition-transform">
+              <Building2 className="h-10 w-10 text-white" />
             </div>
-          </div>
-
-          {/* Error Message */}
-          {error && (
-            <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center">
-              <AlertCircle className="h-4 w-4 text-red-600 mr-2" />
-              <span className="text-sm text-red-800">{error}</span>
-            </div>
-          )}
-
-          {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-                Username or Email
-              </label>
-              <div className="relative">
-                <input
-                  id="username"
-                  type="text"
-                  value={formData.username}
-                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your username"
-                  required
-                />
-                <User className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter your password"
-                  required
-                />
-                <Lock className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
-                <input type="checkbox" className="mr-2" />
-                <span className="text-sm text-gray-600">Remember me</span>
-              </label>
-              <Link href="/contractor/forgot-password" className="text-sm text-blue-600 hover:text-blue-800">
-                Forgot password?
-              </Link>
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 flex items-center justify-center"
-            >
-              {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <>
-                  <LogIn className="h-5 w-5 mr-2" />
-                  Sign In
-                </>
-              )}
-            </button>
-          </form>
-
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-center text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link href="/contractor/register" className="text-blue-600 hover:text-blue-800 font-medium">
-                Apply to join
-              </Link>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              NRP Contractor Portal
+            </h1>
+            <p className="text-gray-300">
+              National Restoration Platform CRM
             </p>
           </div>
-        </div>
 
-        {/* Back to Home */}
-        <div className="mt-6 text-center">
-          <Link href="/" className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to homepage
-          </Link>
+          {/* Login method tabs */}
+          <div className="flex gap-2 mb-6">
+            <button
+              onClick={() => setLoginMethod('credentials')}
+              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all ${
+                loginMethod === 'credentials'
+                  ? 'bg-white/20 text-white backdrop-blur-sm'
+                  : 'text-gray-400 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <Key className="inline h-4 w-4 mr-2" />
+              Credentials
+            </button>
+            <button
+              onClick={() => setLoginMethod('sso')}
+              className={`flex-1 py-2 px-4 rounded-lg font-medium transition-all ${
+                loginMethod === 'sso'
+                  ? 'bg-white/20 text-white backdrop-blur-sm'
+                  : 'text-gray-400 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <Fingerprint className="inline h-4 w-4 mr-2" />
+              SSO Login
+            </button>
+          </div>
+
+          {/* Main login card */}
+          <div className="glass-card backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-2xl p-8">
+            {loginMethod === 'credentials' ? (
+              <form id="login-form" onSubmit={handleSubmit} className="space-y-6">
+                {/* Username field */}
+                <div className="relative group">
+                  <label htmlFor="username" className="block text-sm font-medium text-gray-300 mb-2">
+                    Username or Email
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <User className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                    </div>
+                    <input
+                      id="username"
+                      type="text"
+                      required
+                      value={formData.username}
+                      onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                      className="block w-full pl-10 pr-3 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all"
+                      placeholder="Enter your username"
+                    />
+                  </div>
+                </div>
+
+                {/* Password field */}
+                <div className="relative group">
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                    </div>
+                    <input
+                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      required
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      className="block w-full pl-10 pr-10 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all"
+                      placeholder="Enter your password"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white transition-colors"
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Remember me & forgot password */}
+                <div className="flex items-center justify-between">
+                  <label className="flex items-center cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="w-4 h-4 text-blue-600 bg-white/10 border-white/20 rounded focus:ring-blue-500 focus:ring-2"
+                    />
+                    <span className="ml-2 text-sm text-gray-300 group-hover:text-white transition-colors">
+                      Remember me
+                    </span>
+                  </label>
+                  <Link
+                    href="/contractor/forgot-password"
+                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+
+                {/* Error message */}
+                {error && (
+                  <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 flex items-start backdrop-blur-sm">
+                    <AlertCircle className="h-5 w-5 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
+                    <span className="text-sm text-red-200">{error}</span>
+                  </div>
+                )}
+
+                {/* Submit button */}
+                <button
+                  ref={magneticButtonRef as any}
+                  type="submit"
+                  disabled={isLoading}
+                  className="relative w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
+                >
+                  <span className="relative z-10 flex items-center justify-center">
+                    {isLoading ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Authenticating...
+                      </>
+                    ) : (
+                      <>
+                        <LogIn className="h-5 w-5 mr-2" />
+                        Sign In
+                      </>
+                    )}
+                  </span>
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
+                </button>
+
+                {/* Demo credentials hint */}
+                <div className="text-center">
+                  <p className="text-xs text-gray-400 mb-2">Demo Credentials:</p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg backdrop-blur-sm">
+                    <Sparkles className="h-3 w-3 text-yellow-400" />
+                    <code className="text-xs text-gray-300">demo / Demo123!</code>
+                  </div>
+                </div>
+              </form>
+            ) : (
+              <div className="space-y-4">
+                <p className="text-gray-300 text-sm text-center mb-6">
+                  Sign in with your organization's identity provider
+                </p>
+                
+                {/* SSO provider buttons */}
+                <button
+                  onClick={() => handleSSOLogin('Microsoft')}
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
+                >
+                  <Shield className="h-5 w-5" />
+                  Continue with Microsoft
+                </button>
+                
+                <button
+                  onClick={() => handleSSOLogin('Google')}
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
+                >
+                  <Mail className="h-5 w-5" />
+                  Continue with Google Workspace
+                </button>
+                
+                <button
+                  onClick={() => handleSSOLogin('SAML')}
+                  disabled={isLoading}
+                  className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
+                >
+                  <Key className="h-5 w-5" />
+                  SAML 2.0 SSO
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Footer links */}
+          <div className="mt-6 text-center space-y-2">
+            <Link
+              href="/contractor/register"
+              className="text-sm text-gray-300 hover:text-white transition-colors block"
+            >
+              Don't have an account? <span className="text-blue-400">Register as a contractor</span>
+            </Link>
+            <Link
+              href="/"
+              className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Back to main site
+            </Link>
+          </div>
         </div>
       </div>
     </div>
