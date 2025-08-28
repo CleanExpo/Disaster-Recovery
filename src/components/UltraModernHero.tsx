@@ -1,12 +1,77 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useMagneticEffect, useScrollTrigger } from '@/hooks/useMagneticEffect';
+import { 
+  AlertTriangle, 
+  Shield, 
+  Clock, 
+  CheckCircle, 
+  Star, 
+  Phone,
+  ArrowRight,
+  Zap
+} from 'lucide-react';
 
 export default function UltraModernHero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Smooth spring animations
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
+  // Magnetic effect hooks
+  const emergencyButtonRef = useMagneticEffect({ 
+    strength: 0.4, 
+    maxDistance: 120, 
+    scale: 1.05 
+  });
+  const assessmentButtonRef = useMagneticEffect({ 
+    strength: 0.3, 
+    maxDistance: 100, 
+    scale: 1.03 
+  });
+
+  // Scroll trigger
+  const scrollTriggerRef = useScrollTrigger(0.2);
+
+  // Particle system state
+  const [particles, setParticles] = useState<Array<{
+    id: number;
+    x: number;
+    y: number;
+    size: number;
+    opacity: number;
+    speed: number;
+  }>>([]);
+
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Initialize particle system
+  useEffect(() => {
+    const particleCount = 15;
+    const newParticles = Array.from({ length: particleCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      opacity: Math.random() * 0.5 + 0.2,
+      speed: Math.random() * 2 + 1,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  // Animated gradient positions
+  const [gradientPos, setGradientPos] = useState({ x: 50, y: 50 });
 
   useEffect(() => {
     setIsVisible(true);
@@ -19,62 +84,101 @@ export default function UltraModernHero() {
           y: (e.clientY - rect.top) / rect.height,
         });
       }
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      setGradientPos({ x, y });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const trustIndicators = [
+    { 
+      icon: Shield, 
+      label: 'IICRC Certified', 
+      value: 'Industry Standard',
+      color: 'from-blue-500 to-cyan-500'
+    },
+    { 
+      icon: Clock, 
+      label: 'Response Time', 
+      value: '30-60 Minutes',
+      color: 'from-green-500 to-emerald-500'
+    },
+    { 
+      icon: CheckCircle, 
+      label: 'Insurance', 
+      value: 'Pre-Approved',
+      color: 'from-purple-500 to-pink-500'
+    },
+    { 
+      icon: Star, 
+      label: 'Customer Rating', 
+      value: '4.9/5 Stars',
+      color: 'from-yellow-500 to-orange-500'
+    }
+  ];
+
   return (
-    <section 
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        background: `
-          radial-gradient(
-            circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%,
-            rgba(99, 91, 255, 0.15) 0%,
-            transparent 50%
-          ),
-          linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)
-        `
-      }}
-    >
-      {/* Animated gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute w-[500px] h-[500px] -top-48 -left-48 rounded-full opacity-20"
-          style={{
-            background: 'radial-gradient(circle, #635bff 0%, transparent 70%)',
-            animation: 'float 20s ease-in-out infinite',
-            transform: `translate(${mousePosition.x * 50}px, ${mousePosition.y * 50}px)`,
-          }}
-        />
-        <div 
-          className="absolute w-[400px] h-[400px] -bottom-32 -right-32 rounded-full opacity-20"
-          style={{
-            background: 'radial-gradient(circle, #00d4ff 0%, transparent 70%)',
-            animation: 'float 15s ease-in-out infinite reverse',
-            transform: `translate(${mousePosition.x * -30}px, ${mousePosition.y * -30}px)`,
-          }}
-        />
+    <>
+      {/* Advanced Gradient Mesh Background */}
+      <div className="gradient-mesh-bg" />
+      
+      {/* Particle System */}
+      <div className="particle-container fixed inset-0 z-0">
+        {particles.map((particle) => (
+          <motion.div
+            key={particle.id}
+            className="particle absolute"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              x: [0, Math.random() * 10 - 5, 0],
+              opacity: [particle.opacity, particle.opacity * 0.5, particle.opacity],
+            }}
+            transition={{
+              duration: particle.speed * 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
 
-      {/* Grid background pattern */}
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(99, 91, 255, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99, 91, 255, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-          transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
-        }}
-      />
+      <motion.section
+        ref={containerRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{ opacity, scale }}
+      >
+        {/* Interactive Gradient Overlay */}
+        <div 
+          className="absolute inset-0 opacity-20 transition-all duration-1000 ease-out"
+          style={{
+            background: `radial-gradient(
+              circle at ${gradientPos.x}% ${gradientPos.y}%,
+              rgba(99, 102, 241, 0.3) 0%,
+              rgba(139, 92, 246, 0.2) 25%,
+              rgba(236, 72, 153, 0.1) 50%,
+              transparent 70%
+            )`,
+          }}
+        />
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Noise Texture Overlay */}
+        <div className="absolute inset-0 noise-texture" />
+
+        <div className="relative z-10 container mx-auto px-6 py-32">
+          <motion.div 
+            ref={scrollTriggerRef}
+            className="max-w-6xl mx-auto text-center scroll-trigger"
+            style={{ y }}
+          >
         {/* Badge */}
         <div 
           className={`inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full border transition-all duration-1000 ${
