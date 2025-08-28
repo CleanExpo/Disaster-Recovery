@@ -100,7 +100,7 @@ export interface Certification {
   type: CertificationType;
   name: string;
   number: string;
-  issuingOrganization: string;
+  issuingOrganisation: string;
   issueDate: Date;
   expiryDate?: Date;
   document: File;

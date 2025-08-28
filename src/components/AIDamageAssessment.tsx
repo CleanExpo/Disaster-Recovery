@@ -14,7 +14,7 @@ interface DamageAnalysis {
 export default function AIDamageAssessment() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isAnalysing, setIsAnalysing] = useState(false);
   const [analysis, setAnalysis] = useState<DamageAnalysis | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -31,10 +31,10 @@ export default function AIDamageAssessment() {
     }
   };
 
-  const analyzeImage = async () => {
+  const analyseImage = async () => {
     if (!selectedFile) return;
 
-    setIsAnalyzing(true);
+    setIsAnalysing(true);
     
     // Simulate AI analysis (in production, call actual AI API)
     await new Promise(resolve => setTimeout(resolve, 3000));
@@ -55,7 +55,7 @@ export default function AIDamageAssessment() {
     };
 
     setAnalysis(mockAnalysis);
-    setIsAnalyzing(false);
+    setIsAnalysing(false);
   };
 
   const getSeverityColor = (severity: string) => {
@@ -97,7 +97,7 @@ export default function AIDamageAssessment() {
             Instant Damage Assessment
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Upload a photo and our AI will instantly analyze damage severity, estimate costs, and provide actionable recommendations
+            Upload a photo and our AI will instantly analyse damage severity, estimate costs, and provide actionable recommendations
           </p>
         </div>
 
@@ -142,20 +142,20 @@ export default function AIDamageAssessment() {
 
               {selectedFile && (
                 <button
-                  onClick={analyzeImage}
-                  disabled={isAnalyzing}
+                  onClick={analyseImage}
+                  disabled={isAnalysing}
                   className="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isAnalyzing ? (
+                  {isAnalysing ? (
                     <span className="flex items-center justify-center gap-2">
                       <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
-                      Analyzing...
+                      Analysing...
                     </span>
                   ) : (
-                    'Analyze Damage'
+                    'Analyse Damage'
                   )}
                 </button>
               )}

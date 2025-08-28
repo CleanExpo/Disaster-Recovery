@@ -769,10 +769,10 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>Issuing Organization</Label>
+                  <Label>Issuing Organisation</Label>
                   <Input
                     type="text"
-                    placeholder="Organization name"
+                    placeholder="Organisation name"
                     value={qual.issuer}
                     onChange={(e) => updateOtherQualification(index, 'issuer', e.target.value)}
                   />

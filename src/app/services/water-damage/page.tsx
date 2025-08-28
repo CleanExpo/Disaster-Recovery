@@ -259,7 +259,7 @@ export default function WaterDamageRestorationPage() {
             <div className="p-6">
               <h3 className="text-xl font-bold text-white mb-3">Black Water</h3>
               <p className="text-gray-400 mb-4">
-                Grossly contaminated water containing pathogens and toxins. Requires full PPE, containment, and specialized biohazard protocols per IICRC S500.
+                Grossly contaminated water containing pathogens and toxins. Requires full PPE, containment, and specialised biohazard protocols per IICRC S500.
               </p>
               <ul className="space-y-2 text-sm text-neutral-600">
                 <li className="flex items-start r6-list-item">
