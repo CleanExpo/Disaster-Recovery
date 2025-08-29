@@ -535,7 +535,8 @@ Sustainable business success requires understanding all aspects of business oper
 - **Customer Acquisition Cost**: Cost to acquire each new customer
 
 **Job Analysis Template:**
-```
+
+\`\`\`
 Project: [Project Name]
 Revenue: $[Total Revenue]
 Direct Costs:
@@ -554,7 +555,7 @@ Indirect Costs (Allocated):
 Total Costs: $[Direct + Indirect]
 Net Profit: $[Revenue - Total Costs]
 Net Margin: [Net Profit / Revenue * 100]%
-```
+\`\`\`
 
 ### Cash Flow Management
 
