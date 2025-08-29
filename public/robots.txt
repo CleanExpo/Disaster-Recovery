@@ -7,6 +7,8 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /partner-portal/
+Disallow: /contractor/onboarding/
+Disallow: /contractor/dashboard/
 Disallow: /_next/
 Disallow: /static/private/
 
