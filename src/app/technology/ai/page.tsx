@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { 
   Brain, Cpu, Activity, BarChart3, Shield, Zap,
   CheckCircle, ArrowRight, TrendingUp, Eye,
-  Sparkles, Target, Gauge, AlertTriangle
+  Sparkles, Target, Gauge, AlertTriangle, Camera
 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';

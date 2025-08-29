@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Shield, Lock, Unlock, User, Users, Key, Settings, Eye, EyeOff,
   Check, X, AlertTriangle, Info, Edit3, Trash2, Plus, Filter,
-  UserCheck, UserX, Building2, FileText, ChevronRight, Award
+  UserCheck, UserX, Building2, FileText, ChevronRight, Award, Search
 } from 'lucide-react';
 import type { 
   RolePermissions, 

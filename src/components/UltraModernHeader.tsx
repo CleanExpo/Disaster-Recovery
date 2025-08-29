@@ -206,6 +206,9 @@ export default function UltraModernHeader() {
                   <Link
                     href={item.href}
                     className="relative px-5 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-all duration-300 rounded-full group"
+                    aria-haspopup={item.dropdown ? "true" : undefined}
+                    aria-expanded={item.dropdown ? activeDropdown === item.label : undefined}
+                    id={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                     style={{
                       background: activeDropdown === item.label 
                         ? 'rgba(99, 91, 255, 0.1)' 
@@ -227,6 +230,8 @@ export default function UltraModernHeader() {
                   {/* Dropdown Menu */}
                   {item.dropdown && (
                     <div
+                      role="menu"
+                      aria-labelledby={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                       className={`absolute top-full left-0 mt-2 transition-all duration-300 ${
                         activeDropdown === item.label 
                           ? 'opacity-100 translate-y-0 pointer-events-auto' 
@@ -246,6 +251,7 @@ export default function UltraModernHeader() {
                           <Link
                             key={subItem.label}
                             href={subItem.href}
+                            role="menuitem"
                             className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
                             style={{
                               borderBottom: idx < item.dropdown!.length - 1 
@@ -348,6 +354,9 @@ export default function UltraModernHeader() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden relative p-3 rounded-lg transition-all"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-menu"
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(10px)',
@@ -380,6 +389,9 @@ export default function UltraModernHeader() {
 
         {/* Mobile Menu */}
         <div 
+          id="mobile-navigation-menu"
+          role="navigation"
+          aria-label="Mobile navigation"
           className={`md:hidden absolute top-full left-0 right-0 transition-all duration-500 ${
             mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}

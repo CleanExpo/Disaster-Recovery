@@ -10,40 +10,44 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'Thermal Imaging Technology | FLIR Systems | Disaster Recovery Australia',
-  description: 'Advanced FLIR thermal imaging cameras detect moisture, heat patterns, and structural issues invisible to the naked eye. Industry-leading infrared technology for comprehensive damage assessment.',
-  keywords: 'thermal imaging, FLIR cameras, infrared detection, moisture mapping, heat detection, thermal scanning',
+  title: 'Certified Thermal Imaging Analysis | Level 1/2 Thermography | Disaster Recovery Australia',
+  description: 'Professional thermography services by certified Level 1/2 technicians. Electrical hot spot analysis, building envelope assessment, and quantitative thermal reporting. Only ~15 certified specialists nationally.',
+  keywords: 'certified thermal imaging, Level 1 thermography, electrical hot spot detection, building envelope analysis, quantitative thermal analysis, thermography certification',
   openGraph: {
-    title: 'Thermal Imaging Technology | Disaster Recovery Australia',
-    description: 'See the invisible with our advanced FLIR thermal imaging systems.',
+    title: 'Certified Thermal Imaging Analysis | Disaster Recovery Australia',
+    description: 'Beyond basic moisture detection - certified thermography analysis by qualified specialists.',
     images: ['/images/thermal-technology.jpg'],
   },
 };
 
 const applications = [
   {
-    title: 'Moisture Detection',
-    description: 'Identify hidden water damage behind walls, under floors, and in ceilings without invasive testing',
-    icon: Droplets,
-    benefits: ['Non-invasive inspection', 'Complete moisture mapping', 'Early leak detection']
-  },
-  {
-    title: 'Electrical Inspection',
-    description: 'Detect overheating electrical components, faulty wiring, and potential fire hazards',
+    title: 'Electrical Hot Spot Analysis',
+    description: 'Certified Level 1/2 Thermography for electrical component analysis, circuit load assessment, and predictive maintenance reporting',
     icon: Zap,
-    benefits: ['Prevent electrical fires', 'Identify circuit overloads', 'Ensure safety compliance']
+    benefits: ['Certified electrical analysis', 'Quantitative temperature reporting', 'Regulatory compliance documentation'],
+    certification: 'Requires: Level 1/2 Thermography Certification (ISO 9712)'
   },
   {
-    title: 'Structural Analysis',
-    description: 'Assess building envelope integrity, insulation gaps, and air infiltration points',
+    title: 'Building Envelope Assessment',
+    description: 'Professional thermal bridging analysis, insulation performance evaluation, and energy loss quantification',
     icon: Shield,
-    benefits: ['Energy efficiency', 'Structural integrity', 'Building performance']
+    benefits: ['Quantitative thermal analysis', 'Energy audit compliance', 'Professional reporting standards'],
+    certification: 'Requires: Building Performance Thermography Training'
   },
   {
-    title: 'Mould Risk Assessment',
-    description: 'Identify conditions conducive to mould growth through temperature and moisture patterns',
+    title: 'Advanced Moisture Analysis',
+    description: 'Beyond basic detection - quantitative moisture analysis with psychrometric calculations and vapor pressure assessment',
+    icon: Droplets,
+    benefits: ['Scientific moisture analysis', 'Detailed drying protocols', 'Insurance-grade documentation'],
+    certification: 'Standard: Basic moisture detection (all technicians)'
+  },
+  {
+    title: 'Specialized Thermal Reporting',
+    description: 'Comprehensive thermal analysis reports meeting professional and regulatory standards for specialized applications',
     icon: AlertTriangle,
-    benefits: ['Early prevention', 'Health protection', 'Targeted remediation']
+    benefits: ['Professional certification', 'Legal documentation', 'Insurance acceptance'],
+    certification: 'Requires: Certified Thermographer (Level 1 minimum)'
   }
 ];
 
@@ -81,18 +85,30 @@ export default function ThermalImagingPage() {
             </nav>
 
             <Badge className="mb-4 bg-orange-500/20 text-orange-300 border-orange-500/30">
-              <Thermometer className="h-3 w-3 mr-1" />
-              FLIR Certified Technology
+              <Shield className="h-3 w-3 mr-1" />
+              Certified Level 1/2 Thermography
             </Badge>
             
             <h1 className="text-5xl lg:text-7xl font-bold mb-6">
-              Thermal Imaging Technology
+              Certified Thermal Analysis
             </h1>
             
             <p className="text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed">
-              See beyond the visible spectrum with our advanced FLIR thermal imaging systems. 
-              Detect hidden moisture, electrical issues, and structural problems with pinpoint accuracy.
+              Beyond basic moisture detection - professional thermography by certified specialists. 
+              Only ~15 contractors nationally hold Level 1/2 Thermography certification for electrical analysis and building envelope assessment.
             </p>
+            
+            <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4 mb-8">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-yellow-400 mt-1 flex-shrink-0" />
+                <div>
+                  <p className="text-sm text-gray-200 leading-relaxed">
+                    <strong>Important:</strong> Basic thermal cameras are common restoration tools for moisture detection. 
+                    Specialized thermal analysis requires certified Level 1/2 Thermography training for electrical systems and quantitative building envelope assessment.
+                  </p>
+                </div>
+              </div>
+            </div>
             
             {/* Key Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -147,15 +163,41 @@ export default function ThermalImagingPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {applications.map((app, idx) => {
               const Icon = app.icon;
+              const isSpecialized = app.certification.includes('Requires:');
               return (
                 <Card key={idx} className="p-8 hover:shadow-xl transition-all">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                    <div className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${
+                      isSpecialized 
+                        ? 'bg-gradient-to-br from-purple-500 to-indigo-500' 
+                        : 'bg-gradient-to-br from-orange-500 to-red-500'
+                    }`}>
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{app.title}</h3>
-                      <p className="text-gray-600 mb-4">{app.description}</p>
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="text-xl font-semibold text-gray-900">{app.title}</h3>
+                        {isSpecialized && (
+                          <Badge className="bg-purple-100 text-purple-800 text-xs">
+                            Specialist
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-gray-600 mb-3">{app.description}</p>
+                      
+                      {/* Certification Requirement */}
+                      <div className={`p-3 rounded-md mb-4 ${
+                        isSpecialized 
+                          ? 'bg-purple-50 border border-purple-200' 
+                          : 'bg-green-50 border border-green-200'
+                      }`}>
+                        <p className={`text-xs font-medium ${
+                          isSpecialized ? 'text-purple-800' : 'text-green-800'
+                        }`}>
+                          {app.certification}
+                        </p>
+                      </div>
+
                       <ul className="space-y-2">
                         {app.benefits.map((benefit, bIdx) => (
                           <li key={bIdx} className="flex items-center gap-2 text-sm text-gray-600">
@@ -227,12 +269,127 @@ export default function ThermalImagingPage() {
         </div>
       </section>
 
+      {/* Certification Education Section */}
+      <section className="py-20 bg-gradient-to-r from-slate-50 to-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              Understanding Thermal Imaging Certification
+            </h2>
+            
+            <div className="grid lg:grid-cols-3 gap-8 mb-12">
+              {/* Standard Service */}
+              <Card className="p-6">
+                <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-4">
+                  <Gauge className="h-6 w-6 text-green-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Standard Moisture Detection</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Basic thermal cameras used by 95% of restoration technicians for moisture identification and general inspection.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Available from all technicians</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Good for moisture detection</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <span>Visual temperature differences</span>
+                  </li>
+                </ul>
+              </Card>
+
+              {/* Specialized Service */}
+              <Card className="p-6 border-2 border-purple-200 relative">
+                <Badge className="absolute -top-3 left-6 bg-purple-600">Specialist Required</Badge>
+                <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
+                  <Target className="h-6 w-6 text-purple-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Certified Thermal Analysis</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  Level 1/2 Thermography certification required for electrical analysis and quantitative building assessment.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-purple-500" />
+                    <span>~15 contractors nationally</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-purple-500" />
+                    <span>Electrical hot spot analysis</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-purple-500" />
+                    <span>Quantitative reporting</span>
+                  </li>
+                </ul>
+              </Card>
+
+              {/* Licensed Service */}
+              <Card className="p-6">
+                <div className="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-red-600" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Licensed Applications</h3>
+                <p className="text-sm text-gray-600 mb-4">
+                  State licensing required for electrical system work and regulatory compliance applications.
+                </p>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-red-500" />
+                    <span>Licensed electrician partnership</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-red-500" />
+                    <span>Regulatory compliance</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-red-500" />
+                    <span>Legal documentation</span>
+                  </li>
+                </ul>
+              </Card>
+            </div>
+
+            {/* Questions to Ask */}
+            <Card className="p-8 bg-amber-50 border border-amber-200">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-amber-600" />
+                Questions to Ask Your Contractor
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-medium text-gray-900 mb-2">For Electrical Analysis:</h4>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>"Do you hold Level 1 or 2 Thermography certification?"</li>
+                    <li>"Can you provide quantitative temperature analysis?"</li>
+                    <li>"Are you trained in electrical thermal patterns?"</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-900 mb-2">For Building Assessment:</h4>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>"Do you provide building envelope thermal analysis?"</li>
+                    <li>"Can you calculate thermal bridging coefficients?"</li>
+                    <li>"Is your report suitable for energy audits?"</li>
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Technical Specifications */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-              FLIR T1020 Specifications
+              Professional Thermography Equipment
             </h2>
             <Card className="p-8">
               <div className="grid md:grid-cols-2 gap-6">

@@ -22,6 +22,10 @@
     "seo-images:downloads": "node scripts/seo-process-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
     "web-optimize": "node scripts/web-optimize-images.js",
     "web-optimize:downloads": "node scripts/web-optimize-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --watchAll=false",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug"
@@ -105,6 +109,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.14.14",
     "@types/react": "^18.3.3",
@@ -112,11 +119,14 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
+    "jest": "^30.1.1",
+    "jest-environment-jsdom": "^30.1.1",
     "playwright": "^1.55.0",
     "postcss": "^8.4.40",
     "prisma": "^5.18.0",
     "puppeteer": "^24.17.0",
     "tailwindcss": "^3.4.7",
+    "ts-jest": "^29.4.1",
     "tsx": "^4.16.5",
     "typescript": "^5.5.4"
   }

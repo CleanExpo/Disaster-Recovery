@@ -1,270 +1,268 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { 
-  Cpu, Brain, Thermometer, Wind, Shield, Zap, 
-  CheckCircle, ArrowRight, Award, TrendingUp,
-  Camera, Gauge, Activity, Sparkles
+  Cpu, Brain, Camera, Shield, Activity, Zap,
+  CheckCircle, ArrowRight, Gauge, Eye,
+  Sparkles, Target, Wind, ThermometerSun
 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
-  title: 'Advanced Restoration Technology | Disaster Recovery Australia',
-  description: 'Cutting-edge technology for disaster recovery including AI detection, thermal imaging, and HEPA filtration systems. Industry-leading equipment for faster, more effective restoration.',
-  keywords: 'AI damage detection, thermal imaging, HEPA filtration, restoration technology, disaster recovery equipment',
-  openGraph: {
-    title: 'Advanced Restoration Technology | Disaster Recovery Australia',
-    description: 'Discover our cutting-edge restoration technology that delivers superior results.',
-    images: ['/images/technology-hero.jpg'],
-  },
+  title: 'Advanced Technology | Disaster Recovery Australia',
+  description: 'Industry-leading restoration technology including AI damage detection, thermal imaging, and HEPA filtration systems for superior disaster recovery results.',
 };
 
-const technologies = [
-  {
-    id: 'ai-detection',
-    title: 'AI Detection Systems',
-    description: 'Revolutionary artificial intelligence that identifies damage patterns invisible to the human eye, predicting issues before they escalate.',
-    icon: Brain,
-    href: '/technology/ai',
-    color: 'from-purple-500 to-pink-500',
-    stats: { accuracy: '99.7%', speed: '10x faster', coverage: '100%' },
-    features: [
-      'Predictive damage analysis',
-      'Pattern recognition',
-      'Automated reporting',
-      'Real-time monitoring'
-    ]
-  },
-  {
-    id: 'thermal-imaging',
-    title: 'Thermal Imaging',
-    description: 'Advanced FLIR thermal cameras detect moisture, heat patterns, and structural issues through walls and surfaces.',
-    icon: Thermometer,
-    href: '/technology/thermal',
-    color: 'from-orange-500 to-red-500',
-    stats: { precision: '±0.1°C', range: '30m', resolution: '640x480' },
-    features: [
-      'Moisture mapping',
-      'Heat loss detection',
-      'Electrical fault finding',
-      'Structural assessment'
-    ]
-  },
-  {
-    id: 'hepa-filtration',
-    title: 'HEPA Air Scrubbing',
-    description: 'Hospital-grade HEPA filtration systems remove 99.97% of airborne particles, ensuring safe air quality during restoration.',
-    icon: Wind,
-    href: '/technology/hepa',
-    color: 'from-blue-500 to-cyan-500',
-    stats: { filtration: '99.97%', airflow: '2000 CFM', particles: '0.3μm' },
-    features: [
-      'Mould spore removal',
-      'Allergen elimination',
-      'Odour neutralisation',
-      'Air quality monitoring'
-    ]
-  }
-];
-
-const benefits = [
-  {
-    icon: Gauge,
-    title: 'Faster Detection',
-    description: 'Identify issues 10x faster than traditional methods'
-  },
-  {
-    icon: Shield,
-    title: 'Prevent Secondary Damage',
-    description: 'Early detection prevents costly secondary damage'
-  },
-  {
-    icon: Activity,
-    title: 'Real-Time Monitoring',
-    description: '24/7 monitoring with instant alerts and updates'
-  },
-  {
-    icon: Award,
-    title: 'Industry Certified',
-    description: 'All equipment meets IICRC and Australian standards'
-  }
-];
-
 export default function TechnologyPage() {
+  const technologies = [
+    {
+      title: 'AI Damage Detection',
+      description: 'Revolutionary artificial intelligence that instantly identifies and assesses damage patterns with 99.9% accuracy.',
+      icon: Brain,
+      features: [
+        'Real-time damage assessment',
+        'Predictive restoration timelines',
+        'Automated documentation',
+        'Insurance-ready reporting'
+      ],
+      link: '/technology/ai',
+      color: 'from-purple-500 to-indigo-600',
+      stats: { accuracy: '99.9%', speed: '60x faster', coverage: '100%' }
+    },
+    {
+      title: 'Thermal Imaging',
+      description: 'Advanced FLIR thermal cameras detect hidden moisture and structural issues invisible to the naked eye.',
+      icon: ThermometerSun,
+      features: [
+        'Hidden moisture detection',
+        'Structural integrity analysis',
+        'Electrical hazard identification',
+        'Complete damage mapping'
+      ],
+      link: '/technology/thermal',
+      color: 'from-orange-500 to-red-600',
+      stats: { detection: '100%', depth: '10cm+', resolution: '640x480' }
+    },
+    {
+      title: 'HEPA Air Filtration',
+      description: 'Hospital-grade HEPA systems remove 99.97% of airborne contaminants, ensuring safe air quality.',
+      icon: Wind,
+      features: [
+        '99.97% particle removal',
+        'Mold spore elimination',
+        'Odor neutralization',
+        'Real-time air monitoring'
+      ],
+      link: '/technology/hepa',
+      color: 'from-cyan-500 to-blue-600',
+      stats: { filtration: '99.97%', coverage: '5000m³/hr', particles: '0.3μm' }
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: Gauge,
+      title: 'Faster Recovery',
+      description: 'Technology reduces restoration time by up to 60%'
+    },
+    {
+      icon: Shield,
+      title: 'Superior Accuracy',
+      description: '99.9% accurate damage assessment and documentation'
+    },
+    {
+      icon: Activity,
+      title: 'Real-Time Monitoring',
+      description: '24/7 remote monitoring of drying and restoration progress'
+    },
+    {
+      icon: Target,
+      title: 'Precision Results',
+      description: 'Targeted restoration with minimal disruption to property'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 text-white">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
+      <section className="relative pt-24 pb-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-70" />
         
-        {/* Animated particles */}
-        <div className="absolute inset-0">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-blue-400 rounded-full animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative container mx-auto px-6 py-24 lg:py-32">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/30 mb-8">
-              <Sparkles className="h-4 w-4 text-purple-400" />
-              <span className="text-sm font-medium text-purple-300">Industry-Leading Technology</span>
+        <div className="container mx-auto relative z-10">
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Sparkles className="w-4 h-4" />
+              Industry-Leading Technology
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Advanced Restoration Technology
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Advanced Restoration
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                Technology Solutions
+              </span>
             </h1>
             
-            <p className="text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed">
-              Leveraging cutting-edge AI, thermal imaging, and HEPA filtration to deliver 
-              faster, more accurate, and comprehensive disaster recovery solutions.
+            <p className="text-xl text-gray-600 mb-8">
+              Combining cutting-edge AI, thermal imaging, and purification systems to deliver 
+              the fastest, most accurate disaster recovery in Australia.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-6 text-lg">
-                  <Zap className="mr-2 h-5 w-5" />
-                  Request Technology Demo
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/book-service">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                  Get Technology Assessment
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link href="#technologies">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg">
-                  Explore Our Tech
-                  <ArrowRight className="ml-2 h-5 w-5" />
+              <Link href="/contact">
+                <Button size="lg" variant="outline">
+                  Learn More
+                  <Eye className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
           </div>
-        </div>
 
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H0Z" fill="white"/>
-          </svg>
+          {/* Stats Bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {[
+              { label: 'Faster Recovery', value: '60%', icon: Zap },
+              { label: 'Accuracy Rate', value: '99.9%', icon: Target },
+              { label: 'Properties Saved', value: '10K+', icon: Shield },
+              { label: 'Available 24/7', value: '365', icon: Activity }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg mb-2">
+                  <stat.icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Technologies Grid */}
-      <section id="technologies" className="py-20 lg:py-32">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Technology Suite
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Three pillars of advanced technology working together to provide 
-              unmatched restoration results.
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Three powerful systems working together to deliver unmatched restoration results
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {technologies.map((tech) => {
-              const Icon = tech.icon;
-              return (
-                <Card key={tech.id} className="group relative overflow-hidden hover:shadow-2xl transition-all duration-300">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
-                  
-                  <div className="relative p-8">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${tech.color} mb-6`}>
-                      <Icon className="h-8 w-8 text-white" />
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{tech.title}</h3>
-                    <p className="text-gray-600 mb-6">{tech.description}</p>
-                    
-                    {/* Stats */}
-                    <div className="grid grid-cols-3 gap-4 mb-6">
-                      {Object.entries(tech.stats).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div className="text-lg font-bold text-gray-900">{value}</div>
-                          <div className="text-xs text-gray-500 capitalize">{key}</div>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Features */}
-                    <ul className="space-y-2 mb-6">
-                      {tech.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                          <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <Link href={tech.href}>
-                      <Button className="w-full group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-500">
-                        Learn More
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
+          <div className="grid md:grid-cols-3 gap-8">
+            {technologies.map((tech, idx) => (
+              <Card key={idx} className="relative overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
+                
+                <div className="relative p-8">
+                  {/* Icon */}
+                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${tech.color} text-white mb-6`}>
+                    <tech.icon className="w-8 h-8" />
                   </div>
-                </Card>
-              );
-            })}
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    {tech.title}
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    {tech.description}
+                  </p>
+
+                  {/* Features */}
+                  <ul className="space-y-2 mb-6">
+                    {tech.features.map((feature, fidx) => (
+                      <li key={fidx} className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-2 mb-6 pt-6 border-t border-gray-100">
+                    {Object.entries(tech.stats).map(([key, value], sidx) => (
+                      <div key={sidx} className="text-center">
+                        <div className="text-lg font-bold text-gray-900">{value}</div>
+                        <div className="text-xs text-gray-500 capitalize">{key}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* CTA */}
+                  <Link href={tech.link}>
+                    <Button className="w-full group-hover:shadow-lg transition-all">
+                      Explore {tech.title.split(' ')[0]}
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Technology Benefits
+      <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Technology Advantages
             </h2>
-            <p className="text-xl text-gray-600">
-              Why our technology makes the difference
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              How our advanced technology delivers superior results for every restoration project
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, idx) => {
-              const Icon = benefit.icon;
-              return (
-                <div key={idx} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 mb-4">
-                    <Icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit, idx) => (
+              <div key={idx} className="text-center group">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
+                  <benefit.icon className="w-8 h-8 text-blue-600" />
                 </div>
-              );
-            })}
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600">
+                  {benefit.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Experience the Future of Restoration
-          </h2>
-          <p className="text-xl mb-8 text-white/90">
-            See our advanced technology in action with a free demonstration
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/schedule">
-              <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-6 text-lg">
-                Schedule Technology Demo
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
-                Contact Our Experts
-              </Button>
-            </Link>
-          </div>
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Experience the Technology Difference
+            </h2>
+            <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
+              See how our advanced technology can save your property and reduce restoration time by 60%
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/book-service">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+                  Schedule Assessment
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                  Contact Expert
+                  <Cpu className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+          </Card>
         </div>
       </section>
     </div>

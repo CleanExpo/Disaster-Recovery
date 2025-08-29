@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": false, // Will enable gradually
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -40,17 +40,17 @@
         "./src/types/*"
       ]
     },
-    "noImplicitAny": false,
-    "strictNullChecks": false,
-    "strictFunctionTypes": false,
+    "noImplicitAny": false, // Keep disabled - adds 3000+ errors
+    "strictNullChecks": false, // Keep disabled for now
+    "strictFunctionTypes": false, // Keep disabled for now
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
     "noImplicitThis": false,
     "alwaysStrict": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": false,
+    "noUnusedLocals": false, // Keep disabled - adds many errors
+    "noUnusedParameters": false, // Keep disabled for now
+    "noImplicitReturns": true, // Enable: Functions must return values
+    "noFallthroughCasesInSwitch": true, // Enable: Switch case safety
     "allowUnreachableCode": true,
     "allowUnusedLabels": true
   },

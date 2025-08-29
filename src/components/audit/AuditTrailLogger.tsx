@@ -5,7 +5,8 @@ import {
   History, FileText, Upload, Download, Eye, Shield, User, Clock,
   Filter, Search, Calendar, Activity, Database, Link, Archive,
   AlertTriangle, CheckCircle, XCircle, Edit3, Trash2, Camera,
-  Paperclip, File, Image, Video, ChevronDown, ChevronRight
+  Paperclip, File, Image, Video, ChevronDown, ChevronRight,
+  Plus, Building2, Award
 } from 'lucide-react';
 import type { 
   AuditTrail, 

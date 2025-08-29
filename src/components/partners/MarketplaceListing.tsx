@@ -35,7 +35,8 @@ import {
   Tag,
   CheckCircle,
   ExternalLink,
-  Zap
+  Zap,
+  XCircle
 } from 'lucide-react';
 import type { Partner, PartnerCategory, MarketplaceListing } from '@/types/partner-affiliate';
 

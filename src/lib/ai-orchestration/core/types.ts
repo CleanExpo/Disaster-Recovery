@@ -161,7 +161,19 @@ export interface DisasterContext {
   };
 }
 
-export interface AgentPersona {
+export enum AgentPersona {
+  LEAD_ARCHITECT = 'lead-architect',
+  TECHNICAL_EXPERT = 'technical-expert',
+  SAFETY_INSPECTOR = 'safety-inspector',
+  COST_ANALYST = 'cost-analyst',
+  EMERGENCY_COORDINATOR = 'emergency-coordinator',
+  QUALITY_AUDITOR = 'quality-auditor',
+  INSURANCE_SPECIALIST = 'insurance-specialist',
+  CUSTOMER_LIAISON = 'customer-liaison',
+  IMPLEMENTATION_SPECIALIST = 'implementation-specialist',
+}
+
+export interface AgentPersonaConfig {
   id: string;
   name: string;
   role: string;

@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import {
   BarChart3, PieChart, TrendingUp, FileText, Download, Share2,
   Calendar, Filter, Printer, Mail, Shield, AlertTriangle, CheckCircle,
-  Users, Building2, Clock, Target, Award, Activity, ChevronDown
+  Users, Building2, Clock, Target, Award, Activity, ChevronDown,
+  TrendingDown, Minus, RefreshCw, XCircle, AlertOctagon, ChevronRight
 } from 'lucide-react';
 import type { 
   ComplianceReport, 
