@@ -63,6 +63,12 @@ export default function UltraModernHeader() {
       label: 'Contact', 
       href: '/contact',
       icon: ChatBubbleLeftRightIcon
+    },
+    { 
+      label: 'AI Demo', 
+      href: '/ai-demo',
+      icon: BoltIcon,
+      highlight: true
     }
   ];
 
@@ -117,7 +123,11 @@ export default function UltraModernHeader() {
                 >
                   <Link
                     href={item.href}
-                    className="relative px-4 py-2 flex items-center gap-2 text-gray-300 hover:text-white transition-all group rounded-lg hover:bg-white/10"
+                    className={`relative px-4 py-2 flex items-center gap-2 transition-all group rounded-lg ${
+                      item.highlight 
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/25 hover:from-blue-500 hover:to-cyan-500' 
+                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                    }`}
                   >
                     <span className="relative z-10 font-medium">{item.label}</span>
                     
@@ -200,7 +210,11 @@ export default function UltraModernHeader() {
                 <div key={item.label}>
                   <Link
                     href={item.href}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                      item.highlight 
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold' 
+                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <item.icon className="w-5 h-5 text-cyan-400" />
