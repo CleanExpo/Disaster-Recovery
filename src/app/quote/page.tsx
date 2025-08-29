@@ -2,25 +2,10 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Metadata } from 'next';
 import { FileText, ArrowRight, Clock, Shield, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-  title: 'Get Free Quote | Disaster Recovery Australia | IICRC Certified Contractors',
-  description: 'Get instant free quotes from IICRC certified disaster recovery contractors. Water damage, fire damage, mold remediation. No obligation estimates.',
-  keywords: 'free quote, disaster recovery quote, water damage estimate, fire damage quote, mold remediation cost, restoration estimate',
-  openGraph: {
-    title: 'Get Free Disaster Recovery Quote | IICRC Certified',
-    description: 'Get instant free quotes from certified disaster recovery professionals. Water, fire, mold, storm damage restoration.',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/quote',
-  }
-};
 
 export default function QuotePage() {
   const router = useRouter();

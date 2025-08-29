@@ -9,21 +9,21 @@ import {
 } from 'lucide-react';
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
 import Step1BusinessInfo from '@/components/contractor/onboarding/Step1BusinessInfo';
-import Step2ContactDetails from '@/components/contractor/onboarding/Step2ContactDetails';
-import Step3Insurance from '@/components/contractor/onboarding/Step3Insurance';
-import Step4Qualifications from '@/components/contractor/onboarding/Step4Qualifications';
-import Step5ServiceCoverage from '@/components/contractor/onboarding/Step5ServiceCoverage';
-import Step6GeographicCoverage from '@/components/contractor/onboarding/Step6GeographicCoverage';
-import Step7BackgroundChecks from '@/components/contractor/onboarding/Step7BackgroundChecks';
+import Step2InsuranceLicensing from '@/components/contractor/onboarding/Step2InsuranceLicensing';
+import Step3ExperienceReferences from '@/components/contractor/onboarding/Step3ExperienceReferences';
+import Step4EquipmentResources from '@/components/contractor/onboarding/Step4EquipmentResources';
+import Step5HealthSafety from '@/components/contractor/onboarding/Step5HealthSafety';
+import Step6BankingPayment from '@/components/contractor/onboarding/Step6BankingPayment';
+import Step7ReviewSubmit from '@/components/contractor/onboarding/Step7ReviewSubmit';
 
 const ONBOARDING_STEPS = [
   { id: 1, name: 'Business Information', icon: Building2, description: 'Company details & ABN' },
-  { id: 2, name: 'Contact Details', icon: FileText, description: 'Primary contact & address' },
-  { id: 3, name: 'Insurance & Compliance', icon: Shield, description: 'Certificates & licenses' },
-  { id: 4, name: 'Qualifications', icon: Award, description: 'Certifications & memberships' },
-  { id: 5, name: 'Service Coverage', icon: Building2, description: 'Property types & disasters' },
-  { id: 6, name: 'Geographic Coverage', icon: MapPin, description: 'Service areas & radius' },
-  { id: 7, name: 'Background Checks', icon: UserCheck, description: 'Security verification' }
+  { id: 2, name: 'Insurance & Licensing', icon: Shield, description: 'Certificates & licenses' },
+  { id: 3, name: 'Experience & References', icon: Award, description: 'Work history & references' },
+  { id: 4, name: 'Equipment & Resources', icon: FileText, description: 'Tools & team capacity' },
+  { id: 5, name: 'Health & Safety', icon: Shield, description: 'WHS compliance & procedures' },
+  { id: 6, name: 'Banking & Payment', icon: MapPin, description: 'Financial details & terms' },
+  { id: 7, name: 'Review & Submit', icon: CheckCircle, description: 'Final review & payment' }
 ];
 
 export default function ContractorApplicationPage() {
@@ -124,21 +124,30 @@ export default function ContractorApplicationPage() {
   };
 
   const renderStepContent = () => {
+    const handleStepNext = (data: any) => {
+      updateStepData(data);
+      handleNext();
+    };
+    
+    const handleStepPrevious = () => {
+      handlePrevious();
+    };
+    
     switch (currentStep) {
       case 1:
-        return <Step1BusinessInfo data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step1BusinessInfo onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.businessInfo} />;
       case 2:
-        return <Step2ContactDetails data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step2InsuranceLicensing onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.insurance} />;
       case 3:
-        return <Step3Insurance data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step3ExperienceReferences onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.experience} />;
       case 4:
-        return <Step4Qualifications data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step4EquipmentResources onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.equipment} />;
       case 5:
-        return <Step5ServiceCoverage data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step5HealthSafety onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.healthSafety} />;
       case 6:
-        return <Step6GeographicCoverage data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step6BankingPayment onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.banking} />;
       case 7:
-        return <Step7BackgroundChecks data={onboardingData} updateData={updateStepData} errors={validationErrors} />;
+        return <Step7ReviewSubmit onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.review} applicationData={onboardingData} />;
       default:
         return null;
     }

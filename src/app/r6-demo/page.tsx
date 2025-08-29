@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import '@/styles/r6-premium-design.css';
 import { 
   Shield, 
   Phone, 

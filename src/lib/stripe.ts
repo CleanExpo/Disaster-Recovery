@@ -1,13 +1,15 @@
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set in environment variables');
-}
+// Only initialize Stripe if the secret key is available
+export const stripe = process.env.STRIPE_SECRET_KEY 
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: '2024-11-20.acacia',
+      typescript: true,
+    })
+  : null;
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-11-20.acacia',
-  typescript: true,
-});
+// Helper function to check if Stripe is configured
+export const isStripeConfigured = () => !!process.env.STRIPE_SECRET_KEY;
 
 // Stripe Price IDs for different payment types
 export const STRIPE_PRICES = {
@@ -40,6 +42,10 @@ export async function createStripeCustomer(
   contractorId: string,
   metadata?: Record<string, string>
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
+  
   const customer = await stripe.customers.create({
     email,
     name,
@@ -182,6 +188,10 @@ export async function createOnboardingCheckoutSession(
   successUrl: string,
   cancelUrl: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
+  
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',

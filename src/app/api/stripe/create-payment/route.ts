@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createOnboardingCheckoutSession, createStripeCustomer } from '@/lib/stripe';
+import { createOnboardingCheckoutSession, createStripeCustomer, isStripeConfigured } from '@/lib/stripe';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if Stripe is configured
+    if (!isStripeConfigured()) {
+      return NextResponse.json(
+        { error: 'Payment processing is not configured. Please contact support.' },
+        { status: 503 }
+      );
+    }
     const { contractorId, email, name } = await req.json();
 
     if (!contractorId || !email || !name) {

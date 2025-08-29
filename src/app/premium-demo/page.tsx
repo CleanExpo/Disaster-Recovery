@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PremiumSupportTickets } from '@/components/contractor/dashboard/sections/PremiumSupportTickets';
-import { PremiumButton } from '@/components/ui/premium-button';
+import { Button } from '@/components/ui/button';
 import { 
   Phone, 
   ArrowRight, 
@@ -50,16 +50,16 @@ export default function PremiumDemoPage() {
               </div>
               
               <div className="flex items-center gap-3">
-                <PremiumButton variant="ghost" size="icon">
+                <Button variant="ghost" size="icon">
                   <Search className="w-5 h-5" />
-                </PremiumButton>
-                <PremiumButton variant="ghost" size="icon">
+                </Button>
+                <Button variant="ghost" size="icon">
                   <Bell className="w-5 h-5" />
-                </PremiumButton>
-                <PremiumButton variant="glass" size="sm">
+                </Button>
+                <Button variant="glass" size="sm">
                   <User className="w-4 h-4" />
                   <span>Profile</span>
-                </PremiumButton>
+                </Button>
               </div>
             </div>
           </div>
@@ -89,25 +89,25 @@ export default function PremiumDemoPage() {
             
             {/* Premium Button Showcase */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <PremiumButton variant="premium" size="lg" glow>
+              <Button variant="premium" size="lg" glow>
                 <Zap className="w-5 h-5" />
                 Premium Button
-              </PremiumButton>
+              </Button>
               
-              <PremiumButton variant="glow" size="lg">
+              <Button variant="glow" size="lg">
                 <Star className="w-5 h-5" />
                 Glow Effect
-              </PremiumButton>
+              </Button>
               
-              <PremiumButton variant="glass" size="lg">
+              <Button variant="glass" size="lg">
                 <Shield className="w-5 h-5" />
                 Glass Morphism
-              </PremiumButton>
+              </Button>
               
-              <PremiumButton variant="danger" size="lg">
+              <Button variant="danger" size="lg">
                 <Phone className="w-5 h-5" />
                 Emergency
-              </PremiumButton>
+              </Button>
             </div>
           </div>
         </div>
@@ -123,104 +123,104 @@ export default function PremiumDemoPage() {
           {/* Default Variants */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Default Variants</h3>
-            <PremiumButton variant="default" className="w-full">
+            <Button variant="default" className="w-full">
               Default Gradient
-            </PremiumButton>
-            <PremiumButton variant="premium" className="w-full">
+            </Button>
+            <Button variant="premium" className="w-full">
               Premium Rainbow
-            </PremiumButton>
-            <PremiumButton variant="success" className="w-full">
+            </Button>
+            <Button variant="success" className="w-full">
               Success Green
-            </PremiumButton>
-            <PremiumButton variant="danger" className="w-full">
+            </Button>
+            <Button variant="danger" className="w-full">
               Danger Red
-            </PremiumButton>
+            </Button>
           </div>
           
           {/* Glass & Effects */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Glass & Effects</h3>
-            <PremiumButton variant="glass" className="w-full">
+            <Button variant="glass" className="w-full">
               Glass Morphism
-            </PremiumButton>
-            <PremiumButton variant="glow" className="w-full">
+            </Button>
+            <Button variant="glow" className="w-full">
               Glow Shadow
-            </PremiumButton>
-            <PremiumButton variant="outline" className="w-full">
+            </Button>
+            <Button variant="outline" className="w-full">
               Premium Outline
-            </PremiumButton>
-            <PremiumButton variant="ghost" className="w-full">
+            </Button>
+            <Button variant="ghost" className="w-full">
               Ghost Hover
-            </PremiumButton>
+            </Button>
           </div>
           
           {/* Animated Variants */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Animations</h3>
-            <PremiumButton variant="premium" animate="shimmer" className="w-full">
+            <Button variant="premium" animate="shimmer" className="w-full">
               Shimmer Effect
-            </PremiumButton>
-            <PremiumButton variant="glow" animate="pulse" className="w-full">
+            </Button>
+            <Button variant="glow" animate="pulse" className="w-full">
               Pulse Animation
-            </PremiumButton>
-            <PremiumButton variant="success" gradient="forest" className="w-full">
+            </Button>
+            <Button variant="success" gradient="forest" className="w-full">
               Gradient Animation
-            </PremiumButton>
-            <PremiumButton variant="danger" loading className="w-full">
+            </Button>
+            <Button variant="danger" loading className="w-full">
               Loading State
-            </PremiumButton>
+            </Button>
           </div>
           
           {/* Sizes */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Button Sizes</h3>
-            <PremiumButton size="xs" variant="premium">Extra Small</PremiumButton>
-            <PremiumButton size="sm" variant="premium">Small</PremiumButton>
-            <PremiumButton size="default" variant="premium">Default</PremiumButton>
-            <PremiumButton size="lg" variant="premium">Large</PremiumButton>
-            <PremiumButton size="xl" variant="premium" className="w-full">Extra Large</PremiumButton>
+            <Button size="xs" variant="premium">Extra Small</Button>
+            <Button size="sm" variant="premium">Small</Button>
+            <Button size="default" variant="premium">Default</Button>
+            <Button size="lg" variant="premium">Large</Button>
+            <Button size="xl" variant="premium" className="w-full">Extra Large</Button>
           </div>
           
           {/* Icon Buttons */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Icon Buttons</h3>
             <div className="flex flex-wrap gap-3">
-              <PremiumButton size="icon" variant="default">
+              <Button size="icon" variant="default">
                 <Home className="w-5 h-5" />
-              </PremiumButton>
-              <PremiumButton size="icon" variant="premium">
+              </Button>
+              <Button size="icon" variant="premium">
                 <Star className="w-5 h-5" />
-              </PremiumButton>
-              <PremiumButton size="icon" variant="glass">
+              </Button>
+              <Button size="icon" variant="glass">
                 <Settings className="w-5 h-5" />
-              </PremiumButton>
-              <PremiumButton size="icon" variant="glow">
+              </Button>
+              <Button size="icon" variant="glow">
                 <Heart className="w-5 h-5" />
-              </PremiumButton>
-              <PremiumButton size="icon" variant="success">
+              </Button>
+              <Button size="icon" variant="success">
                 <Upload className="w-5 h-5" />
-              </PremiumButton>
-              <PremiumButton size="icon" variant="danger">
+              </Button>
+              <Button size="icon" variant="danger">
                 <Download className="w-5 h-5" />
-              </PremiumButton>
+              </Button>
             </div>
           </div>
           
           {/* Gradient Animations */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Gradient Animations</h3>
-            <PremiumButton gradient="rainbow" className="w-full text-white">
+            <Button gradient="rainbow" className="w-full text-white">
               Rainbow Gradient
-            </PremiumButton>
-            <PremiumButton gradient="ocean" className="w-full text-white">
+            </Button>
+            <Button gradient="ocean" className="w-full text-white">
               Ocean Gradient
-            </PremiumButton>
-            <PremiumButton gradient="sunset" className="w-full text-white">
+            </Button>
+            <Button gradient="sunset" className="w-full text-white">
               Sunset Gradient
-            </PremiumButton>
-            <PremiumButton gradient="forest" className="w-full text-white">
+            </Button>
+            <Button gradient="forest" className="w-full text-white">
               Forest Gradient
-            </PremiumButton>
+            </Button>
           </div>
         </div>
       </section>
@@ -294,13 +294,13 @@ export default function PremiumDemoPage() {
               Real components with real effects - not just flat shadcn cards
             </p>
             <div className="flex justify-center gap-4">
-              <PremiumButton variant="glass" size="lg">
+              <Button variant="glass" size="lg">
                 Deploy This Design
-              </PremiumButton>
-              <PremiumButton variant="premium" size="lg" glow>
+              </Button>
+              <Button variant="premium" size="lg" glow>
                 <Send className="w-5 h-5" />
                 Contact Support
-              </PremiumButton>
+              </Button>
             </div>
           </div>
         </div>

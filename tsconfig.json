@@ -40,19 +40,27 @@
         "./src/types/*"
       ]
     },
-    "noImplicitAny": false, // Keep disabled - adds 3000+ errors
-    "strictNullChecks": false, // Keep disabled for now
-    "strictFunctionTypes": false, // Keep disabled for now
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false,
-    "noImplicitThis": false,
-    "alwaysStrict": false,
-    "noUnusedLocals": false, // Keep disabled - adds many errors
-    "noUnusedParameters": false, // Keep disabled for now
-    "noImplicitReturns": true, // Enable: Functions must return values
-    "noFallthroughCasesInSwitch": true, // Enable: Switch case safety
-    "allowUnreachableCode": true,
-    "allowUnusedLabels": true
+    // Strict mode flags - enabling gradually
+    "noImplicitAny": false, // Phase 3: Enable after fixing existing issues
+    "strictNullChecks": false, // Phase 2: Enable after noImplicitThis
+    "strictFunctionTypes": true, // Phase 1: ENABLED - Ensures function parameters are checked
+    "strictBindCallApply": true, // Phase 1: ENABLED - Type checks for bind, call, apply
+    "strictPropertyInitialization": false, // Phase 3: Requires strictNullChecks first
+    "noImplicitThis": true, // Phase 1: ENABLED - Requires explicit this typing
+    "alwaysStrict": true, // Phase 1: ENABLED - Ensures "use strict" in all files
+    
+    // Additional type checking flags
+    "noUnusedLocals": false, // Phase 4: Enable after main strict flags
+    "noUnusedParameters": false, // Phase 4: Enable after main strict flags
+    "noImplicitReturns": true, // ENABLED: Functions must return values
+    "noFallthroughCasesInSwitch": true, // ENABLED: Switch case safety
+    "allowUnreachableCode": false, // Phase 1: ENABLED - Errors on unreachable code
+    "allowUnusedLabels": false, // Phase 1: ENABLED - Errors on unused labels
+    
+    // New helpful flags for gradual migration
+    "noUncheckedIndexedAccess": false, // Phase 3: Adds undefined to index signatures
+    "exactOptionalPropertyTypes": false, // Phase 4: Stricter optional property handling
+    "noPropertyAccessFromIndexSignature": false // Phase 4: Requires bracket notation for index signatures
   },
   "include": [
     "next-env.d.ts",

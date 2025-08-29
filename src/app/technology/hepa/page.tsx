@@ -170,16 +170,6 @@ export default function HEPAFiltrationPage() {
           </div>
         </div>
 
-        <style jsx>{`
-          @keyframes float {
-            from {
-              transform: translateY(100vh) translateX(0);
-            }
-            to {
-              transform: translateY(-100vh) translateX(100px);
-            }
-          }
-        `}</style>
       </section>
 
       {/* Features Section */}

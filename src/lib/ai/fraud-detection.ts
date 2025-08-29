@@ -3,10 +3,12 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Initialize OpenAI client only if API key is available
+const openai = process.env.OPENAI_API_KEY 
+  ? new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  : null;
 
 export interface FraudDetectionResult {
   isAuthentic: boolean;
@@ -148,6 +150,15 @@ class FraudDetectionService {
   }
 
   private async analyzeContent(input: DocumentAnalysisInput) {
+    // Return mock response if OpenAI is not configured
+    if (!openai) {
+      return {
+        analysis: 'AI analysis unavailable - manual review required',
+        riskScore: 50,
+        flags: ['OpenAI API not configured']
+      };
+    }
+
     const prompt = `Analyze this ${input.documentType} document for authenticity and fraud indicators:
 
 Document Content:
