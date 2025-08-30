@@ -185,11 +185,11 @@ export default function UltraModernHeader() {
         />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-centre">
+          <div className="flex justify-between items-center">
             {/* Logo */}
             <Link 
               href="/" 
-              className="group relative flex items-centre gap-3"
+              className="group relative flex items-center gap-3"
             >
               {/* Use actual logo image */}
               <div className="relative" style={{
@@ -214,9 +214,9 @@ export default function UltraModernHeader() {
                 {/* Fallback text logo */}
                 <div 
                   id="logo-fallback"
-                  className="hidden items-centre gap-3"
+                  className="hidden items-center gap-3"
                 >
-                  <div className="relative w-10 h-10 rounded-lg flex items-centre justify-centre bg-gradient-to-br from-teal-600 to-teal-700">
+                  <div className="relative w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
                     <span className="text-white font-bold text-xl">DR</span>
                   </div>
                   <div className="flex flex-col">
@@ -232,7 +232,7 @@ export default function UltraModernHeader() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-centre gap-2">
+            <nav className="hidden md:flex items-center gap-2">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -289,7 +289,7 @@ export default function UltraModernHeader() {
                             key={subItem.label}
                             href={subItem.href}
                             role="menuitem"
-                            className="relative flex items-centre gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
+                            className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
                             style={{
                               borderBottom: idx < item.dropdown!.length - 1 
                                 ? '1px solid rgba(255, 255, 255, 0.05)' 
@@ -298,7 +298,7 @@ export default function UltraModernHeader() {
                           >
                             {/* Icon */}
                             <div 
-                              className="w-10 h-10 rounded-lg flex items-centre justify-centre text-xl"
+                              className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
                               style={{
                                 background: 'rgba(99, 91, 255, 0.1)',
                               }}
@@ -407,7 +407,7 @@ export default function UltraModernHeader() {
                       <Link
                         key={subItem.label}
                         href={subItem.href}
-                        className="flex items-centre gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colours"
+                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <span>{subItem.icon}</span>
