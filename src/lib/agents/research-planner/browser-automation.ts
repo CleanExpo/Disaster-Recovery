@@ -4,20 +4,20 @@ import type { ResearchTask, BrowserTestCase } from './types';
 export class BrowserAutomationAgent extends EventEmitter {
   private testPatterns: Map<string, BrowserTestCase>;
   private browserConfig: any;
-  private mcpServerConfig: any;
+  private playwrightConfig: any;
 
   constructor() {
     super();
     this.testPatterns = new Map();
     this.browserConfig = {};
-    this.mcpServerConfig = {};
+    this.playwrightConfig = {};
     this.initializeAutomation();
   }
 
   private initializeAutomation() {
     this.loadTestPatterns();
     this.configureBrowser();
-    this.configureMCPServer();
+    this.configurePlaywright();
   }
 
   private loadTestPatterns() {
@@ -110,41 +110,26 @@ export class BrowserAutomationAgent extends EventEmitter {
     };
   }
 
-  private configureMCPServer() {
-    // Browserbase MCP configuration
-    this.mcpServerConfig = {
-      browserbase: {
-        apiKey: process.env.BROWSERBASE_API_KEY,
-        projectId: process.env.BROWSERBASE_PROJECT_ID,
-        endpoint: 'wss://browserbase.com/connect',
-        options: {
-          recordVideo: true,
-          enableDebugger: true,
-          blockAds: true,
-          sessionTimeout: 300000
-        }
+  private configurePlaywright() {
+    // Native Playwright configuration (no external services)
+    this.playwrightConfig = {
+      browsers: ['chromium', 'firefox', 'webkit'],
+      launchOptions: this.browserConfig,
+      contextOptions: {
+        viewport: { width: 1280, height: 720 },
+        ignoreHTTPSErrors: true,
+        recordVideo: process.env.RECORD_VIDEO === 'true' ? {
+          dir: './test-results/videos',
+          size: { width: 1280, height: 720 }
+        } : undefined,
+        recordHar: process.env.RECORD_HAR === 'true' ? {
+          path: './test-results/har'
+        } : undefined
       },
-      stagehand: {
-        modelName: 'gpt-4-vision-preview',
-        enableVisualDebugging: true,
-        actOptions: {
-          screenshot: true,
-          waitForSettled: true,
-          maxRetries: 3
-        }
-      },
-      playwright: {
-        browsers: ['chromium', 'firefox', 'webkit'],
-        launchOptions: this.browserConfig,
-        contextOptions: {
-          recordVideo: {
-            dir: './test-results/videos',
-            size: { width: 1280, height: 720 }
-          },
-          recordHar: {
-            path: './test-results/har'
-          }
-        }
+      automation: {
+        waitForSelector: { timeout: 30000 },
+        waitForNavigation: { waitUntil: 'networkidle' },
+        screenshot: { fullPage: false, type: 'png' }
       }
     };
   }
@@ -347,19 +332,19 @@ export class BrowserAutomationAgent extends EventEmitter {
   private generateAutomationScripts(testCases: any[]): any {
     const scripts = {
       playwright: [],
-      browserbase: [],
-      stagehand: []
+      puppeteer: [],
+      selenium: []
     } as any;
 
     for (const testCase of testCases) {
-      // Generate Playwright script
+      // Generate Playwright script (primary)
       scripts.playwright.push(this.generatePlaywrightScript(testCase));
       
-      // Generate Browserbase script
-      scripts.browserbase.push(this.generateBrowserbaseScript(testCase));
+      // Generate Puppeteer script (alternative)
+      scripts.puppeteer.push(this.generatePuppeteerScript(testCase));
       
-      // Generate Stagehand script
-      scripts.stagehand.push(this.generateStagehandScript(testCase));
+      // Generate Selenium script (fallback)
+      scripts.selenium.push(this.generateSeleniumScript(testCase));
     }
 
     return scripts;
@@ -395,13 +380,17 @@ export class BrowserAutomationAgent extends EventEmitter {
     return script;
   }
 
-  private generateBrowserbaseScript(testCase: any): string {
-    return `// Browserbase MCP Script
-const session = await browserbase.createSession({
-  projectId: '${this.mcpServerConfig.browserbase.projectId}'
+  private generatePuppeteerScript(testCase: any): string {
+    return `// Puppeteer Script
+const puppeteer = require('puppeteer');
+
+const browser = await puppeteer.launch({
+  headless: false,
+  args: ['--no-sandbox']
 });
 
-const page = await session.newPage();
+const page = await browser.newPage();
+await page.setViewport({ width: 1280, height: 720 });
 
 ${testCase.steps.map(step => {
   switch (step.action) {
@@ -416,35 +405,33 @@ ${testCase.steps.map(step => {
   }
 }).join('\n')}
 
-await session.close();`;
+await browser.close();`;
   }
 
-  private generateStagehandScript(testCase: any): string {
-    return `// Stagehand Script
-import { Stagehand } from '@browserbaseinc/stagehand';
+  private generateSeleniumScript(testCase: any): string {
+    return `// Selenium WebDriver Script
+const { Builder, By, until } = require('selenium-webdriver');
 
-const stagehand = new Stagehand({
-  env: 'BROWSERBASE',
-  modelName: '${this.mcpServerConfig.stagehand.modelName}'
-});
+const driver = await new Builder()
+  .forBrowser('chrome')
+  .build();
 
-await stagehand.init();
-const page = stagehand.page;
-
+try {
 ${testCase.steps.map(step => {
   switch (step.action) {
     case 'navigate':
-      return `await page.goto('${step.value}');`;
+      return `  await driver.get('${step.value}');`;
     case 'click':
-      return `await stagehand.act({ action: 'click', selector: '${step.selector}' });`;
+      return `  await driver.findElement(By.css('${step.selector}')).click();`;
     case 'fill':
-      return `await stagehand.act({ action: 'fill', selector: '${step.selector}', value: '${step.value}' });`;
+      return `  await driver.findElement(By.css('${step.selector}')).sendKeys('${step.value}');`;
     default:
-      return `// ${step.action}`;
+      return `  // ${step.action}`;
   }
 }).join('\n')}
-
-await stagehand.close();`;
+} finally {
+  await driver.quit();
+}`;
   }
 
   private analyzePerformanceRequirements(task: ResearchTask): any {
@@ -525,7 +512,7 @@ await stagehand.close();`;
     return this.browserConfig;
   }
 
-  public getMCPConfig(): any {
-    return this.mcpServerConfig;
+  public getPlaywrightConfig(): any {
+    return this.playwrightConfig;
   }
 }
