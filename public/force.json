@@ -1,0 +1,11 @@
+{
+  "deploymentVersion": "2025-01-30-FORCE-DEPLOY-001",
+  "timestamp": "2025-01-30T12:00:00Z",
+  "forceRebuild": true,
+  "clearCache": true,
+  "files": [
+    "src/app/page.tsx",
+    "src/components/UltraModernHeader.tsx",
+    "src/components/demo/DemoModeBanner.tsx"
+  ]
+}

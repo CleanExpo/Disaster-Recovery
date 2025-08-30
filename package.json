@@ -1,6 +1,6 @@
 {
   "name": "mass-webpage-creations",
-  "version": "1.0.0",
+  "version": "1.0.1-force-deploy",
   "description": "Modern SaaS starter for local/trades agencies. Built for SMBs, ready for local dev, and scalable as you grow.",
   "private": true,
   "scripts": {

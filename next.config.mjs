@@ -3,6 +3,11 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   
+  // FORCE DEPLOYMENT - CACHE CLEAR
+  generateBuildId: async () => {
+    return 'build-2025-01-30-FORCE-DEPLOY-001'
+  },
+  
   // Disable type checking during build
   typescript: {
     ignoreBuildErrors: true,
@@ -19,6 +24,10 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
+          },
           {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
