@@ -39,7 +39,7 @@ export default function ComingSoonPage() {
 
               {/* Main Heading */}
               <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-normal">
-                Australia's Disaster Recovery
+                DEPLOYMENT TEST {new Date().toLocaleTimeString()}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 pb-2">
                   Network Is Coming
                 </span>
