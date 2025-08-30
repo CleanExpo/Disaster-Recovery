@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -30,7 +30,7 @@ const ONBOARDING_STEPS = [
   { id: 7, name: 'Review & Submit', icon: CheckCircle, description: 'Final review & payment' }
 ];
 
-export default function ContractorApplicationPage() {
+function ContractorApplicationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
@@ -366,5 +366,13 @@ export default function ContractorApplicationPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ContractorApplicationPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+      <ContractorApplicationContent />
+    </Suspense>
   );
 }

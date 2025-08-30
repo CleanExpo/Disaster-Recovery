@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Shield, Home, Phone, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send } from 'lucide-react';
 import { DEMO_DATA, simulateTyping } from '@/lib/demo-mode';
 
-export default function ClaimStartPage() {
+function ClaimStartContent() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
@@ -384,5 +384,13 @@ export default function ClaimStartPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function ClaimStartPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center"><div className="text-gray-600">Loading...</div></div>}>
+      <ClaimStartContent />
+    </Suspense>
   );
 }
