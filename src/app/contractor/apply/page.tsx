@@ -126,30 +126,21 @@ export default function ContractorApplicationPage() {
   };
 
   const renderStepContent = () => {
-    const handleStepNext = (data: any) => {
-      updateStepData(data);
-      handleNext();
-    };
-    
-    const handleStepPrevious = () => {
-      handlePrevious();
-    };
-    
     switch (currentStep) {
       case 1:
-        return <Step1BusinessInfo onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.businessInfo || {}} />;
+        return <Step1BusinessInfo data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 2:
-        return <Step2InsuranceLicensing onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.insurance || {}} />;
+        return <Step2InsuranceLicensing data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 3:
-        return <Step3ExperienceReferences onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.experience || {}} />;
+        return <Step3ExperienceReferences data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 4:
-        return <Step4EquipmentResources onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.equipment || {}} />;
+        return <Step4EquipmentResources data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 5:
-        return <Step5HealthSafety onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.healthSafety || {}} />;
+        return <Step5HealthSafety data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 6:
-        return <Step6BankingPayment onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.banking || {}} />;
+        return <Step6BankingPayment data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 7:
-        return <Step7ReviewSubmit onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.review} applicationData={onboardingData} />;
+        return <Step7ReviewSubmit data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       default:
         return null;
     }

@@ -207,17 +207,7 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
 }
 
 // SECURITY: Apply comprehensive security middleware
-export const POST = combineMiddleware(
+export const POST = withValidation(
   handleCreatePayment,
-  withSecurityHeaders,
-  withCors({ 
-    origin: process.env.NEXT_PUBLIC_APP_URL,
-    methods: ['POST'],
-    credentials: true
-  }),
-  withRateLimit({ 
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5 // Only 5 payment attempts per 15 minutes per IP
-  }),
-  withValidation(createPaymentSchema)
+  createPaymentSchema
 );
