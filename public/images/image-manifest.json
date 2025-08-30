@@ -1,14 +1,6 @@
 {
   "downloadedImages": [
     {
-      "category": "logos",
-      "filename": "disaster-recovery-qld-logo.png",
-      "originalUrl": "https://disasterrecov1.wpengine.com/wp-content/uploads/disaster_recovery_QLD_logo-002-300x259-1.png",
-      "description": "Main Disaster Recovery QLD company logo",
-      "dimensions": "300x259",
-      "localPath": "public/images/logos/disaster-recovery-qld-logo.png"
-    },
-    {
       "category": "heroes",
       "filename": "disaster-recovery-hero.webp",
       "originalUrl": "https://disasterrecovery.com.au/wp-content/uploads/Disaster-Recovery-Qld-1st-Page-Image.webp",

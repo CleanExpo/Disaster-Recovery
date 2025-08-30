@@ -382,7 +382,7 @@ const Header: React.FC = () => {
             >
               <div className="flex-shrink-0">
                 <img
-                  src="/images/logos/disaster-recovery-qld-logo.png"
+                  src="/images/logos/disaster-recovery-logo.png"
                   alt={`${BUSINESS_NAME} Logo`}
                   className="h-10 w-auto"
                   width="40"
