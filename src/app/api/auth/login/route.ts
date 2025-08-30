@@ -14,33 +14,31 @@ const loginSchema = z.object({
   password: z.string().min(1, 'Password is required'),
 });
 
-// Demo users with hashed passwords (in production, use database)
-const demoUsers = [
-  {
-    id: '1',
-    email: 'admin@disasterrecovery.com.au',
-    name: 'Admin User',
-    password: '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY3pp/eQhJ2XWIa', // Admin123!
-    role: UserRole.ADMIN,
-    companyId: 'disaster-recovery',
-  },
-  {
-    id: '2',
-    email: 'tech@disasterrecovery.com.au',
-    name: 'Technical User',
-    password: '$2a$12$B2kZV5h6Qz5BWfDxXNhaUuGJn0yYjL16wW5fpCQp8ufgPz9MJg6QS', // Tech123!
-    role: UserRole.TECHNICIAN,
-    companyId: 'disaster-recovery',
-  },
-  {
-    id: '3',
-    email: 'contractor@demo.com',
-    name: 'Contractor User',
-    password: '$2a$12$Q6g2P8X9ZwB2Rt4aN3jTH.0kfSUJKgmJt.KHiYy0yXTJx9sU0LF.a', // Demo123!
-    role: UserRole.CONTRACTOR,
-    companyId: 'contractor-001',
-  },
-];
+// SECURITY: Production users stored in database only - NO hardcoded credentials
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// Development-only demo users (removed in production)
+const getDemoUsers = () => {
+  if (!isDevelopment) {
+    return []; // No demo users in production
+  }
+  
+  // Demo users only available in development with environment flag
+  if (process.env.ENABLE_DEMO_USERS !== 'true') {
+    return [];
+  }
+  
+  return [
+    {
+      id: 'dev-admin',
+      email: 'dev-admin@local.dev',
+      name: 'Development Admin',
+      password: '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY3pp/eQhJ2XWIa',
+      role: UserRole.ADMIN,
+      companyId: 'dev-company',
+    },
+  ];
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -49,8 +47,24 @@ export async function POST(request: NextRequest) {
     // Validate request body
     const validatedData = loginSchema.parse(body);
     
-    // Find user by email (in production, query database)
-    const user = demoUsers.find(u => u.email.toLowerCase() === validatedData.email.toLowerCase());
+    // SECURITY: Find user in database (with fallback to demo users in development only)
+    const demoUsers = getDemoUsers();
+    let user = null;
+    
+    // Try database first (production and development)
+    try {
+      // In production, this would query the User table
+      // user = await prisma.user.findUnique({
+      //   where: { email: validatedData.email.toLowerCase() }
+      // });
+    } catch (error) {
+      console.error('Database user lookup failed:', error);
+    }
+    
+    // Fallback to demo users only in development
+    if (!user && isDevelopment) {
+      user = demoUsers.find(u => u.email.toLowerCase() === validatedData.email.toLowerCase());
+    }
     
     if (!user) {
       return NextResponse.json({

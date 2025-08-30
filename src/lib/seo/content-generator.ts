@@ -483,3 +483,29 @@ export function generateSchemaMarkup(
     ]
   };
 }
+
+// Main function to generate complete SEO content
+export async function generateSEOContent(
+  location: LocationData,
+  service: typeof SERVICE_TYPES[0],
+  propertyType: typeof PROPERTY_TYPES[0],
+  businessType?: string
+): Promise<SEOPageContent> {
+  const slug = generateSlug(location, service, propertyType, businessType);
+  const title = generateTitle(location, service, propertyType, businessType);
+  const metaDescription = generateMetaDescription(location, service, propertyType, businessType);
+  const h1Title = generateH1(location, service, propertyType, businessType);
+  const content = generateContent(location, service, propertyType, businessType);
+  const schemaMarkup = generateSchemaMarkup(location, service, propertyType, businessType);
+  const canonicalUrl = `https://nrpaus.com.au/${slug}`;
+
+  return {
+    slug,
+    title,
+    metaDescription,
+    h1Title,
+    content,
+    schemaMarkup,
+    canonicalUrl,
+  };
+}

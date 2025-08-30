@@ -2265,7 +2265,7 @@ Example:
 - Atmospheric conditions
 
 Format Example:
-```
+\`\`\`
 Room: Master Bedroom
 Date: 15/03/2024
 Time: 15:45
@@ -2277,7 +2277,7 @@ North: Base-95, 1m-45, 2m-15
 East: Base-85, 1m-35, 2m-10
 South: Base-25, 1m-12, 2m-8
 West: Base-30, 1m-15, 2m-8
-```
+\`\`\`
 
 **Scope of Work Writing:**
 

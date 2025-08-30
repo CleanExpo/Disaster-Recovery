@@ -2,23 +2,52 @@ import { NextRequest, NextResponse } from 'next/server';
 import { stripe, handleStripeWebhook } from '@/lib/stripe';
 import { PrismaClient } from '@prisma/client';
 import Stripe from 'stripe';
+import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
+import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+async function handleWebhook(req: NextRequest) {
   const body = await req.text();
   const signature = req.headers.get('stripe-signature');
+  const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
 
+  // SECURITY: Enhanced signature validation
   if (!signature) {
+    PaymentAuditLogger.logSuspiciousActivity({
+      ipAddress: clientIP,
+      suspiciousFields: ['signature'],
+      riskScore: 80,
+      details: 'Webhook received without Stripe signature'
+    });
+    
     return NextResponse.json(
-      { error: 'No signature provided' },
+      { 
+        success: false,
+        error: 'No signature provided',
+        code: 'WEBHOOK_NO_SIGNATURE'
+      },
       { status: 400 }
+    );
+  }
+
+  // SECURITY: Verify webhook secret is configured
+  if (!process.env.STRIPE_WEBHOOK_SECRET) {
+    console.error('STRIPE_WEBHOOK_SECRET not configured');
+    return NextResponse.json(
+      { 
+        success: false,
+        error: 'Webhook configuration error',
+        code: 'WEBHOOK_CONFIG_ERROR'
+      },
+      { status: 500 }
     );
   }
 
   let event: Stripe.Event;
 
   try {
+    // SECURITY: Strict signature verification with Stripe
     event = stripe.webhooks.constructEvent(
       body,
       signature,
@@ -26,8 +55,20 @@ export async function POST(req: NextRequest) {
     );
   } catch (error) {
     console.error('Webhook signature verification failed:', error);
+    
+    PaymentAuditLogger.logSuspiciousActivity({
+      ipAddress: clientIP,
+      suspiciousFields: ['signature'],
+      riskScore: 90,
+      details: `Webhook signature verification failed: ${error instanceof Error ? error.message : 'Unknown error'}`
+    });
+    
     return NextResponse.json(
-      { error: 'Invalid signature' },
+      { 
+        success: false,
+        error: 'Invalid signature',
+        code: 'WEBHOOK_INVALID_SIGNATURE'
+      },
       { status: 400 }
     );
   }
@@ -39,6 +80,45 @@ export async function POST(req: NextRequest) {
         
         if (session.metadata?.type === 'onboarding' && session.metadata?.contractorId) {
           const contractorId = session.metadata.contractorId;
+          
+          // SECURITY: Validate payment metadata
+          const metadataValidation = PaymentValidator.verifyPaymentMetadata(session.metadata);
+          if (!metadataValidation.isValid) {
+            PaymentAuditLogger.logSuspiciousActivity({
+              contractorId,
+              ipAddress: clientIP,
+              suspiciousFields: ['metadata'],
+              riskScore: 70,
+              details: `Invalid payment metadata: ${metadataValidation.reason}`
+            });
+            
+            // Continue processing but flag for review
+            console.warn(`Webhook metadata validation failed for ${contractorId}: ${metadataValidation.reason}`);
+          }
+          
+          // SECURITY: Validate payment amount matches expected
+          const expectedPayment = PaymentValidator.calculateOnboardingAmount();
+          const actualAmount = session.amount_total || 0;
+          
+          if (actualAmount !== expectedPayment.amount) {
+            PaymentAuditLogger.logSuspiciousActivity({
+              contractorId,
+              ipAddress: clientIP,
+              suspiciousFields: ['amount'],
+              riskScore: 95,
+              details: `Payment amount mismatch: expected ${expectedPayment.amount}, received ${actualAmount}`
+            });
+            
+            // Don't process suspicious payments
+            return NextResponse.json(
+              { 
+                success: false,
+                error: 'Payment amount validation failed',
+                code: 'WEBHOOK_AMOUNT_MISMATCH'
+              },
+              { status: 400 }
+            );
+          }
           
           // Update payment record
           await prisma.onboardingPayment.update({
@@ -238,13 +318,53 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ received: true });
+    // SECURITY: Log successful webhook processing
+    PaymentAuditLogger.logPaymentAttempt({
+      contractorId: event.data.object?.metadata?.contractorId || 'unknown',
+      amount: event.data.object?.amount_total || 0,
+      paymentType: 'WEBHOOK_PROCESSING',
+      ipAddress: clientIP,
+      result: 'SUCCESS',
+      reason: `Successfully processed ${event.type} webhook`
+    });
+
+    return NextResponse.json({ 
+      success: true,
+      received: true,
+      eventType: event.type
+    });
 
   } catch (error) {
     console.error('Error processing webhook:', error);
+    
+    PaymentAuditLogger.logSuspiciousActivity({
+      ipAddress: clientIP,
+      suspiciousFields: ['webhook_processing'],
+      riskScore: 60,
+      details: `Webhook processing error: ${error instanceof Error ? error.message : 'Unknown error'}`
+    });
+    
     return NextResponse.json(
-      { error: 'Webhook processing failed' },
+      { 
+        success: false,
+        error: 'Webhook processing failed',
+        code: 'WEBHOOK_PROCESSING_ERROR'
+      },
       { status: 500 }
     );
   }
 }
+
+// SECURITY: Apply security middleware to webhook endpoint
+export const POST = withRateLimit(
+  withSecurityHeaders(handleWebhook),
+  {
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    max: 50, // Max 50 webhook calls per 5 minutes per IP (generous for Stripe)
+    keyGenerator: (req: NextRequest) => {
+      // Use IP for rate limiting webhooks
+      const forwarded = req.headers.get('x-forwarded-for');
+      return forwarded ? forwarded.split(',')[0] : req.headers.get('x-real-ip') || 'unknown';
+    }
+  }
+);

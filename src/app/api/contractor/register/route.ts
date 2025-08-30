@@ -2,16 +2,31 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
+import { withSecurityHeaders, withRateLimit, withValidation, combineMiddleware } from '@/lib/auth-middleware';
+import { PaymentAuditLogger } from '@/lib/payment-security';
 
 const prisma = new PrismaClient();
 
-// Validation schema for registration
+// SECURITY: Enhanced validation schema for registration with sanitization
 const registrationSchema = z.object({
-  email: z.string().email(),
-  username: z.string().min(3).max(50),
-  password: z.string().min(12),
-  mobileNumber: z.string(),
-  companyName: z.string().min(2),
+  email: z.string().email('Invalid email format').max(255, 'Email too long'),
+  username: z.string()
+    .min(3, 'Username too short')
+    .max(50, 'Username too long')
+    .regex(/^[a-zA-Z0-9_-]+$/, 'Username contains invalid characters'),
+  password: z.string()
+    .min(12, 'Password must be at least 12 characters')
+    .max(128, 'Password too long')
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, 
+           'Password must contain uppercase, lowercase, number, and special character'),
+  mobileNumber: z.string()
+    .min(10, 'Mobile number too short')
+    .max(15, 'Mobile number too long')
+    .regex(/^[+]?[0-9\s\-()]+$/, 'Invalid mobile number format'),
+  companyName: z.string()
+    .min(2, 'Company name too short')
+    .max(100, 'Company name too long')
+    .regex(/^[a-zA-Z0-9\s&.-]+$/, 'Company name contains invalid characters'),
   acceptedTerms: z.boolean().refine(val => val === true),
   acceptedPrivacy: z.boolean().refine(val => val === true),
   company: z.object({
@@ -102,12 +117,12 @@ const registrationSchema = z.object({
   })
 });
 
-export async function POST(request: NextRequest) {
+async function handleRegistration(request: NextRequest, validatedData: z.infer<typeof registrationSchema>) {
+  const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+  const userAgent = request.headers.get('user-agent') || 'unknown';
   try {
-    const body = await request.json();
-    
-    // Validate the input
-    const validatedData = registrationSchema.parse(body);
+    // SECURITY: Data is already validated by middleware
+    // Additional security checks
     
     // Check if username or email already exists
     const existingContractor = await prisma.contractor.findFirst({
