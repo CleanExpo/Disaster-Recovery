@@ -9,14 +9,17 @@ import {
   Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench,
   Phone, Clock, Award
 } from 'lucide-react';
+import LightningEffect from '@/components/effects/LightningEffect';
 
 // Metadata should be handled in layout.tsx for client components
 
 export default function ComingSoonPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative">
+      {/* Lightning Effect - Background Layer */}
+      <LightningEffect />
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden" style={{ zIndex: 2 }}>
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:50px_50px]" />
         <div className="relative">
           <div className="container mx-auto px-6 py-24">
@@ -88,7 +91,7 @@ export default function ComingSoonPage() {
       </div>
 
       {/* Visual Services Showcase - 3D Images */}
-      <div className="relative py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+      <div className="relative py-20 bg-gradient-to-b from-slate-800 to-slate-900" style={{ zIndex: 2 }}>
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -234,7 +237,7 @@ export default function ComingSoonPage() {
       </div>
 
       {/* Property Coverage Matrix */}
-      <div className="relative py-20 bg-black/30">
+      <div className="relative py-20 bg-black/30" style={{ zIndex: 2 }}>
         <div className="container mx-auto px-6">
           <h3 className="text-3xl font-bold text-white text-center mb-12">
             Complete Property Coverage Matrix
