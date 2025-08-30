@@ -4,29 +4,12 @@ import Link from 'next/link';
 import { 
   Shield, Globe, TrendingUp, Users, Zap, Award, 
   CheckCircle, ArrowRight, ExternalLink, Building,
-  Target, Rocket, BarChart3, HandshakeIcon
+  Target, Rocket, BarChart3, HandshakeIcon, DollarSign, Mail
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Clean Claims Partnership | Strategic US Technology Partner | Disaster Recovery Australia',
-  description: 'Clean Claims partners with Disaster Recovery Australia to bring cutting-edge restoration technology and documentation systems to the Australian market. Strategic investment and technology partnership.',
-  keywords: 'Clean Claims, Lane Larsen, restoration software, disaster recovery partnership, US investment Australia, restoration technology, claims documentation, remote monitoring',
-  openGraph: {
-    title: 'Clean Claims × Disaster Recovery Australia Partnership',
-    description: 'Strategic partnership bringing US restoration technology to Australian disaster recovery market',
-    images: ['/images/logos/3D Clean Claims Logo.png'],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Clean Claims Partners with Disaster Recovery Australia',
-    description: 'Major US restoration technology company invests in Australian market expansion',
-  },
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/partners/clean-claims',
-  },
-};
+// Metadata is now generated dynamically using generateMetadata function below
+// to avoid conflict between static metadata and generateMetadata exports
 
 export default function CleanClaimsPartnershipPage() {
   const partnershipBenefits = [
@@ -549,9 +532,6 @@ export default function CleanClaimsPartnershipPage() {
   );
 }
 
-// Add proper import for Mail icon
-import { Mail } from 'lucide-react';
-
 // Add JSON-LD structured data for SEO
 export const generateMetadata = (): Metadata => {
   const jsonLd = {
@@ -583,7 +563,23 @@ export const generateMetadata = (): Metadata => {
   };
 
   return {
-    ...metadata,
+    title: 'Clean Claims Partnership | Strategic US Technology Partner | Disaster Recovery Australia',
+    description: 'Clean Claims partners with Disaster Recovery Australia to bring cutting-edge restoration technology and documentation systems to the Australian market. Strategic investment and technology partnership.',
+    keywords: 'Clean Claims, Lane Larsen, restoration software, disaster recovery partnership, US investment Australia, restoration technology, claims documentation, remote monitoring',
+    openGraph: {
+      title: 'Clean Claims × Disaster Recovery Australia Partnership',
+      description: 'Strategic partnership bringing US restoration technology to Australian disaster recovery market',
+      images: ['/images/logos/3D Clean Claims Logo.png'],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Clean Claims Partners with Disaster Recovery Australia',
+      description: 'Major US restoration technology company invests in Australian market expansion',
+    },
+    alternates: {
+      canonical: 'https://disasterrecovery.com.au/partners/clean-claims',
+    },
     other: {
       'script:ld+json': JSON.stringify(jsonLd)
     }

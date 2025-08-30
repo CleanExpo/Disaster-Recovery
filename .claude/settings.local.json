@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(powershell:*)",
-      "Read(C:\\Users\\Disaster Recovery 4\\AppData\\Roaming\\Claude/**)"
+      "Read(C:\\Users\\Disaster Recovery 4\\AppData\\Roaming\\Claude/**)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
