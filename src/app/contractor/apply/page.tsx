@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -135,17 +137,17 @@ export default function ContractorApplicationPage() {
     
     switch (currentStep) {
       case 1:
-        return <Step1BusinessInfo onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.businessInfo} />;
+        return <Step1BusinessInfo onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.businessInfo || {}} />;
       case 2:
-        return <Step2InsuranceLicensing onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.insurance} />;
+        return <Step2InsuranceLicensing onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.insurance || {}} />;
       case 3:
-        return <Step3ExperienceReferences onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.experience} />;
+        return <Step3ExperienceReferences onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.experience || {}} />;
       case 4:
-        return <Step4EquipmentResources onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.equipment} />;
+        return <Step4EquipmentResources onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.equipment || {}} />;
       case 5:
-        return <Step5HealthSafety onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.healthSafety} />;
+        return <Step5HealthSafety onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.healthSafety || {}} />;
       case 6:
-        return <Step6BankingPayment onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.banking} />;
+        return <Step6BankingPayment onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.banking || {}} />;
       case 7:
         return <Step7ReviewSubmit onNext={handleStepNext} onPrevious={handleStepPrevious} defaultValues={onboardingData.review} applicationData={onboardingData} />;
       default:

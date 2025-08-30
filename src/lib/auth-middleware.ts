@@ -7,7 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyAccessToken, UserRole } from '@/lib/jwt-auth';
+import { verifyToken as verifyAccessToken, UserRole } from '@/lib/jwt-auth';
 import { z } from 'zod';
 
 export interface AuthenticatedRequest extends NextRequest {

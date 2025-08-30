@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { 
   CheckCircle2, 
@@ -36,7 +36,7 @@ interface BookingDetails {
   estimatedResponse: string;
 }
 
-export default function BookingSuccessPage() {
+function BookingSuccessPageContent() {
   const searchParams = useSearchParams();
   const [bookingDetails, setBookingDetails] = useState<BookingDetails | null>(null);
   const [loading, setLoading] = useState(true);
@@ -310,5 +310,20 @@ export default function BookingSuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function BookingSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading booking confirmation...</p>
+        </div>
+      </div>
+    }>
+      <BookingSuccessPageContent />
+    </Suspense>
   );
 }
