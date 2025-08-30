@@ -197,7 +197,7 @@ export default function UltraModernHeader() {
                 transition: 'transform 0.3s ease',
               }}>
                 <Image
-                  src="/images/logos/dr-logo.svg"
+                  src="/images/logos/dr-logo-white.svg"
                   alt="Disaster Recovery Australia - Property Restoration Services"
                   width={isScrolled ? 135 : 150}
                   height={isScrolled ? 41 : 45}

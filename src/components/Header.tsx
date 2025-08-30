@@ -382,11 +382,11 @@ const Header: React.FC = () => {
             >
               <div className="flex-shrink-0">
                 <img
-                  src="/images/logos/dr-logo.svg"
+                  src="/images/logos/dr-logo-white.svg"
                   alt={`${BUSINESS_NAME} Logo`}
                   className="h-10 w-auto"
-                  width="40"
-                  height="40"
+                  width="160"
+                  height="48"
                 />
               </div>
               <div className="hidden sm:block">

@@ -5,7 +5,8 @@
       "Read(C:\\Users\\Disaster Recovery 4\\AppData\\Roaming\\Claude/**)",
       "Bash(npm run build:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
