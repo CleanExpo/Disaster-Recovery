@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Shield, Home, Phone, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send } from 'lucide-react';
+import { Shield, Home, Phone, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send, Upload, Image, X, Info } from 'lucide-react';
 import { DEMO_DATA, simulateTyping } from '@/lib/demo-mode';
 
 function ClaimStartContent() {
@@ -18,8 +18,10 @@ function ClaimStartContent() {
     incidentDate: '',
     description: '',
     urgency: 'standard',
-    propertyType: 'residential'
+    propertyType: 'residential',
+    images: [] as File[]
   });
+  const [imagePreview, setImagePreview] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDemoRunning, setIsDemoRunning] = useState(false);
   const [currentField, setCurrentField] = useState('');
@@ -56,6 +58,32 @@ function ClaimStartContent() {
         setFormData(prev => ({ ...prev, [field.name]: field.value }));
       }
       await new Promise(resolve => setTimeout(resolve, 575)); // 15% slower
+    }
+
+    // Simulate image upload
+    const uploadSection = document.querySelector('[type="file"]')?.parentElement?.parentElement;
+    if (uploadSection) {
+      uploadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      await new Promise(resolve => setTimeout(resolve, 1150)); // 15% slower
+      
+      // Show simulated image previews
+      const demoImages = [
+        'Water damage in living room - ceiling',
+        'Damaged flooring - hallway', 
+        'Moisture reading - 98% saturation'
+      ];
+      
+      // Create mock preview
+      const previewContainer = document.createElement('div');
+      previewContainer.className = 'mt-4 p-3 bg-green-50 border border-green-200 rounded-lg';
+      previewContainer.innerHTML = `
+        <p class="text-sm font-semibold text-green-800 mb-2">📸 3 photos uploaded:</p>
+        <ul class="text-xs text-green-700 space-y-1">
+          ${demoImages.map(img => `<li>✓ ${img}</li>`).join('')}
+        </ul>
+      `;
+      uploadSection.appendChild(previewContainer);
+      await new Promise(resolve => setTimeout(resolve, 1150)); // 15% slower
     }
 
     // Set urgency to urgent
@@ -357,9 +385,84 @@ function ClaimStartContent() {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Urgency Level *
+                  Upload Photos of Damage
                 </label>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                  <input
+                    type="file"
+                    id="image-upload"
+                    name="images"
+                    multiple
+                    accept="image/*"
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files || []);
+                      setFormData({ ...formData, images: [...formData.images, ...files] });
+                      
+                      // Create preview URLs
+                      const newPreviews = files.map(file => URL.createObjectURL(file));
+                      setImagePreview([...imagePreview, ...newPreviews]);
+                    }}
+                    className="hidden"
+                  />
+                  <label htmlFor="image-upload" className="cursor-pointer">
+                    <Camera className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+                    <p className="text-sm font-medium text-gray-700">Click to upload photos</p>
+                    <p className="text-xs text-gray-500 mt-1">or drag and drop</p>
+                    <p className="text-xs text-gray-400 mt-2">PNG, JPG, GIF up to 10MB each</p>
+                  </label>
+                </div>
+                
+                {/* Image Preview Grid */}
+                {imagePreview.length > 0 && (
+                  <div className="mt-4 grid grid-cols-3 gap-3">
+                    {imagePreview.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`Damage photo ${index + 1}`}
+                          className="w-full h-24 object-cover rounded-lg border border-gray-200"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newImages = formData.images.filter((_, i) => i !== index);
+                            const newPreviews = imagePreview.filter((_, i) => i !== index);
+                            setFormData({ ...formData, images: newImages });
+                            setImagePreview(newPreviews);
+                          }}
+                          className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex items-start gap-2">
+                    <Info className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div className="text-xs text-blue-700">
+                      <p className="font-semibold mb-1">Photo Tips for Faster Processing:</p>
+                      <ul className="space-y-0.5">
+                        <li>• Take wide shots showing full extent of damage</li>
+                        <li>• Include close-ups of specific damage areas</li>
+                        <li>• Photograph damaged items and serial numbers</li>
+                        <li>• Capture moisture readings if available</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Urgency Level *
+                  <span className="ml-2 text-xs font-normal text-gray-500">
+                    (Select based on safety and habitability)
+                  </span>
+                </label>
+                <div className="grid grid-cols-3 gap-4 mb-3">
                   {['standard', 'urgent', 'emergency'].map((level) => (
                     <label
                       key={level}
@@ -384,6 +487,39 @@ function ClaimStartContent() {
                       <span className="font-medium capitalize">{level}</span>
                     </label>
                   ))}
+                </div>
+                
+                {/* Urgency Level Descriptions */}
+                <div className="mt-4 space-y-2">
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-1.5"></div>
+                      <div>
+                        <p className="text-sm font-semibold text-green-900">Standard (24-48 hours)</p>
+                        <p className="text-xs text-green-700">Minor damage, property is habitable, no immediate safety concerns. Example: Small water stain, minor mould spot.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full mt-1.5"></div>
+                      <div>
+                        <p className="text-sm font-semibold text-orange-900">Urgent (4-12 hours)</p>
+                        <p className="text-xs text-orange-700">Significant damage affecting habitability, spreading damage risk. Example: Active water leak, large mould area, smoke damage.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <div className="flex items-start gap-2">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-1.5"></div>
+                      <div>
+                        <p className="text-sm font-semibold text-red-900">Emergency (Within 2 hours)</p>
+                        <p className="text-xs text-red-700">Property uninhabitable, immediate safety risk, ongoing severe damage. Example: Major flooding, fire damage, sewage overflow, structural damage.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

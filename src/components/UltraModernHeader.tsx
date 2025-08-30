@@ -119,10 +119,10 @@ export default function UltraModernHeader() {
         }`}
         style={{
           background: isScrolled
-            ? 'rgba(10, 10, 10, 0.8)'
-            : 'rgba(10, 10, 10, 0.3)',
+            ? 'rgba(0, 0, 0, 0.95)'
+            : 'rgba(0, 0, 0, 0.85)',
           backdropFilter: 'blur(20px) saturate(150%)',
-          borderBottom: '1px solid rgba(99, 91, 255, 0.1)',
+          borderBottom: '1px solid rgba(99, 91, 255, 0.2)',
         }}
       >
         {/* Interactive gradient overlay */}
@@ -180,7 +180,7 @@ export default function UltraModernHeader() {
                 <span 
                   className="text-lg font-bold transition-all"
                   style={{
-                    background: 'linear-gradient(135deg, #fff 0%, #888 100%)',
+                    background: 'linear-gradient(135deg, #fff 0%, #ddd 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -188,7 +188,7 @@ export default function UltraModernHeader() {
                 >
                   Disaster Recovery
                 </span>
-                <span className="text-[10px] text-gray-500 uppercase tracking-widest">
+                <span className="text-[10px] text-gray-400 uppercase tracking-widest">
                   Next-Gen Restoration
                 </span>
               </div>
@@ -205,7 +205,7 @@ export default function UltraModernHeader() {
                 >
                   <Link
                     href={item.href}
-                    className="relative px-5 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-all duration-300 rounded-full group"
+                    className="relative px-5 py-2.5 text-sm font-medium text-gray-100 hover:text-white transition-all duration-300 rounded-full group"
                     aria-haspopup={item.dropdown ? "true" : undefined}
                     aria-expanded={item.dropdown ? activeDropdown === item.label : undefined}
                     id={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
@@ -241,10 +241,10 @@ export default function UltraModernHeader() {
                       <div 
                         className="w-72 rounded-2xl overflow-hidden"
                         style={{
-                          background: 'rgba(20, 21, 22, 0.95)',
+                          background: 'rgba(0, 0, 0, 0.98)',
                           backdropFilter: 'blur(20px)',
-                          border: '1px solid rgba(99, 91, 255, 0.2)',
-                          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5)',
+                          border: '1px solid rgba(99, 91, 255, 0.3)',
+                          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)',
                         }}
                       >
                         {item.dropdown.map((subItem, idx) => (
