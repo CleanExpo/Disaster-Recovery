@@ -1,10 +1,15 @@
-name: Auto Deploy to Vercel
+# DISABLED: Vercel's native GitHub integration is handling deployments
+# This workflow is redundant and was causing conflicts
+# To re-enable: Add VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID to GitHub Secrets
+
+name: Auto Deploy to Vercel (DISABLED)
 
 on:
-  push:
-    branches:
-      - main
-  # Enable manual trigger
+  # Disabled automatic triggers
+  # push:
+  #   branches:
+  #     - main
+  # Enable manual trigger only for testing
   workflow_dispatch:
 
 env:
