@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface NavItem {
   label: string;
@@ -196,12 +195,11 @@ export default function UltraModernHeader() {
                 transform: isScrolled ? 'scale(0.9)' : 'scale(1)',
                 transition: 'transform 0.3s ease',
               }}>
-                <Image
+                <img
                   src="/images/logos/dr-logo-white.svg"
                   alt="Disaster Recovery Australia - Property Restoration Services"
                   width={isScrolled ? 135 : 150}
                   height={isScrolled ? 41 : 45}
-                  priority
                   className="transition-all duration-300"
                   onError={(e) => {
                     // Fallback to text logo if image fails
