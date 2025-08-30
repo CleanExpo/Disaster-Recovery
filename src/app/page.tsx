@@ -40,7 +40,7 @@ export default function ComingSoonPage() {
               {/* Main Heading */}
               <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-normal">
                 DEPLOYMENT TEST {new Date().toLocaleTimeString()}
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 pb-2">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 pb-4 leading-tight">
                   Network Is Coming
                 </span>
               </h2>

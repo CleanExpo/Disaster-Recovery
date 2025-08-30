@@ -8,10 +8,11 @@
     "DATABASE_URL": "file:./prod.db",
     "SKIP_ENV_VALIDATION": "true",
     "NEXT_TELEMETRY_DISABLED": "1",
-    "NEXTAUTH_URL": "https://disasterrecovery.com.au",
-    "NEXTAUTH_SECRET": "your-secret-key-here",
-    "NEXT_PUBLIC_SITE_URL": "https://disasterrecovery.com.au",
-    "NEXT_PUBLIC_APP_URL": "https://disasterrecovery.com.au",
+    "NEXTAUTH_URL": "https://disaster-recovery-ayreio24o-unite-group.vercel.app",
+    "NEXTAUTH_SECRET": "LMUDdvl91SzvH84on2RBx820GPJX33z+ICkk66EQMpg=",
+    "NEXT_PUBLIC_SITE_URL": "https://disaster-recovery-ayreio24o-unite-group.vercel.app",
+    "NEXT_PUBLIC_APP_URL": "https://disaster-recovery-ayreio24o-unite-group.vercel.app",
+    "NEXT_PUBLIC_DEMO_MODE": "false",
     "SKIP_BUILD_ERRORS": "true"
   },
   "build": {
@@ -21,10 +22,11 @@
       "NEXT_TELEMETRY_DISABLED": "1",
       "SKIP_ENV_VALIDATION": "true",
       "CI": "false",
-      "NEXTAUTH_URL": "https://disasterrecovery.com.au",
-      "NEXTAUTH_SECRET": "build-time-secret",
-      "NEXT_PUBLIC_SITE_URL": "https://disasterrecovery.com.au",
-      "NEXT_PUBLIC_APP_URL": "https://disasterrecovery.com.au",
+      "NEXTAUTH_URL": "https://disaster-recovery-ayreio24o-unite-group.vercel.app",
+      "NEXTAUTH_SECRET": "LMUDdvl91SzvH84on2RBx820GPJX33z+ICkk66EQMpg=",
+      "NEXT_PUBLIC_SITE_URL": "https://disaster-recovery-ayreio24o-unite-group.vercel.app",
+      "NEXT_PUBLIC_APP_URL": "https://disaster-recovery-ayreio24o-unite-group.vercel.app",
+      "NEXT_PUBLIC_DEMO_MODE": "false",
       "SKIP_BUILD_ERRORS": "true"
     }
   },
