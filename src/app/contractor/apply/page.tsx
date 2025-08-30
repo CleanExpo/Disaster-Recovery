@@ -3,6 +3,7 @@
 export const dynamic = 'force-dynamic';
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -10,6 +11,7 @@ import {
   ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X
 } from 'lucide-react';
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
+import { DEMO_DATA, simulateClick, autoFillForm } from '@/lib/demo-mode';
 import Step1BusinessInfo from '@/components/contractor/onboarding/Step1BusinessInfo';
 import Step2InsuranceLicensing from '@/components/contractor/onboarding/Step2InsuranceLicensing';
 import Step3ExperienceReferences from '@/components/contractor/onboarding/Step3ExperienceReferences';
@@ -30,7 +32,9 @@ const ONBOARDING_STEPS = [
 
 export default function ContractorApplicationPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isDemoRunning, setIsDemoRunning] = useState(false);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [onboardingData, setOnboardingData] = useState<Partial<ContractorOnboardingData>>({});
   const [validationErrors, setValidationErrors] = useState<Record<string, string[]>>({});
@@ -46,7 +50,38 @@ export default function ContractorApplicationPage() {
       setCompletedSteps(progress.completedSteps || []);
       setCurrentStep(progress.currentStep || 1);
     }
+    
+    // Check if auto-demo should run
+    if (searchParams.get('demo') === 'auto') {
+      runAutoDemo();
+    }
   }, []);
+  
+  // Auto-demo functionality
+  const runAutoDemo = async () => {
+    setIsDemoRunning(true);
+    
+    // Set demo data
+    setOnboardingData(DEMO_DATA.contractor);
+    
+    // Auto-progress through steps
+    for (let step = 1; step <= 7; step++) {
+      setCurrentStep(step);
+      setCompletedSteps(prev => [...prev, step]);
+      
+      // Wait a bit on each step to show the data
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Save progress
+      await saveProgress();
+    }
+    
+    // Show completion message
+    setTimeout(() => {
+      alert('Demo Complete! This is how a contractor would complete the application process.');
+      setIsDemoRunning(false);
+    }, 1000);
+  };
 
   // Auto-save progress
   const saveProgress = async () => {
@@ -161,6 +196,12 @@ export default function ContractorApplicationPage() {
             </Link>
             
             <div className="flex items-center gap-4">
+              {isDemoRunning && (
+                <div className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-lg animate-pulse">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Demo Running...
+                </div>
+              )}
               {isSaving && (
                 <div className="flex items-center gap-2 text-blue-300 text-sm">
                   <Loader2 className="h-4 w-4 animate-spin" />
@@ -169,7 +210,8 @@ export default function ContractorApplicationPage() {
               )}
               <button
                 onClick={saveProgress}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 text-white rounded-lg transition"
+                disabled={isDemoRunning}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Save className="h-4 w-4" />
                 Save Progress

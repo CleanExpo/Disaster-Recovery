@@ -7,6 +7,7 @@ import { Providers } from './providers'
 import UltraModernHeader from '@/components/UltraModernHeader'
 import UltraModernFooter from '@/components/UltraModernFooter'
 import DemoModeIndicator from '@/components/DemoModeIndicator'
+import DemoModeBanner from '@/components/demo/DemoModeBanner'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 
@@ -112,6 +113,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
+          <DemoModeBanner />
           <DemoModeIndicator />
           <UltraModernHeader />
           <main id="main-content">
