@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AlertTriangle, Play, X, Sparkles, Users, Briefcase } from 'lucide-react';
+import { AlertTriangle, Play, X, Sparkles, Users, Briefcase, Rocket } from 'lucide-react';
 import { isDemoMode } from '@/lib/demo-mode';
 
 export default function DemoModeBanner() {
@@ -29,6 +29,14 @@ export default function DemoModeBanner() {
     
     // Navigate to client claim page
     window.location.href = '/claim/start?demo=auto';
+  };
+
+  const startInvestorPitchDemo = async () => {
+    setIsRunningDemo(true);
+    setShowDemoMenu(false);
+    
+    // Navigate to investor pitch page
+    window.location.href = '/demo/investor-pitch';
   };
 
   return (
@@ -110,6 +118,19 @@ export default function DemoModeBanner() {
               <div className="text-left">
                 <div className="font-semibold text-gray-900">Client Claim</div>
                 <div className="text-sm text-gray-500">Auto-fill insurance claim</div>
+              </div>
+            </button>
+            
+            <button
+              onClick={startInvestorPitchDemo}
+              className="w-full flex items-centre gap-3 px-4 py-3 hover:bg-orange-50 rounded-lg transition group"
+            >
+              <div className="p-2 bg-purple-100 text-purple-600 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition">
+                <Rocket className="h-5 w-5" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-gray-900">Investor Pitch</div>
+                <div className="text-sm text-gray-500">12-slide presentation deck</div>
               </div>
             </button>
           </div>
