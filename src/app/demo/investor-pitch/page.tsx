@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import { pitchDeckData } from '@/lib/pitch-deck-data';
 import PitchSlide from '@/components/pitch-deck/PitchSlide';
+// Using ChartSlideSimple instead of ChartSlide to avoid Chart.js dependency
 import ChartSlideSimple from '@/components/pitch-deck/ChartSlideSimple';
 import VoiceNarration from '@/components/pitch-deck/VoiceNarration';
 import BackgroundMusic from '@/components/pitch-deck/BackgroundMusic';
