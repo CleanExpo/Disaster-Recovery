@@ -21,7 +21,14 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
     yearEstablished: new Date().getFullYear(),
     numberOfEmployees: 1,
     annualRevenue: '',
-    website: ''
+    website: '',
+    email: '',
+    phone: '',
+    mobile: '',
+    address: '',
+    suburb: '',
+    state: 'QLD',
+    postcode: ''
   });
 
   const [abnValidation, setAbnValidation] = useState<{
@@ -117,6 +124,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
         </label>
         <input
           type="text"
+          name="companyName"
           value={businessInfo.companyName}
           onChange={(e) => handleInputChange('companyName', e.target.value)}
           className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
@@ -135,6 +143,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
         </label>
         <input
           type="text"
+          name="tradingName"
           value={businessInfo.tradingName}
           onChange={(e) => handleInputChange('tradingName', e.target.value)}
           className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
@@ -150,6 +159,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
         <div className="relative">
           <input
             type="text"
+            name="abn"
             value={formatABN(businessInfo.abn)}
             onChange={(e) => handleInputChange('abn', e.target.value.replace(/\s/g, ''))}
             className={`
@@ -199,6 +209,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           </label>
           <input
             type="text"
+            name="acn"
             value={businessInfo.acn}
             onChange={(e) => handleInputChange('acn', e.target.value)}
             className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
@@ -213,6 +224,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           Business Type *
         </label>
         <select
+          name="businessType"
           value={businessInfo.businessType}
           onChange={(e) => handleInputChange('businessType', e.target.value)}
           className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
@@ -232,6 +244,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           </label>
           <input
             type="number"
+            name="yearEstablished"
             value={businessInfo.yearEstablished}
             onChange={(e) => handleInputChange('yearEstablished', parseInt(e.target.value))}
             min="1900"
@@ -247,6 +260,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
             Number of Employees *
           </label>
           <select
+            name="numberOfEmployees"
             value={businessInfo.numberOfEmployees}
             onChange={(e) => handleInputChange('numberOfEmployees', parseInt(e.target.value))}
             className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
@@ -265,6 +279,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           Annual Revenue (Optional)
         </label>
         <select
+          name="annualRevenue"
           value={businessInfo.annualRevenue}
           onChange={(e) => handleInputChange('annualRevenue', e.target.value)}
           className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
@@ -283,11 +298,114 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
         </label>
         <input
           type="url"
+          name="website"
           value={businessInfo.website}
           onChange={(e) => handleInputChange('website', e.target.value)}
           className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
           placeholder="https://www.example.com.au"
         />
+      </div>
+
+      {/* Contact Information */}
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-medium text-slate-300 mb-2">
+            Business Email *
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={businessInfo.email || ''}
+            onChange={(e) => handleInputChange('email', e.target.value)}
+            className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+            placeholder="contact@example.com.au"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-slate-300 mb-2">
+            Business Phone *
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={businessInfo.phone || ''}
+            onChange={(e) => handleInputChange('phone', e.target.value)}
+            className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+            placeholder="0400 000 000"
+            required
+          />
+        </div>
+      </div>
+
+      {/* Address Information */}
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-slate-300 mb-2">
+            Business Address *
+          </label>
+          <input
+            type="text"
+            name="address"
+            value={businessInfo.address || ''}
+            onChange={(e) => handleInputChange('address', e.target.value)}
+            className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+            placeholder="123 Business Street"
+            required
+          />
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              Suburb *
+            </label>
+            <input
+              type="text"
+              name="suburb"
+              value={businessInfo.suburb || ''}
+              onChange={(e) => handleInputChange('suburb', e.target.value)}
+              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+              placeholder="Brisbane"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              State *
+            </label>
+            <select
+              name="state"
+              value={businessInfo.state || 'QLD'}
+              onChange={(e) => handleInputChange('state', e.target.value)}
+              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+              required
+            >
+              <option value="NSW">NSW</option>
+              <option value="VIC">VIC</option>
+              <option value="QLD">QLD</option>
+              <option value="SA">SA</option>
+              <option value="WA">WA</option>
+              <option value="TAS">TAS</option>
+              <option value="NT">NT</option>
+              <option value="ACT">ACT</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">
+              Postcode *
+            </label>
+            <input
+              type="text"
+              name="postcode"
+              value={businessInfo.postcode || ''}
+              onChange={(e) => handleInputChange('postcode', e.target.value)}
+              className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+              placeholder="4000"
+              maxLength={4}
+              required
+            />
+          </div>
+        </div>
       </div>
 
       {/* Information Box */}

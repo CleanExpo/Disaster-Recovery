@@ -87,12 +87,31 @@ function ContractorApplicationContent() {
       'Reviewing and submitting application...'
     ];
     
+    // Form data for each step
+    const stepFormData = [
+      DEMO_DATA.contractor.businessInfo,
+      DEMO_DATA.contractor.insurance,
+      DEMO_DATA.contractor.experience,
+      DEMO_DATA.contractor.equipment,
+      DEMO_DATA.contractor.healthSafety,
+      DEMO_DATA.contractor.banking,
+      {} // Review step doesn't have form fields
+    ];
+    
     for (let step = 1; step <= 7; step++) {
       setCurrentStep(step);
       showMessage(stepDescriptions[step - 1]);
       
-      // Simulate form filling animation
-      await new Promise(resolve => setTimeout(resolve, 2300)); // 15% slower
+      // Wait for component to render
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // Auto-fill form fields for current step
+      if (step < 7) {
+        await autoFillForm(stepFormData[step - 1], 115);
+      }
+      
+      // Additional delay to show filled form
+      await new Promise(resolve => setTimeout(resolve, 1800));
       
       setCompletedSteps(prev => [...prev, step]);
       
