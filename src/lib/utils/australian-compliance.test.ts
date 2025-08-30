@@ -206,7 +206,7 @@ describe('Tax Invoice Generation', () => {
       ]
     });
 
-    expect(invoice.businessName).toBe('Disaster Recovery Australia Pty Ltd');
+    expect(invoice.businessName).toBe('Disaster Recovery Pty Ltd');
     expect(invoice.abn).toBe('11 234 567 890');
     expect(invoice.customerName).toBe('John Smith');
     expect(invoice.subtotal).toBe(2750);

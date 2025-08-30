@@ -104,7 +104,7 @@ export const emailTemplates = {
   }),
 
   leadConfirmation: (leadData: any) => ({
-    subject: 'We\'ve Received Your Emergency Request - Disaster Recovery Australia',
+    subject: 'We\'ve Received Your Emergency Request - Disaster Recovery',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="background: #0052CC; padding: 30px; text-align: centre;">
@@ -115,7 +115,7 @@ export const emailTemplates = {
           <p style="font-size: 16px;">Dear ${leadData.fullName},</p>
           
           <p style="font-size: 16px; line-height: 1.6;">
-            Thank you for contacting Disaster Recovery Australia. We understand this is a stressful time, 
+            Thank you for contacting Disaster Recovery. We understand this is a stressful time, 
             and we're here to help you through it.
           </p>
           
@@ -161,13 +161,13 @@ export const emailTemplates = {
           
           <p style="font-size: 16px;">
             Best regards,<br>
-            The Disaster Recovery Australia Team
+            The Disaster Recovery Team
           </p>
         </div>
         
         <div style="background: #f5f5f5; padding: 20px; text-align: centre; colour: #666; font-size: 12px;">
           <p>This email was sent to ${leadData.email}</p>
-          <p>Disaster Recovery Australia | Brisbane, QLD | ABN: [To be provided]</p>
+          <p>Disaster Recovery | Brisbane, QLD | ABN: [To be provided]</p>
           <p><a href="${SITE_URL}" style="colour: #0052CC;">www.disasterrecovery.com.au</a></p>
         </div>
       </div>

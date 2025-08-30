@@ -106,7 +106,7 @@ export default function UltraModernFooter() {
                   <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                     Disaster Recovery Pro
                   </h2>
-                  <p className="text-gray-400">Australia's #1 Emergency Response Team</p>
+                  <p className="text-gray-400">#1 Emergency Response Team</p>
                 </div>
               </div>
 

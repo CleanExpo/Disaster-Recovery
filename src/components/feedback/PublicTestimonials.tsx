@@ -484,7 +484,7 @@ export default function PublicTestimonials({
         <div className="mt-12 text-center">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Join Australia's Premier Restoration Network
+              Join Premier Restoration Network
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               Become part of a trusted network of restoration professionals and 

@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Bushfire & Smoke Damage Services | 24/7 Emergency Response | Disaster Recovery Australia',
+  title: 'Bushfire & Smoke Damage Services | 24/7 Emergency Response | Disaster Recovery',
   description: 'Complete bushfire recovery including smoke damage, soot removal, and structural restoration. Serving NSW, Victoria, South Australia, Tasmania, Western Australia. Immediate response time.',
   keywords: ["bushfire restoration","smoke damage cleanup","fire recovery"]
 };

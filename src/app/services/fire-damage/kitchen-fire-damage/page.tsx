@@ -13,7 +13,7 @@ export default function KitchenFireDamageRestorationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Kitchen Fire Damage Restoration',
+    name: 'Disaster Recovery - Kitchen Fire Damage Restoration',
     description: 'Professional kitchen fire damage restoration services in Queensland. 24/7 emergency response for cooking fire, kitchen smoke damage.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function KitchenFireDamageRestorationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Kitchen Fire Damage Restoration Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert kitchen fire damage restoration services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert kitchen fire damage restoration services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Cyclone Damage Recovery Services | 24/7 Emergency Response | Disaster Recovery Australia',
+  title: 'Cyclone Damage Recovery Services | 24/7 Emergency Response | Disaster Recovery',
   description: 'Expert cyclone damage restoration including structural repairs, water extraction, and debris removal. Serving Far North Queensland, Northern Territory, North Western Australia. 2-4 hours response time.',
   keywords: ["cyclone damage","tropical storm recovery","wind damage repair"]
 };

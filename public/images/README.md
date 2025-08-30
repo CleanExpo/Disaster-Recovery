@@ -42,8 +42,8 @@ Please copy the following images to their respective directories:
 All images should include the following metadata:
 - Title: Company/Person name
 - Description: Purpose of the image
-- Copyright: © 2025 Disaster Recovery Australia / NRP
-- Author: Disaster Recovery Australia
+- Copyright: © 2025 Disaster Recovery / NRP
+- Author: Disaster Recovery
 
 ## Optimization Requirements
 
@@ -68,7 +68,7 @@ Based on the provided logos:
 // Header Logo
 <Image 
   src="/images/logos/disaster-recovery-logo.png"
-  alt="Disaster Recovery Australia - Property Restoration Services"
+  alt="Disaster Recovery - Property Restoration Services"
   width={200}
   height={60}
   priority
@@ -85,7 +85,7 @@ Based on the provided logos:
 // Founder Photo
 <Image 
   src="/images/team/shane-founder.jpg"
-  alt="Shane - Founder and CEO of Disaster Recovery Australia"
+  alt="Shane - Founder and CEO of Disaster Recovery"
   width={400}
   height={400}
   className="rounded-full"

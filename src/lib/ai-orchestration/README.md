@@ -1,4 +1,4 @@
-# AI Orchestration System for Disaster Recovery Australia
+# AI Orchestration System for Disaster Recovery
 
 ## Overview
 
@@ -477,7 +477,7 @@ console.log('Component Status:', status.components);
 
 ## License
 
-This AI orchestration system is proprietary software developed for Disaster Recovery Australia. All rights reserved.
+This AI orchestration system is proprietary software developed for Disaster Recovery. All rights reserved.
 
 ## Support
 

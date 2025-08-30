@@ -13,7 +13,7 @@ export default function WashingMachineFloodDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Washing Machine Flood Damage',
+    name: 'Disaster Recovery - Washing Machine Flood Damage',
     description: 'Professional washing machine flood damage services in Queensland. 24/7 emergency response for washing machine overflow, laundry flooding.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function WashingMachineFloodDamagePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Washing Machine Flood Damage Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert washing machine flood damage services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert washing machine flood damage services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

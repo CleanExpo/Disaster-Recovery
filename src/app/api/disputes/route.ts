@@ -347,7 +347,7 @@ function generateDisputeConfirmationEmail(dispute: any, nextSteps: string[]): st
           </ul>
         </div>
         <div class="footer">
-          <p>© 2024 Disaster Recovery Australia Pty Ltd | ABN: 11 234 567 890</p>
+          <p>© 2024 Disaster Recovery Pty Ltd | ABN: 11 234 567 890</p>
           <p>We are committed to fair and timely dispute resolution</p>
         </div>
       </div>

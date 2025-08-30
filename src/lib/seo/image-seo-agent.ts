@@ -354,13 +354,13 @@ export class ImageSEOAgent {
       "acquireLicenseUrl": "https://disasterrecovery.com.au/contact",
       "copyrightHolder": {
         "@type": "Organisation",
-        "name": "Disaster Recovery Australia"
+        "name": "Disaster Recovery"
       },
       "creator": {
         "@type": "Organisation",
-        "name": "Disaster Recovery Australia"
+        "name": "Disaster Recovery"
       },
-      "creditText": "Disaster Recovery Australia - Professional Restoration Services",
+      "creditText": "Disaster Recovery - Professional Restoration Services",
       "keywords": [
         keywords.primaryKeyword,
         ...keywords.secondaryKeywords,

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Water Damage FAQs | FAQ | Disaster Recovery Australia',
+  title: 'Water Damage FAQs | FAQ | Disaster Recovery',
   description: 'Everything about water damage restoration. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
   keywords: ['disaster recovery FAQ', 'water-damage questions', 'restoration help', 'insurance claims FAQ']
 };

@@ -223,7 +223,7 @@ export function generateOrganizationSchema(): OrganizationSchema {
     name: 'National Restoration Professionals (NRP)',
     url: 'https://disasterrecovery.com.au',
     logo: 'https://disasterrecovery.com.au/logo.png',
-    description: 'Professional disaster recovery and emergency restoration services across Australia. IICRC certified, 24/7 emergency response.',
+    description: 'Professional disaster recovery and emergency restoration services nationwide. IICRC certified, 24/7 emergency response.',
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'AU',
@@ -359,7 +359,7 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     '@context': 'https://schema.org',
     '@type': 'EmergencyService',
     name: '24/7 Emergency Disaster Response',
-    description: 'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation across Australia',
+    description: 'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation nationwide',
     telephone: '1300-DISASTER',
     availableChannel: {
       '@type': 'ServiceChannel',

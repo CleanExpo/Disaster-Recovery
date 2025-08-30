@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Insurance Claims FAQs | FAQ | Disaster Recovery Australia',
+  title: 'Insurance Claims FAQs | FAQ | Disaster Recovery',
   description: 'Navigate the insurance claim process. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
   keywords: ['disaster recovery FAQ', 'insurance-claims questions', 'restoration help', 'insurance claims FAQ']
 };

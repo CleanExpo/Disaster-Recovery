@@ -13,8 +13,8 @@ export default function IndoorEnvironmentalProfessionalPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Indoor Environmental Professional Services',
-    description: 'Certified Indoor Environmental Professionals (IEP) providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting across Australia.',
+    name: 'Disaster Recovery - Indoor Environmental Professional Services',
+    description: 'Certified Indoor Environmental Professionals (IEP) providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting nationwide.',
     telephone: '1300 814 870',
     address: {
       streetAddress: 'Servicing All Areas',

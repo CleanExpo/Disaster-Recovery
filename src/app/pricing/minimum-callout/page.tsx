@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
-  title: '$2200 Minimum Callout Fee Explained | What\'s Included | Disaster Recovery Australia',
+  title: '$2200 Minimum Callout Fee Explained | What\'s Included | Disaster Recovery',
   description: 'Our $2200 minimum callout includes comprehensive assessment, emergency mitigation, insurance documentation, and immediate response. No hidden fees.',
   keywords: [
     'disaster recovery callout fee',
@@ -57,7 +57,7 @@ export default function MinimumCalloutPage() {
   ];
 
   const competitorComparison = [
-    { company: 'Disaster Recovery Australia', callout: '$2,200', response: '30-60 min', equipment: 'Industrial', insurance: '✅ Direct Bill', guarantee: '✅ 100%' },
+    { company: 'Disaster Recovery', callout: '$2,200', response: '30-60 min', equipment: 'Industrial', insurance: '✅ Direct Bill', guarantee: '✅ 100%' },
     { company: 'Competitor A', callout: '$500', response: '4-6 hours', equipment: 'Basic', insurance: '❌ You Pay', guarantee: '❌ Limited' },
     { company: 'Competitor B', callout: '$750', response: '2-4 hours', equipment: 'Standard', insurance: '❌ You Pay', guarantee: '❌ 90 Days' },
     { company: 'DIY Approach', callout: '$0', response: 'N/A', equipment: 'Rental', insurance: '❌ None', guarantee: '❌ None' }

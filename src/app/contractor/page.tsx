@@ -159,7 +159,7 @@ export default function ContractorPortalLanding() {
               Why Join Our Network?
             </h2>
             <p className="mt-4 text-lg text-gray-600">
-              Be part of Australia's leading disaster recovery contractor network
+              Be part of Leading disaster recovery contractor network
             </p>
           </div>
 

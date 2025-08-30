@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { CONTRACTOR_REQUIREMENTS, SERVICE_RADIUS_OPTIONS } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Join Our Network | IICRC Certified Contractors | Disaster Recovery Australia',
+  title: 'Join Our Network | IICRC Certified Contractors | Disaster Recovery',
   description: 'Join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your service area.',
 };
 
@@ -100,7 +100,7 @@ export default function ContractorsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <Shield className="h-16 w-16 mx-auto mb-6" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Join Australia's Premier Disaster Recovery Network
+              Join Premier Disaster Recovery Network
             </h1>
             <p className="text-xl mb-8">
               Connect with customers who need your expertise. 
@@ -358,7 +358,7 @@ export default function ContractorsPage() {
             Ready to Grow Your Restoration Business?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Join Australia's most trusted disaster recovery network. 
+            Join Most trusted disaster recovery network. 
             IICRC certified contractors only. Territories filling fast.
           </p>
           <div className="bg-white/10 backdrop-blur rounded-lg p-6 max-w-2xl mx-auto mb-8">

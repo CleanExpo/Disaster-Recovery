@@ -13,7 +13,7 @@ export default function FallenTreeDamageCleanupPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Fallen Tree Damage Cleanup',
+    name: 'Disaster Recovery - Fallen Tree Damage Cleanup',
     description: 'Professional fallen tree damage cleanup services in Queensland. 24/7 emergency response for tree removal, storm tree damage.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function FallenTreeDamageCleanupPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Fallen Tree Damage Cleanup Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert fallen tree damage cleanup services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert fallen tree damage cleanup services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

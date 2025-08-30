@@ -31,14 +31,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
-    default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services',
-    template: '%s | Disaster Recovery Australia'
+    default: 'Disaster Recovery | 24/7 Emergency Restoration Services',
+    template: '%s | Disaster Recovery'
   },
-  description: 'Australia\'s leading disaster recovery and restoration specialists. 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup across all major cities.',
-  keywords: 'disaster recovery, water damage restoration, fire damage, mould removal, emergency restoration, flood cleanup, storm damage, biohazard cleanup, insurance restoration, Australia',
-  authors: [{ name: 'Disaster Recovery Australia' }],
-  creator: 'Disaster Recovery Australia',
-  publisher: 'Disaster Recovery Australia',
+  description: 'Leading disaster recovery and restoration specialists. 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup across all major cities.',
+  keywords: 'disaster recovery, water damage restoration, fire damage, mould removal, emergency restoration, flood cleanup, storm damage, biohazard cleanup, insurance restoration',
+  authors: [{ name: 'Disaster Recovery' }],
+  creator: 'Disaster Recovery',
+  publisher: 'Disaster Recovery',
   formatDetection: {
     email: false,
     address: false,
@@ -48,22 +48,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_AU',
     url: 'https://disasterrecovery.com.au',
-    siteName: 'Disaster Recovery Australia',
-    title: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services',
-    description: 'Australia\'s leading disaster recovery and restoration specialists. 24/7 emergency response across all major cities.',
+    siteName: 'Disaster Recovery',
+    title: 'Disaster Recovery | 24/7 Emergency Restoration Services',
+    description: 'Leading disaster recovery and restoration specialists. 24/7 emergency response across all major cities.',
     images: [
       {
         url: '/images/disaster-recovery-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Disaster Recovery Australia',
+        alt: 'Disaster Recovery',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Disaster Recovery Australia | 24/7 Emergency Restoration',
-    description: 'Australia\'s leading disaster recovery specialists. 24/7 emergency response for water, fire, mould damage.',
+    title: 'Disaster Recovery | 24/7 Emergency Restoration',
+    description: 'Leading disaster recovery specialists. 24/7 emergency response for water, fire, mould damage.',
     images: ['/images/disaster-recovery-twitter.jpg'],
     creator: '@DisasterRecovAU',
   },

@@ -46,7 +46,7 @@ const industries = [
   {
     slug: 'hospitality-tourism',
     name: 'Hospitality & Tourism',
-    description: 'Hotel, resort, and tourism facility disaster recovery across Australia',
+    description: 'Hotel, resort, and tourism facility disaster recovery nationwide',
     risks: ['Cyclone damage', 'Flooding', 'Fire damage', 'Guest area contamination'],
     locations: ['Gold Coast', 'Cairns', 'Sydney', 'Melbourne', 'Perth'],
     keywords: ['hotel disaster recovery', 'resort restoration', 'tourism facility cleanup']
@@ -155,7 +155,7 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-centre mb-12">
-            Servicing ${industry.name} Across Australia
+            Servicing ${industry.name} nationwide
           </h2>
           <div className="flex flex-wrap justify-centre gap-4">
             {locations.map((location, index) => (

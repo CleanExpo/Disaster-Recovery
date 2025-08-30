@@ -13,7 +13,7 @@ export default function PoolLeakPropertyDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Pool Leak Property Damage',
+    name: 'Disaster Recovery - Pool Leak Property Damage',
     description: 'Professional pool leak property damage services in Queensland. 24/7 emergency response for swimming pool leak, pool water damage.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function PoolLeakPropertyDamagePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Pool Leak Property Damage Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert pool leak property damage services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert pool leak property damage services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

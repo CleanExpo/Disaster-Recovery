@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'ANZAC Day Emergency Services | April 25 | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available April 25. No call-out fees, immediate response across Australia.',
+  description: 'Emergency disaster recovery services available April 25. No call-out fees, immediate response nationwide.',
 };
 
 export default function ANZACDayEmergencyPage() {

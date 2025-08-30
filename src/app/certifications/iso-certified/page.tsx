@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'ISO Certified | Quality management | Disaster Recovery Australia',
+  title: 'ISO Certified | Quality management | Disaster Recovery',
   description: 'ISO Certified restoration services. Quality management. Qualified, certified, and compliant disaster recovery.',
 };
 

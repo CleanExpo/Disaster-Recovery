@@ -1,5 +1,5 @@
 # Component Registry & Status Inventory
-# Disaster Recovery Australia Application
+# Disaster Recovery Application
 
 **Last Updated:** 28 August 2025  
 **Version:** 1.0  
@@ -10,7 +10,7 @@
 
 ## 📊 Executive Summary
 
-This registry provides a comprehensive inventory of all React components in the Disaster Recovery Australia application, their implementation status, testing coverage, and dependencies. The application currently contains 177 components across 15 major categories.
+This registry provides a comprehensive inventory of all React components in the Disaster Recovery application, their implementation status, testing coverage, and dependencies. The application currently contains 177 components across 15 major categories.
 
 **Overall Component Status:**
 - ✅ **Complete & Production Ready:** 45 components (25%)

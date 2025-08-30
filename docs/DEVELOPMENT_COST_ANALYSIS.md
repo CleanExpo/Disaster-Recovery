@@ -293,7 +293,7 @@ The National Recovery Partners (NRP) platform represents a **$1.58+ million AUD*
 - **Cost Avoidance**: $1.6M development cost elimination
 
 #### **Strategic Value (Years 2-5)**
-- **Market Position**: SEO domination across Australia
+- **Market Position**: SEO domination nationwide
 - **Scalability**: 30,000+ potential service pages
 - **Network Effects**: Contractor base growth amplification
 - **Exit Value**: $120M-320M potential acquisition

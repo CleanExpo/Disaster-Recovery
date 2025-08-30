@@ -10,11 +10,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'HEPA Air Filtration Systems | Hospital-Grade Air Scrubbing | Disaster Recovery Australia',
+  title: 'HEPA Air Filtration Systems | Hospital-Grade Air Scrubbing | Disaster Recovery',
   description: 'Hospital-grade HEPA filtration technology removes 99.97% of airborne particles including mould spores, allergens, and contaminants. EPA-approved air quality restoration.',
   keywords: 'HEPA filtration, air scrubbing, mould spore removal, air quality, negative air machines, air purification',
   openGraph: {
-    title: 'HEPA Air Filtration Systems | Disaster Recovery Australia',
+    title: 'HEPA Air Filtration Systems | Disaster Recovery',
     description: 'Breathe easy with our hospital-grade HEPA air filtration technology.',
     images: ['/images/hepa-technology.jpg'],
   },

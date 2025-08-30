@@ -138,7 +138,7 @@ export function generateEEATContent(
   // This would connect to authoritative sources and generate content
   // For now, returning structured format
   return `
-    Experience: Based on 10,000+ successful restorations across Australia
+    Experience: Based on 10,000+ successful restorations nationwide
     Expertise: IICRC certified professionals with advanced training
     Authoritativeness: Sourced from government standards and peer-reviewed research
     Trustworthiness: All facts verified through multiple authoritative sources

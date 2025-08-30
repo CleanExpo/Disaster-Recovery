@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Midnight Emergency Services | 12AM - 6AM | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available 12AM - 6AM. No call-out fees, immediate response across Australia.',
+  description: 'Emergency disaster recovery services available 12AM - 6AM. No call-out fees, immediate response nationwide.',
 };
 
 export default function MidnightEmergencyPage() {

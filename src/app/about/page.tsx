@@ -97,7 +97,7 @@ export default function ModernAboutPage() {
             </h1>
             
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Australia's premier disaster recovery specialists, combining advanced technology 
+              Premier disaster recovery specialists, combining advanced technology 
               with compassionate service to restore properties and peace of mind.
             </p>
           </motion.div>
@@ -155,7 +155,7 @@ export default function ModernAboutPage() {
                 </p>
                 <p>
                   What started as a small team of dedicated restoration specialists has grown into 
-                  Australia's most trusted disaster recovery network, serving thousands of homes and 
+                  Most trusted disaster recovery network, serving thousands of homes and 
                   businesses across the nation.
                 </p>
                 <p>
@@ -175,7 +175,7 @@ export default function ModernAboutPage() {
               <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden">
                 <img
                   src="/images/team/3D Shane.png"
-                  alt="Shane - Founder and CEO of Disaster Recovery Australia"
+                  alt="Shane - Founder and CEO of Disaster Recovery"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;

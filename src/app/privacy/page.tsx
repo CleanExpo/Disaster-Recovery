@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy Policy for Disaster Recovery Australia - How we collect, use, and protect your personal information.',
+  description: 'Privacy Policy for Disaster Recovery - How we collect, use, and protect your personal information.',
 };
 
 export default function PrivacyPolicy() {
@@ -132,7 +132,7 @@ export default function PrivacyPolicy() {
             <div className="space-y-3 text-gray-700">
               <p>For privacy-related questions or concerns:</p>
               <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="font-semibold">Disaster Recovery Australia</p>
+                <p className="font-semibold">Disaster Recovery</p>
                 <p>Email: privacy@disasterrecovery.com.au</p>
                 <p>Phone: 1300 DISASTER (1300 347 278)</p>
                 <p>Address: Brisbane, Queensland, Australia</p>

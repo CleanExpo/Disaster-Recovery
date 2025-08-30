@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { CheckCircle, Shield, FileText, AlertTriangle, Users, Clock, Award } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'NRP Best Practices Guide - Professional Standards for Disaster Recovery | Disaster Recovery Australia',
+  title: 'NRP Best Practices Guide - Professional Standards for Disaster Recovery | Disaster Recovery',
   description: 'Comprehensive guide to National Restoration Professionals best practices, mandatory procedures, and professional standards for emergency response and disaster recovery contractors.',
   keywords: 'NRP best practices, professional standards, disaster recovery procedures, emergency response protocols, contractor certification, industry standards',
   openGraph: {

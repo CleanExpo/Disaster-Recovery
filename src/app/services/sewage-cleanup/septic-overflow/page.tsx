@@ -13,7 +13,7 @@ export default function SepticTankOverflowCleanupPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Septic Tank Overflow Cleanup',
+    name: 'Disaster Recovery - Septic Tank Overflow Cleanup',
     description: 'Professional septic tank overflow cleanup services in Queensland. 24/7 emergency response for septic backup, tank overflow.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function SepticTankOverflowCleanupPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Septic Tank Overflow Cleanup Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert septic tank overflow cleanup services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert septic tank overflow cleanup services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

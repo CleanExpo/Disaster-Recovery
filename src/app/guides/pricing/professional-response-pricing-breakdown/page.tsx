@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { DollarSign, CheckCircle, XCircle, AlertTriangle, Calculator, FileText, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'NRP Pricing Guidance - Professional Standards & Fair Pricing Framework | Disaster Recovery Australia',
+  title: 'NRP Pricing Guidance - Professional Standards & Fair Pricing Framework | Disaster Recovery',
   description: 'NRP contractor pricing guidance framework. Understand recommended service inclusions and fair pricing ranges that empower policy holders and streamline claims processing.',
   keywords: 'NRP pricing guidance, professional contractor standards, fair pricing framework, policy holder empowerment, insurance claims streamlining',
   openGraph: {

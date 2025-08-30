@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { AlertTriangle, DollarSign, FileX, Clock, Shield, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Invoice Shock Epidemic - NSW Fair Trading Warns of Contractor Exploitation | Disaster Recovery Australia',
+  title: 'Invoice Shock Epidemic - NSW Fair Trading Warns of Contractor Exploitation | Disaster Recovery',
   description: 'NSW Fair Trading reports 45+ complaints against single traders. ACCC investigating emergency pricing exploitation. Learn how to protect yourself from invoice shock tactics.',
   keywords: 'NSW Fair Trading contractor complaints, ACCC emergency pricing, invoice shock epidemic, hidden costs disaster recovery, consumer protection emergency services',
   openGraph: {

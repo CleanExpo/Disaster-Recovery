@@ -1,5 +1,5 @@
 # Security Requirements & Hardening Guide
-# Disaster Recovery Australia Platform
+# Disaster Recovery Platform
 
 **Version:** 1.0  
 **Last Updated:** 28 August 2025  
@@ -10,7 +10,7 @@
 
 ## 🔒 Executive Summary
 
-This document outlines comprehensive security requirements and hardening measures for the Disaster Recovery Australia platform. The application handles sensitive customer data, contractor information, and financial transactions, requiring enterprise-grade security implementation.
+This document outlines comprehensive security requirements and hardening measures for the Disaster Recovery platform. The application handles sensitive customer data, contractor information, and financial transactions, requiring enterprise-grade security implementation.
 
 **Current Security Status:** 
 - **Overall Security Score:** 45/100 (Requires Immediate Attention)

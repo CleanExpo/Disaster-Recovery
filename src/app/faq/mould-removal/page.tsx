@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation FAQs | FAQ | Disaster Recovery Australia',
+  title: 'Mould Remediation FAQs | FAQ | Disaster Recovery',
   description: 'Important information about mould removal. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
   keywords: ['disaster recovery FAQ', 'mould-removal questions', 'restoration help', 'insurance claims FAQ']
 };

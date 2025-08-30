@@ -63,7 +63,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
     id: 1,
     type: 'title',
     title: 'National Recovery Platform',
-    subtitle: 'Revolutionizing Disaster Recovery Distribution Across Australia',
+    subtitle: 'Revolutionizing Disaster Recovery Distribution nationwide',
     image: '/images/logo-white.png',
     voiceNarration: 'Welcome to National Recovery Platform, the revolutionary disaster recovery distribution system that is transforming how Australia responds to property disasters. We are building the nations most comprehensive network of recovery contractors, powered by artificial intelligence and designed to dominate every market from major cities to the most remote locations.',
     backgroundMusic: '/audio/corporate-inspiring.mp3'
@@ -454,7 +454,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
     id: 13,
     type: 'closing',
     title: 'Join the Revolution',
-    subtitle: 'Transform Disaster Recovery Across Australia',
+    subtitle: 'Transform Disaster Recovery nationwide',
     cta: 'Let\'s Build the Future Together',
     contact: {
       phone: '+61 1300 RECOVERY',

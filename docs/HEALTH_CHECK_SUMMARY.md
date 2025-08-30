@@ -285,7 +285,7 @@ With the platform health check complete, the NRP system is ready for:
 - **Easier maintenance**: Cleaner codebase and better monitoring
 - **Higher investor confidence**: Professional, optimized platform
 
-The National Recovery Partners platform is now a **high-performance, production-ready system** capable of supporting the ambitious goal of disaster recovery market domination across Australia.
+The National Recovery Partners platform is now a **high-performance, production-ready system** capable of supporting the ambitious goal of disaster recovery market domination nationwide.
 
 ---
 

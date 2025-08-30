@@ -387,7 +387,7 @@ export default function ComingSoonPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <h3 className="text-3xl font-bold text-white text-center mb-4">
-              Contractors: Join Australia's Largest Network
+              Contractors: Join Largest Network
             </h3>
             <p className="text-xl text-blue-200 text-center mb-12">
               Your expertise. Our technology. Unlimited growth potential.

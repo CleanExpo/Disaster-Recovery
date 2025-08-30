@@ -142,7 +142,7 @@ export default function ${page.title.replace(/\s+/g, '')}Page() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - ${page.title}',
+    name: 'Disaster Recovery - ${page.title}',
     description: 'Professional ${page.title.toLowerCase()} services in Queensland. 24/7 emergency response for ${page.keywords}.',
     telephone: '1300 814 870',
     address: {
@@ -214,7 +214,7 @@ export default function ${page.title.replace(/\s+/g, '')}Page() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional ${page.title} Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert ${page.title.toLowerCase()} services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert ${page.title.toLowerCase()} services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

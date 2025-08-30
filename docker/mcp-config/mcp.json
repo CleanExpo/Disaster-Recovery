@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "servers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-playwright"],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "/ms-playwright"
+      },
+      "config": {
+        "headless": false,
+        "defaultTimeout": 30000,
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        }
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-sequential-thinking"],
+      "config": {
+        "maxThoughts": 10,
+        "enableBranching": true,
+        "enableRevision": true
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-context7"],
+      "config": {
+        "cache": true,
+        "maxTokens": 50000
+      }
+    },
+    "ide": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-ide"],
+      "config": {
+        "workspace": "/workspace",
+        "languages": ["typescript", "javascript", "python", "rust"]
+      }
+    }
+  },
+  "bridges": {
+    "orchestrator": {
+      "url": "http://claude-orchestrator:3000",
+      "protocol": "websocket",
+      "reconnect": true
+    }
+  },
+  "capabilities": {
+    "browser_automation": true,
+    "sequential_reasoning": true,
+    "documentation_fetch": true,
+    "ide_integration": true,
+    "multi_agent": true
+  }
+}

@@ -155,14 +155,14 @@ export default function UltraModernFooter() {
                   Disaster Recovery
                 </div>
                 <div className="text-xs text-gray-500 uppercase tracking-wider">
-                  Australia's Premier Restoration
+                  Premier Restoration
                 </div>
               </div>
             </div>
             
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
               Leading the industry with cutting-edge restoration technology and unmatched expertise. 
-              Available 24/7 for emergency response across Australia.
+              Available 24/7 for emergency response nationwide.
             </p>
 
             {/* Trust badges */}
@@ -276,7 +276,7 @@ export default function UltraModernFooter() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright */}
             <div className="text-sm text-gray-500">
-              © {new Date().getFullYear()} Disaster Recovery Australia. All rights reserved.
+              © {new Date().getFullYear()} Disaster Recovery. All rights reserved.
             </div>
 
             {/* Social links */}

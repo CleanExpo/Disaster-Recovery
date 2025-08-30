@@ -415,7 +415,7 @@ export default function AnimatedCountersAndWidgets() {
         </h2>
 
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Track our live performance metrics and team availability across Australia
+          Track our live performance metrics and team availability nationwide
         </p>
       </motion.div>
 

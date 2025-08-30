@@ -71,7 +71,7 @@ export default function MarketplaceListing() {
       phone: '+61 2 9555 0123',
       website: 'https://www.aquatech.com.au',
       logo: '/logos/aquatech.png',
-      description: 'Leading supplier of water damage restoration equipment and tools across Australia.',
+      description: 'Leading supplier of water damage restoration equipment and tools nationwide.',
       category: 'equipment_supplier',
       tier: 'platinum',
       status: 'active',

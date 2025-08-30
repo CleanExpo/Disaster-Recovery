@@ -261,7 +261,7 @@ As an NRP contractor, you are part of a critical infrastructure network:
 
 ## National Recovery Partners: Claims Distribution Excellence
 
-National Recovery Partners (NRP) operates as Australia's premier disaster recovery claims distribution network, connecting insurance companies and property owners with qualified restoration contractors across every corner of the continent.
+National Recovery Partners (NRP) operates as Premier disaster recovery claims distribution network, connecting insurance companies and property owners with qualified restoration contractors across every corner of the continent.
 
 ### The Distribution Model Explained
 
@@ -415,7 +415,7 @@ National Recovery Partners (NRP) operates as Australia's premier disaster recove
 - Workers compensation compliance assistance
 - Regulatory compliance monitoring and updates
 
-This business model has been proven successful across Australia, with contractors achieving financial independence while providing essential community services. Your success depends on commitment to quality, professional standards, and continuous improvement.
+This business model has been proven successful nationwide, with contractors achieving financial independence while providing essential community services. Your success depends on commitment to quality, professional standards, and continuous improvement.
         `,
         keyPoints: [
           "NRP operates as a claims distributor, not a direct service provider",

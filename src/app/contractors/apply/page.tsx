@@ -13,7 +13,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { CONTRACTOR_REQUIREMENTS, SERVICE_RADIUS_OPTIONS } from '@/lib/constants';
 
 const metadata: Metadata = {
-  title: 'Apply to Join Network | Contractor Application | Disaster Recovery Australia',
+  title: 'Apply to Join Network | Contractor Application | Disaster Recovery',
   description: 'Apply to join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your territory.',
 };
 
@@ -110,7 +110,7 @@ export default function ContractorApplicationPage() {
               Join Our Network Application
             </h1>
             <p className="text-xl mb-8">
-              Become part of Australia's premier disaster recovery network. 
+              Become part of Premier disaster recovery network. 
               IICRC certified contractors only.
             </p>
           </div>

@@ -15,8 +15,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Restoring Flood Damaged Hardwood Floors | Disaster Recovery Australia',
-  description: 'Expert answers and solutions for "flood damage hardwood floor restoration". IICRC certified professionals available 24/7 across Australia.',
+  title: 'Restoring Flood Damaged Hardwood Floors | Disaster Recovery',
+  description: 'Expert answers and solutions for "flood damage hardwood floor restoration". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'flood damage hardwood floor restoration, disaster recovery, restoration services, Australia, IICRC certified',
 };
 
@@ -29,7 +29,7 @@ export default function FloodDamageHardwoodFloorsPage() {
       name: 'flood damage hardwood floor restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for flood damage hardwood floor restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response across Australia.',
+        text: 'Professional disaster recovery services for flood damage hardwood floor restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
       },
     }],
   };
@@ -74,7 +74,7 @@ export default function FloodDamageHardwoodFloorsPage() {
               <div className="prose max-w-none">
                 <p className="text-lg mb-4">
                   When searching for "flood damage hardwood floor restoration", you need reliable, professional answers from certified experts. 
-                  At Disaster Recovery Australia, we provide comprehensive solutions backed by IICRC certification and years of experience.
+                  At Disaster Recovery, we provide comprehensive solutions backed by IICRC certification and years of experience.
                 </p>
                 
                 <h3 className="text-xl font-semibold mt-6 mb-4">Key Information</h3>

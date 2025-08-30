@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'Real Emergency Response Costs - What\'s Actually Included | Disaster Recovery Australia',
+  title: 'Real Emergency Response Costs - What\'s Actually Included | Disaster Recovery',
   description: 'Professional emergency response $2,750 comprehensive service vs hidden cost competitors charging $5,000+. See what\'s included in transparent pricing - no shock invoices.',
   keywords: 'emergency response costs, professional restoration pricing, transparent pricing, hidden restoration fees, comprehensive emergency service',
   openGraph: {

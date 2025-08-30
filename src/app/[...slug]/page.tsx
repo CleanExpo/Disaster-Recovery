@@ -22,10 +22,10 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
   const description = `Professional ${title.toLowerCase()} services. 24/7 emergency response, insurance approved. Call 1300 814 870 for immediate help.`;
   
   return {
-    title: `${title} | Disaster Recovery Australia`,
+    title: `${title} | Disaster Recovery`,
     description,
     openGraph: {
-      title: `${title} | Disaster Recovery Australia`,
+      title: `${title} | Disaster Recovery`,
       description,
       type: 'website',
     },

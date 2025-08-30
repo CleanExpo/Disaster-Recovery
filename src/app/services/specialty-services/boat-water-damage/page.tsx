@@ -13,7 +13,7 @@ export default function MarineWaterDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Marine Water Damage',
+    name: 'Disaster Recovery - Marine Water Damage',
     description: 'Professional marine water damage services in Queensland. 24/7 emergency response for boat flooding, yacht restoration.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function MarineWaterDamagePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Marine Water Damage Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert marine water damage services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert marine water damage services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

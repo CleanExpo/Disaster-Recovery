@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Major Flood Recovery Services | 24/7 Emergency Response | Disaster Recovery Australia',
+  title: 'Major Flood Recovery Services | 24/7 Emergency Response | Disaster Recovery',
   description: 'Comprehensive flood damage restoration, water extraction, and mould prevention. Serving Queensland, Northern NSW, Victoria. 1-2 hours response time.',
   keywords: ["flood recovery","water damage restoration","flood cleanup"]
 };

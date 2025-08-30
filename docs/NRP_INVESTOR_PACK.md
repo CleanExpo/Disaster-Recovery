@@ -3,7 +3,7 @@
 
 ### Executive Summary
 
-**National Recovery Partners** is a revolutionary disaster recovery marketplace that transforms how insurance claims are distributed to contractors across Australia. Unlike traditional service providers, NRP operates as a **claims distribution engine** with complete market domination strategy through SEO monopolization.
+**National Recovery Partners** is a revolutionary disaster recovery marketplace that transforms how insurance claims are distributed to contractors nationwide. Unlike traditional service providers, NRP operates as a **claims distribution engine** with complete market domination strategy through SEO monopolization.
 
 ---
 

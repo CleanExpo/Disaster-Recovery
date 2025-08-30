@@ -1,7 +1,7 @@
 {
-  "name": "Disaster Recovery Australia",
-  "short_name": "DR Australia",
-  "description": "24/7 Emergency Disaster Recovery and Restoration Services across Australia",
+  "name": "Disaster Recovery",
+  "short_name": "DR",
+  "description": "24/7 Emergency Disaster Recovery and Restoration Services",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -5,8 +5,8 @@ import { Card } from '@/components/ui/card';
 import { Phone, MapPin, Shield, AlertTriangle, Clock, CheckCircle2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Australian Capital Territory | 24/7 Emergency Services | Canberra & All Cities',
-  description: 'Leading disaster recovery services across Australian Capital Territory. Emergency response for Bushfires, Storms, Hail, Frost Damage. Serving Canberra, Belconnen, Tuggeranong, Gungahlin and all ACT regions. Call 1300 DISASTER.',
+  title: 'Disaster Recoveryn Capital Territory | 24/7 Emergency Services | Canberra & All Cities',
+  description: 'Leading disaster recovery services nationwiden Capital Territory. Emergency response for Bushfires, Storms, Hail, Frost Damage. Serving Canberra, Belconnen, Tuggeranong, Gungahlin and all ACT regions. Call 1300 DISASTER.',
   keywords: [
     'disaster recovery Australian Capital Territory',
     'emergency services Canberra',
@@ -30,7 +30,7 @@ export default function AustralianCapitalTerritoryPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Disaster Recovery Australian Capital Territory
+              Disaster Recoveryn Capital Territory
             </h1>
             <p className="text-xl md:text-2xl mb-8">
               24/7 Emergency Response Across All ACT Regions

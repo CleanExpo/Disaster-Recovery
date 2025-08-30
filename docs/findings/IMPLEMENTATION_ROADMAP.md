@@ -1,7 +1,7 @@
 # 🛣️ Implementation Roadmap
 
 **Document Version:** 1.0.0  
-**Project:** Disaster Recovery Australia  
+**Project:** Disaster Recovery  
 **Timeline:** 16 Weeks (4 Months)  
 **Start Date:** 29 January 2025  
 **Target Launch:** 14 May 2025  
@@ -11,7 +11,7 @@
 
 ## 📋 Executive Overview
 
-This roadmap outlines the complete path from current state (85/100) to production-ready (100/100) for the Disaster Recovery Australia application.
+This roadmap outlines the complete path from current state (85/100) to production-ready (100/100) for the Disaster Recovery application.
 
 ### Key Objectives
 1. **Fix Critical Issues** - Resolve all P0/P1 bugs

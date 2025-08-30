@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for Disaster Recovery Australia - Emergency restoration and disaster recovery services.',
+  description: 'Terms of Service for Disaster Recovery - Emergency restoration and disaster recovery services.',
 };
 
 export default function TermsOfService() {
@@ -17,7 +17,7 @@ export default function TermsOfService() {
             
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Agreement to Terms</h2>
             <p className="text-gray-700">
-              By accessing or using Disaster Recovery Australia's services, you agree to be bound by these Terms of Service. 
+              By accessing or using Disaster Recovery's services, you agree to be bound by these Terms of Service. 
               If you disagree with any part of these terms, you may not access our services.
             </p>
           </section>
@@ -43,7 +43,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Service Areas</h2>
             <div className="space-y-3 text-gray-700">
-              <p>We provide services across Australia, including:</p>
+              <p>We provide services nationwide, including:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>All major metropolitan areas</li>
                 <li>Regional centres and surrounding areas</li>
@@ -123,7 +123,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">8. Limitations of Liability</h2>
             <div className="space-y-3 text-gray-700">
-              <p>Disaster Recovery Australia's liability is limited to:</p>
+              <p>Disaster Recovery's liability is limited to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>The cost of re-performing the service</li>
                 <li>Refund of amounts paid for unsatisfactory service</li>
@@ -137,7 +137,7 @@ export default function TermsOfService() {
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. Intellectual Property</h2>
             <p className="text-gray-700">
               All content on this website, including text, graphics, logos, and software, is the property of 
-              Disaster Recovery Australia and protected by Australian copyright laws.
+              Disaster Recovery and protected by Australian copyright laws.
             </p>
           </section>
 
@@ -165,7 +165,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">12. Contact Information</h2>
             <div className="bg-gray-50 p-4 rounded-lg text-gray-700">
-              <p className="font-semibold">Disaster Recovery Australia</p>
+              <p className="font-semibold">Disaster Recovery</p>
               <p>Email: legal@disasterrecovery.com.au</p>
               <p>Phone: 1300 DISASTER (1300 347 278)</p>
               <p>Address: Brisbane, Australia</p>

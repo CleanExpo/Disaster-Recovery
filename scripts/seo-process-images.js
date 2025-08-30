@@ -10,7 +10,7 @@ const path = require('path');
 
 // SEO Configuration
 const SEO_CONFIG = {
-  siteName: 'Disaster Recovery Australia',
+  siteName: 'Disaster Recovery',
   siteUrl: 'https://disasterrecovery.com.au',
   defaultLocation: 'Brisbane, Queensland',
   businessName: 'National Restoration Professionals (NRP)',
@@ -177,7 +177,7 @@ function generateSEOMetadata(filename, category, imageMetadata) {
   
   return {
     title: `${meta.title} | ${SEO_CONFIG.businessName}`,
-    altText: `${meta.description}. Professional restoration services available 24/7 across Australia`,
+    altText: `${meta.description}. Professional restoration services available 24/7 nationwide`,
     caption: meta.description,
     keywords: [...meta.keywords, ...locationKeywords],
     description: meta.description,

@@ -213,7 +213,7 @@ export default function BookServicePage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Book Restoration Service</h1>
-              <p className="text-sm text-gray-600">Professional disaster recovery services across Australia</p>
+              <p className="text-sm text-gray-600">Professional disaster recovery services nationwide</p>
             </div>
             <div className="hidden lg:flex items-center gap-4">
               <div className="text-right">

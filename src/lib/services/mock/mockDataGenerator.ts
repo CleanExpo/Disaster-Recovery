@@ -73,7 +73,7 @@ class MockDataGenerator {
   }
 
   private generateInitialData() {
-    // Generate 50 realistic contractors across Australia
+    // Generate 50 realistic contractors nationwide
     this.contractors = this.generateContractors(50);
     
     // Generate 200 leads over the past 3 months

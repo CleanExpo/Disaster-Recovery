@@ -785,7 +785,7 @@ export function generateMetaTitles(keyword: string, location?: string): string[]
 export function generateMetaDescriptions(keyword: string, location?: string): string[] {
   const templates = [
     `Professional ${keyword} services ${location ? `in ${location}` : ''}. 24/7 emergency response, insurance approved, certified technicians. Call 1300 814 870 for immediate help.`,
-    `Need ${keyword}? Same-day service, free quotes, direct insurance billing. ${location ? `Servicing all ${location} areas` : 'Australia-wide coverage'}. Available now - 1300 814 870.`,
+    `Need ${keyword}? Same-day service, free quotes, direct insurance billing. ${location ? `Servicing all ${location} areas` : 'nationwide coverage'}. Available now - 1300 814 870.`,
     `Expert ${keyword} with 30-minute response time. IICRC certified, 100% guarantee, insurance claims handled. ${location ? location + ' locals' : 'Australian'} trust us. Call 1300 814 870.`,
     `Emergency ${keyword} available 24/7. Professional assessment, competitive pricing, insurance approved. ${location ? `All ${location} suburbs` : 'All areas'} covered. 1300 814 870.`,
     `Fast, reliable ${keyword} service. Free inspection, written quotes, direct insurance billing. ${location ? `${location}'s` : "Australia's"} trusted restoration experts. Call now 1300 814 870.`

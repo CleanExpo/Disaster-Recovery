@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'The Real Cost of Insurance Delays - ASIC & ICA Data on Claims Crisis | Disaster Recovery Australia',
+  title: 'The Real Cost of Insurance Delays - ASIC & ICA Data on Claims Crisis | Disaster Recovery',
   description: 'ASIC concerned about unresolved 2022 flood claims. ICA reports 78% of catastrophes Oct-April. Learn your Section 54 rights and how delays cost thousands in secondary damage.',
   keywords: 'insurance claim delays ASIC, ICA catastrophe report 2024, flood claims unresolved, AFCA complaints, Section 54 Insurance Contracts Act, Ex-Tropical Cyclone Jasper claims',
   openGraph: {

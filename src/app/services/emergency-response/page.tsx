@@ -62,7 +62,7 @@ const schemaData = {
   "serviceType": "Emergency Response",
   "provider": {
     "@type": "Organisation",
-    "name": "Disaster Recovery Australia",
+    "name": "Disaster Recovery",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU"
@@ -137,7 +137,7 @@ const relatedServices = [
 const faqs = [
   {
     question: "How quickly can you respond to an emergency?",
-    answer: "We guarantee a 1-hour response time in major metropolitan areas and within 2-3 hours in regional areas. Our teams are strategically positioned across Australia to ensure rapid response to any disaster emergency."
+    answer: "We guarantee a 1-hour response time in major metropolitan areas and within 2-3 hours in regional areas. Our teams are strategically positioned nationwide to ensure rapid response to any disaster emergency."
   },
   {
     question: "What constitutes a disaster emergency that requires immediate response?",
@@ -193,7 +193,7 @@ export default function EmergencyResponsePage() {
           <div>
             <p className="text-lg text-neutral-700 mb-6">
               When disaster strikes, every minute counts. Our 24/7 emergency response teams are strategically 
-              positioned across Australia to provide immediate mitigation services that stop ongoing damage and 
+              positioned nationwide to provide immediate mitigation services that stop ongoing damage and 
               begin the recovery process. We understand that disasters don't wait for convenient hours.
             </p>
             

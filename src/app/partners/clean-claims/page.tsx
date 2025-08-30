@@ -89,7 +89,7 @@ export default function CleanClaimsPartnershipPage() {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
               Clean Claims × 
               <span className="block mt-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Disaster Recovery Australia
+                Disaster Recovery
               </span>
             </h1>
             
@@ -114,7 +114,7 @@ export default function CleanClaimsPartnershipPage() {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                 <Image
                   src="/images/logos/dr-logo.svg"
-                  alt="Disaster Recovery Australia"
+                  alt="Disaster Recovery"
                   width={200}
                   height={80}
                   className="h-20 w-auto object-contain"
@@ -200,7 +200,7 @@ export default function CleanClaimsPartnershipPage() {
 
                 <div className="mt-8 p-4 bg-blue-500/10 rounded-lg">
                   <p className="text-sm text-blue-300 italic">
-                    "We're excited to partner with Disaster Recovery Australia to bring 
+                    "We're excited to partner with Disaster Recovery to bring 
                     our proven technology to the Asia-Pacific market."
                   </p>
                 </div>
@@ -301,7 +301,7 @@ export default function CleanClaimsPartnershipPage() {
                   <h4 className="text-lg font-semibold text-white">Phase 2: Deployment</h4>
                 </div>
                 <p className="text-gray-300">
-                  Roll out remote monitoring technology across Australian contractor network
+                  Roll out remote monitoring technology nationwiden contractor network
                 </p>
               </div>
 
@@ -537,7 +537,7 @@ export const generateMetadata = (): Metadata => {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Partnership',
-    name: 'Clean Claims × Disaster Recovery Australia Partnership',
+    name: 'Clean Claims × Disaster Recovery Partnership',
     description: 'Strategic technology partnership for Australian disaster recovery market',
     partner: [
       {
@@ -552,7 +552,7 @@ export const generateMetadata = (): Metadata => {
       },
       {
         '@type': 'Organization',
-        name: 'Disaster Recovery Australia',
+        name: 'Disaster Recovery',
         url: 'https://disasterrecovery.com.au'
       }
     ],
@@ -563,18 +563,18 @@ export const generateMetadata = (): Metadata => {
   };
 
   return {
-    title: 'Clean Claims Partnership | Strategic US Technology Partner | Disaster Recovery Australia',
-    description: 'Clean Claims partners with Disaster Recovery Australia to bring cutting-edge restoration technology and documentation systems to the Australian market. Strategic investment and technology partnership.',
+    title: 'Clean Claims Partnership | Strategic US Technology Partner | Disaster Recovery',
+    description: 'Clean Claims partners with Disaster Recovery to bring cutting-edge restoration technology and documentation systems to the Australian market. Strategic investment and technology partnership.',
     keywords: 'Clean Claims, Lane Larsen, restoration software, disaster recovery partnership, US investment Australia, restoration technology, claims documentation, remote monitoring',
     openGraph: {
-      title: 'Clean Claims × Disaster Recovery Australia Partnership',
+      title: 'Clean Claims × Disaster Recovery Partnership',
       description: 'Strategic partnership bringing US restoration technology to Australian disaster recovery market',
       images: ['/images/logos/3D Clean Claims Logo.png'],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Clean Claims Partners with Disaster Recovery Australia',
+      title: 'Clean Claims Partners with Disaster Recovery',
       description: 'Major US restoration technology company invests in Australian market expansion',
     },
     alternates: {

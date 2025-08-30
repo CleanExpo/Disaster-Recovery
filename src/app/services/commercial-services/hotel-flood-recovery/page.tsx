@@ -13,7 +13,7 @@ export default function HotelFloodRestorationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Hotel Flood Restoration',
+    name: 'Disaster Recovery - Hotel Flood Restoration',
     description: 'Professional hotel flood restoration services in Queensland. 24/7 emergency response for accommodation flooding, guest room water.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function HotelFloodRestorationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Hotel Flood Restoration Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert hotel flood restoration services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert hotel flood restoration services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

@@ -64,7 +64,7 @@ import { Card } from '@/components/ui/card';
 import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '${disaster.name} Services | 24/7 Emergency Response | Disaster Recovery Australia',
+  title: '${disaster.name} Services | 24/7 Emergency Response | Disaster Recovery',
   description: '${disaster.description}. Serving ${disaster.regions.join(', ')}. ${disaster.responseTime} response time.',
   keywords: ${JSON.stringify(disaster.keywords)}
 };
@@ -290,7 +290,7 @@ export default function DisastersPage() {
             All Disaster Types Coverage
           </h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Complete disaster recovery services for every type of natural disaster across Australia
+            Complete disaster recovery services for every type of natural disaster nationwide
           </p>
         </div>
       </section>

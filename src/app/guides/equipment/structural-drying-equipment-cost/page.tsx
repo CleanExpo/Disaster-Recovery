@@ -15,8 +15,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Structural Drying Equipment: Rental vs Professional Service | Disaster Recovery Australia',
-  description: 'Expert answers and solutions for "structural drying equipment rental cost". IICRC certified professionals available 24/7 across Australia.',
+  title: 'Structural Drying Equipment: Rental vs Professional Service | Disaster Recovery',
+  description: 'Expert answers and solutions for "structural drying equipment rental cost". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'structural drying equipment rental cost, disaster recovery, restoration services, Australia, IICRC certified',
 };
 
@@ -29,7 +29,7 @@ export default function StructuralDryingEquipmentCostPage() {
       name: 'structural drying equipment rental cost',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for structural drying equipment rental cost. Our IICRC certified technicians provide expert solutions with 24/7 emergency response across Australia.',
+        text: 'Professional disaster recovery services for structural drying equipment rental cost. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
       },
     }],
   };
@@ -74,7 +74,7 @@ export default function StructuralDryingEquipmentCostPage() {
               <div className="prose max-w-none">
                 <p className="text-lg mb-4">
                   When searching for "structural drying equipment rental cost", you need reliable, professional answers from certified experts. 
-                  At Disaster Recovery Australia, we provide comprehensive solutions backed by IICRC certification and years of experience.
+                  At Disaster Recovery, we provide comprehensive solutions backed by IICRC certification and years of experience.
                 </p>
                 
                 <h3 className="text-xl font-semibold mt-6 mb-4">Key Information</h3>

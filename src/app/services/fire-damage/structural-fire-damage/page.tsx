@@ -13,7 +13,7 @@ export default function StructuralFireDamageRepairPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Structural Fire Damage Repair',
+    name: 'Disaster Recovery - Structural Fire Damage Repair',
     description: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function StructuralFireDamageRepairPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Structural Fire Damage Repair Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert structural fire damage repair services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert structural fire damage repair services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

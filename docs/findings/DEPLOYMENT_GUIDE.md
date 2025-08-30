@@ -1,5 +1,5 @@
 # Production Deployment Guide
-# Disaster Recovery Australia Platform
+# Disaster Recovery Platform
 
 **Version:** 1.0  
 **Last Updated:** 28 August 2025  
@@ -770,7 +770,7 @@ test.describe('Production Smoke Tests', () => {
   test('homepage loads successfully', async ({ page }) => {
     await page.goto('https://disasterrecoveryaustralia.com.au');
     
-    await expect(page).toHaveTitle(/Disaster Recovery Australia/);
+    await expect(page).toHaveTitle(/Disaster Recovery/);
     await expect(page.locator('[data-testid="emergency-cta"]')).toBeVisible();
     
     // Check critical elements

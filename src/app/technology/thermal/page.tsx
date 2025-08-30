@@ -10,11 +10,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'Certified Thermal Imaging Analysis | Level 1/2 Thermography | Disaster Recovery Australia',
+  title: 'Certified Thermal Imaging Analysis | Level 1/2 Thermography | Disaster Recovery',
   description: 'Professional thermography services by certified Level 1/2 technicians. Electrical hot spot analysis, building envelope assessment, and quantitative thermal reporting. Only ~15 certified specialists nationally.',
   keywords: 'certified thermal imaging, Level 1 thermography, electrical hot spot detection, building envelope analysis, quantitative thermal analysis, thermography certification',
   openGraph: {
-    title: 'Certified Thermal Imaging Analysis | Disaster Recovery Australia',
+    title: 'Certified Thermal Imaging Analysis | Disaster Recovery',
     description: 'Beyond basic moisture detection - certified thermography analysis by qualified specialists.',
     images: ['/images/thermal-technology.jpg'],
   },

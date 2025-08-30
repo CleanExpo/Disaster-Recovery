@@ -13,7 +13,7 @@ export default function RedlandsStormDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Redlands Storm Damage',
+    name: 'Disaster Recovery - Redlands Storm Damage',
     description: 'Professional redlands storm damage services in Queensland. 24/7 emergency response for bayside damage, island restoration.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function RedlandsStormDamagePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Redlands Storm Damage Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert redlands storm damage services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert redlands storm damage services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

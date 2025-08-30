@@ -10,11 +10,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'AI Detection Systems | Advanced Damage Analysis | Disaster Recovery Australia',
+  title: 'AI Detection Systems | Advanced Damage Analysis | Disaster Recovery',
   description: 'Revolutionary AI-powered damage detection technology that identifies hidden issues, predicts problems, and accelerates restoration with 99.7% accuracy.',
   keywords: 'AI damage detection, machine learning restoration, predictive analysis, computer vision, damage assessment AI',
   openGraph: {
-    title: 'AI Detection Systems | Disaster Recovery Australia',
+    title: 'AI Detection Systems | Disaster Recovery',
     description: 'Experience 10x faster damage detection with our AI-powered analysis technology.',
     images: ['/images/ai-technology.jpg'],
   },

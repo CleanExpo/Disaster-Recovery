@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, Droplets, Wind, Home, CheckCircle } from 'lucide-
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Water Damage Restoration Australia | 24/7 Emergency Response | Disaster Recovery',
-  description: 'Professional water damage restoration services across Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 309 361.',
+  description: 'Professional water damage restoration services nationwide. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 309 361.',
   keywords: [
     'water damage restoration Brisbane',
     'flood restoration Australia',
@@ -95,11 +95,11 @@ export default function WaterDamageRestorationPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Water Damage Restoration Services Across Australia
+                Water Damage Restoration Services nationwide
               </h1>
               <p className="text-xl text-gray-700 mb-8">
                 IICRC certified water damage restoration experts with 25+ years experience. 
-                Fast emergency response, insurance approved, and available 24/7 across Australia.
+                Fast emergency response, insurance approved, and available 24/7 nationwide.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">

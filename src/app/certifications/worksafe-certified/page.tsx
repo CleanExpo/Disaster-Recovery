@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'WorkSafe Certified | Safety compliance | Disaster Recovery Australia',
+  title: 'WorkSafe Certified | Safety compliance | Disaster Recovery',
   description: 'WorkSafe Certified restoration services. Safety compliance. Qualified, certified, and compliant disaster recovery.',
 };
 

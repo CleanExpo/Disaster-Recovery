@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Severe Storm Response Services | 24/7 Emergency Response | Disaster Recovery Australia',
+  title: 'Severe Storm Response Services | 24/7 Emergency Response | Disaster Recovery',
   description: 'Emergency storm damage repairs including roof tarping, water extraction, and debris removal. Serving All Australian States. 30 minutes response time.',
   keywords: ["storm damage repair","emergency tarping","hail damage"]
 };

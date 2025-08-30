@@ -7,7 +7,7 @@ export function HomepageStructuredData() {
     "@context": "https://schema.org",
     "@type": "Organisation",
     "@id": "https://disasterrecovery.com.au/#organisation",
-    "name": "Disaster Recovery Australia",
+    "name": "Disaster Recovery",
     "url": "https://disasterrecovery.com.au",
     "logo": {
       "@type": "ImageObject",
@@ -15,7 +15,7 @@ export function HomepageStructuredData() {
       "width": 600,
       "height": 60
     },
-    "description": "Australia's premier network of IICRC certified disaster recovery contractors. 24/7 emergency response for water damage, fire restoration, and mould remediation.",
+    "description": "Premier network of IICRC certified disaster recovery contractors. 24/7 emergency response for water damage, fire restoration, and mould remediation.",
     "email": "info@disasterrecovery.com.au",
     "areaServed": {
       "@type": "Country",
@@ -39,7 +39,7 @@ export function HomepageStructuredData() {
     "@context": "https://schema.org",
     "@type": "EmergencyService",
     "@id": "https://disasterrecovery.com.au/#business",
-    "name": "Disaster Recovery Australia",
+    "name": "Disaster Recovery",
     "image": "https://disasterrecovery.com.au/og-image.jpg",
     "url": "https://disasterrecovery.com.au",
     "telephone": "",
@@ -142,8 +142,8 @@ export function HomepageStructuredData() {
     "@type": "WebSite",
     "@id": "https://disasterrecovery.com.au/#website",
     "url": "https://disasterrecovery.com.au",
-    "name": "Disaster Recovery Australia",
-    "description": "24/7 Emergency Disaster Recovery Services Across Australia",
+    "name": "Disaster Recovery",
+    "description": "24/7 Emergency Disaster Recovery Services nationwide",
     "publisher": {
       "@id": "https://disasterrecovery.com.au/#organisation"
     },
@@ -213,7 +213,7 @@ export function HomepageStructuredData() {
   const speakableSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Disaster Recovery Australia - 24/7 Emergency Response",
+    "name": "Disaster Recovery - 24/7 Emergency Response",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [

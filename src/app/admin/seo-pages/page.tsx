@@ -133,7 +133,7 @@ export default function SEOPagesAdmin() {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">SEO Pages Management</h1>
               <p className="text-gray-600">
-                Manage and monitor your location-based SEO pages across Australia
+                Manage and monitor your location-based SEO pages nationwide
               </p>
             </div>
             

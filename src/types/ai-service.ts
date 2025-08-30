@@ -1,5 +1,5 @@
 /**
- * AI Service Types for Disaster Recovery Australia
+ * AI Service Types for Disaster Recovery
  * Production-ready AI abstraction layer supporting multiple providers
  */
 

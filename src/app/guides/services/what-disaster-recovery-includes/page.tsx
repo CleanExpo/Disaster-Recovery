@@ -15,8 +15,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'What\'s Included in Disaster Recovery Services | Disaster Recovery Australia',
-  description: 'Expert answers and solutions for "what does disaster recovery service include". IICRC certified professionals available 24/7 across Australia.',
+  title: 'What\'s Included in Disaster Recovery Services | Disaster Recovery',
+  description: 'Expert answers and solutions for "what does disaster recovery service include". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'what does disaster recovery service include, disaster recovery, restoration services, Australia, IICRC certified',
 };
 
@@ -29,7 +29,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
       name: 'what does disaster recovery service include',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for what does disaster recovery service include. Our IICRC certified technicians provide expert solutions with 24/7 emergency response across Australia.',
+        text: 'Professional disaster recovery services for what does disaster recovery service include. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
       },
     }],
   };
@@ -74,7 +74,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
               <div className="prose max-w-none">
                 <p className="text-lg mb-4">
                   When searching for "what does disaster recovery service include", you need reliable, professional answers from certified experts. 
-                  At Disaster Recovery Australia, we provide comprehensive solutions backed by IICRC certification and years of experience.
+                  At Disaster Recovery, we provide comprehensive solutions backed by IICRC certification and years of experience.
                 </p>
                 
                 <h3 className="text-xl font-semibold mt-6 mb-4">Key Information</h3>

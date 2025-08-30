@@ -316,7 +316,7 @@ export function generateTaxInvoice(data: Partial<TaxInvoice>): TaxInvoice {
   return {
     invoiceNumber: data.invoiceNumber || generateInvoiceNumber(),
     date: data.date || new Date(),
-    businessName: data.businessName || 'Disaster Recovery Australia Pty Ltd',
+    businessName: data.businessName || 'Disaster Recovery Pty Ltd',
     abn: data.abn || '11 234 567 890',
     customerName: data.customerName || '',
     customerAddress: data.customerAddress || '',

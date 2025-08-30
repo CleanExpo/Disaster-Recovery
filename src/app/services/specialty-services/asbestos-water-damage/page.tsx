@@ -13,7 +13,7 @@ export default function AsbestosWaterDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Asbestos Water Damage',
+    name: 'Disaster Recovery - Asbestos Water Damage',
     description: 'Professional asbestos water damage services in Queensland. 24/7 emergency response for wet asbestos, contaminated materials.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function AsbestosWaterDamagePage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Asbestos Water Damage Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert asbestos water damage services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert asbestos water damage services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

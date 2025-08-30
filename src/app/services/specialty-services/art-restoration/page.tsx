@@ -13,7 +13,7 @@ export default function WaterDamagedArtRestorationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Water Damaged Art Restoration',
+    name: 'Disaster Recovery - Water Damaged Art Restoration',
     description: 'Professional water damaged art restoration services in Queensland. 24/7 emergency response for painting restoration, artwork recovery.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function WaterDamagedArtRestorationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Water Damaged Art Restoration Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert water damaged art restoration services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert water damaged art restoration services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

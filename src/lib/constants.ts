@@ -1,5 +1,5 @@
 // Business Constants
-export const BUSINESS_NAME = 'Disaster Recovery Australia';
+export const BUSINESS_NAME = 'Disaster Recovery';
 export const BUSINESS_SHORT_NAME = 'Disaster Recovery';
 // No phone number - online forms only
 export const ONLINE_FORM_URL = '/get-help';

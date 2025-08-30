@@ -13,7 +13,7 @@ export default function SchoolWaterDamageCleanupPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - School Water Damage Cleanup',
+    name: 'Disaster Recovery - School Water Damage Cleanup',
     description: 'Professional school water damage cleanup services in Queensland. 24/7 emergency response for education facility, classroom flooding.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function SchoolWaterDamageCleanupPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional School Water Damage Cleanup Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert school water damage cleanup services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert school water damage cleanup services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

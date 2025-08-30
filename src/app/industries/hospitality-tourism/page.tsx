@@ -6,7 +6,7 @@ import { Building2, Shield, Clock, AlertTriangle, CheckCircle2, Phone, ArrowRigh
 
 export const metadata: Metadata = {
   title: 'Hospitality & Tourism Disaster Recovery | Specialised Industrial Restoration | Australia',
-  description: 'Hotel, resort, and tourism facility disaster recovery across Australia. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+  description: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
   keywords: ["hotel disaster recovery","resort restoration","tourism facility cleanup"]
 };
 
@@ -25,7 +25,7 @@ export default function HospitalityTourismPage() {
               Hospitality & Tourism Disaster Recovery
             </h1>
             <p className="text-xl mb-8">
-              Hotel, resort, and tourism facility disaster recovery across Australia
+              Hotel, resort, and tourism facility disaster recovery nationwide
             </p>
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
@@ -98,7 +98,7 @@ export default function HospitalityTourismPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Servicing Hospitality & Tourism Across Australia
+            Servicing Hospitality & Tourism nationwide
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             {locations.map((location, index) => (

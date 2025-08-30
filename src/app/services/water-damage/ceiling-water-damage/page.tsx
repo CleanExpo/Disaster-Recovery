@@ -13,7 +13,7 @@ export default function CeilingWaterDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Ceiling Water Damage Specialists',
+    name: 'Disaster Recovery - Ceiling Water Damage Specialists',
     description: 'Expert ceiling water damage repair and restoration in Queensland. Emergency response for ceiling leaks, sagging, and collapse prevention.',
     telephone: '1300 814 870',
     address: {

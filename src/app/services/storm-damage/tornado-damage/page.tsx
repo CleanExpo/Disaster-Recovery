@@ -13,7 +13,7 @@ export default function TornadoDamageCleanupPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Tornado Damage Cleanup',
+    name: 'Disaster Recovery - Tornado Damage Cleanup',
     description: 'Professional tornado damage cleanup services in Queensland. 24/7 emergency response for twister damage, severe wind.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function TornadoDamageCleanupPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Tornado Damage Cleanup Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert tornado damage cleanup services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert tornado damage cleanup services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

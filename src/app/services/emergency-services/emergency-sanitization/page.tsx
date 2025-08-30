@@ -13,7 +13,7 @@ export default function EmergencySanitizationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Emergency Sanitization',
+    name: 'Disaster Recovery - Emergency Sanitization',
     description: 'Professional emergency sanitization services in Queensland. 24/7 emergency response for urgent disinfection, contamination control.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function EmergencySanitizationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Emergency Sanitization Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert emergency sanitization services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert emergency sanitization services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

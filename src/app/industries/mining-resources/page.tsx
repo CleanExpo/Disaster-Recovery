@@ -98,7 +98,7 @@ export default function MiningResourcesPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Servicing Mining & Resources Across Australia
+            Servicing Mining & Resources nationwide
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
             {locations.map((location, index) => (

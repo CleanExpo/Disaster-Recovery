@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
   
   if (!page) {
     return {
-      title: 'Page Not Found | Disaster Recovery Australia',
+      title: 'Page Not Found | Disaster Recovery',
       description: 'The requested page could not be found.'
     };
   }

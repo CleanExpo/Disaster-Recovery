@@ -92,7 +92,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: '${timePage.name} Services | ${timePage.time} | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available ${timePage.time}. No call-out fees, immediate response across Australia.',
+  description: 'Emergency disaster recovery services available ${timePage.time}. No call-out fees, immediate response nationwide.',
 };
 
 export default function ${timePage.name.replace(/\s+/g, '')}Page() {
@@ -238,7 +238,7 @@ certifications.forEach(cert => {
 import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '${cert.name} | ${cert.standard} | Disaster Recovery Australia',
+  title: '${cert.name} | ${cert.standard} | Disaster Recovery',
   description: '${cert.name} restoration services. ${cert.standard}. Qualified, certified, and compliant disaster recovery.',
 };
 

@@ -28,7 +28,7 @@ export default function ComingSoonPage() {
             <Shield className="h-20 w-20 mx-auto mb-6 text-yellow-400 animate-pulse" />
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Coming Soon: Australia's #1
+              Coming Soon: #1
               <span className="block text-yellow-400">Disaster Recovery Network</span>
             </h1>
             
@@ -332,7 +332,7 @@ export default function ComingSoonPage() {
       <footer className="py-12 bg-black/20 text-white">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm text-blue-200 mb-2">
-            © 2024 Disaster Recovery Australia - Building the Future of Restoration
+            © 2024 Disaster Recovery - Building the Future of Restoration
           </p>
           <p className="text-xs text-blue-300">
             Every fact verified. Every contractor certified. Every answer authoritative.

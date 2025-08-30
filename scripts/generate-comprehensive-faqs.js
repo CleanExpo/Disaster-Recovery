@@ -176,7 +176,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: '${category.name} | FAQ | Disaster Recovery Australia',
+  title: '${category.name} | FAQ | Disaster Recovery',
   description: '${category.description}. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
   keywords: ['disaster recovery FAQ', '${category.slug} questions', 'restoration help', 'insurance claims FAQ']
 };
@@ -289,7 +289,7 @@ import { Button } from '@/components/ui/button';
 import { HelpCircle, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Frequently Asked Questions | All FAQs | Disaster Recovery Australia',
+  title: 'Frequently Asked Questions | All FAQs | Disaster Recovery',
   description: 'Find answers to all your questions about disaster recovery, water damage, fire restoration, mould removal, insurance claims, and emergency response.',
 };
 

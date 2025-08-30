@@ -16,7 +16,7 @@ import {
 } from '@/lib/utils/schema-markup';
 
 export const metadata: Metadata = {
-  title: 'Why Mould Returns Within 6 Months - VBA Research Shows 92% Have Water Defects | Disaster Recovery Australia',
+  title: 'Why Mould Returns Within 6 Months - VBA Research Shows 92% Have Water Defects | Disaster Recovery',
   description: 'Victorian Building Authority research reveals 92% of insurance claims have water-related defects. One in three Australian homes affected by mould. Learn the 7 reasons professional remediation fails.',
   keywords: 'mould returns after removal, Victorian Building Authority mould research, ABCB condensation management, AS-IICRC S520:2025 standard, professional mould removal problems',
   openGraph: {
@@ -370,7 +370,7 @@ export default function WhyMouldReturnsPage() {
               The 7 Reasons Mould Removal Fails
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Based on analysis of 500+ failed mould removal cases across Australia
+              Based on analysis of 500+ failed mould removal cases nationwide
             </p>
           </div>
 

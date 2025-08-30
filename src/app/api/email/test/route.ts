@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     
     // Send test email
     const testEmail = {
-      subject: 'Test Email - Disaster Recovery Australia',
+      subject: 'Test Email - Disaster Recovery',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #0052CC; padding: 30px; text-align: centre;">
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
           </div>
           
           <div style="padding: 30px;">
-            <p style="font-size: 16px;">This is a test email from the Disaster Recovery Australia system.</p>
+            <p style="font-size: 16px;">This is a test email from the Disaster Recovery system.</p>
             
             <div style="background: #d4edda; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
               <h3 style="margin-top: 0; colour: #155724;">✅ Email Configuration Working</h3>
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
           </div>
           
           <div style="background: #f5f5f5; padding: 20px; text-align: centre; colour: #666; font-size: 12px;">
-            <p>Disaster Recovery Australia - Email System Test</p>
+            <p>Disaster Recovery - Email System Test</p>
           </div>
         </div>
       `,

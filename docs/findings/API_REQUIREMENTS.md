@@ -1,5 +1,5 @@
 # API Requirements Specification
-# Disaster Recovery Australia Platform
+# Disaster Recovery Platform
 
 **Version:** 1.0  
 **Last Updated:** 28 August 2025  
@@ -10,7 +10,7 @@
 
 ## 📋 Executive Summary
 
-This document outlines the complete API specification for the Disaster Recovery Australia platform. The API provides endpoints for lead management, contractor operations, authentication, and business intelligence. All endpoints follow RESTful principles and include comprehensive authentication, validation, and error handling.
+This document outlines the complete API specification for the Disaster Recovery platform. The API provides endpoints for lead management, contractor operations, authentication, and business intelligence. All endpoints follow RESTful principles and include comprehensive authentication, validation, and error handling.
 
 **Current Status:** 40% implemented  
 **Missing Critical APIs:** 18 endpoints  

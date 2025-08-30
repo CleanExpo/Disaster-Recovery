@@ -45,7 +45,7 @@ const professionalSlides = [
   {
     id: 1,
     chapter: "Introduction",
-    title: "Disaster Recovery Australia",
+    title: "Disaster Recovery",
     subtitle: "National Recovery Partners",
     content: {
       headline: "Transforming Australia's $4.2B Restoration Industry",
@@ -669,7 +669,7 @@ ${slide.speakerNotes}
             >
               <Image
                 src="/images/logos/dr-logo.svg"
-                alt="Disaster Recovery Australia"
+                alt="Disaster Recovery"
                 width={300}
                 height={120}
                 className="mx-auto mb-6"

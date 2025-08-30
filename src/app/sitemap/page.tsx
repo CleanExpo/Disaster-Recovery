@@ -4,8 +4,8 @@ import { Card } from '@/components/ui/card';
 import { MapPin, FileText, DollarSign, Shield, Users, HelpCircle, Clock, Building } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Sitemap | All Pages | Disaster Recovery Australia',
-  description: 'Complete sitemap of all pages on Disaster Recovery Australia. Find services, locations, pricing, and resources.',
+  title: 'Sitemap | All Pages | Disaster Recovery',
+  description: 'Complete sitemap of all pages on Disaster Recovery. Find services, locations, pricing, and resources.',
   robots: {
     index: true,
     follow: true,

@@ -26,7 +26,7 @@ const schemaData = {
   "serviceType": "Water Damage Restoration",
   "provider": {
     "@type": "Organisation",
-    "name": "Disaster Recovery Australia",
+    "name": "Disaster Recovery",
     "telephone": "Contact Us",
     "url": "https://disasterrecovery.com.au"
   },

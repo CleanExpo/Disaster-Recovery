@@ -15,8 +15,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Black Mould on Bathroom Ceiling: Removal Guide | Disaster Recovery Australia',
-  description: 'Expert answers and solutions for "black mould removal bathroom ceiling". IICRC certified professionals available 24/7 across Australia.',
+  title: 'Black Mould on Bathroom Ceiling: Removal Guide | Disaster Recovery',
+  description: 'Expert answers and solutions for "black mould removal bathroom ceiling". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'black mould removal bathroom ceiling, disaster recovery, restoration services, Australia, IICRC certified',
 };
 
@@ -29,7 +29,7 @@ export default function BlackMouldBathroomCeilingPage() {
       name: 'black mould removal bathroom ceiling',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for black mould removal bathroom ceiling. Our IICRC certified technicians provide expert solutions with 24/7 emergency response across Australia.',
+        text: 'Professional disaster recovery services for black mould removal bathroom ceiling. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
       },
     }],
   };
@@ -74,7 +74,7 @@ export default function BlackMouldBathroomCeilingPage() {
               <div className="prose max-w-none">
                 <p className="text-lg mb-4">
                   When searching for "black mould removal bathroom ceiling", you need reliable, professional answers from certified experts. 
-                  At Disaster Recovery Australia, we provide comprehensive solutions backed by IICRC certification and years of experience.
+                  At Disaster Recovery, we provide comprehensive solutions backed by IICRC certification and years of experience.
                 </p>
                 
                 <h3 className="text-xl font-semibold mt-6 mb-4">Key Information</h3>

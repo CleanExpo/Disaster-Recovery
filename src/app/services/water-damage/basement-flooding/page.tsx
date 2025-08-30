@@ -13,7 +13,7 @@ export default function BasementFloodingPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Basement Flooding Specialists',
+    name: 'Disaster Recovery - Basement Flooding Specialists',
     description: 'Emergency basement flooding cleanup and restoration in Brisbane. 24/7 water extraction, drying, and flood damage repair services.',
     telephone: '1300 814 870',
     address: {

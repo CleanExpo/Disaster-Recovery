@@ -62,7 +62,7 @@ const schemaData = {
   "serviceType": "Structural Drying",
   "provider": {
     "@type": "Organisation",
-    "name": "Disaster Recovery Australia",
+    "name": "Disaster Recovery",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU"

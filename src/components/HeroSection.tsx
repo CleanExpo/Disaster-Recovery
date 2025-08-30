@@ -67,7 +67,7 @@ export default function HeroSection() {
         {/* Main heading with animated text */}
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            Australia's #1
+            #1
           </span>
           <br />
           <span className="relative">

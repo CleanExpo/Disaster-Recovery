@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Australian Standards Compliant | AS/NZS compliance | Disaster Recovery Australia',
+  title: 'Australian Standards Compliant | AS/NZS compliance | Disaster Recovery',
   description: 'Australian Standards Compliant restoration services. AS/NZS compliance. Qualified, certified, and compliant disaster recovery.',
 };
 

@@ -13,7 +13,7 @@ export default function GreyWaterDamageCleanupPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Grey Water Damage Cleanup',
+    name: 'Disaster Recovery - Grey Water Damage Cleanup',
     description: 'Professional grey water damage cleanup services in Queensland. 24/7 emergency response for washing machine water, sink overflow.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function GreyWaterDamageCleanupPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Grey Water Damage Cleanup Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert grey water damage cleanup services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert grey water damage cleanup services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

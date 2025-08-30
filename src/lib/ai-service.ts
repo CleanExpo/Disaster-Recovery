@@ -1,5 +1,5 @@
 /**
- * AI Service Implementation for Disaster Recovery Australia
+ * AI Service Implementation for Disaster Recovery
  * Production-ready AI abstraction layer with intelligent routing
  */
 
@@ -290,7 +290,7 @@ export class AIService implements IAIService {
       headers: {
         'Authorisation': `Bearer ${config.apiKey}`,
         'Content-Type': 'application/json',
-        'X-Title': 'Disaster Recovery Australia AI Service'
+        'X-Title': 'Disaster Recovery AI Service'
       },
       body: JSON.stringify({
         model: config.model,

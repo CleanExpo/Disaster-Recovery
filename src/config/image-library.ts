@@ -466,7 +466,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'disaster-recovery-logo-3d',
     name: '3D Disaster Recovery Logo',
     category: 'branding',
-    description: 'Official 3D Disaster Recovery Australia company logo',
+    description: 'Official 3D Disaster Recovery company logo',
     tags: ['logo', 'branding', 'disaster-recovery', 'company', 'official', 'main-logo', 'hero'],
     formats: {
       webp: '/images/branding/disaster-recovery-logo-3d.webp',
@@ -479,13 +479,13 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
       medium: '/images/branding/disaster-recovery-logo-3d-md.webp',
       large: '/images/branding/disaster-recovery-logo-3d-lg.webp'
     },
-    alt: 'Disaster Recovery Australia - 24/7 Emergency Restoration Services | Water, Fire, Mould Damage Specialists'
+    alt: 'Disaster Recovery - 24/7 Emergency Restoration Services | Water, Fire, Mould Damage Specialists'
   },
   {
     id: 'disaster-recovery-logo-standard',
     name: 'Disaster Recovery Logo',
     category: 'branding',
-    description: 'Disaster Recovery Australia standard company logo',
+    description: 'Disaster Recovery standard company logo',
     tags: ['logo', 'branding', 'disaster-recovery', 'company', 'official', 'standard-logo', 'header'],
     formats: {
       webp: '/images/branding/disaster-recovery-logo.webp',
@@ -498,7 +498,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
       medium: '/images/branding/disaster-recovery-logo-md.webp',
       large: '/images/branding/disaster-recovery-logo-lg.webp'
     },
-    alt: 'Disaster Recovery Australia Logo - Professional Emergency Restoration Services Nationwide'
+    alt: 'Disaster Recovery Logo - Professional Emergency Restoration Services Nationwide'
   },
 
   // Additional Equipment Images  

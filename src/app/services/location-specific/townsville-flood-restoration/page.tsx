@@ -13,7 +13,7 @@ export default function TownsvilleFloodRestorationPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Townsville Flood Restoration',
+    name: 'Disaster Recovery - Townsville Flood Restoration',
     description: 'Professional townsville flood restoration services in Queensland. 24/7 emergency response for north QLD flooding, tropical recovery.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function TownsvilleFloodRestorationPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Townsville Flood Restoration Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert townsville flood restoration services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert townsville flood restoration services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

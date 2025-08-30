@@ -126,7 +126,7 @@ export class AnthropicProvider {
   }> {
     const startTime = Date.now();
     
-    const systemPrompt = `You are an emergency response AI for Disaster Recovery Australia.
+    const systemPrompt = `You are an emergency response AI for Disaster Recovery.
     Provide immediate, actionable advice. Be concise but thorough.
     Context: ${context ? JSON.stringify(context) : 'General query'}`;
     

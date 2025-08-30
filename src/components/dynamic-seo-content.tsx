@@ -151,7 +151,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 </Card>
                 <Card className="p-6">
                   <h3 className="text-lg font-bold mb-2">What areas do you service?</h3>
-                  <p className="text-gray-700">We service all metropolitan and regional areas across Australia with local teams ready to respond 24/7.</p>
+                  <p className="text-gray-700">We service all metropolitan and regional areas nationwide with local teams ready to respond 24/7.</p>
                 </Card>
               </div>
             </div>

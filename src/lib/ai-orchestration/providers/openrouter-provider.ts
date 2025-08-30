@@ -22,7 +22,7 @@ export class OpenRouterProvider {
       headers: {
         'Authorisation': `Bearer ${this.apiKey}`,
         'HTTP-Referer': process.env.NEXT_PUBLIC_SITE_URL || 'https://disasterrecovery.com.au',
-        'X-Title': 'Disaster Recovery Australia',
+        'X-Title': 'Disaster Recovery',
         'Content-Type': 'application/json',
       },
       timeout: 60000, // 60 second timeout for complex reasoning

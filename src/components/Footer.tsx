@@ -128,7 +128,7 @@ const Footer: React.FC = () => {
     "@type": "LocalBusiness",
     "name": BUSINESS_NAME,
     "alternateName": BUSINESS_SHORT_NAME,
-    "description": "Australia's leading disaster recovery and restoration specialists providing 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup.",
+    "description": "Leading disaster recovery and restoration specialists providing 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup.",
     "url": WEBSITE,
     "email": EMAIL,
     "telephone": "1300566166",
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
                 <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-green-400' : 'bg-red-400'}`}></div>
               </div>
               <p className="text-xl opacity-95">
-                Teams ready to respond within <strong className="text-yellow-300">60 minutes</strong> across Australia
+                Teams ready to respond within <strong className="text-yellow-300">60 minutes</strong> nationwide
               </p>
             </div>
             
@@ -296,7 +296,7 @@ const Footer: React.FC = () => {
                   About Our Mission
                 </h3>
                 <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                  Australia's most trusted disaster recovery specialists. Since 2008, we've restored over 
+                  Most trusted disaster recovery specialists. Since 2008, we've restored over 
                   <strong className="text-white"> 25,000+ properties</strong> with our 24/7 emergency response teams.
                 </p>
                 
@@ -625,7 +625,7 @@ const Footer: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-gray-400">
                 <span>© {currentYear} {BUSINESS_NAME}. All rights reserved.</span>
                 <span className="hidden sm:inline">|</span>
-                <span>Licensed & Insured Australia-Wide</span>
+                <span>Licensed & Insured nationwide</span>
               </div>
               
               <div className="flex items-center gap-6">

@@ -6,7 +6,7 @@ import Link from 'next/link';
 // SEO Metadata with comprehensive storm damage keywords
 export const metadata: Metadata = {
   title: 'Storm & Natural Disaster Recovery | Emergency Response | Roof Repair & Restoration',
-  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response Australia-wide.',
+  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response nationwide.',
   keywords: [
     'storm damage restoration',
     'cyclone damage repair',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Storm & Natural Disaster Recovery Services | 24/7 Emergency Response',
-    description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response Australia-wide.',
+    description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response nationwide.',
     images: [
       {
         url: '/images/optimised/damage/3D Hurricane Damage.png',
@@ -62,7 +62,7 @@ const schemaData = {
   "serviceType": "Storm Damage Restoration",
   "provider": {
     "@type": "Organisation",
-    "name": "Disaster Recovery Australia",
+    "name": "Disaster Recovery",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU"
@@ -173,7 +173,7 @@ export default function StormDamagePage() {
   return (
     <ServicePageLayout
       title="Storm & Natural Disaster Recovery"
-      description="Professional storm and natural disaster recovery services including cyclone damage repair, hail damage restoration, emergency roof repair, and comprehensive structural restoration with 24/7 emergency response Australia-wide."
+      description="Professional storm and natural disaster recovery services including cyclone damage repair, hail damage restoration, emergency roof repair, and comprehensive structural restoration with 24/7 emergency response nationwide."
       heroImage="/images/optimised/damage/3D Hurricane Damage.png"
       heroImageAlt="Professional storm damage restoration service showing expert assessment and repair of severe weather damage"
       certifications={['IICRC WRT', 'IICRC FSRT', 'Storm Damage Specialist', 'Emergency Response Certified']}

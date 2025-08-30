@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage FAQs | FAQ | Disaster Recovery Australia',
+  title: 'Fire & Smoke Damage FAQs | FAQ | Disaster Recovery',
   description: 'Fire and smoke restoration questions answered. Get answers to common questions about disaster recovery services, insurance claims, and emergency response.',
   keywords: ['disaster recovery FAQ', 'fire-damage questions', 'restoration help', 'insurance claims FAQ']
 };

@@ -18,5 +18,5 @@
   
   <!-- Company Name - Changed to white for dark backgrounds -->
   <text x="60" y="28" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">Disaster Recovery</text>
-  <text x="60" y="43" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">AUSTRALIA'S PREMIER RESTORATION</text>
+  <text x="60" y="43" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">PREMIER RESTORATION SERVICES</text>
 </svg>

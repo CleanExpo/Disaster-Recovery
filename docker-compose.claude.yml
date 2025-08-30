@@ -1,0 +1,173 @@
+version: '3.9'
+
+services:
+  # Main Claude Orchestrator - Controls all agents
+  claude-orchestrator:
+    build: 
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile
+    container_name: claude-main
+    volumes:
+      - ./:/workspace:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+      - claude-outputs:/app/outputs
+      - claude-logs:/app/logs
+    environment:
+      - CLAUDE_MODE=orchestrator
+      - WORKSPACE_PATH=/workspace
+      - ENABLE_AGENTS=true
+      - ENABLE_MCP=true
+      - AGENT_CONCURRENCY=5
+      - HOST_PLATFORM=${OS:-linux}
+    networks:
+      - claude-net
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    restart: unless-stopped
+
+  # Code Generation Agent
+  claude-codegen:
+    build: 
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile
+    container_name: claude-codegen
+    volumes:
+      - ./:/workspace:rw
+      - claude-outputs:/app/outputs
+    environment:
+      - CLAUDE_MODE=agent
+      - AGENT_TYPE=codegen
+      - SPECIALIZATION=typescript,react,nextjs,python
+      - MAX_CONTEXT=200000
+    networks:
+      - claude-net
+    depends_on:
+      - claude-orchestrator
+
+  # Testing & Validation Agent
+  claude-tester:
+    build: 
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile
+    container_name: claude-tester
+    volumes:
+      - ./:/workspace:rw
+      - claude-outputs:/app/outputs
+    environment:
+      - CLAUDE_MODE=agent
+      - AGENT_TYPE=tester
+      - SPECIALIZATION=playwright,jest,cypress,pytest
+      - ENABLE_BROWSER=true
+    networks:
+      - claude-net
+    depends_on:
+      - claude-orchestrator
+
+  # SEO & Content Agent
+  claude-seo:
+    build: 
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile
+    container_name: claude-seo
+    volumes:
+      - ./:/workspace:rw
+      - claude-outputs:/app/outputs
+    environment:
+      - CLAUDE_MODE=agent
+      - AGENT_TYPE=seo
+      - SPECIALIZATION=content,keywords,schema,performance
+      - AUSTRALIAN_FOCUS=true
+    networks:
+      - claude-net
+    depends_on:
+      - claude-orchestrator
+
+  # DevOps & Deployment Agent
+  claude-devops:
+    build: 
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile
+    container_name: claude-devops
+    volumes:
+      - ./:/workspace:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+      - claude-outputs:/app/outputs
+    environment:
+      - CLAUDE_MODE=agent
+      - AGENT_TYPE=devops
+      - SPECIALIZATION=docker,kubernetes,vercel,github
+      - CAN_DEPLOY=true
+    networks:
+      - claude-net
+    depends_on:
+      - claude-orchestrator
+
+  # MCP Bridge Service
+  mcp-bridge:
+    image: node:20-alpine
+    container_name: mcp-bridge
+    volumes:
+      - ./:/workspace:rw
+      - ./docker/mcp-config:/app/config
+    environment:
+      - MCP_MODE=bridge
+      - ENABLE_PLAYWRIGHT=true
+      - ENABLE_SEQUENTIAL_THINKING=true
+      - ENABLE_CONTEXT7=true
+      - ENABLE_IDE=true
+    networks:
+      - claude-net
+    command: >
+      sh -c "
+        npm install -g @modelcontextprotocol/cli &&
+        mcp install @modelcontextprotocol/server-playwright &&
+        mcp install @modelcontextprotocol/server-sequential-thinking &&
+        mcp start --config /app/config/mcp.json
+      "
+    depends_on:
+      - claude-orchestrator
+
+  # Redis for inter-agent communication
+  redis:
+    image: redis:7-alpine
+    container_name: claude-redis
+    volumes:
+      - redis-data:/data
+    networks:
+      - claude-net
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+
+  # PostgreSQL for persistent storage
+  postgres:
+    image: postgres:15-alpine
+    container_name: claude-db
+    environment:
+      - POSTGRES_DB=claude_orchestrator
+      - POSTGRES_USER=claude
+      - POSTGRES_PASSWORD=secure_password_here
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - claude-net
+    ports:
+      - "5432:5432"
+
+networks:
+  claude-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+volumes:
+  claude-outputs:
+    driver: local
+  claude-logs:
+    driver: local
+  redis-data:
+    driver: local
+  postgres-data:
+    driver: local

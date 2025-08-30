@@ -38,7 +38,7 @@ const industries = [
   {
     "name": "Hospitality & Tourism",
     "slug": "hospitality-tourism",
-    "description": "Hotel, resort, and tourism facility disaster recovery across Australia"
+    "description": "Hotel, resort, and tourism facility disaster recovery nationwide"
   }
 ];
 

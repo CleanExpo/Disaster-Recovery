@@ -195,7 +195,7 @@ export default function UltraModernHero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
           </span>
           <span className="text-sm font-medium text-purple-300">
-            Australia's #1 Emergency Response
+            #1 Emergency Response
           </span>
         </div>
 

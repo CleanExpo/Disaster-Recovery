@@ -13,7 +13,7 @@ export default function CommercialServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia',
+    name: 'Disaster Recovery',
     description: 'Professional commercial restoration services for businesses across Queensland. Minimizing downtime and protecting your business assets.',
     telephone: '1300 814 870',
     address: {

@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Coastal & Storm Surge Damage Services | 24/7 Emergency Response | Disaster Recovery Australia',
+  title: 'Coastal & Storm Surge Damage Services | 24/7 Emergency Response | Disaster Recovery',
   description: 'Specialised coastal property restoration from storm surge, king tides, and erosion damage. Serving All Coastal Areas. 2-4 hours response time.',
   keywords: ["coastal damage","storm surge recovery","beach erosion repair"]
 };

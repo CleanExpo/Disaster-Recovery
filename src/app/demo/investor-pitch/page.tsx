@@ -11,7 +11,7 @@ import Link from 'next/link';
 const slides = [
   {
     id: 1,
-    title: "Disaster Recovery Australia",
+    title: "Disaster Recovery",
     subtitle: "National Recovery Partners",
     content: [
       "AI-Powered Claims Distribution Platform",

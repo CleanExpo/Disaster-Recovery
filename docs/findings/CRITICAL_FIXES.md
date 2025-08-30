@@ -28,7 +28,7 @@ src/app/technology/
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Advanced Restoration Technology | Disaster Recovery Australia',
+  title: 'Advanced Restoration Technology | Disaster Recovery',
   description: 'Cutting-edge technology for disaster recovery including AI detection, thermal imaging, and HEPA filtration systems.',
 };
 

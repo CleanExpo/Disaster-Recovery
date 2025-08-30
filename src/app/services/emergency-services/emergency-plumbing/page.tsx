@@ -13,7 +13,7 @@ export default function EmergencyPlumbingServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Emergency Plumbing Services',
+    name: 'Disaster Recovery - Emergency Plumbing Services',
     description: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
     telephone: '1300 814 870',
     address: {
@@ -85,7 +85,7 @@ export default function EmergencyPlumbingServicesPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Professional Emergency Plumbing Services Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert emergency plumbing services services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert emergency plumbing services services, Disaster Recovery provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             

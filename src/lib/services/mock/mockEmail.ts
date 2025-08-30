@@ -64,7 +64,7 @@ class MockEmailService {
         <li>Amount Paid: $${booking.amount}</li>
         <li>Contractor will contact you within: ${booking.responseTime}</li>
       </ul>
-      <p>Thank you for choosing Disaster Recovery Australia.</p>
+      <p>Thank you for choosing Disaster Recovery.</p>
     `;
     
     await this.sendEmail({

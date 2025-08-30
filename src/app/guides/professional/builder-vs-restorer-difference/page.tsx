@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'Builder vs Restorer: The $15,000 Difference | Professional Restoration | Disaster Recovery Australia',
+  title: 'Builder vs Restorer: The $15,000 Difference | Professional Restoration | Disaster Recovery',
   description: 'Why builders "rip and tear" what professional restorers save. Understand the methodology difference that can save thousands and reduce waste by 70%. 28 years industry experience.',
   keywords: 'builder vs restorer, professional restoration, rip and tear vs restore, mitigation vs demolition, restoration methodology, waste reduction',
   openGraph: {

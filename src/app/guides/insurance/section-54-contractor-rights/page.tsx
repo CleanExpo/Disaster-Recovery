@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
-  title: 'Section 54 Insurance Contracts Act: Your Right to Choose Contractors | Disaster Recovery Australia',
+  title: 'Section 54 Insurance Contracts Act: Your Right to Choose Contractors | Disaster Recovery',
   description: 'Complete guide to Section 54 of the Insurance Contracts Act 1984 - your legal right to choose qualified emergency contractors. Protect yourself from insurer preferred contractor requirements.',
   keywords: 'Section 54 Insurance Contracts Act, choose your own contractor, emergency mitigation rights, insurance law Australia, policyholder rights',
   openGraph: {
