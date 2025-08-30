@@ -107,7 +107,7 @@ export default function ComingSoonPage() {
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/images/optimised/damage/3D Water Damage to a Home.png"
+                  src="/images/optimized/damage/3D Water Damage to a Home.png"
                   alt="Water Damage Restoration"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -126,7 +126,7 @@ export default function ComingSoonPage() {
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-red-900/50 to-orange-800/30 backdrop-blur-sm border border-red-500/30 hover:border-red-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/images/optimised/damage/3D Kitchen Fire.png"
+                  src="/images/optimized/damage/3D Kitchen Fire.png"
                   alt="Fire Damage Restoration"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -145,7 +145,7 @@ export default function ComingSoonPage() {
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/50 to-green-800/30 backdrop-blur-sm border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/images/optimised/damage/3D Mould on Ceiling.png"
+                  src="/images/optimized/damage/3D Mould on Ceiling.png"
                   alt="Mould Remediation"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -164,7 +164,7 @@ export default function ComingSoonPage() {
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-cyan-900/50 to-blue-800/30 backdrop-blur-sm border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/images/optimised/damage/3D Burst Water Pipe.png"
+                  src="/images/optimized/damage/3D Burst Water Pipe.png"
                   alt="Burst Pipe Emergency"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -183,7 +183,7 @@ export default function ComingSoonPage() {
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/50 to-purple-800/30 backdrop-blur-sm border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/images/optimised/damage/3D Emergency Squalor Cleanup.png"
+                  src="/images/optimized/damage/3D Emergency Squalor Cleanup.png"
                   alt="Squalor and Hoarding Cleanup"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -202,7 +202,7 @@ export default function ComingSoonPage() {
             <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-yellow-900/50 to-orange-800/30 backdrop-blur-sm border border-yellow-500/30 hover:border-yellow-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
-                  src="/images/optimised/equipment/3D LGR Dehumidifier.png"
+                  src="/images/optimized/equipment/3D LGR Dehumidifier.png"
                   alt="Professional Restoration Equipment"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
