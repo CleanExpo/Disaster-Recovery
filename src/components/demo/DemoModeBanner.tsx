@@ -34,7 +34,7 @@ export default function DemoModeBanner() {
   return (
     <>
       {/* Demo Mode Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[100] bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white shadow-lg">
+      <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white shadow-lg">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -80,7 +80,7 @@ export default function DemoModeBanner() {
 
       {/* Demo Menu Dropdown */}
       {showDemoMenu && (
-        <div className="fixed top-16 right-4 z-[99] bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden animate-in slide-in-from-top-2">
+        <div className="fixed top-16 right-4 z-[1001] bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden animate-in slide-in-from-top-2">
           <div className="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 border-b">
             <h3 className="font-bold text-gray-900 mb-1">Choose Demo Type</h3>
             <p className="text-sm text-gray-600">Select an automated demo walkthrough</p>

@@ -114,7 +114,6 @@ export default function RootLayout({
         <MicrosoftClarity />
         <Providers>
           <DemoModeBanner />
-          <DemoModeIndicator />
           <UltraModernHeader />
           <main id="main-content">
             {children}
