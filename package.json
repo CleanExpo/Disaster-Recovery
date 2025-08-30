@@ -46,7 +46,7 @@
     "image-worker": "node scripts/image-optimization-worker.js",
     "image-worker:dev": "nodemon --watch public/images --watch public/uploads scripts/image-optimization-worker.js",
     "prebuild": "echo 'Prebuild step'",
-    "postinstall": "echo 'Postinstall step'"
+    "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.60.0",
