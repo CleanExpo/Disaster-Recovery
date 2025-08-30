@@ -105,8 +105,11 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/NRP favicon_32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/NRP favicon_16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/NRP favicon_512x512.png" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="theme-colour" content="#0052CC" />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>

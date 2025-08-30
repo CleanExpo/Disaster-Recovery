@@ -270,7 +270,7 @@ const Footer: React.FC = () => {
             <div className="lg:col-span-4">
               <div className="flex items-centre gap-3 mb-6">
                 <img
-                  src="/images/logos/disaster-recovery-logo.png"
+                  src="/images/logos/dr-logo.svg"
                   alt={`${BUSINESS_NAME} Logo`}
                   className="h-12 w-auto"
                   width="48"
