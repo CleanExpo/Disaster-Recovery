@@ -235,7 +235,7 @@ export default function DocumentUpload({
 
   return (
     <div className="border border-gray-200 rounded-lg p-6 space-y-4">
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">
             {title}
@@ -258,7 +258,7 @@ export default function DocumentUpload({
         <div
           {...getRootProps()}
           className={`
-            border-2 border-dashed border-gray-300 rounded-lg p-8 text-centre cursor-pointer transition-colours
+            border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-colours
             ${isDragActive ? 'border-blue-500 bg-blue-50' : 'hover:border-gray-400'}
             ${uploadState.uploading || uploadState.analysing ? 'opacity-50 cursor-not-allowed' : ''}
           `}
@@ -278,7 +278,7 @@ export default function DocumentUpload({
       ) : (
         <div className="space-y-4">
           {/* File Info */}
-          <div className="flex items-centre gap-3 p-4 bg-gray-50 rounded-lg">
+          <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
             <File className="w-8 h-8 text-blue-600" />
             <div className="flex-1">
               <p className="font-medium text-gray-900">{uploadedFile.name}</p>
@@ -291,7 +291,7 @@ export default function DocumentUpload({
           {/* Upload Progress */}
           {uploadState.uploading && (
             <div className="space-y-2">
-              <div className="flex items-centre justify-between text-sm">
+              <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600">Uploading...</span>
                 <span className="text-gray-600">{uploadState.progress}%</span>
               </div>
@@ -306,7 +306,7 @@ export default function DocumentUpload({
 
           {/* Analysis Progress */}
           {uploadState.analysing && (
-            <div className="flex items-centre gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
               <div>
                 <p className="font-medium text-blue-900">Analysing Document</p>
@@ -326,8 +326,8 @@ export default function DocumentUpload({
                   uploadState.analysisResult.recommendedAction === 'REVIEW' ? 'bg-yellow-50 border-yellow-200' : 
                   'bg-red-50 border-red-200'}
               `}>
-                <div className="flex items-centre justify-between mb-3">
-                  <div className="flex items-centre gap-2">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
                     {uploadState.analysisResult.recommendedAction === 'APPROVE' ? (
                       <CheckCircle className="w-6 h-6 text-green-600" />
                     ) : uploadState.analysisResult.recommendedAction === 'REVIEW' ? (
@@ -375,7 +375,7 @@ export default function DocumentUpload({
 
                 <button
                   onClick={() => setShowAnalysisDetails(!showAnalysisDetails)}
-                  className="flex items-centre gap-2 text-sm text-blue-600 hover:text-blue-800"
+                  className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800"
                 >
                   <Eye className="w-4 h-4" />
                   {showAnalysisDetails ? 'Hide' : 'View'} Detailed Analysis
@@ -431,7 +431,7 @@ export default function DocumentUpload({
           {/* Error Display */}
           {uploadState.error && (
             <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-red-600" />
                 <p className="text-red-800 font-medium">Upload Failed</p>
               </div>

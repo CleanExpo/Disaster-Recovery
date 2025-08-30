@@ -166,13 +166,13 @@ const ModernServiceCards: React.FC = () => {
       <div className="relative z-10 container mx-auto px-6">
         {/* Section Header */}
         <motion.div 
-          className="text-centre mb-20"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="inline-flex items-centre gap-2 px-4 py-2 rounded-full mb-6 glass-card"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 glass-card"
             style={{ 
               background: 'rgba(99, 102, 241, 0.1)',
               border: '1px solid rgba(99, 102, 241, 0.2)' 
@@ -251,7 +251,7 @@ const ModernServiceCards: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div 
-                    className={`inline-flex items-centre justify-centre w-20 h-20 rounded-2xl bg-gradient-to-br ${service.colour} shadow-2xl relative`}
+                    className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${service.colour} shadow-2xl relative`}
                   >
                     <Icon className="h-10 w-10 text-white" />
                     
@@ -263,7 +263,7 @@ const ModernServiceCards: React.FC = () => {
                   
                   {/* Floating badge */}
                   <motion.div 
-                    className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-centre justify-centre"
+                    className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
@@ -297,7 +297,7 @@ const ModernServiceCards: React.FC = () => {
                       }}
                     >
                       <motion.div 
-                        className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 flex items-centre justify-centre mt-0.5"
+                        className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 flex items-center justify-center mt-0.5"
                         whileHover={{ scale: 1.2, rotate: 90 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -311,8 +311,8 @@ const ModernServiceCards: React.FC = () => {
                 </ul>
 
                 {/* Stats Badge */}
-                <div className="flex items-centre justify-between mb-6">
-                  <div className="flex items-centre gap-3">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${service.colour} animate-pulse`} />
                     <span className="text-xs text-gray-500 uppercase tracking-wide">
                       {service.stats.label}
@@ -326,7 +326,7 @@ const ModernServiceCards: React.FC = () => {
                 {/* CTA Link */}
                 <Link 
                   href={service.href}
-                  className="group/link relative inline-flex items-centre gap-2 text-white font-semibold hover:text-transparent hover:bg-gradient-to-r hover:from-white hover:to-gray-300 hover:bg-clip-text transition-all duration-300"
+                  className="group/link relative inline-flex items-center gap-2 text-white font-semibold hover:text-transparent hover:bg-gradient-to-r hover:from-white hover:to-gray-300 hover:bg-clip-text transition-all duration-300"
                 >
                   <span>Learn More</span>
                   <motion.div
@@ -365,21 +365,21 @@ const ModernServiceCards: React.FC = () => {
 
         {/* Call to Action */}
         <motion.div 
-          className="text-centre mt-20"
+          className="text-center mt-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="inline-flex items-centre gap-6">
-            <div className="flex items-centre gap-2 text-sm text-gray-400">
+          <div className="inline-flex items-center gap-6">
+            <div className="flex items-center gap-2 text-sm text-gray-400">
               <Shield className="h-4 w-4 text-blue-400" />
               <span>Industry Certified</span>
             </div>
-            <div className="flex items-centre gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-gray-400">
               <Clock className="h-4 w-4 text-green-400" />
               <span>24/7 Response</span>
             </div>
-            <div className="flex items-centre gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-gray-400">
               <Award className="h-4 w-4 text-purple-400" />
               <span>Guaranteed Results</span>
             </div>

@@ -497,8 +497,8 @@ const WeightedAllocationEngine: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Calculator className="h-6 w-6 text-purple-600" />
             </div>
@@ -507,7 +507,7 @@ const WeightedAllocationEngine: React.FC = () => {
               <p className="text-sm text-gray-500">Transparent, fair lead distribution with configurable weights</p>
             </div>
           </div>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <select
               value={allocationMode}
               onChange={(e) => setAllocationMode(e.target.value as any)}
@@ -519,14 +519,14 @@ const WeightedAllocationEngine: React.FC = () => {
             </select>
             <button
               onClick={runAllocation}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-centre space-x-2"
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center space-x-2"
             >
               <Shuffle className="h-4 w-4" />
               <span>Run Allocation</span>
             </button>
             <button
               onClick={runSimulation}
-              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-centre space-x-2"
+              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center space-x-2"
             >
               <RefreshCw className="h-4 w-4" />
               <span>Simulate</span>
@@ -559,7 +559,7 @@ const WeightedAllocationEngine: React.FC = () => {
 
       {/* Allocation Weights Configuration */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <Settings className="h-5 w-5 mr-2 text-gray-600" />
           Allocation Weight Configuration
         </h3>
@@ -567,14 +567,14 @@ const WeightedAllocationEngine: React.FC = () => {
         <div className="space-y-4">
           {allocationWeights.map((weight, index) => (
             <div key={weight.factor} className="border rounded-lg p-4">
-              <div className="flex items-centre justify-between mb-2">
-                <div className="flex items-centre space-x-3">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center space-x-3">
                   <h4 className="font-medium">{weight.factor}</h4>
                   <span className={`px-2 py-1 text-xs rounded-full ${getImpactColor(weight.impact)}`}>
                     {weight.impact} impact
                   </span>
                 </div>
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <span className="text-2xl font-semibold text-purple-600">
                     {Math.round(weight.weight * 100)}%
                   </span>
@@ -582,7 +582,7 @@ const WeightedAllocationEngine: React.FC = () => {
               </div>
               <p className="text-sm text-gray-600 mb-3">{weight.description}</p>
               {weight.adjustable && (
-                <div className="flex items-centre space-x-4">
+                <div className="flex items-center space-x-4">
                   <input
                     type="range"
                     min="0"
@@ -591,7 +591,7 @@ const WeightedAllocationEngine: React.FC = () => {
                     onChange={(e) => updateWeight(index, parseInt(e.target.value) / 100)}
                     className="flex-1"
                   />
-                  <div className="flex items-centre space-x-2">
+                  <div className="flex items-center space-x-2">
                     <button
                       onClick={() => updateWeight(index, Math.max(0, weight.weight - 0.05))}
                       className="px-2 py-1 bg-gray-100 rounded hover:bg-gray-200"
@@ -614,7 +614,7 @@ const WeightedAllocationEngine: React.FC = () => {
 
       {/* Eligible Contractors Ranking */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <Users className="h-5 w-5 mr-2 text-blue-600" />
           Eligible Contractors Ranking
         </h3>
@@ -627,16 +627,16 @@ const WeightedAllocationEngine: React.FC = () => {
                 index === 0 ? 'border-green-500 bg-green-50' : 'border-gray-200'
               }`}
             >
-              <div className="flex items-centre justify-between">
-                <div className="flex items-centre space-x-4">
-                  <div className={`flex items-centre justify-centre w-10 h-10 rounded-full ${
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className={`flex items-center justify-center w-10 h-10 rounded-full ${
                     index === 0 ? 'bg-green-500 text-white' : 'bg-gray-100'
                   }`}>
                     {index === 0 ? <Award className="h-5 w-5" /> : `#${ec.score.rank}`}
                   </div>
                   <div>
                     <p className="font-medium">{ec.companyName}</p>
-                    <div className="flex items-centre space-x-3 mt-1 text-sm text-gray-600">
+                    <div className="flex items-center space-x-3 mt-1 text-sm text-gray-600">
                       <span>KPI: {ec.kpiScore}</span>
                       <span>Distance: {ec.distance} mi</span>
                       <span>Capacity: {100 - ec.capacity}% available</span>
@@ -653,7 +653,7 @@ const WeightedAllocationEngine: React.FC = () => {
               {/* Score Breakdown */}
               <div className="mt-3 pt-3 border-t grid grid-cols-5 gap-2">
                 {allocationWeights.map((weight) => (
-                  <div key={weight.factor} className="text-centre">
+                  <div key={weight.factor} className="text-center">
                     <p className="text-xs text-gray-500">{weight.factor}</p>
                     <p className="text-sm font-medium">
                       {Math.round(
@@ -675,7 +675,7 @@ const WeightedAllocationEngine: React.FC = () => {
       {/* Transparency Report */}
       {transparencyReport && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Info className="h-5 w-5 mr-2 text-blue-600" />
             Allocation Transparency Report
           </h3>
@@ -758,14 +758,14 @@ const WeightedAllocationEngine: React.FC = () => {
       {/* Simulation Results */}
       {showSimulation && simulationResults.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <BarChart3 className="h-5 w-5 mr-2 text-green-600" />
             Allocation Simulation Results (1000 scenarios)
           </h3>
 
           <div className="space-y-3">
             {simulationResults.map((result, index) => (
-              <div key={result.contractor} className="flex items-centre space-x-4">
+              <div key={result.contractor} className="flex items-center space-x-4">
                 <div className="w-32">
                   <p className="font-medium text-sm">{result.contractor}</p>
                 </div>

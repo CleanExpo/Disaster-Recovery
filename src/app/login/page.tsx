@@ -39,9 +39,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-centre justify-centre bg-muted/40">
+    <div className="flex min-h-screen items-center justify-center bg-muted/40">
       <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border bg-card p-8">
-        <div className="space-y-2 text-centre">
+        <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Welcome back</h1>
           <p className="text-muted-foreground">
             Enter your credentials to access your account
@@ -92,7 +92,7 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <div className="text-centre text-sm">
+        <div className="text-center text-sm">
           Don&apos;t have an account?{' '}
           <Link href="/signup" className="text-primary hover:underline">
             Sign up

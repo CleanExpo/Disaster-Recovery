@@ -231,15 +231,15 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
   const ChatWindow = () => (
     <div className={`flex flex-col h-full ${embedded ? '' : 'max-h-[600px]'}`}>
       {/* Chat Header */}
-      <div className="flex items-centre justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="flex items-centre gap-3">
+      <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <div className="flex items-center gap-3">
           <Avatar className="h-10 w-10">
             <AvatarImage src={mockAgent.avatar} />
             <AvatarFallback>{mockAgent.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
           </Avatar>
           <div>
             <p className="font-medium">{session ? mockAgent.name : 'NRP Support'}</p>
-            <p className="text-xs text-blue-100 flex items-centre gap-1">
+            <p className="text-xs text-blue-100 flex items-center gap-1">
               {session ? (
                 <>
                   <span className="h-2 w-2 bg-green-400 rounded-full animate-pulse" />
@@ -259,7 +259,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
             </p>
           </div>
         </div>
-        <div className="flex items-centre gap-2">
+        <div className="flex items-center gap-2">
           {!embedded && (
             <>
               <Button
@@ -341,7 +341,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
           {isTyping && (
             <div className="flex justify-start">
               <div className="bg-gray-100 rounded-lg px-4 py-2">
-                <div className="flex items-centre gap-1">
+                <div className="flex items-center gap-1">
                   <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                   <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                   <span className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -380,7 +380,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
             Start Chat
           </Button>
         ) : isConnecting ? (
-          <div className="text-centre py-2">
+          <div className="text-center py-2">
             <p className="text-sm text-gray-500">Connecting to an agent...</p>
           </div>
         ) : (
@@ -453,7 +453,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-centre gap-2">
+          <CardTitle className="flex items-center gap-2">
             <MessageSquare className="h-5 w-5" />
             Live Chat Support
           </CardTitle>
@@ -474,7 +474,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 z-50 h-14 w-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colours flex items-centre justify-centre group"
+          className="fixed bottom-4 right-4 z-50 h-14 w-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colours flex items-center justify-center group"
         >
           <MessageSquare className="h-6 w-6" />
           <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full animate-pulse" />
@@ -494,9 +494,9 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
       {/* Minimized Chat */}
       {isOpen && isMinimized && (
         <div className="fixed bottom-4 right-4 z-50 w-80">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-lg shadow-lg cursor-pointer flex items-centre justify-between"
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-4 rounded-lg shadow-lg cursor-pointer flex items-center justify-between"
                onClick={() => setIsMinimized(false)}>
-            <div className="flex items-centre gap-3">
+            <div className="flex items-center gap-3">
               <Avatar className="h-8 w-8">
                 <AvatarImage src={mockAgent.avatar} />
                 <AvatarFallback>SJ</AvatarFallback>

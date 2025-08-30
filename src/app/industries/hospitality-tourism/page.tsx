@@ -43,7 +43,7 @@ export default function HospitalityTourismPage() {
       {/* Common Risks */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Hospitality & Tourism Disaster Risks We Handle
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -64,25 +64,25 @@ export default function HospitalityTourismPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-centre mb-12">
+            <h2 className="text-3xl font-bold text-center mb-12">
               Why Hospitality & Tourism Trusts Us
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-centre">
+              <div className="text-center">
                 <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Minimal Downtime</h3>
                 <p className="text-gray-600">
                   Priority response to get your operations running again
                 </p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <Shield className="h-12 w-12 text-green-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Compliance Assured</h3>
                 <p className="text-gray-600">
                   Meet all industry regulations and safety standards
                 </p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <CheckCircle2 className="h-12 w-12 text-purple-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Insurance Expertise</h3>
                 <p className="text-gray-600">
@@ -97,10 +97,10 @@ export default function HospitalityTourismPage() {
       {/* Service Locations */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Servicing Hospitality & Tourism Across Australia
           </h2>
-          <div className="flex flex-wrap justify-centre gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {locations.map((location, index) => (
               <Card key={index} className="px-6 py-3">
                 <span className="font-semibold">{location}</span>
@@ -112,7 +112,7 @@ export default function HospitalityTourismPage() {
 
       {/* CTA */}
       <section className="py-20 bg-orange-600 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Protect Your Hospitality & Tourism Assets
           </h2>

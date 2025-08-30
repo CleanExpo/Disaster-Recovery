@@ -48,9 +48,9 @@ export function AnalyticsDashboard() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold flex items-centre gap-2">
+          <h1 className="text-2xl font-bold flex items-center gap-2">
             <BarChart3 className="h-6 w-6" />
             Reporting & Analytics
           </h1>
@@ -97,8 +97,8 @@ export function AnalyticsDashboard() {
               onClick={() => setActiveTab('kpi')}
             >
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-centre justify-between">
-                  <span className="flex items-centre gap-2">
+                <CardTitle className="text-sm flex items-center justify-between">
+                  <span className="flex items-center gap-2">
                     <Activity className="h-4 w-4" />
                     KPI Performance
                   </span>
@@ -120,8 +120,8 @@ export function AnalyticsDashboard() {
               onClick={() => setActiveTab('compliance')}
             >
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-centre justify-between">
-                  <span className="flex items-centre gap-2">
+                <CardTitle className="text-sm flex items-center justify-between">
+                  <span className="flex items-center gap-2">
                     <Shield className="h-4 w-4" />
                     Compliance
                   </span>
@@ -145,8 +145,8 @@ export function AnalyticsDashboard() {
                 onClick={() => setActiveTab('financial')}
               >
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm flex items-centre justify-between">
-                    <span className="flex items-centre gap-2">
+                  <CardTitle className="text-sm flex items-center justify-between">
+                    <span className="flex items-center gap-2">
                       <DollarSign className="h-4 w-4" />
                       Financial
                     </span>
@@ -167,8 +167,8 @@ export function AnalyticsDashboard() {
               onClick={() => setActiveTab('leads')}
             >
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm flex items-centre justify-between">
-                  <span className="flex items-centre gap-2">
+                <CardTitle className="text-sm flex items-center justify-between">
+                  <span className="flex items-center gap-2">
                     <Users className="h-4 w-4" />
                     Lead Analytics
                   </span>
@@ -189,19 +189,19 @@ export function AnalyticsDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">Response Time</span>
                     <Badge className="bg-green-100 text-green-800">1.8h avg</Badge>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">Customer Satisfaction</span>
                     <Badge className="bg-green-100 text-green-800">4.7/5</Badge>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">Jobs Completed</span>
                     <Badge>42 this week</Badge>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">Clean Claims Score</span>
                     <Badge className="bg-blue-100 text-blue-800">94%</Badge>
                   </div>
@@ -215,19 +215,19 @@ export function AnalyticsDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">IICRC Renewal</span>
                     <Badge className="bg-yellow-100 text-yellow-800">15 days</Badge>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">Insurance Update</span>
                     <Badge className="bg-yellow-100 text-yellow-800">30 days</Badge>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">CEU Credits Due</span>
                     <Badge>8 needed</Badge>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm">Quarterly Review</span>
                     <Badge className="bg-blue-100 text-blue-800">Next week</Badge>
                   </div>

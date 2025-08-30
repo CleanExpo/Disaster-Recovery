@@ -65,7 +65,7 @@ export default function PremiumHero({
   }, []);
 
   return (
-    <section className="relative min-h-[80vh] flex items-centre overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center overflow-hidden">
       {/* Premium Background with Parallax Effect */}
       <div className="absolute inset-0 z-0">
         {/* Gradient Overlay */}
@@ -101,11 +101,11 @@ export default function PremiumHero({
 
       {/* Main Content */}
       <div className="container mx-auto px-6 relative z-30">
-        <div className="grid lg:grid-cols-2 gap-12 items-centre">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
             {/* Badge */}
-            <div className="inline-flex items-centre gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -132,7 +132,7 @@ export default function PremiumHero({
               {trustBadges.map((badge, index) => (
                 <div
                   key={badge.text}
-                  className="flex items-centre gap-2 text-white/90 animate-fade-in"
+                  className="flex items-center gap-2 text-white/90 animate-fade-in"
                   style={{ animationDelay: `${index * 100 + 500}ms` }}
                 >
                   <badge.icon className="w-5 h-5 text-blue-300" />
@@ -146,7 +146,7 @@ export default function PremiumHero({
               <a
                 href="tel:1300566166"
                 className={cn(
-                  "group flex items-centre justify-centre gap-3 px-8 py-4",
+                  "group flex items-center justify-center gap-3 px-8 py-4",
                   "bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600",
                   "text-white font-semibold text-lg rounded-xl",
                   "shadow-2xl hover:shadow-red-500/25",
@@ -162,7 +162,7 @@ export default function PremiumHero({
               <Link
                 href="/free-assessment"
                 className={cn(
-                  "group flex items-centre justify-centre gap-3 px-8 py-4",
+                  "group flex items-center justify-center gap-3 px-8 py-4",
                   "bg-white/10 backdrop-blur-md hover:bg-white/20",
                   "text-white font-semibold text-lg rounded-xl",
                   "border border-white/30 hover:border-white/50",
@@ -177,7 +177,7 @@ export default function PremiumHero({
                 <button
                   onClick={() => setIsVideoModalOpen(true)}
                   className={cn(
-                    "group flex items-centre justify-centre gap-3 px-8 py-4",
+                    "group flex items-center justify-center gap-3 px-8 py-4",
                     "bg-white/10 backdrop-blur-md hover:bg-white/20",
                     "text-white font-semibold text-lg rounded-xl",
                     "border border-white/30 hover:border-white/50",
@@ -198,7 +198,7 @@ export default function PremiumHero({
               <div className="relative animate-float">
                 <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
                   <div className="space-y-6">
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <h3 className="text-2xl font-bold text-white">Rapid Response</h3>
                       <div className="p-3 bg-green-500 rounded-full">
                         <Shield className="w-6 h-6 text-white" />
@@ -209,7 +209,7 @@ export default function PremiumHero({
                       {stats.slice(0, 4).map((stat, index) => (
                         <div
                           key={stat.label}
-                          className="text-centre p-4 bg-white/5 rounded-lg border border-white/10"
+                          className="text-center p-4 bg-white/5 rounded-lg border border-white/10"
                         >
                           <stat.icon className="w-8 h-8 text-blue-300 mx-auto mb-2" />
                           <div className="text-2xl font-bold text-white">{stat.value}</div>
@@ -218,7 +218,7 @@ export default function PremiumHero({
                       ))}
                     </div>
 
-                    <div className="flex items-centre justify-centre">
+                    <div className="flex items-center justify-center">
                       <div className="flex -space-x-2">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
@@ -246,7 +246,7 @@ export default function PremiumHero({
               {stats.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className="flex items-centre justify-centre gap-4 animate-fade-in-up"
+                  className="flex items-center justify-center gap-4 animate-fade-in-up"
                   style={{ animationDelay: `${index * 100 + 800}ms` }}
                 >
                   <stat.icon className="w-8 h-8 text-blue-300" />

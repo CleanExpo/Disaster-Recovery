@@ -63,7 +63,7 @@ export function ContractorDashboard() {
 
   if (loading || !dashboardData) {
     return (
-      <div className="flex items-centre justify-centre min-h-screen">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="animate-pulse">Loading dashboard...</div>
       </div>
     );
@@ -88,7 +88,7 @@ export function ContractorDashboard() {
       {/* Header */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-centre">
+          <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
                 Contractor Portal
@@ -97,7 +97,7 @@ export function ContractorDashboard() {
                 Welcome back, {dashboardData.profile.companyName}
               </p>
             </div>
-            <div className="flex items-centre gap-4">
+            <div className="flex items-center gap-4">
               <Badge className={getStatusColor(dashboardData.profile.status)}>
                 {dashboardData.profile.status}
               </Badge>
@@ -156,7 +156,7 @@ export function ContractorDashboard() {
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Card>
-                <CardHeader className="flex flex-row items-centre justify-between pb-2">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium">Total Jobs</CardTitle>
                   <BarChart3 className="h-4 w-4 text-gray-400" />
                 </CardHeader>
@@ -169,7 +169,7 @@ export function ContractorDashboard() {
               </Card>
 
               <Card>
-                <CardHeader className="flex flex-row items-centre justify-between pb-2">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium">Quality Score</CardTitle>
                   <Star className="h-4 w-4 text-gray-400" />
                 </CardHeader>
@@ -182,7 +182,7 @@ export function ContractorDashboard() {
               </Card>
 
               <Card>
-                <CardHeader className="flex flex-row items-centre justify-between pb-2">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium">Response Time</CardTitle>
                   <Clock className="h-4 w-4 text-gray-400" />
                 </CardHeader>
@@ -195,7 +195,7 @@ export function ContractorDashboard() {
               </Card>
 
               <Card>
-                <CardHeader className="flex flex-row items-centre justify-between pb-2">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium">Account Balance</CardTitle>
                   <DollarSign className="h-4 w-4 text-gray-400" />
                 </CardHeader>
@@ -213,7 +213,7 @@ export function ContractorDashboard() {
             {/* Subscription Info */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-centre gap-2">
+                <CardTitle className="flex items-center gap-2">
                   <CreditCard className="h-5 w-5" />
                   Subscription Details
                 </CardTitle>
@@ -243,7 +243,7 @@ export function ContractorDashboard() {
             {/* Recent Notifications */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-centre gap-2">
+                <CardTitle className="flex items-center gap-2">
                   <Bell className="h-5 w-5" />
                   Recent Notifications
                 </CardTitle>
@@ -276,13 +276,13 @@ export function ContractorDashboard() {
             {/* Compliance Summary */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-centre gap-2">
+                <CardTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5" />
                   Compliance Status
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="flex items-centre justify-between mb-4">
+                <div className="flex items-center justify-between mb-4">
                   <Badge 
                     className={
                       dashboardData.compliance.overallStatus === 'COMPLIANT'
@@ -300,7 +300,7 @@ export function ContractorDashboard() {
                 </div>
                 <div className="space-y-2">
                   {dashboardData.compliance.items.slice(0, 3).map((item, index) => (
-                    <div key={index} className="flex justify-between items-centre">
+                    <div key={index} className="flex justify-between items-center">
                       <span className="text-sm">{item.name}</span>
                       <Badge 
                         variant="outline"

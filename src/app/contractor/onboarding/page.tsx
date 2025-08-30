@@ -139,8 +139,8 @@ export default function ContractorOnboardingPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
-        <div className="text-centre">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading onboarding program...</p>
         </div>
@@ -150,8 +150,8 @@ export default function ContractorOnboardingPage() {
 
   if (!onboardingState) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
-        <div className="text-centre">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <p className="text-gray-600">Error loading onboarding state</p>
         </div>
@@ -172,7 +172,7 @@ export default function ContractorOnboardingPage() {
                 <h2 className="text-xl font-semibold text-blue-900 mb-4">Payment Required to Begin Onboarding</h2>
                 
                 <div className="space-y-4">
-                  <div className="flex items-centre justify-between p-4 bg-white rounded-lg">
+                  <div className="flex items-center justify-between p-4 bg-white rounded-lg">
                     <div>
                       <p className="font-semibold text-gray-900">Application Fee</p>
                       <p className="text-sm text-gray-600">Includes competency testing & onboarding materials</p>
@@ -183,7 +183,7 @@ export default function ContractorOnboardingPage() {
                     </div>
                   </div>
                   
-                  <div className="flex items-centre justify-between p-4 bg-white rounded-lg">
+                  <div className="flex items-center justify-between p-4 bg-white rounded-lg">
                     <div>
                       <p className="font-semibold text-gray-900">Joining Fee</p>
                       <p className="text-sm text-gray-600">Portal setup, training access & territory allocation</p>
@@ -195,7 +195,7 @@ export default function ContractorOnboardingPage() {
                   </div>
                   
                   <div className="border-t pt-4">
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <p className="text-lg font-semibold text-gray-900">Total Due Now</p>
                       <p className="text-3xl font-bold text-blue-600">$2,475</p>
                     </div>
@@ -222,7 +222,7 @@ export default function ContractorOnboardingPage() {
                   >
                     Proceed to Secure Payment
                   </button>
-                  <p className="text-xs text-gray-500 text-centre mt-2">
+                  <p className="text-xs text-gray-500 text-center mt-2">
                     Secured by Stripe • 256-bit SSL encryption
                   </p>
                 </div>
@@ -231,17 +231,17 @@ export default function ContractorOnboardingPage() {
               <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                 <h3 className="font-semibold text-green-900 mb-2">Subscription Pricing After Onboarding</h3>
                 <div className="grid grid-cols-3 gap-4 mt-4">
-                  <div className="text-centre">
+                  <div className="text-center">
                     <p className="text-sm text-gray-600">Month 1</p>
                     <p className="text-xl font-bold text-green-600">FREE</p>
                     <p className="text-xs text-gray-500">100% off</p>
                   </div>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <p className="text-sm text-gray-600">Month 2</p>
                     <p className="text-xl font-bold text-gray-900">$198</p>
                     <p className="text-xs text-gray-500">60% off</p>
                   </div>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <p className="text-sm text-gray-600">Month 3</p>
                     <p className="text-xl font-bold text-gray-900">$247.50</p>
                     <p className="text-xs text-gray-500">50% off</p>
@@ -262,7 +262,7 @@ export default function ContractorOnboardingPage() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold">14-Day Onboarding Program</h1>
               <p className="mt-2 text-blue-100">Welcome to National Recovery Partners</p>
@@ -275,7 +275,7 @@ export default function ContractorOnboardingPage() {
           
           {/* Progress Bar */}
           <div className="mt-8">
-            <div className="flex items-centre justify-between mb-2">
+            <div className="flex items-center justify-between mb-2">
               <span className="text-sm">Overall Progress</span>
               <span className="text-sm font-bold">{calculateOverallProgress()}%</span>
             </div>
@@ -318,7 +318,7 @@ export default function ContractorOnboardingPage() {
                     >
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
-                          <div className={`w-12 h-12 rounded-full flex items-centre justify-centre ${
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                             status === 'completed' ? 'bg-green-100' :
                             status === 'available' || status === 'in_progress' ? 'bg-blue-100' :
                             'bg-gray-100'
@@ -335,19 +335,19 @@ export default function ContractorOnboardingPage() {
                               </h3>
                               <p className="text-sm text-gray-600 mt-1">{module.description}</p>
                               
-                              <div className="flex items-centre space-x-4 mt-3 text-xs text-gray-500">
-                                <span className="flex items-centre space-x-1">
+                              <div className="flex items-center space-x-4 mt-3 text-xs text-gray-500">
+                                <span className="flex items-center space-x-1">
                                   <Clock className="w-3 h-3" />
                                   <span>{module.estimatedHours} hours</span>
                                 </span>
                                 {module.components.videos && (
-                                  <span className="flex items-centre space-x-1">
+                                  <span className="flex items-center space-x-1">
                                     <Video className="w-3 h-3" />
                                     <span>{module.components.videos.length} videos</span>
                                   </span>
                                 )}
                                 {module.components.assignments && (
-                                  <span className="flex items-centre space-x-1">
+                                  <span className="flex items-center space-x-1">
                                     <FileText className="w-3 h-3" />
                                     <span>{module.components.assignments.length} assignments</span>
                                   </span>
@@ -355,9 +355,9 @@ export default function ContractorOnboardingPage() {
                               </div>
                               
                               {/* Learning Formats Available */}
-                              <div className="flex items-centre space-x-2 mt-3">
+                              <div className="flex items-center space-x-2 mt-3">
                                 <span className="text-xs text-gray-500">Available in:</span>
-                                <div className="flex items-centre space-x-1">
+                                <div className="flex items-center space-x-1">
                                   <div className="p-1 bg-blue-100 rounded" title="Video Content">
                                     <Video className="w-3 h-3 text-blue-600" />
                                   </div>
@@ -380,7 +380,7 @@ export default function ContractorOnboardingPage() {
                                   e.stopPropagation();
                                   handleStartDay(module.day);
                                 }}
-                                className="flex items-centre space-x-1 bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700 transition"
+                                className="flex items-center space-x-1 bg-blue-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700 transition"
                               >
                                 <span>Start</span>
                                 <ChevronRight className="w-4 h-4" />
@@ -424,8 +424,8 @@ export default function ContractorOnboardingPage() {
                   <h4 className="font-semibold text-gray-900 mb-3">Content Breakdown</h4>
                   <div className="space-y-3">
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.components.videos && (
-                      <div className="flex items-centre justify-between text-sm">
-                        <span className="flex items-centre space-x-2 text-gray-600">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="flex items-center space-x-2 text-gray-600">
                           <Video className="w-4 h-4" />
                           <span>Video Lessons</span>
                         </span>
@@ -436,8 +436,8 @@ export default function ContractorOnboardingPage() {
                     )}
                     
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.components.readings && (
-                      <div className="flex items-centre justify-between text-sm">
-                        <span className="flex items-centre space-x-2 text-gray-600">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="flex items-center space-x-2 text-gray-600">
                           <BookOpen className="w-4 h-4" />
                           <span>Reading Materials</span>
                         </span>
@@ -448,8 +448,8 @@ export default function ContractorOnboardingPage() {
                     )}
                     
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.components.assignments && (
-                      <div className="flex items-centre justify-between text-sm">
-                        <span className="flex items-centre space-x-2 text-gray-600">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="flex items-center space-x-2 text-gray-600">
                           <FileText className="w-4 h-4" />
                           <span>Assignments</span>
                         </span>
@@ -466,19 +466,19 @@ export default function ContractorOnboardingPage() {
                   <h4 className="font-semibold text-gray-900 mb-3">Completion Requirements</h4>
                   <ul className="space-y-2 text-sm text-gray-600">
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria.minVideoWatchTime && (
-                      <li className="flex items-centre space-x-2">
+                      <li className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full" />
                         <span>Watch {ONBOARDING_PROGRAM[selectedDay - 1].completionCriteria.minVideoWatchTime}% of videos</span>
                       </li>
                     )}
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria.assignmentsCompleted && (
-                      <li className="flex items-centre space-x-2">
+                      <li className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full" />
                         <span>Complete all assignments</span>
                       </li>
                     )}
                     {ONBOARDING_PROGRAM[selectedDay - 1]?.completionCriteria.quizScore && (
-                      <li className="flex items-centre space-x-2">
+                      <li className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full" />
                         <span>Score {ONBOARDING_PROGRAM[selectedDay - 1].completionCriteria.quizScore}% on quiz</span>
                       </li>

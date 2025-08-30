@@ -225,7 +225,7 @@ export default function FireDamagePage() {
         
         <div className="grid md:grid-cols-3 gap-6">
           <div className="r6-card-premium r6-hover-lift p-6">
-            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre mb-4 border-2 border-electric-blue">
+            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center mb-4 border-2 border-electric-blue">
               <span className="text-2xl font-bold text-electric-blue r6-text-glow">1</span>
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">Initial Assessment</h3>
@@ -242,7 +242,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="r6-card-premium r6-hover-lift p-6">
-            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre mb-4 border-2 border-electric-blue">
+            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center mb-4 border-2 border-electric-blue">
               <span className="text-2xl font-bold text-electric-blue r6-text-glow">2</span>
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">Stabilization & Cleaning</h3>
@@ -259,7 +259,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="r6-card-premium r6-hover-lift p-6">
-            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre mb-4 border-2 border-electric-blue">
+            <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center mb-4 border-2 border-electric-blue">
               <span className="text-2xl font-bold text-electric-blue r6-text-glow">3</span>
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">Deodorization & Restoration</h3>
@@ -293,7 +293,7 @@ export default function FireDamagePage() {
                 Professional thermal fogging equipment creates microscopic droplets that penetrate the same 
                 pathways as smoke, neutralizing odours at their source in porous materials and hard-to-reach areas.
               </p>
-              <div className="flex items-centre text-sm text-primary-600 font-medium">
+              <div className="flex items-center text-sm text-primary-600 font-medium">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
@@ -309,7 +309,7 @@ export default function FireDamagePage() {
                 High-output ozone generators for severe smoke odour elimination. These industrial units break down 
                 odour-causing compounds at the molecular level for permanent odour removal.
               </p>
-              <div className="flex items-centre text-sm text-primary-600 font-medium">
+              <div className="flex items-center text-sm text-primary-600 font-medium">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
@@ -325,7 +325,7 @@ export default function FireDamagePage() {
                 State-of-the-art ultrasonic cleaning for contents restoration. These systems remove soot and 
                 residue from delicate items without damage, restoring items previously considered unsalvageable.
               </p>
-              <div className="flex items-centre text-sm text-primary-600 font-medium">
+              <div className="flex items-center text-sm text-primary-600 font-medium">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
@@ -354,7 +354,7 @@ export default function FireDamagePage() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-gradient-to-br from-emergency-50 to-orange-50 border border-emergency-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-emergency-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-emergency-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-emergency-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
               </svg>
@@ -367,7 +367,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="bg-gradient-to-br from-neutral-50 to-gray-50 border border-neutral-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-neutral-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
               </svg>
@@ -380,7 +380,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
@@ -393,7 +393,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
               </svg>
@@ -406,7 +406,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="bg-gradient-to-br from-yellow-50 to-amber-50 border border-yellow-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
@@ -419,7 +419,7 @@ export default function FireDamagePage() {
           </div>
           
           <div className="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M10.5 3L12 2l1.5 1H21v6H3V3h7.5z" />
               </svg>
@@ -508,7 +508,7 @@ export default function FireDamagePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-emergency-500 to-emergency-600 rounded-2xl p-8 text-centre text-white">
+      <section className="bg-gradient-to-r from-emergency-500 to-emergency-600 rounded-2xl p-8 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
           Fire Damage Emergency? We're Ready Now
         </h2>
@@ -516,10 +516,10 @@ export default function FireDamagePage() {
           Every minute counts after a fire. Our IICRC S700 certified technicians are standing by 24/7 
           to begin emergency mitigation and start the restoration process immediately.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/contact"
-            className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-emergency-600 rounded-lg font-bold text-lg hover:bg-emergency-50 transition-colours"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-emergency-600 rounded-lg font-bold text-lg hover:bg-emergency-50 transition-colours"
           >
             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -528,7 +528,7 @@ export default function FireDamagePage() {
           </a>
           <Link
             href="/emergency-form"
-            className="inline-flex items-centre justify-centre px-8 py-4 bg-emergency-700 text-white rounded-lg font-bold text-lg hover:bg-emergency-800 transition-colours"
+            className="inline-flex items-center justify-center px-8 py-4 bg-emergency-700 text-white rounded-lg font-bold text-lg hover:bg-emergency-800 transition-colours"
           >
             Request Emergency Service
           </Link>

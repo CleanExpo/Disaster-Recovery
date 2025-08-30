@@ -127,7 +127,7 @@ export default function FeedbackAnalytics() {
 
   const formatPercentage = (value: number) => `${value.toFixed(1)}%`;
   const formatTrend = (value: number) => (
-    <span className={`flex items-centre ${value >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+    <span className={`flex items-center ${value >= 0 ? 'text-green-600' : 'text-red-600'}`}>
       {value >= 0 ? <TrendingUp className="w-4 h-4 mr-1" /> : <TrendingDown className="w-4 h-4 mr-1" />}
       {Math.abs(value).toFixed(1)}%
     </span>
@@ -143,13 +143,13 @@ export default function FeedbackAnalytics() {
   const OverviewCards = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Average Rating</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {mockAnalytics.metrics.averageRating}
             </p>
-            <div className="flex items-centre mt-2">
+            <div className="flex items-center mt-2">
               <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
               <span className="text-sm text-gray-600">
                 {mockAnalytics.metrics.totalFeedbacks} reviews
@@ -166,13 +166,13 @@ export default function FeedbackAnalytics() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">NPS Score</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {mockAnalytics.metrics.npsScore}
             </p>
-            <div className="flex items-centre mt-2">
+            <div className="flex items-center mt-2">
               <Target className="w-4 h-4 text-purple-400 mr-1" />
               <span className="text-sm text-gray-600">
                 {mockAnalytics.metrics.npsScore >= 50 ? 'Excellent' : 
@@ -187,13 +187,13 @@ export default function FeedbackAnalytics() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Response Rate</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {formatPercentage(mockAnalytics.metrics.responseRate)}
             </p>
-            <div className="flex items-centre mt-2">
+            <div className="flex items-center mt-2">
               <MessageSquare className="w-4 h-4 text-blue-400 mr-1" />
               <span className="text-sm text-gray-600">of completed jobs</span>
             </div>
@@ -205,13 +205,13 @@ export default function FeedbackAnalytics() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Google Reviews</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {formatPercentage(mockAnalytics.metrics.googleReviewRate)}
             </p>
-            <div className="flex items-centre mt-2">
+            <div className="flex items-center mt-2">
               <Star className="w-4 h-4 text-green-400 mr-1" />
               <span className="text-sm text-gray-600">conversion rate</span>
             </div>
@@ -233,8 +233,8 @@ export default function FeedbackAnalytics() {
           const percentage = (count / mockAnalytics.metrics.totalFeedbacks) * 100;
           
           return (
-            <div key={key} className="flex items-centre space-x-4">
-              <div className="flex items-centre w-20">
+            <div key={key} className="flex items-center space-x-4">
+              <div className="flex items-center w-20">
                 <span className="text-sm text-gray-600 mr-2">{starValue}</span>
                 <Star className="w-4 h-4 text-yellow-400 fill-current" />
               </div>
@@ -262,12 +262,12 @@ export default function FeedbackAnalytics() {
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance by Category</h3>
       <div className="space-y-4">
         {mockAnalytics.categoryBreakdown.map(category => (
-          <div key={category.category} className="flex items-centre justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-centre space-x-3">
+          <div key={category.category} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center space-x-3">
               {getSentimentIcon(category.averageRating)}
               <div>
                 <p className="font-medium text-gray-900 capitalize">{category.category}</p>
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <Star className="w-4 h-4 text-yellow-400 fill-current" />
                   <span className="text-sm text-gray-600">{category.averageRating.toFixed(1)}/5</span>
                 </div>
@@ -317,7 +317,7 @@ export default function FeedbackAnalytics() {
                   {jobType.count}
                 </td>
                 <td className="px-4 py-4">
-                  <div className="flex items-centre">
+                  <div className="flex items-center">
                     <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                     <span className="text-sm font-medium">{jobType.averageRating.toFixed(1)}</span>
                   </div>
@@ -347,8 +347,8 @@ export default function FeedbackAnalytics() {
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Geographic Performance</h3>
       <div className="space-y-4">
         {mockAnalytics.geographicAnalytics.map(location => (
-          <div key={location.location} className="flex items-centre justify-between p-3 border border-gray-200 rounded-lg">
-            <div className="flex items-centre space-x-3">
+          <div key={location.location} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+            <div className="flex items-center space-x-3">
               <MapPin className="w-5 h-5 text-gray-400" />
               <div>
                 <p className="font-medium text-gray-900">{location.location}</p>
@@ -356,7 +356,7 @@ export default function FeedbackAnalytics() {
               </div>
             </div>
             <div className="text-right">
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                 <span className="font-medium">{location.averageRating.toFixed(1)}</span>
               </div>
@@ -372,14 +372,14 @@ export default function FeedbackAnalytics() {
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Customer Complaints</h3>
       <div className="space-y-3">
         {mockAnalytics.topComplaints.map((complaint, index) => (
-          <div key={complaint.issue} className="flex items-centre justify-between p-3 bg-red-50 rounded-lg">
-            <div className="flex items-centre space-x-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 text-xs font-medium rounded-full flex items-centre justify-centre">
+          <div key={complaint.issue} className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+            <div className="flex items-center space-x-3">
+              <span className="flex-shrink-0 w-6 h-6 bg-red-100 text-red-600 text-xs font-medium rounded-full flex items-center justify-center">
                 {index + 1}
               </span>
               <div>
                 <p className="font-medium text-gray-900">{complaint.issue}</p>
-                <div className="flex items-centre space-x-2 mt-1">
+                <div className="flex items-center space-x-2 mt-1">
                   <span className={`px-2 py-1 text-xs rounded-full ${
                     complaint.severity === 'high' ? 'bg-red-100 text-red-800' :
                     complaint.severity === 'medium' ? 'bg-yellow-100 text-yellow-800' :
@@ -408,14 +408,14 @@ export default function FeedbackAnalytics() {
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Most Praised Aspects</h3>
       <div className="space-y-3">
         {mockAnalytics.topPraises.map((praise, index) => (
-          <div key={praise.praise} className="flex items-centre justify-between p-3 bg-green-50 rounded-lg">
-            <div className="flex items-centre space-x-3">
-              <span className="flex-shrink-0 w-6 h-6 bg-green-100 text-green-600 text-xs font-medium rounded-full flex items-centre justify-centre">
+          <div key={praise.praise} className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+            <div className="flex items-center space-x-3">
+              <span className="flex-shrink-0 w-6 h-6 bg-green-100 text-green-600 text-xs font-medium rounded-full flex items-center justify-center">
                 {index + 1}
               </span>
               <div>
                 <p className="font-medium text-gray-900">{praise.praise}</p>
-                <div className="flex items-centre space-x-2 mt-1">
+                <div className="flex items-center space-x-2 mt-1">
                   <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full capitalize">
                     {praise.category}
                   </span>
@@ -437,7 +437,7 @@ export default function FeedbackAnalytics() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex justify-between items-centre mb-8">
+      <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Feedback Analytics</h1>
           <p className="text-gray-600 mt-2">

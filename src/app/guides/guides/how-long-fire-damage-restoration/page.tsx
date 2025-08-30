@@ -100,25 +100,25 @@ export default function HowLongFireDamageRestorationPage() {
                 <h3 className="text-xl font-semibold mt-8 mb-4">Our Process</h3>
                 <ol className="space-y-4">
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre mr-3">1</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">1</span>
                     <div>
                       <strong>Initial Assessment:</strong> Comprehensive evaluation of the situation
                     </div>
                   </li>
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre mr-3">2</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">2</span>
                     <div>
                       <strong>Emergency Response:</strong> Immediate action to prevent further damage
                     </div>
                   </li>
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre mr-3">3</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">3</span>
                     <div>
                       <strong>Professional Restoration:</strong> Complete restoration using industry-leading equipment
                     </div>
                   </li>
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre mr-3">4</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">4</span>
                     <div>
                       <strong>Quality Assurance:</strong> Final inspection and certification
                     </div>
@@ -142,19 +142,19 @@ export default function HowLongFireDamageRestorationPage() {
 
             {/* Statistics */}
             <div className="grid md:grid-cols-4 gap-6 mt-12">
-              <Card className="p-6 text-centre">
+              <Card className="p-6 text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">30-60min</div>
                 <p className="text-sm text-gray-600">Response Time</p>
               </Card>
-              <Card className="p-6 text-centre">
+              <Card className="p-6 text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
                 <p className="text-sm text-gray-600">Availability</p>
               </Card>
-              <Card className="p-6 text-centre">
+              <Card className="p-6 text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">200+</div>
                 <p className="text-sm text-gray-600">Hours Training</p>
               </Card>
-              <Card className="p-6 text-centre">
+              <Card className="p-6 text-center">
                 <div className="text-3xl font-bold text-blue-600 mb-2">100%</div>
                 <p className="text-sm text-gray-600">Insurance Approved</p>
               </Card>

@@ -213,7 +213,7 @@ export function SubscriptionManager() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Subscription & Billing Management</h2>
         <div className="flex gap-3">
           <Input
@@ -401,7 +401,7 @@ export function SubscriptionManager() {
                         <td className="p-4">
                           {subscription.usage && (
                             <div className="text-xs space-y-1">
-                              <div className="flex items-centre gap-1">
+                              <div className="flex items-center gap-1">
                                 <div className="w-16 bg-gray-200 rounded-full h-1.5">
                                   <div
                                     className="bg-blue-600 h-1.5 rounded-full"
@@ -462,8 +462,8 @@ export function SubscriptionManager() {
             <CardContent>
               <div className="space-y-3">
                 {payments.map(payment => (
-                  <div key={payment.id} className="flex items-centre justify-between p-3 border rounded-lg">
-                    <div className="flex items-centre gap-3">
+                  <div key={payment.id} className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="flex items-center gap-3">
                       {payment.status === 'completed' ? (
                         <CheckCircle className="h-5 w-5 text-green-500" />
                       ) : payment.status === 'failed' ? (

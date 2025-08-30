@@ -228,7 +228,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
       {/* Subscription Tier Selection */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <MapPin className="h-5 w-5" />
             Select Your Subscription Tier
           </CardTitle>
@@ -297,7 +297,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
               <p className="text-sm text-gray-600 mt-1 mb-3">
                 Add additional coverage beyond 100km at $35/month per 25km radius
               </p>
-              <div className="flex items-centre gap-4">
+              <div className="flex items-center gap-4">
                 <Button
                   type="button"
                   variant="outline"
@@ -307,7 +307,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
                 >
                   -25km
                 </Button>
-                <div className="text-centre">
+                <div className="text-center">
                   <p className="font-semibold">{100 + ruralExtension}km</p>
                   <p className="text-xs text-gray-500">Total radius</p>
                 </div>
@@ -334,7 +334,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
       {/* Billing Details */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <CreditCard className="h-5 w-5" />
             Billing Details
           </CardTitle>
@@ -431,7 +431,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
             <Label>Payment Method <span className="text-red-500">*</span></Label>
             <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="flex items-centre space-x-2 border rounded-lg p-3">
+                <div className="flex items-center space-x-2 border rounded-lg p-3">
                   <RadioGroupItem value="DIRECT_DEBIT" id="direct-debit" />
                   <Label htmlFor="direct-debit" className="cursor-pointer flex-1">
                     <div className="font-medium">Direct Debit</div>
@@ -439,7 +439,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
                   </Label>
                 </div>
                 
-                <div className="flex items-centre space-x-2 border rounded-lg p-3">
+                <div className="flex items-center space-x-2 border rounded-lg p-3">
                   <RadioGroupItem value="CREDIT_CARD" id="credit-card" />
                   <Label htmlFor="credit-card" className="cursor-pointer flex-1">
                     <div className="font-medium">Credit Card</div>
@@ -447,7 +447,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
                   </Label>
                 </div>
                 
-                <div className="flex items-centre space-x-2 border rounded-lg p-3">
+                <div className="flex items-center space-x-2 border rounded-lg p-3">
                   <RadioGroupItem value="BANK_TRANSFER" id="bank-transfer" />
                   <Label htmlFor="bank-transfer" className="cursor-pointer flex-1">
                     <div className="font-medium">Bank Transfer</div>
@@ -553,7 +553,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
       {/* Background Check Fee */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Shield className="h-5 w-5" />
             Background Check Fee
           </CardTitle>
@@ -571,7 +571,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
           </Alert>
 
           <div className="p-4 bg-gray-50 rounded-lg">
-            <div className="flex justify-between items-centre mb-4">
+            <div className="flex justify-between items-center mb-4">
               <div>
                 <h4 className="font-semibold">Professional Background Screening</h4>
                 <p className="text-sm text-gray-600 mt-1">
@@ -642,7 +642,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
       {/* Performance Bond Agreement */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <FileText className="h-5 w-5" />
             Performance Bond Agreement
           </CardTitle>
@@ -702,7 +702,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
       {selectedTier && (
         <Card className="border-green-200 bg-green-50/50">
           <CardHeader>
-            <CardTitle className="text-lg flex items-centre gap-2">
+            <CardTitle className="text-lg flex items-center gap-2">
               <Calculator className="h-5 w-5" />
               Cost Summary
             </CardTitle>

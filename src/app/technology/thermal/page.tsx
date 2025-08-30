@@ -76,7 +76,7 @@ export default function ThermalImagingPage() {
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/technology" className="hover:text-white transition">Technology</Link>
@@ -112,19 +112,19 @@ export default function ThermalImagingPage() {
             
             {/* Key Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-orange-400">±0.1°C</div>
                 <div className="text-sm text-gray-300">Precision</div>
               </div>
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-red-400">1024x768</div>
                 <div className="text-sm text-gray-300">Resolution</div>
               </div>
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-yellow-400">30m</div>
                 <div className="text-sm text-gray-300">Range</div>
               </div>
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-green-400">100%</div>
                 <div className="text-sm text-gray-300">Non-Invasive</div>
               </div>
@@ -151,7 +151,7 @@ export default function ThermalImagingPage() {
       {/* Applications Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Thermal Imaging Applications
             </h2>
@@ -167,7 +167,7 @@ export default function ThermalImagingPage() {
               return (
                 <Card key={idx} className="p-8 hover:shadow-xl transition-all">
                   <div className="flex items-start gap-4">
-                    <div className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-centre justify-centre ${
+                    <div className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${
                       isSpecialized 
                         ? 'bg-gradient-to-br from-purple-500 to-indigo-500' 
                         : 'bg-gradient-to-br from-orange-500 to-red-500'
@@ -175,7 +175,7 @@ export default function ThermalImagingPage() {
                       <Icon className="h-7 w-7 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-centre gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-2">
                         <h3 className="text-xl font-semibold text-gray-900">{app.title}</h3>
                         {isSpecialized && (
                           <Badge className="bg-purple-100 text-purple-800 text-xs">
@@ -200,7 +200,7 @@ export default function ThermalImagingPage() {
 
                       <ul className="space-y-2">
                         {app.benefits.map((benefit, bIdx) => (
-                          <li key={bIdx} className="flex items-centre gap-2 text-sm text-gray-600">
+                          <li key={bIdx} className="flex items-center gap-2 text-sm text-gray-600">
                             <CheckCircle className="h-4 w-4 text-green-500" />
                             {benefit}
                           </li>
@@ -218,7 +218,7 @@ export default function ThermalImagingPage() {
       {/* How It Works */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Thermal Imaging Process
             </h2>
@@ -254,8 +254,8 @@ export default function ThermalImagingPage() {
                 icon: Layers
               }
             ].map((step, idx) => (
-              <div key={idx} className="text-centre">
-                <div className="inline-flex items-centre justify-centre w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-white text-2xl font-bold mb-4">
+              <div key={idx} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-white text-2xl font-bold mb-4">
                   {step.step}
                 </div>
                 <Card className="p-6 h-full">
@@ -273,14 +273,14 @@ export default function ThermalImagingPage() {
       <section className="py-20 bg-gradient-to-r from-slate-50 to-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
               Understanding Thermal Imaging Certification
             </h2>
             
             <div className="grid lg:grid-cols-3 gap-8 mb-12">
               {/* Standard Service */}
               <Card className="p-6">
-                <div className="w-12 h-12 rounded-lg bg-green-100 flex items-centre justify-centre mb-4">
+                <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-4">
                   <Gauge className="h-6 w-6 text-green-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Standard Moisture Detection</h3>
@@ -288,15 +288,15 @@ export default function ThermalImagingPage() {
                   Basic thermal cameras used by 95% of restoration technicians for moisture identification and general inspection.
                 </p>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
                     <span>Available from all technicians</span>
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
                     <span>Good for moisture detection</span>
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-green-500" />
                     <span>Visual temperature differences</span>
                   </li>
@@ -306,7 +306,7 @@ export default function ThermalImagingPage() {
               {/* Specialised Service */}
               <Card className="p-6 border-2 border-purple-200 relative">
                 <Badge className="absolute -top-3 left-6 bg-purple-600">Specialist Required</Badge>
-                <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-centre justify-centre mb-4">
+                <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
                   <Target className="h-6 w-6 text-purple-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Certified Thermal Analysis</h3>
@@ -314,15 +314,15 @@ export default function ThermalImagingPage() {
                   Level 1/2 Thermography certification required for electrical analysis and quantitative building assessment.
                 </p>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-purple-500" />
                     <span>~15 contractors nationally</span>
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-purple-500" />
                     <span>Electrical hot spot analysis</span>
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-purple-500" />
                     <span>Quantitative reporting</span>
                   </li>
@@ -331,7 +331,7 @@ export default function ThermalImagingPage() {
 
               {/* Licensed Service */}
               <Card className="p-6">
-                <div className="w-12 h-12 rounded-lg bg-red-100 flex items-centre justify-centre mb-4">
+                <div className="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-red-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Licensed Applications</h3>
@@ -339,15 +339,15 @@ export default function ThermalImagingPage() {
                   State licensing required for electrical system work and regulatory compliance applications.
                 </p>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-red-500" />
                     <span>Licensed electrician partnership</span>
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-red-500" />
                     <span>Regulatory compliance</span>
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-red-500" />
                     <span>Legal documentation</span>
                   </li>
@@ -357,7 +357,7 @@ export default function ThermalImagingPage() {
 
             {/* Questions to Ask */}
             <Card className="p-8 bg-amber-50 border border-amber-200">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-centre gap-2">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-amber-600" />
                 Questions to Ask Your Contractor
               </h3>
@@ -388,7 +388,7 @@ export default function ThermalImagingPage() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
               Professional Thermography Equipment
             </h2>
             <Card className="p-8">
@@ -413,7 +413,7 @@ export default function ThermalImagingPage() {
 
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-r from-orange-600 to-red-600 text-white">
-        <div className="container mx-auto px-6 text-centre">
+        <div className="container mx-auto px-6 text-center">
           <Thermometer className="h-12 w-12 mx-auto mb-4" />
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Discover Hidden Damage Today
@@ -422,7 +422,7 @@ export default function ThermalImagingPage() {
             Don't let invisible damage become a major problem. Schedule your professional 
             thermal imaging inspection now.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 Schedule Thermal Inspection

@@ -224,7 +224,7 @@ export function BackgroundChecks() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Background Checks & References</h2>
         <div className="flex gap-3">
           <div className="relative">
@@ -343,13 +343,13 @@ export function BackgroundChecks() {
                   <tbody>
                     {loading ? (
                       <tr>
-                        <td colSpan={8} className="text-centre p-8">
+                        <td colSpan={8} className="text-center p-8">
                           <Loader2 className="h-8 w-8 animate-spin mx-auto text-gray-400" />
                         </td>
                       </tr>
                     ) : filteredChecks.length === 0 ? (
                       <tr>
-                        <td colSpan={8} className="text-centre p-8 text-gray-500">
+                        <td colSpan={8} className="text-center p-8 text-gray-500">
                           No background checks found
                         </td>
                       </tr>
@@ -377,7 +377,7 @@ export function BackgroundChecks() {
                           </td>
                           <td className="p-4">
                             {check.results?.riskScore !== undefined ? (
-                              <div className="flex items-centre gap-2">
+                              <div className="flex items-center gap-2">
                                 {check.results.riskScore <= 30 ? (
                                   <ShieldCheck className={`h-4 w-4 ${getRiskColor(check.results.riskScore)}`} />
                                 ) : (
@@ -455,25 +455,25 @@ export function BackgroundChecks() {
                     <div key={ref.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <div className="flex items-centre gap-2 mb-2">
+                          <div className="flex items-center gap-2 mb-2">
                             <User className="h-4 w-4 text-gray-400" />
                             <p className="font-medium">{ref.name}</p>
                             <Badge variant="outline">{ref.relationship}</Badge>
                           </div>
                           <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <Building className="h-3 w-3" />
                               <span>{ref.company} - {ref.position}</span>
                             </div>
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <Clock className="h-3 w-3" />
                               <span>Known for {ref.yearsKnown} years</span>
                             </div>
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <Phone className="h-3 w-3" />
                               <span>{ref.phone}</span>
                             </div>
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <Mail className="h-3 w-3" />
                               <span>{ref.email}</span>
                             </div>
@@ -499,7 +499,7 @@ export function BackgroundChecks() {
                     </div>
                   ))}
                   {pendingReferences.length === 0 && (
-                    <div className="text-centre py-8 text-gray-500">
+                    <div className="text-center py-8 text-gray-500">
                       <CheckCircle className="h-12 w-12 mx-auto mb-3 text-green-500" />
                       <p>All references have been contacted</p>
                     </div>
@@ -522,7 +522,7 @@ export function BackgroundChecks() {
                     <div key={ref.id} className="border rounded-lg p-4 bg-gray-50">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <div className="flex items-centre gap-2 mb-2">
+                          <div className="flex items-center gap-2 mb-2">
                             <UserCheck className="h-4 w-4 text-green-500" />
                             <p className="font-medium">{ref.name}</p>
                             <Badge className="bg-green-100 text-green-800">Verified</Badge>
@@ -531,7 +531,7 @@ export function BackgroundChecks() {
                             {ref.company} - {ref.position}
                           </p>
                           {ref.rating && (
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <span className="text-sm text-gray-600">Rating:</span>
                               <div className="flex gap-1">
                                 {[...Array(5)].map((_, i) => (
@@ -727,25 +727,25 @@ export function BackgroundChecks() {
                 <div className="border-t pt-4">
                   <h4 className="font-medium mb-3">Check Results</h4>
                   <div className="space-y-2">
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Criminal Record</span>
                       <Badge className={selectedCheck.results.criminalRecord ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}>
                         {selectedCheck.results.criminalRecord ? 'Found' : 'Clear'}
                       </Badge>
                     </div>
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Financial Issues</span>
                       <Badge className={selectedCheck.results.financialIssues ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}>
                         {selectedCheck.results.financialIssues ? 'Found' : 'Clear'}
                       </Badge>
                     </div>
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Identity Verified</span>
                       <Badge className={selectedCheck.results.identityVerified ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
                         {selectedCheck.results.identityVerified ? 'Verified' : 'Not Verified'}
                       </Badge>
                     </div>
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Risk Score</span>
                       <span className={`font-medium ${getRiskColor(selectedCheck.results.riskScore)}`}>
                         {selectedCheck.results.riskScore}/100 - {getRiskLabel(selectedCheck.results.riskScore)}

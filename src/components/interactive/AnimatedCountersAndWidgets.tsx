@@ -113,7 +113,7 @@ function LiveAvailabilityWidget() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex items-centre justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-bold text-green-800">Live Availability</h3>
         <motion.div
           key={pulseKey}
@@ -132,8 +132,8 @@ function LiveAvailabilityWidget() {
 
       <div className="space-y-4">
         {/* Availability Status */}
-        <div className="flex items-centre justify-between">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
             <Users className="h-5 w-5 text-green-600" />
             <span className="font-semibold text-gray-700">Teams Available</span>
           </div>
@@ -147,8 +147,8 @@ function LiveAvailabilityWidget() {
         </div>
 
         {/* Response Time */}
-        <div className="flex items-centre justify-between">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
             <Clock className="h-5 w-5 text-blue-600" />
             <span className="font-semibold text-gray-700">Response Time</span>
           </div>
@@ -164,8 +164,8 @@ function LiveAvailabilityWidget() {
         </div>
 
         {/* Active Jobs */}
-        <div className="flex items-centre justify-between">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
             <Zap className="h-5 w-5 text-yellow-600" />
             <span className="font-semibold text-gray-700">Active Jobs</span>
           </div>
@@ -181,8 +181,8 @@ function LiveAvailabilityWidget() {
         </div>
 
         {/* Teams Ready */}
-        <div className="flex items-centre justify-between">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
             <Shield className="h-5 w-5 text-purple-600" />
             <span className="font-semibold text-gray-700">Teams Ready</span>
           </div>
@@ -202,11 +202,11 @@ function LiveAvailabilityWidget() {
       <motion.div className="mt-6">
         <motion.a
           href="tel:1300566166"
-          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-lg font-bold text-centre block"
+          className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-lg font-bold text-center block"
           whileHover={{ scale: 1.02, y: -1 }}
           whileTap={{ scale: 0.98 }}
         >
-          <div className="flex items-centre justify-centre space-x-2">
+          <div className="flex items-center justify-center space-x-2">
             <Phone className="h-5 w-5" />
             <span>Call Now - Teams Standing By</span>
           </div>
@@ -236,7 +236,7 @@ function StatCard({ icon: Icon, value, label, suffix = '', prefix = '', colour, 
   return (
     <motion.div
       ref={ref}
-      className="bg-white rounded-2xl p-8 text-centre shadow-lg border border-gray-100"
+      className="bg-white rounded-2xl p-8 text-center shadow-lg border border-gray-100"
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
       transition={{ duration: 0.6, delay }}
@@ -247,7 +247,7 @@ function StatCard({ icon: Icon, value, label, suffix = '', prefix = '', colour, 
       }}
     >
       <motion.div
-        className={`inline-flex items-centre justify-centre w-16 h-16 bg-gradient-to-br ${colour} rounded-2xl mb-6`}
+        className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${colour} rounded-2xl mb-6`}
         whileHover={{ rotate: 10, scale: 1.1 }}
         transition={{ duration: 0.3 }}
       >
@@ -291,7 +291,7 @@ function ResponseTimeMap() {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      <div className="flex items-centre justify-between mb-6">
+      <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-bold text-blue-800">Live Response Times</h3>
         <motion.div
           animate={{
@@ -311,13 +311,13 @@ function ResponseTimeMap() {
         {locations.map((location, index) => (
           <motion.div
             key={location.city}
-            className="flex items-centre justify-between p-3 bg-white rounded-lg border"
+            className="flex items-center justify-between p-3 bg-white rounded-lg border"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
             whileHover={{ scale: 1.02 }}
           >
-            <div className="flex items-centre space-x-3">
+            <div className="flex items-center space-x-3">
               <motion.div
                 className={`w-3 h-3 bg-gradient-to-r ${location.colour} rounded-full`}
                 animate={{
@@ -397,13 +397,13 @@ export default function AnimatedCountersAndWidgets() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
       {/* Section Header */}
       <motion.div
-        className="text-centre mb-16"
+        className="text-center mb-16"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8 }}
       >
         <motion.div
-          className="inline-flex items-centre bg-purple-100 text-purple-800 px-4 py-2 rounded-full mb-6"
+          className="inline-flex items-center bg-purple-100 text-purple-800 px-4 py-2 rounded-full mb-6"
           whileHover={{ scale: 1.05 }}
         >
           <TrendingUp className="h-4 w-4 mr-2" />

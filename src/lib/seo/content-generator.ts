@@ -185,8 +185,8 @@ export function generateContent(
       <h3 class="text-xl font-semibold text-blue-900 mb-3">Need Immediate Assistance?</h3>
       <p class="text-blue-800 mb-4">Our ${locationName} emergency response team is available 24/7 for immediate ${service.name.toLowerCase()} services. Don't let damage worsen - contact us now for rapid professional response.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="tel:1300123456" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-centre">Call 1300 123 456</a>
-        <a href="/contact" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-centre">Get Free Quote</a>
+        <a href="tel:1300123456" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Call 1300 123 456</a>
+        <a href="/contact" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">Get Free Quote</a>
       </div>
     </div>
   </div>
@@ -345,7 +345,7 @@ function generateProcessContent(service: typeof SERVICE_TYPES[0]): string {
   steps.forEach((step, index) => {
     processHtml += `
       <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-sm font-bold">
+        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
           ${index + 1}
         </div>
         <div class="font-medium text-gray-800">${step}</div>

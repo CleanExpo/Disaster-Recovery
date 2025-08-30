@@ -130,7 +130,7 @@ export default function FraudDetectionAdmin() {
               <button
                 onClick={() => fetchLogs()}
                 disabled={loading}
-                className="flex items-centre gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
               >
                 <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                 Refresh
@@ -142,7 +142,7 @@ export default function FraudDetectionAdmin() {
         {/* Statistics Cards */}
         <div className="grid md:grid-cols-5 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Analysed</p>
                 <p className="text-3xl font-bold text-gray-900">{statistics.total}</p>
@@ -154,7 +154,7 @@ export default function FraudDetectionAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">High Risk</p>
                 <p className="text-3xl font-bold text-red-600">{statistics.byRiskLevel.HIGH || 0}</p>
@@ -166,7 +166,7 @@ export default function FraudDetectionAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Medium Risk</p>
                 <p className="text-3xl font-bold text-yellow-600">{statistics.byRiskLevel.MEDIUM || 0}</p>
@@ -178,7 +178,7 @@ export default function FraudDetectionAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Low Risk</p>
                 <p className="text-3xl font-bold text-green-600">{statistics.byRiskLevel.LOW || 0}</p>
@@ -190,7 +190,7 @@ export default function FraudDetectionAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Needs Review</p>
                 <p className="text-3xl font-bold text-orange-600">
@@ -298,14 +298,14 @@ export default function FraudDetectionAdmin() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {loading ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-centre">
+                    <td colSpan={7} className="px-6 py-12 text-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
                       <p className="mt-2 text-gray-500">Loading fraud detection logs...</p>
                     </td>
                   </tr>
                 ) : logs.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-centre">
+                    <td colSpan={7} className="px-6 py-12 text-center">
                       <p className="text-gray-500">No fraud detection logs found</p>
                     </td>
                   </tr>
@@ -365,7 +365,7 @@ export default function FraudDetectionAdmin() {
                           {log.analysisStatus}
                         </span>
                         {log.reviewRequired && (
-                          <div className="flex items-centre gap-1 text-xs text-orange-600">
+                          <div className="flex items-center gap-1 text-xs text-orange-600">
                             <Eye className="w-3 h-3" />
                             Review Required
                           </div>
@@ -382,7 +382,7 @@ export default function FraudDetectionAdmin() {
                       })}
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-centre gap-2">
+                      <div className="flex items-center gap-2">
                         <Link
                           href={`/admin/contractors/${log.contractorId}`}
                           className="text-blue-600 hover:text-blue-800"
@@ -400,7 +400,7 @@ export default function FraudDetectionAdmin() {
           {/* Pagination */}
           {pagination.pages > 1 && (
             <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <div className="text-sm text-gray-700">
                   Showing {((pagination.page - 1) * pagination.limit) + 1} to{' '}
                   {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}

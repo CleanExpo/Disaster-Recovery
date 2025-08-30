@@ -409,8 +409,8 @@ const GeographicProximityCalculator: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Navigation className="h-6 w-6 text-blue-600" />
             </div>
@@ -419,7 +419,7 @@ const GeographicProximityCalculator: React.FC = () => {
               <p className="text-sm text-gray-500">Distance-based contractor ranking and route optimisation</p>
             </div>
           </div>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <select
               value={calculationMode}
               onChange={(e) => setCalculationMode(e.target.value as any)}
@@ -463,7 +463,7 @@ const GeographicProximityCalculator: React.FC = () => {
 
       {/* Proximity Calculations */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <MapPin className="h-5 w-5 mr-2 text-blue-600" />
           Contractor Proximity Analysis
         </h3>
@@ -481,14 +481,14 @@ const GeographicProximityCalculator: React.FC = () => {
                 }`}
                 onClick={() => generateRouteOptimization(calc.contractorId)}
               >
-                <div className="flex items-centre justify-between">
-                  <div className="flex items-centre space-x-4">
-                    <div className="flex items-centre justify-centre w-10 h-10 bg-gray-100 rounded-full">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
                       <span className="text-lg font-semibold">#{calc.proximityRank}</span>
                     </div>
                     <div>
                       <p className="font-medium">{calc.companyName}</p>
-                      <div className="flex items-centre space-x-4 mt-1">
+                      <div className="flex items-center space-x-4 mt-1">
                         <span className="text-sm text-gray-500">
                           <MapPin className="h-3 w-3 inline mr-1" />
                           {calc.distance} miles
@@ -505,7 +505,7 @@ const GeographicProximityCalculator: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-centre space-x-3">
+                  <div className="flex items-center space-x-3">
                     <div className="text-right">
                       <p className="text-sm text-gray-500">Response Score</p>
                       <p className="text-2xl font-semibold text-blue-600">{calc.responseScore}</p>
@@ -514,7 +514,7 @@ const GeographicProximityCalculator: React.FC = () => {
                       <span className={`px-2 py-1 text-xs rounded-full ${badge.colour}`}>
                         {badge.text}
                       </span>
-                      <span className={`px-2 py-1 text-xs rounded-full flex items-centre ${timeBadge.colour}`}>
+                      <span className={`px-2 py-1 text-xs rounded-full flex items-center ${timeBadge.colour}`}>
                         <timeBadge.icon className="h-3 w-3 mr-1" />
                         {timeBadge.text}
                       </span>
@@ -524,19 +524,19 @@ const GeographicProximityCalculator: React.FC = () => {
 
                 {/* Traffic and Route Info */}
                 <div className="mt-3 pt-3 border-t grid grid-cols-3 gap-4">
-                  <div className="flex items-centre space-x-2">
+                  <div className="flex items-center space-x-2">
                     <Activity className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       Traffic: <span className="font-medium capitalize">{calc.trafficCondition}</span>
                     </span>
                   </div>
-                  <div className="flex items-centre space-x-2">
+                  <div className="flex items-center space-x-2">
                     <Route className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       Route: <span className="font-medium capitalize">{calc.routeComplexity}</span>
                     </span>
                   </div>
-                  <div className="flex items-centre space-x-2">
+                  <div className="flex items-center space-x-2">
                     <Gauge className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       Zone: <span className="font-medium">{calc.isWithinPrimaryRadius ? 'Primary' : calc.isWithinMaxRadius ? 'Secondary' : 'Extended'}</span>
@@ -552,7 +552,7 @@ const GeographicProximityCalculator: React.FC = () => {
       {/* Route Optimisation Details */}
       {routeOptimization && selectedContractor && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Route className="h-5 w-5 mr-2 text-green-600" />
             Route Optimisation Details
           </h3>
@@ -622,7 +622,7 @@ const GeographicProximityCalculator: React.FC = () => {
 
       {/* Weighting Factors */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <Target className="h-5 w-5 mr-2 text-purple-600" />
           Proximity Scoring Weights
         </h3>
@@ -642,7 +642,7 @@ const GeographicProximityCalculator: React.FC = () => {
                 })}
                 className="w-full"
               />
-              <p className="text-centre text-sm text-gray-600">{Math.round(weight * 100)}%</p>
+              <p className="text-center text-sm text-gray-600">{Math.round(weight * 100)}%</p>
             </div>
           ))}
         </div>

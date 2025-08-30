@@ -138,7 +138,7 @@ export default function WaterDamageRestorationPage() {
           </p>
           
           <div className="r6-glass-card r6-glow-blue p-8 my-8 border-l-4 border-electric-blue">
-            <h3 className="text-xl font-bold text-white mb-3 flex items-centre gap-3">
+            <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-3">
               <span className="r6-pulse-dot"></span>
               Why Immediate Response Matters
             </h3>
@@ -296,7 +296,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 1 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">1</span>
               </div>
             </div>
@@ -343,7 +343,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 2 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">2</span>
               </div>
             </div>
@@ -356,7 +356,7 @@ export default function WaterDamageRestorationPage() {
                   Using advanced moisture detection technology, we map affected areas, determine water category, and develop a comprehensive restoration plan following IICRC S500 protocols.
                 </p>
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
-                  <div className="text-centre">
+                  <div className="text-center">
                     <Image
                       src="/images/optimised/equipment/3D Thermal Camera.png"
                       alt="Thermal imaging"
@@ -369,7 +369,7 @@ export default function WaterDamageRestorationPage() {
                       Identifies hidden moisture
                     </p>
                   </div>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <Image
                       src="/images/optimised/equipment/3D Moisture Meter.png"
                       alt="Moisture meters"
@@ -382,7 +382,7 @@ export default function WaterDamageRestorationPage() {
                       Documents affected areas
                     </p>
                   </div>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <Image
                       src="/images/optimised/equipment/3D Moisture Meter Reading.png"
                       alt="Hygrometers"
@@ -403,7 +403,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 3 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">3</span>
               </div>
             </div>
@@ -416,7 +416,7 @@ export default function WaterDamageRestorationPage() {
                   Powerful truck-mounted and portable extraction units remove thousands of gallons of water quickly, preventing further damage and accelerating the drying process.
                 </p>
                 <div className="r6-glass-card r6-glow-blue border-l-4 border-electric-blue p-4 mt-4">
-                  <div className="flex items-centre mb-2">
+                  <div className="flex items-center mb-2">
                     <Image
                       src="/images/optimised/equipment/3D Extraction Unit.png"
                       alt="Extraction equipment"
@@ -439,7 +439,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 4 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">4</span>
               </div>
             </div>
@@ -452,7 +452,7 @@ export default function WaterDamageRestorationPage() {
                   Strategic placement of industrial dehumidifiers and high-velocity air movers creates optimal drying conditions. Daily monitoring ensures materials reach IICRC-specified moisture levels.
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
-                  <div className="flex items-centre p-4 r6-glass-subtle rounded-lg r6-hover-glow">
+                  <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
                       src="/images/optimised/equipment/3D Dehumidifier.png"
                       alt="Dehumidifier"
@@ -467,7 +467,7 @@ export default function WaterDamageRestorationPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-centre p-4 r6-glass-subtle rounded-lg r6-hover-glow">
+                  <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
                       src="/images/optimised/equipment/3D Industrial Fan.png"
                       alt="Air movers"
@@ -490,7 +490,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 5 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">5</span>
               </div>
             </div>
@@ -504,7 +504,7 @@ export default function WaterDamageRestorationPage() {
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mt-6">
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
-                    <div className="flex items-centre mb-2">
+                    <div className="flex items-center mb-2">
                       <Image
                         src="/images/optimised/equipment/3D Thermal Fogging.png"
                         alt="Thermal fogging"
@@ -519,7 +519,7 @@ export default function WaterDamageRestorationPage() {
                     </p>
                   </div>
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
-                    <div className="flex items-centre mb-2">
+                    <div className="flex items-center mb-2">
                       <svg className="w-12 h-12 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -537,7 +537,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 6 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">6</span>
               </div>
             </div>
@@ -549,7 +549,7 @@ export default function WaterDamageRestorationPage() {
                 <p className="text-gray-300 mb-4">
                   Final phase returns your property to pre-loss condition. From minor repairs like drywall replacement to major reconstruction, our skilled craftsmen complete all necessary work.
                 </p>
-                <div className="flex items-centre justify-centre mt-6">
+                <div className="flex items-center justify-center mt-6">
                   <Image
                     src="/images/optimised/process/3D Restoration.png"
                     alt="Complete restoration"
@@ -558,7 +558,7 @@ export default function WaterDamageRestorationPage() {
                     className="rounded-lg"
                   />
                 </div>
-                <div className="grid md:grid-cols-3 gap-4 mt-6 text-centre">
+                <div className="grid md:grid-cols-3 gap-4 mt-6 text-center">
                   <div>
                     <h4 className="font-semibold text-white">Minor Repairs</h4>
                     <p className="text-sm text-gray-400 mt-1">
@@ -695,31 +695,31 @@ export default function WaterDamageRestorationPage() {
             <div className="r6-glass-subtle rounded-xl p-6 border border-electric-blue/20">
               <h4 className="font-bold text-electric-blue mb-4 r6-text-glow-subtle">Documentation We Provide:</h4>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-centre text-gray-400 r6-list-item">
+                <li className="flex items-center text-gray-400 r6-list-item">
                   <span className="w-2 h-2 bg-electric-blue rounded-full mr-3 r6-pulse-dot"></span>
                   Pre-mitigation photos and videos
                 </li>
-                <li className="flex items-centre">
+                <li className="flex items-center">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Moisture content readings and maps
                 </li>
-                <li className="flex items-centre">
+                <li className="flex items-center">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Thermal imaging documentation
                 </li>
-                <li className="flex items-centre">
+                <li className="flex items-center">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Daily drying logs and psychrometric data
                 </li>
-                <li className="flex items-centre">
+                <li className="flex items-center">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Equipment placement diagrams
                 </li>
-                <li className="flex items-centre">
+                <li className="flex items-center">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Detailed line-item estimates
                 </li>
-                <li className="flex items-centre">
+                <li className="flex items-center">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Certificate of completion
                 </li>

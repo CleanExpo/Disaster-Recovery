@@ -303,9 +303,9 @@ export function SupportTickets() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold flex items-centre gap-2">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
             <Ticket className="h-6 w-6" />
             Support Tickets
           </h2>
@@ -392,8 +392,8 @@ export function SupportTickets() {
               <div>
                 <Label htmlFor="attachments">Attachments</Label>
                 <div className="mt-2">
-                  <label className="flex items-centre justify-centre w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-                    <div className="text-centre">
+                  <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                    <div className="text-center">
                       <Upload className="h-8 w-8 text-gray-400 mx-auto mb-2" />
                       <p className="text-sm text-gray-600">
                         Click to upload files or drag and drop
@@ -416,7 +416,7 @@ export function SupportTickets() {
                   {newTicket.attachments.length > 0 && (
                     <div className="mt-2 space-y-1">
                       {newTicket.attachments.map((file, index) => (
-                        <div key={index} className="flex items-centre gap-2 text-sm">
+                        <div key={index} className="flex items-center gap-2 text-sm">
                           <Paperclip className="h-4 w-4" />
                           <span>{file.name}</span>
                           <span className="text-gray-500">
@@ -515,7 +515,7 @@ export function SupportTickets() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-centre gap-1">
+                      <div className="flex items-center gap-1">
                         {getStatusIcon(ticket.status)}
                         <span className="capitalize">{ticket.status.replace('_', ' ')}</span>
                       </div>
@@ -561,8 +561,8 @@ export function SupportTickets() {
         /* Ticket Detail View */
         <Card>
           <CardHeader>
-            <div className="flex items-centre justify-between">
-              <div className="flex items-centre gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -574,14 +574,14 @@ export function SupportTickets() {
                   <CardTitle className="text-xl">
                     {selectedTicket.ticketNumber}: {selectedTicket.subject}
                   </CardTitle>
-                  <div className="flex items-centre gap-3 mt-2">
+                  <div className="flex items-center gap-3 mt-2">
                     <Badge className={getPriorityColor(selectedTicket.priority)}>
                       {selectedTicket.priority}
                     </Badge>
                     <Badge variant="outline">
                       {selectedTicket.category}
                     </Badge>
-                    <div className="flex items-centre gap-1">
+                    <div className="flex items-center gap-1">
                       {getStatusIcon(selectedTicket.status)}
                       <span className="text-sm capitalize">
                         {selectedTicket.status.replace('_', ' ')}
@@ -608,7 +608,7 @@ export function SupportTickets() {
                     className={`flex ${message.senderType === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div className={`max-w-[70%]`}>
-                      <div className="flex items-centre gap-2 mb-1">
+                      <div className="flex items-center gap-2 mb-1">
                         {message.senderType === 'agent' && (
                           <User className="h-4 w-4 text-gray-500" />
                         )}
@@ -643,7 +643,7 @@ export function SupportTickets() {
                   onChange={(e) => setReplyMessage(e.target.value)}
                   rows={4}
                 />
-                <div className="flex justify-between items-centre">
+                <div className="flex justify-between items-center">
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm">
                       <Paperclip className="h-4 w-4 mr-1" />

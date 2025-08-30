@@ -326,7 +326,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {/* Header */}
       {!embedded && (
         <div>
-          <h2 className="text-2xl font-bold flex items-centre gap-2">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
             <Target className="h-6 w-6" />
             Onboarding Progress
           </h2>
@@ -339,7 +339,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {/* Progress Overview */}
       <Card className={embedded ? "border-0 shadow-none" : ""}>
         <CardHeader>
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-lg">Overall Progress</CardTitle>
               <CardDescription>
@@ -366,23 +366,23 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
           
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            <div className="text-centre">
+            <div className="text-center">
               <p className="text-2xl font-bold text-green-600">{checklist.completedCount}</p>
               <p className="text-sm text-gray-500">Completed</p>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <p className="text-2xl font-bold text-orange-600">
                 {checklist.items.filter(i => !i.isCompleted && i.isRequired).length}
               </p>
               <p className="text-sm text-gray-500">Required Remaining</p>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <p className="text-2xl font-bold text-blue-600">
                 {checklist.items.filter(i => !i.isCompleted && !i.isRequired).length}
               </p>
               <p className="text-sm text-gray-500">Optional</p>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <p className="text-2xl font-bold text-gray-600">
                 {Math.ceil(
                   checklist.items
@@ -427,8 +427,8 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                 className="cursor-pointer"
                 onClick={() => toggleCategory(category)}
               >
-                <div className="flex items-centre justify-between">
-                  <div className="flex items-centre gap-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
                     <div className={cn("p-2 rounded-lg", categoryColor)}>
                       <CategoryIcon className="h-5 w-5" />
                     </div>
@@ -439,7 +439,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                       </CardDescription>
                     </div>
                   </div>
-                  <div className="flex items-centre gap-2">
+                  <div className="flex items-center gap-2">
                     <Progress 
                       value={(categoryCompleted / items.length) * 100} 
                       className="w-24 h-2"
@@ -482,7 +482,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                             )}
                           </button>
                           <div className="flex-1">
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <p className={cn(
                                 "font-medium",
                                 item.isCompleted && "line-through text-gray-500"
@@ -495,7 +495,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                                 </Badge>
                               )}
                               {item.estimatedTime && !item.isCompleted && (
-                                <span className="text-xs text-gray-500 flex items-centre gap-1">
+                                <span className="text-xs text-gray-500 flex items-center gap-1">
                                   <Clock className="h-3 w-3" />
                                   {item.estimatedTime}
                                 </span>
@@ -550,7 +550,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       </div>
 
       {/* Show Completed Toggle */}
-      <div className="flex justify-centre">
+      <div className="flex justify-center">
         <Button
           variant="outline"
           onClick={() => setShowCompleted(!showCompleted)}
@@ -563,7 +563,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {isFullyOnboarded && (
         <Card className="bg-green-50 border-green-200">
           <CardContent className="pt-6">
-            <div className="text-centre">
+            <div className="text-center">
               <Trophy className="h-12 w-12 text-green-600 mx-auto mb-3" />
               <h3 className="text-xl font-semibold text-green-900 mb-2">
                 Congratulations! You're Fully Onboarded

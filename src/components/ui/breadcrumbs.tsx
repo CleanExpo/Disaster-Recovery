@@ -35,7 +35,7 @@ export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
       
       <nav aria-label="Breadcrumb" className="bg-gray-50 border-b">
         <div className="container mx-auto px-6 py-3">
-          <ol className="flex items-centre space-x-2 text-sm">
+          <ol className="flex items-center space-x-2 text-sm">
             <li>
               <Link 
                 href="/" 
@@ -47,7 +47,7 @@ export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
             </li>
             
             {breadcrumbs.map((item, index) => (
-              <li key={index} className="flex items-centre">
+              <li key={index} className="flex items-center">
                 <ChevronRight className="h-4 w-4 text-gray-400 mx-2" />
                 {item.href ? (
                   <Link 

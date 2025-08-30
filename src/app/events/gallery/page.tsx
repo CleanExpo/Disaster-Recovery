@@ -97,7 +97,7 @@ export default function EventsGalleryPage() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="container mx-auto relative z-10"
         >
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -131,7 +131,7 @@ export default function EventsGalleryPage() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4 justify-centre"
+              className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-xl px-8 py-4">
@@ -174,9 +174,9 @@ export default function EventsGalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: stat.delay }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="text-centre group cursor-pointer"
+                className="text-center group cursor-pointer"
               >
-                <div className={`mx-auto w-20 h-20 ${stat.bgColor} rounded-2xl flex items-centre justify-centre mb-4 group-hover:shadow-lg transition-all duration-300`}>
+                <div className={`mx-auto w-20 h-20 ${stat.bgColor} rounded-2xl flex items-center justify-center mb-4 group-hover:shadow-lg transition-all duration-300`}>
                   <motion.div 
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -303,7 +303,7 @@ export default function EventsGalleryPage() {
                           </div>
                           
                           {/* View Count */}
-                          <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded-full text-xs flex items-centre">
+                          <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded-full text-xs flex items-center">
                             <Eye className="w-3 h-3 mr-1" />
                             {Math.floor(Math.random() * 500) + 100}
                           </div>
@@ -324,7 +324,7 @@ export default function EventsGalleryPage() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: index * 0.1 + 0.5 }}
-                              className="flex items-centre text-sm text-gray-600"
+                              className="flex items-center text-sm text-gray-600"
                             >
                               <div className="p-1 bg-blue-100 rounded mr-2">
                                 <Calendar className="h-3 w-3 text-blue-600" />
@@ -335,7 +335,7 @@ export default function EventsGalleryPage() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: index * 0.1 + 0.6 }}
-                              className="flex items-centre text-sm text-gray-600"
+                              className="flex items-center text-sm text-gray-600"
                             >
                               <div className="p-1 bg-green-100 rounded mr-2">
                                 <MapPin className="h-3 w-3 text-green-600" />
@@ -366,7 +366,7 @@ export default function EventsGalleryPage() {
                               <motion.div 
                                 key={statIndex}
                                 whileHover={{ scale: 1.05 }}
-                                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-xl text-centre border border-blue-100"
+                                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-xl text-center border border-blue-100"
                               >
                                 <div className="font-bold text-lg text-blue-600">{stat.value}</div>
                                 <div className="text-xs text-gray-600 font-medium">{stat.label}</div>
@@ -445,7 +445,7 @@ export default function EventsGalleryPage() {
       {/* Featured Before/After Gallery */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Before & After Gallery</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               See the dramatic transformations our team achieves in disaster recovery situations
@@ -506,7 +506,7 @@ export default function EventsGalleryPage() {
       {/* Testimonials Section */}
       <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Client Testimonials</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Hear from the families and businesses we've helped recover from disasters
@@ -543,14 +543,14 @@ export default function EventsGalleryPage() {
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-green-600 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Need Emergency Disaster Recovery Services?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Our experienced team is ready to respond 24/7 to help you recover from any disaster
           </p>
-          <div className="flex flex-wrap gap-4 justify-centre">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
               <Shield className="mr-2 h-5 w-5" />
               Emergency Response: 1300 776 062
@@ -569,7 +569,7 @@ export default function EventsGalleryPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-centre justify-centre p-4"
+            className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -598,7 +598,7 @@ export default function EventsGalleryPage() {
                 </motion.button>
               </div>
               <div className="p-6 bg-gray-50">
-                <div className="flex items-centre justify-between">
+                <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-semibold text-gray-900">High Resolution View</h3>
                     <p className="text-sm text-gray-600">Click outside to close</p>
@@ -659,11 +659,11 @@ function EventCard({ event }: { event: DisasterEvent }) {
           <IconComponent className="h-6 w-6 text-gray-400" />
         </div>
         <CardDescription>
-          <div className="flex items-centre text-sm mt-2">
+          <div className="flex items-center text-sm mt-2">
             <Calendar className="h-4 w-4 mr-2" />
             {event.date}
           </div>
-          <div className="flex items-centre text-sm mt-1">
+          <div className="flex items-center text-sm mt-1">
             <MapPin className="h-4 w-4 mr-2" />
             {event.location}
           </div>

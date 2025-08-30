@@ -74,27 +74,27 @@ export default function PremiumHeader() {
       {/* Top Bar - Premium Info Strip */}
       <div className="hidden lg:block bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="container mx-auto px-6">
-          <div className="flex items-centre justify-between py-2 text-sm">
-            <div className="flex items-centre gap-6">
-              <div className="flex items-centre gap-2">
+          <div className="flex items-center justify-between py-2 text-sm">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4" />
                 <span>IICRC Certified</span>
               </div>
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <Award className="w-4 h-4" />
                 <span>Insurance Approved</span>
               </div>
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 <span>Servicing All Queensland</span>
               </div>
             </div>
-            <div className="flex items-centre gap-6">
-              <div className="flex items-centre gap-2">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" />
                 <span>24/7 Emergency Service</span>
               </div>
-              <a href="tel:1300566166" className="flex items-centre gap-2 font-semibold hover:text-blue-200 transition-colours">
+              <a href="tel:1300566166" className="flex items-center gap-2 font-semibold hover:text-blue-200 transition-colours">
                 <Phone className="w-4 h-4" />
                 <span>1300 566 166</span>
               </a>
@@ -114,9 +114,9 @@ export default function PremiumHeader() {
         )}
       >
         <div className="container mx-auto px-6">
-          <nav className="flex items-centre justify-between h-20">
+          <nav className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-centre gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
                 <Image
                   src="/images/optimised/branding/3D Disaster Recovery Logo.png"
@@ -133,7 +133,7 @@ export default function PremiumHeader() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-centre gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
                 <div
                   key={item.label}
@@ -155,7 +155,7 @@ export default function PremiumHeader() {
                   ) : (
                     <button
                       className={cn(
-                        "flex items-centre gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
+                        "flex items-center gap-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
                         "hover:bg-blue-50 hover:text-blue-700",
                         activeDropdown === item.label && "bg-blue-50 text-blue-700"
                       )}
@@ -207,7 +207,7 @@ export default function PremiumHeader() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="hidden lg:flex items-centre gap-3">
+            <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/partner-portal"
                 className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-700 transition-colours"
@@ -217,7 +217,7 @@ export default function PremiumHeader() {
               <a
                 href="tel:1300566166"
                 className={cn(
-                  "flex items-centre gap-2 px-5 py-2.5 rounded-lg",
+                  "flex items-center gap-2 px-5 py-2.5 rounded-lg",
                   "bg-gradient-to-r from-red-600 to-red-500",
                   "text-white font-semibold shadow-lg",
                   "hover:shadow-xl hover:scale-105",
@@ -264,7 +264,7 @@ export default function PremiumHeader() {
         )}>
           <div className="flex flex-col h-full">
             {/* Mobile Menu Header */}
-            <div className="flex items-centre justify-between p-6 border-b">
+            <div className="flex items-center justify-between p-6 border-b">
               <Image
                 src="/images/optimised/branding/Disaster Recovery Logo.png"
                 alt="Disaster Recovery QLD"
@@ -319,7 +319,7 @@ export default function PremiumHeader() {
             <div className="p-6 border-t space-y-4">
               <a
                 href="tel:1300566166"
-                className="flex items-centre justify-centre gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 <Phone className="w-5 h-5" />
                 <span>Call Emergency: 1300 566 166</span>
@@ -327,7 +327,7 @@ export default function PremiumHeader() {
               <Link
                 href="/partner-portal"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full px-6 py-3 bg-gray-100 text-centre text-gray-900 font-medium rounded-lg hover:bg-gray-200 transition-colours"
+                className="block w-full px-6 py-3 bg-gray-100 text-center text-gray-900 font-medium rounded-lg hover:bg-gray-200 transition-colours"
               >
                 Partner Portal
               </Link>

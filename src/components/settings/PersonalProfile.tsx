@@ -189,7 +189,7 @@ export function PersonalProfile() {
       {/* Profile Header */}
       <Card>
         <CardContent className="pt-6">
-          <div className="flex flex-col md:flex-row items-centre md:items-start gap-6">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             {/* Avatar Section */}
             <div className="relative">
               <Avatar className="h-32 w-32">
@@ -221,10 +221,10 @@ export function PersonalProfile() {
             </div>
 
             {/* Profile Info */}
-            <div className="flex-1 text-centre md:text-left">
-              <div className="flex flex-col md:flex-row md:items-centre gap-3 mb-2">
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex flex-col md:flex-row md:items-center gap-3 mb-2">
                 <h2 className="text-2xl font-bold">{profile.displayName}</h2>
-                <div className="flex gap-2 justify-centre md:justify-start">
+                <div className="flex gap-2 justify-center md:justify-start">
                   <Badge>{profile.role.displayName}</Badge>
                   {profile.emailVerified && (
                     <Badge variant="outline" className="text-green-600">
@@ -289,7 +289,7 @@ export function PersonalProfile() {
       {/* Personal Information */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-centre gap-2">
+          <CardTitle className="flex items-center gap-2">
             <User className="h-5 w-5" />
             Personal Information
           </CardTitle>
@@ -349,7 +349,7 @@ export function PersonalProfile() {
 
           {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="font-semibold flex items-centre gap-2">
+            <h3 className="font-semibold flex items-center gap-2">
               <Mail className="h-4 w-4" />
               Contact Information
             </h3>
@@ -366,7 +366,7 @@ export function PersonalProfile() {
                   className="flex-1"
                 />
                 {profile.emailVerified ? (
-                  <Badge variant="outline" className="self-centre text-green-600">
+                  <Badge variant="outline" className="self-center text-green-600">
                     <CheckCircle className="h-3 w-3 mr-1" />
                     Verified
                   </Badge>
@@ -391,7 +391,7 @@ export function PersonalProfile() {
                     className="flex-1"
                   />
                   {profile.phoneVerified && (
-                    <Badge variant="outline" className="self-centre text-green-600">
+                    <Badge variant="outline" className="self-center text-green-600">
                       <CheckCircle className="h-3 w-3" />
                     </Badge>
                   )}
@@ -414,7 +414,7 @@ export function PersonalProfile() {
 
           {/* Company Information */}
           <div className="space-y-4">
-            <h3 className="font-semibold flex items-centre gap-2">
+            <h3 className="font-semibold flex items-center gap-2">
               <Building className="h-4 w-4" />
               Company Information
             </h3>
@@ -468,7 +468,7 @@ export function PersonalProfile() {
 
           {/* Regional Settings */}
           <div className="space-y-4">
-            <h3 className="font-semibold flex items-centre gap-2">
+            <h3 className="font-semibold flex items-center gap-2">
               <Globe className="h-4 w-4" />
               Regional Settings
             </h3>
@@ -536,7 +536,7 @@ export function PersonalProfile() {
       {/* Account Information */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-centre gap-2">
+          <CardTitle className="flex items-center gap-2">
             <Shield className="h-5 w-5" />
             Account Information
           </CardTitle>

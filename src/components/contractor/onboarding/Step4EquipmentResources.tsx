@@ -223,7 +223,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Water Extraction Equipment */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Wrench className="mr-2 h-5 w-5 text-blue-600" />
             Water Extraction Equipment
           </h3>
@@ -232,7 +232,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             {equipmentOptions.waterExtraction.map((item) => (
               <label
                 key={item}
-                className="flex items-centre p-2 border rounded cursor-pointer hover:bg-gray-50"
+                className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50"
               >
                 <input
                   type="checkbox"
@@ -248,7 +248,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Drying Equipment */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Package className="mr-2 h-5 w-5 text-green-600" />
             Drying Equipment
           </h3>
@@ -257,7 +257,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             {equipmentOptions.drying.map((item) => (
               <label
                 key={item}
-                className="flex items-centre p-2 border rounded cursor-pointer hover:bg-gray-50"
+                className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50"
               >
                 <input
                   type="checkbox"
@@ -273,7 +273,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Air Quality Equipment */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Package className="mr-2 h-5 w-5 text-purple-600" />
             Air Quality Equipment
           </h3>
@@ -282,7 +282,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             {equipmentOptions.airQuality.map((item) => (
               <label
                 key={item}
-                className="flex items-centre p-2 border rounded cursor-pointer hover:bg-gray-50"
+                className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50"
               >
                 <input
                   type="checkbox"
@@ -304,7 +304,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             {equipmentOptions.cleaning.map((item) => (
               <label
                 key={item}
-                className="flex items-centre p-2 border rounded cursor-pointer hover:bg-gray-50"
+                className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50"
               >
                 <input
                   type="checkbox"
@@ -320,7 +320,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Safety Equipment */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <AlertTriangle className="mr-2 h-5 w-5 text-orange-600" />
             Safety Equipment
           </h3>
@@ -329,7 +329,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             {equipmentOptions.safety.map((item) => (
               <label
                 key={item}
-                className="flex items-centre p-2 border rounded cursor-pointer hover:bg-gray-50"
+                className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50"
               >
                 <input
                   type="checkbox"
@@ -351,7 +351,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             {equipmentOptions.measurement.map((item) => (
               <label
                 key={item}
-                className="flex items-centre p-2 border rounded cursor-pointer hover:bg-gray-50"
+                className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50"
               >
                 <input
                   type="checkbox"
@@ -367,8 +367,8 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Vehicles */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex justify-between items-centre mb-4">
-            <h3 className="text-lg font-semibold flex items-centre">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold flex items-center">
               <Truck className="mr-2 h-5 w-5 text-indigo-600" />
               Vehicles
             </h3>
@@ -385,7 +385,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
           {vehicleFields.map((field, index) => (
             <div key={field.id} className="mb-4 p-4 border rounded-lg bg-gray-50">
-              <div className="flex justify-between items-centre mb-3">
+              <div className="flex justify-between items-center mb-3">
                 <h4 className="font-medium">Vehicle {index + 1}</h4>
                 {vehicleFields.length > 1 && (
                   <button
@@ -460,7 +460,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Team */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Users className="mr-2 h-5 w-5 text-teal-600" />
             Team Information
           </h3>
@@ -493,7 +493,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
             </div>
           </div>
 
-          <div className="flex justify-between items-centre mb-4">
+          <div className="flex justify-between items-center mb-4">
             <h4 className="font-medium">Key Team Members</h4>
             <Button
               type="button"
@@ -508,7 +508,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
           {employeeFields.map((field, index) => (
             <div key={field.id} className="mb-4 p-4 border rounded-lg bg-gray-50">
-              <div className="flex justify-between items-centre mb-3">
+              <div className="flex justify-between items-center mb-3">
                 <h5 className="text-sm font-medium">Team Member {index + 1}</h5>
                 {employeeFields.length > 1 && (
                   <button
@@ -561,7 +561,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Facilities */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Home className="mr-2 h-5 w-5 text-gray-600" />
             Facilities
           </h3>
@@ -601,7 +601,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
 
         {/* Operational Capacity */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <CheckCircle className="mr-2 h-5 w-5 text-green-600" />
             Operational Capacity
           </h3>
@@ -634,7 +634,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
           </div>
           
           <div className="mt-4 space-y-3">
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox 
                 id="coverage24x7" 
                 checked={coverage24x7}
@@ -643,7 +643,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
               <Label htmlFor="coverage24x7">24/7 Emergency Response Available</Label>
             </div>
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox 
                 id="backupEquipment"
                 checked={backupEquipment}
@@ -652,7 +652,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
               <Label htmlFor="backupEquipment">Backup Equipment Available</Label>
             </div>
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox 
                 id="subcontractorNetwork"
                 checked={subcontractorNetwork}

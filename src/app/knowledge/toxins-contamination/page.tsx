@@ -439,7 +439,7 @@ export default function ToxinsContaminationKnowledgePage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-centre mb-12">
+        <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4">Toxins & Contamination Knowledge Base</h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto">
             Comprehensive guide to identifying, testing, and remediating environmental toxins in Australian buildings. 
@@ -478,7 +478,7 @@ export default function ToxinsContaminationKnowledgePage() {
             <div className="space-y-8">
               {Object.entries(toxinCategories).map(([key, category]) => (
                 <Card key={key} className="p-6">
-                  <div className="flex items-centre gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-4">
                     <category.icon className="h-8 w-8 text-blue-600" />
                     <div>
                       <h2 className="text-2xl font-bold">{category.title}</h2>
@@ -650,21 +650,21 @@ export default function ToxinsContaminationKnowledgePage() {
               <Card className="p-6">
                 <h2 className="text-2xl font-bold mb-4">Testing Standards & Accreditation</h2>
                 <div className="grid md:grid-cols-3 gap-4">
-                  <div className="text-centre">
+                  <div className="text-center">
                     <Shield className="h-12 w-12 text-blue-600 mx-auto mb-2" />
                     <h3 className="font-bold">NATA Accreditation</h3>
                     <p className="text-sm text-gray-600">
                       National Association of Testing Authorities certification required
                     </p>
                   </div>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <FileText className="h-12 w-12 text-green-600 mx-auto mb-2" />
                     <h3 className="font-bold">Chain of Custody</h3>
                     <p className="text-sm text-gray-600">
                       Legal documentation for sample handling and analysis
                     </p>
                   </div>
-                  <div className="text-centre">
+                  <div className="text-center">
                     <Microscope className="h-12 w-12 text-purple-600 mx-auto mb-2" />
                     <h3 className="font-bold">Quality Assurance</h3>
                     <p className="text-sm text-gray-600">
@@ -766,7 +766,7 @@ export default function ToxinsContaminationKnowledgePage() {
 
         {/* Selected Toxin Modal */}
         {selectedToxin && (
-          <div className="fixed inset-0 bg-black/50 z-50 flex items-centre justify-centre p-4">
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
             <Card className="max-w-4xl max-h-[90vh] overflow-y-auto p-8">
               <div className="flex justify-between items-start mb-6">
                 <h2 className="text-3xl font-bold">{selectedToxin.name}</h2>

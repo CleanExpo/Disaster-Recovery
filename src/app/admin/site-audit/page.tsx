@@ -394,7 +394,7 @@ export default function SiteAuditPage() {
           
           {/* Overall Health Score */}
           <Card className="p-8 mb-8">
-            <div className="text-centre">
+            <div className="text-center">
               {auditResults.length === 0 ? (
                 <>
                   <h2 className="text-2xl font-bold mb-4">
@@ -431,19 +431,19 @@ export default function SiteAuditPage() {
                   </div>
                   
                   <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="text-centre">
+                    <div className="text-center">
                       <div className="text-2xl font-bold text-green-600">
                         {auditResults.filter(r => r.status === 'pass').length}
                       </div>
                       <p className="text-sm text-gray-600">Passed</p>
                     </div>
-                    <div className="text-centre">
+                    <div className="text-center">
                       <div className="text-2xl font-bold text-orange-600">
                         {auditResults.filter(r => r.status === 'warning').length}
                       </div>
                       <p className="text-sm text-gray-600">Warnings</p>
                     </div>
-                    <div className="text-centre">
+                    <div className="text-center">
                       <div className="text-2xl font-bold text-red-600">
                         {auditResults.filter(r => r.status === 'fail').length}
                       </div>
@@ -470,7 +470,7 @@ export default function SiteAuditPage() {
             <div className="space-y-6">
               {Object.entries(groupedResults).map(([category, items]) => (
                 <Card key={category} className="p-6">
-                  <h3 className="text-lg font-bold mb-4 flex items-centre">
+                  <h3 className="text-lg font-bold mb-4 flex items-center">
                     {getCategoryIcon(category)}
                     <span className="ml-2">{category}</span>
                     <span className="ml-auto text-sm font-normal text-gray-600">
@@ -483,7 +483,7 @@ export default function SiteAuditPage() {
                       <div key={index} className="border-l-4 border-gray-200 pl-4 py-2">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <div className="flex items-centre mb-1">
+                            <div className="flex items-center mb-1">
                               {getStatusIcon(item.status)}
                               <span className="ml-2 font-semibold">{item.item}</span>
                               <span className={`ml-3 text-xs ${getSeverityColor(item.severity)}`}>

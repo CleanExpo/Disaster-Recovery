@@ -31,7 +31,7 @@ export default function EquipmentCatalogPage() {
       <section className="relative bg-gray-900 text-white py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-green-600/20"></div>
         <div className="container mx-auto relative z-10">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-4 bg-green-500 text-white">Professional Equipment</Badge>
             <h1 className="text-5xl font-bold mb-6">
               Disaster Recovery Equipment Catalog
@@ -40,7 +40,7 @@ export default function EquipmentCatalogPage() {
               State-of-the-art restoration equipment with detailed specifications, 
               technical data, and rental pricing for professional contractors
             </p>
-            <div className="flex flex-wrap gap-4 justify-centre">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
                 <Download className="mr-2 h-5 w-5" />
                 Download Full Catalog (PDF)
@@ -64,7 +64,7 @@ export default function EquipmentCatalogPage() {
       {/* Quick Stats */}
       <section className="py-12 bg-white border-b">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-centre">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-blue-600">{equipmentCatalog.length}+</div>
               <div className="text-gray-600 mt-2">Equipment Models</div>
@@ -88,7 +88,7 @@ export default function EquipmentCatalogPage() {
       {/* Equipment Categories */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Equipment Categories</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Browse our professional equipment by category to find the right tools for your restoration project
@@ -103,7 +103,7 @@ export default function EquipmentCatalogPage() {
                 className="group"
               >
                 <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <CardHeader className="text-centre">
+                  <CardHeader className="text-center">
                     <div className="text-4xl mb-3">{category.icon}</div>
                     <CardTitle className="text-lg group-hover:text-blue-600 transition-colours">
                       {category.name}
@@ -124,7 +124,7 @@ export default function EquipmentCatalogPage() {
       {/* Featured Equipment */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Featured Equipment</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Our most requested professional restoration equipment with detailed specifications
@@ -158,11 +158,11 @@ export default function EquipmentCatalogPage() {
                   <p className="text-gray-600 mb-4 line-clamp-2">{item.description}</p>
                   
                   <div className="space-y-2 mb-4">
-                    <div className="flex items-centre text-sm">
+                    <div className="flex items-center text-sm">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                       <span className="text-gray-700">{item.specifications.coverage || item.specifications.airFlow}</span>
                     </div>
-                    <div className="flex items-centre text-sm">
+                    <div className="flex items-center text-sm">
                       <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
                       <span className="text-gray-700">{item.certifications[0]}</span>
                     </div>
@@ -170,7 +170,7 @@ export default function EquipmentCatalogPage() {
 
                   {item.rentalPrice && (
                     <div className="bg-gray-50 rounded-lg p-3">
-                      <div className="flex items-centre justify-between text-sm">
+                      <div className="flex items-center justify-between text-sm">
                         <span className="text-gray-600">Daily Rate:</span>
                         <span className="font-bold text-green-600">${item.rentalPrice.daily}</span>
                       </div>
@@ -197,7 +197,7 @@ export default function EquipmentCatalogPage() {
       {/* Complete Equipment Listing */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Complete Equipment Inventory</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Browse our entire catalog of professional disaster recovery equipment
@@ -217,7 +217,7 @@ export default function EquipmentCatalogPage() {
             <TabsContent value="all" className="space-y-6">
               {equipmentCategories.map((category) => (
                 <div key={category.slug} className="bg-white rounded-lg shadow-lg p-6">
-                  <h3 className="text-2xl font-bold mb-4 flex items-centre">
+                  <h3 className="text-2xl font-bold mb-4 flex items-center">
                     <span className="text-3xl mr-3">{category.icon}</span>
                     {category.name}
                   </h3>
@@ -230,7 +230,7 @@ export default function EquipmentCatalogPage() {
                           <h4 className="font-semibold text-lg mb-2">{item.name}</h4>
                           <p className="text-sm text-gray-600 mb-3">{item.model} by {item.manufacturer}</p>
                           
-                          <div className="flex items-centre justify-between mb-3">
+                          <div className="flex items-center justify-between mb-3">
                             <Badge variant={item.availability === 'available' ? 'default' : 'secondary'}>
                               {item.availability}
                             </Badge>
@@ -287,14 +287,14 @@ export default function EquipmentCatalogPage() {
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-green-600 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">
             Need Equipment for Your Restoration Project?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get expert guidance on equipment selection and competitive rental rates for your disaster recovery needs
           </p>
-          <div className="flex flex-wrap gap-4 justify-centre">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
               <DollarSign className="mr-2 h-5 w-5" />
               Get Rental Quote

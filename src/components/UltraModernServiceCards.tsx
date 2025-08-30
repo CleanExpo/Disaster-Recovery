@@ -106,8 +106,8 @@ export default function UltraModernServiceCards() {
 
       <div ref={containerRef} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-centre mb-20">
-          <div className="inline-flex items-centre gap-2 mb-6 px-4 py-2 rounded-full" 
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full" 
                style={{ 
                  background: 'rgba(99, 91, 255, 0.1)', 
                  border: '1px solid rgba(99, 91, 255, 0.3)',
@@ -183,7 +183,7 @@ export default function UltraModernServiceCards() {
                 <div className="relative">
                   {/* Icon container */}
                   <div
-                    className="w-14 h-14 rounded-xl mb-4 flex items-centre justify-centre transition-all duration-500"
+                    className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-all duration-500"
                     style={{
                       background: hoveredIndex === index ? service.gradient : 'rgba(255, 255, 255, 0.05)',
                       transform: hoveredIndex === index ? 'rotate(-10deg) scale(1.1)' : 'rotate(0) scale(1)',
@@ -212,7 +212,7 @@ export default function UltraModernServiceCards() {
                   {/* Features */}
                   <div className="space-y-2 mb-4">
                     {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-centre gap-2">
+                      <div key={idx} className="flex items-center gap-2">
                         <div 
                           className="w-1.5 h-1.5 rounded-full transition-all duration-500"
                           style={{
@@ -226,7 +226,7 @@ export default function UltraModernServiceCards() {
                   </div>
 
                   {/* CTA */}
-                  <div className="flex items-centre gap-2 text-sm font-medium transition-all duration-300"
+                  <div className="flex items-center gap-2 text-sm font-medium transition-all duration-300"
                        style={{ 
                          colour: hoveredIndex === index ? service.colour : 'rgba(255, 255, 255, 0.6)',
                        }}>
@@ -259,10 +259,10 @@ export default function UltraModernServiceCards() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-centre mt-16">
+        <div className="text-center mt-16">
           <Link
             href="/services"
-            className="inline-flex items-centre gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, #635bff 0%, #4541ff 100%)',
               boxShadow: '0 10px 40px rgba(99, 91, 255, 0.3)',

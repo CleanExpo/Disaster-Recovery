@@ -236,7 +236,7 @@ export const SEOImageGallery: React.FC<SEOImageGalleryProps> = ({
       {/* Lightbox modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-centre justify-centre p-4"
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-w-5xl w-full">
@@ -298,7 +298,7 @@ export const SEOHeroImage: React.FC<SEOHeroImageProps> = ({
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />
       
       {/* Hero content */}
-      <div className="relative z-10 h-full flex items-centre justify-centre text-centre px-4">
+      <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
         <div className="max-w-4xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
             {title}

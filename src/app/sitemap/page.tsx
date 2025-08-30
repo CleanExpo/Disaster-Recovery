@@ -125,7 +125,7 @@ export default function SitemapPage() {
       {/* Header */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Site Map
             </h1>
@@ -145,7 +145,7 @@ export default function SitemapPage() {
                 const Icon = section.icon;
                 return (
                   <Card key={index} className="p-6">
-                    <div className="flex items-centre mb-4">
+                    <div className="flex items-center mb-4">
                       <Icon className="h-6 w-6 text-blue-600 mr-2" />
                       <h2 className="text-xl font-bold">{section.title}</h2>
                     </div>
@@ -171,7 +171,7 @@ export default function SitemapPage() {
 
       {/* Footer CTA */}
       <section className="py-12 bg-white border-t">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <p className="text-gray-600 mb-4">
             Can't find what you're looking for?
           </p>

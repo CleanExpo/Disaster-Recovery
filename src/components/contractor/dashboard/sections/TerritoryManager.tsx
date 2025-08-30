@@ -71,7 +71,7 @@ export function TerritoryManager({ territories = [] }: TerritoryManagerProps) {
   const renderTerritoryList = (territoryList: Territory[]) => (
     <div className="space-y-4">
       {territoryList.length === 0 ? (
-        <div className="text-centre py-8 text-gray-500">
+        <div className="text-center py-8 text-gray-500">
           No territories found in this category
         </div>
       ) : (
@@ -82,12 +82,12 @@ export function TerritoryManager({ territories = [] }: TerritoryManagerProps) {
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-gray-400 mt-0.5" />
                   <div className="space-y-2">
-                    <div className="flex items-centre gap-2">
+                    <div className="flex items-center gap-2">
                       <h4 className="font-semibold">{territory.name}</h4>
                       <Badge className={getTypeColor(territory.type)}>
                         {territory.type}
                       </Badge>
-                      <div className="flex items-centre gap-1">
+                      <div className="flex items-center gap-1">
                         {getStatusIcon(territory.status)}
                         <span className="text-sm text-gray-600">{territory.status}</span>
                       </div>
@@ -168,7 +168,7 @@ export function TerritoryManager({ territories = [] }: TerritoryManagerProps) {
       {/* Territory Management */}
       <Card>
         <CardHeader>
-          <div className="flex justify-between items-centre">
+          <div className="flex justify-between items-center">
             <div>
               <CardTitle>Territory Management</CardTitle>
               <CardDescription>
@@ -204,7 +204,7 @@ export function TerritoryManager({ territories = [] }: TerritoryManagerProps) {
       {/* Map Placeholder */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-centre gap-2">
+          <CardTitle className="flex items-center gap-2">
             <Navigation className="h-5 w-5" />
             Coverage Map
           </CardTitle>
@@ -213,7 +213,7 @@ export function TerritoryManager({ territories = [] }: TerritoryManagerProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-96 bg-gray-100 rounded-lg flex items-centre justify-centre text-gray-500">
+          <div className="h-96 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
             Interactive map will be displayed here
           </div>
         </CardContent>

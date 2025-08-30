@@ -311,7 +311,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
                 : 'border-gray-200 hover:border-gray-300'
             }`}
           >
-            <div className="flex items-centre space-x-2 mb-1">
+            <div className="flex items-center space-x-2 mb-1">
               <div className={`p-1 rounded ${allocationMethod === method.value ? 'bg-blue-100' : 'bg-gray-100'}`}>
                 {method.icon}
               </div>
@@ -322,8 +322,8 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
         ))}
       </div>
       
-      <div className="mt-4 flex items-centre justify-between">
-        <label className="flex items-centre">
+      <div className="mt-4 flex items-center justify-between">
+        <label className="flex items-center">
           <input
             type="checkbox"
             checked={simulationMode}
@@ -336,7 +336,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
         <button
           onClick={allocateLead}
           disabled={isProcessing || eligibleContractors.length === 0}
-          className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
         >
           {isProcessing ? (
             <>
@@ -356,7 +356,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
 
   const ConfigurationPanel = () => (
     <div className="bg-white rounded-lg border border-gray-200 p-4">
-      <div className="flex items-centre justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-gray-900">Allocation Configuration</h3>
         <button className="p-1 hover:bg-gray-100 rounded">
           <Settings className="w-4 h-4 text-gray-600" />
@@ -365,7 +365,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
       
       <div className="space-y-4">
         <div>
-          <div className="flex items-centre justify-between mb-2">
+          <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium text-gray-700">Fairness Weight</label>
             <span className="text-sm text-gray-900">{(config.fairnessWeight * 100).toFixed(0)}%</span>
           </div>
@@ -380,7 +380,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
         </div>
         
         <div>
-          <div className="flex items-centre justify-between mb-2">
+          <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium text-gray-700">Performance Weight</label>
             <span className="text-sm text-gray-900">{(config.performanceWeight * 100).toFixed(0)}%</span>
           </div>
@@ -395,7 +395,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
         </div>
         
         <div>
-          <div className="flex items-centre justify-between mb-2">
+          <div className="flex items-center justify-between mb-2">
             <label className="text-sm font-medium text-gray-700">Proximity Weight</label>
             <span className="text-sm text-gray-900">{(config.proximityWeight * 100).toFixed(0)}%</span>
           </div>
@@ -410,15 +410,15 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
         </div>
         
         <div className="pt-4 border-t border-gray-200 space-y-2">
-          <div className="flex items-centre justify-between text-sm">
+          <div className="flex items-center justify-between text-sm">
             <span className="text-gray-600">Max Lead Share</span>
             <span className="font-medium">{config.maxLeadSharePercentage}%</span>
           </div>
-          <div className="flex items-centre justify-between text-sm">
+          <div className="flex items-center justify-between text-sm">
             <span className="text-gray-600">Max Capacity</span>
             <span className="font-medium">{config.saturationProtection.maxCapacityUtilization}%</span>
           </div>
-          <div className="flex items-centre justify-between text-sm">
+          <div className="flex items-center justify-between text-sm">
             <span className="text-gray-600">Cooldown Period</span>
             <span className="font-medium">{config.saturationProtection.cooldownPeriod} min</span>
           </div>
@@ -443,14 +443,14 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
                 : 'border-gray-200'
             }`}
           >
-            <div className="flex items-centre justify-between">
-              <div className="flex items-centre space-x-3">
-                <div className="flex items-centre justify-centre w-8 h-8 bg-gray-100 rounded-full font-bold text-gray-700">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full font-bold text-gray-700">
                   {ec.score.rank}
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">{ec.companyName}</p>
-                  <div className="flex items-centre space-x-3 mt-1 text-xs text-gray-600">
+                  <div className="flex items-center space-x-3 mt-1 text-xs text-gray-600">
                     <span>{ec.distance.toFixed(1)} mi</span>
                     <span>•</span>
                     <span>{ec.kpiScore}% KPI</span>
@@ -515,8 +515,8 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
     
     return (
       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-2">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-2">
             <CheckCircle className="w-5 h-5 text-green-600" />
             <h3 className="font-semibold text-green-900">Lead Allocated Successfully</h3>
           </div>
@@ -576,7 +576,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
           <button className="text-sm text-green-600 hover:text-green-700">
             View Audit Log
           </button>
-          <button className="flex items-centre px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
+          <button className="flex items-center px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 text-sm">
             <Download className="w-4 h-4 mr-1" />
             Export Report
           </button>
@@ -587,15 +587,15 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-gray-900">Lead Allocation Engine</h2>
           <p className="text-gray-600 mt-1">
             Fair and transparent lead assignment system
           </p>
         </div>
-        <div className="flex items-centre space-x-2">
-          <span className={`inline-flex items-centre px-3 py-1 rounded-full text-sm font-medium ${
+        <div className="flex items-center space-x-2">
+          <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
             config.enabled ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
           }`}>
             {config.enabled ? 'Active' : 'Inactive'}

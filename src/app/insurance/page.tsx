@@ -109,7 +109,7 @@ export default function InsurancePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <Shield className="h-16 w-16 text-blue-400 mx-auto mb-6" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Insurance Claims Assistance
@@ -135,14 +135,14 @@ export default function InsurancePage() {
                 <p className="text-sm opacity-90">Full process assistance</p>
               </Card>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
                 <Phone className="mr-2" />
                 Start Your Claim: Contact Us
               </Button>
               <Link
                 href="/book-service?source=insurance"
-                className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-blue-50 transition-colours"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-blue-50 transition-colours"
               >
                 Submit Insurance Claim
               </Link>
@@ -154,7 +154,7 @@ export default function InsurancePage() {
       {/* Major Insurance Companies */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             We Work With All Major Australian Insurers
           </h2>
           <div className="max-w-6xl mx-auto">
@@ -165,8 +165,8 @@ export default function InsurancePage() {
                   href={insurer.href}
                   className="group"
                 >
-                  <Card className="p-6 text-centre hover:shadow-lg transition-shadow group-hover:bg-blue-50">
-                    <div className="h-16 flex items-centre justify-centre mb-3">
+                  <Card className="p-6 text-center hover:shadow-lg transition-shadow group-hover:bg-blue-50">
+                    <div className="h-16 flex items-center justify-center mb-3">
                       <span className="text-2xl font-bold text-blue-600 group-hover:text-blue-800">
                         {insurer.name.split(' ')[0]}
                       </span>
@@ -176,7 +176,7 @@ export default function InsurancePage() {
                 </Link>
               ))}
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <p className="text-gray-600 mb-4">
                 Don't see your insurer? We work with all Australian insurance companies.
               </p>
@@ -194,7 +194,7 @@ export default function InsurancePage() {
       {/* Claim Types */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Types of Claims We Handle
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -224,7 +224,7 @@ export default function InsurancePage() {
       {/* Claims Process */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             How We Handle Your Insurance Claim
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -232,7 +232,7 @@ export default function InsurancePage() {
               {claimsProcess.map((item, index) => (
                 <div key={index} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-centre justify-centre">
+                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
                       <span className="text-2xl font-bold text-white">{item.step}</span>
                     </div>
                   </div>
@@ -240,7 +240,7 @@ export default function InsurancePage() {
                     <Card className="p-6">
                       <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                       <p className="text-gray-700 mb-4">{item.description}</p>
-                      <div className="inline-flex items-centre px-4 py-2 bg-blue-50 text-blue-700 rounded-lg font-medium">
+                      <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-lg font-medium">
                         {item.action}
                       </div>
                     </Card>
@@ -255,7 +255,7 @@ export default function InsurancePage() {
       {/* Documentation We Provide */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Insurance Documentation We Provide
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -318,13 +318,13 @@ export default function InsurancePage() {
       {/* Benefits of Working With Us */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Why Choose Our Insurance Claims Service
           </h2>
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="p-6 text-centre">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+              <Card className="p-6 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Insurance Approved</h3>
@@ -332,8 +332,8 @@ export default function InsurancePage() {
                   Pre-approved by major insurers with established relationships and preferred provider status
                 </p>
               </Card>
-              <Card className="p-6 text-centre">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+              <Card className="p-6 text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FileCheck className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Expert Documentation</h3>
@@ -341,8 +341,8 @@ export default function InsurancePage() {
                   Comprehensive documentation that meets insurance requirements and maximizes claim approval
                 </p>
               </Card>
-              <Card className="p-6 text-centre">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+              <Card className="p-6 text-center">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Direct Billing</h3>
@@ -350,8 +350,8 @@ export default function InsurancePage() {
                   No upfront costs - we bill your insurance company directly for approved claims
                 </p>
               </Card>
-              <Card className="p-6 text-centre">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+              <Card className="p-6 text-center">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Clock className="w-8 h-8 text-orange-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Claims Advocacy</h3>
@@ -359,8 +359,8 @@ export default function InsurancePage() {
                   We advocate for you throughout the claims process, ensuring fair treatment and full coverage
                 </p>
               </Card>
-              <Card className="p-6 text-centre">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+              <Card className="p-6 text-center">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <AlertCircle className="w-8 h-8 text-red-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Emergency Response</h3>
@@ -368,8 +368,8 @@ export default function InsurancePage() {
                   24/7 emergency response to prevent further damage and document initial conditions immediately
                 </p>
               </Card>
-              <Card className="p-6 text-centre">
-                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+              <Card className="p-6 text-center">
+                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 className="w-8 h-8 text-indigo-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Guaranteed Work</h3>
@@ -418,7 +418,7 @@ export default function InsurancePage() {
 
       {/* Call to Action */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Need Help With Your Insurance Claim?
           </h2>
@@ -426,17 +426,17 @@ export default function InsurancePage() {
             Don't navigate the claims process alone. Our insurance experts are ready to help 
             you get the coverage you deserve.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
             >
               <Phone className="w-6 h-6 mr-3" />
               Call: Contact Us
             </a>
             <Link
               href="/book-service?source=insurance"
-              className="inline-flex items-centre justify-centre px-8 py-4 bg-blue-800 text-white rounded-lg font-bold text-lg hover:bg-blue-900 transition-colours"
+              className="inline-flex items-center justify-center px-8 py-4 bg-blue-800 text-white rounded-lg font-bold text-lg hover:bg-blue-900 transition-colours"
             >
               Start Insurance Claim
             </Link>

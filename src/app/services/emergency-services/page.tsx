@@ -177,8 +177,8 @@ export default function EmergencyServicesPage() {
       <section className="relative bg-gradient-to-r from-red-900 to-orange-800 text-white py-24">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-centre">
-            <div className="inline-flex items-centre gap-2 bg-red-800/50 px-4 py-2 rounded-full mb-6 animate-pulse">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-red-800/50 px-4 py-2 rounded-full mb-6 animate-pulse">
               <Siren className="h-5 w-5" />
               <span className="text-sm font-bold uppercase tracking-wide">24/7 Emergency Response Active</span>
             </div>
@@ -189,7 +189,7 @@ export default function EmergencyServicesPage() {
               Immediate 24/7 response for all disaster emergencies. Water damage, fire, storms, hazmat - 
               we\'re your first call when disaster strikes anywhere in Queensland.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button 
                 size="lg" 
                 className="bg-white text-red-900 hover:bg-red-50 shadow-xl"
@@ -203,16 +203,16 @@ export default function EmergencyServicesPage() {
                 Immediate Response Available
               </Button>
             </div>
-            <div className="flex items-centre justify-centre gap-6 text-sm">
-              <div className="flex items-centre gap-2">
+            <div className="flex items-center justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
                 <Clock className="h-5 w-5 text-yellow-400 animate-pulse" />
                 <span className="font-semibold">24/7/365 Available</span>
               </div>
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-yellow-400" />
                 <span className="font-semibold">All QLD Areas</span>
               </div>
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <Car className="h-5 w-5 text-yellow-400" />
                 <span className="font-semibold">30min Response</span>
               </div>
@@ -224,7 +224,7 @@ export default function EmergencyServicesPage() {
       {/* Emergency Types Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Emergency Response Services</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Specialised teams for every type of disaster emergency
@@ -241,7 +241,7 @@ export default function EmergencyServicesPage() {
                   <h3 className="text-xl font-bold mb-3">{type.title}</h3>
                   <ul className="space-y-2">
                     {type.situations.map((situation, idx) => (
-                      <li key={idx} className="flex items-centre gap-2 text-sm text-gray-600">
+                      <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
                         <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
                         <span>{situation}</span>
                       </li>
@@ -264,7 +264,7 @@ export default function EmergencyServicesPage() {
       {/* Response Protocol Timeline */}
       <section className="py-20 bg-red-50">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Emergency Response Protocol</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our systematic approach ensures rapid, effective disaster response
@@ -299,7 +299,7 @@ export default function EmergencyServicesPage() {
       {/* Emergency Features */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Why We\'re Queensland\'s #1 Emergency Response</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Unmatched capabilities for disaster emergencies
@@ -314,19 +314,19 @@ export default function EmergencyServicesPage() {
             ))}
           </div>
           <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-red-600">15+</div>
               <div className="text-sm text-gray-600 mt-1">Years Experience</div>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-red-600">10,000+</div>
               <div className="text-sm text-gray-600 mt-1">Emergencies Handled</div>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-red-600">24/7</div>
               <div className="text-sm text-gray-600 mt-1">Always Available</div>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-red-600">30min</div>
               <div className="text-sm text-gray-600 mt-1">Metro Response</div>
             </div>
@@ -338,7 +338,7 @@ export default function EmergencyServicesPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-centre mb-12">
+            <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Emergency Action Checklist</h2>
               <p className="text-xl text-gray-600">
                 What to do when disaster strikes
@@ -346,35 +346,35 @@ export default function EmergencyServicesPage() {
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="p-8 border-2 border-red-200">
-                <h3 className="text-2xl font-bold mb-6 flex items-centre gap-2">
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
                   <AlertTriangle className="h-8 w-8 text-red-600" />
                   Immediate Actions
                 </h3>
                 <ol className="space-y-3">
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-centre justify-centre font-bold">1</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
                     <span>Ensure safety - evacuate if necessary</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-centre justify-centre font-bold">2</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
                     <span>Call emergency services if life-threatening</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-centre justify-centre font-bold">3</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
                     <span>Call us at 1300 814 870 for property emergencies</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-centre justify-centre font-bold">4</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">4</span>
                     <span>Turn off utilities if safe (power, gas, water)</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-centre justify-centre font-bold">5</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">5</span>
                     <span>Document damage with photos/videos</span>
                   </li>
                 </ol>
               </Card>
               <Card className="p-8 border-2 border-blue-200">
-                <h3 className="text-2xl font-bold mb-6 flex items-centre gap-2">
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
                   <Shield className="h-8 w-8 text-blue-600" />
                   While Waiting for Help
                 </h3>
@@ -409,7 +409,7 @@ export default function EmergencyServicesPage() {
       {/* Coverage Map */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Statewide Emergency Coverage</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Rapid response teams strategically located across Queensland
@@ -420,23 +420,23 @@ export default function EmergencyServicesPage() {
               <Card className="p-6 border-2 border-red-200">
                 <h3 className="font-bold text-lg mb-4 text-red-900">Southeast Queensland</h3>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-red-600" />
                     Brisbane CBD & Suburbs
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-red-600" />
                     Gold Coast & Hinterland
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-red-600" />
                     Sunshine Coast
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-red-600" />
                     Ipswich & Western Corridor
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-red-600" />
                     Logan & Redlands
                   </li>
@@ -445,23 +445,23 @@ export default function EmergencyServicesPage() {
               <Card className="p-6 border-2 border-orange-200">
                 <h3 className="font-bold text-lg mb-4 text-orange-900">Regional Centres</h3>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-orange-600" />
                     Toowoomba & Darling Downs
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-orange-600" />
                     Bundaberg & Wide Bay
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-orange-600" />
                     Rockhampton & Capricornia
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-orange-600" />
                     Mackay & Whitsundays
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-orange-600" />
                     Gladstone & Central QLD
                   </li>
@@ -470,30 +470,30 @@ export default function EmergencyServicesPage() {
               <Card className="p-6 border-2 border-blue-200">
                 <h3 className="font-bold text-lg mb-4 text-blue-900">North Queensland</h3>
                 <ul className="space-y-2 text-sm">
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-blue-600" />
                     Townsville & Magnetic Island
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-blue-600" />
                     Cairns & Tablelands
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-blue-600" />
                     Port Douglas & Daintree
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-blue-600" />
                     Mount Isa & Outback
                   </li>
-                  <li className="flex items-centre gap-2">
+                  <li className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-blue-600" />
                     Thursday Island & Torres Strait
                   </li>
                 </ul>
               </Card>
             </div>
-            <div className="mt-8 p-6 bg-red-50 rounded-lg text-centre">
+            <div className="mt-8 p-6 bg-red-50 rounded-lg text-center">
               <p className="text-lg font-semibold text-red-900">
                 Emergency Response Available 24/7 in All Areas
               </p>
@@ -509,7 +509,7 @@ export default function EmergencyServicesPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-centre mb-12">Emergency Services FAQs</h2>
+            <h2 className="text-4xl font-bold text-center mb-12">Emergency Services FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -524,7 +524,7 @@ export default function EmergencyServicesPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-900 to-orange-800 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <Siren className="h-16 w-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-4xl font-bold mb-6">Emergency? Don\'t Wait - Call Now!</h2>
@@ -535,7 +535,7 @@ export default function EmergencyServicesPage() {
               <p className="text-2xl font-bold mb-4">24/7 EMERGENCY HOTLINE</p>
               <p className="text-5xl font-bold">1300 814 870</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
                 className="bg-white text-red-900 hover:bg-gray-100"
@@ -557,7 +557,7 @@ export default function EmergencyServicesPage() {
       <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-centre gap-2">
+            <DialogTitle className="flex items-center gap-2">
               <Siren className="h-5 w-5 text-red-600 animate-pulse" />
               24/7 Emergency Response
             </DialogTitle>
@@ -566,7 +566,7 @@ export default function EmergencyServicesPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-centre gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
+            <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
               <Phone className="h-6 w-6 text-red-600 animate-pulse" />
               <div>
                 <p className="font-semibold">Emergency Hotline</p>
@@ -574,19 +574,19 @@ export default function EmergencyServicesPage() {
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex items-centre gap-2 text-sm">
+              <div className="flex items-center gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Immediate emergency dispatch</span>
               </div>
-              <div className="flex items-centre gap-2 text-sm">
+              <div className="flex items-center gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>All disaster types covered</span>
               </div>
-              <div className="flex items-centre gap-2 text-sm">
+              <div className="flex items-center gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Insurance approved contractor</span>
               </div>
-              <div className="flex items-centre gap-2 text-sm">
+              <div className="flex items-center gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Available 24/7/365</span>
               </div>

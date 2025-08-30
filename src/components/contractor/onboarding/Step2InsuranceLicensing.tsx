@@ -116,16 +116,16 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
       <div className="mx-auto max-w-4xl">
         {/* Progress Indicator */}
         <div className="mb-8">
-          <div className="flex items-centre justify-centre mb-6">
-            <div className="flex items-centre space-x-2 text-sm text-gray-600">
-              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-semibold">1</div>
+          <div className="flex items-center justify-center mb-6">
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
               <div className="w-8 h-1 bg-blue-600 rounded"></div>
-              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-semibold">2</div>
+              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
               <div className="w-8 h-1 bg-gray-300 rounded"></div>
-              <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-centre justify-centre font-semibold">3</div>
+              <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center font-semibold">3</div>
             </div>
           </div>
-          <div className="text-centre">
+          <div className="text-center">
             <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
               Insurance & Licensing
             </h2>
@@ -143,8 +143,8 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
             transition={{ delay: 0.1 }}
             className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300"
           >
-            <div className="flex items-centre justify-between mb-6">
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-centre">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center">
                 <div className="p-2 bg-blue-100 rounded-xl mr-3">
                   <Shield className="h-5 w-5 text-blue-600" />
                 </div>
@@ -173,7 +173,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="text-red-600 text-sm font-medium flex items-centre"
+                      className="text-red-600 text-sm font-medium flex items-center"
                     >
                       <AlertCircle className="h-4 w-4 mr-1" />
                       {errors.generalLiabilityInsurer.message}
@@ -198,7 +198,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="text-red-600 text-sm font-medium flex items-centre"
+                      className="text-red-600 text-sm font-medium flex items-center"
                     >
                       <AlertCircle className="h-4 w-4 mr-1" />
                       {errors.generalLiabilityPolicyNumber.message}
@@ -223,7 +223,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="text-red-600 text-sm font-medium flex items-centre"
+                      className="text-red-600 text-sm font-medium flex items-center"
                     >
                       <AlertCircle className="h-4 w-4 mr-1" />
                       {errors.generalLiabilityCoverage.message}
@@ -248,7 +248,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="text-red-600 text-sm font-medium flex items-centre"
+                      className="text-red-600 text-sm font-medium flex items-center"
                     >
                       <AlertCircle className="h-4 w-4 mr-1" />
                       {errors.generalLiabilityExpiry.message}
@@ -261,7 +261,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
 
         {/* Professional Indemnity Insurance */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Shield className="mr-2 h-5 w-5 text-blue-600" />
             Professional Indemnity Insurance (Optional)
           </h3>
@@ -307,7 +307,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
 
         {/* Workers Compensation */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Shield className="mr-2 h-5 w-5 text-blue-600" />
             Workers Compensation Insurance (Required)
           </h3>
@@ -353,7 +353,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
 
         {/* Contractor Licensing */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <FileText className="mr-2 h-5 w-5 text-green-600" />
             Contractor License (Required)
           </h3>
@@ -442,33 +442,33 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
 
         {/* IICRC Certifications */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Check className="mr-2 h-5 w-5 text-purple-600" />
             IICRC Certifications
           </h3>
           
           <div className="space-y-3">
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox id="iicrcWRT" {...register('certifications.iicrcWRT')} />
               <Label htmlFor="iicrcWRT">Water Damage Restoration Technician (WRT)</Label>
             </div>
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox id="iicrcASD" {...register('certifications.iicrcASD')} />
               <Label htmlFor="iicrcASD">Applied Structural Drying Technician (ASD)</Label>
             </div>
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox id="iicrcAMRT" {...register('certifications.iicrcAMRT')} />
               <Label htmlFor="iicrcAMRT">Applied Microbial Remediation Technician (AMRT)</Label>
             </div>
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox id="iicrcFSRT" {...register('certifications.iicrcFSRT')} />
               <Label htmlFor="iicrcFSRT">Fire and Smoke Restoration Technician (FSRT)</Label>
             </div>
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox id="iicrcOCT" {...register('certifications.iicrcOCT')} />
               <Label htmlFor="iicrcOCT">Odour Control Technician (OCT)</Label>
             </div>
@@ -477,7 +477,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
 
         {/* Document Upload */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Upload className="mr-2 h-5 w-5 text-indigo-600" />
             Document Upload
           </h3>
@@ -502,7 +502,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
               {uploadedFiles.insurance.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {uploadedFiles.insurance.map((file, index) => (
-                    <div key={index} className="flex items-centre justify-between text-sm">
+                    <div key={index} className="flex items-center justify-between text-sm">
                       <span>{file.name}</span>
                       <button
                         type="button"
@@ -529,7 +529,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
               {uploadedFiles.license.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {uploadedFiles.license.map((file, index) => (
-                    <div key={index} className="flex items-centre justify-between text-sm">
+                    <div key={index} className="flex items-center justify-between text-sm">
                       <span>{file.name}</span>
                       <button
                         type="button"
@@ -556,7 +556,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
               {uploadedFiles.certification.length > 0 && (
                 <div className="mt-2 space-y-1">
                   {uploadedFiles.certification.map((file, index) => (
-                    <div key={index} className="flex items-centre justify-between text-sm">
+                    <div key={index} className="flex items-center justify-between text-sm">
                       <span>{file.name}</span>
                       <button
                         type="button"
@@ -578,7 +578,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row justify-between items-centre gap-4 pt-8 pb-4"
+            className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 pb-4"
           >
             <Button 
               type="button" 

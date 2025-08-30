@@ -143,7 +143,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Business Banking Details */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Building2 className="mr-2 h-5 w-5 text-blue-600" />
             Business Banking Details
           </h3>
@@ -214,7 +214,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
 
         {/* Tax Information */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <FileText className="mr-2 h-5 w-5 text-green-600" />
             Tax Information
           </h3>
@@ -238,7 +238,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
               )}
             </div>
             
-            <div className="flex items-centre space-x-2 pt-8">
+            <div className="flex items-center space-x-2 pt-8">
               <Checkbox 
                 id="gstRegistered"
                 checked={gstRegistered}
@@ -262,7 +262,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
 
         {/* Payment Preferences */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <DollarSign className="mr-2 h-5 w-5 text-purple-600" />
             Payment Preferences
           </h3>
@@ -274,15 +274,15 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 defaultValue={data.preferredPaymentMethod || 'eft'}
                 onValueChange={(value) => setValue('preferredPaymentMethod', value as any)}
               >
-                <div className="flex items-centre space-x-2 mt-2">
+                <div className="flex items-center space-x-2 mt-2">
                   <RadioGroupItem value="eft" id="eft" />
                   <Label htmlFor="eft">Electronic Funds Transfer (EFT)</Label>
                 </div>
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem value="cheque" id="cheque" />
                   <Label htmlFor="cheque">Cheque</Label>
                 </div>
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem value="credit_card" id="credit_card" />
                   <Label htmlFor="credit_card">Credit Card</Label>
                 </div>
@@ -328,7 +328,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
             </div>
             
             <div className="space-y-3">
-              <div className="flex items-centre space-x-2">
+              <div className="flex items-center space-x-2">
                 <Checkbox 
                   id="acceptCreditCards"
                   checked={acceptCreditCards}
@@ -353,13 +353,13 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
 
         {/* Insurance Billing */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Shield className="mr-2 h-5 w-5 text-indigo-600" />
             Insurance Billing Preferences
           </h3>
           
           <div className="space-y-4">
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox 
                 id="insuranceDirectBilling"
                 checked={insuranceDirectBilling}
@@ -377,7 +377,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   {preferredInsurersOptions.map((insurer) => (
                     <label
                       key={insurer}
-                      className={`flex items-centre p-2 border rounded cursor-pointer text-sm ${
+                      className={`flex items-center p-2 border rounded cursor-pointer text-sm ${
                         selectedInsurers.includes(insurer)
                           ? 'bg-blue-50 border-blue-500'
                           : 'bg-white border-gray-300 hover:bg-gray-50'
@@ -396,7 +396,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
               </div>
             )}
             
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <Checkbox 
                 id="xactimateAccess"
                 checked={xactimateAccess}
@@ -421,7 +421,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
 
         {/* Financial Information */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <CreditCard className="mr-2 h-5 w-5 text-orange-600" />
             Financial Information
           </h3>

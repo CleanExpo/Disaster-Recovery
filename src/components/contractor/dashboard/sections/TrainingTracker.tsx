@@ -91,8 +91,8 @@ export function TrainingTracker({
       {/* CEU Progress Overview */}
       <Card className="border-blue-200">
         <CardHeader>
-          <CardTitle className="flex items-centre justify-between">
-            <span className="flex items-centre gap-2">
+          <CardTitle className="flex items-center justify-between">
+            <span className="flex items-center gap-2">
               <GraduationCap className="h-5 w-5" />
               Continuing Education Units (CEU) - {currentYear}
             </span>
@@ -105,15 +105,15 @@ export function TrainingTracker({
           <Progress value={ceuProgress} className="h-3 mb-4" />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <div className="text-centre p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
               <p className="text-2xl font-bold text-blue-600">{ceuBalance}</p>
               <p className="text-xs text-gray-600">Earned CEUs</p>
             </div>
-            <div className="text-centre p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
               <p className="text-2xl font-bold text-gray-600">{ceuRequired - ceuBalance}</p>
               <p className="text-xs text-gray-600">CEUs Needed</p>
             </div>
-            <div className="text-centre p-3 bg-gray-50 rounded-lg">
+            <div className="text-center p-3 bg-gray-50 rounded-lg">
               <p className="text-2xl font-bold text-green-600">
                 {Math.ceil((12 - new Date().getMonth()) * 2)}
               </p>
@@ -145,7 +145,7 @@ export function TrainingTracker({
               <div key={training.id} className="border rounded-lg p-4">
                 <div className="flex justify-between items-start mb-3">
                   <div className="flex-1">
-                    <div className="flex items-centre gap-2">
+                    <div className="flex items-center gap-2">
                       <BookOpen className="h-4 w-4 text-gray-400" />
                       <p className="font-medium">{training.name}</p>
                     </div>
@@ -169,7 +169,7 @@ export function TrainingTracker({
                   </div>
                 )}
 
-                <div className="flex justify-between items-centre">
+                <div className="flex justify-between items-center">
                   <div className="text-sm text-gray-500">
                     {training.completedDate && (
                       <span>Completed: {new Date(training.completedDate).toLocaleDateString()}</span>
@@ -223,12 +223,12 @@ export function TrainingTracker({
                   <div className="flex-1">
                     <p className="font-medium">{event.title}</p>
                     <p className="text-sm text-gray-600 mt-1">{event.provider}</p>
-                    <div className="flex items-centre gap-4 mt-2 text-sm text-gray-500">
-                      <span className="flex items-centre gap-1">
+                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                      <span className="flex items-center gap-1">
                         <CalendarIcon className="h-3 w-3" />
                         {new Date(event.date).toLocaleDateString()}
                       </span>
-                      <span className="flex items-centre gap-1">
+                      <span className="flex items-center gap-1">
                         {event.format === 'online' ? (
                           <Video className="h-3 w-3" />
                         ) : (
@@ -289,15 +289,15 @@ export function TrainingTracker({
           <div className="mt-4 space-y-2">
             <p className="text-sm font-medium">Upcoming Reminders:</p>
             <div className="space-y-1">
-              <div className="flex items-centre gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-yellow-400 rounded-full" />
                 <span>IICRC WRT Renewal - Due in 45 days</span>
               </div>
-              <div className="flex items-centre gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-blue-400 rounded-full" />
                 <span>CARSI Compliance Training - March 20</span>
               </div>
-              <div className="flex items-centre gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-green-400 rounded-full" />
                 <span>WHS Refresher - April 5</span>
               </div>

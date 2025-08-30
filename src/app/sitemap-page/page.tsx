@@ -24,7 +24,7 @@ export default function SitemapPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Main Pages */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Home className="h-5 w-5 text-blue-600" />
               Main Pages
             </h2>
@@ -40,7 +40,7 @@ export default function SitemapPage() {
 
           {/* Core Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Droplets className="h-5 w-5 text-blue-600" />
               Core Restoration Services
             </h2>
@@ -55,7 +55,7 @@ export default function SitemapPage() {
 
           {/* Emergency Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-red-600" />
               Emergency Services
             </h2>
@@ -70,7 +70,7 @@ export default function SitemapPage() {
 
           {/* Commercial Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Building className="h-5 w-5 text-blue-600" />
               Commercial Services
             </h2>
@@ -86,7 +86,7 @@ export default function SitemapPage() {
 
           {/* Technical Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <FileCheck className="h-5 w-5 text-blue-600" />
               Technical & Assessment
             </h2>
@@ -102,7 +102,7 @@ export default function SitemapPage() {
 
           {/* Specialised Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Wind className="h-5 w-5 text-blue-600" />
               Specialised Services
             </h2>
@@ -117,7 +117,7 @@ export default function SitemapPage() {
 
           {/* Locations */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <MapPin className="h-5 w-5 text-blue-600" />
               Service Locations
             </h2>
@@ -133,7 +133,7 @@ export default function SitemapPage() {
 
           {/* Standards & Certifications */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <Shield className="h-5 w-5 text-blue-600" />
               Standards & Certifications
             </h2>
@@ -149,7 +149,7 @@ export default function SitemapPage() {
 
           {/* Resources */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-blue-600" />
               Resources & Guides
             </h2>

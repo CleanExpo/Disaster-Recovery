@@ -92,9 +92,9 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex justify-between items-start">
-        <div className="flex items-centre gap-4">
+        <div className="flex items-center gap-4">
           <div className="relative">
-            <div className="w-20 h-20 rounded-lg bg-gray-200 flex items-centre justify-centre overflow-hidden">
+            <div className="w-20 h-20 rounded-lg bg-gray-200 flex items-center justify-center overflow-hidden">
               {editedData.companyLogo ? (
                 <img src={editedData.companyLogo} alt="Company Logo" className="w-full h-full object-cover" />
               ) : (
@@ -122,7 +122,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
 
       {/* Company Information */}
       <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex justify-between items-centre mb-4">
+        <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Company Information</h3>
           {!isEditing ? (
             <button
@@ -204,8 +204,8 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
         <h3 className="text-lg font-semibold mb-4">Security Settings</h3>
         
         <div className="space-y-4">
-          <div className="flex items-centre justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-centre gap-3">
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-3">
               <Shield className="h-5 w-5 text-gray-600" />
               <div>
                 <p className="font-medium">Two-Factor Authentication</p>
@@ -226,8 +226,8 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
             </button>
           </div>
 
-          <div className="flex items-centre justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-centre gap-3">
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-3">
               <Lock className="h-5 w-5 text-gray-600" />
               <div>
                 <p className="font-medium">Password</p>
@@ -243,11 +243,11 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
 
       {/* 2FA Setup Modal */}
       {show2FASetup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Setup Two-Factor Authentication</h3>
             
-            <div className="text-centre mb-6">
+            <div className="text-center mb-6">
               <div className="bg-gray-100 p-4 rounded inline-block">
                 <div className="w-48 h-48 bg-white border-2 border-gray-300">
                   {/* QR Code would go here */}

@@ -271,9 +271,9 @@ export function AdminNotificationManager() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold flex items-centre gap-2">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
             <Settings className="h-6 w-6" />
             Notification Manager
           </h2>
@@ -297,7 +297,7 @@ export function AdminNotificationManager() {
             <div className="col-span-4">
               <Card>
                 <CardHeader>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <CardTitle className="text-base">Notification Rules</CardTitle>
                     <Button size="sm" onClick={handleCreateRule}>
                       <Plus className="h-4 w-4" />
@@ -319,7 +319,7 @@ export function AdminNotificationManager() {
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
-                              <div className="flex items-centre gap-2">
+                              <div className="flex items-center gap-2">
                                 <p className="font-medium text-sm">{rule.name}</p>
                                 {rule.isActive ? (
                                   <CheckCircle className="h-3 w-3 text-green-500" />
@@ -330,7 +330,7 @@ export function AdminNotificationManager() {
                               <p className="text-xs text-gray-500 mt-1">
                                 {rule.description || getTriggerDescription(rule.trigger)}
                               </p>
-                              <div className="flex items-centre gap-2 mt-2">
+                              <div className="flex items-center gap-2 mt-2">
                                 <Badge variant="outline" className="text-xs">
                                   {rule.type}
                                 </Badge>
@@ -358,7 +358,7 @@ export function AdminNotificationManager() {
               {selectedRule ? (
                 <Card>
                   <CardHeader>
-                    <div className="flex justify-between items-centre">
+                    <div className="flex justify-between items-center">
                       <CardTitle>{selectedRule.name}</CardTitle>
                       <div className="flex gap-2">
                         {isEditingRule ? (
@@ -488,7 +488,7 @@ export function AdminNotificationManager() {
                       <Label>Delivery Channels</Label>
                       <div className="flex gap-3 mt-2">
                         {(['in_app', 'email', 'sms', 'push'] as NotificationChannel[]).map(channel => (
-                          <div key={channel} className="flex items-centre gap-2">
+                          <div key={channel} className="flex items-center gap-2">
                             <Checkbox
                               checked={selectedRule.channels.includes(channel)}
                               onCheckedChange={(checked) => {
@@ -533,7 +533,7 @@ export function AdminNotificationManager() {
                 </Card>
               ) : (
                 <Card>
-                  <CardContent className="py-12 text-centre text-gray-500">
+                  <CardContent className="py-12 text-center text-gray-500">
                     <Bell className="h-12 w-12 mx-auto mb-3 text-gray-300" />
                     <p>Select a rule to view details</p>
                   </CardContent>
@@ -624,7 +624,7 @@ export function AdminNotificationManager() {
                 <Label>Delivery Channels</Label>
                 <div className="flex gap-3 mt-2">
                   {(['in_app', 'email', 'sms', 'push'] as NotificationChannel[]).map(channel => (
-                    <div key={channel} className="flex items-centre gap-2">
+                    <div key={channel} className="flex items-center gap-2">
                       <Checkbox
                         checked={manualNotification.channels.includes(channel)}
                         onCheckedChange={(checked) => {
@@ -651,7 +651,7 @@ export function AdminNotificationManager() {
               <div>
                 <Label>Recipients</Label>
                 <div className="space-y-2 mt-2">
-                  <div className="flex items-centre gap-2">
+                  <div className="flex items-center gap-2">
                     <Checkbox
                       checked={manualNotification.recipients.includes('all_contractors')}
                       onCheckedChange={(checked) => {
@@ -670,7 +670,7 @@ export function AdminNotificationManager() {
                     />
                     <Label>All Contractors</Label>
                   </div>
-                  <div className="flex items-centre gap-2">
+                  <div className="flex items-center gap-2">
                     <Checkbox
                       checked={manualNotification.recipients.includes('active_contractors')}
                       onCheckedChange={(checked) => {
@@ -689,7 +689,7 @@ export function AdminNotificationManager() {
                     />
                     <Label>Active Contractors Only</Label>
                   </div>
-                  <div className="flex items-centre gap-2">
+                  <div className="flex items-center gap-2">
                     <Checkbox
                       checked={manualNotification.recipients.includes('admins')}
                       onCheckedChange={(checked) => {
@@ -759,12 +759,12 @@ export function AdminNotificationManager() {
               <CardContent>
                 <div className="space-y-3">
                   {rules.filter(r => r.isActive).map(rule => (
-                    <div key={rule.id} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={rule.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div>
                         <p className="font-medium text-sm">{rule.name}</p>
                         <p className="text-xs text-gray-500">{getTriggerDescription(rule.trigger)}</p>
                       </div>
-                      <div className="flex items-centre gap-2">
+                      <div className="flex items-center gap-2">
                         <Badge variant="outline" className="text-xs">
                           {rule.channels.length} channels
                         </Badge>
@@ -789,19 +789,19 @@ export function AdminNotificationManager() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex items-centre justify-between text-sm">
+                  <div className="flex items-center justify-between text-sm">
                     <span>Compliance Reminder</span>
                     <span className="text-gray-500">15 sent • 2m ago</span>
                   </div>
-                  <div className="flex items-centre justify-between text-sm">
+                  <div className="flex items-center justify-between text-sm">
                     <span>Job Alert</span>
                     <span className="text-gray-500">8 sent • 15m ago</span>
                   </div>
-                  <div className="flex items-centre justify-between text-sm">
+                  <div className="flex items-center justify-between text-sm">
                     <span>Invoice Reminder</span>
                     <span className="text-gray-500">23 sent • 1h ago</span>
                   </div>
-                  <div className="flex items-centre justify-between text-sm">
+                  <div className="flex items-center justify-between text-sm">
                     <span>System Announcement</span>
                     <span className="text-gray-500">142 sent • 3h ago</span>
                   </div>

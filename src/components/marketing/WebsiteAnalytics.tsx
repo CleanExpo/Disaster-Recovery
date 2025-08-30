@@ -251,13 +251,13 @@ export default function WebsiteAnalytics() {
     subtitle?: string;
   }) => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div className="flex-1">
           <p className="text-sm font-medium text-gray-600">{title}</p>
           <p className="text-3xl font-bold text-gray-900 mt-1">{value}</p>
           {subtitle && <p className="text-sm text-gray-500 mt-1">{subtitle}</p>}
           {change && (
-            <div className="flex items-centre mt-2">
+            <div className="flex items-center mt-2">
               {change.isPositive ? (
                 <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
               ) : (
@@ -372,8 +372,8 @@ export default function WebsiteAnalytics() {
           const percentage = (data.sessions / totalSessions) * 100;
 
           return (
-            <div key={device} className="flex items-centre justify-between p-4 bg-gray-50 rounded-lg">
-              <div className="flex items-centre space-x-3">
+            <div key={device} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white rounded-lg">
                   {deviceIcons[device as keyof typeof deviceIcons]}
                 </div>
@@ -398,7 +398,7 @@ export default function WebsiteAnalytics() {
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Conversion Funnel Analysis</h3>
       {mockAnalytics.conversionFunnels.map(funnel => (
         <div key={funnel.id} className="mb-8">
-          <div className="flex justify-between items-centre mb-4">
+          <div className="flex justify-between items-center mb-4">
             <h4 className="font-medium text-gray-900">{funnel.name}</h4>
             <div className="text-right">
               <p className="text-sm text-gray-600">Overall Conversion Rate</p>
@@ -415,9 +415,9 @@ export default function WebsiteAnalytics() {
 
               return (
                 <div key={step.name} className="relative">
-                  <div className="flex items-centre justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-                    <div className="flex items-centre space-x-4">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-sm font-medium">
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-medium">
                         {index + 1}
                       </div>
                       <div>
@@ -432,8 +432,8 @@ export default function WebsiteAnalytics() {
                   </div>
                   
                   {!isLastStep && (
-                    <div className="flex justify-centre my-2">
-                      <div className="flex items-centre space-x-2 px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">
+                    <div className="flex justify-center my-2">
+                      <div className="flex items-center space-x-2 px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">
                         <TrendingDown className="w-3 h-3" />
                         <span>{formatPercentage(dropoffRate)} dropout</span>
                       </div>
@@ -444,7 +444,7 @@ export default function WebsiteAnalytics() {
             })}
           </div>
 
-          <div className="mt-6 grid grid-cols-3 gap-4 text-centre">
+          <div className="mt-6 grid grid-cols-3 gap-4 text-center">
             <div className="p-3 bg-gray-50 rounded-lg">
               <p className="text-2xl font-bold text-green-600">{formatNumber(funnel.totalConversions)}</p>
               <p className="text-sm text-gray-600">Total Conversions</p>
@@ -470,7 +470,7 @@ export default function WebsiteAnalytics() {
         {mockAnalytics.territoryMetrics.map(territory => (
           <div key={territory.territory} className="p-4 border border-gray-200 rounded-lg">
             <div className="flex justify-between items-start mb-3">
-              <div className="flex items-centre space-x-2">
+              <div className="flex items-center space-x-2">
                 <MapPin className="w-5 h-5 text-gray-400" />
                 <h4 className="font-medium text-gray-900">{territory.territory}</h4>
               </div>
@@ -512,8 +512,8 @@ export default function WebsiteAnalytics() {
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Geographic Performance</h3>
       <div className="space-y-3">
         {mockAnalytics.googleAnalytics.geographicData.map((location, index) => (
-          <div key={index} className="flex items-centre justify-between p-3 hover:bg-gray-50 rounded-lg">
-            <div className="flex items-centre space-x-3">
+          <div key={index} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg">
+            <div className="flex items-center space-x-3">
               <Globe className="w-5 h-5 text-gray-400" />
               <div>
                 <p className="font-medium text-gray-900">{location.city}, {location.region}</p>
@@ -532,7 +532,7 @@ export default function WebsiteAnalytics() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex justify-between items-centre mb-8">
+      <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Website Analytics</h1>
           <p className="text-gray-600 mt-2">
@@ -574,7 +574,7 @@ export default function WebsiteAnalytics() {
               <button
                 key={tab.key}
                 onClick={() => setSelectedView(tab.key as typeof selectedView)}
-                className={`flex items-centre px-1 py-4 border-b-2 font-medium text-sm transition-colours ${
+                className={`flex items-center px-1 py-4 border-b-2 font-medium text-sm transition-colours ${
                   selectedView === tab.key
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'

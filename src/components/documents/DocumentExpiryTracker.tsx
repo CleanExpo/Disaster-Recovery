@@ -186,7 +186,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
   const ComplianceOverview = () => (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
       <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between mb-6">
+        <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-gray-900">Compliance Overview</h3>
           <div className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(complianceStatus?.overallStatus || '')}`}>
             {complianceStatus?.overallStatus.replace('_', ' ').toUpperCase()}
@@ -194,7 +194,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
         </div>
 
         <div className="mb-6">
-          <div className="flex items-centre justify-between mb-2">
+          <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Overall Completion</span>
             <span className="text-sm font-medium text-gray-900">
               {complianceStatus?.completionRate.toFixed(1)}%
@@ -220,9 +220,9 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                       : [...prev, categoryId]
                   );
                 }}
-                className="flex items-centre justify-between w-full"
+                className="flex items-center justify-between w-full"
               >
-                <div className="flex items-centre space-x-3">
+                <div className="flex items-center space-x-3">
                   <div className="p-2 bg-blue-50 rounded-lg">
                     {getCategoryIcon(category.category)}
                   </div>
@@ -235,7 +235,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                     </p>
                   </div>
                 </div>
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <div className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(category.status)}`}>
                     {category.status.replace('_', ' ')}
                   </div>
@@ -249,19 +249,19 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
               {expandedCategories.includes(category.category) && (
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="text-centre">
+                    <div className="text-center">
                       <p className="text-2xl font-bold text-gray-900">{category.required}</p>
                       <p className="text-sm text-gray-600">Required</p>
                     </div>
-                    <div className="text-centre">
+                    <div className="text-center">
                       <p className="text-2xl font-bold text-blue-600">{category.submitted}</p>
                       <p className="text-sm text-gray-600">Submitted</p>
                     </div>
-                    <div className="text-centre">
+                    <div className="text-center">
                       <p className="text-2xl font-bold text-green-600">{category.approved}</p>
                       <p className="text-sm text-gray-600">Approved</p>
                     </div>
-                    <div className="text-centre">
+                    <div className="text-center">
                       <p className="text-2xl font-bold text-red-600">{category.expired}</p>
                       <p className="text-sm text-gray-600">Expired</p>
                     </div>
@@ -276,15 +276,15 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="space-y-3">
-          <button className="w-full flex items-centre justify-centre px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
+          <button className="w-full flex items-center justify-center px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
             <Upload className="w-4 h-4 mr-2" />
             Upload Documents
           </button>
-          <button className="w-full flex items-centre justify-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colours">
+          <button className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colours">
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh Status
           </button>
-          <button className="w-full flex items-centre justify-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colours">
+          <button className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colours">
             <Download className="w-4 h-4 mr-2" />
             Export Report
           </button>
@@ -293,11 +293,11 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
         <div className="mt-6 pt-6 border-t border-gray-200">
           <h4 className="font-medium text-gray-900 mb-3">Need Help?</h4>
           <div className="space-y-2">
-            <button className="w-full flex items-centre px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colours">
+            <button className="w-full flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colours">
               <Mail className="w-4 h-4 mr-2" />
               Email Support
             </button>
-            <button className="w-full flex items-centre px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colours">
+            <button className="w-full flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colours">
               <Phone className="w-4 h-4 mr-2" />
               Call Support
             </button>
@@ -309,9 +309,9 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
 
   const ExpirationAlerts = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-centre justify-between mb-6">
+      <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-900">Document Expiration Alerts</h3>
-        <div className="flex items-centre space-x-2">
+        <div className="flex items-center space-x-2">
           <select
             value={selectedTimeframe}
             onChange={(e) => setSelectedTimeframe(e.target.value as any)}
@@ -337,7 +337,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
       </div>
 
       {filteredAlerts.length === 0 ? (
-        <div className="text-centre py-8">
+        <div className="text-center py-8">
           <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-3" />
           <h4 className="text-lg font-medium text-gray-900 mb-2">All documents are up to date</h4>
           <p className="text-gray-600">No expiration alerts for the selected timeframe</p>
@@ -357,8 +357,8 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                       : 'border-yellow-200 bg-yellow-50'
               }`}
             >
-              <div className="flex items-centre justify-between mb-3">
-                <div className="flex items-centre space-x-3">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-3">
                   <div className={`p-2 rounded-lg ${
                     alert.daysUntilExpiry < 0 ? 'bg-red-100' : 'bg-yellow-100'
                   }`}>
@@ -379,13 +379,13 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-centre justify-between">
-                <div className="flex items-centre space-x-4 text-sm">
-                  <div className="flex items-centre text-gray-600">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4 text-sm">
+                  <div className="flex items-center text-gray-600">
                     <Calendar className="w-4 h-4 mr-1" />
                     Expires: {new Date(alert.expiryDate).toLocaleDateString()}
                   </div>
-                  <div className={`flex items-centre font-medium ${
+                  <div className={`flex items-center font-medium ${
                     alert.daysUntilExpiry < 0 ? 'text-red-600' : 'text-orange-600'
                   }`}>
                     <Clock className="w-4 h-4 mr-1" />
@@ -395,12 +395,12 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                     }
                   </div>
                 </div>
-                <div className="flex items-centre space-x-2">
-                  <button className="flex items-centre px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colours">
+                <div className="flex items-center space-x-2">
+                  <button className="flex items-center px-3 py-1.5 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colours">
                     <Upload className="w-4 h-4 mr-1" />
                     Replace
                   </button>
-                  <button className="flex items-centre px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50 transition-colours">
+                  <button className="flex items-center px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50 transition-colours">
                     <Bell className="w-4 h-4 mr-1" />
                     Remind
                   </button>
@@ -430,12 +430,12 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Document Expiry Tracking</h1>
           <p className="text-gray-600 mt-1">Monitor compliance status and upcoming document expirations</p>
         </div>
-        <button className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
+        <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
           <RefreshCw className="w-4 h-4 mr-2" />
           Refresh Data
         </button>

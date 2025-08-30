@@ -402,8 +402,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-indigo-100 rounded-lg">
               <Scale className="h-6 w-6 text-indigo-600" />
             </div>
@@ -412,11 +412,11 @@ const LoadBalancingAuditSystem: React.FC = () => {
               <p className="text-sm text-gray-500">Fair distribution monitoring and complete allocation history</p>
             </div>
           </div>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <button
               onClick={() => setShowRebalanceModal(true)}
               disabled={!systemHealth?.redistributionNeeded}
-              className={`px-4 py-2 rounded-lg flex items-centre space-x-2 ${
+              className={`px-4 py-2 rounded-lg flex items-center space-x-2 ${
                 systemHealth?.redistributionNeeded
                   ? 'bg-orange-600 text-white hover:bg-orange-700'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -427,7 +427,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             </button>
             <button
               onClick={exportAuditLogs}
-              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-centre space-x-2"
+              className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center space-x-2"
             >
               <Download className="h-4 w-4" />
               <span>Export</span>
@@ -439,7 +439,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
         {systemHealth && (
           <div className="grid grid-cols-4 gap-4">
             <div className="bg-gray-50 rounded-lg p-4">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-gray-500">Fairness Score</p>
                   <p className="text-2xl font-semibold">{systemHealth.fairnessScore}%</p>
@@ -448,7 +448,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
               </div>
             </div>
             <div className="bg-gray-50 rounded-lg p-4">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-gray-500">Efficiency</p>
                   <p className="text-2xl font-semibold">{systemHealth.efficiencyScore}%</p>
@@ -457,7 +457,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
               </div>
             </div>
             <div className="bg-gray-50 rounded-lg p-4">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-gray-500">Avg Response</p>
                   <p className="text-2xl font-semibold">{systemHealth.responseTimeAvg}m</p>
@@ -466,7 +466,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
               </div>
             </div>
             <div className="bg-gray-50 rounded-lg p-4">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-gray-500">Accept Rate</p>
                   <p className="text-2xl font-semibold">{systemHealth.acceptanceRate}%</p>
@@ -480,16 +480,16 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
       {/* Load Balancing Configuration */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <Shield className="h-5 w-5 mr-2 text-purple-600" />
           Load Balancing Configuration
         </h3>
 
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-4">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <label className="text-sm font-medium">Load Balancing</label>
-              <label className="relative inline-flex items-centre cursor-pointer">
+              <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
                   checked={loadBalancingConfig.enabled}
@@ -505,7 +505,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
             <div>
               <label className="text-sm font-medium">Max Lead Share</label>
-              <div className="flex items-centre space-x-2 mt-1">
+              <div className="flex items-center space-x-2 mt-1">
                 <input
                   type="range"
                   min="20"
@@ -542,24 +542,24 @@ const LoadBalancingAuditSystem: React.FC = () => {
             <div>
               <label className="text-sm font-medium">Weight Distribution</label>
               <div className="space-y-2 mt-2">
-                <div className="flex items-centre justify-between">
+                <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Fairness</span>
                   <span className="text-sm font-medium">{Math.round(loadBalancingConfig.fairnessWeight * 100)}%</span>
                 </div>
-                <div className="flex items-centre justify-between">
+                <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Performance</span>
                   <span className="text-sm font-medium">{Math.round(loadBalancingConfig.performanceWeight * 100)}%</span>
                 </div>
-                <div className="flex items-centre justify-between">
+                <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Proximity</span>
                   <span className="text-sm font-medium">{Math.round(loadBalancingConfig.proximityWeight * 100)}%</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <label className="text-sm font-medium">Saturation Protection</label>
-              <label className="relative inline-flex items-centre cursor-pointer">
+              <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
                   checked={loadBalancingConfig.saturationProtection.enabled}
@@ -581,7 +581,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
       {/* Load Distribution Metrics */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <Users className="h-5 w-5 mr-2 text-blue-600" />
           Current Load Distribution
         </h3>
@@ -589,10 +589,10 @@ const LoadBalancingAuditSystem: React.FC = () => {
         <div className="space-y-3">
           {loadMetrics.map((metric) => (
             <div key={metric.contractorId} className="border rounded-lg p-4">
-              <div className="flex items-centre justify-between mb-3">
+              <div className="flex items-center justify-between mb-3">
                 <div>
                   <p className="font-medium">{metric.companyName}</p>
-                  <div className="flex items-centre space-x-4 mt-1">
+                  <div className="flex items-center space-x-4 mt-1">
                     <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(metric.status)}`}>
                       {metric.status.replace('_', ' ')}
                     </span>
@@ -659,7 +659,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
       {/* System Alerts */}
       {systemHealth && systemHealth.alerts.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <AlertCircle className="h-5 w-5 mr-2 text-orange-600" />
             System Alerts
           </h3>
@@ -672,8 +672,8 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 alert.severity === 'medium' ? 'border-yellow-500' :
                 'border-blue-500'
               }`}>
-                <div className="flex items-centre justify-between">
-                  <div className="flex items-centre space-x-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
                     <span className={`px-2 py-1 text-xs rounded-full ${getSeverityColor(alert.severity)}`}>
                       {alert.severity}
                     </span>
@@ -705,12 +705,12 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
       {/* Audit Logs */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <h3 className="text-lg font-semibold flex items-centre">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold flex items-center">
             <FileText className="h-5 w-5 mr-2 text-gray-600" />
             Allocation Audit Trail
           </h3>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <div className="relative">
               <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -758,7 +758,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
                       {new Date(log.timestamp).toLocaleTimeString()}
                     </td>
                     <td className="px-4 py-2">
-                      <div className="flex items-centre space-x-2">
+                      <div className="flex items-center space-x-2">
                         <Icon className={`h-4 w-4 ${
                           log.success ? 'text-green-500' : 'text-red-500'
                         }`} />
@@ -790,7 +790,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
       {/* Rebalance Modal */}
       {showRebalanceModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Confirm Load Rebalancing</h3>
             <p className="text-gray-600 mb-6">
@@ -817,7 +817,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
 
       {/* Log Details Modal */}
       {selectedLog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto">
             <h3 className="text-lg font-semibold mb-4">Audit Log Details</h3>
             <div className="space-y-4">

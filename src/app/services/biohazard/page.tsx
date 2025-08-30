@@ -21,14 +21,14 @@ export default function BiohazardPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-red-50 to-orange-50 py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Professional Biohazard Cleanup Services
             </h1>
             <p className="text-xl text-gray-700 mb-8">
               Expert decontamination and biohazard remediation by certified specialists
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:1300246427"
                 className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition"
@@ -50,7 +50,7 @@ export default function BiohazardPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-centre">
+            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
               Comprehensive Biohazard Services
             </h2>
             
@@ -127,7 +127,7 @@ export default function BiohazardPage() {
 
       {/* Emergency CTA */}
       <section className="bg-red-600 text-white py-16">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">24/7 Emergency Biohazard Response</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Biohazard emergencies require immediate professional response. Our certified technicians are available 

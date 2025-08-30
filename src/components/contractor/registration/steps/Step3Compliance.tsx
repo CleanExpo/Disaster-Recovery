@@ -193,7 +193,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
       {/* Compliance Score */}
       <Card className="border-blue-200 bg-blue-50/50">
         <CardContent className="pt-6">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold text-lg">Compliance Score</h3>
               <p className="text-sm text-gray-600 mt-1">
@@ -222,7 +222,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
       {/* CPP40421 Certificate IV */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <GraduationCap className="h-5 w-5" />
             CPP40421 Certificate IV
           </CardTitle>
@@ -241,7 +241,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://training.gov.au/Training/Details/CPP40421" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   View CPP40421 on training.gov.au (Official RTO List)
@@ -250,7 +250,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.myskills.gov.au/courses/details?Code=CPP40421" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   Find RTOs on MySkills.gov.au
@@ -313,7 +313,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
               />
               <label
                 htmlFor="cpp40421"
-                className="flex flex-col items-centre cursor-pointer"
+                className="flex flex-col items-center cursor-pointer"
               >
                 {cpp40421File ? (
                   <>
@@ -340,7 +340,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
       {/* IICRC Certifications */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Award className="h-5 w-5" />
             IICRC Certifications
           </CardTitle>
@@ -359,7 +359,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.iicrc.org/page/IICRCApprovedSchools" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   Find IICRC Approved Training Schools
@@ -373,7 +373,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
           </Alert>
           {iicrcCerts.map((cert, index) => (
             <div key={index} className="p-4 border rounded-lg space-y-4">
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <h4 className="font-medium">IICRC Certification {index + 1}</h4>
                 {iicrcCerts.length > 1 && (
                   <Button
@@ -446,15 +446,15 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                     />
                     <label
                       htmlFor={`iicrc-${index}`}
-                      className="flex items-centre justify-centre cursor-pointer"
+                      className="flex items-center justify-center cursor-pointer"
                     >
                       {cert.file ? (
-                        <div className="flex items-centre gap-2">
+                        <div className="flex items-center gap-2">
                           <FileText className="h-4 w-4 text-green-600" />
                           <span className="text-xs truncate">{cert.file.name}</span>
                         </div>
                       ) : (
-                        <div className="flex items-centre gap-2">
+                        <div className="flex items-center gap-2">
                           <Upload className="h-4 w-4 text-gray-400" />
                           <span className="text-xs">Upload</span>
                         </div>
@@ -485,7 +485,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
       {/* Industry Association Membership */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Users2 className="h-5 w-5" />
             Industry Association Membership
           </CardTitle>
@@ -501,7 +501,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://restorationindustry.org.au/membership" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   RIA - Restoration Industry Association
@@ -510,7 +510,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.iaqa.org.au/membership" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   IAQAA - Indoor Air Quality Association Australia
@@ -519,7 +519,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.ccavic.asn.au/membership" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   CCAVIC - Carpet Cleaners Association Victoria
@@ -528,7 +528,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.bscaa.com.au/membership" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   BSCAA - Building Service Contractors Association
@@ -606,7 +606,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
               />
               <label
                 htmlFor="association"
-                className="flex flex-col items-centre cursor-pointer"
+                className="flex flex-col items-center cursor-pointer"
               >
                 {association.file ? (
                   <>
@@ -633,7 +633,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
       {/* CARSI Training Record */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <BookOpen className="h-5 w-5" />
             CARSI Training Record (Optional)
           </CardTitle>
@@ -652,7 +652,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.carsi.org.au/membership" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   CARSI Membership & Training Portal
@@ -661,7 +661,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   href="https://www.carsi.org.au/courses" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-centre gap-1 text-blue-600 hover:underline text-sm"
+                  className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
                 >
                   <ExternalLink className="h-3 w-3" />
                   View Available CARSI Courses
@@ -707,7 +707,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
               />
               <label
                 htmlFor="carsi"
-                className="flex flex-col items-centre cursor-pointer"
+                className="flex flex-col items-center cursor-pointer"
               >
                 {carsiFile ? (
                   <>
@@ -734,7 +734,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
       {/* Other Industry Qualifications */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Star className="h-5 w-5" />
             Other Industry Qualifications (Optional)
           </CardTitle>
@@ -745,7 +745,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
         <CardContent className="space-y-4">
           {otherQualifications.map((qual, index) => (
             <div key={index} className="p-4 border rounded-lg space-y-4">
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <h4 className="font-medium">Additional Qualification {index + 1}</h4>
                 <Button
                   type="button"
@@ -793,7 +793,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                     />
                     <label
                       htmlFor={`other-${index}`}
-                      className="flex flex-col items-centre cursor-pointer"
+                      className="flex flex-col items-center cursor-pointer"
                     >
                       {qual.file ? (
                         <>

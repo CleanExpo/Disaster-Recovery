@@ -240,7 +240,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                   </div>
                   {stat.trend && (
                     <div className={cn(
-                      "flex items-centre gap-1 px-2 py-1 rounded-full text-xs font-semibold",
+                      "flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold",
                       stat.trend.startsWith('+') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                     )}>
                       <TrendingUp className={cn(
@@ -279,9 +279,9 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
       <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
         {/* Premium Header */}
         <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 p-6 text-white">
-          <div className="flex flex-col lg:flex-row lg:items-centre justify-between gap-4">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold flex items-centre gap-3">
+              <h2 className="text-2xl font-bold flex items-center gap-3">
                 <div className="p-2 bg-white/10 rounded-xl backdrop-blur-md">
                   <HeadphonesIcon className="w-6 h-6" />
                 </div>
@@ -303,12 +303,12 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                 />
               </div>
               
-              <button className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 flex items-centre gap-2">
+              <button className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 flex items-center gap-2">
                 <Filter className="w-4 h-4" />
                 <span>Filter</span>
               </button>
               
-              <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-centre gap-2 font-semibold">
+              <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 font-semibold">
                 <Plus className="w-4 h-4" />
                 <span>New Ticket</span>
               </button>
@@ -335,7 +335,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 )}
               >
-                <span className="flex items-centre gap-2">
+                <span className="flex items-center gap-2">
                   {tab.label}
                   <span className={cn(
                     "px-2 py-0.5 rounded-full text-xs font-semibold",
@@ -357,8 +357,8 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
         {/* Ticket List with Premium Cards */}
         <div className="p-6 space-y-4">
           {filteredTickets.length === 0 ? (
-            <div className="text-centre py-12">
-              <div className="w-20 h-20 mx-auto mb-4 bg-gray-100 rounded-full flex items-centre justify-centre">
+            <div className="text-center py-12">
+              <div className="w-20 h-20 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
                 <FileText className="w-10 h-10 text-gray-400" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No tickets found</h3>
@@ -401,14 +401,14 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                           {/* Header */}
                           <div className="flex items-start justify-between">
                             <div>
-                              <div className="flex items-centre gap-3 mb-1">
+                              <div className="flex items-center gap-3 mb-1">
                                 <span className="text-xs font-semibold text-gray-500">#{ticket.id}</span>
                                 <span className="text-xs text-gray-400">•</span>
                                 <span className="text-xs text-gray-500">{ticket.category}</span>
                                 {ticket.assignee && (
                                   <>
                                     <span className="text-xs text-gray-400">•</span>
-                                    <span className="text-xs text-gray-500 flex items-centre gap-1">
+                                    <span className="text-xs text-gray-500 flex items-center gap-1">
                                       <Users className="w-3 h-3" />
                                       {ticket.assignee}
                                     </span>
@@ -427,17 +427,17 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                           </p>
                           
                           {/* Footer */}
-                          <div className="flex items-centre justify-between">
-                            <div className="flex items-centre gap-4 text-xs text-gray-500">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
                               <span>Created {new Date(ticket.createdAt).toLocaleDateString()}</span>
                               {ticket.responseCount > 0 && (
-                                <span className="flex items-centre gap-1">
+                                <span className="flex items-center gap-1">
                                   <MessageSquare className="w-3 h-3" />
                                   {ticket.responseCount} responses
                                 </span>
                               )}
                               {ticket.satisfaction && (
-                                <span className="flex items-centre gap-1">
+                                <span className="flex items-center gap-1">
                                   {[...Array(5)].map((_, i) => (
                                     <Star
                                       key={i}
@@ -460,7 +460,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                       <div className="flex flex-col items-end gap-3">
                         {/* Priority Badge */}
                         <div className={cn(
-                          "px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-lg flex items-centre gap-1",
+                          "px-3 py-1.5 rounded-full text-xs font-semibold text-white shadow-lg flex items-center gap-1",
                           priorityConfig.bg,
                           priorityConfig.animation
                         )}>

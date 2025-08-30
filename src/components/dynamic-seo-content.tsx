@@ -29,7 +29,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               {pageTitle}
             </h1>
@@ -37,7 +37,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               Professional disaster recovery services for {pageTitle.toLowerCase()}. 
               Available 24/7 with insurance approved solutions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
                 className="bg-orange-500 hover:bg-orange-600"
@@ -55,16 +55,16 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 Get Free Quote
               </Button>
             </div>
-            <div className="mt-6 flex items-centre justify-centre gap-4 text-sm">
-              <div className="flex items-centre gap-1">
+            <div className="mt-6 flex items-center justify-center gap-4 text-sm">
+              <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
                 <span>24/7 Service</span>
               </div>
-              <div className="flex items-centre gap-1">
+              <div className="flex items-center gap-1">
                 <Shield className="h-4 w-4" />
                 <span>Insurance Approved</span>
               </div>
-              <div className="flex items-centre gap-1">
+              <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
                 <span>All Areas</span>
               </div>
@@ -110,7 +110,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                   { step: 4, title: 'Completion', desc: 'Quality guarantee' }
                 ].map((item, index) => (
                   <Card key={index} className="p-4">
-                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-bold mb-3">
+                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mb-3">
                       {item.step}
                     </div>
                     <h3 className="font-bold mb-1">{item.title}</h3>
@@ -129,7 +129,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                   '5-Star Reviews',
                   'Insurance Approved'
                 ].map((signal, index) => (
-                  <Card key={index} className="p-4 text-centre">
+                  <Card key={index} className="p-4 text-center">
                     <CheckCircle2 className="h-6 w-6 text-green-500 mx-auto mb-2" />
                     <p className="text-sm font-semibold">{signal}</p>
                   </Card>
@@ -161,12 +161,12 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
 
       {/* CTA Section */}
       <section className="py-12 bg-blue-900 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Need Emergency Help?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Don't wait for the problem to get worse. Get professional help now with insurance-approved service.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
               className="bg-orange-500 hover:bg-orange-600"
@@ -189,9 +189,9 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
 
       {/* Lead Form Modal */}
       {showLeadForm && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-centre justify-centre p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-4 border-b flex justify-between items-centre">
+            <div className="p-4 border-b flex justify-between items-center">
               <h2 className="text-2xl font-bold">Get Immediate Help</h2>
               <Button 
                 variant="ghost" 

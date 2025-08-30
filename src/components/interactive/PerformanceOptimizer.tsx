@@ -344,14 +344,14 @@ export function OptimizedImage({
       
       {/* Placeholder while loading */}
       {!loaded && !error && (
-        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-centre justify-centre">
+        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
           <div className="text-gray-400 text-sm">Loading...</div>
         </div>
       )}
       
       {/* Error fallback */}
       {error && (
-        <div className="absolute inset-0 bg-gray-100 flex items-centre justify-centre">
+        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
           <div className="text-gray-500 text-sm">Failed to load image</div>
         </div>
       )}

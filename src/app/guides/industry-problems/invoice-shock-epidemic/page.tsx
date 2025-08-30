@@ -16,9 +16,9 @@ export default function InvoiceShockEpidemicPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-red-900 to-slate-800">
       {/* Hero Section */}
-      <div className="relative py-24 px-6 text-centre bg-gradient-to-r from-red-900/80 to-slate-900/80">
+      <div className="relative py-24 px-6 text-center bg-gradient-to-r from-red-900/80 to-slate-900/80">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-centre justify-centre gap-3 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-6">
             <AlertTriangle className="h-12 w-12 text-red-400" />
             <DollarSign className="h-10 w-10 text-yellow-400" />
           </div>
@@ -47,32 +47,32 @@ export default function InvoiceShockEpidemicPage() {
 
         {/* The Problem */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-centre gap-3">
+          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <FileX className="h-8 w-8 text-red-400" />
             The Hidden Cost Crisis
           </h2>
           
           <div className="bg-gradient-to-r from-red-900/30 to-orange-900/30 backdrop-blur-sm border border-red-400/30 rounded-lg p-8 mb-8">
-            <div className="text-centre mb-8">
+            <div className="text-center mb-8">
               <p className="text-red-100 text-lg mb-4">
                 <strong>The Pattern:</strong> Emergency contractors prey on vulnerable property owners by quoting low initial prices, then exploiting the crisis situation to add massive "unexpected" costs.
               </p>
             </div>
             
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-centre">
+              <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-center">
                 <Clock className="h-8 w-8 text-red-400 mx-auto mb-3" />
                 <h3 className="font-semibold text-red-300 mb-2">The Hook</h3>
                 <p className="text-red-200 text-sm">Low emergency quote when you're desperate and vulnerable</p>
               </div>
               
-              <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-centre">
+              <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-center">
                 <DollarSign className="h-8 w-8 text-red-400 mx-auto mb-3" />
                 <h3 className="font-semibold text-red-300 mb-2">The Trap</h3>
                 <p className="text-red-200 text-sm">Hidden costs "discovered" after work begins</p>
               </div>
               
-              <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-centre">
+              <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 text-center">
                 <AlertTriangle className="h-8 w-8 text-red-400 mx-auto mb-3" />
                 <h3 className="font-semibold text-red-300 mb-2">The Shock</h3>
                 <p className="text-red-200 text-sm">Final invoice 3-6x higher than initial quote</p>
@@ -89,8 +89,8 @@ export default function InvoiceShockEpidemicPage() {
             
             {/* Case 1 */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-red-400/30 rounded-lg p-6">
-              <div className="flex items-centre gap-3 mb-4">
-                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre text-sm font-bold">1</div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">1</div>
                 <h3 className="text-lg font-semibold text-red-300">Water Damage Emergency</h3>
               </div>
               
@@ -126,7 +126,7 @@ export default function InvoiceShockEpidemicPage() {
                 </div>
               </div>
               
-              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-centre">
+              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-center">
                 <p className="text-red-100 font-semibold">Final Invoice: $6,890</p>
                 <p className="text-red-300 text-sm">861% increase from initial quote</p>
               </div>
@@ -134,8 +134,8 @@ export default function InvoiceShockEpidemicPage() {
 
             {/* Case 2 */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-red-400/30 rounded-lg p-6">
-              <div className="flex items-centre gap-3 mb-4">
-                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre text-sm font-bold">2</div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">2</div>
                 <h3 className="text-lg font-semibold text-red-300">Storm Damage Response</h3>
               </div>
               
@@ -171,7 +171,7 @@ export default function InvoiceShockEpidemicPage() {
                 </div>
               </div>
               
-              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-centre">
+              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-center">
                 <p className="text-red-100 font-semibold">Final Invoice: $6,750</p>
                 <p className="text-red-300 text-sm">563% increase from initial estimate</p>
               </div>
@@ -179,8 +179,8 @@ export default function InvoiceShockEpidemicPage() {
 
             {/* Case 3 */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-red-400/30 rounded-lg p-6">
-              <div className="flex items-centre gap-3 mb-4">
-                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre text-sm font-bold">3</div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">3</div>
                 <h3 className="text-lg font-semibold text-red-300">Mould Remediation</h3>
               </div>
               
@@ -216,7 +216,7 @@ export default function InvoiceShockEpidemicPage() {
                 </div>
               </div>
               
-              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-centre">
+              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-center">
                 <p className="text-red-100 font-semibold">Final Invoice: $8,340</p>
                 <p className="text-red-300 text-sm">334% increase from quoted price</p>
               </div>
@@ -224,8 +224,8 @@ export default function InvoiceShockEpidemicPage() {
 
             {/* Case 4 */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-red-400/30 rounded-lg p-6">
-              <div className="flex items-centre gap-3 mb-4">
-                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre text-sm font-bold">4</div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">4</div>
                 <h3 className="text-lg font-semibold text-red-300">Fire Damage Response</h3>
               </div>
               
@@ -261,7 +261,7 @@ export default function InvoiceShockEpidemicPage() {
                 </div>
               </div>
               
-              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-centre">
+              <div className="bg-red-900/40 border border-red-400/50 rounded p-3 text-center">
                 <p className="text-red-100 font-semibold">Final Invoice: $12,150</p>
                 <p className="text-red-300 text-sm">675% increase from emergency quote</p>
               </div>
@@ -321,35 +321,35 @@ export default function InvoiceShockEpidemicPage() {
 
         {/* The Solution */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-centre gap-3">
+          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <Shield className="h-8 w-8 text-green-400" />
             Protection Against Invoice Shock
           </h2>
           
           <div className="bg-gradient-to-r from-green-900/30 to-blue-900/30 backdrop-blur-sm border border-green-400/30 rounded-lg p-8">
-            <h3 className="text-2xl font-semibold text-green-300 mb-6 text-centre">The NRP Framework Solution</h3>
+            <h3 className="text-2xl font-semibold text-green-300 mb-6 text-center">The NRP Framework Solution</h3>
             
             <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 text-centre">
+              <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 text-center">
                 <Users className="h-8 w-8 text-green-400 mx-auto mb-3" />
                 <h4 className="font-semibold text-green-300 mb-2">Policy Holder Control</h4>
                 <p className="text-green-200 text-sm">You choose the contractor and maintain decision-making power throughout the process</p>
               </div>
               
-              <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 text-centre">
+              <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 text-center">
                 <FileX className="h-8 w-8 text-green-400 mx-auto mb-3" />
                 <h4 className="font-semibold text-green-300 mb-2">Transparent Pricing</h4>
                 <p className="text-green-200 text-sm">All costs disclosed upfront within NRP guidance frameworks - no hidden surprises</p>
               </div>
               
-              <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 text-centre">
+              <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 text-center">
                 <Clock className="h-8 w-8 text-green-400 mx-auto mb-3" />
                 <h4 className="font-semibold text-green-300 mb-2">Faster Resolution</h4>
                 <p className="text-green-200 text-sm">Streamlined process reduces time out of home and speeds insurance reimbursement</p>
               </div>
             </div>
             
-            <div className="text-centre">
+            <div className="text-center">
               <p className="text-green-200 text-lg mb-4">
                 <strong>Result:</strong> Professional service within fair pricing guidelines, with full insurance reimbursement potential
               </p>
@@ -424,7 +424,7 @@ export default function InvoiceShockEpidemicPage() {
         </div>
 
         {/* Call to Action */}
-        <div className="text-centre">
+        <div className="text-center">
           <div className="bg-gradient-to-r from-blue-900/50 to-green-900/50 backdrop-blur-sm border border-blue-400/30 rounded-lg p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
               Stop Invoice Shock Before It Starts
@@ -432,7 +432,7 @@ export default function InvoiceShockEpidemicPage() {
             <p className="text-blue-200 mb-6">
               Know the warning signs, understand your rights, and choose contractors committed to transparent pricing standards.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/guides/pricing/professional-response-pricing-breakdown" className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colours">
                 See Transparent Pricing Guide
               </Link>

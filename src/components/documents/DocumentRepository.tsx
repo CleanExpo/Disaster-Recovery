@@ -279,14 +279,14 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
 
     const config = statusConfig[status];
     return (
-      <span className={`inline-flex items-centre px-2.5 py-1 rounded-full text-xs font-medium ${config.colour}`}>
+      <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${config.colour}`}>
         {config.label}
       </span>
     );
   };
 
   const Breadcrumb = () => (
-    <nav className="flex items-centre space-x-2 text-sm text-gray-600 mb-6">
+    <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
       <button 
         onClick={() => setCurrentFolder(null)}
         className="hover:text-blue-600"
@@ -309,7 +309,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
       <div className="mb-6 space-y-3">
         {uploadProgress.map((upload) => (
           <div key={upload.fileId} className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="flex items-centre justify-between mb-2">
+            <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-900">{upload.fileName}</span>
               <span className="text-sm text-gray-600">{upload.progress}%</span>
             </div>
@@ -335,7 +335,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
         <button
           key={folder.id}
           onClick={() => setCurrentFolder(folder)}
-          className="flex items-centre p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all group"
+          className="flex items-center p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-sm transition-all group"
         >
           <div className="p-2 bg-blue-50 rounded-lg mr-3 group-hover:bg-blue-100">
             <Folder className="w-6 h-6 text-blue-600" />
@@ -388,7 +388,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
               <p>Size: {formatFileSize(doc.fileSize)}</p>
               <p>Modified: {new Date(doc.lastModifiedAt).toLocaleDateString()}</p>
               {doc.expiryDate && (
-                <p className={`flex items-centre ${
+                <p className={`flex items-center ${
                   doc.status === 'expired' || doc.status === 'expiring_soon' 
                     ? 'text-red-600' 
                     : 'text-gray-600'
@@ -459,7 +459,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
                 />
               </td>
               <td className="px-6 py-4">
-                <div className="flex items-centre">
+                <div className="flex items-center">
                   <div className="p-2 bg-gray-50 rounded-lg mr-3">
                     {getFileIcon(doc.mimeType)}
                   </div>
@@ -467,7 +467,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
                     <p className="font-medium text-gray-900">{doc.title}</p>
                     <p className="text-sm text-gray-600">{doc.fileName}</p>
                     {doc.expiryDate && (
-                      <p className={`text-xs flex items-centre mt-1 ${
+                      <p className={`text-xs flex items-center mt-1 ${
                         doc.status === 'expired' || doc.status === 'expiring_soon' 
                           ? 'text-red-600' 
                           : 'text-gray-500'
@@ -492,7 +492,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
                 {new Date(doc.lastModifiedAt).toLocaleDateString()}
               </td>
               <td className="px-6 py-4">
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <button className="p-2 hover:bg-gray-100 rounded-lg" title="View">
                     <Eye className="w-4 h-4 text-gray-600" />
                   </button>
@@ -532,15 +532,15 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Document Repository</h1>
           <p className="text-gray-600 mt-1">Manage your compliance and operational documents</p>
         </div>
-        <div className="flex items-centre space-x-2">
+        <div className="flex items-center space-x-2">
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours"
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours"
           >
             <Upload className="w-4 h-4 mr-2" />
             Upload Documents
@@ -557,8 +557,8 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
 
       <Breadcrumb />
 
-      <div className="flex items-centre justify-between bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-centre space-x-4">
+      <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
+        <div className="flex items-center space-x-4">
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -571,14 +571,14 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-centre px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="flex items-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
           >
             <Filter className="w-4 h-4 mr-2" />
             Filters
           </button>
         </div>
 
-        <div className="flex items-centre space-x-2">
+        <div className="flex items-center space-x-2">
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
@@ -607,20 +607,20 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
       </div>
 
       {selectedDocuments.length > 0 && (
-        <div className="flex items-centre justify-between bg-blue-50 border border-blue-200 p-4 rounded-lg">
+        <div className="flex items-center justify-between bg-blue-50 border border-blue-200 p-4 rounded-lg">
           <span className="text-sm text-blue-800">
             {selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected
           </span>
-          <div className="flex items-centre space-x-2">
-            <button className="flex items-centre px-3 py-1.5 text-sm bg-white border border-blue-300 rounded hover:bg-blue-50">
+          <div className="flex items-center space-x-2">
+            <button className="flex items-center px-3 py-1.5 text-sm bg-white border border-blue-300 rounded hover:bg-blue-50">
               <Download className="w-4 h-4 mr-1" />
               Download
             </button>
-            <button className="flex items-centre px-3 py-1.5 text-sm bg-white border border-blue-300 rounded hover:bg-blue-50">
+            <button className="flex items-center px-3 py-1.5 text-sm bg-white border border-blue-300 rounded hover:bg-blue-50">
               <Share2 className="w-4 h-4 mr-1" />
               Share
             </button>
-            <button className="flex items-centre px-3 py-1.5 text-sm bg-white border border-red-300 text-red-600 rounded hover:bg-red-50">
+            <button className="flex items-center px-3 py-1.5 text-sm bg-white border border-red-300 text-red-600 rounded hover:bg-red-50">
               <Trash2 className="w-4 h-4 mr-1" />
               Delete
             </button>
@@ -635,7 +635,7 @@ const DocumentRepository: React.FC<DocumentRepositoryProps> = ({
       {viewMode === 'grid' ? <DocumentGrid /> : <DocumentList />}
 
       {documents.length === 0 && !loading && (
-        <div className="text-centre py-12">
+        <div className="text-center py-12">
           <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
           <p className="text-gray-600 mb-4">

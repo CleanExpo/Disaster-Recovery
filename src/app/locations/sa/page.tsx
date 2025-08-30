@@ -28,14 +28,14 @@ export default function SouthAustraliaPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Disaster Recovery South Australia
             </h1>
             <p className="text-xl md:text-2xl mb-8">
               24/7 Emergency Response Across All SA Regions
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-centre mb-8">
+            <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                 <Phone className="mr-2 h-5 w-5" />
                 1300 DISASTER
@@ -44,7 +44,7 @@ export default function SouthAustraliaPage() {
                 Get Immediate Help
               </Button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-centre">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div>
                 <p className="text-3xl font-bold">24/7</p>
                 <p className="text-sm">Emergency Response</p>
@@ -69,7 +69,7 @@ export default function SouthAustraliaPage() {
       {/* Disaster Types */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             South Australia Disaster Response Services
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -94,7 +94,7 @@ export default function SouthAustraliaPage() {
       {/* Service Areas */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Serving All South Australia Regions
           </h2>
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -117,7 +117,7 @@ export default function SouthAustraliaPage() {
       {/* Climate Risks */}
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <AlertTriangle className="h-16 w-16 text-orange-600 mx-auto mb-6" />
             <h2 className="text-3xl font-bold mb-6">
               South Australia Climate & Disaster Risks
@@ -154,7 +154,7 @@ export default function SouthAustraliaPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             South Australia's Trusted Disaster Recovery Partner
           </h2>
@@ -162,7 +162,7 @@ export default function SouthAustraliaPage() {
             When disaster strikes in South Australia, we're here 24/7. 
             From Adelaide to regional areas, no location is too remote.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-centre">
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
               <Phone className="mr-2 h-5 w-5" />
               Call 1300 DISASTER

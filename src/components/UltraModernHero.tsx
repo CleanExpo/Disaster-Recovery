@@ -153,7 +153,7 @@ export default function UltraModernHero() {
 
       <motion.section
         ref={containerRef}
-        className="relative min-h-screen flex items-centre justify-centre overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ opacity, scale }}
       >
         {/* Interactive Gradient Overlay */}
@@ -176,12 +176,12 @@ export default function UltraModernHero() {
         <div className="relative z-10 container mx-auto px-6 py-32">
           <motion.div 
             ref={scrollTriggerRef}
-            className="max-w-6xl mx-auto text-centre scroll-trigger"
+            className="max-w-6xl mx-auto text-center scroll-trigger"
             style={{ y }}
           >
         {/* Badge */}
         <div 
-          className={`inline-flex items-centre gap-2 mb-8 px-5 py-2 rounded-full border transition-all duration-1000 ${
+          className={`inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full border transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
           style={{
@@ -269,13 +269,13 @@ export default function UltraModernHero() {
 
         {/* CTA Buttons */}
         <div 
-          className={`flex flex-col sm:flex-row gap-4 justify-centre mb-16 transition-all duration-1000 delay-300 ${
+          className={`flex flex-col sm:flex-row gap-4 justify-center mb-16 transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
           <Link
             href="/contact"
-            className="group relative inline-flex items-centre justify-centre gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
               boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
@@ -291,7 +291,7 @@ export default function UltraModernHero() {
               btn.style.boxShadow = '0 10px 40px rgba(255, 69, 69, 0.3)';
             }}
           >
-            <span className="relative z-10 flex items-centre gap-2">
+            <span className="relative z-10 flex items-center gap-2">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
@@ -302,7 +302,7 @@ export default function UltraModernHero() {
 
           <Link
             href="/quote"
-            className="group relative inline-flex items-centre justify-centre gap-3 px-8 py-4 rounded-full font-semibold text-lg border-2 overflow-hidden transition-all hover:scale-105"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-lg border-2 overflow-hidden transition-all hover:scale-105"
             style={{
               borderColor: 'rgba(99, 91, 255, 0.5)',
               background: 'rgba(99, 91, 255, 0.1)',
@@ -328,7 +328,7 @@ export default function UltraModernHero() {
 
         {/* Trust badges */}
         <div 
-          className={`flex flex-wrap justify-centre gap-8 items-centre transition-all duration-1000 delay-400 ${
+          className={`flex flex-wrap justify-center gap-8 items-center transition-all duration-1000 delay-400 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
@@ -340,7 +340,7 @@ export default function UltraModernHero() {
           ].map((badge, index) => (
             <div
               key={index}
-              className="flex items-centre gap-2 px-4 py-2 rounded-full transition-all hover:scale-110"
+              className="flex items-center gap-2 px-4 py-2 rounded-full transition-all hover:scale-110"
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(10px)',
@@ -358,7 +358,7 @@ export default function UltraModernHero() {
 
         {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-centre">
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white/40 rounded-full mt-2 animate-pulse" />
         </div>
       </div>

@@ -267,7 +267,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       {/* ABN/ACN */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <FileText className="h-5 w-5" />
             Business Registration
           </CardTitle>
@@ -295,7 +295,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 {verifyingAbn ? 'Verifying...' : abnVerified ? 'Verified' : 'Verify'}
               </Button>
               {abnVerified && (
-                <div className="flex items-centre text-green-600">
+                <div className="flex items-center text-green-600">
                   <CheckCircle className="w-5 h-5" />
                 </div>
               )}
@@ -333,7 +333,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       {/* Registered Business Address */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <MapPin className="h-5 w-5" />
             Registered Business Address
           </CardTitle>
@@ -448,7 +448,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       {/* Directors */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Users className="h-5 w-5" />
             Director Names & Contact Details
           </CardTitle>
@@ -456,7 +456,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
         <CardContent className="space-y-4">
           {directors.map((director, index) => (
             <div key={index} className="space-y-4 p-4 border rounded-lg">
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <h4 className="font-medium">Director {index + 1}</h4>
                 {directors.length > 1 && (
                   <Button
@@ -525,7 +525,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       {/* Insurance Details */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Shield className="h-5 w-5" />
             Insurance Details
           </CardTitle>
@@ -621,7 +621,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               />
               <label
                 htmlFor="certificates"
-                className="flex flex-col items-centre cursor-pointer"
+                className="flex flex-col items-center cursor-pointer"
               >
                 <Upload className="h-8 w-8 text-gray-400 mb-2" />
                 <span className="text-sm text-gray-600">
@@ -633,7 +633,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
             {certificateFiles.length > 0 && (
               <div className="space-y-2 mt-2">
                 {certificateFiles.map((file, index) => (
-                  <div key={index} className="flex items-centre justify-between p-2 bg-gray-50 rounded">
+                  <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span className="text-sm">{file.name}</span>
                     <Button
                       type="button"
@@ -656,7 +656,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       {/* Territory Coverage */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <Map className="h-5 w-5" />
             Territory Coverage
           </CardTitle>
@@ -667,7 +667,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               Service Radius (km) <span className="text-red-500">*</span>
             </Label>
             <div className="space-y-4">
-              <div className="flex items-centre gap-4">
+              <div className="flex items-center gap-4">
                 <Input
                   type="range"
                   min="25"
@@ -677,7 +677,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   onChange={(e) => setTerritory({...territory, radiusKm: parseInt(e.target.value)})}
                   className="flex-1"
                 />
-                <div className="w-20 text-centre font-semibold">
+                <div className="w-20 text-center font-semibold">
                   {territory.radiusKm} km
                 </div>
               </div>
@@ -716,7 +716,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
       {/* Company Logo (Optional) */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-centre gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
             <ImageIcon className="h-5 w-5" />
             Company Logo (Optional)
           </CardTitle>
@@ -733,7 +733,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               />
               <label
                 htmlFor="logo"
-                className="flex flex-col items-centre cursor-pointer"
+                className="flex flex-col items-center cursor-pointer"
               >
                 {logoFile ? (
                   <>

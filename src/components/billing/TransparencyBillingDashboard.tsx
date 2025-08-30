@@ -433,8 +433,8 @@ const TransparencyBillingDashboard: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-green-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-green-600" />
             </div>
@@ -443,17 +443,17 @@ const TransparencyBillingDashboard: React.FC = () => {
               <p className="text-sm text-gray-500">(AUD, incl GST)</p>
             </div>
           </div>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <button
               onClick={printGuidelines}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2"
+              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
             >
               <Printer className="h-4 w-4" />
               <span>Print</span>
             </button>
             <button
               onClick={exportPDF}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-centre space-x-2"
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center space-x-2"
             >
               <Download className="h-4 w-4" />
               <span>Export PDF</span>
@@ -480,7 +480,7 @@ const TransparencyBillingDashboard: React.FC = () => {
 
       {/* Category Filter */}
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <div className="flex items-centre space-x-2 overflow-x-auto">
+        <div className="flex items-center space-x-2 overflow-x-auto">
           <button
             onClick={() => setSelectedCategory('all')}
             className={`px-3 py-1 rounded-lg whitespace-nowrap ${
@@ -497,7 +497,7 @@ const TransparencyBillingDashboard: React.FC = () => {
               <button
                 key={cat.category}
                 onClick={() => setSelectedCategory(cat.category)}
-                className={`px-3 py-1 rounded-lg flex items-centre space-x-1 whitespace-nowrap ${
+                className={`px-3 py-1 rounded-lg flex items-center space-x-1 whitespace-nowrap ${
                   selectedCategory === cat.category
                     ? `bg-${cat.colour}-100 text-${cat.colour}-700`
                     : 'text-gray-600 hover:bg-gray-100'
@@ -524,9 +524,9 @@ const TransparencyBillingDashboard: React.FC = () => {
               <div key={categorySection.category} className="bg-white rounded-lg shadow-sm">
                 <button
                   onClick={() => toggleCategory(categorySection.category)}
-                  className="w-full p-4 flex items-centre justify-between hover:bg-gray-50 transition-colours"
+                  className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colours"
                 >
-                  <div className="flex items-centre space-x-3">
+                  <div className="flex items-center space-x-3">
                     <div className={`p-2 bg-${categorySection.colour}-100 rounded-lg`}>
                       <Icon className={`h-5 w-5 text-${categorySection.colour}-600`} />
                     </div>
@@ -624,7 +624,7 @@ const TransparencyBillingDashboard: React.FC = () => {
                       <div className="divide-y">
                         {categoryGuidelines.map((item) => (
                           <div key={item.id} className="p-4 hover:bg-gray-50">
-                            <div className="flex items-centre justify-between">
+                            <div className="flex items-center justify-between">
                               <div className="flex-1">
                                 <p className="font-medium">{item.itemName}</p>
                                 {item.notes && (
@@ -655,7 +655,7 @@ const TransparencyBillingDashboard: React.FC = () => {
 
       {/* Additional Information */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="font-semibold mb-4 flex items-centre">
+        <h3 className="font-semibold mb-4 flex items-center">
           <AlertCircle className="h-5 w-5 mr-2 text-amber-600" />
           Client Information
         </h3>

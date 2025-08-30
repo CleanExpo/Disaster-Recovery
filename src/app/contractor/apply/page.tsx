@@ -130,7 +130,7 @@ function ContractorApplicationContent() {
     showMessage('Application Complete! Contractor now has access to training modules.');
     setTimeout(() => {
       const completionModal = document.createElement('div');
-      completionModal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-centre justify-centre p-4';
+      completionModal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-center justify-center p-4';
       completionModal.innerHTML = `
         <div class="bg-white rounded-xl p-8 max-w-2xl animate-scale-in">
           <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Demo Application Complete!</h2>
@@ -256,8 +256,8 @@ function ContractorApplicationContent() {
       {/* Header */}
       <header className="border-b border-slate-700/50 bg-black/30 backdrop-blur-sm sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-centre justify-between">
-            <Link href="/" className="flex items-centre gap-3">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-3">
               <Shield className="h-8 w-8 text-blue-400" />
               <div>
                 <div className="text-white font-semibold">NRP</div>
@@ -265,15 +265,15 @@ function ContractorApplicationContent() {
               </div>
             </Link>
             
-            <div className="flex items-centre gap-4">
+            <div className="flex items-center gap-4">
               {isDemoRunning && (
-                <div className="flex items-centre gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-lg animate-pulse">
+                <div className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-lg animate-pulse">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Demo Running...
                 </div>
               )}
               {isSaving && (
-                <div className="flex items-centre gap-2 text-blue-300 text-sm">
+                <div className="flex items-center gap-2 text-blue-300 text-sm">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Saving progress...
                 </div>
@@ -281,14 +281,14 @@ function ContractorApplicationContent() {
               <button
                 onClick={saveProgress}
                 disabled={isDemoRunning}
-                className="flex items-centre gap-2 px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-2 px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Save className="h-4 w-4" />
                 Save Progress
               </button>
               <Link
                 href="/"
-                className="flex items-centre gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-300 rounded-lg transition"
+                className="flex items-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-300 rounded-lg transition"
               >
                 <X className="h-4 w-4" />
                 Exit
@@ -301,7 +301,7 @@ function ContractorApplicationContent() {
       <div className="container mx-auto px-6 py-8">
         {/* Progress Steps */}
         <div className="mb-12">
-          <div className="flex items-centre justify-between max-w-6xl mx-auto">
+          <div className="flex items-center justify-between max-w-6xl mx-auto">
             {ONBOARDING_STEPS.map((step, index) => {
               const Icon = step.icon;
               const isCompleted = completedSteps.includes(step.id);
@@ -309,14 +309,14 @@ function ContractorApplicationContent() {
               const isClickable = isCompleted || step.id === completedSteps.length + 1;
               
               return (
-                <div key={step.id} className="flex items-centre">
+                <div key={step.id} className="flex items-center">
                   <button
                     onClick={() => handleStepClick(step.id)}
                     disabled={!isClickable}
-                    className={`relative flex flex-col items-centre ${isClickable ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                    className={`relative flex flex-col items-center ${isClickable ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                   >
                     <div className={`
-                      w-12 h-12 rounded-full flex items-centre justify-centre transition-all
+                      w-12 h-12 rounded-full flex items-center justify-center transition-all
                       ${isCompleted ? 'bg-green-600 text-white' : 
                         isCurrent ? 'bg-blue-600 text-white ring-4 ring-blue-600/30' : 
                         'bg-slate-700 text-slate-400'}
@@ -327,7 +327,7 @@ function ContractorApplicationContent() {
                         <Icon className="h-6 w-6" />
                       )}
                     </div>
-                    <div className="absolute top-14 w-32 text-centre">
+                    <div className="absolute top-14 w-32 text-center">
                       <div className={`text-sm font-medium ${isCurrent ? 'text-white' : 'text-slate-400'}`}>
                         Step {step.id}
                       </div>
@@ -366,12 +366,12 @@ function ContractorApplicationContent() {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex items-centre justify-between mt-12 pt-8 border-t border-slate-700">
+            <div className="flex items-center justify-between mt-12 pt-8 border-t border-slate-700">
               <button
                 onClick={handlePrevious}
                 disabled={currentStep === 1}
                 className={`
-                  flex items-centre gap-2 px-6 py-3 rounded-lg font-medium transition
+                  flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
                   ${currentStep === 1 
                     ? 'bg-slate-700/30 text-slate-500 cursor-not-allowed' 
                     : 'bg-slate-700 hover:bg-slate-600 text-white'}
@@ -390,7 +390,7 @@ function ContractorApplicationContent() {
                   onClick={handleSubmit}
                   disabled={isSubmitting || completedSteps.length < 7}
                   className={`
-                    flex items-centre gap-2 px-6 py-3 rounded-lg font-medium transition
+                    flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
                     ${completedSteps.length === 7
                       ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
                       : 'bg-slate-700/30 text-slate-500 cursor-not-allowed'}
@@ -411,7 +411,7 @@ function ContractorApplicationContent() {
               ) : (
                 <button
                   onClick={handleNext}
-                  className="flex items-centre gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-lg font-medium transition"
+                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-lg font-medium transition"
                 >
                   Next
                   <ArrowRight className="h-5 w-5" />
@@ -441,7 +441,7 @@ function ContractorApplicationContent() {
 
 export default function ContractorApplicationPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-centre justify-centre"><div className="text-white">Loading...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
       <ContractorApplicationContent />
     </Suspense>
   );

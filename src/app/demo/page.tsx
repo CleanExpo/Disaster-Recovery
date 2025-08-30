@@ -70,7 +70,7 @@ export default function DemoPage() {
       {/* Header */}
       <div className="bg-black/30 backdrop-blur-sm border-b border-slate-700/50">
         <div className="container mx-auto px-6 py-8">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <h1 className="text-4xl font-bold text-white mb-2">
                 Platform Demonstrations
@@ -81,7 +81,7 @@ export default function DemoPage() {
             </div>
             <Link 
               href="/"
-              className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition flex items-centre gap-2"
+              className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition flex items-center gap-2"
             >
               <Building2 className="h-5 w-5" />
               Back to Main Site
@@ -129,7 +129,7 @@ export default function DemoPage() {
                   {/* Features */}
                   <div className="space-y-2 mb-6">
                     {demo.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-centre gap-2 text-sm text-gray-400">
+                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-400">
                         <ChevronRight className="h-4 w-4 text-gray-500" />
                         <span>{feature}</span>
                       </div>
@@ -142,7 +142,7 @@ export default function DemoPage() {
                     className={`
                       w-full py-3 rounded-lg font-semibold text-white transition-all
                       bg-gradient-to-r ${demo.bgColor} opacity-90 hover:opacity-100
-                      flex items-centre justify-centre gap-2 group
+                      flex items-center justify-center gap-2 group
                     `}
                   >
                     <PlayCircle className="h-5 w-5" />
@@ -156,7 +156,7 @@ export default function DemoPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-16 text-centre">
+        <div className="mt-16 text-center">
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-white mb-4">
               Why These Demos Matter
@@ -166,7 +166,7 @@ export default function DemoPage() {
               From AI-powered contractor matching to real-time emergency response coordination, these demos 
               illustrate how we're revolutionizing the industry.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 text-centre">
+            <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
                 <div className="text-3xl font-bold text-blue-400">10,000+</div>
                 <div className="text-sm text-gray-400">Contractors</div>

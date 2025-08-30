@@ -196,7 +196,7 @@ export default function RealEmergencyResponseCostsPage() {
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/guides" className="hover:text-white transition">Guides</Link>
@@ -221,7 +221,7 @@ export default function RealEmergencyResponseCostsPage() {
 
             {/* Value Proposition */}
             <div className="bg-green-900/30 border border-green-500/30 rounded-lg p-6 mb-8">
-              <div className="grid md:grid-cols-3 gap-6 text-centre">
+              <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-3xl font-bold text-green-300 mb-2">${comprehensiveService.price.toLocaleString()}</div>
                   <div className="text-sm text-gray-300">Fixed comprehensive price</div>
@@ -258,7 +258,7 @@ export default function RealEmergencyResponseCostsPage() {
       {/* Comprehensive Service Breakdown */}
       <section id="comprehensive-breakdown" className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               What's Included in ${comprehensiveService.price.toLocaleString()} Professional Response
             </h2>
@@ -269,7 +269,7 @@ export default function RealEmergencyResponseCostsPage() {
 
           <div className="max-w-5xl mx-auto">
             <Card className="p-8 mb-8 bg-green-50 border-green-200">
-              <div className="text-centre mb-6">
+              <div className="text-center mb-6">
                 <div className="text-4xl font-bold text-green-600 mb-2">
                   ${comprehensiveService.price.toLocaleString()}
                 </div>
@@ -284,11 +284,11 @@ export default function RealEmergencyResponseCostsPage() {
               {comprehensiveService.included.map((service, idx) => (
                 <Card key={idx} className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-green-100 flex items-centre justify-centre flex-shrink-0">
+                    <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="h-6 w-6 text-green-600" />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-centre justify-between mb-2">
+                      <div className="flex items-center justify-between mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">{service.service}</h3>
                         <Badge variant="outline" className="text-green-600 border-green-600">
                           {service.value}
@@ -305,7 +305,7 @@ export default function RealEmergencyResponseCostsPage() {
             </div>
 
             <Card className="mt-8 p-6 bg-blue-50 border-blue-200">
-              <div className="text-centre">
+              <div className="text-center">
                 <h3 className="text-xl font-semibold text-blue-900 mb-2">
                   Individual Service Value: ${comprehensiveService.totalValue}
                 </h3>
@@ -324,7 +324,7 @@ export default function RealEmergencyResponseCostsPage() {
       {/* Hidden Cost Comparison */}
       <section id="hidden-cost-comparison" className="py-20 bg-red-50">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Hidden Cost Operators: What They Actually Charge
             </h2>
@@ -336,7 +336,7 @@ export default function RealEmergencyResponseCostsPage() {
           <div className="space-y-8">
             {hiddenCostOperators.map((operator, idx) => (
               <Card key={idx} className="p-8 border-red-200">
-                <div className="flex items-centre justify-between mb-6">
+                <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-semibold text-red-900">{operator.operator}</h3>
                   <div className="text-right">
                     <div className="text-lg text-gray-600">Initial Quote:</div>
@@ -353,7 +353,7 @@ export default function RealEmergencyResponseCostsPage() {
                           cost.hidden ? 'bg-red-100 border border-red-200' : 'bg-gray-100'
                         }`}>
                           <div className="flex-1">
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <span className="font-medium text-gray-900">{cost.item}</span>
                               {cost.hidden && (
                                 <Badge variant="destructive" className="text-xs">Hidden</Badge>
@@ -369,8 +369,8 @@ export default function RealEmergencyResponseCostsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-centre justify-centre">
-                    <Card className="p-6 bg-red-100 border-red-300 text-centre">
+                  <div className="flex items-center justify-center">
+                    <Card className="p-6 bg-red-100 border-red-300 text-center">
                       <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-3" />
                       <div className="text-sm text-red-700 mb-2">Actual Total Cost:</div>
                       <div className="text-3xl font-bold text-red-600 mb-2">{operator.totalActual}</div>
@@ -386,20 +386,20 @@ export default function RealEmergencyResponseCostsPage() {
           </div>
 
           <Card className="mt-12 p-8 bg-yellow-50 border-yellow-200">
-            <div className="text-centre">
+            <div className="text-center">
               <h3 className="text-2xl font-semibold text-yellow-900 mb-4">
                 The Hidden Cost Pattern
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-centre">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-yellow-600 mb-2">400-600%</div>
                   <p className="text-sm text-yellow-800">Average price increase from quote to final invoice</p>
                 </div>
-                <div className="text-centre">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-yellow-600 mb-2">85%</div>
                   <p className="text-sm text-yellow-800">Of emergency operators use hidden cost tactics</p>
                 </div>
-                <div className="text-centre">
+                <div className="text-center">
                   <div className="text-4xl font-bold text-yellow-600 mb-2">$2,000+</div>
                   <p className="text-sm text-yellow-800">Average surprise costs added during job</p>
                 </div>
@@ -412,7 +412,7 @@ export default function RealEmergencyResponseCostsPage() {
       {/* Additional Services Transparency */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Additional Services - Complete Transparency
             </h2>
@@ -423,7 +423,7 @@ export default function RealEmergencyResponseCostsPage() {
 
           <div className="max-w-5xl mx-auto">
             <Card className="p-8 mb-8 bg-blue-50 border-blue-200">
-              <div className="flex items-centre gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-4">
                 <Eye className="h-6 w-6 text-blue-600" />
                 <h3 className="text-xl font-semibold text-blue-900">{additionalServices.title}</h3>
               </div>
@@ -447,7 +447,7 @@ export default function RealEmergencyResponseCostsPage() {
             </div>
 
             <Card className="mt-8 p-6 bg-green-50 border-green-200">
-              <div className="text-centre">
+              <div className="text-center">
                 <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-3" />
                 <h3 className="text-lg font-semibold text-green-900 mb-2">
                   Transparent Policy
@@ -465,7 +465,7 @@ export default function RealEmergencyResponseCostsPage() {
       {/* Real World Comparison */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Real Case Study: The Invoice Truth
             </h2>
@@ -477,7 +477,7 @@ export default function RealEmergencyResponseCostsPage() {
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Transparent Approach */}
             <Card className="p-8 border-green-200 bg-green-50">
-              <div className="flex items-centre gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-6">
                 <Shield className="h-6 w-6 text-green-500" />
                 <h3 className="text-xl font-semibold text-green-900">{realWorldComparison.transparentApproach.title}</h3>
               </div>
@@ -502,7 +502,7 @@ export default function RealEmergencyResponseCostsPage() {
                 ))}
               </div>
 
-              <div className="text-centre p-4 bg-green-200 rounded-lg">
+              <div className="text-center p-4 bg-green-200 rounded-lg">
                 <div className="text-2xl font-bold text-green-600 mb-1">
                   ${realWorldComparison.transparentApproach.totalCost.toLocaleString()}
                 </div>
@@ -515,7 +515,7 @@ export default function RealEmergencyResponseCostsPage() {
 
             {/* Hidden Cost Approach */}
             <Card className="p-8 border-red-200 bg-red-50">
-              <div className="flex items-centre gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-6">
                 <X className="h-6 w-6 text-red-500" />
                 <h3 className="text-xl font-semibold text-red-900">{realWorldComparison.hiddenCostApproach.title}</h3>
               </div>
@@ -545,7 +545,7 @@ export default function RealEmergencyResponseCostsPage() {
                 ))}
               </div>
 
-              <div className="text-centre p-4 bg-red-200 rounded-lg">
+              <div className="text-center p-4 bg-red-200 rounded-lg">
                 <div className="text-2xl font-bold text-red-600 mb-1">
                   ${realWorldComparison.hiddenCostApproach.totalCost.toLocaleString()}
                 </div>
@@ -561,7 +561,7 @@ export default function RealEmergencyResponseCostsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-6 text-centre">
+        <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Professional Standards, Transparent Pricing
           </h2>
@@ -587,7 +587,7 @@ export default function RealEmergencyResponseCostsPage() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 <Calculator className="mr-2 h-5 w-5" />

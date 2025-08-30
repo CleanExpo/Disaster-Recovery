@@ -111,7 +111,7 @@ export function SupportTickets({ tickets = [] }: SupportTicketsProps) {
   const renderTicketList = (ticketList: Ticket[]) => (
     <div className="space-y-3">
       {ticketList.length === 0 ? (
-        <div className="text-centre py-8 text-gray-500">
+        <div className="text-center py-8 text-gray-500">
           No tickets found
         </div>
       ) : (
@@ -126,7 +126,7 @@ export function SupportTickets({ tickets = [] }: SupportTicketsProps) {
                       <h4 className="font-semibold text-sm">{ticket.subject}</h4>
                       <p className="text-sm text-gray-600 mt-1">{ticket.description}</p>
                     </div>
-                    <div className="flex items-centre gap-3 text-xs text-gray-500">
+                    <div className="flex items-center gap-3 text-xs text-gray-500">
                       <span>#{ticket.id}</span>
                       <span>•</span>
                       <span>{ticket.category}</span>
@@ -210,9 +210,9 @@ export function SupportTickets({ tickets = [] }: SupportTicketsProps) {
       {/* Ticket Management */}
       <Card>
         <CardHeader>
-          <div className="flex justify-between items-centre">
+          <div className="flex justify-between items-center">
             <div>
-              <CardTitle className="flex items-centre gap-2">
+              <CardTitle className="flex items-center gap-2">
                 <HeadphonesIcon className="h-5 w-5" />
                 Support Tickets
               </CardTitle>

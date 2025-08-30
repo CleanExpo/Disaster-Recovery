@@ -111,12 +111,12 @@ export default function LighthouseReportPage() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-centre">
+          <h1 className="text-4xl font-bold mb-8 text-center">
             Lighthouse Performance Report
           </h1>
           
           <Card className="p-8 mb-8">
-            <div className="text-centre">
+            <div className="text-center">
               <h2 className="text-2xl font-bold mb-4">
                 Site Performance Audit
               </h2>
@@ -147,7 +147,7 @@ export default function LighthouseReportPage() {
               <div className="mt-8">
                 <div className="grid md:grid-cols-5 gap-4 mb-8">
                   {results.map((result) => (
-                    <div key={result.category} className="text-centre">
+                    <div key={result.category} className="text-center">
                       <div className={`text-4xl font-bold ${getScoreColor(result.score)}`}>
                         {result.score}
                       </div>
@@ -161,8 +161,8 @@ export default function LighthouseReportPage() {
                 <div className="space-y-6">
                   {results.map((result) => (
                     <Card key={result.category} className="p-6">
-                      <div className="flex items-centre justify-between mb-4">
-                        <h3 className="text-lg font-bold flex items-centre">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-lg font-bold flex items-center">
                           {getStatusIcon(result.status)}
                           <span className="ml-2">{result.category}</span>
                         </h3>
@@ -181,7 +181,7 @@ export default function LighthouseReportPage() {
                   ))}
                 </div>
                 
-                <div className="mt-8 text-centre">
+                <div className="mt-8 text-center">
                   <Card className="bg-green-50 border-green-200 p-6">
                     <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto mb-4" />
                     <h3 className="text-xl font-bold text-green-800 mb-2">
@@ -217,19 +217,19 @@ export default function LighthouseReportPage() {
               <div>
                 <h3 className="font-bold mb-3">Performance (100/100)</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Images optimised with next/image</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">JavaScript bundles code-split</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Fonts optimised with font-display: swap</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Critical CSS inlined</span>
                   </li>
@@ -239,19 +239,19 @@ export default function LighthouseReportPage() {
               <div>
                 <h3 className="font-bold mb-3">Accessibility (100/100)</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">WCAG AAA colour contrast</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">All images have alt text</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">ARIA labels on all interactive elements</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Skip navigation links</span>
                   </li>
@@ -261,19 +261,19 @@ export default function LighthouseReportPage() {
               <div>
                 <h3 className="font-bold mb-3">Best Practices (100/100)</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">HTTPS enabled</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Security headers configured</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">No console errors</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Dependencies up to date</span>
                   </li>
@@ -283,19 +283,19 @@ export default function LighthouseReportPage() {
               <div>
                 <h3 className="font-bold mb-3">SEO (100/100)</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Meta tags optimised</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Structured data implemented</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Sitemap generated</span>
                   </li>
-                  <li className="flex items-centre">
+                  <li className="flex items-center">
                     <CheckCircle2 className="h-4 w-4 text-green-600 mr-2" />
                     <span className="text-sm">Canonical URLs set</span>
                   </li>

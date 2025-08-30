@@ -100,7 +100,7 @@ const ModernHeroSection: React.FC = () => {
       
       <motion.section
         ref={containerRef}
-        className="relative min-h-screen flex items-centre justify-centre overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{ opacity, scale }}
       >
         {/* Interactive Gradient Overlay */}
@@ -146,14 +146,14 @@ const ModernHeroSection: React.FC = () => {
         </div>
 
         <div className="relative z-10 container mx-auto px-6 py-20">
-          <div className="max-w-6xl mx-auto text-centre">
+          <div className="max-w-6xl mx-auto text-center">
             
             {/* Emergency Status Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="inline-flex items-centre gap-3 mb-12 px-6 py-3 rounded-full glass-card magnetic-element"
+              className="inline-flex items-center gap-3 mb-12 px-6 py-3 rounded-full glass-card magnetic-element"
               style={{
                 background: 'rgba(239, 68, 68, 0.1)',
                 border: '1px solid rgba(239, 68, 68, 0.3)',
@@ -232,7 +232,7 @@ const ModernHeroSection: React.FC = () => {
 
             {/* CTA Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-6 justify-centre mb-20"
+              className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
@@ -248,7 +248,7 @@ const ModernHeroSection: React.FC = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="relative flex items-centre gap-3">
+                  <div className="relative flex items-center gap-3">
                     <Phone className="h-6 w-6" />
                     <span>Emergency Help Now</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -263,7 +263,7 @@ const ModernHeroSection: React.FC = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="relative flex items-centre gap-3">
+                  <div className="relative flex items-center gap-3">
                     <PlayCircle className="h-5 w-5" />
                     <span>Free AI Assessment</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -284,7 +284,7 @@ const ModernHeroSection: React.FC = () => {
                 return (
                   <motion.div
                     key={index}
-                    className="glass-card p-6 text-centre magnetic-element noise-texture rounded-2xl"
+                    className="glass-card p-6 text-center magnetic-element noise-texture rounded-2xl"
                     initial={{ opacity: 0, scale: 0.8, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ 
@@ -298,7 +298,7 @@ const ModernHeroSection: React.FC = () => {
                     }}
                   >
                     <motion.div 
-                      className={`inline-flex items-centre justify-centre w-16 h-16 rounded-2xl mb-4 bg-gradient-to-br ${item.colour} shadow-2xl`}
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4 bg-gradient-to-br ${item.colour} shadow-2xl`}
                       whileHover={{ 
                         rotate: [0, -10, 10, 0],
                         transition: { duration: 0.5 }
@@ -327,12 +327,12 @@ const ModernHeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.8 }}
         >
-          <motion.div className="flex flex-col items-centre gap-2">
+          <motion.div className="flex flex-col items-center gap-2">
             <span className="text-xs text-gray-400 uppercase tracking-widest">
               Scroll to explore
             </span>
             <motion.div
-              className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-centre overflow-hidden"
+              className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center overflow-hidden"
               animate={{ 
                 borderColor: [
                   'rgba(156, 163, 175, 0.4)', 

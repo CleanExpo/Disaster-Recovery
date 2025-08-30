@@ -18,7 +18,7 @@ export default function HealthcareFacilityPage() {
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-centre mb-6">
+            <div className="flex items-center mb-6">
               <span className="bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold mr-3">
                 HEALTHCARE
               </span>
@@ -33,17 +33,17 @@ export default function HealthcareFacilityPage() {
               Specialised disaster recovery for hospitals, clinics, and medical facilities
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-8">
-              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
+              <Card className="bg-white/10 backdrop-blur p-4 text-center">
                 <Clock className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">Immediate</p>
                 <p className="text-sm">Response Time</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
+              <Card className="bg-white/10 backdrop-blur p-4 text-center">
                 <DollarSign className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">Priority rates</p>
                 <p className="text-sm">Typical Cost Range</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
+              <Card className="bg-white/10 backdrop-blur p-4 text-center">
                 <Shield className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">100%</p>
                 <p className="text-sm">Insurance Coverage</p>
@@ -60,7 +60,7 @@ export default function HealthcareFacilityPage() {
       {/* Property-Specific Challenges */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Common Healthcare Facility Disaster Scenarios
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -81,14 +81,14 @@ export default function HealthcareFacilityPage() {
       {/* Service Process */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Our Healthcare Facility Recovery Process
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
                     1
                   </span>
                   <div>
@@ -103,7 +103,7 @@ export default function HealthcareFacilityPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
                     2
                   </span>
                   <div>
@@ -118,7 +118,7 @@ export default function HealthcareFacilityPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
                     3
                   </span>
                   <div>
@@ -133,7 +133,7 @@ export default function HealthcareFacilityPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
                     4
                   </span>
                   <div>
@@ -153,12 +153,12 @@ export default function HealthcareFacilityPage() {
       {/* Pricing Structure */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Healthcare Facility Disaster Recovery Pricing
           </h2>
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 border-2 border-blue-600">
-              <div className="text-centre mb-8">
+              <div className="text-center mb-8">
                 <p className="text-4xl font-bold text-blue-600 mb-2">$2,200</p>
                 <p className="text-xl">Minimum Callout Fee</p>
                 <p className="text-gray-600">Includes complete assessment and emergency mitigation</p>
@@ -182,7 +182,7 @@ export default function HealthcareFacilityPage() {
               </div>
               
               <div className="mt-8 bg-green-50 rounded-lg p-6">
-                <p className="text-centre text-lg">
+                <p className="text-center text-lg">
                   <strong>No upfront payment required</strong> - We bill your insurance directly
                 </p>
               </div>
@@ -194,25 +194,25 @@ export default function HealthcareFacilityPage() {
       {/* Why Choose Us */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Why Healthcare Properties Choose Us
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="p-6 text-centre">
+            <Card className="p-6 text-center">
               <Building className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Healthcare Expertise</h3>
               <p className="text-gray-600">
                 Specialised knowledge of healthcare facility requirements and regulations
               </p>
             </Card>
-            <Card className="p-6 text-centre">
+            <Card className="p-6 text-center">
               <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Insurance Approved</h3>
               <p className="text-gray-600">
                 Preferred vendor for all major healthcare insurers
               </p>
             </Card>
-            <Card className="p-6 text-centre">
+            <Card className="p-6 text-center">
               <CheckCircle2 className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Compliance Guaranteed</h3>
               <p className="text-gray-600">
@@ -225,7 +225,7 @@ export default function HealthcareFacilityPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <Building className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             Healthcare Facility Disaster Emergency?

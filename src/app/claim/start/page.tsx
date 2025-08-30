@@ -101,7 +101,7 @@ function ClaimStartContent() {
     setTimeout(() => {
       // Show detailed completion modal
       const modal = document.createElement('div');
-      modal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-centre justify-centre p-4';
+      modal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-center justify-center p-4';
       modal.innerHTML = `
         <div class="bg-white rounded-xl p-8 max-w-3xl animate-scale-in">
           <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Claim Successfully Submitted!</h2>
@@ -161,8 +161,8 @@ function ClaimStartContent() {
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-centre justify-between">
-            <div className="flex items-centre gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
               <Shield className="h-8 w-8 text-blue-600" />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">Start Your Claim</h1>
@@ -170,7 +170,7 @@ function ClaimStartContent() {
               </div>
             </div>
             {isDemoRunning && (
-              <div className="flex items-centre gap-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg animate-pulse">
+              <div className="flex items-center gap-2 px-4 py-2 bg-yellow-100 text-yellow-800 rounded-lg animate-pulse">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 Demo Running...
               </div>
@@ -198,7 +198,7 @@ function ClaimStartContent() {
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Personal Information */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-centre gap-2">
+            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <Home className="h-5 w-5 text-blue-600" />
               Personal Information
             </h3>
@@ -276,7 +276,7 @@ function ClaimStartContent() {
 
           {/* Insurance Information */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-centre gap-2">
+            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <FileText className="h-5 w-5 text-blue-600" />
               Insurance Information
             </h3>
@@ -319,7 +319,7 @@ function ClaimStartContent() {
 
           {/* Incident Details */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-centre gap-2">
+            <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <AlertCircle className="h-5 w-5 text-blue-600" />
               Incident Details
             </h3>
@@ -387,7 +387,7 @@ function ClaimStartContent() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Upload Photos of Damage
                 </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-centre hover:border-blue-400 transition-colours">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colours">
                   <input
                     type="file"
                     id="image-upload"
@@ -466,7 +466,7 @@ function ClaimStartContent() {
                   {['standard', 'urgent', 'emergency'].map((level) => (
                     <label
                       key={level}
-                      className={`flex items-centre justify-centre p-4 border-2 rounded-lg cursor-pointer transition ${
+                      className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition ${
                         formData.urgency === level
                           ? level === 'emergency' 
                             ? 'border-red-500 bg-red-50'
@@ -526,12 +526,12 @@ function ClaimStartContent() {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-centre">
+          <div className="flex justify-center">
             <button
               type="submit"
               disabled={isSubmitting || isDemoRunning}
               className={`
-                flex items-centre gap-3 px-8 py-4 text-lg font-semibold rounded-xl transition-all
+                flex items-center gap-3 px-8 py-4 text-lg font-semibold rounded-xl transition-all
                 ${isSubmitting || isDemoRunning
                   ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
                   : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transform hover:scale-105'
@@ -559,7 +559,7 @@ function ClaimStartContent() {
 
 export default function ClaimStartPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-centre justify-centre"><div className="text-gray-600">Loading...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center"><div className="text-gray-600">Loading...</div></div>}>
       <ClaimStartContent />
     </Suspense>
   );

@@ -308,9 +308,9 @@ export default function SocialMediaInsights() {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
       {mockSocialInsights.platforms.map(platform => (
         <div key={platform.platform} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-centre justify-between mb-4">
-            <div className="flex items-centre space-x-3">
-              <div className={`w-10 h-10 rounded-lg ${platformColors[platform.platform]} flex items-centre justify-centre text-white text-lg`}>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-3">
+              <div className={`w-10 h-10 rounded-lg ${platformColors[platform.platform]} flex items-center justify-center text-white text-lg`}>
                 {platformIcons[platform.platform]}
               </div>
               <div>
@@ -349,7 +349,7 @@ export default function SocialMediaInsights() {
             </div>
           </div>
 
-          <div className="mt-4 flex items-centre text-sm">
+          <div className="mt-4 flex items-center text-sm">
             <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
             <span className="text-green-600 font-medium">
               +{platform.insights.audienceGrowth}%
@@ -364,7 +364,7 @@ export default function SocialMediaInsights() {
   const AggregatedStats = () => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Followers</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -375,7 +375,7 @@ export default function SocialMediaInsights() {
             <Users className="w-6 h-6 text-blue-600" />
           </div>
         </div>
-        <div className="mt-2 flex items-centre">
+        <div className="mt-2 flex items-center">
           <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
           <span className="text-sm font-medium text-green-600">
             +{formatPercentage(mockSocialInsights.aggregatedMetrics.growthRate)}
@@ -385,7 +385,7 @@ export default function SocialMediaInsights() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Impressions</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -399,7 +399,7 @@ export default function SocialMediaInsights() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Engagement Rate</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -413,7 +413,7 @@ export default function SocialMediaInsights() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Best Platform</p>
             <p className="text-3xl font-bold text-gray-900 mt-1 capitalize">
@@ -434,7 +434,7 @@ export default function SocialMediaInsights() {
       <div className="space-y-4">
         {mockSocialInsights.platforms.flatMap(platform => platform.content).map(content => (
           <div key={content.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
-            <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-centre justify-centre">
+            <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
               {content.type === 'video' || content.type === 'reel' ? 
                 <Video className="w-6 h-6 text-gray-600" /> : 
                 <Image className="w-6 h-6 text-gray-600" />
@@ -444,7 +444,7 @@ export default function SocialMediaInsights() {
               <p className="text-sm font-medium text-gray-900 line-clamp-2">
                 {content.content}
               </p>
-              <div className="flex items-centre space-x-4 mt-2 text-xs text-gray-500">
+              <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
                 <span>{content.publishedDate.toLocaleDateString('en-AU')}</span>
                 <span className="capitalize">{content.type}</span>
                 {content.location && <span>{content.location}</span>}
@@ -458,16 +458,16 @@ export default function SocialMediaInsights() {
               </div>
             </div>
             <div className="text-right">
-              <div className="flex items-centre space-x-3 text-sm">
-                <div className="flex items-centre">
+              <div className="flex items-center space-x-3 text-sm">
+                <div className="flex items-center">
                   <Heart className="w-4 h-4 text-red-500 mr-1" />
                   <span>{formatNumber(content.performance.likes)}</span>
                 </div>
-                <div className="flex items-centre">
+                <div className="flex items-center">
                   <MessageSquare className="w-4 h-4 text-blue-500 mr-1" />
                   <span>{formatNumber(content.performance.comments)}</span>
                 </div>
-                <div className="flex items-centre">
+                <div className="flex items-center">
                   <Share2 className="w-4 h-4 text-green-500 mr-1" />
                   <span>{formatNumber(content.performance.shares)}</span>
                 </div>
@@ -484,11 +484,11 @@ export default function SocialMediaInsights() {
 
   const ContentScheduler = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex justify-between items-centre mb-4">
+      <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-semibold text-gray-900">Scheduled Posts</h3>
         <button
           onClick={() => setShowScheduler(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre"
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center"
         >
           <Plus className="w-4 h-4 mr-2" />
           Schedule Post
@@ -502,17 +502,17 @@ export default function SocialMediaInsights() {
               <p className="font-medium text-gray-900 line-clamp-2">
                 {post.content}
               </p>
-              <div className="flex items-centre space-x-4 mt-2 text-sm text-gray-500">
-                <div className="flex items-centre">
+              <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
+                <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-1" />
                   <span>{post.scheduledDate.toLocaleDateString('en-AU')}</span>
                 </div>
-                <div className="flex items-centre">
+                <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-1" />
                   <span>{post.scheduledDate.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
               </div>
-              <div className="flex items-centre space-x-2 mt-2">
+              <div className="flex items-center space-x-2 mt-2">
                 {post.platforms.map(platform => (
                   <span key={platform} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full capitalize">
                     {platform}
@@ -545,12 +545,12 @@ export default function SocialMediaInsights() {
       <div className="space-y-4">
         {mockSocialInsights.platforms.map(platform => (
           <div key={platform.platform} className="p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-centre justify-between mb-3">
-              <div className="flex items-centre space-x-2">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center space-x-2">
                 <span className="text-lg">{platformIcons[platform.platform]}</span>
                 <span className="font-medium text-gray-900 capitalize">{platform.platform}</span>
               </div>
-              <div className="flex items-centre text-sm">
+              <div className="flex items-center text-sm">
                 <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
                 <span className="text-green-600 font-medium">
                   +{((platform.insights.engagementTrends[2].engagement - platform.insights.engagementTrends[0].engagement) / platform.insights.engagementTrends[0].engagement * 100).toFixed(1)}%
@@ -559,7 +559,7 @@ export default function SocialMediaInsights() {
             </div>
             <div className="grid grid-cols-3 gap-4 text-sm">
               {platform.insights.engagementTrends.map((trend, index) => (
-                <div key={index} className="text-centre">
+                <div key={index} className="text-center">
                   <p className="text-gray-600">
                     {trend.date.toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}
                   </p>
@@ -578,8 +578,8 @@ export default function SocialMediaInsights() {
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Optimal Posting Times</h3>
       <div className="space-y-4">
         {mockSocialInsights.platforms.map(platform => (
-          <div key={platform.platform} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
-            <div className="flex items-centre space-x-3">
+          <div key={platform.platform} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center space-x-3">
               <span className="text-lg">{platformIcons[platform.platform]}</span>
               <span className="font-medium text-gray-900 capitalize">{platform.platform}</span>
             </div>
@@ -598,7 +598,7 @@ export default function SocialMediaInsights() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex justify-between items-centre mb-8">
+      <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Social Media Insights</h1>
           <p className="text-gray-600 mt-2">

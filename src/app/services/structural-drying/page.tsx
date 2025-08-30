@@ -218,7 +218,7 @@ export default function StructuralDryingPage() {
         
         {/* Time Critical Alert */}
         <div className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl p-6 text-white mb-8">
-          <div className="flex items-centre">
+          <div className="flex items-center">
             <svg className="w-8 h-8 mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
             </svg>
@@ -241,7 +241,7 @@ export default function StructuralDryingPage() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mb-4">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl font-bold text-blue-600">1</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Initial Assessment</h3>
@@ -257,7 +257,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mb-4">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl font-bold text-blue-600">2</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Equipment Setup</h3>
@@ -273,7 +273,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mb-4">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl font-bold text-blue-600">3</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Controlled Drying</h3>
@@ -289,7 +289,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mb-4">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl font-bold text-blue-600">4</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Completion Verification</h3>
@@ -323,25 +323,25 @@ export default function StructuralDryingPage() {
                 can remove hundreds of liters of moisture per day while maintaining optimal humidity levels.
               </p>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   200+ litres/day capacity
                 </div>
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Energy efficient operation
                 </div>
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Automatic humidity control
                 </div>
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -359,25 +359,25 @@ export default function StructuralDryingPage() {
                 moisture movement from wet materials to the dehumidification system.
               </p>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Variable speed control
                 </div>
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Stackable design
                 </div>
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Low amperage draw
                 </div>
-                <div className="flex items-centre text-primary-600">
+                <div className="flex items-center text-primary-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -394,7 +394,7 @@ export default function StructuralDryingPage() {
                 Truck-mounted and portable extraction units for immediate water removal, plus specialty 
                 equipment for hardwood floors, walls, and hard-to-reach areas.
               </p>
-              <div className="flex items-centre text-sm text-primary-600 font-medium">
+              <div className="flex items-center text-sm text-primary-600 font-medium">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
@@ -475,27 +475,27 @@ export default function StructuralDryingPage() {
             </p>
             
             <div className="space-y-3">
-              <div className="flex justify-between items-centre p-3 bg-indigo-50 rounded-lg">
+              <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
                 <span className="font-medium text-neutral-900">Structural Lumber</span>
                 <span className="text-sm text-indigo-600 font-medium">≤19% MC</span>
               </div>
               
-              <div className="flex justify-between items-centre p-3 bg-indigo-50 rounded-lg">
+              <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
                 <span className="font-medium text-neutral-900">Plywood/OSB</span>
                 <span className="text-sm text-indigo-600 font-medium">≤16% MC</span>
               </div>
               
-              <div className="flex justify-between items-centre p-3 bg-indigo-50 rounded-lg">
+              <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
                 <span className="font-medium text-neutral-900">Hardwood Flooring</span>
                 <span className="text-sm text-indigo-600 font-medium">6-9% MC</span>
               </div>
               
-              <div className="flex justify-between items-centre p-3 bg-indigo-50 rounded-lg">
+              <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
                 <span className="font-medium text-neutral-900">Gypsum Drywall</span>
                 <span className="text-sm text-indigo-600 font-medium">≤1% MC</span>
               </div>
               
-              <div className="flex justify-between items-centre p-3 bg-indigo-50 rounded-lg">
+              <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
                 <span className="font-medium text-neutral-900">Concrete/Masonry</span>
                 <span className="text-sm text-indigo-600 font-medium">≤4% MC</span>
               </div>
@@ -518,8 +518,8 @@ export default function StructuralDryingPage() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-centre">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-center">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
@@ -531,8 +531,8 @@ export default function StructuralDryingPage() {
             </p>
           </div>
           
-          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-centre">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -544,8 +544,8 @@ export default function StructuralDryingPage() {
             </p>
           </div>
           
-          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-centre">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-center">
+            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
@@ -567,7 +567,7 @@ export default function StructuralDryingPage() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
@@ -586,7 +586,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
               </svg>
@@ -605,7 +605,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
               </svg>
@@ -624,7 +624,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
@@ -643,7 +643,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
@@ -662,7 +662,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-centre justify-centre mb-4">
+            <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
               </svg>
@@ -699,28 +699,28 @@ export default function StructuralDryingPage() {
             </p>
             
             <div className="space-y-3">
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <span className="text-neutral-700">IICRC S500 Standard compliance</span>
               </div>
               
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <span className="text-neutral-700">ANSI/IICRC S500 drying standards</span>
               </div>
               
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <span className="text-neutral-700">Professional equipment calibration</span>
               </div>
               
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
@@ -753,7 +753,7 @@ export default function StructuralDryingPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl p-8 text-centre text-white">
+      <section className="bg-gradient-to-r from-blue-500 to-cyan-600 rounded-2xl p-8 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
           Need Professional Structural Drying?
         </h2>
@@ -761,10 +761,10 @@ export default function StructuralDryingPage() {
           Time is critical for effective structural drying. Our IICRC-certified specialists use industrial 
           equipment and proven techniques to remove moisture completely and prevent mould growth.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/contact"
-            className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
           >
             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -773,7 +773,7 @@ export default function StructuralDryingPage() {
           </a>
           <Link
             href="/drying-assessment"
-            className="inline-flex items-centre justify-centre px-8 py-4 bg-blue-700 text-white rounded-lg font-bold text-lg hover:bg-blue-800 transition-colours"
+            className="inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white rounded-lg font-bold text-lg hover:bg-blue-800 transition-colours"
           >
             Schedule Moisture Assessment
           </Link>

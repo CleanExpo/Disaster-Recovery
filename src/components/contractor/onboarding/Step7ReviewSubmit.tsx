@@ -278,8 +278,8 @@ export default function Step7ReviewSubmit({
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
-        <div className="flex items-centre justify-between">
-          <div className="flex items-centre space-x-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
             <FileText className="h-6 w-6 text-primary" />
             <div>
               <CardTitle>Step 7: Review & Submit Application</CardTitle>
@@ -297,8 +297,8 @@ export default function Step7ReviewSubmit({
       <CardContent className="space-y-6">
         {/* Application Status Overview */}
         <div className="bg-muted/50 rounded-lg p-4 space-y-4">
-          <div className="flex items-centre justify-between">
-            <h3 className="font-semibold flex items-centre gap-2">
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold flex items-center gap-2">
               <Info className="h-5 w-5" />
               Application Overview
             </h3>
@@ -314,7 +314,7 @@ export default function Step7ReviewSubmit({
 
           <Progress value={completionPercentage} className="h-2" />
 
-          <div className="grid grid-cols-3 gap-4 text-centre">
+          <div className="grid grid-cols-3 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold text-green-600">{completeSections}</div>
               <div className="text-sm text-muted-foreground">Complete</div>
@@ -337,8 +337,8 @@ export default function Step7ReviewSubmit({
               {reviewSections.map((section, index) => (
                 <AccordionItem key={index} value={`section-${index}`}>
                   <AccordionTrigger>
-                    <div className="flex items-centre justify-between w-full pr-4">
-                      <div className="flex items-centre gap-2">
+                    <div className="flex items-center justify-between w-full pr-4">
+                      <div className="flex items-center gap-2">
                         {section.icon}
                         <span>{section.title}</span>
                       </div>
@@ -348,7 +348,7 @@ export default function Step7ReviewSubmit({
                   <AccordionContent>
                     <div className="space-y-2 pt-2">
                       {section.items.map((item, itemIndex) => (
-                        <div key={itemIndex} className="flex justify-between items-centre py-1">
+                        <div key={itemIndex} className="flex justify-between items-center py-1">
                           <span className="text-sm text-muted-foreground">
                             {item.label}
                             {item.required && <span className="text-red-500 ml-1">*</span>}
@@ -407,7 +407,7 @@ export default function Step7ReviewSubmit({
         {/* Payment Summary */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg flex items-centre gap-2">
+            <CardTitle className="text-lg flex items-center gap-2">
               <DollarSign className="h-5 w-5" />
               Payment Summary
             </CardTitle>
@@ -437,7 +437,7 @@ export default function Step7ReviewSubmit({
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg flex items-centre gap-2">
+                <CardTitle className="text-lg flex items-center gap-2">
                   <CheckSquare className="h-5 w-5" />
                   Confirmations & Agreement
                 </CardTitle>

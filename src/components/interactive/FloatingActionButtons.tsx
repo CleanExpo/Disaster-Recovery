@@ -255,7 +255,7 @@ function ExpandableFABMenu() {
 
         {/* Main Toggle Button */}
         <motion.button
-          className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-xl flex items-centre justify-centre relative overflow-hidden group"
+          className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-xl flex items-center justify-center relative overflow-hidden group"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.95 }}
           whileHover={{ scale: 1.05 }}
@@ -373,7 +373,7 @@ function QuickActionDock() {
           }}
         >
           <div className="bg-white/80 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">
-            <div className="flex items-centre space-x-4">
+            <div className="flex items-center space-x-4">
               {dockItems.map((item, index) => (
                 <MagneticFloatingButton
                   key={item.label}
@@ -438,7 +438,7 @@ function EmergencyResponseTimer() {
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
         >
           <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-white/20">
-            <div className="flex items-centre space-x-3">
+            <div className="flex items-center space-x-3">
               <motion.div
                 className="w-3 h-3 bg-green-500 rounded-full"
                 animate={{

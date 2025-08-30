@@ -86,7 +86,7 @@ export default function UltraModernFooter() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Top section with CTA */}
         <div 
-          className="mb-16 p-8 rounded-3xl text-centre"
+          className="mb-16 p-8 rounded-3xl text-center"
           style={{
             background: 'rgba(99, 91, 255, 0.05)',
             backdropFilter: 'blur(20px)',
@@ -109,7 +109,7 @@ export default function UltraModernFooter() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-centre gap-3 px-8 py-4 rounded-full font-bold text-white transition-all hover:scale-105"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white transition-all hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
               boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
@@ -132,9 +132,9 @@ export default function UltraModernFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand section */}
           <div className="lg:col-span-2">
-            <div className="flex items-centre gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6">
               <div 
-                className="w-12 h-12 rounded-xl flex items-centre justify-centre"
+                className="w-12 h-12 rounded-xl flex items-center justify-center"
                 style={{
                   background: 'linear-gradient(135deg, #635bff 0%, #00d4ff 100%)',
                 }}
@@ -183,7 +183,7 @@ export default function UltraModernFooter() {
 
           {/* Services column */}
           <div>
-            <h4 className="text-white font-semibold mb-4 flex items-centre gap-2">
+            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
               <div className="w-8 h-[1px] bg-gradient-to-r from-purple-500 to-transparent" />
               Services
             </h4>
@@ -192,7 +192,7 @@ export default function UltraModernFooter() {
                 <li key={item.label}>
                   <Link 
                     href={item.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colours relative group inline-flex items-centre"
+                    className="text-gray-400 hover:text-white text-sm transition-colours relative group inline-flex items-center"
                   >
                     <span className="absolute left-0 w-0 h-[1px] bg-purple-500 transition-all group-hover:w-full" />
                     <span className="relative">{item.label}</span>
@@ -204,7 +204,7 @@ export default function UltraModernFooter() {
 
           {/* Company column */}
           <div>
-            <h4 className="text-white font-semibold mb-4 flex items-centre gap-2">
+            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
               <div className="w-8 h-[1px] bg-gradient-to-r from-cyan-500 to-transparent" />
               Company
             </h4>
@@ -213,7 +213,7 @@ export default function UltraModernFooter() {
                 <li key={item.label}>
                   <Link 
                     href={item.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colours relative group inline-flex items-centre"
+                    className="text-gray-400 hover:text-white text-sm transition-colours relative group inline-flex items-center"
                   >
                     <span className="absolute left-0 w-0 h-[1px] bg-cyan-500 transition-all group-hover:w-full" />
                     <span className="relative">{item.label}</span>
@@ -225,7 +225,7 @@ export default function UltraModernFooter() {
 
           {/* Support column */}
           <div>
-            <h4 className="text-white font-semibold mb-4 flex items-centre gap-2">
+            <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
               <div className="w-8 h-[1px] bg-gradient-to-r from-emerald-500 to-transparent" />
               Support
             </h4>
@@ -234,7 +234,7 @@ export default function UltraModernFooter() {
                 <li key={item.label}>
                   <Link 
                     href={item.href}
-                    className="text-gray-400 hover:text-white text-sm transition-colours relative group inline-flex items-centre"
+                    className="text-gray-400 hover:text-white text-sm transition-colours relative group inline-flex items-center"
                   >
                     <span className="absolute left-0 w-0 h-[1px] bg-emerald-500 transition-all group-hover:w-full" />
                     <span className="relative">{item.label}</span>
@@ -252,14 +252,14 @@ export default function UltraModernFooter() {
             borderTop: '1px solid rgba(255, 255, 255, 0.1)',
           }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-centre gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright */}
             <div className="text-sm text-gray-500">
               © {new Date().getFullYear()} Disaster Recovery Australia. All rights reserved.
             </div>
 
             {/* Social links */}
-            <div className="flex items-centre gap-3">
+            <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -267,7 +267,7 @@ export default function UltraModernFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="relative w-12 h-12 rounded-lg flex items-centre justify-centre transition-all hover:scale-110 group overflow-hidden"
+                  className="relative w-12 h-12 rounded-lg flex items-center justify-center transition-all hover:scale-110 group overflow-hidden"
                   style={{
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -293,7 +293,7 @@ export default function UltraModernFooter() {
             </div>
 
             {/* Legal links */}
-            <div className="flex items-centre gap-6 text-sm">
+            <div className="flex items-center gap-6 text-sm">
               <Link href="/privacy" className="text-gray-500 hover:text-white transition-colours">
                 Privacy Policy
               </Link>

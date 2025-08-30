@@ -97,8 +97,8 @@ export default function UltraModernFooter() {
         <div className="bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             {/* Top Section with Emergency CTA */}
-            <div className="text-centre mb-16">
-              <div className="inline-flex items-centre gap-3 mb-6">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-3 mb-6">
                 <div className="animate-spin-slow">
                   <ShieldCheckIcon className="w-16 h-16 text-cyan-400" />
                 </div>
@@ -113,7 +113,7 @@ export default function UltraModernFooter() {
               {/* Emergency Hotline Banner */}
               <div className="relative inline-block transition-transform hover:scale-105">
                 <div className="relative rounded-full border border-red-500/30 bg-gradient-to-r from-red-900/20 to-orange-900/20">
-                  <div className="backdrop-blur-sm rounded-full px-8 py-4 flex items-centre gap-4">
+                  <div className="backdrop-blur-sm rounded-full px-8 py-4 flex items-center gap-4">
                     <div className="relative">
                       <BoltIcon className="w-8 h-8 text-yellow-400 animate-pulse" />
                     </div>
@@ -123,7 +123,7 @@ export default function UltraModernFooter() {
                         Contact Us
                       </a>
                     </div>
-                    <div className="flex items-centre gap-2">
+                    <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-green-500 rounded-full animate-ping" />
                       <span className="text-sm text-green-400 font-medium">Live Now</span>
                     </div>
@@ -136,7 +136,7 @@ export default function UltraModernFooter() {
             <div className="grid md:grid-cols-4 gap-8 mb-12">
               {footerSections.map((section) => (
                 <div key={section.title}>
-                  <h3 className="font-bold text-lg mb-4 flex items-centre gap-2">
+                  <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
                     <div className={`w-1 h-6 bg-gradient-to-b ${section.gradient} rounded-full`} />
                     <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                       {section.title}
@@ -149,7 +149,7 @@ export default function UltraModernFooter() {
                           href={link.href}
                           onMouseEnter={() => setHoveredLink(`${section.title}-${link.label}`)}
                           onMouseLeave={() => setHoveredLink(null)}
-                          className="group flex items-centre gap-2 text-gray-400 hover:text-white transition-all"
+                          className="group flex items-center gap-2 text-gray-400 hover:text-white transition-all"
                         >
                           <span className={`w-1.5 h-1.5 bg-cyan-400 rounded-full transition-transform ${
                             hoveredLink === `${section.title}-${link.label}` ? 'scale-100' : 'scale-0'
@@ -170,11 +170,11 @@ export default function UltraModernFooter() {
 
             {/* Trust Indicators */}
             <div className="border-t border-white/10 pt-8 mb-8">
-              <div className="flex flex-wrap justify-centre items-centre gap-8">
+              <div className="flex flex-wrap justify-center items-center gap-8">
                 {certifications.map((cert) => (
                   <div
                     key={cert}
-                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-2 rounded-lg flex items-centre gap-2 transition-transform hover:-translate-y-1"
+                    className="bg-slate-800/50 backdrop-blur-sm px-4 py-2 rounded-lg flex items-center gap-2 transition-transform hover:-translate-y-1"
                   >
                     <ShieldCheckIcon className="w-5 h-5 text-green-400" />
                     <span className="text-sm font-medium text-gray-300">{cert}</span>
@@ -211,7 +211,7 @@ export default function UltraModernFooter() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-4 flex items-centre gap-4 group transition-all hover:bg-slate-700/30 hover:scale-105"
+                  className="bg-slate-800/30 backdrop-blur-sm rounded-xl p-4 flex items-center gap-4 group transition-all hover:bg-slate-700/30 hover:scale-105"
                 >
                   <item.icon className={`w-8 h-8 ${item.colour} group-hover:scale-110 transition-transform`} />
                   <div>
@@ -224,12 +224,12 @@ export default function UltraModernFooter() {
 
             {/* Bottom Bar */}
             <div className="border-t border-white/10 pt-8 mt-8">
-              <div className="flex flex-col md:flex-row justify-between items-centre gap-4">
-                <div className="text-centre md:text-left">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="text-center md:text-left">
                   <p className="text-gray-400 text-sm">
                     © {new Date().getFullYear()} Disaster Recovery Pro. All rights reserved.
                   </p>
-                  <div className="flex gap-4 mt-2 justify-centre md:justify-start">
+                  <div className="flex gap-4 mt-2 justify-center md:justify-start">
                     <Link href="/privacy" className="text-xs text-gray-500 hover:text-white transition-colours">
                       Privacy Policy
                     </Link>
@@ -243,13 +243,13 @@ export default function UltraModernFooter() {
                 </div>
 
                 {/* Social Links */}
-                <div className="flex items-centre gap-4">
+                <div className="flex items-center gap-4">
                   <span className="text-sm text-gray-400">Follow Us:</span>
                   {['Facebook', 'Twitter', 'LinkedIn', 'Instagram'].map((social) => (
                     <a
                       key={social}
                       href="#"
-                      className="w-10 h-10 bg-slate-800/50 backdrop-blur-sm rounded-lg flex items-centre justify-centre hover:bg-white/10 transition-all hover:scale-110 hover:rotate-6"
+                      className="w-10 h-10 bg-slate-800/50 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/10 transition-all hover:scale-110 hover:rotate-6"
                     >
                       <span className="text-xs font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                         {social.charAt(0)}

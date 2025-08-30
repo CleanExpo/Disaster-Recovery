@@ -22,9 +22,9 @@ export default function ClientPortalPage() {
   return (
     <div className="min-h-screen bg-muted/40">
       <header className="border-b bg-card">
-        <div className="container mx-auto flex h-16 items-centre justify-between px-4">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <h1 className="text-xl font-semibold">Client Portal</h1>
-          <div className="flex items-centre gap-4">
+          <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
               {session.user.email}
             </span>
@@ -80,7 +80,7 @@ export default function ClientPortalPage() {
             <h3 className="mb-4 text-lg font-semibold">Recent Audits</h3>
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-centre justify-between">
+                <div key={i} className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Website Audit {i}</p>
                     <p className="text-sm text-muted-foreground">
@@ -99,7 +99,7 @@ export default function ClientPortalPage() {
             <h3 className="mb-4 text-lg font-semibold">Active Proposals</h3>
             <div className="space-y-4">
               {[1, 2].map((i) => (
-                <div key={i} className="flex items-centre justify-between">
+                <div key={i} className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">Service Proposal {i}</p>
                     <p className="text-sm text-muted-foreground">

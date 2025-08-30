@@ -23,8 +23,8 @@ export default function DemoModeIndicator() {
       {/* Demo Mode Banner */}
       <div className="fixed top-0 left-0 right-0 z-[9999] bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg">
         <div className="container mx-auto px-4 py-2">
-          <div className="flex items-centre justify-between">
-            <div className="flex items-centre gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
               <span className="animate-pulse text-2xl">🎭</span>
               <div>
                 <p className="font-semibold text-sm">
@@ -35,10 +35,10 @@ export default function DemoModeIndicator() {
                 </p>
               </div>
             </div>
-            <div className="flex items-centre gap-2">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setShowDetails(!showDetails)}
-                className="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-md text-xs font-medium transition-colours flex items-centre gap-1"
+                className="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-md text-xs font-medium transition-colours flex items-center gap-1"
               >
                 <Info className="w-3 h-3" />
                 {showDetails ? 'Hide' : 'Show'} Details
@@ -65,7 +65,7 @@ export default function DemoModeIndicator() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {Object.entries(demoStatus?.features || {}).map(([service, status]) => (
                 <div key={service} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
-                  <div className="flex items-centre gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                     <span className="text-xs font-medium text-gray-700 dark:text-gray-300 capitalize">
                       {service.replace(/([A-Z])/g, ' $1').trim()}

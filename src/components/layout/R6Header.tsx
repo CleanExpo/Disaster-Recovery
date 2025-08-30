@@ -159,8 +159,8 @@ export default function R6Header() {
         <div className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white relative overflow-hidden animate-pulse">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
           <div className="container mx-auto px-6 relative">
-            <div className="flex items-centre justify-centre py-2">
-              <div className="flex items-centre gap-2">
+            <div className="flex items-center justify-center py-2">
+              <div className="flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 animate-bounce" />
                 <span className="text-sm font-bold">🚨 EMERGENCY RESPONSE ACTIVE • TEAMS DISPATCHED WITHIN 60 MINUTES • CALL NOW 🚨</span>
               </div>
@@ -178,32 +178,32 @@ export default function R6Header() {
       )}>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
         <div className="container mx-auto px-6 relative">
-          <div className="flex items-centre justify-between py-3">
-            <div className="flex items-centre gap-8">
-              <div className="flex items-centre gap-2 group">
+          <div className="flex items-center justify-between py-3">
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-2 group">
                 <Shield className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">IICRC Certified</span>
               </div>
-              <div className="flex items-centre gap-2 group">
+              <div className="flex items-center gap-2 group">
                 <Award className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">Insurance Approved</span>
               </div>
-              <div className="flex items-centre gap-2 group">
+              <div className="flex items-center gap-2 group">
                 <Users className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">
                   <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-1"></span>
                   Teams Available Now
                 </span>
               </div>
-              <div className="flex items-centre gap-2 group">
+              <div className="flex items-center gap-2 group">
                 <Zap className="w-4 h-4 group-hover:scale-110 transition-transform animate-pulse" />
                 <span className="text-sm font-medium">60-Min Response Guarantee</span>
               </div>
             </div>
-            <div className="flex items-centre gap-4">
+            <div className="flex items-center gap-4">
               <button
                 onClick={() => setShowLiveChat(true)}
-                className="flex items-centre gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full hover:bg-white/20 transition-all duration-300 group text-sm font-medium"
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full hover:bg-white/20 transition-all duration-300 group text-sm font-medium"
               >
                 <Headphones className="w-4 h-4 group-hover:bounce transition-all" />
                 <span>Live Chat</span>
@@ -211,7 +211,7 @@ export default function R6Header() {
               <a 
                 href="tel:1300566166" 
                 className={cn(
-                  "flex items-centre gap-2 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-300 group font-bold",
+                  "flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-300 group font-bold",
                   emergencyMode 
                     ? "bg-white text-red-600 hover:bg-red-50 animate-pulse" 
                     : "bg-white/20 text-white hover:bg-white/30"
@@ -241,7 +241,7 @@ export default function R6Header() {
         )}
       >
         <nav className="container mx-auto px-6">
-          <div className="flex items-centre justify-between h-20">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" className="relative group">
               <Image
@@ -256,7 +256,7 @@ export default function R6Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-centre gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
                 <div key={item.label} className="relative group">
                   {item.items ? (
@@ -264,7 +264,7 @@ export default function R6Header() {
                       onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
                       onMouseEnter={() => setActiveDropdown(item.label)}
                       className={cn(
-                        "flex items-centre gap-1.5 px-5 py-2.5 rounded-lg font-semibold text-[15px] transition-all duration-300",
+                        "flex items-center gap-1.5 px-5 py-2.5 rounded-lg font-semibold text-[15px] transition-all duration-300",
                         "hover:bg-[#131cff]/5 hover:text-[#131cff]",
                         activeDropdown === item.label && "bg-[#131cff]/5 text-[#131cff]"
                       )}
@@ -279,7 +279,7 @@ export default function R6Header() {
                     <Link
                       href={item.href!}
                       className={cn(
-                        "flex items-centre px-5 py-2.5 rounded-lg font-semibold text-[15px] transition-all duration-300",
+                        "flex items-center px-5 py-2.5 rounded-lg font-semibold text-[15px] transition-all duration-300",
                         "hover:bg-[#131cff]/5 hover:text-[#131cff]",
                         pathname === item.href && "bg-[#131cff]/5 text-[#131cff]"
                       )}
@@ -333,19 +333,19 @@ export default function R6Header() {
             </div>
 
             {/* Enhanced Emergency CTA Buttons */}
-            <div className="hidden lg:flex items-centre gap-3">
+            <div className="hidden lg:flex items-center gap-3">
               {/* Emergency Quick Actions */}
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowLiveChat(true)}
-                  className="flex items-centre gap-2 px-3 py-2 text-sm font-medium text-[#6a6d72] hover:text-[#131cff] hover:bg-[#131cff]/5 rounded-lg transition-all duration-300 group"
+                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#6a6d72] hover:text-[#131cff] hover:bg-[#131cff]/5 rounded-lg transition-all duration-300 group"
                 >
                   <MessageCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span className="hidden xl:inline">Live Chat</span>
                 </button>
                 
                 {/* Response Time Indicator */}
-                <div className="flex items-centre gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg border border-green-200">
+                <div className="flex items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg border border-green-200">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-xs font-semibold hidden xl:inline">Teams Ready</span>
                   <Clock className="w-4 h-4" />
@@ -354,7 +354,7 @@ export default function R6Header() {
               </div>
 
               {/* Main CTA Buttons */}
-              <div className="flex items-centre gap-2 pl-2 border-l border-gray-200">
+              <div className="flex items-center gap-2 pl-2 border-l border-gray-200">
                 <R6Button
                   variant="outline"
                   size="sm"
@@ -438,7 +438,7 @@ export default function R6Header() {
             <div className="pt-4 space-y-3 border-t border-[#eeeeee]">
               {/* Emergency Response Indicator */}
               <div className={cn(
-                "flex items-centre justify-centre gap-2 py-3 px-4 rounded-lg font-semibold text-sm",
+                "flex items-center justify-center gap-2 py-3 px-4 rounded-lg font-semibold text-sm",
                 emergencyMode 
                   ? "bg-red-50 text-red-700 border border-red-200" 
                   : "bg-green-50 text-green-700 border border-green-200"
@@ -457,7 +457,7 @@ export default function R6Header() {
               {/* Live Chat Button */}
               <button
                 onClick={() => setShowLiveChat(true)}
-                className="w-full flex items-centre justify-centre gap-2 py-3 px-4 bg-[#00a0d2]/10 text-[#00a0d2] rounded-lg font-semibold hover:bg-[#00a0d2]/20 transition-all duration-300"
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#00a0d2]/10 text-[#00a0d2] rounded-lg font-semibold hover:bg-[#00a0d2]/20 transition-all duration-300"
               >
                 <MessageCircle className="w-4 h-4" />
                 Start Live Chat
@@ -493,17 +493,17 @@ export default function R6Header() {
 
       {/* Live Chat Modal */}
       {showLiveChat && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-centre justify-centre p-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-hidden">
             {/* Chat Header */}
-            <div className="bg-gradient-to-r from-[#131cff] to-[#00a0d2] text-white p-4 flex items-centre justify-between">
-              <div className="flex items-centre gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-centre justify-centre">
+            <div className="bg-gradient-to-r from-[#131cff] to-[#00a0d2] text-white p-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                   <Headphones className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="font-semibold">Emergency Support</h3>
-                  <p className="text-sm opacity-90 flex items-centre gap-2">
+                  <p className="text-sm opacity-90 flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     Available now • Avg response: 30 seconds
                   </p>
@@ -553,7 +553,7 @@ export default function R6Header() {
                 </button>
               </div>
 
-              <div className="text-centre pt-2 border-t">
+              <div className="text-center pt-2 border-t">
                 <p className="text-xs text-gray-500 mb-2">
                   For immediate emergencies, call directly:
                 </p>

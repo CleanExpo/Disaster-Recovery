@@ -58,14 +58,14 @@ export default function BushfireSmokeDamagePage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Bushfire Smoke Damage
             </h1>
             <p className="text-xl mb-8 text-blue-100">
               Expert bushfire smoke damage services across Queensland. Fast response, professional restoration, insurance approved.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
                 className="bg-orange-500 hover:bg-orange-600 text-white"
@@ -142,7 +142,7 @@ export default function BushfireSmokeDamagePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-centre mb-10">Bushfire Smoke Damage FAQs</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">Bushfire Smoke Damage FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -157,7 +157,7 @@ export default function BushfireSmokeDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Need Bushfire Smoke Damage Services?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get professional help now. Available 24/7 for emergency response.
@@ -183,7 +183,7 @@ export default function BushfireSmokeDamagePage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-centre gap-3 p-3 bg-orange-50 rounded-lg">
+            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
                 <p className="font-semibold">Call Now</p>

@@ -211,7 +211,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
   const SummaryMetrics = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Total Leads Generated</p>
             <p className="text-3xl font-bold text-gray-900">{reportingData?.summary.totalLeads}</p>
@@ -227,7 +227,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Total Revenue</p>
             <p className="text-3xl font-bold text-gray-900">
@@ -245,7 +245,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Marketing ROI</p>
             <p className="text-3xl font-bold text-gray-900">
@@ -263,7 +263,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Territory Rank</p>
             <p className="text-3xl font-bold text-gray-900">#{reportingData?.summary.territoryRank}</p>
@@ -282,7 +282,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
 
   const LeadPerformanceChart = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-      <div className="flex items-centre justify-between mb-6">
+      <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-900">Lead Performance by Source</h3>
         <div className="flex space-x-2">
           <select
@@ -320,7 +320,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
                 <td className="py-3 px-4 text-right text-gray-900">{formatCurrency(source.cost)}</td>
                 <td className="py-3 px-4 text-right text-gray-900">{formatCurrency(source.revenue)}</td>
                 <td className="py-3 px-4 text-right">
-                  <span className={`inline-flex items-centre px-2.5 py-1 rounded-full text-xs font-medium ${
+                  <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
                     source.roi > 300 ? 'bg-green-100 text-green-800' :
                     source.roi > 200 ? 'bg-yellow-100 text-yellow-800' :
                     'bg-red-100 text-red-800'
@@ -343,9 +343,9 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {reportingData?.campaignROI.coFundedCampaigns.map((campaign) => (
           <div key={campaign.campaignId} className="border border-gray-200 rounded-lg p-4">
-            <div className="flex items-centre justify-between mb-3">
+            <div className="flex items-center justify-between mb-3">
               <h4 className="font-medium text-gray-900">{campaign.name}</h4>
-              <span className={`inline-flex items-centre px-2.5 py-1 rounded-full text-xs font-medium ${
+              <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
                 campaign.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
               }`}>
                 {campaign.status}
@@ -389,14 +389,14 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
           <h4 className="font-medium text-gray-900 mb-4">Market Position</h4>
           <div className="space-y-3">
             {reportingData?.territoryInsights.competitorAnalysis.map((competitor, index) => (
-              <div key={index} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
-                <div className="flex items-centre space-x-3">
+              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div className="flex items-center space-x-3">
                   <span className="font-medium text-gray-900">#{index + 1}</span>
                   <span className={competitor.contractor === 'Your Company' ? 'font-semibold text-blue-600' : 'text-gray-700'}>
                     {competitor.contractor}
                   </span>
                 </div>
-                <div className="flex items-centre space-x-2">
+                <div className="flex items-center space-x-2">
                   <span className="text-sm font-medium">{formatPercentage(competitor.marketShare)}</span>
                   {getChangeIcon(competitor.trend as any)}
                 </div>
@@ -408,15 +408,15 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         <div>
           <h4 className="font-medium text-gray-900 mb-4">Territory Summary</h4>
           <div className="space-y-4">
-            <div className="flex items-centre justify-between p-3 bg-blue-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
               <span className="text-gray-700">Your Territory:</span>
               <span className="font-medium text-gray-900">{reportingData?.territoryInsights.yourTerritory}</span>
             </div>
-            <div className="flex items-centre justify-between p-3 bg-green-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
               <span className="text-gray-700">Current Rank:</span>
               <span className="font-medium text-gray-900">#{reportingData?.territoryInsights.rank} of {reportingData?.territoryInsights.totalContractors}</span>
             </div>
-            <div className="flex items-centre justify-between p-3 bg-purple-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
               <span className="text-gray-700">Market Share:</span>
               <span className="font-medium text-gray-900">{formatPercentage(reportingData?.territoryInsights.marketShare || 0)}</span>
             </div>
@@ -428,7 +428,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
 
   const MarketingOpportunities = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-centre space-x-2 mb-6">
+      <div className="flex items-center space-x-2 mb-6">
         <Lightbulb className="w-5 h-5 text-yellow-500" />
         <h3 className="text-lg font-semibold text-gray-900">Marketing Opportunities</h3>
       </div>
@@ -437,7 +437,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
         {reportingData?.marketingOpportunities.map((opportunity) => (
           <div key={opportunity.id} className="border border-gray-200 rounded-lg p-6">
             <div className="flex items-start justify-between mb-4">
-              <div className="flex items-centre space-x-3">
+              <div className="flex items-center space-x-3">
                 <div className="p-2 bg-blue-50 rounded-lg">
                   {opportunity.type === 'co_funded_campaign' ? 
                     <Users className="w-5 h-5 text-blue-600" /> : 
@@ -449,21 +449,21 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
                   <p className="text-sm text-gray-600 mt-1">{opportunity.description}</p>
                 </div>
               </div>
-              <span className={`inline-flex items-centre px-2.5 py-1 rounded-full text-xs font-medium ${getConfidenceColor(opportunity.confidence)}`}>
+              <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getConfidenceColor(opportunity.confidence)}`}>
                 {opportunity.confidence} confidence
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div className="text-centre p-3 bg-gray-50 rounded-lg">
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-600">Estimated Cost</p>
                 <p className="text-lg font-semibold text-gray-900">{formatCurrency(opportunity.estimatedCost)}</p>
               </div>
-              <div className="text-centre p-3 bg-green-50 rounded-lg">
+              <div className="text-center p-3 bg-green-50 rounded-lg">
                 <p className="text-sm text-gray-600">Potential Revenue</p>
                 <p className="text-lg font-semibold text-green-600">{formatCurrency(opportunity.potentialRevenue)}</p>
               </div>
-              <div className="text-centre p-3 bg-purple-50 rounded-lg">
+              <div className="text-center p-3 bg-purple-50 rounded-lg">
                 <p className="text-sm text-gray-600">Estimated ROI</p>
                 <p className="text-lg font-semibold text-purple-600">{formatPercentage(opportunity.estimatedROI)}</p>
               </div>
@@ -473,7 +473,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               <h5 className="font-medium text-gray-900 mb-2">Benefits:</h5>
               <ul className="space-y-1">
                 {opportunity.benefits.map((benefit, index) => (
-                  <li key={index} className="text-sm text-gray-600 flex items-centre">
+                  <li key={index} className="text-sm text-gray-600 flex items-center">
                     <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mr-2"></div>
                     {benefit}
                   </li>
@@ -481,9 +481,9 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
               </ul>
             </div>
 
-            <div className="flex items-centre justify-between">
-              <div className="flex items-centre space-x-4 text-sm text-gray-600">
-                <div className="flex items-centre">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4 text-sm text-gray-600">
+                <div className="flex items-center">
                   <Clock className="w-4 h-4 mr-1" />
                   Deadline: {new Date(opportunity.deadline).toLocaleDateString()}
                 </div>
@@ -521,7 +521,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Marketing Performance Dashboard</h1>
           <p className="text-gray-600 mt-1">Track your leads, campaigns, and growth opportunities</p>

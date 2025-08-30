@@ -17,7 +17,7 @@ export default function AIDemoPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-centre mb-8">
+        <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             AI Orchestration System Demo
           </h1>
@@ -28,7 +28,7 @@ export default function AIDemoPage() {
           {/* Feature Highlights */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
             <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="flex items-centre justify-centre w-12 h-12 bg-blue-100 rounded-lg mx-auto mb-3">
+              <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mx-auto mb-3">
                 <Brain className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Sequential Thinking</h3>
@@ -38,7 +38,7 @@ export default function AIDemoPage() {
             </div>
             
             <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="flex items-centre justify-centre w-12 h-12 bg-green-100 rounded-lg mx-auto mb-3">
+              <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-lg mx-auto mb-3">
                 <Zap className="h-6 w-6 text-green-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Intelligent Routing</h3>
@@ -48,7 +48,7 @@ export default function AIDemoPage() {
             </div>
             
             <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="flex items-centre justify-centre w-12 h-12 bg-purple-100 rounded-lg mx-auto mb-3">
+              <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-lg mx-auto mb-3">
                 <Target className="h-6 w-6 text-purple-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Disaster Recovery Focus</h3>

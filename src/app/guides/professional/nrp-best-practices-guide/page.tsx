@@ -16,9 +16,9 @@ export default function NRPBestPracticesGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       {/* Hero Section */}
-      <div className="relative py-24 px-6 text-centre bg-gradient-to-r from-blue-900/80 to-slate-900/80">
+      <div className="relative py-24 px-6 text-center bg-gradient-to-r from-blue-900/80 to-slate-900/80">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-centre justify-centre gap-3 mb-6">
+          <div className="flex items-center justify-center gap-3 mb-6">
             <Shield className="h-12 w-12 text-blue-400" />
             <Award className="h-10 w-10 text-yellow-400" />
           </div>
@@ -41,7 +41,7 @@ export default function NRPBestPracticesGuidePage() {
         
         {/* Standards Overview */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-centre gap-3">
+          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <CheckCircle className="h-8 w-8 text-green-400" />
             Mandatory Standards for NRP Contractors
           </h2>
@@ -102,7 +102,7 @@ export default function NRPBestPracticesGuidePage() {
 
         {/* Emergency Response Procedures */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-centre gap-3">
+          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <Clock className="h-8 w-8 text-orange-400" />
             Emergency Response Procedures
           </h2>
@@ -113,7 +113,7 @@ export default function NRPBestPracticesGuidePage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">1</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Emergency Callout Response</h4>
                     <p className="text-slate-300 text-sm">24/7 availability with maximum 2-hour response time for emergency situations</p>
@@ -121,7 +121,7 @@ export default function NRPBestPracticesGuidePage() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">2</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Administrative Processing</h4>
                     <p className="text-slate-300 text-sm">Complete insurance documentation, claim initiation, and regulatory compliance</p>
@@ -129,7 +129,7 @@ export default function NRPBestPracticesGuidePage() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">3</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Professional Inspection</h4>
                     <p className="text-slate-300 text-sm">Certified technician assessment with comprehensive damage evaluation</p>
@@ -137,7 +137,7 @@ export default function NRPBestPracticesGuidePage() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">4</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">4</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Professional Detection Equipment</h4>
                     <p className="text-slate-300 text-sm">Moisture meters, thermal imaging, and environmental monitoring equipment</p>
@@ -147,7 +147,7 @@ export default function NRPBestPracticesGuidePage() {
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">5</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">5</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Make Safe Procedures</h4>
                     <p className="text-slate-300 text-sm">Emergency stabilization and mitigation to prevent further damage</p>
@@ -155,7 +155,7 @@ export default function NRPBestPracticesGuidePage() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">6</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">6</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Transparent Scope & Pricing</h4>
                     <p className="text-slate-300 text-sm">Detailed scope of work with upfront pricing - no hidden costs or surprises</p>
@@ -163,7 +163,7 @@ export default function NRPBestPracticesGuidePage() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-sm font-bold flex-shrink-0 mt-0.5">7</div>
+                  <div className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">7</div>
                   <div>
                     <h4 className="font-semibold text-white mb-1">Detailed Professional Report</h4>
                     <p className="text-slate-300 text-sm">Comprehensive documentation for insurance and legal compliance</p>
@@ -182,7 +182,7 @@ export default function NRPBestPracticesGuidePage() {
 
         {/* Documentation Standards */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-centre gap-3">
+          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <FileText className="h-8 w-8 text-blue-400" />
             Documentation & Reporting Standards
           </h2>
@@ -225,7 +225,7 @@ export default function NRPBestPracticesGuidePage() {
 
         {/* Quality Assurance */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-centre gap-3">
+          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <Users className="h-8 w-8 text-purple-400" />
             Quality Assurance & Compliance
           </h2>
@@ -317,7 +317,7 @@ export default function NRPBestPracticesGuidePage() {
         </div>
 
         {/* Call to Action */}
-        <div className="text-centre">
+        <div className="text-center">
           <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-sm border border-blue-400/30 rounded-lg p-8 max-w-3xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
               Ensure Professional Standards Compliance
@@ -325,7 +325,7 @@ export default function NRPBestPracticesGuidePage() {
             <p className="text-blue-200 mb-6">
               Verify your contractor meets NRP Best Practices before work begins. Professional standards protect your property and investment.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/guides/pricing/real-emergency-response-costs" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colours">
                 View Transparent Pricing
               </Link>

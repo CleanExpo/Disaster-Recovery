@@ -154,8 +154,8 @@ export default function PremiumServicesGrid({
         {showHeader && (
           <>
             {/* Section Header */}
-            <div className="text-centre max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-centre gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
                 <Shield className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-semibold text-blue-600">IICRC Certified Services</span>
               </div>
@@ -175,7 +175,7 @@ export default function PremiumServicesGrid({
 
             {/* Category Filter Pills */}
             {!filterCategory && (
-              <div className="flex flex-wrap justify-centre gap-3 mb-12">
+              <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {categories.map(category => (
                   <button
                     key={category.id}
@@ -188,7 +188,7 @@ export default function PremiumServicesGrid({
                         : "bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:text-blue-600"
                     )}
                   >
-                    <span className="flex items-centre gap-2">
+                    <span className="flex items-center gap-2">
                       {category.icon && <category.icon className="w-4 h-4" />}
                       {category.label}
                     </span>
@@ -242,9 +242,9 @@ export default function PremiumServicesGrid({
 
         {/* Bottom CTA Section */}
         {showHeader && (
-          <div className="mt-16 text-centre">
-            <div className="inline-flex flex-col sm:flex-row items-centre gap-6 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
-              <div className="flex items-centre gap-4">
+          <div className="mt-16 text-center">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
+              <div className="flex items-center gap-4">
                 <div className="p-3 bg-white rounded-xl shadow-md">
                   <TrendingUp className="w-8 h-8 text-blue-600" />
                 </div>

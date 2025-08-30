@@ -354,7 +354,7 @@ export default function LeadAttributionSystem() {
   const OverviewMetrics = () => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Leads</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -368,7 +368,7 @@ export default function LeadAttributionSystem() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Revenue</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -382,7 +382,7 @@ export default function LeadAttributionSystem() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Avg Cost per Lead</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -399,7 +399,7 @@ export default function LeadAttributionSystem() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Conversion Rate</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -419,7 +419,7 @@ export default function LeadAttributionSystem() {
 
   const SourceBreakdown = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex justify-between items-centre mb-6">
+      <div className="flex justify-between items-center mb-6">
         <h3 className="text-lg font-semibold text-gray-900">Lead Source Attribution</h3>
         <div className="text-sm text-gray-500">
           Using {selectedModel.replace('_', ' ')} model
@@ -443,7 +443,7 @@ export default function LeadAttributionSystem() {
             {mockAttributionData.sources.map((source, index) => (
               <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
                 <td className="py-3">
-                  <div className="flex items-centre space-x-3">
+                  <div className="flex items-center space-x-3">
                     <div className={`w-3 h-3 rounded-full ${sourceColors[index % sourceColors.length]}`} />
                     <div>
                       <p className="font-medium text-gray-900">{source.source}</p>
@@ -468,7 +468,7 @@ export default function LeadAttributionSystem() {
                   </span>
                 </td>
                 <td className="py-3 text-right">
-                  <div className="flex items-centre justify-end space-x-2">
+                  <div className="flex items-center justify-end space-x-2">
                     <div 
                       className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden"
                       title={`${formatPercentage(source.attribution[selectedModel] * 100)} attribution`}
@@ -497,8 +497,8 @@ export default function LeadAttributionSystem() {
       <div className="space-y-4">
         {mockAttributionData.conversionPaths.map((path, index) => (
           <div key={index} className="p-4 border border-gray-200 rounded-lg">
-            <div className="flex items-centre justify-between mb-3">
-              <div className="flex items-centre space-x-2">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center space-x-2">
                 {path.path.map((step, stepIndex) => (
                   <React.Fragment key={stepIndex}>
                     <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
@@ -540,8 +540,8 @@ export default function LeadAttributionSystem() {
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Touchpoint Performance</h3>
       <div className="space-y-4">
         {mockAttributionData.touchpoints.map((touchpoint, index) => (
-          <div key={index} className="flex items-centre justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-centre space-x-3">
+          <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center space-x-3">
               <div className={`w-3 h-3 rounded-full ${sourceColors[index % sourceColors.length]}`} />
               <div>
                 <p className="font-medium text-gray-900">
@@ -551,19 +551,19 @@ export default function LeadAttributionSystem() {
               </div>
             </div>
             <div className="flex space-x-6 text-sm">
-              <div className="text-centre">
+              <div className="text-center">
                 <p className="text-gray-600">Visits</p>
                 <p className="font-medium">{formatNumber(touchpoint.visits)}</p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <p className="text-gray-600">Interactions</p>
                 <p className="font-medium">{formatNumber(touchpoint.interactions)}</p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <p className="text-gray-600">Conversions</p>
                 <p className="font-medium">{formatNumber(touchpoint.conversions)}</p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <p className="text-gray-600">Bounce Rate</p>
                 <p className="font-medium">{formatPercentage(touchpoint.bounceRate)}</p>
               </div>
@@ -584,8 +584,8 @@ export default function LeadAttributionSystem() {
           
           return (
             <div key={territory} className="p-4 border border-gray-200 rounded-lg">
-              <div className="flex items-centre justify-between mb-3">
-                <div className="flex items-centre space-x-2">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4 text-gray-500" />
                   <h4 className="font-medium text-gray-900">{territory}</h4>
                 </div>
@@ -618,7 +618,7 @@ export default function LeadAttributionSystem() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex justify-between items-centre mb-8">
+      <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Lead Attribution System</h1>
           <p className="text-gray-600 mt-2">

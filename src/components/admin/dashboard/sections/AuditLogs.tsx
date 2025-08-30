@@ -153,7 +153,7 @@ export function AuditLogs() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Audit Logs & Security Events</h2>
         <div className="flex gap-3">
           <div className="relative">
@@ -255,7 +255,7 @@ export function AuditLogs() {
         <TabsContent value="all">
           <Card>
             <CardHeader>
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <CardTitle className="text-lg">Activity Log</CardTitle>
                 <div className="flex gap-2">
                   <Select value={filterCategory} onValueChange={setFilterCategory}>
@@ -316,7 +316,7 @@ export function AuditLogs() {
                           </div>
                         </td>
                         <td className="p-4">
-                          <div className="flex items-centre gap-2">
+                          <div className="flex items-center gap-2">
                             <User className="h-4 w-4 text-gray-400" />
                             <div>
                               <p className="text-sm font-medium">{log.userName}</p>
@@ -325,7 +325,7 @@ export function AuditLogs() {
                           </div>
                         </td>
                         <td className="p-4">
-                          <div className="flex items-centre gap-2">
+                          <div className="flex items-center gap-2">
                             {getActionIcon(log.category)}
                             <span className={`text-sm font-medium ${getActionColor(log.action, log.success)}`}>
                               {log.action}
@@ -380,7 +380,7 @@ export function AuditLogs() {
                     <div key={log.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <div className="flex items-centre gap-2 mb-2">
+                          <div className="flex items-center gap-2 mb-2">
                             <Shield className={`h-5 w-5 ${
                               log.severity === 'critical' ? 'text-red-500' : 'text-orange-500'
                             }`} />
@@ -390,7 +390,7 @@ export function AuditLogs() {
                             </Badge>
                           </div>
                           <p className="text-sm text-gray-600">{log.details}</p>
-                          <div className="flex items-centre gap-4 mt-2 text-xs text-gray-500">
+                          <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
                             <span>{log.userName}</span>
                             <span>{log.ipAddress}</span>
                             <span>{new Date(log.timestamp).toLocaleString()}</span>
@@ -453,7 +453,7 @@ export function AuditLogs() {
                     <div key={log.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <div className="flex items-centre gap-2 mb-2">
+                          <div className="flex items-center gap-2 mb-2">
                             <CreditCard className="h-4 w-4 text-gray-400" />
                             <p className="font-medium">{log.action}</p>
                           </div>

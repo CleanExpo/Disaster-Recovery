@@ -261,11 +261,11 @@ export default function SchedulePage() {
       {/* Progress Bar */}
       <div className="sticky top-0 bg-white shadow-sm z-10">
         <div className="container mx-auto px-6 py-4">
-          <div className="flex items-centre justify-between max-w-3xl mx-auto">
+          <div className="flex items-center justify-between max-w-3xl mx-auto">
             {[1, 2, 3, 4].map((step) => (
-              <div key={step} className="flex items-centre">
+              <div key={step} className="flex items-center">
                 <div className={`
-                  flex items-centre justify-centre w-10 h-10 rounded-full
+                  flex items-center justify-center w-10 h-10 rounded-full
                   ${currentStep === step ? 'bg-blue-600 text-white' : 
                     currentStep > step ? 'bg-green-500 text-white' : 
                     'bg-gray-200 text-gray-500'}
@@ -284,7 +284,7 @@ export default function SchedulePage() {
               </div>
             ))}
           </div>
-          <div className="text-centre mt-4">
+          <div className="text-center mt-4">
             <h2 className="text-xl font-semibold text-gray-900">
               Step {currentStep}: {getStepTitle(currentStep)}
             </h2>
@@ -318,7 +318,7 @@ export default function SchedulePage() {
                           type="button"
                           onClick={() => setFormData({ ...formData, serviceType: service.id })}
                           className={`
-                            p-4 rounded-lg border-2 transition-all text-centre
+                            p-4 rounded-lg border-2 transition-all text-center
                             ${formData.serviceType === service.id
                               ? 'border-blue-500 bg-blue-50'
                               : 'border-gray-200 hover:border-gray-300'}
@@ -353,7 +353,7 @@ export default function SchedulePage() {
                               : 'border-gray-200 hover:border-gray-300'}
                           `}
                         >
-                          <div className="flex flex-col items-centre">
+                          <div className="flex flex-col items-center">
                             {urgency.icon}
                             <span className="text-sm font-medium mt-2">{urgency.label}</span>
                           </div>
@@ -383,7 +383,7 @@ export default function SchedulePage() {
                               : 'border-gray-200 hover:border-gray-300'}
                           `}
                         >
-                          <div className="flex flex-col items-centre">
+                          <div className="flex flex-col items-center">
                             {property.icon}
                             <span className="text-sm font-medium mt-2">{property.label}</span>
                           </div>
@@ -414,7 +414,7 @@ export default function SchedulePage() {
                             disabled={!available}
                             onClick={() => handleDateSelect(date)}
                             className={`
-                              p-3 rounded-lg border text-centre transition-all
+                              p-3 rounded-lg border text-center transition-all
                               ${isSelected
                                 ? 'border-blue-500 bg-blue-50 text-blue-700'
                                 : available
@@ -460,7 +460,7 @@ export default function SchedulePage() {
                                 : 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'}
                             `}
                           >
-                            <div className="flex items-centre justify-centre gap-2">
+                            <div className="flex items-center justify-center gap-2">
                               <Clock className="h-4 w-4" />
                               <span className="text-sm font-medium">{slot.time}</span>
                             </div>
@@ -628,7 +628,7 @@ export default function SchedulePage() {
                   </div>
 
                   <div>
-                    <label className="flex items-centre gap-3">
+                    <label className="flex items-center gap-3">
                       <input
                         type="checkbox"
                         name="hasInsurance"
@@ -697,7 +697,7 @@ export default function SchedulePage() {
                               : 'border-gray-200 hover:border-gray-300'}
                           `}
                         >
-                          <div className="flex flex-col items-centre gap-2">
+                          <div className="flex flex-col items-center gap-2">
                             {method.icon}
                             <span className="text-sm">{method.label}</span>
                           </div>
@@ -708,7 +708,7 @@ export default function SchedulePage() {
 
                   {/* Booking Summary */}
                   <Card className="p-6 bg-blue-50 border-blue-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-centre gap-2">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                       <Sparkles className="h-5 w-5 text-blue-600" />
                       Booking Summary
                     </h3>
@@ -749,7 +749,7 @@ export default function SchedulePage() {
                     type="button"
                     variant="outline"
                     onClick={handlePrevious}
-                    className="flex items-centre gap-2"
+                    className="flex items-center gap-2"
                   >
                     <ChevronLeft className="h-4 w-4" />
                     Previous
@@ -761,7 +761,7 @@ export default function SchedulePage() {
                     <Button
                       type="button"
                       onClick={handleNext}
-                      className="flex items-centre gap-2"
+                      className="flex items-center gap-2"
                     >
                       Next
                       <ChevronRight className="h-4 w-4" />
@@ -770,7 +770,7 @@ export default function SchedulePage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex items-centre gap-2 bg-gradient-to-r from-blue-600 to-purple-600"
+                      className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600"
                     >
                       {isSubmitting ? (
                         <>

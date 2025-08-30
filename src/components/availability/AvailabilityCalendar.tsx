@@ -379,8 +379,8 @@ const AvailabilityCalendar: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <CalendarIcon className="h-6 w-6 text-blue-600" />
             </div>
@@ -389,17 +389,17 @@ const AvailabilityCalendar: React.FC = () => {
               <p className="text-sm text-gray-500">Plan and manage your future availability</p>
             </div>
           </div>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <button
               onClick={() => setShowRecurringModal(true)}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2"
+              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
             >
               <Repeat className="h-4 w-4" />
               <span>Recurring Schedule</span>
             </button>
             <button
               onClick={() => setShowScheduleModal(true)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-centre space-x-2"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
             >
               <Plus className="h-4 w-4" />
               <span>Schedule Window</span>
@@ -408,7 +408,7 @@ const AvailabilityCalendar: React.FC = () => {
         </div>
 
         {/* View Mode Toggle */}
-        <div className="flex items-centre space-x-2">
+        <div className="flex items-center space-x-2">
           {(['month', 'week', 'day'] as const).map((mode) => (
             <button
               key={mode}
@@ -427,7 +427,7 @@ const AvailabilityCalendar: React.FC = () => {
 
       {/* Calendar Navigation */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
+        <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => navigateMonth(-1)}
             className="p-2 hover:bg-gray-100 rounded-lg"
@@ -450,7 +450,7 @@ const AvailabilityCalendar: React.FC = () => {
           <>
             <div className="grid grid-cols-7 gap-px bg-gray-200">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                <div key={day} className="bg-gray-50 p-2 text-centre text-sm font-medium">
+                <div key={day} className="bg-gray-50 p-2 text-center text-sm font-medium">
                   {day}
                 </div>
               ))}
@@ -539,9 +539,9 @@ const AvailabilityCalendar: React.FC = () => {
                 const StatusIcon = getStatusIcon(status);
 
                 return (
-                  <div key={i} className="flex items-centre space-x-3 p-2 rounded-lg hover:bg-gray-50">
+                  <div key={i} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50">
                     <span className="text-sm text-gray-500 w-16">{formatTime(time)}</span>
-                    <div className={`flex-1 p-2 rounded flex items-centre space-x-2 ${
+                    <div className={`flex-1 p-2 rounded flex items-center space-x-2 ${
                       status === 'available' ? 'bg-green-50' :
                       status === 'busy' ? 'bg-yellow-50' :
                       status === 'vacation' ? 'bg-blue-50' :
@@ -580,8 +580,8 @@ const AvailabilityCalendar: React.FC = () => {
             .map((window) => {
               const StatusIcon = getStatusIcon(window.status);
               return (
-                <div key={window.id} className="flex items-centre justify-between p-3 border rounded-lg">
-                  <div className="flex items-centre space-x-3">
+                <div key={window.id} className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center space-x-3">
                     <StatusIcon className={`h-5 w-5 ${getStatusColor(window.status).replace('bg-', 'text-')}`} />
                     <div>
                       <p className="font-medium">
@@ -594,7 +594,7 @@ const AvailabilityCalendar: React.FC = () => {
                       )}
                     </div>
                   </div>
-                  <div className="flex items-centre space-x-2">
+                  <div className="flex items-center space-x-2">
                     {window.approved ? (
                       <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">
                         Approved
@@ -628,7 +628,7 @@ const AvailabilityCalendar: React.FC = () => {
 
       {/* Schedule Window Modal */}
       {showScheduleModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">
               {editingWindow ? 'Edit' : 'Schedule'} Availability Window
@@ -728,7 +728,7 @@ const AvailabilityCalendar: React.FC = () => {
 
       {/* Recurring Schedule Modal */}
       {showRecurringModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50 overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full m-4">
             <h3 className="text-lg font-semibold mb-4">Edit Recurring Weekly Schedule</h3>
             
@@ -740,7 +740,7 @@ const AvailabilityCalendar: React.FC = () => {
                     <h4 className="font-medium mb-3">{dayName}</h4>
                     <div className="space-y-2">
                       {day.periods.map((period, periodIndex) => (
-                        <div key={periodIndex} className="flex items-centre space-x-2">
+                        <div key={periodIndex} className="flex items-center space-x-2">
                           <input
                             type="time"
                             value={period.startTime}

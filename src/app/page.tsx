@@ -23,9 +23,9 @@ export default function ComingSoonPage() {
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:50px_50px]" />
         <div className="relative">
           <div className="container mx-auto px-6 py-24">
-            <div className="text-centre max-w-5xl mx-auto">
+            <div className="text-center max-w-5xl mx-auto">
               {/* Logo/Brand */}
-              <div className="flex items-centre justify-centre gap-3 mb-8">
+              <div className="flex items-center justify-center gap-3 mb-8">
                 <Shield className="h-12 w-12 text-blue-400" />
                 <div className="text-left">
                   <h1 className="text-4xl font-bold text-white">NRP</h1>
@@ -50,12 +50,12 @@ export default function ComingSoonPage() {
               </p>
 
               {/* Dual Access Buttons */}
-              <div className="flex flex-col md:flex-row gap-6 justify-centre mb-16">
+              <div className="flex flex-col md:flex-row gap-6 justify-center mb-16">
                 <Link 
                   href="/client/access"
                   className="group relative px-8 py-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl text-white font-semibold text-lg hover:shadow-2xl hover:shadow-green-500/25 transition-all duration-300"
                 >
-                  <div className="flex items-centre justify-centre gap-3">
+                  <div className="flex items-center justify-center gap-3">
                     <Home className="h-6 w-6" />
                     <div className="text-left">
                       <div className="text-xl font-bold">I Need Help</div>
@@ -69,7 +69,7 @@ export default function ComingSoonPage() {
                   href="/contractor/apply"
                   className="group relative px-8 py-6 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-lg hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
                 >
-                  <div className="flex items-centre justify-centre gap-3">
+                  <div className="flex items-center justify-center gap-3">
                     <Briefcase className="h-6 w-6" />
                     <div className="text-left">
                       <div className="text-xl font-bold">Join Network</div>
@@ -81,7 +81,7 @@ export default function ComingSoonPage() {
               </div>
 
               {/* Coming Soon Badge */}
-              <div className="inline-flex items-centre gap-2 px-6 py-3 bg-yellow-500/20 border border-yellow-500/30 rounded-full mb-8">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500/20 border border-yellow-500/30 rounded-full mb-8">
                 <Zap className="h-5 w-5 text-yellow-400 animate-pulse" />
                 <span className="text-yellow-300 font-semibold">Launching Q1 2025 - Contractors Apply Now</span>
               </div>
@@ -93,7 +93,7 @@ export default function ComingSoonPage() {
       {/* Visual Services Showcase - 3D Images */}
       <div className="relative py-20 bg-gradient-to-b from-slate-800 to-slate-900" style={{ zIndex: 2 }}>
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-12">
+          <div className="text-center mb-12">
             <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
               We Handle Every Disaster Type
             </h3>
@@ -219,16 +219,16 @@ export default function ComingSoonPage() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-centre gap-6 mt-12">
-            <div className="flex items-centre gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
+          <div className="flex flex-wrap justify-center gap-6 mt-12">
+            <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
               <Phone className="h-4 w-4 text-green-400" />
               <span className="text-green-300 text-sm font-medium">24/7 Emergency Response</span>
             </div>
-            <div className="flex items-centre gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
               <Clock className="h-4 w-4 text-blue-400" />
               <span className="text-blue-300 text-sm font-medium">60 Minute Response Time</span>
             </div>
-            <div className="flex items-centre gap-2 px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-full">
+            <div className="flex items-center gap-2 px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-full">
               <Award className="h-4 w-4 text-purple-400" />
               <span className="text-purple-300 text-sm font-medium">IICRC Certified Network</span>
             </div>
@@ -239,7 +239,7 @@ export default function ComingSoonPage() {
       {/* Property Coverage Matrix */}
       <div className="relative py-20 bg-black/30" style={{ zIndex: 2 }}>
         <div className="container mx-auto px-6">
-          <h3 className="text-3xl font-bold text-white text-centre mb-12">
+          <h3 className="text-3xl font-bold text-white text-center mb-12">
             Complete Property Coverage Matrix
           </h3>
           
@@ -345,32 +345,32 @@ export default function ComingSoonPage() {
       {/* Disaster Types */}
       <div className="relative py-20">
         <div className="container mx-auto px-6">
-          <h3 className="text-3xl font-bold text-white text-centre mb-12">
+          <h3 className="text-3xl font-bold text-white text-center mb-12">
             Every Disaster. Every Scale. Everywhere.
           </h3>
           
           <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-            <div className="flex items-centre gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
+            <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
               <Droplets className="h-6 w-6 text-blue-400" />
               <span className="text-slate-200 font-medium">Water/Flood</span>
             </div>
-            <div className="flex items-centre gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
+            <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
               <Flame className="h-6 w-6 text-orange-400" />
               <span className="text-slate-200 font-medium">Fire/Smoke</span>
             </div>
-            <div className="flex items-centre gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
+            <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
               <Bug className="h-6 w-6 text-green-400" />
               <span className="text-slate-200 font-medium">Mould/Bacteria</span>
             </div>
-            <div className="flex items-centre gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
+            <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
               <AlertTriangle className="h-6 w-6 text-red-400" />
               <span className="text-slate-200 font-medium">Biohazard</span>
             </div>
-            <div className="flex items-centre gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
+            <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
               <Cloud className="h-6 w-6 text-purple-400" />
               <span className="text-slate-200 font-medium">Storm/Cyclone</span>
             </div>
-            <div className="flex items-centre gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
+            <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
               <Wrench className="h-6 w-6 text-yellow-400" />
               <span className="text-slate-200 font-medium">Structural</span>
             </div>
@@ -382,10 +382,10 @@ export default function ComingSoonPage() {
       <div className="relative py-20 bg-gradient-to-b from-blue-900/20 to-transparent">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <h3 className="text-3xl font-bold text-white text-centre mb-4">
+            <h3 className="text-3xl font-bold text-white text-center mb-4">
               Contractors: Join Australia's Largest Network
             </h3>
-            <p className="text-xl text-blue-200 text-centre mb-12">
+            <p className="text-xl text-blue-200 text-center mb-12">
               Your expertise. Our technology. Unlimited growth potential.
             </p>
             
@@ -439,10 +439,10 @@ export default function ComingSoonPage() {
               </div>
             </div>
             
-            <div className="text-centre mt-12">
+            <div className="text-center mt-12">
               <Link 
                 href="/contractor/apply"
-                className="inline-flex items-centre gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-lg hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-semibold text-lg hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300"
               >
                 <Briefcase className="h-6 w-6" />
                 Start Your Application
@@ -459,30 +459,30 @@ export default function ComingSoonPage() {
       {/* Geographic Coverage */}
       <div className="relative py-20 bg-black/30">
         <div className="container mx-auto px-6">
-          <h3 className="text-3xl font-bold text-white text-centre mb-12">
+          <h3 className="text-3xl font-bold text-white text-center mb-12">
             Complete Australian Coverage + International
           </h3>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-blue-400 mb-2">8</div>
               <div className="text-slate-300">Capital Cities</div>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-green-400 mb-2">100+</div>
               <div className="text-slate-300">Regional Centres</div>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-orange-400 mb-2">15,000+</div>
               <div className="text-slate-300">Suburbs & Towns</div>
             </div>
-            <div className="text-centre">
+            <div className="text-center">
               <div className="text-4xl font-bold text-purple-400 mb-2">∞</div>
               <div className="text-slate-300">Remote & Offshore</div>
             </div>
           </div>
           
-          <p className="text-centre text-blue-200 mt-8 text-lg">
+          <p className="text-center text-blue-200 mt-8 text-lg">
             From Sydney CBD to Coober Pedy. From Brisbane to Broome. 
             <span className="block">PNG operations. Offshore platforms. No location too remote.</span>
           </p>
@@ -492,8 +492,8 @@ export default function ComingSoonPage() {
       {/* Footer */}
       <footer className="relative py-12 border-t border-slate-700/50">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-centre gap-6">
-            <div className="flex items-centre gap-3">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
               <Shield className="h-6 w-6 text-blue-400" />
               <div>
                 <div className="text-white font-semibold">National Restoration Professionals</div>

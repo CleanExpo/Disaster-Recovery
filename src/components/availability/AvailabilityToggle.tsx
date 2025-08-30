@@ -306,8 +306,8 @@ const AvailabilityToggle: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Current Status Card */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-6">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-indigo-100 rounded-lg">
               <Power className="h-6 w-6 text-indigo-600" />
             </div>
@@ -317,7 +317,7 @@ const AvailabilityToggle: React.FC = () => {
             </div>
           </div>
           <div className={`px-4 py-2 rounded-full border-2 ${getStatusColor(availability.currentStatus)}`}>
-            <div className="flex items-centre space-x-2">
+            <div className="flex items-center space-x-2">
               <CurrentStatusIcon className="h-5 w-5" />
               <span className="font-medium capitalize">{availability.currentStatus.replace('_', ' ')}</span>
             </div>
@@ -337,7 +337,7 @@ const AvailabilityToggle: React.FC = () => {
             </div>
             <div>
               <p className="text-xs text-gray-500">Compliance Status</p>
-              <div className="flex items-centre space-x-1 mt-1">
+              <div className="flex items-center space-x-1 mt-1">
                 {availability.complianceStatus.isCompliant ? (
                   <>
                     <CheckCircle className="h-4 w-4 text-green-500" />
@@ -447,15 +447,15 @@ const AvailabilityToggle: React.FC = () => {
       {/* Compliance Requirements */}
       {availability.pauseRequirements && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Shield className="h-5 w-5 mr-2 text-purple-600" />
             Pause Requirements Checklist
           </h3>
 
           <div className="space-y-3">
             {availability.pauseRequirements.checklist.map((item) => (
-              <div key={item.id} className="flex items-centre justify-between p-3 border rounded-lg">
-                <div className="flex items-centre space-x-3">
+              <div key={item.id} className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center space-x-3">
                   {item.status === 'completed' ? (
                     <CheckCircle className="h-5 w-5 text-green-500" />
                   ) : item.status === 'in_progress' ? (
@@ -504,15 +504,15 @@ const AvailabilityToggle: React.FC = () => {
 
       {/* Status History */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-centre">
+        <h3 className="text-lg font-semibold mb-4 flex items-center">
           <Clock className="h-5 w-5 mr-2 text-gray-600" />
           Recent Status Changes
         </h3>
 
         <div className="space-y-3">
           {availability.statusHistory.slice(0, 5).map((history) => (
-            <div key={history.id} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
-              <div className="flex items-centre space-x-3">
+            <div key={history.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-center space-x-3">
                 <div className="text-sm">
                   <span className={`px-2 py-1 rounded ${getStatusColor(history.previousStatus)}`}>
                     {history.previousStatus}
@@ -538,7 +538,7 @@ const AvailabilityToggle: React.FC = () => {
 
       {/* Reason Modal */}
       {showReasonModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Provide Status Change Details</h3>
             
@@ -558,7 +558,7 @@ const AvailabilityToggle: React.FC = () => {
                             : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
-                        <div className="flex items-centre space-x-2">
+                        <div className="flex items-center space-x-2">
                           <Icon className="h-4 w-4" />
                           <span className="text-sm">{reason.label}</span>
                         </div>
@@ -635,9 +635,9 @@ const AvailabilityToggle: React.FC = () => {
 
       {/* Compliance Check Modal */}
       {showComplianceCheck && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 className="text-lg font-semibold mb-4 flex items-centre">
+            <h3 className="text-lg font-semibold mb-4 flex items-center">
               <AlertCircle className="h-5 w-5 mr-2 text-red-600" />
               Cannot Pause - Compliance Issues
             </h3>

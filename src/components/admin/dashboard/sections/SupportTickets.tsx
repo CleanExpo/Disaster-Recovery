@@ -158,7 +158,7 @@ export function SupportTickets() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Support Tickets</h2>
         <div className="flex gap-3">
           <div className="relative">
@@ -263,7 +263,7 @@ export function SupportTickets() {
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <div className="flex items-centre gap-3 mb-2">
+                    <div className="flex items-center gap-3 mb-2">
                       <p className="font-medium">{ticket.subject}</p>
                       <Badge className={getPriorityColor(ticket.priority)}>
                         {ticket.priority}
@@ -275,21 +275,21 @@ export function SupportTickets() {
                     <p className="text-sm text-gray-600 line-clamp-2 mb-2">
                       {ticket.description}
                     </p>
-                    <div className="flex items-centre gap-4 text-xs text-gray-500">
-                      <span className="flex items-centre gap-1">
+                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <span className="flex items-center gap-1">
                         <User className="h-3 w-3" />
                         {ticket.contractorName}
                       </span>
-                      <span className="flex items-centre gap-1">
+                      <span className="flex items-center gap-1">
                         <Tag className="h-3 w-3" />
                         {ticket.category}
                       </span>
-                      <span className="flex items-centre gap-1">
+                      <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         {new Date(ticket.createdAt).toLocaleDateString()}
                       </span>
                       {ticket.messages.length > 0 && (
-                        <span className="flex items-centre gap-1">
+                        <span className="flex items-center gap-1">
                           <MessageSquare className="h-3 w-3" />
                           {ticket.messages.length} messages
                         </span>

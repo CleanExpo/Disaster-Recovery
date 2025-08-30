@@ -124,7 +124,7 @@ export default function PropertyTypesPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <Building className="h-16 w-16 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Disaster Recovery for All Property Types
@@ -138,7 +138,7 @@ export default function PropertyTypesPage() {
       
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Select Your Property Type
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -148,7 +148,7 @@ export default function PropertyTypesPage() {
               
               return (
                 <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-centre justify-between mb-4">
+                  <div className="flex items-center justify-between mb-4">
                     <IconComponent className="h-10 w-10 text-blue-600" />
                     <span className={`px-3 py-1 rounded-full text-white text-xs font-bold ${colorClass}`}>
                       {property.category}
@@ -181,7 +181,7 @@ export default function PropertyTypesPage() {
       {/* Why Property-Specific Matters */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Why Property-Specific Recovery Matters
           </h2>
           <div className="max-w-4xl mx-auto">

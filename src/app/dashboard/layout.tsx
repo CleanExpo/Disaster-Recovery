@@ -54,7 +54,7 @@ export default function DashboardLayout({
               <Link
                 key={item.name}
                 href={item.href}
-                className="flex items-centre gap-3 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent"
+                className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent"
               >
                 <item.icon className="h-4 w-4" />
                 {item.name}

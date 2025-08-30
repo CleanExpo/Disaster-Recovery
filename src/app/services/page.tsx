@@ -244,7 +244,7 @@ export default function UltraModernServicesPage() {
         className="fixed top-0 left-0 right-0 z-40 glass-panel border-b border-white/10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-centre">
+          <div className="flex justify-between items-center">
             <Link href="/" className="text-2xl font-bold gradient-text">
               Disaster Recovery
             </Link>
@@ -262,7 +262,7 @@ export default function UltraModernServicesPage() {
             </nav>
             <Link
               href="/contact"
-              className="neon-button bg-gradient-to-r from-red-600 to-orange-500 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-centre gap-2"
+              className="neon-button bg-gradient-to-r from-red-600 to-orange-500 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
             >
               <PhoneIcon className="w-5 h-5" />
               Emergency
@@ -278,13 +278,13 @@ export default function UltraModernServicesPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-centre mb-20"
+            className="text-center mb-20"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="inline-flex items-centre gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-6 py-2 rounded-full mb-6 border border-blue-500/30"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-6 py-2 rounded-full mb-6 border border-blue-500/30"
             >
               <SparklesIcon className="w-5 h-5 text-blue-400" />
               <span className="text-blue-400 font-semibold">Professional Restoration Services</span>
@@ -325,7 +325,7 @@ export default function UltraModernServicesPage() {
                   {/* Card Content */}
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-centre gap-4">
+                      <div className="flex items-center gap-4">
                         <motion.div
                           className={`p-4 rounded-xl bg-gradient-to-br ${service.gradient}`}
                           animate={hoveredCard === service.id ? { rotate: 360 } : {}}
@@ -356,7 +356,7 @@ export default function UltraModernServicesPage() {
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.1 * i }}
-                          className="text-centre"
+                          className="text-center"
                         >
                           <div className="text-2xl font-bold gradient-text">{stat.value}</div>
                           <div className="text-xs text-gray-500">{stat.label}</div>
@@ -410,9 +410,9 @@ export default function UltraModernServicesPage() {
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: i * 0.1 }}
-                              className="flex items-centre gap-3"
+                              className="flex items-center gap-3"
                             >
-                              <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${service.gradient} flex items-centre justify-centre text-white font-bold text-sm`}>
+                              <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white font-bold text-sm`}>
                                 {i + 1}
                               </div>
                               <span className="text-gray-300 text-sm">{step}</span>
@@ -428,7 +428,7 @@ export default function UltraModernServicesPage() {
                               initial={{ opacity: 0 }}
                               animate={{ opacity: 1 }}
                               transition={{ delay: i * 0.05 }}
-                              className="flex items-centre gap-2"
+                              className="flex items-center gap-2"
                             >
                               <CheckCircleIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
                               <span className="text-gray-300 text-sm">{feature}</span>
@@ -439,13 +439,13 @@ export default function UltraModernServicesPage() {
                         <div className="flex gap-4">
                           <Link
                             href={`/services/${service.id}`}
-                            className="flex-1 text-centre py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+                            className="flex-1 text-center py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
                           >
                             Learn More
                           </Link>
                           <Link
                             href="/contact"
-                            className={`flex-1 text-centre py-3 rounded-xl bg-gradient-to-r ${service.gradient} text-white font-semibold hover:shadow-lg transition-all`}
+                            className={`flex-1 text-center py-3 rounded-xl bg-gradient-to-r ${service.gradient} text-white font-semibold hover:shadow-lg transition-all`}
                           >
                             Get Quote
                           </Link>
@@ -465,7 +465,7 @@ export default function UltraModernServicesPage() {
             viewport={{ once: true }}
             className="glass-card rounded-3xl p-12 mb-20"
           >
-            <h2 className="text-4xl font-bold text-centre mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12">
               <span className="gradient-text">Why Industry Leaders</span>
               <span className="text-white"> Choose Us</span>
             </h2>
@@ -483,12 +483,12 @@ export default function UltraModernServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="text-centre group"
+                  className="text-center group"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 360 }}
                     transition={{ duration: 0.5 }}
-                    className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-centre justify-centre border border-blue-500/30 group-hover:border-blue-400/50"
+                    className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-blue-500/30 group-hover:border-blue-400/50"
                   >
                     <item.icon className="w-10 h-10 text-blue-400" />
                   </motion.div>
@@ -504,7 +504,7 @@ export default function UltraModernServicesPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-centre"
+            className="text-center"
           >
             <h2 className="text-5xl font-bold mb-8">
               <span className="text-white">Need Emergency </span>
@@ -520,7 +520,7 @@ export default function UltraModernServicesPage() {
             >
               <Link
                 href="/contact"
-                className="flex items-centre gap-4 bg-gradient-to-r from-red-600 to-orange-500 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
+                className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-orange-500 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
               >
                 <PhoneIcon className="w-8 h-8" />
                 Call Contact Us

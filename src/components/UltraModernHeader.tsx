@@ -422,7 +422,7 @@ export default function UltraModernHeader() {
             {/* Mobile CTA */}
             <Link
               href="/contact"
-              className="block w-full mt-4 text-centre"
+              className="block w-full mt-4 text-center"
               onClick={() => setMobileMenuOpen(false)}
             >
               <div 

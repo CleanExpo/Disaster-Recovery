@@ -115,7 +115,7 @@ export default function AIDetectionPage() {
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/technology" className="hover:text-white transition">Technology</Link>
@@ -140,19 +140,19 @@ export default function AIDetectionPage() {
             
             {/* Key Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-purple-400">99.7%</div>
                 <div className="text-sm text-gray-300">Accuracy Rate</div>
               </div>
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-blue-400">10x</div>
                 <div className="text-sm text-gray-300">Faster Detection</div>
               </div>
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-green-400">24/7</div>
                 <div className="text-sm text-gray-300">Monitoring</div>
               </div>
-              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-orange-400">500+</div>
                 <div className="text-sm text-gray-300">Pattern Types</div>
               </div>
@@ -179,7 +179,7 @@ export default function AIDetectionPage() {
       {/* Capabilities Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               AI Capabilities
             </h2>
@@ -194,7 +194,7 @@ export default function AIDetectionPage() {
               const Icon = capability.icon;
               return (
                 <Card key={idx} className="p-6 hover:shadow-xl transition-all">
-                  <div className="flex items-centre justify-centre w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 mb-4">
+                  <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 mb-4">
                     <Icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">{capability.title}</h3>
@@ -210,7 +210,7 @@ export default function AIDetectionPage() {
       {/* Features Grid */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Comprehensive Feature Set
             </h2>
@@ -222,7 +222,7 @@ export default function AIDetectionPage() {
           <div className="grid lg:grid-cols-3 gap-8">
             {features.map((category, idx) => (
               <Card key={idx} className="p-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-centre gap-2">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
                   <Shield className="h-5 w-5 text-purple-500" />
                   {category.category}
                 </h3>
@@ -243,7 +243,7 @@ export default function AIDetectionPage() {
       {/* How It Works */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-centre mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               How AI Detection Works
             </h2>
@@ -299,7 +299,7 @@ export default function AIDetectionPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
               Technical Specifications
             </h2>
             <Card className="p-8">
@@ -318,7 +318,7 @@ export default function AIDetectionPage() {
 
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
-        <div className="container mx-auto px-6 text-centre">
+        <div className="container mx-auto px-6 text-center">
           <Sparkles className="h-12 w-12 mx-auto mb-4 text-yellow-300" />
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             See AI Detection in Action
@@ -327,7 +327,7 @@ export default function AIDetectionPage() {
             Discover how our AI technology can transform your restoration process 
             with a personalised demonstration.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 Schedule AI Demo

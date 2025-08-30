@@ -313,9 +313,9 @@ export function EmailTemplates() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold flex items-centre gap-2">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
             <Mail className="h-6 w-6" />
             Email Templates
           </h2>
@@ -364,7 +364,7 @@ export function EmailTemplates() {
                           <AlertCircle className="h-4 w-4 text-gray-400" />
                         )}
                       </div>
-                      <div className="flex items-centre gap-2 mt-2">
+                      <div className="flex items-center gap-2 mt-2">
                         <Badge variant="outline" className={`text-xs ${getTypeColor(template.type)}`}>
                           {template.type}
                         </Badge>
@@ -389,7 +389,7 @@ export function EmailTemplates() {
           {selectedTemplate && (
             <Card>
               <CardHeader>
-                <div className="flex justify-between items-centre">
+                <div className="flex justify-between items-center">
                   <CardTitle>{selectedTemplate.name}</CardTitle>
                   <div className="flex gap-2">
                     {isEditing ? (
@@ -491,7 +491,7 @@ export function EmailTemplates() {
                       </div>
                     )}
 
-                    <div className="flex items-centre gap-2">
+                    <div className="flex items-center gap-2">
                       <Switch
                         id="active"
                         checked={selectedTemplate.isActive}
@@ -509,7 +509,7 @@ export function EmailTemplates() {
                   <TabsContent value="preview">
                     <Card>
                       <CardHeader>
-                        <div className="flex justify-between items-centre">
+                        <div className="flex justify-between items-center">
                           <CardTitle className="text-base">Preview</CardTitle>
                           <div className="flex gap-2">
                             <Button

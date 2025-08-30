@@ -168,19 +168,19 @@ export default function LeadCaptureForm() {
 
   return (
     <Card className="p-8 max-w-4xl mx-auto">
-      <div className="mb-6 text-centre">
+      <div className="mb-6 text-center">
         <h2 className="text-3xl font-bold mb-2">Get Immediate Restoration Help</h2>
         <p className="text-gray-600">Complete this form for priority emergency response</p>
-        <div className="flex items-centre justify-centre gap-4 mt-4">
-          <div className="flex items-centre gap-2 text-sm">
+        <div className="flex items-center justify-center gap-4 mt-4">
+          <div className="flex items-center gap-2 text-sm">
             <Shield className="h-4 w-4 text-green-600" />
             <span>Insurance Approved</span>
           </div>
-          <div className="flex items-centre gap-2 text-sm">
+          <div className="flex items-center gap-2 text-sm">
             <Phone className="h-4 w-4 text-blue-600" />
             <span>30min Response</span>
           </div>
-          <div className="flex items-centre gap-2 text-sm">
+          <div className="flex items-center gap-2 text-sm">
             <CheckCircle2 className="h-4 w-4 text-green-600" />
             <span>No Obligation Quote</span>
           </div>
@@ -190,7 +190,7 @@ export default function LeadCaptureForm() {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Emergency Banner */}
         <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4">
-          <div className="flex items-centre gap-3">
+          <div className="flex items-center gap-3">
             <AlertCircle className="h-6 w-6 text-red-600 animate-pulse" />
             <div>
               <p className="font-bold text-red-900">Life-Threatening Emergency?</p>
@@ -201,7 +201,7 @@ export default function LeadCaptureForm() {
 
         {/* Contact Information */}
         <div className="space-y-4">
-          <h3 className="text-xl font-bold flex items-centre gap-2">
+          <h3 className="text-xl font-bold flex items-center gap-2">
             <Phone className="h-5 w-5" />
             Contact Information
           </h3>
@@ -243,7 +243,7 @@ export default function LeadCaptureForm() {
 
         {/* Property Information */}
         <div className="space-y-4">
-          <h3 className="text-xl font-bold flex items-centre gap-2">
+          <h3 className="text-xl font-bold flex items-center gap-2">
             <Home className="h-5 w-5" />
             Property Information
           </h3>
@@ -338,7 +338,7 @@ export default function LeadCaptureForm() {
               />
             </div>
           </div>
-          <div className="flex items-centre gap-4">
+          <div className="flex items-center gap-4">
             <Checkbox
               id="isBusinessProperty"
               checked={formData.isBusinessProperty}
@@ -352,7 +352,7 @@ export default function LeadCaptureForm() {
 
         {/* Damage Information */}
         <div className="space-y-4">
-          <h3 className="text-xl font-bold flex items-centre gap-2">
+          <h3 className="text-xl font-bold flex items-center gap-2">
             <AlertCircle className="h-5 w-5" />
             Damage Information
           </h3>
@@ -360,7 +360,7 @@ export default function LeadCaptureForm() {
             <Label>Type of Damage (select all that apply) *</Label>
             <div className="grid md:grid-cols-2 gap-3 mt-2">
               {damageTypes.map((type) => (
-                <div key={type} className="flex items-centre gap-2">
+                <div key={type} className="flex items-center gap-2">
                   <Checkbox
                     id={type}
                     checked={formData.damageType.includes(type)}
@@ -452,7 +452,7 @@ export default function LeadCaptureForm() {
               rows={4}
             />
           </div>
-          <div className="flex items-centre gap-4">
+          <div className="flex items-center gap-4">
             <Checkbox
               id="requiresAccommodation"
               checked={formData.requiresAccommodation}
@@ -466,11 +466,11 @@ export default function LeadCaptureForm() {
 
         {/* Insurance Information */}
         <div className="space-y-4">
-          <h3 className="text-xl font-bold flex items-centre gap-2">
+          <h3 className="text-xl font-bold flex items-center gap-2">
             <FileText className="h-5 w-5" />
             Insurance Information
           </h3>
-          <div className="flex items-centre gap-4">
+          <div className="flex items-center gap-4">
             <Checkbox
               id="hasInsurance"
               checked={formData.hasInsurance}
@@ -545,7 +545,7 @@ export default function LeadCaptureForm() {
         <div className="space-y-4">
           <h3 className="text-xl font-bold">Additional Information</h3>
           <div className="space-y-3">
-            <div className="flex items-centre gap-4">
+            <div className="flex items-center gap-4">
               <Checkbox
                 id="hasPhotos"
                 checked={formData.hasPhotos}
@@ -555,7 +555,7 @@ export default function LeadCaptureForm() {
                 I have photos of the damage to share
               </Label>
             </div>
-            <div className="flex items-centre gap-4">
+            <div className="flex items-center gap-4">
               <Checkbox
                 id="decisionMaker"
                 checked={formData.decisionMaker}
@@ -599,7 +599,7 @@ export default function LeadCaptureForm() {
         {/* Lead Quality Indicator */}
         {leadScore > 0 && (
           <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
-            <div className="flex items-centre gap-2">
+            <div className="flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600" />
               <span className="font-semibold text-green-900">
                 Priority Response Qualified - Your request qualifies for immediate priority response
@@ -609,7 +609,7 @@ export default function LeadCaptureForm() {
         )}
 
         {/* Submit Button */}
-        <div className="flex flex-col items-centre gap-4">
+        <div className="flex flex-col items-center gap-4">
           <Button
             type="submit"
             size="lg"
@@ -625,7 +625,7 @@ export default function LeadCaptureForm() {
               </>
             )}
           </Button>
-          <p className="text-sm text-gray-600 text-centre">
+          <p className="text-sm text-gray-600 text-center">
             Or call us directly 24/7: <span className="font-bold">1300 814 870</span>
           </p>
         </div>

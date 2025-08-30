@@ -394,7 +394,7 @@ function HorizontalScroll({ children, className = '' }: HorizontalScrollProps) {
 
   return (
     <section ref={targetRef} className={`relative h-[300vh] ${className}`}>
-      <div className="sticky top-0 flex h-screen items-centre overflow-hidden">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <motion.div 
           style={{ x }} 
           className="flex gap-8 will-change-transform"

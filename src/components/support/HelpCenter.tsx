@@ -139,7 +139,7 @@ export function HelpCenter() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 rounded-lg">
         <div className="max-w-4xl">
-          <h1 className="text-3xl font-bold flex items-centre gap-2 mb-2">
+          <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
             <HelpCircle className="h-8 w-8" />
             Help & Support Centre
           </h1>
@@ -163,7 +163,7 @@ export function HelpCenter() {
                 onClick={channel.action}
               >
                 <CardContent className="p-6">
-                  <div className="flex flex-col items-centre text-centre">
+                  <div className="flex flex-col items-center text-center">
                     <div className={`p-3 rounded-full mb-3 ${
                       channel.available ? 'bg-blue-100' : 'bg-gray-100'
                     }`}>
@@ -187,8 +187,8 @@ export function HelpCenter() {
           {/* Onboarding Progress */}
           <Card>
             <CardHeader>
-              <div className="flex items-centre justify-between">
-                <div className="flex items-centre gap-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
                   <Target className="h-5 w-5 text-orange-600" />
                   <CardTitle>Your Onboarding Progress</CardTitle>
                 </div>
@@ -212,26 +212,26 @@ export function HelpCenter() {
             {/* Recent Activity */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-base flex items-centre gap-2">
+                <CardTitle className="text-base flex items-center gap-2">
                   <Clock className="h-4 w-4" />
                   Your Recent Activity
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex items-centre justify-between">
+                  <div className="flex items-center justify-between">
                     <span className="text-sm">Open Tickets</span>
                     <Badge>{mockMetrics.tickets.open}</Badge>
                   </div>
-                  <div className="flex items-centre justify-between">
+                  <div className="flex items-center justify-between">
                     <span className="text-sm">Last Chat</span>
                     <span className="text-sm text-gray-500">2 days ago</span>
                   </div>
-                  <div className="flex items-centre justify-between">
+                  <div className="flex items-center justify-between">
                     <span className="text-sm">Articles Read</span>
                     <span className="text-sm text-gray-500">12 this month</span>
                   </div>
-                  <div className="flex items-centre justify-between">
+                  <div className="flex items-center justify-between">
                     <span className="text-sm">Feedback Submitted</span>
                     <span className="text-sm text-gray-500">3 items</span>
                   </div>
@@ -242,7 +242,7 @@ export function HelpCenter() {
             {/* Popular Resources */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-base flex items-centre gap-2">
+                <CardTitle className="text-base flex items-center gap-2">
                   <Star className="h-4 w-4" />
                   Popular Resources
                 </CardTitle>
@@ -274,7 +274,7 @@ export function HelpCenter() {
             {/* Quick Links */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-base flex items-centre gap-2">
+                <CardTitle className="text-base flex items-center gap-2">
                   <ExternalLink className="h-4 w-4" />
                   Quick Links
                 </CardTitle>
@@ -283,28 +283,28 @@ export function HelpCenter() {
                 <div className="space-y-2">
                   <a
                     href="/compliance"
-                    className="flex items-centre gap-2 text-sm hover:text-blue-600"
+                    className="flex items-center gap-2 text-sm hover:text-blue-600"
                   >
                     <Award className="h-4 w-4" />
                     Compliance Dashboard
                   </a>
                   <a
                     href="/billing"
-                    className="flex items-centre gap-2 text-sm hover:text-blue-600"
+                    className="flex items-center gap-2 text-sm hover:text-blue-600"
                   >
                     <FileText className="h-4 w-4" />
                     Billing & Invoices
                   </a>
                   <a
                     href="/training"
-                    className="flex items-centre gap-2 text-sm hover:text-blue-600"
+                    className="flex items-center gap-2 text-sm hover:text-blue-600"
                   >
                     <Users className="h-4 w-4" />
                     Training Resources
                   </a>
                   <a
                     href="/settings"
-                    className="flex items-centre gap-2 text-sm hover:text-blue-600"
+                    className="flex items-center gap-2 text-sm hover:text-blue-600"
                   >
                     <Settings className="h-4 w-4" />
                     Account Settings
@@ -329,32 +329,32 @@ export function HelpCenter() {
           {/* Satisfaction Metrics */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-centre gap-2">
+              <CardTitle className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5" />
                 Support Performance
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="text-centre">
+                <div className="text-center">
                   <p className="text-2xl font-bold text-green-600">
                     {mockMetrics.responseTime.average} min
                   </p>
                   <p className="text-sm text-gray-500">Avg Response Time</p>
                 </div>
-                <div className="text-centre">
+                <div className="text-center">
                   <p className="text-2xl font-bold text-blue-600">
                     {mockMetrics.satisfaction.average}/5
                   </p>
                   <p className="text-sm text-gray-500">Satisfaction Score</p>
                 </div>
-                <div className="text-centre">
+                <div className="text-center">
                   <p className="text-2xl font-bold text-purple-600">
                     {mockMetrics.responseTime.compliance}%
                   </p>
                   <p className="text-sm text-gray-500">SLA Compliance</p>
                 </div>
-                <div className="text-centre">
+                <div className="text-center">
                   <p className="text-2xl font-bold text-orange-600">
                     {mockMetrics.knowledge.helpfulPercentage}%
                   </p>

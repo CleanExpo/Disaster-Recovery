@@ -82,7 +82,7 @@ export default function WaterDamageRestorationPage() {
 
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-4">
-        <div className="container mx-auto flex items-centre justify-centre gap-4">
+        <div className="container mx-auto flex items-center justify-center gap-4">
           <Phone className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Emergency Water Damage Response</span>
           <a href="tel:1300309361" className="font-bold underline">1300 309 361</a>
@@ -92,7 +92,7 @@ export default function WaterDamageRestorationPage() {
       {/* Hero Section with Core Web Vitals Optimisation */}
       <section className="relative bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-centre">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Water Damage Restoration Services Across Australia
@@ -118,11 +118,11 @@ export default function WaterDamageRestorationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="tel:1300309361" className="flex items-centre justify-centre gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700">
+                      <a href="tel:1300309361" className="flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700">
                         <Phone className="h-5 w-5" />
                         Call 1300 309 361
                       </a>
-                      <p className="text-sm text-centre text-gray-600">Average response time: 45 minutes</p>
+                      <p className="text-sm text-center text-gray-600">Average response time: 45 minutes</p>
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -133,15 +133,15 @@ export default function WaterDamageRestorationPage() {
               </div>
 
               <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <Clock className="h-5 w-5 text-blue-600" />
                   <span className="text-sm font-medium">24/7 Service</span>
                 </div>
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-blue-600" />
                   <span className="text-sm font-medium">Insurance Approved</span>
                 </div>
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-blue-600" />
                   <span className="text-sm font-medium">IICRC Certified</span>
                 </div>
@@ -170,7 +170,7 @@ export default function WaterDamageRestorationPage() {
       {/* Service Types Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Comprehensive Water Damage Solutions
           </h2>
           
@@ -259,7 +259,7 @@ export default function WaterDamageRestorationPage() {
       {/* Process Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Our Water Damage Restoration Process
           </h2>
           
@@ -305,7 +305,7 @@ export default function WaterDamageRestorationPage() {
               ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-bold">
+                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
                       {item.step}
                     </div>
                   </div>
@@ -324,7 +324,7 @@ export default function WaterDamageRestorationPage() {
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Frequently Asked Questions About Water Damage Restoration
           </h2>
           
@@ -346,13 +346,13 @@ export default function WaterDamageRestorationPage() {
       {/* Service Areas */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Water Damage Restoration Service Areas
           </h2>
           
           <div className="grid md:grid-cols-5 gap-4 max-w-4xl mx-auto">
             {['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba'].map((area) => (
-              <div key={area} className="text-centre p-4 bg-blue-50 rounded-lg">
+              <div key={area} className="text-center p-4 bg-blue-50 rounded-lg">
                 <h3 className="font-bold text-blue-900">{area}</h3>
                 <p className="text-sm text-blue-700 mt-1">24/7 Service</p>
               </div>
@@ -363,7 +363,7 @@ export default function WaterDamageRestorationPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Need Emergency Water Damage Restoration?
           </h2>
@@ -371,8 +371,8 @@ export default function WaterDamageRestorationPage() {
             Don't wait - every minute counts when dealing with water damage. 
             Our certified technicians are standing by 24/7.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
-            <a href="tel:1300309361" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-centre justify-centre gap-2">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:1300309361" className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
               Call 1300 309 361
             </a>

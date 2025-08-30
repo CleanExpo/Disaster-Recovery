@@ -275,7 +275,7 @@ export default function CommissionTracking() {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Pending</p>
               <p className="text-2xl font-bold text-orange-600">{formatCurrency(totalEarnings.pending)}</p>
@@ -284,13 +284,13 @@ export default function CommissionTracking() {
               <Clock className="w-6 h-6 text-orange-600" />
             </div>
           </div>
-          <div className="mt-2 flex items-centre text-sm">
+          <div className="mt-2 flex items-center text-sm">
             <span className="text-gray-500">Next payout: April 1</span>
           </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">This Month</p>
               <p className="text-2xl font-bold text-blue-600">{formatCurrency(totalEarnings.approved)}</p>
@@ -299,7 +299,7 @@ export default function CommissionTracking() {
               <CheckCircle className="w-6 h-6 text-blue-600" />
             </div>
           </div>
-          <div className="mt-2 flex items-centre text-sm">
+          <div className="mt-2 flex items-center text-sm">
             <ArrowUpRight className="w-4 h-4 text-green-500 mr-1" />
             <span className="text-green-500">+{mockPerformance.trends.revenue}%</span>
             <span className="text-gray-500 ml-1">vs last month</span>
@@ -307,7 +307,7 @@ export default function CommissionTracking() {
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Paid Out</p>
               <p className="text-2xl font-bold text-green-600">{formatCurrency(totalEarnings.paid)}</p>
@@ -316,13 +316,13 @@ export default function CommissionTracking() {
               <CreditCard className="w-6 h-6 text-green-600" />
             </div>
           </div>
-          <div className="mt-2 flex items-centre text-sm">
+          <div className="mt-2 flex items-center text-sm">
             <span className="text-gray-500">Last payment: April 1</span>
           </div>
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Lifetime Total</p>
               <p className="text-2xl font-bold text-purple-600">{formatCurrency(totalEarnings.lifetime)}</p>
@@ -331,7 +331,7 @@ export default function CommissionTracking() {
               <Award className="w-6 h-6 text-purple-600" />
             </div>
           </div>
-          <div className="mt-2 flex items-centre text-sm">
+          <div className="mt-2 flex items-center text-sm">
             <span className="text-gray-500">{mockCommissions.length} payouts</span>
           </div>
         </div>
@@ -344,15 +344,15 @@ export default function CommissionTracking() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Commission Structure</h3>
             
             <div className="space-y-4">
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Base Rate:</span>
                 <span className="font-medium">{mockCommissionStructure.baseRate}%</span>
               </div>
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Current Tier:</span>
                 <span className="font-medium text-blue-600">Silver (18%)</span>
               </div>
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Next Tier:</span>
                 <span className="font-medium text-purple-600">Gold (22%)</span>
               </div>
@@ -375,7 +375,7 @@ export default function CommissionTracking() {
             </div>
 
             <div className="mt-6 p-3 bg-green-50 rounded-lg">
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <Award className="w-5 h-5 text-green-600 mr-2" />
                 <span className="text-sm font-medium text-green-800">Active Bonus</span>
               </div>
@@ -389,26 +389,26 @@ export default function CommissionTracking() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h3>
             
             <div className="space-y-4">
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Conversion Rate:</span>
                 <span className="font-medium">{mockPerformance.currentPeriod.conversionRate}%</span>
               </div>
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Avg Order Value:</span>
                 <span className="font-medium">{formatCurrency(mockPerformance.currentPeriod.averageOrderValue)}</span>
               </div>
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Total Clicks:</span>
                 <span className="font-medium">{mockPerformance.currentPeriod.clicks.toLocaleString()}</span>
               </div>
-              <div className="flex justify-between items-centre">
+              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-600">Conversions:</span>
                 <span className="font-medium">{mockPerformance.currentPeriod.conversions}</span>
               </div>
             </div>
 
             <div className="mt-6 p-3 bg-blue-50 rounded-lg">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-blue-800">Partner Ranking</span>
                 <Target className="w-5 h-5 text-blue-600" />
               </div>
@@ -429,7 +429,7 @@ export default function CommissionTracking() {
         {/* Commission History & Transactions */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex justify-between items-centre mb-6">
+            <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-semibold text-gray-900">Commission History</h3>
               <div className="flex space-x-3">
                 <select
@@ -443,7 +443,7 @@ export default function CommissionTracking() {
                   <option value="paid">Paid</option>
                   <option value="disputed">Disputed</option>
                 </select>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 flex items-centre">
+                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 flex items-center">
                   <Download className="w-4 h-4 mr-2" />
                   Export
                 </button>
@@ -500,7 +500,7 @@ export default function CommissionTracking() {
                         </div>
                       </td>
                       <td className="py-4">
-                        <span className={`inline-flex items-centre px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[commission.status]}`}>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[commission.status]}`}>
                           {statusIcons[commission.status]}
                           <span className="ml-1 capitalize">{commission.status}</span>
                         </span>
@@ -532,7 +532,7 @@ export default function CommissionTracking() {
               {mockTransactions.map(transaction => (
                 <div key={transaction.id} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
                   <div className="flex-1">
-                    <div className="flex items-centre space-x-2 mb-1">
+                    <div className="flex items-center space-x-2 mb-1">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                         transaction.type === 'sale' ? 'bg-green-100 text-green-800' :
                         transaction.type === 'lead' ? 'bg-blue-100 text-blue-800' :
@@ -566,7 +566,7 @@ export default function CommissionTracking() {
               ))}
             </div>
 
-            <div className="mt-4 text-centre">
+            <div className="mt-4 text-center">
               <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
                 View All Transactions
               </button>

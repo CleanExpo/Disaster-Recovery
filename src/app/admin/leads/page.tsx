@@ -306,8 +306,8 @@ export default function LeadManagementDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
-        <div className="text-centre">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading lead data...</p>
         </div>
@@ -327,7 +327,7 @@ export default function LeadManagementDashboard() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-centre justify-between mb-4">
+            <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <Activity className="h-6 w-6 text-blue-600" />
               </div>
@@ -338,7 +338,7 @@ export default function LeadManagementDashboard() {
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-centre justify-between mb-4">
+            <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-green-100 rounded-lg">
                 <DollarSign className="h-6 w-6 text-green-600" />
               </div>
@@ -351,7 +351,7 @@ export default function LeadManagementDashboard() {
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-centre justify-between mb-4">
+            <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-purple-100 rounded-lg">
                 <TrendingUp className="h-6 w-6 text-purple-600" />
               </div>
@@ -364,7 +364,7 @@ export default function LeadManagementDashboard() {
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <div className="flex items-centre justify-between mb-4">
+            <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-orange-100 rounded-lg">
                 <Clock className="h-6 w-6 text-orange-600" />
               </div>
@@ -379,8 +379,8 @@ export default function LeadManagementDashboard() {
 
         {/* Filters and Search */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <div className="flex flex-wrap items-centre justify-between gap-4">
-            <div className="flex items-centre gap-4 flex-1">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4 flex-1">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <input
@@ -418,11 +418,11 @@ export default function LeadManagementDashboard() {
               </select>
             </div>
 
-            <div className="flex items-centre gap-2">
+            <div className="flex items-center gap-2">
               <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colours">
                 <RefreshCw className="h-5 w-5" />
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre gap-2">
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center gap-2">
                 <Download className="h-4 w-4" />
                 Export
               </button>
@@ -467,7 +467,7 @@ export default function LeadManagementDashboard() {
                         <p className="text-sm font-medium text-gray-900">{lead.bookingId}</p>
                         <p className="text-xs text-gray-500">{getTimeSince(lead.createdAt)}</p>
                         {lead.priority === 'high' && (
-                          <span className="inline-flex items-centre px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 mt-1">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 mt-1">
                             High Priority
                           </span>
                         )}
@@ -482,7 +482,7 @@ export default function LeadManagementDashboard() {
                     </td>
                     <td className="px-6 py-4">
                       <div>
-                        <div className="flex items-centre gap-2">
+                        <div className="flex items-center gap-2">
                           {getUrgencyIcon(lead.service.urgency)}
                           <p className="text-sm text-gray-900">{lead.service.type}</p>
                         </div>
@@ -496,7 +496,7 @@ export default function LeadManagementDashboard() {
                         <p className="text-sm font-medium text-gray-900">
                           ${lead.payment.amount.toLocaleString()}
                         </p>
-                        <span className={`inline-flex items-centre px-2 py-0.5 rounded text-xs font-medium ${
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
                           lead.payment.status === 'completed' ? 'bg-green-100 text-green-800' :
                           lead.payment.status === 'processing' ? 'bg-yellow-100 text-yellow-800' :
                           lead.payment.status === 'failed' ? 'bg-red-100 text-red-800' :
@@ -519,12 +519,12 @@ export default function LeadManagementDashboard() {
                       )}
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`inline-flex items-centre px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(lead.status)}`}>
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(lead.status)}`}>
                         {lead.status.replace('_', ' ')}
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-centre gap-2">
+                      <div className="flex items-center gap-2">
                         <button 
                           onClick={() => setSelectedLead(lead)}
                           className="p-1 text-gray-600 hover:bg-gray-100 rounded"
@@ -549,10 +549,10 @@ export default function LeadManagementDashboard() {
 
       {/* Lead Details Modal */}
       {selectedLead && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b">
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-gray-900">Lead Details</h2>
                 <button
                   onClick={() => setSelectedLead(null)}
@@ -598,7 +598,7 @@ export default function LeadManagementDashboard() {
                   </p>
                   <p className="text-sm">
                     <span className="text-gray-600">Urgency:</span> 
-                    <span className={`ml-2 inline-flex items-centre px-2 py-0.5 rounded text-xs font-medium ${
+                    <span className={`ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
                       selectedLead.service.urgency === 'emergency' ? 'bg-red-100 text-red-800' :
                       selectedLead.service.urgency === 'urgent' ? 'bg-orange-100 text-orange-800' :
                       'bg-blue-100 text-blue-800'

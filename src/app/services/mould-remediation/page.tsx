@@ -94,7 +94,7 @@ export default function MouldRemediationPage() {
 
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-3 px-4">
-        <div className="container mx-auto flex items-centre justify-centre gap-4">
+        <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertTriangle className="h-5 w-5 animate-pulse" />
           <span className="font-bold">Professional Mould Remediation Services</span>
           <a href="tel:1300309361" className="font-bold underline">1300 309 361</a>
@@ -104,7 +104,7 @@ export default function MouldRemediationPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-green-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-centre">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Professional Mould Remediation & Removal in Brisbane
@@ -131,17 +131,17 @@ export default function MouldRemediationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="tel:1300309361" className="flex items-centre justify-centre gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700">
+                      <a href="tel:1300309361" className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700">
                         <Phone className="h-5 w-5" />
                         Call 1300 309 361
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="text-centre">
+                        <div className="text-center">
                           <Microscope className="h-8 w-8 mx-auto mb-1 text-green-600" />
                           <p className="font-medium">Air Quality Testing</p>
                           <p className="text-gray-600">Laboratory analysis</p>
                         </div>
-                        <div className="text-centre">
+                        <div className="text-center">
                           <FileCheck className="h-8 w-8 mx-auto mb-1 text-green-600" />
                           <p className="font-medium">Detailed Report</p>
                           <p className="text-gray-600">With remediation plan</p>
@@ -157,15 +157,15 @@ export default function MouldRemediationPage() {
               </div>
 
               <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-green-600" />
                   <span className="text-sm font-medium">IICRC Certified</span>
                 </div>
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <Heart className="h-5 w-5 text-green-600" />
                   <span className="text-sm font-medium">Health Focused</span>
                 </div>
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-green-600" />
                   <span className="text-sm font-medium">Guaranteed Results</span>
                 </div>
@@ -226,7 +226,7 @@ export default function MouldRemediationPage() {
       {/* Service Types Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Comprehensive Mould Remediation Services
           </h2>
           
@@ -336,24 +336,24 @@ export default function MouldRemediationPage() {
 
           {/* Common Mould Types */}
           <div className="bg-white rounded-lg p-8 shadow-lg">
-            <h3 className="text-2xl font-bold mb-6 text-centre">Common Mould Types We Remove</h3>
+            <h3 className="text-2xl font-bold mb-6 text-center">Common Mould Types We Remove</h3>
             <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-centre">
+              <div className="text-center">
                 <div className="w-16 h-16 bg-gray-900 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">Black Mould</h4>
                 <p className="text-sm text-gray-600">Stachybotrys - Highly toxic</p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <div className="w-16 h-16 bg-green-700 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">Green Mould</h4>
                 <p className="text-sm text-gray-600">Aspergillus - Common allergen</p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <div className="w-16 h-16 bg-gray-100 border-2 border-gray-300 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">White Mould</h4>
                 <p className="text-sm text-gray-600">Penicillium - Fast spreading</p>
               </div>
-              <div className="text-centre">
+              <div className="text-center">
                 <div className="w-16 h-16 bg-yellow-600 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">Yellow Mould</h4>
                 <p className="text-sm text-gray-600">Serpula - Wood destroyer</p>
@@ -366,7 +366,7 @@ export default function MouldRemediationPage() {
       {/* Process Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Our 7-Step Mould Remediation Process
           </h2>
           
@@ -418,7 +418,7 @@ export default function MouldRemediationPage() {
               ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-centre justify-centre font-bold">
+                    <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">
                       {item.step}
                     </div>
                   </div>
@@ -437,7 +437,7 @@ export default function MouldRemediationPage() {
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Mould Remediation Frequently Asked Questions
           </h2>
           
@@ -459,7 +459,7 @@ export default function MouldRemediationPage() {
       {/* Prevention Tips */}
       <section className="py-16 bg-green-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-centre mb-12">
+          <h2 className="text-3xl font-bold text-center mb-12">
             Mould Prevention Tips
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -508,7 +508,7 @@ export default function MouldRemediationPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-green-600 to-green-700 text-white">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Don't Let Mould Compromise Your Health
           </h2>
@@ -516,8 +516,8 @@ export default function MouldRemediationPage() {
             Professional mould remediation protects your property and family. 
             Our certified experts provide safe, thorough mould removal with guaranteed results.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
-            <a href="tel:1300309361" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-centre justify-centre gap-2">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:1300309361" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
               Call 1300 309 361
             </a>

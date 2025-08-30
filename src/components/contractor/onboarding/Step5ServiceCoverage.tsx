@@ -236,13 +236,13 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             return (
               <div key={property.type} className="bg-slate-900/50 border border-slate-700 rounded-lg overflow-hidden">
                 <div className="p-4">
-                  <div className="flex items-centre justify-between">
+                  <div className="flex items-center justify-between">
                     <button
                       onClick={() => handlePropertyTypeToggle(property.type)}
-                      className="flex items-centre gap-3 flex-1"
+                      className="flex items-center gap-3 flex-1"
                     >
                       <div className={`
-                        w-10 h-10 rounded-lg flex items-centre justify-centre transition
+                        w-10 h-10 rounded-lg flex items-center justify-center transition
                         ${isSelected 
                           ? `bg-${property.colour}-600/20 border-2 border-${property.colour}-500` 
                           : 'bg-slate-800 border-2 border-slate-700'}
@@ -271,7 +271,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                         {property.scales.map(scale => (
                           <label
                             key={scale.value}
-                            className="flex items-centre gap-2 p-2 hover:bg-slate-800/50 rounded cursor-pointer"
+                            className="flex items-center gap-2 p-2 hover:bg-slate-800/50 rounded cursor-pointer"
                           >
                             <input
                               type="checkbox"
@@ -309,7 +309,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                 key={disaster.type}
                 onClick={() => handleDisasterTypeToggle(disaster.type)}
                 className={`
-                  flex items-centre gap-3 p-3 rounded-lg border-2 transition
+                  flex items-center gap-3 p-3 rounded-lg border-2 transition
                   ${isSelected 
                     ? 'bg-slate-800/50 border-blue-500 text-white' 
                     : 'bg-slate-900/50 border-slate-700 text-slate-400 hover:border-slate-600'}
@@ -339,7 +339,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                 key={scale.value}
                 onClick={() => handleScaleCapabilityToggle(scale.value)}
                 className={`
-                  flex items-centre justify-between p-3 rounded-lg border-2 transition
+                  flex items-center justify-between p-3 rounded-lg border-2 transition
                   ${isSelected 
                     ? 'bg-slate-800/50 border-green-500' 
                     : 'bg-slate-900/50 border-slate-700 hover:border-slate-600'}
@@ -363,7 +363,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
         <h3 className="text-lg font-semibold text-white mb-4">Service Availability</h3>
         
         <div className="grid md:grid-cols-2 gap-4">
-          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.emergencyResponse}
@@ -376,7 +376,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
           </label>
           
-          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.afterHours}
@@ -389,7 +389,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
           </label>
           
-          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.weekendService}
@@ -402,7 +402,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
           </label>
           
-          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.publicHolidays}

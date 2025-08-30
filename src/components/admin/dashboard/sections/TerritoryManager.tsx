@@ -166,7 +166,7 @@ export function TerritoryManager() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-centre">
+      <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Territory Management</h2>
         <div className="flex gap-3">
           <div className="relative">
@@ -254,7 +254,7 @@ export function TerritoryManager() {
       {conflicts.length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-centre gap-2">
+            <CardTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-red-500" />
               Territory Conflicts
             </CardTitle>
@@ -265,7 +265,7 @@ export function TerritoryManager() {
                 <div key={conflict.id} className="border rounded-lg p-4 bg-red-50">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <div className="flex items-centre gap-4 mb-2">
+                      <div className="flex items-center gap-4 mb-2">
                         <div>
                           <p className="font-medium">{conflict.territory1.companyName}</p>
                           <p className="text-sm text-gray-600">
@@ -344,7 +344,7 @@ export function TerritoryManager() {
                       </div>
                     </td>
                     <td className="p-4">
-                      <div className="flex items-centre gap-2">
+                      <div className="flex items-center gap-2">
                         {territory.type === 'radius' ? (
                           <Target className="h-4 w-4 text-gray-400" />
                         ) : (
@@ -397,7 +397,7 @@ export function TerritoryManager() {
       {/* Underserved Areas */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-centre gap-2">
+          <CardTitle className="flex items-center gap-2">
             <Info className="h-5 w-5" />
             Underserved Regions
           </CardTitle>

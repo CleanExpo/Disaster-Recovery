@@ -347,7 +347,7 @@ export default function CampaignManagementTools() {
   const CampaignOverview = () => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Active Campaigns</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -361,7 +361,7 @@ export default function CampaignManagementTools() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Budget</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -375,7 +375,7 @@ export default function CampaignManagementTools() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Total Spent</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -389,7 +389,7 @@ export default function CampaignManagementTools() {
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-gray-600">Avg ROAS</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
@@ -407,11 +407,11 @@ export default function CampaignManagementTools() {
   const CampaignTable = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
-        <div className="flex justify-between items-centre mb-4">
+        <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Campaign Management</h3>
           <button
             onClick={() => setShowCreateModal(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center"
           >
             <Plus className="w-4 h-4 mr-2" />
             New Campaign
@@ -482,7 +482,7 @@ export default function CampaignManagementTools() {
                     <div>
                       <p className="text-sm font-medium text-gray-900">{campaign.name}</p>
                       <p className="text-sm text-gray-500 line-clamp-1">{campaign.description}</p>
-                      <div className="flex items-centre mt-1 space-x-2">
+                      <div className="flex items-center mt-1 space-x-2">
                         <span className="text-xs text-gray-400">{campaign.manager}</span>
                         <span className="text-xs text-gray-300">•</span>
                         <span className="text-xs text-gray-400 capitalize">{campaign.type}</span>
@@ -490,7 +490,7 @@ export default function CampaignManagementTools() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex items-centre px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[campaign.status]}`}>
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[campaign.status]}`}>
                       {campaign.status.charAt(0).toUpperCase() + campaign.status.slice(1)}
                     </span>
                   </td>
@@ -574,9 +574,9 @@ export default function CampaignManagementTools() {
 
   const TemplateLibrary = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex justify-between items-centre mb-6">
+      <div className="flex justify-between items-center mb-6">
         <h3 className="text-lg font-semibold text-gray-900">Campaign Templates</h3>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre">
+        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center">
           <Plus className="w-4 h-4 mr-2" />
           Create Template
         </button>
@@ -585,7 +585,7 @@ export default function CampaignManagementTools() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {mockTemplates.map(template => (
           <div key={template.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-all cursor-pointer">
-            <div className="flex items-centre justify-between mb-3">
+            <div className="flex items-center justify-between mb-3">
               <h4 className="font-medium text-gray-900">{template.name}</h4>
               <span className="text-lg">{platformIcons[template.platform]}</span>
             </div>
@@ -621,7 +621,7 @@ export default function CampaignManagementTools() {
     <div className="space-y-6">
       {mockBudgetPools.map(pool => (
         <div key={pool.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex justify-between items-centre mb-6">
+          <div className="flex justify-between items-center mb-6">
             <div>
               <h3 className="text-lg font-semibold text-gray-900">{pool.name}</h3>
               <p className="text-sm text-gray-500">
@@ -637,19 +637,19 @@ export default function CampaignManagementTools() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="text-centre p-4 bg-blue-50 rounded-lg">
+            <div className="text-center p-4 bg-blue-50 rounded-lg">
               <p className="text-2xl font-bold text-blue-600">
                 {formatCurrency(pool.totalBudget)}
               </p>
               <p className="text-sm text-gray-600">Total Budget</p>
             </div>
-            <div className="text-centre p-4 bg-green-50 rounded-lg">
+            <div className="text-center p-4 bg-green-50 rounded-lg">
               <p className="text-2xl font-bold text-green-600">
                 {formatCurrency(pool.allocatedBudget)}
               </p>
               <p className="text-sm text-gray-600">Allocated</p>
             </div>
-            <div className="text-centre p-4 bg-orange-50 rounded-lg">
+            <div className="text-center p-4 bg-orange-50 rounded-lg">
               <p className="text-2xl font-bold text-orange-600">
                 {formatPercentage((pool.allocatedBudget / pool.totalBudget) * 100)}
               </p>
@@ -661,9 +661,9 @@ export default function CampaignManagementTools() {
             <h4 className="font-medium text-gray-900 mb-3">Contractor Allocations</h4>
             <div className="space-y-3">
               {pool.contractors.map(contractor => (
-                <div key={contractor.contractorId} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-centre space-x-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-centre justify-centre text-sm font-medium text-blue-600">
+                <div key={contractor.contractorId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-sm font-medium text-blue-600">
                       {contractor.contractorName[0]}
                     </div>
                     <div>
@@ -675,7 +675,7 @@ export default function CampaignManagementTools() {
                     <p className="font-medium text-gray-900">
                       {formatCurrency(contractor.spent)}
                     </p>
-                    <div className="flex items-centre space-x-2 text-sm">
+                    <div className="flex items-center space-x-2 text-sm">
                       <span className="text-gray-500">ROI:</span>
                       <span className={`font-medium ${
                         contractor.performance.roi >= 300 ? 'text-green-600' :
@@ -696,7 +696,7 @@ export default function CampaignManagementTools() {
               <h4 className="font-medium text-gray-900 mb-3">Budget Restrictions</h4>
               <div className="space-y-2">
                 {pool.restrictions.map((restriction, index) => (
-                  <div key={index} className="flex items-centre space-x-2 text-sm text-gray-600">
+                  <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
                     <AlertTriangle className="w-4 h-4 text-yellow-500" />
                     <span>{restriction.description}</span>
                   </div>
@@ -719,7 +719,7 @@ export default function CampaignManagementTools() {
               <div className="flex-1">
                 <h4 className="font-medium text-gray-900">{campaign.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">{campaign.description}</p>
-                <div className="flex items-centre space-x-4 mt-2 text-sm text-gray-500">
+                <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                   <span>Budget: {formatCurrency(campaign.budget.total)}</span>
                   <span>Duration: {Math.ceil((campaign.timeline.endDate.getTime() - campaign.timeline.startDate.getTime()) / (1000 * 60 * 60 * 24))} days</span>
                   <span>Manager: {campaign.manager}</span>
@@ -746,7 +746,7 @@ export default function CampaignManagementTools() {
         ))}
         
         {mockCampaigns.filter(c => c.approval.status === 'pending').length === 0 && (
-          <div className="text-centre py-8">
+          <div className="text-center py-8">
             <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
             <p className="text-gray-600">No campaigns pending approval</p>
           </div>
@@ -757,7 +757,7 @@ export default function CampaignManagementTools() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex justify-between items-centre mb-8">
+      <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Campaign Management Tools</h1>
           <p className="text-gray-600 mt-2">
@@ -789,7 +789,7 @@ export default function CampaignManagementTools() {
               <button
                 key={tab.key}
                 onClick={() => setSelectedView(tab.key as typeof selectedView)}
-                className={`flex items-centre px-1 py-4 border-b-2 font-medium text-sm transition-colours ${
+                className={`flex items-center px-1 py-4 border-b-2 font-medium text-sm transition-colours ${
                   selectedView === tab.key
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'

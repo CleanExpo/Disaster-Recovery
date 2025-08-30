@@ -388,9 +388,9 @@ export function APIDocumentation() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex items-centre justify-between">
+          <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold flex items-centre gap-2 mb-2">
+              <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
                 <Code className="h-8 w-8" />
                 API Documentation
               </h1>
@@ -398,7 +398,7 @@ export function APIDocumentation() {
                 Build powerful integrations with the NRP platform
               </p>
             </div>
-            <div className="flex items-centre gap-4">
+            <div className="flex items-center gap-4">
               <Badge variant="outline" className="bg-white/20 text-white border-white/50">
                 Version: {selectedVersion}
               </Badge>
@@ -443,7 +443,7 @@ export function APIDocumentation() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setActiveTab('getting-started')}>
             <CardContent className="p-6">
-              <div className="flex items-centre gap-3">
+              <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-100 rounded-lg">
                   <Zap className="h-5 w-5 text-blue-600" />
                 </div>
@@ -457,7 +457,7 @@ export function APIDocumentation() {
 
           <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setActiveTab('authentication')}>
             <CardContent className="p-6">
-              <div className="flex items-centre gap-3">
+              <div className="flex items-center gap-3">
                 <div className="p-2 bg-green-100 rounded-lg">
                   <Key className="h-5 w-5 text-green-600" />
                 </div>
@@ -471,7 +471,7 @@ export function APIDocumentation() {
 
           <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setActiveTab('webhooks')}>
             <CardContent className="p-6">
-              <div className="flex items-centre gap-3">
+              <div className="flex items-center gap-3">
                 <div className="p-2 bg-purple-100 rounded-lg">
                   <Webhook className="h-5 w-5 text-purple-600" />
                 </div>
@@ -485,7 +485,7 @@ export function APIDocumentation() {
 
           <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => setActiveTab('playground')}>
             <CardContent className="p-6">
-              <div className="flex items-centre gap-3">
+              <div className="flex items-center gap-3">
                 <div className="p-2 bg-orange-100 rounded-lg">
                   <Play className="h-5 w-5 text-orange-600" />
                 </div>
@@ -534,7 +534,7 @@ export function APIDocumentation() {
                           <button
                             onClick={() => setSelectedCategory(category)}
                             className={cn(
-                              "w-full px-4 py-3 text-left hover:bg-gray-50 transition-colours flex items-centre gap-3",
+                              "w-full px-4 py-3 text-left hover:bg-gray-50 transition-colours flex items-center gap-3",
                               selectedCategory.id === category.id && "bg-blue-50 border-l-4 border-blue-600"
                             )}
                           >
@@ -557,7 +557,7 @@ export function APIDocumentation() {
               <div className="col-span-9">
                 <Card>
                   <CardHeader>
-                    <div className="flex items-centre justify-between">
+                    <div className="flex items-center justify-between">
                       <div>
                         <CardTitle>{selectedCategory.name}</CardTitle>
                         <CardDescription>{selectedCategory.description}</CardDescription>
@@ -582,14 +582,14 @@ export function APIDocumentation() {
                           onClick={() => setSelectedEndpoint(endpoint)}
                           className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colours"
                         >
-                          <div className="flex items-centre justify-between">
-                            <div className="flex items-centre gap-3">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
                               <Badge className={getMethodColor(endpoint.method)}>
                                 {endpoint.method}
                               </Badge>
                               <code className="text-sm font-mono">{endpoint.path}</code>
                             </div>
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               {endpoint.authentication !== 'none' && (
                                 <Badge variant="outline">
                                   <Key className="h-3 w-3 mr-1" />
@@ -688,15 +688,15 @@ export function APIDocumentation() {
             <div>
               <h4 className="font-semibold mb-3">Resources</h4>
               <div className="space-y-2">
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-600 flex items-centre gap-1">
+                <a href="#" className="text-sm text-gray-600 hover:text-blue-600 flex items-center gap-1">
                   <ExternalLink className="h-3 w-3" />
                   API Status
                 </a>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-600 flex items-centre gap-1">
+                <a href="#" className="text-sm text-gray-600 hover:text-blue-600 flex items-center gap-1">
                   <ExternalLink className="h-3 w-3" />
                   Changelog
                 </a>
-                <a href="#" className="text-sm text-gray-600 hover:text-blue-600 flex items-centre gap-1">
+                <a href="#" className="text-sm text-gray-600 hover:text-blue-600 flex items-center gap-1">
                   <ExternalLink className="h-3 w-3" />
                   Support
                 </a>
@@ -712,7 +712,7 @@ export function APIDocumentation() {
             </div>
             <div>
               <h4 className="font-semibold mb-3">API Health</h4>
-              <div className="flex items-centre gap-2">
+              <div className="flex items-center gap-2">
                 <Activity className="h-4 w-4 text-green-500" />
                 <span className="text-sm text-gray-600">All systems operational</span>
               </div>

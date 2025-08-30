@@ -38,8 +38,8 @@ function PaymentSuccessPageContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-centre justify-centre">
-        <div className="text-centre">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Verifying your payment...</p>
         </div>
@@ -51,8 +51,8 @@ function PaymentSuccessPageContent() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
       <div className="max-w-4xl mx-auto px-4 py-16">
         {/* Success Animation */}
-        <div className="text-centre mb-12">
-          <div className="inline-flex items-centre justify-centre w-24 h-24 bg-green-100 rounded-full mb-6">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-green-100 rounded-full mb-6">
             <CheckCircle className="w-16 h-16 text-green-600" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -96,7 +96,7 @@ function PaymentSuccessPageContent() {
           
           <div className="space-y-6">
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-centre justify-centre">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-blue-600 font-bold">1</span>
               </div>
               <div>
@@ -108,7 +108,7 @@ function PaymentSuccessPageContent() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-centre justify-centre">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-blue-600 font-bold">2</span>
               </div>
               <div>
@@ -120,7 +120,7 @@ function PaymentSuccessPageContent() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-centre justify-centre">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-blue-600 font-bold">3</span>
               </div>
               <div>
@@ -132,7 +132,7 @@ function PaymentSuccessPageContent() {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-centre justify-centre">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-blue-600 font-bold">4</span>
               </div>
               <div>
@@ -150,26 +150,26 @@ function PaymentSuccessPageContent() {
           <h3 className="text-xl font-bold text-gray-900 mb-4">Your Subscription Benefits</h3>
           
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-white rounded-lg p-4 text-centre">
+            <div className="bg-white rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-green-600">Month 1</div>
               <div className="text-gray-600 mt-1">FREE</div>
               <div className="text-sm text-gray-500 mt-2">100% off while you train</div>
             </div>
             
-            <div className="bg-white rounded-lg p-4 text-centre">
+            <div className="bg-white rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-blue-600">Month 2</div>
               <div className="text-gray-600 mt-1">$198/month</div>
               <div className="text-sm text-gray-500 mt-2">60% discount applied</div>
             </div>
             
-            <div className="bg-white rounded-lg p-4 text-centre">
+            <div className="bg-white rounded-lg p-4 text-center">
               <div className="text-2xl font-bold text-purple-600">Month 3</div>
               <div className="text-gray-600 mt-1">$247.50/month</div>
               <div className="text-sm text-gray-500 mt-2">50% discount applied</div>
             </div>
           </div>
           
-          <p className="text-sm text-gray-600 mt-4 text-centre">
+          <p className="text-sm text-gray-600 mt-4 text-center">
             Regular subscription rate of $495/month applies from month 4 onwards
           </p>
         </div>
@@ -181,19 +181,19 @@ function PaymentSuccessPageContent() {
           <div className="grid md:grid-cols-3 gap-4">
             <button
               onClick={() => router.push('/contractor/onboarding')}
-              className="flex items-centre justify-centre space-x-2 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition"
+              className="flex items-center justify-center space-x-2 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition"
             >
               <BookOpen className="w-5 h-5" />
               <span>Start Training</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             
-            <button className="flex items-centre justify-centre space-x-2 bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition">
+            <button className="flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition">
               <Download className="w-5 h-5" />
               <span>Download Receipt</span>
             </button>
             
-            <button className="flex items-centre justify-centre space-x-2 bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition">
+            <button className="flex items-center justify-center space-x-2 bg-gray-100 text-gray-700 py-3 px-6 rounded-lg hover:bg-gray-200 transition">
               <Clock className="w-5 h-5" />
               <span>View Schedule</span>
             </button>
@@ -201,7 +201,7 @@ function PaymentSuccessPageContent() {
         </div>
 
         {/* Support Information */}
-        <div className="mt-8 text-centre text-gray-600">
+        <div className="mt-8 text-center text-gray-600">
           <p>Need help? Contact our support team at</p>
           <a href="mailto:support@nrpaus.com.au" className="text-blue-600 hover:underline">
             support@nrpaus.com.au
@@ -215,8 +215,8 @@ function PaymentSuccessPageContent() {
 export default function PaymentSuccessPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
-        <div className="text-centre">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Verifying payment...</p>
         </div>

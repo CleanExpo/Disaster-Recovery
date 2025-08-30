@@ -92,7 +92,7 @@ export function CompliancePanel({ compliance, certifications = [], insurance = [
             <CardTitle className="text-sm font-medium">Overall Status</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-centre gap-2">
+            <div className="flex items-center gap-2">
               <Shield className={`h-5 w-5 ${
                 compliance.overallStatus === 'COMPLIANT' ? 'text-green-500' :
                 compliance.overallStatus === 'ACTION_REQUIRED' ? 'text-yellow-500' :
@@ -161,8 +161,8 @@ export function CompliancePanel({ compliance, certifications = [], insurance = [
           <CardContent>
             <div className="space-y-3">
               {items.map((item) => (
-                <div key={item.id} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
-                  <div className="flex items-centre gap-3">
+                <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-3">
                     {getStatusIcon(item.status)}
                     <div>
                       <p className="font-medium text-sm">{item.name}</p>
@@ -173,7 +173,7 @@ export function CompliancePanel({ compliance, certifications = [], insurance = [
                       )}
                     </div>
                   </div>
-                  <div className="flex items-centre gap-2">
+                  <div className="flex items-center gap-2">
                     <Badge variant={getStatusBadgeVariant(item.status)}>
                       {item.status}
                     </Badge>

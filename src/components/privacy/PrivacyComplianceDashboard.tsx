@@ -133,7 +133,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h1 className="text-2xl font-bold flex items-centre gap-2">
+          <h1 className="text-2xl font-bold flex items-center gap-2">
             <Shield className="h-6 w-6" />
             Privacy & Compliance Centre
           </h1>
@@ -169,7 +169,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                 <span className={`text-5xl font-bold ${getComplianceColor(complianceScore)}`}>
                   {complianceScore}%
                 </span>
-                <span className="flex items-centre text-sm text-gray-500">
+                <span className="flex items-center text-sm text-gray-500">
                   <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
                   +3% from last month
                 </span>
@@ -178,21 +178,21 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
               <div className="grid grid-cols-4 gap-4 mt-6">
                 <div>
                   <p className="text-xs text-gray-500">Data Protection</p>
-                  <div className="flex items-centre gap-2 mt-1">
+                  <div className="flex items-center gap-2 mt-1">
                     <Lock className="h-4 w-4 text-green-500" />
                     <span className="font-semibold">AES-256</span>
                   </div>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Consent Rate</p>
-                  <div className="flex items-centre gap-2 mt-1">
+                  <div className="flex items-center gap-2 mt-1">
                     <UserCheck className="h-4 w-4 text-green-500" />
                     <span className="font-semibold">{metrics.consentCompliance}%</span>
                   </div>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Active Incidents</p>
-                  <div className="flex items-centre gap-2 mt-1">
+                  <div className="flex items-center gap-2 mt-1">
                     {metrics.activeBreaches > 0 ? (
                       <ShieldAlert className="h-4 w-4 text-red-500" />
                     ) : (
@@ -203,7 +203,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Next Audit</p>
-                  <div className="flex items-centre gap-2 mt-1">
+                  <div className="flex items-center gap-2 mt-1">
                     <Activity className="h-4 w-4 text-blue-500" />
                     <span className="font-semibold">
                       {new Date(metrics.nextAudit).toLocaleDateString()}
@@ -236,7 +236,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                     className={getComplianceColor(complianceScore)}
                   />
                 </svg>
-                <div className="absolute inset-0 flex items-centre justify-centre">
+                <div className="absolute inset-0 flex items-center justify-center">
                   <Shield className="h-12 w-12 text-blue-600" />
                 </div>
               </div>
@@ -258,7 +258,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
             <CardContent>
               <p className="text-xs text-gray-600 mb-3">{framework.description}</p>
               <div className="space-y-2">
-                <div className="flex justify-between items-centre">
+                <div className="flex justify-between items-center">
                   <span className="text-sm">Score</span>
                   <span className={`font-bold ${getComplianceColor(framework.score)}`}>
                     {framework.score}%
@@ -307,8 +307,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex items-centre justify-between p-3 border rounded-lg">
-                    <div className="flex items-centre gap-3">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500" />
                       <div>
                         <p className="font-medium">Data Encryption</p>
@@ -318,8 +318,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                     <Badge className="bg-green-100 text-green-800">Active</Badge>
                   </div>
                   
-                  <div className="flex items-centre justify-between p-3 border rounded-lg">
-                    <div className="flex items-centre gap-3">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500" />
                       <div>
                         <p className="font-medium">Access Controls</p>
@@ -329,8 +329,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                     <Badge className="bg-green-100 text-green-800">Active</Badge>
                   </div>
                   
-                  <div className="flex items-centre justify-between p-3 border rounded-lg">
-                    <div className="flex items-centre gap-3">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="flex items-center gap-3">
                       <CheckCircle className="h-5 w-5 text-green-500" />
                       <div>
                         <p className="font-medium">Audit Logging</p>
@@ -340,8 +340,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                     <Badge className="bg-green-100 text-green-800">Active</Badge>
                   </div>
                   
-                  <div className="flex items-centre justify-between p-3 border rounded-lg">
-                    <div className="flex items-centre gap-3">
+                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="flex items-center gap-3">
                       <AlertTriangle className="h-5 w-5 text-yellow-500" />
                       <div>
                         <p className="font-medium">Penetration Testing</p>
@@ -361,27 +361,27 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Total Users</span>
                     <span className="font-semibold">{metrics.totalUsers.toLocaleString()}</span>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Consent Compliance</span>
                     <span className="font-semibold">{metrics.consentCompliance}%</span>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Data Retention Compliance</span>
                     <span className="font-semibold">98%</span>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Third-Party Agreements</span>
                     <span className="font-semibold">12 Active</span>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Cross-Border Transfers</span>
                     <span className="font-semibold">EU, US Compliant</span>
                   </div>
-                  <div className="flex justify-between items-centre">
+                  <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Security Audit</span>
                     <span className="font-semibold">
                       {new Date(metrics.lastAudit).toLocaleDateString()}
@@ -476,8 +476,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="border rounded-lg p-4">
-                    <div className="flex items-centre justify-between mb-3">
-                      <h4 className="font-medium flex items-centre gap-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium flex items-center gap-2">
                         <Lock className="h-4 w-4" />
                         Encryption Settings
                       </h4>
@@ -500,8 +500,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                   </div>
                   
                   <div className="border rounded-lg p-4">
-                    <div className="flex items-centre justify-between mb-3">
-                      <h4 className="font-medium flex items-centre gap-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium flex items-center gap-2">
                         <Key className="h-4 w-4" />
                         Access Control
                       </h4>
@@ -524,8 +524,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                   </div>
                   
                   <div className="border rounded-lg p-4">
-                    <div className="flex items-centre justify-between mb-3">
-                      <h4 className="font-medium flex items-centre gap-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium flex items-center gap-2">
                         <Database className="h-4 w-4" />
                         Data Retention
                       </h4>
@@ -548,8 +548,8 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                   </div>
                   
                   <div className="border rounded-lg p-4">
-                    <div className="flex items-centre justify-between mb-3">
-                      <h4 className="font-medium flex items-centre gap-2">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-medium flex items-center gap-2">
                         <Shield className="h-4 w-4" />
                         Monitoring
                       </h4>

@@ -403,8 +403,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <div className="flex items-centre space-x-3">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
             <div className="p-2 bg-indigo-100 rounded-lg">
               <Mail className="h-6 w-6 text-indigo-600" />
             </div>
@@ -413,7 +413,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               <p className="text-sm text-gray-500">Automated client engagement and transparency</p>
             </div>
           </div>
-          <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-centre space-x-2">
+          <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center space-x-2">
             <Send className="h-4 w-4" />
             <span>New Communication</span>
           </button>
@@ -446,8 +446,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
       {/* Filters */}
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <div className="flex items-centre justify-between">
-          <div className="flex items-centre space-x-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
             <label className="text-sm font-medium">Type:</label>
             <select
               value={filterType}
@@ -461,7 +461,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               <option value="service_description">Service Info</option>
             </select>
           </div>
-          <div className="flex items-centre space-x-2">
+          <div className="flex items-center space-x-2">
             <label className="text-sm font-medium">Status:</label>
             <select
               value={filterStatus}
@@ -492,14 +492,14 @@ const ClientCommunicationWorkflow: React.FC = () => {
                 className="p-4 hover:bg-gray-50 cursor-pointer"
                 onClick={() => setSelectedCommunication(comm)}
               >
-                <div className="flex items-centre justify-between">
-                  <div className="flex items-centre space-x-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
                     <div className="p-2 bg-gray-100 rounded-lg">
                       <TypeIcon className="h-5 w-5 text-gray-600" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium">{comm.content.subject}</p>
-                      <div className="flex items-centre space-x-4 mt-1 text-sm text-gray-600">
+                      <div className="flex items-center space-x-4 mt-1 text-sm text-gray-600">
                         <span>Job #{comm.jobId}</span>
                         <span>Client #{comm.clientId}</span>
                         <span className="capitalize">{comm.type.replace(/_/g, ' ')}</span>
@@ -507,15 +507,15 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-centre space-x-4">
+                  <div className="flex items-center space-x-4">
                     {/* Tracking Stats */}
                     {comm.tracking && comm.status !== 'scheduled' && (
-                      <div className="flex items-centre space-x-3 text-sm">
-                        <div className="flex items-centre space-x-1">
+                      <div className="flex items-center space-x-3 text-sm">
+                        <div className="flex items-center space-x-1">
                           <Eye className="h-4 w-4 text-gray-400" />
                           <span>{comm.tracking.opens}</span>
                         </div>
-                        <div className="flex items-centre space-x-1">
+                        <div className="flex items-center space-x-1">
                           <Link className="h-4 w-4 text-gray-400" />
                           <span>{comm.tracking.clicks}</span>
                         </div>
@@ -523,8 +523,8 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     )}
 
                     {/* Status */}
-                    <div className="flex items-centre space-x-2">
-                      <span className={`px-2 py-1 text-xs rounded-full flex items-centre space-x-1 ${
+                    <div className="flex items-center space-x-2">
+                      <span className={`px-2 py-1 text-xs rounded-full flex items-center space-x-1 ${
                         getStatusColor(comm.status)
                       }`}>
                         <StatusIcon className="h-3 w-3" />
@@ -549,7 +549,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-centre space-x-2">
+                    <div className="flex items-center space-x-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -578,10 +578,10 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
                 {/* Technician Profiles Preview */}
                 {comm.content.technicianProfiles && comm.content.technicianProfiles.length > 0 && (
-                  <div className="mt-3 flex items-centre space-x-2">
+                  <div className="mt-3 flex items-center space-x-2">
                     <span className="text-xs text-gray-500">Team:</span>
                     {comm.content.technicianProfiles.slice(0, 3).map((tech) => (
-                      <div key={tech.technicianId} className="flex items-centre space-x-1">
+                      <div key={tech.technicianId} className="flex items-center space-x-1">
                         {tech.photo ? (
                           <img
                             src={tech.photo}
@@ -604,7 +604,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
                 {/* Attachments */}
                 {comm.attachments && comm.attachments.length > 0 && (
-                  <div className="mt-3 flex items-centre space-x-2">
+                  <div className="mt-3 flex items-center space-x-2">
                     <Paperclip className="h-4 w-4 text-gray-400" />
                     <span className="text-xs text-gray-500">
                       {comm.attachments.length} attachment{comm.attachments.length > 1 ? 's' : ''}
@@ -619,9 +619,9 @@ const ClientCommunicationWorkflow: React.FC = () => {
 
       {/* Email Preview Modal */}
       {showPreview && emailPreview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-            <div className="p-4 border-b flex items-centre justify-between">
+            <div className="p-4 border-b flex items-center justify-between">
               <h3 className="text-lg font-semibold">Email Preview</h3>
               <button
                 onClick={() => setShowPreview(false)}
@@ -644,9 +644,9 @@ const ClientCommunicationWorkflow: React.FC = () => {
                 {emailPreview.attachments.length > 0 && (
                   <div className="flex">
                     <span className="font-medium w-20">Attachments:</span>
-                    <div className="flex items-centre space-x-2">
+                    <div className="flex items-center space-x-2">
                       {emailPreview.attachments.map((doc) => (
-                        <span key={doc.id} className="px-2 py-1 bg-white rounded border flex items-centre space-x-1">
+                        <span key={doc.id} className="px-2 py-1 bg-white rounded border flex items-center space-x-1">
                           <FileText className="h-3 w-3" />
                           <span>{doc.name}</span>
                         </span>

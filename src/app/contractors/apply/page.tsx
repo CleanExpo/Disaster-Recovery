@@ -74,7 +74,7 @@ export default function ContractorApplicationPage() {
     return (
       <div className="min-h-screen bg-green-50 py-20">
         <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto p-8 text-centre">
+          <Card className="max-w-2xl mx-auto p-8 text-center">
             <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
             <h1 className="text-3xl font-bold mb-4">Application Received!</h1>
             <p className="text-xl mb-6">
@@ -104,7 +104,7 @@ export default function ContractorApplicationPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-centre">
+          <div className="max-w-4xl mx-auto text-center">
             <Shield className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Join Our Network Application
@@ -367,19 +367,19 @@ export default function ContractorApplicationPage() {
                     <div>
                       <Label>Certification Types * (select all that apply)</Label>
                       <div className="space-y-2 mt-2">
-                        <div className="flex items-centre">
+                        <div className="flex items-center">
                           <Checkbox id="wrt" />
                           <label htmlFor="wrt" className="ml-2 text-sm">WRT - Water Damage Restoration</label>
                         </div>
-                        <div className="flex items-centre">
+                        <div className="flex items-center">
                           <Checkbox id="fsrt" />
                           <label htmlFor="fsrt" className="ml-2 text-sm">FSRT - Fire & Smoke Restoration</label>
                         </div>
-                        <div className="flex items-centre">
+                        <div className="flex items-center">
                           <Checkbox id="amrt" />
                           <label htmlFor="amrt" className="ml-2 text-sm">AMRT - Applied Microbial Remediation</label>
                         </div>
-                        <div className="flex items-centre">
+                        <div className="flex items-center">
                           <Checkbox id="asd" />
                           <label htmlFor="asd" className="ml-2 text-sm">ASD - Applied Structural Drying</label>
                         </div>
@@ -437,7 +437,7 @@ export default function ContractorApplicationPage() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="flex items-centre space-x-2">
+                    <div className="flex items-center space-x-2">
                       <Checkbox 
                         id="emergencyResponse"
                         checked={formData.emergencyResponse}
@@ -516,7 +516,7 @@ export default function ContractorApplicationPage() {
                     <Award className="mr-2 h-5 w-5" />
                     Submit Application to Join Network
                   </Button>
-                  <p className="text-sm text-gray-600 text-centre mt-4">
+                  <p className="text-sm text-gray-600 text-center mt-4">
                     Applications are reviewed within 1-2 business days
                   </p>
                 </div>

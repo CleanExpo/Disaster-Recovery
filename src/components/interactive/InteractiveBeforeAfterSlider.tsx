@@ -88,7 +88,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
     >
       {/* Header */}
       <div className="p-8 pb-4">
-        <div className="flex items-centre justify-between mb-4">
+        <div className="flex items-center justify-between mb-4">
           <h4 className="text-2xl font-bold text-gray-900">{caseData.title}</h4>
           <motion.div
             className={`px-3 py-1 rounded-full text-sm font-bold border ${getServiceColor(caseData.serviceType)}`}
@@ -133,8 +133,8 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             transition={{ type: "tween", duration: isDragging ? 0 : 0.2 }}
           >
             {/* Since we don't have actual after images, we'll show a restoration complete state */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-white flex items-centre justify-centre border-2 border-green-100">
-              <div className="text-centre p-6">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-white flex items-center justify-center border-2 border-green-100">
+              <div className="text-center p-6">
                 <motion.div
                   animate={{
                     scale: [1, 1.1, 1],
@@ -178,7 +178,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
 
           {/* Slider Handle */}
           <motion.div
-            className="absolute top-0 bottom-0 flex items-centre justify-centre z-10"
+            className="absolute top-0 bottom-0 flex items-center justify-center z-10"
             style={{
               left: `${sliderPosition}%`,
               transform: 'translateX(-50%)',
@@ -189,7 +189,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             transition={{ type: "tween", duration: isDragging ? 0 : 0.2 }}
           >
             <motion.div 
-              className="bg-white border-4 border-blue-500 rounded-full w-12 h-12 flex items-centre justify-centre shadow-lg cursor-col-resize"
+              className="bg-white border-4 border-blue-500 rounded-full w-12 h-12 flex items-center justify-center shadow-lg cursor-col-resize"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               animate={{
@@ -199,7 +199,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
               }}
             >
               <motion.div 
-                className="flex items-centre space-x-1"
+                className="flex items-center space-x-1"
                 animate={{
                   scale: isDragging ? 1.2 : 1,
                 }}
@@ -226,11 +226,11 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
           {/* Drag instruction overlay */}
           {!isDragging && (
             <motion.div
-              className="absolute inset-0 flex items-centre justify-centre bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 1 }}
             >
-              <div className="text-white text-centre">
+              <div className="text-white text-center">
                 <motion.div
                   animate={{
                     x: [-10, 10, -10],
@@ -251,7 +251,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
 
         {/* Progress Indicator */}
         <div className="mt-4 mb-6">
-          <div className="flex items-centre justify-between text-sm text-gray-600 mb-2">
+          <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
             <span>Before</span>
             <motion.span 
               className="font-bold text-blue-600"
@@ -299,13 +299,13 @@ export default function InteractiveBeforeAfterSlider() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
       {/* Section Header */}
       <motion.div 
-        className="text-centre mb-16"
+        className="text-center mb-16"
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
       >
         <motion.div 
-          className="inline-flex items-centre bg-green-100 text-green-800 px-4 py-2 rounded-full mb-6"
+          className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full mb-6"
           whileHover={{ scale: 1.05 }}
         >
           <CheckCircle className="h-4 w-4 mr-2" />
@@ -332,7 +332,7 @@ export default function InteractiveBeforeAfterSlider() {
 
         {/* Interactive instruction */}
         <motion.div 
-          className="inline-flex items-centre bg-blue-50 text-blue-700 px-6 py-3 rounded-full border border-blue-200"
+          className="inline-flex items-center bg-blue-50 text-blue-700 px-6 py-3 rounded-full border border-blue-200"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.6, delay: 0.6 }}

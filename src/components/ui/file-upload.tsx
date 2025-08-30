@@ -147,14 +147,14 @@ export default function FileUpload({
           disabled={disabled}
         />
         
-        <div className="text-centre">
+        <div className="text-center">
           <motion.div
             animate={{ 
               scale: dragOver ? 1.1 : 1,
               rotate: dragOver ? 5 : 0 
             }}
             className={cn(
-              "mx-auto mb-4 flex h-16 w-16 items-centre justify-centre rounded-full",
+              "mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full",
               dragOver ? "bg-blue-100" : "bg-gray-100 group-hover:bg-gray-200"
             )}
           >
@@ -194,7 +194,7 @@ export default function FileUpload({
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-centre text-red-600 text-sm bg-red-50 p-3 rounded-lg"
+                className="flex items-center text-red-600 text-sm bg-red-50 p-3 rounded-lg"
               >
                 <AlertTriangle className="h-4 w-4 mr-2" />
                 {error}
@@ -213,7 +213,7 @@ export default function FileUpload({
             exit={{ opacity: 0, height: 0 }}
             className="space-y-3"
           >
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <h4 className="text-sm font-semibold text-gray-900">
                 Uploaded Files ({files.length}/{maxFiles})
               </h4>
@@ -235,9 +235,9 @@ export default function FileUpload({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ delay: index * 0.05 }}
-                  className="flex items-centre justify-between p-3 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow"
+                  className="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-xl hover:shadow-sm transition-shadow"
                 >
-                  <div className="flex items-centre space-x-3 flex-1 min-w-0">
+                  <div className="flex items-center space-x-3 flex-1 min-w-0">
                     {getFileIcon(file)}
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-gray-900 truncate">

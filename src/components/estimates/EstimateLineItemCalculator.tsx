@@ -327,14 +327,14 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
     <div className="space-y-6">
       {/* Summary */}
       <div className="bg-white rounded-lg shadow p-6">
-        <div className="flex items-centre justify-between mb-4">
-          <h3 className="text-lg font-semibold flex items-centre">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold flex items-center">
             <Calculator className="h-5 w-5 mr-2 text-blue-600" />
             Line Item Calculator
           </h3>
           <button
             onClick={() => setShowAddItem(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-centre"
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Custom Item
@@ -395,7 +395,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                         className="px-3 py-2 border rounded"
                         placeholder="Unit Price"
                       />
-                      <div className="flex items-centre space-x-2">
+                      <div className="flex items-center space-x-2">
                         <button
                           onClick={() => setEditingItem(null)}
                           className="px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700"
@@ -414,7 +414,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                 ) : (
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <div className="flex items-centre space-x-2 mb-2">
+                      <div className="flex items-center space-x-2 mb-2">
                         <span className={`px-2 py-1 text-xs font-medium rounded ${getCategoryColor(item.category as LineItemCategory)}`}>
                           {item.subcategory || item.category}
                         </span>
@@ -427,7 +427,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                       
                       <p className="font-medium text-gray-900">{item.description}</p>
                       
-                      <div className="mt-2 flex items-centre space-x-4 text-sm text-gray-600">
+                      <div className="mt-2 flex items-center space-x-4 text-sm text-gray-600">
                         <span>{item.quantity} {item.unit}</span>
                         <span>@ ${item.unitPrice}/unit</span>
                         <span className="font-semibold text-gray-900">
@@ -436,14 +436,14 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                       </div>
 
                       {item.priceComparison && Object.keys(item.priceComparison).length > 0 && (
-                        <div className="mt-2 flex items-centre space-x-3 text-xs">
+                        <div className="mt-2 flex items-center space-x-3 text-xs">
                           {item.priceComparison.nrpGuideline && (
                             <span className="text-blue-600">
                               NRP: ${item.priceComparison.nrpGuideline}
                             </span>
                           )}
                           {item.priceComparison.variance && (
-                            <span className={`flex items-centre ${
+                            <span className={`flex items-center ${
                               Math.abs(item.priceComparison.variance) > 10 ? 'text-orange-600' : 'text-green-600'
                             }`}>
                               <TrendingUp className="h-3 w-3 mr-1" />
@@ -465,7 +465,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                       )}
                     </div>
 
-                    <div className="flex items-centre space-x-2 ml-4">
+                    <div className="flex items-center space-x-2 ml-4">
                       <button
                         onClick={() => setEditingItem(item.id)}
                         className="p-2 text-gray-400 hover:text-blue-600"
@@ -489,7 +489,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
 
       {/* Add Custom Item Modal */}
       {showAddItem && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">Add Custom Line Item</h3>
             
@@ -551,7 +551,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                 </div>
               </div>
 
-              <div className="flex items-centre">
+              <div className="flex items-center">
                 <input
                   type="checkbox"
                   checked={customItem.taxable !== false}

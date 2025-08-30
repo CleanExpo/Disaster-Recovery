@@ -121,12 +121,12 @@ function PerformanceChart() {
         {data.map((item, index) => (
           <motion.div
             key={item.day}
-            className="flex-1 flex flex-col items-centre justify-end gap-2"
+            className="flex-1 flex flex-col items-center justify-end gap-2"
             initial={{ height: 0 }}
             animate={{ height: '100%' }}
             transition={{ delay: index * 0.1 }}
           >
-            <div className="relative w-full flex flex-col items-centre">
+            <div className="relative w-full flex flex-col items-center">
               <span className="text-xs text-gray-400 mb-1">{item.jobs}</span>
               <motion.div
                 className="w-full bg-gradient-to-t from-blue-500 to-purple-600 rounded-t-lg relative overflow-hidden"
@@ -167,7 +167,7 @@ function AIInsights() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className="flex items-centre gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colours cursor-pointer"
+          className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colours cursor-pointer"
         >
           <insight.icon className={`h-5 w-5 ${insight.colour}`} />
           <span className="text-sm text-gray-200">{insight.text}</span>
@@ -203,7 +203,7 @@ function JobCard({ job }: any) {
     >
       <div className="flex justify-between items-start mb-3">
         <div>
-          <div className="flex items-centre gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1">
             <h4 className="font-semibold text-white">{job.id}</h4>
             <div className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${statusColors[job.status]} text-white`}>
               {job.status}
@@ -217,22 +217,22 @@ function JobCard({ job }: any) {
       </div>
       
       <div className="space-y-2">
-        <div className="flex items-centre gap-2 text-xs text-gray-500">
+        <div className="flex items-center gap-2 text-xs text-gray-500">
           <MapPin className="h-3 w-3" />
           <span>{job.address}</span>
         </div>
-        <div className="flex items-centre gap-2 text-xs text-gray-500">
+        <div className="flex items-center gap-2 text-xs text-gray-500">
           <Clock className="h-3 w-3" />
           <span>{job.time}</span>
         </div>
-        <div className="flex items-centre gap-2 text-xs text-gray-500">
+        <div className="flex items-center gap-2 text-xs text-gray-500">
           <DollarSign className="h-3 w-3" />
           <span>${job.value.toLocaleString()}</span>
         </div>
       </div>
       
       <motion.div
-        className="mt-3 pt-3 border-t border-gray-700 flex items-centre justify-between"
+        className="mt-3 pt-3 border-t border-gray-700 flex items-center justify-between"
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
       >
@@ -314,8 +314,8 @@ export default function PremiumDashboard() {
         style={{ y: headerY, opacity: headerOpacity }}
       >
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-centre justify-between">
-            <div className="flex items-centre gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
               <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600">
                 <Building2 className="h-6 w-6 text-white" />
               </div>
@@ -325,9 +325,9 @@ export default function PremiumDashboard() {
               </div>
             </div>
             
-            <div className="flex items-centre gap-3">
+            <div className="flex items-center gap-3">
               {/* Connection Status */}
-              <div className={`flex items-centre gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
+              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
                 isOnline ? 'bg-green-500/20 text-green-400' : 'bg-orange-500/20 text-orange-400'
               }`}>
                 {isOnline ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
@@ -355,8 +355,8 @@ export default function PremiumDashboard() {
               </motion.button>
               
               {/* Profile */}
-              <div className="flex items-centre gap-3 px-3 py-1.5 rounded-lg bg-white/10">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-centre justify-centre">
+              <div className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-white/10">
+                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <div className="hidden lg:block">
@@ -376,8 +376,8 @@ export default function PremiumDashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 p-4 rounded-xl bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 backdrop-blur-sm"
         >
-          <div className="flex items-centre justify-between">
-            <div className="flex items-centre gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
               <div className="p-2 rounded-lg bg-orange-500/20">
                 <AlertTriangle className="h-5 w-5 text-orange-400" />
               </div>
@@ -412,7 +412,7 @@ export default function PremiumDashboard() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="flex items-centre justify-between mb-2">
+                <div className="flex items-center justify-between mb-2">
                   <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.colour} opacity-20`}>
                     <stat.icon className="h-4 w-4 text-white" />
                   </div>
@@ -433,12 +433,12 @@ export default function PremiumDashboard() {
           <div className="lg:col-span-2 space-y-6">
             {/* Jobs Header */}
             <div className="glass-card rounded-xl p-4">
-              <div className="flex items-centre justify-between mb-4">
-                <h2 className="text-lg font-semibold text-white flex items-centre gap-2">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-white flex items-center gap-2">
                   <Briefcase className="h-5 w-5" />
                   Active Jobs
                 </h2>
-                <div className="flex items-centre gap-2">
+                <div className="flex items-center gap-2">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -482,7 +482,7 @@ export default function PremiumDashboard() {
             
             {/* Performance Chart */}
             <div className="glass-card rounded-xl p-4">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-centre gap-2">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <BarChart3 className="h-5 w-5" />
                 Weekly Performance
               </h3>
@@ -494,7 +494,7 @@ export default function PremiumDashboard() {
           <div className="space-y-6">
             {/* AI Insights */}
             <div className="glass-card rounded-xl p-4">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-centre gap-2">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <Brain className="h-5 w-5" />
                 AI Insights
                 <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white">
@@ -506,7 +506,7 @@ export default function PremiumDashboard() {
             
             {/* Live Activity */}
             <div className="glass-card rounded-xl p-4">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-centre gap-2">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <Activity className="h-5 w-5" />
                 Live Activity
                 <span className="ml-auto h-2 w-2 bg-green-400 rounded-full animate-pulse" />
@@ -528,7 +528,7 @@ export default function PremiumDashboard() {
                     key={index}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colours flex flex-col items-centre gap-2"
+                    className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colours flex flex-col items-center gap-2"
                   >
                     <div className={`p-2 rounded-lg bg-gradient-to-br ${action.colour} opacity-20`}>
                       <action.icon className="h-5 w-5 text-white" />

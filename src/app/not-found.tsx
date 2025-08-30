@@ -5,9 +5,9 @@ import { Card } from '@/components/ui/card';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white flex items-centre justify-centre px-4">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white flex items-center justify-center px-4">
       <div className="max-w-2xl w-full">
-        <Card className="p-8 text-centre">
+        <Card className="p-8 text-center">
           <div className="mb-6">
             <AlertTriangle className="h-24 w-24 text-orange-500 mx-auto mb-4" />
             <h1 className="text-6xl font-bold text-gray-900 mb-2">404</h1>
@@ -26,7 +26,7 @@ export default function NotFound() {
               If you're experiencing an emergency, get help immediately:
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/get-help">
                 <Button className="bg-red-600 hover:bg-red-700 text-white">
                   <AlertTriangle className="mr-2 h-4 w-4" />

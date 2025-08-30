@@ -259,10 +259,10 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
     if (!version1 || !version2) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b border-gray-200">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Compare Versions</h2>
               <button 
                 onClick={() => setShowCompareModal(false)}
@@ -276,7 +276,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
           <div className="p-6">
             <div className="grid grid-cols-2 gap-6">
               <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-centre justify-between mb-4">
+                <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold text-gray-900">Version {version1.version}</h3>
                   <span className="text-sm text-gray-500">
                     {new Date(version1.uploadedAt).toLocaleDateString()}
@@ -299,7 +299,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
               </div>
 
               <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-centre justify-between mb-4">
+                <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold text-gray-900">Version {version2.version}</h3>
                   <span className="text-sm text-gray-500">
                     {new Date(version2.uploadedAt).toLocaleDateString()}
@@ -352,14 +352,14 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
     if (!showRestoreModal) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-md w-full mx-4">
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-xl font-semibold text-gray-900">Restore Version</h2>
           </div>
           
           <div className="p-6">
-            <div className="flex items-centre space-x-3 mb-4">
+            <div className="flex items-center space-x-3 mb-4">
               <div className="p-2 bg-orange-50 rounded-lg">
                 <AlertCircle className="w-6 h-6 text-orange-600" />
               </div>
@@ -415,16 +415,16 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-centre justify-between">
+      <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Version Control</h1>
           <p className="text-gray-600 mt-1">Track document changes and manage versions</p>
         </div>
-        <div className="flex items-centre space-x-2">
+        <div className="flex items-center space-x-2">
           {selectedVersions.length === 2 && (
             <button 
               onClick={() => setShowCompareModal(true)}
-              className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               <Compare className="w-4 h-4 mr-2" />
               Compare Versions
@@ -435,7 +435,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
 
       {document && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-xl font-semibold text-gray-900">{document.title}</h2>
               <p className="text-gray-600">{document.description}</p>
@@ -486,7 +486,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
       {activeTab === 'versions' ? (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
-            <div className="flex items-centre justify-between">
+            <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900">Version History</h3>
               {selectedVersions.length > 0 && (
                 <div className="text-sm text-gray-600">
@@ -514,11 +514,11 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                     />
                     
                     <div className="flex-1">
-                      <div className="flex items-centre space-x-3 mb-2">
+                      <div className="flex items-center space-x-3 mb-2">
                         <h4 className="font-semibold text-gray-900">
                           Version {version.version}
                           {index === 0 && (
-                            <span className="ml-2 inline-flex items-centre px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                            <span className="ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
                               <Star className="w-3 h-3 mr-1" />
                               Current
                             </span>
@@ -531,16 +531,16 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                       
                       <p className="text-gray-700 mb-3">{version.changeLog}</p>
                       
-                      <div className="flex items-centre space-x-4 text-sm text-gray-500">
-                        <div className="flex items-centre">
+                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                        <div className="flex items-center">
                           <User className="w-4 h-4 mr-1" />
                           {version.uploadedBy}
                         </div>
-                        <div className="flex items-centre">
+                        <div className="flex items-center">
                           <Calendar className="w-4 h-4 mr-1" />
                           {new Date(version.uploadedAt).toLocaleDateString()}
                         </div>
-                        <div className="flex items-centre">
+                        <div className="flex items-center">
                           <Clock className="w-4 h-4 mr-1" />
                           {new Date(version.uploadedAt).toLocaleTimeString()}
                         </div>
@@ -548,19 +548,19 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                     </div>
                   </div>
                   
-                  <div className="flex items-centre space-x-2">
-                    <button className="flex items-centre px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                  <div className="flex items-center space-x-2">
+                    <button className="flex items-center px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                       <Eye className="w-4 h-4 mr-1" />
                       View
                     </button>
-                    <button className="flex items-centre px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
+                    <button className="flex items-center px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                       <Download className="w-4 h-4 mr-1" />
                       Download
                     </button>
                     {index !== 0 && userRole === 'admin' && (
                       <button 
                         onClick={() => setShowRestoreModal(version)}
-                        className="flex items-centre px-3 py-2 text-sm text-orange-600 border border-orange-300 rounded-lg hover:bg-orange-50"
+                        className="flex items-center px-3 py-2 text-sm text-orange-600 border border-orange-300 rounded-lg hover:bg-orange-50"
                       >
                         <RotateCcw className="w-4 h-4 mr-1" />
                         Restore
@@ -587,7 +587,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                   </div>
                   
                   <div className="flex-1">
-                    <div className="flex items-centre justify-between mb-2">
+                    <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-gray-900 capitalize">
                         {activity.action.replace('_', ' ')} Document
                       </h4>

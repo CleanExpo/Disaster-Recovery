@@ -241,10 +241,10 @@ function SearchPageContent() {
           </form>
 
           {/* Filter Bar */}
-          <div className="flex flex-wrap items-centre gap-4 max-w-4xl mx-auto">
+          <div className="flex flex-wrap items-center gap-4 max-w-4xl mx-auto">
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-centre gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colours"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colours"
             >
               <SlidersHorizontal className="h-4 w-4" />
               Filters
@@ -292,7 +292,7 @@ function SearchPageContent() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
                   <div className="space-y-2">
                     {['Emergency Response', '24/7 Available', 'Insurance Approved', 'IICRC Certified'].map(option => (
-                      <label key={option} className="flex items-centre">
+                      <label key={option} className="flex items-center">
                         <input type="checkbox" className="mr-2" />
                         <span className="text-sm">{option}</span>
                       </label>
@@ -303,7 +303,7 @@ function SearchPageContent() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Response Time</label>
                   <div className="space-y-2">
                     {['< 30 minutes', '< 1 hour', '< 2 hours', 'Same day'].map(time => (
-                      <label key={time} className="flex items-centre">
+                      <label key={time} className="flex items-center">
                         <input type="checkbox" className="mr-2" />
                         <span className="text-sm">{time}</span>
                       </label>
@@ -314,7 +314,7 @@ function SearchPageContent() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
                   <div className="space-y-2">
                     {['4.5+ stars', '4.0+ stars', '3.5+ stars', 'Any rating'].map(rating => (
-                      <label key={rating} className="flex items-centre">
+                      <label key={rating} className="flex items-center">
                         <input type="checkbox" className="mr-2" />
                         <span className="text-sm">{rating}</span>
                       </label>
@@ -330,7 +330,7 @@ function SearchPageContent() {
       {/* Results */}
       <div className="container mx-auto px-4 py-8">
         {/* Results Header */}
-        <div className="flex justify-between items-centre mb-6">
+        <div className="flex justify-between items-center mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
               {query ? `Search Results for "${query}"` : 'Browse Services'}
@@ -343,7 +343,7 @@ function SearchPageContent() {
 
         {/* Loading State */}
         {isLoading ? (
-          <div className="flex items-centre justify-centre py-12">
+          <div className="flex items-center justify-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
             <span className="ml-2 text-gray-600">Searching...</span>
           </div>
@@ -353,7 +353,7 @@ function SearchPageContent() {
             {filteredResults.map((result) => (
               <div key={result.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-centre gap-3">
+                  <div className="flex items-center gap-3">
                     {getIcon(result.type, result.category)}
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600">
@@ -369,19 +369,19 @@ function SearchPageContent() {
 
                 <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-500">
                   {result.location && (
-                    <div className="flex items-centre gap-1">
+                    <div className="flex items-center gap-1">
                       <MapPin className="h-4 w-4" />
                       <span>{result.location}</span>
                     </div>
                   )}
                   {result.rating && (
-                    <div className="flex items-centre gap-1">
+                    <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 text-yellow-400 fill-current" />
                       <span>{result.rating}/5</span>
                     </div>
                   )}
                   {result.responseTime && (
-                    <div className="flex items-centre gap-1">
+                    <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
                       <span>Response: {result.responseTime}</span>
                     </div>
@@ -402,12 +402,12 @@ function SearchPageContent() {
                 <div className="flex gap-3">
                   <a
                     href={result.url}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white text-centre rounded-lg hover:bg-blue-700 transition-colours"
+                    className="flex-1 px-4 py-2 bg-blue-600 text-white text-center rounded-lg hover:bg-blue-700 transition-colours"
                   >
                     View Details
                   </a>
                   {result.type === 'service' && (
-                    <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours flex items-centre gap-2">
+                    <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours flex items-center gap-2">
                       <Phone className="h-4 w-4" />
                       Contact
                     </button>
@@ -420,7 +420,7 @@ function SearchPageContent() {
 
         {/* No Results */}
         {!isLoading && filteredResults.length === 0 && query && (
-          <div className="text-centre py-12">
+          <div className="text-center py-12">
             <div className="max-w-md mx-auto">
               <Search className="h-16 w-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">No results found</h3>
@@ -429,7 +429,7 @@ function SearchPageContent() {
               </p>
               <div className="space-y-2">
                 <p className="text-sm text-gray-600">Try searching for:</p>
-                <div className="flex flex-wrap gap-2 justify-centre">
+                <div className="flex flex-wrap gap-2 justify-center">
                   {['water damage', 'fire restoration', 'emergency services'].map(suggestion => (
                     <button
                       key={suggestion}
@@ -452,8 +452,8 @@ function SearchPageContent() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
-        <div className="text-centre">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading search...</p>
         </div>

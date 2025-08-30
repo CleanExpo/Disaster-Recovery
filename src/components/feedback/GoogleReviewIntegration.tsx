@@ -208,8 +208,8 @@ export default function GoogleReviewIntegration({
   const BusinessProfileCard = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-centre space-x-3">
-          <div className="w-12 h-12 bg-red-100 rounded-lg flex items-centre justify-centre">
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
             <Globe className="w-6 h-6 text-red-600" />
           </div>
           <div>
@@ -218,7 +218,7 @@ export default function GoogleReviewIntegration({
           </div>
         </div>
         <div className="text-right">
-          <div className="flex items-centre text-yellow-500">
+          <div className="flex items-center text-yellow-500">
             <Star className="w-5 h-5 fill-current" />
             <span className="font-semibold text-gray-900 ml-1">
               {businessProfile?.averageRating}
@@ -231,21 +231,21 @@ export default function GoogleReviewIntegration({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600 mb-4">
-        <div className="flex items-centre">
+        <div className="flex items-center">
           <MapPin className="w-4 h-4 mr-2" />
           <span>{businessProfile?.address}</span>
         </div>
-        <div className="flex items-centre">
+        <div className="flex items-center">
           <Phone className="w-4 h-4 mr-2" />
           <span>{businessProfile?.phone}</span>
         </div>
-        <div className="flex items-centre">
+        <div className="flex items-center">
           <Globe className="w-4 h-4 mr-2" />
           <a href={businessProfile?.website} className="text-blue-600 hover:text-blue-700">
             Visit Website
           </a>
         </div>
-        <div className="flex items-centre">
+        <div className="flex items-center">
           <Clock className="w-4 h-4 mr-2" />
           <span>
             Last sync: {businessProfile?.lastSyncDate.toLocaleDateString('en-AU')}
@@ -258,7 +258,7 @@ export default function GoogleReviewIntegration({
           href={businessProfile?.reviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg text-centre hover:bg-blue-700 transition-colours flex items-centre justify-centre"
+          className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg text-center hover:bg-blue-700 transition-colours flex items-center justify-center"
         >
           <ExternalLink className="w-4 h-4 mr-2" />
           View on Google
@@ -273,7 +273,7 @@ export default function GoogleReviewIntegration({
   const ReviewStats = () => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
       <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Average Rating</p>
             <p className="text-2xl font-bold text-gray-900">
@@ -286,7 +286,7 @@ export default function GoogleReviewIntegration({
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Total Reviews</p>
             <p className="text-2xl font-bold text-gray-900">
@@ -299,7 +299,7 @@ export default function GoogleReviewIntegration({
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Response Rate</p>
             <p className="text-2xl font-bold text-gray-900">92%</p>
@@ -310,7 +310,7 @@ export default function GoogleReviewIntegration({
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-centre justify-between">
+        <div className="flex items-center justify-between">
           <div>
             <p className="text-sm text-gray-600">Invitations Sent</p>
             <p className="text-2xl font-bold text-gray-900">
@@ -328,7 +328,7 @@ export default function GoogleReviewIntegration({
 
   const ReviewInvitationForm = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-centre justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-gray-900">Send Review Invitation</h3>
         <button
           onClick={() => setShowInviteForm(false)}
@@ -371,11 +371,11 @@ export default function GoogleReviewIntegration({
             {generateReviewLink({ customerName, jobId })}
           </div>
           <div className="mt-2 flex space-x-2">
-            <button className="text-xs text-blue-600 hover:text-blue-700 flex items-centre">
+            <button className="text-xs text-blue-600 hover:text-blue-700 flex items-center">
               <Copy className="w-3 h-3 mr-1" />
               Copy Link
             </button>
-            <button className="text-xs text-blue-600 hover:text-blue-700 flex items-centre">
+            <button className="text-xs text-blue-600 hover:text-blue-700 flex items-center">
               <QrCode className="w-3 h-3 mr-1" />
               Generate QR
             </button>
@@ -386,7 +386,7 @@ export default function GoogleReviewIntegration({
           <button
             onClick={handleSendInvitation}
             disabled={loading || !customerEmail}
-            className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colours flex items-centre justify-centre"
+            className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colours flex items-center justify-center"
           >
             {loading ? (
               <>
@@ -413,9 +413,9 @@ export default function GoogleReviewIntegration({
 
   const RecentReviews = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-centre justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-gray-900">Recent Google Reviews</h3>
-        <button className="text-sm text-blue-600 hover:text-blue-700 flex items-centre">
+        <button className="text-sm text-blue-600 hover:text-blue-700 flex items-center">
           <Eye className="w-4 h-4 mr-1" />
           View All
         </button>
@@ -425,16 +425,16 @@ export default function GoogleReviewIntegration({
         {recentReviews.map(review => (
           <div key={review.id} className="border-b border-gray-100 pb-4 last:border-b-0 last:pb-0">
             <div className="flex items-start justify-between mb-2">
-              <div className="flex items-centre space-x-3">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-centre justify-centre">
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
                   <span className="text-sm font-medium text-gray-600">
                     {review.customerName[0]}
                   </span>
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">{review.customerName}</p>
-                  <div className="flex items-centre space-x-2">
-                    <div className="flex items-centre">
+                  <div className="flex items-center space-x-2">
+                    <div className="flex items-center">
                       {[1, 2, 3, 4, 5].map(star => (
                         <Star
                           key={star}
@@ -470,7 +470,7 @@ export default function GoogleReviewIntegration({
                 </p>
               </div>
             ) : (
-              <button className="text-sm text-blue-600 hover:text-blue-700 flex items-centre">
+              <button className="text-sm text-blue-600 hover:text-blue-700 flex items-center">
                 <MessageSquare className="w-4 h-4 mr-1" />
                 Respond to Review
               </button>
@@ -483,11 +483,11 @@ export default function GoogleReviewIntegration({
 
   const InvitationTracking = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-centre justify-between mb-4">
+      <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-gray-900">Review Invitations</h3>
         <button
           onClick={() => setShowInviteForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre"
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center"
         >
           <Send className="w-4 h-4 mr-2" />
           Send Invitation
@@ -550,8 +550,8 @@ export default function GoogleReviewIntegration({
   if (mode === 'display') {
     return (
       <div className="max-w-2xl mx-auto p-6">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 text-centre">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 text-center">
+          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Star className="w-8 h-8 text-blue-600" />
           </div>
           
@@ -563,7 +563,7 @@ export default function GoogleReviewIntegration({
           </p>
 
           <div className="bg-gray-50 rounded-lg p-4 mb-6">
-            <div className="flex items-centre justify-centre space-x-2 mb-2">
+            <div className="flex items-center justify-center space-x-2 mb-2">
               <Star className="w-5 h-5 text-yellow-400 fill-current" />
               <span className="font-semibold text-gray-900">
                 {businessProfile?.averageRating}
@@ -579,7 +579,7 @@ export default function GoogleReviewIntegration({
             href={businessProfile?.reviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-centre px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colours"
+            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colours"
           >
             <Star className="w-5 h-5 mr-2" />
             Write a Google Review

@@ -110,7 +110,7 @@ export function PermissionMatrix() {
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
-          <h2 className="text-2xl font-bold flex items-centre gap-2">
+          <h2 className="text-2xl font-bold flex items-center gap-2">
             <Shield className="h-6 w-6" />
             Permission Matrix
           </h2>
@@ -135,7 +135,7 @@ export function PermissionMatrix() {
             onClick={() => setSelectedRole(selectedRole === role ? null : role as UserRole)}
           >
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm flex items-centre justify-between">
+              <CardTitle className="text-sm flex items-center justify-between">
                 {definition.name}
                 <Badge className={getRoleBadgeColor(role as UserRole)}>
                   Level {definition.hierarchy}
@@ -144,7 +144,7 @@ export function PermissionMatrix() {
             </CardHeader>
             <CardContent>
               <p className="text-xs text-gray-600 mb-3">{definition.description}</p>
-              <div className="flex items-centre justify-between">
+              <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">
                   {definition.permissions.length} permissions
                 </span>
@@ -189,8 +189,8 @@ export function PermissionMatrix() {
                     Permission
                   </th>
                   {Object.entries(ROLE_DEFINITIONS).map(([role, definition]) => (
-                    <th key={role} className="text-centre p-4 font-medium text-sm min-w-[120px]">
-                      <div className="flex flex-col items-centre">
+                    <th key={role} className="text-center p-4 font-medium text-sm min-w-[120px]">
+                      <div className="flex flex-col items-center">
                         <span className="text-xs text-gray-500">Level {definition.hierarchy}</span>
                         <span>{definition.name.split(' ')[0]}</span>
                       </div>
@@ -209,7 +209,7 @@ export function PermissionMatrix() {
                         colSpan={Object.keys(ROLE_DEFINITIONS).length + 1}
                         className="p-3 font-medium"
                       >
-                        <div className="flex items-centre gap-2">
+                        <div className="flex items-center gap-2">
                           {expandedCategories.includes(category) ? (
                             <ChevronUp className="h-4 w-4" />
                           ) : (
@@ -229,7 +229,7 @@ export function PermissionMatrix() {
                       Object.entries(permissions).map(([permission, roles]) => (
                         <tr key={permission} className="border-b hover:bg-gray-50">
                           <td className="p-4 sticky left-0 bg-white z-10">
-                            <div className="flex items-centre gap-2">
+                            <div className="flex items-center gap-2">
                               <div className="w-4" /> {/* Indent */}
                               <code className="text-xs bg-gray-100 px-2 py-1 rounded">
                                 {permission}
@@ -237,13 +237,13 @@ export function PermissionMatrix() {
                             </div>
                           </td>
                           {Object.keys(ROLE_DEFINITIONS).map(role => (
-                            <td key={role} className="p-4 text-centre">
+                            <td key={role} className="p-4 text-center">
                               {roles.includes(role as UserRole) ? (
-                                <div className="flex justify-centre">
+                                <div className="flex justify-center">
                                   <CheckCircle className="h-5 w-5 text-green-500" />
                                 </div>
                               ) : (
-                                <div className="flex justify-centre">
+                                <div className="flex justify-center">
                                   <XCircle className="h-5 w-5 text-gray-300" />
                                 </div>
                               )}
@@ -280,7 +280,7 @@ export function PermissionMatrix() {
                   { action: 'Delete', icon: Trash2, permissions: ['delete', 'remove'] }
                 ].map(({ action, icon: Icon, permissions }) => (
                   <div key={action} className="border rounded-lg p-4">
-                    <div className="flex items-centre gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-3">
                       <Icon className="h-4 w-4" />
                       <span className="font-medium">{action} Actions</span>
                     </div>
@@ -290,7 +290,7 @@ export function PermissionMatrix() {
                           permissions.some(perm => p.includes(perm))
                         );
                         return (
-                          <div key={role} className="flex items-centre gap-2">
+                          <div key={role} className="flex items-center gap-2">
                             {hasPermission ? (
                               <CheckCircle className="h-4 w-4 text-green-500" />
                             ) : (
@@ -368,19 +368,19 @@ export function PermissionMatrix() {
                 {Object.entries(ROLE_DEFINITIONS)
                   .sort((a, b) => b[1].hierarchy - a[1].hierarchy)
                   .map(([role, definition], index) => (
-                    <div key={role} className="flex items-centre gap-4">
-                      <div className="flex items-centre justify-centre w-12 h-12 rounded-full bg-blue-100 text-blue-600 font-bold">
+                    <div key={role} className="flex items-center gap-4">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 font-bold">
                         {definition.hierarchy}
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-centre gap-3">
+                        <div className="flex items-center gap-3">
                           <p className="font-medium">{definition.name}</p>
                           <Badge className={getRoleBadgeColor(role as UserRole)}>
                             {role}
                           </Badge>
                         </div>
                         <p className="text-sm text-gray-600 mt-1">{definition.description}</p>
-                        <div className="flex items-centre gap-4 mt-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
                           <span>{definition.permissions.length} direct permissions</span>
                           {index < Object.entries(ROLE_DEFINITIONS).length - 1 && (
                             <span>Can manage lower roles</span>

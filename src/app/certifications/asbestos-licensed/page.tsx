@@ -10,7 +10,7 @@ export default function AsbestosRemovalLicensedPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-purple-900 to-purple-800 text-white py-20">
-        <div className="container mx-auto px-4 text-centre">
+        <div className="container mx-auto px-4 text-center">
           <Award className="h-16 w-16 text-yellow-400 mx-auto mb-6" />
           <h1 className="text-4xl font-bold mb-4">Asbestos Removal Licensed</h1>
           <p className="text-xl">Class A & B asbestos</p>

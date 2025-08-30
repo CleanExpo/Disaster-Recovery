@@ -63,9 +63,9 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-centre justify-centre bg-muted/40">
+    <div className="flex min-h-screen items-center justify-center bg-muted/40">
       <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border bg-card p-8">
-        <div className="space-y-2 text-centre">
+        <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Create an account</h1>
           <p className="text-muted-foreground">
             Get started with your free trial
@@ -168,7 +168,7 @@ export default function SignupPage() {
           </Button>
         </form>
 
-        <div className="text-centre text-sm">
+        <div className="text-center text-sm">
           Already have an account?{' '}
           <Link href="/login" className="text-primary hover:underline">
             Sign in

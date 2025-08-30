@@ -158,7 +158,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Business Overview */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Building className="mr-2 h-5 w-5 text-blue-600" />
             Business Overview
           </h3>
@@ -228,7 +228,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
 
         {/* Specializations */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-centre">
+          <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Award className="mr-2 h-5 w-5 text-purple-600" />
             Service Specializations
           </h3>
@@ -237,7 +237,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
             {specializationOptions.map((spec) => (
               <label
                 key={spec}
-                className={`flex items-centre p-3 border rounded-lg cursor-pointer transition-colours ${
+                className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colours ${
                   selectedSpecializations.includes(spec)
                     ? 'bg-blue-50 border-blue-500'
                     : 'bg-white border-gray-300 hover:bg-gray-50'
@@ -257,8 +257,8 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
 
         {/* Notable Projects */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex justify-between items-centre mb-4">
-            <h3 className="text-lg font-semibold flex items-centre">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold flex items-center">
               <Calendar className="mr-2 h-5 w-5 text-green-600" />
               Notable Projects (Minimum 3)
             </h3>
@@ -291,7 +291,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
 
           {experienceFields.map((field, index) => (
             <div key={field.id} className="mb-6 p-4 border rounded-lg bg-gray-50">
-              <div className="flex justify-between items-centre mb-3">
+              <div className="flex justify-between items-center mb-3">
                 <h4 className="font-medium">Project {index + 1}</h4>
                 {experienceFields.length > 1 && (
                   <button
@@ -401,8 +401,8 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
 
         {/* Professional References */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <div className="flex justify-between items-centre mb-4">
-            <h3 className="text-lg font-semibold flex items-centre">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-semibold flex items-center">
               <Phone className="mr-2 h-5 w-5 text-indigo-600" />
               Professional References (Minimum 3)
             </h3>
@@ -427,7 +427,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
 
           {referenceFields.map((field, index) => (
             <div key={field.id} className="mb-4 p-4 border rounded-lg bg-gray-50">
-              <div className="flex justify-between items-centre mb-3">
+              <div className="flex justify-between items-center mb-3">
                 <h4 className="font-medium">Reference {index + 1}</h4>
                 {referenceFields.length > 1 && (
                   <button

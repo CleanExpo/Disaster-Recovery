@@ -219,7 +219,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
   return (
     <Card className="w-full max-w-4xl mx-auto">
       <CardHeader>
-        <div className="flex items-centre space-x-2">
+        <div className="flex items-center space-x-2">
           <Heart className="h-6 w-6 text-primary" />
           <div>
             <CardTitle>Step 5: Health & Safety Compliance</CardTitle>
@@ -244,7 +244,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* WHS Policy Section */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <FileText className="h-5 w-5" />
                 WHS Policy & Procedures
               </h3>
@@ -301,7 +301,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="safeWorkMethodStatements"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -329,7 +329,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                     <FormLabel>SWMS Categories Available</FormLabel>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                       {swmsOptions.map((option) => (
-                        <div key={option} className="flex items-centre space-x-2">
+                        <div key={option} className="flex items-center space-x-2">
                           <Checkbox
                             checked={field.value?.includes(option)}
                             onCheckedChange={(checked) => {
@@ -353,7 +353,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Safety Management System */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <Briefcase className="h-5 w-5" />
                 Safety Management System
               </h3>
@@ -438,7 +438,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Training & Competency */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <UserCheck className="h-5 w-5" />
                 Training & Competency
               </h3>
@@ -448,7 +448,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="inductionProcess"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -496,7 +496,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* PPE & Equipment */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <HardHat className="h-5 w-5" />
                 PPE & Equipment Safety
               </h3>
@@ -505,7 +505,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                 control={form.control}
                 name="ppeProvided"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                  <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                     <FormControl>
                       <Checkbox
                         checked={field.value}
@@ -532,7 +532,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                     <FormLabel>Types of PPE Provided</FormLabel>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                       {ppeOptions.map((option) => (
-                        <div key={option} className="flex items-centre space-x-2">
+                        <div key={option} className="flex items-center space-x-2">
                           <Checkbox
                             checked={field.value?.includes(option)}
                             onCheckedChange={(checked) => {
@@ -556,7 +556,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="equipmentMaintenance"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -604,7 +604,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Incident Management */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <Siren className="h-5 w-5" />
                 Incident Management
               </h3>
@@ -614,7 +614,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="incidentReportingSystem"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -697,7 +697,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="nearMissReporting"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -720,7 +720,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="incidentInvestigationProcess"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -745,7 +745,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Risk Management */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5" />
                 Risk Management
               </h3>
@@ -755,7 +755,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="riskAssessmentProcess"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -778,7 +778,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="hazardIdentification"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -801,7 +801,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="jsaProcess"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -824,7 +824,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="takesFiveImplemented"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -849,7 +849,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Emergency Procedures */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <Activity className="h-5 w-5" />
                 Emergency Procedures
               </h3>
@@ -859,7 +859,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="emergencyResponsePlan"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -882,7 +882,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="evacuationProcedures"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -905,7 +905,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="firstAidCapability"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -930,7 +930,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Compliance & Auditing */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <FileCheck className="h-5 w-5" />
                 Compliance & Auditing
               </h3>
@@ -965,7 +965,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="externalAudits"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -1026,7 +1026,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             {/* Mental Health & Wellbeing */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold flex items-centre gap-2">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
                 <Heart className="h-5 w-5" />
                 Mental Health & Wellbeing
               </h3>
@@ -1036,7 +1036,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="mentalHealthPolicy"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -1056,7 +1056,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="eapProgram"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -1079,7 +1079,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                   control={form.control}
                   name="fatigueManagement"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-centre space-x-3 space-y-0">
+                    <FormItem className="flex flex-row items-center space-x-3 space-y-0">
                       <FormControl>
                         <Checkbox
                           checked={field.value}
@@ -1102,7 +1102,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
             {/* NRP Safety Commitments */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg flex items-centre gap-2">
+                <CardTitle className="text-lg flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5" />
                   NRP Safety Commitments
                 </CardTitle>
