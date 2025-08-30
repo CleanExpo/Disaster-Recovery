@@ -174,7 +174,7 @@ export default function ModernAboutPage() {
             >
               <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden">
                 <img
-                  src="/images/team/shane-founder.jpg"
+                  src="/images/team/3D Shane.png"
                   alt="Shane - Founder and CEO of Disaster Recovery Australia"
                   className="w-full h-full object-cover"
                   onError={(e) => {

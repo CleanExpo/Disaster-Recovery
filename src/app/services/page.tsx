@@ -261,7 +261,7 @@ export default function UltraModernServicesPage() {
               ))}
             </nav>
             <Link
-              href="tel:1-800-DISASTER"
+              href="/contact"
               className="neon-button bg-gradient-to-r from-red-600 to-orange-500 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-centre gap-2"
             >
               <PhoneIcon className="w-5 h-5" />
@@ -519,11 +519,11 @@ export default function UltraModernServicesPage() {
               className="inline-block"
             >
               <Link
-                href="tel:1-800-DISASTER"
+                href="/contact"
                 className="flex items-centre gap-4 bg-gradient-to-r from-red-600 to-orange-500 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
               >
                 <PhoneIcon className="w-8 h-8" />
-                Call 1-800-DISASTER
+                Call Contact Us
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}

@@ -92,11 +92,11 @@ export default function HeroSection() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-centre mb-16">
           <a
-            href="tel:1800DISASTER"
+            href="/contact"
             className="group relative inline-flex items-centre justify-centre gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
           >
             <PhoneIcon className="w-6 h-6 animate-pulse" />
-            <span>1-800-DISASTER</span>
+            <span>Contact Us</span>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-orange-600 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
           </a>
           

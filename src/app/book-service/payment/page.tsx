@@ -502,7 +502,7 @@ function PaymentPageContent() {
               <div className="mt-6 bg-blue-50 rounded-lg p-4">
                 <h4 className="font-medium text-blue-900 mb-2">Need Help?</h4>
                 <div className="space-y-2 text-sm">
-                  <a href="tel:1800DISASTER" className="flex items-centre gap-2 text-blue-700 hover:text-blue-800">
+                  <a href="/contact" className="flex items-centre gap-2 text-blue-700 hover:text-blue-800">
                     <Phone className="h-4 w-4" />
                     1800 DISASTER
                   </a>

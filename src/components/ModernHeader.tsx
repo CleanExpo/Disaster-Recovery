@@ -257,7 +257,7 @@ export default function UltraModernHeader() {
       {!mobileMenuOpen && (
         <div className="md:hidden fixed bottom-6 right-6 z-50">
           <a
-            href="tel:1-800-DISASTER"
+            href="/contact"
             className="relative block transition-transform hover:scale-110"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-full blur-lg animate-pulse" />

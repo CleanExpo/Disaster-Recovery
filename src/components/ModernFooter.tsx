@@ -119,8 +119,8 @@ export default function UltraModernFooter() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-400 uppercase tracking-wider">24/7 Emergency Hotline</p>
-                      <a href="tel:1-800-DISASTER" className="text-3xl font-bold text-white hover:text-cyan-400 transition-colours">
-                        1-800-DISASTER
+                      <a href="/contact" className="text-3xl font-bold text-white hover:text-cyan-400 transition-colours">
+                        Contact Us
                       </a>
                     </div>
                     <div className="flex items-centre gap-2">
@@ -189,8 +189,8 @@ export default function UltraModernFooter() {
                 {
                   icon: PhoneIcon,
                   label: 'Emergency Line',
-                  value: '1-800-DISASTER',
-                  href: 'tel:1-800-DISASTER',
+                  value: 'Contact Us',
+                  href: 'tel:Contact Us',
                   colour: 'text-red-400'
                 },
                 {

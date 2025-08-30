@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
-    description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call 1-800-DISASTER.',
+    description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call Contact Us.',
     images: ['/images/optimised/damage/3D Water Damage.png'],
     type: 'website',
   },
@@ -27,7 +27,7 @@ const schemaData = {
   "provider": {
     "@type": "Organisation",
     "name": "Disaster Recovery Australia",
-    "telephone": "1-800-DISASTER",
+    "telephone": "Contact Us",
     "url": "https://disasterrecovery.com.au"
   },
   "areaServed": {

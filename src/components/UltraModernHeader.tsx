@@ -421,7 +421,7 @@ export default function UltraModernHeader() {
             
             {/* Mobile CTA */}
             <Link
-              href="tel:1800DISASTER"
+              href="/contact"
               className="block w-full mt-4 text-centre"
               onClick={() => setMobileMenuOpen(false)}
             >

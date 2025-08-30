@@ -81,7 +81,7 @@ const claimsProcess = [
     step: 1,
     title: 'Emergency Contact',
     description: 'Call us immediately after damage occurs. We coordinate with your insurer.',
-    action: 'Call 1-800-DISASTER'
+    action: 'Call Contact Us'
   },
   {
     step: 2,
@@ -138,7 +138,7 @@ export default function InsurancePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
                 <Phone className="mr-2" />
-                Start Your Claim: 1-800-DISASTER
+                Start Your Claim: Contact Us
               </Button>
               <Link
                 href="/book-service?source=insurance"
@@ -428,11 +428,11 @@ export default function InsurancePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <a
-              href="tel:1800-DISASTER"
+              href="/contact"
               className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
             >
               <Phone className="w-6 h-6 mr-3" />
-              Call: 1-800-DISASTER
+              Call: Contact Us
             </a>
             <Link
               href="/book-service?source=insurance"
