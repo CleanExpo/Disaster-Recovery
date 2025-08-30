@@ -11,7 +11,7 @@ import {
 import Image from 'next/image';
 import { pitchDeckData } from '@/lib/pitch-deck-data';
 import PitchSlide from '@/components/pitch-deck/PitchSlide';
-import ChartSlide from '@/components/pitch-deck/ChartSlide';
+import ChartSlideSimple from '@/components/pitch-deck/ChartSlideSimple';
 import VoiceNarration from '@/components/pitch-deck/VoiceNarration';
 import BackgroundMusic from '@/components/pitch-deck/BackgroundMusic';
 import AnimatedTransition from '@/components/pitch-deck/AnimatedTransition';
@@ -503,7 +503,7 @@ export default function InvestorPitchDeck() {
         <AnimatedTransition animation={currentSlideData.animation}>
           <div className="flex-1 flex items-center justify-center p-8 md:p-16">
             {currentSlideData.type === 'chart' ? (
-              <ChartSlide data={currentSlideData} />
+              <ChartSlideSimple data={currentSlideData} />
             ) : currentSlideData.screenshots ? (
               <ProductScreenshots 
                 screenshots={currentSlideData.screenshots}
