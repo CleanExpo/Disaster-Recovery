@@ -80,6 +80,16 @@ export async function middleware(request: NextRequest) {
   // Get client identifier
   const clientId = getClientIdentifier(request);
   const pathname = request.nextUrl.pathname;
+  
+  // Image optimization for uploads
+  if (pathname.startsWith('/api/upload') || 
+      pathname.startsWith('/api/image') ||
+      request.headers.get('content-type')?.includes('multipart/form-data')) {
+    
+    // Add optimization headers
+    response.headers.set('x-optimize-images', 'true');
+    response.headers.set('x-optimization-profile', determineImageProfile(pathname));
+  }
 
   // Check if this is an API route
   const isApiRoute = pathname.startsWith('/api/');
@@ -128,6 +138,20 @@ export async function middleware(request: NextRequest) {
   response.headers.set('X-Response-Time', Date.now().toString());
 
   return response;
+}
+
+// Helper function to determine image optimization profile
+function determineImageProfile(pathname: string): string {
+  if (pathname.includes('thumbnail') || pathname.includes('thumb')) {
+    return 'thumbnail';
+  }
+  if (pathname.includes('hero') || pathname.includes('banner')) {
+    return 'hero';
+  }
+  if (pathname.includes('logo') || pathname.includes('icon')) {
+    return 'logo';
+  }
+  return 'content';
 }
 
 export const config = {

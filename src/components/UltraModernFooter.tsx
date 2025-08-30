@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function UltraModernFooter() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -40,10 +41,10 @@ export default function UltraModernFooter() {
   ];
 
   const socialLinks = [
-    { icon: '𝕏', href: 'https://twitter.com', label: 'Twitter' },
-    { icon: 'in', href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: 'f', href: 'https://facebook.com', label: 'Facebook' },
-    { icon: '▶', href: 'https://youtube.com', label: 'YouTube' },
+    { image: '/images/logos/3D Facebook.png', href: '#', label: 'Facebook' },
+    { image: '/images/logos/3D Instagram.png', href: '#', label: 'Instagram' },
+    { image: '/images/logos/3D LinkedIn.png', href: '#', label: 'LinkedIn' },
+    { image: '/images/logos/3D YouTube.png', href: '#', label: 'YouTube' },
   ];
 
   return (
@@ -266,7 +267,7 @@ export default function UltraModernFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="relative w-10 h-10 rounded-lg flex items-centre justify-centre transition-all hover:scale-110 group"
+                  className="relative w-12 h-12 rounded-lg flex items-centre justify-centre transition-all hover:scale-110 group overflow-hidden"
                   style={{
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -280,9 +281,13 @@ export default function UltraModernFooter() {
                     e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                   }}
                 >
-                  <span className="text-gray-400 group-hover:text-white transition-colours font-bold">
-                    {social.icon}
-                  </span>
+                  <Image
+                    src={social.image}
+                    alt={social.label}
+                    width={32}
+                    height={32}
+                    className="object-contain transition-transform group-hover:scale-110"
+                  />
                 </a>
               ))}
             </div>

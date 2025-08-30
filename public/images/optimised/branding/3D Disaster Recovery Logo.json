@@ -1,0 +1,34 @@
+{
+  "id": "branding-logo-3d",
+  "title": "3D Disaster Recovery Logo",
+  "filename": "3D Disaster Recovery Logo.png",
+  "category": "branding",
+  "seo": {
+    "altText": "3D Disaster Recovery Logo - Professional disaster recovery and restoration services",
+    "description": "High-quality 3D Disaster Recovery Logo showcasing our branding expertise",
+    "keywords": [
+      "disaster recovery",
+      "restoration services",
+      "emergency response",
+      "24/7 availability",
+      "disaster recovery company",
+      "restoration experts",
+      "emergency services"
+    ],
+    "schema": {
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      "name": "3D Disaster Recovery Logo",
+      "contentUrl": "/images/optimised/branding/3D Disaster Recovery Logo.png",
+      "thumbnail": "/images/optimised/thumbnails/3D Disaster Recovery Logo.png",
+      "description": "3D Disaster Recovery Logo - Professional disaster recovery services",
+      "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, disaster recovery company, restoration experts, emergency services"
+    }
+  },
+  "technical": {
+    "format": "png",
+    "optimisation": "web-ready",
+    "responsive": true
+  },
+  "created": "2025-08-30T07:50:39.345Z"
+}

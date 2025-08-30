@@ -1,0 +1,89 @@
+# Image Optimization Configuration
+# This file controls the autonomous image optimization system
+
+# Enable/Disable automatic optimization
+ENABLED=true
+
+# Optimization Profiles
+# Format: width,height,quality,format,maxSizeKB
+
+[profiles]
+thumbnail=400,400,70,webp,50
+hero=1920,1080,85,webp,500
+content=1200,800,80,webp,300
+logo=500,500,90,webp,100
+icon=128,128,90,png,30
+social=200,200,85,webp,50
+
+# Directory Rules
+# Maps directories to optimization profiles
+
+[directories]
+/public/images/thumbnails=thumbnail
+/public/images/heroes=hero
+/public/images/logos=logo
+/public/images/icons=icon
+/public/images/places=content
+/public/images/equipment=content
+/public/images/damage=content
+/public/images/optimized=content
+/public/uploads=content
+/uploads=content
+
+# Pattern Rules
+# Maps filename patterns to profiles
+
+[patterns]
+*thumb*=thumbnail
+*tn_*=thumbnail
+*hero*=hero
+*banner*=hero
+*logo*=logo
+*icon*=icon
+*facebook*=social
+*instagram*=social
+*linkedin*=social
+*youtube*=social
+*twitter*=social
+
+# Size Thresholds
+
+[thresholds]
+# Minimum file size to optimize (KB)
+minSize=50
+# Maximum file size before warning (MB)
+maxSize=10
+# Target compression ratio (%)
+targetCompression=70
+
+# Ignore Patterns
+
+[ignore]
+*.svg
+*.ico
+*.original.*
+*-optimized.*
+*.min.*
+.DS_Store
+Thumbs.db
+node_modules/**
+.git/**
+.next/**
+
+# Advanced Settings
+
+[advanced]
+# Number of concurrent optimizations
+concurrency=2
+# Enable aggressive compression
+aggressive=true
+# Preserve metadata
+preserveMetadata=false
+# Auto-convert to WebP
+autoWebP=true
+# Create backups
+createBackups=true
+# Watch for changes
+watchMode=true
+# Optimization interval (ms)
+watchInterval=2000

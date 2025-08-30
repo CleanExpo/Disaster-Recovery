@@ -245,48 +245,98 @@ export default function ComingSoonPage() {
           
           <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
             {/* Residential */}
-            <div className="bg-gradient-to-br from-green-900/50 to-green-800/30 backdrop-blur-sm border border-green-500/30 rounded-xl p-6">
-              <Home className="h-8 w-8 text-green-400 mb-3" />
-              <h4 className="font-semibold text-green-300 mb-2">Residential</h4>
-              <p className="text-green-200 text-sm">
-                Granny flat → 80-floor luxury tower
-              </p>
+            <div className="relative overflow-hidden bg-gradient-to-br from-green-900/50 to-green-800/30 backdrop-blur-sm border border-green-500/30 rounded-xl p-6">
+              <div 
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'url("/images/places/3D Family Home.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+              <div className="relative z-10">
+                <Home className="h-8 w-8 text-green-400 mb-3" />
+                <h4 className="font-semibold text-green-300 mb-2">Residential</h4>
+                <p className="text-green-200 text-sm">
+                  Granny flat → 80-floor luxury tower
+                </p>
+              </div>
             </div>
 
             {/* Commercial */}
-            <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-sm border border-blue-500/30 rounded-xl p-6">
-              <Building2 className="h-8 w-8 text-blue-400 mb-3" />
-              <h4 className="font-semibold text-blue-300 mb-2">Commercial</h4>
-              <p className="text-blue-200 text-sm">
-                Corner butcher → Mega mall
-              </p>
+            <div className="relative overflow-hidden bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-sm border border-blue-500/30 rounded-xl p-6">
+              <div 
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'url("/images/places/3D Mega Mall.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+              <div className="relative z-10">
+                <Building2 className="h-8 w-8 text-blue-400 mb-3" />
+                <h4 className="font-semibold text-blue-300 mb-2">Commercial</h4>
+                <p className="text-blue-200 text-sm">
+                  Corner butcher → Mega mall
+                </p>
+              </div>
             </div>
 
             {/* Industrial */}
-            <div className="bg-gradient-to-br from-orange-900/50 to-orange-800/30 backdrop-blur-sm border border-orange-500/30 rounded-xl p-6">
-              <Factory className="h-8 w-8 text-orange-400 mb-3" />
-              <h4 className="font-semibold text-orange-300 mb-2">Industrial</h4>
-              <p className="text-orange-200 text-sm">
-                Workshop → Offshore oil rig
-              </p>
+            <div className="relative overflow-hidden bg-gradient-to-br from-orange-900/50 to-orange-800/30 backdrop-blur-sm border border-orange-500/30 rounded-xl p-6">
+              <div 
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'url("/images/places/3D Small Business Industrial.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+              <div className="relative z-10">
+                <Factory className="h-8 w-8 text-orange-400 mb-3" />
+                <h4 className="font-semibold text-orange-300 mb-2">Industrial</h4>
+                <p className="text-orange-200 text-sm">
+                  Workshop → Offshore oil rig
+                </p>
+              </div>
             </div>
 
             {/* Institutional */}
-            <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/30 backdrop-blur-sm border border-purple-500/30 rounded-xl p-6">
-              <Hospital className="h-8 w-8 text-purple-400 mb-3" />
-              <h4 className="font-semibold text-purple-300 mb-2">Institutional</h4>
-              <p className="text-purple-200 text-sm">
-                Local clinic → Hospital complex
-              </p>
+            <div className="relative overflow-hidden bg-gradient-to-br from-purple-900/50 to-purple-800/30 backdrop-blur-sm border border-purple-500/30 rounded-xl p-6">
+              <div 
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'url("/images/places/3D Schools.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+              <div className="relative z-10">
+                <Hospital className="h-8 w-8 text-purple-400 mb-3" />
+                <h4 className="font-semibold text-purple-300 mb-2">Institutional</h4>
+                <p className="text-purple-200 text-sm">
+                  Local clinic → Hospital complex
+                </p>
+              </div>
             </div>
 
             {/* Infrastructure */}
-            <div className="bg-gradient-to-br from-red-900/50 to-red-800/30 backdrop-blur-sm border border-red-500/30 rounded-xl p-6">
-              <Plane className="h-8 w-8 text-red-400 mb-3" />
-              <h4 className="font-semibold text-red-300 mb-2">Infrastructure</h4>
-              <p className="text-red-200 text-sm">
-                Bus stop → International airport
-              </p>
+            <div className="relative overflow-hidden bg-gradient-to-br from-red-900/50 to-red-800/30 backdrop-blur-sm border border-red-500/30 rounded-xl p-6">
+              <div 
+                className="absolute inset-0 opacity-20"
+                style={{
+                  backgroundImage: 'url("/images/places/3d Government Buildings.png")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+              <div className="relative z-10">
+                <Plane className="h-8 w-8 text-red-400 mb-3" />
+                <h4 className="font-semibold text-red-300 mb-2">Infrastructure</h4>
+                <p className="text-red-200 text-sm">
+                  Bus stop → International airport
+                </p>
+              </div>
             </div>
           </div>
         </div>
