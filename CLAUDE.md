@@ -1,5 +1,28 @@
 # CLAUDE.md - Critical Project Context
 
+## ⚠️ CRITICAL ENVIRONMENT CONFIGURATION ⚠️
+
+### **NEVER MODIFY WITHOUT APPROVAL**
+- **Production URL**: https://disaster-recovery.vercel.app
+- **Staging URL**: https://disaster-recovery-staging.vercel.app
+- **FORBIDDEN**: disasterrecovery.com.au (DO NOT USE IN ENV VARIABLES)
+
+### **Environment Variable Requirements**
+```bash
+# CORRECT Configuration
+NEXT_PUBLIC_APP_URL=https://disaster-recovery.vercel.app
+NEXTAUTH_URL=https://disaster-recovery.vercel.app
+
+# INCORRECT - NEVER USE
+NEXT_PUBLIC_APP_URL=https://disasterrecovery.com.au  # ❌ WRONG
+NEXTAUTH_URL=https://www.disasterrecovery.com.au     # ❌ WRONG
+```
+
+### **Validation**
+- Run `npm run validate-env` before any deployment
+- Build process will FAIL if incorrect domains are detected
+- Check `.env.example` for correct template
+
 ## Business Model Overview
 
 ### **CRITICAL: National Distribution Model**
