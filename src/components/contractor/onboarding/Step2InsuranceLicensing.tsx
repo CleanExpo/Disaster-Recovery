@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Upload, FileText, Shield, AlertCircle, Check } from 'lucide-react';
+import { Upload, FileText, Shield, AlertCircle, Check, ChevronDown, X, Plus } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface InsuranceLicensingData {
   // Insurance Information
@@ -106,72 +107,157 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
   };
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-gray-900">Insurance & Licensing</h2>
-        <p className="mt-2 text-gray-600">
-          Provide your insurance coverage details and professional licensing information
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-        {/* General Liability Insurance */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
-          <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <Shield className="mr-2 h-5 w-5 text-blue-600" />
-            General Liability Insurance (Required)
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="generalLiabilityInsurer">Insurance Company</Label>
-              <Input
-                id="generalLiabilityInsurer"
-                {...register('generalLiabilityInsurer', { required: 'Insurance company is required' })}
-                placeholder="e.g., QBE Insurance"
-              />
-              {errors.generalLiabilityInsurer && (
-                <p className="text-red-500 text-sm mt-1">{errors.generalLiabilityInsurer.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <Label htmlFor="generalLiabilityPolicyNumber">Policy Number</Label>
-              <Input
-                id="generalLiabilityPolicyNumber"
-                {...register('generalLiabilityPolicyNumber', { required: 'Policy number is required' })}
-                placeholder="e.g., GL123456789"
-              />
-              {errors.generalLiabilityPolicyNumber && (
-                <p className="text-red-500 text-sm mt-1">{errors.generalLiabilityPolicyNumber.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <Label htmlFor="generalLiabilityCoverage">Coverage Amount</Label>
-              <Input
-                id="generalLiabilityCoverage"
-                {...register('generalLiabilityCoverage', { required: 'Coverage amount is required' })}
-                placeholder="e.g., $20,000,000"
-              />
-              {errors.generalLiabilityCoverage && (
-                <p className="text-red-500 text-sm mt-1">{errors.generalLiabilityCoverage.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <Label htmlFor="generalLiabilityExpiry">Expiry Date</Label>
-              <Input
-                id="generalLiabilityExpiry"
-                type="date"
-                {...register('generalLiabilityExpiry', { required: 'Expiry date is required' })}
-              />
-              {errors.generalLiabilityExpiry && (
-                <p className="text-red-500 text-sm mt-1">{errors.generalLiabilityExpiry.message}</p>
-              )}
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 sm:p-6 lg:p-8"
+    >
+      <div className="mx-auto max-w-4xl">
+        {/* Progress Indicator */}
+        <div className="mb-8">
+          <div className="flex items-center justify-center mb-6">
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
+              <div className="w-8 h-1 bg-blue-600 rounded"></div>
+              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
+              <div className="w-8 h-1 bg-gray-300 rounded"></div>
+              <div className="w-8 h-8 bg-gray-300 text-gray-500 rounded-full flex items-center justify-center font-semibold">3</div>
             </div>
           </div>
+          <div className="text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+              Insurance & Licensing
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Secure your position by providing comprehensive insurance coverage and professional licensing details
+            </p>
+          </div>
         </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
+          {/* General Liability Insurance */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-2xl border border-gray-200/50 shadow-sm hover:shadow-md transition-all duration-300"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center">
+                <div className="p-2 bg-blue-100 rounded-xl mr-3">
+                  <Shield className="h-5 w-5 text-blue-600" />
+                </div>
+                <span className="hidden sm:inline">General Liability Insurance</span>
+                <span className="sm:hidden">General Liability</span>
+                <span className="ml-2 px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full">Required</span>
+              </h3>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="generalLiabilityInsurer" className="text-sm font-semibold text-gray-700">
+                  Insurance Company
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="generalLiabilityInsurer"
+                    {...register('generalLiabilityInsurer', { required: 'Insurance company is required' })}
+                    placeholder="e.g., QBE Insurance"
+                    className="h-12 pl-4 pr-4 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                  />
+                </div>
+                <AnimatePresence>
+                  {errors.generalLiabilityInsurer && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="text-red-600 text-sm font-medium flex items-center"
+                    >
+                      <AlertCircle className="h-4 w-4 mr-1" />
+                      {errors.generalLiabilityInsurer.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            
+              <div className="space-y-2">
+                <Label htmlFor="generalLiabilityPolicyNumber" className="text-sm font-semibold text-gray-700">
+                  Policy Number
+                </Label>
+                <Input
+                  id="generalLiabilityPolicyNumber"
+                  {...register('generalLiabilityPolicyNumber', { required: 'Policy number is required' })}
+                  placeholder="e.g., GL123456789"
+                  className="h-12 pl-4 pr-4 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                />
+                <AnimatePresence>
+                  {errors.generalLiabilityPolicyNumber && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="text-red-600 text-sm font-medium flex items-center"
+                    >
+                      <AlertCircle className="h-4 w-4 mr-1" />
+                      {errors.generalLiabilityPolicyNumber.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            
+              <div className="space-y-2">
+                <Label htmlFor="generalLiabilityCoverage" className="text-sm font-semibold text-gray-700">
+                  Coverage Amount
+                </Label>
+                <Input
+                  id="generalLiabilityCoverage"
+                  {...register('generalLiabilityCoverage', { required: 'Coverage amount is required' })}
+                  placeholder="e.g., $20,000,000"
+                  className="h-12 pl-4 pr-4 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                />
+                <AnimatePresence>
+                  {errors.generalLiabilityCoverage && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="text-red-600 text-sm font-medium flex items-center"
+                    >
+                      <AlertCircle className="h-4 w-4 mr-1" />
+                      {errors.generalLiabilityCoverage.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            
+              <div className="space-y-2">
+                <Label htmlFor="generalLiabilityExpiry" className="text-sm font-semibold text-gray-700">
+                  Expiry Date
+                </Label>
+                <Input
+                  id="generalLiabilityExpiry"
+                  type="date"
+                  {...register('generalLiabilityExpiry', { required: 'Expiry date is required' })}
+                  className="h-12 pl-4 pr-4 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                />
+                <AnimatePresence>
+                  {errors.generalLiabilityExpiry && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="text-red-600 text-sm font-medium flex items-center"
+                    >
+                      <AlertCircle className="h-4 w-4 mr-1" />
+                      {errors.generalLiabilityExpiry.message}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
 
         {/* Professional Indemnity Insurance */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
@@ -487,16 +573,30 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
           </div>
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between pt-6">
-          <Button type="button" variant="outline" onClick={onBack}>
-            Back
-          </Button>
-          <Button type="submit">
-            Continue
-          </Button>
-        </div>
-      </form>
-    </div>
+          {/* Navigation Buttons */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 pb-4"
+          >
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={onBack}
+              className="w-full sm:w-auto h-12 px-8 rounded-xl border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold transition-all duration-200 hover:shadow-md"
+            >
+              ← Back to Step 1
+            </Button>
+            <Button 
+              type="submit"
+              className="w-full sm:w-auto h-12 px-8 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+            >
+              Continue to Step 3 →
+            </Button>
+          </motion.div>
+        </form>
+      </div>
+    </motion.div>
   );
 }

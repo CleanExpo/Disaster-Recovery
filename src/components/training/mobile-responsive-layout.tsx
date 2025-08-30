@@ -4,26 +4,32 @@
  * MOBILE-RESPONSIVE TRAINING PLATFORM LAYOUT
  * ===========================================
  * 
- * Ensures training content is fully accessible and optimized
- * for mobile phones, tablets, and desktop computers.
+ * Modern, accessible training platform with enhanced animations,
+ * improved mobile experience, and professional design system.
  */
 
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { ResponsiveImage, TrainingImage } from '@/components/ui/responsive-image';
 import { 
-  ChevronLeftIcon, 
-  ChevronRightIcon,
-  MenuIcon,
-  XIcon,
-  BookOpenIcon,
-  PlayCircleIcon,
-  DocumentTextIcon,
-  CheckCircleIcon,
-  ClockIcon,
-  WifiIcon,
-  WifiOffIcon
-} from '@heroicons/react/outline';
+  ChevronLeft, 
+  ChevronRight,
+  Menu,
+  X,
+  BookOpen,
+  PlayCircle,
+  FileText,
+  CheckCircle,
+  Clock,
+  Wifi,
+  WifiOff,
+  Volume2,
+  VolumeX,
+  Monitor,
+  Smartphone,
+  Tablet
+} from 'lucide-react';
 
 interface TrainingLayoutProps {
   children: React.ReactNode;
@@ -116,174 +122,325 @@ export function MobileResponsiveTrainingLayout({
   };
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30"
+    >
       {/* Network Status Bar */}
-      {!isOnline && (
-        <div className="bg-yellow-500 text-white px-4 py-2 text-center text-sm">
-          <WifiOffIcon className="inline-block w-4 h-4 mr-2" />
-          You're offline. Some features may be limited.
-        </div>
-      )}
+      <AnimatePresence>
+        {!isOnline && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-3 text-center text-sm font-medium shadow-sm"
+          >
+            <WifiOff className="inline-block w-4 h-4 mr-2" />
+            You're offline. Some features may be limited.
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       {/* Mobile Header */}
-      <header className="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-200 lg:hidden">
+      <motion.header 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200/50 lg:hidden"
+      >
         <div className="flex items-center justify-between px-4 py-3">
-          <button
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-2 rounded-xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
             aria-label="Open menu"
           >
-            <MenuIcon className="w-6 h-6" />
-          </button>
+            <Menu className="w-6 h-6" />
+          </motion.button>
           
           <div className="flex-1 mx-4">
-            <h1 className="text-sm font-semibold truncate">{moduleTitle}</h1>
-            <p className="text-xs text-gray-500">Day {currentDay} of {totalDays}</p>
+            <motion.h1 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-sm font-bold truncate bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"
+            >
+              {moduleTitle}
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-xs text-gray-500 font-medium"
+            >
+              Day {currentDay} of {totalDays}
+            </motion.p>
           </div>
           
-          <div className="flex items-center space-x-2">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex items-center space-x-2"
+          >
             {connectionType === '4g' && (
-              <WifiIcon className="w-4 h-4 text-green-500" />
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+              >
+                <Wifi className="w-4 h-4 text-green-500" />
+              </motion.div>
             )}
             {connectionType === '3g' && (
-              <WifiIcon className="w-4 h-4 text-yellow-500" />
+              <Wifi className="w-4 h-4 text-yellow-500" />
             )}
             {connectionType === '2g' && (
-              <WifiIcon className="w-4 h-4 text-red-500" />
+              <Wifi className="w-4 h-4 text-red-500" />
             )}
-          </div>
+          </motion.div>
         </div>
         
         {/* Progress Bar */}
         <div className="h-1 bg-gray-200">
-          <div 
-            className="h-full bg-blue-600 transition-all duration-300"
-            style={{ width: `${(currentDay / totalDays) * 100}%` }}
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: `${(currentDay / totalDays) * 100}%` }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 shadow-sm"
           />
         </div>
-      </header>
+      </motion.header>
       
       <div className="flex h-full">
         {/* Mobile Sidebar Overlay */}
-        {sidebarOpen && (
-          <div 
-            className="fixed inset-0 z-50 bg-black bg-opacity-50 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
+        <AnimatePresence>
+          {sidebarOpen && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-black bg-opacity-50 lg:hidden backdrop-blur-sm"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+        </AnimatePresence>
         
         {/* Sidebar */}
-        <aside className={cn(
-          "fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl transform transition-transform duration-300 lg:relative lg:translate-x-0 lg:shadow-none lg:border-r lg:border-gray-200",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        )}>
+        <motion.aside 
+          initial={{ x: -288 }}
+          animate={{ x: sidebarOpen ? 0 : -288 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          className="fixed inset-y-0 left-0 z-50 w-72 bg-white/95 backdrop-blur-md shadow-xl lg:relative lg:translate-x-0 lg:shadow-none lg:border-r lg:border-gray-200/50 lg:bg-white"
+        >
           <div className="flex flex-col h-full">
             {/* Sidebar Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
-              <h2 className="text-lg font-semibold">Training Modules</h2>
-              <button
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="flex items-center justify-between p-6 border-b border-gray-200/50"
+            >
+              <div className="flex items-center">
+                <div className="p-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl mr-3">
+                  <BookOpen className="w-5 h-5 text-white" />
+                </div>
+                <h2 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  Training Modules
+                </h2>
+              </div>
+              <motion.button
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setSidebarOpen(false)}
-                className="p-2 rounded-md hover:bg-gray-100 lg:hidden"
+                className="p-2 rounded-xl hover:bg-gray-100 lg:hidden transition-colors"
                 aria-label="Close menu"
               >
-                <XIcon className="w-5 h-5" />
-              </button>
-            </div>
+                <X className="w-5 h-5" />
+              </motion.button>
+            </motion.div>
             
             {/* Module Navigation */}
-            <nav className="flex-1 overflow-y-auto p-4">
-              {Array.from({ length: totalDays }, (_, i) => i + 1).map(day => (
-                <button
+            <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+              {Array.from({ length: totalDays }, (_, i) => i + 1).map((day, index) => (
+                <motion.button
                   key={day}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + index * 0.05 }}
+                  whileHover={{ scale: 1.02, x: 4 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => {
                     onNavigate?.(day);
                     setSidebarOpen(false);
                   }}
                   className={cn(
-                    "w-full flex items-center justify-between px-4 py-3 mb-2 rounded-lg transition-colors",
+                    "w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 group relative overflow-hidden",
                     day === currentDay 
-                      ? "bg-blue-50 text-blue-600 font-medium" 
+                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold shadow-lg" 
+                      : day < currentDay
+                      ? "bg-green-50 text-green-700 hover:bg-green-100 font-medium"
                       : "hover:bg-gray-100 text-gray-700"
                   )}
                 >
-                  <span className="flex items-center">
-                    <span className="mr-3">Day {day}</span>
-                  </span>
-                  {day < currentDay && (
-                    <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                  )}
                   {day === currentDay && (
-                    <ClockIcon className="w-5 h-5 text-blue-500" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      style={{ opacity: 0.2 }}
+                    />
                   )}
-                </button>
+                  
+                  <span className="flex items-center relative z-10">
+                    <div className={cn(
+                      "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 transition-colors",
+                      day === currentDay 
+                        ? "bg-white/20 text-white" 
+                        : day < currentDay
+                        ? "bg-green-200 text-green-800"
+                        : "bg-gray-200 text-gray-600 group-hover:bg-gray-300"
+                    )}>
+                      {day}
+                    </div>
+                    <span>Day {day}</span>
+                  </span>
+                  
+                  <div className="relative z-10">
+                    {day < currentDay && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      >
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                      </motion.div>
+                    )}
+                    {day === currentDay && (
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      >
+                        <Clock className="w-5 h-5 text-white" />
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.button>
               ))}
             </nav>
             
             {/* Sidebar Footer */}
-            <div className="p-4 border-t border-gray-200">
-              <div className="text-xs text-gray-500 mb-2">Accessibility</div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Font Size:</span>
-                <div className="flex space-x-1">
-                  <button
-                    onClick={() => setFontSize('small')}
-                    className={cn(
-                      "px-2 py-1 text-xs rounded",
-                      fontSize === 'small' ? "bg-blue-500 text-white" : "bg-gray-200"
-                    )}
-                  >
-                    A
-                  </button>
-                  <button
-                    onClick={() => setFontSize('medium')}
-                    className={cn(
-                      "px-2 py-1 text-sm rounded",
-                      fontSize === 'medium' ? "bg-blue-500 text-white" : "bg-gray-200"
-                    )}
-                  >
-                    A
-                  </button>
-                  <button
-                    onClick={() => setFontSize('large')}
-                    className={cn(
-                      "px-2 py-1 text-base rounded",
-                      fontSize === 'large' ? "bg-blue-500 text-white" : "bg-gray-200"
-                    )}
-                  >
-                    A
-                  </button>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="p-4 border-t border-gray-200/50 bg-gray-50/50"
+            >
+              <div className="text-xs text-gray-500 mb-3 font-semibold uppercase tracking-wider">Accessibility</div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700">Font Size:</span>
+                  <div className="flex space-x-1">
+                    {(['small', 'medium', 'large'] as const).map((size, index) => (
+                      <motion.button
+                        key={size}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setFontSize(size)}
+                        className={cn(
+                          "w-8 h-8 rounded-lg font-bold transition-all duration-200 flex items-center justify-center",
+                          fontSize === size 
+                            ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg" 
+                            : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                        )}
+                        style={{ 
+                          fontSize: size === 'small' ? '10px' : size === 'medium' ? '12px' : '14px' 
+                        }}
+                      >
+                        A
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-700">Device:</span>
+                  <div className="flex space-x-2 text-gray-400">
+                    <Smartphone className={cn("w-4 h-4", orientation === 'portrait' && "text-blue-500")} />
+                    <Tablet className="w-4 h-4" />
+                    <Monitor className="w-4 h-4 hidden lg:block text-blue-500" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </aside>
+        </motion.aside>
         
         {/* Main Content */}
         <main className="flex-1 overflow-y-auto">
-          <div className={cn(
-            "max-w-4xl mx-auto px-4 py-6 md:px-6 lg:px-8",
-            fontSizeClasses[fontSize]
-          )}>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className={cn(
+              "max-w-4xl mx-auto px-4 py-6 md:px-6 lg:px-8",
+              fontSizeClasses[fontSize]
+            )}
+          >
             {/* Desktop Header */}
-            <div className="hidden lg:block mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">{moduleTitle}</h1>
-              <p className="text-gray-500 mt-1">Day {currentDay} of {totalDays}</p>
-              <div className="mt-4 h-2 bg-gray-200 rounded-full">
-                <div 
-                  className="h-full bg-blue-600 rounded-full transition-all duration-300"
-                  style={{ width: `${(currentDay / totalDays) * 100}%` }}
-                />
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="hidden lg:block mb-8"
+            >
+              <div className="flex items-center mb-4">
+                <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl mr-4">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    {moduleTitle}
+                  </h1>
+                  <p className="text-gray-500 mt-1 font-medium">Day {currentDay} of {totalDays}</p>
+                </div>
               </div>
-            </div>
+              
+              <div className="relative">
+                <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${(currentDay / totalDays) * 100}%` }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 rounded-full shadow-sm"
+                  />
+                </div>
+                <div className="flex justify-between mt-2">
+                  <span className="text-sm text-gray-600 font-medium">Progress</span>
+                  <span className="text-sm font-bold text-blue-600">
+                    {Math.round((currentDay / totalDays) * 100)}%
+                  </span>
+                </div>
+              </div>
+            </motion.div>
             
             {/* Content Area */}
-            <div className={cn(
-              "prose prose-blue max-w-none",
-              fontSize === 'small' && "prose-sm",
-              fontSize === 'large' && "prose-lg"
-            )}>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className={cn(
+                "prose prose-blue max-w-none",
+                "prose-headings:font-bold prose-headings:tracking-tight",
+                "prose-p:leading-relaxed prose-p:text-gray-700",
+                "prose-strong:text-gray-900 prose-strong:font-semibold",
+                "prose-a:text-blue-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline",
+                "prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm",
+                "prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg",
+                fontSize === 'small' && "prose-sm",
+                fontSize === 'large' && "prose-lg"
+              )}
+            >
               {children}
-            </div>
+            </motion.div>
             
             {/* Mobile Navigation */}
             <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 lg:hidden">
