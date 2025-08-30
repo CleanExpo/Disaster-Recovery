@@ -483,7 +483,11 @@ export default function InvestorPitchDeck() {
       <BackgroundMusic ref={musicRef} muted={isMuted} />
       
       {/* Voice Narration */}
-      <VoiceNarration ref={voiceRef} muted={isMuted} />
+      <VoiceNarration 
+        ref={voiceRef} 
+        muted={isMuted}
+        elevenLabsApiKey={process.env.NEXT_PUBLIC_ELEVENLABS_API_KEY}
+      />
       
       {/* Main Presentation Area */}
       <div className="relative z-10 min-h-screen flex flex-col">

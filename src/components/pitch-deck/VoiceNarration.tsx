@@ -15,7 +15,7 @@ interface VoiceNarrationHandle {
 }
 
 const VoiceNarration = forwardRef<VoiceNarrationHandle, VoiceNarrationProps>(
-  ({ muted, elevenLabsApiKey, voiceId = 'EXAVITQu4vr4xnSDxMaL' }, ref) => {
+  ({ muted, elevenLabsApiKey, voiceId = 'WLKp2jV6nrS8aMkPPDRO' }, ref) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [audioCache] = useState<Map<string, string>>(new Map());
