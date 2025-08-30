@@ -24,9 +24,13 @@ export default function ComingSoonPage() {
         <div className="relative">
           <div className="container mx-auto px-6 py-24">
             <div className="text-center max-w-5xl mx-auto">
-              {/* Logo/Brand */}
+              {/* Logo/Brand - Using actual NRP logo */}
               <div className="flex items-center justify-center gap-3 mb-8">
-                <Shield className="h-12 w-12 text-blue-400" />
+                <img 
+                  src="/images/logos/nrp/NRP favicon_128x128.png" 
+                  alt="NRP Logo" 
+                  className="h-16 w-16"
+                />
                 <div className="text-left">
                   <h1 className="text-4xl font-bold text-white">NRP</h1>
                   <p className="text-blue-300 text-sm">National Restoration Professionals</p>
@@ -34,9 +38,9 @@ export default function ComingSoonPage() {
               </div>
 
               {/* Main Heading */}
-              <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              <h2 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-normal">
                 Australia's Disaster Recovery
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 pb-2">
                   Network Is Coming
                 </span>
               </h2>

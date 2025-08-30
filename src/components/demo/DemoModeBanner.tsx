@@ -41,19 +41,7 @@ export default function DemoModeBanner() {
 
   return (
     <>
-      {/* VERCEL DEPLOYMENT TEST BANNER - THIS SHOULD BE VISIBLE */}
-      <div className="fixed top-[78px] left-0 right-0 z-[850] bg-red-600 text-white shadow-lg border-b-4 border-yellow-400">
-        <div className="text-center py-3">
-          <div className="text-3xl font-black animate-pulse">
-            🚨 VERCEL DEPLOYMENT TEST - {new Date().toLocaleTimeString()} 🚨
-          </div>
-          <div className="text-lg">
-            IF YOU SEE THIS, DEPLOYMENT IS WORKING!
-          </div>
-        </div>
-      </div>
-      
-      {/* Original Demo Mode Banner */}
+      {/* Demo Mode Banner */}
       <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white shadow-lg">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
