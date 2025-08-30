@@ -116,7 +116,6 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <DemoModeBanner />
           <UltraModernHeader />
           <main id="main-content">
             {children}

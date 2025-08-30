@@ -196,23 +196,29 @@ export default function UltraModernHeader() {
                 transition: 'transform 0.3s ease',
               }}>
                 <img
+                  id="main-logo"
                   src="/images/logos/dr-logo-white.svg"
                   alt="Disaster Recovery Australia - Property Restoration Services"
                   width={isScrolled ? 135 : 150}
                   height={isScrolled ? 41 : 45}
-                  className="transition-all duration-300"
+                  className="transition-all duration-300 block"
+                  style={{ display: 'block' }}
                   onError={(e) => {
                     // Fallback to text logo if image fails
                     e.currentTarget.style.display = 'none';
                     const fallback = document.getElementById('logo-fallback');
-                    if (fallback) fallback.style.display = 'flex';
+                    if (fallback) {
+                      fallback.style.display = 'flex';
+                      fallback.classList.remove('hidden');
+                    }
                   }}
                 />
                 
-                {/* Fallback text logo */}
+                {/* Fallback text logo - only shown if main logo fails */}
                 <div 
                   id="logo-fallback"
-                  className="hidden items-center gap-3"
+                  className="items-center gap-3"
+                  style={{ display: 'none' }}
                 >
                   <div className="relative w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
                     <span className="text-white font-bold text-xl">DR</span>
