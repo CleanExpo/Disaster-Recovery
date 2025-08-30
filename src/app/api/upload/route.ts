@@ -4,11 +4,8 @@ import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { existsSync } from 'fs';
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// Note: In Next.js 13+ App Router, body parsing is handled automatically
+// No need for the deprecated config export
 
 export async function POST(request: NextRequest) {
   try {
