@@ -1,16 +1,16 @@
+'use client';
+
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Shield, Building2, Globe2, Zap, Users, CheckCircle, 
   ArrowRight, Briefcase, Home, Factory, Hospital, Plane,
-  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench
+  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench,
+  Phone, Clock, Award
 } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'National Restoration Professionals - Australia\'s Disaster Recovery Network',
-  description: 'Coming Soon: Australia\'s first nationwide disaster recovery platform connecting insurance claims to qualified contractors. From granny flats to 80-floor towers, corner shops to offshore oil rigs.',
-  keywords: 'disaster recovery Australia, restoration contractors, water damage, fire damage, mould remediation, insurance claims, emergency response',
-};
+// Metadata should be handled in layout.tsx for client components
 
 export default function ComingSoonPage() {
   return (
@@ -82,6 +82,152 @@ export default function ComingSoonPage() {
                 <Zap className="h-5 w-5 text-yellow-400 animate-pulse" />
                 <span className="text-yellow-300 font-semibold">Launching Q1 2025 - Contractors Apply Now</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Visual Services Showcase - 3D Images */}
+      <div className="relative py-20 bg-gradient-to-b from-slate-800 to-slate-900">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              We Handle Every Disaster Type
+            </h3>
+            <p className="text-xl text-blue-300">
+              Instant visual recognition - You're in the right place
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-7xl mx-auto">
+            {/* Water Damage */}
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105">
+              <div className="aspect-square relative">
+                <Image
+                  src="/images/optimized/damage/3D Water Damage to a Home.png"
+                  alt="Water Damage Restoration"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <Droplets className="h-5 w-5 text-blue-400 mb-1" />
+                  <h4 className="text-white font-semibold text-sm">Water Damage</h4>
+                  <p className="text-blue-300 text-xs">24/7 Emergency</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Fire Damage */}
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-red-900/50 to-orange-800/30 backdrop-blur-sm border border-red-500/30 hover:border-red-400/50 transition-all duration-300 hover:scale-105">
+              <div className="aspect-square relative">
+                <Image
+                  src="/images/optimized/damage/3D Kitchen Fire.png"
+                  alt="Fire Damage Restoration"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <Flame className="h-5 w-5 text-red-400 mb-1" />
+                  <h4 className="text-white font-semibold text-sm">Fire Damage</h4>
+                  <p className="text-red-300 text-xs">Rapid Response</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Mould Remediation */}
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-green-900/50 to-green-800/30 backdrop-blur-sm border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105">
+              <div className="aspect-square relative">
+                <Image
+                  src="/images/optimized/damage/3D Mould on Ceiling.png"
+                  alt="Mould Remediation"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <Bug className="h-5 w-5 text-green-400 mb-1" />
+                  <h4 className="text-white font-semibold text-sm">Mould Removal</h4>
+                  <p className="text-green-300 text-xs">Health Priority</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Burst Pipes */}
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-cyan-900/50 to-blue-800/30 backdrop-blur-sm border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
+              <div className="aspect-square relative">
+                <Image
+                  src="/images/optimized/damage/3D Burst Water Pipe.png"
+                  alt="Burst Pipe Emergency"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <Wrench className="h-5 w-5 text-cyan-400 mb-1" />
+                  <h4 className="text-white font-semibold text-sm">Burst Pipes</h4>
+                  <p className="text-cyan-300 text-xs">Urgent Response</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Squalor Cleanup */}
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-900/50 to-purple-800/30 backdrop-blur-sm border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
+              <div className="aspect-square relative">
+                <Image
+                  src="/images/optimized/damage/3D Emergency Squalor Cleanup.png"
+                  alt="Squalor and Hoarding Cleanup"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <AlertTriangle className="h-5 w-5 text-purple-400 mb-1" />
+                  <h4 className="text-white font-semibold text-sm">Biohazard</h4>
+                  <p className="text-purple-300 text-xs">Specialist Team</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Professional Equipment */}
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-yellow-900/50 to-orange-800/30 backdrop-blur-sm border border-yellow-500/30 hover:border-yellow-400/50 transition-all duration-300 hover:scale-105">
+              <div className="aspect-square relative">
+                <Image
+                  src="/images/optimized/equipment/3D LGR Dehumidifier.png"
+                  alt="Professional Restoration Equipment"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <Award className="h-5 w-5 text-yellow-400 mb-1" />
+                  <h4 className="text-white font-semibold text-sm">Pro Equipment</h4>
+                  <p className="text-yellow-300 text-xs">Industry Leading</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="flex flex-wrap justify-center gap-6 mt-12">
+            <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
+              <Phone className="h-4 w-4 text-green-400" />
+              <span className="text-green-300 text-sm font-medium">24/7 Emergency Response</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
+              <Clock className="h-4 w-4 text-blue-400" />
+              <span className="text-blue-300 text-sm font-medium">60 Minute Response Time</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-purple-500/20 border border-purple-500/30 rounded-full">
+              <Award className="h-4 w-4 text-purple-400" />
+              <span className="text-purple-300 text-sm font-medium">IICRC Certified Network</span>
             </div>
           </div>
         </div>
