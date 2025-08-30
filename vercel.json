@@ -43,7 +43,6 @@
     }
   },
   "regions": ["syd1"],
-  "ignoreCommand": "echo 'Build starting'",
   "github": {
     "silent": true
   }
