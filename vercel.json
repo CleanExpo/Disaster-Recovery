@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
   "installCommand": "npm install --force --legacy-peer-deps",
-  "buildCommand": "rm -rf .next && rm -rf node_modules/.cache && rm -rf src/components/pitch-deck && find . -name 'ChartSlide*' -delete && npx prisma generate --schema=./prisma/schema.prisma && npx next build || echo 'Build completed with warnings'",
+  "buildCommand": "rm -rf .next && npx prisma generate --schema=./prisma/schema.prisma && npx next build || echo 'Build completed with warnings'",
   "outputDirectory": ".next",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=8192",
