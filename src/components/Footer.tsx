@@ -270,11 +270,15 @@ const Footer: React.FC = () => {
             <div className="lg:col-span-4">
               <div className="flex items-center gap-3 mb-6">
                 <img
-                  src="/images/logos/disaster-recovery-qld-logo.png"
+                  src="/images/logos/disaster-recovery-logo.png"
                   alt={`${BUSINESS_NAME} Logo`}
                   className="h-12 w-auto"
                   width="48"
                   height="48"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
                 />
                 <div>
                   <div className="text-white font-bold text-xl">

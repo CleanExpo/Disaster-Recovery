@@ -172,8 +172,21 @@ export default function ModernAboutPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 flex items-center justify-center">
-                <UserGroupIcon className="w-32 h-32 text-purple-400/50" />
+              <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden">
+                <img
+                  src="/images/team/shane-founder.jpg"
+                  alt="Shane - Founder and CEO of Disaster Recovery Australia"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = document.getElementById('founder-fallback');
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div id="founder-fallback" className="hidden w-full h-full items-center justify-center bg-gradient-to-r from-purple-500/20 to-indigo-500/20">
+                  <UserGroupIcon className="w-32 h-32 text-purple-400/50" />
+                </div>
               </div>
               <motion.div
                 className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-4 shadow-xl"
@@ -181,7 +194,7 @@ export default function ModernAboutPage() {
                 transition={{ duration: 4, repeat: Infinity }}
               >
                 <CheckBadgeIcon className="w-8 h-8 text-white" />
-                <p className="text-xs font-semibold mt-1">Certified Team</p>
+                <p className="text-xs font-semibold mt-1">Shane - Founder & CEO</p>
               </motion.div>
             </motion.div>
           </div>

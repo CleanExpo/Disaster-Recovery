@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface NavItem {
   label: string;
@@ -190,43 +191,43 @@ export default function UltraModernHeader() {
               href="/" 
               className="group relative flex items-center gap-3"
             >
-              {/* Logo mark with animation */}
-              <div className="relative">
-                <div 
-                  className="absolute inset-0 rounded-lg opacity-50 group-hover:opacity-100 transition-opacity"
-                  style={{
-                    background: 'linear-gradient(135deg, #635bff 0%, #00d4ff 100%)',
-                    filter: 'blur(10px)',
+              {/* Use actual logo image */}
+              <div className="relative" style={{
+                transform: isScrolled ? 'scale(0.9)' : 'scale(1)',
+                transition: 'transform 0.3s ease',
+              }}>
+                <Image
+                  src="/images/logos/disaster-recovery-logo.png"
+                  alt="Disaster Recovery Australia - Property Restoration Services"
+                  width={isScrolled ? 180 : 200}
+                  height={isScrolled ? 54 : 60}
+                  priority
+                  className="transition-all duration-300"
+                  onError={(e) => {
+                    // Fallback to text logo if image fails
+                    e.currentTarget.style.display = 'none';
+                    const fallback = document.getElementById('logo-fallback');
+                    if (fallback) fallback.style.display = 'flex';
                   }}
                 />
+                
+                {/* Fallback text logo */}
                 <div 
-                  className="relative w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{
-                    background: 'linear-gradient(135deg, #635bff 0%, #00d4ff 100%)',
-                    transform: isScrolled ? 'scale(0.9)' : 'scale(1)',
-                    transition: 'transform 0.3s ease',
-                  }}
+                  id="logo-fallback"
+                  className="hidden items-center gap-3"
                 >
-                  <span className="text-white font-bold text-xl">DR</span>
+                  <div className="relative w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
+                    <span className="text-white font-bold text-xl">DR</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-lg font-bold text-white">
+                      Disaster Recovery
+                    </span>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-widest">
+                      Property Restoration Services
+                    </span>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Logo text */}
-              <div className="flex flex-col">
-                <span 
-                  className="text-lg font-bold transition-all"
-                  style={{
-                    background: 'linear-gradient(135deg, #fff 0%, #ddd 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  Disaster Recovery
-                </span>
-                <span className="text-[10px] text-gray-400 uppercase tracking-widest">
-                  Next-Gen Restoration
-                </span>
               </div>
             </Link>
 
