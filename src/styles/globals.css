@@ -381,6 +381,17 @@
   66% { transform: translateY(20px) rotate(3deg); }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleY(1.1);
+  }
+}
+
 /* Performance Optimizations */
 @media (prefers-reduced-motion: reduce) {
   *,

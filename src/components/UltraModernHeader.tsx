@@ -125,6 +125,42 @@ export default function UltraModernHeader() {
           borderBottom: '1px solid rgba(99, 91, 255, 0.2)',
         }}
       >
+        {/* Realistic fire gradient effect */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(
+                to top,
+                rgba(255, 69, 0, 0.15) 0%,
+                rgba(255, 140, 0, 0.08) 20%,
+                rgba(255, 165, 0, 0.04) 40%,
+                rgba(255, 195, 0, 0.02) 60%,
+                transparent 80%
+              )
+            `,
+            opacity: 0.6,
+            mixBlendMode: 'screen',
+          }}
+        />
+        
+        {/* Additional subtle fire glow */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(
+                ellipse at bottom,
+                rgba(255, 100, 0, 0.2) 0%,
+                rgba(255, 140, 0, 0.1) 30%,
+                transparent 70%
+              )
+            `,
+            filter: 'blur(8px)',
+            animation: 'pulse 4s ease-in-out infinite',
+          }}
+        />
+        
         {/* Interactive gradient overlay */}
         <div 
           className="absolute inset-0 opacity-30 pointer-events-none"
