@@ -281,6 +281,28 @@ export const melbourneSuburbs = [
   { name: 'Dandenong', postcode: '3175', riskLevel: 'Medium', commonIssues: ['Flash flooding', 'Storm damage'] }
 ];
 
+// International/Pacific Locations
+export const internationalLocations: ExtendedLocationData[] = [
+  {
+    city: 'Nauru',
+    state: 'International',
+    population: 12500,
+    coordinates: { lat: -0.5477, lng: 166.9209 },
+    climate: 'Tropical',
+    commonIssues: ['Cyclones', 'Coastal flooding', 'Storm surge', 'Salt water intrusion', 'Coral mining damage'],
+    landmarks: ['Yaren District', 'Anibare Bay', 'Buada Lagoon', 'Command Ridge'],
+    suburbs: ['Yaren', 'Aiwo', 'Anabar', 'Anetan', 'Anibare', 'Baiti', 'Boe', 'Buada', 'Denigomodu', 'Ewa', 'Ijuw', 'Meneng', 'Nibok', 'Uaboe'],
+    postcode: 'NRU',
+    disasterRisk: 'High',
+    seasonalRisks: {
+      summer: ['Cyclones', 'Heavy rainfall', 'Flooding'],
+      autumn: ['Storm surge', 'Coastal erosion'],
+      winter: ['King tides', 'Salt water intrusion'],
+      spring: ['Early cyclones', 'Drought conditions']
+    }
+  }
+];
+
 // Generate dynamic location combinations
 export function generateLocationCombinations() {
   const combinations: string[] = [];
@@ -298,6 +320,14 @@ export function generateLocationCombinations() {
     const disasters = city.commonIssues.map(issue => issue.toLowerCase().replace(/\s+/g, '-'));
     disasters.forEach(disaster => {
       combinations.push(`${city.city.toLowerCase()}-${disaster}`);
+    });
+  });
+  
+  // International + Service combinations
+  internationalLocations.forEach(city => {
+    const services = ['water-damage', 'cyclone-damage', 'emergency-restoration', 'disaster-recovery'];
+    services.forEach(service => {
+      combinations.push(`${city.city.toLowerCase()}-${service}`);
     });
   });
   
@@ -319,6 +349,13 @@ export function generateLocationUrl(city: string, state: string, service?: strin
 
 // Get nearby locations for internal linking
 export function getNearbyLocations(city: string, state: string): string[] {
+  // Handle international locations
+  if (state === 'International') {
+    const intlData = internationalLocations.filter(loc => loc.state === state);
+    const currentCity = intlData.find(loc => loc.city === city);
+    return currentCity ? currentCity.suburbs : [];
+  }
+  
   const stateData = [...capitalCities, ...regionalCities].filter(loc => loc.state === state);
   const currentCity = stateData.find(loc => loc.city === city);
   

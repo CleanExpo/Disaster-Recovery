@@ -323,6 +323,20 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     priorityScore: 72,
     monthlySearchVolume: 580,
   },
+
+  // International - Pacific Region
+  {
+    state: 'International',
+    city: 'Nauru',
+    suburb: 'Yaren District',
+    postcode: 'NRU',
+    latitude: -0.5477,
+    longitude: 166.9209,
+    population: 12500,
+    averagePropertyValue: 350000,
+    priorityScore: 85, // High priority for international expansion
+    monthlySearchVolume: 150,
+  },
 ];
 
 // Service types for disaster recovery
