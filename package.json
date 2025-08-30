@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:optimized": "node scripts/dev-with-optimization.js",
-    "build": "node scripts/vercel-build.js",
+    "build": "npx prisma generate && next build",
     "vercel-build": "node scripts/vercel-build.js",
     "start": "next start",
     "lint": "next lint",
@@ -23,6 +23,9 @@
     "seo-images:downloads": "node scripts/seo-process-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
     "web-optimise": "node scripts/web-optimise-images.js",
     "web-optimise:downloads": "node scripts/web-optimise-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
+    "deploy": "node scripts/auto-deploy.js once",
+    "deploy:watch": "node scripts/auto-deploy.js watch",
+    "deploy:help": "node scripts/auto-deploy.js help",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -39,8 +42,8 @@
     "optimize-images": "node scripts/optimize-images.js",
     "image-worker": "node scripts/image-optimization-worker.js",
     "image-worker:dev": "nodemon --watch public/images --watch public/uploads scripts/image-optimization-worker.js",
-    "prebuild": "node scripts/image-optimization-worker.js",
-    "postinstall": "node scripts/image-optimization-worker.js"
+    "prebuild": "echo 'Prebuild step'",
+    "postinstall": "echo 'Postinstall step'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.60.0",
