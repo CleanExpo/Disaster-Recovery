@@ -31,6 +31,7 @@ export default function UltraModernFooter() {
     { label: 'Technology', href: '/technology' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'Certifications', href: '/certifications' },
+    { label: 'Clean Claims Partner', href: '/partners/clean-claims' },
   ];
 
   const support = [
@@ -242,6 +243,26 @@ export default function UltraModernFooter() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Strategic Partners Section */}
+        <div className="mb-12 pt-8" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+          <h4 className="text-white font-semibold mb-6 text-center">Strategic Partners</h4>
+          <div className="flex justify-center items-center gap-8">
+            <Link 
+              href="/partners/clean-claims"
+              className="group relative bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all hover:scale-105"
+            >
+              <Image
+                src="/images/logos/3D Clean Claims Logo.png"
+                alt="Clean Claims - Strategic Technology Partner"
+                width={150}
+                height={60}
+                className="h-12 w-auto object-contain"
+              />
+              <span className="sr-only">Clean Claims Partnership</span>
+            </Link>
           </div>
         </div>
 
