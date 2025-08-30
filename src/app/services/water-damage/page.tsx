@@ -7,12 +7,12 @@ import { SEOImage } from '@/components/ui/seo-image';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Services | 24/7 Emergency Response | IICRC S500 Certified',
-  description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mold prevention. Available 24/7 with 1-hour response time.',
+  description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
     description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call 1-800-DISASTER.',
-    images: ['/images/optimized/damage/3D Water Damage.png'],
+    images: ['/images/optimised/damage/3D Water Damage.png'],
     type: 'website',
   },
   alternates: {
@@ -25,7 +25,7 @@ const schemaData = {
   "@type": "Service",
   "serviceType": "Water Damage Restoration",
   "provider": {
-    "@type": "Organization",
+    "@type": "Organisation",
     "name": "Disaster Recovery Australia",
     "telephone": "1-800-DISASTER",
     "url": "https://disasterrecovery.com.au"
@@ -75,26 +75,26 @@ export default function WaterDamageRestorationPage() {
 
   const relatedServices = [
     {
-      title: 'Mold Remediation',
-      href: '/services/mold-remediation',
-      image: '/images/optimized/damage/3D Mold Damage.png'
+      title: 'Mould Remediation',
+      href: '/services/mould-remediation',
+      image: '/images/optimised/damage/3D Mould Damage.png'
     },
     {
       title: 'Structural Drying',
       href: '/services/structural-drying',
-      image: '/images/optimized/process/3D Drying Process.png'
+      image: '/images/optimised/process/3D Drying Process.png'
     },
     {
       title: 'Emergency Response',
       href: '/services/emergency-response',
-      image: '/images/optimized/process/3D Assessment.png'
+      image: '/images/optimised/process/3D Assessment.png'
     }
   ];
 
   const faqs = [
     {
       question: "How quickly should water damage be addressed?",
-      answer: "According to IICRC S500 standards, water damage must be addressed within 24-48 hours to prevent mold growth and secondary damage. Our team responds within 1 hour for emergencies, beginning extraction and mitigation immediately upon arrival."
+      answer: "According to IICRC S500 standards, water damage must be addressed within 24-48 hours to prevent mould growth and secondary damage. Our team responds within 1 hour for emergencies, beginning extraction and mitigation immediately upon arrival."
     },
     {
       question: "What are the three categories of water damage?",
@@ -118,7 +118,7 @@ export default function WaterDamageRestorationPage() {
     <ServicePageLayout
       title="Water Damage Restoration"
       description="IICRC S500-certified water damage restoration with immediate 24/7 response. Professional extraction, structural drying, and complete restoration services."
-      heroImage="/images/optimized/damage/3D Water Damage.png"
+      heroImage="/images/optimised/damage/3D Water Damage.png"
       heroImageAlt="Professional water damage restoration services"
       certifications={certifications}
       responseTime="< 1 Hour"
@@ -134,16 +134,16 @@ export default function WaterDamageRestorationPage() {
         </h2>
         <div className="prose prose-lg max-w-none">
           <p className="r6-text-lead text-gray-300">
-            When water damage strikes your property, every minute counts. Our IICRC S500-certified restoration professionals respond immediately to minimize damage, prevent mold growth, and restore your property to pre-loss condition. With advanced equipment and proven methodologies, we handle everything from minor leaks to major flooding disasters.
+            When water damage strikes your property, every minute counts. Our IICRC S500-certified restoration professionals respond immediately to minimize damage, prevent mould growth, and restore your property to pre-loss condition. With advanced equipment and proven methodologies, we handle everything from minor leaks to major flooding disasters.
           </p>
           
           <div className="r6-glass-card r6-glow-blue p-8 my-8 border-l-4 border-electric-blue">
-            <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-3">
+            <h3 className="text-xl font-bold text-white mb-3 flex items-centre gap-3">
               <span className="r6-pulse-dot"></span>
               Why Immediate Response Matters
             </h3>
             <p className="text-gray-300">
-              According to ANSI/IICRC S500-2021 standards, water damage can lead to mold growth within 24-48 hours. Our rapid response team arrives within 1 hour to begin extraction and mitigation, preventing secondary damage and reducing restoration costs by up to 40%.
+              According to ANSI/IICRC S500-2021 standards, water damage can lead to mould growth within 24-48 hours. Our rapid response team arrives within 1 hour to begin extraction and mitigation, preventing secondary damage and reducing restoration costs by up to 40%.
             </p>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimized/damage/3D Water Damage.png"
+                src="/images/optimised/damage/3D Water Damage.png"
                 alt="Category 1 Clean Water Damage"
                 fill
                 className="object-cover r6-scale-hover"
@@ -201,7 +201,7 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimized/damage/3D Flood Damage.png"
+                src="/images/optimised/damage/3D Flood Damage.png"
                 alt="Category 2 Grey Water Damage"
                 fill
                 className="object-cover r6-scale-hover"
@@ -244,7 +244,7 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimized/process/3D Emergency Squalor Cleanup.png"
+                src="/images/optimised/process/3D Emergency Squalor Cleanup.png"
                 alt="Category 3 Black Water Damage"
                 fill
                 className="object-cover r6-scale-hover"
@@ -296,7 +296,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 1 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">1</span>
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start">
                     <Image
-                      src="/images/optimized/process/3D Assessment.png"
+                      src="/images/optimised/process/3D Assessment.png"
                       alt="Emergency assessment"
                       width={100}
                       height={100}
@@ -343,7 +343,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 2 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">2</span>
               </div>
             </div>
@@ -356,9 +356,9 @@ export default function WaterDamageRestorationPage() {
                   Using advanced moisture detection technology, we map affected areas, determine water category, and develop a comprehensive restoration plan following IICRC S500 protocols.
                 </p>
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
-                  <div className="text-center">
+                  <div className="text-centre">
                     <Image
-                      src="/images/optimized/equipment/3D Thermal Camera.png"
+                      src="/images/optimised/equipment/3D Thermal Camera.png"
                       alt="Thermal imaging"
                       width={80}
                       height={80}
@@ -369,9 +369,9 @@ export default function WaterDamageRestorationPage() {
                       Identifies hidden moisture
                     </p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-centre">
                     <Image
-                      src="/images/optimized/equipment/3D Moisture Meter.png"
+                      src="/images/optimised/equipment/3D Moisture Meter.png"
                       alt="Moisture meters"
                       width={80}
                       height={80}
@@ -382,9 +382,9 @@ export default function WaterDamageRestorationPage() {
                       Documents affected areas
                     </p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-centre">
                     <Image
-                      src="/images/optimized/equipment/3D Moisture Meter Reading.png"
+                      src="/images/optimised/equipment/3D Moisture Meter Reading.png"
                       alt="Hygrometers"
                       width={80}
                       height={80}
@@ -403,7 +403,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 3 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">3</span>
               </div>
             </div>
@@ -416,9 +416,9 @@ export default function WaterDamageRestorationPage() {
                   Powerful truck-mounted and portable extraction units remove thousands of gallons of water quickly, preventing further damage and accelerating the drying process.
                 </p>
                 <div className="r6-glass-card r6-glow-blue border-l-4 border-electric-blue p-4 mt-4">
-                  <div className="flex items-center mb-2">
+                  <div className="flex items-centre mb-2">
                     <Image
-                      src="/images/optimized/equipment/3D Extraction Unit.png"
+                      src="/images/optimised/equipment/3D Extraction Unit.png"
                       alt="Extraction equipment"
                       width={60}
                       height={60}
@@ -439,7 +439,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 4 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">4</span>
               </div>
             </div>
@@ -452,9 +452,9 @@ export default function WaterDamageRestorationPage() {
                   Strategic placement of industrial dehumidifiers and high-velocity air movers creates optimal drying conditions. Daily monitoring ensures materials reach IICRC-specified moisture levels.
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
-                  <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
+                  <div className="flex items-centre p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
-                      src="/images/optimized/equipment/3D Dehumidifier.png"
+                      src="/images/optimised/equipment/3D Dehumidifier.png"
                       alt="Dehumidifier"
                       width={70}
                       height={70}
@@ -467,9 +467,9 @@ export default function WaterDamageRestorationPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
+                  <div className="flex items-centre p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
-                      src="/images/optimized/equipment/3D Industrial Fan.png"
+                      src="/images/optimised/equipment/3D Industrial Fan.png"
                       alt="Air movers"
                       width={70}
                       height={70}
@@ -490,7 +490,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 5 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">5</span>
               </div>
             </div>
@@ -500,13 +500,13 @@ export default function WaterDamageRestorationPage() {
               </h3>
               <div className="r6-glass-card p-6 r6-hover-glow">
                 <p className="text-gray-300 mb-4">
-                  All affected areas receive antimicrobial treatment to prevent mold and bacteria growth. We clean and sanitize restorable items using IICRC-approved methods and EPA-registered disinfectants.
+                  All affected areas receive antimicrobial treatment to prevent mould and bacteria growth. We clean and sanitize restorable items using IICRC-approved methods and EPA-registered disinfectants.
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mt-6">
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
-                    <div className="flex items-center mb-2">
+                    <div className="flex items-centre mb-2">
                       <Image
-                        src="/images/optimized/equipment/3D Thermal Fogging.png"
+                        src="/images/optimised/equipment/3D Thermal Fogging.png"
                         alt="Thermal fogging"
                         width={50}
                         height={50}
@@ -519,14 +519,14 @@ export default function WaterDamageRestorationPage() {
                     </p>
                   </div>
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
-                    <div className="flex items-center mb-2">
+                    <div className="flex items-centre mb-2">
                       <svg className="w-12 h-12 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <h4 className="font-semibold text-green-400">HEPA Filtration</h4>
                     </div>
                     <p className="text-sm text-gray-400">
-                      Removes 99.97% of airborne particles and mold spores
+                      Removes 99.97% of airborne particles and mould spores
                     </p>
                   </div>
                 </div>
@@ -537,7 +537,7 @@ export default function WaterDamageRestorationPage() {
           {/* Step 6 */}
           <div className="flex gap-6">
             <div className="flex-shrink-0">
-              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-center justify-center border-2 border-electric-blue">
+              <div className="w-16 h-16 r6-glass-card r6-glow-blue rounded-full flex items-centre justify-centre border-2 border-electric-blue">
                 <span className="text-2xl font-bold text-electric-blue r6-text-glow">6</span>
               </div>
             </div>
@@ -549,16 +549,16 @@ export default function WaterDamageRestorationPage() {
                 <p className="text-gray-300 mb-4">
                   Final phase returns your property to pre-loss condition. From minor repairs like drywall replacement to major reconstruction, our skilled craftsmen complete all necessary work.
                 </p>
-                <div className="flex items-center justify-center mt-6">
+                <div className="flex items-centre justify-centre mt-6">
                   <Image
-                    src="/images/optimized/process/3D Restoration.png"
+                    src="/images/optimised/process/3D Restoration.png"
                     alt="Complete restoration"
                     width={200}
                     height={150}
                     className="rounded-lg"
                   />
                 </div>
-                <div className="grid md:grid-cols-3 gap-4 mt-6 text-center">
+                <div className="grid md:grid-cols-3 gap-4 mt-6 text-centre">
                   <div>
                     <h4 className="font-semibold text-white">Minor Repairs</h4>
                     <p className="text-sm text-gray-400 mt-1">
@@ -600,37 +600,37 @@ export default function WaterDamageRestorationPage() {
                 name: "Truck-Mounted Extractors",
                 specs: "40,000 gallons/day capacity",
                 benefit: "Removes water 50% faster",
-                image: "/images/optimized/equipment/3D Extraction Unit.png"
+                image: "/images/optimised/equipment/3D Extraction Unit.png"
               },
               {
                 name: "LGR Dehumidifiers",
                 specs: "185 PPD removal rate",
-                benefit: "Prevents mold in 24-48hrs",
-                image: "/images/optimized/equipment/3D Dehumidifier.png"
+                benefit: "Prevents mould in 24-48hrs",
+                image: "/images/optimised/equipment/3D Dehumidifier.png"
               },
               {
                 name: "Axial Air Movers",
                 specs: "3,200 CFM airflow",
                 benefit: "Accelerates evaporation",
-                image: "/images/optimized/equipment/3D Industrial Fan.png"
+                image: "/images/optimised/equipment/3D Industrial Fan.png"
               },
               {
                 name: "FLIR Thermal Cameras",
                 specs: "0.05°C sensitivity",
                 benefit: "Finds hidden moisture",
-                image: "/images/optimized/equipment/3D Thermal Camera.png"
+                image: "/images/optimised/equipment/3D Thermal Camera.png"
               },
               {
                 name: "Penetrating Moisture Meters",
                 specs: "0-100% WME range",
                 benefit: "Accurate moisture mapping",
-                image: "/images/optimized/equipment/3D Moisture Meter.png"
+                image: "/images/optimised/equipment/3D Moisture Meter.png"
               },
               {
                 name: "HEPA Air Scrubbers",
                 specs: "99.97% filtration",
                 benefit: "Cleanroom air quality",
-                image: "/images/optimized/equipment/3D Thermal Fogging.png"
+                image: "/images/optimised/equipment/3D Thermal Fogging.png"
               }
             ].map((item, index) => (
               <div key={index} className="r6-card-premium r6-hover-lift p-6">
@@ -695,31 +695,31 @@ export default function WaterDamageRestorationPage() {
             <div className="r6-glass-subtle rounded-xl p-6 border border-electric-blue/20">
               <h4 className="font-bold text-electric-blue mb-4 r6-text-glow-subtle">Documentation We Provide:</h4>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center text-gray-400 r6-list-item">
+                <li className="flex items-centre text-gray-400 r6-list-item">
                   <span className="w-2 h-2 bg-electric-blue rounded-full mr-3 r6-pulse-dot"></span>
                   Pre-mitigation photos and videos
                 </li>
-                <li className="flex items-center">
+                <li className="flex items-centre">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Moisture content readings and maps
                 </li>
-                <li className="flex items-center">
+                <li className="flex items-centre">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Thermal imaging documentation
                 </li>
-                <li className="flex items-center">
+                <li className="flex items-centre">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Daily drying logs and psychrometric data
                 </li>
-                <li className="flex items-center">
+                <li className="flex items-centre">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Equipment placement diagrams
                 </li>
-                <li className="flex items-center">
+                <li className="flex items-centre">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Detailed line-item estimates
                 </li>
-                <li className="flex items-center">
+                <li className="flex items-centre">
                   <span className="w-2 h-2 bg-primary-600 rounded-full mr-3"></span>
                   Certificate of completion
                 </li>
@@ -769,7 +769,7 @@ export default function WaterDamageRestorationPage() {
           ].map((item, index) => (
             <div key={index} className="r6-card-premium r6-hover-lift p-6 group">
               <div className="text-4xl mb-4 r6-icon-float">{item.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-electric-blue transition-colors">{item.title}</h3>
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-electric-blue transition-colours">{item.title}</h3>
               <p className="text-gray-400">{item.description}</p>
             </div>
           ))}

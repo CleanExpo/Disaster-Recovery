@@ -390,19 +390,19 @@ export class SVGGeneratorAgent extends ImageGenerationAgent {
   }
   
   private generateStatusBadge(requirement: ImageRequirement): string {
-    const color = requirement.colorScheme?.[0] || '#cccccc';
+    const colour = requirement.colorScheme?.[0] || '#cccccc';
     const { width, height } = requirement.dimensions;
     
     return `
       <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="grad-${requirement.id}" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:${color};stop-opacity:1" />
-            <stop offset="100%" style="stop-color:${this.lightenColor(color)};stop-opacity:1" />
+            <stop offset="0%" style="stop-colour:${colour};stop-opacity:1" />
+            <stop offset="100%" style="stop-colour:${this.lightenColor(colour)};stop-opacity:1" />
           </linearGradient>
         </defs>
         <circle cx="${width/2}" cy="${height/2}" r="${width/2 - 4}" 
-                fill="url(#grad-${requirement.id})" stroke="${color}" stroke-width="2"/>
+                fill="url(#grad-${requirement.id})" stroke="${colour}" stroke-width="2"/>
         <text x="50%" y="50%" text-anchor="middle" dy=".3em" 
               fill="white" font-size="${width/3}" font-family="Arial, sans-serif">
           ${this.getStatusIcon(requirement.id)}
@@ -413,14 +413,14 @@ export class SVGGeneratorAgent extends ImageGenerationAgent {
   
   private generateAvatar(requirement: ImageRequirement): string {
     const { width, height } = requirement.dimensions;
-    const colors = requirement.colorScheme || ['#0066CC', '#00CCCC'];
+    const colours = requirement.colorScheme || ['#0066CC', '#00CCCC'];
     
     return `
       <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:${colors[0]};stop-opacity:1" />
-            <stop offset="100%" style="stop-color:${colors[1]};stop-opacity:1" />
+            <stop offset="0%" style="stop-colour:${colours[0]};stop-opacity:1" />
+            <stop offset="100%" style="stop-colour:${colours[1]};stop-opacity:1" />
           </linearGradient>
         </defs>
         <circle cx="${width/2}" cy="${height/2}" r="${width/2}" fill="url(#avatar-grad)"/>
@@ -436,22 +436,22 @@ export class SVGGeneratorAgent extends ImageGenerationAgent {
   
   private generateGenericSVG(requirement: ImageRequirement): string {
     const { width, height } = requirement.dimensions;
-    const color = requirement.colorScheme?.[0] || '#333333';
+    const colour = requirement.colorScheme?.[0] || '#333333';
     
     return `
       <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-        <rect width="${width}" height="${height}" fill="${color}" opacity="0.1"/>
+        <rect width="${width}" height="${height}" fill="${colour}" opacity="0.1"/>
         <text x="50%" y="50%" text-anchor="middle" dy=".3em" 
-              fill="${color}" font-size="14" font-family="Arial, sans-serif">
+              fill="${colour}" font-size="14" font-family="Arial, sans-serif">
           ${requirement.title}
         </text>
       </svg>
     `;
   }
   
-  private lightenColor(color: string): string {
-    // Simple color lightening
-    const num = parseInt(color.replace('#', ''), 16);
+  private lightenColor(colour: string): string {
+    // Simple colour lightening
+    const num = parseInt(colour.replace('#', ''), 16);
     const amt = Math.round(2.55 * 20);
     const R = (num >> 16) + amt;
     const G = (num >> 8 & 0x00FF) + amt;
@@ -494,7 +494,7 @@ export class ImageGenerationCoordinator {
    * Find the best agent for a requirement
    */
   public selectAgent(requirement: ImageRequirement): ImageGenerationAgent | null {
-    // Try to find specialized agent first
+    // Try to find specialised agent first
     for (const agent of this.agents) {
       if (agent.canHandle(requirement)) {
         return agent;

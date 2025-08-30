@@ -48,7 +48,7 @@ export interface MobileAuthSettings {
 export interface MobileJob {
   id: string;
   jobNumber: string;
-  type: 'water_damage' | 'fire_damage' | 'mold' | 'biohazard' | 'other';
+  type: 'water_damage' | 'fire_damage' | 'mould' | 'biohazard' | 'other';
   status: 'assigned' | 'in_route' | 'on_site' | 'in_progress' | 'completed';
   priority: 'routine' | 'urgent' | 'emergency';
   client: {
@@ -249,7 +249,7 @@ export interface LocationTracking {
 export interface GeofenceArea {
   id: string;
   jobId: string;
-  center: {
+  centre: {
     latitude: number;
     longitude: number;
   };

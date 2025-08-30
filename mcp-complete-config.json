@@ -58,10 +58,10 @@
         "steps": [
           {
             "mcp": "playwright",
-            "action": "analyze",
+            "action": "analyse",
             "params": {
               "viewport": [1440, 900],
-              "capture": ["colors", "typography", "spacing", "components"]
+              "capture": ["colours", "typography", "spacing", "components"]
             }
           },
           {
@@ -89,7 +89,7 @@
             "action": "build",
             "params": {
               "mode": "production",
-              "optimize": true
+              "optimise": true
             }
           },
           {
@@ -111,7 +111,7 @@
         ]
       },
       "competitor-analysis": {
-        "description": "Analyze competitor website for design patterns",
+        "description": "Analyse competitor website for design patterns",
         "steps": [
           {
             "mcp": "playwright",

@@ -18,7 +18,7 @@ export default function HotelAccommodationPage() {
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center mb-6">
+            <div className="flex items-centre mb-6">
               <span className="bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold mr-3">
                 HOSPITALITY
               </span>
@@ -33,17 +33,17 @@ export default function HotelAccommodationPage() {
               Minimal disruption disaster recovery for hotels and accommodation providers
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-8">
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <Clock className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">Immediate</p>
                 <p className="text-sm">Response Time</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <DollarSign className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">$10,000 - $300,000</p>
                 <p className="text-sm">Typical Cost Range</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <Shield className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">100%</p>
                 <p className="text-sm">Insurance Coverage</p>
@@ -60,7 +60,7 @@ export default function HotelAccommodationPage() {
       {/* Property-Specific Challenges */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Common Hotel & Accommodation Disaster Scenarios
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -69,7 +69,7 @@ export default function HotelAccommodationPage() {
                 <AlertTriangle className="h-10 w-10 text-orange-600 mb-4" />
                 <h3 className="font-bold text-lg mb-2">{issue}</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Specialized response for hospitality properties
+                  Specialised response for hospitality properties
                 </p>
                 <p className="text-green-600 font-bold">✓ Covered by Insurance</p>
               </Card>
@@ -81,14 +81,14 @@ export default function HotelAccommodationPage() {
       {/* Service Process */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Hotel & Accommodation Recovery Process
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     1
                   </span>
                   <div>
@@ -103,7 +103,7 @@ export default function HotelAccommodationPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     2
                   </span>
                   <div>
@@ -118,14 +118,14 @@ export default function HotelAccommodationPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     3
                   </span>
                   <div>
                     <h3 className="text-xl font-bold mb-2">Emergency Mitigation</h3>
                     <p className="text-gray-600">
                       Immediate action to prevent further damage. 
-                      Specialized equipment for hospitality properties.
+                      Specialised equipment for hospitality properties.
                     </p>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export default function HotelAccommodationPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     4
                   </span>
                   <div>
@@ -153,12 +153,12 @@ export default function HotelAccommodationPage() {
       {/* Pricing Structure */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Hotel & Accommodation Disaster Recovery Pricing
           </h2>
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 border-2 border-blue-600">
-              <div className="text-center mb-8">
+              <div className="text-centre mb-8">
                 <p className="text-4xl font-bold text-blue-600 mb-2">$2,200</p>
                 <p className="text-xl">Minimum Callout Fee</p>
                 <p className="text-gray-600">Includes complete assessment and emergency mitigation</p>
@@ -182,7 +182,7 @@ export default function HotelAccommodationPage() {
               </div>
               
               <div className="mt-8 bg-green-50 rounded-lg p-6">
-                <p className="text-center text-lg">
+                <p className="text-centre text-lg">
                   <strong>No upfront payment required</strong> - We bill your insurance directly
                 </p>
               </div>
@@ -194,25 +194,25 @@ export default function HotelAccommodationPage() {
       {/* Why Choose Us */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Hospitality Properties Choose Us
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Building className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Hospitality Expertise</h3>
               <p className="text-gray-600">
-                Specialized knowledge of hotel & accommodation requirements and regulations
+                Specialised knowledge of hotel & accommodation requirements and regulations
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Insurance Approved</h3>
               <p className="text-gray-600">
                 Preferred vendor for all major hospitality insurers
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <CheckCircle2 className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Compliance Guaranteed</h3>
               <p className="text-gray-600">
@@ -225,13 +225,13 @@ export default function HotelAccommodationPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Building className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             Hotel & Accommodation Disaster Emergency?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Specialized hospitality disaster recovery with Immediate response. 
+            Specialised hospitality disaster recovery with Immediate response. 
             100% insurance coverage with direct billing available.
           </p>
           <div className="bg-white/10 backdrop-blur rounded-lg p-6 max-w-2xl mx-auto mb-8">

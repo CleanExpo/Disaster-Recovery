@@ -46,7 +46,7 @@ export default function TermsOfService() {
               <p>We provide services across Australia, including:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>All major metropolitan areas</li>
-                <li>Regional centers and surrounding areas</li>
+                <li>Regional centres and surrounding areas</li>
                 <li>Remote locations (additional charges may apply)</li>
               </ul>
               <p className="mt-4">
@@ -68,7 +68,7 @@ export default function TermsOfService() {
               
               <h3 className="text-lg font-semibold mt-4">For Partner Restorers:</h3>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Leads are distributed based on location, specialization, and availability</li>
+                <li>Leads are distributed based on location, specialisation, and availability</li>
                 <li>Lead cost is $550 for qualified, high-value leads</li>
                 <li>Partners must maintain minimum service standards</li>
                 <li>Invalid or duplicate leads will be credited</li>

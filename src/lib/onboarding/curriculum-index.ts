@@ -150,7 +150,7 @@ export const MASTER_CURRICULUM: Record<number, {
   },
   12: {
     title: "Advanced Restoration Techniques",
-    focus: "Odor control, antimicrobials, specialty equipment, challenging scenarios",
+    focus: "Odour control, antimicrobials, specialty equipment, challenging scenarios",
     duration: "8 hours",
     modules: 4,
     assessmentQuestions: 12,

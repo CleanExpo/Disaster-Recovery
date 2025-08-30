@@ -107,11 +107,11 @@ export default function PartnerPortal() {
   };
 
   if (loading) {
-    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+    return <div className="flex justify-centre items-centre min-h-screen">Loading...</div>;
   }
 
   if (!dashboardData) {
-    return <div className="flex justify-center items-center min-h-screen">No data available</div>;
+    return <div className="flex justify-centre items-centre min-h-screen">No data available</div>;
   }
 
   return (
@@ -126,7 +126,7 @@ export default function PartnerPortal() {
         {/* Stats Overview */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <Card className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-600">Available Credits</p>
                 <p className="text-2xl font-bold">${dashboardData.partner.leadCredits}</p>
@@ -135,7 +135,7 @@ export default function PartnerPortal() {
             </div>
           </Card>
           <Card className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Leads</p>
                 <p className="text-2xl font-bold">{dashboardData.stats.totalLeads}</p>
@@ -144,7 +144,7 @@ export default function PartnerPortal() {
             </div>
           </Card>
           <Card className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-600">Conversion Rate</p>
                 <p className="text-2xl font-bold">{dashboardData.stats.conversionRate}%</p>
@@ -153,7 +153,7 @@ export default function PartnerPortal() {
             </div>
           </Card>
           <Card className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-600">Pending Leads</p>
                 <p className="text-2xl font-bold">{dashboardData.stats.pendingLeads}</p>
@@ -180,10 +180,10 @@ export default function PartnerPortal() {
                 {dashboardData.leads
                   .filter(lead => lead.status === 'ASSIGNED')
                   .map(lead => (
-                    <Card key={lead.id} className="p-4 border-2 hover:border-blue-300 transition-colors">
+                    <Card key={lead.id} className="p-4 border-2 hover:border-blue-300 transition-colours">
                       <div className="flex justify-between items-start">
                         <div className="flex-grow">
-                          <div className="flex items-center gap-4 mb-2">
+                          <div className="flex items-centre gap-4 mb-2">
                             <h3 className="font-bold text-lg">{lead.fullName}</h3>
                             <Badge variant={lead.urgencyLevel === 'emergency' ? 'destructive' : 'default'}>
                               {lead.urgencyLevel}
@@ -197,29 +197,29 @@ export default function PartnerPortal() {
                           </div>
                           <div className="grid md:grid-cols-2 gap-4 text-sm">
                             <div className="space-y-1">
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-centre gap-2">
                                 <MapPin className="h-4 w-4 text-gray-500" />
                                 <span>{lead.suburb}, {lead.state}</span>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-centre gap-2">
                                 <Phone className="h-4 w-4 text-gray-500" />
                                 <span>{lead.phone}</span>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-centre gap-2">
                                 <Mail className="h-4 w-4 text-gray-500" />
                                 <span>{lead.email}</span>
                               </div>
                             </div>
                             <div className="space-y-1">
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-centre gap-2">
                                 <AlertCircle className="h-4 w-4 text-gray-500" />
                                 <span>{lead.damageType.join(', ')}</span>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-centre gap-2">
                                 <DollarSign className="h-4 w-4 text-gray-500" />
                                 <span>Property Value: ${lead.propertyValue}</span>
                               </div>
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-centre gap-2">
                                 <Calendar className="h-4 w-4 text-gray-500" />
                                 <span>Received: {new Date(lead.assignedAt).toLocaleDateString()}</span>
                               </div>
@@ -227,7 +227,7 @@ export default function PartnerPortal() {
                           </div>
                         </div>
                         <div className="flex flex-col gap-2 ml-4">
-                          <div className="text-center mb-2">
+                          <div className="text-centre mb-2">
                             <p className="text-2xl font-bold text-green-600">${lead.leadValue}</p>
                             <p className="text-xs text-gray-500">Lead Cost</p>
                           </div>
@@ -269,7 +269,7 @@ export default function PartnerPortal() {
                   .filter(lead => lead.status === 'ACCEPTED')
                   .map(lead => (
                     <Card key={lead.id} className="p-4">
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-centre">
                         <div>
                           <h3 className="font-bold">{lead.fullName}</h3>
                           <p className="text-sm text-gray-600">{lead.suburb}, {lead.state}</p>
@@ -291,7 +291,7 @@ export default function PartnerPortal() {
           {/* Billing Tab */}
           <TabsContent value="billing">
             <Card className="p-6">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-centre mb-4">
                 <h2 className="text-xl font-bold">Billing & Payments</h2>
                 <Button>
                   <CreditCard className="mr-2 h-4 w-4" />
@@ -300,7 +300,7 @@ export default function PartnerPortal() {
               </div>
               
               <div className="mb-6 p-4 bg-blue-50 rounded-lg">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <div>
                     <p className="text-sm text-gray-600">Current Balance</p>
                     <p className="text-3xl font-bold">${dashboardData.partner.accountBalance}</p>
@@ -319,14 +319,14 @@ export default function PartnerPortal() {
               <div className="space-y-4">
                 <h3 className="font-bold">Recent Transactions</h3>
                 {dashboardData.billing.map(record => (
-                  <div key={record.id} className="flex justify-between items-center p-3 border rounded">
+                  <div key={record.id} className="flex justify-between items-centre p-3 border rounded">
                     <div>
                       <p className="font-medium">Lead #{record.leadId.slice(-6)}</p>
                       <p className="text-sm text-gray-600">
                         Due: {new Date(record.dueDate).toLocaleDateString()}
                       </p>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-centre gap-4">
                       <span className="font-bold">${record.amount}</span>
                       <Badge variant={record.status === 'PAID' ? 'default' : 'secondary'}>
                         {record.status}
@@ -365,15 +365,15 @@ export default function PartnerPortal() {
                 <div>
                   <h3 className="font-bold mb-2">Lead Preferences</h3>
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2">
+                    <label className="flex items-centre gap-2">
                       <input type="checkbox" defaultChecked />
                       <span>Receive emergency leads (24/7)</span>
                     </label>
-                    <label className="flex items-center gap-2">
+                    <label className="flex items-centre gap-2">
                       <input type="checkbox" defaultChecked />
                       <span>Receive commercial property leads</span>
                     </label>
-                    <label className="flex items-center gap-2">
+                    <label className="flex items-centre gap-2">
                       <input type="checkbox" defaultChecked />
                       <span>Auto-accept high-value leads (Score 80+)</span>
                     </label>

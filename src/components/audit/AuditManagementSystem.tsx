@@ -94,14 +94,14 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
               id: 'check_002',
               category: 'certification',
               question: 'Are all required certifications current?',
-              description: 'Check IICRC certifications for water damage and mold remediation',
+              description: 'Check IICRC certifications for water damage and mould remediation',
               requiresEvidence: true,
               evidenceType: ['certificate'],
               weight: 8,
               response: {
                 status: 'partial',
-                value: 'Water damage current, mold remediation expiring soon',
-                comments: 'Mold certification expires in 30 days',
+                value: 'Water damage current, mould remediation expiring soon',
+                comments: 'Mould certification expires in 30 days',
                 timestamp: '2024-04-15T11:00:00Z',
                 respondedBy: 'contractor_001'
               }
@@ -306,7 +306,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
       onClick={() => setSelectedAudit(audit)}
     >
       <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-centre space-x-3">
           <div className={`p-2 rounded-lg ${getRiskColor(audit.riskLevel)}`}>
             {getAuditTypeIcon(audit.type)}
           </div>
@@ -315,8 +315,8 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
             <p className="text-sm text-gray-600">{audit.contractorName || 'All Contractors'}</p>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(audit.status)}`}>
+        <div className="flex items-centre space-x-2">
+          <span className={`inline-flex items-centre px-2.5 py-1 rounded-full text-xs font-medium ${getStatusColor(audit.status)}`}>
             {getStatusIcon(audit.status)}
             <span className="ml-1">{audit.status.replace('_', ' ')}</span>
           </span>
@@ -332,7 +332,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
         </div>
         <div>
           <p className="text-xs text-gray-500">Risk Level</p>
-          <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${getRiskColor(audit.riskLevel)}`}>
+          <span className={`inline-flex items-centre px-2 py-1 rounded text-xs font-medium ${getRiskColor(audit.riskLevel)}`}>
             {audit.riskLevel}
           </span>
         </div>
@@ -363,8 +363,8 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
       )}
 
       {audit.findings && audit.findings.length > 0 && (
-        <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-centre justify-between p-3 bg-red-50 rounded-lg">
+          <div className="flex items-centre space-x-2">
             <AlertTriangle className="w-4 h-4 text-red-600" />
             <span className="text-sm font-medium text-red-800">
               {audit.findings.length} Finding{audit.findings.length !== 1 ? 's' : ''}
@@ -374,20 +374,20 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
         </div>
       )}
 
-      <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
-        <div className="flex items-center space-x-2">
+      <div className="flex items-centre justify-between mt-4 pt-4 border-t border-gray-200">
+        <div className="flex items-centre space-x-2">
           <button 
             onClick={(e) => {
               e.stopPropagation();
               setSelectedAudit(audit);
               setShowChecklistModal(true);
             }}
-            className="flex items-center px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50"
+            className="flex items-centre px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50"
           >
             <ClipboardCheck className="w-4 h-4 mr-1" />
             Checklist
           </button>
-          <button className="flex items-center px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50">
+          <button className="flex items-centre px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50">
             <Download className="w-4 h-4 mr-1" />
             Export
           </button>
@@ -400,10 +400,10 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
   );
 
   const CreateAuditModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
       <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <h2 className="text-xl font-semibold text-gray-900">Schedule New Audit</h2>
             <button 
               onClick={() => setShowCreateModal(false)}
@@ -434,7 +434,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
               {(['scheduled', 'compliance', 'quality', 'safety'] as AuditType[]).map((type) => (
                 <button
                   key={type}
-                  className="flex items-center p-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 focus:border-blue-500 focus:bg-blue-50"
+                  className="flex items-centre p-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 focus:border-blue-500 focus:bg-blue-50"
                 >
                   {getAuditTypeIcon(type)}
                   <span className="ml-2 text-sm font-medium capitalize">{type}</span>
@@ -484,7 +484,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
             </label>
             <div className="space-y-2">
               {['Insurance', 'Certification', 'Training', 'Safety', 'Financial', 'Operational'].map((category) => (
-                <label key={category} className="flex items-center">
+                <label key={category} className="flex items-centre">
                   <input type="checkbox" className="mr-2" />
                   <span className="text-sm text-gray-700">{category}</span>
                 </label>
@@ -538,24 +538,24 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Audit Management</h1>
           <p className="text-gray-600 mt-1">Schedule and manage compliance audits</p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-centre space-x-2">
           {(userRole === 'admin' || userRole === 'compliance_manager') && (
             <>
               <button 
                 onClick={triggerSurpriseAudit}
-                className="flex items-center px-4 py-2 border border-orange-300 text-orange-600 rounded-lg hover:bg-orange-50"
+                className="flex items-centre px-4 py-2 border border-orange-300 text-orange-600 rounded-lg hover:bg-orange-50"
               >
                 <Shuffle className="w-4 h-4 mr-2" />
                 Surprise Audit
               </button>
               <button 
                 onClick={() => setShowCreateModal(true)}
-                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Schedule Audit
@@ -565,8 +565,8 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center space-x-4">
+      <div className="flex items-centre justify-between bg-white p-4 rounded-lg border border-gray-200">
+        <div className="flex items-centre space-x-4">
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -595,7 +595,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-lg capitalize transition-colors ${
+              className={`px-4 py-2 rounded-lg capitalize transition-colours ${
                 activeTab === tab 
                   ? 'bg-white shadow-sm text-gray-900' 
                   : 'text-gray-600 hover:text-gray-900'
@@ -608,7 +608,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
       </div>
 
       {filteredAudits.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+        <div className="text-centre py-12 bg-white rounded-xl border border-gray-200">
           <FileCheck className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No audits found</h3>
           <p className="text-gray-600">

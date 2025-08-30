@@ -101,7 +101,7 @@ export class AIOrchestrationService {
   private realTimeManager: RealTimeOrchestrationManager;
   private performanceMonitor: PerformanceMonitor;
 
-  // Specialized orchestrators
+  // Specialised orchestrators
   private disasterRecoveryOrchestrator: DisasterRecoveryOrchestrator;
 
   private isInitialized = false;
@@ -139,7 +139,7 @@ export class AIOrchestrationService {
       this.router = new IntelligentRouter(this.config.orchestration);
       this.fallbackManager = new FallbackManager(this.aiService, this.config.fallback);
 
-      // Initialize specialized orchestrators
+      // Initialize specialised orchestrators
       this.disasterRecoveryOrchestrator = new DisasterRecoveryOrchestrator(
         this.aiService,
         {
@@ -359,7 +359,7 @@ export class AIOrchestrationService {
   }
 
   /**
-   * Specialized disaster recovery orchestration
+   * Specialised disaster recovery orchestration
    */
   async orchestrateEmergencyResponse(
     request: EmergencyOrchestrationRequest,
@@ -385,7 +385,7 @@ export class AIOrchestrationService {
         options
       );
 
-      // Update specialized metrics
+      // Update specialised metrics
       this.disasterRecoveryOrchestrator.updateMetrics(
         request.scenario,
         response,
@@ -425,7 +425,7 @@ export class AIOrchestrationService {
             structural: request.scenario.severity,
             water: 1,
             fire: 1,
-            mold: 1,
+            mould: 1,
             contamination: 1
           },
           totalScore: request.scenario.severity,

@@ -43,13 +43,13 @@ const defaultTemplates: NotificationTemplate[] = [
 <html>
 <head>
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; colour: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #f97316; color: white; padding: 20px; text-align: center; }
-    .content { padding: 20px; background-color: #fff; }
-    .warning { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; }
-    .button { display: inline-block; padding: 12px 24px; background-color: #f97316; color: white; text-decoration: none; border-radius: 4px; }
-    .footer { text-align: center; color: #666; font-size: 12px; padding: 20px; }
+    .header { background-colour: #f97316; colour: white; padding: 20px; text-align: centre; }
+    .content { padding: 20px; background-colour: #fff; }
+    .warning { background-colour: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; }
+    .button { display: inline-block; padding: 12px 24px; background-colour: #f97316; colour: white; text-decoration: none; border-radius: 4px; }
+    .footer { text-align: centre; colour: #666; font-size: 12px; padding: 20px; }
   </style>
 </head>
 <body>
@@ -76,7 +76,7 @@ const defaultTemplates: NotificationTemplate[] = [
       
       <p>{{actionRequired}}</p>
       
-      <p style="text-align: center; margin: 30px 0;">
+      <p style="text-align: centre; margin: 30px 0;">
         <a href="{{renewalLink}}" class="button">Renew Now</a>
       </p>
       
@@ -109,13 +109,13 @@ const defaultTemplates: NotificationTemplate[] = [
 <html>
 <head>
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; colour: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #3b82f6; color: white; padding: 20px; text-align: center; }
-    .content { padding: 20px; background-color: #fff; }
+    .header { background-colour: #3b82f6; colour: white; padding: 20px; text-align: centre; }
+    .content { padding: 20px; background-colour: #fff; }
     .invoice-box { border: 1px solid #ddd; padding: 15px; margin: 20px 0; }
-    .amount { font-size: 24px; color: #3b82f6; font-weight: bold; }
-    .button { display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 4px; }
+    .amount { font-size: 24px; colour: #3b82f6; font-weight: bold; }
+    .button { display: inline-block; padding: 12px 24px; background-colour: #3b82f6; colour: white; text-decoration: none; border-radius: 4px; }
   </style>
 </head>
 <body>
@@ -137,7 +137,7 @@ const defaultTemplates: NotificationTemplate[] = [
         <p><strong>Subscription Tier:</strong> {{subscriptionTier}}</p>
       </div>
       
-      <p style="text-align: center; margin: 30px 0;">
+      <p style="text-align: centre; margin: 30px 0;">
         <a href="{{paymentLink}}" class="button">Pay Now</a>
       </p>
       
@@ -166,14 +166,14 @@ const defaultTemplates: NotificationTemplate[] = [
 <html>
 <head>
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; colour: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .header { background-color: #10b981; color: white; padding: 20px; text-align: center; }
-    .urgent { background-color: #ef4444 !important; }
-    .content { padding: 20px; background-color: #fff; }
-    .job-details { background-color: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0; }
-    .button { display: inline-block; padding: 12px 24px; background-color: #10b981; color: white; text-decoration: none; border-radius: 4px; margin: 5px; }
-    .button-danger { background-color: #ef4444; }
+    .header { background-colour: #10b981; colour: white; padding: 20px; text-align: centre; }
+    .urgent { background-colour: #ef4444 !important; }
+    .content { padding: 20px; background-colour: #fff; }
+    .job-details { background-colour: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    .button { display: inline-block; padding: 12px 24px; background-colour: #10b981; colour: white; text-decoration: none; border-radius: 4px; margin: 5px; }
+    .button-danger { background-colour: #ef4444; }
   </style>
 </head>
 <body>
@@ -198,9 +198,9 @@ const defaultTemplates: NotificationTemplate[] = [
       
       <p>Please respond to this job assignment as soon as possible.</p>
       
-      <p style="text-align: center; margin: 30px 0;">
+      <p style="text-align: centre; margin: 30px 0;">
         <a href="{{acceptLink}}" class="button">Accept Job</a>
-        <a href="{{viewLink}}" class="button" style="background-color: #6b7280;">View Details</a>
+        <a href="{{viewLink}}" class="button" style="background-colour: #6b7280;">View Details</a>
         <a href="{{declineLink}}" class="button button-danger">Decline</a>
       </p>
       
@@ -313,9 +313,9 @@ export function EmailTemplates() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold flex items-centre gap-2">
             <Mail className="h-6 w-6" />
             Email Templates
           </h2>
@@ -345,7 +345,7 @@ export function EmailTemplates() {
                     <div
                       key={template.id}
                       onClick={() => setSelectedTemplate(template)}
-                      className={`p-3 rounded-lg cursor-pointer mb-2 transition-colors ${
+                      className={`p-3 rounded-lg cursor-pointer mb-2 transition-colours ${
                         selectedTemplate?.id === template.id
                           ? 'bg-blue-50 border border-blue-200'
                           : 'hover:bg-gray-50'
@@ -364,7 +364,7 @@ export function EmailTemplates() {
                           <AlertCircle className="h-4 w-4 text-gray-400" />
                         )}
                       </div>
-                      <div className="flex items-center gap-2 mt-2">
+                      <div className="flex items-centre gap-2 mt-2">
                         <Badge variant="outline" className={`text-xs ${getTypeColor(template.type)}`}>
                           {template.type}
                         </Badge>
@@ -389,7 +389,7 @@ export function EmailTemplates() {
           {selectedTemplate && (
             <Card>
               <CardHeader>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <CardTitle>{selectedTemplate.name}</CardTitle>
                   <div className="flex gap-2">
                     {isEditing ? (
@@ -491,7 +491,7 @@ export function EmailTemplates() {
                       </div>
                     )}
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <Switch
                         id="active"
                         checked={selectedTemplate.isActive}
@@ -509,7 +509,7 @@ export function EmailTemplates() {
                   <TabsContent value="preview">
                     <Card>
                       <CardHeader>
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-centre">
                           <CardTitle className="text-base">Preview</CardTitle>
                           <div className="flex gap-2">
                             <Button

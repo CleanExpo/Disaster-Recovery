@@ -137,8 +137,8 @@ export default function DayTrainingPage() {
 
   if (!module) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <p className="text-gray-600">Module not found</p>
         </div>
@@ -151,8 +151,8 @@ export default function DayTrainingPage() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre space-x-4">
               <button
                 onClick={() => router.push('/contractor/onboarding')}
                 className="p-2 hover:bg-white/10 rounded-lg transition"
@@ -194,7 +194,7 @@ export default function DayTrainingPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-centre space-x-2">
                 <Video className="w-4 h-4" />
                 <span>Video Lessons</span>
                 {module.components.videos && (
@@ -213,7 +213,7 @@ export default function DayTrainingPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-centre space-x-2">
                 <BookOpen className="w-4 h-4" />
                 <span>Reading Materials</span>
                 {module.components.readings && (
@@ -232,7 +232,7 @@ export default function DayTrainingPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-centre space-x-2">
                 <Headphones className="w-4 h-4" />
                 <span>Podcast Episodes</span>
                 <span className="bg-purple-100 text-purple-600 px-2 py-0.5 rounded-full text-xs">
@@ -249,7 +249,7 @@ export default function DayTrainingPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              <div className="flex items-center space-x-2">
+              <div className="flex items-centre space-x-2">
                 <FileText className="w-4 h-4" />
                 <span>Assignments</span>
                 {module.components.assignments && (
@@ -272,8 +272,8 @@ export default function DayTrainingPage() {
             {activeTab === 'video' && module.components.videos && (
               <div className="bg-white rounded-xl shadow-lg">
                 <div className="aspect-video bg-black rounded-t-xl overflow-hidden">
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center">
+                  <div className="w-full h-full flex items-centre justify-centre">
+                    <div className="text-centre">
                       <Play className="w-16 h-16 text-white mb-4 mx-auto" />
                       <p className="text-white text-lg font-semibold">
                         {module.components.videos[currentVideo]?.title}
@@ -298,7 +298,7 @@ export default function DayTrainingPage() {
                 </div>
                 
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <h3 className="font-semibold text-gray-900">Video Lessons</h3>
                     <button
                       onClick={() => setShowTranscript(!showTranscript)}
@@ -321,9 +321,9 @@ export default function DayTrainingPage() {
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3">
-                              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                          <div className="flex items-centre justify-between">
+                            <div className="flex items-centre space-x-3">
+                              <div className={`w-10 h-10 rounded-full flex items-centre justify-centre ${
                                 watched >= 95 ? 'bg-green-100' : 'bg-gray-100'
                               }`}>
                                 {watched >= 95 ? (
@@ -387,7 +387,7 @@ export default function DayTrainingPage() {
                         <p>{reading.content}</p>
                       </div>
                       
-                      <div className="mt-6 flex items-center justify-between">
+                      <div className="mt-6 flex items-centre justify-between">
                         <button
                           onClick={() => setShowStudyGuide(true)}
                           className="text-sm text-blue-600 hover:text-blue-700"
@@ -414,7 +414,7 @@ export default function DayTrainingPage() {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg p-6 mb-6">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-centre justify-centre">
                       <Headphones className="w-6 h-6 text-purple-600" />
                     </div>
                     <div className="flex-1">
@@ -431,9 +431,9 @@ export default function DayTrainingPage() {
                     const listened = progress.podcastsListened.includes(`podcast_${video.title}`);
                     return (
                       <div key={index} className="border rounded-lg p-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <button className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white hover:bg-purple-700 transition">
+                        <div className="flex items-centre justify-between">
+                          <div className="flex items-centre space-x-3">
+                            <button className="w-10 h-10 bg-purple-600 rounded-full flex items-centre justify-centre text-white hover:bg-purple-700 transition">
                               <Play className="w-5 h-5 ml-0.5" />
                             </button>
                             <div>
@@ -450,7 +450,7 @@ export default function DayTrainingPage() {
                           )}
                         </div>
                         
-                        <div className="mt-3 flex items-center space-x-4 text-sm">
+                        <div className="mt-3 flex items-centre space-x-4 text-sm">
                           <button className="text-blue-600 hover:text-blue-700">
                             <Volume2 className="w-4 h-4 inline mr-1" />
                             Transcript
@@ -487,7 +487,7 @@ export default function DayTrainingPage() {
                         <div>
                           <h3 className="font-semibold text-gray-900">{assignment.title}</h3>
                           <p className="text-sm text-gray-600 mt-1">{assignment.description}</p>
-                          <div className="flex items-center space-x-4 mt-2">
+                          <div className="flex items-centre space-x-4 mt-2">
                             <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
                               {assignment.type}
                             </span>
@@ -526,7 +526,7 @@ export default function DayTrainingPage() {
                             {isSubmitted ? 'Quiz Completed' : 'Start Quiz'}
                           </button>
                         ) : assignment.type === 'UPLOAD' ? (
-                          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center space-x-2">
+                          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-centre space-x-2">
                             <Upload className="w-4 h-4" />
                             <span>Upload Documents</span>
                           </button>
@@ -560,7 +560,7 @@ export default function DayTrainingPage() {
                 <h4 className="font-semibold text-gray-900 mb-3">Completion Status</h4>
                 <div className="space-y-3">
                   {module.components.videos && (
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-centre justify-between text-sm">
                       <span className="text-gray-600">Videos</span>
                       <span className="font-semibold">
                         {Object.values(progress.videosWatched).filter(v => v >= 95).length}/{module.components.videos.length}
@@ -568,7 +568,7 @@ export default function DayTrainingPage() {
                     </div>
                   )}
                   {module.components.readings && (
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-centre justify-between text-sm">
                       <span className="text-gray-600">Readings</span>
                       <span className="font-semibold">
                         {progress.readingsCompleted.length}/{module.components.readings.length}
@@ -576,7 +576,7 @@ export default function DayTrainingPage() {
                     </div>
                   )}
                   {module.components.assignments && (
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-centre justify-between text-sm">
                       <span className="text-gray-600">Assignments</span>
                       <span className="font-semibold">
                         {progress.assignmentsSubmitted.length}/{module.components.assignments.length}
@@ -588,7 +588,7 @@ export default function DayTrainingPage() {
               
               {isModuleComplete() && (
                 <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     <Award className="w-5 h-5 text-green-600" />
                     <p className="font-semibold text-green-900">Module Complete!</p>
                   </div>
@@ -626,10 +626,10 @@ export default function DayTrainingPage() {
 
       {/* Quiz Modal */}
       {currentQuiz && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/50 flex items-centre justify-centre z-50 p-4">
           <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b sticky top-0 bg-white">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <h2 className="text-xl font-bold">{currentQuiz.title}</h2>
                 <button
                   onClick={() => {
@@ -653,7 +653,7 @@ export default function DayTrainingPage() {
                     {question.options && (
                       <div className="space-y-2">
                         {question.options.map((option: string) => (
-                          <label key={option} className="flex items-center space-x-2 cursor-pointer">
+                          <label key={option} className="flex items-centre space-x-2 cursor-pointer">
                             <input
                               type="radio"
                               name={question.id}

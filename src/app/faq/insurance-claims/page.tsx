@@ -39,7 +39,7 @@ export default function InsuranceClaimsFAQsPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <HelpCircle className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Insurance Claims FAQs
@@ -83,7 +83,7 @@ export default function InsuranceClaimsFAQsPage() {
       {/* Related FAQs */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             More FAQ Categories
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -129,7 +129,7 @@ export default function InsuranceClaimsFAQsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <AlertCircle className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-3xl font-bold mb-6">
             Need Emergency Help Now?

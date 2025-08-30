@@ -47,8 +47,8 @@ const subPillarPages = {
     { slug: 'hotel-flood-recovery', title: 'Hotel Flood Restoration', keywords: 'accommodation flooding, guest room water' },
     { slug: 'school-water-damage', title: 'School Water Damage Cleanup', keywords: 'education facility, classroom flooding' },
     { slug: 'hospital-water-damage', title: 'Healthcare Facility Water Damage', keywords: 'medical facility, hospital flooding' },
-    { slug: 'gym-flooding', title: 'Gym & Fitness Center Flooding', keywords: 'sports facility, gym water damage' },
-    { slug: 'data-center-flooding', title: 'Data Center Water Damage', keywords: 'server room flooding, IT disaster' },
+    { slug: 'gym-flooding', title: 'Gym & Fitness Centre Flooding', keywords: 'sports facility, gym water damage' },
+    { slug: 'data-centre-flooding', title: 'Data Centre Water Damage', keywords: 'server room flooding, IT disaster' },
     { slug: 'factory-water-damage', title: 'Factory Flood Recovery', keywords: 'manufacturing plant, industrial water' }
   ],
   'fire-damage': [
@@ -187,14 +187,14 @@ export default function ${page.title.replace(/\s+/g, '')}Page() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               ${page.title}
             </h1>
             <p className="text-xl mb-8 text-blue-100">
               Expert ${page.title.toLowerCase()} services across Queensland. Fast response, professional restoration, insurance approved.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-orange-500 hover:bg-orange-600 text-white"
@@ -271,7 +271,7 @@ export default function ${page.title.replace(/\s+/g, '')}Page() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">${page.title} FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">${page.title} FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -286,7 +286,7 @@ export default function ${page.title.replace(/\s+/g, '')}Page() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">Need ${page.title} Services?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get professional help now. Available 24/7 for emergency response.
@@ -312,7 +312,7 @@ export default function ${page.title.replace(/\s+/g, '')}Page() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
+            <div className="flex items-centre gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
                 <p className="font-semibold">Call Now</p>

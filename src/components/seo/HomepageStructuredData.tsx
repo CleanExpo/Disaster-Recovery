@@ -5,8 +5,8 @@ import Script from 'next/script';
 export function HomepageStructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://disasterrecovery.com.au/#organization",
+    "@type": "Organisation",
+    "@id": "https://disasterrecovery.com.au/#organisation",
     "name": "Disaster Recovery Australia",
     "url": "https://disasterrecovery.com.au",
     "logo": {
@@ -145,7 +145,7 @@ export function HomepageStructuredData() {
     "name": "Disaster Recovery Australia",
     "description": "24/7 Emergency Disaster Recovery Services Across Australia",
     "publisher": {
-      "@id": "https://disasterrecovery.com.au/#organization"
+      "@id": "https://disasterrecovery.com.au/#organisation"
     },
     "potentialAction": {
       "@type": "SearchAction",
@@ -228,7 +228,7 @@ export function HomepageStructuredData() {
   return (
     <>
       <Script
-        id="organization-schema"
+        id="organisation-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />

@@ -364,7 +364,7 @@ export function SecuritySettings() {
       {/* Security Overview */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-centre gap-2">
             <Shield className="h-5 w-5" />
             Security Overview
           </CardTitle>
@@ -376,7 +376,7 @@ export function SecuritySettings() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Password Status */}
             <div className="p-4 border rounded-lg">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-centre justify-between mb-2">
                 <Lock className="h-5 w-5 text-gray-500" />
                 {daysUntilPasswordExpiry && daysUntilPasswordExpiry < 30 ? (
                   <Badge className="bg-yellow-100 text-yellow-800">
@@ -398,7 +398,7 @@ export function SecuritySettings() {
 
             {/* 2FA Status */}
             <div className="p-4 border rounded-lg">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-centre justify-between mb-2">
                 <Key className="h-5 w-5 text-gray-500" />
                 {settings.twoFactorEnabled ? (
                   <Badge className="bg-green-100 text-green-800">
@@ -420,7 +420,7 @@ export function SecuritySettings() {
 
             {/* Trusted Devices */}
             <div className="p-4 border rounded-lg">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-centre justify-between mb-2">
                 <Monitor className="h-5 w-5 text-gray-500" />
                 <Badge variant="outline">
                   {settings.trustedDevices?.length || 0}
@@ -497,7 +497,7 @@ export function SecuritySettings() {
                 
                 {passwordForm.newPassword && (
                   <div className="mt-2 space-y-2">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <span className="text-sm">Strength:</span>
                       <div className="flex-1">
                         <Progress 
@@ -699,8 +699,8 @@ export function SecuritySettings() {
             <CardContent>
               <div className="space-y-3">
                 {settings.trustedDevices?.map((device) => (
-                  <div key={device.id} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div className="flex items-center gap-3">
+                  <div key={device.id} className="flex items-centre justify-between p-3 border rounded-lg">
+                    <div className="flex items-centre gap-3">
                       {getDeviceIcon(device.deviceType)}
                       <div>
                         <p className="font-medium">{device.deviceName}</p>
@@ -740,8 +740,8 @@ export function SecuritySettings() {
             <CardContent>
               <div className="space-y-3">
                 {settings.loginHistory?.map((login) => (
-                  <div key={login.id} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div className="flex items-center gap-3">
+                  <div key={login.id} className="flex items-centre justify-between p-3 border rounded-lg">
+                    <div className="flex items-centre gap-3">
                       {login.success ? (
                         <CheckCircle className="h-5 w-5 text-green-500" />
                       ) : (
@@ -781,7 +781,7 @@ export function SecuritySettings() {
           </DialogHeader>
           
           <div className="space-y-4">
-            <div className="flex justify-center">
+            <div className="flex justify-centre">
               {qrCodeUrl && (
                 <img src={qrCodeUrl} alt="2FA QR Code" className="border p-2" />
               )}

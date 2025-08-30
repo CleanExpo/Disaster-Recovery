@@ -147,8 +147,8 @@ export default function CommercialServicesPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-800/50 px-4 py-2 rounded-full mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="inline-flex items-centre gap-2 bg-blue-800/50 px-4 py-2 rounded-full mb-6">
               <Building2 className="h-5 w-5" />
               <span className="text-sm font-medium">Commercial Property Specialists</span>
             </div>
@@ -159,7 +159,7 @@ export default function CommercialServicesPage() {
               Protecting Queensland businesses with rapid response restoration. 
               Minimizing downtime, maximizing recovery for offices, retail, industrial and healthcare facilities.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-orange-500 hover:bg-orange-600 text-white"
@@ -173,16 +173,16 @@ export default function CommercialServicesPage() {
                 Insurance Direct Billing
               </Button>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-8 text-sm">
-              <div className="flex items-center gap-2">
+            <div className="mt-8 flex items-centre justify-centre gap-8 text-sm">
+              <div className="flex items-centre gap-2">
                 <Clock className="h-5 w-5 text-orange-400" />
                 <span>2-Hour Response Time</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Shield className="h-5 w-5 text-orange-400" />
                 <span>Fully Licensed & Insured</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Users className="h-5 w-5 text-orange-400" />
                 <span>500+ Businesses Restored</span>
               </div>
@@ -194,10 +194,10 @@ export default function CommercialServicesPage() {
       {/* Industries We Serve */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Industries We Serve</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Specialized restoration solutions for every commercial sector across Queensland
+              Specialised restoration solutions for every commercial sector across Queensland
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -223,7 +223,7 @@ export default function CommercialServicesPage() {
       {/* Business Continuity Process */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Business Continuity Process</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Systematic approach to minimize downtime and get your business operational quickly
@@ -233,7 +233,7 @@ export default function CommercialServicesPage() {
             {businessContinuitySteps.map((item, index) => (
               <div key={index} className="flex gap-4 mb-8 relative">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-bold">
                     {item.step}
                   </div>
                   {index < businessContinuitySteps.length - 1 && (
@@ -260,7 +260,7 @@ export default function CommercialServicesPage() {
       {/* Commercial Services */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Comprehensive Commercial Services</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Full-service restoration and recovery for businesses of all sizes
@@ -343,7 +343,7 @@ export default function CommercialServicesPage() {
       <section className="py-20 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-4xl font-bold mb-4">Why Queensland Businesses Choose Us</h2>
               <p className="text-xl text-gray-600">
                 Trusted by hundreds of commercial clients for professional disaster recovery
@@ -388,7 +388,7 @@ export default function CommercialServicesPage() {
       {/* Case Studies Preview */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Recent Commercial Projects</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Successfully restoring Queensland businesses after major disasters
@@ -444,7 +444,7 @@ export default function CommercialServicesPage() {
       {/* Service Areas */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Commercial Service Areas</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Rapid response commercial restoration across Southeast Queensland
@@ -452,13 +452,13 @@ export default function CommercialServicesPage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {['Brisbane CBD', 'Gold Coast', 'Sunshine Coast', 'Ipswich', 'Logan', 'Redlands', 'Moreton Bay', 'Toowoomba'].map((area) => (
-              <div key={area} className="bg-white p-4 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow">
+              <div key={area} className="bg-white p-4 rounded-lg text-centre shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="font-semibold text-lg">{area}</h3>
                 <p className="text-sm text-gray-600 mt-1">24/7 Commercial Response</p>
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <p className="text-gray-600">
               Also servicing: Caboolture, Redcliffe, Cleveland, Wynnum, Carindale, Chermside, Indooroopilly, and all surrounding commercial areas
             </p>
@@ -470,7 +470,7 @@ export default function CommercialServicesPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Commercial Services FAQs</h2>
+            <h2 className="text-4xl font-bold text-centre mb-12">Commercial Services FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -485,12 +485,12 @@ export default function CommercialServicesPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-4xl font-bold mb-6">Protect Your Business with Professional Recovery</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Don't let disasters disrupt your operations. Get immediate commercial restoration support.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button 
               size="lg" 
               className="bg-orange-500 hover:bg-orange-600"
@@ -520,7 +520,7 @@ export default function CommercialServicesPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
+            <div className="flex items-centre gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
                 <p className="font-semibold">Call Now</p>
@@ -528,19 +528,19 @@ export default function CommercialServicesPage() {
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Priority commercial response</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Direct insurance billing available</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Minimize business interruption</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Free commercial assessment</span>
               </div>

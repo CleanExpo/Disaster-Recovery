@@ -45,20 +45,20 @@ export default function AnimatedHero() {
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
+      <div className="relative z-10 flex flex-col items-centre justify-centre min-h-screen px-4">
         {/* Emergency Indicators */}
-        <div className="absolute top-10 w-full flex justify-center space-x-8">
+        <div className="absolute top-10 w-full flex justify-centre space-x-8">
           {[
-            { icon: Shield, label: "IICRC Certified", color: "green" },
-            { icon: Clock, label: "24/7 Response", color: "blue" },
-            { icon: Zap, label: "Rapid Service", color: "yellow" },
+            { icon: Shield, label: "IICRC Certified", colour: "green" },
+            { icon: Clock, label: "24/7 Response", colour: "blue" },
+            { icon: Zap, label: "Rapid Service", colour: "yellow" },
           ].map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="flex items-center space-x-2"
+              className="flex items-centre space-x-2"
             >
               <motion.div
                 animate={{
@@ -70,9 +70,9 @@ export default function AnimatedHero() {
                   repeat: Infinity,
                   delay: index * 0.3,
                 }}
-                className={`p-3 bg-${item.color}-500/20 rounded-full border-2 border-${item.color}-400`}
+                className={`p-3 bg-${item.colour}-500/20 rounded-full border-2 border-${item.colour}-400`}
               >
-                <item.icon className={`h-6 w-6 text-${item.color}-400`} />
+                <item.icon className={`h-6 w-6 text-${item.colour}-400`} />
               </motion.div>
               <span className="text-white font-semibold">{item.label}</span>
             </motion.div>
@@ -84,7 +84,7 @@ export default function AnimatedHero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          className="text-centre"
         >
           <motion.h1
             className="text-6xl md:text-8xl font-bold text-white mb-4"
@@ -122,11 +122,11 @@ export default function AnimatedHero() {
           </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255,0,0,0.6)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
+              className="px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-full flex items-centre justify-centre space-x-2 text-lg"
             >
               <Phone className="h-6 w-6" />
               <span>Call 1300 566 166</span>
@@ -144,7 +144,7 @@ export default function AnimatedHero() {
 
         {/* Trust Metrics */}
         <motion.div
-          className="absolute bottom-10 w-full flex justify-center space-x-12"
+          className="absolute bottom-10 w-full flex justify-centre space-x-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
@@ -156,7 +156,7 @@ export default function AnimatedHero() {
           ].map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center"
+              className="text-centre"
               animate={{
                 y: [0, -5, 0],
               }}
@@ -195,7 +195,7 @@ export default function AnimatedHero() {
             repeat: Infinity,
           }}
         >
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-centre">
             <motion.div
               className="w-1 h-2 bg-white rounded-full mt-2"
               animate={{

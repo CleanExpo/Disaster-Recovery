@@ -19,15 +19,15 @@
       "@context": "https://schema.org",
       "@type": "ImageObject",
       "name": "3D Emergency Squalor Cleanup",
-      "contentUrl": "/images/optimized/process/3D Emergency Squalor Cleanup.png",
-      "thumbnail": "/images/optimized/thumbnails/3D Emergency Squalor Cleanup.png",
+      "contentUrl": "/images/optimised/process/3D Emergency Squalor Cleanup.png",
+      "thumbnail": "/images/optimised/thumbnails/3D Emergency Squalor Cleanup.png",
       "description": "3D Emergency Squalor Cleanup - Professional disaster recovery services",
       "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, restoration process, recovery steps, professional methods"
     }
   },
   "technical": {
     "format": "png",
-    "optimization": "web-ready",
+    "optimisation": "web-ready",
     "responsive": true
   },
   "created": "2025-08-26T23:55:13.076Z"

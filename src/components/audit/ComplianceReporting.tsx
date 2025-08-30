@@ -170,7 +170,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
 
   const MetricCard = ({ metric }: { metric: ComplianceMetric }) => (
     <div className="bg-white rounded-lg border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-centre justify-between mb-2">
         <p className="text-sm text-gray-600">{metric.name}</p>
         {getTrendIcon(metric.trend)}
       </div>
@@ -215,8 +215,8 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
           transform="rotate(-90 96 96)"
         />
       </svg>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center">
+      <div className="absolute inset-0 flex items-centre justify-centre">
+        <div className="text-centre">
           <p className="text-4xl font-bold text-gray-900">{score}%</p>
           <p className="text-sm text-gray-600">Compliance</p>
         </div>
@@ -296,12 +296,12 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
           className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {generating ? (
-            <span className="flex items-center justify-center">
+            <span className="flex items-centre justify-centre">
               <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
               Generating Report...
             </span>
           ) : (
-            <span className="flex items-center justify-center">
+            <span className="flex items-centre justify-centre">
               <FileText className="w-4 h-4 mr-2" />
               Generate Report
             </span>
@@ -317,27 +317,27 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
     return (
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
         <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <h2 className="text-xl font-semibold text-gray-900">{selectedReport.title}</h2>
               <p className="text-sm text-gray-600 mt-1">
                 Generated on {new Date(selectedReport.generatedAt).toLocaleDateString()} by {selectedReport.generatedBy}
               </p>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-centre space-x-2">
               <button
                 onClick={shareReport}
-                className="flex items-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="flex items-centre px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 <Share2 className="w-4 h-4 mr-1" />
                 Share
               </button>
-              <button className="flex items-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button className="flex items-centre px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
                 <Printer className="w-4 h-4 mr-1" />
                 Print
               </button>
               <div className="relative group">
-                <button className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                <button className="flex items-centre px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                   <Download className="w-4 h-4 mr-1" />
                   Export
                   <ChevronDown className="w-4 h-4 ml-1" />
@@ -373,7 +373,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Overall Compliance Score</h3>
-              <div className="flex justify-center">
+              <div className="flex justify-centre">
                 <ComplianceScoreGauge score={selectedReport.summary.overallCompliance} />
               </div>
             </div>
@@ -381,8 +381,8 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Audit Results</h3>
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
-                  <div className="flex items-center">
+                <div className="flex items-centre justify-between p-3 bg-green-50 rounded-lg">
+                  <div className="flex items-centre">
                     <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
                     <span className="font-medium">Passed Audits</span>
                   </div>
@@ -390,8 +390,8 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
                     {selectedReport.summary.passedAudits}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
-                  <div className="flex items-center">
+                <div className="flex items-centre justify-between p-3 bg-red-50 rounded-lg">
+                  <div className="flex items-centre">
                     <XCircle className="w-5 h-5 text-red-600 mr-2" />
                     <span className="font-medium">Failed Audits</span>
                   </div>
@@ -399,8 +399,8 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
                     {selectedReport.summary.failedAudits}
                   </span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
-                  <div className="flex items-center">
+                <div className="flex items-centre justify-between p-3 bg-orange-50 rounded-lg">
+                  <div className="flex items-centre">
                     <AlertTriangle className="w-5 h-5 text-orange-600 mr-2" />
                     <span className="font-medium">Open Findings</span>
                   </div>
@@ -420,7 +420,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
                 <ul className="space-y-2">
                   {selectedReport.summary.recommendations.map((rec, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-xs flex items-center justify-center mr-2 mt-0.5">
+                      <span className="inline-block w-6 h-6 bg-blue-600 text-white rounded-full text-xs flex items-centre justify-centre mr-2 mt-0.5">
                         {index + 1}
                       </span>
                       <span className="text-gray-900">{rec}</span>
@@ -434,7 +434,7 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
           {/* Critical Issues */}
           {selectedReport.summary.criticalIssues > 0 && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-              <div className="flex items-center">
+              <div className="flex items-centre">
                 <AlertOctagon className="w-6 h-6 text-red-600 mr-3" />
                 <div>
                   <h4 className="font-semibold text-red-900">Critical Issues Identified</h4>
@@ -466,17 +466,17 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Compliance Reporting</h1>
           <p className="text-gray-600 mt-1">Generate and view compliance reports</p>
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <div className="flex items-centre space-x-2">
+          <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Calendar className="w-4 h-4 mr-2" />
             Schedule Report
           </button>
-          <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Mail className="w-4 h-4 mr-2" />
             Email Settings
           </button>
@@ -499,12 +499,12 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
           {reports.map((report) => (
             <div
               key={report.id}
-              className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${
+              className={`flex items-centre justify-between p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${
                 selectedReport?.id === report.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
               }`}
               onClick={() => setSelectedReport(report)}
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex items-centre space-x-3">
                 <FileText className="w-5 h-5 text-gray-600" />
                 <div>
                   <p className="font-medium text-gray-900">{report.title}</p>

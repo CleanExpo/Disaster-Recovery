@@ -10,7 +10,7 @@ import { ImageRequirement } from './image-requirements';
 
 export interface WatermarkConfig {
   logoPath: string;
-  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'center';
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'centre';
   opacity: number;
   size: 'small' | 'medium' | 'large';
   padding: number;
@@ -45,7 +45,7 @@ export interface ImageMetadata {
  */
 export class WatermarkManager {
   private defaultConfig: WatermarkConfig = {
-    logoPath: '/images/optimized/branding/Disaster Recovery Logo.png',
+    logoPath: '/images/optimised/branding/Disaster Recovery Logo.png',
     position: 'bottom-right',
     opacity: 0.9,
     size: 'medium',
@@ -53,9 +53,9 @@ export class WatermarkManager {
   };
   
   private alternateLogos = {
-    light: '/images/optimized/branding/Disaster Recovery Logo.png',
-    dark: '/images/optimized/branding/3D Disaster Recovery Logo.png',
-    compact: '/images/optimized/branding/Disaster Recovery Logo.png'
+    light: '/images/optimised/branding/Disaster Recovery Logo.png',
+    dark: '/images/optimised/branding/3D Disaster Recovery Logo.png',
+    compact: '/images/optimised/branding/Disaster Recovery Logo.png'
   };
   
   /**
@@ -145,7 +145,7 @@ export class WatermarkManager {
       'top-right': `top: ${finalConfig.padding}px; right: ${finalConfig.padding}px;`,
       'bottom-left': `bottom: ${finalConfig.padding}px; left: ${finalConfig.padding}px;`,
       'bottom-right': `bottom: ${finalConfig.padding}px; right: ${finalConfig.padding}px;`,
-      'center': `top: 50%; left: 50%; transform: translate(-50%, -50%);`
+      'centre': `top: 50%; left: 50%; transform: translate(-50%, -50%);`
     };
     
     return `
@@ -299,12 +299,12 @@ export class MetadataManager {
         "thumbnailUrl": "${metadata.source}",
         "uploadDate": "${metadata.date}",
         "copyrightHolder": {
-          "@type": "Organization",
+          "@type": "Organisation",
           "name": "National Restoration Platform"
         },
         "copyrightNotice": "${metadata.copyright}",
         "creator": {
-          "@type": "Organization",
+          "@type": "Organisation",
           "name": "${metadata.creator}"
         },
         "creditText": "NRP Disaster Recovery Services",
@@ -341,16 +341,16 @@ export class MetadataManager {
       "contentSize": "500KB",
       "encodingFormat": metadata.format,
       "copyrightHolder": {
-        "@type": "Organization",
+        "@type": "Organisation",
         "@id": "https://nrp.com.au",
         "name": "National Restoration Platform",
         "url": "https://nrp.com.au",
-        "logo": "https://nrp.com.au/images/optimized/branding/Disaster Recovery Logo.png"
+        "logo": "https://nrp.com.au/images/optimised/branding/Disaster Recovery Logo.png"
       },
       "copyrightNotice": metadata.copyright,
       "copyrightYear": new Date().getFullYear(),
       "creator": {
-        "@type": "Organization",
+        "@type": "Organisation",
         "name": metadata.creator,
         "url": "https://nrp.com.au"
       },
@@ -367,7 +367,7 @@ export class MetadataManager {
         "@type": "Service",
         "name": metadata.service || "Disaster Recovery",
         "provider": {
-          "@type": "Organization",
+          "@type": "Organisation",
           "name": "NRP"
         }
       },
@@ -534,7 +534,7 @@ export class CopyrightNoticeGenerator {
       This image is the exclusive property of National Restoration Platform (NRP).
       
       PERMITTED USES:
-      - Display on NRP-authorized websites
+      - Display on NRP-authorised websites
       - Use in NRP marketing materials
       - Inclusion in NRP training documents
       - Sharing by NRP-certified contractors

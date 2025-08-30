@@ -40,10 +40,10 @@ export default function ModernContactPage() {
   ];
 
   const urgencyLevels = [
-    { value: 'emergency', label: 'Emergency (< 2 hours)', color: 'from-red-500 to-orange-500' },
-    { value: 'urgent', label: 'Urgent (< 24 hours)', color: 'from-orange-500 to-yellow-500' },
-    { value: 'standard', label: 'Standard (2-3 days)', color: 'from-blue-500 to-cyan-500' },
-    { value: 'quote', label: 'Quote Only', color: 'from-purple-500 to-indigo-500' }
+    { value: 'emergency', label: 'Emergency (< 2 hours)', colour: 'from-red-500 to-orange-500' },
+    { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-orange-500 to-yellow-500' },
+    { value: 'standard', label: 'Standard (2-3 days)', colour: 'from-blue-500 to-cyan-500' },
+    { value: 'quote', label: 'Quote Only', colour: 'from-purple-500 to-indigo-500' }
   ];
 
   const contactInfo = [
@@ -52,28 +52,28 @@ export default function ModernContactPage() {
       title: '24/7 Emergency Hotline',
       value: '1300 123 456',
       subtext: 'Immediate response',
-      color: 'from-red-500 to-orange-500'
+      colour: 'from-red-500 to-orange-500'
     },
     {
       icon: <EnvelopeIcon className="w-6 h-6" />,
       title: 'Email Support',
       value: 'help@disasterrecoverypro.com.au',
       subtext: 'Response within 2 hours',
-      color: 'from-blue-500 to-cyan-500'
+      colour: 'from-blue-500 to-cyan-500'
     },
     {
       icon: <MapPinIcon className="w-6 h-6" />,
       title: 'Service Areas',
       value: 'Australia Wide',
       subtext: 'All major cities & regions',
-      color: 'from-green-500 to-emerald-500'
+      colour: 'from-green-500 to-emerald-500'
     },
     {
       icon: <ClockIcon className="w-6 h-6" />,
       title: 'Response Time',
       value: '< 60 Minutes',
       subtext: 'For emergency calls',
-      color: 'from-purple-500 to-indigo-500'
+      colour: 'from-purple-500 to-indigo-500'
     }
   ];
 
@@ -149,10 +149,10 @@ export default function ModernContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-centre"
           >
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30"
+              className="inline-flex items-centre gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -191,9 +191,9 @@ export default function ModernContactPage() {
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="relative group"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${info.color} rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`} />
+                <div className={`absolute inset-0 bg-gradient-to-r ${info.colour} rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`} />
                 <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${info.color} bg-opacity-20`}>
+                  <div className={`inline-flex items-centre justify-centre w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${info.colour} bg-opacity-20`}>
                     {info.icon}
                   </div>
                   <h3 className="text-sm text-gray-400 mb-1">{info.title}</h3>
@@ -218,7 +218,7 @@ export default function ModernContactPage() {
                 className="max-w-4xl mx-auto"
               >
                 <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30">
-                  <div className="text-center mb-8">
+                  <div className="text-centre mb-8">
                     <h2 className="text-3xl font-bold mb-2">
                       <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
                         Emergency Contact Form
@@ -343,7 +343,7 @@ export default function ModernContactPage() {
                             {formData.urgency === level.value && (
                               <motion.div
                                 layoutId="urgency-selector"
-                                className={`absolute inset-0 bg-gradient-to-r ${level.color} rounded-xl opacity-20`}
+                                className={`absolute inset-0 bg-gradient-to-r ${level.colour} rounded-xl opacity-20`}
                               />
                             )}
                             <span className="relative text-sm font-medium">{level.label}</span>
@@ -379,7 +379,7 @@ export default function ModernContactPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl" />
                       <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
-                      <div className="relative bg-gradient-to-r from-red-600 to-orange-600 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
+                      <div className="relative bg-gradient-to-r from-red-600 to-orange-600 rounded-xl px-8 py-4 font-bold text-lg flex items-centre justify-centre gap-2">
                         {isSubmitting ? (
                           <>
                             <motion.div
@@ -400,16 +400,16 @@ export default function ModernContactPage() {
                     </motion.button>
 
                     {/* Trust Indicators */}
-                    <div className="flex items-center justify-center gap-6 text-xs text-gray-500">
-                      <div className="flex items-center gap-1">
+                    <div className="flex items-centre justify-centre gap-6 text-xs text-gray-500">
+                      <div className="flex items-centre gap-1">
                         <ShieldCheckIcon className="w-4 h-4" />
                         SSL Secured
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-centre gap-1">
                         <CheckCircleIcon className="w-4 h-4" />
                         IICRC Certified
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-centre gap-1">
                         <SparklesIcon className="w-4 h-4" />
                         Instant Response
                       </div>
@@ -421,7 +421,7 @@ export default function ModernContactPage() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="max-w-2xl mx-auto text-center"
+                className="max-w-2xl mx-auto text-centre"
               >
                 <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-12 border border-green-500/30">
                   <motion.div
@@ -488,7 +488,7 @@ export default function ModernContactPage() {
                         message: ''
                       });
                     }}
-                    className="mt-8 px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors"
+                    className="mt-8 px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colours"
                   >
                     Submit Another Request
                   </motion.button>
@@ -506,7 +506,7 @@ export default function ModernContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-centre"
         >
           <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl p-12 border border-blue-500/30">
             <ChatBubbleOvalLeftEllipsisIcon className="w-16 h-16 text-blue-400 mx-auto mb-6" />
@@ -521,7 +521,7 @@ export default function ModernContactPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+              className="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-centre gap-2"
             >
               <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
               Start Live Chat

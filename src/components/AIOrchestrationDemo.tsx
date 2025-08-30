@@ -106,7 +106,7 @@ export function AIOrchestrationDemo() {
         <h4 className="font-semibold text-sm text-gray-700">Sequential Thinking Steps:</h4>
         {steps.map((step, index) => (
           <div key={index} className="border-l-4 border-blue-500 pl-4 py-2 bg-blue-50 rounded-r">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-centre gap-2 mb-1">
               <Badge variant="outline" className="text-xs">
                 Step {step.step}
               </Badge>
@@ -128,7 +128,7 @@ export function AIOrchestrationDemo() {
     <div className="max-w-4xl mx-auto space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-centre gap-2">
             <Brain className="h-6 w-6 text-blue-600" />
             AI Orchestration Demo - GPT-OSS-120B Integration
           </CardTitle>
@@ -172,9 +172,9 @@ export function AIOrchestrationDemo() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 text-sm">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre gap-4">
+              <label className="flex items-centre gap-2 text-sm">
                 <input
                   type="checkbox"
                   checked={useSequentialThinking}
@@ -197,7 +197,7 @@ export function AIOrchestrationDemo() {
               ) : (
                 <>
                   {useSequentialThinking ? <Brain className="mr-2 h-4 w-4" /> : <Zap className="mr-2 h-4 w-4" />}
-                  Analyze with AI
+                  Analyse with AI
                 </>
               )}
             </Button>
@@ -209,7 +209,7 @@ export function AIOrchestrationDemo() {
       {result && (
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-centre gap-2">
               {result.success ? (
                 <CheckCircle className="h-5 w-5 text-green-600" />
               ) : (

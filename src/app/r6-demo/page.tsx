@@ -25,28 +25,28 @@ export default function R6DemoPage() {
       title: 'Water Damage Restoration',
       description: 'Rapid water extraction and structural drying using advanced equipment.',
       features: ['24/7 Emergency Response', 'Insurance Approved', 'Certified Technicians'],
-      color: 'primary'
+      colour: 'primary'
     },
     {
       icon: Flame,
       title: 'Fire & Smoke Damage',
       description: 'Complete restoration from fire, smoke, and soot damage.',
-      features: ['Smoke Odor Removal', 'Structural Repairs', 'Content Restoration'],
-      color: 'dark'
+      features: ['Smoke Odour Removal', 'Structural Repairs', 'Content Restoration'],
+      colour: 'dark'
     },
     {
       icon: Shield,
       title: 'Mould Remediation',
       description: 'Safe and thorough mould removal with prevention strategies.',
       features: ['HEPA Filtration', 'Air Quality Testing', 'Prevention Treatment'],
-      color: 'primary'
+      colour: 'primary'
     },
     {
       icon: Home,
       title: 'Storm Damage Recovery',
       description: 'Emergency response for storm and flood damage restoration.',
       features: ['Debris Removal', 'Emergency Tarping', 'Full Reconstruction'],
-      color: 'dark'
+      colour: 'dark'
     }
   ];
 
@@ -124,10 +124,10 @@ export default function R6DemoPage() {
             {stats.map((stat, index) => (
               <div 
                 key={index} 
-                className="r6-text-center r6-animate-scale-up"
+                className="r6-text-centre r6-animate-scale-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="r6-flex r6-justify-center r6-mb-3">
+                <div className="r6-flex r6-justify-centre r6-mb-3">
                   <div className="r6-p-3" style={{
                     background: 'rgb(19, 28, 255, 0.1)',
                     borderRadius: 'var(--r6-radius-xl)'
@@ -146,7 +146,7 @@ export default function R6DemoPage() {
       {/* Services Section - No Yellow/Amber Backgrounds */}
       <section id="services" className="r6-section">
         <div className="r6-container">
-          <div className="r6-text-center r6-mb-6">
+          <div className="r6-text-centre r6-mb-6">
             <h2 className="r6-mb-3">Professional Restoration Services</h2>
             <p className="r6-text-gray r6-text-lg">
               Comprehensive solutions for all disaster recovery needs
@@ -161,7 +161,7 @@ export default function R6DemoPage() {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="r6-mb-4">
-                  <div className={`r6-inline-block r6-p-3 ${service.color === 'primary' ? 'r6-bg-primary' : 'r6-bg-dark'}`} style={{
+                  <div className={`r6-inline-block r6-p-3 ${service.colour === 'primary' ? 'r6-bg-primary' : 'r6-bg-dark'}`} style={{
                     borderRadius: 'var(--r6-radius-xl)'
                   }}>
                     <service.icon className="w-8 h-8 r6-text-light" />
@@ -171,7 +171,7 @@ export default function R6DemoPage() {
                 <p className="r6-text-gray r6-mb-4">{service.description}</p>
                 <ul className="r6-mb-4">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="r6-flex r6-items-center r6-gap-2 r6-mb-2">
+                    <li key={i} className="r6-flex r6-items-centre r6-gap-2 r6-mb-2">
                       <Check className="w-4 h-4 r6-text-primary" />
                       <span className="r6-text-sm">{feature}</span>
                     </li>
@@ -190,19 +190,19 @@ export default function R6DemoPage() {
       {/* CTA Section - Clean Design */}
       <section className="r6-section r6-bg-dark">
         <div className="r6-container">
-          <div className="r6-text-center">
+          <div className="r6-text-centre">
             <h2 className="r6-text-light r6-mb-3">Need Emergency Assistance?</h2>
             <p className="r6-text-light r6-mb-6" style={{ opacity: 0.8 }}>
               Our certified technicians are available 24/7 across Queensland
             </p>
-            <div className="r6-flex r6-justify-center r6-gap-3">
+            <div className="r6-flex r6-justify-centre r6-gap-3">
               <button className="r6-btn r6-btn-primary r6-btn-lg">
                 <Phone className="w-5 h-5" />
                 Call 1300 566 166
               </button>
               <button className="r6-btn r6-btn-secondary r6-btn-lg" style={{
                 background: 'transparent',
-                color: 'white',
+                colour: 'white',
                 borderColor: 'white'
               }}>
                 Request Callback
@@ -215,7 +215,7 @@ export default function R6DemoPage() {
       {/* Process Section */}
       <section id="process" className="r6-section">
         <div className="r6-container">
-          <div className="r6-text-center r6-mb-6">
+          <div className="r6-text-centre r6-mb-6">
             <h2 className="r6-mb-3">Our Proven Process</h2>
             <p className="r6-text-gray r6-text-lg">
               Systematic approach to complete restoration
@@ -248,11 +248,11 @@ export default function R6DemoPage() {
                 className="r6-card r6-animate-fade-in"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className="r6-card-body r6-text-center">
+                <div className="r6-card-body r6-text-centre">
                   <div className="r6-text-primary r6-font-black r6-text-5xl r6-mb-3">
                     {item.step}
                   </div>
-                  <div className="r6-flex r6-justify-center r6-mb-3">
+                  <div className="r6-flex r6-justify-centre r6-mb-3">
                     <item.icon className="w-8 h-8 r6-text-dark" />
                   </div>
                   <h4 className="r6-mb-2">{item.title}</h4>
@@ -267,9 +267,9 @@ export default function R6DemoPage() {
       {/* Testimonial Section */}
       <section className="r6-section" style={{ background: 'rgb(250, 250, 250)' }}>
         <div className="r6-container">
-          <div className="r6-text-center r6-mb-6">
+          <div className="r6-text-centre r6-mb-6">
             <h2 className="r6-mb-3">Trusted by Thousands</h2>
-            <div className="r6-flex r6-justify-center r6-gap-1 r6-mb-3">
+            <div className="r6-flex r6-justify-centre r6-gap-1 r6-mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-6 h-6 fill-current r6-text-primary" />
               ))}
@@ -321,7 +321,7 @@ export default function R6DemoPage() {
       {/* Footer - Clean Design */}
       <footer className="r6-bg-dark r6-p-6">
         <div className="r6-container">
-          <div className="r6-text-center">
+          <div className="r6-text-centre">
             <p className="r6-text-light" style={{ opacity: 0.8 }}>
               © 2025 Disaster Recovery Queensland. All rights reserved.
             </p>

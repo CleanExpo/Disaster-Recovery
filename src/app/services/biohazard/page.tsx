@@ -21,14 +21,14 @@ export default function BiohazardPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-red-50 to-orange-50 py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Professional Biohazard Cleanup Services
             </h1>
             <p className="text-xl text-gray-700 mb-8">
               Expert decontamination and biohazard remediation by certified specialists
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <a
                 href="tel:1300246427"
                 className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition"
@@ -50,7 +50,7 @@ export default function BiohazardPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-centre">
               Comprehensive Biohazard Services
             </h2>
             
@@ -64,7 +64,7 @@ export default function BiohazardPage() {
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="text-3xl mb-4">🩺</div>
                 <h3 className="text-xl font-semibold mb-3">Trauma Scene Cleanup</h3>
-                <p className="text-gray-600">Specialized cleanup of traumatic incidents including accidents, suicides, and unattended deaths.</p>
+                <p className="text-gray-600">Specialised cleanup of traumatic incidents including accidents, suicides, and unattended deaths.</p>
               </div>
               
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
@@ -82,7 +82,7 @@ export default function BiohazardPage() {
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="text-3xl mb-4">⚗️</div>
                 <h3 className="text-xl font-semibold mb-3">Drug Lab Cleanup</h3>
-                <p className="text-gray-600">Specialized remediation of illegal drug manufacturing sites and chemical contamination.</p>
+                <p className="text-gray-600">Specialised remediation of illegal drug manufacturing sites and chemical contamination.</p>
               </div>
               
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
@@ -127,7 +127,7 @@ export default function BiohazardPage() {
 
       {/* Emergency CTA */}
       <section className="bg-red-600 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-4">24/7 Emergency Biohazard Response</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Biohazard emergencies require immediate professional response. Our certified technicians are available 

@@ -116,7 +116,7 @@ export const INDUSTRIES = [
   'Healthcare & Medical',
   'Education & Schools',
   'Government & Public Services',
-  'Retail & Shopping Centers',
+  'Retail & Shopping Centres',
   'Manufacturing & Warehousing',
   'Transport & Logistics',
   'Marine & Ports',

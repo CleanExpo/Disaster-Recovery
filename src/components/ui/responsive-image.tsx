@@ -4,7 +4,7 @@
  * RESPONSIVE IMAGE COMPONENT
  * ==========================
  * 
- * Optimized image component that automatically handles:
+ * Optimised image component that automatically handles:
  * - Multiple device sizes (mobile, tablet, desktop)
  * - Lazy loading for performance
  * - WebP with fallbacks
@@ -126,13 +126,13 @@ export function ResponsiveImage({
     return (
       <div 
         className={cn(
-          "bg-gray-100 flex items-center justify-center",
+          "bg-gray-100 flex items-centre justify-centre",
           fill ? "absolute inset-0" : "w-full",
           className
         )}
         style={!fill ? { aspectRatio: aspectRatio.toString() } : undefined}
       >
-        <div className="text-center p-4">
+        <div className="text-centre p-4">
           <svg className="w-12 h-12 mx-auto mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
@@ -176,7 +176,7 @@ export function ResponsiveImage({
         {/* Watermark overlay */}
         <div className="absolute bottom-4 right-4 opacity-90 pointer-events-none z-10">
           <Image
-            src="/images/optimized/branding/Disaster Recovery Logo.png"
+            src="/images/optimised/branding/Disaster Recovery Logo.png"
             alt="NRP Logo"
             width={deviceType === 'mobile' ? 60 : deviceType === 'tablet' ? 80 : 100}
             height={deviceType === 'mobile' ? 20 : deviceType === 'tablet' ? 27 : 33}
@@ -275,7 +275,7 @@ export function ResponsivePicture({
       {watermarked && (
         <div className="absolute bottom-4 right-4 opacity-90 pointer-events-none">
           <img
-            src="/images/optimized/branding/Disaster Recovery Logo.png"
+            src="/images/optimised/branding/Disaster Recovery Logo.png"
             alt="NRP Logo"
             className="w-20 md:w-24 lg:w-28 h-auto drop-shadow-lg"
             loading="eager"
@@ -313,7 +313,7 @@ export function TrainingImage({
         className="rounded-lg shadow-lg"
       />
       {caption && (
-        <figcaption className="mt-2 text-sm text-gray-600 text-center italic">
+        <figcaption className="mt-2 text-sm text-gray-600 text-centre italic">
           {caption}
         </figcaption>
       )}
@@ -358,14 +358,14 @@ export function HeroImage({
       
       {/* Text content */}
       {(title || subtitle) && (
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-white px-4">
+        <div className="absolute inset-0 flex flex-col justify-centre items-centre text-white px-4">
           {title && (
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-4 drop-shadow-2xl">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-centre mb-4 drop-shadow-2xl">
               {title}
             </h1>
           )}
           {subtitle && (
-            <p className="text-lg md:text-xl lg:text-2xl text-center max-w-3xl drop-shadow-xl">
+            <p className="text-lg md:text-xl lg:text-2xl text-centre max-w-3xl drop-shadow-xl">
               {subtitle}
             </p>
           )}

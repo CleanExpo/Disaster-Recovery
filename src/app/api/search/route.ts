@@ -39,7 +39,7 @@ const searchDatabase: SearchResult[] = [
     id: 'service-water-damage-emergency',
     type: 'service',
     title: 'Emergency Water Damage Restoration',
-    description: '24/7 emergency water damage restoration with rapid response. Professional water extraction, structural drying, and mold prevention services.',
+    description: '24/7 emergency water damage restoration with rapid response. Professional water extraction, structural drying, and mould prevention services.',
     category: 'Water Damage',
     location: 'Brisbane CBD',
     rating: 4.9,
@@ -52,7 +52,7 @@ const searchDatabase: SearchResult[] = [
       certifications: ['IICRC', 'WRT', 'ASD'],
       insuranceApproved: true,
       emergencyAvailable: true,
-      servicesOffered: ['water extraction', 'structural drying', 'mold prevention', 'damage assessment']
+      servicesOffered: ['water extraction', 'structural drying', 'mould prevention', 'damage assessment']
     },
     relevanceScore: 0
   },
@@ -60,20 +60,20 @@ const searchDatabase: SearchResult[] = [
     id: 'service-fire-damage-restoration',
     type: 'service',
     title: 'Fire and Smoke Damage Restoration',
-    description: 'Complete fire damage restoration including smoke removal, odor elimination, structural repairs, and content cleaning.',
+    description: 'Complete fire damage restoration including smoke removal, odour elimination, structural repairs, and content cleaning.',
     category: 'Fire Damage',
     location: 'Gold Coast',
     rating: 4.8,
     responseTime: '< 45 minutes',
     price: 200,
-    tags: ['fire damage', 'smoke removal', 'odor elimination', 'structural repair', 'content cleaning', 'insurance approved'],
+    tags: ['fire damage', 'smoke removal', 'odour elimination', 'structural repair', 'content cleaning', 'insurance approved'],
     url: '/services/fire-damage-restoration',
     priority: 'urgent',
     metadata: {
       certifications: ['IICRC', 'FSRT'],
       insuranceApproved: true,
       emergencyAvailable: true,
-      servicesOffered: ['fire damage restoration', 'smoke removal', 'odor elimination', 'content cleaning']
+      servicesOffered: ['fire damage restoration', 'smoke removal', 'odour elimination', 'content cleaning']
     },
     relevanceScore: 0
   },
@@ -81,7 +81,7 @@ const searchDatabase: SearchResult[] = [
     id: 'contractor-elite-restoration',
     type: 'contractor',
     title: 'Elite Restoration Services',
-    description: 'Premier IICRC certified restoration contractor with 15+ years experience. Specializing in water damage, fire restoration, and emergency response.',
+    description: 'Premier IICRC certified restoration contractor with 15+ years experience. Specialising in water damage, fire restoration, and emergency response.',
     category: 'Restoration Contractor',
     location: 'Sydney',
     rating: 4.9,
@@ -114,23 +114,23 @@ const searchDatabase: SearchResult[] = [
     relevanceScore: 0
   },
   {
-    id: 'service-mold-remediation',
+    id: 'service-mould-remediation',
     type: 'service',
-    title: 'Professional Mold Inspection and Remediation',
-    description: 'Comprehensive mold services including inspection, testing, safe removal, and prevention strategies. Health-focused approach.',
-    category: 'Mold Services',
+    title: 'Professional Mould Inspection and Remediation',
+    description: 'Comprehensive mould services including inspection, testing, safe removal, and prevention strategies. Health-focused approach.',
+    category: 'Mould Services',
     location: 'Melbourne',
     rating: 4.7,
     responseTime: '< 2 hours',
     price: 120,
-    tags: ['mold remediation', 'health safety', 'prevention', 'inspection', 'testing', 'air quality'],
-    url: '/services/mold-remediation',
+    tags: ['mould remediation', 'health safety', 'prevention', 'inspection', 'testing', 'air quality'],
+    url: '/services/mould-remediation',
     priority: 'normal',
     metadata: {
       certifications: ['IICRC', 'AMRT'],
       insuranceApproved: true,
       emergencyAvailable: false,
-      servicesOffered: ['mold inspection', 'air quality testing', 'mold removal', 'prevention consulting']
+      servicesOffered: ['mould inspection', 'air quality testing', 'mould removal', 'prevention consulting']
     },
     relevanceScore: 0
   },
@@ -317,7 +317,7 @@ export async function GET(request: NextRequest) {
       'water damage restoration',
       'fire damage repair',
       'emergency services',
-      'mold remediation',
+      'mould remediation',
       'storm damage repair',
       'insurance approved contractors'
     ].filter(s => s.toLowerCase().includes(params.q!.toLowerCase())).slice(0, 5) : [];

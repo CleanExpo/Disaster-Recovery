@@ -1,4 +1,4 @@
-// Service Page Layout Component with SEO Optimization
+// Service Page Layout Component with SEO Optimisation
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -89,7 +89,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       {/* Certifications Bar */}
       <section className="bg-primary-50 border-y border-primary-200">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-wrap items-center gap-8">
+          <div className="flex flex-wrap items-centre gap-8">
             <span className="font-semibold text-neutral-700">Certified to:</span>
             {certifications.map((cert, index) => (
               <span key={index} className="px-4 py-2 bg-white rounded-full text-sm font-medium text-primary-700 shadow-sm">
@@ -120,13 +120,13 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
               </p>
               <a
                 href="tel:1800-DISASTER"
-                className="block w-full bg-emergency-600 text-white text-center py-4 rounded-lg font-bold text-lg hover:bg-emergency-700 transition-colors"
+                className="block w-full bg-emergency-600 text-white text-centre py-4 rounded-lg font-bold text-lg hover:bg-emergency-700 transition-colours"
               >
                 Call 1-800-DISASTER
               </a>
               <Link
                 href="/emergency-form"
-                className="block w-full mt-4 bg-white text-emergency-600 text-center py-4 rounded-lg font-bold border-2 border-emergency-600 hover:bg-emergency-50 transition-colors"
+                className="block w-full mt-4 bg-white text-emergency-600 text-centre py-4 rounded-lg font-bold border-2 border-emergency-600 hover:bg-emergency-50 transition-colours"
               >
                 Request Emergency Service
               </Link>
@@ -138,25 +138,25 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                 Service Coverage
               </h3>
               <ul className="space-y-3">
-                <li className="flex items-center text-neutral-700">
+                <li className="flex items-centre text-neutral-700">
                   <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Nationwide Coverage
                 </li>
-                <li className="flex items-center text-neutral-700">
+                <li className="flex items-centre text-neutral-700">
                   <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   1-Hour City Response
                 </li>
-                <li className="flex items-center text-neutral-700">
+                <li className="flex items-centre text-neutral-700">
                   <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Rural Area Coverage
                 </li>
-                <li className="flex items-center text-neutral-700">
+                <li className="flex items-centre text-neutral-700">
                   <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -175,7 +175,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                   <Link
                     key={index}
                     href={service.href}
-                    className="flex items-center p-3 rounded-lg hover:bg-neutral-50 transition-colors group"
+                    className="flex items-centre p-3 rounded-lg hover:bg-neutral-50 transition-colours group"
                   >
                     <div className="w-16 h-16 relative rounded-lg overflow-hidden mr-4">
                       <Image
@@ -186,11 +186,11 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors">
+                      <h4 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colours">
                         {service.title}
                       </h4>
                     </div>
-                    <svg className="w-5 h-5 text-neutral-400 group-hover:text-primary-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-neutral-400 group-hover:text-primary-600 transition-colours" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </Link>
@@ -204,14 +204,14 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       {/* FAQ Section */}
       <section className="bg-neutral-50 py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-12 text-center">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-12 text-centre">
             Frequently Asked Questions
           </h2>
           <div className="max-w-3xl mx-auto">
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <details key={index} className="bg-white rounded-lg shadow-md group">
-                  <summary className="px-6 py-4 cursor-pointer list-none flex justify-between items-center font-semibold text-neutral-900 hover:text-primary-600 transition-colors">
+                  <summary className="px-6 py-4 cursor-pointer list-none flex justify-between items-centre font-semibold text-neutral-900 hover:text-primary-600 transition-colours">
                     {faq.question}
                     <svg className="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -231,17 +231,17 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
 
       {/* Bottom CTA */}
       <section className="bg-gradient-to-r from-primary-600 to-primary-700 py-16">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Need {title}?
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
             Our IICRC-certified technicians are ready to respond 24/7. Don't wait - every minute counts in disaster recovery.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <a
               href="tel:1800-DISASTER"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 rounded-lg font-bold text-lg hover:bg-primary-50 transition-colors"
+              className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-primary-600 rounded-lg font-bold text-lg hover:bg-primary-50 transition-colours"
             >
               <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -250,7 +250,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
             </a>
             <Link
               href="/get-quote"
-              className="inline-flex items-center justify-center px-8 py-4 bg-primary-800 text-white rounded-lg font-bold text-lg hover:bg-primary-900 transition-colors"
+              className="inline-flex items-centre justify-centre px-8 py-4 bg-primary-800 text-white rounded-lg font-bold text-lg hover:bg-primary-900 transition-colours"
             >
               Get Free Assessment
             </Link>

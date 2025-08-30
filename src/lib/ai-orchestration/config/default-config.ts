@@ -15,7 +15,7 @@ export const defaultOrchestrationConfig: OrchestrationServiceConfig = {
         persona: AgentPersona.LEAD_ARCHITECT,
         provider: AIProvider.OPENROUTER_GPT_OSS_120B,
         model: 'gpt-oss-120b',
-        systemPrompt: 'You are a lead architect specializing in disaster recovery coordination and strategic planning.',
+        systemPrompt: 'You are a lead architect specialising in disaster recovery coordination and strategic planning.',
         specializations: ['strategic-planning', 'system-architecture', 'coordination'],
         preferredTaskTypes: ['complex-analysis', 'multi-stakeholder', 'strategic-planning'],
         trustScore: 0.95,
@@ -28,7 +28,7 @@ export const defaultOrchestrationConfig: OrchestrationServiceConfig = {
         persona: AgentPersona.TECHNICAL_EXPERT,
         provider: AIProvider.OPENROUTER_GPT_OSS_120B,
         model: 'gpt-oss-120b',
-        systemPrompt: 'You are a technical expert specializing in structural analysis and damage assessment.',
+        systemPrompt: 'You are a technical expert specialising in structural analysis and damage assessment.',
         specializations: ['damage-assessment', 'structural-analysis', 'technical-specifications'],
         preferredTaskTypes: ['damage-assessment', 'safety-analysis', 'technical-review'],
         trustScore: 0.93,
@@ -54,8 +54,8 @@ export const defaultOrchestrationConfig: OrchestrationServiceConfig = {
         persona: AgentPersona.COST_ANALYST,
         provider: AIProvider.OPENROUTER_GPT_OSS_120B,
         model: 'gpt-oss-120b',
-        systemPrompt: 'You are a cost analyst specializing in financial planning and resource optimization.',
-        specializations: ['cost-estimation', 'resource-planning', 'budget-optimization'],
+        systemPrompt: 'You are a cost analyst specialising in financial planning and resource optimisation.',
+        specializations: ['cost-estimation', 'resource-planning', 'budget-optimisation'],
         preferredTaskTypes: ['cost-analysis', 'resource-planning', 'budget-estimation'],
         trustScore: 0.91,
         responseHistory: [],
@@ -164,7 +164,7 @@ export const defaultOrchestrationConfig: OrchestrationServiceConfig = {
 
 /**
  * Development Configuration
- * Optimized for development with faster timeouts and verbose logging
+ * Optimised for development with faster timeouts and verbose logging
  */
 export const developmentConfig: Partial<OrchestrationServiceConfig> = {
   orchestration: {
@@ -196,7 +196,7 @@ export const developmentConfig: Partial<OrchestrationServiceConfig> = {
 
 /**
  * Production Configuration
- * Optimized for production with enhanced reliability and monitoring
+ * Optimised for production with enhanced reliability and monitoring
  */
 export const productionConfig: Partial<OrchestrationServiceConfig> = {
   orchestration: {
@@ -244,7 +244,7 @@ export const productionConfig: Partial<OrchestrationServiceConfig> = {
 
 /**
  * Emergency Configuration
- * Optimized for emergency scenarios with speed prioritization
+ * Optimised for emergency scenarios with speed prioritization
  */
 export const emergencyConfig: Partial<OrchestrationServiceConfig> = {
   orchestration: {
@@ -276,7 +276,7 @@ export const emergencyConfig: Partial<OrchestrationServiceConfig> = {
 
 /**
  * High-Accuracy Configuration
- * Optimized for scenarios requiring maximum accuracy
+ * Optimised for scenarios requiring maximum accuracy
  */
 export const highAccuracyConfig: Partial<OrchestrationServiceConfig> = {
   orchestration: {
@@ -309,8 +309,8 @@ export const highAccuracyConfig: Partial<OrchestrationServiceConfig> = {
 };
 
 /**
- * Cost-Optimized Configuration
- * Optimized for cost-effective operations
+ * Cost-Optimised Configuration
+ * Optimised for cost-effective operations
  */
 export const costOptimizedConfig: Partial<OrchestrationServiceConfig> = {
   orchestration: {
@@ -353,7 +353,7 @@ export const costOptimizedConfig: Partial<OrchestrationServiceConfig> = {
  */
 export function createConfiguration(
   environment: 'development' | 'staging' | 'production',
-  optimization?: 'speed' | 'accuracy' | 'cost' | 'emergency'
+  optimisation?: 'speed' | 'accuracy' | 'cost' | 'emergency'
 ): OrchestrationServiceConfig {
   let baseConfig = { ...defaultOrchestrationConfig };
 
@@ -374,9 +374,9 @@ export function createConfiguration(
       break;
   }
 
-  // Apply optimization-specific config
-  if (optimization) {
-    switch (optimization) {
+  // Apply optimisation-specific config
+  if (optimisation) {
+    switch (optimisation) {
       case 'speed':
       case 'emergency':
         baseConfig = mergeConfig(baseConfig, emergencyConfig);

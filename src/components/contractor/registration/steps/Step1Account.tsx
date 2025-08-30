@@ -209,7 +209,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
               </Button>
             )}
             {emailVerified && (
-              <div className="flex items-center text-green-600">
+              <div className="flex items-centre text-green-600">
                 <CheckCircle className="w-5 h-5" />
               </div>
             )}
@@ -324,7 +324,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
               </Button>
             )}
             {mobileVerified && (
-              <div className="flex items-center text-green-600">
+              <div className="flex items-centre text-green-600">
                 <CheckCircle className="w-5 h-5" />
               </div>
             )}
@@ -379,7 +379,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
             </p>
           )}
           {companyNameAvailable === true && (
-            <p className="text-sm text-green-600 flex items-center gap-1">
+            <p className="text-sm text-green-600 flex items-centre gap-1">
               <CheckCircle className="w-4 h-4" />
               Company name is available
             </p>

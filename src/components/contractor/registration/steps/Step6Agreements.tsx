@@ -67,7 +67,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
       id: 'code_of_conduct',
       title: 'Code of Conduct',
       icon: <Users className="h-5 w-5" />,
-      description: 'Professional behavior, ethics, and quality standards',
+      description: 'Professional behaviour, ethics, and quality standards',
       content: [
         'Professional communication with clients and partners',
         'Ethical business practices and integrity',
@@ -121,7 +121,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
       id: 'compliance_monitoring',
       title: 'Ongoing Compliance Monitoring Consent',
       icon: <Eye className="h-5 w-5" />,
-      description: 'Authorization for regular compliance verification',
+      description: 'Authorisation for regular compliance verification',
       content: [
         'Regular insurance policy verification',
         'Certification expiry tracking and renewal',
@@ -207,7 +207,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
       {/* Progress Overview */}
       <Card className="border-blue-200 bg-blue-50/50">
         <CardContent className="pt-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-centre justify-between mb-4">
             <div>
               <h3 className="font-semibold text-lg">Agreement Progress</h3>
               <p className="text-sm text-gray-600 mt-1">
@@ -270,7 +270,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
           <CardContent className="space-y-4">
             {/* Agreement Content Preview */}
             <div className="border rounded-lg p-4 bg-gray-50">
-              <div className="flex justify-between items-center mb-3">
+              <div className="flex justify-between items-centre mb-3">
                 <h4 className="font-medium text-sm">Key Terms & Conditions</h4>
                 <Button
                   variant="ghost"
@@ -301,12 +301,12 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
 
             {/* Download Link */}
             {agreement.downloadUrl && (
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <a
                   href={agreement.downloadUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-blue-600 hover:underline flex items-center gap-1"
+                  className="text-sm text-blue-600 hover:underline flex items-centre gap-1"
                 >
                   <ExternalLink className="h-3 w-3" />
                   View Full Agreement (PDF)
@@ -344,7 +344,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
       {/* Digital Signature */}
       <Card className={signatureComplete() ? 'border-green-200' : ''}>
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <FileSignature className="h-5 w-5" />
             Digital Signature
           </CardTitle>
@@ -404,7 +404,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
 
           {signatureComplete() && (
             <div className="p-4 bg-gray-50 rounded-lg border-2 border-gray-200">
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-sm text-gray-600 mb-2">Digital Signature</p>
                 <p className="text-2xl font-signature font-bold text-gray-800">
                   {digitalSignature.fullName}
@@ -416,7 +416,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
             </div>
           )}
 
-          <div className="text-xs text-gray-500 text-center">
+          <div className="text-xs text-gray-500 text-centre">
             <p>Date: {digitalSignature.date}</p>
             <p>This signature will be recorded with your IP address and timestamp for verification</p>
           </div>
@@ -426,7 +426,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
       {/* Important Notices */}
       <Card className="border-orange-200 bg-orange-50/50">
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <AlertCircle className="h-5 w-5 text-orange-600" />
             Important Legal Information
           </CardTitle>

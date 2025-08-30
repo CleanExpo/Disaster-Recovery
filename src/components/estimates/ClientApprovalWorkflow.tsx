@@ -213,14 +213,14 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
     <div className="max-w-4xl mx-auto p-6">
       {/* Progress Steps */}
       <div className="mb-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const status = getStepStatus(step.id);
             return (
               <React.Fragment key={step.id}>
-                <div className="flex flex-col items-center">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${getStepColor(status)} text-white`}>
+                <div className="flex flex-col items-centre">
+                  <div className={`w-12 h-12 rounded-full flex items-centre justify-centre ${getStepColor(status)} text-white`}>
                     {status === 'completed' ? (
                       <CheckCircle className="h-6 w-6" />
                     ) : (
@@ -316,7 +316,7 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
               </p>
               
               <div className="space-y-3">
-                <label className="flex items-center p-4 border rounded cursor-pointer hover:bg-gray-50">
+                <label className="flex items-centre p-4 border rounded cursor-pointer hover:bg-gray-50">
                   <input
                     type="radio"
                     name="decision"
@@ -332,7 +332,7 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
                   </div>
                 </label>
 
-                <label className="flex items-center p-4 border rounded cursor-pointer hover:bg-gray-50">
+                <label className="flex items-centre p-4 border rounded cursor-pointer hover:bg-gray-50">
                   <input
                     type="radio"
                     name="decision"
@@ -348,7 +348,7 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
                   </div>
                 </label>
 
-                <label className="flex items-center p-4 border rounded cursor-pointer hover:bg-gray-50">
+                <label className="flex items-centre p-4 border rounded cursor-pointer hover:bg-gray-50">
                   <input
                     type="radio"
                     name="decision"
@@ -606,7 +606,7 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
 
             <div className="bg-yellow-50 border border-yellow-200 rounded p-4">
               <p className="text-sm">
-                By signing, I confirm that I am authorized to approve this estimate and that all information provided is accurate.
+                By signing, I confirm that I am authorised to approve this estimate and that all information provided is accurate.
               </p>
             </div>
 
@@ -634,18 +634,18 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
 
         {/* Step 5: Confirmation */}
         {currentStep === 5 && (
-          <div className="space-y-6 text-center">
-            <div className="flex justify-center">
+          <div className="space-y-6 text-centre">
+            <div className="flex justify-centre">
               {approvalDecision === 'approve' ? (
-                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center">
+                <div className="w-24 h-24 bg-green-100 rounded-full flex items-centre justify-centre">
                   <CheckCircle className="h-12 w-12 text-green-600" />
                 </div>
               ) : approvalDecision === 'reject' ? (
-                <div className="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center">
+                <div className="w-24 h-24 bg-red-100 rounded-full flex items-centre justify-centre">
                   <XCircle className="h-12 w-12 text-red-600" />
                 </div>
               ) : (
-                <div className="w-24 h-24 bg-yellow-100 rounded-full flex items-center justify-center">
+                <div className="w-24 h-24 bg-yellow-100 rounded-full flex items-centre justify-centre">
                   <RefreshCw className="h-12 w-12 text-yellow-600" />
                 </div>
               )}
@@ -690,8 +690,8 @@ const ClientApprovalWorkflow: React.FC<ClientApprovalWorkflowProps> = ({
               )}
             </div>
 
-            <div className="flex justify-center space-x-3">
-              <button className="px-6 py-3 bg-gray-600 text-white rounded hover:bg-gray-700 flex items-center">
+            <div className="flex justify-centre space-x-3">
+              <button className="px-6 py-3 bg-gray-600 text-white rounded hover:bg-gray-700 flex items-centre">
                 <Download className="h-4 w-4 mr-2" />
                 Download Confirmation
               </button>

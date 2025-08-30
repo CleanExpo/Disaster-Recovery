@@ -23,22 +23,22 @@ export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: 
     switch (type) {
       case 'fire':
         return {
-          colors: ['#FF4500', '#FF6347', '#FFD700', '#FF8C00'],
+          colours: ['#FF4500', '#FF6347', '#FFD700', '#FF8C00'],
           size: 'w-2 h-2',
         };
       case 'water':
         return {
-          colors: ['#00BFFF', '#1E90FF', '#4169E1', '#0000CD'],
+          colours: ['#00BFFF', '#1E90FF', '#4169E1', '#0000CD'],
           size: 'w-1.5 h-1.5',
         };
       case 'storm':
         return {
-          colors: ['#708090', '#778899', '#B0C4DE', '#C0C0C0'],
+          colours: ['#708090', '#778899', '#B0C4DE', '#C0C0C0'],
           size: 'w-1 h-3',
         };
       default:
         return {
-          colors: ['#FF4500', '#00BFFF', '#FFD700', '#708090'],
+          colours: ['#FF4500', '#00BFFF', '#FFD700', '#708090'],
           size: 'w-1.5 h-1.5',
         };
     }
@@ -55,7 +55,7 @@ export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: 
           key={`particle-${i}`}
           className={`absolute ${style.size} rounded-full`}
           style={{
-            backgroundColor: style.colors[i % style.colors.length],
+            backgroundColor: style.colours[i % style.colours.length],
             left: `${Math.random() * 100}%`,
           }}
           initial={{
@@ -130,8 +130,8 @@ export function EmergencyResponseParticles({ intensity = 'medium', className = '
         className="absolute inset-0"
         animate={{
           background: currentType === 'fire' 
-            ? 'radial-gradient(circle at center, rgba(255,69,0,0.1) 0%, transparent 70%)'
-            : 'radial-gradient(circle at center, rgba(0,191,255,0.1) 0%, transparent 70%)',
+            ? 'radial-gradient(circle at centre, rgba(255,69,0,0.1) 0%, transparent 70%)'
+            : 'radial-gradient(circle at centre, rgba(0,191,255,0.1) 0%, transparent 70%)',
         }}
         transition={{ duration: 2 }}
       />

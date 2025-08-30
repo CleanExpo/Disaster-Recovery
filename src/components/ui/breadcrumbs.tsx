@@ -35,11 +35,11 @@ export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
       
       <nav aria-label="Breadcrumb" className="bg-gray-50 border-b">
         <div className="container mx-auto px-6 py-3">
-          <ol className="flex items-center space-x-2 text-sm">
+          <ol className="flex items-centre space-x-2 text-sm">
             <li>
               <Link 
                 href="/" 
-                className="text-gray-500 hover:text-gray-700 transition-colors"
+                className="text-gray-500 hover:text-gray-700 transition-colours"
                 aria-label="Home"
               >
                 <Home className="h-4 w-4" />
@@ -47,12 +47,12 @@ export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
             </li>
             
             {breadcrumbs.map((item, index) => (
-              <li key={index} className="flex items-center">
+              <li key={index} className="flex items-centre">
                 <ChevronRight className="h-4 w-4 text-gray-400 mx-2" />
                 {item.href ? (
                   <Link 
                     href={item.href}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    className="text-gray-600 hover:text-blue-600 transition-colours"
                   >
                     {item.name}
                   </Link>

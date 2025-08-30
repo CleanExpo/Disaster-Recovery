@@ -41,14 +41,14 @@ export default function AIDamageAssessment() {
 
     const mockAnalysis: DamageAnalysis = {
       severity: 'severe',
-      type: ['Water Damage', 'Structural', 'Mold Risk'],
+      type: ['Water Damage', 'Structural', 'Mould Risk'],
       estimatedCost: { min: 15000, max: 25000 },
       urgency: 'high',
       recommendations: [
         'Immediate water extraction required',
         'Structural assessment needed',
         'Deploy industrial dehumidifiers',
-        'Monitor for mold growth over 48 hours',
+        'Monitor for mould growth over 48 hours',
         'Document for insurance claim'
       ],
       confidence: 94
@@ -88,8 +88,8 @@ export default function AIDamageAssessment() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30">
+        <div className="text-centre mb-12">
+          <div className="inline-flex items-centre gap-2 mb-4 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30">
             <span className="text-2xl">🤖</span>
             <span className="text-sm font-medium text-blue-400">AI-Powered Analysis</span>
           </div>
@@ -109,7 +109,7 @@ export default function AIDamageAssessment() {
             <div className="space-y-4">
               <div
                 onClick={() => fileInputRef.current?.click()}
-                className="relative border-2 border-dashed border-gray-700 rounded-xl p-8 hover:border-blue-500/50 transition-colors cursor-pointer group"
+                className="relative border-2 border-dashed border-gray-700 rounded-xl p-8 hover:border-blue-500/50 transition-colours cursor-pointer group"
               >
                 <input
                   ref={fileInputRef}
@@ -126,12 +126,12 @@ export default function AIDamageAssessment() {
                       alt="Damage preview"
                       className="w-full h-64 object-cover rounded-lg"
                     />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-centre justify-centre">
                       <p className="text-white font-medium">Click to change image</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center">
+                  <div className="text-centre">
                     <div className="text-4xl mb-3">📸</div>
                     <p className="text-white font-medium mb-1">Click to upload image</p>
                     <p className="text-gray-500 text-sm">or drag and drop</p>
@@ -147,7 +147,7 @@ export default function AIDamageAssessment() {
                   className="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-lg font-medium text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isAnalysing ? (
-                    <span className="flex items-center justify-center gap-2">
+                    <span className="flex items-centre justify-centre gap-2">
                       <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
@@ -169,7 +169,7 @@ export default function AIDamageAssessment() {
                 'Insurance-ready reports',
                 'Multiple damage type detection'
               ].map((feature, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm text-gray-400">
+                <div key={index} className="flex items-centre gap-2 text-sm text-gray-400">
                   <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -186,14 +186,14 @@ export default function AIDamageAssessment() {
             {analysis ? (
               <div className="space-y-6">
                 {/* Severity Badge */}
-                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${getSeverityColor(analysis.severity)}`}>
+                <div className={`inline-flex items-centre gap-2 px-4 py-2 rounded-full border ${getSeverityColor(analysis.severity)}`}>
                   <span className="font-bold uppercase">{analysis.severity}</span>
                   <span className="text-sm opacity-75">DAMAGE</span>
                 </div>
 
                 {/* Confidence Score */}
                 <div>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-centre justify-between mb-2">
                     <span className="text-gray-400 text-sm">AI Confidence</span>
                     <span className="text-white font-medium">{analysis.confidence}%</span>
                   </div>
@@ -229,9 +229,9 @@ export default function AIDamageAssessment() {
                 </div>
 
                 {/* Urgency Level */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <span className="text-gray-400 text-sm">Urgency:</span>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-centre gap-1">
                     {['immediate', 'high', 'medium'].includes(analysis.urgency) && (
                       <div className={`w-2 h-6 rounded-sm ${getUrgencyColor(analysis.urgency)}`} />
                     )}
@@ -261,16 +261,16 @@ export default function AIDamageAssessment() {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <button className="flex-1 py-2 px-4 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium text-white transition-colors">
+                  <button className="flex-1 py-2 px-4 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium text-white transition-colours">
                     Request Service
                   </button>
-                  <button className="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium text-white transition-colors">
+                  <button className="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium text-white transition-colours">
                     Download Report
                   </button>
                 </div>
               </div>
             ) : (
-              <div className="text-center py-12">
+              <div className="text-centre py-12">
                 <div className="text-6xl mb-4 opacity-20">🔍</div>
                 <p className="text-gray-500">Upload an image to see AI analysis</p>
               </div>

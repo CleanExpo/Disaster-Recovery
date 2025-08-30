@@ -50,31 +50,31 @@ Property damage creates unique psychological stresses that go far beyond the fin
 
 **Initial Shock and Denial:**
 - **Characteristics**: Difficulty accepting the extent of damage, numbness, disbelief
-- **Behaviors**: May minimize damage, delay decision-making, appear detached
+- **Behaviours**: May minimize damage, delay decision-making, appear detached
 - **Service Approach**: Gentle patience, provide clear information, avoid pressure
 - **Timeline**: Usually first 24-48 hours after loss
 
 **Anger and Frustration:**
 - **Characteristics**: Anger at situation, insurance company, or service providers
-- **Behaviors**: Irritability, unrealistic demands, blame attribution
+- **Behaviours**: Irritability, unrealistic demands, blame attribution
 - **Service Approach**: Professional calm, empathetic listening, redirect to solutions
 - **Common Triggers**: Delays, unexpected costs, insurance coverage issues
 
 **Bargaining and Negotiation:**
 - **Characteristics**: Attempting to minimize scope, seeking alternatives
-- **Behaviors**: Questioning necessity of work, seeking multiple opinions
+- **Behaviours**: Questioning necessity of work, seeking multiple opinions
 - **Service Approach**: Educational approach, explain consequences of inadequate restoration
 - **Professional Response**: Maintain standards while showing understanding
 
 **Depression and Sadness:**
 - **Characteristics**: Overwhelming sadness about loss, withdrawal, helplessness
-- **Behaviors**: Reduced communication, difficulty making decisions
+- **Behaviours**: Reduced communication, difficulty making decisions
 - **Service Approach**: Gentle support, clear guidance, regular check-ins
 - **Professional Boundaries**: Provide support while avoiding therapeutic role
 
 **Acceptance and Resolution:**
 - **Characteristics**: Acceptance of situation, focus on moving forward
-- **Behaviors**: Cooperative engagement, decision-making, planning for future
+- **Behaviours**: Cooperative engagement, decision-making, planning for future
 - **Service Approach**: Partnership approach, involve in decisions, celebrate progress
 - **Outcome Focus**: Help client envision positive outcome
 
@@ -195,7 +195,7 @@ Property damage creates unique psychological stresses that go far beyond the fin
 **Clients with Disabilities:**
 - **Accessibility**: Ensure restoration maintains or improves accessibility
 - **Communication**: Adapt communication style to client's needs
-- **Special Equipment**: Consider need for specialized equipment or accommodations
+- **Special Equipment**: Consider need for specialised equipment or accommodations
 - **Support Systems**: Work with existing support systems and caregivers
 
 This understanding of property loss psychology enables contractors to provide not just technical expertise, but genuine support during one of the most difficult experiences in people's lives.
@@ -286,9 +286,9 @@ Clear communication and realistic expectations prevent most client service probl
 - **Timeline Factors**: What affects drying time (humidity, materials, ventilation)
 
 **Fire Damage:**
-- **Smoke Behavior**: How smoke travels and penetrates materials
+- **Smoke Behaviour**: How smoke travels and penetrates materials
 - **Cleaning Process**: Why multiple cleaning steps are necessary
-- **Odor Elimination**: Different approaches to odor removal and why each is used
+- **Odour Elimination**: Different approaches to odour removal and why each is used
 - **Contents Restoration**: What can be restored vs. what requires replacement
 - **Safety Considerations**: Health and safety aspects of fire damage restoration
 
@@ -327,12 +327,12 @@ Clear communication and realistic expectations prevent most client service probl
 **Common Issues and Prevention:**
 - **Access Problems**: Discuss access needs and schedule coordination early
 - **Noise and Disruption**: Warn about noise levels and duration
-- **Dust and Odors**: Explain temporary dust and odor issues during work
+- **Dust and Odours**: Explain temporary dust and odour issues during work
 - **Utility Disruption**: Discuss any needed utility shutoffs or disruptions
 - **Security Concerns**: Address security measures during work
 
 **Early Warning Systems:**
-- **Problem Indicators**: Teach clients to recognize signs of potential problems
+- **Problem Indicators**: Teach clients to recognise signs of potential problems
 - **Communication Channels**: Ensure clients know how to reach you immediately
 - **Decision Points**: Identify key decision points that may arise during work
 - **Approval Processes**: Establish clear approval processes for changes
@@ -431,7 +431,7 @@ This systematic approach to communication and expectation management creates the
         id: "day9-obj1",
         title: "Pricing Strategy and Job Costing",
         description: "Understand pricing methodologies, cost structures, and profitability analysis",
-        measurableOutcome: "Can develop accurate pricing strategies and analyze job profitability"
+        measurableOutcome: "Can develop accurate pricing strategies and analyse job profitability"
       },
       {
         id: "day9-obj2",
@@ -442,7 +442,7 @@ This systematic approach to communication and expectation management creates the
       {
         id: "day9-obj3",
         title: "Operational Efficiency and Metrics",
-        description: "Understand key business metrics and operational optimization strategies",
+        description: "Understand key business metrics and operational optimisation strategies",
         measurableOutcome: "Can identify and improve key operational metrics that drive business success"
       }
     ],
@@ -462,7 +462,7 @@ Sustainable business success requires understanding all aspects of business oper
 ### Cost Structure Analysis
 
 **Direct Costs (Variable Costs):**
-- **Labor**: Actual technician wages including benefits and workers compensation
+- **Labour**: Actual technician wages including benefits and workers compensation
 - **Materials**: All materials consumed in restoration work
 - **Equipment Rental**: Equipment rental costs for jobs requiring specialty equipment
 - **Subcontractors**: Third-party specialists (electricians, HVAC, etc.)
@@ -485,7 +485,7 @@ Sustainable business success requires understanding all aspects of business oper
 ### Pricing Methodology
 
 **Cost-Plus Pricing:**
-- **Labor Markup**: Typically 100-150% to cover benefits, insurance, overhead
+- **Labour Markup**: Typically 100-150% to cover benefits, insurance, overhead
 - **Material Markup**: Usually 15-25% to cover procurement, storage, waste
 - **Equipment Charges**: Daily/hourly rates that recover ownership costs plus profit
 - **Overhead Recovery**: Percentage added to direct costs to recover fixed costs
@@ -515,13 +515,13 @@ Sustainable business success requires understanding all aspects of business oper
 **Fire Damage Restoration:**
 - **Assessment Services**: Detailed damage assessment and scope development
 - **Cleaning Services**: Structural cleaning and deodorization
-- **Content Restoration**: Specialized cleaning of fire-damaged contents
+- **Content Restoration**: Specialised cleaning of fire-damaged contents
 - **Reconstruction**: Rebuilding and refinishing of damaged structures
 
 ### Job Costing and Profitability Analysis
 
 **Real-Time Job Costing:**
-- **Labor Tracking**: Accurate tracking of all labor hours by technician and task
+- **Labour Tracking**: Accurate tracking of all labour hours by technician and task
 - **Material Tracking**: Recording all materials used with current pricing
 - **Equipment Utilization**: Tracking equipment usage and associated costs
 - **Subcontractor Costs**: Managing and tracking all third-party costs
@@ -530,7 +530,7 @@ Sustainable business success requires understanding all aspects of business oper
 **Profitability Metrics:**
 - **Gross Profit Margin**: (Revenue - Direct Costs) / Revenue
 - **Net Profit Margin**: (Revenue - All Costs) / Revenue
-- **Labor Efficiency**: Revenue per labor hour
+- **Labour Efficiency**: Revenue per labour hour
 - **Equipment ROI**: Return on investment for equipment purchases
 - **Customer Acquisition Cost**: Cost to acquire each new customer
 
@@ -540,7 +540,7 @@ Sustainable business success requires understanding all aspects of business oper
 Project: [Project Name]
 Revenue: $[Total Revenue]
 Direct Costs:
-  - Labor: $[Amount] ([Hours] hrs @ $[Rate])
+  - Labour: $[Amount] ([Hours] hrs @ $[Rate])
   - Materials: $[Amount]
   - Equipment: $[Amount]
   - Subcontractors: $[Amount]
@@ -617,7 +617,7 @@ Net Margin: [Net Profit / Revenue * 100]%
 - **Cost Tracking**: Real-time cost tracking and profitability analysis
 - **Cash Flow**: Cash flow forecasting and management tools
 - **Reporting**: Financial reporting and key performance indicators
-- **Tax Management**: Organized record keeping for tax compliance
+- **Tax Management**: Organised record keeping for tax compliance
 
 ### Growth Strategy and Scaling
 
@@ -662,8 +662,8 @@ This comprehensive understanding of business operations provides the foundation 
         definition: "Method of allocating fixed costs across jobs to ensure full cost recovery"
       },
       {
-        term: "Labor Burden",
-        definition: "Additional costs associated with labor including benefits, insurance, and taxes"
+        term: "Labour Burden",
+        definition: "Additional costs associated with labour including benefits, insurance, and taxes"
       },
       {
         term: "Working Capital",
@@ -847,7 +847,7 @@ Australia has comprehensive workplace safety legislation that applies to all dis
 - **Safety Glasses**: Basic eye protection for debris and particles
 - **Goggles**: Chemical splash protection and dust protection
 - **Face Shields**: Protection from chemical splash and flying debris
-- **Welding Protection**: Specialized protection for welding operations
+- **Welding Protection**: Specialised protection for welding operations
 - **Prescription Integration**: Prescription safety glasses for vision correction
 
 **Head Protection:**
@@ -862,7 +862,7 @@ Australia has comprehensive workplace safety legislation that applies to all dis
 - **Chemical-Resistant**: Protection from cleaning chemicals and solvents
 - **Disposable**: Nitrile or latex gloves for contamination protection
 - **Insulated**: Protection from electrical hazards
-- **Specialty**: Task-specific gloves for specialized work
+- **Specialty**: Task-specific gloves for specialised work
 
 **Foot Protection:**
 - **Safety Boots**: Steel or composite toe protection
@@ -882,7 +882,7 @@ Australia has comprehensive workplace safety legislation that applies to all dis
 
 **Safety Induction Program:**
 - **Company Safety Policy**: Overview of company safety expectations
-- **Hazard Recognition**: Training on recognizing workplace hazards
+- **Hazard Recognition**: Training on recognising workplace hazards
 - **PPE Requirements**: Proper use and maintenance of PPE
 - **Emergency Procedures**: Emergency response and evacuation procedures
 - **Reporting Requirements**: How and when to report safety concerns
@@ -921,7 +921,7 @@ This comprehensive safety framework provides the foundation for protecting worke
         `,
         keyPoints: [
           "Australian WHS legislation creates legal obligations for workplace safety",
-          "Disaster recovery work involves unique hazards requiring specialized safety measures",
+          "Disaster recovery work involves unique hazards requiring specialised safety measures",
           "Systematic safety management systems prevent incidents and ensure compliance",
           "PPE programs must be based on thorough hazard assessment and proper training",
           "Comprehensive training and competency development protects workers and business",
@@ -1076,7 +1076,7 @@ Quality control is what separates professional contractors from competitors and 
 **Structural Drying Verification:**
 - [ ] All affected materials at pre-loss moisture levels
 - [ ] No visible signs of mould growth
-- [ ] No musty or moisture-related odors
+- [ ] No musty or moisture-related odours
 - [ ] Relative humidity stable at 30-50%
 - [ ] No ongoing water intrusion sources
 - [ ] All equipment removed and areas cleaned
@@ -1093,7 +1093,7 @@ Quality control is what separates professional contractors from competitors and 
 
 **Cleaning Verification:**
 - [ ] No visible smoke or soot residue remaining
-- [ ] No smoke odors detectable
+- [ ] No smoke odours detectable
 - [ ] All surfaces properly cleaned using appropriate methods
 - [ ] HVAC system cleaned or components replaced as needed
 - [ ] Contents properly cleaned or documented as non-restorable
@@ -1101,7 +1101,7 @@ Quality control is what separates professional contractors from competitors and 
 
 **Restoration Verification:**
 - [ ] All fire-damaged materials properly restored or replaced
-- [ ] Primers and sealers applied where required for odor control
+- [ ] Primers and sealers applied where required for odour control
 - [ ] Paint and finishes match existing appearance
 - [ ] All systems tested and operational
 - [ ] Structural integrity verified where fire damage occurred
@@ -1192,7 +1192,7 @@ Quality control is what separates professional contractors from competitors and 
 - **Process Improvement**: Continuous improvement of processes based on feedback
 - **Training Updates**: Update training based on quality issues identified
 - **Standard Updates**: Update quality standards based on experience
-- **Best Practice Sharing**: Share best practices across organization
+- **Best Practice Sharing**: Share best practices across organisation
 
 This systematic approach to quality control ensures consistent, professional results that build reputation and drive business growth through client satisfaction and referrals.
         `,
@@ -1266,12 +1266,12 @@ This systematic approach to quality control ensures consistent, professional res
     day: 12,
     title: "Advanced Techniques and Specialty Services",
     subtitle: "Mastering High-Value Services: Specialty Restoration and Advanced Methods",
-    overview: "Advanced techniques and specialty services represent the highest-value work in disaster recovery. This day covers specialized restoration methods, emerging technologies, and niche services that command premium pricing and differentiate expert contractors.",
+    overview: "Advanced techniques and specialty services represent the highest-value work in disaster recovery. This day covers specialised restoration methods, emerging technologies, and niche services that command premium pricing and differentiate expert contractors.",
     learningObjectives: [
       {
         id: "day12-obj1",
         title: "Advanced Restoration Techniques",
-        description: "Master specialized restoration techniques for complex and high-value situations",
+        description: "Master specialised restoration techniques for complex and high-value situations",
         measurableOutcome: "Can execute advanced restoration techniques for specialty applications and complex damage scenarios"
       },
       {
@@ -1312,9 +1312,9 @@ The disaster recovery industry continues to evolve with new technologies, method
 **Injectidry Systems:**
 - **Technology**: Pressurized air injection into enclosed spaces
 - **Applications**: Hardwood floors, wall cavities, subfloor drying
-- **Components**: Specialized mats, injection ports, distribution systems
+- **Components**: Specialised mats, injection ports, distribution systems
 - **Benefits**: Dries areas inaccessible to traditional methods
-- **Expertise**: Requires specialized training and certification
+- **Expertise**: Requires specialised training and certification
 
 **Thermal Imaging Technology:**
 - **Applications**: Moisture detection, thermal mapping, hidden damage identification
@@ -1334,29 +1334,29 @@ The disaster recovery industry continues to evolve with new technologies, method
 
 **Thermal Fogging Technology:**
 - **Process**: Heat vaporization of deodorizing agents for deep penetration
-- **Applications**: Severe odor problems, inaccessible areas, vehicle interiors
-- **Equipment**: Professional thermal foggers with specialized chemicals
+- **Applications**: Severe odour problems, inaccessible areas, vehicle interiors
+- **Equipment**: Professional thermal foggers with specialised chemicals
 - **Safety**: Requires evacuation during treatment and proper ventilation
-- **Results**: Highly effective for persistent odor elimination
+- **Results**: Highly effective for persistent odour elimination
 
 **Ozone Generation Advances:**
 - **Technology**: High-output ozone generators with precise control systems
-- **Applications**: Odor elimination, disinfection, air purification
+- **Applications**: Odour elimination, disinfection, air purification
 - **Safety**: Advanced safety systems and monitoring equipment
 - **Efficiency**: Shorter treatment times with improved effectiveness
 - **Documentation**: Precise control and documentation of treatment parameters
 
 **Hydroxyl Radical Technology:**
-- **Process**: UV light generation of hydroxyl radicals for odor elimination
+- **Process**: UV light generation of hydroxyl radicals for odour elimination
 - **Advantages**: Safe for occupied spaces, continuous operation, no residue
-- **Applications**: Ongoing odor control during restoration work
+- **Applications**: Ongoing odour control during restoration work
 - **Equipment**: Portable units suitable for residential and commercial use
 - **Integration**: Combines well with other deodorization methods
 
 **Ultrasonic Cleaning Systems:**
 - **Technology**: High-frequency sound waves for deep cleaning
 - **Applications**: Contents restoration, electronics cleaning, delicate items
-- **Process**: Submersion cleaning with specialized cleaning solutions
+- **Process**: Submersion cleaning with specialised cleaning solutions
 - **Benefits**: Reaches areas inaccessible to traditional cleaning
 - **Investment**: Moderate equipment cost with high-value service potential
 
@@ -1388,22 +1388,22 @@ The disaster recovery industry continues to evolve with new technologies, method
 **Document and Media Restoration:**
 - **Freeze-Drying**: Advanced freeze-drying technology for water-damaged documents
 - **Digital Recovery**: Data recovery from damaged electronic media
-- **Photograph Restoration**: Specialized techniques for damaged photographs
+- **Photograph Restoration**: Specialised techniques for damaged photographs
 - **Book Restoration**: Conservation-grade restoration of valuable books
 - **Market**: High-value service for important documents and media
 
 **Textile and Content Restoration:**
 - **Wet Cleaning**: Advanced wet cleaning techniques for textiles
-- **Dry Cleaning**: Specialized dry cleaning for smoke and water damage
-- **Leather Restoration**: Specialized techniques for leather goods
+- **Dry Cleaning**: Specialised dry cleaning for smoke and water damage
+- **Leather Restoration**: Specialised techniques for leather goods
 - **Electronics Restoration**: Professional restoration of damaged electronics
 - **Pack-Out Services**: Complete pack-out, cleaning, and storage services
 
 **Structural Specialty Services:**
-- **Hardwood Floor Restoration**: Specialized techniques for water-damaged hardwood
+- **Hardwood Floor Restoration**: Specialised techniques for water-damaged hardwood
 - **Stone and Masonry**: Restoration techniques for natural stone and masonry
 - **Artwork Restoration**: Conservation techniques for paintings and artwork
-- **Antique Restoration**: Specialized restoration of antique furniture and items
+- **Antique Restoration**: Specialised restoration of antique furniture and items
 - **Architectural Elements**: Restoration of architectural details and millwork
 
 ### Emerging Technologies
@@ -1416,7 +1416,7 @@ The disaster recovery industry continues to evolve with new technologies, method
 - **Applications**: Cool conditions, precise humidity control, energy efficiency
 
 **Plasma Technology:**
-- **Air Purification**: Plasma air purification for odor and contaminant removal
+- **Air Purification**: Plasma air purification for odour and contaminant removal
 - **Surface Treatment**: Plasma treatment for surface decontamination
 - **Ozone-Free**: Alternative to ozone generation without safety concerns
 - **Continuous Operation**: Safe for continuous operation in occupied spaces
@@ -1439,7 +1439,7 @@ The disaster recovery industry continues to evolve with new technologies, method
 ### Technology Investment and ROI Analysis
 
 **Equipment Investment Strategy:**
-- **Market Analysis**: Analyze local market demand for advanced services
+- **Market Analysis**: Analyse local market demand for advanced services
 - **Competition Assessment**: Evaluate competitive advantage of new technologies
 - **Training Requirements**: Factor in training and certification costs
 - **Maintenance Costs**: Consider ongoing maintenance and support costs
@@ -1483,11 +1483,11 @@ This comprehensive understanding of advanced technologies and methods enables co
       },
       {
         term: "Thermal Fogging",
-        definition: "Heat vaporization of deodorizing chemicals for deep odor penetration"
+        definition: "Heat vaporization of deodorizing chemicals for deep odour penetration"
       },
       {
         term: "Hydroxyl Radicals",
-        definition: "Highly reactive molecules that break down odor compounds at molecular level"
+        definition: "Highly reactive molecules that break down odour compounds at molecular level"
       },
       {
         term: "Injectidry",
@@ -1501,11 +1501,11 @@ This comprehensive understanding of advanced technologies and methods enables co
     realWorldScenarios: [
       {
         title: "High-Value Content and Document Restoration",
-        scenario: "A law firm has experienced water damage affecting important legal documents, artwork, and electronic media. They need specialized restoration services and are willing to pay premium prices for expert work.",
+        scenario: "A law firm has experienced water damage affecting important legal documents, artwork, and electronic media. They need specialised restoration services and are willing to pay premium prices for expert work.",
         questions: [
           "What advanced technologies are most appropriate for this situation?",
           "How do you assess the restorability of different types of damaged items?",
-          "What partnerships or certifications might be needed for specialized work?",
+          "What partnerships or certifications might be needed for specialised work?",
           "How do you price premium specialty services appropriately?"
         ],
         correctApproach: "Assess each item type individually for restoration potential, partner with certified document restoration specialists where needed, use appropriate advanced technologies like freeze-drying, price based on value delivered rather than cost-plus approach"
@@ -1599,7 +1599,7 @@ Professional development in disaster recovery requires systematic approach to ed
 **Advanced Certifications:**
 - **CCT (Carpet Cleaning Technician)**: Textile restoration expertise
 - **UFT (Upholstery and Fabric Cleaning Technician)**: Furniture restoration
-- **OCT (Odor Control Technician)**: Advanced odor elimination
+- **OCT (Odour Control Technician)**: Advanced odour elimination
 - **HST (Health and Safety Technician)**: Comprehensive safety training
 - **RRT (Restoration Referral Technician)**: Business development focus
 
@@ -1613,13 +1613,13 @@ Professional development in disaster recovery requires systematic approach to ed
 
 **Safety Certifications:**
 - **OSHA 30-Hour Construction**: Comprehensive construction safety training
-- **Confined Space Entry**: Specialized training for confined space work
+- **Confined Space Entry**: Specialised training for confined space work
 - **Bloodborne Pathogen Certification**: Required for trauma scene work
 - **Asbestos Awareness**: Required for work in older buildings
 - **Lead-Safe Work Practices**: EPA RRP certification for lead paint
 
 **Specialty Certifications:**
-- **Document Restoration**: Specialized training for document recovery
+- **Document Restoration**: Specialised training for document recovery
 - **Electronics Restoration**: Certification for electronic equipment restoration
 - **Textile Restoration**: Advanced textile cleaning and restoration
 - **Structural Drying**: Advanced structural drying techniques
@@ -1644,7 +1644,7 @@ Professional development in disaster recovery requires systematic approach to ed
 **Industry Association Education:**
 - **RIA (Restoration Industry Association)**: Professional development programs
 - **ASCR (Association of Specialists in Cleaning and Restoration)**: Technical training
-- **Local Associations**: Regional associations offering specialized training
+- **Local Associations**: Regional associations offering specialised training
 - **Manufacturer Training**: Equipment and chemical manufacturer training programs
 - **Insurance Training**: Training provided by insurance companies
 
@@ -1666,7 +1666,7 @@ Professional development in disaster recovery requires systematic approach to ed
 
 **Medium-Term Goals (1-3 years):**
 - **Advanced Certifications**: Obtain advanced certifications in specialty areas
-- **Specialization**: Develop expertise in high-value specialty services
+- **Specialisation**: Develop expertise in high-value specialty services
 - **Leadership Skills**: Develop management and leadership capabilities
 - **Business Skills**: Enhance business and financial management skills
 - **Industry Recognition**: Pursue industry awards and recognition
@@ -1684,13 +1684,13 @@ Professional development in disaster recovery requires systematic approach to ed
 - **IICRC Approved Schools**: Comprehensive certification programs
 - **Community Colleges**: Business and technical education programs
 - **Universities**: Degree programs in business, engineering, or related fields
-- **Technical Schools**: Specialized training in construction and restoration
+- **Technical Schools**: Specialised training in construction and restoration
 - **Online Universities**: Flexible degree and certificate programs
 
 **Industry Publications:**
 - **Restoration & Remediation**: Leading industry magazine
 - **Cleanfax**: Cleaning and restoration industry publication
-- **Indoor Air Quality**: Specialized air quality and mould publication
+- **Indoor Air Quality**: Specialised air quality and mould publication
 - **Claims**: Insurance industry perspective on restoration
 - **Technical Journals**: Research and technical advancement publications
 
@@ -1711,7 +1711,7 @@ Professional development in disaster recovery requires systematic approach to ed
 ### Career Advancement Strategies
 
 **Technical Advancement:**
-- **Specialization**: Develop deep expertise in high-value specialties
+- **Specialisation**: Develop deep expertise in high-value specialties
 - **Innovation**: Stay at forefront of new technologies and methods
 - **Problem-Solving**: Develop reputation for solving difficult challenges
 - **Quality Excellence**: Maintain highest quality standards consistently
@@ -2030,10 +2030,10 @@ This comprehensive assessment ensures that only qualified, capable contractors r
             explanation: "30-50% relative humidity provides effective drying conditions without risking over-drying damage to materials."
           },
           {
-            question: "Which type of smoke damage is characterized by thin, greasy films and strong odors that are thermally activated?",
+            question: "Which type of smoke damage is characterized by thin, greasy films and strong odours that are thermally activated?",
             options: ["Protein smoke", "Synthetic smoke", "Natural material smoke", "Wet smoke"],
             correctAnswer: "Protein smoke",
-            explanation: "Protein smoke from organic materials creates thin, greasy films that cause severe odor problems and become stronger when heated."
+            explanation: "Protein smoke from organic materials creates thin, greasy films that cause severe odour problems and become stronger when heated."
           },
           {
             question: "What is the primary legal obligation under Australian Work Health and Safety legislation?",
@@ -2081,8 +2081,8 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 - Practice customer service and communication scripts
 - Verify all safety equipment and procedures
 
-**Week 4: Performance Optimization**
-- Analyze first month lead flow and conversion rates
+**Week 4: Performance Optimisation**
+- Analyse first month lead flow and conversion rates
 - Review customer feedback and satisfaction scores
 - Identify operational improvements and efficiencies
 - Plan capacity expansion based on demand
@@ -2103,7 +2103,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 - Estimate approval rate: 85%+ without major revisions
 - Job completion rate: 95%+ within agreed timelines
 - Revenue per technician: Track monthly productivity
-- Profit margins: Monitor and optimize by service type
+- Profit margins: Monitor and optimise by service type
 
 **Growth and Development Metrics:**
 - Monthly revenue growth: Track month-over-month growth
@@ -2164,7 +2164,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 ### Continuous Improvement Framework
 
 **Monthly Performance Reviews:**
-- Analyze all key performance indicators
+- Analyse all key performance indicators
 - Review customer feedback and satisfaction scores
 - Identify operational improvements and efficiency opportunities
 - Update training needs and professional development plans
@@ -2172,7 +2172,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 
 **Quarterly Strategic Planning:**
 - Review and update business goals and strategies
-- Analyze market conditions and competitive landscape
+- Analyse market conditions and competitive landscape
 - Plan equipment investments and capacity expansion
 - Update marketing and business development strategies
 - Review financial performance and profitability analysis
@@ -2191,7 +2191,7 @@ This systematic approach to business launch and success planning provides the ro
           "Success metrics provide objective measurement of performance and growth",
           "Common launch challenges have proven solutions based on contractor experience",
           "Long-term success requires strategic planning and continuous improvement",
-          "Performance reviews and strategic planning drive ongoing optimization",
+          "Performance reviews and strategic planning drive ongoing optimisation",
           "Systematic approach increases probability of business success and growth"
         ]
       }
@@ -2204,7 +2204,7 @@ This systematic approach to business launch and success planning provides the ro
     keyTerminology: [
       {
         term: "NRP Contractor Certification",
-        definition: "Official certification recognizing completion of comprehensive training and qualification for NRP network participation"
+        definition: "Official certification recognising completion of comprehensive training and qualification for NRP network participation"
       },
       {
         term: "Lead Distribution System",

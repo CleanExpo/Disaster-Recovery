@@ -6,7 +6,7 @@ const industries = [
   {
     slug: 'mining-resources',
     name: 'Mining & Resources',
-    description: 'Specialized disaster recovery for mining operations, processing plants, and resource facilities',
+    description: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities',
     risks: ['Equipment damage', 'Site flooding', 'Chemical spills', 'Structural damage'],
     locations: ['Pilbara WA', 'Hunter Valley NSW', 'Bowen Basin QLD', 'Goldfields WA'],
     keywords: ['mining disaster recovery', 'mine site restoration', 'processing plant cleanup']
@@ -22,7 +22,7 @@ const industries = [
   {
     slug: 'healthcare-medical',
     name: 'Healthcare & Medical Facilities',
-    description: 'Critical disaster recovery for hospitals, clinics, aged care, and medical centers',
+    description: 'Critical disaster recovery for hospitals, clinics, aged care, and medical centres',
     risks: ['Contamination', 'Power outages', 'Water damage', 'Biohazard incidents'],
     locations: ['All capital cities', 'Regional health districts'],
     keywords: ['hospital disaster recovery', 'medical facility restoration', 'healthcare cleanup']
@@ -37,11 +37,11 @@ const industries = [
   },
   {
     slug: 'retail-shopping',
-    name: 'Retail & Shopping Centers',
-    description: 'Rapid restoration for retail stores and shopping centers to minimize business interruption',
+    name: 'Retail & Shopping Centres',
+    description: 'Rapid restoration for retail stores and shopping centres to minimize business interruption',
     risks: ['Water damage', 'Fire damage', 'Storm damage', 'Vandalism cleanup'],
-    locations: ['CBD areas', 'Westfield centers', 'DFO outlets'],
-    keywords: ['retail disaster recovery', 'shopping center restoration', 'store cleanup']
+    locations: ['CBD areas', 'Westfield centres', 'DFO outlets'],
+    keywords: ['retail disaster recovery', 'shopping centre restoration', 'store cleanup']
   },
   {
     slug: 'hospitality-tourism',
@@ -62,7 +62,7 @@ import { Card } from '@/components/ui/card';
 import { Building2, Shield, Clock, AlertTriangle, CheckCircle2, Phone, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '${industry.name} Disaster Recovery | Specialized Industrial Restoration | Australia',
+  title: '${industry.name} Disaster Recovery | Specialised Industrial Restoration | Australia',
   description: '${industry.description}. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
   keywords: ${JSON.stringify(industry.keywords)}
 };
@@ -100,7 +100,7 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
       {/* Common Risks */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             ${industry.name} Disaster Risks We Handle
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -109,7 +109,7 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
                 <AlertTriangle className="h-10 w-10 text-orange-600 mb-4" />
                 <h3 className="font-bold mb-2">{risk}</h3>
                 <p className="text-sm text-gray-600">
-                  Specialized response protocols for ${industry.name.toLowerCase()} sector
+                  Specialised response protocols for ${industry.name.toLowerCase()} sector
                 </p>
               </Card>
             ))}
@@ -121,25 +121,25 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Why ${industry.name} Trusts Us
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
+              <div className="text-centre">
                 <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Minimal Downtime</h3>
                 <p className="text-gray-600">
                   Priority response to get your operations running again
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <Shield className="h-12 w-12 text-green-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Compliance Assured</h3>
                 <p className="text-gray-600">
                   Meet all industry regulations and safety standards
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <CheckCircle2 className="h-12 w-12 text-purple-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Insurance Expertise</h3>
                 <p className="text-gray-600">
@@ -154,10 +154,10 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
       {/* Service Locations */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Servicing ${industry.name} Across Australia
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-centre gap-4">
             {locations.map((location, index) => (
               <Card key={index} className="px-6 py-3">
                 <span className="font-semibold">{location}</span>
@@ -169,7 +169,7 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
 
       {/* CTA */}
       <section className="py-20 bg-orange-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Protect Your ${industry.name} Assets
           </h2>
@@ -207,7 +207,7 @@ import { Building2, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Industry-Specific Disaster Recovery | Commercial & Industrial Restoration',
-  description: 'Specialized disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
+  description: 'Specialised disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
 };
 
 const industries = ${JSON.stringify(industries.map(i => ({ name: i.name, slug: i.slug, description: i.description })), null, 2)};
@@ -216,7 +216,7 @@ export default function IndustriesPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Building2 className="h-16 w-16 text-orange-500 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Industry-Specific Disaster Recovery

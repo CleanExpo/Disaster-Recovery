@@ -133,8 +133,8 @@ export default function SEMrushDashboard() {
           
           {/* Connection Status */}
           <Card className="p-6 mb-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
+            <div className="flex items-centre justify-between">
+              <div className="flex items-centre">
                 {loading ? (
                   <Loader2 className="h-6 w-6 mr-3 animate-spin" />
                 ) : isConnected ? (
@@ -260,12 +260,12 @@ export default function SEMrushDashboard() {
                             <td className="p-2">${kw.cpc.toFixed(2)}</td>
                             <td className="p-2">
                               {kw.pageExists ? (
-                                <span className="text-green-600 flex items-center">
+                                <span className="text-green-600 flex items-centre">
                                   <CheckCircle2 className="h-4 w-4 mr-1" />
                                   Exists
                                 </span>
                               ) : (
-                                <span className="text-orange-600 flex items-center">
+                                <span className="text-orange-600 flex items-centre">
                                   <AlertCircle className="h-4 w-4 mr-1" />
                                   Missing
                                 </span>
@@ -278,7 +278,7 @@ export default function SEMrushDashboard() {
                   </div>
                   
                   {/* Actions */}
-                  <div className="mt-6 flex justify-between items-center">
+                  <div className="mt-6 flex justify-between items-centre">
                     <p className="text-sm text-gray-600">
                       {keywordData.filter(k => k.pageExists).length} of {keywordData.length} pages exist
                     </p>
@@ -305,7 +305,7 @@ export default function SEMrushDashboard() {
                   <h3 className="font-semibold mb-3">Primary Keywords</h3>
                   <div className="space-y-2">
                     {targetKeywords.primary.map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <div key={keyword} className="flex items-centre justify-between p-2 bg-gray-50 rounded">
                         <span className="text-sm">{keyword}</span>
                         <CheckCircle2 className="h-4 w-4 text-green-600" />
                       </div>
@@ -318,7 +318,7 @@ export default function SEMrushDashboard() {
                   <h3 className="font-semibold mb-3">Longtail Keywords</h3>
                   <div className="space-y-2">
                     {targetKeywords.longtail.map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <div key={keyword} className="flex items-centre justify-between p-2 bg-gray-50 rounded">
                         <span className="text-sm">{keyword}</span>
                         <CheckCircle2 className="h-4 w-4 text-green-600" />
                       </div>
@@ -331,7 +331,7 @@ export default function SEMrushDashboard() {
                   <h3 className="font-semibold mb-3">Local Keywords</h3>
                   <div className="space-y-2">
                     {targetKeywords.local.map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <div key={keyword} className="flex items-centre justify-between p-2 bg-gray-50 rounded">
                         <span className="text-sm">{keyword}</span>
                         <CheckCircle2 className="h-4 w-4 text-green-600" />
                       </div>
@@ -344,7 +344,7 @@ export default function SEMrushDashboard() {
                   <h3 className="font-semibold mb-3">Commercial Keywords</h3>
                   <div className="space-y-2">
                     {targetKeywords.commercial.slice(0, 10).map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <div key={keyword} className="flex items-centre justify-between p-2 bg-gray-50 rounded">
                         <span className="text-sm">{keyword}</span>
                         <CheckCircle2 className="h-4 w-4 text-green-600" />
                       </div>

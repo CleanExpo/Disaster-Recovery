@@ -9,7 +9,7 @@ interface SchemaScriptProps {
 
 /**
  * Component for rendering JSON-LD schema markup
- * Implements structured data for SEO optimization
+ * Implements structured data for SEO optimisation
  */
 export function SchemaScript({ schema, id = 'schema-script' }: SchemaScriptProps) {
   return (

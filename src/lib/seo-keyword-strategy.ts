@@ -548,7 +548,7 @@ export const easyWinKeywords = {
     }
   ],
 
-  // Voice Search Optimized
+  // Voice Search Optimised
   voiceSearchKeywords: [
     {
       keyword: 'who do i call for water damage right now',
@@ -698,7 +698,7 @@ export function generateQuestionKeywords(service: string): string[] {
 export function generateSemanticVariations(primaryKeyword: string): string[] {
   const variations: { [key: string]: string[] } = {
     'water damage': ['water damage', 'flood damage', 'water restoration', 'flood restoration', 'water mitigation', 'flood cleanup'],
-    'mould': ['mould', 'mold', 'black mould', 'toxic mould', 'mildew', 'fungus'],
+    'mould': ['mould', 'mould', 'black mould', 'toxic mould', 'mildew', 'fungus'],
     'removal': ['removal', 'remediation', 'cleanup', 'treatment', 'elimination', 'extraction'],
     'emergency': ['emergency', 'urgent', 'immediate', 'same day', '24 hour', 'after hours'],
     'restoration': ['restoration', 'repair', 'recovery', 'cleanup', 'remediation', 'mitigation'],
@@ -720,7 +720,7 @@ export function generateSemanticVariations(primaryKeyword: string): string[] {
   return [primaryKeyword, result];
 }
 
-// Content Optimization Suggestions
+// Content Optimisation Suggestions
 export function getContentOptimizationTips(keyword: KeywordOpportunity): string[] {
   const tips: string[] = [];
   

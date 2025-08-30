@@ -2,7 +2,7 @@
  * Usage Example for UI/UX Design Agent System
  * 
  * This example demonstrates how to use the comprehensive UI/UX Design Agent system
- * to analyze and improve components using the R6 Digital design system.
+ * to analyse and improve components using the R6 Digital design system.
  */
 
 import {
@@ -59,15 +59,15 @@ async function improveButtonComponent() {
     styles: {
       base: `
         padding: 12px 24px;
-        background-color: #007bff;
-        color: white;
+        background-colour: #007bff;
+        colour: white;
         border: none;
         border-radius: 4px;
         font-size: 16px;
         cursor: pointer;
       `,
       hover: `
-        background-color: #0056b3;
+        background-colour: #0056b3;
       `
     },
     accessibility: {
@@ -203,7 +203,7 @@ function createR6DesignSystemConfig(): DesignSystemConfig {
   return {
     name: 'r6-digital',
     version: '1.0.0',
-    colors: {
+    colours: {
       primary: {
         main: '#131cff',
         hover: '#0f17cc',

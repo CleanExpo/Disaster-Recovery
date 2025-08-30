@@ -543,7 +543,7 @@ export default function MarketplaceListing() {
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
       {partner.marketplace.featured && (
         <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-t-xl">
-          <div className="flex items-center">
+          <div className="flex items-centre">
             <Zap className="w-4 h-4 mr-2" />
             <span className="text-sm font-medium">Featured Partner</span>
           </div>
@@ -552,17 +552,17 @@ export default function MarketplaceListing() {
       
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+          <div className="flex items-centre space-x-3">
+            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-centre justify-centre">
               {categoryIcons[partner.category]}
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">{partner.companyName}</h3>
-              <div className="flex items-center space-x-2 mt-1">
+              <div className="flex items-centre space-x-2 mt-1">
                 <span className={`px-2 py-1 rounded-full text-xs font-medium border ${tierColors[partner.tier]}`}>
                   {partner.tier.toUpperCase()}
                 </span>
-                <div className="flex items-center text-yellow-500">
+                <div className="flex items-centre text-yellow-500">
                   <Star className="w-4 h-4 fill-current" />
                   <span className="text-sm text-gray-600 ml-1">
                     {partner.marketplace.reviews.average} ({partner.marketplace.reviews.count})
@@ -595,7 +595,7 @@ export default function MarketplaceListing() {
 
         {partner.marketplace.promotions.length > 0 && (
           <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-            <div className="flex items-center">
+            <div className="flex items-centre">
               <Tag className="w-4 h-4 text-green-600 mr-2" />
               <span className="text-sm font-medium text-green-800">
                 {partner.marketplace.promotions[0].name}
@@ -608,11 +608,11 @@ export default function MarketplaceListing() {
         )}
 
         <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 mb-4">
-          <div className="flex items-center">
+          <div className="flex items-centre">
             <MapPin className="w-4 h-4 mr-2" />
             <span>{partner.address.city}, {partner.address.state}</span>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-centre">
             <Eye className="w-4 h-4 mr-2" />
             <span>{partner.marketplace.analytics.views.toLocaleString()} views</span>
           </div>
@@ -621,14 +621,14 @@ export default function MarketplaceListing() {
         <div className="flex space-x-2">
           <button
             onClick={() => setSelectedPartner(partner.id)}
-            className="flex-1 py-2 px-4 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+            className="flex-1 py-2 px-4 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colours"
           >
             View Details
           </button>
-          <button className="p-2 border border-gray-300 rounded-lg text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colors">
+          <button className="p-2 border border-gray-300 rounded-lg text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colours">
             <Share2 className="w-4 h-4" />
           </button>
-          <button className="p-2 border border-gray-300 rounded-lg text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colors">
+          <button className="p-2 border border-gray-300 rounded-lg text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colours">
             <MessageSquare className="w-4 h-4" />
           </button>
         </div>
@@ -699,9 +699,9 @@ export default function MarketplaceListing() {
           </div>
         </div>
         
-        <div className="mt-4 flex items-center justify-between text-sm text-gray-600">
+        <div className="mt-4 flex items-centre justify-between text-sm text-gray-600">
           <span>{sortedPartners.length} partners found</span>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-centre space-x-4">
             <span>Active promotions: {mockPartners.filter(p => p.marketplace.promotions.length > 0).length}</span>
             <span>Featured partners: {mockPartners.filter(p => p.marketplace.featured).length}</span>
           </div>
@@ -711,7 +711,7 @@ export default function MarketplaceListing() {
       {/* Featured Partners Banner */}
       {mockPartners.filter(p => p.marketplace.featured).length > 0 && (
         <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl p-6 mb-8 text-white">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <h2 className="text-xl font-bold mb-2">Featured Partners</h2>
               <p className="opacity-90">Premium partners with exclusive benefits and priority support</p>
@@ -729,8 +729,8 @@ export default function MarketplaceListing() {
       </div>
 
       {sortedPartners.length === 0 && (
-        <div className="text-center py-12">
-          <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className="text-centre py-12">
+          <div className="w-24 h-24 bg-gray-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
             <Search className="w-12 h-12 text-gray-400" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">No partners found</h3>
@@ -741,7 +741,7 @@ export default function MarketplaceListing() {
               setSelectedCategory('all');
               setSelectedTier('all');
             }}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours"
           >
             Clear Filters
           </button>
@@ -750,7 +750,7 @@ export default function MarketplaceListing() {
 
       {/* Partner Detail Modal */}
       {selectedPartner && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-centre justify-centre p-4">
           <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex justify-between items-start">

@@ -28,7 +28,7 @@ interface CategorySection {
   category: PriceCategory;
   title: string;
   icon: React.ElementType;
-  color: string;
+  colour: string;
   description?: string;
 }
 
@@ -39,17 +39,17 @@ const TransparencyBillingDashboard: React.FC = () => {
   const [showPrintView, setShowPrintView] = useState(false);
 
   const categories: CategorySection[] = [
-    { category: 'call_out', title: 'Call-Out Fee', icon: Shield, color: 'blue', 
+    { category: 'call_out', title: 'Call-Out Fee', icon: Shield, colour: 'blue', 
       description: 'Initial assessment and emergency response charges' },
-    { category: 'labour', title: 'Labour (Hourly Rates)', icon: Clock, color: 'green',
+    { category: 'labour', title: 'Labour (Hourly Rates)', icon: Clock, colour: 'green',
       description: 'Normal Hours: 8am–4pm (Mon–Fri). All other times are after hours.' },
-    { category: 'equipment', title: 'Equipment Hire', icon: Tool, color: 'purple',
+    { category: 'equipment', title: 'Equipment Hire', icon: Tool, colour: 'purple',
       description: 'Price 1: With remote monitoring. Price 2: Standard (max 4 days drying per week)' },
-    { category: 'chemicals', title: 'Chemicals & Consumables', icon: Beaker, color: 'orange',
+    { category: 'chemicals', title: 'Chemicals & Consumables', icon: Beaker, colour: 'orange',
       description: 'Treatment products and consumable materials' },
-    { category: 'services', title: 'Additional Services', icon: Briefcase, color: 'indigo',
-      description: 'Specialized restoration and remediation services' },
-    { category: 'administration', title: 'Administration & Insurance', icon: FileText, color: 'gray',
+    { category: 'services', title: 'Additional Services', icon: Briefcase, colour: 'indigo',
+      description: 'Specialised restoration and remediation services' },
+    { category: 'administration', title: 'Administration & Insurance', icon: FileText, colour: 'gray',
       description: 'Processing and administrative charges' }
   ];
 
@@ -108,7 +108,7 @@ const TransparencyBillingDashboard: React.FC = () => {
       {
         id: 'PG004',
         category: 'labour',
-        itemName: 'Specialized Technician (e.g. Mould/Sewage)',
+        itemName: 'Specialised Technician (e.g. Mould/Sewage)',
         unit: 'per_hour',
         priceRange: {
           min: 110, max: 150,
@@ -416,7 +416,7 @@ const TransparencyBillingDashboard: React.FC = () => {
 
   const getCategoryColor = (category: PriceCategory) => {
     const section = categories.find(c => c.category === category);
-    return section?.color || 'gray';
+    return section?.colour || 'gray';
   };
 
   const exportPDF = () => {
@@ -433,8 +433,8 @@ const TransparencyBillingDashboard: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-centre space-x-3">
             <div className="p-2 bg-green-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-green-600" />
             </div>
@@ -443,17 +443,17 @@ const TransparencyBillingDashboard: React.FC = () => {
               <p className="text-sm text-gray-500">(AUD, incl GST)</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <button
               onClick={printGuidelines}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
+              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2"
             >
               <Printer className="h-4 w-4" />
               <span>Print</span>
             </button>
             <button
               onClick={exportPDF}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center space-x-2"
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-centre space-x-2"
             >
               <Download className="h-4 w-4" />
               <span>Export PDF</span>
@@ -480,7 +480,7 @@ const TransparencyBillingDashboard: React.FC = () => {
 
       {/* Category Filter */}
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <div className="flex items-center space-x-2 overflow-x-auto">
+        <div className="flex items-centre space-x-2 overflow-x-auto">
           <button
             onClick={() => setSelectedCategory('all')}
             className={`px-3 py-1 rounded-lg whitespace-nowrap ${
@@ -497,9 +497,9 @@ const TransparencyBillingDashboard: React.FC = () => {
               <button
                 key={cat.category}
                 onClick={() => setSelectedCategory(cat.category)}
-                className={`px-3 py-1 rounded-lg flex items-center space-x-1 whitespace-nowrap ${
+                className={`px-3 py-1 rounded-lg flex items-centre space-x-1 whitespace-nowrap ${
                   selectedCategory === cat.category
-                    ? `bg-${cat.color}-100 text-${cat.color}-700`
+                    ? `bg-${cat.colour}-100 text-${cat.colour}-700`
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
@@ -524,11 +524,11 @@ const TransparencyBillingDashboard: React.FC = () => {
               <div key={categorySection.category} className="bg-white rounded-lg shadow-sm">
                 <button
                   onClick={() => toggleCategory(categorySection.category)}
-                  className="w-full p-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                  className="w-full p-4 flex items-centre justify-between hover:bg-gray-50 transition-colours"
                 >
-                  <div className="flex items-center space-x-3">
-                    <div className={`p-2 bg-${categorySection.color}-100 rounded-lg`}>
-                      <Icon className={`h-5 w-5 text-${categorySection.color}-600`} />
+                  <div className="flex items-centre space-x-3">
+                    <div className={`p-2 bg-${categorySection.colour}-100 rounded-lg`}>
+                      <Icon className={`h-5 w-5 text-${categorySection.colour}-600`} />
                     </div>
                     <div className="text-left">
                       <h3 className="font-semibold">{categorySection.title}</h3>
@@ -624,7 +624,7 @@ const TransparencyBillingDashboard: React.FC = () => {
                       <div className="divide-y">
                         {categoryGuidelines.map((item) => (
                           <div key={item.id} className="p-4 hover:bg-gray-50">
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-centre justify-between">
                               <div className="flex-1">
                                 <p className="font-medium">{item.itemName}</p>
                                 {item.notes && (
@@ -655,7 +655,7 @@ const TransparencyBillingDashboard: React.FC = () => {
 
       {/* Additional Information */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="font-semibold mb-4 flex items-center">
+        <h3 className="font-semibold mb-4 flex items-centre">
           <AlertCircle className="h-5 w-5 mr-2 text-amber-600" />
           Client Information
         </h3>

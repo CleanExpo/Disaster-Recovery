@@ -40,16 +40,16 @@ export async function POST(request: NextRequest) {
       subject: 'Test Email - Disaster Recovery Australia',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #0052CC; padding: 30px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Email Configuration Test</h1>
+          <div style="background: #0052CC; padding: 30px; text-align: centre;">
+            <h1 style="colour: white; margin: 0;">Email Configuration Test</h1>
           </div>
           
           <div style="padding: 30px;">
             <p style="font-size: 16px;">This is a test email from the Disaster Recovery Australia system.</p>
             
             <div style="background: #d4edda; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #28a745;">
-              <h3 style="margin-top: 0; color: #155724;">✅ Email Configuration Working</h3>
-              <p style="color: #155724;">
+              <h3 style="margin-top: 0; colour: #155724;">✅ Email Configuration Working</h3>
+              <p style="colour: #155724;">
                 Your email configuration is properly set up and working correctly.
               </p>
             </div>
@@ -62,12 +62,12 @@ export async function POST(request: NextRequest) {
               <li>Timestamp: ${new Date().toLocaleString('en-AU')}</li>
             </ul>
             
-            <p style="color: #666; font-size: 14px; margin-top: 30px;">
+            <p style="colour: #666; font-size: 14px; margin-top: 30px;">
               This test was initiated by an administrator to verify the email system functionality.
             </p>
           </div>
           
-          <div style="background: #f5f5f5; padding: 20px; text-align: center; color: #666; font-size: 12px;">
+          <div style="background: #f5f5f5; padding: 20px; text-align: centre; colour: #666; font-size: 12px;">
             <p>Disaster Recovery Australia - Email System Test</p>
           </div>
         </div>

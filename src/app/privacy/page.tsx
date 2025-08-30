@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
               <ul className="list-disc pl-6 space-y-2">
                 <li>SSL encryption for all data transmission</li>
                 <li>Secure servers with regular security updates</li>
-                <li>Limited access to authorized personnel only</li>
+                <li>Limited access to authorised personnel only</li>
                 <li>Regular security audits and monitoring</li>
                 <li>Compliance with Australian privacy laws</li>
               </ul>

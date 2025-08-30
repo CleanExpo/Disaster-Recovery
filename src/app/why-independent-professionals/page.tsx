@@ -55,7 +55,7 @@ export default function WhyIndependentProfessionalsPage() {
       winner: 'independent'
     },
     {
-      aspect: 'Specialization',
+      aspect: 'Specialisation',
       independent: 'Deep expertise in specific areas',
       builderEmployee: 'Jack of all trades',
       winner: 'independent'
@@ -69,11 +69,11 @@ export default function WhyIndependentProfessionalsPage() {
       'IICRC FSRT (Fire & Smoke Restoration) - 3 days + exam',
       'IICRC AMRT (Applied Microbial Remediation) - 4 days + exam',
       'IICRC TCST (Trauma & Crime Scene) - 3 days + exam',
-      'IICRC OCT (Odor Control) - 2 days + exam',
+      'IICRC OCT (Odour Control) - 2 days + exam',
       'Annual recertification requirements',
       'Continuing education credits (14 CEC/year)',
       'Industry conference attendance',
-      'Specialized equipment training',
+      'Specialised equipment training',
       'Insurance certification programs',
       'Building science education'
     ],
@@ -103,7 +103,7 @@ export default function WhyIndependentProfessionalsPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <Award className="h-16 w-16 mx-auto mb-6 text-yellow-400" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               The Truth About Restoration Qualifications
@@ -126,7 +126,7 @@ export default function WhyIndependentProfessionalsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 border-2 border-red-500">
-              <h2 className="text-3xl font-bold mb-6 text-red-600 text-center">
+              <h2 className="text-3xl font-bold mb-6 text-red-600 text-centre">
                 The Industry Secret Big Restoration Companies Don't Want You to Know
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
@@ -189,7 +189,7 @@ export default function WhyIndependentProfessionalsPage() {
       {/* Detailed Comparison Table */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Head-to-Head Comparison
           </h2>
           <div className="max-w-5xl mx-auto">
@@ -198,18 +198,18 @@ export default function WhyIndependentProfessionalsPage() {
                 <thead className="bg-blue-900 text-white">
                   <tr>
                     <th className="p-4 text-left">Qualification Aspect</th>
-                    <th className="p-4 text-center">Independent Professional</th>
-                    <th className="p-4 text-center">Builder/Restorer Employee</th>
+                    <th className="p-4 text-centre">Independent Professional</th>
+                    <th className="p-4 text-centre">Builder/Restorer Employee</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonData.map((item, index) => (
                     <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                       <td className="p-4 font-bold">{item.aspect}</td>
-                      <td className={`p-4 text-center ${item.winner === 'independent' ? 'bg-green-50 text-green-700 font-bold' : 'text-gray-600'}`}>
+                      <td className={`p-4 text-centre ${item.winner === 'independent' ? 'bg-green-50 text-green-700 font-bold' : 'text-gray-600'}`}>
                         {item.independent}
                       </td>
-                      <td className={`p-4 text-center ${item.winner === 'builderEmployee' ? 'bg-green-50 text-green-700 font-bold' : 'bg-red-50 text-red-700'}`}>
+                      <td className={`p-4 text-centre ${item.winner === 'builderEmployee' ? 'bg-green-50 text-green-700 font-bold' : 'bg-red-50 text-red-700'}`}>
                         {item.builderEmployee}
                       </td>
                     </tr>
@@ -217,7 +217,7 @@ export default function WhyIndependentProfessionalsPage() {
                 </tbody>
               </table>
             </Card>
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-centre">
               <p className="text-2xl font-bold text-green-600">
                 Independent Professionals: 8/8 Superior Qualifications
               </p>
@@ -229,7 +229,7 @@ export default function WhyIndependentProfessionalsPage() {
       {/* Training Requirements */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Actual Training Requirements
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -275,7 +275,7 @@ export default function WhyIndependentProfessionalsPage() {
       {/* Industry Associations */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Professional Memberships & Associations
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -285,7 +285,7 @@ export default function WhyIndependentProfessionalsPage() {
               </h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {associations.map((assoc, index) => (
-                  <div key={index} className="flex items-center p-3 bg-blue-50 rounded-lg">
+                  <div key={index} className="flex items-centre p-3 bg-blue-50 rounded-lg">
                     <Award className="h-6 w-6 text-blue-600 mr-3" />
                     <div>
                       <p className="font-bold">{assoc.name}</p>
@@ -295,7 +295,7 @@ export default function WhyIndependentProfessionalsPage() {
                 ))}
               </div>
               <div className="mt-6 p-4 bg-orange-50 rounded-lg">
-                <p className="text-center">
+                <p className="text-centre">
                   <strong>Builder/Restorer Employees:</strong> Usually ZERO professional memberships
                 </p>
               </div>
@@ -307,7 +307,7 @@ export default function WhyIndependentProfessionalsPage() {
       {/* Why Professionals Go Independent */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why 90% of Experienced Technicians Go Independent
           </h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -315,7 +315,7 @@ export default function WhyIndependentProfessionalsPage() {
               <TrendingUp className="h-10 w-10 text-blue-600 mb-4" />
               <h3 className="font-bold text-lg mb-3">Career Progression</h3>
               <p className="text-gray-700">
-                After gaining experience, professionals realize they can provide better service 
+                After gaining experience, professionals realise they can provide better service 
                 independently than working for companies that prioritize profit over quality.
               </p>
             </Card>
@@ -339,26 +339,26 @@ export default function WhyIndependentProfessionalsPage() {
           
           <div className="mt-12 max-w-3xl mx-auto">
             <Card className="p-8 bg-yellow-50 border-2 border-yellow-400">
-              <h3 className="text-2xl font-bold mb-4 text-center">
+              <h3 className="text-2xl font-bold mb-4 text-centre">
                 The Industry Evolution
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-3 flex-shrink-0">1</span>
                   <div>
                     <p className="font-bold">Years 0-2: Employee Phase</p>
                     <p className="text-gray-600">Learn basics at builder/restorer company</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-3 flex-shrink-0">2</span>
                   <div>
                     <p className="font-bold">Years 2-5: Certification Phase</p>
-                    <p className="text-gray-600">Pursue IICRC certifications and specialized training</p>
+                    <p className="text-gray-600">Pursue IICRC certifications and specialised training</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                  <span className="bg-green-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-3 flex-shrink-0">3</span>
                   <div>
                     <p className="font-bold">Years 5+: Independence Phase</p>
                     <p className="text-gray-600">Start own business to provide quality service</p>
@@ -373,32 +373,32 @@ export default function WhyIndependentProfessionalsPage() {
       {/* Trust Signals */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Insurance Companies Prefer Independent Professionals
           </h2>
           <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Shield className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="font-bold mb-2">Lower Claim Costs</h3>
               <p className="text-sm text-gray-600">
                 No corporate markup or franchise fees
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <CheckCircle2 className="h-10 w-10 text-green-600 mx-auto mb-3" />
               <h3 className="font-bold mb-2">Higher Success Rate</h3>
               <p className="text-sm text-gray-600">
                 98% first-time completion vs 72%
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Clock className="h-10 w-10 text-orange-600 mx-auto mb-3" />
               <h3 className="font-bold mb-2">Faster Resolution</h3>
               <p className="text-sm text-gray-600">
                 Direct communication, no corporate delays
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Star className="h-10 w-10 text-yellow-600 mx-auto mb-3" />
               <h3 className="font-bold mb-2">Better Outcomes</h3>
               <p className="text-sm text-gray-600">
@@ -411,7 +411,7 @@ export default function WhyIndependentProfessionalsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Award className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             Choose Qualified, Not Just Available

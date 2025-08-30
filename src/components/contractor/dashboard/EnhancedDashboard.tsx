@@ -88,7 +88,7 @@ function JobTypeBadge({ type, count }: { type: string; count?: number }) {
   const icons = {
     water: Droplets,
     fire: Flame,
-    mold: Shield,
+    mould: Shield,
     structural: Building2,
     biohazard: AlertTriangle
   };
@@ -143,7 +143,7 @@ function PerformanceMeter({
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <span className="text-sm text-gray-600">{label}</span>
         <span className="text-sm font-semibold">{value}%</span>
       </div>
@@ -180,14 +180,14 @@ function MobileBottomNavigation({ activeTab, setActiveTab }: {
             key={item.id}
             onClick={() => setActiveTab(item.id)}
             className={cn(
-              "flex flex-col items-center p-2 min-w-[44px] transition-colors touch-target",
+              "flex flex-col items-centre p-2 min-w-[44px] transition-colours touch-target",
               activeTab === item.id ? "text-blue-600" : "text-gray-400"
             )}
           >
             <div className="relative">
               <item.icon className="h-6 w-6" />
               {item.badge && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-centre justify-centre">
                   {item.badge}
                 </span>
               )}
@@ -205,10 +205,10 @@ function QuickActionsFAB() {
   const [isOpen, setIsOpen] = useState(false);
 
   const actions = [
-    { icon: Camera, label: 'Photo', color: 'bg-blue-500' },
-    { icon: Phone, label: 'Call', color: 'bg-green-500' },
-    { icon: FileText, label: 'Report', color: 'bg-purple-500' },
-    { icon: Navigation, label: 'Navigate', color: 'bg-orange-500' }
+    { icon: Camera, label: 'Photo', colour: 'bg-blue-500' },
+    { icon: Phone, label: 'Call', colour: 'bg-green-500' },
+    { icon: FileText, label: 'Report', colour: 'bg-purple-500' },
+    { icon: Navigation, label: 'Navigate', colour: 'bg-orange-500' }
   ];
 
   return (
@@ -232,7 +232,7 @@ function QuickActionsFAB() {
               size="icon"
               className={cn(
                 "h-12 w-12 rounded-full shadow-md animate-slide-in-bottom touch-target",
-                action.color
+                action.colour
               )}
               style={{ animationDelay: `${index * 50}ms` }}
             >
@@ -250,14 +250,14 @@ function WeatherWidget() {
   return (
     <Card className="border-blue-200 bg-blue-50/50">
       <CardHeader className="pb-3">
-        <CardTitle className="text-sm flex items-center gap-2">
+        <CardTitle className="text-sm flex items-centre gap-2">
           <CloudRain className="h-4 w-4" />
           Weather Alert
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="flex items-centre justify-between">
+          <div className="flex items-centre gap-2">
             <CloudRain className="h-8 w-8 text-blue-600" />
             <div>
               <p className="font-semibold">Heavy Rain</p>
@@ -266,7 +266,7 @@ function WeatherWidget() {
           </div>
           <div className="text-right">
             <p className="text-sm">25°C</p>
-            <p className="text-xs text-gray-600 flex items-center gap-1">
+            <p className="text-xs text-gray-600 flex items-centre gap-1">
               <Wind className="h-3 w-3" />
               15 km/h
             </p>
@@ -289,7 +289,7 @@ function ActiveJobCard({ job }: { job: any }) {
     <div className="border rounded-lg p-4 hover:shadow-md transition-all cursor-pointer group">
       <div className="flex justify-between items-start mb-3">
         <div>
-          <h3 className="font-semibold text-sm flex items-center gap-2">
+          <h3 className="font-semibold text-sm flex items-centre gap-2">
             {job.id}
             <StatusIndicator status={job.priority} label="" />
           </h3>
@@ -298,18 +298,18 @@ function ActiveJobCard({ job }: { job: any }) {
         <JobTypeBadge type={job.type} />
       </div>
       
-      <div className="flex items-center justify-between mt-4">
-        <div className="flex items-center gap-4 text-xs text-gray-500">
-          <span className="flex items-center gap-1">
+      <div className="flex items-centre justify-between mt-4">
+        <div className="flex items-centre gap-4 text-xs text-gray-500">
+          <span className="flex items-centre gap-1">
             <Clock className="h-3 w-3" />
             {job.time}
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-centre gap-1">
             <MapPin className="h-3 w-3" />
             {job.distance}
           </span>
         </div>
-        <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+        <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 transition-colours" />
       </div>
     </div>
   );
@@ -325,7 +325,7 @@ export function EnhancedDashboard() {
   const activeJobs = [
     { id: '#1248', type: 'water', address: '123 Main St, Sydney', time: '2h ago', distance: '5km', priority: 'urgent' },
     { id: '#1249', type: 'fire', address: '456 Park Ave, Melbourne', time: 'Tomorrow 9am', distance: '12km', priority: 'active' },
-    { id: '#1250', type: 'mold', address: '789 Queen St, Brisbane', time: 'Monday', distance: '8km', priority: 'normal' }
+    { id: '#1250', type: 'mould', address: '789 Queen St, Brisbane', time: 'Monday', distance: '8km', priority: 'normal' }
   ];
 
   const kpiData = {
@@ -344,7 +344,7 @@ export function EnhancedDashboard() {
     <div className="min-h-screen pb-20 md:pb-0">
       {/* Connection Status Bar */}
       <div className={cn(
-        "flex items-center justify-center py-1 text-xs transition-all",
+        "flex items-centre justify-centre py-1 text-xs transition-all",
         isOnline ? "bg-green-50 text-green-700" : "bg-orange-50 text-orange-700"
       )}>
         {isOnline ? (
@@ -362,12 +362,12 @@ export function EnhancedDashboard() {
 
       <div className="p-4 md:p-6 space-y-6 animate-fade-in">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-centre gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold">Contractor Dashboard</h1>
             <p className="text-gray-600 mt-1">Welcome back, Demo Restoration Services</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-centre gap-2">
             <Badge className="bg-green-100 text-green-800">Active</Badge>
             <Badge variant="outline">Tier: Gold</Badge>
           </div>
@@ -376,7 +376,7 @@ export function EnhancedDashboard() {
         {/* Emergency Alert (if any) */}
         <Alert className="border-red-200 bg-red-50">
           <AlertTriangle className="h-4 w-4" />
-          <AlertDescription className="flex items-center justify-between">
+          <AlertDescription className="flex items-centre justify-between">
             <span>
               <strong>Emergency Job Available:</strong> Water damage at 42 Emergency St - Respond immediately
             </span>
@@ -449,7 +449,7 @@ export function EnhancedDashboard() {
           </PriorityCard>
 
           <PriorityCard priority="normal" title="Avg Rating">
-            <div className="text-2xl font-bold flex items-center gap-1">
+            <div className="text-2xl font-bold flex items-centre gap-1">
               {kpiData.avgRating}
               <Star className="h-4 w-4 text-yellow-500" />
             </div>
@@ -472,8 +472,8 @@ export function EnhancedDashboard() {
           <div className="lg:col-span-2">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  <span className="flex items-center gap-2">
+                <CardTitle className="flex items-centre justify-between">
+                  <span className="flex items-centre gap-2">
                     <Briefcase className="h-5 w-5" />
                     Active Jobs
                   </span>
@@ -535,7 +535,7 @@ export function EnhancedDashboard() {
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {['Assigned', 'En Route', 'On Site', 'In Progress', 'Completed'].map((stage, index) => (
-                  <div key={stage} className="text-center">
+                  <div key={stage} className="text-centre">
                     <div className="text-2xl font-bold">{index === 2 ? 1 : index === 4 ? 47 : index === 0 ? 2 : 0}</div>
                     <p className="text-xs text-gray-600">{stage}</p>
                   </div>
@@ -575,8 +575,8 @@ export function EnhancedDashboard() {
               { name: 'Background Check', status: 'Verified', expiry: 'Dec 01, 2024', icon: Users },
               { name: 'Business License', status: 'Active', expiry: 'Sep 30, 2025', icon: FileText }
             ].map((item) => (
-              <div key={item.name} className="flex items-center justify-between p-3 border rounded-lg">
-                <div className="flex items-center gap-3">
+              <div key={item.name} className="flex items-centre justify-between p-3 border rounded-lg">
+                <div className="flex items-centre gap-3">
                   <item.icon className="h-5 w-5 text-green-500" />
                   <div>
                     <p className="font-medium">{item.name}</p>
@@ -607,7 +607,7 @@ export function EnhancedDashboard() {
                   { name: 'Advanced Water Damage', duration: '8h', ceus: 0.8 },
                   { name: 'Mould Remediation', duration: '4h', ceus: 0.4 }
                 ].map((course) => (
-                  <div key={course.name} className="flex justify-between items-center p-3 border rounded">
+                  <div key={course.name} className="flex justify-between items-centre p-3 border rounded">
                     <div>
                       <p className="font-medium text-sm">{course.name}</p>
                       <p className="text-xs text-gray-500">Duration: {course.duration} | CEUs: {course.ceus}</p>
@@ -653,7 +653,7 @@ export function EnhancedDashboard() {
                 { id: '#892', job: 'Water damage - #1247', amount: 3450, status: 'Pending' },
                 { id: '#891', job: 'Mould remediation - #1244', amount: 2100, status: 'Paid' }
               ].map((invoice) => (
-                <div key={invoice.id} className="flex justify-between items-center p-3 border rounded">
+                <div key={invoice.id} className="flex justify-between items-centre p-3 border rounded">
                   <div>
                     <p className="font-medium">Invoice {invoice.id}</p>
                     <p className="text-xs text-gray-500">{invoice.job}</p>

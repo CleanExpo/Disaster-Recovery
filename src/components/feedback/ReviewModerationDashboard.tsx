@@ -266,7 +266,7 @@ export default function ReviewModerationDashboard() {
   const ModerationSummary = () => (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
       <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           <div>
             <p className="text-sm text-gray-600">Pending Review</p>
             <p className="text-3xl font-bold text-red-600">
@@ -283,7 +283,7 @@ export default function ReviewModerationDashboard() {
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           <div>
             <p className="text-sm text-gray-600">In Review</p>
             <p className="text-3xl font-bold text-blue-600">
@@ -300,7 +300,7 @@ export default function ReviewModerationDashboard() {
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           <div>
             <p className="text-sm text-gray-600">Resolved Today</p>
             <p className="text-3xl font-bold text-green-600">8</p>
@@ -315,7 +315,7 @@ export default function ReviewModerationDashboard() {
       </div>
 
       <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           <div>
             <p className="text-sm text-gray-600">Avg Response Time</p>
             <p className="text-3xl font-bold text-purple-600">2.4h</p>
@@ -334,7 +334,7 @@ export default function ReviewModerationDashboard() {
   const ModerationQueueTable = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-centre mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Moderation Queue</h3>
           <div className="flex space-x-3">
             <div className="relative">
@@ -401,7 +401,7 @@ export default function ReviewModerationDashboard() {
               <tr key={item.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4">
                   <div className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-centre justify-centre">
                       <User className="w-4 h-4 text-gray-600" />
                     </div>
                     <div className="min-w-0 flex-1">
@@ -418,7 +418,7 @@ export default function ReviewModerationDashboard() {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <Star className={`w-4 h-4 mr-1 ${
                       item.feedback.rating.overall >= 3 ? 'text-yellow-400' : 'text-red-400'
                     } fill-current`} />
@@ -428,12 +428,12 @@ export default function ReviewModerationDashboard() {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${priorityColors[item.priority]}`}>
+                  <span className={`inline-flex items-centre px-2.5 py-0.5 rounded-full text-xs font-medium border ${priorityColors[item.priority]}`}>
                     {item.priority.toUpperCase()}
                   </span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[item.status]}`}>
+                  <span className={`inline-flex items-centre px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[item.status]}`}>
                     {item.status.replace('_', ' ').toUpperCase()}
                   </span>
                 </td>
@@ -472,7 +472,7 @@ export default function ReviewModerationDashboard() {
     if (!item) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-centre justify-centre p-4">
         <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b border-gray-200">
             <div className="flex justify-between items-start">
@@ -495,16 +495,16 @@ export default function ReviewModerationDashboard() {
               <div className="space-y-4">
                 <h3 className="font-semibold text-gray-900">Customer Information</h3>
                 <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <User className="w-4 h-4 text-gray-500 mr-2" />
                     <span className="text-sm">{item.feedback.customerName}</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <Mail className="w-4 h-4 text-gray-500 mr-2" />
                     <span className="text-sm">{item.feedback.customerEmail}</span>
                   </div>
                   {item.feedback.customerPhone && (
-                    <div className="flex items-center">
+                    <div className="flex items-centre">
                       <Phone className="w-4 h-4 text-gray-500 mr-2" />
                       <span className="text-sm">{item.feedback.customerPhone}</span>
                     </div>
@@ -536,9 +536,9 @@ export default function ReviewModerationDashboard() {
               <h3 className="font-semibold text-gray-900 mb-4">Customer Ratings</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {Object.entries(item.feedback.rating).map(([category, rating]) => (
-                  <div key={category} className="text-center">
+                  <div key={category} className="text-centre">
                     <p className="text-sm text-gray-600 capitalize">{category}</p>
-                    <div className="flex items-center justify-center mt-1">
+                    <div className="flex items-centre justify-centre mt-1">
                       <Star className={`w-5 h-5 ${rating >= 3 ? 'text-yellow-400' : 'text-red-400'} fill-current`} />
                       <span className="ml-1 font-medium">{rating}/5</span>
                     </div>
@@ -581,7 +581,7 @@ export default function ReviewModerationDashboard() {
                   <div className="flex-1">
                     <p className="font-medium text-yellow-900">Flagged: {reasonLabels[item.reason]}</p>
                     <p className="text-sm text-yellow-700 mt-1">{item.feedback.flagReason}</p>
-                    <div className="mt-2 flex items-center space-x-4 text-sm text-yellow-700">
+                    <div className="mt-2 flex items-centre space-x-4 text-sm text-yellow-700">
                       <span>Priority: {item.priority.toUpperCase()}</span>
                       <span>Auto-flagged: {item.autoFlagged ? 'Yes' : 'No'}</span>
                       <span>Escalation Level: {item.escalationLevel}</span>
@@ -593,19 +593,19 @@ export default function ReviewModerationDashboard() {
 
             {/* Action Buttons */}
             <div className="flex space-x-3 pt-4 border-t border-gray-200">
-              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colours">
                 Approve & Publish
               </button>
-              <button className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
+              <button className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colours">
                 Approve (No Publish)
               </button>
-              <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+              <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colours">
                 Reject
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
                 Contact Customer
               </button>
-              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colours">
                 Escalate
               </button>
             </div>
@@ -636,7 +636,7 @@ export default function ReviewModerationDashboard() {
               <button
                 key={tab.key}
                 onClick={() => setSelectedTab(tab.key as typeof selectedTab)}
-                className={`flex items-center px-1 py-4 border-b-2 font-medium text-sm transition-colors ${
+                className={`flex items-centre px-1 py-4 border-b-2 font-medium text-sm transition-colours ${
                   selectedTab === tab.key
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'

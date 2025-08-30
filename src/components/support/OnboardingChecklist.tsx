@@ -111,7 +111,7 @@ const mockOnboardingItems: OnboardingItem[] = [
   {
     id: '6',
     title: 'Complete Background Check',
-    description: 'Authorize and complete the required background verification',
+    description: 'Authorise and complete the required background verification',
     category: 'compliance',
     order: 6,
     isRequired: true,
@@ -218,27 +218,27 @@ const categoryInfo = {
   account: {
     title: 'Account Setup',
     icon: User,
-    color: 'text-blue-600 bg-blue-100'
+    colour: 'text-blue-600 bg-blue-100'
   },
   compliance: {
     title: 'Compliance & Certification',
     icon: Shield,
-    color: 'text-green-600 bg-green-100'
+    colour: 'text-green-600 bg-green-100'
   },
   billing: {
     title: 'Billing & Payments',
     icon: CreditCard,
-    color: 'text-purple-600 bg-purple-100'
+    colour: 'text-purple-600 bg-purple-100'
   },
   training: {
     title: 'Training & Education',
     icon: GraduationCap,
-    color: 'text-orange-600 bg-orange-100'
+    colour: 'text-orange-600 bg-orange-100'
   },
   setup: {
     title: 'Platform Setup',
     icon: Settings,
-    color: 'text-gray-600 bg-gray-100'
+    colour: 'text-gray-600 bg-gray-100'
   }
 };
 
@@ -326,7 +326,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {/* Header */}
       {!embedded && (
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold flex items-centre gap-2">
             <Target className="h-6 w-6" />
             Onboarding Progress
           </h2>
@@ -339,7 +339,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {/* Progress Overview */}
       <Card className={embedded ? "border-0 shadow-none" : ""}>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <CardTitle className="text-lg">Overall Progress</CardTitle>
               <CardDescription>
@@ -366,23 +366,23 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
           
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-2xl font-bold text-green-600">{checklist.completedCount}</p>
               <p className="text-sm text-gray-500">Completed</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-2xl font-bold text-orange-600">
                 {checklist.items.filter(i => !i.isCompleted && i.isRequired).length}
               </p>
               <p className="text-sm text-gray-500">Required Remaining</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-2xl font-bold text-blue-600">
                 {checklist.items.filter(i => !i.isCompleted && !i.isRequired).length}
               </p>
               <p className="text-sm text-gray-500">Optional</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-2xl font-bold text-gray-600">
                 {Math.ceil(
                   checklist.items
@@ -416,7 +416,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       <div className="space-y-4">
         {Object.entries(groupedItems).map(([category, items]) => {
           const CategoryIcon = categoryInfo[category as keyof typeof categoryInfo].icon;
-          const categoryColor = categoryInfo[category as keyof typeof categoryInfo].color;
+          const categoryColor = categoryInfo[category as keyof typeof categoryInfo].colour;
           const categoryTitle = categoryInfo[category as keyof typeof categoryInfo].title;
           const categoryCompleted = items.filter(i => i.isCompleted).length;
           const isExpanded = expandedCategories.includes(category);
@@ -427,8 +427,8 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                 className="cursor-pointer"
                 onClick={() => toggleCategory(category)}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-centre justify-between">
+                  <div className="flex items-centre gap-3">
                     <div className={cn("p-2 rounded-lg", categoryColor)}>
                       <CategoryIcon className="h-5 w-5" />
                     </div>
@@ -439,7 +439,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                       </CardDescription>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Progress 
                       value={(categoryCompleted / items.length) * 100} 
                       className="w-24 h-2"
@@ -461,14 +461,14 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                         <div
                           key={item.id}
                           className={cn(
-                            "flex items-start gap-3 p-3 rounded-lg transition-colors",
+                            "flex items-start gap-3 p-3 rounded-lg transition-colours",
                             item.isCompleted ? "bg-gray-50" : "bg-white hover:bg-gray-50"
                           )}
                         >
                           <button
                             onClick={() => !item.isCompleted && handleCompleteItem(item.id)}
                             className={cn(
-                              "mt-0.5 transition-colors",
+                              "mt-0.5 transition-colours",
                               item.isCompleted
                                 ? "text-green-600 cursor-default"
                                 : "text-gray-400 hover:text-blue-600"
@@ -482,7 +482,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                             )}
                           </button>
                           <div className="flex-1">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-centre gap-2">
                               <p className={cn(
                                 "font-medium",
                                 item.isCompleted && "line-through text-gray-500"
@@ -495,7 +495,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
                                 </Badge>
                               )}
                               {item.estimatedTime && !item.isCompleted && (
-                                <span className="text-xs text-gray-500 flex items-center gap-1">
+                                <span className="text-xs text-gray-500 flex items-centre gap-1">
                                   <Clock className="h-3 w-3" />
                                   {item.estimatedTime}
                                 </span>
@@ -550,7 +550,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       </div>
 
       {/* Show Completed Toggle */}
-      <div className="flex justify-center">
+      <div className="flex justify-centre">
         <Button
           variant="outline"
           onClick={() => setShowCompleted(!showCompleted)}
@@ -563,7 +563,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {isFullyOnboarded && (
         <Card className="bg-green-50 border-green-200">
           <CardContent className="pt-6">
-            <div className="text-center">
+            <div className="text-centre">
               <Trophy className="h-12 w-12 text-green-600 mx-auto mb-3" />
               <h3 className="text-xl font-semibold text-green-900 mb-2">
                 Congratulations! You're Fully Onboarded

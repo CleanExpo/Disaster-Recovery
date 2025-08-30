@@ -19,15 +19,15 @@
       "@context": "https://schema.org",
       "@type": "ImageObject",
       "name": "3D Disaster Recovery Logo",
-      "contentUrl": "/images/optimized/branding/3D Disaster Recovery Logo.png",
-      "thumbnail": "/images/optimized/thumbnails/3D Disaster Recovery Logo.png",
+      "contentUrl": "/images/optimised/branding/3D Disaster Recovery Logo.png",
+      "thumbnail": "/images/optimised/thumbnails/3D Disaster Recovery Logo.png",
       "description": "3D Disaster Recovery Logo - Professional disaster recovery services",
       "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, disaster recovery company, restoration experts, emergency services"
     }
   },
   "technical": {
     "format": "png",
-    "optimization": "web-ready",
+    "optimisation": "web-ready",
     "responsive": true
   },
   "created": "2025-08-26T23:55:13.027Z"

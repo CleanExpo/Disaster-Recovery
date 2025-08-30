@@ -75,14 +75,14 @@ const Navigation = forwardRef(({
   return (
     <nav ref={ref} className={navClasses} {...props}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-centre justify-between h-16 lg:h-20">
           
           {/* Logo */}
           {logo && (
             <div className="flex-shrink-0">
               <a
                 href={logo.href || '/'}
-                className="flex items-center transition-opacity hover:opacity-80"
+                className="flex items-centre transition-opacity hover:opacity-80"
                 onClick={closeMobileMenu}
               >
                 {logo.src ? (
@@ -117,7 +117,7 @@ const Navigation = forwardRef(({
           </div>
           
           {/* CTA Button & Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-centre space-x-4">
             {/* CTA Button */}
             {ctaButton && (
               <a
@@ -132,7 +132,7 @@ const Navigation = forwardRef(({
             {/* Mobile Menu Button */}
             <button
               type="button"
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-colors"
+              className="md:hidden inline-flex items-centre justify-centre p-2 rounded-md text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary transition-colours"
               onClick={toggleMobileMenu}
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle navigation menu"
@@ -155,7 +155,7 @@ const Navigation = forwardRef(({
             <a
               key={index}
               href={link.href}
-              className="block px-3 py-2 text-base font-medium text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 rounded-md transition-colors"
+              className="block px-3 py-2 text-base font-medium text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 rounded-md transition-colours"
               onClick={closeMobileMenu}
             >
               {link.label}
@@ -167,7 +167,7 @@ const Navigation = forwardRef(({
             <div className="pt-4 pb-2">
               <a
                 href={ctaButton.href}
-                className="btn btn-primary w-full justify-center"
+                className="btn btn-primary w-full justify-centre"
                 onClick={closeMobileMenu}
               >
                 {ctaButton.label}
@@ -186,7 +186,7 @@ Navigation.displayName = 'Navigation';
  * Navigation Link Component
  */
 const NavLink = ({ href, children, variant = 'default', className, ...props }) => {
-  const baseClasses = 'px-3 py-2 text-sm font-medium transition-colors rounded-md';
+  const baseClasses = 'px-3 py-2 text-sm font-medium transition-colours rounded-md';
   
   const variantClasses = {
     default: 'text-neutral-700 hover:text-primary hover:bg-neutral-50',
@@ -212,7 +212,7 @@ const NavLink = ({ href, children, variant = 'default', className, ...props }) =
  */
 const MenuIcon = ({ isOpen }) => {
   return (
-    <div className="w-6 h-6 flex flex-col justify-center items-center">
+    <div className="w-6 h-6 flex flex-col justify-centre items-centre">
       <span className={clsx(
         'block w-5 h-0.5 bg-current transition-all duration-300',
         isOpen ? 'transform rotate-45 translate-y-0.5' : ''

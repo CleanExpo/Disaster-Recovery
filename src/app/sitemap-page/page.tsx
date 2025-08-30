@@ -24,7 +24,7 @@ export default function SitemapPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Main Pages */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Home className="h-5 w-5 text-blue-600" />
               Main Pages
             </h2>
@@ -40,7 +40,7 @@ export default function SitemapPage() {
 
           {/* Core Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Droplets className="h-5 w-5 text-blue-600" />
               Core Restoration Services
             </h2>
@@ -55,7 +55,7 @@ export default function SitemapPage() {
 
           {/* Emergency Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <AlertTriangle className="h-5 w-5 text-red-600" />
               Emergency Services
             </h2>
@@ -70,7 +70,7 @@ export default function SitemapPage() {
 
           {/* Commercial Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Building className="h-5 w-5 text-blue-600" />
               Commercial Services
             </h2>
@@ -86,7 +86,7 @@ export default function SitemapPage() {
 
           {/* Technical Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <FileCheck className="h-5 w-5 text-blue-600" />
               Technical & Assessment
             </h2>
@@ -100,11 +100,11 @@ export default function SitemapPage() {
             </ul>
           </div>
 
-          {/* Specialized Services */}
+          {/* Specialised Services */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Wind className="h-5 w-5 text-blue-600" />
-              Specialized Services
+              Specialised Services
             </h2>
             <ul className="space-y-2">
               <li><Link href="/services/content-restoration" className="text-blue-600 hover:underline">Content Restoration</Link></li>
@@ -117,7 +117,7 @@ export default function SitemapPage() {
 
           {/* Locations */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <MapPin className="h-5 w-5 text-blue-600" />
               Service Locations
             </h2>
@@ -133,13 +133,13 @@ export default function SitemapPage() {
 
           {/* Standards & Certifications */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Shield className="h-5 w-5 text-blue-600" />
               Standards & Certifications
             </h2>
             <ul className="space-y-2">
               <li><Link href="/standards/iicrc-s500" className="text-blue-600 hover:underline">IICRC S500 - Water Damage</Link></li>
-              <li><Link href="/standards/iicrc-s520" className="text-blue-600 hover:underline">IICRC S520 - Mold Remediation</Link></li>
+              <li><Link href="/standards/iicrc-s520" className="text-blue-600 hover:underline">IICRC S520 - Mould Remediation</Link></li>
               <li><Link href="/standards/iicrc-s540" className="text-blue-600 hover:underline">IICRC S540 - Trauma Cleanup</Link></li>
               <li><Link href="/standards/iicrc-s700" className="text-blue-600 hover:underline">IICRC S700 - Fire & Smoke</Link></li>
               <li><Link href="/standards/australian-standards" className="text-blue-600 hover:underline">Australian Standards</Link></li>
@@ -149,12 +149,12 @@ export default function SitemapPage() {
 
           {/* Resources */}
           <div className="bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <BookOpen className="h-5 w-5 text-blue-600" />
               Resources & Guides
             </h2>
             <ul className="space-y-2">
-              <li><Link href="/resources" className="text-blue-600 hover:underline">Resource Center</Link></li>
+              <li><Link href="/resources" className="text-blue-600 hover:underline">Resource Centre</Link></li>
               <li><Link href="/resources/water-damage-guide" className="text-blue-600 hover:underline">Water Damage Guide</Link></li>
               <li><Link href="/resources/mould-prevention" className="text-blue-600 hover:underline">Mould Prevention Guide</Link></li>
               <li><Link href="/resources/insurance-claims-guide" className="text-blue-600 hover:underline">Insurance Claims Guide</Link></li>

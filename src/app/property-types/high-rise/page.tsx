@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'High Rise Buildings Disaster Recovery | Apartments and office towers | Australia',
-  description: 'Specialized disaster recovery for high rise buildings. Apartments and office towers. Insurance approved, 24/7 response.',
+  description: 'Specialised disaster recovery for high rise buildings. Apartments and office towers. Insurance approved, 24/7 response.',
 };
 
 export default function HighRiseBuildingsPage() {

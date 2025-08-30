@@ -524,7 +524,7 @@ export const QUALITY_SCORING = {
     weight: 20,
     criteria: [
       'Clear, professional language',
-      'Logical organization',
+      'Logical organisation',
       'Proper grammar and spelling',
       'Consistent formatting',
       'Executive summary quality'

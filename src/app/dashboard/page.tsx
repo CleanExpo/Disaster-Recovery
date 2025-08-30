@@ -46,7 +46,7 @@ export default function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.name} className="p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-muted-foreground">
                   {stat.name}
@@ -67,7 +67,7 @@ export default function DashboardPage() {
           <h2 className="mb-4 text-lg font-semibold">Recent Audits</h2>
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="flex items-center justify-between">
+              <div key={i} className="flex items-centre justify-between">
                 <div>
                   <p className="font-medium">Website Audit #{i}</p>
                   <p className="text-sm text-muted-foreground">
@@ -86,7 +86,7 @@ export default function DashboardPage() {
           <h2 className="mb-4 text-lg font-semibold">Recent Enquiries</h2>
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="flex items-center justify-between">
+              <div key={i} className="flex items-centre justify-between">
                 <div>
                   <p className="font-medium">Lead from website</p>
                   <p className="text-sm text-muted-foreground">

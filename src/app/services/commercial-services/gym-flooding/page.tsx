@@ -13,8 +13,8 @@ export default function GymFitnessCenterFloodingPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   const businessInfo = {
-    name: 'Disaster Recovery Australia - Gym & Fitness Center Flooding',
-    description: 'Professional gym & fitness center flooding services in Queensland. 24/7 emergency response for sports facility, gym water damage.',
+    name: 'Disaster Recovery Australia - Gym & Fitness Centre Flooding',
+    description: 'Professional gym & fitness centre flooding services in Queensland. 24/7 emergency response for sports facility, gym water damage.',
     telephone: '1300 814 870',
     address: {
       streetAddress: 'Servicing All Areas',
@@ -31,15 +31,15 @@ export default function GymFitnessCenterFloodingPage() {
 
   const faqs = [
     {
-      question: 'How quickly can you respond to gym & fitness center flooding emergencies?',
-      answer: 'We offer 24/7 emergency response for gym & fitness center flooding with teams typically arriving within 2 hours in metro areas. Our rapid response helps minimize damage and reduce restoration costs.'
+      question: 'How quickly can you respond to gym & fitness centre flooding emergencies?',
+      answer: 'We offer 24/7 emergency response for gym & fitness centre flooding with teams typically arriving within 2 hours in metro areas. Our rapid response helps minimize damage and reduce restoration costs.'
     },
     {
-      question: 'Is gym & fitness center flooding covered by insurance?',
-      answer: 'Most insurance policies cover gym & fitness center flooding damage when it\'s sudden and accidental. We work directly with all major insurers and can help manage your claim from start to finish.'
+      question: 'Is gym & fitness centre flooding covered by insurance?',
+      answer: 'Most insurance policies cover gym & fitness centre flooding damage when it\'s sudden and accidental. We work directly with all major insurers and can help manage your claim from start to finish.'
     },
     {
-      question: 'What is the cost of gym & fitness center flooding services?',
+      question: 'What is the cost of gym & fitness centre flooding services?',
       answer: 'Costs vary based on the extent of damage and services required. We provide free assessments and quotes, and work with your insurance company for direct billing where applicable.'
     }
   ];
@@ -58,14 +58,14 @@ export default function GymFitnessCenterFloodingPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Gym & Fitness Center Flooding
+              Gym & Fitness Centre Flooding
             </h1>
             <p className="text-xl mb-8 text-blue-100">
-              Expert gym & fitness center flooding services across Queensland. Fast response, professional restoration, insurance approved.
+              Expert gym & fitness centre flooding services across Queensland. Fast response, professional restoration, insurance approved.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-orange-500 hover:bg-orange-600 text-white"
@@ -83,9 +83,9 @@ export default function GymFitnessCenterFloodingPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Professional Gym & Fitness Center Flooding Services</h2>
+            <h2 className="text-3xl font-bold mb-6">Professional Gym & Fitness Centre Flooding Services</h2>
             <p className="text-lg text-gray-700 mb-8">
-              When you need expert gym & fitness center flooding services, Disaster Recovery Australia provides comprehensive solutions 
+              When you need expert gym & fitness centre flooding services, Disaster Recovery Australia provides comprehensive solutions 
               with 24/7 emergency response across Southeast Queensland.
             </p>
             
@@ -142,7 +142,7 @@ export default function GymFitnessCenterFloodingPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Gym & Fitness Center Flooding FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Gym & Fitness Centre Flooding FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -157,8 +157,8 @@ export default function GymFitnessCenterFloodingPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Need Gym & Fitness Center Flooding Services?</h2>
+        <div className="container mx-auto px-4 text-centre">
+          <h2 className="text-3xl font-bold mb-6">Need Gym & Fitness Centre Flooding Services?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get professional help now. Available 24/7 for emergency response.
           </p>
@@ -177,13 +177,13 @@ export default function GymFitnessCenterFloodingPage() {
       <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle>Gym & Fitness Center Flooding Services</DialogTitle>
+            <DialogTitle>Gym & Fitness Centre Flooding Services</DialogTitle>
             <DialogDescription>
               Get immediate assistance 24/7. Our team is ready to help.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
+            <div className="flex items-centre gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
                 <p className="font-semibold">Call Now</p>

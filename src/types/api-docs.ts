@@ -287,7 +287,7 @@ export const AUTH_FLOWS = {
   oauth2: {
     name: 'OAuth 2.0',
     description: 'OAuth 2.0 flow for user authentication',
-    authUrl: 'https://auth.nrp.com.au/oauth/authorize',
+    authUrl: 'https://auth.nrp.com.au/oauth/authorise',
     tokenUrl: 'https://auth.nrp.com.au/oauth/token',
     scopes: {
       'read:profile': 'Read user profile',
@@ -303,7 +303,7 @@ export const AUTH_FLOWS = {
   jwt: {
     name: 'JWT Bearer Token',
     description: 'JSON Web Token for API authentication',
-    header: 'Authorization',
+    header: 'Authorisation',
     prefix: 'Bearer'
   }
 };

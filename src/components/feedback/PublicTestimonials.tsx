@@ -121,11 +121,11 @@ export default function PublicTestimonials({
       customerLocation: 'Brisbane, QLD',
       jobType: 'mold_remediation',
       rating: 5,
-      testimonialText: 'Professional mold remediation service that exceeded our expectations. The team conducted thorough testing, explained the process clearly, and completed the job with minimal disruption to our operations. Highly recommend their expertise and attention to detail.',
+      testimonialText: 'Professional mould remediation service that exceeded our expectations. The team conducted thorough testing, explained the process clearly, and completed the job with minimal disruption to our operations. Highly recommend their expertise and attention to detail.',
       publishedDate: new Date('2024-03-05'),
       featured: false,
       approved: true,
-      tags: ['mold removal', 'testing', 'commercial'],
+      tags: ['mould removal', 'testing', 'commercial'],
       displayOrder: 3,
       consentGiven: true,
       consentDate: new Date('2024-03-05'),
@@ -243,12 +243,12 @@ export default function PublicTestimonials({
       onMouseLeave={() => setHoveredTestimonial(null)}
     >
       {testimonial.featured && (
-        <div className="flex items-center justify-between mb-4">
-          <span className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-xs font-medium rounded-full flex items-center">
+        <div className="flex items-centre justify-between mb-4">
+          <span className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-xs font-medium rounded-full flex items-centre">
             <Award className="w-3 h-3 mr-1" />
             Featured
           </span>
-          <div className="flex items-center text-yellow-500">
+          <div className="flex items-centre text-yellow-500">
             {[...Array(testimonial.rating)].map((_, i) => (
               <Star key={i} className="w-4 h-4 fill-current" />
             ))}
@@ -256,7 +256,7 @@ export default function PublicTestimonials({
         </div>
       )}
 
-      <div className="flex items-center mb-4">
+      <div className="flex items-centre mb-4">
         <Quote className="w-8 h-8 text-blue-500 opacity-30" />
       </div>
 
@@ -267,16 +267,16 @@ export default function PublicTestimonials({
       {testimonial.photos && testimonial.photos.length > 0 && !compact && (
         <div className="grid grid-cols-2 gap-2 mb-4">
           {testimonial.photos.slice(0, 2).map((photo, index) => (
-            <div key={index} className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
+            <div key={index} className="aspect-video bg-gray-100 rounded-lg flex items-centre justify-centre">
               <Image className="w-6 h-6 text-gray-400" />
             </div>
           ))}
         </div>
       )}
 
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+      <div className="flex items-centre justify-between pt-4 border-t border-gray-100">
         <div className="flex items-start space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-centre justify-centre text-white font-semibold">
             {testimonial.customerName[0]}
           </div>
           <div className="flex-1 min-w-0">
@@ -287,7 +287,7 @@ export default function PublicTestimonials({
             {testimonial.customerCompany && (
               <p className="text-sm text-gray-500 truncate">{testimonial.customerCompany}</p>
             )}
-            <div className="flex items-center mt-1 text-sm text-gray-500">
+            <div className="flex items-centre mt-1 text-sm text-gray-500">
               <MapPin className="w-3 h-3 mr-1" />
               {testimonial.customerLocation}
             </div>
@@ -334,18 +334,18 @@ export default function PublicTestimonials({
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-gray-600 hover:text-gray-900 hover:shadow-xl transition-all"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-centre justify-centre text-gray-600 hover:text-gray-900 hover:shadow-xl transition-all"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-gray-600 hover:text-gray-900 hover:shadow-xl transition-all"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-centre justify-centre text-gray-600 hover:text-gray-900 hover:shadow-xl transition-all"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          <div className="flex justify-center items-center space-x-4 mt-6">
+          <div className="flex justify-centre items-centre space-x-4 mt-6">
             <div className="flex space-x-2">
               {sortedTestimonials.map((_, index) => (
                 <button
@@ -359,7 +359,7 @@ export default function PublicTestimonials({
             </div>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition-colors"
+              className="w-8 h-8 bg-gray-100 rounded-full flex items-centre justify-centre text-gray-600 hover:bg-gray-200 transition-colours"
             >
               {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
             </button>
@@ -389,7 +389,7 @@ export default function PublicTestimonials({
     <div className="max-w-6xl mx-auto p-6">
       {showFilters && (
         <div className="mb-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+          <div className="flex flex-wrap items-centre justify-between gap-4 mb-6">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Customer Testimonials</h2>
               <p className="text-gray-600 mt-1">
@@ -397,7 +397,7 @@ export default function PublicTestimonials({
               </p>
             </div>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex items-centre space-x-3">
               <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
@@ -407,7 +407,7 @@ export default function PublicTestimonials({
                 <option value="featured">Featured</option>
                 <option value="water_damage">Water Damage</option>
                 <option value="fire_damage">Fire Damage</option>
-                <option value="mold_remediation">Mold Remediation</option>
+                <option value="mold_remediation">Mould Remediation</option>
                 <option value="storm_damage">Storm Damage</option>
               </select>
 
@@ -420,7 +420,7 @@ export default function PublicTestimonials({
                   <button
                     key={layoutOption.key}
                     onClick={() => setSelectedLayout(layoutOption.key as typeof selectedLayout)}
-                    className={`p-2 rounded-md transition-colors ${
+                    className={`p-2 rounded-md transition-colours ${
                       selectedLayout === layoutOption.key
                         ? 'bg-white text-blue-600 shadow-sm'
                         : 'text-gray-600 hover:text-gray-900'
@@ -433,13 +433,13 @@ export default function PublicTestimonials({
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-sm text-gray-600 mb-6">
+          <div className="flex items-centre justify-between text-sm text-gray-600 mb-6">
             <span>
               Showing {sortedTestimonials.length} of {mockTestimonials.length} testimonials
             </span>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-centre space-x-4">
               <span>Average rating:</span>
-              <div className="flex items-center">
+              <div className="flex items-centre">
                 <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
                 <span className="font-medium">4.8/5</span>
               </div>
@@ -449,10 +449,10 @@ export default function PublicTestimonials({
       )}
 
       {!showFilters && sortedTestimonials.length > 0 && (
-        <div className="text-center mb-8">
+        <div className="text-centre mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">What Our Customers Say</h2>
-          <div className="flex items-center justify-center space-x-2">
-            <div className="flex items-center">
+          <div className="flex items-centre justify-centre space-x-2">
+            <div className="flex items-centre">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
               ))}
@@ -465,8 +465,8 @@ export default function PublicTestimonials({
       )}
 
       {sortedTestimonials.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className="text-centre py-12">
+          <div className="w-24 h-24 bg-gray-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
             <MessageSquare className="w-12 h-12 text-gray-400" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">No testimonials found</h3>
@@ -481,7 +481,7 @@ export default function PublicTestimonials({
       )}
 
       {!contractorId && (
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-centre">
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Join Australia's Premier Restoration Network
@@ -490,7 +490,7 @@ export default function PublicTestimonials({
               Become part of a trusted network of restoration professionals and 
               start building your own collection of customer testimonials.
             </p>
-            <button className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+            <button className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colours">
               Apply to Join NRP
             </button>
           </div>

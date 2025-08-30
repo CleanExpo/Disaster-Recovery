@@ -159,11 +159,11 @@ export default function KPITrackingPage() {
 
   // Job category distribution
   const jobDistribution = [
-    { name: 'Water Damage', value: 45, color: '#3B82F6' },
-    { name: 'Fire Damage', value: 20, color: '#EF4444' },
-    { name: 'Storm Damage', value: 15, color: '#8B5CF6' },
-    { name: 'Mold Remediation', value: 12, color: '#10B981' },
-    { name: 'Other', value: 8, color: '#6B7280' },
+    { name: 'Water Damage', value: 45, colour: '#3B82F6' },
+    { name: 'Fire Damage', value: 20, colour: '#EF4444' },
+    { name: 'Storm Damage', value: 15, colour: '#8B5CF6' },
+    { name: 'Mould Remediation', value: 12, colour: '#10B981' },
+    { name: 'Other', value: 8, colour: '#6B7280' },
   ];
 
   // KPI achievement radar data
@@ -240,8 +240,8 @@ export default function KPITrackingPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading KPI metrics...</p>
         </div>
@@ -260,8 +260,8 @@ export default function KPITrackingPage() {
 
         {/* Controls */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-centre justify-between gap-4">
+            <div className="flex items-centre gap-4">
               <select
                 value={timeRange}
                 onChange={(e) => setTimeRange(e.target.value)}
@@ -286,11 +286,11 @@ export default function KPITrackingPage() {
               </select>
             </div>
             
-            <div className="flex items-center gap-2">
-              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+            <div className="flex items-centre gap-2">
+              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colours">
                 <RefreshCw className="h-5 w-5" />
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre gap-2">
                 <Download className="h-4 w-4" />
                 Export Report
               </button>
@@ -300,7 +300,7 @@ export default function KPITrackingPage() {
 
         {/* KPI Score Overview */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-6 mb-6 text-white">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <h2 className="text-2xl font-bold mb-2">Overall KPI Score</h2>
               <div className="flex items-baseline gap-2">
@@ -333,8 +333,8 @@ export default function KPITrackingPage() {
                 </span>
               </div>
               
-              <div className="flex items-center justify-between pt-3 border-t">
-                <div className="flex items-center gap-2">
+              <div className="flex items-centre justify-between pt-3 border-t">
+                <div className="flex items-centre gap-2">
                   {getTrendIcon(metric.trend)}
                   <span className={`text-sm font-medium ${
                     metric.trend === 'up' ? 'text-green-600' : 
@@ -413,7 +413,7 @@ export default function KPITrackingPage() {
                   dataKey="value"
                 >
                   {jobDistribution.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    <Cell key={`cell-${index}`} fill={entry.colour} />
                   ))}
                 </Pie>
                 <Tooltip />
@@ -478,7 +478,7 @@ export default function KPITrackingPage() {
                         {job.kpis.responseTime} min
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-centre gap-1">
                           <Star className="h-4 w-4 text-yellow-400 fill-current" />
                           <span className="text-sm text-gray-900">
                             {job.kpis.customerRating || 'Pending'}
@@ -486,7 +486,7 @@ export default function KPITrackingPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <div className="w-20 bg-gray-200 rounded-full h-2">
                             <div 
                               className="bg-green-500 h-2 rounded-full"
@@ -520,7 +520,7 @@ export default function KPITrackingPage() {
 
         {/* KPI Tips */}
         <div className="mt-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-centre gap-2">
             <Target className="h-5 w-5" />
             Tips to Improve Your KPIs
           </h3>

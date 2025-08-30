@@ -1,8 +1,8 @@
 /**
- * COMPREHENSIVE IMAGE OPTIMIZATION SYSTEM
+ * COMPREHENSIVE IMAGE Optimisation SYSTEM
  * ========================================
  * 
- * Ensures all images are properly compressed and optimized for performance
+ * Ensures all images are properly compressed and optimised for performance
  * across all devices (desktop, tablet, mobile).
  */
 
@@ -86,7 +86,7 @@ export const BREAKPOINTS = {
 };
 
 /**
- * Device-specific optimization profiles
+ * Device-specific optimisation profiles
  */
 export const DEVICE_PROFILES = {
   mobile: {
@@ -119,7 +119,7 @@ export const DEVICE_PROFILES = {
  * Training platform image requirements
  */
 export const TRAINING_IMAGE_REQUIREMENTS = {
-  // Optimized for mobile learning
+  // Optimised for mobile learning
   mobile: {
     maxWidth: 640,
     maxHeight: 480,
@@ -144,7 +144,7 @@ export const TRAINING_IMAGE_REQUIREMENTS = {
 };
 
 /**
- * Image Optimization Manager
+ * Image Optimisation Manager
  */
 export class ImageOptimizer {
   private config: OptimizationConfig;
@@ -163,7 +163,7 @@ export class ImageOptimizer {
   }
   
   /**
-   * Get optimized image path for specific size
+   * Get optimised image path for specific size
    */
   private getSizedImagePath(imagePath: string, width: number): string {
     const parts = imagePath.split('.');
@@ -263,7 +263,7 @@ export class ImageOptimizer {
   }
   
   /**
-   * Check if image needs optimization
+   * Check if image needs optimisation
    */
   public needsOptimization(
     fileSizeKB: number,
@@ -274,7 +274,7 @@ export class ImageOptimizer {
   }
   
   /**
-   * Generate optimization report
+   * Generate optimisation report
    */
   public generateOptimizationReport(images: Array<{
     path: string;
@@ -282,11 +282,11 @@ export class ImageOptimizer {
     category: keyof typeof COMPRESSION_TARGETS;
   }>): {
     needsOptimization: Array<any>;
-    optimized: Array<any>;
+    optimised: Array<any>;
     totalSavings: number;
   } {
     const needsOptimization = [];
-    const optimized = [];
+    const optimised = [];
     let totalSavings = 0;
     
     for (const image of images) {
@@ -309,13 +309,13 @@ export class ImageOptimizer {
         
         totalSavings += savings;
       } else {
-        optimized.push(image);
+        optimised.push(image);
       }
     }
     
     return {
       needsOptimization,
-      optimized,
+      optimised,
       totalSavings
     };
   }
@@ -443,7 +443,7 @@ export class CDNManager {
   private static readonly CDN_BASE = process.env.NEXT_PUBLIC_CDN_URL || '';
   
   /**
-   * Generate CDN URL with optimization parameters
+   * Generate CDN URL with optimisation parameters
    */
   public static getCDNUrl(
     imagePath: string,

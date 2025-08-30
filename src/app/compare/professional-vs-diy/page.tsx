@@ -94,7 +94,7 @@ export default function ProfessionalVsDIYPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-red-900 to-orange-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Professional vs DIY Restoration
@@ -114,7 +114,7 @@ export default function ProfessionalVsDIYPage() {
       {/* Comparison Table */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Side-by-Side Comparison
           </h2>
           <div className="max-w-5xl mx-auto">
@@ -123,16 +123,16 @@ export default function ProfessionalVsDIYPage() {
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="p-4 text-left">Aspect</th>
-                    <th className="p-4 text-center">DIY Attempt</th>
-                    <th className="p-4 text-center">Professional Service</th>
+                    <th className="p-4 text-centre">DIY Attempt</th>
+                    <th className="p-4 text-centre">Professional Service</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparisonData.map((item, index) => (
                     <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                       <td className="p-4 font-bold">{item.aspect}</td>
-                      <td className={`p-4 text-center ${item.winner === 'diy' ? 'text-green-600 font-bold' : 'text-red-600'}`}>
-                        <div className="flex items-center justify-center">
+                      <td className={`p-4 text-centre ${item.winner === 'diy' ? 'text-green-600 font-bold' : 'text-red-600'}`}>
+                        <div className="flex items-centre justify-centre">
                           {item.winner === 'diy' ? 
                             <CheckCircle2 className="h-5 w-5 mr-2" /> : 
                             <XCircle className="h-5 w-5 mr-2" />
@@ -140,8 +140,8 @@ export default function ProfessionalVsDIYPage() {
                           {item.diy}
                         </div>
                       </td>
-                      <td className={`p-4 text-center ${item.winner === 'professional' ? 'text-green-600 font-bold' : 'text-gray-600'}`}>
-                        <div className="flex items-center justify-center">
+                      <td className={`p-4 text-centre ${item.winner === 'professional' ? 'text-green-600 font-bold' : 'text-gray-600'}`}>
+                        <div className="flex items-centre justify-centre">
                           {item.winner === 'professional' && 
                             <CheckCircle2 className="h-5 w-5 mr-2" />
                           }
@@ -153,7 +153,7 @@ export default function ProfessionalVsDIYPage() {
                 </tbody>
               </table>
             </Card>
-            <div className="mt-8 text-center">
+            <div className="mt-8 text-centre">
               <p className="text-2xl font-bold text-green-600">
                 Professional: 7/8 Advantages
               </p>
@@ -165,7 +165,7 @@ export default function ProfessionalVsDIYPage() {
       {/* Hidden Costs of DIY */}
       <section className="py-16 bg-red-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Hidden Costs & Risks of DIY
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -184,7 +184,7 @@ export default function ProfessionalVsDIYPage() {
       {/* Real Cost Analysis */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             True Cost Analysis: Water Damage Example
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -267,7 +267,7 @@ export default function ProfessionalVsDIYPage() {
                 </div>
               </div>
               <div className="mt-6 bg-green-100 rounded-lg p-4">
-                <p className="text-center font-bold text-green-800">
+                <p className="text-centre font-bold text-green-800">
                   Save $19,400 with professional service!
                 </p>
               </div>
@@ -279,7 +279,7 @@ export default function ProfessionalVsDIYPage() {
       {/* Why DIY Fails */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why DIY Disaster Recovery Fails
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -330,7 +330,7 @@ export default function ProfessionalVsDIYPage() {
       {/* Professional Benefits */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Professional Service Benefits
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -372,7 +372,7 @@ export default function ProfessionalVsDIYPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Shield className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             Don't Risk DIY - Get Professional Help

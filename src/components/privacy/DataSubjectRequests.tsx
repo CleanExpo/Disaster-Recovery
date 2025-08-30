@@ -196,8 +196,8 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
       {/* Header */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2">
+          <CardTitle className="flex items-centre justify-between">
+            <span className="flex items-centre gap-2">
               <Shield className="h-5 w-5" />
               Data Subject Rights (DSAR)
             </span>
@@ -258,7 +258,7 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
           )}
 
           {/* Filter */}
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-centre mb-4">
             <h3 className="font-medium">Request History</h3>
             <Select value={filterStatus} onValueChange={setFilterStatus}>
               <SelectTrigger className="w-40">
@@ -277,7 +277,7 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
           {/* Requests List */}
           <div className="space-y-3">
             {requests.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-centre py-8 text-gray-500">
                 <Database className="h-12 w-12 mx-auto mb-3 text-gray-300" />
                 <p>No data requests found</p>
               </div>
@@ -298,13 +298,13 @@ export function DataSubjectRequests({ userId, userRole }: DataSubjectRequestsPro
                         <p className="text-sm text-gray-600 mt-1">
                           {request.description}
                         </p>
-                        <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
-                          <span className="flex items-center gap-1">
+                        <div className="flex items-centre gap-4 mt-2 text-xs text-gray-500">
+                          <span className="flex items-centre gap-1">
                             <Clock className="h-3 w-3" />
                             {new Date(request.requestedAt).toLocaleDateString()}
                           </span>
                           {request.completedAt && (
-                            <span className="flex items-center gap-1">
+                            <span className="flex items-centre gap-1">
                               <CheckCircle className="h-3 w-3 text-green-500" />
                               Completed {new Date(request.completedAt).toLocaleDateString()}
                             </span>

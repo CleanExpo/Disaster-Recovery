@@ -132,7 +132,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
       },
       {
         title: 'Mobile-First',
-        description: 'Responsive platform optimized for emergency mobile access',
+        description: 'Responsive platform optimised for emergency mobile access',
         icon: Smartphone
       },
       {
@@ -247,7 +247,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
       {
         value: '$125',
         label: 'Average Cost Per Lead',
-        growth: '-23% optimization'
+        growth: '-23% optimisation'
       }
     ],
     voiceNarration: 'Our traction metrics demonstrate explosive growth across all key areas. We have onboarded over 450 contractors nationwide, generated nearly 3,000 qualified leads, and facilitated over 2.4 million dollars in completed jobs. Our AI bot maintains 24/7 uptime with 99.9% SLA while achieving number one SEO rankings for over 45 keywords.',
@@ -273,16 +273,16 @@ export const pitchDeckData: PitchDeckSlide[] = [
       },
       {
         title: 'Real-time Analytics',
-        description: 'Live performance tracking and optimization across all metrics',
+        description: 'Live performance tracking and optimisation across all metrics',
         icon: BarChart3
       },
       {
         title: 'Mobile-first Design',
-        description: 'Progressive web app optimized for emergency response scenarios',
+        description: 'Progressive web app optimised for emergency response scenarios',
         icon: Smartphone
       }
     ],
-    voiceNarration: 'Our technology stack is built for massive scale and complete automation. Advanced AI algorithms handle contractor matching, programmatic SEO generates thousands of targeted pages, and real-time analytics optimize performance continuously. Everything is designed to run without human intervention.',
+    voiceNarration: 'Our technology stack is built for massive scale and complete automation. Advanced AI algorithms handle contractor matching, programmatic SEO generates thousands of targeted pages, and real-time analytics optimise performance continuously. Everything is designed to run without human intervention.',
     screenshots: ['/images/tech-architecture.jpg', '/images/ai-matching.jpg', '/images/analytics-dashboard.jpg']
   },
 
@@ -359,7 +359,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
       },
       {
         title: 'Phase 2: Expansion',
-        description: 'Regional centers, programmatic page generation, AI bot deployment',
+        description: 'Regional centres, programmatic page generation, AI bot deployment',
         icon: Rocket
       },
       {
@@ -373,7 +373,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
         icon: Globe
       }
     ],
-    voiceNarration: 'Our go-to-market strategy focuses on systematic national expansion. We start with major cities to build critical mass, expand to regional centers with automated systems, dominate rural markets through programmatic SEO, and then expand internationally to New Zealand and Pacific territories.',
+    voiceNarration: 'Our go-to-market strategy focuses on systematic national expansion. We start with major cities to build critical mass, expand to regional centres with automated systems, dominate rural markets through programmatic SEO, and then expand internationally to New Zealand and Pacific territories.',
     screenshots: ['/images/expansion-map.jpg', '/images/rollout-timeline.jpg']
   },
 

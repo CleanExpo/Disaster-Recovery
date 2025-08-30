@@ -29,7 +29,7 @@ export class DesignImplementerAgent implements UIAgent {
     'Design system token application',
     'Component variant generation',
     'Brand consistency enforcement',
-    'Style optimization',
+    'Style optimisation',
     'Design pattern implementation',
     'CSS custom property management',
     'Component library standardization'
@@ -38,7 +38,7 @@ export class DesignImplementerAgent implements UIAgent {
   isActive = true
 
   private r6DesignTokens = {
-    colors: {
+    colours: {
       primary: {
         50: '#f0f2ff',
         100: '#e6eaff',
@@ -203,17 +203,17 @@ export class DesignImplementerAgent implements UIAgent {
     }
   }
 
-  async analyze(element: UIElement): Promise<AnalysisResult> {
+  async analyse(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
     const recommendations = []
 
-    // Analyze design token usage
+    // Analyse design token usage
     const tokenUsage = this.analyzeDesignTokenUsage(element)
     issues.push(...tokenUsage.issues)
     strengths.push(...tokenUsage.strengths)
 
-    // Analyze component consistency
+    // Analyse component consistency
     const consistency = this.analyzeComponentConsistency(element)
     issues.push(...consistency.issues)
     strengths.push(...consistency.strengths)
@@ -269,9 +269,9 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'primary', size: 'md' },
         styles: {
           base: `
-            background-color: ${this.r6DesignTokens.colors.primary[500]};
-            color: white;
-            border: 2px solid ${this.r6DesignTokens.colors.primary[500]};
+            background-colour: ${this.r6DesignTokens.colours.primary[500]};
+            colour: white;
+            border: 2px solid ${this.r6DesignTokens.colours.primary[500]};
             border-radius: ${this.r6DesignTokens.borderRadius.full};
             padding: ${this.r6DesignTokens.spacing[3]} ${this.r6DesignTokens.spacing[6]};
             font-family: ${this.r6DesignTokens.typography.fontFamilies.primary};
@@ -284,8 +284,8 @@ export class DesignImplementerAgent implements UIAgent {
             user-select: none;
           `,
           hover: `
-            background-color: ${this.r6DesignTokens.colors.primary[600]};
-            border-color: ${this.r6DesignTokens.colors.primary[600]};
+            background-colour: ${this.r6DesignTokens.colours.primary[600]};
+            border-colour: ${this.r6DesignTokens.colours.primary[600]};
             transform: translateY(-2px);
             box-shadow: ${this.r6DesignTokens.shadows.lg};
           `,
@@ -294,7 +294,7 @@ export class DesignImplementerAgent implements UIAgent {
             box-shadow: ${this.r6DesignTokens.shadows.md};
           `,
           focus: `
-            outline: 2px solid ${this.r6DesignTokens.colors.primary[500]};
+            outline: 2px solid ${this.r6DesignTokens.colours.primary[500]};
             outline-offset: 2px;
           `
         }
@@ -304,9 +304,9 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'secondary', size: 'md' },
         styles: {
           base: `
-            background-color: transparent;
-            color: ${this.r6DesignTokens.colors.primary[500]};
-            border: 2px solid ${this.r6DesignTokens.colors.primary[500]};
+            background-colour: transparent;
+            colour: ${this.r6DesignTokens.colours.primary[500]};
+            border: 2px solid ${this.r6DesignTokens.colours.primary[500]};
             border-radius: ${this.r6DesignTokens.borderRadius.full};
             padding: ${this.r6DesignTokens.spacing[3]} ${this.r6DesignTokens.spacing[6]};
             font-family: ${this.r6DesignTokens.typography.fontFamilies.primary};
@@ -314,8 +314,8 @@ export class DesignImplementerAgent implements UIAgent {
             transition: all ${this.r6DesignTokens.animations.durations.normal} ${this.r6DesignTokens.animations.easings.out};
           `,
           hover: `
-            background-color: ${this.r6DesignTokens.colors.primary[500]};
-            color: white;
+            background-colour: ${this.r6DesignTokens.colours.primary[500]};
+            colour: white;
             transform: translateY(-2px);
             box-shadow: ${this.r6DesignTokens.shadows.lg};
           `
@@ -326,8 +326,8 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'gradient', size: 'md' },
         styles: {
           base: `
-            background: linear-gradient(135deg, ${this.r6DesignTokens.colors.primary[500]}, ${this.r6DesignTokens.colors.semantic.info});
-            color: white;
+            background: linear-gradient(135deg, ${this.r6DesignTokens.colours.primary[500]}, ${this.r6DesignTokens.colours.semantic.info});
+            colour: white;
             border: none;
             border-radius: ${this.r6DesignTokens.borderRadius.full};
             padding: ${this.r6DesignTokens.spacing[3]} ${this.r6DesignTokens.spacing[6]};
@@ -353,8 +353,8 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'default', padding: 'md' },
         styles: {
           base: `
-            background-color: ${this.r6DesignTokens.colors.neutral[0]};
-            border: 1px solid ${this.r6DesignTokens.colors.neutral[200]};
+            background-colour: ${this.r6DesignTokens.colours.neutral[0]};
+            border: 1px solid ${this.r6DesignTokens.colours.neutral[200]};
             border-radius: ${this.r6DesignTokens.borderRadius['2xl']};
             padding: ${this.r6DesignTokens.spacing[6]};
             box-shadow: ${this.r6DesignTokens.shadows.base};
@@ -365,7 +365,7 @@ export class DesignImplementerAgent implements UIAgent {
           hover: `
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(19, 28, 255, 0.12);
-            border-color: rgba(19, 28, 255, 0.2);
+            border-colour: rgba(19, 28, 255, 0.2);
           `
         }
       },
@@ -374,7 +374,7 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'glass', padding: 'md' },
         styles: {
           base: `
-            background-color: rgba(255, 255, 255, 0.8);
+            background-colour: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: ${this.r6DesignTokens.borderRadius['2xl']};
@@ -383,7 +383,7 @@ export class DesignImplementerAgent implements UIAgent {
             transition: all ${this.r6DesignTokens.animations.durations.slower} ${this.r6DesignTokens.animations.easings.out};
           `,
           hover: `
-            background-color: rgba(255, 255, 255, 0.9);
+            background-colour: rgba(255, 255, 255, 0.9);
             transform: translateY(-4px);
             box-shadow: 0 8px 40px rgba(19, 28, 255, 0.25);
           `
@@ -394,8 +394,8 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'interactive', padding: 'md' },
         styles: {
           base: `
-            background-color: ${this.r6DesignTokens.colors.neutral[0]};
-            border: 1px solid ${this.r6DesignTokens.colors.neutral[200]};
+            background-colour: ${this.r6DesignTokens.colours.neutral[0]};
+            border: 1px solid ${this.r6DesignTokens.colours.neutral[200]};
             border-radius: ${this.r6DesignTokens.borderRadius['2xl']};
             padding: ${this.r6DesignTokens.spacing[6]};
             box-shadow: ${this.r6DesignTokens.shadows.base};
@@ -405,7 +405,7 @@ export class DesignImplementerAgent implements UIAgent {
           hover: `
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 12px 40px rgba(19, 28, 255, 0.2);
-            border-color: rgba(19, 28, 255, 0.3);
+            border-colour: rgba(19, 28, 255, 0.3);
           `,
           active: `
             transform: translateY(-2px) scale(0.98);
@@ -422,23 +422,23 @@ export class DesignImplementerAgent implements UIAgent {
         props: { variant: 'default', size: 'md' },
         styles: {
           base: `
-            background-color: ${this.r6DesignTokens.colors.neutral[0]};
-            border: 2px solid ${this.r6DesignTokens.colors.neutral[300]};
+            background-colour: ${this.r6DesignTokens.colours.neutral[0]};
+            border: 2px solid ${this.r6DesignTokens.colours.neutral[300]};
             border-radius: ${this.r6DesignTokens.borderRadius.lg};
             padding: ${this.r6DesignTokens.spacing[3]} ${this.r6DesignTokens.spacing[4]};
             font-family: ${this.r6DesignTokens.typography.fontFamilies.secondary};
             font-size: ${this.r6DesignTokens.typography.fontSizes.base};
-            color: ${this.r6DesignTokens.colors.neutral[900]};
+            colour: ${this.r6DesignTokens.colours.neutral[900]};
             transition: all ${this.r6DesignTokens.animations.durations.normal} ${this.r6DesignTokens.animations.easings.out};
             width: 100%;
           `,
           focus: `
-            border-color: ${this.r6DesignTokens.colors.primary[500]};
+            border-colour: ${this.r6DesignTokens.colours.primary[500]};
             outline: none;
             box-shadow: 0 0 0 3px rgba(19, 28, 255, 0.1);
           `,
           hover: `
-            border-color: ${this.r6DesignTokens.colors.neutral[400]};
+            border-colour: ${this.r6DesignTokens.colours.neutral[400]};
           `
         }
       }
@@ -453,7 +453,7 @@ export class DesignImplementerAgent implements UIAgent {
         styles: {
           base: `
             font-family: ${this.r6DesignTokens.typography.fontFamilies.secondary};
-            color: ${this.r6DesignTokens.colors.neutral[900]};
+            colour: ${this.r6DesignTokens.colours.neutral[900]};
             transition: all ${this.r6DesignTokens.animations.durations.normal} ${this.r6DesignTokens.animations.easings.out};
           `
         }
@@ -464,7 +464,7 @@ export class DesignImplementerAgent implements UIAgent {
   private applyDesignTokens(styles: ComponentStyles): ComponentStyles {
     let processedBase = styles.base || ''
     
-    // Replace hardcoded colors with design tokens
+    // Replace hardcoded colours with design tokens
     processedBase = this.replaceColorTokens(processedBase)
     
     // Replace hardcoded spacing with design tokens
@@ -481,12 +481,12 @@ export class DesignImplementerAgent implements UIAgent {
 
   private replaceColorTokens(css: string): string {
     const colorMappings = {
-      '#131cff': 'var(--color-primary-500)',
-      '#0f17cc': 'var(--color-primary-600)',
-      '#ffffff': 'var(--color-neutral-0)',
-      '#000000': 'var(--color-neutral-900)',
-      '#f9fafb': 'var(--color-neutral-50)',
-      '#6b7280': 'var(--color-neutral-500)'
+      '#131cff': 'var(--colour-primary-500)',
+      '#0f17cc': 'var(--colour-primary-600)',
+      '#ffffff': 'var(--colour-neutral-0)',
+      '#000000': 'var(--colour-neutral-900)',
+      '#f9fafb': 'var(--colour-neutral-50)',
+      '#6b7280': 'var(--colour-neutral-500)'
     }
 
     let processedCSS = css
@@ -646,7 +646,7 @@ export class DesignImplementerAgent implements UIAgent {
         styles: `
           /* Use design tokens instead of hardcoded values */
           .component {
-            color: var(--color-primary-500);
+            colour: var(--colour-primary-500);
             padding: var(--space-4);
             border-radius: var(--radius-lg);
             font-family: var(--font-primary);
@@ -668,17 +668,17 @@ export class DesignImplementerAgent implements UIAgent {
   private generateCSSCustomProperties(): string {
     return `
       :root {
-        /* Colors */
-        --color-primary-50: ${this.r6DesignTokens.colors.primary[50]};
-        --color-primary-500: ${this.r6DesignTokens.colors.primary[500]};
-        --color-primary-600: ${this.r6DesignTokens.colors.primary[600]};
-        --color-primary-700: ${this.r6DesignTokens.colors.primary[700]};
+        /* Colours */
+        --colour-primary-50: ${this.r6DesignTokens.colours.primary[50]};
+        --colour-primary-500: ${this.r6DesignTokens.colours.primary[500]};
+        --colour-primary-600: ${this.r6DesignTokens.colours.primary[600]};
+        --colour-primary-700: ${this.r6DesignTokens.colours.primary[700]};
         
-        /* Neutral Colors */
-        --color-neutral-0: ${this.r6DesignTokens.colors.neutral[0]};
-        --color-neutral-100: ${this.r6DesignTokens.colors.neutral[100]};
-        --color-neutral-500: ${this.r6DesignTokens.colors.neutral[500]};
-        --color-neutral-900: ${this.r6DesignTokens.colors.neutral[900]};
+        /* Neutral Colours */
+        --colour-neutral-0: ${this.r6DesignTokens.colours.neutral[0]};
+        --colour-neutral-100: ${this.r6DesignTokens.colours.neutral[100]};
+        --colour-neutral-500: ${this.r6DesignTokens.colours.neutral[500]};
+        --colour-neutral-900: ${this.r6DesignTokens.colours.neutral[900]};
         
         /* Typography */
         --font-primary: ${this.r6DesignTokens.typography.fontFamilies.primary};
@@ -766,7 +766,7 @@ export class DesignImplementerAgent implements UIAgent {
               className="r6-component"
               style={{
                 fontFamily: 'var(--font-secondary)',
-                color: 'var(--color-neutral-900)',
+                colour: 'var(--colour-neutral-900)',
                 transition: 'all var(--duration-normal) var(--ease-out)'
               }}
               {...props}

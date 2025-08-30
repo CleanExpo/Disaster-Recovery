@@ -149,7 +149,7 @@ export function DocumentVerification() {
   const runAIAnalysis = async (document: Document) => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/admin/documents/${document.id}/analyze`, {
+      const response = await fetch(`/api/admin/documents/${document.id}/analyse`, {
         method: 'POST'
       });
       const data = await response.json();
@@ -210,7 +210,7 @@ export function DocumentVerification() {
   return (
     <div className="space-y-6">
       {/* Header with filters */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <h2 className="text-xl font-bold">Document Verification</h2>
         <div className="flex gap-3">
           <div className="relative">
@@ -264,7 +264,7 @@ export function DocumentVerification() {
             className={queue.priority === 'urgent' && queue.count > 0 ? 'border-red-200' : ''}
           >
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm flex items-center justify-between">
+              <CardTitle className="text-sm flex items-centre justify-between">
                 <span className="capitalize">{queue.priority} Priority</span>
                 <Badge variant={queue.priority === 'urgent' ? 'destructive' : 'secondary'}>
                   {queue.count}
@@ -288,7 +288,7 @@ export function DocumentVerification() {
         <Alert className="bg-blue-50 border-blue-200">
           <AlertCircle className="h-4 w-4 text-blue-600" />
           <AlertDescription className="text-blue-700">
-            <strong>AI Assistant:</strong> 12 documents have been pre-analyzed. Documents with potential 
+            <strong>AI Assistant:</strong> 12 documents have been pre-analysed. Documents with potential 
             issues are flagged for priority review.
           </AlertDescription>
         </Alert>
@@ -314,13 +314,13 @@ export function DocumentVerification() {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan={8} className="text-center p-8">
+                    <td colSpan={8} className="text-centre p-8">
                       <Loader2 className="h-8 w-8 animate-spin mx-auto text-gray-400" />
                     </td>
                   </tr>
                 ) : filteredDocuments.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="text-center p-8 text-gray-500">
+                    <td colSpan={8} className="text-centre p-8 text-gray-500">
                       No documents found matching your criteria
                     </td>
                   </tr>
@@ -328,7 +328,7 @@ export function DocumentVerification() {
                   filteredDocuments.map(doc => (
                     <tr key={doc.id} className="border-b hover:bg-gray-50">
                       <td className="p-4">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           {getDocumentIcon(doc.type)}
                           <div>
                             <p className="font-medium text-sm">{doc.name}</p>
@@ -377,7 +377,7 @@ export function DocumentVerification() {
                         {doc.metadata?.aiAnalyzed ? (
                           <Badge className="bg-green-100 text-green-800">
                             <CheckCircle className="h-3 w-3 mr-1" />
-                            Analyzed
+                            Analysed
                           </Badge>
                         ) : (
                           <Badge variant="outline">
@@ -486,14 +486,14 @@ export function DocumentVerification() {
 
               {/* Document Preview */}
               <div className="border rounded-lg p-4 bg-gray-50">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-centre justify-between mb-2">
                   <span className="text-sm font-medium">Document Preview</span>
                   <Button variant="outline" size="sm">
                     <Eye className="h-4 w-4 mr-2" />
                     View Full Document
                   </Button>
                 </div>
-                <div className="h-64 bg-white rounded border flex items-center justify-center text-gray-400">
+                <div className="h-64 bg-white rounded border flex items-centre justify-centre text-gray-400">
                   Document preview would appear here
                 </div>
               </div>
@@ -642,7 +642,7 @@ export function DocumentVerification() {
                     </p>
                   </div>
                   <div>
-                    <Label className="text-sm text-gray-600">AI Analyzed</Label>
+                    <Label className="text-sm text-gray-600">AI Analysed</Label>
                     <p className="font-medium">
                       {selectedDocument.metadata?.aiAnalyzed ? 'Yes' : 'No'}
                     </p>

@@ -128,8 +128,8 @@ export function ComplianceReports() {
 
   if (!metrics) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
+      <div className="flex items-centre justify-centre min-h-[400px]">
+        <div className="text-centre">
           <Shield className="h-8 w-8 animate-spin mx-auto text-gray-400" />
           <p className="text-sm text-gray-500 mt-2">Loading compliance data...</p>
         </div>
@@ -145,9 +145,9 @@ export function ComplianceReports() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold flex items-centre gap-2">
             <Shield className="h-6 w-6" />
             Compliance & Certification Reports
           </h2>
@@ -227,7 +227,7 @@ export function ComplianceReports() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Award className="h-4 w-4" />
               Certifications
             </CardTitle>
@@ -243,7 +243,7 @@ export function ComplianceReports() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Shield className="h-4 w-4" />
               Insurance
             </CardTitle>
@@ -259,7 +259,7 @@ export function ComplianceReports() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <GraduationCap className="h-4 w-4" />
               CEU Credits
             </CardTitle>
@@ -276,7 +276,7 @@ export function ComplianceReports() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Clock className="h-4 w-4" />
               Next Deadline
             </CardTitle>
@@ -335,8 +335,8 @@ export function ComplianceReports() {
               <CardContent>
                 <div className="space-y-3">
                   {metrics.upcomingDeadlines.slice(0, 5).map((deadline, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex items-center gap-3">
+                    <div key={index} className="flex items-centre justify-between p-3 border rounded-lg">
+                      <div className="flex items-centre gap-3">
                         {deadline.type === 'certification' && <Award className="h-4 w-4 text-blue-500" />}
                         {deadline.type === 'insurance' && <Shield className="h-4 w-4 text-green-500" />}
                         {deadline.type === 'training' && <GraduationCap className="h-4 w-4 text-purple-500" />}
@@ -377,7 +377,7 @@ export function ComplianceReports() {
                   <div key={index} className="border rounded-lg p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
+                        <div className="flex items-centre gap-3 mb-2">
                           <Award className="h-5 w-5 text-blue-500" />
                           <h4 className="font-medium">{cert.name}</h4>
                           <Badge className={getStatusColor(cert.status)}>
@@ -442,7 +442,7 @@ export function ComplianceReports() {
                   <div key={index} className="border rounded-lg p-4">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
+                        <div className="flex items-centre gap-3 mb-2">
                           <Shield className="h-5 w-5 text-green-500" />
                           <h4 className="font-medium">{policy.type}</h4>
                           <Badge className={policy.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
@@ -492,7 +492,7 @@ export function ComplianceReports() {
               <div className="space-y-6">
                 {/* CEU Progress */}
                 <div>
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-centre mb-4">
                     <h4 className="font-medium">CEU Credit Progress</h4>
                     <Badge className={metrics.ceuCredits.onTrack ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}>
                       {metrics.ceuCredits.onTrack ? 'On Track' : 'Behind Schedule'}

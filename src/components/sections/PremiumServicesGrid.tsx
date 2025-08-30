@@ -14,7 +14,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Water Damage Restoration",
     description: "Rapid water extraction, structural drying, and complete restoration to prevent secondary damage and mould growth.",
-    image: "/images/optimized/equipment/3D Moisture Meter Reading.png",
+    image: "/images/optimised/equipment/3D Moisture Meter Reading.png",
     href: "/services/water-damage",
     category: "water",
     badge: "Most Common",
@@ -30,7 +30,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Fire & Smoke Restoration",
     description: "Complete fire damage restoration including smoke odour removal, soot cleaning, and structural repairs.",
-    image: "/images/optimized/damage/3D image of a house fire.png",
+    image: "/images/optimised/damage/3D image of a house fire.png",
     href: "/services/fire-damage-restoration",
     category: "fire",
     responseTime: "90 min",
@@ -44,9 +44,9 @@ const services: ServiceCardProps[] = [
   {
     title: "Mould Remediation",
     description: "Professional mould removal and prevention using IICRC certified techniques to ensure a healthy environment.",
-    image: "/images/optimized/process/3D Hazardous Cleaning.png",
+    image: "/images/optimised/process/3D Hazardous Cleaning.png",
     href: "/services/mould-remediation",
-    category: "mold",
+    category: "mould",
     badge: "Health Priority",
     features: [
       "HEPA air filtration",
@@ -58,7 +58,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Storm & Flood Damage",
     description: "Comprehensive storm damage recovery including emergency tarping, water extraction, and full restoration.",
-    image: "/images/optimized/damage/3D Vehicle into Home.png",
+    image: "/images/optimised/damage/3D Vehicle into Home.png",
     href: "/services/storm-damage",
     category: "storm",
     responseTime: "45 min",
@@ -72,7 +72,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Biohazard Cleanup",
     description: "Sensitive and professional cleanup of biohazardous materials following strict safety protocols.",
-    image: "/images/optimized/process/3D Emergency Squalor Cleanup.png",
+    image: "/images/optimised/process/3D Emergency Squalor Cleanup.png",
     href: "/services/biohazard-cleaning",
     category: "biohazard",
     features: [
@@ -135,7 +135,7 @@ export default function PremiumServicesGrid({
     { id: 'all', label: 'All Services', icon: Sparkles },
     { id: 'water', label: 'Water Damage', icon: null },
     { id: 'fire', label: 'Fire Damage', icon: null },
-    { id: 'mold', label: 'Mould', icon: null },
+    { id: 'mould', label: 'Mould', icon: null },
     { id: 'storm', label: 'Storm', icon: null },
     { id: 'biohazard', label: 'Biohazard', icon: null },
     { id: 'commercial', label: 'Commercial', icon: null }
@@ -154,8 +154,8 @@ export default function PremiumServicesGrid({
         {showHeader && (
           <>
             {/* Section Header */}
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
+            <div className="text-centre max-w-3xl mx-auto mb-12">
+              <div className="inline-flex items-centre gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4">
                 <Shield className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-semibold text-blue-600">IICRC Certified Services</span>
               </div>
@@ -175,7 +175,7 @@ export default function PremiumServicesGrid({
 
             {/* Category Filter Pills */}
             {!filterCategory && (
-              <div className="flex flex-wrap justify-center gap-3 mb-12">
+              <div className="flex flex-wrap justify-centre gap-3 mb-12">
                 {categories.map(category => (
                   <button
                     key={category.id}
@@ -188,7 +188,7 @@ export default function PremiumServicesGrid({
                         : "bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:text-blue-600"
                     )}
                   >
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-centre gap-2">
                       {category.icon && <category.icon className="w-4 h-4" />}
                       {category.label}
                     </span>
@@ -242,9 +242,9 @@ export default function PremiumServicesGrid({
 
         {/* Bottom CTA Section */}
         {showHeader && (
-          <div className="mt-16 text-center">
-            <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
-              <div className="flex items-center gap-4">
+          <div className="mt-16 text-centre">
+            <div className="inline-flex flex-col sm:flex-row items-centre gap-6 p-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
+              <div className="flex items-centre gap-4">
                 <div className="p-3 bg-white rounded-xl shadow-md">
                   <TrendingUp className="w-8 h-8 text-blue-600" />
                 </div>

@@ -16,7 +16,7 @@ export interface LocationData {
   monthlySearchVolume?: number;
 }
 
-// High-priority capital cities and major urban centers
+// High-priority capital cities and major urban centres
 export const PRIORITY_LOCATIONS: LocationData[] = [
   // Sydney Metro - Top Priority
   {
@@ -425,10 +425,10 @@ export const PROPERTY_TYPES = [
 
 // Business types for hyper-local targeting
 export const BUSINESS_TYPES = [
-  'restaurants', 'cafes', 'hotels', 'motels', 'medical-centers', 'dental-practices',
-  'pharmacies', 'retail-stores', 'offices', 'warehouses', 'schools', 'childcare-centers',
+  'restaurants', 'cafes', 'hotels', 'motels', 'medical-centres', 'dental-practices',
+  'pharmacies', 'retail-stores', 'offices', 'warehouses', 'schools', 'childcare-centres',
   'gyms', 'beauty-salons', 'automotive-workshops', 'veterinary-clinics', 'aged-care-facilities',
-  'shopping-centers', 'banks', 'legal-offices', 'accountants', 'real-estate-offices'
+  'shopping-centres', 'banks', 'legal-offices', 'accountants', 'real-estate-offices'
 ];
 
 // Generate all location combinations for SEO

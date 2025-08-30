@@ -36,9 +36,9 @@ export default function PremiumDemoPage() {
         {/* Glass Navigation */}
         <nav className="relative glass-frosted border-b border-white/20">
           <div className="container mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg animate-glow-pulse">
+            <div className="flex items-centre justify-between">
+              <div className="flex items-centre gap-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-centre justify-centre shadow-lg animate-glow-pulse">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -49,7 +49,7 @@ export default function PremiumDemoPage() {
                 </div>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-centre gap-3">
                 <Button variant="ghost" size="icon">
                   <Search className="w-5 h-5" />
                 </Button>
@@ -67,8 +67,8 @@ export default function PremiumDemoPage() {
 
         {/* Hero Content */}
         <div className="relative container mx-auto px-6 py-16">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 glass-light rounded-full mb-6 animate-slide-in-right">
+          <div className="text-centre max-w-4xl mx-auto">
+            <div className="inline-flex items-centre gap-2 px-4 py-2 glass-light rounded-full mb-6 animate-slide-in-right">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -88,7 +88,7 @@ export default function PremiumDemoPage() {
             </p>
             
             {/* Premium Button Showcase */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <div className="flex flex-wrap justify-centre gap-4 mb-12">
               <Button variant="premium" size="lg" glow>
                 <Zap className="w-5 h-5" />
                 Premium Button
@@ -115,7 +115,7 @@ export default function PremiumDemoPage() {
 
       {/* Premium Button Grid */}
       <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-3xl font-bold text-centre mb-8">
           Premium Button System
         </h2>
         
@@ -227,16 +227,16 @@ export default function PremiumDemoPage() {
 
       {/* Premium Cards Section */}
       <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-3xl font-bold text-centre mb-8">
           Premium Glass Cards
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Stats Cards */}
           {[
-            { label: 'Total Revenue', value: '$124,592', change: '+12.5%', icon: Zap, color: 'from-blue-600 to-cyan-600' },
-            { label: 'Active Users', value: '8,492', change: '+18.2%', icon: User, color: 'from-purple-600 to-pink-600' },
-            { label: 'Conversion Rate', value: '24.8%', change: '+5.4%', icon: Star, color: 'from-green-600 to-emerald-600' }
+            { label: 'Total Revenue', value: '$124,592', change: '+12.5%', icon: Zap, colour: 'from-blue-600 to-cyan-600' },
+            { label: 'Active Users', value: '8,492', change: '+18.2%', icon: User, colour: 'from-purple-600 to-pink-600' },
+            { label: 'Conversion Rate', value: '24.8%', change: '+5.4%', icon: Star, colour: 'from-green-600 to-emerald-600' }
           ].map((stat, index) => (
             <div
               key={stat.label}
@@ -244,12 +244,12 @@ export default function PremiumDemoPage() {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-5 rounded-2xl`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.colour} opacity-5 rounded-2xl`} />
               
               {/* Content */}
               <div className="relative">
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color} shadow-lg group-hover:scale-110 transition-transform`}>
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.colour} shadow-lg group-hover:scale-110 transition-transform`}>
                     <stat.icon className="w-6 h-6 text-white" />
                   </div>
                   <span className={`text-sm font-semibold ${stat.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
@@ -265,7 +265,7 @@ export default function PremiumDemoPage() {
                 {/* Progress Bar */}
                 <div className="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div 
-                    className={`h-full bg-gradient-to-r ${stat.color} rounded-full animate-pulse-subtle`}
+                    className={`h-full bg-gradient-to-r ${stat.colour} rounded-full animate-pulse-subtle`}
                     style={{ width: '75%' }}
                   />
                 </div>
@@ -277,7 +277,7 @@ export default function PremiumDemoPage() {
 
       {/* Premium Support Tickets Component */}
       <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-3xl font-bold text-centre mb-8">
           Premium Support Dashboard
         </h2>
         <PremiumSupportTickets />
@@ -286,14 +286,14 @@ export default function PremiumDemoPage() {
       {/* Footer with Glass Effect */}
       <footer className="mt-20 glass-dark text-white">
         <div className="container mx-auto px-6 py-12">
-          <div className="text-center">
+          <div className="text-centre">
             <h3 className="text-2xl font-bold mb-4">
               This is What 10/10 Design Actually Looks Like
             </h3>
             <p className="text-gray-300 mb-6">
               Real components with real effects - not just flat shadcn cards
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-centre gap-4">
               <Button variant="glass" size="lg">
                 Deploy This Design
               </Button>

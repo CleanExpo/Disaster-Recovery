@@ -347,27 +347,27 @@ export interface FAQItem {
 // Constants
 export const TICKET_PRIORITIES: Record<TicketPriority, {
   label: string;
-  color: string;
+  colour: string;
   slaHours: number;
 }> = {
   urgent: {
     label: 'Urgent',
-    color: 'red',
+    colour: 'red',
     slaHours: 2
   },
   high: {
     label: 'High',
-    color: 'orange',
+    colour: 'orange',
     slaHours: 8
   },
   medium: {
     label: 'Medium',
-    color: 'yellow',
+    colour: 'yellow',
     slaHours: 24
   },
   low: {
     label: 'Low',
-    color: 'gray',
+    colour: 'gray',
     slaHours: 72
   }
 };

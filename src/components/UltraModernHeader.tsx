@@ -33,8 +33,8 @@ const navItems: NavItem[] = [
         icon: '🔥'
       },
       { 
-        label: 'Mold Remediation', 
-        href: '/services/mold-remediation',
+        label: 'Mould Remediation', 
+        href: '/services/mould-remediation',
         description: 'EPA-certified removal',
         icon: '🦠'
       },
@@ -185,11 +185,11 @@ export default function UltraModernHeader() {
         />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-centre">
             {/* Logo */}
             <Link 
               href="/" 
-              className="group relative flex items-center gap-3"
+              className="group relative flex items-centre gap-3"
             >
               {/* Use actual logo image */}
               <div className="relative" style={{
@@ -199,8 +199,8 @@ export default function UltraModernHeader() {
                 <Image
                   src="/images/logos/disaster-recovery-logo.png"
                   alt="Disaster Recovery Australia - Property Restoration Services"
-                  width={isScrolled ? 180 : 200}
-                  height={isScrolled ? 54 : 60}
+                  width={isScrolled ? 135 : 150}
+                  height={isScrolled ? 41 : 45}
                   priority
                   className="transition-all duration-300"
                   onError={(e) => {
@@ -214,9 +214,9 @@ export default function UltraModernHeader() {
                 {/* Fallback text logo */}
                 <div 
                   id="logo-fallback"
-                  className="hidden items-center gap-3"
+                  className="hidden items-centre gap-3"
                 >
-                  <div className="relative w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
+                  <div className="relative w-10 h-10 rounded-lg flex items-centre justify-centre bg-gradient-to-br from-teal-600 to-teal-700">
                     <span className="text-white font-bold text-xl">DR</span>
                   </div>
                   <div className="flex flex-col">
@@ -232,7 +232,7 @@ export default function UltraModernHeader() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-2">
+            <nav className="hidden md:flex items-centre gap-2">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -289,7 +289,7 @@ export default function UltraModernHeader() {
                             key={subItem.label}
                             href={subItem.href}
                             role="menuitem"
-                            className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
+                            className="relative flex items-centre gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
                             style={{
                               borderBottom: idx < item.dropdown!.length - 1 
                                 ? '1px solid rgba(255, 255, 255, 0.05)' 
@@ -298,7 +298,7 @@ export default function UltraModernHeader() {
                           >
                             {/* Icon */}
                             <div 
-                              className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
+                              className="w-10 h-10 rounded-lg flex items-centre justify-centre text-xl"
                               style={{
                                 background: 'rgba(99, 91, 255, 0.1)',
                               }}
@@ -335,10 +335,10 @@ export default function UltraModernHeader() {
             </nav>
 
             {/* CTA Section */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-centre gap-4">
               {/* Status indicator */}
               <div 
-                className="flex items-center gap-2 px-4 py-2 rounded-full"
+                className="flex items-centre gap-2 px-4 py-2 rounded-full"
                 style={{
                   background: 'rgba(16, 185, 129, 0.1)',
                   border: '1px solid rgba(16, 185, 129, 0.3)',
@@ -369,7 +369,7 @@ export default function UltraModernHeader() {
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}
               >
-                <div className="relative px-6 py-3 flex items-center gap-2 text-white font-semibold">
+                <div className="relative px-6 py-3 flex items-centre gap-2 text-white font-semibold">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
@@ -458,7 +458,7 @@ export default function UltraModernHeader() {
                       <Link
                         key={subItem.label}
                         href={subItem.href}
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                        className="flex items-centre gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colours"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <span>{subItem.icon}</span>
@@ -473,7 +473,7 @@ export default function UltraModernHeader() {
             {/* Mobile CTA */}
             <Link
               href="tel:1800DISASTER"
-              className="block w-full mt-4 text-center"
+              className="block w-full mt-4 text-centre"
               onClick={() => setMobileMenuOpen(false)}
             >
               <div 

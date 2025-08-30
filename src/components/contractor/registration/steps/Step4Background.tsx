@@ -70,7 +70,7 @@ const RELATIONSHIP_TYPES = [
 const PROJECT_TYPES = [
   'Water Damage Restoration',
   'Fire & Smoke Restoration',
-  'Mold Remediation',
+  'Mould Remediation',
   'Storm/Flood Recovery',
   'Biohazard Cleanup',
   'Contents Restoration',
@@ -263,7 +263,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       {/* Progress Indicator */}
       <Card className="border-blue-200 bg-blue-50/50">
         <CardContent className="pt-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <h3 className="font-semibold text-lg">Verification Progress</h3>
               <p className="text-sm text-gray-600 mt-1">Complete all sections to proceed</p>
@@ -281,9 +281,9 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       {/* Background Check Consent */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <UserCheck className="h-5 w-5" />
-            Background Check Authorization
+            Background Check Authorisation
           </CardTitle>
           <CardDescription>
             Legal consent required for comprehensive screening
@@ -311,7 +311,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
               />
               <div className="space-y-1 flex-1">
                 <Label htmlFor="background-check" className="font-normal cursor-pointer">
-                  I authorize third-party background screening <span className="text-red-500">*</span>
+                  I authorise third-party background screening <span className="text-red-500">*</span>
                 </Label>
                 <p className="text-xs text-gray-600">
                   I consent to comprehensive background checks including identity verification, 
@@ -334,7 +334,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                   I consent to credit and criminal history checks <span className="text-red-500">*</span>
                 </Label>
                 <p className="text-xs text-gray-600">
-                  I authorize review of credit history and criminal records as permitted under 
+                  I authorise review of credit history and criminal records as permitted under 
                   Australian law for the purpose of contractor assessment.
                 </p>
               </div>
@@ -375,7 +375,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       {/* Director/Owner Identification */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <FileSearch className="h-5 w-5" />
             Director/Owner Identification
           </CardTitle>
@@ -407,7 +407,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
               />
               <label
                 htmlFor="director-id"
-                className="flex flex-col items-center cursor-pointer"
+                className="flex flex-col items-centre cursor-pointer"
               >
                 <Upload className="h-8 w-8 text-gray-400 mb-2" />
                 <span className="text-sm text-gray-600">
@@ -422,8 +422,8 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
             {directorIdFiles.length > 0 && (
               <div className="space-y-2 mt-4">
                 {directorIdFiles.map((file, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-3">
+                  <div key={index} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-centre gap-3">
                       <FileText className="h-5 w-5 text-gray-400" />
                       <div>
                         <p className="text-sm font-medium">{file.name}</p>
@@ -460,7 +460,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       {/* Business References */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <Users className="h-5 w-5" />
             Business References
           </CardTitle>
@@ -471,7 +471,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
         <CardContent className="space-y-4">
           {references.map((ref, index) => (
             <div key={index} className="p-4 border rounded-lg space-y-4 bg-gray-50">
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-centre">
                 <h4 className="font-medium">Reference {index + 1}</h4>
                 {references.length > 2 && (
                   <Button
@@ -501,7 +501,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
 
                 <div className="space-y-2">
                   <Label>
-                    Company/Organization <span className="text-red-500">*</span>
+                    Company/Organisation <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     type="text"
@@ -532,7 +532,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                   <Label>
                     Contact Phone <span className="text-red-500">*</span>
                   </Label>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Phone className="h-4 w-4 text-gray-400" />
                     <Input
                       type="tel"
@@ -546,7 +546,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
 
                 <div className="space-y-2">
                   <Label>Contact Email</Label>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Mail className="h-4 w-4 text-gray-400" />
                     <Input
                       type="email"
@@ -567,7 +567,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                   />
                 </div>
 
-                <div className="flex items-center space-x-3 md:col-span-2">
+                <div className="flex items-centre space-x-3 md:col-span-2">
                   <Checkbox
                     id={`can-contact-${index}`}
                     checked={ref.canContact}
@@ -605,7 +605,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       {/* Project Portfolio */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <Briefcase className="h-5 w-5" />
             Recent Restoration Projects
           </CardTitle>
@@ -637,7 +637,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
               />
               <label
                 htmlFor="project-summary"
-                className="flex flex-col items-center cursor-pointer"
+                className="flex flex-col items-centre cursor-pointer"
               >
                 {projectSummaryFile ? (
                   <>
@@ -670,7 +670,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
               />
               <label
                 htmlFor="project-photos"
-                className="flex flex-col items-center cursor-pointer"
+                className="flex flex-col items-centre cursor-pointer"
               >
                 <Camera className="h-8 w-8 text-gray-400 mb-2" />
                 <span className="text-sm text-gray-600">Click to upload project photos</span>
@@ -682,10 +682,10 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2">
                 {projectPhotos.map((photo, index) => (
                   <div key={index} className="relative group">
-                    <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+                    <div className="aspect-square bg-gray-100 rounded-lg flex items-centre justify-centre">
                       <Camera className="h-6 w-6 text-gray-400" />
                     </div>
-                    <div className="absolute inset-0 bg-black/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-centre justify-centre">
                       <Button
                         type="button"
                         variant="ghost"
@@ -696,7 +696,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
-                    <p className="text-xs text-center mt-1 truncate">{photo.name}</p>
+                    <p className="text-xs text-centre mt-1 truncate">{photo.name}</p>
                   </div>
                 ))}
               </div>
@@ -705,7 +705,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
 
           {/* Recent Projects List */}
           <div className="space-y-2">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-centre">
               <Label>Recent Project Details</Label>
               <Button
                 type="button"
@@ -720,7 +720,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
 
             {recentProjects.map((project, index) => (
               <div key={index} className="p-4 border rounded-lg space-y-3 bg-gray-50">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <h5 className="font-medium text-sm">Project {index + 1}</h5>
                   <Button
                     type="button"

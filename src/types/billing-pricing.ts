@@ -283,7 +283,7 @@ export type EquipmentCategory =
   | 'air_filtration'
   | 'monitoring'
   | 'containment'
-  | 'specialized';
+  | 'specialised';
 
 export interface ServiceRate {
   serviceType: string;

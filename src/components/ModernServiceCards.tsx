@@ -23,7 +23,7 @@ interface Service {
   description: string;
   features: string[];
   href: string;
-  color: string;
+  colour: string;
   bgGradient: string;
   stats: { label: string; value: string };
 }
@@ -45,7 +45,7 @@ const ModernServiceCards: React.FC = () => {
         'Insurance Pre-Approval'
       ],
       href: '/services/water-damage',
-      color: 'from-blue-500 to-cyan-500',
+      colour: 'from-blue-500 to-cyan-500',
       bgGradient: 'from-blue-500/10 to-cyan-500/10',
       stats: { label: 'Success Rate', value: '99.2%' }
     },
@@ -53,15 +53,15 @@ const ModernServiceCards: React.FC = () => {
       id: 'fire-damage',
       icon: Flame,
       title: 'Fire & Smoke Damage',
-      description: 'Complete fire damage restoration using cutting-edge odor elimination and content restoration technology.',
+      description: 'Complete fire damage restoration using cutting-edge odour elimination and content restoration technology.',
       features: [
         'Soot & Ash Cleanup',
-        'Advanced Odor Elimination',
+        'Advanced Odour Elimination',
         'Content Restoration',
         'Structural Repairs'
       ],
       href: '/services/fire-damage',
-      color: 'from-red-500 to-orange-500',
+      colour: 'from-red-500 to-orange-500',
       bgGradient: 'from-red-500/10 to-orange-500/10',
       stats: { label: 'Restoration Time', value: '72hrs' }
     },
@@ -77,7 +77,7 @@ const ModernServiceCards: React.FC = () => {
         'Prevention Protocols'
       ],
       href: '/services/mould-remediation',
-      color: 'from-green-500 to-emerald-500',
+      colour: 'from-green-500 to-emerald-500',
       bgGradient: 'from-green-500/10 to-emerald-500/10',
       stats: { label: 'Health Safe', value: '100%' }
     }
@@ -166,13 +166,13 @@ const ModernServiceCards: React.FC = () => {
       <div className="relative z-10 container mx-auto px-6">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-20"
+          className="text-centre mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 glass-card"
+            className="inline-flex items-centre gap-2 px-4 py-2 rounded-full mb-6 glass-card"
             style={{ 
               background: 'rgba(99, 102, 241, 0.1)',
               border: '1px solid rgba(99, 102, 241, 0.2)' 
@@ -230,14 +230,14 @@ const ModernServiceCards: React.FC = () => {
               >
                 {/* Gradient overlay on hover */}
                 <div 
-                  className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}
+                  className={`absolute inset-0 bg-gradient-to-br ${service.colour} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}
                 />
                 
                 {/* Animated border on hover */}
                 <div 
                   className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    background: `linear-gradient(135deg, ${service.color.replace('from-', 'rgba(').replace('to-', 'rgba(').replace('-500', ', 0.3)')})`,
+                    background: `linear-gradient(135deg, ${service.colour.replace('from-', 'rgba(').replace('to-', 'rgba(').replace('-500', ', 0.3)')})`,
                     padding: '2px',
                     WebkitMask: 'linear-gradient(white 0 0) content-box, linear-gradient(white 0 0)',
                     WebkitMaskComposite: 'xor',
@@ -251,19 +251,19 @@ const ModernServiceCards: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div 
-                    className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} shadow-2xl relative`}
+                    className={`inline-flex items-centre justify-centre w-20 h-20 rounded-2xl bg-gradient-to-br ${service.colour} shadow-2xl relative`}
                   >
                     <Icon className="h-10 w-10 text-white" />
                     
                     {/* Glow effect */}
                     <div 
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} blur-lg opacity-50 group-hover:opacity-75 transition-opacity`}
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.colour} blur-lg opacity-50 group-hover:opacity-75 transition-opacity`}
                     />
                   </div>
                   
                   {/* Floating badge */}
                   <motion.div 
-                    className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center"
+                    className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-centre justify-centre"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.5 + index * 0.1 }}
@@ -279,7 +279,7 @@ const ModernServiceCards: React.FC = () => {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors">
+                <p className="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colours">
                   {service.description}
                 </p>
                 
@@ -297,13 +297,13 @@ const ModernServiceCards: React.FC = () => {
                       }}
                     >
                       <motion.div 
-                        className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 flex items-center justify-center mt-0.5"
+                        className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 flex items-centre justify-centre mt-0.5"
                         whileHover={{ scale: 1.2, rotate: 90 }}
                         transition={{ duration: 0.2 }}
                       >
                         <CheckCircle className="h-3 w-3 text-white" />
                       </motion.div>
-                      <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                      <span className="text-sm text-gray-300 group-hover:text-white transition-colours">
                         {feature}
                       </span>
                     </motion.li>
@@ -311,9 +311,9 @@ const ModernServiceCards: React.FC = () => {
                 </ul>
 
                 {/* Stats Badge */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${service.color} animate-pulse`} />
+                <div className="flex items-centre justify-between mb-6">
+                  <div className="flex items-centre gap-3">
+                    <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${service.colour} animate-pulse`} />
                     <span className="text-xs text-gray-500 uppercase tracking-wide">
                       {service.stats.label}
                     </span>
@@ -326,7 +326,7 @@ const ModernServiceCards: React.FC = () => {
                 {/* CTA Link */}
                 <Link 
                   href={service.href}
-                  className="group/link relative inline-flex items-center gap-2 text-white font-semibold hover:text-transparent hover:bg-gradient-to-r hover:from-white hover:to-gray-300 hover:bg-clip-text transition-all duration-300"
+                  className="group/link relative inline-flex items-centre gap-2 text-white font-semibold hover:text-transparent hover:bg-gradient-to-r hover:from-white hover:to-gray-300 hover:bg-clip-text transition-all duration-300"
                 >
                   <span>Learn More</span>
                   <motion.div
@@ -338,7 +338,7 @@ const ModernServiceCards: React.FC = () => {
                   
                   {/* Animated underline */}
                   <div 
-                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r ${service.color} w-0 group-hover/link:w-full transition-all duration-300`}
+                    className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r ${service.colour} w-0 group-hover/link:w-full transition-all duration-300`}
                   />
                 </Link>
 
@@ -365,21 +365,21 @@ const ModernServiceCards: React.FC = () => {
 
         {/* Call to Action */}
         <motion.div 
-          className="text-center mt-20"
+          className="text-centre mt-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="inline-flex items-center gap-6">
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+          <div className="inline-flex items-centre gap-6">
+            <div className="flex items-centre gap-2 text-sm text-gray-400">
               <Shield className="h-4 w-4 text-blue-400" />
               <span>Industry Certified</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-centre gap-2 text-sm text-gray-400">
               <Clock className="h-4 w-4 text-green-400" />
               <span>24/7 Response</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-centre gap-2 text-sm text-gray-400">
               <Award className="h-4 w-4 text-purple-400" />
               <span>Guaranteed Results</span>
             </div>

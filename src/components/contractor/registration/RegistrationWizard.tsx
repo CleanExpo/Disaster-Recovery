@@ -220,7 +220,7 @@ export function RegistrationWizard() {
                     }
                   `}
                 >
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-centre justify-centre">
                     {completedSteps.includes(step.id) ? (
                       <CheckCircle className="w-4 h-4 mr-1" />
                     ) : (
@@ -285,7 +285,7 @@ export function RegistrationWizard() {
         </div>
 
         {/* Help Text */}
-        <div className="mt-8 text-center text-sm text-gray-600">
+        <div className="mt-8 text-centre text-sm text-gray-600">
           <p>
             Need help? Contact our support team at{' '}
             <a href="mailto:contractors@nrp.com.au" className="text-blue-600 hover:underline">

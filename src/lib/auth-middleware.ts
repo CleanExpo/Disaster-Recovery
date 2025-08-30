@@ -2,7 +2,7 @@
  * SECURE AUTHENTICATION MIDDLEWARE
  * =================================
  * 
- * Comprehensive authentication and authorization system
+ * Comprehensive authentication and authorisation system
  * to secure all API endpoints.
  */
 
@@ -39,8 +39,8 @@ export function withAuth(
     try {
       const authReq = req as AuthenticatedRequest;
       
-      // Extract token from Authorization header
-      const authHeader = req.headers.get('authorization');
+      // Extract token from Authorisation header
+      const authHeader = req.headers.get('authorisation');
       const token = authHeader?.startsWith('Bearer ') 
         ? authHeader.substring(7) 
         : null;
@@ -305,7 +305,7 @@ export function withCors(
     : [process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'];
   
   const allowedMethods = options.methods || ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'];
-  const allowedHeaders = options.allowedHeaders || ['Content-Type', 'Authorization'];
+  const allowedHeaders = options.allowedHeaders || ['Content-Type', 'Authorisation'];
   const credentials = options.credentials || true;
   
   return async (req: NextRequest) => {

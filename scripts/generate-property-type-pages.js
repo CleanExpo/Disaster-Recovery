@@ -19,7 +19,7 @@ const propertyTypes = [
     slug: 'apartment-units',
     name: 'Apartment & Unit',
     category: 'Residential',
-    description: 'Specialized disaster recovery for apartments, units, and high-rise residences',
+    description: 'Specialised disaster recovery for apartments, units, and high-rise residences',
     averageSize: '80-150 sqm',
     commonIssues: ['Water leaks from above', 'Balcony flooding', 'Kitchen fires', 'Bathroom flooding'],
     responseTime: '30-45 minutes',
@@ -91,7 +91,7 @@ const propertyTypes = [
     slug: 'healthcare-facilities',
     name: 'Healthcare Facility',
     category: 'Healthcare',
-    description: 'Specialized disaster recovery for hospitals, clinics, and medical facilities',
+    description: 'Specialised disaster recovery for hospitals, clinics, and medical facilities',
     averageSize: 'Varies',
     commonIssues: ['Contamination control', 'Critical area protection', 'Equipment damage', 'Infection control'],
     responseTime: 'Immediate',
@@ -147,7 +147,7 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center mb-6">
+            <div className="flex items-centre mb-6">
               <span className="bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold mr-3">
                 ${property.category.toUpperCase()}
               </span>
@@ -162,17 +162,17 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
               ${property.description}
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-8">
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <Clock className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">${property.responseTime}</p>
                 <p className="text-sm">Response Time</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <DollarSign className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">${property.averageCost}</p>
                 <p className="text-sm">Typical Cost Range</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <Shield className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">${property.insuranceCoverage}</p>
                 <p className="text-sm">Insurance Coverage</p>
@@ -189,7 +189,7 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
       {/* Property-Specific Challenges */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Common ${property.name} Disaster Scenarios
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -198,7 +198,7 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
                 <AlertTriangle className="h-10 w-10 text-orange-600 mb-4" />
                 <h3 className="font-bold text-lg mb-2">{issue}</h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Specialized response for ${property.category.toLowerCase()} properties
+                  Specialised response for ${property.category.toLowerCase()} properties
                 </p>
                 <p className="text-green-600 font-bold">✓ Covered by Insurance</p>
               </Card>
@@ -210,14 +210,14 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
       {/* Service Process */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our ${property.name} Recovery Process
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     1
                   </span>
                   <div>
@@ -232,7 +232,7 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     2
                   </span>
                   <div>
@@ -247,14 +247,14 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     3
                   </span>
                   <div>
                     <h3 className="text-xl font-bold mb-2">Emergency Mitigation</h3>
                     <p className="text-gray-600">
                       Immediate action to prevent further damage. 
-                      Specialized equipment for ${property.category.toLowerCase()} properties.
+                      Specialised equipment for ${property.category.toLowerCase()} properties.
                     </p>
                   </div>
                 </div>
@@ -262,7 +262,7 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     4
                   </span>
                   <div>
@@ -282,12 +282,12 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
       {/* Pricing Structure */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             ${property.name} Disaster Recovery Pricing
           </h2>
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 border-2 border-blue-600">
-              <div className="text-center mb-8">
+              <div className="text-centre mb-8">
                 <p className="text-4xl font-bold text-blue-600 mb-2">$2,200</p>
                 <p className="text-xl">Minimum Callout Fee</p>
                 <p className="text-gray-600">Includes complete assessment and emergency mitigation</p>
@@ -311,7 +311,7 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
               </div>
               
               <div className="mt-8 bg-green-50 rounded-lg p-6">
-                <p className="text-center text-lg">
+                <p className="text-centre text-lg">
                   <strong>No upfront payment required</strong> - We bill your insurance directly
                 </p>
               </div>
@@ -323,25 +323,25 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
       {/* Why Choose Us */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why ${property.category} Properties Choose Us
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Building className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">${property.category} Expertise</h3>
               <p className="text-gray-600">
-                Specialized knowledge of ${property.name.toLowerCase()} requirements and regulations
+                Specialised knowledge of ${property.name.toLowerCase()} requirements and regulations
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Insurance Approved</h3>
               <p className="text-gray-600">
                 Preferred vendor for all major ${property.category.toLowerCase()} insurers
               </p>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <CheckCircle2 className="h-12 w-12 text-blue-600 mx-auto mb-4" />
               <h3 className="font-bold text-lg mb-2">Compliance Guaranteed</h3>
               <p className="text-gray-600">
@@ -354,13 +354,13 @@ export default function ${property.name.replace(/[&\s]+/g, '')}Page() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Building className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             ${property.name} Disaster Emergency?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Specialized ${property.category.toLowerCase()} disaster recovery with ${property.responseTime} response. 
+            Specialised ${property.category.toLowerCase()} disaster recovery with ${property.responseTime} response. 
             ${property.insuranceCoverage} insurance coverage with direct billing available.
           </p>
           <div className="bg-white/10 backdrop-blur rounded-lg p-6 max-w-2xl mx-auto mb-8">
@@ -398,7 +398,7 @@ import { Building, Home, Briefcase, Building2, School, Hotel, Warehouse, Hospita
 
 export const metadata: Metadata = {
   title: 'Property Type Disaster Recovery | Residential, Commercial, Strata | All Properties',
-  description: 'Specialized disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
+  description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
 };
 
 const properties = ${JSON.stringify(propertyTypes.map(p => ({ 
@@ -442,13 +442,13 @@ export default function PropertyTypesPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Building className="h-16 w-16 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Disaster Recovery for All Property Types
           </h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Specialized restoration services tailored to your property type. 
+            Specialised restoration services tailored to your property type. 
             From residential homes to government facilities - we have you covered.
           </p>
         </div>
@@ -456,7 +456,7 @@ export default function PropertyTypesPage() {
       
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Select Your Property Type
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -466,7 +466,7 @@ export default function PropertyTypesPage() {
               
               return (
                 <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <IconComponent className="h-10 w-10 text-blue-600" />
                     <span className={\`px-3 py-1 rounded-full text-white text-xs font-bold \${colorClass}\`}>
                       {property.category}
@@ -499,7 +499,7 @@ export default function PropertyTypesPage() {
       {/* Why Property-Specific Matters */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Property-Specific Recovery Matters
           </h2>
           <div className="max-w-4xl mx-auto">

@@ -234,7 +234,7 @@ export default function InvestorPitchPage() {
       case 'title':
       case 'closing':
         return (
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="text-centre max-w-4xl mx-auto">
             <Icon className="h-24 w-24 mx-auto mb-8 text-white/80" />
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
               {currentSlideData.title}
@@ -260,14 +260,14 @@ export default function InvestorPitchPage() {
       case 'ask':
         return (
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-8">
+            <div className="flex items-centre justify-centre mb-8">
               <Icon className="h-16 w-16 text-white/80 mr-4" />
               <h2 className="text-4xl md:text-5xl font-bold text-white">
                 {currentSlideData.title}
               </h2>
             </div>
             {currentSlideData.subtitle && (
-              <h3 className="text-2xl text-white/80 text-center mb-8">
+              <h3 className="text-2xl text-white/80 text-centre mb-8">
                 {currentSlideData.subtitle}
               </h3>
             )}
@@ -292,14 +292,14 @@ export default function InvestorPitchPage() {
       case 'use':
         return (
           <div className="max-w-5xl mx-auto">
-            <div className="flex items-center justify-center mb-12">
+            <div className="flex items-centre justify-centre mb-12">
               <Icon className="h-16 w-16 text-white/80 mr-4" />
               <h2 className="text-4xl md:text-5xl font-bold text-white">
                 {currentSlideData.title}
               </h2>
             </div>
             {currentSlideData.subtitle && (
-              <h3 className="text-2xl text-white/80 text-center mb-8">
+              <h3 className="text-2xl text-white/80 text-centre mb-8">
                 {currentSlideData.subtitle}
               </h3>
             )}
@@ -307,7 +307,7 @@ export default function InvestorPitchPage() {
               {currentSlideData.stats?.map((stat, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center transform hover:scale-105 transition-all"
+                  className="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-centre transform hover:scale-105 transition-all"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="text-4xl md:text-5xl font-bold text-white mb-3">
@@ -347,8 +347,8 @@ export default function InvestorPitchPage() {
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-between p-6 bg-black/20 backdrop-blur-sm">
-          <div className="flex items-center gap-4">
+        <div className="flex items-centre justify-between p-6 bg-black/20 backdrop-blur-sm">
+          <div className="flex items-centre gap-4">
             <button
               onClick={togglePlay}
               className="p-3 bg-white/20 hover:bg-white/30 rounded-full transition"
@@ -383,7 +383,7 @@ export default function InvestorPitchPage() {
         </div>
 
         {/* Slide Content */}
-        <div className="flex-1 flex items-center justify-center p-8 md:p-16">
+        <div className="flex-1 flex items-centre justify-centre p-8 md:p-16">
           <div className="w-full animate-fadeIn">
             {renderSlideContent()}
           </div>

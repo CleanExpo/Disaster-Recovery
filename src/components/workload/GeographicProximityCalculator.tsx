@@ -359,7 +359,7 @@ const GeographicProximityCalculator: React.FC = () => {
       contractor.address.coordinates
     );
 
-    const optimization: RouteOptimization = {
+    const optimisation: RouteOptimization = {
       primaryRoute: {
         distance: Math.round(distance * 10) / 10,
         time: estimateDrivingTime(distance, lead.jobDetails.urgency || 'standard'),
@@ -381,27 +381,27 @@ const GeographicProximityCalculator: React.FC = () => {
       constructionDelays: Math.random() > 0.8 ? 10 : 0 // Random construction
     };
 
-    setRouteOptimization(optimization);
+    setRouteOptimization(optimisation);
     setSelectedContractor(contractorId);
   };
 
   const getProximityBadge = (calc: ProximityCalculation) => {
     if (calc.isWithinPrimaryRadius) {
-      return { color: 'bg-green-100 text-green-800', text: 'Primary Zone' };
+      return { colour: 'bg-green-100 text-green-800', text: 'Primary Zone' };
     } else if (calc.isWithinMaxRadius) {
-      return { color: 'bg-yellow-100 text-yellow-800', text: 'Extended Zone' };
+      return { colour: 'bg-yellow-100 text-yellow-800', text: 'Extended Zone' };
     } else {
-      return { color: 'bg-red-100 text-red-800', text: 'Out of Range' };
+      return { colour: 'bg-red-100 text-red-800', text: 'Out of Range' };
     }
   };
 
   const getResponseTimeBadge = (minutes: number) => {
     if (minutes <= 30) {
-      return { color: 'bg-green-100 text-green-800', icon: CheckCircle, text: 'Rapid' };
+      return { colour: 'bg-green-100 text-green-800', icon: CheckCircle, text: 'Rapid' };
     } else if (minutes <= 60) {
-      return { color: 'bg-blue-100 text-blue-800', icon: Clock, text: 'Standard' };
+      return { colour: 'bg-blue-100 text-blue-800', icon: Clock, text: 'Standard' };
     } else {
-      return { color: 'bg-orange-100 text-orange-800', icon: AlertTriangle, text: 'Delayed' };
+      return { colour: 'bg-orange-100 text-orange-800', icon: AlertTriangle, text: 'Delayed' };
     }
   };
 
@@ -409,17 +409,17 @@ const GeographicProximityCalculator: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-centre space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Navigation className="h-6 w-6 text-blue-600" />
             </div>
             <div>
               <h2 className="text-xl font-semibold">Geographic Proximity Calculator</h2>
-              <p className="text-sm text-gray-500">Distance-based contractor ranking and route optimization</p>
+              <p className="text-sm text-gray-500">Distance-based contractor ranking and route optimisation</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <select
               value={calculationMode}
               onChange={(e) => setCalculationMode(e.target.value as any)}
@@ -463,7 +463,7 @@ const GeographicProximityCalculator: React.FC = () => {
 
       {/* Proximity Calculations */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center">
+        <h3 className="text-lg font-semibold mb-4 flex items-centre">
           <MapPin className="h-5 w-5 mr-2 text-blue-600" />
           Contractor Proximity Analysis
         </h3>
@@ -476,19 +476,19 @@ const GeographicProximityCalculator: React.FC = () => {
             return (
               <div
                 key={calc.contractorId}
-                className={`border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors ${
+                className={`border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colours ${
                   selectedContractor === calc.contractorId ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
                 }`}
                 onClick={() => generateRouteOptimization(calc.contractorId)}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full">
+                <div className="flex items-centre justify-between">
+                  <div className="flex items-centre space-x-4">
+                    <div className="flex items-centre justify-centre w-10 h-10 bg-gray-100 rounded-full">
                       <span className="text-lg font-semibold">#{calc.proximityRank}</span>
                     </div>
                     <div>
                       <p className="font-medium">{calc.companyName}</p>
-                      <div className="flex items-center space-x-4 mt-1">
+                      <div className="flex items-centre space-x-4 mt-1">
                         <span className="text-sm text-gray-500">
                           <MapPin className="h-3 w-3 inline mr-1" />
                           {calc.distance} miles
@@ -505,16 +505,16 @@ const GeographicProximityCalculator: React.FC = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-centre space-x-3">
                     <div className="text-right">
                       <p className="text-sm text-gray-500">Response Score</p>
                       <p className="text-2xl font-semibold text-blue-600">{calc.responseScore}</p>
                     </div>
                     <div className="flex flex-col space-y-1">
-                      <span className={`px-2 py-1 text-xs rounded-full ${badge.color}`}>
+                      <span className={`px-2 py-1 text-xs rounded-full ${badge.colour}`}>
                         {badge.text}
                       </span>
-                      <span className={`px-2 py-1 text-xs rounded-full flex items-center ${timeBadge.color}`}>
+                      <span className={`px-2 py-1 text-xs rounded-full flex items-centre ${timeBadge.colour}`}>
                         <timeBadge.icon className="h-3 w-3 mr-1" />
                         {timeBadge.text}
                       </span>
@@ -524,19 +524,19 @@ const GeographicProximityCalculator: React.FC = () => {
 
                 {/* Traffic and Route Info */}
                 <div className="mt-3 pt-3 border-t grid grid-cols-3 gap-4">
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     <Activity className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       Traffic: <span className="font-medium capitalize">{calc.trafficCondition}</span>
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     <Route className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       Route: <span className="font-medium capitalize">{calc.routeComplexity}</span>
                     </span>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     <Gauge className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-600">
                       Zone: <span className="font-medium">{calc.isWithinPrimaryRadius ? 'Primary' : calc.isWithinMaxRadius ? 'Secondary' : 'Extended'}</span>
@@ -549,12 +549,12 @@ const GeographicProximityCalculator: React.FC = () => {
         </div>
       </div>
 
-      {/* Route Optimization Details */}
+      {/* Route Optimisation Details */}
       {routeOptimization && selectedContractor && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-4 flex items-center">
+          <h3 className="text-lg font-semibold mb-4 flex items-centre">
             <Route className="h-5 w-5 mr-2 text-green-600" />
-            Route Optimization Details
+            Route Optimisation Details
           </h3>
 
           <div className="space-y-4">
@@ -622,7 +622,7 @@ const GeographicProximityCalculator: React.FC = () => {
 
       {/* Weighting Factors */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center">
+        <h3 className="text-lg font-semibold mb-4 flex items-centre">
           <Target className="h-5 w-5 mr-2 text-purple-600" />
           Proximity Scoring Weights
         </h3>
@@ -642,7 +642,7 @@ const GeographicProximityCalculator: React.FC = () => {
                 })}
                 className="w-full"
               />
-              <p className="text-center text-sm text-gray-600">{Math.round(weight * 100)}%</p>
+              <p className="text-centre text-sm text-gray-600">{Math.round(weight * 100)}%</p>
             </div>
           ))}
         </div>

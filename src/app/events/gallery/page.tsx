@@ -41,7 +41,7 @@ const eventTypeIcons = {
   other: AlertTriangle
 };
 
-// Severity color mapping
+// Severity colour mapping
 const severityColors = {
   minor: 'bg-yellow-100 text-yellow-800',
   moderate: 'bg-orange-100 text-orange-800',
@@ -97,7 +97,7 @@ export default function EventsGalleryPage() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="container mx-auto relative z-10"
         >
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -131,7 +131,7 @@ export default function EventsGalleryPage() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-centre"
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-xl px-8 py-4">
@@ -161,11 +161,11 @@ export default function EventsGalleryPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
             {[
-              { value: '1000+', label: 'Properties Restored', color: 'text-blue-600', bgColor: 'bg-blue-100', delay: 0.1 },
-              { value: '24/7', label: 'Emergency Response', color: 'text-green-600', bgColor: 'bg-green-100', delay: 0.2 },
-              { value: '50+', label: 'Major Events', color: 'text-orange-600', bgColor: 'bg-orange-100', delay: 0.3 },
-              { value: '100%', label: 'Success Rate', color: 'text-purple-600', bgColor: 'bg-purple-100', delay: 0.4 },
-              { value: '< 2hrs', label: 'Response Time', color: 'text-red-600', bgColor: 'bg-red-100', delay: 0.5 },
+              { value: '1000+', label: 'Properties Restored', colour: 'text-blue-600', bgColor: 'bg-blue-100', delay: 0.1 },
+              { value: '24/7', label: 'Emergency Response', colour: 'text-green-600', bgColor: 'bg-green-100', delay: 0.2 },
+              { value: '50+', label: 'Major Events', colour: 'text-orange-600', bgColor: 'bg-orange-100', delay: 0.3 },
+              { value: '100%', label: 'Success Rate', colour: 'text-purple-600', bgColor: 'bg-purple-100', delay: 0.4 },
+              { value: '< 2hrs', label: 'Response Time', colour: 'text-red-600', bgColor: 'bg-red-100', delay: 0.5 },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -174,20 +174,20 @@ export default function EventsGalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: stat.delay }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center group cursor-pointer"
+                className="text-centre group cursor-pointer"
               >
-                <div className={`mx-auto w-20 h-20 ${stat.bgColor} rounded-2xl flex items-center justify-center mb-4 group-hover:shadow-lg transition-all duration-300`}>
+                <div className={`mx-auto w-20 h-20 ${stat.bgColor} rounded-2xl flex items-centre justify-centre mb-4 group-hover:shadow-lg transition-all duration-300`}>
                   <motion.div 
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: stat.delay + 0.2, type: "spring", stiffness: 200 }}
-                    className={`text-2xl md:text-3xl font-bold ${stat.color}`}
+                    className={`text-2xl md:text-3xl font-bold ${stat.colour}`}
                   >
                     {stat.value}
                   </motion.div>
                 </div>
-                <div className="text-gray-700 font-semibold text-sm md:text-base group-hover:text-gray-900 transition-colors">
+                <div className="text-gray-700 font-semibold text-sm md:text-base group-hover:text-gray-900 transition-colours">
                   {stat.label}
                 </div>
               </motion.div>
@@ -277,7 +277,7 @@ export default function EventsGalleryPage() {
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => toggleFavorite(event.id)}
-                              className={`p-2 rounded-full backdrop-blur-sm transition-colors ${
+                              className={`p-2 rounded-full backdrop-blur-sm transition-colours ${
                                 isFavorite 
                                   ? 'bg-red-500 text-white' 
                                   : 'bg-white/80 text-gray-600 hover:bg-white'
@@ -289,21 +289,21 @@ export default function EventsGalleryPage() {
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => setSelectedImage(event.images[0]?.url || '')}
-                              className="p-2 rounded-full bg-white/80 text-gray-600 hover:bg-white backdrop-blur-sm transition-colors"
+                              className="p-2 rounded-full bg-white/80 text-gray-600 hover:bg-white backdrop-blur-sm transition-colours"
                             >
                               <ZoomIn className="w-4 h-4" />
                             </motion.button>
                             <motion.button
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
-                              className="p-2 rounded-full bg-white/80 text-gray-600 hover:bg-white backdrop-blur-sm transition-colors"
+                              className="p-2 rounded-full bg-white/80 text-gray-600 hover:bg-white backdrop-blur-sm transition-colours"
                             >
                               <Share2 className="w-4 h-4" />
                             </motion.button>
                           </div>
                           
                           {/* View Count */}
-                          <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded-full text-xs flex items-center">
+                          <div className="absolute bottom-4 right-4 bg-black/70 text-white px-2 py-1 rounded-full text-xs flex items-centre">
                             <Eye className="w-3 h-3 mr-1" />
                             {Math.floor(Math.random() * 500) + 100}
                           </div>
@@ -311,11 +311,11 @@ export default function EventsGalleryPage() {
 
                         <CardHeader className="pb-4">
                           <div className="flex items-start justify-between mb-3">
-                            <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                            <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colours">
                               {event.title}
                             </CardTitle>
-                            <div className="p-2 bg-gray-100 rounded-xl group-hover:bg-blue-100 transition-colors">
-                              <IconComponent className="h-5 w-5 text-gray-600 group-hover:text-blue-600 transition-colors" />
+                            <div className="p-2 bg-gray-100 rounded-xl group-hover:bg-blue-100 transition-colours">
+                              <IconComponent className="h-5 w-5 text-gray-600 group-hover:text-blue-600 transition-colours" />
                             </div>
                           </div>
                           
@@ -324,7 +324,7 @@ export default function EventsGalleryPage() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: index * 0.1 + 0.5 }}
-                              className="flex items-center text-sm text-gray-600"
+                              className="flex items-centre text-sm text-gray-600"
                             >
                               <div className="p-1 bg-blue-100 rounded mr-2">
                                 <Calendar className="h-3 w-3 text-blue-600" />
@@ -335,7 +335,7 @@ export default function EventsGalleryPage() {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: index * 0.1 + 0.6 }}
-                              className="flex items-center text-sm text-gray-600"
+                              className="flex items-centre text-sm text-gray-600"
                             >
                               <div className="p-1 bg-green-100 rounded mr-2">
                                 <MapPin className="h-3 w-3 text-green-600" />
@@ -366,7 +366,7 @@ export default function EventsGalleryPage() {
                               <motion.div 
                                 key={statIndex}
                                 whileHover={{ scale: 1.05 }}
-                                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-xl text-center border border-blue-100"
+                                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 rounded-xl text-centre border border-blue-100"
                               >
                                 <div className="font-bold text-lg text-blue-600">{stat.value}</div>
                                 <div className="text-xs text-gray-600 font-medium">{stat.label}</div>
@@ -445,7 +445,7 @@ export default function EventsGalleryPage() {
       {/* Featured Before/After Gallery */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold mb-4">Before & After Gallery</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               See the dramatic transformations our team achieves in disaster recovery situations
@@ -506,7 +506,7 @@ export default function EventsGalleryPage() {
       {/* Testimonials Section */}
       <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold mb-4">Client Testimonials</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Hear from the families and businesses we've helped recover from disasters
@@ -543,14 +543,14 @@ export default function EventsGalleryPage() {
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-green-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-4xl font-bold mb-6">
             Need Emergency Disaster Recovery Services?
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Our experienced team is ready to respond 24/7 to help you recover from any disaster
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-centre">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
               <Shield className="mr-2 h-5 w-5" />
               Emergency Response: 1300 776 062
@@ -569,7 +569,7 @@ export default function EventsGalleryPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-centre justify-centre p-4"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -592,13 +592,13 @@ export default function EventsGalleryPage() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 p-2 bg-white/90 rounded-full text-gray-700 hover:bg-white transition-colors"
+                  className="absolute top-4 right-4 p-2 bg-white/90 rounded-full text-gray-700 hover:bg-white transition-colours"
                 >
                   <ChevronRight className="w-6 h-6 rotate-45" />
                 </motion.button>
               </div>
               <div className="p-6 bg-gray-50">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div>
                     <h3 className="font-semibold text-gray-900">High Resolution View</h3>
                     <p className="text-sm text-gray-600">Click outside to close</p>
@@ -607,14 +607,14 @@ export default function EventsGalleryPage() {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
+                      className="p-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colours"
                     >
                       <Download className="w-4 h-4" />
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="p-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
+                      className="p-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colours"
                     >
                       <Share2 className="w-4 h-4" />
                     </motion.button>
@@ -659,11 +659,11 @@ function EventCard({ event }: { event: DisasterEvent }) {
           <IconComponent className="h-6 w-6 text-gray-400" />
         </div>
         <CardDescription>
-          <div className="flex items-center text-sm mt-2">
+          <div className="flex items-centre text-sm mt-2">
             <Calendar className="h-4 w-4 mr-2" />
             {event.date}
           </div>
-          <div className="flex items-center text-sm mt-1">
+          <div className="flex items-centre text-sm mt-1">
             <MapPin className="h-4 w-4 mr-2" />
             {event.location}
           </div>

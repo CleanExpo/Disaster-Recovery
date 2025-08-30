@@ -37,7 +37,7 @@ export function Search() {
   const popularSearches: SearchSuggestion[] = [
     { id: '1', text: 'Emergency water damage', type: 'popular', category: 'Water Damage' },
     { id: '2', text: 'Fire restoration services', type: 'popular', category: 'Fire Damage' },
-    { id: '3', text: 'Mold inspection Brisbane', type: 'popular', category: 'Mold Services', location: 'Brisbane' },
+    { id: '3', text: 'Mould inspection Brisbane', type: 'popular', category: 'Mould Services', location: 'Brisbane' },
     { id: '4', text: 'Storm damage repair', type: 'popular', category: 'Storm Damage' },
     { id: '5', text: 'Insurance approved contractors', type: 'popular' },
   ];
@@ -75,7 +75,7 @@ export function Search() {
           {
             id: '2', 
             title: 'Elite Restoration Services',
-            description: 'IICRC certified contractors specializing in...',
+            description: 'IICRC certified contractors specialising in...',
             url: '/contractors/elite-restoration',
             category: 'Contractor',
             type: 'contractor'
@@ -164,7 +164,7 @@ export function Search() {
             <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
               {/* Search Header */}
               <div className="p-6 border-b">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-centre justify-between mb-4">
                   <h2 className="text-xl font-semibold text-gray-900">Search</h2>
                   <Button
                     variant="ghost"
@@ -208,7 +208,7 @@ export function Search() {
                     {/* Quick Results */}
                     {quickResults.length > 0 && (
                       <div className="mb-6">
-                        <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-centre gap-2">
                           <TrendingUp className="h-4 w-4" />
                           Quick Results
                         </h3>
@@ -217,7 +217,7 @@ export function Search() {
                             <button
                               key={result.id}
                               onClick={() => handleQuickResultClick(result)}
-                              className="w-full text-left p-3 hover:bg-blue-50 rounded-lg border border-gray-100 hover:border-blue-200 transition-colors"
+                              className="w-full text-left p-3 hover:bg-blue-50 rounded-lg border border-gray-100 hover:border-blue-200 transition-colours"
                             >
                               <div className="flex justify-between items-start">
                                 <div className="flex-1">
@@ -243,7 +243,7 @@ export function Search() {
                             <button
                               key={suggestion.id}
                               onClick={() => handleSuggestionClick(suggestion)}
-                              className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-center gap-3"
+                              className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-centre gap-3"
                             >
                               {suggestion.type === 'recent' ? (
                                 <Clock className="h-4 w-4 text-gray-400" />
@@ -252,7 +252,7 @@ export function Search() {
                               )}
                               <span className="flex-1">{suggestion.text}</span>
                               {suggestion.location && (
-                                <div className="flex items-center gap-1 text-xs text-gray-500">
+                                <div className="flex items-centre gap-1 text-xs text-gray-500">
                                   <MapPin className="h-3 w-3" />
                                   {suggestion.location}
                                 </div>
@@ -264,7 +264,7 @@ export function Search() {
                     )}
 
                     {isLoading && (
-                      <div className="flex items-center justify-center py-8">
+                      <div className="flex items-centre justify-centre py-8">
                         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                         <span className="ml-2 text-gray-600">Searching...</span>
                       </div>
@@ -275,7 +275,7 @@ export function Search() {
                   <div className="p-6">
                     {/* Popular Searches */}
                     <div className="mb-6">
-                      <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                      <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-centre gap-2">
                         <TrendingUp className="h-4 w-4" />
                         Popular Searches
                       </h3>
@@ -284,7 +284,7 @@ export function Search() {
                           <button
                             key={term.id}
                             onClick={() => handleSuggestionClick(term)}
-                            className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 rounded-lg text-left border border-blue-100 hover:border-blue-200 transition-colors"
+                            className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 rounded-lg text-left border border-blue-100 hover:border-blue-200 transition-colours"
                           >
                             <span className="text-sm font-medium text-gray-900 block">{term.text}</span>
                             {term.category && (
@@ -310,7 +310,7 @@ export function Search() {
                               setQuery(emergency);
                               handleSearch(new Event('submit') as any);
                             }}
-                            className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-800 rounded-full text-xs font-medium transition-colors"
+                            className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-800 rounded-full text-xs font-medium transition-colours"
                           >
                             {emergency}
                           </button>
@@ -323,12 +323,12 @@ export function Search() {
 
               {/* Search Footer */}
               <div className="px-6 py-3 bg-gray-50 border-t">
-                <div className="flex items-center justify-between text-xs text-gray-500">
+                <div className="flex items-centre justify-between text-xs text-gray-500">
                   <span>Press ESC to close</span>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-centre gap-4">
                     <button 
                       onClick={() => router.push('/search')}
-                      className="flex items-center gap-1 hover:text-blue-600 transition-colors"
+                      className="flex items-centre gap-1 hover:text-blue-600 transition-colours"
                     >
                       <Filter className="h-3 w-3" />
                       Advanced Search

@@ -195,8 +195,8 @@ export function DataBreachNotification() {
       {/* Header & Statistics */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2">
+          <CardTitle className="flex items-centre justify-between">
+            <span className="flex items-centre gap-2">
               <ShieldAlert className="h-5 w-5" />
               Data Breach Response System
             </span>
@@ -216,7 +216,7 @@ export function DataBreachNotification() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <Card className={criticalBreaches.length > 0 ? 'border-red-300' : ''}>
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div>
                     <p className="text-2xl font-bold text-red-600">
                       {activeBreaches.length}
@@ -230,7 +230,7 @@ export function DataBreachNotification() {
 
             <Card>
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div>
                     <p className="text-2xl font-bold">
                       {breaches.reduce((sum, b) => sum + b.affectedRecords, 0)}
@@ -244,7 +244,7 @@ export function DataBreachNotification() {
 
             <Card>
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div>
                     <p className="text-2xl font-bold">
                       {breaches.filter(b => b.notificationsSent).length}
@@ -258,7 +258,7 @@ export function DataBreachNotification() {
 
             <Card>
               <CardContent className="pt-6">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div>
                     <p className="text-2xl font-bold text-green-600">
                       {resolvedBreaches.length}
@@ -291,7 +291,7 @@ export function DataBreachNotification() {
           <Card>
             <CardContent className="pt-6">
               {activeBreaches.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-centre py-8 text-gray-500">
                   <Shield className="h-12 w-12 mx-auto mb-3 text-green-500" />
                   <p>No active security incidents</p>
                   <p className="text-sm mt-1">System is operating normally</p>
@@ -305,7 +305,7 @@ export function DataBreachNotification() {
                     >
                       <div className="flex justify-between items-start mb-3">
                         <div>
-                          <div className="flex items-center gap-3 mb-2">
+                          <div className="flex items-centre gap-3 mb-2">
                             <Badge className={getSeverityColor(breach.severity)}>
                               {breach.severity.toUpperCase()} SEVERITY
                             </Badge>
@@ -339,7 +339,7 @@ export function DataBreachNotification() {
                         </div>
                         <div>
                           <p className="text-gray-600">Notifications</p>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-centre gap-2">
                             {breach.notificationsSent ? (
                               <CheckCircle className="h-4 w-4 text-green-500" />
                             ) : (
@@ -416,7 +416,7 @@ export function DataBreachNotification() {
                     <div className="flex justify-between items-start">
                       <div>
                         <p className="font-medium mb-2">{breach.description}</p>
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-centre gap-4 text-sm text-gray-600">
                           <span>Started: {getTimeElapsed(breach.detectedAt)}</span>
                           <span>Severity: {breach.severity}</span>
                           <span>Records: {breach.affectedRecords}</span>
@@ -446,7 +446,7 @@ export function DataBreachNotification() {
                     <div className="flex justify-between items-start">
                       <div>
                         <p className="font-medium mb-2">{breach.description}</p>
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-centre gap-4 text-sm text-gray-600">
                           <span>Detected: {new Date(breach.detectedAt).toLocaleDateString()}</span>
                           <span>Resolved: {breach.reportedAt && new Date(breach.reportedAt).toLocaleDateString()}</span>
                           <span>Records: {breach.affectedRecords}</span>
@@ -484,8 +484,8 @@ export function DataBreachNotification() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
+            <div className="flex items-centre gap-3">
+              <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-centre justify-centre">
                 <Clock className="h-6 w-6 text-yellow-600" />
               </div>
               <div className="flex-1">
@@ -495,8 +495,8 @@ export function DataBreachNotification() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+            <div className="flex items-centre gap-3">
+              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-centre justify-centre">
                 <Users className="h-6 w-6 text-blue-600" />
               </div>
               <div className="flex-1">
@@ -506,8 +506,8 @@ export function DataBreachNotification() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+            <div className="flex items-centre gap-3">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-centre justify-centre">
                 <FileText className="h-6 w-6 text-green-600" />
               </div>
               <div className="flex-1">
@@ -525,7 +525,7 @@ export function DataBreachNotification() {
       <Dialog open={showIncidentForm} onOpenChange={setShowIncidentForm}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-centre gap-2">
               <AlertTriangle className="h-5 w-5 text-red-500" />
               Report Security Incident
             </DialogTitle>
@@ -606,7 +606,7 @@ export function DataBreachNotification() {
               <Label>Containment Measures Taken</Label>
               <div className="grid grid-cols-2 gap-3 mt-2">
                 {containmentOptions.map(option => (
-                  <div key={option} className="flex items-center space-x-2">
+                  <div key={option} className="flex items-centre space-x-2">
                     <Checkbox
                       id={option}
                       checked={incidentData.containmentMeasures.includes(option)}

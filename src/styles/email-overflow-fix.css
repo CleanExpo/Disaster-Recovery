@@ -1,0 +1,53 @@
+/* Fix for email address overflow issues */
+input[type="email"],
+input[type="text"],
+.email-field {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Ensure email addresses in display text wrap properly */
+.email-display,
+[data-email],
+a[href^="mailto:"] {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* Fix for long email addresses in table cells */
+td .email,
+td a[href^="mailto:"] {
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+
+/* Responsive email input fields */
+@media (max-width: 640px) {
+  input[type="email"] {
+    font-size: 16px; /* Prevent zoom on iOS */
+    min-height: 44px; /* Better touch target */
+  }
+}
+
+/* Truncate very long email addresses with ellipsis */
+.email-truncate {
+  display: inline-block;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Fix for email fields in forms */
+.form-control[type="email"],
+.form-input[type="email"] {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding-right: 12px;
+}

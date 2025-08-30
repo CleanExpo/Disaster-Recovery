@@ -167,7 +167,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
     },
     {
       id: 'moisture_002',
-      location: 'Accounting area - carpet center',
+      location: 'Accounting area - carpet centre',
       materialType: 'carpet',
       readingType: 'pinless',
       moistureContent: 89,
@@ -195,7 +195,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
     },
     {
       id: 'moisture_004',
-      location: 'Manager office - hardwood floor center',
+      location: 'Manager office - hardwood floor centre',
       materialType: 'hardwood',
       readingType: 'pin',
       moistureContent: 14,
@@ -534,7 +534,7 @@ export const BEST_PRACTICES = {
     common_mistakes: [
       'Not assessing structural stability before entry',
       'Inadequate PPE documentation for smoke exposure',
-      'Missing odor source identification',
+      'Missing odour source identification',
       'Not considering HVAC contamination',
       'Insufficient safety hazard documentation'
     ],

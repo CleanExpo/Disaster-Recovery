@@ -32,7 +32,7 @@ export function ProtectedRoute({
 }: ProtectedRouteProps) {
   const router = useRouter();
   const { user, loading, hasAnyPermission, hasAllPermissions, canAccess } = usePermissions();
-  const [authorized, setAuthorized] = useState<boolean | null>(null);
+  const [authorised, setAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (loading) return;
@@ -73,10 +73,10 @@ export function ProtectedRoute({
     }
   }, [user, loading, permissions, roles, requireAll, resource, resourceId, action]);
 
-  if (loading || authorized === null) {
+  if (loading || authorised === null) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
+      <div className="flex items-centre justify-centre min-h-[400px]">
+        <div className="text-centre">
           <Loader2 className="h-8 w-8 animate-spin mx-auto text-gray-400" />
           <p className="text-sm text-gray-500 mt-2">Checking permissions...</p>
         </div>
@@ -84,13 +84,13 @@ export function ProtectedRoute({
     );
   }
 
-  if (!authorized) {
+  if (!authorised) {
     if (fallback) {
       return <>{fallback}</>;
     }
 
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
+      <div className="flex items-centre justify-centre min-h-[400px]">
         <Alert className="max-w-md">
           <Lock className="h-4 w-4" />
           <AlertDescription>
@@ -176,7 +176,7 @@ export function ProtectedComponent({
 
   return (
     <div className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-      <div className="flex items-center gap-2 text-gray-600">
+      <div className="flex items-centre gap-2 text-gray-600">
         <Lock className="h-4 w-4" />
         <p className="text-sm">{message}</p>
       </div>
@@ -221,7 +221,7 @@ export function ProtectedAction({
       action || 'action_attempt',
       resource || 'unknown',
       resourceId,
-      { authorized: hasAccess }
+      { authorised: hasAccess }
     );
     
     if (!hasAccess) {

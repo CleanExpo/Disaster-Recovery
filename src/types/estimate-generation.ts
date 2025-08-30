@@ -135,7 +135,7 @@ export type DamageCause =
   | 'fire_damage'
   | 'smoke_damage'
   | 'storm_damage'
-  | 'mold'
+  | 'mould'
   | 'sewage'
   | 'biohazard'
   | 'vandalism'

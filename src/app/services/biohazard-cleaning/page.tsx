@@ -8,7 +8,7 @@ import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Heart, ShieldAlert, UserX, Siren, Lock, FileText } from 'lucide-react'
 
-// SEO Metadata with AI optimization
+// SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Biohazard Cleaning Brisbane | Crime Scene & Trauma Cleanup | Disaster Recovery Australia',
   description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Call 1300 309 361.',
@@ -41,7 +41,7 @@ export const metadata: Metadata = generateSEO({
 const biohazardFAQs = [
   {
     question: "What situations require professional biohazard cleaning?",
-    answer: "Professional biohazard cleaning is required for crime scenes, unattended deaths, suicides, traumatic injuries, blood spills, hoarding situations, drug labs, and industrial accidents. These situations involve biological contaminants that pose serious health risks and require specialized training, equipment, and disposal methods."
+    answer: "Professional biohazard cleaning is required for crime scenes, unattended deaths, suicides, traumatic injuries, blood spills, hoarding situations, drug labs, and industrial accidents. These situations involve biological contaminants that pose serious health risks and require specialised training, equipment, and disposal methods."
   },
   {
     question: "How discrete is your biohazard cleaning service?",
@@ -90,7 +90,7 @@ export default function BiohazardCleaningPage() {
 
       {/* Discrete Banner */}
       <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4">
-        <div className="container mx-auto flex items-center justify-center gap-4">
+        <div className="container mx-auto flex items-centre justify-centre gap-4">
           <Heart className="h-5 w-5" />
           <span className="font-medium">Compassionate & Discrete Biohazard Cleaning Services</span>
           <a href="tel:1300309361" className="font-bold underline">1300 309 361</a>
@@ -100,7 +100,7 @@ export default function BiohazardCleaningPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-gray-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-centre">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Professional Biohazard & Crime Scene Cleaning in Brisbane
@@ -132,17 +132,17 @@ export default function BiohazardCleaningPage() {
                           <strong>Confidential Service:</strong> Unmarked vehicles, discrete uniforms, complete privacy assured.
                         </p>
                       </div>
-                      <a href="tel:1300309361" className="flex items-center justify-center gap-2 bg-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800">
+                      <a href="tel:1300309361" className="flex items-centre justify-centre gap-2 bg-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800">
                         <Phone className="h-5 w-5" />
                         Call 1300 309 361
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="text-center">
+                        <div className="text-centre">
                           <Heart className="h-8 w-8 mx-auto mb-1 text-gray-600" />
                           <p className="font-medium">Compassionate</p>
                           <p className="text-gray-600">Understanding service</p>
                         </div>
-                        <div className="text-center">
+                        <div className="text-centre">
                           <Lock className="h-8 w-8 mx-auto mb-1 text-gray-600" />
                           <p className="font-medium">Confidential</p>
                           <p className="text-gray-600">Complete privacy</p>
@@ -158,15 +158,15 @@ export default function BiohazardCleaningPage() {
               </div>
 
               <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Shield className="h-5 w-5 text-gray-600" />
                   <span className="text-sm font-medium">Police Approved</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Heart className="h-5 w-5 text-gray-600" />
                   <span className="text-sm font-medium">Compassionate</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Lock className="h-5 w-5 text-gray-600" />
                   <span className="text-sm font-medium">100% Discrete</span>
                 </div>
@@ -195,7 +195,7 @@ export default function BiohazardCleaningPage() {
       {/* Service Types Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Comprehensive Biohazard Cleaning Services
           </h2>
           
@@ -265,7 +265,7 @@ export default function BiohazardCleaningPage() {
                 <ShieldAlert className="h-10 w-10 text-gray-600 mb-4" />
                 <CardTitle>Hazardous Situations</CardTitle>
                 <CardDescription>
-                  Specialized cleaning for dangerous materials
+                  Specialised cleaning for dangerous materials
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -357,13 +357,13 @@ export default function BiohazardCleaningPage() {
       {/* Our Approach Section */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Compassionate Approach
           </h2>
           
           <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            <div className="text-center">
-              <div className="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <div className="text-centre">
+              <div className="bg-white w-20 h-20 rounded-full flex items-centre justify-centre mx-auto mb-4 shadow-lg">
                 <Heart className="h-10 w-10 text-red-500" />
               </div>
               <h3 className="font-bold mb-2">Compassion First</h3>
@@ -371,8 +371,8 @@ export default function BiohazardCleaningPage() {
                 Understanding and respectful service during difficult times
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <div className="text-centre">
+              <div className="bg-white w-20 h-20 rounded-full flex items-centre justify-centre mx-auto mb-4 shadow-lg">
                 <Lock className="h-10 w-10 text-blue-600" />
               </div>
               <h3 className="font-bold mb-2">Complete Privacy</h3>
@@ -380,8 +380,8 @@ export default function BiohazardCleaningPage() {
                 Unmarked vehicles and discrete, professional service
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <div className="text-centre">
+              <div className="bg-white w-20 h-20 rounded-full flex items-centre justify-centre mx-auto mb-4 shadow-lg">
                 <Shield className="h-10 w-10 text-green-600" />
               </div>
               <h3 className="font-bold mb-2">Certified Safe</h3>
@@ -389,8 +389,8 @@ export default function BiohazardCleaningPage() {
                 Following all health and safety regulations
               </p>
             </div>
-            <div className="text-center">
-              <div className="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <div className="text-centre">
+              <div className="bg-white w-20 h-20 rounded-full flex items-centre justify-centre mx-auto mb-4 shadow-lg">
                 <FileText className="h-10 w-10 text-purple-600" />
               </div>
               <h3 className="font-bold mb-2">Full Documentation</h3>
@@ -405,7 +405,7 @@ export default function BiohazardCleaningPage() {
       {/* Process Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Biohazard Cleaning Process
           </h2>
           
@@ -457,7 +457,7 @@ export default function BiohazardCleaningPage() {
               ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gray-700 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 bg-gray-700 text-white rounded-full flex items-centre justify-centre font-bold">
                       {item.step}
                     </div>
                   </div>
@@ -476,7 +476,7 @@ export default function BiohazardCleaningPage() {
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Biohazard Cleaning Frequently Asked Questions
           </h2>
           
@@ -498,11 +498,11 @@ export default function BiohazardCleaningPage() {
       {/* Support Resources */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-8">
+          <h2 className="text-2xl font-bold text-centre mb-8">
             Support Resources
           </h2>
           <div className="max-w-3xl mx-auto">
-            <p className="text-center text-gray-700 mb-6">
+            <p className="text-centre text-gray-700 mb-6">
               If you or someone you know needs support, these services are available:
             </p>
             <div className="grid md:grid-cols-2 gap-4">
@@ -533,7 +533,7 @@ export default function BiohazardCleaningPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-gray-700 to-gray-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             We're Here to Help During Difficult Times
           </h2>
@@ -541,8 +541,8 @@ export default function BiohazardCleaningPage() {
             Our compassionate team provides discrete, professional biohazard cleaning 
             with the utmost respect and care. Available 24/7 to support you.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:1300309361" className="bg-white text-gray-800 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <a href="tel:1300309361" className="bg-white text-gray-800 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-centre justify-centre gap-2">
               <Phone className="h-5 w-5" />
               Call 1300 309 361
             </a>

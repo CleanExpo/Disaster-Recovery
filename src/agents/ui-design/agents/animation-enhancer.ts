@@ -33,7 +33,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     'Entrance and exit animations',
     'Hover and focus effects',
     'Scroll-triggered animations',
-    'Performance-optimized animations',
+    'Performance-optimised animations',
     'Accessibility-aware motion design'
   ]
   priority = 4
@@ -79,7 +79,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 200,
         easing: 'cubic-bezier(0, 0, 0.2, 1)',
         trigger: 'hover' as AnimationTrigger,
-        properties: ['transform', 'box-shadow', 'background-color']
+        properties: ['transform', 'box-shadow', 'background-colour']
       },
       buttonPress: {
         name: 'button-press',
@@ -97,7 +97,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         duration: 500,
         easing: 'cubic-bezier(0, 0, 0.2, 1)',
         trigger: 'hover' as AnimationTrigger,
-        properties: ['transform', 'box-shadow', 'border-color']
+        properties: ['transform', 'box-shadow', 'border-colour']
       },
       cardEntrance: {
         name: 'card-entrance',
@@ -182,7 +182,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     const recommendations: Recommendation[] = []
 
     try {
-      // Analyze current animations
+      // Analyse current animations
       const animationAnalysis = await this.analyzeCurrentAnimations(context)
       
       // Generate R6-style animations
@@ -191,7 +191,7 @@ export class AnimationEnhancerAgent implements UIAgent {
       // Add micro-interactions
       improvements.push(...await this.generateMicroInteractions(context))
       
-      // Optimize animation performance
+      // Optimise animation performance
       improvements.push(...await this.optimizeAnimationPerformance(context))
       
       // Generate accessibility-friendly animations
@@ -237,12 +237,12 @@ export class AnimationEnhancerAgent implements UIAgent {
     }
   }
 
-  async analyze(element: UIElement): Promise<AnalysisResult> {
+  async analyse(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
     const recommendations = []
 
-    // Analyze existing animations
+    // Analyse existing animations
     const animationAnalysis = this.analyzeElementAnimations(element)
     issues.push(...animationAnalysis.issues)
     strengths.push(...animationAnalysis.strengths)
@@ -252,7 +252,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     issues.push(...transitionAnalysis.issues)
     strengths.push(...transitionAnalysis.strengths)
 
-    // Analyze micro-interactions
+    // Analyse micro-interactions
     const interactionAnalysis = this.analyzeMicroInteractions(element)
     issues.push(...interactionAnalysis.issues)
     strengths.push(...interactionAnalysis.strengths)
@@ -282,7 +282,7 @@ export class AnimationEnhancerAgent implements UIAgent {
   }
 
   private async analyzeCurrentAnimations(context: UIContext): Promise<AnalysisResult> {
-    return this.analyze({
+    return this.analyse({
       type: context.component.type,
       props: context.component.props,
       styles: context.component.styles.base,
@@ -535,7 +535,7 @@ export class AnimationEnhancerAgent implements UIAgent {
             .r6-card:hover {
               transform: ${this.r6AnimationSystem.principles.transform.moderate};
               box-shadow: 0 8px 30px rgba(19, 28, 255, 0.12);
-              border-color: rgba(19, 28, 255, 0.2);
+              border-colour: rgba(19, 28, 255, 0.2);
             }
             
             /* Gradient Overlay Animation */
@@ -633,7 +633,7 @@ export class AnimationEnhancerAgent implements UIAgent {
             .r6-input:focus {
               outline: none;
               box-shadow: 0 0 0 3px rgba(19, 28, 255, 0.1);
-              border-color: #131cff;
+              border-colour: #131cff;
               animation: focus-ring-pulse 0.6s ${this.r6AnimationSystem.principles.easing.easeOut};
             }
             
@@ -652,7 +652,7 @@ export class AnimationEnhancerAgent implements UIAgent {
               left: 12px;
               top: 50%;
               transform: translateY(-50%);
-              color: #999;
+              colour: #999;
               transition: all ${this.r6AnimationSystem.principles.duration.normal} ${this.r6AnimationSystem.principles.easing.easeOut};
               pointer-events: none;
               background: white;
@@ -663,13 +663,13 @@ export class AnimationEnhancerAgent implements UIAgent {
             .r6-input:not(:placeholder-shown) + .floating-label {
               top: 0;
               font-size: 12px;
-              color: #131cff;
+              colour: #131cff;
               transform: translateY(-50%);
             }
             
             /* Error State Animation */
             .r6-input.error {
-              border-color: #ef4444;
+              border-colour: #ef4444;
               animation: input-shake 0.3s ease-in-out;
             }
             
@@ -681,7 +681,7 @@ export class AnimationEnhancerAgent implements UIAgent {
             
             /* Success State Animation */
             .r6-input.success {
-              border-color: #10b981;
+              border-colour: #10b981;
             }
             
             .r6-input.success::after {
@@ -690,7 +690,7 @@ export class AnimationEnhancerAgent implements UIAgent {
               right: 12px;
               top: 50%;
               transform: translateY(-50%);
-              color: #10b981;
+              colour: #10b981;
               font-weight: bold;
               animation: success-appear 0.4s ${this.r6AnimationSystem.principles.easing.bounce};
             }
@@ -776,7 +776,7 @@ export class AnimationEnhancerAgent implements UIAgent {
             .r6-modal-close:hover {
               opacity: 1;
               transform: ${this.r6AnimationSystem.principles.transform.rotate};
-              background-color: rgba(239, 68, 68, 0.1);
+              background-colour: rgba(239, 68, 68, 0.1);
             }
           `,
           instructions: [
@@ -976,12 +976,12 @@ export class AnimationEnhancerAgent implements UIAgent {
   private async optimizeAnimationPerformance(context: UIContext): Promise<UIImprovement[]> {
     return [
       {
-        id: 'animation-performance-optimization',
+        id: 'animation-performance-optimisation',
         type: 'performance',
-        description: 'Optimize animations for better performance and smoother experience',
+        description: 'Optimise animations for better performance and smoother experience',
         impact: 'high',
         effort: 'low',
-        category: 'performance-optimization',
+        category: 'performance-optimisation',
         implementation: {
           styles: `
             /* GPU Acceleration */
@@ -990,7 +990,7 @@ export class AnimationEnhancerAgent implements UIAgent {
               will-change: transform, opacity;
             }
             
-            /* Composite Layer Optimization */
+            /* Composite Layer Optimisation */
             .r6-composite-layer {
               transform: translate3d(0, 0, 0);
               backface-visibility: hidden;
@@ -1028,12 +1028,12 @@ export class AnimationEnhancerAgent implements UIAgent {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
+                scroll-behaviour: auto !important;
               }
             }
           `,
           instructions: [
-            'Apply performance optimization classes',
+            'Apply performance optimisation classes',
             'Monitor frame rates during animations',
             'Use will-change property judiciously',
             'Test on low-end devices'
@@ -1100,7 +1100,7 @@ export class AnimationEnhancerAgent implements UIAgent {
             @media (prefers-contrast: high) {
               .r6-high-contrast {
                 animation: none;
-                transition: border-color 0.2s;
+                transition: border-colour 0.2s;
               }
               
               .r6-high-contrast:hover,

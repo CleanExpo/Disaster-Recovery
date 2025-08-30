@@ -68,7 +68,7 @@ export default function MinimumCalloutPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               $2,200 Minimum Callout Fee
             </h1>
@@ -95,7 +95,7 @@ export default function MinimumCalloutPage() {
       {/* What's Included */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             What Your $2,200 Investment Includes
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -113,7 +113,7 @@ export default function MinimumCalloutPage() {
               );
             })}
           </div>
-          <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 text-center">
+          <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 text-centre">
             <h3 className="text-2xl font-bold mb-4">Total Value: $2,200+</h3>
             <p className="text-lg text-gray-700">
               You receive over $2,200 worth of professional services, equipment, and expertise 
@@ -126,7 +126,7 @@ export default function MinimumCalloutPage() {
       {/* Why This Investment Matters */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Proper Disaster Recovery Can't Be Done for Less
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -191,7 +191,7 @@ export default function MinimumCalloutPage() {
       {/* Competitor Comparison */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Compare Our Service Value
           </h2>
           <div className="overflow-x-auto">
@@ -199,22 +199,22 @@ export default function MinimumCalloutPage() {
               <thead>
                 <tr className="bg-blue-900 text-white">
                   <th className="p-4 text-left">Company</th>
-                  <th className="p-4 text-center">Callout Fee</th>
-                  <th className="p-4 text-center">Response Time</th>
-                  <th className="p-4 text-center">Equipment</th>
-                  <th className="p-4 text-center">Insurance</th>
-                  <th className="p-4 text-center">Guarantee</th>
+                  <th className="p-4 text-centre">Callout Fee</th>
+                  <th className="p-4 text-centre">Response Time</th>
+                  <th className="p-4 text-centre">Equipment</th>
+                  <th className="p-4 text-centre">Insurance</th>
+                  <th className="p-4 text-centre">Guarantee</th>
                 </tr>
               </thead>
               <tbody>
                 {competitorComparison.map((row, index) => (
                   <tr key={index} className={index === 0 ? 'bg-green-50 font-bold' : 'bg-white border-b'}>
                     <td className="p-4">{row.company}</td>
-                    <td className="p-4 text-center">{row.callout}</td>
-                    <td className="p-4 text-center">{row.response}</td>
-                    <td className="p-4 text-center">{row.equipment}</td>
-                    <td className="p-4 text-center">{row.insurance}</td>
-                    <td className="p-4 text-center">{row.guarantee}</td>
+                    <td className="p-4 text-centre">{row.callout}</td>
+                    <td className="p-4 text-centre">{row.response}</td>
+                    <td className="p-4 text-centre">{row.equipment}</td>
+                    <td className="p-4 text-centre">{row.insurance}</td>
+                    <td className="p-4 text-centre">{row.guarantee}</td>
                   </tr>
                 ))}
               </tbody>
@@ -226,7 +226,7 @@ export default function MinimumCalloutPage() {
       {/* ROI Section */}
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-8">
               Your $2,200 Investment Saves You Thousands
             </h2>
@@ -265,35 +265,35 @@ export default function MinimumCalloutPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Insurance Covers Our Callout Fee
             </h2>
             <Card className="p-8 bg-blue-50">
               <h3 className="text-2xl font-bold mb-6">How Insurance Billing Works</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</span>
+                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 flex-shrink-0">1</span>
                   <div>
                     <p className="font-bold">We Arrive & Start Work</p>
                     <p className="text-gray-600">No upfront payment required - we begin immediately</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">2</span>
+                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 flex-shrink-0">2</span>
                   <div>
                     <p className="font-bold">Complete Documentation</p>
                     <p className="text-gray-600">We handle all insurance paperwork and photos</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">3</span>
+                  <span className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 flex-shrink-0">3</span>
                   <div>
                     <p className="font-bold">Direct Insurance Billing</p>
                     <p className="text-gray-600">We bill your insurance company directly</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">✓</span>
+                  <span className="bg-green-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 flex-shrink-0">✓</span>
                   <div>
                     <p className="font-bold">You Pay Nothing</p>
                     <p className="text-gray-600">Only your standard excess applies (if any)</p>
@@ -307,7 +307,7 @@ export default function MinimumCalloutPage() {
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-green-800 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-4xl font-bold mb-6">
             Don't Let Disaster Costs Spiral Out of Control
           </h2>

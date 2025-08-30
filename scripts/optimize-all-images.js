@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * COMPREHENSIVE IMAGE OPTIMIZATION SCRIPT
+ * COMPREHENSIVE IMAGE Optimisation SCRIPT
  * ========================================
  * 
  * Optimizes all images in the public folder for web performance
@@ -16,8 +16,8 @@ const sharp = require('sharp');
 // Configuration
 const CONFIG = {
   inputDir: path.join(__dirname, '../public/images'),
-  outputDir: path.join(__dirname, '../public/images/optimized'),
-  watermarkPath: path.join(__dirname, '../public/images/optimized/branding/Disaster Recovery Logo.png'),
+  outputDir: path.join(__dirname, '../public/images/optimised'),
+  watermarkPath: path.join(__dirname, '../public/images/optimised/branding/Disaster Recovery Logo.png'),
   
   // Size variants for responsive images
   sizes: {
@@ -54,8 +54,8 @@ async function getImageFiles(dir) {
     const fullPath = path.join(dir, item.name);
     
     if (item.isDirectory()) {
-      // Skip optimized directory to avoid reprocessing
-      if (!fullPath.includes('optimized') && !fullPath.includes('node_modules')) {
+      // Skip optimised directory to avoid reprocessing
+      if (!fullPath.includes('optimised') && !fullPath.includes('node_modules')) {
         files.push(...await getImageFiles(fullPath));
       }
     } else if (item.isFile()) {
@@ -96,7 +96,7 @@ async function getWatermark() {
 }
 
 /**
- * Optimize a single image
+ * Optimise a single image
  */
 async function optimizeImage(inputPath, outputPath) {
   const category = getImageCategory(inputPath);
@@ -199,7 +199,7 @@ async function optimizeImage(inputPath, outputPath) {
       }
     }
     
-    // Create a base optimized version (no size suffix)
+    // Create a base optimised version (no size suffix)
     const basePipeline = sharp(inputPath);
     
     if (format === 'jpeg' || format === 'jpg') {
@@ -256,7 +256,7 @@ async function generateManifest(images) {
         height: metadata.height,
         format: metadata.format,
         sizeKB: Math.round(stats.size / 1024),
-        optimized: true,
+        optimised: true,
         watermarked: true
       });
     } catch (error) {
@@ -272,11 +272,11 @@ async function generateManifest(images) {
 }
 
 /**
- * Main optimization function
+ * Main optimisation function
  */
 async function main() {
   console.log('╔══════════════════════════════════════════════════════════╗');
-  console.log('║          IMAGE OPTIMIZATION WITH NRP WATERMARKING        ║');
+  console.log('║          IMAGE Optimisation WITH NRP WATERMARKING        ║');
   console.log('╚══════════════════════════════════════════════════════════╝');
   console.log('');
   
@@ -296,7 +296,7 @@ async function main() {
     console.log(`   Found ${images.length} images\n`);
     
     if (images.length === 0) {
-      console.log('No images found to optimize.');
+      console.log('No images found to optimise.');
       return;
     }
     
@@ -323,7 +323,7 @@ async function main() {
     
     // Summary
     console.log('\n' + '='.repeat(60));
-    console.log('📊 OPTIMIZATION COMPLETE');
+    console.log('📊 Optimisation COMPLETE');
     console.log('='.repeat(60));
     console.log(`✓ Successful: ${successful}`);
     console.log(`✗ Failed: ${failed}`);

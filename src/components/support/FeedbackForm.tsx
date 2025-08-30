@@ -199,8 +199,8 @@ export function FeedbackForm({
     return (
       <Card className={embedded ? 'border-0 shadow-none' : ''}>
         <CardContent className="py-12">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center h-16 w-16 bg-green-100 rounded-full mb-4">
+          <div className="text-centre">
+            <div className="inline-flex items-centre justify-centre h-16 w-16 bg-green-100 rounded-full mb-4">
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
@@ -243,12 +243,12 @@ export function FeedbackForm({
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <label
-                className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-colors ${
+                className={`flex items-centre gap-3 p-4 border rounded-lg cursor-pointer transition-colours ${
                   formData.type === 'feedback' ? 'border-blue-500 bg-blue-50' : 'hover:bg-gray-50'
                 }`}
               >
                 <RadioGroupItem value="feedback" />
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <div className={`p-2 rounded-lg ${formData.type === 'feedback' ? getTypeColor('feedback') : 'bg-gray-100'}`}>
                     <MessageSquare className="h-4 w-4" />
                   </div>
@@ -257,12 +257,12 @@ export function FeedbackForm({
               </label>
 
               <label
-                className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-colors ${
+                className={`flex items-centre gap-3 p-4 border rounded-lg cursor-pointer transition-colours ${
                   formData.type === 'feature_request' ? 'border-purple-500 bg-purple-50' : 'hover:bg-gray-50'
                 }`}
               >
                 <RadioGroupItem value="feature_request" />
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <div className={`p-2 rounded-lg ${formData.type === 'feature_request' ? getTypeColor('feature_request') : 'bg-gray-100'}`}>
                     <Lightbulb className="h-4 w-4" />
                   </div>
@@ -271,12 +271,12 @@ export function FeedbackForm({
               </label>
 
               <label
-                className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-colors ${
+                className={`flex items-centre gap-3 p-4 border rounded-lg cursor-pointer transition-colours ${
                   formData.type === 'bug_report' ? 'border-red-500 bg-red-50' : 'hover:bg-gray-50'
                 }`}
               >
                 <RadioGroupItem value="bug_report" />
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <div className={`p-2 rounded-lg ${formData.type === 'bug_report' ? getTypeColor('bug_report') : 'bg-gray-100'}`}>
                     <Bug className="h-4 w-4" />
                   </div>
@@ -350,7 +350,7 @@ export function FeedbackForm({
                 {(['low', 'medium', 'high'] as const).map((level) => (
                   <label
                     key={level}
-                    className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
+                    className={`flex items-centre gap-3 p-3 border rounded-lg cursor-pointer transition-colours ${
                       formData.impact === level ? 'border-blue-500 bg-blue-50' : 'hover:bg-gray-50'
                     }`}
                   >
@@ -387,7 +387,7 @@ export function FeedbackForm({
                   />
                 </button>
               ))}
-              <span className="ml-2 text-sm text-gray-500 self-center">
+              <span className="ml-2 text-sm text-gray-500 self-centre">
                 {rating > 0 && `${rating} out of 5`}
               </span>
             </div>
@@ -398,8 +398,8 @@ export function FeedbackForm({
         <div>
           <Label htmlFor="attachments">Attachments (Optional)</Label>
           <div className="mt-2">
-            <label className="flex items-center justify-center w-full h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
-              <div className="text-center">
+            <label className="flex items-centre justify-centre w-full h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+              <div className="text-centre">
                 <Upload className="h-6 w-6 text-gray-400 mx-auto mb-1" />
                 <p className="text-xs text-gray-600">
                   Click to upload screenshots or files
@@ -423,8 +423,8 @@ export function FeedbackForm({
             {formData.attachments.length > 0 && (
               <div className="mt-2 space-y-1">
                 {formData.attachments.map((file, index) => (
-                  <div key={index} className="flex items-center justify-between text-sm bg-gray-50 p-2 rounded">
-                    <div className="flex items-center gap-2">
+                  <div key={index} className="flex items-centre justify-between text-sm bg-gray-50 p-2 rounded">
+                    <div className="flex items-centre gap-2">
                       <Paperclip className="h-4 w-4 text-gray-500" />
                       <span>{file.name}</span>
                       <span className="text-gray-500">
@@ -451,7 +451,7 @@ export function FeedbackForm({
 
         {/* Anonymous Submission */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-centre gap-2">
             <Checkbox
               id="anonymous"
               checked={formData.isAnonymous}
@@ -459,7 +459,7 @@ export function FeedbackForm({
                 setFormData({ ...formData, isAnonymous: checked as boolean })
               }
             />
-            <Label htmlFor="anonymous" className="flex items-center gap-2 cursor-pointer">
+            <Label htmlFor="anonymous" className="flex items-centre gap-2 cursor-pointer">
               <Shield className="h-4 w-4 text-gray-500" />
               Submit anonymously
             </Label>

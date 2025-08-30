@@ -115,7 +115,7 @@ export function trapFocus(element: HTMLElement) {
   firstFocusableElement?.focus();
 }
 
-// Color contrast ratios for WCAG AAA compliance
+// Colour contrast ratios for WCAG AAA compliance
 export const colorContrast = {
   // Background: white (#ffffff)
   primary: {

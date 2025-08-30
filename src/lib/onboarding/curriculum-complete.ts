@@ -127,7 +127,7 @@ Australia is one of the most disaster-prone countries globally, with a unique co
   - Kitchen fires: 40% of all structural fire calls
   - Electrical faults: 30% of structural fires
   - Combined fire, smoke, and water damage from firefighting efforts
-  - Requires specialized IICRC fire restoration techniques
+  - Requires specialised IICRC fire restoration techniques
 
 **3. Mould and Indoor Air Quality (10% of claims)**
 - **Climate-Related Mould Growth**: High humidity and water intrusion
@@ -142,11 +142,11 @@ Australia is one of the most disaster-prone countries globally, with a unique co
   - HVAC system contamination
   - Requires both remediation and prevention strategies
 
-**4. Specialized Disaster Categories (5% of claims)**
+**4. Specialised Disaster Categories (5% of claims)**
 - **Biohazard and Trauma Cleanup**: Sensitive restoration work
   - Sewage overflows and contamination
   - Trauma scene restoration
-  - Requires specialized training and equipment
+  - Requires specialised training and equipment
   - High liability and regulatory requirements
 
 ### Regional Disaster Patterns
@@ -232,7 +232,7 @@ As an NRP contractor, you are part of a critical infrastructure network:
           "Australia experiences $4.2B annually in disaster recovery needs",
           "Water damage represents 60% of all disaster claims",
           "Response time is critical - 24-48 hours prevents secondary damage",
-          "Regional patterns require specialized knowledge and preparation",
+          "Regional patterns require specialised knowledge and preparation",
           "IICRC standards are mandatory for all restoration work",
           "Insurance pre-approval status is essential for consistent work flow"
         ],
@@ -304,9 +304,9 @@ National Recovery Partners (NRP) operates as Australia's premier disaster recove
 - On-site assessment conducted using NRP standardized procedures
 - Detailed scope of work and estimate prepared using approved pricing
 
-**5. Work Authorization:**
+**5. Work Authorisation:**
 - Insurance adjuster reviews and approves scope
-- Work authorized through NRP platform
+- Work authorised through NRP platform
 - Project tracking and milestone reporting begins
 
 ### Your Revenue Model
@@ -335,7 +335,7 @@ National Recovery Partners (NRP) operates as Australia's premier disaster recove
 - Primary service area based on your location and capacity
 - Typically 30-50km radius from your base
 - Expanded coverage opportunities based on performance
-- Specialized work may extend service area (e.g., commercial, industrial)
+- Specialised work may extend service area (e.g., commercial, industrial)
 
 **Coverage Expectations:**
 - 24/7 emergency response capability
@@ -390,7 +390,7 @@ National Recovery Partners (NRP) operates as Australia's premier disaster recove
 **Contractor Development Path:**
 1. **Certified Contractor**: Complete onboarding and begin receiving leads
 2. **Preferred Contractor**: Achieve performance standards, increased lead priority  
-3. **Specialist Contractor**: Additional certifications for specialized work
+3. **Specialist Contractor**: Additional certifications for specialised work
 4. **Master Contractor**: Leadership role, mentoring new contractors
 5. **Regional Partner**: Potential equity participation in territory expansion
 
@@ -647,7 +647,7 @@ This foundation of professional standards and ethics will guide every decision y
       }
     ],
     practicalAssignments: [
-      "Research recent disaster events in your service area and analyze the types of damage typically caused",
+      "Research recent disaster events in your service area and analyse the types of damage typically caused",
       "Create a professional introduction script for initial client contact during emergency situations",
       "Develop a checklist for ethical decision-making based on the framework provided"
     ],
@@ -736,7 +736,7 @@ This foundation of professional standards and ethics will guide every decision y
         content: `
 # The Science of Water Damage: Mastering Psychrometry for Professional Restoration
 
-## Understanding Water Behavior in Buildings
+## Understanding Water Behaviour in Buildings
 
 Water damage restoration is applied science. Success requires understanding how water behaves, how it affects different materials, and how environmental conditions impact the drying process. This scientific foundation separates professional contractors from amateurs.
 
@@ -886,7 +886,7 @@ Water follows predictable paths through buildings:
 ### Class of Water Loss (Evaporation Rate)
 
 **Class 1: Slow Rate of Evaporation**
-- **Characteristics**: Minimal absorption, favorable drying conditions
+- **Characteristics**: Minimal absorption, favourable drying conditions
 - **Examples**: Concrete floors, minimal carpet area
 - **Drying Time**: 1-3 days typically
 - **Equipment Needs**: Standard air movers and dehumidification
@@ -973,7 +973,7 @@ Water follows predictable paths through buildings:
 
 **Challenge 3: Material Sensitivity**
 - **Problem**: Antiques, artwork, or sensitive materials at risk
-- **Solution**: Climate-controlled drying, specialized equipment, professional conservation
+- **Solution**: Climate-controlled drying, specialised equipment, professional conservation
 
 **Challenge 4: Structural Damage**
 - **Problem**: Warping, buckling, or deterioration during drying
@@ -1034,7 +1034,7 @@ The first 24-48 hours after water damage occurs are critical. During this window
 - **Complete Equipment Setup**: Optimal placement for maximum drying efficiency
 - **Documentation**: Comprehensive photo and measurement documentation
 - **Insurance Notification**: Contact adjusters and provide initial assessment
-- **Work Authorization**: Secure approval for mitigation and restoration scope
+- **Work Authorisation**: Secure approval for mitigation and restoration scope
 
 ### Water Extraction Equipment and Techniques
 
@@ -1083,7 +1083,7 @@ The first 24-48 hours after water damage occurs are critical. During this window
 - **Furniture**: Solid wood and metal often salvageable
 - **Documents**: Freeze-drying techniques for important papers
 - **Clothing**: Most clothing can be professionally cleaned
-- **Artwork**: Requires specialized restoration techniques
+- **Artwork**: Requires specialised restoration techniques
 
 **Non-Salvageable Items:**
 - **Particle Board Furniture**: Typically not cost-effective to restore
@@ -1260,7 +1260,7 @@ Professional drying is both science and art. While psychrometric principles guid
 **Injectidry Systems:**
 - **Application**: Hardwood floors, wall cavities, specialty materials
 - **Process**: Direct air injection into enclosed spaces
-- **Equipment**: Specialized mats and injection ports
+- **Equipment**: Specialised mats and injection ports
 - **Monitoring**: Requires careful moisture monitoring to prevent over-drying
 
 **Heat Drying:**
@@ -1360,7 +1360,7 @@ Professional drying is both science and art. While psychrometric principles guid
 **Data Logging Hygrometers:**
 - **Function**: Continuous recording of temperature and humidity
 - **Placement**: Multiple units throughout drying area
-- **Analysis**: Identify patterns and optimize drying conditions
+- **Analysis**: Identify patterns and optimise drying conditions
 - **Reporting**: Provide clients and adjusters with detailed progress data
 
 ### Quality Control and Final Verification
@@ -1369,7 +1369,7 @@ Professional drying is both science and art. While psychrometric principles guid
 - **Moisture Levels**: All materials at or below pre-loss moisture content
 - **Environmental Conditions**: Stable temperature and humidity levels
 - **No Condensation**: No moisture accumulation on surfaces
-- **Odor Assessment**: No musty or moisture-related odors
+- **Odour Assessment**: No musty or moisture-related odours
 - **Visual Inspection**: No signs of secondary damage or mould growth
 
 **Final Documentation:**
@@ -1490,7 +1490,7 @@ This advanced understanding of drying systems enables you to handle complex wate
       "Develop systematic daily monitoring protocols",
       "Practice client communication during water damage restoration"
     ],
-    nextDayPreparation: "Tomorrow focuses on fire and smoke damage restoration - a completely different skill set requiring specialized knowledge of combustion products, odor control, and structural cleaning. Review any fire damage basics and consider the unique challenges of smoke penetration."
+    nextDayPreparation: "Tomorrow focuses on fire and smoke damage restoration - a completely different skill set requiring specialised knowledge of combustion products, odour control, and structural cleaning. Review any fire damage basics and consider the unique challenges of smoke penetration."
   },
 
   // Continue with Days 3-14 following the same comprehensive format...

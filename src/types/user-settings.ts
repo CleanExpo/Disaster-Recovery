@@ -331,7 +331,7 @@ export const SECURITY_QUESTIONS = [
   "What is your mother's maiden name?",
   "What city were you born in?",
   "What was the name of your first school?",
-  "What is your favorite book?",
+  "What is your favourite book?",
   "What was the make of your first car?",
   "What is the name of the street you grew up on?",
   "What was your childhood nickname?",

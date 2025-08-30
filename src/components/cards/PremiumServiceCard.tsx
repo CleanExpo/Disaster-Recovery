@@ -24,7 +24,7 @@ export interface ServiceCardProps {
   href: string;
   features?: string[];
   badge?: string;
-  category: 'water' | 'fire' | 'mold' | 'storm' | 'biohazard' | 'commercial';
+  category: 'water' | 'fire' | 'mould' | 'storm' | 'biohazard' | 'commercial';
   responseTime?: string;
   isFeatured?: boolean;
 }
@@ -48,7 +48,7 @@ const categoryConfig = {
     iconBg: 'bg-gradient-to-br from-orange-100 to-red-100',
     iconColor: 'text-orange-600'
   },
-  mold: {
+  mould: {
     icon: Shield,
     gradient: 'from-green-500 to-emerald-500',
     shadowColor: 'shadow-green-500/20',
@@ -131,7 +131,7 @@ export default function PremiumServiceCard({
         {/* Response Time Badge */}
         {responseTime && (
           <div className="absolute top-4 right-4 z-20">
-            <div className="flex items-center gap-1 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
+            <div className="flex items-centre gap-1 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
               <Clock className="w-3 h-3 text-green-600" />
               <span className="text-xs font-semibold text-gray-700">{responseTime}</span>
             </div>
@@ -183,12 +183,12 @@ export default function PremiumServiceCard({
         <div className="p-6 space-y-4">
           {/* Title with Category Indicator */}
           <div className="space-y-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <div className={cn(
                 "w-1 h-6 rounded-full bg-gradient-to-b",
                 config.gradient
               )} />
-              <h3 className="text-xl font-bold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-xl font-bold text-gray-900 line-clamp-1 group-hover:text-blue-600 transition-colours">
                 {title}
               </h3>
             </div>
@@ -221,7 +221,7 @@ export default function PremiumServiceCard({
 
           {/* CTA Section */}
           <div className="pt-4 border-t border-gray-100">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <span className={cn(
                 "text-sm font-semibold",
                 "bg-gradient-to-r bg-clip-text text-transparent",
@@ -259,8 +259,8 @@ export default function PremiumServiceCard({
 
       <style jsx>{`
         @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
+          0% { background-position: -200% centre; }
+          100% { background-position: 200% centre; }
         }
         
         .animate-shimmer {

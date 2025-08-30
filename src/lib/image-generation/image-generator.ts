@@ -241,8 +241,8 @@ export class ImageGenerationOrchestrator {
    * Generate SVG for status indicators
    */
   private generateStatusSVG(requirement: ImageRequirement): string {
-    const colors = requirement.colorScheme || ['#cccccc'];
-    const primaryColor = colors[0];
+    const colours = requirement.colorScheme || ['#cccccc'];
+    const primaryColor = colours[0];
     
     return `
       <svg width="${requirement.dimensions.width}" height="${requirement.dimensions.height}" 
@@ -319,7 +319,7 @@ export class ImageValidator {
     
     // Check brand consistency
     if (requirement.colorScheme) {
-      // Check if image matches color scheme
+      // Check if image matches colour scheme
     }
     
     // Check file format
@@ -347,7 +347,7 @@ export class ImageValidator {
 
 /**
  * Image Storage Manager
- * Handles saving and organizing generated images
+ * Handles saving and organising generated images
  */
 export class ImageStorageManager {
   private basePath = 'public/images/generated';
@@ -371,7 +371,7 @@ export class ImageStorageManager {
   }
   
   /**
-   * Optimize image for web
+   * Optimise image for web
    */
   public async optimizeImage(
     imagePath: string,
@@ -382,7 +382,7 @@ export class ImageStorageManager {
     }
   ): Promise<string> {
     // Would use sharp or similar library
-    console.log(`Optimizing image: ${imagePath}`);
+    console.log(`Optimising image: ${imagePath}`);
     return imagePath;
   }
   
@@ -442,7 +442,7 @@ export class ImageGenerationPipeline {
         if (requirement) {
           const validation = await this.validator.validate(requirement, result.url);
           if (validation.valid) {
-            // Save and optimize
+            // Save and optimise
             const savedPath = await this.storage.saveImage(requirement, result.url);
             const optimizedPath = await this.storage.optimizeImage(savedPath, {
               quality: 85,

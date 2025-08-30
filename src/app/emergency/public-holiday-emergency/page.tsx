@@ -14,7 +14,7 @@ export default function PublicHolidayEmergencyPage() {
     <div className="min-h-screen">
       {/* Emergency Alert Banner */}
       <div className="bg-red-600 text-white py-3 animate-pulse">
-        <div className="container mx-auto px-4 flex items-center justify-center">
+        <div className="container mx-auto px-4 flex items-centre justify-centre">
           <AlertTriangle className="h-5 w-5 mr-2" />
           <span className="font-bold">CRITICAL EMERGENCY - CALL NOW: 1300 DISASTER</span>
         </div>
@@ -23,8 +23,8 @@ export default function PublicHolidayEmergencyPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre mb-6">
               <Clock className="h-16 w-16 text-orange-400 animate-spin-slow" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -64,7 +64,7 @@ export default function PublicHolidayEmergencyPage() {
       {/* Why We Charge More Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Public Holiday Emergency Costs More
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -75,7 +75,7 @@ export default function PublicHolidayEmergencyPage() {
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Premium rates for specialized technicians</span>
+                  <span>Premium rates for specialised technicians</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
@@ -129,7 +129,7 @@ export default function PublicHolidayEmergencyPage() {
       {/* Cost of Waiting Section */}
       <section className="py-16 bg-red-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-8 text-red-600">
               The True Cost of Waiting Until Business Hours
             </h2>
@@ -171,11 +171,11 @@ export default function PublicHolidayEmergencyPage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Insurance Covers Public Holiday Emergency Fees
             </h2>
             <Card className="p-8 bg-blue-50">
-              <div className="text-center mb-8">
+              <div className="text-centre mb-8">
                 <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4" />
                 <p className="text-2xl font-bold">Most Policies Include After-Hours Coverage</p>
               </div>
@@ -208,7 +208,7 @@ export default function PublicHolidayEmergencyPage() {
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-r from-orange-600 to-red-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Clock className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">
             All Public Holidays Disaster Emergency?

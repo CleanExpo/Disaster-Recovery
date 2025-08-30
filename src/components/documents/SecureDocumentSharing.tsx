@@ -240,7 +240,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
       case 'public_link': return <Globe className="w-5 h-5 text-blue-600" />;
       case 'email': return <Mail className="w-5 h-5 text-green-600" />;
       case 'user_specific': return <UserCheck className="w-5 h-5 text-purple-600" />;
-      case 'organization': return <Users className="w-5 h-5 text-orange-600" />;
+      case 'organisation': return <Users className="w-5 h-5 text-orange-600" />;
       default: return <Share2 className="w-5 h-5 text-gray-600" />;
     }
   };
@@ -254,10 +254,10 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
   };
 
   const CreateShareModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
       <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <h2 className="text-xl font-semibold text-gray-900">Share Document</h2>
             <button 
               onClick={() => setShowCreateModal(false)}
@@ -286,12 +286,12 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                 { value: 'email', label: 'Email Recipients', icon: <Mail className="w-4 h-4" /> },
                 { value: 'public_link', label: 'Public Link', icon: <Globe className="w-4 h-4" /> },
                 { value: 'user_specific', label: 'Specific Users', icon: <UserCheck className="w-4 h-4" /> },
-                { value: 'organization', label: 'Organization', icon: <Users className="w-4 h-4" /> }
+                { value: 'organisation', label: 'Organisation', icon: <Users className="w-4 h-4" /> }
               ] as const).map((option) => (
                 <button
                   key={option.value}
                   onClick={() => setShareForm(prev => ({ ...prev, shareType: option.value }))}
-                  className={`flex items-center p-3 border-2 rounded-lg transition-colors ${
+                  className={`flex items-centre p-3 border-2 rounded-lg transition-colours ${
                     shareForm.shareType === option.value
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
@@ -338,7 +338,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                 ))}
                 <button
                   onClick={() => setShareForm(prev => ({ ...prev, recipients: [...prev.recipients, ''] }))}
-                  className="flex items-center text-blue-600 hover:text-blue-700"
+                  className="flex items-centre text-blue-600 hover:text-blue-700"
                 >
                   <Plus className="w-4 h-4 mr-1" />
                   Add {shareForm.shareType === 'email' ? 'Email' : 'User'}
@@ -359,7 +359,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                 canComment: 'Can add comments',
                 canEdit: 'Can edit document'
               }).map(([key, label]) => (
-                <label key={key} className="flex items-center">
+                <label key={key} className="flex items-centre">
                   <input
                     type="checkbox"
                     checked={shareForm.permissions[key as keyof SharePermissions]}
@@ -458,10 +458,10 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
     if (!share) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Access Log</h2>
               <button 
                 onClick={() => setShowAccessLog(null)}
@@ -475,7 +475,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
           <div className="p-6">
             <div className="space-y-4">
               {share.accessLog.length === 0 ? (
-                <div className="text-center py-8">
+                <div className="text-centre py-8">
                   <Activity className="w-12 h-12 text-gray-300 mx-auto mb-3" />
                   <p className="text-gray-600">No access activity yet</p>
                 </div>
@@ -528,22 +528,22 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Document Sharing</h1>
           <p className="text-gray-600 mt-1">Securely share documents with controlled access</p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-centre space-x-2">
           <button 
             onClick={() => loadShares()}
-            className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh
           </button>
           <button 
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             <Share2 className="w-4 h-4 mr-2" />
             Create Share
@@ -553,7 +553,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
         {shares.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-centre py-12">
             <Share2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No shared documents</h3>
             <p className="text-gray-600 mb-4">Create your first document share to get started</p>
@@ -570,7 +570,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
               <div key={share.id} className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-3">
+                    <div className="flex items-centre space-x-3 mb-3">
                       {getShareTypeIcon(share.shareType)}
                       <div>
                         <h3 className="font-medium text-gray-900">
@@ -580,20 +580,20 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                           Created {new Date(share.createdAt).toLocaleDateString()}
                         </p>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-centre space-x-2">
                         {share.password && (
-                          <div className="flex items-center text-xs text-gray-600 bg-yellow-50 px-2 py-1 rounded">
+                          <div className="flex items-centre text-xs text-gray-600 bg-yellow-50 px-2 py-1 rounded">
                             <Lock className="w-3 h-3 mr-1" />
                             Protected
                           </div>
                         )}
                         {share.expiryDate && (
-                          <div className="flex items-center text-xs text-gray-600 bg-blue-50 px-2 py-1 rounded">
+                          <div className="flex items-centre text-xs text-gray-600 bg-blue-50 px-2 py-1 rounded">
                             <Clock className="w-3 h-3 mr-1" />
                             Expires {new Date(share.expiryDate).toLocaleDateString()}
                           </div>
                         )}
-                        <div className={`flex items-center text-xs px-2 py-1 rounded ${
+                        <div className={`flex items-centre text-xs px-2 py-1 rounded ${
                           share.isActive ? 'text-green-600 bg-green-50' : 'text-red-600 bg-red-50'
                         }`}>
                           {share.isActive ? <CheckCircle className="w-3 h-3 mr-1" /> : <XCircle className="w-3 h-3 mr-1" />}
@@ -624,24 +624,24 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {Object.entries(share.permissions).filter(([_, value]) => value).map(([permission, _]) => (
-                        <span key={permission} className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                        <span key={permission} className="inline-flex items-centre px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
                           {permission.replace('can', '').toLowerCase()}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2 ml-4">
+                  <div className="flex items-centre space-x-2 ml-4">
                     <button
                       onClick={() => copyShareLink(share.id)}
-                      className="flex items-center px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
+                      className="flex items-centre px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
                     >
                       <Copy className="w-4 h-4 mr-1" />
                       Copy Link
                     </button>
                     <button
                       onClick={() => setShowAccessLog(share.id)}
-                      className="flex items-center px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
+                      className="flex items-centre px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
                     >
                       <Activity className="w-4 h-4 mr-1" />
                       Access Log
@@ -649,7 +649,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                     {share.isActive && (
                       <button
                         onClick={() => revokeShare(share.id)}
-                        className="flex items-center px-3 py-2 text-sm text-red-600 border border-red-300 rounded-lg hover:bg-red-50"
+                        className="flex items-centre px-3 py-2 text-sm text-red-600 border border-red-300 rounded-lg hover:bg-red-50"
                       >
                         <XCircle className="w-4 h-4 mr-1" />
                         Revoke

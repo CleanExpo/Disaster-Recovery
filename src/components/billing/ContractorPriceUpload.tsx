@@ -364,8 +364,8 @@ const ContractorPriceUpload: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-centre space-x-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <TrendingUp className="h-6 w-6 text-purple-600" />
             </div>
@@ -374,17 +374,17 @@ const ContractorPriceUpload: React.FC = () => {
               <p className="text-sm text-gray-500">Upload and manage your service rates</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <button
               onClick={downloadTemplate}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
+              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2"
             >
               <Download className="h-4 w-4" />
               <span>Template</span>
             </button>
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center space-x-2"
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-centre space-x-2"
             >
               <Plus className="h-4 w-4" />
               <span>Add Rate</span>
@@ -396,7 +396,7 @@ const ContractorPriceUpload: React.FC = () => {
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-6">
           {isUploading && uploadProgress ? (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <p className="text-sm font-medium">Processing rates...</p>
                 <p className="text-sm text-gray-600">
                   {uploadProgress.processed} of {uploadProgress.total}
@@ -408,7 +408,7 @@ const ContractorPriceUpload: React.FC = () => {
                   style={{ width: `${(uploadProgress.processed / uploadProgress.total) * 100}%` }}
                 />
               </div>
-              <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="grid grid-cols-3 gap-4 text-centre">
                 <div className="bg-green-50 rounded-lg p-2">
                   <p className="text-2xl font-semibold text-green-600">{uploadProgress.approved}</p>
                   <p className="text-xs text-gray-600">Approved</p>
@@ -424,7 +424,7 @@ const ContractorPriceUpload: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="text-center">
+            <div className="text-centre">
               <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-600 mb-2">Drop your price list CSV here or click to browse</p>
               <input
@@ -447,9 +447,9 @@ const ContractorPriceUpload: React.FC = () => {
 
       {/* Filters */}
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
+        <div className="flex items-centre justify-between">
+          <div className="flex items-centre space-x-4">
+            <div className="flex items-centre space-x-2">
               <label className="text-sm font-medium">Status:</label>
               <select
                 value={filterStatus}
@@ -463,7 +463,7 @@ const ContractorPriceUpload: React.FC = () => {
                 <option value="rejected">Rejected</option>
               </select>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-centre space-x-2">
               <label className="text-sm font-medium">Category:</label>
               <select
                 value={filterCategory}
@@ -505,7 +505,7 @@ const ContractorPriceUpload: React.FC = () => {
                 return (
                   <tr key={rate.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
-                      <span className={`inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-full ${getStatusColor(rate.status)}`}>
+                      <span className={`inline-flex items-centre space-x-1 px-2 py-1 text-xs rounded-full ${getStatusColor(rate.status)}`}>
                         <StatusIcon className="h-3 w-3" />
                         <span className="capitalize">{rate.status}</span>
                       </span>
@@ -554,7 +554,7 @@ const ContractorPriceUpload: React.FC = () => {
                           {rate.validationResult.flags.length > 0 && (
                             <div className="mt-1">
                               {rate.validationResult.flags.map((flag, index) => (
-                                <div key={index} className="flex items-center space-x-1">
+                                <div key={index} className="flex items-centre space-x-1">
                                   <AlertTriangle className="h-3 w-3 text-yellow-500" />
                                   <span className="text-xs text-gray-600">{flag.message}</span>
                                 </div>
@@ -565,7 +565,7 @@ const ContractorPriceUpload: React.FC = () => {
                       )}
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-centre space-x-2">
                         <button
                           onClick={() => setSelectedRate(rate)}
                           className="text-blue-600 hover:text-blue-800"
@@ -590,14 +590,14 @@ const ContractorPriceUpload: React.FC = () => {
 
       {/* Upload History */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="font-semibold mb-4 flex items-center">
+        <h3 className="font-semibold mb-4 flex items-centre">
           <FileSpreadsheet className="h-5 w-5 mr-2 text-gray-600" />
           Upload History
         </h3>
         <div className="space-y-3">
           {uploadHistory.map((upload) => (
-            <div key={upload.id} className="flex items-center justify-between p-3 border rounded-lg">
-              <div className="flex items-center space-x-3">
+            <div key={upload.id} className="flex items-centre justify-between p-3 border rounded-lg">
+              <div className="flex items-centre space-x-3">
                 <FileSpreadsheet className="h-5 w-5 text-gray-400" />
                 <div>
                   <p className="font-medium text-sm">{upload.filename}</p>
@@ -606,10 +606,10 @@ const ContractorPriceUpload: React.FC = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-centre space-x-4">
                 <div className="text-sm text-right">
                   <p className="font-medium">{upload.totalItems} items</p>
-                  <div className="flex items-center space-x-2 text-xs">
+                  <div className="flex items-centre space-x-2 text-xs">
                     <span className="text-green-600">{upload.approvedItems} approved</span>
                     <span className="text-yellow-600">{upload.flaggedItems} flagged</span>
                     <span className="text-red-600">{upload.rejectedItems} rejected</span>
@@ -623,7 +623,7 @@ const ContractorPriceUpload: React.FC = () => {
 
       {/* Add/Edit Rate Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Add New Rate</h3>
             

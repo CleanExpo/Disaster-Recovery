@@ -29,18 +29,18 @@ export class DarkModeSpecialistAgent implements UIAgent {
   capabilities = [
     'Dark theme implementation',
     'Electric blue accent integration',
-    'Contrast ratio optimization',
+    'Contrast ratio optimisation',
     'Theme switching mechanisms',
     'Dark mode component variants',
-    'Color scheme preference detection',
+    'Colour scheme preference detection',
     'Accessibility-compliant dark themes'
   ]
   priority = 5
   isActive = true
 
   private r6DarkTheme = {
-    // R6 Digital Dark Mode Color Palette
-    colors: {
+    // R6 Digital Dark Mode Colour Palette
+    colours: {
       // Primary electric blue - remains consistent across themes
       primary: {
         50: '#f0f2ff',
@@ -65,7 +65,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         gradient: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)'
       },
       
-      // Dark mode text colors
+      // Dark mode text colours
       text: {
         primary: '#ffffff',      // Pure white for primary text
         secondary: '#b3b3b3',    // Light gray for secondary text
@@ -80,7 +80,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       
       // Dark mode borders and surfaces
       surfaces: {
-        border: '#333333',       // Default border color
+        border: '#333333',       // Default border colour
         borderHover: '#4d4d4d',  // Border hover state
         borderFocus: '#131cff',  // Focus border (electric blue)
         divider: '#262626',      // Subtle dividers
@@ -92,7 +92,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         tooltip: '#333333'       // Tooltip backgrounds
       },
       
-      // Semantic colors for dark mode
+      // Semantic colours for dark mode
       semantic: {
         success: {
           bg: 'rgba(34, 197, 94, 0.1)',
@@ -138,7 +138,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       card: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
       button: 'linear-gradient(135deg, #131cff 0%, #0f17cc 100%)',
       accent: 'linear-gradient(45deg, transparent, rgba(19, 28, 255, 0.1), transparent)',
-      glow: 'radial-gradient(circle at center, rgba(19, 28, 255, 0.2) 0%, transparent 70%)'
+      glow: 'radial-gradient(circle at centre, rgba(19, 28, 255, 0.2) 0%, transparent 70%)'
     }
   }
 
@@ -158,7 +158,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
     const recommendations: Recommendation[] = []
 
     try {
-      // Analyze current dark mode implementation
+      // Analyse current dark mode implementation
       const darkModeAnalysis = await this.analyzeDarkModeSupport(context)
       
       // Generate dark theme implementation
@@ -170,7 +170,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       // Implement theme switching functionality
       improvements.push(...await this.generateThemeSwitching(context))
       
-      // Optimize contrast ratios
+      // Optimise contrast ratios
       improvements.push(...await this.optimizeContrastRatios(context))
       
       // Generate dark mode recommendations
@@ -187,7 +187,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       // Check for user preference support
       const prefersColorScheme = context.theme.mode === 'auto'
       if (!prefersColorScheme) {
-        warnings.push('Consider implementing prefers-color-scheme media query support')
+        warnings.push('Consider implementing prefers-colour-scheme media query support')
       }
 
       return {
@@ -215,12 +215,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
     }
   }
 
-  async analyze(element: UIElement): Promise<AnalysisResult> {
+  async analyse(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
     const recommendations = []
 
-    // Analyze dark mode support
+    // Analyse dark mode support
     const darkModeSupport = this.analyzeDarkModeSupport(element)
     issues.push(...darkModeSupport.issues)
     strengths.push(...darkModeSupport.strengths)
@@ -230,7 +230,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
     issues.push(...contrastAnalysis.issues)
     strengths.push(...contrastAnalysis.strengths)
 
-    // Analyze electric blue usage
+    // Analyse electric blue usage
     const electricBlueAnalysis = this.analyzeElectricBlueUsage(element)
     issues.push(...electricBlueAnalysis.issues)
     strengths.push(...electricBlueAnalysis.strengths)
@@ -260,7 +260,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
   }
 
   private async analyzeDarkModeSupport(context: UIContext): Promise<AnalysisResult> {
-    return this.analyze({
+    return this.analyse({
       type: context.component.type,
       props: context.component.props,
       styles: context.component.styles.base,
@@ -280,7 +280,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
     // Check for dark mode CSS custom properties
     const usesDarkModeVars = styleString.includes('--dark-') || 
                             styleString.includes('[data-theme="dark"]') ||
-                            styleString.includes('@media (prefers-color-scheme: dark)')
+                            styleString.includes('@media (prefers-colour-scheme: dark)')
 
     if (usesDarkModeVars) {
       strengths.push('Implements dark mode CSS variables or media queries')
@@ -296,18 +296,18 @@ export class DarkModeSpecialistAgent implements UIAgent {
       })
     }
 
-    // Check for hardcoded light colors that won't work in dark mode
+    // Check for hardcoded light colours that won't work in dark mode
     const hasHardcodedWhite = styleString.includes('#ffffff') || styleString.includes('white')
     const hasHardcodedBlack = styleString.includes('#000000') || styleString.includes('black')
     
     if (hasHardcodedWhite || hasHardcodedBlack) {
       issues.push({
-        id: 'hardcoded-colors',
+        id: 'hardcoded-colours',
         severity: 'medium' as const,
         type: 'theme' as const,
-        description: 'Component uses hardcoded colors that may not work in dark mode',
+        description: 'Component uses hardcoded colours that may not work in dark mode',
         location: element.type,
-        fix: 'Replace hardcoded colors with CSS custom properties',
+        fix: 'Replace hardcoded colours with CSS custom properties',
         automated: true
       })
     }
@@ -330,9 +330,9 @@ export class DarkModeSpecialistAgent implements UIAgent {
         id: 'poor-contrast',
         severity: 'high' as const,
         type: 'accessibility' as const,
-        description: 'Poor color contrast in dark mode',
+        description: 'Poor colour contrast in dark mode',
         location: element.type,
-        fix: 'Improve color contrast to meet WCAG AA standards (4.5:1 ratio)',
+        fix: 'Improve colour contrast to meet WCAG AA standards (4.5:1 ratio)',
         automated: false,
         wcagViolation: 'WCAG 1.4.3 Contrast (Minimum) - Level AA'
       })
@@ -353,7 +353,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
                             styleString.includes('131, 28, 255')
 
     if (usesElectricBlue) {
-      strengths.push('Uses R6 Digital electric blue accent color')
+      strengths.push('Uses R6 Digital electric blue accent colour')
     } else if (element.type === 'button' || element.type === 'link') {
       issues.push({
         id: 'missing-electric-blue',
@@ -481,16 +481,16 @@ export class DarkModeSpecialistAgent implements UIAgent {
     const improvements: UIImprovement[] = []
 
     improvements.push({
-      id: 'contrast-optimization',
+      id: 'contrast-optimisation',
       type: 'accessibility',
-      description: 'Optimize color contrast ratios for WCAG AA/AAA compliance',
+      description: 'Optimise colour contrast ratios for WCAG AA/AAA compliance',
       impact: 'high',
       effort: 'medium',
       category: 'accessibility',
       implementation: {
         styles: this.generateContrastOptimizedColors(),
         instructions: [
-          'Apply WCAG compliant color combinations',
+          'Apply WCAG compliant colour combinations',
           'Test contrast ratios with automated tools',
           'Verify readability in different lighting conditions',
           'Ensure electric blue accents maintain accessibility'
@@ -515,12 +515,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
       priority: 'high',
       category: 'user-experience',
       title: 'Implement System Theme Preference Detection',
-      description: 'Automatically detect and respect user\'s system color scheme preference',
+      description: 'Automatically detect and respect user\'s system colour scheme preference',
       implementation: {
         complexity: 'moderate',
         estimatedTime: '2-3 hours',
         requirements: [
-          'Add prefers-color-scheme media query support',
+          'Add prefers-colour-scheme media query support',
           'Implement JavaScript theme detection',
           'Create seamless theme switching',
           'Add user preference storage'
@@ -528,7 +528,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         code: `
           // System theme preference detection
           function detectSystemTheme() {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            if (window.matchMedia && window.matchMedia('(prefers-colour-scheme: dark)').matches) {
               return 'dark';
             }
             return 'light';
@@ -548,7 +548,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
           setTheme(savedTheme);
           
           // Listen for system theme changes
-          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          window.matchMedia('(prefers-colour-scheme: dark)').addEventListener('change', (e) => {
             if (!localStorage.getItem('theme-preference')) {
               setTheme(e.matches ? 'dark' : 'light');
             }
@@ -625,11 +625,11 @@ export class DarkModeSpecialistAgent implements UIAgent {
 
     if (['button', 'card', 'input'].includes(element.type)) {
       recommendations.push({
-        id: `optimize-${element.type}-dark-mode`,
+        id: `optimise-${element.type}-dark-mode`,
         agent: this.id,
         priority: 'medium',
-        category: 'component-optimization',
-        title: `Optimize ${element.type} for Dark Mode`,
+        category: 'component-optimisation',
+        title: `Optimise ${element.type} for Dark Mode`,
         description: `Enhance ${element.type} component with proper dark mode styling and electric blue accents`,
         implementation: {
           complexity: 'simple',
@@ -653,47 +653,47 @@ export class DarkModeSpecialistAgent implements UIAgent {
     return `
       /* R6 Digital Dark Theme CSS Custom Properties */
       [data-theme="dark"] {
-        /* Primary Colors */
-        --color-primary-50: ${this.r6DarkTheme.colors.primary[50]};
-        --color-primary-500: ${this.r6DarkTheme.colors.primary[500]};
-        --color-primary-600: ${this.r6DarkTheme.colors.primary[600]};
-        --color-primary-700: ${this.r6DarkTheme.colors.primary[700]};
+        /* Primary Colours */
+        --colour-primary-50: ${this.r6DarkTheme.colours.primary[50]};
+        --colour-primary-500: ${this.r6DarkTheme.colours.primary[500]};
+        --colour-primary-600: ${this.r6DarkTheme.colours.primary[600]};
+        --colour-primary-700: ${this.r6DarkTheme.colours.primary[700]};
         
-        /* Background Colors */
-        --color-bg-primary: ${this.r6DarkTheme.colors.backgrounds.primary};
-        --color-bg-secondary: ${this.r6DarkTheme.colors.backgrounds.secondary};
-        --color-bg-tertiary: ${this.r6DarkTheme.colors.backgrounds.tertiary};
-        --color-bg-overlay: ${this.r6DarkTheme.colors.backgrounds.overlay};
-        --color-bg-glass: ${this.r6DarkTheme.colors.backgrounds.glass};
+        /* Background Colours */
+        --colour-bg-primary: ${this.r6DarkTheme.colours.backgrounds.primary};
+        --colour-bg-secondary: ${this.r6DarkTheme.colours.backgrounds.secondary};
+        --colour-bg-tertiary: ${this.r6DarkTheme.colours.backgrounds.tertiary};
+        --colour-bg-overlay: ${this.r6DarkTheme.colours.backgrounds.overlay};
+        --colour-bg-glass: ${this.r6DarkTheme.colours.backgrounds.glass};
         
-        /* Text Colors */
-        --color-text-primary: ${this.r6DarkTheme.colors.text.primary};
-        --color-text-secondary: ${this.r6DarkTheme.colors.text.secondary};
-        --color-text-muted: ${this.r6DarkTheme.colors.text.muted};
-        --color-text-disabled: ${this.r6DarkTheme.colors.text.disabled};
-        --color-text-accent: ${this.r6DarkTheme.colors.text.accent};
+        /* Text Colours */
+        --colour-text-primary: ${this.r6DarkTheme.colours.text.primary};
+        --colour-text-secondary: ${this.r6DarkTheme.colours.text.secondary};
+        --colour-text-muted: ${this.r6DarkTheme.colours.text.muted};
+        --colour-text-disabled: ${this.r6DarkTheme.colours.text.disabled};
+        --colour-text-accent: ${this.r6DarkTheme.colours.text.accent};
         
-        /* Surface Colors */
-        --color-border: ${this.r6DarkTheme.colors.surfaces.border};
-        --color-border-hover: ${this.r6DarkTheme.colors.surfaces.borderHover};
-        --color-border-focus: ${this.r6DarkTheme.colors.surfaces.borderFocus};
-        --color-surface-card: ${this.r6DarkTheme.colors.surfaces.card};
-        --color-surface-input: ${this.r6DarkTheme.colors.surfaces.input};
-        --color-surface-modal: ${this.r6DarkTheme.colors.surfaces.modal};
+        /* Surface Colours */
+        --colour-border: ${this.r6DarkTheme.colours.surfaces.border};
+        --colour-border-hover: ${this.r6DarkTheme.colours.surfaces.borderHover};
+        --colour-border-focus: ${this.r6DarkTheme.colours.surfaces.borderFocus};
+        --colour-surface-card: ${this.r6DarkTheme.colours.surfaces.card};
+        --colour-surface-input: ${this.r6DarkTheme.colours.surfaces.input};
+        --colour-surface-modal: ${this.r6DarkTheme.colours.surfaces.modal};
         
-        /* Semantic Colors */
-        --color-success-bg: ${this.r6DarkTheme.colors.semantic.success.bg};
-        --color-success-border: ${this.r6DarkTheme.colors.semantic.success.border};
-        --color-success-text: ${this.r6DarkTheme.colors.semantic.success.text};
-        --color-warning-bg: ${this.r6DarkTheme.colors.semantic.warning.bg};
-        --color-warning-border: ${this.r6DarkTheme.colors.semantic.warning.border};
-        --color-warning-text: ${this.r6DarkTheme.colors.semantic.warning.text};
-        --color-error-bg: ${this.r6DarkTheme.colors.semantic.error.bg};
-        --color-error-border: ${this.r6DarkTheme.colors.semantic.error.border};
-        --color-error-text: ${this.r6DarkTheme.colors.semantic.error.text};
-        --color-info-bg: ${this.r6DarkTheme.colors.semantic.info.bg};
-        --color-info-border: ${this.r6DarkTheme.colors.semantic.info.border};
-        --color-info-text: ${this.r6DarkTheme.colors.semantic.info.text};
+        /* Semantic Colours */
+        --colour-success-bg: ${this.r6DarkTheme.colours.semantic.success.bg};
+        --colour-success-border: ${this.r6DarkTheme.colours.semantic.success.border};
+        --colour-success-text: ${this.r6DarkTheme.colours.semantic.success.text};
+        --colour-warning-bg: ${this.r6DarkTheme.colours.semantic.warning.bg};
+        --colour-warning-border: ${this.r6DarkTheme.colours.semantic.warning.border};
+        --colour-warning-text: ${this.r6DarkTheme.colours.semantic.warning.text};
+        --colour-error-bg: ${this.r6DarkTheme.colours.semantic.error.bg};
+        --colour-error-border: ${this.r6DarkTheme.colours.semantic.error.border};
+        --colour-error-text: ${this.r6DarkTheme.colours.semantic.error.text};
+        --colour-info-bg: ${this.r6DarkTheme.colours.semantic.info.bg};
+        --colour-info-border: ${this.r6DarkTheme.colours.semantic.info.border};
+        --colour-info-text: ${this.r6DarkTheme.colours.semantic.info.text};
         
         /* Dark Mode Shadows */
         --shadow-sm: ${this.r6DarkTheme.shadows.sm};
@@ -713,12 +713,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
       }
       
       /* Auto Theme Detection */
-      @media (prefers-color-scheme: dark) {
+      @media (prefers-colour-scheme: dark) {
         :root:not([data-theme="light"]) {
           /* Apply dark theme properties automatically */
-          --color-bg-primary: ${this.r6DarkTheme.colors.backgrounds.primary};
-          --color-text-primary: ${this.r6DarkTheme.colors.text.primary};
-          --color-text-secondary: ${this.r6DarkTheme.colors.text.secondary};
+          --colour-bg-primary: ${this.r6DarkTheme.colours.backgrounds.primary};
+          --colour-text-primary: ${this.r6DarkTheme.colours.text.primary};
+          --colour-text-secondary: ${this.r6DarkTheme.colours.text.secondary};
         }
       }
     `
@@ -744,39 +744,39 @@ export class DarkModeSpecialistAgent implements UIAgent {
       /* Dark Mode Button Variants */
       [data-theme="dark"] .r6-button-primary {
         background: ${this.r6DarkTheme.gradients.button};
-        color: ${this.r6DarkTheme.colors.text.primary};
-        border: 2px solid ${this.r6DarkTheme.colors.primary[500]};
+        colour: ${this.r6DarkTheme.colours.text.primary};
+        border: 2px solid ${this.r6DarkTheme.colours.primary[500]};
         box-shadow: ${this.r6DarkTheme.shadows.base};
       }
       
       [data-theme="dark"] .r6-button-primary:hover {
-        background: ${this.r6DarkTheme.colors.primary[600]};
+        background: ${this.r6DarkTheme.colours.primary[600]};
         box-shadow: ${this.r6DarkTheme.shadows.electricMd};
         transform: translateY(-2px);
       }
       
       [data-theme="dark"] .r6-button-secondary {
         background: transparent;
-        color: ${this.r6DarkTheme.colors.primary[500]};
-        border: 2px solid ${this.r6DarkTheme.colors.primary[500]};
+        colour: ${this.r6DarkTheme.colours.primary[500]};
+        border: 2px solid ${this.r6DarkTheme.colours.primary[500]};
       }
       
       [data-theme="dark"] .r6-button-secondary:hover {
-        background: ${this.r6DarkTheme.colors.primary[500]};
-        color: ${this.r6DarkTheme.colors.text.primary};
+        background: ${this.r6DarkTheme.colours.primary[500]};
+        colour: ${this.r6DarkTheme.colours.text.primary};
         box-shadow: ${this.r6DarkTheme.shadows.electricSm};
       }
       
       [data-theme="dark"] .r6-button-ghost {
         background: transparent;
-        color: ${this.r6DarkTheme.colors.text.secondary};
-        border: 1px solid ${this.r6DarkTheme.colors.surfaces.border};
+        colour: ${this.r6DarkTheme.colours.text.secondary};
+        border: 1px solid ${this.r6DarkTheme.colours.surfaces.border};
       }
       
       [data-theme="dark"] .r6-button-ghost:hover {
-        background: ${this.r6DarkTheme.colors.backgrounds.tertiary};
-        color: ${this.r6DarkTheme.colors.text.primary};
-        border-color: ${this.r6DarkTheme.colors.surfaces.borderHover};
+        background: ${this.r6DarkTheme.colours.backgrounds.tertiary};
+        colour: ${this.r6DarkTheme.colours.text.primary};
+        border-colour: ${this.r6DarkTheme.colours.surfaces.borderHover};
       }
     `
   }
@@ -785,22 +785,22 @@ export class DarkModeSpecialistAgent implements UIAgent {
     return `
       /* Dark Mode Card Variants */
       [data-theme="dark"] .r6-card {
-        background: ${this.r6DarkTheme.colors.surfaces.card};
-        border: 1px solid ${this.r6DarkTheme.colors.surfaces.border};
+        background: ${this.r6DarkTheme.colours.surfaces.card};
+        border: 1px solid ${this.r6DarkTheme.colours.surfaces.border};
         box-shadow: ${this.r6DarkTheme.shadows.base};
-        color: ${this.r6DarkTheme.colors.text.primary};
+        colour: ${this.r6DarkTheme.colours.text.primary};
       }
       
       [data-theme="dark"] .r6-card:hover {
-        background: ${this.r6DarkTheme.colors.surfaces.cardHover};
-        border-color: ${this.r6DarkTheme.colors.surfaces.borderHover};
+        background: ${this.r6DarkTheme.colours.surfaces.cardHover};
+        border-colour: ${this.r6DarkTheme.colours.surfaces.borderHover};
         box-shadow: ${this.r6DarkTheme.shadows.lg};
       }
       
       [data-theme="dark"] .r6-card-glass {
-        background: ${this.r6DarkTheme.colors.backgrounds.glass};
+        background: ${this.r6DarkTheme.colours.backgrounds.glass};
         backdrop-filter: blur(12px);
-        border: 1px solid ${this.r6DarkTheme.colors.surfaces.border};
+        border: 1px solid ${this.r6DarkTheme.colours.surfaces.border};
       }
       
       [data-theme="dark"] .r6-card-glass:hover {
@@ -810,7 +810,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       
       [data-theme="dark"] .r6-card-gradient {
         background: ${this.r6DarkTheme.gradients.card};
-        border: 1px solid ${this.r6DarkTheme.colors.primary[500]};
+        border: 1px solid ${this.r6DarkTheme.colours.primary[500]};
       }
       
       [data-theme="dark"] .r6-card-gradient:hover {
@@ -823,33 +823,33 @@ export class DarkModeSpecialistAgent implements UIAgent {
     return `
       /* Dark Mode Input Variants */
       [data-theme="dark"] .r6-input {
-        background: ${this.r6DarkTheme.colors.surfaces.input};
-        border: 2px solid ${this.r6DarkTheme.colors.surfaces.border};
-        color: ${this.r6DarkTheme.colors.text.primary};
+        background: ${this.r6DarkTheme.colours.surfaces.input};
+        border: 2px solid ${this.r6DarkTheme.colours.surfaces.border};
+        colour: ${this.r6DarkTheme.colours.text.primary};
       }
       
       [data-theme="dark"] .r6-input::placeholder {
-        color: ${this.r6DarkTheme.colors.text.muted};
+        colour: ${this.r6DarkTheme.colours.text.muted};
       }
       
       [data-theme="dark"] .r6-input:focus {
-        background: ${this.r6DarkTheme.colors.surfaces.inputFocus};
-        border-color: ${this.r6DarkTheme.colors.surfaces.borderFocus};
+        background: ${this.r6DarkTheme.colours.surfaces.inputFocus};
+        border-colour: ${this.r6DarkTheme.colours.surfaces.borderFocus};
         box-shadow: 0 0 0 3px rgba(19, 28, 255, 0.2);
       }
       
       [data-theme="dark"] .r6-input:hover:not(:focus) {
-        border-color: ${this.r6DarkTheme.colors.surfaces.borderHover};
+        border-colour: ${this.r6DarkTheme.colours.surfaces.borderHover};
       }
       
       [data-theme="dark"] .r6-input.error {
-        border-color: ${this.r6DarkTheme.colors.semantic.error.border};
-        background: ${this.r6DarkTheme.colors.semantic.error.bg};
+        border-colour: ${this.r6DarkTheme.colours.semantic.error.border};
+        background: ${this.r6DarkTheme.colours.semantic.error.bg};
       }
       
       [data-theme="dark"] .r6-input.success {
-        border-color: ${this.r6DarkTheme.colors.semantic.success.border};
-        background: ${this.r6DarkTheme.colors.semantic.success.bg};
+        border-colour: ${this.r6DarkTheme.colours.semantic.success.border};
+        background: ${this.r6DarkTheme.colours.semantic.success.bg};
       }
     `
   }
@@ -858,8 +858,8 @@ export class DarkModeSpecialistAgent implements UIAgent {
     return `
       /* Generic Dark Mode Variants */
       [data-theme="dark"] {
-        background-color: ${this.r6DarkTheme.colors.backgrounds.primary};
-        color: ${this.r6DarkTheme.colors.text.primary};
+        background-colour: ${this.r6DarkTheme.colours.backgrounds.primary};
+        colour: ${this.r6DarkTheme.colours.text.primary};
       }
       
       [data-theme="dark"] h1, 
@@ -868,19 +868,19 @@ export class DarkModeSpecialistAgent implements UIAgent {
       [data-theme="dark"] h4, 
       [data-theme="dark"] h5, 
       [data-theme="dark"] h6 {
-        color: ${this.r6DarkTheme.colors.text.primary};
+        colour: ${this.r6DarkTheme.colours.text.primary};
       }
       
       [data-theme="dark"] p {
-        color: ${this.r6DarkTheme.colors.text.secondary};
+        colour: ${this.r6DarkTheme.colours.text.secondary};
       }
       
       [data-theme="dark"] a {
-        color: ${this.r6DarkTheme.colors.primary[500]};
+        colour: ${this.r6DarkTheme.colours.primary[500]};
       }
       
       [data-theme="dark"] a:hover {
-        color: ${this.r6DarkTheme.colors.primary[600]};
+        colour: ${this.r6DarkTheme.colours.primary[600]};
         text-shadow: 0 0 8px rgba(19, 28, 255, 0.5);
       }
     `
@@ -890,12 +890,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
     return `
       /* Electric Blue Accent System for Dark Mode */
       [data-theme="dark"] .electric-accent {
-        color: ${this.r6DarkTheme.colors.primary[500]};
+        colour: ${this.r6DarkTheme.colours.primary[500]};
         text-shadow: 0 0 10px rgba(19, 28, 255, 0.5);
       }
       
       .electric-border {
-        border: 1px solid ${this.r6DarkTheme.colors.primary[500]};
+        border: 1px solid ${this.r6DarkTheme.colours.primary[500]};
         box-shadow: inset 0 0 10px rgba(19, 28, 255, 0.2);
       }
       
@@ -905,7 +905,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       
       .electric-glow-intense {
         box-shadow: 0 0 30px rgba(19, 28, 255, 0.6);
-        border: 1px solid ${this.r6DarkTheme.colors.primary[500]};
+        border: 1px solid ${this.r6DarkTheme.colours.primary[500]};
       }
       
       /* Animated Electric Effects */
@@ -965,7 +965,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         }
         
         getSystemTheme() {
-          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          return window.matchMedia('(prefers-colour-scheme: dark)').matches ? 'dark' : 'light';
         }
         
         getStoredTheme() {
@@ -1016,7 +1016,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         }
         
         setupSystemThemeListener() {
-          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          window.matchMedia('(prefers-colour-scheme: dark)').addEventListener('change', (e) => {
             if (!this.getStoredTheme()) {
               this.setTheme(e.matches ? 'dark' : 'light');
             }
@@ -1043,9 +1043,9 @@ export class DarkModeSpecialistAgent implements UIAgent {
       /* Theme Switching Transition Styles */
       .theme-transitioning,
       .theme-transitioning * {
-        transition: background-color 0.3s ease, 
-                    color 0.3s ease, 
-                    border-color 0.3s ease, 
+        transition: background-colour 0.3s ease, 
+                    colour 0.3s ease, 
+                    border-colour 0.3s ease, 
                     box-shadow 0.3s ease !important;
       }
       
@@ -1054,7 +1054,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         position: relative;
         width: 60px;
         height: 30px;
-        background: ${this.r6DarkTheme.colors.surfaces.border};
+        background: ${this.r6DarkTheme.colours.surfaces.border};
         border-radius: 15px;
         border: none;
         cursor: pointer;
@@ -1076,12 +1076,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
       }
       
       [data-theme="dark"] .theme-toggle {
-        background: ${this.r6DarkTheme.colors.primary[500]};
+        background: ${this.r6DarkTheme.colours.primary[500]};
       }
       
       [data-theme="dark"] .theme-toggle::before {
         transform: translateX(30px);
-        background: ${this.r6DarkTheme.colors.backgrounds.primary};
+        background: ${this.r6DarkTheme.colours.backgrounds.primary};
       }
       
       .theme-toggle:hover {
@@ -1094,7 +1094,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         top: 50%;
         transform: translateY(-50%);
         font-size: 14px;
-        color: ${this.r6DarkTheme.colors.text.muted};
+        colour: ${this.r6DarkTheme.colours.text.muted};
         transition: all 0.3s ease;
       }
       
@@ -1114,50 +1114,50 @@ export class DarkModeSpecialistAgent implements UIAgent {
       
       [data-theme="dark"] .theme-toggle-icon.moon {
         opacity: 1;
-        color: ${this.r6DarkTheme.colors.primary[500]};
+        colour: ${this.r6DarkTheme.colours.primary[500]};
       }
     `
   }
 
   private generateContrastOptimizedColors(): string {
     return `
-      /* WCAG Compliant Dark Mode Colors */
+      /* WCAG Compliant Dark Mode Colours */
       [data-theme="dark"] {
         /* Primary text on dark backgrounds - 15.3:1 ratio */
-        --color-text-primary: #ffffff;
+        --colour-text-primary: #ffffff;
         
         /* Secondary text on dark backgrounds - 9.5:1 ratio */
-        --color-text-secondary: #b3b3b3;
+        --colour-text-secondary: #b3b3b3;
         
         /* Muted text on dark backgrounds - 5.2:1 ratio (AA compliant) */
-        --color-text-muted: #808080;
+        --colour-text-muted: #808080;
         
         /* Electric blue with sufficient contrast - 4.8:1 ratio */
-        --color-primary-accessible: #4d56ff;
+        --colour-primary-accessible: #4d56ff;
         
         /* Success green with high contrast - 5.7:1 ratio */
-        --color-success-accessible: #4ade80;
+        --colour-success-accessible: #4ade80;
         
         /* Warning amber with high contrast - 6.2:1 ratio */
-        --color-warning-accessible: #fbbf24;
+        --colour-warning-accessible: #fbbf24;
         
         /* Error red with high contrast - 5.4:1 ratio */
-        --color-error-accessible: #f87171;
+        --colour-error-accessible: #f87171;
         
-        /* Background colors with proper contrast ratios */
-        --color-bg-contrast-primary: #0f0f0f;   /* Enhanced contrast */
-        --color-bg-contrast-secondary: #1f1f1f; /* Card backgrounds */
-        --color-bg-contrast-tertiary: #2f2f2f;  /* Elevated elements */
+        /* Background colours with proper contrast ratios */
+        --colour-bg-contrast-primary: #0f0f0f;   /* Enhanced contrast */
+        --colour-bg-contrast-secondary: #1f1f1f; /* Card backgrounds */
+        --colour-bg-contrast-tertiary: #2f2f2f;  /* Elevated elements */
       }
       
       /* High contrast mode overrides */
       @media (prefers-contrast: high) {
         [data-theme="dark"] {
-          --color-text-primary: #ffffff;
-          --color-text-secondary: #cccccc;
-          --color-bg-primary: #000000;
-          --color-bg-secondary: #1a1a1a;
-          --color-primary-500: #5566ff; /* Higher contrast blue */
+          --colour-text-primary: #ffffff;
+          --colour-text-secondary: #cccccc;
+          --colour-bg-primary: #000000;
+          --colour-bg-secondary: #1a1a1a;
+          --colour-primary-500: #5566ff; /* Higher contrast blue */
         }
       }
     `
@@ -1167,7 +1167,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
   private checkContrastRatio(element: UIElement): boolean {
     // Simplified contrast checking
     // In a real implementation, this would calculate actual contrast ratios
-    // using color parsing and luminance calculations
+    // using colour parsing and luminance calculations
     return true
   }
 

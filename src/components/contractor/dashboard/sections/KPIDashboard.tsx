@@ -49,7 +49,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
   return (
     <div className="space-y-6">
       {/* Period Selector */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <h2 className="text-xl font-bold">Performance & Quality Metrics</h2>
         <div className="flex gap-2">
           <Button
@@ -86,7 +86,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                 <span className={`text-4xl font-bold ${getScoreColor(metrics.overallScore)}`}>
                   {metrics.overallScore}%
                 </span>
-                <span className="flex items-center text-sm text-gray-500">
+                <span className="flex items-centre text-sm text-gray-500">
                   {getTrendIcon(metrics.scoreTrend)}
                   {Math.abs(metrics.scoreTrend)}%
                 </span>
@@ -102,7 +102,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Clock className="h-4 w-4" />
               Response Time
             </CardTitle>
@@ -118,7 +118,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <FileText className="h-4 w-4" />
               Report Quality
             </CardTitle>
@@ -134,7 +134,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Star className="h-4 w-4" />
               Customer Rating
             </CardTitle>
@@ -161,7 +161,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Target className="h-4 w-4" />
               Completion Rate
             </CardTitle>
@@ -179,8 +179,8 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
       {/* Active Jobs from Clean Claims */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2">
+          <CardTitle className="flex items-centre justify-between">
+            <span className="flex items-centre gap-2">
               <Activity className="h-5 w-5" />
               Active Jobs (Clean Claims Feed)
             </span>
@@ -190,7 +190,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
         <CardContent>
           <div className="space-y-3">
             {activeJobs.map(job => (
-              <div key={job.id} className="flex items-center justify-between p-3 border rounded-lg">
+              <div key={job.id} className="flex items-centre justify-between p-3 border rounded-lg">
                 <div>
                   <p className="font-medium">{job.claimNumber}</p>
                   <p className="text-sm text-gray-600">{job.address}</p>
@@ -220,7 +220,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
         <TabsContent value="incidents" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
+              <CardTitle className="flex items-centre justify-between">
                 <span>Incident History</span>
                 {incidents.length > 0 && (
                   <Badge variant="destructive">{incidents.length} Total</Badge>
@@ -229,7 +229,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
             </CardHeader>
             <CardContent>
               {incidents.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-centre py-8 text-gray-500">
                   <CheckCircle className="h-12 w-12 mx-auto mb-3 text-green-500" />
                   <p>No incidents recorded - Great work!</p>
                 </div>
@@ -239,7 +239,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                     <div key={incident.id} className="border rounded-lg p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-centre gap-2">
                             <AlertTriangle className="h-4 w-4 text-yellow-500" />
                             <p className="font-medium">{incident.type}</p>
                           </div>
@@ -283,8 +283,8 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
             <CardContent className="space-y-4">
               {/* Quality Bonuses */}
               <div className="p-4 bg-green-50 rounded-lg">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-centre justify-between mb-3">
+                  <div className="flex items-centre gap-2">
                     <DollarSign className="h-5 w-5 text-green-600" />
                     <p className="font-medium">Quality Bonuses Earned</p>
                   </div>
@@ -313,7 +313,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                 <p className="font-medium mb-3">Recent Achievements</p>
                 <div className="grid grid-cols-2 gap-3">
                   {metrics.achievements?.map((achievement: any, index: number) => (
-                    <div key={index} className="flex items-center gap-2 p-3 border rounded-lg">
+                    <div key={index} className="flex items-centre gap-2 p-3 border rounded-lg">
                       <Award className="h-5 w-5 text-yellow-500" />
                       <div>
                         <p className="text-sm font-medium">{achievement.title}</p>

@@ -77,14 +77,14 @@ const Grid = forwardRef(({
   // Alignment classes
   const alignClasses = {
     start: 'items-start',
-    center: 'items-center',
+    centre: 'items-centre',
     end: 'items-end',
     stretch: 'items-stretch',
   };
   
   const justifyClasses = {
     start: 'justify-items-start',
-    center: 'justify-items-center',
+    centre: 'justify-items-centre',
     end: 'justify-items-end',
     stretch: 'justify-items-stretch',
   };
@@ -226,9 +226,9 @@ Grid.propTypes = {
     xl: PropTypes.number,
   }),
   /** Items alignment */
-  align: PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
+  align: PropTypes.oneOf(['start', 'centre', 'end', 'stretch']),
   /** Items justification */
-  justify: PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
+  justify: PropTypes.oneOf(['start', 'centre', 'end', 'stretch']),
   /** Component to render as */
   as: PropTypes.elementType,
 };

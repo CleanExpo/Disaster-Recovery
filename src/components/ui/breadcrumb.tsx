@@ -70,14 +70,14 @@ export function Breadcrumb() {
       >
         <div className="container mx-auto px-4 py-3">
           <ol 
-            className="flex items-center space-x-2 text-sm"
+            className="flex items-centre space-x-2 text-sm"
             itemScope
             itemType="https://schema.org/BreadcrumbList"
           >
             {breadcrumbs.map((item, index) => (
               <li 
                 key={item.href}
-                className="flex items-center"
+                className="flex items-centre"
                 itemProp="itemListElement"
                 itemScope
                 itemType="https://schema.org/ListItem"
@@ -98,7 +98,7 @@ export function Breadcrumb() {
                   // Clickable breadcrumb
                   <Link 
                     href={item.href}
-                    className="text-blue-600 hover:text-blue-800 hover:underline flex items-center"
+                    className="text-blue-600 hover:text-blue-800 hover:underline flex items-centre"
                     itemProp="item"
                   >
                     {index === 0 && (

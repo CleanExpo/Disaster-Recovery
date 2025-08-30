@@ -11,7 +11,7 @@ export default function WeekendEmergencyPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-red-900 to-orange-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Clock className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Weekend Emergency Services</h1>
           <p className="text-xl mb-2">Available Saturday & Sunday</p>

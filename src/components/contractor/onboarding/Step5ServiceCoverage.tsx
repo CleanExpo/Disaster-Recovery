@@ -25,7 +25,7 @@ const PROPERTY_TYPE_CONFIG = [
   { 
     type: PropertyType.RESIDENTIAL, 
     icon: Home, 
-    color: 'green',
+    colour: 'green',
     label: 'Residential',
     description: 'Houses, apartments, units, townhouses',
     scales: [
@@ -42,7 +42,7 @@ const PROPERTY_TYPE_CONFIG = [
   { 
     type: PropertyType.COMMERCIAL, 
     icon: Building2, 
-    color: 'blue',
+    colour: 'blue',
     label: 'Commercial',
     description: 'Offices, shops, restaurants, hotels',
     scales: [
@@ -50,7 +50,7 @@ const PROPERTY_TYPE_CONFIG = [
       { value: PropertyScale.SMALL_OFFICE, label: 'Small Office' },
       { value: PropertyScale.RETAIL_STORE, label: 'Retail Store' },
       { value: PropertyScale.RESTAURANT, label: 'Restaurant/Cafe' },
-      { value: PropertyScale.SHOPPING_CENTER, label: 'Shopping Center' },
+      { value: PropertyScale.SHOPPING_CENTER, label: 'Shopping Centre' },
       { value: PropertyScale.OFFICE_BUILDING, label: 'Office Building' },
       { value: PropertyScale.HOTEL, label: 'Hotel/Motel' },
       { value: PropertyScale.MEGA_MALL, label: 'Mega Mall' }
@@ -59,7 +59,7 @@ const PROPERTY_TYPE_CONFIG = [
   { 
     type: PropertyType.INDUSTRIAL, 
     icon: Factory, 
-    color: 'orange',
+    colour: 'orange',
     label: 'Industrial',
     description: 'Factories, warehouses, processing plants',
     scales: [
@@ -67,7 +67,7 @@ const PROPERTY_TYPE_CONFIG = [
       { value: PropertyScale.WAREHOUSE, label: 'Warehouse' },
       { value: PropertyScale.FACTORY, label: 'Factory' },
       { value: PropertyScale.PROCESSING_PLANT, label: 'Processing Plant' },
-      { value: PropertyScale.DISTRIBUTION_CENTER, label: 'Distribution Center' },
+      { value: PropertyScale.DISTRIBUTION_CENTER, label: 'Distribution Centre' },
       { value: PropertyScale.HEAVY_INDUSTRIAL, label: 'Heavy Industrial' },
       { value: PropertyScale.OFFSHORE_PLATFORM, label: 'Offshore Platform/Oil Rig' }
     ]
@@ -75,12 +75,12 @@ const PROPERTY_TYPE_CONFIG = [
   { 
     type: PropertyType.INSTITUTIONAL, 
     icon: Hospital, 
-    color: 'purple',
+    colour: 'purple',
     label: 'Institutional',
     description: 'Hospitals, schools, government buildings',
     scales: [
       { value: PropertyScale.LOCAL_CLINIC, label: 'Local Clinic' },
-      { value: PropertyScale.MEDICAL_CENTER, label: 'Medical Center' },
+      { value: PropertyScale.MEDICAL_CENTER, label: 'Medical Centre' },
       { value: PropertyScale.SMALL_SCHOOL, label: 'School' },
       { value: PropertyScale.UNIVERSITY, label: 'University' },
       { value: PropertyScale.HOSPITAL, label: 'Hospital' },
@@ -91,7 +91,7 @@ const PROPERTY_TYPE_CONFIG = [
   { 
     type: PropertyType.INFRASTRUCTURE, 
     icon: Plane, 
-    color: 'red',
+    colour: 'red',
     label: 'Infrastructure',
     description: 'Airports, utilities, telecommunications',
     scales: [
@@ -107,24 +107,24 @@ const PROPERTY_TYPE_CONFIG = [
 ];
 
 const DISASTER_TYPE_CONFIG = [
-  { type: DisasterType.WATER_DAMAGE, icon: Droplets, color: 'blue', label: 'Water Damage' },
-  { type: DisasterType.FLOOD, icon: Droplets, color: 'blue', label: 'Flood' },
-  { type: DisasterType.BURST_PIPES, icon: Droplets, color: 'blue', label: 'Burst Pipes' },
-  { type: DisasterType.SEWAGE_OVERFLOW, icon: Droplets, color: 'brown', label: 'Sewage Overflow' },
-  { type: DisasterType.FIRE_DAMAGE, icon: Flame, color: 'orange', label: 'Fire Damage' },
-  { type: DisasterType.SMOKE_DAMAGE, icon: Flame, color: 'gray', label: 'Smoke Damage' },
-  { type: DisasterType.BUSHFIRE, icon: Flame, color: 'red', label: 'Bushfire' },
-  { type: DisasterType.MOULD, icon: Bug, color: 'green', label: 'Mould' },
-  { type: DisasterType.BACTERIA, icon: Bug, color: 'yellow', label: 'Bacteria' },
-  { type: DisasterType.VIRUS, icon: Bug, color: 'purple', label: 'Virus' },
-  { type: DisasterType.BIOHAZARD, icon: AlertTriangle, color: 'red', label: 'Biohazard' },
-  { type: DisasterType.TRAUMA_SCENE, icon: AlertTriangle, color: 'red', label: 'Trauma Scene' },
-  { type: DisasterType.STORM_DAMAGE, icon: Cloud, color: 'purple', label: 'Storm Damage' },
-  { type: DisasterType.CYCLONE, icon: Cloud, color: 'purple', label: 'Cyclone' },
-  { type: DisasterType.HAIL_DAMAGE, icon: Cloud, color: 'white', label: 'Hail Damage' },
-  { type: DisasterType.CHEMICAL_SPILL, icon: AlertTriangle, color: 'yellow', label: 'Chemical Spill' },
-  { type: DisasterType.VANDALISM, icon: Wrench, color: 'red', label: 'Vandalism' },
-  { type: DisasterType.STRUCTURAL_DAMAGE, icon: Wrench, color: 'gray', label: 'Structural Damage' }
+  { type: DisasterType.WATER_DAMAGE, icon: Droplets, colour: 'blue', label: 'Water Damage' },
+  { type: DisasterType.FLOOD, icon: Droplets, colour: 'blue', label: 'Flood' },
+  { type: DisasterType.BURST_PIPES, icon: Droplets, colour: 'blue', label: 'Burst Pipes' },
+  { type: DisasterType.SEWAGE_OVERFLOW, icon: Droplets, colour: 'brown', label: 'Sewage Overflow' },
+  { type: DisasterType.FIRE_DAMAGE, icon: Flame, colour: 'orange', label: 'Fire Damage' },
+  { type: DisasterType.SMOKE_DAMAGE, icon: Flame, colour: 'gray', label: 'Smoke Damage' },
+  { type: DisasterType.BUSHFIRE, icon: Flame, colour: 'red', label: 'Bushfire' },
+  { type: DisasterType.MOULD, icon: Bug, colour: 'green', label: 'Mould' },
+  { type: DisasterType.BACTERIA, icon: Bug, colour: 'yellow', label: 'Bacteria' },
+  { type: DisasterType.VIRUS, icon: Bug, colour: 'purple', label: 'Virus' },
+  { type: DisasterType.BIOHAZARD, icon: AlertTriangle, colour: 'red', label: 'Biohazard' },
+  { type: DisasterType.TRAUMA_SCENE, icon: AlertTriangle, colour: 'red', label: 'Trauma Scene' },
+  { type: DisasterType.STORM_DAMAGE, icon: Cloud, colour: 'purple', label: 'Storm Damage' },
+  { type: DisasterType.CYCLONE, icon: Cloud, colour: 'purple', label: 'Cyclone' },
+  { type: DisasterType.HAIL_DAMAGE, icon: Cloud, colour: 'white', label: 'Hail Damage' },
+  { type: DisasterType.CHEMICAL_SPILL, icon: AlertTriangle, colour: 'yellow', label: 'Chemical Spill' },
+  { type: DisasterType.VANDALISM, icon: Wrench, colour: 'red', label: 'Vandalism' },
+  { type: DisasterType.STRUCTURAL_DAMAGE, icon: Wrench, colour: 'gray', label: 'Structural Damage' }
 ];
 
 const SCALE_CAPABILITY_CONFIG = [
@@ -236,18 +236,18 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             return (
               <div key={property.type} className="bg-slate-900/50 border border-slate-700 rounded-lg overflow-hidden">
                 <div className="p-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-centre justify-between">
                     <button
                       onClick={() => handlePropertyTypeToggle(property.type)}
-                      className="flex items-center gap-3 flex-1"
+                      className="flex items-centre gap-3 flex-1"
                     >
                       <div className={`
-                        w-10 h-10 rounded-lg flex items-center justify-center transition
+                        w-10 h-10 rounded-lg flex items-centre justify-centre transition
                         ${isSelected 
-                          ? `bg-${property.color}-600/20 border-2 border-${property.color}-500` 
+                          ? `bg-${property.colour}-600/20 border-2 border-${property.colour}-500` 
                           : 'bg-slate-800 border-2 border-slate-700'}
                       `}>
-                        <Icon className={`h-5 w-5 ${isSelected ? `text-${property.color}-400` : 'text-slate-400'}`} />
+                        <Icon className={`h-5 w-5 ${isSelected ? `text-${property.colour}-400` : 'text-slate-400'}`} />
                       </div>
                       <div className="text-left">
                         <div className="font-medium text-white">{property.label}</div>
@@ -271,7 +271,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                         {property.scales.map(scale => (
                           <label
                             key={scale.value}
-                            className="flex items-center gap-2 p-2 hover:bg-slate-800/50 rounded cursor-pointer"
+                            className="flex items-centre gap-2 p-2 hover:bg-slate-800/50 rounded cursor-pointer"
                           >
                             <input
                               type="checkbox"
@@ -309,7 +309,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                 key={disaster.type}
                 onClick={() => handleDisasterTypeToggle(disaster.type)}
                 className={`
-                  flex items-center gap-3 p-3 rounded-lg border-2 transition
+                  flex items-centre gap-3 p-3 rounded-lg border-2 transition
                   ${isSelected 
                     ? 'bg-slate-800/50 border-blue-500 text-white' 
                     : 'bg-slate-900/50 border-slate-700 text-slate-400 hover:border-slate-600'}
@@ -339,7 +339,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                 key={scale.value}
                 onClick={() => handleScaleCapabilityToggle(scale.value)}
                 className={`
-                  flex items-center justify-between p-3 rounded-lg border-2 transition
+                  flex items-centre justify-between p-3 rounded-lg border-2 transition
                   ${isSelected 
                     ? 'bg-slate-800/50 border-green-500' 
                     : 'bg-slate-900/50 border-slate-700 hover:border-slate-600'}
@@ -363,7 +363,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
         <h3 className="text-lg font-semibold text-white mb-4">Service Availability</h3>
         
         <div className="grid md:grid-cols-2 gap-4">
-          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.emergencyResponse}
@@ -376,7 +376,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
           </label>
           
-          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.afterHours}
@@ -389,7 +389,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
           </label>
           
-          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.weekendService}
@@ -402,7 +402,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
           </label>
           
-          <label className="flex items-center gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
+          <label className="flex items-centre gap-3 p-4 bg-slate-900/50 border border-slate-700 rounded-lg cursor-pointer hover:border-slate-600">
             <input
               type="checkbox"
               checked={serviceCoverage.publicHolidays}

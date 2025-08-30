@@ -83,7 +83,7 @@ const createMissingComponents = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Customer Testimonials</h2>
+        <h2 className="text-3xl font-bold text-centre mb-12">Customer Testimonials</h2>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-white p-6 rounded-lg shadow">
             <p className="text-gray-600 mb-4">"Excellent service during our flood emergency."</p>
@@ -118,13 +118,13 @@ const createMissingComponents = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Service Locations</h2>
+        <h2 className="text-3xl font-bold text-centre mb-12">Service Locations</h2>
         <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
           {locations.map(location => (
             <a
               key={location}
               href={\`/locations/\${location.toLowerCase().replace(' ', '-')}\`}
-              className="text-center p-4 border rounded hover:bg-gray-50"
+              className="text-centre p-4 border rounded hover:bg-gray-50"
             >
               {location}
             </a>

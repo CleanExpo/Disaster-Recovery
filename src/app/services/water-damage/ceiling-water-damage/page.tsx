@@ -203,8 +203,8 @@ export default function CeilingWaterDamagePage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-slate-900 to-slate-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-orange-600/90 px-4 py-2 rounded-full mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="inline-flex items-centre gap-2 bg-orange-600/90 px-4 py-2 rounded-full mb-6">
               <ChevronDown className="h-5 w-5 animate-bounce" />
               <span className="text-sm font-bold">CEILING WATER DAMAGE EXPERTS</span>
             </div>
@@ -215,7 +215,7 @@ export default function CeilingWaterDamagePage() {
               Emergency ceiling leak repairs and restoration. Prevent collapse, stop leaks, 
               and restore your ceiling to perfect condition. Available 24/7 across Queensland.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-orange-600 hover:bg-orange-700 text-white"
@@ -229,16 +229,16 @@ export default function CeilingWaterDamagePage() {
                 Report Ceiling Damage
               </Button>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
+            <div className="mt-8 flex items-centre justify-centre gap-6 text-sm">
+              <div className="flex items-centre gap-2">
                 <Clock className="h-5 w-5 text-orange-400" />
                 <span>Fast Response</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Shield className="h-5 w-5 text-orange-400" />
                 <span>Insurance Approved</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Home className="h-5 w-5 text-orange-400" />
                 <span>Structural Experts</span>
               </div>
@@ -250,9 +250,9 @@ export default function CeilingWaterDamagePage() {
       {/* Warning Banner */}
       <section className="bg-red-600 text-white py-4">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-centre justify-centre gap-3">
             <AlertTriangle className="h-6 w-6 animate-pulse" />
-            <p className="font-semibold text-center">
+            <p className="font-semibold text-centre">
               WARNING: Sagging or bulging ceilings can collapse suddenly. Evacuate the area and call immediately.
             </p>
             <AlertTriangle className="h-6 w-6 animate-pulse" />
@@ -263,7 +263,7 @@ export default function CeilingWaterDamagePage() {
       {/* Damage Types Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-centre mb-10">
             <h2 className="text-3xl font-bold mb-4">Types of Ceiling Water Damage</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Identify your ceiling damage type for appropriate action
@@ -307,11 +307,11 @@ export default function CeilingWaterDamagePage() {
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Common Causes of Ceiling Water Damage</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Common Causes of Ceiling Water Damage</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {commonCauses.map((item, index) => (
                 <Card key={index} className="p-6">
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-centre justify-between mb-3">
                     <h3 className="text-xl font-bold">{item.cause}</h3>
                     <span className="text-2xl font-bold text-blue-600">{item.percentage}</span>
                   </div>
@@ -331,7 +331,7 @@ export default function CeilingWaterDamagePage() {
       {/* Restoration Process */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-centre mb-10">
             <h2 className="text-3xl font-bold mb-4">Our Ceiling Restoration Process</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Professional 6-step process to completely restore water-damaged ceilings
@@ -341,8 +341,8 @@ export default function CeilingWaterDamagePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {restorationProcess.map((item, index) => (
                 <Card key={index} className="p-6 hover:shadow-xl transition-shadow">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                  <div className="flex items-centre gap-3 mb-3">
+                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-bold">
                       {item.step}
                     </div>
                     <h3 className="text-lg font-bold">{item.title}</h3>
@@ -368,7 +368,7 @@ export default function CeilingWaterDamagePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <Card className="p-8 border-2 border-orange-300 bg-white">
-              <div className="text-center mb-6">
+              <div className="text-centre mb-6">
                 <AlertCircle className="h-12 w-12 text-orange-600 mx-auto mb-3" />
                 <h2 className="text-2xl font-bold">Ceiling Safety Guidelines</h2>
               </div>
@@ -416,7 +416,7 @@ export default function CeilingWaterDamagePage() {
                   </ul>
                 </div>
               </div>
-              <div className="mt-6 text-center">
+              <div className="mt-6 text-centre">
                 <Button 
                   size="lg"
                   className="bg-orange-600 hover:bg-orange-700"
@@ -435,14 +435,14 @@ export default function CeilingWaterDamagePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Early Warning Signs to Watch</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Early Warning Signs to Watch</h2>
             <Card className="p-8 bg-blue-50">
-              <p className="text-center mb-6 text-gray-700">
+              <p className="text-centre mb-6 text-gray-700">
                 Early detection prevents major damage and ceiling collapse
               </p>
               <div className="grid md:grid-cols-2 gap-4">
                 {warningSignsToWatch.map((sign, index) => (
-                  <div key={index} className="flex items-center gap-2">
+                  <div key={index} className="flex items-centre gap-2">
                     <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0" />
                     <span className="text-gray-700">{sign}</span>
                   </div>
@@ -457,7 +457,7 @@ export default function CeilingWaterDamagePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Ceiling Repair Costs & Insurance</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Ceiling Repair Costs & Insurance</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4">Typical Repair Costs</h3>
@@ -521,7 +521,7 @@ export default function CeilingWaterDamagePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Ceiling Water Damage FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Ceiling Water Damage FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -536,13 +536,13 @@ export default function CeilingWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-slate-900 to-slate-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <ChevronDown className="h-12 w-12 mx-auto mb-4 animate-bounce" />
           <h2 className="text-3xl font-bold mb-6">Don\'t Risk Ceiling Collapse</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Water-damaged ceilings are dangerous. Get professional help immediately to prevent injury and costly damage.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button 
               size="lg" 
               className="bg-orange-600 hover:bg-orange-700"
@@ -563,7 +563,7 @@ export default function CeilingWaterDamagePage() {
       <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-centre gap-2">
               <AlertTriangle className="h-5 w-5 text-orange-600" />
               Ceiling Water Damage Emergency
             </DialogTitle>
@@ -572,7 +572,7 @@ export default function CeilingWaterDamagePage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border-2 border-orange-200">
+            <div className="flex items-centre gap-3 p-3 bg-orange-50 rounded-lg border-2 border-orange-200">
               <Phone className="h-6 w-6 text-orange-600" />
               <div>
                 <p className="font-semibold">24/7 Emergency Line</p>
@@ -580,19 +580,19 @@ export default function CeilingWaterDamagePage() {
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Immediate safety assessment</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Ceiling stabilization services</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Insurance documentation</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Complete restoration service</span>
               </div>

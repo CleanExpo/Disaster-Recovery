@@ -133,7 +133,7 @@ const actionSteps = [
       'Obtain detailed written quotes and scope of work',
       'Ensure all contractors provide insurance certificates',
       'Maintain detailed photo documentation of all work',
-      'Keep all invoices and receipts organized for claim submission'
+      'Keep all invoices and receipts organised for claim submission'
     ],
     legalBasis: 'Evidence protection under Section 54'
   },
@@ -156,13 +156,13 @@ export default function Section54ContractorRightsPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-gray-900 text-white">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre opacity-20" />
         </div>
 
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/guides" className="hover:text-white transition">Guides</Link>
@@ -189,19 +189,19 @@ export default function Section54ContractorRightsPage() {
             <div className="bg-blue-900/30 border border-blue-500/30 rounded-lg p-6 mb-8">
               <h3 className="text-lg font-semibold mb-4">Your Protected Rights:</h3>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="h-4 w-4 text-green-400" />
                   <span>Choose qualified contractors for emergency work</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="h-4 w-4 text-green-400" />
                   <span>Act immediately to prevent further damage</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="h-4 w-4 text-green-400" />
                   <span>Receive full payment unless proven prejudice</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="h-4 w-4 text-green-400" />
                   <span>Reject insurer preferred contractor requirements</span>
                 </div>
@@ -229,7 +229,7 @@ export default function Section54ContractorRightsPage() {
       {/* Section 54 Explained */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Section 54: The Law Explained
             </h2>
@@ -242,12 +242,12 @@ export default function Section54ContractorRightsPage() {
             {section54Provisions.map((provision, idx) => (
               <Card key={idx} className="p-8">
                 <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-lg bg-blue-100 flex items-centre justify-centre">
                     <BookOpen className="h-8 w-8 text-blue-600" />
                   </div>
                   
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-centre gap-3 mb-3">
                       <h3 className="text-xl font-semibold text-gray-900">{provision.title}</h3>
                       <Badge className="bg-blue-100 text-blue-800 text-xs">
                         {provision.law}
@@ -279,12 +279,12 @@ export default function Section54ContractorRightsPage() {
       {/* Common Insurance Tactics */}
       <section className="py-20 bg-red-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Common Insurance Company Tactics (And How to Respond)
             </h2>
             <p className="text-xl text-gray-600">
-              Recognize these common attempts to restrict your contractor choice - and know your legal response
+              Recognise these common attempts to restrict your contractor choice - and know your legal response
             </p>
           </div>
 
@@ -322,7 +322,7 @@ export default function Section54ContractorRightsPage() {
       {/* Contractor Qualifications */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               What Makes a "Qualified" Contractor?
             </h2>
@@ -335,7 +335,7 @@ export default function Section54ContractorRightsPage() {
             {contractorQualifications.map((qual, idx) => (
               <Card key={idx} className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg bg-green-100 flex items-centre justify-centre flex-shrink-0">
                     <Shield className="h-6 w-6 text-green-600" />
                   </div>
                   <div className="flex-1">
@@ -368,7 +368,7 @@ export default function Section54ContractorRightsPage() {
       {/* Action Guide */}
       <section id="action-guide" className="py-20 bg-blue-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Step-by-Step Action Guide
             </h2>
@@ -382,7 +382,7 @@ export default function Section54ContractorRightsPage() {
               <Card key={idx} className="p-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xl">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 flex items-centre justify-centre text-white font-bold text-xl">
                       {step.step}
                     </div>
                   </div>
@@ -423,7 +423,7 @@ export default function Section54ContractorRightsPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 border-2 border-blue-200 bg-blue-50">
-              <div className="text-center mb-6">
+              <div className="text-centre mb-6">
                 <FileText className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                 <h2 className="text-2xl font-bold text-blue-900 mb-2">
                   Legal Communication Template
@@ -459,7 +459,7 @@ export default function Section54ContractorRightsPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <Button className="bg-blue-600 hover:bg-blue-700">
                   <Download className="mr-2 h-4 w-4" />
                   Download Template Document
@@ -472,7 +472,7 @@ export default function Section54ContractorRightsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <Building className="h-12 w-12 mx-auto mb-4" />
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Protect Your Rights With Professional Contractors
@@ -481,7 +481,7 @@ export default function Section54ContractorRightsPage() {
             Don't let insurance delays cost you thousands. Exercise your Section 54 rights with qualified restoration professionals who understand the law.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 <Phone className="mr-2 h-5 w-5" />

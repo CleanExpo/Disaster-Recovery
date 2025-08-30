@@ -1,7 +1,7 @@
 /**
  * Visual Analyzer Agent
  * 
- * Specializes in analyzing current design implementation and identifying gaps
+ * Specializes in analysing current design implementation and identifying gaps
  * against the R6 Digital design system standards. Provides comprehensive
  * visual quality assessments and improvement recommendations.
  */
@@ -28,18 +28,18 @@ export class VisualAnalyzerAgent implements UIAgent {
   description = 'Analyzes design implementation and identifies visual gaps against R6 Digital standards'
   capabilities = [
     'Design consistency analysis',
-    'Color palette compliance',
+    'Colour palette compliance',
     'Typography assessment',
     'Spacing and layout evaluation',
     'Visual hierarchy analysis',
     'Brand alignment checking',
-    'Component variant optimization'
+    'Component variant optimisation'
   ]
   priority = 1 // High priority for visual foundation
   isActive = true
 
   private r6Standards = {
-    colors: {
+    colours: {
       primary: '#131cff',
       primaryHover: '#0f17cc',
       primaryLight: '#3d4bff',
@@ -84,8 +84,8 @@ export class VisualAnalyzerAgent implements UIAgent {
     const recommendations: Recommendation[] = []
 
     try {
-      // Analyze component against R6 standards
-      const analysis = await this.analyze({
+      // Analyse component against R6 standards
+      const analysis = await this.analyse({
         type: context.component.type,
         props: context.component.props,
         styles: context.component.styles.base,
@@ -129,30 +129,30 @@ export class VisualAnalyzerAgent implements UIAgent {
     }
   }
 
-  async analyze(element: UIElement): Promise<AnalysisResult> {
+  async analyse(element: UIElement): Promise<AnalysisResult> {
     const issues: UIIssue[] = []
     const strengths: string[] = []
     const recommendations: Recommendation[] = []
     
-    // Analyze color usage
+    // Analyse colour usage
     const colorAnalysis = this.analyzeColors(element)
     issues.push(...colorAnalysis.issues)
     strengths.push(...colorAnalysis.strengths)
     recommendations.push(...colorAnalysis.recommendations)
 
-    // Analyze typography
+    // Analyse typography
     const typographyAnalysis = this.analyzeTypography(element)
     issues.push(...typographyAnalysis.issues)
     strengths.push(...typographyAnalysis.strengths)
     recommendations.push(...typographyAnalysis.recommendations)
 
-    // Analyze spacing and layout
+    // Analyse spacing and layout
     const spacingAnalysis = this.analyzeSpacing(element)
     issues.push(...spacingAnalysis.issues)
     strengths.push(...spacingAnalysis.strengths)
     recommendations.push(...spacingAnalysis.recommendations)
 
-    // Analyze visual hierarchy
+    // Analyse visual hierarchy
     const hierarchyAnalysis = this.analyzeVisualHierarchy(element)
     issues.push(...hierarchyAnalysis.issues)
     strengths.push(...hierarchyAnalysis.strengths)
@@ -185,8 +185,8 @@ export class VisualAnalyzerAgent implements UIAgent {
     const strengths: string[] = []
     const recommendations: Recommendation[] = []
 
-    // Check for R6 primary color usage
-    const hasR6Primary = this.checkColorUsage(element, this.r6Standards.colors.primary)
+    // Check for R6 primary colour usage
+    const hasR6Primary = this.checkColorUsage(element, this.r6Standards.colours.primary)
     if (hasR6Primary) {
       strengths.push('Uses R6 Digital primary blue (#131cff)')
     } else {
@@ -194,7 +194,7 @@ export class VisualAnalyzerAgent implements UIAgent {
         id: 'missing-r6-primary',
         severity: 'medium',
         type: 'visual',
-        description: 'Component does not use R6 Digital primary blue color',
+        description: 'Component does not use R6 Digital primary blue colour',
         location: element.type,
         fix: 'Apply R6 primary blue (#131cff) for key interactive elements',
         automated: true
@@ -204,18 +204,18 @@ export class VisualAnalyzerAgent implements UIAgent {
         id: 'apply-r6-primary',
         agent: this.id,
         priority: 'high',
-        category: 'color',
-        title: 'Apply R6 Primary Color',
+        category: 'colour',
+        title: 'Apply R6 Primary Colour',
         description: 'Use R6 Digital\'s signature electric blue (#131cff) for primary actions and accents',
         implementation: {
           complexity: 'simple',
           estimatedTime: '5 minutes',
-          requirements: ['Update color values', 'Test contrast ratios'],
+          requirements: ['Update colour values', 'Test contrast ratios'],
           styles: `
-            --color-primary: #131cff;
-            --color-primary-hover: #0f17cc;
-            background-color: var(--color-primary);
-            color: white;
+            --colour-primary: #131cff;
+            --colour-primary-hover: #0f17cc;
+            background-colour: var(--colour-primary);
+            colour: white;
           `
         },
         impact: {
@@ -227,18 +227,18 @@ export class VisualAnalyzerAgent implements UIAgent {
       })
     }
 
-    // Check for proper neutral color usage
+    // Check for proper neutral colour usage
     const neutralUsage = this.analyzeNeutralColors(element)
     if (neutralUsage.isProper) {
-      strengths.push('Proper use of R6 neutral color palette')
+      strengths.push('Proper use of R6 neutral colour palette')
     } else {
       issues.push({
-        id: 'improper-neutral-colors',
+        id: 'improper-neutral-colours',
         severity: 'low',
         type: 'visual',
-        description: 'Uses colors outside the R6 neutral palette',
+        description: 'Uses colours outside the R6 neutral palette',
         location: element.type,
-        fix: 'Replace with R6 neutral colors for consistency',
+        fix: 'Replace with R6 neutral colours for consistency',
         automated: true
       })
     }
@@ -393,7 +393,7 @@ export class VisualAnalyzerAgent implements UIAgent {
       const fontSize = this.extractStyleProperty(element, 'fontSize')
       const fontWeight = this.extractStyleProperty(element, 'fontWeight')
       
-      // Analyze if the sizing follows R6's type scale
+      // Analyse if the sizing follows R6's type scale
       const followsTypeScale = this.checkTypeScale(fontSize)
       if (followsTypeScale) {
         strengths.push('Follows R6 typography scale for visual hierarchy')
@@ -421,7 +421,7 @@ export class VisualAnalyzerAgent implements UIAgent {
         type: 'visual',
         description: 'Poor visual contrast affecting hierarchy',
         location: element.type,
-        fix: 'Improve color contrast and visual weight differentiation',
+        fix: 'Improve colour contrast and visual weight differentiation',
         automated: false
       })
 
@@ -435,15 +435,15 @@ export class VisualAnalyzerAgent implements UIAgent {
         implementation: {
           complexity: 'moderate',
           estimatedTime: '30 minutes',
-          requirements: ['Adjust color contrast', 'Review type scales', 'Test accessibility'],
+          requirements: ['Adjust colour contrast', 'Review type scales', 'Test accessibility'],
           styles: `
             /* Primary headings */
             h1 { font-size: var(--text-5xl); font-weight: var(--font-bold); }
             h2 { font-size: var(--text-4xl); font-weight: var(--font-semibold); }
             
             /* Body text hierarchy */
-            .text-primary { color: var(--color-text-primary); }
-            .text-secondary { color: var(--color-text-secondary); }
+            .text-primary { colour: var(--colour-text-primary); }
+            .text-secondary { colour: var(--colour-text-secondary); }
           `
         },
         impact: {
@@ -511,8 +511,8 @@ export class VisualAnalyzerAgent implements UIAgent {
         category: 'r6-enhancement',
         implementation: {
           styles: `
-            background-color: #131cff;
-            color: white;
+            background-colour: #131cff;
+            colour: white;
             border-radius: 50px; /* R6's pill shape */
             padding: 12px 24px;
             font-weight: 600;
@@ -521,7 +521,7 @@ export class VisualAnalyzerAgent implements UIAgent {
             overflow: hidden;
             
             &:hover {
-              background-color: #0f17cc;
+              background-colour: #0f17cc;
               transform: translateY(-2px);
               box-shadow: 0 8px 30px rgba(19, 28, 255, 0.3);
             }
@@ -573,7 +573,7 @@ export class VisualAnalyzerAgent implements UIAgent {
             &:hover {
               transform: translateY(-4px);
               box-shadow: 0 8px 30px rgba(19, 28, 255, 0.12);
-              border-color: rgba(19, 28, 255, 0.2);
+              border-colour: rgba(19, 28, 255, 0.2);
             }
             
             &:after {
@@ -605,17 +605,17 @@ export class VisualAnalyzerAgent implements UIAgent {
   }
 
   // Helper methods
-  private checkColorUsage(element: UIElement, color: string): boolean {
+  private checkColorUsage(element: UIElement, colour: string): boolean {
     const styles = element.styles
     if (typeof styles === 'object' && styles !== null) {
       const styleValues = Object.values(styles).join(' ')
-      return styleValues.includes(color)
+      return styleValues.includes(colour)
     }
     return false
   }
 
   private analyzeNeutralColors(element: UIElement): { isProper: boolean; issues: string[] } {
-    // Simplified neutral color analysis
+    // Simplified neutral colour analysis
     return { isProper: true, issues: [] }
   }
 
@@ -644,7 +644,7 @@ export class VisualAnalyzerAgent implements UIAgent {
 
   private checkVisualContrast(element: UIElement): boolean {
     // Simplified contrast checking
-    // In a real implementation, this would use color contrast algorithms
+    // In a real implementation, this would use colour contrast algorithms
     return true
   }
 
@@ -678,13 +678,13 @@ export class VisualAnalyzerAgent implements UIAgent {
     switch (issue.id) {
       case 'missing-r6-primary':
         return `
-          background-color: #131cff;
-          color: white;
-          border-color: #131cff;
+          background-colour: #131cff;
+          colour: white;
+          border-colour: #131cff;
           
           &:hover {
-            background-color: #0f17cc;
-            border-color: #0f17cc;
+            background-colour: #0f17cc;
+            border-colour: #0f17cc;
           }
         `
       case 'non-r6-font':

@@ -36,7 +36,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
       <section className="bg-gradient-to-b from-green-900 to-green-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center mb-6">
+            <div className="flex items-centre mb-6">
               <MapPin className="h-6 w-6 mr-2" />
               <span className="text-lg">Sunshine Coast, QLD</span>
             </div>
@@ -47,17 +47,17 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
               Complete water extraction, drying, and restoration. Transparent pricing with no hidden fees.
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-8">
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <DollarSign className="h-8 w-8 mx-auto mb-2" />
                 <p className="text-2xl font-bold">$2,420</p>
                 <p className="text-sm">Minimum Callout</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <TrendingUp className="h-8 w-8 mx-auto mb-2" />
                 <p className="text-2xl font-bold">$6,050</p>
                 <p className="text-sm">Average Job Cost</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4 text-center">
+              <Card className="bg-white/10 backdrop-blur p-4 text-centre">
                 <Shield className="h-8 w-8 mx-auto mb-2" />
                 <p className="text-2xl font-bold">100%</p>
                 <p className="text-sm">Insurance Covered</p>
@@ -74,7 +74,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
       {/* Price Ranges */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Water Damage Restoration Price Ranges in Sunshine Coast
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -86,7 +86,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
               </Card>
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-centre">
             <p className="text-gray-600">
               * Prices are estimates for Sunshine Coast metro area. Final cost determined after assessment.
             </p>
@@ -97,14 +97,14 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
       {/* Pricing Factors */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             What Affects Water Damage Restoration Cost in Sunshine Coast?
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
               {pricingFactors.map((factor, index) => (
                 <Card key={index} className="p-6">
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-centre justify-between mb-2">
                     <h3 className="text-xl font-bold">{factor.factor}</h3>
                     <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full font-bold">
                       {factor.impact} impact
@@ -121,39 +121,39 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
       {/* Cost Breakdown */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Typical Water Damage Restoration Cost Breakdown
           </h2>
           <div className="max-w-4xl mx-auto">
             <Card className="p-8">
               <div className="space-y-4">
-                <div className="flex justify-between items-center pb-3 border-b">
+                <div className="flex justify-between items-centre pb-3 border-b">
                   <span className="font-bold">Emergency Response & Assessment</span>
                   <span className="text-xl font-bold">$2,420</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b">
+                <div className="flex justify-between items-centre pb-3 border-b">
                   <span>Water Extraction & Equipment</span>
                   <span>$1,513</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b">
+                <div className="flex justify-between items-centre pb-3 border-b">
                   <span>Drying & Dehumidification (3-5 days)</span>
                   <span>$1,210</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b">
+                <div className="flex justify-between items-centre pb-3 border-b">
                   <span>Antimicrobial Treatment</span>
                   <span>$908</span>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b">
+                <div className="flex justify-between items-centre pb-3 border-b">
                   <span>Restoration & Repairs</span>
                   <span>$1,815</span>
                 </div>
-                <div className="flex justify-between items-center pt-3 text-xl font-bold">
+                <div className="flex justify-between items-centre pt-3 text-xl font-bold">
                   <span>Typical Total</span>
                   <span className="text-green-600">$6,050</span>
                 </div>
               </div>
               <div className="mt-6 bg-blue-50 rounded-lg p-4">
-                <p className="text-center">
+                <p className="text-centre">
                   <strong>Insurance typically covers 100%</strong> of these costs
                 </p>
               </div>
@@ -165,7 +165,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
       {/* Sunshine Coast Specific Info */}
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Water Damage Restoration in Sunshine Coast Area
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -192,7 +192,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
                 </div>
               </div>
               <div className="mt-6 bg-green-100 rounded-lg p-4">
-                <p className="text-center font-bold text-green-800">
+                <p className="text-centre font-bold text-green-800">
                   Sunshine Coast teams available 24/7/365 - Same pricing day or night
                 </p>
               </div>
@@ -204,7 +204,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
       {/* Insurance & Payment */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Insurance & Payment Options in Sunshine Coast
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -258,7 +258,7 @@ export default function SunshineCoastWaterDamageRestorationPricingPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <DollarSign className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             Get Your Free Water Damage Restoration Quote for Sunshine Coast

@@ -36,13 +36,13 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
       {/* Performance Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardHeader className="flex flex-row items-centre justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Jobs</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{data.totalJobs}</div>
-            <div className="flex items-center gap-2 mt-2">
+            <div className="flex items-centre gap-2 mt-2">
               <Badge variant="secondary">{data.activeJobs} Active</Badge>
               <Badge variant="outline">{data.completedJobs} Completed</Badge>
             </div>
@@ -50,7 +50,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardHeader className="flex flex-row items-centre justify-between pb-2">
             <CardTitle className="text-sm font-medium">Quality Score</CardTitle>
             <Star className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -68,7 +68,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardHeader className="flex flex-row items-centre justify-between pb-2">
             <CardTitle className="text-sm font-medium">Response Time</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -83,7 +83,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
         </Card>
 
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
+          <CardHeader className="flex flex-row items-centre justify-between pb-2">
             <CardTitle className="text-sm font-medium">Completion Rate</CardTitle>
             <CheckCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
@@ -109,7 +109,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
           <div className="space-y-6">
             {/* Customer Satisfaction */}
             <div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-centre mb-2">
                 <span className="text-sm font-medium">Customer Satisfaction</span>
                 <span className="text-2xl font-bold">
                   {data.customerSatisfaction ? `${data.customerSatisfaction.toFixed(1)}%` : 'N/A'}
@@ -122,7 +122,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
 
             {/* On-Time Completion */}
             <div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-centre mb-2">
                 <span className="text-sm font-medium">On-Time Completion</span>
                 <span className="text-2xl font-bold">
                   {data.onTimeCompletion ? `${data.onTimeCompletion.toFixed(1)}%` : 'N/A'}
@@ -135,7 +135,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
 
             {/* Average Completion Time */}
             <div>
-              <div className="flex justify-between items-center mb-2">
+              <div className="flex justify-between items-centre mb-2">
                 <span className="text-sm font-medium">Average Completion Time</span>
                 <span className="text-2xl font-bold">
                   {data.averageCompletionTime ? `${data.averageCompletionTime.toFixed(1)} days` : 'N/A'}
@@ -155,7 +155,7 @@ export function KPIMetrics({ data }: KPIMetricsProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-64 flex items-center justify-center text-muted-foreground">
+          <div className="h-64 flex items-centre justify-centre text-muted-foreground">
             {/* Placeholder for chart - integrate with a charting library like recharts */}
             <p>Performance chart will be displayed here</p>
           </div>

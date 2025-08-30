@@ -220,7 +220,7 @@ export interface AdvertisingCampaign {
   territories: string[];
   contractors: ContractorAllocation[];
   schedule: CampaignSchedule;
-  optimization: OptimizationSettings;
+  optimisation: OptimizationSettings;
 }
 
 export type AdPlatform = 
@@ -267,7 +267,7 @@ export interface CampaignTargeting {
   geographic: GeographicTargeting;
   demographic: DemographicTargeting;
   interests: string[];
-  behaviors: string[];
+  behaviours: string[];
   keywords: KeywordTargeting[];
   audiences: AudienceTargeting[];
   placements: string[];
@@ -797,10 +797,10 @@ export const ATTRIBUTION_MODELS = {
 };
 
 export const CONTRACTOR_TIERS = {
-  bronze: { name: 'Bronze', color: 'orange', priority: 1 },
-  silver: { name: 'Silver', color: 'gray', priority: 2 },
-  gold: { name: 'Gold', color: 'yellow', priority: 3 },
-  platinum: { name: 'Platinum', color: 'purple', priority: 4 }
+  bronze: { name: 'Bronze', colour: 'orange', priority: 1 },
+  silver: { name: 'Silver', colour: 'gray', priority: 2 },
+  gold: { name: 'Gold', colour: 'yellow', priority: 3 },
+  platinum: { name: 'Platinum', colour: 'purple', priority: 4 }
 };
 
 export const LEAD_SOURCES = [

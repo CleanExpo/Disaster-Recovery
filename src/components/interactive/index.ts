@@ -45,7 +45,7 @@ export {
   CyberpunkGrid,
 } from './GlassMorphismEffects';
 
-// Performance Optimization
+// Performance Optimisation
 export { default as PerformanceOptimizer } from './PerformanceOptimizer';
 export {
   LazyLoadComponent,
@@ -139,7 +139,7 @@ export const getInteractivePerformanceMetrics = () => {
   };
 };
 
-// Component factory for creating optimized interactive elements
+// Component factory for creating optimised interactive elements
 export function createOptimizedInteractiveElement<T extends Record<string, any>>(
   Component: React.ComponentType<T>,
   defaultProps: Partial<T> = {}

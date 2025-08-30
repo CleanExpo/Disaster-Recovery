@@ -107,7 +107,7 @@ export default function RootLayout({
         <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
-        <meta name="theme-color" content="#0052CC" />
+        <meta name="theme-colour" content="#0052CC" />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <GoogleTagManager />

@@ -54,25 +54,25 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
   };
 
   const getStatusColor = (status: string) => {
-    const colors: Record<string, string> = {
+    const colours: Record<string, string> = {
       draft: 'bg-gray-100 text-gray-800',
       pending_review: 'bg-yellow-100 text-yellow-800',
       sent_to_client: 'bg-blue-100 text-blue-800',
       approved: 'bg-green-100 text-green-800',
       rejected: 'bg-red-100 text-red-800'
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colours[status] || 'bg-gray-100 text-gray-800';
   };
 
   const getDamageLevelColor = (level: string) => {
-    const colors: Record<string, string> = {
+    const colours: Record<string, string> = {
       minimal: 'text-green-600',
       moderate: 'text-yellow-600',
       significant: 'text-orange-600',
       severe: 'text-red-600',
       total_loss: 'text-red-800'
     };
-    return colors[level] || 'text-gray-600';
+    return colours[level] || 'text-gray-600';
   };
 
   return (
@@ -81,7 +81,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="flex justify-between items-start mb-6">
           <div>
-            <div className="flex items-center space-x-3 mb-2">
+            <div className="flex items-centre space-x-3 mb-2">
               <h1 className="text-2xl font-bold text-gray-900">
                 Estimate #{estimate.estimateNumber}
               </h1>
@@ -100,14 +100,14 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
               <>
                 <button
                   onClick={onSend}
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center"
+                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-centre"
                 >
                   <Send className="h-4 w-4 mr-2" />
                   Send to Client
                 </button>
                 <button
                   onClick={onDownload}
-                  className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex items-center"
+                  className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex items-centre"
                 >
                   <Download className="h-4 w-4 mr-2" />
                   Download PDF
@@ -118,14 +118,14 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
               <>
                 <button
                   onClick={onApprove}
-                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center"
+                  className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-centre"
                 >
                   <Check className="h-4 w-4 mr-2" />
                   Approve Estimate
                 </button>
                 <button
                   onClick={() => setShowRejectModal(true)}
-                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 flex items-center"
+                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 flex items-centre"
                 >
                   <X className="h-4 w-4 mr-2" />
                   Request Changes
@@ -189,7 +189,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
             <div className="space-y-6">
               {/* Property Details */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <h3 className="text-lg font-semibold mb-4 flex items-centre">
                   <Building className="h-5 w-5 mr-2 text-gray-600" />
                   Property Details
                 </h3>
@@ -218,7 +218,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
 
               {/* Damage Assessment */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <h3 className="text-lg font-semibold mb-4 flex items-centre">
                   <AlertTriangle className="h-5 w-5 mr-2 text-orange-600" />
                   Damage Assessment
                 </h3>
@@ -254,7 +254,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
 
               {/* Technician Info */}
               <div>
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
+                <h3 className="text-lg font-semibold mb-4 flex items-centre">
                   <User className="h-5 w-5 mr-2 text-gray-600" />
                   Assessment Technician
                 </h3>
@@ -453,7 +453,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                 <h3 className="text-lg font-semibold mb-3">Quality Standards</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {estimate.scope.qualityStandards.map((standard, idx) => (
-                    <div key={idx} className="flex items-center text-sm bg-blue-50 p-2 rounded">
+                    <div key={idx} className="flex items-centre text-sm bg-blue-50 p-2 rounded">
                       <Shield className="h-4 w-4 mr-2 text-blue-600" />
                       <span>{standard}</span>
                     </div>
@@ -487,7 +487,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Contractor Rate</th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Industry Avg</th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Selected</th>
-                      <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Variance</th>
+                      <th className="px-6 py-3 text-centre text-xs font-medium text-gray-500 uppercase">Variance</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
@@ -508,8 +508,8 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                         <td className="px-6 py-4 text-sm text-right font-bold text-blue-600">
                           {formatCurrency(comparison.selectedPrice)}
                         </td>
-                        <td className="px-6 py-4 text-center">
-                          <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
+                        <td className="px-6 py-4 text-centre">
+                          <span className={`inline-flex items-centre px-2 py-1 rounded text-xs font-medium ${
                             Math.abs(comparison.variance) <= 5 
                               ? 'bg-green-100 text-green-800'
                               : Math.abs(comparison.variance) <= 10
@@ -553,7 +553,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
 
       {/* Reject Modal */}
       {showRejectModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-md">
             <h3 className="text-lg font-semibold mb-4">Request Changes</h3>
             <textarea

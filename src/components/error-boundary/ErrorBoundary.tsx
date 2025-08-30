@@ -163,9 +163,9 @@ class ErrorBoundary extends Component<Props, State> {
       // Different error UIs based on level
       if (level === 'page') {
         return (
-          <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <div className="min-h-screen flex items-centre justify-centre bg-gray-50">
             <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
-              <div className="flex flex-col items-center text-center">
+              <div className="flex flex-col items-centre text-centre">
                 <div className="rounded-full bg-red-100 p-3 mb-4">
                   <AlertTriangle className="h-8 w-8 text-red-600" />
                 </div>
@@ -194,7 +194,7 @@ class ErrorBoundary extends Component<Props, State> {
                 <div className="flex flex-col sm:flex-row gap-3 w-full">
                   <button
                     onClick={this.resetErrorBoundary}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center justify-center"
+                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-centre justify-centre"
                   >
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Try Again
@@ -202,7 +202,7 @@ class ErrorBoundary extends Component<Props, State> {
                   
                   <Link
                     href="/"
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex items-center justify-center"
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 flex items-centre justify-centre"
                   >
                     <Home className="h-4 w-4 mr-2" />
                     Go Home
@@ -254,7 +254,7 @@ class ErrorBoundary extends Component<Props, State> {
 
       // Component level error (minimal UI)
       return (
-        <div className="inline-flex items-center px-3 py-1 bg-red-100 text-red-800 rounded text-sm">
+        <div className="inline-flex items-centre px-3 py-1 bg-red-100 text-red-800 rounded text-sm">
           <AlertTriangle className="h-3 w-3 mr-2" />
           <span>Component error</span>
           <button

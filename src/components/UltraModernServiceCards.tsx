@@ -10,7 +10,7 @@ interface ServiceCard {
   gradient: string;
   href: string;
   features: string[];
-  color: string;
+  colour: string;
 }
 
 const services: ServiceCard[] = [
@@ -18,9 +18,9 @@ const services: ServiceCard[] = [
     title: 'Water Damage Restoration',
     description: 'Advanced moisture extraction with AI-powered drying systems',
     gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    color: '#667eea',
+    colour: '#667eea',
     href: '/services/water-damage',
-    features: ['24/7 Emergency', 'Thermal Imaging', 'Mold Prevention'],
+    features: ['24/7 Emergency', 'Thermal Imaging', 'Mould Prevention'],
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -29,9 +29,9 @@ const services: ServiceCard[] = [
   },
   {
     title: 'Fire & Smoke Recovery',
-    description: 'Complete restoration with molecular odor elimination technology',
+    description: 'Complete restoration with molecular odour elimination technology',
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    color: '#f5576c',
+    colour: '#f5576c',
     href: '/services/fire-damage',
     features: ['Soot Removal', 'Air Purification', 'Content Restoration'],
     icon: (
@@ -42,11 +42,11 @@ const services: ServiceCard[] = [
     ),
   },
   {
-    title: 'Mold Remediation',
+    title: 'Mould Remediation',
     description: 'EPA-certified removal with antimicrobial protection systems',
     gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-    color: '#00f2fe',
-    href: '/services/mold-remediation',
+    colour: '#00f2fe',
+    href: '/services/mould-remediation',
     features: ['Air Quality Testing', 'HEPA Filtration', 'Prevention Plans'],
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ const services: ServiceCard[] = [
     title: 'Commercial Services',
     description: 'Enterprise-grade restoration with minimal business disruption',
     gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-    color: '#fa709a',
+    colour: '#fa709a',
     href: '/services/commercial',
     features: ['Priority Response', 'Large Scale', 'Documentation'],
     icon: (
@@ -106,8 +106,8 @@ export default function UltraModernServiceCards() {
 
       <div ref={containerRef} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full" 
+        <div className="text-centre mb-20">
+          <div className="inline-flex items-centre gap-2 mb-6 px-4 py-2 rounded-full" 
                style={{ 
                  background: 'rgba(99, 91, 255, 0.1)', 
                  border: '1px solid rgba(99, 91, 255, 0.3)',
@@ -165,7 +165,7 @@ export default function UltraModernServiceCards() {
                     ? 'translateY(-8px) scale(1.02)' 
                     : 'translateY(0) scale(1)',
                   boxShadow: hoveredIndex === index
-                    ? `0 20px 60px ${service.color}33, 0 0 0 1px ${service.color}22`
+                    ? `0 20px 60px ${service.colour}33, 0 0 0 1px ${service.colour}22`
                     : '0 4px 20px rgba(0, 0, 0, 0.1)',
                 }}
               >
@@ -183,7 +183,7 @@ export default function UltraModernServiceCards() {
                 <div className="relative">
                   {/* Icon container */}
                   <div
-                    className="w-14 h-14 rounded-xl mb-4 flex items-center justify-center transition-all duration-500"
+                    className="w-14 h-14 rounded-xl mb-4 flex items-centre justify-centre transition-all duration-500"
                     style={{
                       background: hoveredIndex === index ? service.gradient : 'rgba(255, 255, 255, 0.05)',
                       transform: hoveredIndex === index ? 'rotate(-10deg) scale(1.1)' : 'rotate(0) scale(1)',
@@ -195,7 +195,7 @@ export default function UltraModernServiceCards() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-transparent group-hover:bg-clip-text"
+                  <h3 className="text-xl font-bold text-white mb-2 transition-colours duration-300 group-hover:text-transparent group-hover:bg-clip-text"
                       style={{ 
                         backgroundImage: hoveredIndex === index ? service.gradient : 'none',
                         WebkitBackgroundClip: hoveredIndex === index ? 'text' : 'initial',
@@ -212,12 +212,12 @@ export default function UltraModernServiceCards() {
                   {/* Features */}
                   <div className="space-y-2 mb-4">
                     {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
+                      <div key={idx} className="flex items-centre gap-2">
                         <div 
                           className="w-1.5 h-1.5 rounded-full transition-all duration-500"
                           style={{
                             background: hoveredIndex === index ? service.gradient : 'rgba(255, 255, 255, 0.3)',
-                            boxShadow: hoveredIndex === index ? `0 0 10px ${service.color}` : 'none',
+                            boxShadow: hoveredIndex === index ? `0 0 10px ${service.colour}` : 'none',
                           }}
                         />
                         <span className="text-xs text-gray-500">{feature}</span>
@@ -226,9 +226,9 @@ export default function UltraModernServiceCards() {
                   </div>
 
                   {/* CTA */}
-                  <div className="flex items-center gap-2 text-sm font-medium transition-all duration-300"
+                  <div className="flex items-centre gap-2 text-sm font-medium transition-all duration-300"
                        style={{ 
-                         color: hoveredIndex === index ? service.color : 'rgba(255, 255, 255, 0.6)',
+                         colour: hoveredIndex === index ? service.colour : 'rgba(255, 255, 255, 0.6)',
                        }}>
                     <span>Learn More</span>
                     <svg 
@@ -249,7 +249,7 @@ export default function UltraModernServiceCards() {
                 <div 
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
-                    background: `linear-gradient(90deg, transparent, ${service.color}44, transparent)`,
+                    background: `linear-gradient(90deg, transparent, ${service.colour}44, transparent)`,
                     animation: 'shimmer 2s infinite',
                   }}
                 />
@@ -259,10 +259,10 @@ export default function UltraModernServiceCards() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="text-centre mt-16">
           <Link
             href="/services"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
+            className="inline-flex items-centre gap-3 px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, #635bff 0%, #4541ff 100%)',
               boxShadow: '0 10px 40px rgba(99, 91, 255, 0.3)',

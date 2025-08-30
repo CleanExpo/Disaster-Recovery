@@ -729,12 +729,12 @@ export default function AffiliateSignup() {
       </div>
 
       <div className="mb-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           {steps.map((step, index) => (
             <React.Fragment key={step.id}>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-centre">
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-colors ${
+                  className={`w-12 h-12 rounded-full flex items-centre justify-centre border-2 transition-colours ${
                     currentStep === step.id
                       ? 'bg-blue-600 border-blue-600 text-white'
                       : currentStep > step.id
@@ -748,13 +748,13 @@ export default function AffiliateSignup() {
                     step.icon
                   )}
                 </div>
-                <p className="text-xs mt-2 text-center hidden md:block max-w-[100px]">
+                <p className="text-xs mt-2 text-centre hidden md:block max-w-[100px]">
                   {step.title}
                 </p>
               </div>
               {index < steps.length - 1 && (
                 <div
-                  className={`flex-1 h-0.5 transition-colors ${
+                  className={`flex-1 h-0.5 transition-colours ${
                     currentStep > step.id ? 'bg-green-500' : 'bg-gray-300'
                   }`}
                 />
@@ -775,7 +775,7 @@ export default function AffiliateSignup() {
           <button
             onClick={handlePrevious}
             disabled={currentStep === 1}
-            className={`flex items-center px-6 py-3 rounded-lg font-medium transition-colors ${
+            className={`flex items-centre px-6 py-3 rounded-lg font-medium transition-colours ${
               currentStep === 1
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -788,7 +788,7 @@ export default function AffiliateSignup() {
           {currentStep === steps.length ? (
             <button
               onClick={handleSubmit}
-              className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
+              className="flex items-centre px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colours"
             >
               Submit Application
               <CheckCircle className="w-5 h-5 ml-2" />
@@ -796,7 +796,7 @@ export default function AffiliateSignup() {
           ) : (
             <button
               onClick={handleNext}
-              className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              className="flex items-centre px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colours"
             >
               Next
               <ArrowRight className="w-5 h-5 ml-2" />

@@ -20,7 +20,7 @@ interface FloatingButtonProps {
   icon: React.ElementType;
   label: string;
   action: () => void;
-  color: string;
+  colour: string;
   delay?: number;
   size?: 'sm' | 'md' | 'lg';
 }
@@ -29,7 +29,7 @@ function MagneticFloatingButton({
   icon: Icon, 
   label, 
   action, 
-  color, 
+  colour, 
   delay = 0, 
   size = 'md' 
 }: FloatingButtonProps) {
@@ -96,7 +96,7 @@ function MagneticFloatingButton({
     >
       {/* Magnetic field visualization */}
       <motion.div
-        className={`absolute inset-0 rounded-full border-2 border-dashed ${color.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}
+        className={`absolute inset-0 rounded-full border-2 border-dashed ${colour.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}
         animate={{
           scale: isHovered ? [1, 1.3, 1.1] : 1,
           opacity: isHovered ? [0, 0.3, 0.1] : 0,
@@ -108,7 +108,7 @@ function MagneticFloatingButton({
       <motion.button
         ref={buttonRef}
         className={`
-          relative ${sizeClasses[size]} ${color} text-white rounded-full 
+          relative ${sizeClasses[size]} ${colour} text-white rounded-full 
           shadow-lg backdrop-blur-sm border border-white/20 
           group overflow-hidden z-10
         `}
@@ -146,7 +146,7 @@ function MagneticFloatingButton({
 
         {/* Glow effect */}
         <motion.div
-          className={`absolute inset-0 rounded-full ${color} blur-md opacity-30`}
+          className={`absolute inset-0 rounded-full ${colour} blur-md opacity-30`}
           animate={isHovered ? { scale: 1.5, opacity: 0.5 } : { scale: 1, opacity: 0.3 }}
           transition={{ duration: 0.3 }}
         />
@@ -183,25 +183,25 @@ function ExpandableFABMenu() {
     {
       icon: Phone,
       label: 'Emergency Call',
-      color: 'bg-gradient-to-r from-red-600 to-red-700',
+      colour: 'bg-gradient-to-r from-red-600 to-red-700',
       action: () => window.open('tel:1300566166'),
     },
     {
       icon: MessageCircle,
       label: 'Text Message',
-      color: 'bg-gradient-to-r from-blue-600 to-blue-700',
+      colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
       action: () => window.open('sms:1300566166'),
     },
     {
       icon: Mail,
       label: 'Email Us',
-      color: 'bg-gradient-to-r from-green-600 to-green-700',
+      colour: 'bg-gradient-to-r from-green-600 to-green-700',
       action: () => window.open('mailto:emergency@disasterrecovery.com.au'),
     },
     {
       icon: Calendar,
       label: 'Schedule Service',
-      color: 'bg-gradient-to-r from-purple-600 to-purple-700',
+      colour: 'bg-gradient-to-r from-purple-600 to-purple-700',
       action: () => alert('Scheduling feature coming soon!'),
     },
   ];
@@ -243,7 +243,7 @@ function ExpandableFABMenu() {
                   <MagneticFloatingButton
                     icon={item.icon}
                     label={item.label}
-                    color={item.color}
+                    colour={item.colour}
                     action={item.action}
                     size="md"
                   />
@@ -255,7 +255,7 @@ function ExpandableFABMenu() {
 
         {/* Main Toggle Button */}
         <motion.button
-          className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-xl flex items-center justify-center relative overflow-hidden group"
+          className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-xl flex items-centre justify-centre relative overflow-hidden group"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.95 }}
           whileHover={{ scale: 1.05 }}
@@ -317,7 +317,7 @@ function ExpandableFABMenu() {
   );
 }
 
-// Quick Action Dock (Bottom Center)
+// Quick Action Dock (Bottom Centre)
 function QuickActionDock() {
   const [isDockVisible, setIsDockVisible] = useState(false);
 
@@ -330,29 +330,29 @@ function QuickActionDock() {
     {
       icon: Phone,
       label: 'Call Now',
-      color: 'bg-gradient-to-r from-red-500 to-red-600',
+      colour: 'bg-gradient-to-r from-red-500 to-red-600',
       action: () => window.open('tel:1300566166'),
       size: 'lg' as const,
     },
     {
       icon: MessageCircle,
       label: 'Text',
-      color: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      colour: 'bg-gradient-to-r from-blue-500 to-blue-600',
       action: () => window.open('sms:1300566166'),
       size: 'md' as const,
     },
     {
       icon: MapPin,
       label: 'Location',
-      color: 'bg-gradient-to-r from-green-500 to-green-600',
+      colour: 'bg-gradient-to-r from-green-500 to-green-600',
       action: () => alert('Location services coming soon!'),
       size: 'md' as const,
     },
     {
       icon: HelpCircle,
       label: 'Help',
-      color: 'bg-gradient-to-r from-purple-500 to-purple-600',
-      action: () => alert('Help center coming soon!'),
+      colour: 'bg-gradient-to-r from-purple-500 to-purple-600',
+      action: () => alert('Help centre coming soon!'),
       size: 'md' as const,
     },
   ];
@@ -373,7 +373,7 @@ function QuickActionDock() {
           }}
         >
           <div className="bg-white/80 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-centre space-x-4">
               {dockItems.map((item, index) => (
                 <MagneticFloatingButton
                   key={item.label}
@@ -438,7 +438,7 @@ function EmergencyResponseTimer() {
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
         >
           <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-white/20">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-centre space-x-3">
               <motion.div
                 className="w-3 h-3 bg-green-500 rounded-full"
                 animate={{

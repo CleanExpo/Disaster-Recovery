@@ -254,14 +254,14 @@ export function NotificationHistory() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold flex items-centre gap-2">
             <Clock className="h-6 w-6" />
             Notification History
           </h2>
           <p className="text-gray-600 mt-1">
-            Track and analyze all sent notifications
+            Track and analyse all sent notifications
           </p>
         </div>
         <div className="flex gap-2">
@@ -437,7 +437,7 @@ export function NotificationHistory() {
                   {paginatedHistory.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           {getStatusIcon(item.status)}
                           <span className="text-sm capitalize">{item.status}</span>
                         </div>
@@ -454,7 +454,7 @@ export function NotificationHistory() {
                         {item.metadata?.title}
                       </TableCell>
                       <TableCell>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-centre gap-1">
                           {getChannelIcon(item.channel)}
                           <span className="text-sm capitalize">{item.channel}</span>
                         </div>
@@ -489,7 +489,7 @@ export function NotificationHistory() {
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-between mt-4">
+                <div className="flex items-centre justify-between mt-4">
                   <p className="text-sm text-gray-600">
                     Showing {(currentPage - 1) * itemsPerPage + 1} to{' '}
                     {Math.min(currentPage * itemsPerPage, filteredHistory.length)} of{' '}
@@ -504,7 +504,7 @@ export function NotificationHistory() {
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-centre gap-1">
                       {Array.from({ length: totalPages }, (_, i) => i + 1)
                         .filter(page => 
                           page === 1 || 
@@ -552,13 +552,13 @@ export function NotificationHistory() {
               <CardContent>
                 <div className="space-y-3">
                   {Object.entries(analytics.byType).map(([type, count]) => (
-                    <div key={type} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    <div key={type} className="flex items-centre justify-between">
+                      <div className="flex items-centre gap-2">
                         <Badge variant="outline" className={getTypeColor(type)}>
                           {type}
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         <span className="text-sm font-medium">{count}</span>
                         <div className="w-32 bg-gray-200 rounded-full h-2">
                           <div
@@ -581,12 +581,12 @@ export function NotificationHistory() {
               <CardContent>
                 <div className="space-y-3">
                   {Object.entries(analytics.byChannel).map(([channel, count]) => (
-                    <div key={channel} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    <div key={channel} className="flex items-centre justify-between">
+                      <div className="flex items-centre gap-2">
                         {getChannelIcon(channel as NotificationChannel)}
                         <span className="text-sm capitalize">{channel}</span>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         <span className="text-sm font-medium">{count}</span>
                         <div className="w-32 bg-gray-200 rounded-full h-2">
                           <div
@@ -609,8 +609,8 @@ export function NotificationHistory() {
               <CardContent>
                 <div className="space-y-3">
                   {analytics.topUnreadTypes.map((item, index) => (
-                    <div key={item.type} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    <div key={item.type} className="flex items-centre justify-between">
+                      <div className="flex items-centre gap-2">
                         <span className="text-sm font-medium">#{index + 1}</span>
                         <Badge variant="outline" className={getTypeColor(item.type)}>
                           {item.type}
@@ -631,7 +631,7 @@ export function NotificationHistory() {
               <CardContent>
                 <div className="space-y-3">
                   {Object.entries(analytics.byPriority).map(([priority, count]) => (
-                    <div key={priority} className="flex items-center justify-between">
+                    <div key={priority} className="flex items-centre justify-between">
                       <Badge
                         variant="outline"
                         className={
@@ -643,7 +643,7 @@ export function NotificationHistory() {
                       >
                         {priority}
                       </Badge>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         <span className="text-sm font-medium">{count}</span>
                         <div className="w-32 bg-gray-200 rounded-full h-2">
                           <div

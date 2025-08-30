@@ -147,7 +147,7 @@ export default function ContractorLoginPage() {
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900">
       {/* Animated background mesh */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
       
       {/* Floating particles */}
@@ -193,11 +193,11 @@ export default function ContractorLoginPage() {
       <div className="absolute top-0 -right-40 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
       <div className="absolute -bottom-32 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
+      <div className="relative z-10 flex min-h-screen items-centre justify-centre px-6 py-12">
         <div className="w-full max-w-md">
           {/* Logo and header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl mb-4 transform hover:scale-110 transition-transform">
+          <div className="text-centre mb-8">
+            <div className="inline-flex items-centre justify-centre w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl mb-4 transform hover:scale-110 transition-transform">
               <Building2 className="h-10 w-10 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">
@@ -244,8 +244,8 @@ export default function ContractorLoginPage() {
                     Username or Email
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <User className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-centre pointer-events-none">
+                      <User className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colours" />
                     </div>
                     <input
                       id="username"
@@ -265,8 +265,8 @@ export default function ContractorLoginPage() {
                     Password
                   </label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colors" />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-centre pointer-events-none">
+                      <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-blue-400 transition-colours" />
                     </div>
                     <input
                       id="password"
@@ -280,7 +280,7 @@ export default function ContractorLoginPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white transition-colors"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-centre text-gray-400 hover:text-white transition-colours"
                     >
                       {showPassword ? (
                         <EyeOff className="h-5 w-5" />
@@ -292,21 +292,21 @@ export default function ContractorLoginPage() {
                 </div>
 
                 {/* Remember me & forgot password */}
-                <div className="flex items-center justify-between">
-                  <label className="flex items-center cursor-pointer group">
+                <div className="flex items-centre justify-between">
+                  <label className="flex items-centre cursor-pointer group">
                     <input
                       type="checkbox"
                       checked={rememberMe}
                       onChange={(e) => setRememberMe(e.target.checked)}
                       className="w-4 h-4 text-blue-600 bg-white/10 border-white/20 rounded focus:ring-blue-500 focus:ring-2"
                     />
-                    <span className="ml-2 text-sm text-gray-300 group-hover:text-white transition-colors">
+                    <span className="ml-2 text-sm text-gray-300 group-hover:text-white transition-colours">
                       Remember me
                     </span>
                   </label>
                   <Link
                     href="/contractor/forgot-password"
-                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
+                    className="text-sm text-blue-400 hover:text-blue-300 transition-colours"
                   >
                     Forgot password?
                   </Link>
@@ -327,7 +327,7 @@ export default function ContractorLoginPage() {
                   disabled={isLoading}
                   className="relative w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
                 >
-                  <span className="relative z-10 flex items-center justify-center">
+                  <span className="relative z-10 flex items-centre justify-centre">
                     {isLoading ? (
                       <>
                         <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
@@ -347,9 +347,9 @@ export default function ContractorLoginPage() {
                 </button>
 
                 {/* Demo credentials hint */}
-                <div className="text-center">
+                <div className="text-centre">
                   <p className="text-xs text-gray-400 mb-2">Demo Credentials:</p>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg backdrop-blur-sm">
+                  <div className="inline-flex items-centre gap-2 px-3 py-1 bg-white/5 rounded-lg backdrop-blur-sm">
                     <Sparkles className="h-3 w-3 text-yellow-400" />
                     <code className="text-xs text-gray-300">demo / Demo123!</code>
                   </div>
@@ -357,15 +357,15 @@ export default function ContractorLoginPage() {
               </form>
             ) : (
               <div className="space-y-4">
-                <p className="text-gray-300 text-sm text-center mb-6">
-                  Sign in with your organization's identity provider
+                <p className="text-gray-300 text-sm text-centre mb-6">
+                  Sign in with your organisation's identity provider
                 </p>
                 
                 {/* SSO provider buttons */}
                 <button
                   onClick={() => handleSSOLogin('Microsoft')}
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
+                  className="w-full flex items-centre justify-centre gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
                 >
                   <Shield className="h-5 w-5" />
                   Continue with Microsoft
@@ -374,7 +374,7 @@ export default function ContractorLoginPage() {
                 <button
                   onClick={() => handleSSOLogin('Google')}
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
+                  className="w-full flex items-centre justify-centre gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
                 >
                   <Mail className="h-5 w-5" />
                   Continue with Google Workspace
@@ -383,7 +383,7 @@ export default function ContractorLoginPage() {
                 <button
                   onClick={() => handleSSOLogin('SAML')}
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
+                  className="w-full flex items-centre justify-centre gap-3 py-3 px-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white font-medium transition-all disabled:opacity-50"
                 >
                   <Key className="h-5 w-5" />
                   SAML 2.0 SSO
@@ -393,16 +393,16 @@ export default function ContractorLoginPage() {
           </div>
 
           {/* Footer links */}
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-6 text-centre space-y-2">
             <Link
               href="/contractor/register"
-              className="text-sm text-gray-300 hover:text-white transition-colors block"
+              className="text-sm text-gray-300 hover:text-white transition-colours block"
             >
               Don't have an account? <span className="text-blue-400">Register as a contractor</span>
             </Link>
             <Link
               href="/"
-              className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors"
+              className="inline-flex items-centre text-sm text-gray-400 hover:text-white transition-colours"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
               Back to main site

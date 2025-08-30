@@ -118,10 +118,10 @@ function hasWebPVersion(images, baseName) {
 }
 
 /**
- * Analyze images and generate report
+ * Analyse images and generate report
  */
 async function analyzeImages() {
-  console.log('🔍 Analyzing image performance...\n');
+  console.log('🔍 Analysing image performance...\n');
   
   const publicDir = path.join(__dirname, '../public');
   const images = await getAllImages(publicDir);
@@ -147,7 +147,7 @@ async function analyzeImages() {
     categoryBreakdown: {}
   };
   
-  // Analyze each image
+  // Analyse each image
   for (const image of images) {
     const { category, device, critical } = categorizeImage(image.path);
     const budget = PERFORMANCE_BUDGETS[device];
@@ -290,13 +290,13 @@ async function analyzeImages() {
   console.log(`Overall Score: ${score}/100`);
   
   if (score >= 90) {
-    console.log('✅ Excellent! Images are well optimized.');
+    console.log('✅ Excellent! Images are well optimised.');
   } else if (score >= 70) {
     console.log('⚠️  Good, but there's room for improvement.');
   } else if (score >= 50) {
-    console.log('⚠️  Fair. Significant optimization needed for better performance.');
+    console.log('⚠️  Fair. Significant optimisation needed for better performance.');
   } else {
-    console.log('❌ Poor. Urgent optimization required for acceptable performance.');
+    console.log('❌ Poor. Urgent optimisation required for acceptable performance.');
   }
   
   // Mobile readiness
@@ -325,7 +325,7 @@ async function analyzeImages() {
   console.log('─────────────────');
   
   if (issues.tooLarge.length > 0) {
-    console.log('1. Run `npm run optimize:images` to compress oversized images');
+    console.log('1. Run `npm run optimise:images` to compress oversized images');
   }
   if (issues.noWebP.length > 0) {
     console.log('2. Generate WebP versions for better compression (25-35% smaller)');
@@ -339,7 +339,7 @@ async function analyzeImages() {
   }
   
   console.log('\n✓ All images should include NRP watermark for brand consistency');
-  console.log('✓ Training images must be optimized for mobile data usage');
+  console.log('✓ Training images must be optimised for mobile data usage');
   
   console.log('\n═══════════════════════════════════════════════════════════\n');
 }

@@ -98,9 +98,9 @@ const Header: React.FC = () => {
           icon: <Wind className="h-4 w-4 text-storm-600" />
         },
         {
-          href: "/services/mold-remediation",
-          label: "Mold Remediation",
-          description: "IICRC S520 mold removal",
+          href: "/services/mould-remediation",
+          label: "Mould Remediation",
+          description: "IICRC S520 mould removal",
           icon: <Shield className="h-4 w-4 text-mould-600" />
         },
         {
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
       ]
     },
     {
-      title: "Specialized Services",
+      title: "Specialised Services",
       items: [
         {
           href: "/services/biohazard-cleanup",
@@ -234,7 +234,7 @@ const Header: React.FC = () => {
                   <Link
                     key={itemIndex}
                     href={item.href}
-                    className="group flex items-start gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors duration-150"
+                    className="group flex items-start gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colours duration-150"
                   >
                     {item.icon && (
                       <div className="flex-shrink-0 mt-0.5">
@@ -242,8 +242,8 @@ const Header: React.FC = () => {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <div className="font-medium text-neutral-900 group-hover:text-primary-600 transition-colors duration-150">
+                      <div className="flex items-centre gap-2">
+                        <div className="font-medium text-neutral-900 group-hover:text-primary-600 transition-colours duration-150">
                           {item.label}
                         </div>
                         {item.badge && (
@@ -287,11 +287,11 @@ const Header: React.FC = () => {
       
       {/* Menu Panel */}
       <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-xl">
-        <div className="flex items-center justify-between p-4 border-b border-neutral-200">
+        <div className="flex items-centre justify-between p-4 border-b border-neutral-200">
           <span className="text-lg font-semibold text-neutral-900">{BUSINESS_SHORT_NAME}</span>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 rounded-lg hover:bg-neutral-100 transition-colors duration-150"
+            className="p-2 rounded-lg hover:bg-neutral-100 transition-colours duration-150"
             aria-label="Close menu"
           >
             <X className="h-6 w-6" />
@@ -313,7 +313,7 @@ const Header: React.FC = () => {
                   <Link
                     key={index}
                     href={item.href}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors duration-150"
+                    className="flex items-centre gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colours duration-150"
                   >
                     {item.icon}
                     <span className="text-neutral-700">{item.label}</span>
@@ -330,7 +330,7 @@ const Header: React.FC = () => {
                   <Link
                     key={city}
                     href={`/locations/${city.toLowerCase()}`}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors duration-150"
+                    className="flex items-centre gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colours duration-150"
                   >
                     <MapPin className="h-4 w-4 text-blue-600" />
                     <span className="text-gray-700">{city}</span>
@@ -347,7 +347,7 @@ const Header: React.FC = () => {
                   <Link
                     key={index}
                     href={item.href}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors duration-150"
+                    className="flex items-centre gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colours duration-150"
                   >
                     {item.icon}
                     <span className="text-neutral-700">{item.label}</span>
@@ -373,11 +373,11 @@ const Header: React.FC = () => {
 
       <header className="nav-header sticky top-0 z-40 w-full bg-white border-b border-neutral-200 shadow-sm">
         <div className="container px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-centre justify-between h-16">
             {/* Logo */}
             <Link 
               href="/" 
-              className="flex items-center gap-3 group"
+              className="flex items-centre gap-3 group"
               aria-label={`${BUSINESS_NAME} - Homepage`}
             >
               <div className="flex-shrink-0">
@@ -390,7 +390,7 @@ const Header: React.FC = () => {
                 />
               </div>
               <div className="hidden sm:block">
-                <div className="font-bold text-lg text-neutral-900 group-hover:text-primary-600 transition-colors duration-150">
+                <div className="font-bold text-lg text-neutral-900 group-hover:text-primary-600 transition-colours duration-150">
                   {BUSINESS_SHORT_NAME}
                 </div>
                 <div className="text-xs text-neutral-500 -mt-1">
@@ -398,7 +398,7 @@ const Header: React.FC = () => {
                 </div>
               </div>
               {/* NRP Certification Badge */}
-              <div className="hidden md:flex items-center ml-4 pl-4 border-l border-neutral-300">
+              <div className="hidden md:flex items-centre ml-4 pl-4 border-l border-neutral-300">
                 <img
                   src="/images/logos/nrp/nrp-badge-3d.png"
                   alt="National Restoration Professionals Certified"
@@ -411,7 +411,7 @@ const Header: React.FC = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex lg:items-center lg:gap-8" role="navigation" aria-label="Main navigation">
+            <nav className="hidden lg:flex lg:items-centre lg:gap-8" role="navigation" aria-label="Main navigation">
               {/* Services Dropdown */}
               <div
                 className="relative"
@@ -420,7 +420,7 @@ const Header: React.FC = () => {
               >
                 <button
                   className={cn(
-                    "nav-link flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150",
+                    "nav-link flex items-centre gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colours duration-150",
                     "hover:bg-primary-50 hover:text-primary-600",
                     activeDropdown === 'services' ? "bg-primary-50 text-primary-600" : "text-neutral-700"
                   )}
@@ -447,7 +447,7 @@ const Header: React.FC = () => {
               >
                 <button
                   className={cn(
-                    "nav-link flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150",
+                    "nav-link flex items-centre gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colours duration-150",
                     "hover:bg-primary-50 hover:text-primary-600",
                     activeDropdown === 'locations' ? "bg-primary-50 text-primary-600" : "text-neutral-700"
                   )}
@@ -475,7 +475,7 @@ const Header: React.FC = () => {
               >
                 <button
                   className={cn(
-                    "nav-link flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150",
+                    "nav-link flex items-centre gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colours duration-150",
                     "hover:bg-emergency-50 hover:text-emergency-600",
                     activeDropdown === 'emergency' ? "bg-emergency-50 text-emergency-600" : "text-emergency-600"
                   )}
@@ -503,7 +503,7 @@ const Header: React.FC = () => {
               >
                 <button
                   className={cn(
-                    "nav-link flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-150",
+                    "nav-link flex items-centre gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colours duration-150",
                     "hover:bg-primary-50 hover:text-primary-600",
                     activeDropdown === 'resources' ? "bg-primary-50 text-primary-600" : "text-neutral-700"
                   )}
@@ -524,7 +524,7 @@ const Header: React.FC = () => {
             </nav>
 
             {/* CTA Button and Mobile Menu Toggle */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-centre gap-4">
               {/* Emergency CTA - Desktop */}
               <div className="hidden lg:block">
                 <EmergencyCTA variant="urgent" text="Get Help Now" />
@@ -533,7 +533,7 @@ const Header: React.FC = () => {
               {/* Mobile menu button */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors duration-150"
+                className="lg:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colours duration-150"
                 aria-label="Open main menu"
                 aria-expanded={mobileMenuOpen}
               >

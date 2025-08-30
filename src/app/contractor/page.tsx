@@ -54,8 +54,8 @@ export default function ContractorPortalLanding() {
       <nav className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
+            <div className="flex items-centre">
+              <Link href="/" className="flex items-centre">
                 <Home className="h-6 w-6 mr-2 text-gray-600" />
                 <span className="text-gray-600 hover:text-gray-900">Home</span>
               </Link>
@@ -71,7 +71,7 @@ export default function ContractorPortalLanding() {
         <div className="max-w-7xl mx-auto">
           <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="text-center">
+              <div className="text-centre">
                 <div className="mb-8">
                   <img
                     src="/images/logos/nrp-logo.png"
@@ -84,7 +84,7 @@ export default function ContractorPortalLanding() {
                       if (fallback) fallback.style.display = 'flex';
                     }}
                   />
-                  <div id="nrp-fallback" className="hidden items-center justify-center w-20 h-20 bg-blue-600 rounded-full mx-auto">
+                  <div id="nrp-fallback" className="hidden items-centre justify-centre w-20 h-20 bg-blue-600 rounded-full mx-auto">
                     <Building2 className="h-10 w-10 text-white" />
                   </div>
                 </div>
@@ -98,10 +98,10 @@ export default function ContractorPortalLanding() {
                   Access your dashboard, manage jobs, update certifications, and grow your restoration business.
                 </p>
                 
-                <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-4 justify-centre">
                   <Link
                     href="/contractor/login"
-                    className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-colors"
+                    className="inline-flex items-centre px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10 transition-colours"
                   >
                     <LogIn className="h-5 w-5 mr-2" />
                     Sign In
@@ -109,7 +109,7 @@ export default function ContractorPortalLanding() {
                   
                   <Link
                     href="/contractor/register"
-                    className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10 transition-colors"
+                    className="inline-flex items-centre px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10 transition-colours"
                   >
                     <UserPlus className="h-5 w-5 mr-2" />
                     Apply to Join
@@ -119,7 +119,7 @@ export default function ContractorPortalLanding() {
                 {/* Demo Access Card */}
                 <div className="mt-12 max-w-md mx-auto">
                   <div className="bg-white rounded-lg shadow-md p-6">
-                    <div className="flex items-center mb-4">
+                    <div className="flex items-centre mb-4">
                       <Shield className="h-6 w-6 text-green-500 mr-2" />
                       <h3 className="text-lg font-semibold">Demo Access Available</h3>
                     </div>
@@ -138,7 +138,7 @@ export default function ContractorPortalLanding() {
                     </div>
                     <Link
                       href="/contractor/login"
-                      className="mt-4 w-full inline-flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                      className="mt-4 w-full inline-flex items-centre justify-centre px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colours"
                     >
                       Try Demo
                       <ArrowRight className="h-4 w-4 ml-2" />
@@ -154,7 +154,7 @@ export default function ContractorPortalLanding() {
       {/* Features Section */}
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div className="text-centre">
             <h2 className="text-3xl font-extrabold text-gray-900">
               Why Join Our Network?
             </h2>
@@ -167,8 +167,8 @@ export default function ContractorPortalLanding() {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="text-center">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white mx-auto">
+                <div key={index} className="text-centre">
+                  <div className="flex items-centre justify-centre h-12 w-12 rounded-md bg-blue-600 text-white mx-auto">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-lg font-medium text-gray-900">{feature.title}</h3>
@@ -184,7 +184,7 @@ export default function ContractorPortalLanding() {
       <div className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 text-centre mb-8">
               Contractor Benefits
             </h2>
             <div className="bg-white rounded-lg shadow-md p-8">
@@ -203,24 +203,24 @@ export default function ContractorPortalLanding() {
 
       {/* CTA Section */}
       <div className="bg-blue-700">
-        <div className="max-w-2xl mx-auto text-center py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto text-centre py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             <span className="block">Ready to get started?</span>
           </h2>
           <p className="mt-4 text-lg leading-6 text-blue-200">
             Join our network of professional restoration contractors today.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-centre">
             <Link
               href="/contractor/register"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 transition-colors"
+              className="inline-flex items-centre px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 transition-colours"
             >
               Apply Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link
               href="/contractor/login"
-              className="inline-flex items-center px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-blue-600 transition-colors"
+              className="inline-flex items-centre px-6 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-blue-600 transition-colours"
             >
               Sign In
             </Link>

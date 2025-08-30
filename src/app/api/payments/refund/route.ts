@@ -130,12 +130,12 @@ function generateRefundEmail(
     <html>
     <head>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; colour: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #0052CC; color: white; padding: 20px; text-align: center; }
-        .content { padding: 20px; background-color: #f9f9f9; }
-        .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
-        .amount { font-size: 24px; font-weight: bold; color: #0052CC; }
+        .header { background-colour: #0052CC; colour: white; padding: 20px; text-align: centre; }
+        .content { padding: 20px; background-colour: #f9f9f9; }
+        .footer { padding: 20px; text-align: centre; font-size: 12px; colour: #666; }
+        .amount { font-size: 24px; font-weight: bold; colour: #0052CC; }
         .info-box { background: white; padding: 15px; margin: 15px 0; border-left: 4px solid #0052CC; }
       </style>
     </head>

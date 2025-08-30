@@ -237,8 +237,8 @@ export function KnowledgeBase() {
     <div className="space-y-6">
       {/* Header with Search */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 rounded-lg">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-2">
+        <div className="max-w-3xl mx-auto text-centre">
+          <h1 className="text-3xl font-bold mb-2 flex items-centre justify-centre gap-2">
             <Book className="h-8 w-8" />
             Knowledge Base
           </h1>
@@ -263,7 +263,7 @@ export function KnowledgeBase() {
 
           {/* Quick Links */}
           {!searchQuery && (
-            <div className="flex flex-wrap gap-2 justify-center mt-4">
+            <div className="flex flex-wrap gap-2 justify-centre mt-4">
               <span className="text-sm text-blue-100">Popular:</span>
               {mockRecentSearches.slice(0, 3).map((search, index) => (
                 <Button
@@ -297,7 +297,7 @@ export function KnowledgeBase() {
               {searchResults.map((result) => (
                 <div
                   key={result.id}
-                  className="p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                  className="p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colours"
                   onClick={() => {
                     const article = mockArticles.find(a => a.id === result.id);
                     if (article) setSelectedArticle(article);
@@ -305,12 +305,12 @@ export function KnowledgeBase() {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <h3 className="font-medium flex items-center gap-2">
+                      <h3 className="font-medium flex items-centre gap-2">
                         {result.title}
                         <ArrowRight className="h-4 w-4 text-gray-400" />
                       </h3>
                       <p className="text-sm text-gray-600 mt-1">{result.excerpt}</p>
-                      <div className="flex items-center gap-3 mt-2">
+                      <div className="flex items-centre gap-3 mt-2">
                         <Badge variant="outline" className="text-xs">
                           {result.category}
                         </Badge>
@@ -345,11 +345,11 @@ export function KnowledgeBase() {
                       className="p-4 border rounded-lg hover:shadow-md cursor-pointer transition-all group"
                     >
                       <div className="flex items-start gap-3">
-                        <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
+                        <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colours">
                           {getCategoryIcon(category.icon)}
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-semibold flex items-center gap-2">
+                          <h3 className="font-semibold flex items-centre gap-2">
                             {category.name}
                             <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </h3>
@@ -370,7 +370,7 @@ export function KnowledgeBase() {
             {/* Featured Articles */}
             <Card className="mt-6">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-centre gap-2">
                   <Star className="h-5 w-5 text-yellow-500" />
                   Featured Articles
                 </CardTitle>
@@ -381,7 +381,7 @@ export function KnowledgeBase() {
                     <div
                       key={article.id}
                       onClick={() => setSelectedArticle(article)}
-                      className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                      className="flex items-centre justify-between p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
                     >
                       <div>
                         <h4 className="font-medium">{article.title}</h4>
@@ -402,7 +402,7 @@ export function KnowledgeBase() {
             {/* Popular Articles */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2">
+                <CardTitle className="text-base flex items-centre gap-2">
                   <Eye className="h-4 w-4" />
                   Most Viewed
                 </CardTitle>
@@ -412,9 +412,9 @@ export function KnowledgeBase() {
                   {mockPopularArticles.map((article, index) => (
                     <div
                       key={article.id}
-                      className="flex items-center justify-between text-sm"
+                      className="flex items-centre justify-between text-sm"
                     >
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-centre gap-2">
                         <span className="text-gray-500">#{index + 1}</span>
                         <span className="hover:text-blue-600 cursor-pointer">
                           {article.title}
@@ -453,7 +453,7 @@ export function KnowledgeBase() {
             {/* Recent Updates */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2">
+                <CardTitle className="text-base flex items-centre gap-2">
                   <Clock className="h-4 w-4" />
                   Recently Updated
                 </CardTitle>
@@ -483,9 +483,9 @@ export function KnowledgeBase() {
       {selectedArticle && (
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
-                <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                <div className="flex items-centre gap-2 text-sm text-gray-500 mb-2">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -503,12 +503,12 @@ export function KnowledgeBase() {
                   )}
                 </div>
                 <CardTitle className="text-2xl">{selectedArticle.title}</CardTitle>
-                <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                <div className="flex items-centre gap-4 mt-2 text-sm text-gray-500">
                   <span>By {selectedArticle.author}</span>
                   <span>•</span>
                   <span>Updated {formatDistanceToNow(selectedArticle.lastUpdated)} ago</span>
                   <span>•</span>
-                  <span className="flex items-center gap-1">
+                  <span className="flex items-centre gap-1">
                     <Eye className="h-4 w-4" />
                     {selectedArticle.viewCount} views
                   </span>
@@ -532,7 +532,7 @@ export function KnowledgeBase() {
 
             {/* Article Actions */}
             <div className="mt-8 pt-8 border-t">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <div>
                   <p className="text-sm font-medium mb-2">Was this article helpful?</p>
                   <div className="flex gap-2">

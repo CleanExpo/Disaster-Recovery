@@ -86,7 +86,7 @@ class MockDataGenerator {
   private generateContractors(count: number): MockContractor[] {
     const businessNames = [
       'Rapid Response Restoration', 'Emergency Flood Services', 'Fire Damage Specialists',
-      'Mold Remediation Experts', 'Storm Recovery Group', 'Water Damage Solutions',
+      'Mould Remediation Experts', 'Storm Recovery Group', 'Water Damage Solutions',
       'Disaster Recovery Professionals', 'Emergency Restoration Services', 'Damage Control Australia',
       'Crisis Response Team', 'Property Restoration Services', 'Flood Recovery Specialists'
     ];
@@ -100,7 +100,7 @@ class MockDataGenerator {
     ];
     
     const services = [
-      'water-damage', 'fire-damage', 'storm-damage', 'mold-remediation',
+      'water-damage', 'fire-damage', 'storm-damage', 'mould-remediation',
       'biohazard-cleanup', 'sewage-cleanup', 'structural-drying', 'emergency-response'
     ];
     
@@ -147,7 +147,7 @@ class MockDataGenerator {
       'Fire damage to bedroom and roof, smoke damage throughout property',
       'Storm damage - tree through roof, water intrusion in multiple rooms',
       'Flooding in basement, water damage to flooring and walls',
-      'Mold growth in bathroom and adjacent bedroom after water leak',
+      'Mould growth in bathroom and adjacent bedroom after water leak',
       'Sewage backup in ground floor, contamination of carpets and furniture',
       'Hail damage to roof and windows, water leaking into attic'
     ];
@@ -173,7 +173,7 @@ class MockDataGenerator {
         customerName: `${firstName} ${lastName}`,
         email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@email.com`,
         phone: `04${10000000 + Math.floor(Math.random() * 90000000)}`,
-        serviceType: ['water-damage', 'fire-damage', 'storm-damage', 'mold-remediation'][Math.floor(Math.random() * 4)],
+        serviceType: ['water-damage', 'fire-damage', 'storm-damage', 'mould-remediation'][Math.floor(Math.random() * 4)],
         urgencyLevel: isEmergency ? 'emergency' : Math.random() < 0.3 ? 'urgent' : 'standard',
         propertyType: Math.random() < 0.7 ? 'residential' : Math.random() < 0.8 ? 'commercial' : 'industrial',
         location: {
@@ -300,7 +300,7 @@ class MockDataGenerator {
         { name: 'Water Damage', count: 87, revenue: 47850 },
         { name: 'Fire Damage', count: 42, revenue: 23100 },
         { name: 'Storm Damage', count: 38, revenue: 20900 },
-        { name: 'Mold Remediation', count: 33, revenue: 18150 }
+        { name: 'Mould Remediation', count: 33, revenue: 18150 }
       ],
       recentActivity: thisMonth.slice(0, 10).map(lead => ({
         type: lead.urgencyLevel === 'emergency' ? 'emergency' : 'lead',

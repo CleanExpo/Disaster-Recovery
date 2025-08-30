@@ -169,12 +169,12 @@ export function KPIPerformanceDashboard() {
     { metric: 'Training', value: 90 }
   ];
 
-  const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
+  const Colours = ['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
 
   if (!metrics) {
     return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
+      <div className="flex items-centre justify-centre min-h-[400px]">
+        <div className="text-centre">
           <Activity className="h-8 w-8 animate-spin mx-auto text-gray-400" />
           <p className="text-sm text-gray-500 mt-2">Loading KPI metrics...</p>
         </div>
@@ -185,9 +185,9 @@ export function KPIPerformanceDashboard() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold flex items-centre gap-2">
             <Activity className="h-6 w-6" />
             KPI Performance Dashboard
           </h2>
@@ -255,7 +255,7 @@ export function KPIPerformanceDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Clock className="h-4 w-4" />
               Avg Response Time
             </CardTitle>
@@ -275,7 +275,7 @@ export function KPIPerformanceDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <Star className="h-4 w-4" />
               Customer Satisfaction
             </CardTitle>
@@ -299,7 +299,7 @@ export function KPIPerformanceDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <CheckCircle className="h-4 w-4" />
               Clean Claims Compliance
             </CardTitle>
@@ -312,7 +312,7 @@ export function KPIPerformanceDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm flex items-center gap-2">
+            <CardTitle className="text-sm flex items-centre gap-2">
               <DollarSign className="h-4 w-4" />
               Bonuses vs Fines
             </CardTitle>
@@ -385,7 +385,7 @@ export function KPIPerformanceDashboard() {
                 <Alert className="mt-4 bg-yellow-50 border-yellow-200">
                   <AlertTriangle className="h-4 w-4 text-yellow-600" />
                   <AlertDescription className="text-yellow-700">
-                    Your average response time is above the 2-hour target. Consider optimizing your workflow
+                    Your average response time is above the 2-hour target. Consider optimising your workflow
                     or coverage to improve response times.
                   </AlertDescription>
                 </Alert>
@@ -422,15 +422,15 @@ export function KPIPerformanceDashboard() {
               </ResponsiveContainer>
 
               <div className="grid grid-cols-3 gap-4 mt-6">
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <div className="text-centre p-3 bg-gray-50 rounded-lg">
                   <p className="text-2xl font-bold text-green-600">92%</p>
                   <p className="text-xs text-gray-600">Would Recommend</p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <div className="text-centre p-3 bg-gray-50 rounded-lg">
                   <p className="text-2xl font-bold">247</p>
                   <p className="text-xs text-gray-600">Total Reviews</p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <div className="text-centre p-3 bg-gray-50 rounded-lg">
                   <p className="text-2xl font-bold">4.7</p>
                   <p className="text-xs text-gray-600">Average Rating</p>
                 </div>
@@ -451,28 +451,28 @@ export function KPIPerformanceDashboard() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 border rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-centre justify-between mb-2">
                       <span className="text-sm font-medium">Photo Documentation</span>
                       <Badge className="bg-green-100 text-green-800">98%</Badge>
                     </div>
                     <Progress value={98} className="h-2" />
                   </div>
                   <div className="p-4 border rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-centre justify-between mb-2">
                       <span className="text-sm font-medium">Report Timeliness</span>
                       <Badge className="bg-green-100 text-green-800">95%</Badge>
                     </div>
                     <Progress value={95} className="h-2" />
                   </div>
                   <div className="p-4 border rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-centre justify-between mb-2">
                       <span className="text-sm font-medium">Data Accuracy</span>
                       <Badge className="bg-yellow-100 text-yellow-800">88%</Badge>
                     </div>
                     <Progress value={88} className="h-2" />
                   </div>
                   <div className="p-4 border rounded-lg">
-                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-centre justify-between mb-2">
                       <span className="text-sm font-medium">Customer Communication</span>
                       <Badge className="bg-green-100 text-green-800">94%</Badge>
                     </div>
@@ -483,15 +483,15 @@ export function KPIPerformanceDashboard() {
                 <div className="mt-6">
                   <h4 className="font-medium mb-3">Recent Compliance Events</h4>
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between p-2 bg-green-50 rounded">
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-centre justify-between p-2 bg-green-50 rounded">
+                      <div className="flex items-centre gap-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
                         <span className="text-sm">Perfect report submitted - Job #1234</span>
                       </div>
                       <span className="text-xs text-gray-500">2 hours ago</span>
                     </div>
-                    <div className="flex items-center justify-between p-2 bg-yellow-50 rounded">
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-centre justify-between p-2 bg-yellow-50 rounded">
+                      <div className="flex items-centre gap-2">
                         <AlertTriangle className="h-4 w-4 text-yellow-600" />
                         <span className="text-sm">Missing photos - Job #1233</span>
                       </div>
@@ -529,7 +529,7 @@ export function KPIPerformanceDashboard() {
                         dataKey="count"
                       >
                         {incidentData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          <Cell key={`cell-${index}`} fill={Colours[index % Colours.length]} />
                         ))}
                       </Pie>
                       <Tooltip />
@@ -540,14 +540,14 @@ export function KPIPerformanceDashboard() {
                 <div>
                   <h4 className="font-medium mb-3">Financial Impact</h4>
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                    <div className="flex justify-between items-centre p-3 bg-red-50 rounded-lg">
                       <div>
                         <p className="font-medium text-red-900">Total Fines</p>
                         <p className="text-sm text-red-700">{metrics.totalIncidents} incidents</p>
                       </div>
                       <p className="text-xl font-bold text-red-600">-${metrics.totalFines}</p>
                     </div>
-                    <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                    <div className="flex justify-between items-centre p-3 bg-green-50 rounded-lg">
                       <div>
                         <p className="font-medium text-green-900">Total Bonuses</p>
                         <p className="text-sm text-green-700">Performance rewards</p>
@@ -555,7 +555,7 @@ export function KPIPerformanceDashboard() {
                       <p className="text-xl font-bold text-green-600">+${metrics.totalBonuses}</p>
                     </div>
                     <div className="border-t pt-3">
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-centre">
                         <p className="font-medium">Net Impact</p>
                         <p className={`text-xl font-bold ${
                           metrics.totalBonuses - metrics.totalFines >= 0 ? 'text-green-600' : 'text-red-600'

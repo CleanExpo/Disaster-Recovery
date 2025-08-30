@@ -120,7 +120,7 @@ export class UIDesignOrchestrator {
   private defineExecutionOrder() {
     // Define optimal execution order based on dependencies and priorities
     this.executionOrder = [
-      'visual-analyzer',      // 1. Analyze current state first
+      'visual-analyzer',      // 1. Analyse current state first
       'design-implementer',   // 2. Apply design system foundations
       'responsive-optimizer', // 3. Ensure responsive design
       'dark-mode-specialist', // 4. Implement dark mode theme
@@ -441,11 +441,11 @@ export class UIDesignOrchestrator {
     }
 
     if (qualityMetrics.accessibility < 8) {
-      nextSteps.push('♿ Accessibility needs improvement. Focus on WCAG compliance and screen reader optimization.')
+      nextSteps.push('♿ Accessibility needs improvement. Focus on WCAG compliance and screen reader optimisation.')
     }
 
     if (qualityMetrics.responsiveness < 7) {
-      nextSteps.push('📱 Responsive design needs enhancement. Test and optimize mobile experience.')
+      nextSteps.push('📱 Responsive design needs enhancement. Test and optimise mobile experience.')
     }
 
     if (qualityMetrics.visual < 8) {
@@ -505,15 +505,15 @@ export class UIDesignOrchestrator {
   }
 
   /**
-   * Analyze a single UI element with all available agents
+   * Analyse a single UI element with all available agents
    */
   async analyzeElement(element: UIElement): Promise<Map<string, AnalysisResult>> {
     const analysisResults = new Map<string, AnalysisResult>()
 
     for (const [agentId, agent] of this.agents.entries()) {
       try {
-        console.log(`🔍 Analyzing with ${agent.name}...`)
-        const result = await agent.analyze(element)
+        console.log(`🔍 Analysing with ${agent.name}...`)
+        const result = await agent.analyse(element)
         analysisResults.set(agentId, result)
       } catch (error) {
         console.error(`❌ Analysis failed for ${agent.name}:`, error)

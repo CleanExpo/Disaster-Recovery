@@ -400,7 +400,7 @@ Keep response concise but comprehensive. Lives may depend on this information.`;
 Problem: ${params.task}
 
 For each step, provide:
-1. What you're analyzing
+1. What you're analysing
 2. Your conclusion
 3. Confidence level (0-1)
 
@@ -585,7 +585,7 @@ This is an automated emergency response. Please contact emergency services if th
    - List all damaged items and areas
 
 3. IMMEDIATE CONCERNS:
-   - Water intrusion (potential mold risk)
+   - Water intrusion (potential mould risk)
    - Structural integrity
    - Electrical safety
    - Contamination risks

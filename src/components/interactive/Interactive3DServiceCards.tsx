@@ -171,7 +171,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
           }}
         >
           <motion.h3 
-            className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors duration-300"
+            className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colours duration-300"
             animate={isHovered ? { y: -5 } : { y: 0 }}
           >
             {title}
@@ -194,7 +194,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
             {features.map((feature, featureIndex) => (
               <motion.div 
                 key={feature}
-                className="flex items-center text-sm"
+                className="flex items-centre text-sm"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8 + index * 0.2 + featureIndex * 0.1 }}
@@ -215,7 +215,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
           >
             <Link href="tel:1300566166" className="group/btn">
               <motion.button
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-bold text-lg relative overflow-hidden"
+                className="inline-flex items-centre text-blue-600 hover:text-blue-700 font-bold text-lg relative overflow-hidden"
                 whileHover={{ x: 5 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -268,11 +268,11 @@ export default function Interactive3DServiceCards() {
     },
     {
       title: "Fire Damage Restoration",
-      description: "Complete fire and smoke damage restoration including soot removal, odor elimination, and structural repairs.",
+      description: "Complete fire and smoke damage restoration including soot removal, odour elimination, and structural repairs.",
       imageUrl: "/images/services/fire-damage-restoration.webp",
       features: [
         "Soot & smoke damage cleanup",
-        "Odor elimination treatment",
+        "Odour elimination treatment",
         "Structural repair & restoration"
       ],
       responseTime: "60-min response"
@@ -294,13 +294,13 @@ export default function Interactive3DServiceCards() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
       {/* Section Header */}
       <motion.div 
-        className="text-center mb-16"
+        className="text-centre mb-16"
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8 }}
       >
         <motion.div 
-          className="inline-flex items-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full mb-6"
+          className="inline-flex items-centre bg-blue-100 text-blue-800 px-4 py-2 rounded-full mb-6"
           whileHover={{ scale: 1.05 }}
         >
           <span className="font-semibold">Professional Services</span>

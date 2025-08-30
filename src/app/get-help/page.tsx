@@ -42,7 +42,7 @@ export default function GetHelpPage() {
     return (
       <div className="min-h-screen bg-green-50 py-20">
         <div className="container mx-auto px-4">
-          <Card className="max-w-2xl mx-auto p-8 text-center">
+          <Card className="max-w-2xl mx-auto p-8 text-centre">
             <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
             <h1 className="text-3xl font-bold mb-4">Request Received!</h1>
             <p className="text-xl mb-6">
@@ -71,14 +71,14 @@ export default function GetHelpPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-red-900 to-orange-800 text-white py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <AlertTriangle className="h-16 w-16 mx-auto mb-4 animate-pulse" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Get Emergency Help Now
             </h1>
             <p className="text-xl mb-8">
               Connect instantly with IICRC certified contractors in your area. 
-              No call centers - direct connection to qualified professionals.
+              No call centres - direct connection to qualified professionals.
             </p>
             <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
               <Card className="bg-white/10 backdrop-blur p-4">
@@ -275,7 +275,7 @@ export default function GetHelpPage() {
 
                 {/* Contractor Standards Notice */}
                 <Card className="bg-blue-50 p-6">
-                  <h3 className="font-bold mb-3 flex items-center">
+                  <h3 className="font-bold mb-3 flex items-centre">
                     <Shield className="h-5 w-5 mr-2 text-blue-600" />
                     Our Contractor Standards
                   </h3>
@@ -312,13 +312,13 @@ export default function GetHelpPage() {
       {/* How It Works */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             How Our System Works
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-4 gap-6">
-              <Card className="p-6 text-center">
-                <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <Card className="p-6 text-centre">
+                <div className="bg-orange-100 rounded-full w-12 h-12 flex items-centre justify-centre mx-auto mb-4">
                   <span className="font-bold text-orange-600">1</span>
                 </div>
                 <h3 className="font-bold mb-2">Submit Request</h3>
@@ -326,8 +326,8 @@ export default function GetHelpPage() {
                   Fill out the form with your damage details
                 </p>
               </Card>
-              <Card className="p-6 text-center">
-                <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <Card className="p-6 text-centre">
+                <div className="bg-orange-100 rounded-full w-12 h-12 flex items-centre justify-centre mx-auto mb-4">
                   <span className="font-bold text-orange-600">2</span>
                 </div>
                 <h3 className="font-bold mb-2">Smart Matching</h3>
@@ -335,8 +335,8 @@ export default function GetHelpPage() {
                   System finds qualified contractors in your radius
                 </p>
               </Card>
-              <Card className="p-6 text-center">
-                <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <Card className="p-6 text-centre">
+                <div className="bg-orange-100 rounded-full w-12 h-12 flex items-centre justify-centre mx-auto mb-4">
                   <span className="font-bold text-orange-600">3</span>
                 </div>
                 <h3 className="font-bold mb-2">Receive Quotes</h3>
@@ -344,8 +344,8 @@ export default function GetHelpPage() {
                   Get multiple quotes from certified contractors
                 </p>
               </Card>
-              <Card className="p-6 text-center">
-                <div className="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
+              <Card className="p-6 text-centre">
+                <div className="bg-green-100 rounded-full w-12 h-12 flex items-centre justify-centre mx-auto mb-4">
                   <span className="font-bold text-green-600">4</span>
                 </div>
                 <h3 className="font-bold mb-2">Choose & Start</h3>

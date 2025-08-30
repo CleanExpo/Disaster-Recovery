@@ -106,7 +106,7 @@ export async function assignLeadToPartner(criteria: PartnerSearchCriteria) {
         score += 50;
       }
       
-      // Specialization match
+      // Specialisation match
       const matchingSpecs = criteria.damageType.filter(type => 
         specializations.includes(type)
       );

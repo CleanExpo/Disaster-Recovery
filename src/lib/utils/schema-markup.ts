@@ -1,11 +1,11 @@
 /**
- * Schema.org structured data utilities for SEO optimization
+ * Schema.org structured data utilities for SEO optimisation
  * Implements JSON-LD schema markup for disaster recovery content
  */
 
 export interface OrganizationSchema {
   '@context': 'https://schema.org';
-  '@type': 'Organization';
+  '@type': 'Organisation';
   name: string;
   url: string;
   logo: string;
@@ -31,7 +31,7 @@ export interface ArticleSchema {
   headline: string;
   description: string;
   author: {
-    '@type': 'Person' | 'Organization';
+    '@type': 'Person' | 'Organisation';
     name: string;
     url?: string;
   };
@@ -39,7 +39,7 @@ export interface ArticleSchema {
   dateModified: string;
   image?: string[];
   publisher: {
-    '@type': 'Organization';
+    '@type': 'Organisation';
     name: string;
     logo: {
       '@type': 'ImageObject';
@@ -59,7 +59,7 @@ export interface ServiceSchema {
   name: string;
   description: string;
   provider: {
-    '@type': 'Organization';
+    '@type': 'Organisation';
     name: string;
   };
   areaServed: {
@@ -174,7 +174,7 @@ export interface ReviewSchema {
   '@context': 'https://schema.org';
   '@type': 'Review';
   itemReviewed: {
-    '@type': 'Service' | 'Organization';
+    '@type': 'Service' | 'Organisation';
     name: string;
   };
   reviewRating: {
@@ -214,12 +214,12 @@ export interface EmergencyServiceSchema {
 }
 
 /**
- * Generate organization schema for the main website
+ * Generate organisation schema for the main website
  */
 export function generateOrganizationSchema(): OrganizationSchema {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'Organisation',
     name: 'National Restoration Professionals (NRP)',
     url: 'https://disasterrecovery.com.au',
     logo: 'https://disasterrecovery.com.au/logo.png',
@@ -261,14 +261,14 @@ export function generateArticleSchema(
     headline,
     description,
     author: {
-      '@type': 'Organization',
+      '@type': 'Organisation',
       name: 'National Restoration Professionals',
       url: 'https://disasterrecovery.com.au'
     },
     datePublished,
     dateModified,
     publisher: {
-      '@type': 'Organization',
+      '@type': 'Organisation',
       name: 'National Restoration Professionals',
       logo: {
         '@type': 'ImageObject',
@@ -297,7 +297,7 @@ export function generateServiceSchema(
     name: serviceName,
     description: serviceDescription,
     provider: {
-      '@type': 'Organization',
+      '@type': 'Organisation',
       name: 'National Restoration Professionals'
     },
     areaServed: {

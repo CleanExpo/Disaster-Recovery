@@ -161,7 +161,7 @@ export function ApplicationReview() {
   return (
     <div className="space-y-6">
       {/* Header with filters */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <h2 className="text-xl font-bold">Application Review</h2>
         <div className="flex gap-3">
           <div className="relative">
@@ -232,13 +232,13 @@ export function ApplicationReview() {
                         </div>
                       </td>
                       <td className="p-4">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <Building className="h-4 w-4 text-gray-400" />
                           <span>{app.companyName}</span>
                         </div>
                       </td>
                       <td className="p-4">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <div className="w-24 bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-blue-600 h-2 rounded-full"
@@ -251,7 +251,7 @@ export function ApplicationReview() {
                         </div>
                       </td>
                       <td className="p-4">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <span className={`font-semibold ${
                             score >= 80 ? 'text-green-600' :
                             score >= 60 ? 'text-yellow-600' :

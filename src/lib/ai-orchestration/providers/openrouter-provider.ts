@@ -20,7 +20,7 @@ export class OpenRouterProvider {
     this.client = axios.create({
       baseURL: 'https://openrouter.ai/api/v1',
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'Authorisation': `Bearer ${this.apiKey}`,
         'HTTP-Referer': process.env.NEXT_PUBLIC_SITE_URL || 'https://disasterrecovery.com.au',
         'X-Title': 'Disaster Recovery Australia',
         'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export class OpenRouterProvider {
     const systemPrompt = `You are an expert AI using sequential thinking to solve complex problems.
     Break down the problem into logical steps and think through each step carefully.
     For each step:
-    1. State what you're analyzing
+    1. State what you're analysing
     2. Provide your reasoning
     3. Rate your confidence (0-1)
     4. Determine if you need to revise any previous steps

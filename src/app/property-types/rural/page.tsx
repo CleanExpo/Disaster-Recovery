@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Rural Properties Disaster Recovery | Farms and country properties | Australia',
-  description: 'Specialized disaster recovery for rural properties. Farms and country properties. Insurance approved, 24/7 response.',
+  description: 'Specialised disaster recovery for rural properties. Farms and country properties. Insurance approved, 24/7 response.',
 };
 
 export default function RuralPropertiesPage() {

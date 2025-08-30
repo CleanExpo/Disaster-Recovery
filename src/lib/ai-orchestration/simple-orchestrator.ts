@@ -222,7 +222,7 @@ export class SimpleOrchestrator {
    * Create system prompt based on request context
    */
   private createSystemPrompt(request: AIRequest): string {
-    let prompt = `You are an AI assistant for Disaster Recovery Australia, specializing in emergency response and restoration services.
+    let prompt = `You are an AI assistant for Disaster Recovery Australia, specialising in emergency response and restoration services.
     Use Australian English spelling and terminology.
     Provide practical, actionable advice.`;
     

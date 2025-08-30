@@ -6,14 +6,14 @@ import { Building2, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Industry-Specific Disaster Recovery | Commercial & Industrial Restoration',
-  description: 'Specialized disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
+  description: 'Specialised disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
 };
 
 const industries = [
   {
     "name": "Mining & Resources",
     "slug": "mining-resources",
-    "description": "Specialized disaster recovery for mining operations, processing plants, and resource facilities"
+    "description": "Specialised disaster recovery for mining operations, processing plants, and resource facilities"
   },
   {
     "name": "Agriculture & Farming",
@@ -23,7 +23,7 @@ const industries = [
   {
     "name": "Healthcare & Medical Facilities",
     "slug": "healthcare-medical",
-    "description": "Critical disaster recovery for hospitals, clinics, aged care, and medical centers"
+    "description": "Critical disaster recovery for hospitals, clinics, aged care, and medical centres"
   },
   {
     "name": "Education & Schools",
@@ -31,9 +31,9 @@ const industries = [
     "description": "School and university disaster recovery with minimal disruption to learning"
   },
   {
-    "name": "Retail & Shopping Centers",
+    "name": "Retail & Shopping Centres",
     "slug": "retail-shopping",
-    "description": "Rapid restoration for retail stores and shopping centers to minimize business interruption"
+    "description": "Rapid restoration for retail stores and shopping centres to minimize business interruption"
   },
   {
     "name": "Hospitality & Tourism",
@@ -46,7 +46,7 @@ export default function IndustriesPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Building2 className="h-16 w-16 text-orange-500 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Industry-Specific Disaster Recovery

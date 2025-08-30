@@ -319,7 +319,7 @@ export default function CertificationVerification({
 
           {/* Progress Overview */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-centre justify-between mb-4">
               <h3 className="font-semibold text-blue-900">Certification Progress</h3>
               <span className="text-sm text-blue-700">
                 {getCompletionCount()} of {requiredCertifications.length} required certifications verified
@@ -358,7 +358,7 @@ export default function CertificationVerification({
                   `}>
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
+                        <div className="flex items-centre gap-3 mb-2">
                           <Shield className={`w-6 h-6 ${isComplete ? 'text-green-600' : 'text-gray-400'}`} />
                           <h4 className="text-lg font-semibold text-gray-900">{certType.name}</h4>
                           {isComplete && <CheckCircle className="w-5 h-5 text-green-600" />}
@@ -367,7 +367,7 @@ export default function CertificationVerification({
                         
                         {existingCert && (
                           <div className="space-y-2">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-centre gap-2">
                               {getStatusIcon(existingCert.verificationStatus)}
                               <span className={`
                                 inline-flex px-2 py-1 text-xs font-medium rounded-full
@@ -389,7 +389,7 @@ export default function CertificationVerification({
                             )}
                             
                             {existingCert.expiryDate && (
-                              <div className="flex items-center gap-1">
+                              <div className="flex items-centre gap-1">
                                 <Calendar className="w-4 h-4 text-gray-500" />
                                 <span className={`text-sm ${
                                   isExpiryWarning(existingCert) ? 'text-red-600 font-medium' : 'text-gray-600'
@@ -409,7 +409,7 @@ export default function CertificationVerification({
                             href={certType.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 mt-2"
+                            className="inline-flex items-centre gap-1 text-sm text-blue-600 hover:text-blue-800 mt-2"
                           >
                             <ExternalLink className="w-3 h-3" />
                             Verify Online
@@ -417,12 +417,12 @@ export default function CertificationVerification({
                         )}
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         {existingCert && existingCert.verificationStatus === 'PENDING' && (
                           <button
                             onClick={() => verifyCertification(existingCert.id)}
                             disabled={verifying === existingCert.id}
-                            className="flex items-center gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                            className="flex items-centre gap-2 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
                           >
                             {verifying === existingCert.id ? (
                               <>
@@ -443,7 +443,7 @@ export default function CertificationVerification({
                             setSelectedCert(certType.type);
                             setShowAddModal(true);
                           }}
-                          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition ${
+                          className={`flex items-centre gap-2 px-4 py-2 rounded-lg transition ${
                             existingCert
                               ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                               : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -483,7 +483,7 @@ export default function CertificationVerification({
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Certifications</h3>
           <div className="bg-gray-50 rounded-lg p-4">
             <p className="text-gray-600 mb-4">
-              Add additional certifications to increase your qualification score and access to specialized work types.
+              Add additional certifications to increase your qualification score and access to specialised work types.
             </p>
             
             <div className="grid md:grid-cols-2 gap-4">
@@ -494,7 +494,7 @@ export default function CertificationVerification({
                   
                   return (
                     <div key={certType.type} className="bg-white border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-centre justify-between">
                         <div>
                           <h5 className="font-medium text-gray-900">{certType.name}</h5>
                           <p className="text-sm text-gray-600">{certType.description}</p>
@@ -526,7 +526,7 @@ export default function CertificationVerification({
 
         {/* Submit Button */}
         <div className="border-t pt-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <p className="text-sm text-gray-600">
                 Complete all required certifications to proceed with onboarding
@@ -538,7 +538,7 @@ export default function CertificationVerification({
             <button
               onClick={submitAllCertifications}
               disabled={loading || getCompletionCount() !== requiredCertifications.length}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="flex items-centre gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
               {loading ? (
                 <>
@@ -627,10 +627,10 @@ function AddCertificationModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50 p-4">
       <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
         <div className="p-6 border-b">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <h3 className="text-2xl font-bold text-gray-900">
               Add {certType?.name}
             </h3>

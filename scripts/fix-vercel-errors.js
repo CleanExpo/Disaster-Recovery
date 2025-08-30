@@ -112,7 +112,7 @@ NODE_ENV=production
   },
   
   {
-    name: 'Build Script Optimization',
+    name: 'Build Script Optimisation',
     apply: () => {
       // Update vercel.json for better error handling
       const vercelPath = path.join(process.cwd(), 'vercel.json');
@@ -145,7 +145,7 @@ NODE_ENV=production
       };
       
       fs.writeFileSync(vercelPath, JSON.stringify(vercelConfig, null, 2));
-      console.log('✅ Updated vercel.json with optimized settings');
+      console.log('✅ Updated vercel.json with optimised settings');
       return true;
     }
   }

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 /**
  * Container Component - R6 Digital Inspired
  * 
- * A responsive container component that centers content and provides
+ * A responsive container component that centres content and provides
  * consistent max-width and padding across different screen sizes.
  * Based on R6 Digital's layout system (max-width: 1370px).
  * 

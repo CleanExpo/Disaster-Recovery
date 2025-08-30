@@ -16,7 +16,7 @@ interface MockAIResponse {
 class MockAIService {
   private responses: Record<string, string[]> = {
     damage_assessment: [
-      "Based on the description provided, this appears to be Category 2 water damage with significant structural impact. Immediate water extraction and drying is required to prevent mold growth. Estimated restoration time: 3-5 days.",
+      "Based on the description provided, this appears to be Category 2 water damage with significant structural impact. Immediate water extraction and drying is required to prevent mould growth. Estimated restoration time: 3-5 days.",
       "The fire damage assessment indicates Class B damage with smoke penetration throughout the property. Professional cleaning, air quality testing, and potential structural repairs needed. Timeline: 7-10 days.",
       "Storm damage evaluation shows compromised roof integrity and water intrusion. Temporary weatherproofing required immediately, followed by structural repairs. Estimated completion: 5-7 days."
     ],
@@ -72,7 +72,7 @@ class MockAIService {
         urgencyLevel: 'high',
         recommendedAction: 'Dispatch emergency contractor immediately',
         estimatedResponseTime: '30 minutes',
-        requiredServices: ['water-extraction', 'structural-drying', 'mold-prevention']
+        requiredServices: ['water-extraction', 'structural-drying', 'mould-prevention']
       },
       'damage-assessment': {
         damageCategory: 'Category 2 Water Damage',
@@ -86,7 +86,7 @@ class MockAIService {
           { id: 'contractor_5', name: 'Emergency Services', score: 92 },
           { id: 'contractor_8', name: 'Water Damage Experts', score: 88 }
         ],
-        selectionCriteria: ['proximity', 'availability', 'specialization', 'rating']
+        selectionCriteria: ['proximity', 'availability', 'specialisation', 'rating']
       }
     };
     

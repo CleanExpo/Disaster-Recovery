@@ -26,7 +26,7 @@ export default function TechnologyPage() {
         'Insurance-ready reporting'
       ],
       link: '/technology/ai',
-      color: 'from-purple-500 to-indigo-600',
+      colour: 'from-purple-500 to-indigo-600',
       stats: { accuracy: '99.9%', speed: '60x faster', coverage: '100%' }
     },
     {
@@ -40,7 +40,7 @@ export default function TechnologyPage() {
         'Complete damage mapping'
       ],
       link: '/technology/thermal',
-      color: 'from-orange-500 to-red-600',
+      colour: 'from-orange-500 to-red-600',
       stats: { detection: '100%', depth: '10cm+', resolution: '640x480' }
     },
     {
@@ -49,12 +49,12 @@ export default function TechnologyPage() {
       icon: Wind,
       features: [
         '99.97% particle removal',
-        'Mold spore elimination',
-        'Odor neutralization',
+        'Mould spore elimination',
+        'Odour neutralization',
         'Real-time air monitoring'
       ],
       link: '/technology/hepa',
-      color: 'from-cyan-500 to-blue-600',
+      colour: 'from-cyan-500 to-blue-600',
       stats: { filtration: '99.97%', coverage: '5000m³/hr', particles: '0.3μm' }
     }
   ];
@@ -89,8 +89,8 @@ export default function TechnologyPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-70" />
         
         <div className="container mx-auto relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="text-centre max-w-4xl mx-auto mb-16">
+            <div className="inline-flex items-centre gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4" />
               Industry-Leading Technology
             </div>
@@ -107,7 +107,7 @@ export default function TechnologyPage() {
               the fastest, most accurate disaster recovery in Australia.
             </p>
             
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-centre">
               <Link href="/book-service">
                 <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                   Get Technology Assessment
@@ -131,8 +131,8 @@ export default function TechnologyPage() {
               { label: 'Properties Saved', value: '10K+', icon: Shield },
               { label: 'Available 24/7', value: '365', icon: Activity }
             ].map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg mb-2">
+              <div key={idx} className="text-centre">
+                <div className="inline-flex items-centre justify-centre w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg mb-2">
                   <stat.icon className="w-6 h-6 text-blue-600" />
                 </div>
                 <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
@@ -146,7 +146,7 @@ export default function TechnologyPage() {
       {/* Technologies Grid */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Technology Suite
             </h2>
@@ -158,11 +158,11 @@ export default function TechnologyPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {technologies.map((tech, idx) => (
               <Card key={idx} className="relative overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${tech.colour} opacity-5 group-hover:opacity-10 transition-opacity`} />
                 
                 <div className="relative p-8">
                   {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${tech.color} text-white mb-6`}>
+                  <div className={`inline-flex items-centre justify-centre w-16 h-16 rounded-2xl bg-gradient-to-br ${tech.colour} text-white mb-6`}>
                     <tech.icon className="w-8 h-8" />
                   </div>
 
@@ -187,7 +187,7 @@ export default function TechnologyPage() {
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-2 mb-6 pt-6 border-t border-gray-100">
                     {Object.entries(tech.stats).map(([key, value], sidx) => (
-                      <div key={sidx} className="text-center">
+                      <div key={sidx} className="text-centre">
                         <div className="text-lg font-bold text-gray-900">{value}</div>
                         <div className="text-xs text-gray-500 capitalize">{key}</div>
                       </div>
@@ -211,7 +211,7 @@ export default function TechnologyPage() {
       {/* Benefits Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Technology Advantages
             </h2>
@@ -222,8 +222,8 @@ export default function TechnologyPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {benefits.map((benefit, idx) => (
-              <div key={idx} className="text-center group">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
+              <div key={idx} className="text-centre group">
+                <div className="inline-flex items-centre justify-centre w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
                   <benefit.icon className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -241,14 +241,14 @@ export default function TechnologyPage() {
       {/* CTA Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
-          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 text-center">
+          <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12 text-centre">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Experience the Technology Difference
             </h2>
             <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
               See how our advanced technology can save your property and reduce restoration time by 60%
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-centre">
               <Link href="/book-service">
                 <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
                   Schedule Assessment

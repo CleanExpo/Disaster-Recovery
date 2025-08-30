@@ -80,7 +80,7 @@ export const SCIENTIFIC_FACTS = {
     toxicity: {
       fact: "Combustion produces over 400 identified toxic compounds including PAHs and VOCs",
       source: "EPA Fire Research",
-      technical: "Polycyclic aromatic hydrocarbons and volatile organic compounds require specialized remediation",
+      technical: "Polycyclic aromatic hydrocarbons and volatile organic compounds require specialised remediation",
       common: "Fire smoke contains hundreds of dangerous chemicals that need professional removal",
     },
   },

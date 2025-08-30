@@ -19,15 +19,15 @@
       "@context": "https://schema.org",
       "@type": "ImageObject",
       "name": "3D Thermal Fogging Equipment",
-      "contentUrl": "/images/optimized/equipment/3D Thermal Fogging.png",
-      "thumbnail": "/images/optimized/thumbnails/3D Thermal Fogging.png",
+      "contentUrl": "/images/optimised/equipment/3D Thermal Fogging.png",
+      "thumbnail": "/images/optimised/thumbnails/3D Thermal Fogging.png",
       "description": "3D Thermal Fogging Equipment - Professional disaster recovery services",
       "keywords": "disaster recovery, restoration services, emergency response, 24/7 availability, professional equipment, industrial tools, restoration equipment"
     }
   },
   "technical": {
     "format": "png",
-    "optimization": "web-ready",
+    "optimisation": "web-ready",
     "responsive": true
   },
   "created": "2025-08-26T23:55:13.085Z"

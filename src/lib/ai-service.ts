@@ -184,7 +184,7 @@ export class AIService implements IAIService {
       case AITaskType.CONTENT_GENERATION:
       case AITaskType.EMAIL_RESPONSES:
       case AITaskType.FAQ_ANSWERS:
-        // Speed-optimized tasks - prefer faster/cheaper option
+        // Speed-optimised tasks - prefer faster/cheaper option
         return [AIProvider.OPENROUTER_GPT_OSS_120B, AIProvider.ANTHROPIC_CLAUDE];
         
       default:
@@ -288,7 +288,7 @@ export class AIService implements IAIService {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${config.apiKey}`,
+        'Authorisation': `Bearer ${config.apiKey}`,
         'Content-Type': 'application/json',
         'X-Title': 'Disaster Recovery Australia AI Service'
       },

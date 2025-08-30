@@ -91,7 +91,7 @@ export default function HEPAFiltrationPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-cyan-900 to-slate-900 text-white">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre opacity-20" />
           {/* Particle animation effect */}
           <div className="absolute inset-0">
             {Array.from({ length: 30 }).map((_, i) => (
@@ -111,7 +111,7 @@ export default function HEPAFiltrationPage() {
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/technology" className="hover:text-white transition">Technology</Link>
@@ -135,19 +135,19 @@ export default function HEPAFiltrationPage() {
             
             {/* Key Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-blue-400">99.97%</div>
                 <div className="text-sm text-gray-300">Filtration Rate</div>
               </div>
-              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-cyan-400">2000</div>
                 <div className="text-sm text-gray-300">CFM Airflow</div>
               </div>
-              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-green-400">0.3μm</div>
                 <div className="text-sm text-gray-300">Particle Size</div>
               </div>
-              <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
+              <div className="text-centre p-4 rounded-lg bg-white/10 backdrop-blur">
                 <div className="text-3xl font-bold text-purple-400">H13</div>
                 <div className="text-sm text-gray-300">HEPA Grade</div>
               </div>
@@ -175,7 +175,7 @@ export default function HEPAFiltrationPage() {
       {/* Features Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Comprehensive Air Purification
             </h2>
@@ -188,13 +188,13 @@ export default function HEPAFiltrationPage() {
             {features.map((feature, idx) => {
               const Icon = feature.icon;
               return (
-                <Card key={idx} className="p-6 hover:shadow-xl transition-all text-center">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 mb-4">
+                <Card key={idx} className="p-6 hover:shadow-xl transition-all text-centre">
+                  <div className="inline-flex items-centre justify-centre w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 mb-4">
                     <Icon className="h-7 w-7 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
                   <p className="text-gray-600 mb-4">{feature.description}</p>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                  <div className="inline-flex items-centre gap-2 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
                     <CheckCircle className="h-4 w-4" />
                     {feature.effectiveness} Effective
                   </div>
@@ -208,7 +208,7 @@ export default function HEPAFiltrationPage() {
       {/* Process Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Air Quality Restoration Process
             </h2>
@@ -222,14 +222,14 @@ export default function HEPAFiltrationPage() {
               const Icon = step.icon;
               return (
                 <div key={idx} className="relative">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold text-xl">
+                  <div className="flex items-centre gap-4 mb-8">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-centre justify-centre text-white font-bold text-xl">
                       {idx + 1}
                     </div>
                     <Card className="flex-1 p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                          <h3 className="text-xl font-semibold text-gray-900 mb-2 flex items-centre gap-2">
                             <Icon className="h-5 w-5 text-blue-500" />
                             {step.phase}
                           </h3>
@@ -254,7 +254,7 @@ export default function HEPAFiltrationPage() {
       {/* Multi-Stage Filtration */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               4-Stage Filtration System
             </h2>
@@ -271,7 +271,7 @@ export default function HEPAFiltrationPage() {
                 { stage: 3, name: 'Carbon Filter', target: 'Odours, VOCs, chemicals', efficiency: '15 lbs' },
                 { stage: 4, name: 'UV-C Light', target: 'Bacteria, viruses, pathogens', efficiency: '254nm' }
               ].map((filter) => (
-                <Card key={filter.stage} className="p-6 text-center">
+                <Card key={filter.stage} className="p-6 text-centre">
                   <div className="text-3xl font-bold text-blue-500 mb-2">Stage {filter.stage}</div>
                   <h3 className="font-semibold text-gray-900 mb-2">{filter.name}</h3>
                   <p className="text-sm text-gray-600 mb-3">{filter.target}</p>
@@ -289,7 +289,7 @@ export default function HEPAFiltrationPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
               Equipment Specifications
             </h2>
             <Card className="p-8">
@@ -314,7 +314,7 @@ export default function HEPAFiltrationPage() {
 
       {/* CTA Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <Sparkles className="h-12 w-12 mx-auto mb-4" />
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Breathe Clean, Healthy Air Again
@@ -323,7 +323,7 @@ export default function HEPAFiltrationPage() {
             Don't compromise on air quality. Our HEPA filtration systems ensure your space 
             is safe, clean, and healthy for everyone.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 Schedule Air Quality Assessment

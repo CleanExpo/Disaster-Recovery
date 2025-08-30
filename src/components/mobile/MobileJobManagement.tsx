@@ -90,7 +90,7 @@ export default function MobileJobManagement() {
     {
       id: '3',
       jobNumber: 'JOB-2024-003',
-      type: 'mold',
+      type: 'mould',
       status: 'completed',
       priority: 'routine',
       client: {
@@ -106,7 +106,7 @@ export default function MobileJobManagement() {
       },
       scheduledDate: new Date('2024-03-19T10:00:00'),
       estimatedDuration: 3,
-      notes: 'Mold remediation in bathroom and laundry area.',
+      notes: 'Mould remediation in bathroom and laundry area.',
       photos: [],
       documents: [],
       syncStatus: 'synced'
@@ -116,7 +116,7 @@ export default function MobileJobManagement() {
   const jobTypeIcons = {
     water_damage: <Droplets className="w-5 h-5" />,
     fire_damage: <Flame className="w-5 h-5" />,
-    mold: <Shield className="w-5 h-5" />,
+    mould: <Shield className="w-5 h-5" />,
     biohazard: <AlertTriangle className="w-5 h-5" />,
     other: <Briefcase className="w-5 h-5" />
   };
@@ -124,7 +124,7 @@ export default function MobileJobManagement() {
   const jobTypeColors = {
     water_damage: 'bg-blue-100 text-blue-700 border-blue-200',
     fire_damage: 'bg-red-100 text-red-700 border-red-200',
-    mold: 'bg-green-100 text-green-700 border-green-200',
+    mould: 'bg-green-100 text-green-700 border-green-200',
     biohazard: 'bg-yellow-100 text-yellow-700 border-yellow-200',
     other: 'bg-gray-100 text-gray-700 border-gray-200'
   };
@@ -149,7 +149,7 @@ export default function MobileJobManagement() {
       className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
     >
       <div className="flex justify-between items-start mb-3">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-centre space-x-2">
           <div className={`p-2 rounded-lg border ${jobTypeColors[job.type]}`}>
             {jobTypeIcons[job.type]}
           </div>
@@ -169,19 +169,19 @@ export default function MobileJobManagement() {
       </div>
 
       <div className="space-y-2 text-sm">
-        <div className="flex items-center text-gray-600">
+        <div className="flex items-centre text-gray-600">
           <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
           <span className="truncate">{job.location.address}</span>
         </div>
         
-        <div className="flex items-center justify-between">
-          <div className="flex items-center text-gray-600">
+        <div className="flex items-centre justify-between">
+          <div className="flex items-centre text-gray-600">
             <Clock className="w-4 h-4 mr-2" />
             <span>{new Date(job.scheduledDate).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
           
           {job.location.distance && (
-            <div className="flex items-center text-gray-600">
+            <div className="flex items-centre text-gray-600">
               <Navigation className="w-4 h-4 mr-1" />
               <span>{job.location.distance} km</span>
             </div>
@@ -189,7 +189,7 @@ export default function MobileJobManagement() {
         </div>
 
         {job.syncStatus === 'pending' && (
-          <div className="flex items-center text-orange-600">
+          <div className="flex items-centre text-orange-600">
             <WifiOff className="w-4 h-4 mr-2" />
             <span className="text-xs">Pending sync</span>
           </div>
@@ -210,12 +210,12 @@ export default function MobileJobManagement() {
     return (
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
         <h3 className="font-semibold text-gray-900 mb-4">Update Status</h3>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-centre">
           {statusFlow.map((item, index) => (
             <React.Fragment key={item.status}>
               <button
                 onClick={() => setJobStatus(item.status as MobileJob['status'])}
-                className={`flex flex-col items-center p-2 rounded-lg transition-all ${
+                className={`flex flex-col items-centre p-2 rounded-lg transition-all ${
                   jobStatus === item.status
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -236,7 +236,7 @@ export default function MobileJobManagement() {
 
   const PhotoCapture = () => (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-centre mb-4">
         <h3 className="font-semibold text-gray-900">Photos</h3>
         <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
           <Camera className="w-5 h-5" />
@@ -244,19 +244,19 @@ export default function MobileJobManagement() {
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-centre justify-centre border-2 border-dashed border-gray-300">
           <Camera className="w-8 h-8 text-gray-400 mb-2" />
           <span className="text-sm text-gray-500">Before</span>
         </div>
-        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-centre justify-centre border-2 border-dashed border-gray-300">
           <Camera className="w-8 h-8 text-gray-400 mb-2" />
           <span className="text-sm text-gray-500">During</span>
         </div>
-        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-centre justify-centre border-2 border-dashed border-gray-300">
           <Camera className="w-8 h-8 text-gray-400 mb-2" />
           <span className="text-sm text-gray-500">After</span>
         </div>
-        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+        <div className="aspect-square bg-gray-100 rounded-lg flex flex-col items-centre justify-centre border-2 border-dashed border-gray-300">
           <Camera className="w-8 h-8 text-gray-400 mb-2" />
           <span className="text-sm text-gray-500">Damage</span>
         </div>
@@ -272,7 +272,7 @@ export default function MobileJobManagement() {
 
   const DocumentManager = () => (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-centre mb-4">
         <h3 className="font-semibold text-gray-900">Documents</h3>
         <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
           <Upload className="w-5 h-5" />
@@ -281,8 +281,8 @@ export default function MobileJobManagement() {
 
       <div className="space-y-3">
         {['Assessment Form', 'Client Agreement', 'Insurance Claim', 'Completion Report'].map((doc) => (
-          <div key={doc} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <div className="flex items-center space-x-3">
+          <div key={doc} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-centre space-x-3">
               <FileText className="w-5 h-5 text-gray-600" />
               <div>
                 <p className="text-sm font-medium text-gray-900">{doc}</p>
@@ -329,13 +329,13 @@ export default function MobileJobManagement() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-centre mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Mobile Job Management</h1>
           <p className="text-gray-600 mt-2">Field technician job tracking and management</p>
         </div>
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-centre space-x-4">
+          <div className="flex items-centre space-x-2">
             {isOffline ? (
               <>
                 <WifiOff className="w-5 h-5 text-gray-400" />
@@ -367,11 +367,11 @@ export default function MobileJobManagement() {
           </div>
 
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-centre justify-between mb-2">
               <h3 className="font-semibold text-blue-900">Daily Summary</h3>
               <BarChart3 className="w-5 h-5 text-blue-700" />
             </div>
-            <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="grid grid-cols-3 gap-4 text-centre">
               <div>
                 <p className="text-2xl font-bold text-blue-900">3</p>
                 <p className="text-xs text-blue-700">Total Jobs</p>
@@ -416,7 +416,7 @@ export default function MobileJobManagement() {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-centre space-x-3">
                     <Phone className="w-5 h-5 text-gray-400" />
                     <div className="flex-1">
                       <p className="text-sm text-gray-900">{selectedJob.client.phone}</p>
@@ -426,7 +426,7 @@ export default function MobileJobManagement() {
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-centre space-x-3">
                     <Calendar className="w-5 h-5 text-gray-400" />
                     <p className="text-sm text-gray-900">
                       {new Date(selectedJob.scheduledDate).toLocaleDateString('en-AU')} at{' '}
@@ -434,7 +434,7 @@ export default function MobileJobManagement() {
                     </p>
                   </div>
 
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-centre space-x-3">
                     <Clock className="w-5 h-5 text-gray-400" />
                     <p className="text-sm text-gray-900">
                       Estimated duration: {selectedJob.estimatedDuration} hours
@@ -449,7 +449,7 @@ export default function MobileJobManagement() {
               <JobNotes />
             </div>
           ) : (
-            <div className="bg-gray-50 rounded-lg p-8 text-center">
+            <div className="bg-gray-50 rounded-lg p-8 text-centre">
               <Briefcase className="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-600">Select a job to view details</p>
             </div>

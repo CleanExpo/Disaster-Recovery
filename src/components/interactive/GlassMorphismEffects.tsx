@@ -89,7 +89,7 @@ export function GlassMorphismCard({
 // Neon Glow Button Component
 interface NeonGlowButtonProps {
   children: React.ReactNode;
-  color?: 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'pink';
+  colour?: 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'pink';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'solid' | 'outline' | 'ghost';
   animated?: boolean;
@@ -99,7 +99,7 @@ interface NeonGlowButtonProps {
 
 export function NeonGlowButton({
   children,
-  color = 'blue',
+  colour = 'blue',
   size = 'md',
   variant = 'solid',
   animated = true,
@@ -107,7 +107,7 @@ export function NeonGlowButton({
   className = ''
 }: NeonGlowButtonProps) {
   const getColorClasses = () => {
-    const colors = {
+    const colours = {
       blue: {
         solid: 'bg-blue-600 text-white border-blue-500 shadow-blue-500/50',
         outline: 'border-blue-500 text-blue-400 hover:bg-blue-500/10',
@@ -140,7 +140,7 @@ export function NeonGlowButton({
       }
     };
     
-    return colors[color][variant];
+    return colours[colour][variant];
   };
 
   const getSizeClasses = () => {
@@ -170,11 +170,11 @@ export function NeonGlowButton({
       whileHover={{ 
         scale: 1.05,
         boxShadow: variant === 'solid' ? `0 0 30px ${
-          color === 'blue' ? 'rgba(59, 130, 246, 0.6)' :
-          color === 'purple' ? 'rgba(168, 85, 247, 0.6)' :
-          color === 'green' ? 'rgba(34, 197, 94, 0.6)' :
-          color === 'red' ? 'rgba(239, 68, 68, 0.6)' :
-          color === 'yellow' ? 'rgba(234, 179, 8, 0.6)' :
+          colour === 'blue' ? 'rgba(59, 130, 246, 0.6)' :
+          colour === 'purple' ? 'rgba(168, 85, 247, 0.6)' :
+          colour === 'green' ? 'rgba(34, 197, 94, 0.6)' :
+          colour === 'red' ? 'rgba(239, 68, 68, 0.6)' :
+          colour === 'yellow' ? 'rgba(234, 179, 8, 0.6)' :
           'rgba(236, 72, 153, 0.6)'
         }` : undefined
       }}
@@ -182,27 +182,27 @@ export function NeonGlowButton({
       animate={animated && variant === 'solid' ? {
         boxShadow: [
           `0 0 20px ${
-            color === 'blue' ? 'rgba(59, 130, 246, 0.4)' :
-            color === 'purple' ? 'rgba(168, 85, 247, 0.4)' :
-            color === 'green' ? 'rgba(34, 197, 94, 0.4)' :
-            color === 'red' ? 'rgba(239, 68, 68, 0.4)' :
-            color === 'yellow' ? 'rgba(234, 179, 8, 0.4)' :
+            colour === 'blue' ? 'rgba(59, 130, 246, 0.4)' :
+            colour === 'purple' ? 'rgba(168, 85, 247, 0.4)' :
+            colour === 'green' ? 'rgba(34, 197, 94, 0.4)' :
+            colour === 'red' ? 'rgba(239, 68, 68, 0.4)' :
+            colour === 'yellow' ? 'rgba(234, 179, 8, 0.4)' :
             'rgba(236, 72, 153, 0.4)'
           }`,
           `0 0 30px ${
-            color === 'blue' ? 'rgba(59, 130, 246, 0.6)' :
-            color === 'purple' ? 'rgba(168, 85, 247, 0.6)' :
-            color === 'green' ? 'rgba(34, 197, 94, 0.6)' :
-            color === 'red' ? 'rgba(239, 68, 68, 0.6)' :
-            color === 'yellow' ? 'rgba(234, 179, 8, 0.6)' :
+            colour === 'blue' ? 'rgba(59, 130, 246, 0.6)' :
+            colour === 'purple' ? 'rgba(168, 85, 247, 0.6)' :
+            colour === 'green' ? 'rgba(34, 197, 94, 0.6)' :
+            colour === 'red' ? 'rgba(239, 68, 68, 0.6)' :
+            colour === 'yellow' ? 'rgba(234, 179, 8, 0.6)' :
             'rgba(236, 72, 153, 0.6)'
           }`,
           `0 0 20px ${
-            color === 'blue' ? 'rgba(59, 130, 246, 0.4)' :
-            color === 'purple' ? 'rgba(168, 85, 247, 0.4)' :
-            color === 'green' ? 'rgba(34, 197, 94, 0.4)' :
-            color === 'red' ? 'rgba(239, 68, 68, 0.4)' :
-            color === 'yellow' ? 'rgba(234, 179, 8, 0.4)' :
+            colour === 'blue' ? 'rgba(59, 130, 246, 0.4)' :
+            colour === 'purple' ? 'rgba(168, 85, 247, 0.4)' :
+            colour === 'green' ? 'rgba(34, 197, 94, 0.4)' :
+            colour === 'red' ? 'rgba(239, 68, 68, 0.4)' :
+            colour === 'yellow' ? 'rgba(234, 179, 8, 0.4)' :
             'rgba(236, 72, 153, 0.4)'
           }`
         ]
@@ -229,7 +229,7 @@ export function NeonGlowButton({
 // Neon Text Effect Component
 interface NeonTextProps {
   children: React.ReactNode;
-  color?: 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'pink' | 'cyan';
+  colour?: 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'pink' | 'cyan';
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
   animated?: boolean;
   className?: string;
@@ -237,13 +237,13 @@ interface NeonTextProps {
 
 export function NeonText({
   children,
-  color = 'blue',
+  colour = 'blue',
   size = 'md',
   animated = true,
   className = ''
 }: NeonTextProps) {
   const getColorClass = () => {
-    switch (color) {
+    switch (colour) {
       case 'blue': return 'text-blue-400';
       case 'purple': return 'text-purple-400';
       case 'green': return 'text-green-400';
@@ -268,7 +268,7 @@ export function NeonText({
   };
 
   const getGlowColor = () => {
-    switch (color) {
+    switch (colour) {
       case 'blue': return '59, 130, 246';
       case 'purple': return '168, 85, 247';
       case 'green': return '34, 197, 94';

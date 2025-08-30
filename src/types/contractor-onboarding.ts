@@ -124,7 +124,7 @@ export interface ServiceCoverageMatrix {
   weekendService: boolean;
 }
 
-// Specialized Capabilities
+// Specialised Capabilities
 export interface SpecializedCapabilities {
   // High-risk environments
   hasOffshoreCapability: boolean;
@@ -235,7 +235,7 @@ export interface ContractorOnboardingData {
       document: File | string;
     }>;
     industryMemberships: Array<{
-      organization: string;
+      organisation: string;
       membershipNumber: string;
       memberSince: string;
     }>;

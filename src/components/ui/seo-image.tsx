@@ -18,7 +18,7 @@ interface SEOImageProps {
 }
 
 /**
- * SEO-Optimized Image Component
+ * SEO-Optimised Image Component
  * Renders images with comprehensive SEO metadata and performance optimizations
  */
 export const SEOImage: React.FC<SEOImageProps> = ({
@@ -36,7 +36,7 @@ export const SEOImage: React.FC<SEOImageProps> = ({
   const [optimizedData, setOptimizedData] = useState<any>(null);
 
   useEffect(() => {
-    // Generate SEO-optimized metadata
+    // Generate SEO-optimised metadata
     const seoData = ImageSEOAgent.optimizeImage(image, {
       location,
       serviceType,
@@ -93,7 +93,7 @@ export const SEOImage: React.FC<SEOImageProps> = ({
       <meta itemProp="description" content={optimizedData.description} />
       <meta itemProp="keywords" content={optimizedData.primaryKeyword} />
       
-      {/* Main image using Next.js Image for optimization */}
+      {/* Main image using Next.js Image for optimisation */}
       <div className="relative overflow-hidden rounded-lg">
         <Image
           src={imageSrc}
@@ -140,7 +140,7 @@ export const SEOImage: React.FC<SEOImageProps> = ({
         )}
       </div>
       
-      {/* SEO-optimized caption */}
+      {/* SEO-optimised caption */}
       {showCaption && (
         <figcaption 
           className="mt-3 text-sm text-neutral-600 leading-relaxed"
@@ -174,7 +174,7 @@ export const SEOImage: React.FC<SEOImageProps> = ({
  * Generate blur data URL for placeholder
  */
 function generateBlurDataURL(): string {
-  // Simple colored blur based on category
+  // Simple coloured blur based on category
   const canvas = document.createElement('canvas');
   canvas.width = 10;
   canvas.height = 10;
@@ -236,7 +236,7 @@ export const SEOImageGallery: React.FC<SEOImageGalleryProps> = ({
       {/* Lightbox modal */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/90 flex items-centre justify-centre p-4"
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-w-5xl w-full">
@@ -265,7 +265,7 @@ export const SEOImageGallery: React.FC<SEOImageGalleryProps> = ({
 };
 
 /**
- * Hero Image with SEO Optimization
+ * Hero Image with SEO Optimisation
  */
 interface SEOHeroImageProps {
   image: ImageAsset;
@@ -298,7 +298,7 @@ export const SEOHeroImage: React.FC<SEOHeroImageProps> = ({
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />
       
       {/* Hero content */}
-      <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+      <div className="relative z-10 h-full flex items-centre justify-centre text-centre px-4">
         <div className="max-w-4xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
             {title}

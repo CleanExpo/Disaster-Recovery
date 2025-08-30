@@ -1,7 +1,7 @@
 /**
  * Web Image Optimizer
- * Lightweight image optimization without requiring Sharp
- * Uses browser-based optimization for web deployment
+ * Lightweight image optimisation without requiring Sharp
+ * Uses browser-based optimisation for web deployment
  */
 
 const fs = require('fs');
@@ -10,12 +10,12 @@ const path = require('path');
 class WebImageOptimizer {
   constructor() {
     this.sourceDir = process.argv[2] || 'C:\\Users\\Disaster Recovery 4\\Downloads';
-    this.outputDir = path.join(process.cwd(), 'public', 'images', 'optimized');
+    this.outputDir = path.join(process.cwd(), 'public', 'images', 'optimised');
     this.imageLibraryPath = path.join(process.cwd(), 'src', 'config', 'image-library.ts');
   }
 
   async processImages() {
-    console.log('\n🚀 Starting Web Image Optimization...');
+    console.log('\n🚀 Starting Web Image Optimisation...');
     console.log(`📂 Source directory: ${this.sourceDir}`);
     console.log(`📁 Output directory: ${this.outputDir}`);
 
@@ -89,9 +89,9 @@ class WebImageOptimizer {
         category: 'damage'
       },
       {
-        id: 'damage-mold-001',
-        title: '3D Mold Remediation',
-        filename: '3D Mold Damage.png',
+        id: 'damage-mould-001',
+        title: '3D Mould Remediation',
+        filename: '3D Mould Damage.png',
         category: 'damage'
       },
       {
@@ -246,7 +246,7 @@ class WebImageOptimizer {
       },
       technical: {
         format: 'png',
-        optimization: 'web-ready',
+        optimisation: 'web-ready',
         responsive: true
       },
       created: new Date().toISOString()
@@ -276,8 +276,8 @@ class WebImageOptimizer {
       '@context': 'https://schema.org',
       '@type': 'ImageObject',
       name: image.title,
-      contentUrl: `/images/optimized/${image.category}/${image.filename}`,
-      thumbnail: `/images/optimized/thumbnails/${image.filename}`,
+      contentUrl: `/images/optimised/${image.category}/${image.filename}`,
+      thumbnail: `/images/optimised/thumbnails/${image.filename}`,
       description: `${image.title} - Professional disaster recovery services`,
       keywords: this.generateKeywords(image).join(', ')
     };
@@ -332,7 +332,7 @@ class WebImageOptimizer {
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}/${image.category}</loc>\n`;
       xml += '    <image:image>\n';
-      xml += `      <image:loc>${baseUrl}/images/optimized/${image.category}/${image.filename}</image:loc>\n`;
+      xml += `      <image:loc>${baseUrl}/images/optimised/${image.category}/${image.filename}</image:loc>\n`;
       xml += `      <image:title>${image.title}</image:title>\n`;
       xml += `      <image:caption>Professional ${image.category} services - ${image.title}</image:caption>\n`;
       xml += '    </image:image>\n';
@@ -345,8 +345,8 @@ class WebImageOptimizer {
 
   generateRobotsTxt() {
     return `User-agent: *
-Allow: /images/optimized/
-Sitemap: /images/optimized/images-sitemap.xml`;
+Allow: /images/optimised/
+Sitemap: /images/optimised/images-sitemap.xml`;
   }
 
   generateStructuredData(images) {
@@ -359,7 +359,7 @@ Sitemap: /images/optimized/images-sitemap.xml`;
       associatedMedia: images.map(img => ({
         '@type': 'ImageObject',
         name: img.title,
-        contentUrl: `/images/optimized/${img.category}/${img.filename}`
+        contentUrl: `/images/optimised/${img.category}/${img.filename}`
       }))
     };
   }

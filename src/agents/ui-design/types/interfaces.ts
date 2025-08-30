@@ -11,7 +11,7 @@ export interface UIAgent {
   priority: number
   isActive: boolean
   execute(context: UIContext): Promise<AgentResult>
-  analyze(element: UIElement): Promise<AnalysisResult>
+  analyse(element: UIElement): Promise<AnalysisResult>
 }
 
 // UI context for agent operations
@@ -43,7 +43,7 @@ export interface UIComponent {
 export interface DesignSystemConfig {
   name: 'r6-digital'
   version: string
-  colors: ColorPalette
+  colours: ColorPalette
   typography: TypographySystem
   spacing: SpacingSystem
   shadows: ShadowSystem
@@ -52,7 +52,7 @@ export interface DesignSystemConfig {
   animations: AnimationSystem
 }
 
-// Color palette based on R6 Digital system
+// Colour palette based on R6 Digital system
 export interface ColorPalette {
   primary: {
     main: '#131cff'        // Electric blue

@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 interface EmergencyRequest {
   id: string;
-  type: 'water' | 'fire' | 'mold' | 'storm';
+  type: 'water' | 'fire' | 'mould' | 'storm';
   location: string;
   status: 'pending' | 'dispatched' | 'in-progress' | 'completed';
   priority: 'low' | 'medium' | 'high' | 'critical';
@@ -60,7 +60,7 @@ export default function LiveDashboard() {
         },
         {
           id: '3',
-          type: 'mold',
+          type: 'mould',
           location: 'Eastern Suburbs',
           status: 'pending',
           priority: 'medium',
@@ -139,7 +139,7 @@ export default function LiveDashboard() {
     switch (type) {
       case 'water': return '💧';
       case 'fire': return '🔥';
-      case 'mold': return '🦠';
+      case 'mould': return '🦠';
       case 'storm': return '⛈️';
       default: return '⚠️';
     }
@@ -155,8 +155,8 @@ export default function LiveDashboard() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
+        <div className="text-centre mb-12">
+          <div className="inline-flex items-centre gap-2 mb-4 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30">
             <div className="relative">
               <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
               <div className="w-2 h-2 bg-green-500 rounded-full" />
@@ -176,18 +176,18 @@ export default function LiveDashboard() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: 'Active Requests', value: stats.activeRequests, color: 'text-red-400', icon: '🚨' },
-            { label: 'Avg Response', value: stats.avgResponseTime, color: 'text-blue-400', icon: '⏱️' },
-            { label: 'Techs Available', value: stats.techsAvailable, color: 'text-green-400', icon: '👷' },
-            { label: 'Completed Today', value: stats.completedToday, color: 'text-purple-400', icon: '✅' }
+            { label: 'Active Requests', value: stats.activeRequests, colour: 'text-red-400', icon: '🚨' },
+            { label: 'Avg Response', value: stats.avgResponseTime, colour: 'text-blue-400', icon: '⏱️' },
+            { label: 'Techs Available', value: stats.techsAvailable, colour: 'text-green-400', icon: '👷' },
+            { label: 'Completed Today', value: stats.completedToday, colour: 'text-purple-400', icon: '✅' }
           ].map((stat, index) => (
             <div
               key={index}
               className="bg-gray-900/50 backdrop-blur-lg border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all"
             >
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-centre justify-between mb-2">
                 <span className="text-2xl">{stat.icon}</span>
-                <span className={`text-3xl font-bold ${stat.color}`}>{stat.value}</span>
+                <span className={`text-3xl font-bold ${stat.colour}`}>{stat.value}</span>
               </div>
               <p className="text-gray-500 text-sm">{stat.label}</p>
             </div>
@@ -205,8 +205,8 @@ export default function LiveDashboard() {
                   key={request.id}
                   className="bg-black/30 rounded-lg p-4 border border-gray-800 hover:border-gray-700 transition-all"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-centre justify-between mb-2">
+                    <div className="flex items-centre gap-3">
                       <span className="text-2xl">{getTypeIcon(request.type)}</span>
                       <div>
                         <p className="text-white font-medium">{request.location}</p>
@@ -215,7 +215,7 @@ export default function LiveDashboard() {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPriorityColor(request.priority)} bg-opacity-20 text-white`}>
                         {request.priority.toUpperCase()}
                       </span>
@@ -225,7 +225,7 @@ export default function LiveDashboard() {
                     </div>
                   </div>
                   {request.technician && (
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-centre justify-between text-sm">
                       <span className="text-gray-400">
                         Technician: <span className="text-white">{request.technician}</span>
                       </span>
@@ -250,8 +250,8 @@ export default function LiveDashboard() {
                   key={tech.id}
                   className="bg-black/30 rounded-lg p-3 border border-gray-800"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-centre justify-between">
+                    <div className="flex items-centre gap-2">
                       <div className={`w-2 h-2 rounded-full ${
                         tech.status === 'available' ? 'bg-green-500' :
                         tech.status === 'busy' ? 'bg-orange-500' : 'bg-gray-500'
@@ -271,10 +271,10 @@ export default function LiveDashboard() {
 
             {/* Quick Actions */}
             <div className="mt-6 space-y-2">
-              <button className="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium text-white transition-colors">
+              <button className="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium text-white transition-colours">
                 Dispatch Technician
               </button>
-              <button className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium text-white transition-colors">
+              <button className="w-full py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium text-white transition-colours">
                 View Full Map
               </button>
             </div>
@@ -291,7 +291,7 @@ export default function LiveDashboard() {
               { time: '8 min ago', event: 'Water damage assessment completed - Eastern Suburbs', type: 'complete' },
               { time: '12 min ago', event: 'High priority fire damage request received', type: 'priority' }
             ].map((activity, index) => (
-              <div key={index} className="flex items-center gap-3 text-sm">
+              <div key={index} className="flex items-centre gap-3 text-sm">
                 <span className="text-gray-500 w-20 text-right">{activity.time}</span>
                 <div className={`w-2 h-2 rounded-full ${
                   activity.type === 'new' ? 'bg-blue-500' :

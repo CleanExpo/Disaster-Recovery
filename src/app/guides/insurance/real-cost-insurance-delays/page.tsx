@@ -157,13 +157,13 @@ export default function RealCostInsuranceDelaysPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-red-900 via-orange-900 to-gray-900 text-white">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre opacity-20" />
         </div>
 
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/guides" className="hover:text-white transition">Guides</Link>
@@ -188,7 +188,7 @@ export default function RealCostInsuranceDelaysPage() {
 
             {/* Shocking Statistics */}
             <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6 mb-8">
-              <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="grid md:grid-cols-3 gap-6 text-centre">
                 <div>
                   <div className="text-3xl font-bold text-red-300 mb-2">10,000+</div>
                   <div className="text-sm text-gray-300">Ex-Cyclone Jasper claims ($384M) still processing</div>
@@ -202,7 +202,7 @@ export default function RealCostInsuranceDelaysPage() {
                   <div className="text-sm text-gray-300">Catastrophes occur Oct-April (ICA)</div>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 mt-4 text-center">
+              <p className="text-xs text-gray-400 mt-4 text-centre">
                 Sources: <a href="https://insurancecouncil.com.au/wp-content/uploads/2024/08/21100_ICA_Catastrophe-Report_Print-2024_Final-single-pages.pdf" 
                   className="underline hover:text-gray-300" target="_blank" rel="noopener noreferrer">ICA Catastrophe Report 2024</a> | 
                 <a href="https://www.asic.gov.au/" className="underline hover:text-gray-300" target="_blank" rel="noopener noreferrer">ASIC Oct 2024</a>
@@ -230,7 +230,7 @@ export default function RealCostInsuranceDelaysPage() {
       {/* The Broken System Timeline */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               The Broken System Timeline
             </h2>
@@ -250,15 +250,15 @@ export default function RealCostInsuranceDelaysPage() {
                 <div className="flex items-start gap-6">
                   {/* Stage indicator */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-centre justify-centre text-white font-bold text-lg">
                       {idx + 1}
                     </div>
                   </div>
                   
                   <div className="flex-1">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-centre justify-between mb-4">
                       <h3 className="text-2xl font-semibold text-gray-900">{stage.stage}</h3>
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-centre gap-4">
                         <Badge variant="outline" className="text-orange-600 border-orange-600">
                           <Clock className="h-4 w-4 mr-1" />
                           {stage.timeline}
@@ -274,7 +274,7 @@ export default function RealCostInsuranceDelaysPage() {
                     
                     <div className="grid lg:grid-cols-2 gap-6">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-centre gap-2">
                           <AlertTriangle className="h-4 w-4 text-red-500" />
                           System Problems
                         </h4>
@@ -290,7 +290,7 @@ export default function RealCostInsuranceDelaysPage() {
                       
                       {stage.damage && (
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                          <h4 className="font-semibold text-gray-900 mb-3 flex items-centre gap-2">
                             <TrendingUp className="h-4 w-4 text-orange-500" />
                             Meanwhile, Your Property...
                           </h4>
@@ -311,7 +311,7 @@ export default function RealCostInsuranceDelaysPage() {
       {/* Real World Example */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Real World Example: The $34,500 Difference
             </h2>
@@ -323,8 +323,8 @@ export default function RealCostInsuranceDelaysPage() {
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Delayed Response */}
             <Card className="p-8 border-red-200 bg-red-50">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-red-500 flex items-center justify-center">
+              <div className="flex items-centre gap-3 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-red-500 flex items-centre justify-centre">
                   <Clock className="h-6 w-6 text-white" />
                 </div>
                 <div>
@@ -365,8 +365,8 @@ export default function RealCostInsuranceDelaysPage() {
 
             {/* Immediate Response */}
             <Card className="p-8 border-green-200 bg-green-50">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-lg bg-green-500 flex items-center justify-center">
+              <div className="flex items-centre gap-3 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-green-500 flex items-centre justify-centre">
                   <Shield className="h-6 w-6 text-white" />
                 </div>
                 <div>
@@ -406,9 +406,9 @@ export default function RealCostInsuranceDelaysPage() {
             </Card>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <Card className="p-6 bg-yellow-50 border-yellow-200 inline-block">
-              <div className="flex items-center gap-3">
+              <div className="flex items-centre gap-3">
                 <Calculator className="h-8 w-8 text-yellow-600" />
                 <div>
                   <div className="text-2xl font-bold text-yellow-900">
@@ -425,7 +425,7 @@ export default function RealCostInsuranceDelaysPage() {
       {/* Legal Rights Section */}
       <section id="legal-rights" className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Your Legal Rights Under Australian Law
             </h2>
@@ -438,7 +438,7 @@ export default function RealCostInsuranceDelaysPage() {
             {legalRights.map((right, idx) => (
               <Card key={idx} className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-centre justify-centre flex-shrink-0">
                     <Scale className="h-6 w-6 text-blue-600" />
                   </div>
                   <div className="flex-1">
@@ -466,7 +466,7 @@ export default function RealCostInsuranceDelaysPage() {
                 </h3>
                 <div className="bg-white border border-blue-200 p-4 rounded-lg">
                   <p className="text-gray-800 italic mb-3">
-                    "Under Section 54 of the Insurance Contracts Act 1984, I am exercising my right to choose qualified emergency mitigation contractors to prevent further damage to my property. Please provide immediate authorization for emergency mitigation work by certified restoration professionals."
+                    "Under Section 54 of the Insurance Contracts Act 1984, I am exercising my right to choose qualified emergency mitigation contractors to prevent further damage to my property. Please provide immediate authorisation for emergency mitigation work by certified restoration professionals."
                   </p>
                   <p className="text-sm text-blue-700">
                     <strong>Remember:</strong> They cannot refuse reasonable emergency mitigation costs or force you to use their preferred contractors.
@@ -480,7 +480,7 @@ export default function RealCostInsuranceDelaysPage() {
 
       {/* Professional Solution */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Break Free From The Broken System
           </h2>
@@ -506,7 +506,7 @@ export default function RealCostInsuranceDelaysPage() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 <Phone className="mr-2 h-5 w-5" />

@@ -68,7 +68,7 @@ export function ComplianceOverview() {
           <CardTitle>Compliance Overview</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-centre py-8 text-gray-500">
             Loading compliance data...
           </div>
         </CardContent>
@@ -86,8 +86,8 @@ export function ComplianceOverview() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          <span className="flex items-center gap-2">
+        <CardTitle className="flex items-centre justify-between">
+          <span className="flex items-centre gap-2">
             <Shield className="h-5 w-5" />
             Compliance Overview
           </span>
@@ -99,7 +99,7 @@ export function ComplianceOverview() {
       <CardContent className="space-y-4">
         {/* Overall Compliance */}
         <div>
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-centre mb-2">
             <span className="text-sm font-medium">Overall Compliance</span>
             <span className={`text-sm font-bold ${getComplianceColor(complianceRate)}`}>
               {metrics.compliantContractors}/{metrics.totalContractors}
@@ -107,15 +107,15 @@ export function ComplianceOverview() {
           </div>
           <Progress value={complianceRate} className="h-3" />
           <div className="grid grid-cols-3 gap-2 mt-2">
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-xs text-gray-500">Compliant</p>
               <p className="text-sm font-bold text-green-600">{metrics.compliantContractors}</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-xs text-gray-500">Partial</p>
               <p className="text-sm font-bold text-yellow-600">{metrics.partiallyCompliant}</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-xs text-gray-500">Non-Compliant</p>
               <p className="text-sm font-bold text-red-600">{metrics.nonCompliant}</p>
             </div>
@@ -155,8 +155,8 @@ export function ComplianceOverview() {
             {Object.entries(metrics.complianceByCategory).map(([key, value]) => {
               const rate = (value.compliant / value.total) * 100;
               return (
-                <div key={key} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                <div key={key} className="flex items-centre justify-between">
+                  <div className="flex items-centre gap-2">
                     {rate >= 80 ? (
                       <CheckCircle className="h-4 w-4 text-green-500" />
                     ) : rate >= 60 ? (
@@ -172,7 +172,7 @@ export function ComplianceOverview() {
                        key.replace('_', ' ')}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <span className="text-sm text-gray-600">
                       {value.compliant}/{value.total}
                     </span>
@@ -197,9 +197,9 @@ export function ComplianceOverview() {
         <div className="border-t pt-4">
           <p className="text-sm font-medium mb-2">Compliance Trends</p>
           <div className="grid grid-cols-2 gap-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <span className="text-sm text-gray-600">Week over Week</span>
-              <div className="flex items-center gap-1">
+              <div className="flex items-centre gap-1">
                 {metrics.trends.weekly > 0 ? (
                   <TrendingUp className="h-4 w-4 text-green-500" />
                 ) : (
@@ -212,9 +212,9 @@ export function ComplianceOverview() {
                 </span>
               </div>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <span className="text-sm text-gray-600">Month over Month</span>
-              <div className="flex items-center gap-1">
+              <div className="flex items-centre gap-1">
                 {metrics.trends.monthly > 0 ? (
                   <TrendingUp className="h-4 w-4 text-green-500" />
                 ) : (
@@ -233,7 +233,7 @@ export function ComplianceOverview() {
         {/* Quick Stats */}
         <div className="border-t pt-4">
           <div className="grid grid-cols-2 gap-3">
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <FileCheck className="h-4 w-4 text-gray-400" />
               <div>
                 <p className="text-xs text-gray-500">Avg Score</p>
@@ -242,7 +242,7 @@ export function ComplianceOverview() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Clock className="h-4 w-4 text-gray-400" />
               <div>
                 <p className="text-xs text-gray-500">Expiring Soon</p>

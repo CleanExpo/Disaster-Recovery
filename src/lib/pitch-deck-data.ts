@@ -173,7 +173,7 @@ export const pitchDeckData = {
         'Automated emergency triage and priority assessment',
         'Predictive demand forecasting based on weather patterns',
         'Real-time performance analytics and quality monitoring',
-        'Dynamic pricing optimization and market analysis'
+        'Dynamic pricing optimisation and market analysis'
       ],
       background: 'tech',
       animation: 'matrix',

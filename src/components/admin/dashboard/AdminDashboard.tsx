@@ -87,7 +87,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
       {/* Header */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-centre">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
                 NRP Admin Portal
@@ -96,7 +96,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
                 Contractor Management & Compliance
               </p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-centre gap-4">
               <span className="text-sm text-gray-600">
                 Welcome, {user?.name || 'Administrator'}
               </span>
@@ -143,7 +143,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
                 onClick={() => setActiveTab('applications')}
                 style={{ cursor: 'pointer' }}
               >
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardHeader className="flex flex-row items-centre justify-between pb-2">
                   <CardTitle className="text-sm font-medium">
                     Pending Applications
                   </CardTitle>
@@ -161,7 +161,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
                 onClick={() => setActiveTab('verification')}
                 style={{ cursor: 'pointer' }}
               >
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardHeader className="flex flex-row items-centre justify-between pb-2">
                   <CardTitle className="text-sm font-medium">
                     Documents to Verify
                   </CardTitle>
@@ -180,7 +180,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
                 onClick={() => setActiveTab('verification')}
                 style={{ cursor: 'pointer' }}
               >
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardHeader className="flex flex-row items-centre justify-between pb-2">
                   <CardTitle className="text-sm font-medium">
                     Compliance Issues
                   </CardTitle>
@@ -200,7 +200,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
                 onClick={() => setActiveTab('support')}
                 style={{ cursor: 'pointer' }}
               >
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardHeader className="flex flex-row items-centre justify-between pb-2">
                   <CardTitle className="text-sm font-medium">
                     Open Tickets
                   </CardTitle>

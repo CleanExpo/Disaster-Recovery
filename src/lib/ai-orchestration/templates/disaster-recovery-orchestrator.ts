@@ -1,6 +1,6 @@
 /**
  * Disaster Recovery Specific AI Orchestrator
- * Specialized orchestration for Australian disaster recovery scenarios
+ * Specialised orchestration for Australian disaster recovery scenarios
  */
 
 import {
@@ -246,7 +246,7 @@ export class DisasterRecoveryOrchestrator {
   }
 
   /**
-   * Specialized damage assessment orchestration
+   * Specialised damage assessment orchestration
    */
   async orchestrateDamageAssessment(
     scenario: DisasterScenario,
@@ -388,7 +388,7 @@ export class DisasterRecoveryOrchestrator {
   }
 
   /**
-   * Resource allocation optimization
+   * Resource allocation optimisation
    */
   async orchestrateResourceAllocation(
     scenario: DisasterScenario,
@@ -420,7 +420,7 @@ export class DisasterRecoveryOrchestrator {
       timeline: any;
       totalCost: { min: number; max: number; };
     };
-    optimization: {
+    optimisation: {
       efficiency: number;
       costEffectiveness: number;
       timeToCompletion: number;
@@ -438,7 +438,7 @@ export class DisasterRecoveryOrchestrator {
       costSensitive: true
     };
 
-    // Use sequential thinking for complex resource optimization
+    // Use sequential thinking for complex resource optimisation
     const chain = await this.sequentialEngine.startThinkingChain(
       taskDescription,
       context,
@@ -590,7 +590,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         structural: Math.min(request.scenario.severity, 5),
         water: request.scenario.type === 'flood' ? Math.min(request.scenario.severity, 5) : 1,
         fire: request.scenario.type === 'fire' ? Math.min(request.scenario.severity, 5) : 1,
-        mold: request.scenario.type === 'flood' ? Math.min(request.scenario.severity - 1, 5) : 1,
+        mould: request.scenario.type === 'flood' ? Math.min(request.scenario.severity - 1, 5) : 1,
         contamination: request.scenario.type === 'sewage' ? Math.min(request.scenario.severity, 5) : 1
       },
       totalScore: request.scenario.severity,
@@ -682,7 +682,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
     return [
       'Hidden structural damage',
       'Long-term effects of water damage',
-      'Availability of specialized contractors',
+      'Availability of specialised contractors',
       'Final insurance settlement amount'
     ];
   }
@@ -759,11 +759,11 @@ Please provide comprehensive disaster recovery guidance addressing all required 
 
   private getDefaultHazards(scenario: DisasterScenario): string[] {
     const hazardMap = {
-      flood: ['Water contamination', 'Electrical hazards', 'Structural instability', 'Mold growth'],
+      flood: ['Water contamination', 'Electrical hazards', 'Structural instability', 'Mould growth'],
       fire: ['Smoke inhalation', 'Structural weakness', 'Toxic residues', 'Heat damage'],
       storm: ['Falling debris', 'Electrical hazards', 'Structural damage', 'Glass fragments'],
       earthquake: ['Structural collapse', 'Gas leaks', 'Electrical hazards', 'Aftershocks'],
-      mold: ['Respiratory hazards', 'Toxic exposure', 'Structural deterioration'],
+      mould: ['Respiratory hazards', 'Toxic exposure', 'Structural deterioration'],
       sewage: ['Biological contamination', 'Chemical hazards', 'Disease vectors'],
       biohazard: ['Biological contamination', 'Chemical exposure', 'Infectious agents']
     };
@@ -777,7 +777,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       fire: ['Hard hat', 'Safety glasses', 'Respirator', 'Heat-resistant gloves'],
       storm: ['Hard hat', 'Safety boots', 'Eye protection', 'High-visibility clothing'],
       earthquake: ['Hard hat', 'Safety boots', 'First aid kit'],
-      mold: ['N95 respirator', 'Protective clothing', 'Rubber gloves', 'Eye protection'],
+      mould: ['N95 respirator', 'Protective clothing', 'Rubber gloves', 'Eye protection'],
       sewage: ['Full body protection', 'Respirator', 'Chemical-resistant gloves', 'Waterproof boots'],
       biohazard: ['Full hazmat suit', 'Respirator', 'Chemical-resistant gloves', 'Decontamination supplies']
     };
@@ -791,7 +791,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
       fire: 25000,
       storm: 12000,
       earthquake: 35000,
-      mold: 8000,
+      mould: 8000,
       sewage: 18000,
       biohazard: 30000
     };
@@ -885,7 +885,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         escalationMatrix: ["Minor hazards", "Moderate risks", "Severe dangers", "Life-threatening situations"]
       },
       resourceAllocation: {
-        contractors: "Optimize contractor assignment based on specialization, availability, and location...",
+        contractors: "Optimise contractor assignment based on specialisation, availability, and location...",
         equipment: "Allocate equipment based on priority, efficiency, and cost-effectiveness...",
         materials: "Prioritize material procurement based on timeline and availability..."
       },
@@ -941,7 +941,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
   }
 
   private buildResourceAllocationTask(scenario: DisasterScenario, resources: any): string {
-    return `Resource allocation optimization for ${scenario.type} recovery`;
+    return `Resource allocation optimisation for ${scenario.type} recovery`;
   }
 
   private parseSafetyContent(content: string, defaultSafety: any): any {
@@ -1007,7 +1007,7 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         timeline: {},
         totalCost: { min: 0, max: 0 }
       },
-      optimization: {
+      optimisation: {
         efficiency: 0,
         costEffectiveness: 0,
         timeToCompletion: 0,

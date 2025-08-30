@@ -18,8 +18,8 @@ import {
 import Link from 'next/link';
 import { useMagneticEffect, use3DRotateEffect } from '@/hooks/useMagneticEffect';
 
-// Premium color palette
-const colors = {
+// Premium colour palette
+const colours = {
   primary: 'from-blue-500 to-purple-600',
   success: 'from-green-500 to-emerald-600',
   warning: 'from-yellow-500 to-orange-600',
@@ -69,10 +69,10 @@ function TiltCard({ children, className = '' }: any) {
 // Live Activity Feed Component
 function LiveActivityFeed() {
   const activities = [
-    { id: 1, type: 'job', text: 'New water damage job assigned', time: '2m ago', icon: Droplets, color: 'text-blue-500' },
-    { id: 2, type: 'payment', text: 'Payment received: $3,450', time: '15m ago', icon: DollarSign, color: 'text-green-500' },
-    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, color: 'text-yellow-500' },
-    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, color: 'text-orange-500' }
+    { id: 1, type: 'job', text: 'New water damage job assigned', time: '2m ago', icon: Droplets, colour: 'text-blue-500' },
+    { id: 2, type: 'payment', text: 'Payment received: $3,450', time: '15m ago', icon: DollarSign, colour: 'text-green-500' },
+    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, colour: 'text-yellow-500' },
+    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, colour: 'text-orange-500' }
   ];
   
   return (
@@ -85,9 +85,9 @@ function LiveActivityFeed() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
             transition={{ delay: index * 0.1 }}
-            className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
+            className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colours cursor-pointer"
           >
-            <div className={`p-2 rounded-lg bg-white/10 ${activity.color}`}>
+            <div className={`p-2 rounded-lg bg-white/10 ${activity.colour}`}>
               <activity.icon className="h-4 w-4" />
             </div>
             <div className="flex-1">
@@ -121,12 +121,12 @@ function PerformanceChart() {
         {data.map((item, index) => (
           <motion.div
             key={item.day}
-            className="flex-1 flex flex-col items-center justify-end gap-2"
+            className="flex-1 flex flex-col items-centre justify-end gap-2"
             initial={{ height: 0 }}
             animate={{ height: '100%' }}
             transition={{ delay: index * 0.1 }}
           >
-            <div className="relative w-full flex flex-col items-center">
+            <div className="relative w-full flex flex-col items-centre">
               <span className="text-xs text-gray-400 mb-1">{item.jobs}</span>
               <motion.div
                 className="w-full bg-gradient-to-t from-blue-500 to-purple-600 rounded-t-lg relative overflow-hidden"
@@ -153,10 +153,10 @@ function PerformanceChart() {
 // AI Insights Component
 function AIInsights() {
   const insights = [
-    { icon: TrendingUp, text: 'Revenue up 23% this month', color: 'text-green-400' },
-    { icon: Clock, text: 'Response time improved by 15%', color: 'text-blue-400' },
-    { icon: Target, text: '3 jobs near completion', color: 'text-purple-400' },
-    { icon: AlertCircle, text: '2 invoices overdue', color: 'text-orange-400' }
+    { icon: TrendingUp, text: 'Revenue up 23% this month', colour: 'text-green-400' },
+    { icon: Clock, text: 'Response time improved by 15%', colour: 'text-blue-400' },
+    { icon: Target, text: '3 jobs near completion', colour: 'text-purple-400' },
+    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-orange-400' }
   ];
   
   return (
@@ -167,9 +167,9 @@ function AIInsights() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
-          className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+          className="flex items-centre gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colours cursor-pointer"
         >
-          <insight.icon className={`h-5 w-5 ${insight.color}`} />
+          <insight.icon className={`h-5 w-5 ${insight.colour}`} />
           <span className="text-sm text-gray-200">{insight.text}</span>
           <Sparkles className="h-4 w-4 text-yellow-400 ml-auto" />
         </motion.div>
@@ -190,7 +190,7 @@ function JobCard({ job }: any) {
   const typeIcons: any = {
     water: Droplets,
     fire: Flame,
-    mold: Wind,
+    mould: Wind,
     structural: Building2
   };
   
@@ -203,7 +203,7 @@ function JobCard({ job }: any) {
     >
       <div className="flex justify-between items-start mb-3">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-centre gap-2 mb-1">
             <h4 className="font-semibold text-white">{job.id}</h4>
             <div className={`px-2 py-0.5 rounded-full text-xs font-medium bg-gradient-to-r ${statusColors[job.status]} text-white`}>
               {job.status}
@@ -217,22 +217,22 @@ function JobCard({ job }: any) {
       </div>
       
       <div className="space-y-2">
-        <div className="flex items-center gap-2 text-xs text-gray-500">
+        <div className="flex items-centre gap-2 text-xs text-gray-500">
           <MapPin className="h-3 w-3" />
           <span>{job.address}</span>
         </div>
-        <div className="flex items-center gap-2 text-xs text-gray-500">
+        <div className="flex items-centre gap-2 text-xs text-gray-500">
           <Clock className="h-3 w-3" />
           <span>{job.time}</span>
         </div>
-        <div className="flex items-center gap-2 text-xs text-gray-500">
+        <div className="flex items-centre gap-2 text-xs text-gray-500">
           <DollarSign className="h-3 w-3" />
           <span>${job.value.toLocaleString()}</span>
         </div>
       </div>
       
       <motion.div
-        className="mt-3 pt-3 border-t border-gray-700 flex items-center justify-between"
+        className="mt-3 pt-3 border-t border-gray-700 flex items-centre justify-between"
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
       >
@@ -266,7 +266,7 @@ export default function PremiumDashboard() {
   const jobs = [
     { id: 'JOB-1248', type: 'water', client: 'Smith Residence', address: '123 Main St, Sydney', time: 'Today 2:00 PM', value: 3450, status: 'urgent' },
     { id: 'JOB-1249', type: 'fire', client: 'Johnson Office', address: '456 Park Ave', time: 'Today 4:00 PM', value: 8900, status: 'active' },
-    { id: 'JOB-1250', type: 'mold', client: 'Davis Property', address: '789 Queen St', time: 'Tomorrow 9:00 AM', value: 2100, status: 'pending' }
+    { id: 'JOB-1250', type: 'mould', client: 'Davis Property', address: '789 Queen St', time: 'Tomorrow 9:00 AM', value: 2100, status: 'pending' }
   ];
   
   useEffect(() => {
@@ -286,7 +286,7 @@ export default function PremiumDashboard() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre [mask-image:radial-gradient(ellipse_at_center,white,transparent_70%)]" />
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
@@ -314,8 +314,8 @@ export default function PremiumDashboard() {
         style={{ y: headerY, opacity: headerOpacity }}
       >
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre gap-4">
               <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600">
                 <Building2 className="h-6 w-6 text-white" />
               </div>
@@ -325,9 +325,9 @@ export default function PremiumDashboard() {
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
+            <div className="flex items-centre gap-3">
               {/* Connection Status */}
-              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
+              <div className={`flex items-centre gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
                 isOnline ? 'bg-green-500/20 text-green-400' : 'bg-orange-500/20 text-orange-400'
               }`}>
                 {isOnline ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
@@ -339,7 +339,7 @@ export default function PremiumDashboard() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowNotifications(!showNotifications)}
-                className="relative p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="relative p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colours"
               >
                 <Bell className="h-5 w-5 text-white" />
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full animate-pulse" />
@@ -349,14 +349,14 @@ export default function PremiumDashboard() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colours"
               >
                 <Settings className="h-5 w-5 text-white" />
               </motion.button>
               
               {/* Profile */}
-              <div className="flex items-center gap-3 px-3 py-1.5 rounded-lg bg-white/10">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+              <div className="flex items-centre gap-3 px-3 py-1.5 rounded-lg bg-white/10">
+                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-centre justify-centre">
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <div className="hidden lg:block">
@@ -376,8 +376,8 @@ export default function PremiumDashboard() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6 p-4 rounded-xl bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 backdrop-blur-sm"
         >
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre gap-3">
               <div className="p-2 rounded-lg bg-orange-500/20">
                 <AlertTriangle className="h-5 w-5 text-orange-400" />
               </div>
@@ -399,12 +399,12 @@ export default function PremiumDashboard() {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-8">
           {[
-            { icon: Briefcase, label: 'Active Jobs', value: stats.activeJobs, color: colors.primary, trend: '+2' },
-            { icon: CheckCircle, label: 'Completed Today', value: stats.completedToday, color: colors.success, trend: '+1' },
-            { icon: DollarSign, label: 'Revenue Today', value: `$${stats.revenue.toLocaleString()}`, color: colors.warning, trend: '+15%' },
-            { icon: Star, label: 'Rating', value: stats.rating, color: colors.info, trend: '↑' },
-            { icon: Clock, label: 'Response Time', value: `${stats.responseTime}m`, color: colors.danger, trend: '-5m' },
-            { icon: Percent, label: 'Completion Rate', value: `${stats.completionRate}%`, color: colors.dark, trend: '+2%' }
+            { icon: Briefcase, label: 'Active Jobs', value: stats.activeJobs, colour: colours.primary, trend: '+2' },
+            { icon: CheckCircle, label: 'Completed Today', value: stats.completedToday, colour: colours.success, trend: '+1' },
+            { icon: DollarSign, label: 'Revenue Today', value: `$${stats.revenue.toLocaleString()}`, colour: colours.warning, trend: '+15%' },
+            { icon: Star, label: 'Rating', value: stats.rating, colour: colours.info, trend: '↑' },
+            { icon: Clock, label: 'Response Time', value: `${stats.responseTime}m`, colour: colours.danger, trend: '-5m' },
+            { icon: Percent, label: 'Completion Rate', value: `${stats.completionRate}%`, colour: colours.dark, trend: '+2%' }
           ].map((stat, index) => (
             <TiltCard key={index} className="glass-card rounded-xl p-4">
               <motion.div
@@ -412,8 +412,8 @@ export default function PremiumDashboard() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.color} opacity-20`}>
+                <div className="flex items-centre justify-between mb-2">
+                  <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.colour} opacity-20`}>
                     <stat.icon className="h-4 w-4 text-white" />
                   </div>
                   <span className="text-xs text-green-400">{stat.trend}</span>
@@ -433,16 +433,16 @@ export default function PremiumDashboard() {
           <div className="lg:col-span-2 space-y-6">
             {/* Jobs Header */}
             <div className="glass-card rounded-xl p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-white flex items-center gap-2">
+              <div className="flex items-centre justify-between mb-4">
+                <h2 className="text-lg font-semibold text-white flex items-centre gap-2">
                   <Briefcase className="h-5 w-5" />
                   Active Jobs
                 </h2>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`p-2 rounded-lg ${activeView === 'grid' ? 'bg-white/20' : 'bg-white/10'} hover:bg-white/20 transition-colors`}
+                    className={`p-2 rounded-lg ${activeView === 'grid' ? 'bg-white/20' : 'bg-white/10'} hover:bg-white/20 transition-colours`}
                     onClick={() => setActiveView('grid')}
                   >
                     <Grid className="h-4 w-4 text-white" />
@@ -450,7 +450,7 @@ export default function PremiumDashboard() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`p-2 rounded-lg ${activeView === 'list' ? 'bg-white/20' : 'bg-white/10'} hover:bg-white/20 transition-colors`}
+                    className={`p-2 rounded-lg ${activeView === 'list' ? 'bg-white/20' : 'bg-white/10'} hover:bg-white/20 transition-colours`}
                     onClick={() => setActiveView('list')}
                   >
                     <List className="h-4 w-4 text-white" />
@@ -458,7 +458,7 @@ export default function PremiumDashboard() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                    className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colours"
                   >
                     <Filter className="h-4 w-4 text-white" />
                   </motion.button>
@@ -482,7 +482,7 @@ export default function PremiumDashboard() {
             
             {/* Performance Chart */}
             <div className="glass-card rounded-xl p-4">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-centre gap-2">
                 <BarChart3 className="h-5 w-5" />
                 Weekly Performance
               </h3>
@@ -494,7 +494,7 @@ export default function PremiumDashboard() {
           <div className="space-y-6">
             {/* AI Insights */}
             <div className="glass-card rounded-xl p-4">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-centre gap-2">
                 <Brain className="h-5 w-5" />
                 AI Insights
                 <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white">
@@ -506,7 +506,7 @@ export default function PremiumDashboard() {
             
             {/* Live Activity */}
             <div className="glass-card rounded-xl p-4">
-              <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-centre gap-2">
                 <Activity className="h-5 w-5" />
                 Live Activity
                 <span className="ml-auto h-2 w-2 bg-green-400 rounded-full animate-pulse" />
@@ -519,18 +519,18 @@ export default function PremiumDashboard() {
               <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { icon: Camera, label: 'Upload Photo', color: colors.primary },
-                  { icon: FileText, label: 'Create Report', color: colors.success },
-                  { icon: Phone, label: 'Call Support', color: colors.warning },
-                  { icon: Navigation, label: 'Get Directions', color: colors.danger }
+                  { icon: Camera, label: 'Upload Photo', colour: colours.primary },
+                  { icon: FileText, label: 'Create Report', colour: colours.success },
+                  { icon: Phone, label: 'Call Support', colour: colours.warning },
+                  { icon: Navigation, label: 'Get Directions', colour: colours.danger }
                 ].map((action, index) => (
                   <motion.button
                     key={index}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors flex flex-col items-center gap-2"
+                    className="p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colours flex flex-col items-centre gap-2"
                   >
-                    <div className={`p-2 rounded-lg bg-gradient-to-br ${action.color} opacity-20`}>
+                    <div className={`p-2 rounded-lg bg-gradient-to-br ${action.colour} opacity-20`}>
                       <action.icon className="h-5 w-5 text-white" />
                     </div>
                     <span className="text-xs text-gray-300">{action.label}</span>

@@ -205,7 +205,7 @@ export interface ReportColumn {
   label: string;
   dataType: 'string' | 'number' | 'date' | 'currency' | 'percentage' | 'boolean';
   width?: number;
-  align?: 'left' | 'center' | 'right';
+  align?: 'left' | 'centre' | 'right';
   format?: string;
   aggregate?: 'sum' | 'avg' | 'min' | 'max' | 'count';
 }
@@ -221,7 +221,7 @@ export interface DashboardWidget {
     metrics?: string[];
     dimensions?: string[];
     filters?: ReportFilter[];
-    colors?: string[];
+    colours?: string[];
     showLegend?: boolean;
     showGrid?: boolean;
   };

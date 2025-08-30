@@ -198,7 +198,7 @@ export default function MobileAuthentication() {
   );
 
   const AuthMethodSelector = () => (
-    <div className="flex justify-center space-x-4 mb-6">
+    <div className="flex justify-centre space-x-4 mb-6">
       {Object.entries(authMethodIcons).map(([method, icon]) => (
         <button
           key={method}
@@ -217,8 +217,8 @@ export default function MobileAuthentication() {
   );
 
   const BiometricAuthView = () => (
-    <div className="text-center space-y-6">
-      <div className="mx-auto w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse">
+    <div className="text-centre space-y-6">
+      <div className="mx-auto w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-centre justify-centre animate-pulse">
         <Scan className="w-20 h-20 text-white" />
       </div>
       
@@ -234,7 +234,7 @@ export default function MobileAuthentication() {
       <button
         onClick={handleBiometricAuth}
         disabled={authState.isLoading}
-        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colours"
       >
         {authState.isLoading ? 'Authenticating...' : 'Authenticate'}
       </button>
@@ -308,7 +308,7 @@ export default function MobileAuthentication() {
         </div>
       )}
 
-      <div className="flex items-center">
+      <div className="flex items-centre">
         <input
           type="checkbox"
           id="rememberDevice"
@@ -324,7 +324,7 @@ export default function MobileAuthentication() {
       <button
         onClick={handleCredentialAuth}
         disabled={authState.isLoading}
-        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colours"
       >
         {authState.isLoading ? 'Signing in...' : 'Sign In'}
       </button>
@@ -342,7 +342,7 @@ export default function MobileAuthentication() {
 
   const PinAuthView = () => (
     <div className="space-y-6">
-      <div className="text-center">
+      <div className="text-centre">
         <h3 className="text-lg font-semibold text-gray-900">Enter your PIN</h3>
         <p className="text-sm text-gray-500 mt-1">
           Enter your {mockAuthSettings.pin.length}-digit PIN to continue
@@ -359,7 +359,7 @@ export default function MobileAuthentication() {
               setCredentials({ ...credentials, pin: value });
             }
           }}
-          className="w-full px-4 py-4 text-center text-2xl tracking-widest border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-4 py-4 text-centre text-2xl tracking-widest border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="••••••"
           maxLength={mockAuthSettings.pin.length}
         />
@@ -372,11 +372,11 @@ export default function MobileAuthentication() {
         </button>
       </div>
 
-      <div className="flex justify-center space-x-2">
+      <div className="flex justify-centre space-x-2">
         {Array.from({ length: mockAuthSettings.pin.length }).map((_, i) => (
           <div
             key={i}
-            className={`w-3 h-3 rounded-full transition-colors ${
+            className={`w-3 h-3 rounded-full transition-colours ${
               i < credentials.pin.length ? 'bg-blue-600' : 'bg-gray-300'
             }`}
           />
@@ -386,7 +386,7 @@ export default function MobileAuthentication() {
       <button
         onClick={handlePinAuth}
         disabled={authState.isLoading}
-        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colours"
       >
         {authState.isLoading ? 'Verifying...' : 'Continue'}
       </button>
@@ -403,8 +403,8 @@ export default function MobileAuthentication() {
   if (authState.isAuthenticated) {
     return (
       <div className="max-w-md mx-auto p-6">
-        <div className="bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <div className="bg-white rounded-xl shadow-lg p-8 text-centre">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
             <CheckCircle className="w-12 h-12 text-green-600" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -415,7 +415,7 @@ export default function MobileAuthentication() {
           </p>
           <button
             onClick={() => setAuthState({ ...authState, isAuthenticated: false })}
-            className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+            className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colours"
           >
             Sign Out
           </button>

@@ -284,12 +284,12 @@ function generateDisputeConfirmationEmail(dispute: any, nextSteps: string[]): st
     <html>
     <head>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; colour: #333; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background-color: #FF6B6B; color: white; padding: 20px; text-align: center; }
-        .content { padding: 20px; background-color: #f9f9f9; }
-        .footer { padding: 20px; text-align: center; font-size: 12px; color: #666; }
-        .dispute-id { font-size: 20px; font-weight: bold; color: #FF6B6B; }
+        .header { background-colour: #FF6B6B; colour: white; padding: 20px; text-align: centre; }
+        .content { padding: 20px; background-colour: #f9f9f9; }
+        .footer { padding: 20px; text-align: centre; font-size: 12px; colour: #666; }
+        .dispute-id { font-size: 20px; font-weight: bold; colour: #FF6B6B; }
         .info-box { background: white; padding: 15px; margin: 15px 0; border-left: 4px solid #FF6B6B; }
         .timeline { background: #fff; padding: 10px; margin: 10px 0; }
         ul { padding-left: 20px; }

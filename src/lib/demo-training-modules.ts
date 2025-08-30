@@ -216,7 +216,7 @@ export const TRAINING_MODULES = {
           2. Substitution - Replace with safer option
           3. Engineering - Isolate the hazard
           4. Administrative - Procedures & training
-          5. PPE - Last line of defense
+          5. PPE - Last line of defence
           
           Documentation Requirements:
           • Date and version control
@@ -261,7 +261,7 @@ export const TRAINING_MODULES = {
           • Full investigation within 48 hours
           • Corrective actions within 7 days
         `,
-        caseStudy: 'Analyze ladder fall incident',
+        caseStudy: 'Analyse ladder fall incident',
         completionRate: 83
       }
     ]

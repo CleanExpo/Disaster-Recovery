@@ -45,7 +45,7 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
     // SECURITY: Calculate expected amount (server-side only)
     const expectedPayment = PaymentValidator.calculateOnboardingAmount();
     
-    // SECURITY: Validate contractor exists and is authorized for payment
+    // SECURITY: Validate contractor exists and is authorised for payment
     const contractor = await prisma.contractor.findUnique({
       where: { id: validatedData.contractorId },
       include: { 
@@ -67,7 +67,7 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       return NextResponse.json(
         { 
           success: false,
-          error: 'Contractor not found or not authorized for payment',
+          error: 'Contractor not found or not authorised for payment',
           code: 'CONTRACTOR_NOT_FOUND'
         },
         { status: 404 }

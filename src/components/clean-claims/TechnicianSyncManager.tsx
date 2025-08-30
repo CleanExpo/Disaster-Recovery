@@ -113,10 +113,10 @@ const TechnicianSyncManager: React.FC = () => {
           retryCount: 0
         },
         metadata: {
-          bio: 'Experienced restoration technician with 10+ years in water damage and mold remediation.',
+          bio: 'Experienced restoration technician with 10+ years in water damage and mould remediation.',
           yearsExperience: 10,
           languages: ['English', 'Spanish'],
-          specializations: ['Water Damage', 'Mold Remediation', 'Fire Damage'],
+          specializations: ['Water Damage', 'Mould Remediation', 'Fire Damage'],
           rating: 4.8,
           completedJobs: 245,
           preferredRegions: ['Sydney Metro', 'Eastern Suburbs']
@@ -272,8 +272,8 @@ const TechnicianSyncManager: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-centre space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Users className="h-6 w-6 text-blue-600" />
             </div>
@@ -282,10 +282,10 @@ const TechnicianSyncManager: React.FC = () => {
               <p className="text-sm text-gray-500">Clean Claims API Integration</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <button
               onClick={() => setShowUploadModal(true)}
-              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
+              className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2"
             >
               <Upload className="h-4 w-4" />
               <span>Import</span>
@@ -293,7 +293,7 @@ const TechnicianSyncManager: React.FC = () => {
             <button
               onClick={handleBulkSync}
               disabled={isSyncing}
-              className={`px-4 py-2 rounded-lg flex items-center space-x-2 ${
+              className={`px-4 py-2 rounded-lg flex items-centre space-x-2 ${
                 isSyncing 
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -308,7 +308,7 @@ const TechnicianSyncManager: React.FC = () => {
         {/* Sync Progress */}
         {isSyncing && (
           <div className="mt-4">
-            <div className="flex items-center justify-between text-sm mb-1">
+            <div className="flex items-centre justify-between text-sm mb-1">
               <span className="text-gray-600">Syncing technicians...</span>
               <span className="font-medium">{syncProgress}%</span>
             </div>
@@ -352,8 +352,8 @@ const TechnicianSyncManager: React.FC = () => {
 
       {/* Filters and Search */}
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-centre justify-between">
+          <div className="flex items-centre space-x-2">
             {(['all', 'synced', 'pending', 'error'] as const).map((status) => (
               <button
                 key={status}
@@ -387,8 +387,8 @@ const TechnicianSyncManager: React.FC = () => {
               className="p-4 hover:bg-gray-50 cursor-pointer"
               onClick={() => setSelectedTechnician(technician)}
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-4">
+              <div className="flex items-centre justify-between">
+                <div className="flex items-centre space-x-4">
                   {/* Profile Image */}
                   <div className="relative">
                     {technician.profileImage ? (
@@ -398,7 +398,7 @@ const TechnicianSyncManager: React.FC = () => {
                         className="w-12 h-12 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-gray-200 flex items-centre justify-centre">
                         <User className="h-6 w-6 text-gray-500" />
                       </div>
                     )}
@@ -411,7 +411,7 @@ const TechnicianSyncManager: React.FC = () => {
 
                   {/* Technician Info */}
                   <div className="flex-1">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-centre space-x-2">
                       <p className="font-medium">{technician.name}</p>
                       {technician.specialtyFlags.map((flag) => (
                         <span
@@ -422,13 +422,13 @@ const TechnicianSyncManager: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center space-x-4 mt-1 text-sm text-gray-600">
+                    <div className="flex items-centre space-x-4 mt-1 text-sm text-gray-600">
                       <span>{technician.companyAffiliation.name}</span>
                       {technician.email && (
                         <span>{technician.email}</span>
                       )}
                       {technician.metadata?.rating && (
-                        <div className="flex items-center space-x-1">
+                        <div className="flex items-centre space-x-1">
                           <Star className="h-3 w-3 text-yellow-500" />
                           <span>{technician.metadata.rating}</span>
                         </div>
@@ -437,11 +437,11 @@ const TechnicianSyncManager: React.FC = () => {
                   </div>
 
                   {/* Certifications */}
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     {technician.certifications.slice(0, 3).map((cert) => (
                       <div
                         key={cert.id}
-                        className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded flex items-center space-x-1"
+                        className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded flex items-centre space-x-1"
                         title={cert.name}
                       >
                         <Shield className="h-3 w-3" />
@@ -457,7 +457,7 @@ const TechnicianSyncManager: React.FC = () => {
                 </div>
 
                 {/* Sync Status */}
-                <div className="flex items-center space-x-3">
+                <div className="flex items-centre space-x-3">
                   <div className="text-right">
                     <p className="text-xs text-gray-500">Sync Status</p>
                     <span className={`inline-block px-2 py-1 text-xs rounded-full ${
@@ -498,9 +498,9 @@ const TechnicianSyncManager: React.FC = () => {
 
       {/* Technician Detail Modal */}
       {selectedTechnician && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-centre justify-between mb-4">
               <h3 className="text-lg font-semibold">Technician Profile</h3>
               <button
                 onClick={() => setSelectedTechnician(null)}
@@ -520,7 +520,7 @@ const TechnicianSyncManager: React.FC = () => {
                     className="w-20 h-20 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-gray-200 flex items-centre justify-centre">
                     <User className="h-10 w-10 text-gray-500" />
                   </div>
                 )}
@@ -531,7 +531,7 @@ const TechnicianSyncManager: React.FC = () => {
               <div className="flex-1">
                 <h4 className="text-xl font-semibold">{selectedTechnician.name}</h4>
                 <p className="text-gray-600">{selectedTechnician.companyAffiliation.name}</p>
-                <div className="flex items-center space-x-2 mt-2">
+                <div className="flex items-centre space-x-2 mt-2">
                   <span className={`px-2 py-1 text-xs rounded-full ${
                     getTechnicianStatusColor(selectedTechnician.status)
                   }`}>
@@ -576,8 +576,8 @@ const TechnicianSyncManager: React.FC = () => {
               {selectedTechnician.certifications.length > 0 ? (
                 <div className="space-y-2">
                   {selectedTechnician.certifications.map((cert) => (
-                    <div key={cert.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div className="flex items-center space-x-3">
+                    <div key={cert.id} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
+                      <div className="flex items-centre space-x-3">
                         <Shield className={`h-5 w-5 ${
                           cert.verificationStatus === 'verified' ? 'text-green-600' : 'text-gray-400'
                         }`} />
@@ -618,7 +618,7 @@ const TechnicianSyncManager: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Rating</p>
-                    <div className="flex items-center space-x-1">
+                    <div className="flex items-centre space-x-1">
                       <Star className="h-4 w-4 text-yellow-500" />
                       <span className="text-sm">{selectedTechnician.metadata.rating}</span>
                     </div>
@@ -647,7 +647,7 @@ const TechnicianSyncManager: React.FC = () => {
               </button>
               <button
                 onClick={() => handleSync(selectedTechnician.id)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-centre space-x-2"
               >
                 <RefreshCw className="h-4 w-4" />
                 <span>Sync Technician</span>
@@ -659,11 +659,11 @@ const TechnicianSyncManager: React.FC = () => {
 
       {/* Upload Modal */}
       {showUploadModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Import Technicians</h3>
             
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-centre">
               <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-600 mb-2">Drop CSV file here or click to browse</p>
               <input

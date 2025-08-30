@@ -171,22 +171,22 @@ export default function PartnerDashboard() {
     event: <Calendar className="w-5 h-5" />
   };
 
-  const StatusCard = ({ title, value, change, icon, color }: {
+  const StatusCard = ({ title, value, change, icon, colour }: {
     title: string;
     value: string | number;
     change?: { value: number; isPositive: boolean };
     icon: React.ReactNode;
-    color: string;
+    colour: string;
   }) => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <p className="text-sm font-medium text-gray-600">{title}</p>
           <p className="text-2xl font-bold text-gray-900 mt-1">
             {typeof value === 'number' ? formatCurrency(value) : value}
           </p>
           {change && (
-            <div className="flex items-center mt-2">
+            <div className="flex items-centre mt-2">
               {change.isPositive ? (
                 <ArrowUpRight className="w-4 h-4 text-green-500 mr-1" />
               ) : (
@@ -201,7 +201,7 @@ export default function PartnerDashboard() {
             </div>
           )}
         </div>
-        <div className={`p-3 rounded-lg ${color}`}>
+        <div className={`p-3 rounded-lg ${colour}`}>
           {icon}
         </div>
       </div>
@@ -210,17 +210,17 @@ export default function PartnerDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-centre mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Partner Dashboard</h1>
           <p className="text-gray-600 mt-2">Welcome back! Here's your performance overview</p>
         </div>
         <div className="flex space-x-3">
-          <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+          <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colours">
             <Download className="w-4 h-4 mr-2 inline" />
             Export Report
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours">
             <Settings className="w-4 h-4 mr-2 inline" />
             Settings
           </button>
@@ -230,8 +230,8 @@ export default function PartnerDashboard() {
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${tierColors[mockDashboard.overview.tier]} flex items-center justify-center`}>
+          <div className="flex items-centre justify-between mb-4">
+            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${tierColors[mockDashboard.overview.tier]} flex items-centre justify-centre`}>
               <Award className="w-6 h-6 text-white" />
             </div>
             <span className="text-sm font-medium text-gray-600">Status</span>
@@ -260,7 +260,7 @@ export default function PartnerDashboard() {
           title="Pending Earnings"
           value={mockDashboard.earnings.pending}
           icon={<Clock className="w-6 h-6 text-white" />}
-          color="bg-orange-500"
+          colour="bg-orange-500"
         />
 
         <StatusCard
@@ -268,14 +268,14 @@ export default function PartnerDashboard() {
           value={mockDashboard.earnings.approved}
           change={{ value: 31, isPositive: true }}
           icon={<TrendingUp className="w-6 h-6 text-white" />}
-          color="bg-green-500"
+          colour="bg-green-500"
         />
 
         <StatusCard
           title="Lifetime Earnings"
           value={mockDashboard.earnings.lifetime}
           icon={<Award className="w-6 h-6 text-white" />}
-          color="bg-purple-500"
+          colour="bg-purple-500"
         />
       </div>
 
@@ -283,7 +283,7 @@ export default function PartnerDashboard() {
         {/* Performance Chart */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-centre mb-6">
               <h3 className="text-lg font-semibold text-gray-900">Performance Overview</h3>
               <select
                 value={selectedPeriod}
@@ -299,25 +299,25 @@ export default function PartnerDashboard() {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-gray-900">
                   {formatCurrency(mockDashboard.performance.metrics.revenue)}
                 </p>
                 <p className="text-sm text-gray-600">Revenue</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-gray-900">
                   {mockDashboard.performance.metrics.leads}
                 </p>
                 <p className="text-sm text-gray-600">Leads</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-gray-900">
                   {mockDashboard.performance.metrics.conversions}
                 </p>
                 <p className="text-sm text-gray-600">Conversions</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-gray-900">
                   {mockDashboard.performance.metrics.conversionRate}%
                 </p>
@@ -325,8 +325,8 @@ export default function PartnerDashboard() {
               </div>
             </div>
 
-            <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
-              <div className="text-center">
+            <div className="h-64 bg-gray-50 rounded-lg flex items-centre justify-centre">
+              <div className="text-centre">
                 <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-2" />
                 <p className="text-gray-500">Performance chart visualization</p>
               </div>
@@ -337,17 +337,17 @@ export default function PartnerDashboard() {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <button className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+              <button className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colours text-left">
                 <Plus className="w-6 h-6 text-blue-600 mb-2" />
                 <p className="font-medium text-gray-900">Create Campaign</p>
                 <p className="text-sm text-gray-500">Launch new marketing campaign</p>
               </button>
-              <button className="p-4 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colors text-left">
+              <button className="p-4 border border-gray-200 rounded-lg hover:border-green-300 hover:bg-green-50 transition-colours text-left">
                 <Target className="w-6 h-6 text-green-600 mb-2" />
                 <p className="font-medium text-gray-900">View Analytics</p>
                 <p className="text-sm text-gray-500">Detailed performance insights</p>
               </button>
-              <button className="p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-colors text-left">
+              <button className="p-4 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 transition-colours text-left">
                 <Share2 className="w-6 h-6 text-purple-600 mb-2" />
                 <p className="font-medium text-gray-900">Share Links</p>
                 <p className="text-sm text-gray-500">Get tracking links</p>
@@ -361,14 +361,14 @@ export default function PartnerDashboard() {
           {/* Next Payout */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Next Payout</h3>
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-3xl font-bold text-green-600 mb-2">
                 {formatCurrency(mockDashboard.earnings.nextPayout.amount)}
               </p>
               <p className="text-sm text-gray-600 mb-4">
                 Scheduled for {mockDashboard.earnings.nextPayout.date.toLocaleDateString('en-AU')}
               </p>
-              <div className="flex items-center justify-center text-sm text-gray-500">
+              <div className="flex items-centre justify-centre text-sm text-gray-500">
                 <CreditCard className="w-4 h-4 mr-2" />
                 EFT to account ending in 4567
               </div>
@@ -377,14 +377,14 @@ export default function PartnerDashboard() {
 
           {/* Compliance Score */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-centre mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Compliance</h3>
               <span className="text-sm font-medium text-green-600">
                 {mockDashboard.overview.complianceScore}%
               </span>
             </div>
             <div className="relative pt-1">
-              <div className="flex mb-2 items-center justify-between">
+              <div className="flex mb-2 items-centre justify-between">
                 <div>
                   <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200">
                     Excellent
@@ -394,20 +394,20 @@ export default function PartnerDashboard() {
               <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
                 <div 
                   style={{ width: `${mockDashboard.overview.complianceScore}%` }}
-                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
+                  className="shadow-none flex flex-col text-centre whitespace-nowrap text-white justify-centre bg-green-500"
                 />
               </div>
             </div>
             <div className="space-y-2 text-sm">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <span className="text-gray-600">Insurance Valid</span>
                 <CheckCircle className="w-4 h-4 text-green-500" />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <span className="text-gray-600">Licenses Current</span>
                 <CheckCircle className="w-4 h-4 text-green-500" />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <span className="text-gray-600">Agreement Signed</span>
                 <CheckCircle className="w-4 h-4 text-green-500" />
               </div>
@@ -417,7 +417,7 @@ export default function PartnerDashboard() {
           {/* Announcements */}
           {showAnnouncements && mockDashboard.announcements.length > 0 && (
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-centre mb-4">
                 <h3 className="text-lg font-semibold text-gray-900">Announcements</h3>
                 <button 
                   onClick={() => setShowAnnouncements(false)}
@@ -457,7 +457,7 @@ export default function PartnerDashboard() {
 
           {/* Recent Activity */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-centre mb-4">
               <h3 className="text-lg font-semibold text-gray-900">Recent Activity</h3>
               <RefreshCw className="w-4 h-4 text-gray-400" />
             </div>

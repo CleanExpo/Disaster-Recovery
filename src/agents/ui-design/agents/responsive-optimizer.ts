@@ -27,11 +27,11 @@ export class ResponsiveOptimizerAgent implements UIAgent {
   description = 'Ensures mobile-first responsive design with optimal layouts across all device sizes'
   capabilities = [
     'Mobile-first design analysis',
-    'Breakpoint optimization',
+    'Breakpoint optimisation',
     'Flexible grid systems',
     'Touch-friendly interface design',
     'Responsive typography scaling',
-    'Image and media optimization',
+    'Image and media optimisation',
     'Progressive enhancement patterns'
   ]
   priority = 3
@@ -134,13 +134,13 @@ export class ResponsiveOptimizerAgent implements UIAgent {
     const recommendations: Recommendation[] = []
 
     try {
-      // Analyze current responsive implementation
+      // Analyse current responsive implementation
       const responsiveAnalysis = await this.analyzeResponsiveDesign(context)
       
       // Generate mobile-first improvements
       improvements.push(...await this.generateMobileFirstImprovements(context))
       
-      // Optimize breakpoints and layouts
+      // Optimise breakpoints and layouts
       improvements.push(...await this.optimizeBreakpoints(context))
       
       // Generate touch-friendly enhancements
@@ -171,7 +171,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
         timeElapsed: Date.now() - startTime
       }
     } catch (error) {
-      errors.push(`Responsive optimization failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      errors.push(`Responsive optimisation failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
       return {
         agentId: this.id,
         success: false,
@@ -185,27 +185,27 @@ export class ResponsiveOptimizerAgent implements UIAgent {
     }
   }
 
-  async analyze(element: UIElement): Promise<AnalysisResult> {
+  async analyse(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
     const recommendations = []
 
-    // Analyze mobile-first approach
+    // Analyse mobile-first approach
     const mobileFirstAnalysis = this.analyzeMobileFirst(element)
     issues.push(...mobileFirstAnalysis.issues)
     strengths.push(...mobileFirstAnalysis.strengths)
 
-    // Analyze breakpoint usage
+    // Analyse breakpoint usage
     const breakpointAnalysis = this.analyzeBreakpoints(element)
     issues.push(...breakpointAnalysis.issues)
     strengths.push(...breakpointAnalysis.strengths)
 
-    // Analyze touch targets
+    // Analyse touch targets
     const touchTargetAnalysis = this.analyzeTouchTargets(element)
     issues.push(...touchTargetAnalysis.issues)
     strengths.push(...touchTargetAnalysis.strengths)
 
-    // Analyze responsive typography
+    // Analyse responsive typography
     const typographyAnalysis = this.analyzeResponsiveTypography(element)
     issues.push(...typographyAnalysis.issues)
     strengths.push(...typographyAnalysis.strengths)
@@ -235,7 +235,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
   }
 
   private async analyzeResponsiveDesign(context: UIContext): Promise<AnalysisResult> {
-    return this.analyze({
+    return this.analyse({
       type: context.component.type,
       props: context.component.props,
       styles: context.component.styles.base,
@@ -393,14 +393,14 @@ export class ResponsiveOptimizerAgent implements UIAgent {
       description: 'Restructure CSS to follow mobile-first approach',
       impact: 'high',
       effort: 'medium',
-      category: 'mobile-optimization',
+      category: 'mobile-optimisation',
       implementation: {
         styles: this.generateMobileFirstCSS(context.component),
         instructions: [
           'Start with mobile styles as the base',
           'Add desktop enhancements with min-width media queries',
           'Test on actual mobile devices',
-          'Optimize for touch interactions'
+          'Optimise for touch interactions'
         ]
       },
       metrics: {
@@ -416,7 +416,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
       description: 'Implement R6 responsive container system',
       impact: 'high',
       effort: 'low',
-      category: 'layout-optimization',
+      category: 'layout-optimisation',
       implementation: {
         styles: this.generateResponsiveContainer(),
         instructions: [
@@ -437,12 +437,12 @@ export class ResponsiveOptimizerAgent implements UIAgent {
     const improvements: UIImprovement[] = []
 
     improvements.push({
-      id: 'optimize-breakpoints',
+      id: 'optimise-breakpoints',
       type: 'responsive',
       description: 'Implement R6 Digital standard breakpoints',
       impact: 'medium',
       effort: 'low',
-      category: 'breakpoint-optimization',
+      category: 'breakpoint-optimisation',
       implementation: {
         styles: this.generateStandardBreakpoints(),
         instructions: [
@@ -470,7 +470,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
       description: 'Ensure all interactive elements meet touch target guidelines',
       impact: 'high',
       effort: 'low',
-      category: 'touch-optimization',
+      category: 'touch-optimisation',
       implementation: {
         styles: this.generateTouchFriendlyStyles(context.component),
         instructions: [
@@ -498,14 +498,14 @@ export class ResponsiveOptimizerAgent implements UIAgent {
       description: 'Implement fluid typography for optimal readability across devices',
       impact: 'medium',
       effort: 'medium',
-      category: 'typography-optimization',
+      category: 'typography-optimisation',
       implementation: {
         styles: this.generateFluidTypography(),
         instructions: [
           'Replace static font sizes with fluid scales',
           'Test readability at different screen sizes',
           'Ensure text remains accessible',
-          'Optimize line heights for mobile reading'
+          'Optimise line heights for mobile reading'
         ]
       },
       metrics: {
@@ -535,7 +535,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
           'Define grid system CSS',
           'Apply grid classes to components',
           'Test responsiveness',
-          'Optimize for mobile performance'
+          'Optimise for mobile performance'
         ],
         code: `
           // R6 Responsive Grid System
@@ -793,11 +793,11 @@ export class ResponsiveOptimizerAgent implements UIAgent {
 
     if (['button', 'link'].includes(element.type)) {
       recommendations.push({
-        id: 'optimize-interactive-element',
+        id: 'optimise-interactive-element',
         agent: this.id,
         priority: 'high',
-        category: 'touch-optimization',
-        title: 'Optimize Interactive Element for Touch',
+        category: 'touch-optimisation',
+        title: 'Optimise Interactive Element for Touch',
         description: 'Ensure interactive elements are touch-friendly on mobile devices',
         implementation: {
           complexity: 'simple',

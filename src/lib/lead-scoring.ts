@@ -168,12 +168,12 @@ export function getResponseTime(score: number): number {
 /**
  * Format lead score for display
  * @param score Lead score
- * @returns Formatted score with color indicator
+ * @returns Formatted score with colour indicator
  */
 export function formatLeadScore(score: number): {
   score: number;
   label: string;
-  color: string;
+  colour: string;
   priority: string;
 } {
   const priority = getLeadPriority(score);
@@ -181,7 +181,7 @@ export function formatLeadScore(score: number): {
   return {
     score,
     label: `${score}/100`,
-    color: priority === 'critical' ? 'red' : 
+    colour: priority === 'critical' ? 'red' : 
            priority === 'high' ? 'orange' : 
            priority === 'medium' ? 'yellow' : 'gray',
     priority: priority.charAt(0).toUpperCase() + priority.slice(1)

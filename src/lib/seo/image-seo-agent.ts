@@ -1,6 +1,6 @@
 /**
- * Image SEO Optimization Agent
- * Intelligent system for optimizing images for Google Search ranking
+ * Image SEO Optimisation Agent
+ * Intelligent system for optimising images for Google Search ranking
  * Implements best practices for image SEO, accessibility, and performance
  */
 
@@ -11,7 +11,7 @@ export interface SEOOptimizedImage {
   id: string;
   originalFilename: string;
   
-  // SEO-optimized naming
+  // SEO-optimised naming
   seoFilename: string;
   
   // SEO metadata
@@ -91,16 +91,16 @@ const SEO_KEYWORDS = {
       'residential fire damage repair near me',
       'commercial fire restoration specialists'
     ],
-    semantic: ['smoke odor removal', 'fire remediation', 'burn damage', 'charred materials']
+    semantic: ['smoke odour removal', 'fire remediation', 'burn damage', 'charred materials']
   },
   
   mouldRemediation: {
     primary: 'mould remediation',
-    secondary: ['mold removal', 'black mould treatment', 'mould inspection'],
+    secondary: ['mould removal', 'black mould treatment', 'mould inspection'],
     longTail: [
       'professional mould remediation services',
       'black mould removal specialists near me',
-      'toxic mold inspection and removal',
+      'toxic mould inspection and removal',
       'certified mould remediation company'
     ],
     semantic: ['fungus', 'mildew', 'spores', 'air quality', 'moisture control']
@@ -146,11 +146,11 @@ const SEO_KEYWORDS = {
 };
 
 /**
- * Image SEO Optimization Agent Class
+ * Image SEO Optimisation Agent Class
  */
 export class ImageSEOAgent {
   /**
-   * Generate SEO-optimized metadata for an image
+   * Generate SEO-optimised metadata for an image
    */
   static optimizeImage(
     image: ImageAsset,
@@ -163,7 +163,7 @@ export class ImageSEOAgent {
     // Determine service type and keywords
     const keywords = this.extractKeywords(image, context);
     
-    // Generate SEO-optimized filename
+    // Generate SEO-optimised filename
     const seoFilename = this.generateSEOFilename(image, keywords.primaryKeyword);
     
     // Generate comprehensive alt text
@@ -266,7 +266,7 @@ export class ImageSEOAgent {
   }
   
   /**
-   * Generate SEO-optimized filename
+   * Generate SEO-optimised filename
    */
   private static generateSEOFilename(image: ImageAsset, primaryKeyword: string): string {
     const keyword = primaryKeyword.toLowerCase().replace(/\s+/g, '-');
@@ -304,7 +304,7 @@ export class ImageSEOAgent {
   }
   
   /**
-   * Generate SEO-optimized title
+   * Generate SEO-optimised title
    */
   private static generateTitle(
     image: ImageAsset,
@@ -353,11 +353,11 @@ export class ImageSEOAgent {
       "uploadDate": new Date().toISOString(),
       "acquireLicenseUrl": "https://disasterrecovery.com.au/contact",
       "copyrightHolder": {
-        "@type": "Organization",
+        "@type": "Organisation",
         "name": "Disaster Recovery Australia"
       },
       "creator": {
-        "@type": "Organization",
+        "@type": "Organisation",
         "name": "Disaster Recovery Australia"
       },
       "creditText": "Disaster Recovery Australia - Professional Restoration Services",
@@ -434,7 +434,7 @@ export class ImageSEOAgent {
       related.push(
         'Fire Damage Assessment',
         'Smoke and Soot Removal',
-        'Odor Elimination Process',
+        'Odour Elimination Process',
         'Fire Damage Reconstruction'
       );
     } else if (image.category.includes('mould')) {
@@ -489,7 +489,7 @@ export class ImageSEOAgent {
   }
   
   /**
-   * Batch optimize all images in library
+   * Batch optimise all images in library
    */
   static optimizeAllImages(context?: any): SEOOptimizedImage[] {
     return IMAGE_LIBRARY.map(image => this.optimizeImage(image, context));

@@ -643,7 +643,7 @@ export class ContextManager {
   private countStakeholders(task: string): number {
     const stakeholders = [
       'homeowner', 'tenant', 'landlord', 'insurance', 'contractor',
-      'emergency services', 'council', 'neighbor', 'business owner'
+      'emergency services', 'council', 'neighbour', 'business owner'
     ];
 
     return stakeholders.filter(stakeholder =>

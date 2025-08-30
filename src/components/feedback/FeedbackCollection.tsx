@@ -68,11 +68,11 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
   const [agreedToTestimonial, setAgreedToTestimonial] = useState(false);
 
   const ratingLabels = {
-    1: { label: 'Very Poor', icon: <Frown className="w-5 h-5" />, color: 'text-red-500' },
-    2: { label: 'Poor', icon: <Frown className="w-5 h-5" />, color: 'text-orange-500' },
-    3: { label: 'Average', icon: <Meh className="w-5 h-5" />, color: 'text-yellow-500' },
-    4: { label: 'Good', icon: <Smile className="w-5 h-5" />, color: 'text-green-500' },
-    5: { label: 'Excellent', icon: <Smile className="w-5 h-5" />, color: 'text-green-600' }
+    1: { label: 'Very Poor', icon: <Frown className="w-5 h-5" />, colour: 'text-red-500' },
+    2: { label: 'Poor', icon: <Frown className="w-5 h-5" />, colour: 'text-orange-500' },
+    3: { label: 'Average', icon: <Meh className="w-5 h-5" />, colour: 'text-yellow-500' },
+    4: { label: 'Good', icon: <Smile className="w-5 h-5" />, colour: 'text-green-500' },
+    5: { label: 'Excellent', icon: <Smile className="w-5 h-5" />, colour: 'text-green-600' }
   };
 
   const categoryLabels = {
@@ -157,10 +157,10 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
 
   const getOverallSentiment = () => {
     const avg = ratings.overall;
-    if (avg >= 4) return { text: 'Great!', emoji: '😊', color: 'text-green-600' };
-    if (avg === 3) return { text: 'Good', emoji: '😐', color: 'text-yellow-600' };
-    if (avg >= 1) return { text: 'We can do better', emoji: '😔', color: 'text-red-600' };
-    return { text: 'Rate your experience', emoji: '⭐', color: 'text-gray-600' };
+    if (avg >= 4) return { text: 'Great!', emoji: '😊', colour: 'text-green-600' };
+    if (avg === 3) return { text: 'Good', emoji: '😐', colour: 'text-yellow-600' };
+    if (avg >= 1) return { text: 'We can do better', emoji: '😔', colour: 'text-red-600' };
+    return { text: 'Rate your experience', emoji: '⭐', colour: 'text-gray-600' };
   };
 
   const RatingStars = ({ category, value, onChange }: {
@@ -172,14 +172,14 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
       <label className="block text-sm font-medium text-gray-700">
         {categoryLabels[category]}
       </label>
-      <div className="flex items-center space-x-1">
+      <div className="flex items-centre space-x-1">
         {[1, 2, 3, 4, 5].map(rating => (
           <button
             key={rating}
             type="button"
             onClick={() => onChange(rating)}
             onMouseEnter={() => {}}
-            className={`p-1 transition-colors ${
+            className={`p-1 transition-colours ${
               rating <= value ? getRatingColor(value) : 'text-gray-300 hover:text-yellow-400'
             }`}
           >
@@ -198,9 +198,9 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
       case 1:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-8">
+            <div className="text-centre mb-8">
               <div className="text-6xl mb-4">{getOverallSentiment().emoji}</div>
-              <h2 className={`text-2xl font-bold ${getOverallSentiment().color}`}>
+              <h2 className={`text-2xl font-bold ${getOverallSentiment().colour}`}>
                 {getOverallSentiment().text}
               </h2>
               <p className="text-gray-600 mt-2">
@@ -255,7 +255,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
       case 2:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
+            <div className="text-centre mb-6">
               <h2 className="text-xl font-bold text-gray-900">Tell us more about your experience</h2>
               <p className="text-gray-600 mt-2">Your feedback helps us improve our service</p>
             </div>
@@ -308,14 +308,14 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
               <h3 className="font-medium text-blue-900 mb-3">
                 How likely are you to recommend us to others?
               </h3>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-centre">
                 <span className="text-sm text-blue-700">Not at all likely</span>
                 <div className="flex space-x-2">
                   {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(score => (
                     <button
                       key={score}
                       onClick={() => setNpsScore(score)}
-                      className={`w-8 h-8 rounded-full text-sm font-medium transition-colors ${
+                      className={`w-8 h-8 rounded-full text-sm font-medium transition-colours ${
                         npsScore === score
                           ? 'bg-blue-600 text-white'
                           : 'bg-white text-blue-600 hover:bg-blue-100 border border-blue-300'
@@ -334,7 +334,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
       case 3:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
+            <div className="text-centre mb-6">
               <h2 className="text-xl font-bold text-gray-900">Show off the results!</h2>
               <p className="text-gray-600 mt-2">
                 Add photos to showcase the quality work (optional but appreciated)
@@ -351,14 +351,14 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
                   />
                   <button
                     onClick={() => removePhoto(photo.id)}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600"
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-centre justify-centre hover:bg-red-600"
                   >
                     <X className="w-3 h-3" />
                   </button>
                 </div>
               ))}
 
-              <label className="w-full h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
+              <label className="w-full h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-centre justify-centre cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colours">
                 <Upload className="w-8 h-8 text-gray-400 mb-2" />
                 <span className="text-sm text-gray-500">Upload Photos</span>
                 <input
@@ -386,8 +386,8 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
       case 4:
         return (
           <div className="space-y-6">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="text-centre mb-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
                 <CheckCircle className="w-8 h-8 text-green-600" />
               </div>
               <h2 className="text-xl font-bold text-gray-900">Almost done!</h2>
@@ -403,7 +403,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
                       <span className="text-gray-600 capitalize">
                         {categoryLabels[category as keyof typeof categoryLabels]}:
                       </span>
-                      <div className="flex items-center">
+                      <div className="flex items-centre">
                         <Star className={`w-4 h-4 ${getRatingColor(rating)} fill-current mr-1`} />
                         <span className="font-medium">{rating}/5</span>
                       </div>
@@ -477,7 +477,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
               </div>
             )}
 
-            <div className="text-center text-sm text-gray-500">
+            <div className="text-centre text-sm text-gray-500">
               <p>
                 By submitting this feedback, you agree to our{' '}
                 <a href="/privacy" className="text-blue-600 hover:text-blue-700">
@@ -501,7 +501,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
     <div className="max-w-4xl mx-auto p-6">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-centre justify-between mb-6">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Service Feedback</h1>
             <p className="text-gray-600 mt-2">Help us improve by sharing your experience</p>
@@ -519,19 +519,19 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
         {/* Job Details */}
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="flex items-center">
+            <div className="flex items-centre">
               <Briefcase className="w-4 h-4 text-gray-500 mr-2" />
               <span className="text-gray-600">Job:</span>
               <span className="font-medium ml-1">{jobDetails.jobNumber}</span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-centre">
               <Calendar className="w-4 h-4 text-gray-500 mr-2" />
               <span className="text-gray-600">Completed:</span>
               <span className="font-medium ml-1">
                 {jobDetails.completedDate.toLocaleDateString('en-AU')}
               </span>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-centre">
               <User className="w-4 h-4 text-gray-500 mr-2" />
               <span className="text-gray-600">Contractor:</span>
               <span className="font-medium ml-1">{jobDetails.contractorName}</span>
@@ -540,12 +540,12 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
         </div>
 
         {/* Progress Steps */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-centre justify-between mb-8">
           {steps.map((step, index) => (
             <React.Fragment key={step.id}>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-centre">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
+                  className={`w-10 h-10 rounded-full flex items-centre justify-centre text-sm font-medium transition-colours ${
                     currentStep === step.id
                       ? 'bg-blue-600 text-white'
                       : currentStep > step.id
@@ -559,13 +559,13 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
                     step.id
                   )}
                 </div>
-                <p className="text-xs mt-2 text-center text-gray-600 hidden sm:block">
+                <p className="text-xs mt-2 text-centre text-gray-600 hidden sm:block">
                   {step.title}
                 </p>
               </div>
               {index < steps.length - 1 && (
                 <div
-                  className={`flex-1 h-0.5 transition-colors ${
+                  className={`flex-1 h-0.5 transition-colours ${
                     currentStep > step.id ? 'bg-green-500' : 'bg-gray-300'
                   }`}
                 />
@@ -585,7 +585,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
         <button
           onClick={() => setCurrentStep(prev => Math.max(prev - 1, 1))}
           disabled={currentStep === 1}
-          className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+          className={`px-6 py-3 rounded-lg font-medium transition-colours ${
             currentStep === 1
               ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
               : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -598,7 +598,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
           <button
             onClick={() => setCurrentStep(prev => prev + 1)}
             disabled={currentStep === 1 && ratings.overall === 0}
-            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+            className={`px-6 py-3 rounded-lg font-medium transition-colours ${
               (currentStep === 1 && ratings.overall === 0)
                 ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -610,7 +610,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center"
+            className="px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colours flex items-centre"
           >
             {isSubmitting ? (
               <>

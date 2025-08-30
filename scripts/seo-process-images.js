@@ -1,7 +1,7 @@
 /**
  * Automated Image SEO Processing Script
  * Applies comprehensive SEO optimizations to all images
- * Generates sitemaps, structured data, and optimized metadata
+ * Generates sitemaps, structured data, and optimised metadata
  */
 
 const sharp = require('sharp');
@@ -15,7 +15,7 @@ const SEO_CONFIG = {
   defaultLocation: 'Brisbane, Queensland',
   businessName: 'National Restoration Professionals (NRP)',
   
-  // Image optimization settings
+  // Image optimisation settings
   quality: {
     webp: 85,
     avif: 80,
@@ -48,7 +48,7 @@ async function processSEOImage(inputPath, originalFilename) {
     const image = sharp(inputPath);
     const metadata = await image.metadata();
     
-    // Generate SEO-optimized filename
+    // Generate SEO-optimised filename
     const seoFilename = generateSEOFilename(originalFilename);
     const category = determineCategory(originalFilename);
     
@@ -76,7 +76,7 @@ async function processSEOImage(inputPath, originalFilename) {
       responsiveImages
     });
     
-    console.log(`  ✅ SEO optimized: ${seoFilename}`);
+    console.log(`  ✅ SEO optimised: ${seoFilename}`);
     
     return {
       filename: seoFilename,
@@ -92,7 +92,7 @@ async function processSEOImage(inputPath, originalFilename) {
 }
 
 /**
- * Generate SEO-optimized filename
+ * Generate SEO-optimised filename
  */
 function generateSEOFilename(originalName) {
   const base = path.basename(originalName, path.extname(originalName))
@@ -119,7 +119,7 @@ function generateSEOFilename(originalName) {
 function determineCategory(filename) {
   const lower = filename.toLowerCase();
   
-  if (lower.includes('mould') || lower.includes('mold')) return 'mould-damage';
+  if (lower.includes('mould') || lower.includes('mould')) return 'mould-damage';
   if (lower.includes('water') || lower.includes('flood')) return 'water-damage';
   if (lower.includes('fire') || lower.includes('smoke')) return 'fire-damage';
   if (lower.includes('air') && lower.includes('mover')) return 'equipment/air-movers';
@@ -137,7 +137,7 @@ function generateSEOMetadata(filename, category, imageMetadata) {
   const categoryMeta = {
     'mould-damage': {
       title: 'Professional Mould Remediation and Removal Services',
-      keywords: ['mould remediation', 'black mould removal', 'mould inspection', 'toxic mold cleanup'],
+      keywords: ['mould remediation', 'black mould removal', 'mould inspection', 'toxic mould cleanup'],
       description: 'IICRC certified mould remediation specialists providing safe, thorough mould removal and prevention services'
     },
     'water-damage': {
@@ -148,7 +148,7 @@ function generateSEOMetadata(filename, category, imageMetadata) {
     'fire-damage': {
       title: 'Fire and Smoke Damage Restoration Specialists',
       keywords: ['fire damage restoration', 'smoke damage cleanup', 'soot removal', 'fire restoration'],
-      description: 'Complete fire damage restoration including smoke odor removal, soot cleanup, and structural repairs'
+      description: 'Complete fire damage restoration including smoke odour removal, soot cleanup, and structural repairs'
     },
     'equipment/air-movers': {
       title: 'Industrial Air Movers for Water Damage Drying',
@@ -269,12 +269,12 @@ function generateStructuredData(filename, seoData, responsiveImages) {
     "caption": seoData.caption,
     "keywords": seoData.keywords.join(", "),
     "copyrightHolder": {
-      "@type": "Organization",
+      "@type": "Organisation",
       "name": SEO_CONFIG.businessName,
       "url": SEO_CONFIG.siteUrl
     },
     "creator": {
-      "@type": "Organization",
+      "@type": "Organisation",
       "name": SEO_CONFIG.businessName
     },
     "creditText": `${SEO_CONFIG.businessName} - Professional Restoration Services`,
@@ -445,7 +445,7 @@ async function processDirectoryWithSEO(directory) {
  * Generate usage documentation
  */
 async function generateUsageDoc(processedImages) {
-  const doc = `# SEO-Optimized Images Usage Guide
+  const doc = `# SEO-Optimised Images Usage Guide
 
 ## Processed Images
 
@@ -507,7 +507,7 @@ Example:
   node seo-process-images.js "C:\\Users\\Disaster Recovery 4\\Downloads"
 
 Features:
-  ✅ SEO-optimized filenames
+  ✅ SEO-optimised filenames
   ✅ Comprehensive alt text and metadata
   ✅ Responsive image generation
   ✅ Structured data (Schema.org)

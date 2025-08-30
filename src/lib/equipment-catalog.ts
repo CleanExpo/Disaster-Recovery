@@ -354,16 +354,16 @@ export const equipmentCatalog: EquipmentSpecification[] = [
     features: [
       'Safe for occupied spaces',
       'No residual chemicals',
-      'Destroys odors at molecular level',
+      'Destroys odours at molecular level',
       'Kills bacteria and viruses',
       'Variable speed fan',
       'UV lamp hour meter'
     ],
     applications: [
-      'Fire and smoke odor removal',
-      'Mould odor elimination',
-      'Pet odor treatment',
-      'Chemical odor neutralization',
+      'Fire and smoke odour removal',
+      'Mould odour elimination',
+      'Pet odour treatment',
+      'Chemical odour neutralization',
       'Viral decontamination'
     ],
     certifications: [
@@ -388,8 +388,8 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       weekly: 875,
       monthly: 2925
     },
-    description: 'Advanced hydroxyl radical generator that safely eliminates odors and pathogens without evacuation requirements.',
-    technicalDetails: 'Uses multiple UV wavelengths to generate atmospheric hydroxyls that break down odor molecules and kill microorganisms. Safe for use around people and pets.',
+    description: 'Advanced hydroxyl radical generator that safely eliminates odours and pathogens without evacuation requirements.',
+    technicalDetails: 'Uses multiple UV wavelengths to generate atmospheric hydroxyls that break down odour molecules and kill microorganisms. Safe for use around people and pets.',
     operationalRequirements: [
       'Standard power outlet',
       'UV lamp replacement schedule',
@@ -536,7 +536,7 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       monthly: 7500
     },
     description: 'Industrial ultrasonic cleaning system for delicate restoration of fire and smoke damaged items.',
-    technicalDetails: 'Utilizes cavitation process to remove contaminants at microscopic level. Dual frequency allows optimization for different material types.',
+    technicalDetails: 'Utilizes cavitation process to remove contaminants at microscopic level. Dual frequency allows optimisation for different material types.',
     operationalRequirements: [
       '220V power supply',
       'Water supply connection',
@@ -654,9 +654,9 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       'Compact design'
     ],
     applications: [
-      'Severe odor removal',
+      'Severe odour removal',
       'Smoke damage treatment',
-      'Mould odor elimination',
+      'Mould odour elimination',
       'Vehicle deodorization',
       'Crime scene cleanup'
     ],
@@ -682,8 +682,8 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       weekly: 625,
       monthly: 2100
     },
-    description: 'Commercial-grade ozone generator for aggressive odor elimination in unoccupied spaces.',
-    technicalDetails: 'Generates high concentrations of ozone to oxidize odor molecules. Requires complete evacuation of treatment area including pets and plants.',
+    description: 'Commercial-grade ozone generator for aggressive odour elimination in unoccupied spaces.',
+    technicalDetails: 'Generates high concentrations of ozone to oxidize odour molecules. Requires complete evacuation of treatment area including pets and plants.',
     operationalRequirements: [
       'Unoccupied space only',
       'Proper ventilation after use',
@@ -801,7 +801,7 @@ export const equipmentCategories = [
   {
     name: 'Hydroxyl Generators',
     slug: 'hydroxyl-generators',
-    description: 'Safe odor elimination technology for occupied spaces',
+    description: 'Safe odour elimination technology for occupied spaces',
     icon: '✨'
   },
   {
@@ -825,7 +825,7 @@ export const equipmentCategories = [
   {
     name: 'Ozone Generators',
     slug: 'ozone-generators',
-    description: 'Powerful odor oxidation systems for severe contamination',
+    description: 'Powerful odour oxidation systems for severe contamination',
     icon: '⚡'
   },
   {

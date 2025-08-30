@@ -24,7 +24,7 @@ export default function ComingSoonPage() {
       {/* Hero Section */}
       <section className="relative text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <Shield className="h-20 w-20 mx-auto mb-6 text-yellow-400 animate-pulse" />
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
@@ -77,7 +77,7 @@ export default function ComingSoonPage() {
       {/* Authority Sources */}
       <section className="py-16 bg-white/5">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">
+          <h2 className="text-3xl font-bold text-centre mb-12 text-white">
             Our Knowledge Comes From The Best Sources
           </h2>
           <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
@@ -126,10 +126,10 @@ export default function ComingSoonPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 bg-white">
-              <h2 className="text-3xl font-bold mb-6 text-center">
+              <h2 className="text-3xl font-bold mb-6 text-centre">
                 Areas Going Live Soon
               </h2>
-              <p className="text-center text-gray-600 mb-8">
+              <p className="text-centre text-gray-600 mb-8">
                 Service areas activate as IICRC certified contractors join our network
               </p>
               
@@ -137,15 +137,15 @@ export default function ComingSoonPage() {
                 <div>
                   <h3 className="font-bold mb-4 text-green-600">✅ Ready to Launch</h3>
                   <ul className="space-y-2 text-sm">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <MapPin className="h-4 w-4 mr-2 text-green-600" />
                       <span>Brisbane CBD - 3 contractors verified</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <MapPin className="h-4 w-4 mr-2 text-green-600" />
                       <span>Sydney North Shore - 2 contractors verified</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <MapPin className="h-4 w-4 mr-2 text-green-600" />
                       <span>Melbourne Eastern Suburbs - 4 contractors verified</span>
                     </li>
@@ -154,15 +154,15 @@ export default function ComingSoonPage() {
                 <div>
                   <h3 className="font-bold mb-4 text-orange-600">🔄 In Progress</h3>
                   <ul className="space-y-2 text-sm">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <MapPin className="h-4 w-4 mr-2 text-orange-600" />
                       <span>Perth Metro - Verification pending</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <MapPin className="h-4 w-4 mr-2 text-orange-600" />
                       <span>Adelaide CBD - Documentation review</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <MapPin className="h-4 w-4 mr-2 text-orange-600" />
                       <span>Gold Coast - IICRC verification</span>
                     </li>
@@ -171,13 +171,13 @@ export default function ComingSoonPage() {
               </div>
               
               <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-                <p className="text-center font-bold mb-2">
+                <p className="text-centre font-bold mb-2">
                   Are you an IICRC Certified Restoration Professional?
                 </p>
-                <p className="text-center text-sm text-gray-600 mb-4">
+                <p className="text-centre text-sm text-gray-600 mb-4">
                   Help us launch your area and get exclusive territory rights
                 </p>
-                <div className="text-center">
+                <div className="text-centre">
                   <Link href="/contractors/apply">
                     <Button className="bg-blue-600 hover:bg-blue-700">
                       <Award className="mr-2 h-4 w-4" />
@@ -198,7 +198,7 @@ export default function ComingSoonPage() {
             <Card className="p-8 bg-white">
               {!submitted ? (
                 <>
-                  <h2 className="text-2xl font-bold mb-6 text-center">
+                  <h2 className="text-2xl font-bold mb-6 text-centre">
                     Get Notified When We Launch in Your Area
                   </h2>
                   
@@ -228,7 +228,7 @@ export default function ComingSoonPage() {
                       />
                     </div>
                     
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-centre space-x-2">
                       <input
                         type="checkbox"
                         id="contractor"
@@ -247,7 +247,7 @@ export default function ComingSoonPage() {
                   </form>
                 </>
               ) : (
-                <div className="text-center py-8">
+                <div className="text-centre py-8">
                   <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
                   <h3 className="text-2xl font-bold mb-2">You're on the List!</h3>
                   <p className="text-gray-600">
@@ -270,7 +270,7 @@ export default function ComingSoonPage() {
       <section className="py-16 bg-white/5">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-white">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Why We'll Be #1 Globally
             </h2>
             
@@ -316,7 +316,7 @@ export default function ComingSoonPage() {
               </Card>
             </div>
             
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-centre">
               <p className="text-2xl font-bold text-yellow-400 mb-4">
                 "The Wikipedia of Disaster Recovery"
               </p>
@@ -330,7 +330,7 @@ export default function ComingSoonPage() {
 
       {/* Footer */}
       <footer className="py-12 bg-black/20 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <p className="text-sm text-blue-200 mb-2">
             © 2024 Disaster Recovery Australia - Building the Future of Restoration
           </p>

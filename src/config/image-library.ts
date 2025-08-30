@@ -1,5 +1,5 @@
 // Image Library Configuration
-// Defines all disaster recovery and equipment images with optimization settings
+// Defines all disaster recovery and equipment images with optimisation settings
 
 export interface ImageAsset {
   id: string;
@@ -510,16 +510,16 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     originalPath: '3D Moisture Meter Reading.png',
     tags: ['equipment', 'moisture meter', 'reading', 'detection', 'assessment', '3d'],
     formats: {
-      png: '/images/optimized/equipment/3D Moisture Meter Reading.png',
-      webp: '/images/optimized/equipment/3D Moisture Meter Reading.webp',
-      jpg: '/images/optimized/equipment/3D Moisture Meter Reading.jpg'
+      png: '/images/optimised/equipment/3D Moisture Meter Reading.png',
+      webp: '/images/optimised/equipment/3D Moisture Meter Reading.webp',
+      jpg: '/images/optimised/equipment/3D Moisture Meter Reading.jpg'
     },
     sizes: {
-      thumbnail: '/images/optimized/equipment/thumb/3D Moisture Meter Reading.png',
-      small: '/images/optimized/equipment/small/3D Moisture Meter Reading.png',
-      medium: '/images/optimized/equipment/medium/3D Moisture Meter Reading.png',
-      large: '/images/optimized/equipment/large/3D Moisture Meter Reading.png',
-      original: '/images/optimized/equipment/3D Moisture Meter Reading.png'
+      thumbnail: '/images/optimised/equipment/thumb/3D Moisture Meter Reading.png',
+      small: '/images/optimised/equipment/small/3D Moisture Meter Reading.png',
+      medium: '/images/optimised/equipment/medium/3D Moisture Meter Reading.png',
+      large: '/images/optimised/equipment/large/3D Moisture Meter Reading.png',
+      original: '/images/optimised/equipment/3D Moisture Meter Reading.png'
     },
     dimensions: {
       width: 1920,
@@ -537,16 +537,16 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     originalPath: '3D image of a house fire.png',
     tags: ['fire damage', 'house fire', 'residential', 'emergency', 'restoration', '3d'],
     formats: {
-      png: '/images/optimized/damage/3D image of a house fire.png',
-      webp: '/images/optimized/damage/3D image of a house fire.webp',
-      jpg: '/images/optimized/damage/3D image of a house fire.jpg'
+      png: '/images/optimised/damage/3D image of a house fire.png',
+      webp: '/images/optimised/damage/3D image of a house fire.webp',
+      jpg: '/images/optimised/damage/3D image of a house fire.jpg'
     },
     sizes: {
-      thumbnail: '/images/optimized/damage/thumb/3D image of a house fire.png',
-      small: '/images/optimized/damage/small/3D image of a house fire.png',
-      medium: '/images/optimized/damage/medium/3D image of a house fire.png',
-      large: '/images/optimized/damage/large/3D image of a house fire.png',
-      original: '/images/optimized/damage/3D image of a house fire.png'
+      thumbnail: '/images/optimised/damage/thumb/3D image of a house fire.png',
+      small: '/images/optimised/damage/small/3D image of a house fire.png',
+      medium: '/images/optimised/damage/medium/3D image of a house fire.png',
+      large: '/images/optimised/damage/large/3D image of a house fire.png',
+      original: '/images/optimised/damage/3D image of a house fire.png'
     },
     dimensions: {
       width: 1920,
@@ -564,16 +564,16 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     originalPath: '3D Vehicle into Home.png',
     tags: ['vehicle damage', 'structural damage', 'collision', 'emergency', 'restoration', '3d', 'impact'],
     formats: {
-      png: '/images/optimized/damage/3D Vehicle into Home.png',
-      webp: '/images/optimized/damage/3D Vehicle into Home.webp',
-      jpg: '/images/optimized/damage/3D Vehicle into Home.jpg'
+      png: '/images/optimised/damage/3D Vehicle into Home.png',
+      webp: '/images/optimised/damage/3D Vehicle into Home.webp',
+      jpg: '/images/optimised/damage/3D Vehicle into Home.jpg'
     },
     sizes: {
-      thumbnail: '/images/optimized/damage/thumb/3D Vehicle into Home.png',
-      small: '/images/optimized/damage/small/3D Vehicle into Home.png',
-      medium: '/images/optimized/damage/medium/3D Vehicle into Home.png',
-      large: '/images/optimized/damage/large/3D Vehicle into Home.png',
-      original: '/images/optimized/damage/3D Vehicle into Home.png'
+      thumbnail: '/images/optimised/damage/thumb/3D Vehicle into Home.png',
+      small: '/images/optimised/damage/small/3D Vehicle into Home.png',
+      medium: '/images/optimised/damage/medium/3D Vehicle into Home.png',
+      large: '/images/optimised/damage/large/3D Vehicle into Home.png',
+      original: '/images/optimised/damage/3D Vehicle into Home.png'
     },
     dimensions: {
       width: 1920,
@@ -582,7 +582,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     alt: '3D vehicle impact into home - Emergency structural damage restoration and repair services'
   },
 
-  // Specialized Cleanup Services
+  // Specialised Cleanup Services
   {
     id: 'cleanup-squalor-emergency-01',
     name: '3D Emergency Squalor Cleanup',
@@ -591,16 +591,16 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     originalPath: '3D Emergency Squalor Cleanup.png',
     tags: ['squalor cleanup', 'hoarding cleanup', 'biohazard', 'deep cleaning', 'restoration', '3d', 'emergency cleanup', 'sanitization'],
     formats: {
-      png: '/images/optimized/process/3D Emergency Squalor Cleanup.png',
-      webp: '/images/optimized/process/3D Emergency Squalor Cleanup.webp',
-      jpg: '/images/optimized/process/3D Emergency Squalor Cleanup.jpg'
+      png: '/images/optimised/process/3D Emergency Squalor Cleanup.png',
+      webp: '/images/optimised/process/3D Emergency Squalor Cleanup.webp',
+      jpg: '/images/optimised/process/3D Emergency Squalor Cleanup.jpg'
     },
     sizes: {
-      thumbnail: '/images/optimized/process/thumb/3D Emergency Squalor Cleanup.png',
-      small: '/images/optimized/process/small/3D Emergency Squalor Cleanup.png',
-      medium: '/images/optimized/process/medium/3D Emergency Squalor Cleanup.png',
-      large: '/images/optimized/process/large/3D Emergency Squalor Cleanup.png',
-      original: '/images/optimized/process/3D Emergency Squalor Cleanup.png'
+      thumbnail: '/images/optimised/process/thumb/3D Emergency Squalor Cleanup.png',
+      small: '/images/optimised/process/small/3D Emergency Squalor Cleanup.png',
+      medium: '/images/optimised/process/medium/3D Emergency Squalor Cleanup.png',
+      large: '/images/optimised/process/large/3D Emergency Squalor Cleanup.png',
+      original: '/images/optimised/process/3D Emergency Squalor Cleanup.png'
     },
     dimensions: {
       width: 1920,
@@ -614,26 +614,26 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'equipment-thermal-fogging-01',
     name: '3D Thermal Fogging Equipment',
     category: 'equipment-filters',
-    description: '3D visualization of thermal fogging equipment for odor elimination and sanitization',
+    description: '3D visualization of thermal fogging equipment for odour elimination and sanitization',
     originalPath: '3D Thermal Fogging.png',
-    tags: ['thermal fogging', 'deodorization', 'sanitization', 'odor removal', 'smoke damage', 'equipment', '3d', 'disinfection'],
+    tags: ['thermal fogging', 'deodorization', 'sanitization', 'odour removal', 'smoke damage', 'equipment', '3d', 'disinfection'],
     formats: {
-      png: '/images/optimized/equipment/3D Thermal Fogging.png',
-      webp: '/images/optimized/equipment/3D Thermal Fogging.webp',
-      jpg: '/images/optimized/equipment/3D Thermal Fogging.jpg'
+      png: '/images/optimised/equipment/3D Thermal Fogging.png',
+      webp: '/images/optimised/equipment/3D Thermal Fogging.webp',
+      jpg: '/images/optimised/equipment/3D Thermal Fogging.jpg'
     },
     sizes: {
-      thumbnail: '/images/optimized/equipment/thumb/3D Thermal Fogging.png',
-      small: '/images/optimized/equipment/small/3D Thermal Fogging.png',
-      medium: '/images/optimized/equipment/medium/3D Thermal Fogging.png',
-      large: '/images/optimized/equipment/large/3D Thermal Fogging.png',
-      original: '/images/optimized/equipment/3D Thermal Fogging.png'
+      thumbnail: '/images/optimised/equipment/thumb/3D Thermal Fogging.png',
+      small: '/images/optimised/equipment/small/3D Thermal Fogging.png',
+      medium: '/images/optimised/equipment/medium/3D Thermal Fogging.png',
+      large: '/images/optimised/equipment/large/3D Thermal Fogging.png',
+      original: '/images/optimised/equipment/3D Thermal Fogging.png'
     },
     dimensions: {
       width: 1920,
       height: 1080
     },
-    alt: '3D thermal fogging equipment - Professional odor elimination and sanitization technology'
+    alt: '3D thermal fogging equipment - Professional odour elimination and sanitization technology'
   },
 
   // Hazardous Material Cleanup
@@ -645,16 +645,16 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     originalPath: '3D Hazardous Cleaning.png',
     tags: ['hazardous cleanup', 'biohazard', 'hazmat', 'chemical spill', 'contamination', 'safety equipment', '3d', 'industrial cleaning', 'environmental cleanup'],
     formats: {
-      png: '/images/optimized/process/3D Hazardous Cleaning.png',
-      webp: '/images/optimized/process/3D Hazardous Cleaning.webp',
-      jpg: '/images/optimized/process/3D Hazardous Cleaning.jpg'
+      png: '/images/optimised/process/3D Hazardous Cleaning.png',
+      webp: '/images/optimised/process/3D Hazardous Cleaning.webp',
+      jpg: '/images/optimised/process/3D Hazardous Cleaning.jpg'
     },
     sizes: {
-      thumbnail: '/images/optimized/process/thumb/3D Hazardous Cleaning.png',
-      small: '/images/optimized/process/small/3D Hazardous Cleaning.png',
-      medium: '/images/optimized/process/medium/3D Hazardous Cleaning.png',
-      large: '/images/optimized/process/large/3D Hazardous Cleaning.png',
-      original: '/images/optimized/process/3D Hazardous Cleaning.png'
+      thumbnail: '/images/optimised/process/thumb/3D Hazardous Cleaning.png',
+      small: '/images/optimised/process/small/3D Hazardous Cleaning.png',
+      medium: '/images/optimised/process/medium/3D Hazardous Cleaning.png',
+      large: '/images/optimised/process/large/3D Hazardous Cleaning.png',
+      original: '/images/optimised/process/3D Hazardous Cleaning.png'
     },
     dimensions: {
       width: 1920,
@@ -664,7 +664,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
   }
 ];
 
-// Helper functions for image optimization
+// Helper functions for image optimisation
 export const getOptimizedImageSrc = (
   imageId: string,
   size: 'thumbnail' | 'small' | 'medium' | 'large' | 'original' = 'medium',

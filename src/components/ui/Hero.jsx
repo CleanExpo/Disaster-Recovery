@@ -16,7 +16,7 @@ import Container from './Container';
  *   variant="gradient"
  *   title="Emergency Disaster Recovery Services"
  *   subtitle="Professional restoration and cleanup services when you need them most"
- *   description="24/7 emergency response for water damage, fire damage, mold remediation, and complete property restoration."
+ *   description="24/7 emergency response for water damage, fire damage, mould remediation, and complete property restoration."
  *   primaryButton={{ label: 'Get Emergency Help', href: '/contact' }}
  *   secondaryButton={{ label: 'Our Services', href: '/services' }}
  *   backgroundImage="/images/hero-bg.jpg"
@@ -35,13 +35,13 @@ const Hero = forwardRef(({
   backgroundVideo,
   overlay = true,
   overlayOpacity = 'medium',
-  textAlign = 'center',
+  textAlign = 'centre',
   containerSize = 'full',
   children,
   ...props
 }, ref) => {
   
-  const baseClasses = 'relative flex items-center justify-center min-h-screen overflow-hidden';
+  const baseClasses = 'relative flex items-centre justify-centre min-h-screen overflow-hidden';
   
   const variantClasses = {
     default: 'bg-white text-neutral-900',
@@ -67,7 +67,7 @@ const Hero = forwardRef(({
   
   const textAlignClasses = {
     left: 'text-left',
-    center: 'text-center',
+    centre: 'text-centre',
     right: 'text-right',
   };
   
@@ -125,7 +125,7 @@ const Hero = forwardRef(({
           {subtitle && (
             <p className={clsx(
               'text-sm font-semibold uppercase tracking-wider mb-4',
-              textAlign === 'center' && 'mx-auto',
+              textAlign === 'centre' && 'mx-auto',
               variant === 'dark' || variant === 'gradient-dark' || variant === 'primary'
                 ? 'text-neutral-300'
                 : 'text-primary'
@@ -138,7 +138,7 @@ const Hero = forwardRef(({
           {title && (
             <h1 className={clsx(
               'text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6',
-              textAlign === 'center' && 'mx-auto max-w-5xl',
+              textAlign === 'centre' && 'mx-auto max-w-5xl',
               'animate-slide-up'
             )}>
               {title}
@@ -149,7 +149,7 @@ const Hero = forwardRef(({
           {description && (
             <p className={clsx(
               'text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed',
-              textAlign === 'center' && 'mx-auto max-w-3xl',
+              textAlign === 'centre' && 'mx-auto max-w-3xl',
               variant === 'dark' || variant === 'gradient-dark' || variant === 'primary'
                 ? 'text-neutral-300'
                 : 'text-neutral-600',
@@ -162,8 +162,8 @@ const Hero = forwardRef(({
           {/* Buttons */}
           {(primaryButton || secondaryButton) && (
             <div className={clsx(
-              'flex flex-col sm:flex-row gap-4 items-center',
-              textAlign === 'center' && 'justify-center',
+              'flex flex-col sm:flex-row gap-4 items-centre',
+              textAlign === 'centre' && 'justify-centre',
               textAlign === 'left' && 'justify-start',
               textAlign === 'right' && 'justify-end',
               'animate-slide-up [animation-delay:400ms]'
@@ -264,7 +264,7 @@ Hero.propTypes = {
   /** Overlay opacity */
   overlayOpacity: PropTypes.oneOf(['light', 'medium', 'dark', 'very-dark']),
   /** Text alignment */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right']),
+  textAlign: PropTypes.oneOf(['left', 'centre', 'right']),
   /** Container size */
   containerSize: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full']),
   /** Custom children */

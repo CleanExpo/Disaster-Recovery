@@ -69,7 +69,7 @@ const mockJobs: MobileJob[] = [
   {
     id: 'job-2',
     jobNumber: 'JOB-2024-002',
-    type: 'mold',
+    type: 'mould',
     status: 'assigned',
     priority: 'routine',
     client: {
@@ -84,7 +84,7 @@ const mockJobs: MobileJob[] = [
     },
     scheduledDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
     estimatedDuration: 2,
-    notes: 'Mold inspection and remediation',
+    notes: 'Mould inspection and remediation',
     photos: [],
     documents: [],
     syncStatus: 'synced'
@@ -146,9 +146,9 @@ export function MobileAppDashboard() {
         {/* Screen */}
         <div className="relative bg-white rounded-[2rem] overflow-hidden" style={{ minHeight: '700px' }}>
           {/* Status Bar */}
-          <div className="flex justify-between items-center px-6 py-2 bg-white text-black text-xs">
+          <div className="flex justify-between items-centre px-6 py-2 bg-white text-black text-xs">
             <span className="font-medium">9:41 AM</span>
-            <div className="flex items-center gap-1">
+            <div className="flex items-centre gap-1">
               <Signal className="h-3 w-3" />
               <Wifi className="h-3 w-3" />
               <Battery className="h-3 w-3" />
@@ -163,23 +163,23 @@ export function MobileAppDashboard() {
           {/* Bottom Navigation */}
           <div className="absolute bottom-0 left-0 right-0 bg-white border-t">
             <div className="flex justify-around py-2">
-              <button className="flex flex-col items-center p-2">
+              <button className="flex flex-col items-centre p-2">
                 <Home className="h-5 w-5 text-blue-600" />
                 <span className="text-xs mt-1 text-blue-600">Home</span>
               </button>
-              <button className="flex flex-col items-center p-2">
+              <button className="flex flex-col items-centre p-2">
                 <Briefcase className="h-5 w-5 text-gray-400" />
                 <span className="text-xs mt-1 text-gray-400">Jobs</span>
               </button>
-              <button className="flex flex-col items-center p-2">
+              <button className="flex flex-col items-centre p-2">
                 <Shield className="h-5 w-5 text-gray-400" />
                 <span className="text-xs mt-1 text-gray-400">Compliance</span>
               </button>
-              <button className="flex flex-col items-center p-2">
+              <button className="flex flex-col items-centre p-2">
                 <Bell className="h-5 w-5 text-gray-400" />
                 <span className="text-xs mt-1 text-gray-400">Alerts</span>
               </button>
-              <button className="flex flex-col items-center p-2">
+              <button className="flex flex-col items-centre p-2">
                 <User className="h-5 w-5 text-gray-400" />
                 <span className="text-xs mt-1 text-gray-400">Profile</span>
               </button>
@@ -210,7 +210,7 @@ export function MobileAppDashboard() {
 
         {/* Welcome Header */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl p-4">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-centre justify-between mb-2">
             <div>
               <h2 className="text-lg font-semibold">Good Morning, John</h2>
               <p className="text-sm text-blue-100">2 jobs scheduled today</p>
@@ -222,11 +222,11 @@ export function MobileAppDashboard() {
             </div>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
-            <div className="bg-white/10 rounded-lg p-2 text-center">
+            <div className="bg-white/10 rounded-lg p-2 text-centre">
               <p className="text-2xl font-bold">92%</p>
               <p className="text-xs text-blue-100">Compliance Score</p>
             </div>
-            <div className="bg-white/10 rounded-lg p-2 text-center">
+            <div className="bg-white/10 rounded-lg p-2 text-centre">
               <p className="text-2xl font-bold">4.8</p>
               <p className="text-xs text-blue-100">Rating</p>
             </div>
@@ -235,19 +235,19 @@ export function MobileAppDashboard() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-4 gap-3">
-          <button className="flex flex-col items-center p-3 bg-gray-50 rounded-xl">
+          <button className="flex flex-col items-centre p-3 bg-gray-50 rounded-xl">
             <Camera className="h-5 w-5 text-blue-600 mb-1" />
             <span className="text-xs">Photo</span>
           </button>
-          <button className="flex flex-col items-center p-3 bg-gray-50 rounded-xl">
+          <button className="flex flex-col items-centre p-3 bg-gray-50 rounded-xl">
             <Navigation className="h-5 w-5 text-green-600 mb-1" />
             <span className="text-xs">Navigate</span>
           </button>
-          <button className="flex flex-col items-center p-3 bg-gray-50 rounded-xl">
+          <button className="flex flex-col items-centre p-3 bg-gray-50 rounded-xl">
             <ScanLine className="h-5 w-5 text-purple-600 mb-1" />
             <span className="text-xs">Scan Doc</span>
           </button>
-          <button className="flex flex-col items-center p-3 bg-gray-50 rounded-xl">
+          <button className="flex flex-col items-centre p-3 bg-gray-50 rounded-xl">
             <MessageSquare className="h-5 w-5 text-orange-600 mb-1" />
             <span className="text-xs">Support</span>
           </button>
@@ -255,7 +255,7 @@ export function MobileAppDashboard() {
 
         {/* Today's Jobs */}
         <div>
-          <div className="flex justify-between items-center mb-3">
+          <div className="flex justify-between items-centre mb-3">
             <h3 className="font-semibold">Today's Jobs</h3>
             <button className="text-sm text-blue-600">View All</button>
           </div>
@@ -275,12 +275,12 @@ export function MobileAppDashboard() {
                     {job.priority}
                   </Badge>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-gray-600">
+                <div className="flex items-centre gap-2 text-xs text-gray-600">
                   <MapPin className="h-3 w-3" />
                   <span className="flex-1 truncate">{job.location.address}</span>
                 </div>
-                <div className="flex items-center justify-between mt-3">
-                  <div className="flex items-center gap-1 text-xs">
+                <div className="flex items-centre justify-between mt-3">
+                  <div className="flex items-centre gap-1 text-xs">
                     <Clock className="h-3 w-3" />
                     <span>{job.estimatedDuration}h</span>
                   </div>
@@ -313,8 +313,8 @@ export function MobileAppDashboard() {
 
         {/* Sync Status */}
         <div className="bg-gray-50 rounded-xl p-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre gap-2">
               <RefreshCw className={`h-4 w-4 ${mockSyncStatus.isSyncing ? 'animate-spin' : ''}`} />
               <span className="text-sm">Sync Status</span>
             </div>
@@ -340,14 +340,14 @@ export function MobileAppDashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 rounded-lg">
-        <div className="flex items-center justify-between">
+        <div className="flex items-centre justify-between">
           <div>
-            <h1 className="text-3xl font-bold flex items-center gap-2 mb-2">
+            <h1 className="text-3xl font-bold flex items-centre gap-2 mb-2">
               <Smartphone className="h-8 w-8" />
               Mobile App Features
             </h1>
             <p className="text-blue-100">
-              Secure, mobile-optimized contractor portal for field technicians
+              Secure, mobile-optimised contractor portal for field technicians
             </p>
           </div>
           <div className="flex gap-2">
@@ -376,7 +376,7 @@ export function MobileAppDashboard() {
         <div>
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <CardTitle>Mobile App Preview</CardTitle>
                 <Button
                   variant="outline"
@@ -388,7 +388,7 @@ export function MobileAppDashboard() {
                 </Button>
               </div>
             </CardHeader>
-            <CardContent className="flex justify-center py-8">
+            <CardContent className="flex justify-centre py-8">
               <MobileFrame>
                 <MobileHomeScreen />
               </MobileFrame>
@@ -486,26 +486,26 @@ export function MobileAppDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <span className="text-sm">Platform Support</span>
                   <div className="flex gap-2">
                     <Badge>iOS 14+</Badge>
                     <Badge>Android 10+</Badge>
                   </div>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <span className="text-sm">App Size</span>
                   <span className="text-sm text-gray-500">~45 MB</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <span className="text-sm">Offline Storage</span>
                   <span className="text-sm text-gray-500">Up to 500 MB</span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <span className="text-sm">Battery Usage</span>
-                  <Badge className="bg-green-100 text-green-800">Optimized</Badge>
+                  <Badge className="bg-green-100 text-green-800">Optimised</Badge>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-centre">
                   <span className="text-sm">Security</span>
                   <Badge className="bg-blue-100 text-blue-800">AES-256</Badge>
                 </div>
@@ -527,7 +527,7 @@ export function MobileAppDashboard() {
                 <Play className="h-4 w-4 mr-2" />
                 Get it on Google Play
               </Button>
-              <p className="text-xs text-center text-gray-500">
+              <p className="text-xs text-centre text-gray-500">
                 Version 2.1.0 • Released Dec 2024
               </p>
             </CardContent>
@@ -539,7 +539,7 @@ export function MobileAppDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-centre gap-2">
               <GraduationCap className="h-5 w-5" />
               Training & Resources
             </CardTitle>
@@ -568,7 +568,7 @@ export function MobileAppDashboard() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-centre gap-2">
               <MessageSquare className="h-5 w-5" />
               Support & Alerts
             </CardTitle>
@@ -597,7 +597,7 @@ export function MobileAppDashboard() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-centre gap-2">
               <MapPin className="h-5 w-5" />
               Safety & Location
             </CardTitle>

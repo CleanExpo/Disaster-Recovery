@@ -690,7 +690,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
       assignments: [
         {
           title: 'Business Financial Health Check',
-          description: 'Analyze your business financials',
+          description: 'Analyse your business financials',
           type: 'UPLOAD',
           requirements: [
             'P&L for last 12 months',

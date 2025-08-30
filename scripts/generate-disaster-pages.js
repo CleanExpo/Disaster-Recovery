@@ -47,7 +47,7 @@ const disasters = [
     slug: 'coastal-erosion',
     name: 'Coastal & Storm Surge Damage',
     regions: ['All Coastal Areas'],
-    description: 'Specialized coastal property restoration from storm surge, king tides, and erosion damage',
+    description: 'Specialised coastal property restoration from storm surge, king tides, and erosion damage',
     severity: 'High',
     responseTime: '2-4 hours',
     keywords: ['coastal damage', 'storm surge recovery', 'beach erosion repair'],
@@ -77,7 +77,7 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
     <div className="min-h-screen">
       {/* Emergency Alert Banner */}
       <div className="bg-red-600 text-white py-3">
-        <div className="container mx-auto px-4 flex items-center justify-center">
+        <div className="container mx-auto px-4 flex items-centre justify-centre">
           <AlertTriangle className="h-5 w-5 mr-2 animate-pulse" />
           <span className="font-bold">EMERGENCY HOTLINE: 1300 DISASTER (1300 347 278)</span>
         </div>
@@ -87,7 +87,7 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
       <section className="relative bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
-            <div className="flex items-center mb-4">
+            <div className="flex items-centre mb-4">
               <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
                 {disaster.severity.toUpperCase()} PRIORITY
               </span>
@@ -118,12 +118,12 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
       {/* Response Process */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our ${disaster.name} Response Process
           </h2>
           <div className="grid md:grid-cols-4 gap-6">
-            <Card className="p-6 text-center">
-              <div className="bg-red-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre">
+              <div className="bg-red-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-red-600">1</span>
               </div>
               <h3 className="font-bold mb-2">Emergency Contact</h3>
@@ -131,8 +131,8 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
                 ${disaster.responseTime} guaranteed response
               </p>
             </Card>
-            <Card className="p-6 text-center">
-              <div className="bg-orange-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre">
+              <div className="bg-orange-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-orange-600">2</span>
               </div>
               <h3 className="font-bold mb-2">Rapid Assessment</h3>
@@ -140,8 +140,8 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
                 Complete damage evaluation & safety check
               </p>
             </Card>
-            <Card className="p-6 text-center">
-              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre">
+              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-blue-600">3</span>
               </div>
               <h3 className="font-bold mb-2">Immediate Action</h3>
@@ -149,8 +149,8 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
                 Emergency mitigation to prevent further damage
               </p>
             </Card>
-            <Card className="p-6 text-center">
-              <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre">
+              <div className="bg-green-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-green-600">4</span>
               </div>
               <h3 className="font-bold mb-2">Full Restoration</h3>
@@ -165,7 +165,7 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
       {/* Service Regions */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             ${disaster.name} Service Areas
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -192,7 +192,7 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
       {/* Disaster Statistics */}
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-12">
               ${disaster.name} Impact & Response
             </h2>
@@ -220,7 +220,7 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             ${disaster.name} Emergency?
@@ -229,7 +229,7 @@ export default function ${disaster.name.replace(/[&\s]+/g, '')}Page() {
             Don't wait - every minute counts. Our expert teams are standing by 
             to respond immediately to your ${disaster.name.toLowerCase()} emergency.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <div className="flex flex-col md:flex-row gap-4 justify-centre">
             <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
               <Phone className="mr-2 h-5 w-5" />
               Call 1300 DISASTER Now
@@ -284,7 +284,7 @@ export default function DisastersPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-red-900 to-orange-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <AlertTriangle className="h-16 w-16 text-yellow-400 mx-auto mb-6 animate-pulse" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             All Disaster Types Coverage
@@ -300,7 +300,7 @@ export default function DisastersPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {disasters.map((disaster, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-center mb-3">
+                <div className="flex items-centre mb-3">
                   <span className={\`px-2 py-1 rounded text-xs font-bold text-white \${
                     disaster.severity === 'Extreme' ? 'bg-red-600' : 'bg-orange-600'
                   }\`}>

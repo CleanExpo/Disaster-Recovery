@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Strata Properties Disaster Recovery | Body corporate managed properties | Australia',
-  description: 'Specialized disaster recovery for strata properties. Body corporate managed properties. Insurance approved, 24/7 response.',
+  description: 'Specialised disaster recovery for strata properties. Body corporate managed properties. Insurance approved, 24/7 response.',
 };
 
 export default function StrataPropertiesPage() {

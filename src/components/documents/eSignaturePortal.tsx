@@ -222,7 +222,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
   });
 
   const CreateSignatureRequest = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
       <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">Create Signature Request</h2>
@@ -283,7 +283,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
-              <button className="flex items-center text-blue-600 hover:text-blue-700">
+              <button className="flex items-centre text-blue-600 hover:text-blue-700">
                 <Plus className="w-4 h-4 mr-1" />
                 Add Signer
               </button>
@@ -292,25 +292,25 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-sm text-gray-700">Sequential signing</span>
               </label>
             </div>
             <div>
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-sm text-gray-700">Require authentication</span>
               </label>
             </div>
             <div>
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input type="checkbox" className="mr-2" defaultChecked />
                 <span className="text-sm text-gray-700">Enable reminders</span>
               </label>
             </div>
             <div>
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input type="checkbox" className="mr-2" />
                 <span className="text-sm text-gray-700">Password protected</span>
               </label>
@@ -340,10 +340,10 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
     if (!selectedRequest) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">{selectedRequest.title}</h2>
                 <p className="text-gray-600 mt-1">{selectedRequest.description}</p>
@@ -360,7 +360,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           <div className="p-6 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center mb-2">
+                <div className="flex items-centre mb-2">
                   {getStatusIcon(selectedRequest.status)}
                   <span className={`ml-2 px-2 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedRequest.status)}`}>
                     {selectedRequest.status.replace('_', ' ').toUpperCase()}
@@ -370,7 +370,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center mb-2">
+                <div className="flex items-centre mb-2">
                   <Calendar className="w-4 h-4 text-gray-600" />
                   <span className="ml-2 text-sm font-medium">
                     {new Date(selectedRequest.createdAt).toLocaleDateString()}
@@ -380,7 +380,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center mb-2">
+                <div className="flex items-centre mb-2">
                   <Users className="w-4 h-4 text-gray-600" />
                   <span className="ml-2 text-sm font-medium">
                     {selectedRequest.signers.length} signer{selectedRequest.signers.length !== 1 ? 's' : ''}
@@ -394,9 +394,9 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Signature Progress</h3>
               <div className="space-y-4">
                 {selectedRequest.signers.map((signer, index) => (
-                  <div key={signer.id} className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg">
+                  <div key={signer.id} className="flex items-centre space-x-4 p-4 border border-gray-200 rounded-lg">
                     <div className="flex-shrink-0">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      <div className={`w-8 h-8 rounded-full flex items-centre justify-centre ${
                         signer.status === 'signed' ? 'bg-green-100' :
                         signer.status === 'sent' || signer.status === 'opened' ? 'bg-blue-100' :
                         'bg-gray-100'
@@ -409,14 +409,14 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                     </div>
                     
                     <div className="flex-1">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-centre justify-between">
                         <div>
                           <p className="font-medium text-gray-900">{signer.name}</p>
                           <p className="text-sm text-gray-600">{signer.email}</p>
                           <p className="text-xs text-gray-500">{signer.role}</p>
                         </div>
                         <div className="text-right">
-                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(signer.status)}`}>
+                          <span className={`inline-flex items-centre px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(signer.status)}`}>
                             {signer.status.replace('_', ' ').toUpperCase()}
                           </span>
                           {signer.signedAt && (
@@ -430,7 +430,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
 
                     <div className="flex-shrink-0">
                       {signer.status === 'pending' && (
-                        <button className="flex items-center px-3 py-1 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50">
+                        <button className="flex items-centre px-3 py-1 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50">
                           <Send className="w-4 h-4 mr-1" />
                           Send Reminder
                         </button>
@@ -465,16 +465,16 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           </div>
 
           <div className="p-6 border-t border-gray-200 flex justify-end space-x-3">
-            <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+            <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
               <Download className="w-4 h-4 mr-2" />
               Download
             </button>
-            <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+            <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
               <Copy className="w-4 h-4 mr-2" />
               Duplicate
             </button>
             {selectedRequest.status !== 'completed' && (
-              <button className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+              <button className="flex items-centre px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
                 <XCircle className="w-4 h-4 mr-2" />
                 Cancel Request
               </button>
@@ -507,19 +507,19 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">eSignature Portal</h1>
           <p className="text-gray-600 mt-1">Create, send, and track document signatures</p>
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <div className="flex items-centre space-x-2">
+          <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh
           </button>
           <button 
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             <Plus className="w-4 h-4 mr-2" />
             New Request
@@ -532,7 +532,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 rounded-lg capitalize transition-colors ${
+            className={`px-4 py-2 rounded-lg capitalize transition-colours ${
               activeTab === tab 
                 ? 'bg-white shadow-sm text-gray-900' 
                 : 'text-gray-600 hover:text-gray-900'
@@ -545,7 +545,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
         {filteredRequests.length === 0 ? (
-          <div className="text-center py-12">
+          <div className="text-centre py-12">
             <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               No {activeTab} signature requests
@@ -569,37 +569,37 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
             {filteredRequests.map((request) => (
               <div 
                 key={request.id} 
-                className="p-6 hover:bg-gray-50 cursor-pointer transition-colors"
+                className="p-6 hover:bg-gray-50 cursor-pointer transition-colours"
                 onClick={() => setSelectedRequest(request)}
               >
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-2">
+                    <div className="flex items-centre space-x-3 mb-2">
                       <h3 className="text-lg font-medium text-gray-900">{request.title}</h3>
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(request.status)}`}>
+                      <span className={`inline-flex items-centre px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(request.status)}`}>
                         {getStatusIcon(request.status)}
                         <span className="ml-1">{request.status.replace('_', ' ').toUpperCase()}</span>
                       </span>
                     </div>
                     <p className="text-gray-600 mb-3">{request.description}</p>
-                    <div className="flex items-center space-x-6 text-sm text-gray-500">
-                      <div className="flex items-center">
+                    <div className="flex items-centre space-x-6 text-sm text-gray-500">
+                      <div className="flex items-centre">
                         <Calendar className="w-4 h-4 mr-1" />
                         Created: {new Date(request.createdAt).toLocaleDateString()}
                       </div>
                       {request.dueDate && (
-                        <div className="flex items-center">
+                        <div className="flex items-centre">
                           <Clock className="w-4 h-4 mr-1" />
                           Due: {new Date(request.dueDate).toLocaleDateString()}
                         </div>
                       )}
-                      <div className="flex items-center">
+                      <div className="flex items-centre">
                         <Users className="w-4 h-4 mr-1" />
                         {request.signers.length} signer{request.signers.length !== 1 ? 's' : ''}
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     <div className="text-right">
                       <div className="text-sm font-medium text-gray-900">
                         {request.signers.filter(s => s.status === 'signed').length} / {request.signers.length} signed

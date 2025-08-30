@@ -36,8 +36,8 @@ export default function PreviewPage() {
 
       {/* Design System Showcase */}
       <section className="py-20 container mx-auto px-6">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-50 to-pink-50 rounded-full mb-4">
+        <div className="text-centre mb-12">
+          <div className="inline-flex items-centre gap-2 px-4 py-2 bg-gradient-to-r from-purple-50 to-pink-50 rounded-full mb-4">
             <Sparkles className="w-4 h-4 text-purple-600" />
             <span className="text-sm font-semibold text-purple-600">UI/UX Transformation</span>
           </div>
@@ -69,7 +69,7 @@ export default function PreviewPage() {
               <h4 className="font-semibold text-red-900 mb-3">Issues Identified:</h4>
               <ul className="space-y-2 text-sm text-red-700">
                 <li>• Inconsistent design patterns</li>
-                <li>• Amateur color usage (overuse of red)</li>
+                <li>• Amateur colour usage (overuse of red)</li>
                 <li>• No visual hierarchy</li>
                 <li>• Basic, flat components</li>
                 <li>• No micro-interactions</li>
@@ -91,7 +91,7 @@ export default function PreviewPage() {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-full mb-3">
+                    <div className="inline-flex items-centre gap-2 px-3 py-1 bg-blue-50 rounded-full mb-3">
                       <Clock className="w-3 h-3 text-blue-600" />
                       <span className="text-xs font-semibold text-blue-600">60 min response</span>
                     </div>
@@ -104,7 +104,7 @@ export default function PreviewPage() {
                 <p className="text-gray-600 leading-relaxed mb-4">
                   Premium service with advanced moisture detection, structural drying, and insurance assistance.
                 </p>
-                <button className="group flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <button className="group flex items-centre gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Get Premium Service
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -117,7 +117,7 @@ export default function PreviewPage() {
               <ul className="space-y-2 text-sm text-green-700">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-0.5 text-green-600" />
-                  <span>Sophisticated color palette & gradients</span>
+                  <span>Sophisticated colour palette & gradients</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 mt-0.5 text-green-600" />
@@ -172,7 +172,7 @@ export default function PreviewPage() {
                 NEW PREMIUM BUTTONS
               </h4>
               <div className="space-y-3">
-                <button className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-pulse-subtle">
+                <button className="flex items-centre justify-centre gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-pulse-subtle">
                   <Phone className="w-4 h-4" />
                   Emergency (Refined)
                 </button>
@@ -187,26 +187,26 @@ export default function PreviewPage() {
           </div>
         </div>
 
-        {/* Color Palette Showcase */}
+        {/* Colour Palette Showcase */}
         <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100 p-8 mb-16">
-          <h3 className="text-2xl font-bold mb-6">Premium Color System</h3>
+          <h3 className="text-2xl font-bold mb-6">Premium Colour System</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center">
+            <div className="text-centre">
               <div className="w-full h-24 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl mb-2 shadow-lg" />
               <p className="text-sm font-semibold">Primary Ocean</p>
               <p className="text-xs text-gray-500">#0284C7</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <div className="w-full h-24 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl mb-2 shadow-lg" />
               <p className="text-sm font-semibold">Accent Emerald</p>
               <p className="text-xs text-gray-500">#059669</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <div className="w-full h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-2 shadow-lg" />
               <p className="text-sm font-semibold">Neutral Gray</p>
               <p className="text-xs text-gray-500">#F5F5F5</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <div className="w-full h-24 bg-gradient-to-br from-red-600 to-red-500 rounded-xl mb-2 shadow-lg" />
               <p className="text-sm font-semibold">Emergency Red</p>
               <p className="text-xs text-gray-500">#DC2626</p>
@@ -216,17 +216,17 @@ export default function PreviewPage() {
 
         {/* Stats Comparison */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-center">
+          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-centre">
             <TrendingUp className="w-12 h-12 text-green-600 mx-auto mb-3" />
             <h4 className="text-3xl font-bold text-gray-900 mb-1">+250%</h4>
             <p className="text-gray-600">Visual Appeal</p>
           </div>
-          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-center">
+          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-centre">
             <Users className="w-12 h-12 text-blue-600 mx-auto mb-3" />
             <h4 className="text-3xl font-bold text-gray-900 mb-1">10/10</h4>
             <p className="text-gray-600">Professional Score</p>
           </div>
-          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-center">
+          <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg text-centre">
             <Award className="w-12 h-12 text-purple-600 mx-auto mb-3" />
             <h4 className="text-3xl font-bold text-gray-900 mb-1">Premium</h4>
             <p className="text-gray-600">Design Quality</p>
@@ -239,12 +239,12 @@ export default function PreviewPage() {
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <h2 className="text-4xl font-bold mb-4">Ready for Premium?</h2>
           <p className="text-xl mb-8 text-blue-100">
             This is just a preview. The entire website has been transformed with this level of quality.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <button className="px-8 py-4 bg-white text-blue-900 font-bold rounded-xl hover:bg-gray-100 transform hover:scale-105 transition-all">
               Deploy to Production
             </button>

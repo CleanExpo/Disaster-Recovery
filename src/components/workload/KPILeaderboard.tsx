@@ -151,7 +151,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
       case 3:
         return <Medal className="w-5 h-5 text-orange-600" />;
       default:
-        return <span className="w-5 h-5 flex items-center justify-center text-sm font-bold text-gray-600">{rank}</span>;
+        return <span className="w-5 h-5 flex items-centre justify-centre text-sm font-bold text-gray-600">{rank}</span>;
     }
   };
 
@@ -191,8 +191,8 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
 
   const LeaderboardHeader = () => (
     <div className="bg-white rounded-lg border border-gray-200 p-4">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-3">
+      <div className="flex items-centre justify-between mb-4">
+        <div className="flex items-centre space-x-3">
           <div className="p-2 bg-blue-100 rounded-lg">
             <Trophy className="w-6 h-6 text-blue-600" />
           </div>
@@ -204,7 +204,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
           </div>
         </div>
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-centre space-x-2">
           <select
             value={timeframe}
             className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
@@ -222,23 +222,23 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
       </div>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="text-center">
+        <div className="text-centre">
           <p className="text-2xl font-bold text-gray-900">{contractors.length}</p>
           <p className="text-sm text-gray-600">Total Contractors</p>
         </div>
-        <div className="text-center">
+        <div className="text-centre">
           <p className="text-2xl font-bold text-green-600">
             {contractors.filter(c => c.availability === 'available').length}
           </p>
           <p className="text-sm text-gray-600">Available</p>
         </div>
-        <div className="text-center">
+        <div className="text-centre">
           <p className="text-2xl font-bold text-blue-600">
             {contractors.reduce((sum, c) => sum + c.leadStatistics.currentMonthLeads, 0)}
           </p>
           <p className="text-sm text-gray-600">Total Leads</p>
         </div>
-        <div className="text-center">
+        <div className="text-centre">
           <p className="text-2xl font-bold text-purple-600">
             {(contractors.reduce((sum, c) => sum + c.kpiScore.overallScore, 0) / contractors.length).toFixed(1)}%
           </p>
@@ -263,7 +263,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
           <button
             key={metric.key}
             onClick={() => setSelectedMetric(metric.key as keyof KPIScore)}
-            className={`flex items-center px-3 py-2 rounded-lg text-sm transition-colors ${
+            className={`flex items-centre px-3 py-2 rounded-lg text-sm transition-colours ${
               selectedMetric === metric.key
                 ? 'bg-blue-100 text-blue-700 border border-blue-300'
                 : 'bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100'
@@ -275,8 +275,8 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
         ))}
       </div>
       
-      <div className="mt-3 flex items-center justify-between">
-        <label className="flex items-center">
+      <div className="mt-3 flex items-centre justify-between">
+        <label className="flex items-centre">
           <input
             type="checkbox"
             checked={showPrediction}
@@ -288,7 +288,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
         
         <button
           onClick={() => setSortOrder(prev => prev === 'desc' ? 'asc' : 'desc')}
-          className="flex items-center text-sm text-gray-600 hover:text-gray-900"
+          className="flex items-centre text-sm text-gray-600 hover:text-gray-900"
         >
           {sortOrder === 'desc' ? <ChevronDown className="w-4 h-4" /> : <ChevronUp className="w-4 h-4" />}
           {sortOrder === 'desc' ? 'Highest First' : 'Lowest First'}
@@ -318,7 +318,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
             </div>
             
             <div className="flex-1">
-              <div className="flex items-center space-x-2">
+              <div className="flex items-centre space-x-2">
                 <h4 className="font-semibold text-gray-900">{contractor.companyName}</h4>
                 {performance && performance.badges.length > 0 && (
                   <div className="flex space-x-1">
@@ -331,16 +331,16 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
                 )}
               </div>
               
-              <div className="flex items-center space-x-4 mt-2 text-sm text-gray-600">
-                <span className="flex items-center">
+              <div className="flex items-centre space-x-4 mt-2 text-sm text-gray-600">
+                <span className="flex items-centre">
                   <Activity className="w-3 h-3 mr-1" />
                   {contractor.leadStatistics.currentMonthLeads} leads
                 </span>
-                <span className="flex items-center">
+                <span className="flex items-centre">
                   <Users className="w-3 h-3 mr-1" />
                   {contractor.leadStatistics.acceptanceRate}% accept
                 </span>
-                <span className="flex items-center">
+                <span className="flex items-centre">
                   <Clock className="w-3 h-3 mr-1" />
                   {contractor.leadStatistics.averageResponseTime} min avg
                 </span>
@@ -348,7 +348,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
               
               {showPrediction && (
                 <div className="mt-2">
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                  <span className={`inline-flex items-centre px-2 py-1 rounded-full text-xs font-medium ${
                     getPredictedNextAssignment(contractor) === 'High priority' 
                       ? 'bg-green-100 text-green-800'
                       : getPredictedNextAssignment(contractor) === 'Medium priority'
@@ -363,7 +363,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
           </div>
           
           <div className="text-right">
-            <div className="flex items-center space-x-1">
+            <div className="flex items-centre space-x-1">
               <p className="text-2xl font-bold text-gray-900">
                 {getMetricValue(contractor, selectedMetric).toFixed(selectedMetric === 'overallScore' ? 1 : 0)}
                 {selectedMetric === 'overallScore' && '%'}
@@ -402,7 +402,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
                 <p className="text-xs text-gray-600 mb-1">Recent Improvements:</p>
                 <div className="space-y-1">
                   {performance.improvements.map((improvement, index) => (
-                    <div key={index} className="flex items-center text-xs text-green-700">
+                    <div key={index} className="flex items-centre text-xs text-green-700">
                       <ArrowUp className="w-3 h-3 mr-1" />
                       {improvement}
                     </div>
@@ -437,7 +437,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {sortedContractors.slice(0, 3).map((contractor, index) => (
           <div key={contractor.id} className="bg-white rounded-lg p-3 border border-yellow-300">
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-centre justify-between mb-2">
               {getRankIcon(index + 1)}
               <span className="text-2xl font-bold text-gray-900">
                 {contractor.kpiScore.overallScore.toFixed(0)}%
@@ -447,7 +447,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
             <p className="text-sm text-gray-600 mt-1">
               {contractor.leadStatistics.currentMonthLeads} leads this month
             </p>
-            <div className="mt-2 flex items-center justify-between">
+            <div className="mt-2 flex items-centre justify-between">
               <span className="text-xs text-gray-600">
                 {contractor.leadStatistics.acceptanceRate}% accept rate
               </span>
@@ -492,7 +492,7 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
       </div>
       
       {sortedContractors.length === 0 && (
-        <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+        <div className="text-centre py-12 bg-white rounded-lg border border-gray-200">
           <Trophy className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No Contractors Available</h3>
           <p className="text-gray-600">No contractors found for the selected criteria</p>

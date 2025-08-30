@@ -113,7 +113,7 @@ async function processImage(inputPath, filename) {
       }
     }
     
-    // Also save original in optimized format
+    // Also save original in optimised format
     const originalDir = path.join(
       process.cwd(),
       'public/images',
@@ -122,7 +122,7 @@ async function processImage(inputPath, filename) {
     );
     await fs.mkdir(originalDir, { recursive: true });
     
-    // Save optimized original
+    // Save optimised original
     await sharp(inputPath)
       .webp({ quality: IMAGE_QUALITY.webp })
       .toFile(path.join(originalDir, `${baseName}-original.webp`));
@@ -253,7 +253,7 @@ Example:
   node process-images.js "C:\\Users\\Disaster Recovery 4\\Downloads"
 
 This will process all images in the specified directory and output
-optimized versions in multiple formats and sizes to public/images/
+optimised versions in multiple formats and sizes to public/images/
 `);
 } else {
   const inputDirectory = args[0];

@@ -52,14 +52,14 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
   const [showComparison, setShowComparison] = useState(true);
   const [priceComparisons, setPriceComparisons] = useState<PriceComparison[]>([]);
 
-  const categories: { value: LineItemCategory; label: string; icon: React.ElementType; color: string }[] = [
-    { value: 'emergency_services', label: 'Emergency', icon: Zap, color: 'red' },
-    { value: 'labour', label: 'Labour', icon: Clock, color: 'blue' },
-    { value: 'equipment', label: 'Equipment', icon: Home, color: 'purple' },
-    { value: 'materials', label: 'Materials', icon: Droplets, color: 'green' },
-    { value: 'disposal', label: 'Disposal', icon: FileText, color: 'orange' },
-    { value: 'cleaning', label: 'Cleaning', icon: Droplets, color: 'cyan' },
-    { value: 'restoration', label: 'Restoration', icon: Home, color: 'indigo' }
+  const categories: { value: LineItemCategory; label: string; icon: React.ElementType; colour: string }[] = [
+    { value: 'emergency_services', label: 'Emergency', icon: Zap, colour: 'red' },
+    { value: 'labour', label: 'Labour', icon: Clock, colour: 'blue' },
+    { value: 'equipment', label: 'Equipment', icon: Home, colour: 'purple' },
+    { value: 'materials', label: 'Materials', icon: Droplets, colour: 'green' },
+    { value: 'disposal', label: 'Disposal', icon: FileText, colour: 'orange' },
+    { value: 'cleaning', label: 'Cleaning', icon: Droplets, colour: 'cyan' },
+    { value: 'restoration', label: 'Restoration', icon: Home, colour: 'indigo' }
   ];
 
   useEffect(() => {
@@ -144,7 +144,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
         { type: 'humidity', location: 'Master Bedroom', value: 72, unit: '%', timestamp: new Date().toISOString(), equipment: 'Hygrometer' }
       ],
       photos: [],
-      notes: 'Burst pipe in bathroom wall caused water damage to adjacent rooms. Quick response prevented mold growth.',
+      notes: 'Burst pipe in bathroom wall caused water damage to adjacent rooms. Quick response prevented mould growth.',
       completedAt: new Date().toISOString()
     };
 
@@ -401,7 +401,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
         exclusions: [
           'Reconstruction or repairs',
           'Contents cleaning',
-          'Mold remediation (if discovered)',
+          'Mould remediation (if discovered)',
           'Asbestos abatement'
         ],
         assumptions: [
@@ -563,7 +563,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
 
   const getCategoryColor = (category: LineItemCategory) => {
     const cat = categories.find(c => c.value === category);
-    return cat?.color || 'gray';
+    return cat?.colour || 'gray';
   };
 
   const filteredLineItems = lineItems.filter(item => 
@@ -574,8 +574,8 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-centre space-x-3">
             <div className="p-2 bg-blue-100 rounded-lg">
               <Calculator className="h-6 w-6 text-blue-600" />
             </div>
@@ -584,18 +584,18 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
               <p className="text-sm text-gray-500">IICRC Standards-Based Calculation</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             {estimate && (
               <>
-                <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+                <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2">
                   <Eye className="h-4 w-4" />
                   <span>Preview</span>
                 </button>
-                <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+                <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-centre space-x-2">
                   <Download className="h-4 w-4" />
                   <span>Export</span>
                 </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-centre space-x-2">
                   <Send className="h-4 w-4" />
                   <span>Send to Client</span>
                 </button>
@@ -605,7 +605,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
               <button
                 onClick={() => loadMockEstimate()}
                 disabled={isGenerating}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-centre space-x-2"
               >
                 <RefreshCw className={`h-4 w-4 ${isGenerating ? 'animate-spin' : ''}`} />
                 <span>{isGenerating ? 'Generating...' : 'Generate Estimate'}</span>
@@ -654,8 +654,8 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
 
       {/* Category Filter */}
       <div className="bg-white rounded-lg shadow-sm p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 overflow-x-auto">
+        <div className="flex items-centre justify-between">
+          <div className="flex items-centre space-x-2 overflow-x-auto">
             <button
               onClick={() => setSelectedCategory('all')}
               className={`px-3 py-1 rounded-lg whitespace-nowrap ${
@@ -672,9 +672,9 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
                 <button
                   key={cat.value}
                   onClick={() => setSelectedCategory(cat.value)}
-                  className={`px-3 py-1 rounded-lg flex items-center space-x-1 whitespace-nowrap ${
+                  className={`px-3 py-1 rounded-lg flex items-centre space-x-1 whitespace-nowrap ${
                     selectedCategory === cat.value
-                      ? `bg-${cat.color}-100 text-${cat.color}-700`
+                      ? `bg-${cat.colour}-100 text-${cat.colour}-700`
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
@@ -684,7 +684,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
               );
             })}
           </div>
-          <label className="flex items-center space-x-2">
+          <label className="flex items-centre space-x-2">
             <input
               type="checkbox"
               checked={showComparison}
@@ -797,16 +797,16 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
       {/* Price Comparison Summary */}
       {estimate && showComparison && priceComparisons.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="font-semibold mb-4 flex items-center">
+          <h3 className="font-semibold mb-4 flex items-centre">
             <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
             Price Comparison Summary
           </h3>
           <div className="space-y-3">
             {priceComparisons.map((comparison) => (
-              <div key={comparison.category} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={comparison.category} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
                 <div>
                   <p className="font-medium capitalize">{comparison.category.replace('_', ' ')}</p>
-                  <div className="flex items-center space-x-4 mt-1 text-sm">
+                  <div className="flex items-centre space-x-4 mt-1 text-sm">
                     <span className="text-gray-600">NRP: ${comparison.nrpTotal.toFixed(2)}</span>
                     <span className="text-gray-600">Contractor: ${comparison.contractorTotal.toFixed(2)}</span>
                     <span className="text-gray-600">Industry: ${comparison.industryAverage.toFixed(2)}</span>

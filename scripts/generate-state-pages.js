@@ -93,14 +93,14 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Disaster Recovery ${state.name}
             </h1>
             <p className="text-xl md:text-2xl mb-8">
               24/7 Emergency Response Across All ${stateCode.toUpperCase()} Regions
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col md:flex-row gap-4 justify-centre mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                 <Phone className="mr-2 h-5 w-5" />
                 1300 DISASTER
@@ -109,7 +109,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
                 Get Immediate Help
               </Button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-centre">
               <div>
                 <p className="text-3xl font-bold">24/7</p>
                 <p className="text-sm">Emergency Response</p>
@@ -134,7 +134,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
       {/* Disaster Types */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             ${state.name} Disaster Response Services
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -159,7 +159,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
       {/* Service Areas */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Serving All ${state.name} Regions
           </h2>
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -168,7 +168,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
               <span className="font-bold">${state.capital}</span> (Capital)
             </Card>
             {cities.map((city, index) => (
-              <Card key={index} className="p-4 hover:bg-gray-50 transition-colors">
+              <Card key={index} className="p-4 hover:bg-gray-50 transition-colours">
                 <MapPin className="h-5 w-5 text-gray-600 inline mr-2" />
                 <Link href={\`/locations/\${stateCode.toLowerCase()}/\${city.toLowerCase().replace(/\s+/g, '-')}\`}>
                   <span className="hover:text-blue-600 cursor-pointer">{city}</span>
@@ -182,7 +182,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
       {/* Climate Risks */}
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <AlertTriangle className="h-16 w-16 text-orange-600 mx-auto mb-6" />
             <h2 className="text-3xl font-bold mb-6">
               ${state.name} Climate & Disaster Risks
@@ -219,7 +219,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             ${state.name}'s Trusted Disaster Recovery Partner
           </h2>
@@ -227,7 +227,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
             When disaster strikes in ${state.name}, we're here 24/7. 
             From ${state.capital} to regional areas, no location is too remote.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <div className="flex flex-col md:flex-row gap-4 justify-centre">
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
               <Phone className="mr-2 h-5 w-5" />
               Call 1300 DISASTER

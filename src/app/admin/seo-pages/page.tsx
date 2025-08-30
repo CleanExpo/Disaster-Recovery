@@ -141,7 +141,7 @@ export default function SEOPagesAdmin() {
               <button
                 onClick={() => fetchPages()}
                 disabled={loading}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+                className="flex items-centre gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
               >
                 <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                 Refresh
@@ -149,7 +149,7 @@ export default function SEOPagesAdmin() {
               <button
                 onClick={generatePages}
                 disabled={generating}
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                className="flex items-centre gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
               >
                 <Plus className="w-4 h-4" />
                 {generating ? 'Generating...' : 'Generate Pages'}
@@ -161,7 +161,7 @@ export default function SEOPagesAdmin() {
         {/* Stats Cards */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Pages</p>
                 <p className="text-3xl font-bold text-gray-900">{pagination.total.toLocaleString()}</p>
@@ -173,7 +173,7 @@ export default function SEOPagesAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Avg Priority</p>
                 <p className="text-3xl font-bold text-gray-900">
@@ -187,7 +187,7 @@ export default function SEOPagesAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Clicks</p>
                 <p className="text-3xl font-bold text-gray-900">
@@ -201,7 +201,7 @@ export default function SEOPagesAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Est. Search Vol.</p>
                 <p className="text-3xl font-bold text-gray-900">
@@ -248,7 +248,7 @@ export default function SEOPagesAdmin() {
             <button
               onClick={generatePages}
               disabled={generating}
-              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              className="flex items-centre gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
             >
               <Plus className="w-4 h-4" />
               {generating ? 'Generating...' : 'Generate Pages'}
@@ -323,14 +323,14 @@ export default function SEOPagesAdmin() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {loading ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
+                    <td colSpan={7} className="px-6 py-12 text-centre">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
                       <p className="mt-2 text-gray-500">Loading pages...</p>
                     </td>
                   </tr>
                 ) : pages.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
+                    <td colSpan={7} className="px-6 py-12 text-centre">
                       <p className="text-gray-500">No pages found</p>
                     </td>
                   </tr>
@@ -347,7 +347,7 @@ export default function SEOPagesAdmin() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-900">
+                      <div className="flex items-centre gap-1 text-sm text-gray-900">
                         <MapPin className="w-3 h-3 text-gray-400" />
                         {page.city}, {page.state} {page.postcode}
                       </div>
@@ -377,7 +377,7 @@ export default function SEOPagesAdmin() {
                       <div className="text-sm text-gray-900">{page.organicClicks.toLocaleString()}</div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         <Link
                           href={`/services/${page.slug}`}
                           className="text-blue-600 hover:text-blue-800"
@@ -396,7 +396,7 @@ export default function SEOPagesAdmin() {
           {/* Pagination */}
           {pagination.pages > 1 && (
             <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <div className="text-sm text-gray-700">
                   Showing {((pagination.page - 1) * pagination.limit) + 1} to{' '}
                   {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}

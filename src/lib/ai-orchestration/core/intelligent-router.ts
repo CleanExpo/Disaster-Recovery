@@ -205,8 +205,8 @@ export class IntelligentRouter {
     
     // Check for mathematical or analytical keywords
     const analyticalKeywords = [
-      'calculate', 'analyze', 'analyse', 'estimate', 'predict',
-      'optimize', 'optimise', 'evaluate', 'assess', 'determine',
+      'calculate', 'analyse', 'analyse', 'estimate', 'predict',
+      'optimise', 'optimise', 'evaluate', 'assess', 'determine',
       'compare', 'sequence', 'plan', 'strategy', 'algorithm',
     ];
     

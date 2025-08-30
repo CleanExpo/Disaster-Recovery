@@ -107,7 +107,7 @@ export function BillingSection({ subscription }: BillingSectionProps) {
       {/* Subscription Details */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-centre gap-2">
             <CreditCard className="h-5 w-5" />
             Subscription Details
           </CardTitle>
@@ -116,7 +116,7 @@ export function BillingSection({ subscription }: BillingSectionProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
               <p className="text-sm text-gray-600">Current Tier</p>
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-centre gap-2 mt-1">
                 <p className="font-semibold">{subscription.tier}</p>
                 <Badge variant="outline">Active</Badge>
               </div>
@@ -131,7 +131,7 @@ export function BillingSection({ subscription }: BillingSectionProps) {
             </div>
             <div>
               <p className="text-sm text-gray-600">Auto-Renewal</p>
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-centre gap-2 mt-1">
                 {subscription.autoRenew ? (
                   <>
                     <CheckCircle className="h-4 w-4 text-green-500" />
@@ -165,7 +165,7 @@ export function BillingSection({ subscription }: BillingSectionProps) {
         <TabsContent value="invoices">
           <Card>
             <CardHeader>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-centre">
                 <CardTitle>Recent Invoices</CardTitle>
                 <Button variant="outline" size="sm">
                   <Download className="h-4 w-4 mr-2" />
@@ -176,8 +176,8 @@ export function BillingSection({ subscription }: BillingSectionProps) {
             <CardContent>
               <div className="space-y-3">
                 {invoices.map(invoice => (
-                  <div key={invoice.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-3">
+                  <div key={invoice.id} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-centre gap-3">
                       <Receipt className="h-4 w-4 text-gray-400" />
                       <div>
                         <p className="font-medium text-sm">{invoice.description}</p>
@@ -186,7 +186,7 @@ export function BillingSection({ subscription }: BillingSectionProps) {
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-centre gap-3">
                       <span className="font-semibold">${invoice.amount}</span>
                       <Badge variant="outline" className="text-green-600 border-green-600">
                         {invoice.status}
@@ -213,8 +213,8 @@ export function BillingSection({ subscription }: BillingSectionProps) {
             <CardContent>
               <div className="space-y-3">
                 {transactions.map(transaction => (
-                  <div key={transaction.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div className="flex items-center gap-3">
+                  <div key={transaction.id} className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-centre gap-3">
                       {transaction.type === 'CREDIT' ? (
                         <TrendingUp className="h-4 w-4 text-green-500" />
                       ) : (
@@ -248,7 +248,7 @@ export function BillingSection({ subscription }: BillingSectionProps) {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-centre py-8 text-gray-500">
                 <FileText className="h-12 w-12 mx-auto mb-4 text-gray-300" />
                 <p>Statements will be available here at the end of each billing period</p>
               </div>

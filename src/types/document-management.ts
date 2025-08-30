@@ -238,7 +238,7 @@ export type ShareType =
   | 'public_link'
   | 'email'
   | 'user_specific'
-  | 'organization';
+  | 'organisation';
 
 export interface SharePermissions {
   canView: boolean;

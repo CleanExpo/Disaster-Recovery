@@ -79,7 +79,7 @@ export class MultiAgentDiscussionEngine extends EventEmitter {
         provider: AIProvider.OPENROUTER_GPT_OSS_120B,
         model: 'gpt-oss-120b',
         systemPrompt: this.getSystemPromptForPersona(AgentPersona.COST_ANALYST),
-        specializations: ['cost-estimation', 'resource-planning', 'budget-optimization'],
+        specializations: ['cost-estimation', 'resource-planning', 'budget-optimisation'],
         preferredTaskTypes: ['cost-analysis', 'resource-planning', 'budget-estimation'],
         trustScore: 0.91,
         responseHistory: [],
@@ -322,7 +322,7 @@ export class MultiAgentDiscussionEngine extends EventEmitter {
       }
     }
     
-    // Analyze responses for convergence
+    // Analyse responses for convergence
     const convergenceScore = this.calculateConvergence(responses);
     const newInsights = this.extractNewInsights(responses, discussion.rounds);
     const unresolvedQuestions = this.extractUnresolvedQuestions(responses);
@@ -808,7 +808,7 @@ Be creative and think outside the established positions.`;
         return `${basePrompt}As a Safety Inspector, you prioritize safety protocols, regulatory compliance, and risk mitigation. Ensure all solutions meet Australian safety standards and protect all stakeholders.`;
         
       case AgentPersona.COST_ANALYST:
-        return `${basePrompt}As a Cost Analyst, you focus on financial implications, cost-effectiveness, and resource optimization. Provide realistic cost estimates and budget-conscious alternatives.`;
+        return `${basePrompt}As a Cost Analyst, you focus on financial implications, cost-effectiveness, and resource optimisation. Provide realistic cost estimates and budget-conscious alternatives.`;
         
       case AgentPersona.IMPLEMENTATION_SPECIALIST:
         return `${basePrompt}As an Implementation Specialist, you focus on practical execution, project management, and turning plans into actionable steps. Consider timeline, resources, and coordination requirements.`;

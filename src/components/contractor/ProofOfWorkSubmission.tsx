@@ -206,7 +206,7 @@ export default function ProofOfWorkSubmission({
           </p>
           
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-centre gap-2 mb-2">
               <AlertTriangle className="w-5 h-5 text-blue-600" />
               <h3 className="font-semibold text-blue-900">Submission Requirements</h3>
             </div>
@@ -222,7 +222,7 @@ export default function ProofOfWorkSubmission({
 
           {/* Progress Overview */}
           <div className="bg-gray-50 rounded-lg p-4 mb-8">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-centre justify-between mb-4">
               <h3 className="font-semibold text-gray-900">Progress Overview</h3>
               <span className="text-sm text-gray-600">
                 {getCompletionCount()} of {requiredWorkTypes.length} work types completed
@@ -248,7 +248,7 @@ export default function ProofOfWorkSubmission({
                 border-2 rounded-lg p-6 transition-all
                 ${isComplete ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-white'}
               `}>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-centre justify-between mb-4">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {workType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -258,14 +258,14 @@ export default function ProofOfWorkSubmission({
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     {isComplete && (
                       <CheckCircle className="w-6 h-6 text-green-600" />
                     )}
                     
                     <button
                       onClick={() => openClaimForm(workType)}
-                      className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                      className="flex items-centre gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                     >
                       {claim ? <Eye className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                       {claim ? 'View/Edit' : 'Add Claims'}
@@ -301,7 +301,7 @@ export default function ProofOfWorkSubmission({
 
         {/* Submit Button */}
         <div className="border-t pt-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <p className="text-sm text-gray-600">
                 Complete all {requiredWorkTypes.length} work types to proceed with certification
@@ -310,7 +310,7 @@ export default function ProofOfWorkSubmission({
             <button
               onClick={submitAllClaims}
               disabled={submitting || getCompletionCount() !== requiredWorkTypes.length}
-              className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+              className="flex items-centre gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
             >
               {submitting ? (
                 <>
@@ -384,10 +384,10 @@ function ClaimFormModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50 p-4">
       <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         <div className="p-6 border-b">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <h3 className="text-2xl font-bold text-gray-900">
               {formData.workType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Claims
             </h3>
@@ -576,7 +576,7 @@ function ProjectDetailsForm({
         </label>
         <div className="flex flex-wrap gap-2">
           {DAMAGE_TYPES.map(type => (
-            <label key={type} className="flex items-center gap-2 text-sm">
+            <label key={type} className="flex items-centre gap-2 text-sm">
               <input
                 type="checkbox"
                 checked={formData.damageType.includes(type)}
@@ -610,7 +610,7 @@ function ProjectDetailsForm({
 
       <div className="md:col-span-2">
         <div className="flex gap-6">
-          <label className="flex items-center gap-2">
+          <label className="flex items-centre gap-2">
             <input
               type="checkbox"
               checked={formData.emergencyResponse}
@@ -620,7 +620,7 @@ function ProjectDetailsForm({
             Emergency Response (24/7 call-out)
           </label>
 
-          <label className="flex items-center gap-2">
+          <label className="flex items-centre gap-2">
             <input
               type="checkbox"
               checked={formData.insuranceClaim}
@@ -731,11 +731,11 @@ function EvidenceUploadSection({
             const isComplete = type.required ? count > 0 : true;
             
             return (
-              <div key={type.value} className="flex items-center justify-between text-sm">
+              <div key={type.value} className="flex items-centre justify-between text-sm">
                 <span className={isComplete ? 'text-green-700' : 'text-red-700'}>
                   {type.label} {type.required && '*'}
                 </span>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <span className="text-gray-600">{count} uploaded</span>
                   {isComplete ? (
                     <CheckCircle className="w-4 h-4 text-green-600" />

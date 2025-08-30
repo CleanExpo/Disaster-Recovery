@@ -5,8 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Design system color palette
-export const colors = {
+// Design system colour palette
+export const colours = {
   primary: {
     50: '#eff6ff',
     100: '#dbeafe',

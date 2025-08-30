@@ -103,7 +103,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
     <div className="min-h-screen">
       {/* Emergency Alert Banner */}
       <div className="bg-red-600 text-white py-3 animate-pulse">
-        <div className="container mx-auto px-4 flex items-center justify-center">
+        <div className="container mx-auto px-4 flex items-centre justify-centre">
           <AlertTriangle className="h-5 w-5 mr-2" />
           <span className="font-bold">${scenario.urgencyLevel.toUpperCase()} EMERGENCY - CALL NOW: 1300 DISASTER</span>
         </div>
@@ -112,8 +112,8 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre mb-6">
               <Clock className="h-16 w-16 text-orange-400 animate-spin-slow" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -153,7 +153,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
       {/* Why We Charge More Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why ${scenario.name} Costs More
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -164,7 +164,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
-                  <span>Premium rates for specialized technicians</span>
+                  <span>Premium rates for specialised technicians</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-2">✓</span>
@@ -218,7 +218,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
       {/* Cost of Waiting Section */}
       <section className="py-16 bg-red-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-8 text-red-600">
               The True Cost of Waiting Until Business Hours
             </h2>
@@ -260,11 +260,11 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Insurance Covers ${scenario.name} Fees
             </h2>
             <Card className="p-8 bg-blue-50">
-              <div className="text-center mb-8">
+              <div className="text-centre mb-8">
                 <Shield className="h-16 w-16 text-blue-600 mx-auto mb-4" />
                 <p className="text-2xl font-bold">Most Policies Include After-Hours Coverage</p>
               </div>
@@ -297,7 +297,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
 
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-r from-orange-600 to-red-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Clock className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">
             ${scenario.timeframe} Disaster Emergency?
@@ -370,7 +370,7 @@ export default function EmergencyTimesPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-orange-900 to-red-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Clock className="h-16 w-16 text-yellow-400 mx-auto mb-6 animate-spin-slow" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             24/7/365 Emergency Response
@@ -388,7 +388,7 @@ export default function EmergencyTimesPage() {
       
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Emergency Response Times & Surcharges
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -399,7 +399,7 @@ export default function EmergencyTimesPage() {
               
               return (
                 <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <IconComponent className="h-10 w-10 text-orange-600" />
                     <span className={\`px-3 py-1 rounded-full text-white text-sm font-bold \${colorClass}\`}>
                       {scenario.urgencyLevel}
@@ -407,15 +407,15 @@ export default function EmergencyTimesPage() {
                   </div>
                   <h2 className="text-2xl font-bold mb-2">{scenario.name}</h2>
                   <div className="space-y-2 mb-4 text-gray-600">
-                    <p className="flex items-center">
+                    <p className="flex items-centre">
                       <Clock className="h-4 w-4 mr-2" />
                       {scenario.timeframe}
                     </p>
-                    <p className="flex items-center">
+                    <p className="flex items-centre">
                       <DollarSign className="h-4 w-4 mr-2" />
                       Surcharge: {scenario.surcharge}
                     </p>
-                    <p className="flex items-center font-bold text-black">
+                    <p className="flex items-centre font-bold text-black">
                       <AlertTriangle className="h-4 w-4 mr-2 text-orange-600" />
                       Total: $\${totalFee.toLocaleString()}
                     </p>
@@ -440,7 +440,7 @@ export default function EmergencyTimesPage() {
       {/* Quick Reference Table */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Quick Reference: When to Call
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -449,9 +449,9 @@ export default function EmergencyTimesPage() {
                 <thead className="bg-orange-600 text-white">
                   <tr>
                     <th className="p-4 text-left">Time Period</th>
-                    <th className="p-4 text-center">Surcharge</th>
-                    <th className="p-4 text-center">Total Fee</th>
-                    <th className="p-4 text-center">Response</th>
+                    <th className="p-4 text-centre">Surcharge</th>
+                    <th className="p-4 text-centre">Total Fee</th>
+                    <th className="p-4 text-centre">Response</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -465,11 +465,11 @@ export default function EmergencyTimesPage() {
                             <p className="text-sm text-gray-600">{scenario.timeframe}</p>
                           </div>
                         </td>
-                        <td className="p-4 text-center font-bold">{scenario.surcharge}</td>
-                        <td className="p-4 text-center font-bold text-orange-600">
+                        <td className="p-4 text-centre font-bold">{scenario.surcharge}</td>
+                        <td className="p-4 text-centre font-bold text-orange-600">
                           $\${total.toLocaleString()}
                         </td>
-                        <td className="p-4 text-center">{scenario.responseTime}</td>
+                        <td className="p-4 text-centre">{scenario.responseTime}</td>
                       </tr>
                     );
                   })}
@@ -482,7 +482,7 @@ export default function EmergencyTimesPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">
             Emergency Happening Now?

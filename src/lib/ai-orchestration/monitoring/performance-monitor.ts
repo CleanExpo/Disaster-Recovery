@@ -1,6 +1,6 @@
 /**
  * Advanced Performance Monitoring for AI Orchestration
- * Comprehensive metrics, analytics, and performance optimization
+ * Comprehensive metrics, analytics, and performance optimisation
  */
 
 import {
@@ -562,7 +562,7 @@ export class PerformanceMonitor extends EventEmitter {
         recommendations: [
           'Check provider performance',
           'Review task complexity',
-          'Consider caching optimization',
+          'Consider caching optimisation',
           'Scale up resources if needed'
         ]
       });
@@ -606,9 +606,9 @@ export class PerformanceMonitor extends EventEmitter {
         currentValue: this.metrics.caching.hitRate,
         recommendations: [
           'Review cache TTL settings',
-          'Analyze cache eviction patterns',
+          'Analyse cache eviction patterns',
           'Consider increasing cache size',
-          'Optimize cache key strategy'
+          'Optimise cache key strategy'
         ]
       });
     }
@@ -626,7 +626,7 @@ export class PerformanceMonitor extends EventEmitter {
         threshold: this.config.alertThresholds.costPerTask,
         currentValue: this.metrics.business.costEfficiency.avgCostPerTask,
         recommendations: [
-          'Optimize provider selection',
+          'Optimise provider selection',
           'Review task routing efficiency',
           'Consider batch processing',
           'Evaluate cheaper alternatives'
@@ -687,13 +687,13 @@ export class PerformanceMonitor extends EventEmitter {
 
     // Cost insights
     if (this.metrics.business.costEfficiency.avgCostPerTask > 1.0) {
-      insights.push(`Average task cost of $${this.metrics.business.costEfficiency.avgCostPerTask.toFixed(2)} may benefit from optimization`);
+      insights.push(`Average task cost of $${this.metrics.business.costEfficiency.avgCostPerTask.toFixed(2)} may benefit from optimisation`);
       recommendations.push('Consider implementing more aggressive caching strategies');
     }
 
     // Cache insights
     if (this.metrics.caching.hitRate < 0.6) {
-      insights.push(`Low cache hit rate of ${(this.metrics.caching.hitRate * 100).toFixed(1)}% indicates optimization opportunities`);
+      insights.push(`Low cache hit rate of ${(this.metrics.caching.hitRate * 100).toFixed(1)}% indicates optimisation opportunities`);
       recommendations.push('Review cache key strategies and TTL settings');
     }
 
@@ -790,7 +790,7 @@ export class PerformanceMonitor extends EventEmitter {
     const predictedCost = this.metrics.business.costEfficiency.avgCostPerTask * expectedLoad;
     if (predictedCost > 1000) {
       predictedBottlenecks.push('High cost projection for predicted load');
-      recommendations.push('Review cost optimization strategies');
+      recommendations.push('Review cost optimisation strategies');
     }
 
     return { expectedLoad, predictedBottlenecks, recommendations };

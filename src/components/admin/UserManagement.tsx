@@ -241,9 +241,9 @@ export function UserManagement() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
+          <h2 className="text-2xl font-bold flex items-centre gap-2">
             <Users className="h-6 w-6" />
             User Management
           </h2>
@@ -301,7 +301,7 @@ export function UserManagement() {
       {/* Filters */}
       <Card>
         <CardHeader>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-centre">
             <CardTitle>Users</CardTitle>
             <div className="flex gap-3">
               <div className="relative">
@@ -357,8 +357,8 @@ export function UserManagement() {
                 {filteredUsers.map(user => (
                   <tr key={user.id} className="border-b hover:bg-gray-50">
                     <td className="p-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                      <div className="flex items-centre gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-centre justify-centre">
                           <User className="h-5 w-5 text-gray-600" />
                         </div>
                         <div>
@@ -369,7 +369,7 @@ export function UserManagement() {
                     </td>
                     <td className="p-4">
                       {user.company ? (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <Building className="h-4 w-4 text-gray-400" />
                           <span>{user.company.name}</span>
                         </div>
@@ -396,7 +396,7 @@ export function UserManagement() {
                       )}
                     </td>
                     <td className="p-4">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         {user.isMfaEnabled ? (
                           <Badge variant="outline" className="text-xs">
                             <ShieldCheck className="h-3 w-3 mr-1" />
@@ -530,7 +530,7 @@ export function UserManagement() {
             </div>
 
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <Label htmlFor="active">Account Active</Label>
                 <Switch
                   id="active"
@@ -538,7 +538,7 @@ export function UserManagement() {
                   onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <Label htmlFor="mfa">Require MFA</Label>
                 <Switch
                   id="mfa"
@@ -578,7 +578,7 @@ export function UserManagement() {
           {selectedUser && (
             <div className="space-y-4">
               <div className="p-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <div>
                     <p className="font-medium">Role: {ROLE_DEFINITIONS[selectedUser.role].name}</p>
                     <p className="text-sm text-gray-600 mt-1">
@@ -603,13 +603,13 @@ export function UserManagement() {
 
                     return (
                       <div key={category} className="border rounded-lg p-3">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-centre gap-2 mb-2">
                           <Shield className="h-4 w-4 text-gray-400" />
                           <p className="font-medium">{details.name}</p>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           {categoryPermissions.map(permission => (
-                            <div key={permission} className="flex items-center gap-2 text-sm">
+                            <div key={permission} className="flex items-centre gap-2 text-sm">
                               <CheckCircle className="h-3 w-3 text-green-500" />
                               <span>{permission}</span>
                             </div>

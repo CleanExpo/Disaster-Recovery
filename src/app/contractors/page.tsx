@@ -26,7 +26,7 @@ export default function ContractorsPage() {
     },
     {
       icon: Users,
-      title: 'No Call Centers',
+      title: 'No Call Centres',
       description: 'Direct connection to customers in need',
       value: 'You control the relationship'
     },
@@ -97,7 +97,7 @@ export default function ContractorsPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <Shield className="h-16 w-16 mx-auto mb-6" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Join Australia's Premier Disaster Recovery Network
@@ -126,7 +126,7 @@ export default function ContractorsPage() {
       {/* Benefits Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Join Our Network?
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -149,11 +149,11 @@ export default function ContractorsPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Network Requirements
             </h2>
             <Card className="p-8">
-              <div className="flex items-center mb-6">
+              <div className="flex items-centre mb-6">
                 <Award className="h-8 w-8 text-orange-600 mr-3" />
                 <h3 className="text-2xl font-bold">Qualification Standards</h3>
               </div>
@@ -166,7 +166,7 @@ export default function ContractorsPage() {
                 ))}
               </div>
               <div className="mt-8 bg-blue-50 rounded-lg p-6">
-                <p className="text-center font-bold text-blue-900">
+                <p className="text-centre font-bold text-blue-900">
                   We maintain the highest standards to ensure customer satisfaction 
                   and protect our network's reputation.
                 </p>
@@ -179,10 +179,10 @@ export default function ContractorsPage() {
       {/* Membership Tiers */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">
+          <h2 className="text-3xl font-bold text-centre mb-4">
             Membership Options
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-centre text-gray-600 mb-12 max-w-2xl mx-auto">
             Choose the coverage area that matches your capacity. 
             Upgrade or downgrade anytime based on your needs.
           </p>
@@ -229,14 +229,14 @@ export default function ContractorsPage() {
       {/* How It Works */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             How Lead Distribution Works
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     1
                   </span>
                   <div>
@@ -251,7 +251,7 @@ export default function ContractorsPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     2
                   </span>
                   <div>
@@ -266,7 +266,7 @@ export default function ContractorsPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-blue-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     3
                   </span>
                   <div>
@@ -281,7 +281,7 @@ export default function ContractorsPage() {
               
               <Card className="p-6">
                 <div className="flex items-start">
-                  <span className="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">
+                  <span className="bg-green-600 text-white rounded-full w-10 h-10 flex items-centre justify-centre mr-4 flex-shrink-0">
                     4
                   </span>
                   <div>
@@ -301,7 +301,7 @@ export default function ContractorsPage() {
       {/* Success Stories */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Network Success Stories
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -352,7 +352,7 @@ export default function ContractorsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Award className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-4xl font-bold mb-6">
             Ready to Grow Your Restoration Business?

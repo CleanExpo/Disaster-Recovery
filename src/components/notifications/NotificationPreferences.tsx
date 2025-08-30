@@ -237,7 +237,7 @@ export function NotificationPreferences() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
           <h2 className="text-2xl font-bold">Notification Preferences</h2>
           <p className="text-gray-600 mt-1">
@@ -272,8 +272,8 @@ export function NotificationPreferences() {
             </CardHeader>
             <CardContent className="space-y-6">
               {/* In-App Notifications */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex items-centre justify-between">
+                <div className="flex items-centre gap-3">
                   <Bell className="h-5 w-5 text-gray-500" />
                   <div>
                     <Label htmlFor="in-app">In-App Notifications</Label>
@@ -292,8 +292,8 @@ export function NotificationPreferences() {
               <Separator />
 
               {/* Email Notifications */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex items-centre justify-between">
+                <div className="flex items-centre gap-3">
                   <Mail className="h-5 w-5 text-gray-500" />
                   <div>
                     <Label htmlFor="email">Email Notifications</Label>
@@ -312,8 +312,8 @@ export function NotificationPreferences() {
               <Separator />
 
               {/* SMS Notifications */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex items-centre justify-between">
+                <div className="flex items-centre gap-3">
                   <MessageSquare className="h-5 w-5 text-gray-500" />
                   <div>
                     <Label htmlFor="sms">SMS Notifications</Label>
@@ -332,8 +332,8 @@ export function NotificationPreferences() {
               <Separator />
 
               {/* Push Notifications */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex items-centre justify-between">
+                <div className="flex items-centre gap-3">
                   <Smartphone className="h-5 w-5 text-gray-500" />
                   <div>
                     <Label htmlFor="push">Push Notifications</Label>
@@ -358,8 +358,8 @@ export function NotificationPreferences() {
             {Object.entries(preferences.categories).map(([category, settings]) => (
               <Card key={category}>
                 <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-centre justify-between">
+                    <div className="flex items-centre gap-2">
                       {getCategoryIcon(category as NotificationType)}
                       <CardTitle className="text-lg capitalize">
                         {category} Notifications
@@ -414,7 +414,7 @@ export function NotificationPreferences() {
                     </div>
 
                     {/* Immediate notifications */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <AlertCircle className="h-4 w-4 text-orange-500" />
                       <Label className="text-sm">
                         Send immediately for urgent priority (bypass quiet hours)
@@ -431,7 +431,7 @@ export function NotificationPreferences() {
         <TabsContent value="schedule">
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <div>
                   <CardTitle>Quiet Hours</CardTitle>
                   <CardDescription>
@@ -513,7 +513,7 @@ export function NotificationPreferences() {
                   </Select>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Switch
                     id="exclude-urgent"
                     checked={preferences.quietHours.excludeUrgent}
@@ -541,7 +541,7 @@ export function NotificationPreferences() {
         <TabsContent value="digest">
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <div>
                   <CardTitle>Email Digest</CardTitle>
                   <CardDescription>
@@ -607,7 +607,7 @@ export function NotificationPreferences() {
                   </Label>
                   <div className="space-y-2">
                     {(['compliance', 'billing', 'job', 'system', 'custom'] as NotificationType[]).map(type => (
-                      <div key={type} className="flex items-center gap-2">
+                      <div key={type} className="flex items-centre gap-2">
                         <Switch
                           checked={preferences.emailDigest.includeTypes.includes(type)}
                           onCheckedChange={(checked) => {

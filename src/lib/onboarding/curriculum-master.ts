@@ -120,7 +120,7 @@ const day1: DayContent = {
     {
       id: "D1-LO1",
       title: "Identify Australian Disaster Types",
-      description: "Recognize and categorize all major disaster types affecting Australian properties",
+      description: "Recognise and categorize all major disaster types affecting Australian properties",
       measurableOutcome: "Correctly identify 15+ disaster types with 95% accuracy",
       assessmentCriteria: "Written assessment and visual identification test"
     },
@@ -178,7 +178,7 @@ Australia faces a unique and challenging disaster profile due to its geographic 
    - Health Impacts: Respiratory issues affect 4.1 million Australians
    - Building Defects: Modern sealed buildings trap moisture
 
-4. **Specialized Events (5% of all claims)**
+4. **Specialised Events (5% of all claims)**
    - Biohazard Cleanup: Crime scenes, industrial accidents, contamination
    - Chemical Spills: Industrial and agricultural incidents
    - Pandemic Decontamination: COVID-19 created new service categories
@@ -225,7 +225,7 @@ The 24-48 hour window after a disaster is critical. Water damage becomes structu
         "Water damage represents 60% of all insurance claims",
         "Climate change is accelerating disaster frequency by 3x",
         "24-48 hour response window is critical for mitigation",
-        "Regional differences require specialized knowledge and approaches",
+        "Regional differences require specialised knowledge and approaches",
         "Economic multiplier effect: $1 prevention saves $4 in damage"
       ],
       practicalExercises: [
@@ -544,7 +544,7 @@ Australian disaster recovery work is governed by multiple regulatory frameworks:
 **During Restoration:**
 - Daily progress updates to customer
 - Protect undamaged areas with plastic sheeting
-- Maintain clean, organized work areas
+- Maintain clean, organised work areas
 - Secure property when leaving site
 - Document all work with photos
 - Address concerns immediately
@@ -666,7 +666,7 @@ Disaster sites are inherently dangerous. Your safety and that of others depends 
 2. **Substitution**: Replace with safer alternative
 3. **Engineering Controls**: Isolate people from hazard
 4. **Administrative Controls**: Change how people work
-5. **PPE**: Personal protective equipment as last defense
+5. **PPE**: Personal protective equipment as last defence
 
 **Site Assessment Protocol:**
 
@@ -980,7 +980,7 @@ Disaster work takes emotional toll:
       term: "Scope of Work",
       definition: "Detailed document outlining all restoration work to be performed",
       context: "Legal document used for insurance claims and customer approval",
-      relatedTerms: ["Estimate", "Quote", "Work authorization"]
+      relatedTerms: ["Estimate", "Quote", "Work authorisation"]
     },
     {
       term: "Loss Assessment",
@@ -1026,7 +1026,7 @@ Disaster work takes emotional toll:
       ],
       lessonsLearned: [
         "Pre-positioning equipment saves critical response time",
-        "Community coordination centers improve resource allocation",
+        "Community coordination centres improve resource allocation",
         "Mental health support as important as physical restoration",
         "Local knowledge invaluable for navigation and priorities",
         "Clear communication prevents duplication of efforts"
@@ -1093,7 +1093,7 @@ Disaster work takes emotional toll:
       instructions: [
         "Research 5 restoration companies in your area",
         "Identify their service offerings and pricing",
-        "Analyze their online reviews and reputation",
+        "Analyse their online reviews and reputation",
         "Determine market gaps you could fill",
         "Create competitive analysis spreadsheet"
       ],
@@ -1111,7 +1111,7 @@ Disaster work takes emotional toll:
         "Include utilities, councils, emergency management",
         "Add supplier contacts for equipment and materials",
         "Create after-hours contact protocols",
-        "Organize in easily accessible format"
+        "Organise in easily accessible format"
       ],
       submissionRequirements: [
         "Digital contact database (Excel or similar)",
@@ -1246,7 +1246,7 @@ Characteristics:
 - May cause illness if consumed
 - Biological contamination present
 - Chemical contamination possible
-- Unpleasant odor developing
+- Unpleasant odour developing
 
 **Critical Timeline: Category 2 becomes Category 3 within 24-48 hours**
 
@@ -1282,7 +1282,7 @@ Characteristics:
 - Contains pathogenic agents
 - Immediate health hazard
 - Toxic or allergenic materials
-- Strong offensive odor
+- Strong offensive odour
 
 Real Example: Townsville floods, January 2024
 - Cause: Monsoon trough causing river flooding
@@ -1602,13 +1602,13 @@ Target: Reach 20% moisture content
 **Phase 3: Declining Rate (72+ hours)**
 Priority: Remove bound water
 - Maintain consistent conditions
-- May need specialized equipment
+- May need specialised equipment
 - Monitor deep moisture
 - Adjust for material types
 - Document drying progress
 
 Moisture Movement: Bound water slowly releasing
-Equipment Focus: Specialized systems
+Equipment Focus: Specialised systems
 Target: Reach dry standard (<16% wood)
 
 **Equipment Selection Science:**
@@ -1739,7 +1739,7 @@ Daily Monitoring Requirements:
    - Prevention: Monitor unaffected areas, maintain 30-40% RH
 
 2. **Under-drying Hidden Areas**
-   - Causes: Mould, structural damage, odors
+   - Causes: Mould, structural damage, odours
    - Prevention: Thorough moisture mapping, invasive inspection
 
 3. **Ignoring Vapor Barriers**
@@ -1891,7 +1891,7 @@ Essential Equipment Checklist:
 - Get permission to document
 - Confirm insurance details
 - Set realistic expectations
-- Have them sign initial authorization
+- Have them sign initial authorisation
 
 **Systematic Interior Assessment:**
 
@@ -2043,7 +2043,7 @@ Removal Technique:
 - May be salvageable if not saturated
 - Check with moisture meter
 - Drill ventilation holes if keeping
-- May require specialized drying
+- May require specialised drying
 - Historic buildings special consideration
 
 **Contents Management:**
@@ -2076,7 +2076,7 @@ Removal Technique:
 - Ensure electrical safety
 
 **Dehumidifier Placement:**
-- Center of affected area
+- Centre of affected area
 - Ensure adequate air circulation
 - Route drain hoses safely
 - Monitor temperature
@@ -2337,7 +2337,7 @@ West: Base-30, 1m-15, 2m-8
 - Power consumption
 - Consumables
 
-**Labor Categories:**
+**Labour Categories:**
 - Technician: $75-95/hour
 - Supervisor: $95-120/hour
 - Specialist: $120-150/hour
@@ -2541,7 +2541,7 @@ Recoverable after replacement: $1,500
         "Photo documentation with labels",
         "Moisture logs and drying records",
         "Sketch of affected areas",
-        "Customer authorization forms"
+        "Customer authorisation forms"
       ],
       evaluationCriteria: [
         "Completeness of documentation",

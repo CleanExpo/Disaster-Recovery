@@ -100,8 +100,8 @@ export function ComplianceTracker({ certifications, insurance, memberships }: Co
       {/* Compliance Overview */}
       <Card className={complianceScore >= 80 ? 'border-green-200' : complianceScore >= 60 ? 'border-yellow-200' : 'border-red-200'}>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2">
+          <CardTitle className="flex items-centre justify-between">
+            <span className="flex items-centre gap-2">
               <Shield className="h-5 w-5" />
               Compliance Status
             </span>
@@ -171,15 +171,15 @@ export function ComplianceTracker({ certifications, insurance, memberships }: Co
             {certifications
               .filter(cert => activeFilter === 'all' || cert.status === activeFilter)
               .map(cert => (
-                <div key={cert.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center gap-3">
+                <div key={cert.id} className="flex items-centre justify-between p-3 border rounded-lg">
+                  <div className="flex items-centre gap-3">
                     <FileText className="h-5 w-5 text-gray-400" />
                     <div>
                       <p className="font-medium">{cert.name}</p>
                       <p className="text-sm text-gray-600">{cert.issuer}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <div className="text-right">
                       <Badge className={getStatusColor(cert.status)}>
                         {cert.status}
@@ -222,8 +222,8 @@ export function ComplianceTracker({ certifications, insurance, memberships }: Co
             {insurance
               .filter(ins => activeFilter === 'all' || ins.status === activeFilter)
               .map(ins => (
-                <div key={ins.id} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div className="flex items-center gap-3">
+                <div key={ins.id} className="flex items-centre justify-between p-3 border rounded-lg">
+                  <div className="flex items-centre gap-3">
                     <Shield className="h-5 w-5 text-gray-400" />
                     <div>
                       <p className="font-medium">{ins.type}</p>
@@ -232,7 +232,7 @@ export function ComplianceTracker({ certifications, insurance, memberships }: Co
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <div className="text-right">
                       <Badge className={getStatusColor(ins.status)}>
                         {ins.status}
@@ -268,12 +268,12 @@ export function ComplianceTracker({ certifications, insurance, memberships }: Co
             {memberships
               .filter(mem => activeFilter === 'all' || mem.status === activeFilter)
               .map(mem => (
-                <div key={mem.id} className="flex items-center justify-between p-3 border rounded-lg">
+                <div key={mem.id} className="flex items-centre justify-between p-3 border rounded-lg">
                   <div>
                     <p className="font-medium">{mem.name}</p>
                     <p className="text-sm text-gray-600">Member #{mem.memberNumber}</p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <Badge className={getStatusColor(mem.status)}>
                       {mem.status}
                     </Badge>
@@ -296,7 +296,7 @@ export function ComplianceTracker({ certifications, insurance, memberships }: Co
       {/* Renewal Reminders */}
       <Card className="bg-blue-50 border-blue-200">
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="text-lg flex items-centre gap-2">
             <Bell className="h-5 w-5" />
             Renewal Reminders Active
           </CardTitle>

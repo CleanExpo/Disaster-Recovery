@@ -354,16 +354,16 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
             </div>
             <div className="flex-1">
               <p className="font-medium text-gray-900">{trail.description}</p>
-              <div className="flex items-center space-x-4 mt-1 text-sm text-gray-600">
-                <div className="flex items-center">
+              <div className="flex items-centre space-x-4 mt-1 text-sm text-gray-600">
+                <div className="flex items-centre">
                   <User className="w-3 h-3 mr-1" />
                   {trail.performedBy}
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-centre">
                   <Clock className="w-3 h-3 mr-1" />
                   {new Date(trail.performedAt).toLocaleString()}
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-centre">
                   {getEntityIcon(trail.entityType)}
                   <span className="ml-1 capitalize">{trail.entityType.replace('_', ' ')}</span>
                 </div>
@@ -427,7 +427,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
             </div>
 
             {trail.entityType === 'evidence' && (
-              <button className="flex items-center px-3 py-1.5 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50">
+              <button className="flex items-centre px-3 py-1.5 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50">
                 <Link className="w-4 h-4 mr-1" />
                 View Evidence
               </button>
@@ -440,11 +440,11 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
   const EvidenceSection = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-centre justify-between mb-6">
         <h3 className="text-lg font-semibold text-gray-900">Evidence Files</h3>
         <button 
           onClick={() => setShowUploadModal(true)}
-          className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+          className="flex items-centre px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
         >
           <Upload className="w-4 h-4 mr-1" />
           Upload Evidence
@@ -477,12 +477,12 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
               <p>By: {evidence.uploadedBy}</p>
             </div>
             
-            <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
-              <button className="flex items-center px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50">
+            <div className="flex items-centre justify-between mt-3 pt-3 border-t border-gray-200">
+              <button className="flex items-centre px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50">
                 <Eye className="w-3 h-3 mr-1" />
                 View
               </button>
-              <button className="flex items-center px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50">
+              <button className="flex items-centre px-2 py-1 text-xs border border-gray-300 rounded hover:bg-gray-50">
                 <Download className="w-3 h-3 mr-1" />
                 Download
               </button>
@@ -510,13 +510,13 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Audit Trail & Evidence</h1>
           <p className="text-gray-600 mt-1">Complete log of compliance events and supporting evidence</p>
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <div className="flex items-centre space-x-2">
+          <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Archive className="w-4 h-4 mr-2" />
             Export Log
           </button>
@@ -524,8 +524,8 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 space-y-4 lg:space-y-0">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col lg:flex-row lg:items-centre justify-between mb-6 space-y-4 lg:space-y-0">
+          <div className="flex items-centre space-x-4">
             <div className="relative">
               <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <input
@@ -587,7 +587,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
 
         <div className="space-y-4">
           {filteredTrails.length === 0 ? (
-            <div className="text-center py-8">
+            <div className="text-centre py-8">
               <History className="w-12 h-12 text-gray-300 mx-auto mb-3" />
               <p className="text-gray-600">No audit trail events found</p>
             </div>

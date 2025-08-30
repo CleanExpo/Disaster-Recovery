@@ -25,7 +25,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 
-type ServiceType = 'water' | 'fire' | 'mold' | 'storm' | 'other';
+type ServiceType = 'water' | 'fire' | 'mould' | 'storm' | 'other';
 type PropertyType = 'residential' | 'commercial' | 'industrial';
 type UrgencyLevel = 'emergency' | 'urgent' | 'standard';
 
@@ -91,11 +91,11 @@ const INITIAL_FORM_DATA: FormData = {
 };
 
 const SERVICE_TYPES = [
-  { value: 'water', label: 'Water Damage', icon: Droplets, color: 'text-blue-500' },
-  { value: 'fire', label: 'Fire & Smoke', icon: Flame, color: 'text-red-500' },
-  { value: 'mold', label: 'Mold Remediation', icon: Wind, color: 'text-green-500' },
-  { value: 'storm', label: 'Storm Damage', icon: Building2, color: 'text-purple-500' },
-  { value: 'other', label: 'Other Damage', icon: Home, color: 'text-gray-500' }
+  { value: 'water', label: 'Water Damage', icon: Droplets, colour: 'text-blue-500' },
+  { value: 'fire', label: 'Fire & Smoke', icon: Flame, colour: 'text-red-500' },
+  { value: 'mould', label: 'Mould Remediation', icon: Wind, colour: 'text-green-500' },
+  { value: 'storm', label: 'Storm Damage', icon: Building2, colour: 'text-purple-500' },
+  { value: 'other', label: 'Other Damage', icon: Home, colour: 'text-gray-500' }
 ];
 
 const STATES = ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'];
@@ -142,7 +142,7 @@ export default function BookServicePage() {
         break;
       case 5:
         if (!formData.termsAccepted) newErrors.termsAccepted = 'You must accept the terms and conditions';
-        if (!formData.paymentAuthorized) newErrors.paymentAuthorized = 'Payment authorization is required';
+        if (!formData.paymentAuthorized) newErrors.paymentAuthorized = 'Payment authorisation is required';
         break;
     }
 
@@ -198,9 +198,9 @@ export default function BookServicePage() {
 
   const getUrgencyBadge = (urgency: UrgencyLevel) => {
     const badges = {
-      emergency: { color: 'bg-red-100 text-red-800 border-red-200', label: 'Emergency - Immediate Response' },
-      urgent: { color: 'bg-orange-100 text-orange-800 border-orange-200', label: 'Urgent - Same Day Response' },
-      standard: { color: 'bg-blue-100 text-blue-800 border-blue-200', label: 'Standard - 24-48 Hour Response' }
+      emergency: { colour: 'bg-red-100 text-red-800 border-red-200', label: 'Emergency - Immediate Response' },
+      urgent: { colour: 'bg-orange-100 text-orange-800 border-orange-200', label: 'Urgent - Same Day Response' },
+      standard: { colour: 'bg-blue-100 text-blue-800 border-blue-200', label: 'Standard - 24-48 Hour Response' }
     };
     return badges[urgency];
   };
@@ -210,12 +210,12 @@ export default function BookServicePage() {
       {/* Header */}
       <div className="bg-white border-b sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Book Restoration Service</h1>
               <p className="text-sm text-gray-600">Professional disaster recovery services across Australia</p>
             </div>
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-centre gap-4">
               <div className="text-right">
                 <p className="text-sm text-gray-600">Initial Assessment Fee</p>
                 <p className="text-2xl font-bold text-gray-900">$2,750</p>
@@ -229,12 +229,12 @@ export default function BookServicePage() {
       {/* Progress Bar */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             {[1, 2, 3, 4, 5].map((step) => (
               <div key={step} className="flex-1">
-                <div className="flex items-center">
+                <div className="flex items-centre">
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-colors ${
+                    className={`w-10 h-10 rounded-full flex items-centre justify-centre font-semibold transition-colours ${
                       step < currentStep
                         ? 'bg-green-500 text-white'
                         : step === currentStep
@@ -307,7 +307,7 @@ export default function BookServicePage() {
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
-                          <Icon className={`h-8 w-8 ${service.color} mx-auto mb-2`} />
+                          <Icon className={`h-8 w-8 ${service.colour} mx-auto mb-2`} />
                           <span className="text-sm font-medium">{service.label}</span>
                         </button>
                       );
@@ -723,7 +723,7 @@ export default function BookServicePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload Photos (Optional)
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-centre hover:border-gray-400 transition-colours">
                     <Camera className="h-12 w-12 text-gray-400 mx-auto mb-3" />
                     <p className="text-sm text-gray-600">
                       Drag & drop photos here, or click to select
@@ -740,7 +740,7 @@ export default function BookServicePage() {
                     />
                     <button
                       type="button"
-                      className="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours"
                       onClick={() => document.querySelector<HTMLInputElement>('input[type="file"]')?.click()}
                     >
                       Select Photos
@@ -779,7 +779,7 @@ export default function BookServicePage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Urgency:</span>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getUrgencyBadge(formData.urgencyLevel).color}`}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${getUrgencyBadge(formData.urgencyLevel).colour}`}>
                         {getUrgencyBadge(formData.urgencyLevel).label}
                       </span>
                     </div>
@@ -841,7 +841,7 @@ export default function BookServicePage() {
                       className="mt-1 mr-3"
                     />
                     <span className="text-sm text-gray-600">
-                      I authorize the payment of $2,750 for the initial assessment and understand a qualified contractor will contact me within the specified timeframe.
+                      I authorise the payment of $2,750 for the initial assessment and understand a qualified contractor will contact me within the specified timeframe.
                     </span>
                   </label>
                   {errors.paymentAuthorized && (
@@ -851,7 +851,7 @@ export default function BookServicePage() {
 
                 {/* Secure Payment Notice */}
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <Shield className="h-5 w-5 text-green-600" />
                     <div>
                       <p className="font-medium text-green-900">Secure Payment Processing</p>
@@ -868,7 +868,7 @@ export default function BookServicePage() {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours flex items-centre gap-2"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back
@@ -879,7 +879,7 @@ export default function BookServicePage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre gap-2"
                 >
                   Next
                   <ArrowRight className="h-4 w-4" />
@@ -889,7 +889,7 @@ export default function BookServicePage() {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isProcessing}
-                  className="ml-auto px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="ml-auto px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colours flex items-centre gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isProcessing ? (
                     <>
@@ -908,16 +908,16 @@ export default function BookServicePage() {
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
+          <div className="mt-8 flex flex-wrap items-centre justify-centre gap-6 text-sm text-gray-600">
+            <div className="flex items-centre gap-2">
               <Shield className="h-5 w-5 text-green-600" />
               <span>SSL Secured</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <CheckCircle className="h-5 w-5 text-blue-600" />
               <span>IICRC Certified Contractors</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Clock className="h-5 w-5 text-orange-600" />
               <span>24/7 Emergency Response</span>
             </div>

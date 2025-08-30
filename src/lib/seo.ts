@@ -64,7 +64,7 @@ export function generateSEO(config: SEOConfig): Metadata {
 export const generateLocalBusinessSchema = (businessInfo: any) => ({
   '@context': 'https://schema.org',
   '@type': 'DamageRestorationService',
-  '@id': 'https://disasterrecovery.com.au/#organization',
+  '@id': 'https://disasterrecovery.com.au/#organisation',
   name: 'Disaster Recovery Australia',
   url: 'https://disasterrecovery.com.au',
   logo: {
@@ -175,7 +175,7 @@ export const generateServiceSchema = (service: {
   name: service.name,
   description: service.description,
   provider: service.provider || {
-    '@type': 'Organization',
+    '@type': 'Organisation',
     name: 'Disaster Recovery Australia',
     url: 'https://disasterrecovery.com.au',
   },
@@ -235,7 +235,7 @@ export const generateArticleSchema = (article: {
     name: article.author || 'Disaster Recovery Australia Team',
   },
   publisher: {
-    '@type': 'Organization',
+    '@type': 'Organisation',
     name: 'Disaster Recovery Australia',
     logo: {
       '@type': 'ImageObject',

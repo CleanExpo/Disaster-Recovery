@@ -124,7 +124,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           tasks: [
             {
               id: 'task_004',
-              title: 'Renew Mold Remediation Certification',
+              title: 'Renew Mould Remediation Certification',
               description: 'Complete renewal process for expiring certification',
               findingId: 'finding_002',
               priority: 'high',
@@ -295,12 +295,12 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
             </h3>
             <p className="text-sm text-gray-600 mt-1">Audit: {plan.auditId}</p>
           </div>
-          <div className="flex items-center space-x-2">
-            <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(plan.status)}`}>
+          <div className="flex items-centre space-x-2">
+            <span className={`inline-flex items-centre px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(plan.status)}`}>
               {plan.status.replace('_', ' ')}
             </span>
             {plan.verificationRequired && (
-              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+              <span className="inline-flex items-centre px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
                 Verification Required
               </span>
             )}
@@ -331,7 +331,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
         </div>
 
         <div className="mb-6">
-          <div className="flex items-center justify-between text-sm mb-2">
+          <div className="flex items-centre justify-between text-sm mb-2">
             <span className="text-gray-600">Overall Progress</span>
             <span className="font-medium">{progress.toFixed(0)}%</span>
           </div>
@@ -347,17 +347,17 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           {plan.tasks.slice(0, 3).map((task) => (
             <div 
               key={task.id} 
-              className="flex items-center justify-between p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"
+              className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100"
               onClick={() => setSelectedTask(task)}
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex items-centre space-x-3">
                 <div className={`p-1 rounded ${getStatusColor(task.status)}`}>
                   {getStatusIcon(task.status)}
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">{task.title}</p>
-                  <div className="flex items-center space-x-3 mt-1 text-xs text-gray-600">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded ${getPriorityColor(task.priority)}`}>
+                  <div className="flex items-centre space-x-3 mt-1 text-xs text-gray-600">
+                    <span className={`inline-flex items-centre px-2 py-0.5 rounded ${getPriorityColor(task.priority)}`}>
                       {task.priority}
                     </span>
                     <span>Due: {new Date(task.dueDate).toLocaleDateString()}</span>
@@ -375,17 +375,17 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           </button>
         )}
 
-        <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-200">
-          <div className="flex items-center space-x-2">
+        <div className="flex items-centre justify-between mt-6 pt-6 border-t border-gray-200">
+          <div className="flex items-centre space-x-2">
             {plan.status === 'pending_approval' && userRole === 'admin' && (
-              <button className="flex items-center px-3 py-1.5 text-sm bg-green-600 text-white rounded hover:bg-green-700">
+              <button className="flex items-centre px-3 py-1.5 text-sm bg-green-600 text-white rounded hover:bg-green-700">
                 <Check className="w-4 h-4 mr-1" />
                 Approve
               </button>
             )}
             <button 
               onClick={() => setSelectedPlan(plan)}
-              className="flex items-center px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50"
+              className="flex items-centre px-3 py-1.5 text-sm border border-gray-300 rounded hover:bg-gray-50"
             >
               <Edit3 className="w-4 h-4 mr-1" />
               Edit Plan
@@ -393,7 +393,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           </div>
           <button 
             onClick={() => setShowTaskModal(true)}
-            className="flex items-center px-3 py-1.5 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50"
+            className="flex items-centre px-3 py-1.5 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50"
           >
             <Plus className="w-4 h-4 mr-1" />
             Add Task
@@ -407,10 +407,10 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
     if (!selectedTask) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <h2 className="text-xl font-semibold text-gray-900">{selectedTask.title}</h2>
               <button 
                 onClick={() => setSelectedTask(null)}
@@ -448,7 +448,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
               </div>
               <div>
                 <p className="text-sm text-gray-600">Priority</p>
-                <span className={`inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium ${getPriorityColor(selectedTask.priority)}`}>
+                <span className={`inline-flex items-centre px-3 py-2 rounded-lg text-sm font-medium ${getPriorityColor(selectedTask.priority)}`}>
                   {selectedTask.priority}
                 </span>
               </div>
@@ -482,7 +482,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
               <div className="space-y-3 mb-4">
                 {(selectedTask.comments || []).map((comment) => (
                   <div key={comment.id} className="bg-gray-50 rounded-lg p-3">
-                    <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-centre justify-between mb-1">
                       <p className="font-medium text-gray-900">{comment.userName}</p>
                       <p className="text-xs text-gray-500">
                         {new Date(comment.timestamp).toLocaleString()}
@@ -493,7 +493,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
                 ))}
               </div>
               
-              <div className="flex items-center space-x-2">
+              <div className="flex items-centre space-x-2">
                 <input
                   type="text"
                   placeholder="Add a comment..."
@@ -543,20 +543,20 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Remediation Management</h1>
           <p className="text-gray-600 mt-1">Track and manage audit finding remediations</p>
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <div className="flex items-centre space-x-2">
+          <button className="flex items-centre px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Filter className="w-4 h-4 mr-2" />
             Filter
           </button>
           {(userRole === 'admin' || userRole === 'compliance_manager') && (
             <button 
               onClick={() => setShowCreateModal(true)}
-              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               <Plus className="w-4 h-4 mr-2" />
               Create Plan
@@ -565,8 +565,8 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center space-x-4">
+      <div className="flex items-centre justify-between bg-white p-4 rounded-lg border border-gray-200">
+        <div className="flex items-centre space-x-4">
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -596,7 +596,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-lg capitalize transition-colors ${
+              className={`px-4 py-2 rounded-lg capitalize transition-colours ${
                 activeTab === tab 
                   ? 'bg-white shadow-sm text-gray-900' 
                   : 'text-gray-600 hover:text-gray-900'
@@ -609,7 +609,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
       </div>
 
       {filteredPlans.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+        <div className="text-centre py-12 bg-white rounded-xl border border-gray-200">
           <AlertTriangle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No remediation plans found</h3>
           <p className="text-gray-600">

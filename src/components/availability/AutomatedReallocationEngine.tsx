@@ -417,8 +417,8 @@ const AutomatedReallocationEngine: React.FC = () => {
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-centre justify-between mb-4">
+          <div className="flex items-centre space-x-3">
             <div className="p-2 bg-purple-100 rounded-lg">
               <RefreshCw className="h-6 w-6 text-purple-600" />
             </div>
@@ -427,8 +427,8 @@ const AutomatedReallocationEngine: React.FC = () => {
               <p className="text-sm text-gray-500">Seamless lead redistribution when contractors are unavailable</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <div className={`px-3 py-1 rounded-full flex items-center space-x-2 ${
+          <div className="flex items-centre space-x-2">
+            <div className={`px-3 py-1 rounded-full flex items-centre space-x-2 ${
               engineStatus === 'active' ? 'bg-green-100 text-green-800' :
               engineStatus === 'processing' ? 'bg-yellow-100 text-yellow-800' :
               'bg-gray-100 text-gray-800'
@@ -442,7 +442,7 @@ const AutomatedReallocationEngine: React.FC = () => {
             </div>
             <button
               onClick={() => setShowRuleBuilder(true)}
-              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center space-x-2"
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-centre space-x-2"
             >
               <Settings className="h-4 w-4" />
               <span>Create Rule</span>
@@ -481,7 +481,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
       {/* Contractor Load Status */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center">
+        <h3 className="text-lg font-semibold mb-4 flex items-centre">
           <Users className="h-5 w-5 mr-2 text-blue-600" />
           Current Contractor Availability
         </h3>
@@ -489,7 +489,7 @@ const AutomatedReallocationEngine: React.FC = () => {
         <div className="grid grid-cols-2 gap-4">
           {contractorLoads.map((contractor) => (
             <div key={contractor.contractorId} className="border rounded-lg p-4">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-centre justify-between mb-3">
                 <div>
                   <p className="font-medium">{contractor.name}</p>
                   <span className={`inline-block px-2 py-1 text-xs rounded-full mt-1 ${
@@ -542,7 +542,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
       {/* Reallocation Rules */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center">
+        <h3 className="text-lg font-semibold mb-4 flex items-centre">
           <Settings className="h-5 w-5 mr-2 text-purple-600" />
           Active Reallocation Rules
         </h3>
@@ -550,9 +550,9 @@ const AutomatedReallocationEngine: React.FC = () => {
         <div className="space-y-3">
           {rules.map((rule) => (
             <div key={rule.id} className="border rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center space-x-3">
-                  <label className="relative inline-flex items-center cursor-pointer">
+              <div className="flex items-centre justify-between mb-2">
+                <div className="flex items-centre space-x-3">
+                  <label className="relative inline-flex items-centre cursor-pointer">
                     <input
                       type="checkbox"
                       checked={rule.enabled}
@@ -566,7 +566,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                     <p className="text-sm text-gray-600">{rule.description}</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-centre space-x-2">
                   <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
                     Priority: {rule.priority}
                   </span>
@@ -612,7 +612,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
       {/* Recent Reallocation Events */}
       <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center">
+        <h3 className="text-lg font-semibold mb-4 flex items-centre">
           <Activity className="h-5 w-5 mr-2 text-green-600" />
           Recent Reallocation Events
         </h3>
@@ -640,7 +640,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                       {new Date(event.timestamp).toLocaleTimeString()}
                     </td>
                     <td className="px-4 py-2">
-                      <div className="flex items-center space-x-1">
+                      <div className="flex items-centre space-x-1">
                         <TriggerIcon className="h-4 w-4 text-gray-500" />
                         <span className="text-sm capitalize">{event.triggerType}</span>
                       </div>
@@ -671,7 +671,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
       {/* Rule Builder Modal */}
       {showRuleBuilder && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50 overflow-y-auto">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full m-4 max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold mb-4">Create Reallocation Rule</h3>
             
@@ -725,7 +725,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
               {/* Conditions */}
               <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-centre justify-between mb-2">
                   <label className="text-sm font-medium">Conditions</label>
                   <button
                     onClick={addCondition}
@@ -735,7 +735,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                   </button>
                 </div>
                 {newRule.conditions?.map((condition, index) => (
-                  <div key={index} className="flex items-center space-x-2 mb-2">
+                  <div key={index} className="flex items-centre space-x-2 mb-2">
                     <select
                       value={condition.type}
                       onChange={(e) => {
@@ -789,7 +789,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
               {/* Actions */}
               <div>
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-centre justify-between mb-2">
                   <label className="text-sm font-medium">Actions</label>
                   <button
                     onClick={addAction}
@@ -799,7 +799,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                   </button>
                 </div>
                 {newRule.actions?.map((action, index) => (
-                  <div key={index} className="flex items-center space-x-2 mb-2">
+                  <div key={index} className="flex items-centre space-x-2 mb-2">
                     <select
                       value={action.type}
                       onChange={(e) => {

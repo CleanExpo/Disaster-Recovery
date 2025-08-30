@@ -159,7 +159,7 @@ class FraudDetectionService {
       };
     }
 
-    const prompt = `Analyze this ${input.documentType} document for authenticity and fraud indicators:
+    const prompt = `Analyse this ${input.documentType} document for authenticity and fraud indicators:
 
 Document Content:
 ${input.content}
@@ -186,7 +186,7 @@ Focus on identifying:
       messages: [
         {
           role: "system",
-          content: "You are a forensic document analyst specializing in detecting fraudulent business documents, insurance policies, and certifications. Provide detailed, objective analysis."
+          content: "You are a forensic document analyst specialising in detecting fraudulent business documents, insurance policies, and certifications. Provide detailed, objective analysis."
         },
         {
           role: "user",

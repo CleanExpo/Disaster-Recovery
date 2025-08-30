@@ -100,10 +100,10 @@ export async function verifyToken(token: string): Promise<TokenPayload> {
 }
 
 /**
- * Extract token from Authorization header
+ * Extract token from Authorisation header
  */
 export function extractTokenFromHeader(request: NextRequest): string | null {
-  const authHeader = request.headers.get('authorization');
+  const authHeader = request.headers.get('authorisation');
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return null;
   }

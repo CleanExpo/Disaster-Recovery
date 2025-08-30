@@ -194,7 +194,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           href="https://abr.business.gov.au/Search/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 mt-2 text-xs text-blue-400 hover:text-blue-300"
+          className="inline-flex items-centre gap-1 mt-2 text-xs text-blue-400 hover:text-blue-300"
         >
           <Search className="h-3 w-3" />
           Look up ABN

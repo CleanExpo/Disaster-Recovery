@@ -1,4 +1,4 @@
-// Comprehensive Lighthouse optimization checklist and utilities
+// Comprehensive Lighthouse optimisation checklist and utilities
 
 export const lighthouseOptimizations = {
   // Performance optimizations (Weight: 30%)
@@ -15,7 +15,7 @@ export const lighthouseOptimizations = {
     lcp: { // Largest Contentful Paint
       target: '< 2.5s',
       optimizations: [
-        'Optimize images with next/image',
+        'Optimise images with next/image',
         'Use CDN for static assets',
         'Preload LCP image',
         'Use efficient cache policy',
@@ -26,7 +26,7 @@ export const lighthouseOptimizations = {
       optimizations: [
         'Break up long tasks',
         'Use web workers for heavy computation',
-        'Optimize JavaScript execution',
+        'Optimise JavaScript execution',
         'Reduce JavaScript bundle size',
       ],
     },
@@ -44,7 +44,7 @@ export const lighthouseOptimizations = {
       optimizations: [
         'Use efficient server infrastructure',
         'Enable compression',
-        'Optimize database queries',
+        'Optimise database queries',
         'Use CDN',
       ],
     },
@@ -53,7 +53,7 @@ export const lighthouseOptimizations = {
       optimizations: [
         'Minimize main thread work',
         'Reduce JavaScript execution time',
-        'Optimize third-party scripts',
+        'Optimise third-party scripts',
         'Use code splitting',
       ],
     },
@@ -61,7 +61,7 @@ export const lighthouseOptimizations = {
       target: '< 200ms',
       optimizations: [
         'Minimize long tasks',
-        'Optimize JavaScript bundles',
+        'Optimise JavaScript bundles',
         'Defer non-critical JavaScript',
         'Use requestIdleCallback for non-urgent work',
       ],
@@ -69,10 +69,10 @@ export const lighthouseOptimizations = {
     si: { // Speed Index
       target: '< 3.4s',
       optimizations: [
-        'Optimize critical rendering path',
+        'Optimise critical rendering path',
         'Minimize main thread work',
         'Reduce JavaScript execution time',
-        'Optimize CSS delivery',
+        'Optimise CSS delivery',
       ],
     },
   },
@@ -81,7 +81,7 @@ export const lighthouseOptimizations = {
   accessibility: {
     colorContrast: {
       requirement: 'WCAG AAA (7:1 for normal text, 4.5:1 for large text)',
-      implementation: 'Use color palette with proper contrast ratios',
+      implementation: 'Use colour palette with proper contrast ratios',
     },
     ariaLabels: {
       requirement: 'All interactive elements must have accessible names',
@@ -212,8 +212,8 @@ export const lighthouseOptimizations = {
       implementation: 'Provide 192x192 and 512x512 icons',
     },
     themeColor: {
-      requirement: 'Theme color meta tag',
-      implementation: '<meta name="theme-color">',
+      requirement: 'Theme colour meta tag',
+      implementation: '<meta name="theme-colour">',
     },
     viewport: {
       requirement: 'Viewport meta tag',
@@ -226,7 +226,7 @@ export const lighthouseOptimizations = {
   },
 };
 
-// Helper function to generate optimization report
+// Helper function to generate optimisation report
 export function generateOptimizationReport(scores: {
   performance: number;
   accessibility: number;
@@ -241,7 +241,7 @@ export function generateOptimizationReport(scores: {
   };
 
   if (scores.performance < 100) {
-    report.recommendations.push('Optimize performance metrics (LCP, FCP, CLS)');
+    report.recommendations.push('Optimise performance metrics (LCP, FCP, CLS)');
   }
   if (scores.accessibility < 100) {
     report.recommendations.push('Fix accessibility issues (contrast, ARIA labels)');
@@ -272,7 +272,7 @@ export const criticalCSS = `
   body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
   .hero { min-height: 600px; background: linear-gradient(180deg, #1e40af, #2563eb); }
-  .btn { display: inline-block; padding: 0.75rem 2rem; background: #f97316; color: white; text-decoration: none; border-radius: 0.5rem; }
+  .btn { display: inline-block; padding: 0.75rem 2rem; background: #f97316; colour: white; text-decoration: none; border-radius: 0.5rem; }
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }

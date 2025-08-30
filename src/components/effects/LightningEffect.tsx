@@ -63,7 +63,7 @@ export default function LightningEffect() {
         </defs>
       </svg>
 
-      {/* Main Lightning Bolt - Center */}
+      {/* Main Lightning Bolt - Centre */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 pointer-events-none" style={{ zIndex: 1 }}>
         <div className="relative w-full h-full">
           {/* Primary lightning path - Multiple layers for 3D effect */}
@@ -112,7 +112,7 @@ export default function LightningEffect() {
               opacity="0.6"
             />
             
-            {/* Core white-hot center */}
+            {/* Core white-hot centre */}
             <path
               d="M 96 0 L 88 120 L 104 160 L 82 280 L 110 320 L 78 480 L 114 520 L 86 700 L 102 740 L 96 1000"
               stroke="url(#lightning-gradient-core)"

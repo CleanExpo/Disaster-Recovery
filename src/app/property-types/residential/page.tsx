@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Residential Properties Disaster Recovery | Houses, units, apartments | Australia',
-  description: 'Specialized disaster recovery for residential properties. Houses, units, apartments. Insurance approved, 24/7 response.',
+  description: 'Specialised disaster recovery for residential properties. Houses, units, apartments. Insurance approved, 24/7 response.',
 };
 
 export default function ResidentialPropertiesPage() {

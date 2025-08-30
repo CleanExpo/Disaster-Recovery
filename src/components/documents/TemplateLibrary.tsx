@@ -83,7 +83,7 @@ This Network Participation Agreement ("Agreement") is entered into between Natio
 The Contractor agrees to provide restoration services including but not limited to:
 - Water damage restoration
 - Fire damage restoration
-- Mold remediation
+- Mould remediation
 - Storm damage repair
 
 3. INSURANCE REQUIREMENTS
@@ -259,7 +259,7 @@ Customer Signature: _________________________ Date: _____________`,
               label: 'Project Type',
               type: 'select',
               required: true,
-              options: ['Water Damage', 'Fire Damage', 'Storm Damage', 'Mold Remediation', 'Other']
+              options: ['Water Damage', 'Fire Damage', 'Storm Damage', 'Mould Remediation', 'Other']
             }
           ],
           settings: {
@@ -418,10 +418,10 @@ Customer Signature: _________________________ Date: _____________`,
   };
 
   const CreateTemplateModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
       <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <h2 className="text-xl font-semibold text-gray-900">Create Template</h2>
             <button 
               onClick={() => setShowCreateModal(false)}
@@ -500,13 +500,13 @@ Customer Signature: _________________________ Date: _____________`,
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-centre justify-between mb-4">
               <label className="block text-sm font-medium text-gray-700">
                 Template Fields
               </label>
               <button
                 onClick={addTemplateField}
-                className="flex items-center px-3 py-1 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50"
+                className="flex items-centre px-3 py-1 text-sm text-blue-600 border border-blue-300 rounded hover:bg-blue-50"
               >
                 <Plus className="w-4 h-4 mr-1" />
                 Add Field
@@ -548,9 +548,9 @@ Customer Signature: _________________________ Date: _____________`,
                     </select>
                   </div>
                   
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <label className="flex items-center">
+                  <div className="flex items-centre justify-between">
+                    <div className="flex items-centre space-x-4">
+                      <label className="flex items-centre">
                         <input
                           type="checkbox"
                           checked={field.required}
@@ -578,7 +578,7 @@ Customer Signature: _________________________ Date: _____________`,
               Template Settings
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input
                   type="checkbox"
                   checked={templateForm.settings.autoMergeData}
@@ -591,7 +591,7 @@ Customer Signature: _________________________ Date: _____________`,
                 <span className="text-sm text-gray-700">Auto-merge data</span>
               </label>
               
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input
                   type="checkbox"
                   checked={templateForm.settings.requireSignature}
@@ -604,7 +604,7 @@ Customer Signature: _________________________ Date: _____________`,
                 <span className="text-sm text-gray-700">Require signature</span>
               </label>
               
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input
                   type="checkbox"
                   checked={templateForm.settings.allowEditing}
@@ -617,7 +617,7 @@ Customer Signature: _________________________ Date: _____________`,
                 <span className="text-sm text-gray-700">Allow editing</span>
               </label>
               
-              <label className="flex items-center">
+              <label className="flex items-centre">
                 <input
                   type="checkbox"
                   checked={templateForm.settings.trackUsage}
@@ -656,10 +656,10 @@ Customer Signature: _________________________ Date: _____________`,
     if (!showPreviewModal) return null;
 
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50">
         <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
           <div className="p-6 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <h2 className="text-xl font-semibold text-gray-900">{showPreviewModal.name}</h2>
               <button 
                 onClick={() => setShowPreviewModal(null)}
@@ -731,7 +731,7 @@ Customer Signature: _________________________ Date: _____________`,
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Template Library</h1>
           <p className="text-gray-600 mt-1">Create and manage document templates</p>
@@ -739,7 +739,7 @@ Customer Signature: _________________________ Date: _____________`,
         {userRole === 'admin' && (
           <button 
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="flex items-centre px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             <Plus className="w-4 h-4 mr-2" />
             Create Template
@@ -747,8 +747,8 @@ Customer Signature: _________________________ Date: _____________`,
         )}
       </div>
 
-      <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center space-x-4">
+      <div className="flex items-centre justify-between bg-white p-4 rounded-lg border border-gray-200">
+        <div className="flex items-centre space-x-4">
           <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -781,7 +781,7 @@ Customer Signature: _________________________ Date: _____________`,
       </div>
 
       {filteredTemplates.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+        <div className="text-centre py-12 bg-white rounded-xl border border-gray-200">
           <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">
             {searchQuery || selectedCategory !== 'all' ? 'No templates found' : 'No templates yet'}
@@ -807,7 +807,7 @@ Customer Signature: _________________________ Date: _____________`,
             <div key={template.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-centre space-x-3">
                     {getTemplateIcon(template.templateType)}
                     <div>
                       <h3 className="font-semibold text-gray-900">{template.name}</h3>
@@ -825,27 +825,27 @@ Customer Signature: _________________________ Date: _____________`,
                   {template.description}
                 </p>
                 
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                  <div className="flex items-center">
+                <div className="flex items-centre justify-between text-sm text-gray-500 mb-4">
+                  <div className="flex items-centre">
                     <User className="w-4 h-4 mr-1" />
                     {template.usageCount} uses
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <Clock className="w-4 h-4 mr-1" />
                     v{template.version}
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <button 
                     onClick={() => setShowPreviewModal(template)}
-                    className="flex items-center px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
+                    className="flex items-centre px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50"
                   >
                     <Eye className="w-4 h-4 mr-1" />
                     Preview
                   </button>
                   
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-centre space-x-2">
                     <button 
                       onClick={() => handleDuplicateTemplate(template)}
                       className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"

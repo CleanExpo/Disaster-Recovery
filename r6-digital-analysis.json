@@ -1,5 +1,5 @@
 {
-  "colors": [
+  "colours": [
     "#000000",
     "#ffffff",
     "#131CFF",
@@ -20,7 +20,7 @@
       "fontSize": "13.77px",
       "fontFamily": "Poppins, sans-serif",
       "fontWeight": "600",
-      "color": "rgb(0, 0, 0)",
+      "colour": "rgb(0, 0, 0)",
       "lineHeight": "16.524px",
       "letterSpacing": "normal",
       "textTransform": "none",
@@ -33,7 +33,7 @@
       "fontSize": "24.48px",
       "fontFamily": "Poppins, sans-serif",
       "fontWeight": "500",
-      "color": "rgb(255, 255, 255)",
+      "colour": "rgb(255, 255, 255)",
       "lineHeight": "29.376px",
       "letterSpacing": "normal",
       "textTransform": "none",
@@ -46,7 +46,7 @@
       "fontSize": "44.37px",
       "fontFamily": "Poppins, sans-serif",
       "fontWeight": "500",
-      "color": "rgb(255, 255, 255)",
+      "colour": "rgb(255, 255, 255)",
       "lineHeight": "53.244px",
       "letterSpacing": "normal",
       "textTransform": "none",
@@ -57,7 +57,7 @@
       "fontSize": "12.24px",
       "fontFamily": "\"Times New Roman\"",
       "fontWeight": "400",
-      "color": "rgb(0, 0, 0)",
+      "colour": "rgb(0, 0, 0)",
       "lineHeight": "normal",
       "letterSpacing": "normal"
     },
@@ -65,7 +65,7 @@
       "fontSize": "23px",
       "fontFamily": "Colfax",
       "fontWeight": "400",
-      "color": "rgb(0, 0, 0)",
+      "colour": "rgb(0, 0, 0)",
       "lineHeight": "39.56px",
       "letterSpacing": "normal"
     },
@@ -73,7 +73,7 @@
       "fontSize": "23px",
       "fontFamily": "Colfax",
       "fontWeight": "400",
-      "color": "rgb(0, 0, 0)",
+      "colour": "rgb(0, 0, 0)",
       "lineHeight": "39.56px",
       "letterSpacing": "normal"
     },
@@ -81,7 +81,7 @@
       "fontSize": "14.535px",
       "fontFamily": "Poppins, sans-serif",
       "fontWeight": "600",
-      "color": "rgb(255, 255, 255)",
+      "colour": "rgb(255, 255, 255)",
       "lineHeight": "14.535px",
       "letterSpacing": "normal"
     },
@@ -89,7 +89,7 @@
       "fontSize": "20px",
       "fontFamily": "Poppins, sans-serif",
       "fontWeight": "600",
-      "color": "rgb(255, 255, 255)",
+      "colour": "rgb(255, 255, 255)",
       "lineHeight": "20px",
       "letterSpacing": "normal"
     }

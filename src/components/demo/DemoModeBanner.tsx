@@ -36,24 +36,24 @@ export default function DemoModeBanner() {
       {/* Demo Mode Banner */}
       <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white shadow-lg">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre gap-3">
+              <div className="flex items-centre gap-2">
                 <AlertTriangle className="h-5 w-5 animate-pulse" />
                 <span className="font-bold text-lg">DEMO MODE</span>
               </div>
-              <div className="hidden sm:flex items-center gap-2 text-sm">
+              <div className="hidden sm:flex items-centre gap-2 text-sm">
                 <Sparkles className="h-4 w-4" />
                 <span>Test Environment - No Authentication Required</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <button
                 onClick={() => setShowDemoMenu(!showDemoMenu)}
                 disabled={isRunningDemo}
                 className={`
-                  flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all
+                  flex items-centre gap-2 px-4 py-2 rounded-lg font-medium transition-all
                   ${isRunningDemo 
                     ? 'bg-white/20 text-white/60 cursor-not-allowed' 
                     : 'bg-white text-orange-600 hover:bg-orange-50 hover:scale-105'}
@@ -89,7 +89,7 @@ export default function DemoModeBanner() {
           <div className="p-2">
             <button
               onClick={startContractorDemo}
-              className="w-full flex items-center gap-3 px-4 py-3 hover:bg-orange-50 rounded-lg transition group"
+              className="w-full flex items-centre gap-3 px-4 py-3 hover:bg-orange-50 rounded-lg transition group"
             >
               <div className="p-2 bg-blue-100 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition">
                 <Briefcase className="h-5 w-5" />
@@ -102,7 +102,7 @@ export default function DemoModeBanner() {
             
             <button
               onClick={startClientDemo}
-              className="w-full flex items-center gap-3 px-4 py-3 hover:bg-orange-50 rounded-lg transition group"
+              className="w-full flex items-centre gap-3 px-4 py-3 hover:bg-orange-50 rounded-lg transition group"
             >
               <div className="p-2 bg-green-100 text-green-600 rounded-lg group-hover:bg-green-600 group-hover:text-white transition">
                 <Users className="h-5 w-5" />
@@ -115,7 +115,7 @@ export default function DemoModeBanner() {
           </div>
           
           <div className="px-4 py-3 bg-gray-50 border-t">
-            <p className="text-xs text-gray-500 text-center">
+            <p className="text-xs text-gray-500 text-centre">
               Demos will auto-fill forms with sample data
             </p>
           </div>

@@ -99,7 +99,7 @@ export default function ${timePage.name.replace(/\s+/g, '')}Page() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-red-900 to-orange-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Clock className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">${timePage.name} Services</h1>
           <p className="text-xl mb-2">Available ${timePage.time}</p>
@@ -131,7 +131,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: '${property.name} Disaster Recovery | ${property.description} | Australia',
-  description: 'Specialized disaster recovery for ${property.name.toLowerCase()}. ${property.description}. Insurance approved, 24/7 response.',
+  description: 'Specialised disaster recovery for ${property.name.toLowerCase()}. ${property.description}. Insurance approved, 24/7 response.',
 };
 
 export default function ${property.name.replace(/\s+/g, '')}Page() {
@@ -246,7 +246,7 @@ export default function ${cert.name.replace(/\s+/g, '')}Page() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-purple-900 to-purple-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Award className="h-16 w-16 text-yellow-400 mx-auto mb-6" />
           <h1 className="text-4xl font-bold mb-4">${cert.name}</h1>
           <p className="text-xl">${cert.standard}</p>
@@ -321,7 +321,7 @@ export default function ${service.replace(/-/g, '')}FAQPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-indigo-900 to-indigo-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <HelpCircle className="h-16 w-16 text-indigo-300 mx-auto mb-6" />
           <h1 className="text-4xl font-bold mb-4">${service.replace(/-/g, ' ').charAt(0).toUpperCase() + service.replace(/-/g, ' ').slice(1)} FAQ</h1>
           <p className="text-xl">Expert Answers to Your Questions</p>
@@ -363,7 +363,7 @@ export default function ${comparison.name.replace(/\s+/g, '')}Page() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-purple-900 to-pink-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Scale className="h-16 w-16 text-purple-300 mx-auto mb-6" />
           <h1 className="text-4xl font-bold mb-4">${comparison.name}</h1>
           <p className="text-xl">Make an Informed Decision</p>

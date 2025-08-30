@@ -11,26 +11,26 @@ export const CURRICULUM_DAYS_3_7: DayContent[] = [
   {
     day: 3,
     title: "Fire and Smoke Damage Restoration",
-    subtitle: "Comprehensive Fire Restoration: Structure, Contents, and Odor Elimination",
-    overview: "Fire damage restoration is one of the most complex and challenging aspects of disaster recovery. Beyond the obvious fire damage, you must deal with smoke penetration, water damage from firefighting efforts, and the complete elimination of smoke odors. This day covers the complete fire restoration process from initial assessment through final odor elimination.",
+    subtitle: "Comprehensive Fire Restoration: Structure, Contents, and Odour Elimination",
+    overview: "Fire damage restoration is one of the most complex and challenging aspects of disaster recovery. Beyond the obvious fire damage, you must deal with smoke penetration, water damage from firefighting efforts, and the complete elimination of smoke odours. This day covers the complete fire restoration process from initial assessment through final odour elimination.",
     learningObjectives: [
       {
         id: "day3-obj1",
         title: "Fire Science and Damage Assessment",
-        description: "Understand combustion science, smoke behavior, and comprehensive damage assessment",
+        description: "Understand combustion science, smoke behaviour, and comprehensive damage assessment",
         measurableOutcome: "Can assess fire and smoke damage patterns, identify all affected materials, and develop comprehensive restoration plans"
       },
       {
         id: "day3-obj2",
         title: "Structural Fire Damage Restoration",
         description: "Master structural cleaning, deodorization, and restoration techniques",
-        measurableOutcome: "Can execute proper structural cleaning protocols and achieve complete odor elimination"
+        measurableOutcome: "Can execute proper structural cleaning protocols and achieve complete odour elimination"
       },
       {
         id: "day3-obj3",
-        title: "Contents Restoration and Odor Control",
-        description: "Understand contents cleaning, textile restoration, and advanced odor elimination",
-        measurableOutcome: "Can assess contents restorability, execute proper cleaning protocols, and eliminate persistent odors"
+        title: "Contents Restoration and Odour Control",
+        description: "Understand contents cleaning, textile restoration, and advanced odour elimination",
+        measurableOutcome: "Can assess contents restorability, execute proper cleaning protocols, and eliminate persistent odours"
       }
     ],
     modules: [
@@ -40,7 +40,7 @@ export const CURRICULUM_DAYS_3_7: DayContent[] = [
         duration: 55,
         type: "video",
         content: `
-# Fire Science: Understanding Combustion and Smoke Behavior
+# Fire Science: Understanding Combustion and Smoke Behaviour
 
 ## The Physics and Chemistry of Fire Damage
 
@@ -73,17 +73,17 @@ Fire damage restoration requires understanding what happens during combustion an
 - **Source**: Burned food, organic materials at low temperatures
 - **Characteristics**: 
   - Thin, greasy film that discolors surfaces
-  - Strong odor that penetrates deeply
-  - Nearly invisible but causes severe odor problems
-  - Thermally activated (heat makes odor stronger)
+  - Strong odour that penetrates deeply
+  - Nearly invisible but causes severe odour problems
+  - Thermally activated (heat makes odour stronger)
 - **Materials Affected**: All surfaces, especially porous materials
-- **Cleaning Challenge**: Requires specialized degreasing agents
+- **Cleaning Challenge**: Requires specialised degreasing agents
 
 **Synthetic Smoke:**
 - **Source**: Plastics, synthetic materials, petroleum products
 - **Characteristics**:
   - Thick, black, sticky residue
-  - Strong chemical odors
+  - Strong chemical odours
   - Heavy particulate contamination
   - Can be corrosive to metals
 - **Materials Affected**: All surfaces, penetrates deeply into porous materials
@@ -94,7 +94,7 @@ Fire damage restoration requires understanding what happens during combustion an
 - **Characteristics**:
   - Dry, powdery residue
   - Easier to clean than synthetic smoke
-  - Less penetrating odor
+  - Less penetrating odour
   - Gray to black coloration
 - **Materials Affected**: Surfaces closest to fire source primarily
 - **Restoration**: Often responds well to conventional cleaning
@@ -105,7 +105,7 @@ Fire damage restoration requires understanding what happens during combustion an
 - **Restoration Complexity**: May require multiple cleaning approaches
 - **Testing**: Often requires testing cleaning methods on small areas
 
-### Smoke Behavior and Penetration Patterns
+### Smoke Behaviour and Penetration Patterns
 
 **Heat-Driven Smoke Movement:**
 - **Convection Currents**: Hot smoke rises, cool smoke sinks
@@ -138,7 +138,7 @@ Fire damage restoration requires understanding what happens during combustion an
 **Testing and Measurement:**
 - **Soot Sampling**: Identify smoke type for appropriate cleaning selection
 - **pH Testing**: Determine acidity/alkalinity for material compatibility
-- **Odor Assessment**: Systematic evaluation of odor intensity and type
+- **Odour Assessment**: Systematic evaluation of odour intensity and type
 - **Air Quality**: Monitor for combustion products and cleaning chemical exposure
 
 **Restorable vs. Replace Decision Matrix:**
@@ -148,12 +148,12 @@ Fire damage restoration requires understanding what happens during combustion an
 - **Metal**: Often cleanable unless severely corroded
 - **Glass**: Almost always cleanable
 - **Masonry**: Usually cleanable with appropriate methods
-- **Natural Stone**: Often restorable with specialized techniques
+- **Natural Stone**: Often restorable with specialised techniques
 
 **Often Non-Restorable:**
 - **Particle Board**: Often not cost-effective to clean
 - **Acoustic Ceiling Tiles**: Usually require replacement
-- **Insulation**: Typically requires replacement due to odor retention
+- **Insulation**: Typically requires replacement due to odour retention
 - **Food Items**: All exposed food must be discarded
 - **Personal Care Items**: Cosmetics, medications, toiletries
 
@@ -202,21 +202,21 @@ Fire damage restoration requires understanding what happens during combustion an
 
 **Wood Products:**
 - **Surface Charring**: May require sanding or refinishing
-- **Smoke Penetration**: Deep penetration requires specialized treatment
+- **Smoke Penetration**: Deep penetration requires specialised treatment
 - **Structural Integrity**: Fire exposure may compromise load-bearing capacity
-- **Odor Issues**: Wood can retain odors requiring sealing or replacement
+- **Odour Issues**: Wood can retain odours requiring sealing or replacement
 
 **Metal Components:**
 - **Corrosion**: Acidic combustion products accelerate corrosion
 - **Discoloration**: Heat and smoke cause permanent discoloration
 - **Structural Damage**: High heat can affect metal strength
-- **Cleaning Challenges**: May require specialized metal restoration techniques
+- **Cleaning Challenges**: May require specialised metal restoration techniques
 
 **Masonry and Concrete:**
 - **Surface Contamination**: Smoke particles embed in porous surfaces
 - **Spalling**: Rapid heating and cooling can cause surface damage
 - **Penetration**: Deep smoke penetration in unsealed masonry
-- **Restoration**: Often requires specialized masonry cleaning techniques
+- **Restoration**: Often requires specialised masonry cleaning techniques
 
 **Synthetic Materials:**
 - **Heat Damage**: Melting, warping, off-gassing
@@ -236,10 +236,10 @@ This scientific understanding of fire damage provides the foundation for making 
         ],
         assessmentQuestions: [
           {
-            question: "Which type of smoke is characterized by a thin, greasy film that causes strong odors?",
+            question: "Which type of smoke is characterized by a thin, greasy film that causes strong odours?",
             options: ["Protein smoke", "Synthetic smoke", "Natural material smoke", "Combination smoke"],
             correctAnswer: "Protein smoke",
-            explanation: "Protein smoke from burned organic materials creates a thin, greasy film that causes severe odor problems and is thermally activated."
+            explanation: "Protein smoke from burned organic materials creates a thin, greasy film that causes severe odour problems and is thermally activated."
           },
           {
             question: "Why is firefighting water typically classified as Category 2 or 3 water?",
@@ -259,7 +259,7 @@ This scientific understanding of fire damage provides the foundation for making 
 
 ## Systematic Structural Cleaning Approach
 
-Structural fire damage cleaning requires a systematic approach that addresses both visible contamination and hidden odor sources. The goal is complete restoration to pre-loss condition with no remaining odors or contamination.
+Structural fire damage cleaning requires a systematic approach that addresses both visible contamination and hidden odour sources. The goal is complete restoration to pre-loss condition with no remaining odours or contamination.
 
 ### Pre-Cleaning Preparation
 
@@ -296,7 +296,7 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 **Heavy Contamination:**
 - **Assessment**: Determine if cleaning is more cost-effective than replacement
 - **Deep Cleaning**: May require multiple cleaning cycles
-- **Primer/Sealer**: Apply odor-blocking primer before repainting
+- **Primer/Sealer**: Apply odour-blocking primer before repainting
 - **Replacement**: Heavy contamination often requires drywall replacement
 
 **Wood Surfaces:**
@@ -304,13 +304,13 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 **Finished Wood:**
 - **Surface Cleaning**: Start with appropriate degreasing agent
 - **Sanding**: Light sanding may be required for embedded contamination
-- **Refinishing**: Apply appropriate finish to seal remaining odors
+- **Refinishing**: Apply appropriate finish to seal remaining odours
 - **Evaluation**: Assess if refinishing achieves acceptable results
 
 **Unfinished Wood:**
 - **Deep Cleaning**: Contamination penetrates deeper into unfinished wood
 - **Sanding**: Often requires aggressive sanding to remove contamination
-- **Sealing**: Must be sealed with odor-blocking primer/sealer
+- **Sealing**: Must be sealed with odour-blocking primer/sealer
 - **Replacement Consideration**: Heavily contaminated unfinished wood often requires replacement
 
 **Metal Surfaces:**
@@ -330,16 +330,16 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 **Chemical Cleaning:**
 - **Degreasing Agents**: Match chemical to smoke type and surface material
 - **Enzymatic Cleaners**: For organic smoke contamination
-- **Oxidizing Agents**: For odor elimination at molecular level
+- **Oxidizing Agents**: For odour elimination at molecular level
 - **pH Balance**: Ensure proper pH for material compatibility
 
 **Thermal Treatment:**
-- **Heat Application**: Controlled heating to drive out embedded odors
+- **Heat Application**: Controlled heating to drive out embedded odours
 - **Technique**: Gradual temperature increase with ventilation
 - **Monitoring**: Careful temperature monitoring to prevent damage
-- **Applications**: Effective for certain types of odor elimination
+- **Applications**: Effective for certain types of odour elimination
 
-### Odor Elimination Strategies
+### Odour Elimination Strategies
 
 **Source Elimination:**
 - **Complete Cleaning**: Remove all contamination sources first
@@ -347,16 +347,16 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 - **Contents**: All contaminated contents must be cleaned or removed
 - **Porous Materials**: Often require replacement if heavily contaminated
 
-**Molecular Odor Elimination:**
+**Molecular Odour Elimination:**
 
 **Ozone Treatment:**
-- **Process**: Ozone breaks down odor molecules at molecular level
+- **Process**: Ozone breaks down odour molecules at molecular level
 - **Requirements**: Unoccupied space, proper sealing, safety protocols
 - **Duration**: 12-48 hours depending on contamination level
 - **Safety**: Toxic to humans and pets, requires complete evacuation
 
 **Hydroxyl Generation:**
-- **Process**: Hydroxyl radicals neutralize odor molecules
+- **Process**: Hydroxyl radicals neutralize odour molecules
 - **Advantages**: Safe for occupied spaces, no chemical residue
 - **Duration**: Continuous operation during cleaning and drying
 - **Applications**: Ideal for sensitive environments
@@ -368,8 +368,8 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 - **Follow-up**: Usually combined with other deodorization methods
 
 **Encapsulation:**
-- **Products**: Odor-blocking primers and sealers
-- **Applications**: Final step after cleaning to seal remaining odors
+- **Products**: Odour-blocking primers and sealers
+- **Applications**: Final step after cleaning to seal remaining odours
 - **Surface Prep**: Surfaces must be completely clean before application
 - **Effectiveness**: Very effective when properly applied over clean surfaces
 
@@ -398,7 +398,7 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 **Cleaning Verification:**
 - **Visual Inspection**: No visible contamination remaining
 - **Touch Test**: Surfaces should not feel tacky or gritty
-- **Odor Assessment**: No smoke odors detectable
+- **Odour Assessment**: No smoke odours detectable
 - **Air Quality**: Acceptable air quality measurements
 
 **Documentation Requirements:**
@@ -415,7 +415,7 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 
 ### Common Cleaning Challenges
 
-**Persistent Odors:**
+**Persistent Odours:**
 - **Hidden Sources**: Check for missed contamination sources
 - **Porous Materials**: May require more aggressive treatment or replacement
 - **HVAC Contamination**: Check for contaminated ductwork or components
@@ -424,13 +424,13 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 **Cleaning Damage:**
 - **Over-Wetting**: Can cause water damage during cleaning
 - **Chemical Damage**: Wrong chemicals can damage surfaces
-- **Color Changes**: Some cleaning may cause color changes
+- **Colour Changes**: Some cleaning may cause colour changes
 - **Prevention**: Test all cleaning methods in inconspicuous areas first
 
 **Access Issues:**
 - **Hard-to-Reach Areas**: Behind fixtures, in tight spaces
 - **Structural Limitations**: Inaccessible wall cavities or ceiling spaces
-- **Solutions**: May require creating access openings or specialized equipment
+- **Solutions**: May require creating access openings or specialised equipment
 - **Documentation**: Document inaccessible areas for future reference
 
 This systematic approach to structural cleaning ensures thorough restoration while maintaining safety and quality standards throughout the process.
@@ -438,23 +438,23 @@ This systematic approach to structural cleaning ensures thorough restoration whi
         keyPoints: [
           "Systematic cleaning approach ensures no contamination is missed",
           "Different materials require specific cleaning techniques and chemicals",
-          "Odor elimination requires both source removal and molecular treatment",
-          "HVAC system restoration is critical for complete odor elimination",
+          "Odour elimination requires both source removal and molecular treatment",
+          "HVAC system restoration is critical for complete odour elimination",
           "Quality control verification ensures complete restoration",
           "Documentation protects both contractor and client interests"
         ]
       },
       {
         id: "day3-mod3",
-        title: "Contents Restoration and Specialized Cleaning",
+        title: "Contents Restoration and Specialised Cleaning",
         duration: 40,
         type: "video",
         content: `
-# Fire-Damaged Contents Restoration and Specialized Cleaning
+# Fire-Damaged Contents Restoration and Specialised Cleaning
 
 ## Contents Assessment and Triage
 
-Fire-damaged contents restoration requires careful assessment, specialized cleaning techniques, and understanding of when restoration is feasible versus when replacement is more appropriate. Each item must be evaluated individually based on damage level, restoration cost, and client priorities.
+Fire-damaged contents restoration requires careful assessment, specialised cleaning techniques, and understanding of when restoration is feasible versus when replacement is more appropriate. Each item must be evaluated individually based on damage level, restoration cost, and client priorities.
 
 ### Initial Contents Assessment
 
@@ -486,7 +486,7 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 - **Severely Damaged**: Items with structural damage or heavy contamination
 - **Particle Board Furniture**: Usually not cost-effective to restore
 
-### Specialized Cleaning Techniques by Item Type
+### Specialised Cleaning Techniques by Item Type
 
 **Electronics Restoration:**
 
@@ -509,13 +509,13 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 - **Fiber Type**: Natural fibers generally more restorable than synthetics
 - **Construction**: Quality construction may justify restoration costs
 - **Contamination Type**: Protein smoke more challenging than other types
-- **Colorfastness**: Test for color bleeding during cleaning process
+- **Colorfastness**: Test for colour bleeding during cleaning process
 
 **Cleaning Methods:**
 - **Dry Cleaning**: First choice for many smoke-damaged textiles
 - **Wet Cleaning**: For items that can tolerate water-based cleaning
-- **Ozone Treatment**: Effective for odor elimination in textiles
-- **Specialized Processes**: Professional textile restoration services
+- **Ozone Treatment**: Effective for odour elimination in textiles
+- **Specialised Processes**: Professional textile restoration services
 
 **Furniture Restoration:**
 
@@ -528,7 +528,7 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 **Upholstered Furniture:**
 - **Frame Assessment**: Check frame integrity and contamination
 - **Fabric Evaluation**: Determine if fabric is restorable or requires replacement
-- **Padding**: Usually requires replacement due to odor retention
+- **Padding**: Usually requires replacement due to odour retention
 - **Professional Service**: Complex pieces often require professional restoration
 
 **Document and Paper Restoration:**
@@ -542,7 +542,7 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 **Restoration Techniques:**
 - **Dry Cleaning**: Document cleaning sponges for light contamination
 - **Freeze Drying**: For water and smoke-damaged documents
-- **Professional Services**: Specialized document restoration companies
+- **Professional Services**: Specialised document restoration companies
 - **Digital Preservation**: Scan documents before attempting restoration
 
 ### Pack-Out and Storage Procedures
@@ -557,7 +557,7 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 - **Climate Control**: Temperature and humidity control to prevent mould
 - **Security**: Secure facility with appropriate insurance coverage
 - **Access**: Convenient access for cleaning and client inspection
-- **Organization**: Systematic organization for efficient processing
+- **Organisation**: Systematic organisation for efficient processing
 
 **Inventory Management:**
 - **Detailed Records**: Complete description, condition, and photos
@@ -577,11 +577,11 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 - **Applications**: Books, documents, photographs
 - **Process**: Sublimation removes moisture without liquid phase
 - **Advantages**: Preserves item structure and prevents further damage
-- **Professional Service**: Requires specialized equipment and expertise
+- **Professional Service**: Requires specialised equipment and expertise
 
 **Ozone Treatment:**
-- **Applications**: Odor elimination in contents and textiles
-- **Process**: Ozone breaks down odor molecules
+- **Applications**: Odour elimination in contents and textiles
+- **Process**: Ozone breaks down odour molecules
 - **Safety**: Must be conducted in unoccupied, sealed environment
 - **Duration**: Treatment time varies with contamination level
 
@@ -589,7 +589,7 @@ Fire-damaged contents restoration requires careful assessment, specialized clean
 
 **Quality Standards:**
 - **Visual Cleanliness**: No visible contamination remaining
-- **Odor Elimination**: No smoke odors detectable
+- **Odour Elimination**: No smoke odours detectable
 - **Functional Testing**: Verify functionality for electronics and appliances
 - **Structural Integrity**: Ensure cleaning hasn't compromised item integrity
 
@@ -624,7 +624,7 @@ This comprehensive approach to contents restoration ensures that clients receive
         `,
         keyPoints: [
           "Contents assessment requires individual evaluation of each item's restorability",
-          "Different materials require specialized cleaning techniques and equipment",
+          "Different materials require specialised cleaning techniques and equipment",
           "Pack-out and storage procedures protect contents during restoration process",
           "Advanced cleaning methods can restore items that appear non-restorable",
           "Cost-benefit analysis guides restoration versus replacement decisions",
@@ -635,7 +635,7 @@ This comprehensive approach to contents restoration ensures that clients receive
     practicalAssignments: [
       "Create a fire damage assessment checklist covering all aspects of damage evaluation",
       "Develop contents restoration decision matrix for different item types and damage levels",
-      "Practice odor elimination technique selection for various fire damage scenarios"
+      "Practice odour elimination technique selection for various fire damage scenarios"
     ],
     keyTerminology: [
       {
@@ -644,15 +644,15 @@ This comprehensive approach to contents restoration ensures that clients receive
       },
       {
         term: "Protein Smoke",
-        definition: "Smoke from organic materials that creates thin, greasy films and strong odors"
+        definition: "Smoke from organic materials that creates thin, greasy films and strong odours"
       },
       {
         term: "Hydroxyl Generation",
-        definition: "Odor elimination method using hydroxyl radicals that is safe for occupied spaces"
+        definition: "Odour elimination method using hydroxyl radicals that is safe for occupied spaces"
       },
       {
         term: "Encapsulation",
-        definition: "Sealing technique using primers and sealers to lock in remaining odors after cleaning"
+        definition: "Sealing technique using primers and sealers to lock in remaining odours after cleaning"
       },
       {
         term: "Pack-Out",
@@ -669,7 +669,7 @@ This comprehensive approach to contents restoration ensures that clients receive
           "How do you address the combined fire and water damage?",
           "What items are likely restorable versus requiring replacement?"
         ],
-        correctApproach: "Address water damage immediately, assess contents for pack-out, implement comprehensive smoke cleaning starting with source elimination, use specialized protein smoke cleaning techniques, provide realistic expectations for contents restoration"
+        correctApproach: "Address water damage immediately, assess contents for pack-out, implement comprehensive smoke cleaning starting with source elimination, use specialised protein smoke cleaning techniques, provide realistic expectations for contents restoration"
       }
     ],
     documentationRequirements: [
@@ -679,10 +679,10 @@ This comprehensive approach to contents restoration ensures that clients receive
       "Air quality monitoring records throughout restoration"
     ],
     dailyChecklist: [
-      "Understand fire science and combustion product behavior",
+      "Understand fire science and combustion product behaviour",
       "Master structural cleaning techniques for all surface types",
       "Develop contents restoration assessment skills",
-      "Practice odor elimination method selection",
+      "Practice odour elimination method selection",
       "Learn advanced deodorization techniques and safety protocols"
     ],
     nextDayPreparation: "Tomorrow covers mould remediation and indoor air quality - a rapidly growing specialty requiring understanding of microbiology, containment procedures, and health effects. Review basic mould biology and moisture sources."
@@ -837,7 +837,7 @@ Effective mould remediation requires understanding mould biology, growth require
 - **Data Loggers**: Monitor humidity patterns over time
 
 **Air Quality Assessment:**
-- **Visual Indicators**: Musty odors, visible spores, respiratory symptoms
+- **Visual Indicators**: Musty odours, visible spores, respiratory symptoms
 - **Air Sampling**: Professional air sampling for spore identification and quantification
 - **Surface Sampling**: Tape lifts or swabs for surface contamination
 - **Clearance Testing**: Post-remediation verification of successful cleanup
@@ -858,7 +858,7 @@ Effective mould remediation requires understanding mould biology, growth require
 
 **Condition 3: Amplifying Growth**
 - **Definition**: Actual growth and amplification occurring
-- **Characteristics**: Visible growth, musty odors, elevated spore levels
+- **Characteristics**: Visible growth, musty odours, elevated spore levels
 - **Action**: Full remediation protocol required
 - **Procedures**: Containment, removal, cleaning, verification
 
@@ -958,7 +958,7 @@ This comprehensive understanding of mould biology and assessment provides the fo
     realWorldScenarios: [
       {
         title: "Hidden Mould Behind Bathroom Tiles",
-        scenario: "A client reports persistent musty odors in their bathroom, but no visible mould growth. Moisture readings indicate high moisture content behind tile walls.",
+        scenario: "A client reports persistent musty odours in their bathroom, but no visible mould growth. Moisture readings indicate high moisture content behind tile walls.",
         questions: [
           "What assessment techniques would reveal the extent of hidden growth?",
           "How do you determine if this is Condition 2 or Condition 3?",
@@ -1040,7 +1040,7 @@ Australia's diverse climate creates unique storm damage challenges, from tropica
 - **Affected Areas**: Southern states, elevated areas
 - **Damage Types**: Wind, rain, occasionally snow/ice
 - **Challenges**: Cold working conditions, limited daylight hours
-- **Considerations**: Different material behavior in cold conditions
+- **Considerations**: Different material behaviour in cold conditions
 
 ### Storm Damage Mechanisms and Patterns
 
@@ -1246,19 +1246,19 @@ This systematic approach to storm damage assessment ensures safety while enablin
       "Develop major event response coordination skills",
       "Learn resource management during high-demand periods"
     ],
-    nextDayPreparation: "Tomorrow covers biohazard and trauma scene cleanup - specialized work requiring additional certifications, safety protocols, and sensitivity. This is challenging work with high liability but also high value."
+    nextDayPreparation: "Tomorrow covers biohazard and trauma scene cleanup - specialised work requiring additional certifications, safety protocols, and sensitivity. This is challenging work with high liability but also high value."
   },
 
   {
     day: 6,
     title: "Biohazard and Trauma Scene Cleanup",
-    subtitle: "Specialized Cleanup: Crime Scenes, Unattended Deaths, and Biohazard Remediation",
-    overview: "Biohazard and trauma scene cleanup represents the most specialized and sensitive work in disaster recovery. This day covers safety protocols, regulatory compliance, psychological considerations, and technical procedures for handling these challenging situations with professionalism and compassion.",
+    subtitle: "Specialised Cleanup: Crime Scenes, Unattended Deaths, and Biohazard Remediation",
+    overview: "Biohazard and trauma scene cleanup represents the most specialised and sensitive work in disaster recovery. This day covers safety protocols, regulatory compliance, psychological considerations, and technical procedures for handling these challenging situations with professionalism and compassion.",
     learningObjectives: [
       {
         id: "day6-obj1",
         title: "Biohazard Safety and Regulations",
-        description: "Understand bloodborne pathogen safety, regulatory requirements, and specialized PPE",
+        description: "Understand bloodborne pathogen safety, regulatory requirements, and specialised PPE",
         measurableOutcome: "Can implement appropriate safety protocols and regulatory compliance for biohazard cleanup"
       },
       {
@@ -1285,7 +1285,7 @@ This systematic approach to storm damage assessment ensures safety while enablin
 
 ## Understanding Biohazard Risks and Safety Requirements
 
-Biohazard cleanup involves exposure to potentially infectious materials and toxic substances. Proper safety protocols, regulatory compliance, and specialized equipment are essential for worker protection and legal compliance.
+Biohazard cleanup involves exposure to potentially infectious materials and toxic substances. Proper safety protocols, regulatory compliance, and specialised equipment are essential for worker protection and legal compliance.
 
 ### Bloodborne Pathogen Hazards
 
@@ -1425,7 +1425,7 @@ Biohazard cleanup involves exposure to potentially infectious materials and toxi
 - **Cleaning Verification**: Visual and testing verification of cleaning effectiveness
 - **Air Quality**: Final air quality testing to verify safe conditions
 - **Surface Testing**: ATP testing or other methods to verify cleaning
-- **Client Walkthrough**: Final inspection with client or authorized representative
+- **Client Walkthrough**: Final inspection with client or authorised representative
 
 **Certification and Warranties:**
 - **Completion Certificate**: Document certifying successful cleanup completion
@@ -1562,7 +1562,7 @@ Success as a disaster recovery contractor depends heavily on understanding how i
 3. **Initial Assessment**: Insurance company determines coverage and assigns adjuster
 4. **Contractor Contact**: Client or adjuster contacts restoration contractor
 5. **Scope Development**: Contractor and adjuster develop scope of work
-6. **Work Authorization**: Insurance approves scope and contractor proceeds
+6. **Work Authorisation**: Insurance approves scope and contractor proceeds
 
 **Adjuster Types and Roles:**
 
@@ -1649,7 +1649,7 @@ Success as a disaster recovery contractor depends heavily on understanding how i
 - **Initial Testing**: Document initial moisture, air quality, or other relevant testing
 - **Progress Monitoring**: Document progress through testing and measurements
 - **Final Verification**: Document final testing showing successful completion
-- **Certifications**: Provide appropriate certifications for specialized work
+- **Certifications**: Provide appropriate certifications for specialised work
 
 ### Common Adjuster Concerns and How to Address Them
 

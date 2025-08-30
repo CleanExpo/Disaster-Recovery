@@ -127,7 +127,7 @@ export const disasterEvents: DisasterEvent[] = [
     type: 'fire',
     severity: 'severe',
     description: 'Major fire damage restoration in luxury apartment complex',
-    summary: 'A devastating fire in a Gold Coast high-rise apartment building affected 12 units across 3 floors. Our team provided comprehensive fire and smoke damage restoration, including structural cleaning, odor removal, and content restoration.',
+    summary: 'A devastating fire in a Gold Coast high-rise apartment building affected 12 units across 3 floors. Our team provided comprehensive fire and smoke damage restoration, including structural cleaning, odour removal, and content restoration.',
     images: [
       {
         id: 'gcf-1',
@@ -149,9 +149,9 @@ export const disasterEvents: DisasterEvent[] = [
         id: 'gcf-3',
         url: '/images/events/gold-coast-fire-2023/hydroxyl-generators.jpg',
         thumbnail: '/images/events/gold-coast-fire-2023/hydroxyl-generators-thumb.jpg',
-        caption: 'Hydroxyl generators eliminating smoke odors',
+        caption: 'Hydroxyl generators eliminating smoke odours',
         category: 'equipment',
-        tags: ['hydroxyl', 'odor', 'equipment']
+        tags: ['hydroxyl', 'odour', 'equipment']
       }
     ],
     beforeAfter: [
@@ -175,7 +175,7 @@ export const disasterEvents: DisasterEvent[] = [
       'Ozone generators'
     ],
     duration: '6 weeks',
-    outcome: 'All 12 affected apartments were fully restored, with smoke odors completely eliminated and all salvageable contents professionally cleaned and restored.',
+    outcome: 'All 12 affected apartments were fully restored, with smoke odours completely eliminated and all salvageable contents professionally cleaned and restored.',
     testimonial: {
       quote: 'The fire was devastating, but the restoration team gave us hope. They saved so many of our belongings we thought were lost forever.',
       author: 'Michael Chen',
@@ -190,7 +190,7 @@ export const disasterEvents: DisasterEvent[] = [
     type: 'storm',
     severity: 'severe',
     description: 'Emergency response to cyclone damage across Townsville region',
-    summary: 'Following Cyclone Kirrily, our teams mobilized to assist with water damage restoration, structural drying, and emergency repairs across the Townsville region. We deployed specialized equipment and crews to help the community recover quickly.',
+    summary: 'Following Cyclone Kirrily, our teams mobilized to assist with water damage restoration, structural drying, and emergency repairs across the Townsville region. We deployed specialised equipment and crews to help the community recover quickly.',
     images: [
       {
         id: 'tc-1',
@@ -253,7 +253,7 @@ export const disasterEvents: DisasterEvent[] = [
     type: 'mould',
     severity: 'moderate',
     description: 'Large-scale mould remediation following extended wet weather',
-    summary: 'Extended periods of wet weather led to widespread mould issues across the Sunshine Coast. Our specialized mould remediation teams treated over 200 properties using advanced techniques and equipment.',
+    summary: 'Extended periods of wet weather led to widespread mould issues across the Sunshine Coast. Our specialised mould remediation teams treated over 200 properties using advanced techniques and equipment.',
     images: [
       {
         id: 'scm-1',
@@ -487,6 +487,6 @@ export const claimsGallery: ClaimDocumentation[] = [
       certificates: true
     },
     value: 75000,
-    description: 'Fire and smoke damage restoration including structural repairs and odor elimination'
+    description: 'Fire and smoke damage restoration including structural repairs and odour elimination'
   }
 ];

@@ -290,13 +290,13 @@ export default function WhyMouldReturnsPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-900 via-teal-900 to-gray-900 text-white">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20" />
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre opacity-20" />
         </div>
 
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-gray-300 mb-8">
+            <nav className="flex items-centre gap-2 text-sm text-gray-300 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <span>/</span>
               <Link href="/guides" className="hover:text-white transition">Guides</Link>
@@ -328,7 +328,7 @@ export default function WhyMouldReturnsPage() {
 
             {/* Shocking Statistics */}
             <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6 mb-8">
-              <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="grid md:grid-cols-3 gap-6 text-centre">
                 <div>
                   <div className="text-3xl font-bold text-red-300 mb-2">1 in 3</div>
                   <div className="text-sm text-gray-300">Australian homes affected by mould (VBA)</div>
@@ -365,7 +365,7 @@ export default function WhyMouldReturnsPage() {
       {/* The 7 Failure Reasons */}
       <section id="failure-reasons" className="py-20 lg:py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               The 7 Reasons Mould Removal Fails
             </h2>
@@ -380,13 +380,13 @@ export default function WhyMouldReturnsPage() {
                 <div className="flex items-start gap-6">
                   {/* Rank indicator */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-2xl">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-centre justify-centre text-white font-bold text-2xl">
                       #{failure.rank}
                     </div>
                   </div>
                   
                   <div className="flex-1">
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-centre justify-between mb-4">
                       <h3 className="text-2xl font-semibold text-gray-900">{failure.reason}</h3>
                       <Badge variant="destructive" className="text-sm">
                         {failure.frequency}
@@ -398,7 +398,7 @@ export default function WhyMouldReturnsPage() {
                     <div className="grid lg:grid-cols-3 gap-6">
                       <div>
                         <div className="bg-red-50 border border-red-200 p-4 rounded-lg mb-4">
-                          <div className="flex items-center gap-2 mb-2">
+                          <div className="flex items-centre gap-2 mb-2">
                             <AlertCircle className="h-4 w-4 text-red-500" />
                             <h4 className="font-semibold text-red-900">Warning</h4>
                           </div>
@@ -408,7 +408,7 @@ export default function WhyMouldReturnsPage() {
                       
                       <div>
                         <div className="bg-green-50 border border-green-200 p-4 rounded-lg mb-4">
-                          <div className="flex items-center gap-2 mb-2">
+                          <div className="flex items-centre gap-2 mb-2">
                             <CheckCircle className="h-4 w-4 text-green-500" />
                             <h4 className="font-semibold text-green-900">Professional Solution</h4>
                           </div>
@@ -417,7 +417,7 @@ export default function WhyMouldReturnsPage() {
                       </div>
 
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <h4 className="font-semibold text-gray-900 mb-3 flex items-centre gap-2">
                           <X className="h-4 w-4 text-red-500" />
                           Red Flags to Avoid
                         </h4>
@@ -442,7 +442,7 @@ export default function WhyMouldReturnsPage() {
       {/* Professional vs Cowboy */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Professional vs "Cowboy" Mould Removal
             </h2>
@@ -454,8 +454,8 @@ export default function WhyMouldReturnsPage() {
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Professional */}
             <Card className="p-8 border-green-200 bg-green-50">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-lg bg-green-500 flex items-center justify-center">
+              <div className="flex items-centre gap-4 mb-6">
+                <div className="w-16 h-16 rounded-lg bg-green-500 flex items-centre justify-centre">
                   <Shield className="h-8 w-8 text-white" />
                 </div>
                 <div>
@@ -469,14 +469,14 @@ export default function WhyMouldReturnsPage() {
                 <ol className="space-y-2">
                   {professionalVsCowboy.professional.process.map((step, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm text-green-800">
-                      <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">{idx + 1}</span>
+                      <span className="bg-green-500 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-xs font-bold flex-shrink-0 mt-0.5">{idx + 1}</span>
                       {step}
                     </li>
                   ))}
                 </ol>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-center mb-4">
+              <div className="grid grid-cols-2 gap-4 text-centre mb-4">
                 <div className="bg-green-100 p-3 rounded-lg">
                   <div className="font-bold text-green-800">{professionalVsCowboy.professional.timeline}</div>
                   <div className="text-xs text-green-700">Timeline</div>
@@ -487,7 +487,7 @@ export default function WhyMouldReturnsPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <div className="text-2xl font-bold text-green-600 mb-1">{professionalVsCowboy.professional.cost}</div>
                 <div className="text-sm text-green-700 mb-2">Professional Investment</div>
                 <Badge className="bg-green-600 text-white">{professionalVsCowboy.professional.guarantee}</Badge>
@@ -496,8 +496,8 @@ export default function WhyMouldReturnsPage() {
 
             {/* Cowboy */}
             <Card className="p-8 border-red-200 bg-red-50">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-lg bg-red-500 flex items-center justify-center">
+              <div className="flex items-centre gap-4 mb-6">
+                <div className="w-16 h-16 rounded-lg bg-red-500 flex items-centre justify-centre">
                   <X className="h-8 w-8 text-white" />
                 </div>
                 <div>
@@ -511,14 +511,14 @@ export default function WhyMouldReturnsPage() {
                 <ol className="space-y-2">
                   {professionalVsCowboy.cowboy.process.map((step, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm text-red-800">
-                      <span className="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">{idx + 1}</span>
+                      <span className="bg-red-500 text-white rounded-full w-6 h-6 flex items-centre justify-centre text-xs font-bold flex-shrink-0 mt-0.5">{idx + 1}</span>
                       {step}
                     </li>
                   ))}
                 </ol>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 text-center mb-4">
+              <div className="grid grid-cols-2 gap-4 text-centre mb-4">
                 <div className="bg-red-100 p-3 rounded-lg">
                   <div className="font-bold text-red-800">{professionalVsCowboy.cowboy.timeline}</div>
                   <div className="text-xs text-red-700">Timeline</div>
@@ -529,7 +529,7 @@ export default function WhyMouldReturnsPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <div className="text-2xl font-bold text-red-600 mb-1">{professionalVsCowboy.cowboy.cost}</div>
                 <div className="text-sm text-red-700 mb-2">Initial Cost (Plus Failures)</div>
                 <Badge variant="destructive">{professionalVsCowboy.cowboy.guarantee}</Badge>
@@ -542,7 +542,7 @@ export default function WhyMouldReturnsPage() {
       {/* Real World Case Study */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Real Case Study: The $1,600 Difference
             </h2>
@@ -554,7 +554,7 @@ export default function WhyMouldReturnsPage() {
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Cowboy Job */}
             <Card className="p-8 border-red-200">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-centre gap-3 mb-6">
                 <X className="h-6 w-6 text-red-500" />
                 <h3 className="text-xl font-semibold text-red-900">Cowboy Job Outcome</h3>
               </div>
@@ -591,7 +591,7 @@ export default function WhyMouldReturnsPage() {
 
             {/* Professional Job */}
             <Card className="p-8 border-green-200">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-centre gap-3 mb-6">
                 <CheckCircle className="h-6 w-6 text-green-500" />
                 <h3 className="text-xl font-semibold text-green-900">Professional Job Outcome</h3>
               </div>
@@ -627,9 +627,9 @@ export default function WhyMouldReturnsPage() {
             </Card>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <Card className="p-6 bg-blue-50 border-blue-200 inline-block">
-              <div className="flex items-center gap-3">
+              <div className="flex items-centre gap-3">
                 <DollarSign className="h-8 w-8 text-blue-600" />
                 <div>
                   <div className="text-2xl font-bold text-blue-900">
@@ -646,7 +646,7 @@ export default function WhyMouldReturnsPage() {
       {/* Contractor Verification Checklist */}
       <section className="py-20 bg-blue-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-centre mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               How to Verify a Real Mould Professional
             </h2>
@@ -660,7 +660,7 @@ export default function WhyMouldReturnsPage() {
               {verificationChecklist.map((item, idx) => (
                 <Card key={idx} className={`p-6 ${item.critical ? 'border-red-200 bg-red-50' : 'border-yellow-200 bg-yellow-50'}`}>
                   <div className="flex items-start gap-4">
-                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                    <div className={`w-12 h-12 rounded-lg flex items-centre justify-centre ${
                       item.critical ? 'bg-red-500' : 'bg-yellow-500'
                     }`}>
                       {item.critical ? (
@@ -670,7 +670,7 @@ export default function WhyMouldReturnsPage() {
                       )}
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-centre gap-3 mb-2">
                         <h3 className="text-lg font-semibold text-gray-900">{item.check}</h3>
                         {item.critical && (
                           <Badge variant="destructive" className="text-xs">
@@ -700,7 +700,7 @@ export default function WhyMouldReturnsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-teal-600 text-white">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Get Guaranteed Mould Removal
           </h2>
@@ -726,7 +726,7 @@ export default function WhyMouldReturnsPage() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 px-8 py-6 text-lg">
                 <Shield className="mr-2 h-5 w-5" />

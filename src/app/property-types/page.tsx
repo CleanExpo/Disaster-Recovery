@@ -6,7 +6,7 @@ import { Building, Home, Briefcase, Building2, School, Hotel, Warehouse, Hospita
 
 export const metadata: Metadata = {
   title: 'Property Type Disaster Recovery | Residential, Commercial, Strata | All Properties',
-  description: 'Specialized disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
+  description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
 };
 
 const properties = [
@@ -22,7 +22,7 @@ const properties = [
     "name": "Apartment & Unit",
     "slug": "apartment-units",
     "category": "Residential",
-    "description": "Specialized disaster recovery for apartments, units, and high-rise residences",
+    "description": "Specialised disaster recovery for apartments, units, and high-rise residences",
     "responseTime": "30-45 minutes",
     "insuranceCoverage": "95%"
   },
@@ -70,7 +70,7 @@ const properties = [
     "name": "Healthcare Facility",
     "slug": "healthcare-facilities",
     "category": "Healthcare",
-    "description": "Specialized disaster recovery for hospitals, clinics, and medical facilities",
+    "description": "Specialised disaster recovery for hospitals, clinics, and medical facilities",
     "responseTime": "Immediate",
     "insuranceCoverage": "100%"
   },
@@ -124,13 +124,13 @@ export default function PropertyTypesPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <Building className="h-16 w-16 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Disaster Recovery for All Property Types
           </h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Specialized restoration services tailored to your property type. 
+            Specialised restoration services tailored to your property type. 
             From residential homes to government facilities - we have you covered.
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function PropertyTypesPage() {
       
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Select Your Property Type
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -148,7 +148,7 @@ export default function PropertyTypesPage() {
               
               return (
                 <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <IconComponent className="h-10 w-10 text-blue-600" />
                     <span className={`px-3 py-1 rounded-full text-white text-xs font-bold ${colorClass}`}>
                       {property.category}
@@ -181,7 +181,7 @@ export default function PropertyTypesPage() {
       {/* Why Property-Specific Matters */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Property-Specific Recovery Matters
           </h2>
           <div className="max-w-4xl mx-auto">

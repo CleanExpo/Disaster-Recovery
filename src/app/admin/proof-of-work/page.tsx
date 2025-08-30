@@ -186,7 +186,7 @@ export default function ProofOfWorkAdmin() {
         {/* Statistics Cards */}
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Total Claims</p>
                 <p className="text-3xl font-bold text-gray-900">{statistics.total}</p>
@@ -198,7 +198,7 @@ export default function ProofOfWorkAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Pending Review</p>
                 <p className="text-3xl font-bold text-yellow-600">{statistics.byVerificationStatus.PENDING || 0}</p>
@@ -210,7 +210,7 @@ export default function ProofOfWorkAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Verified</p>
                 <p className="text-3xl font-bold text-green-600">{statistics.byVerificationStatus.VERIFIED || 0}</p>
@@ -222,7 +222,7 @@ export default function ProofOfWorkAdmin() {
           </div>
           
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Rejected</p>
                 <p className="text-3xl font-bold text-red-600">{statistics.byVerificationStatus.REJECTED || 0}</p>
@@ -329,14 +329,14 @@ export default function ProofOfWorkAdmin() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {loading ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
+                    <td colSpan={7} className="px-6 py-12 text-centre">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
                       <p className="mt-2 text-gray-500">Loading proof of work claims...</p>
                     </td>
                   </tr>
                 ) : claims.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
+                    <td colSpan={7} className="px-6 py-12 text-centre">
                       <p className="text-gray-500">No proof of work claims found</p>
                     </td>
                   </tr>
@@ -346,7 +346,7 @@ export default function ProofOfWorkAdmin() {
                       <div>
                         <div className="text-sm font-medium text-gray-900">{claim.projectName}</div>
                         <div className="text-sm text-gray-500">{claim.clientName}</div>
-                        <div className="text-xs text-gray-500 flex items-center gap-1 mt-1">
+                        <div className="text-xs text-gray-500 flex items-centre gap-1 mt-1">
                           <Calendar className="w-3 h-3" />
                           {new Date(claim.completionDate).toLocaleDateString('en-AU')}
                         </div>
@@ -370,7 +370,7 @@ export default function ProofOfWorkAdmin() {
                       <div className="text-sm font-medium text-gray-900">
                         ${claim.projectValue.toLocaleString()}
                       </div>
-                      <div className="flex items-center gap-1 mt-1">
+                      <div className="flex items-centre gap-1 mt-1">
                         {claim.emergencyResponse && (
                           <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Emergency</span>
                         )}
@@ -382,7 +382,7 @@ export default function ProofOfWorkAdmin() {
                     <td className="px-6 py-4">
                       <div className="flex flex-wrap gap-1">
                         {claim.evidence.map((evidence, index) => (
-                          <div key={index} className="flex items-center gap-1 text-xs text-gray-600">
+                          <div key={index} className="flex items-centre gap-1 text-xs text-gray-600">
                             {getEvidenceIcon(evidence.type)}
                             <span>{evidence.type.replace(/_/g, ' ')}</span>
                           </div>
@@ -393,7 +393,7 @@ export default function ProofOfWorkAdmin() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         {getStatusIcon(claim.verificationStatus)}
                         <span className={`
                           inline-flex px-2 py-1 text-xs font-medium rounded-full
@@ -423,7 +423,7 @@ export default function ProofOfWorkAdmin() {
           {/* Pagination */}
           {pagination.pages > 1 && (
             <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <div className="text-sm text-gray-700">
                   Showing {((pagination.page - 1) * pagination.limit) + 1} to{' '}
                   {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
@@ -479,10 +479,10 @@ function ClaimReviewModal({
   const [verificationNotes, setVerificationNotes] = useState(claim.verificationNotes || '');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre z-50 p-4">
       <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         <div className="p-6 border-b">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <h3 className="text-2xl font-bold text-gray-900">Review Proof of Work</h3>
             <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
               <X className="w-6 h-6" />
@@ -503,21 +503,21 @@ function ClaimReviewModal({
                 <div>
                   <label className="text-sm font-medium text-gray-700">Client</label>
                   <p className="text-sm text-gray-900">{claim.clientName}</p>
-                  <p className="text-xs text-gray-600 flex items-center gap-1">
+                  <p className="text-xs text-gray-600 flex items-centre gap-1">
                     <Phone className="w-3 h-3" />
                     {claim.clientContact}
                   </p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700">Address</label>
-                  <p className="text-sm text-gray-900 flex items-center gap-1">
+                  <p className="text-sm text-gray-900 flex items-centre gap-1">
                     <MapPin className="w-3 h-3" />
                     {claim.projectAddress}
                   </p>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700">Completion Date</label>
-                  <p className="text-sm text-gray-900 flex items-center gap-1">
+                  <p className="text-sm text-gray-900 flex items-centre gap-1">
                     <Calendar className="w-3 h-3" />
                     {new Date(claim.completionDate).toLocaleDateString('en-AU')}
                   </p>
@@ -540,7 +540,7 @@ function ClaimReviewModal({
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700">Project Value</label>
-                  <p className="text-sm text-gray-900 flex items-center gap-1">
+                  <p className="text-sm text-gray-900 flex items-centre gap-1">
                     <DollarSign className="w-3 h-3" />
                     ${claim.projectValue.toLocaleString()}
                   </p>
@@ -579,7 +579,7 @@ function ClaimReviewModal({
             <div className="grid md:grid-cols-2 gap-4">
               {claim.evidence.map((evidence, index) => (
                 <div key={index} className="border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-centre gap-2 mb-2">
                     {evidence.type.includes('PHOTO') ? (
                       <Image className="w-4 h-4 text-gray-600" />
                     ) : (
@@ -621,14 +621,14 @@ function ClaimReviewModal({
         <div className="p-6 border-t flex justify-end gap-4">
           <button
             onClick={() => onUpdateStatus(claim.id, 'REJECTED', verificationNotes)}
-            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            className="flex items-centre gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
           >
             <X className="w-4 h-4" />
             Reject
           </button>
           <button
             onClick={() => onUpdateStatus(claim.id, 'VERIFIED', verificationNotes)}
-            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            className="flex items-centre gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
           >
             <CheckCircle className="w-4 h-4" />
             Approve

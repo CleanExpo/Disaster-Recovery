@@ -31,10 +31,10 @@ export class AccessibilityGuardianAgent implements UIAgent {
   description = 'Ensures WCAG compliance and comprehensive accessibility for inclusive user experience'
   capabilities = [
     'WCAG 2.1 AA/AAA compliance auditing',
-    'Keyboard navigation optimization',
+    'Keyboard navigation optimisation',
     'Screen reader compatibility',
     'Focus management systems',
-    'Color contrast validation',
+    'Colour contrast validation',
     'Alternative text generation',
     'Semantic HTML structure',
     'ARIA attributes implementation'
@@ -54,7 +54,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       '1.3.3': 'Sensory Characteristics (A)',
       '1.3.4': 'Orientation (AA)',
       '1.3.5': 'Identify Input Purpose (AA)',
-      '1.4.1': 'Use of Color (A)',
+      '1.4.1': 'Use of Colour (A)',
       '1.4.2': 'Audio Control (A)',
       '1.4.3': 'Contrast (Minimum) (AA)',
       '1.4.4': 'Resize Text (AA)',
@@ -206,12 +206,12 @@ export class AccessibilityGuardianAgent implements UIAgent {
     }
   }
 
-  async analyze(element: UIElement): Promise<AnalysisResult> {
+  async analyse(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
     const recommendations = []
 
-    // Analyze semantic structure
+    // Analyse semantic structure
     const semanticAnalysis = this.analyzeSemanticStructure(element)
     issues.push(...semanticAnalysis.issues)
     strengths.push(...semanticAnalysis.strengths)
@@ -221,12 +221,12 @@ export class AccessibilityGuardianAgent implements UIAgent {
     issues.push(...keyboardAnalysis.issues)
     strengths.push(...keyboardAnalysis.strengths)
 
-    // Analyze ARIA implementation
+    // Analyse ARIA implementation
     const ariaAnalysis = this.analyzeARIAImplementation(element)
     issues.push(...ariaAnalysis.issues)
     strengths.push(...ariaAnalysis.strengths)
 
-    // Check color contrast
+    // Check colour contrast
     const contrastAnalysis = this.analyzeColorContrast(element)
     issues.push(...contrastAnalysis.issues)
     strengths.push(...contrastAnalysis.strengths)
@@ -266,7 +266,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
   }
 
   private async performAccessibilityAudit(context: UIContext): Promise<AnalysisResult> {
-    return this.analyze({
+    return this.analyse({
       type: context.component.type,
       props: context.component.props,
       styles: context.component.styles.base,
@@ -422,19 +422,19 @@ export class AccessibilityGuardianAgent implements UIAgent {
     const strengths = []
 
     // Simplified contrast analysis
-    // In a real implementation, this would extract colors and calculate contrast ratios
+    // In a real implementation, this would extract colours and calculate contrast ratios
     const hasGoodContrast = this.checkColorContrast(element)
 
     if (hasGoodContrast) {
-      strengths.push('Meets WCAG color contrast requirements')
+      strengths.push('Meets WCAG colour contrast requirements')
     } else {
       issues.push({
         id: 'insufficient-contrast',
         severity: 'high' as const,
         type: 'accessibility' as const,
-        description: 'Color contrast ratio is below WCAG AA standards',
+        description: 'Colour contrast ratio is below WCAG AA standards',
         location: element.type,
-        fix: 'Increase color contrast to at least 4.5:1 for normal text, 3:1 for large text',
+        fix: 'Increase colour contrast to at least 4.5:1 for normal text, 3:1 for large text',
         automated: false,
         wcagViolation: '1.4.3 Contrast (Minimum) (AA)'
       })
@@ -502,7 +502,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
           'Implement semantic HTML structure',
           'Add comprehensive ARIA attributes',
           'Ensure keyboard navigation support',
-          'Validate color contrast ratios',
+          'Validate colour contrast ratios',
           'Test with screen readers',
           'Implement focus management',
           'Add skip links and landmarks'
@@ -553,7 +553,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
     improvements.push({
       id: 'screen-reader-optimizations',
       type: 'accessibility',
-      description: 'Optimize component structure and content for screen readers',
+      description: 'Optimise component structure and content for screen readers',
       impact: 'high',
       effort: 'medium',
       category: 'screen-reader-support',
@@ -699,11 +699,11 @@ export class AccessibilityGuardianAgent implements UIAgent {
 
     if (element.type === 'button') {
       recommendations.push({
-        id: 'optimize-button-accessibility',
+        id: 'optimise-button-accessibility',
         agent: this.id,
         priority: 'high',
         category: 'component-accessibility',
-        title: 'Optimize Button Accessibility',
+        title: 'Optimise Button Accessibility',
         description: 'Enhance button component with comprehensive accessibility features',
         implementation: {
           complexity: 'simple',
@@ -721,11 +721,11 @@ export class AccessibilityGuardianAgent implements UIAgent {
 
     if (element.type === 'form' || element.type === 'input') {
       recommendations.push({
-        id: 'optimize-form-accessibility',
+        id: 'optimise-form-accessibility',
         agent: this.id,
         priority: 'high',
         category: 'form-accessibility',
-        title: 'Optimize Form Accessibility',
+        title: 'Optimise Form Accessibility',
         description: 'Implement comprehensive form accessibility with error handling',
         implementation: {
           complexity: 'moderate',
@@ -768,7 +768,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
         z-index: 100000;
         padding: 8px 16px;
         background: #131cff;
-        color: white;
+        colour: white;
         text-decoration: none;
         border-radius: 4px;
         font-weight: 600;
@@ -797,7 +797,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
         .high-contrast {
           border: 2px solid currentColor;
           background: CanvasText;
-          color: Canvas;
+          colour: Canvas;
         }
       }
       
@@ -823,17 +823,17 @@ export class AccessibilityGuardianAgent implements UIAgent {
         paragraph-spacing: 2em;
       }
       
-      /* Color Contrast Utilities */
+      /* Colour Contrast Utilities */
       .contrast-aa {
         /* Ensures 4.5:1 contrast ratio */
         background: #000000;
-        color: #ffffff;
+        colour: #ffffff;
       }
       
       .contrast-aaa {
         /* Ensures 7:1 contrast ratio */
         background: #000000;
-        color: #ffffff;
+        colour: #ffffff;
       }
       
       /* Keyboard Navigation Indicators */
@@ -877,7 +877,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
               const target = document.querySelector(link.getAttribute('href'));
               if (target) {
                 target.focus();
-                target.scrollIntoView({ behavior: 'smooth' });
+                target.scrollIntoView({ behaviour: 'smooth' });
               }
             });
           });
@@ -1149,7 +1149,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
       }
       
       [data-roving-tabindex] > *:focus {
-        background-color: rgba(19, 28, 255, 0.1);
+        background-colour: rgba(19, 28, 255, 0.1);
       }
       
       /* Keyboard navigation indicators */
@@ -1168,7 +1168,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
 
   private generateScreenReaderOptimizationCode(): string {
     return `
-      // Screen Reader Optimization System
+      // Screen Reader Optimisation System
       
       class ScreenReaderOptimizer {
         constructor() {
@@ -1507,7 +1507,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
   // Helper methods
   private checkColorContrast(element: UIElement): boolean {
     // Simplified contrast checking
-    // In a real implementation, this would extract colors and calculate contrast ratios
+    // In a real implementation, this would extract colours and calculate contrast ratios
     return true
   }
 

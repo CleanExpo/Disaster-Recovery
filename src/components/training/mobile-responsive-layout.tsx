@@ -135,7 +135,7 @@ export function MobileResponsiveTrainingLayout({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-3 text-center text-sm font-medium shadow-sm"
+            className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-3 text-centre text-sm font-medium shadow-sm"
           >
             <WifiOff className="inline-block w-4 h-4 mr-2" />
             You're offline. Some features may be limited.
@@ -150,11 +150,11 @@ export function MobileResponsiveTrainingLayout({
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
         className="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200/50 lg:hidden"
       >
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-centre justify-between px-4 py-3">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+            className="p-2 rounded-xl hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colours"
             aria-label="Open menu"
           >
             <Menu className="w-6 h-6" />
@@ -181,7 +181,7 @@ export function MobileResponsiveTrainingLayout({
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex items-center space-x-2"
+            className="flex items-centre space-x-2"
           >
             {connectionType === '4g' && (
               <motion.div
@@ -239,9 +239,9 @@ export function MobileResponsiveTrainingLayout({
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="flex items-center justify-between p-6 border-b border-gray-200/50"
+              className="flex items-centre justify-between p-6 border-b border-gray-200/50"
             >
-              <div className="flex items-center">
+              <div className="flex items-centre">
                 <div className="p-2 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl mr-3">
                   <BookOpen className="w-5 h-5 text-white" />
                 </div>
@@ -252,7 +252,7 @@ export function MobileResponsiveTrainingLayout({
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSidebarOpen(false)}
-                className="p-2 rounded-xl hover:bg-gray-100 lg:hidden transition-colors"
+                className="p-2 rounded-xl hover:bg-gray-100 lg:hidden transition-colours"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -274,7 +274,7 @@ export function MobileResponsiveTrainingLayout({
                     setSidebarOpen(false);
                   }}
                   className={cn(
-                    "w-full flex items-center justify-between px-4 py-4 rounded-xl transition-all duration-200 group relative overflow-hidden",
+                    "w-full flex items-centre justify-between px-4 py-4 rounded-xl transition-all duration-200 group relative overflow-hidden",
                     day === currentDay 
                       ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold shadow-lg" 
                       : day < currentDay
@@ -291,9 +291,9 @@ export function MobileResponsiveTrainingLayout({
                     />
                   )}
                   
-                  <span className="flex items-center relative z-10">
+                  <span className="flex items-centre relative z-10">
                     <div className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 transition-colors",
+                      "w-8 h-8 rounded-full flex items-centre justify-centre text-sm font-bold mr-3 transition-colours",
                       day === currentDay 
                         ? "bg-white/20 text-white" 
                         : day < currentDay
@@ -337,7 +337,7 @@ export function MobileResponsiveTrainingLayout({
             >
               <div className="text-xs text-gray-500 mb-3 font-semibold uppercase tracking-wider">Accessibility</div>
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <span className="text-sm font-medium text-gray-700">Font Size:</span>
                   <div className="flex space-x-1">
                     {(['small', 'medium', 'large'] as const).map((size, index) => (
@@ -346,7 +346,7 @@ export function MobileResponsiveTrainingLayout({
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setFontSize(size)}
                         className={cn(
-                          "w-8 h-8 rounded-lg font-bold transition-all duration-200 flex items-center justify-center",
+                          "w-8 h-8 rounded-lg font-bold transition-all duration-200 flex items-centre justify-centre",
                           fontSize === size 
                             ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg" 
                             : "bg-gray-200 text-gray-600 hover:bg-gray-300"
@@ -361,7 +361,7 @@ export function MobileResponsiveTrainingLayout({
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <span className="text-sm font-medium text-gray-700">Device:</span>
                   <div className="flex space-x-2 text-gray-400">
                     <Smartphone className={cn("w-4 h-4", orientation === 'portrait' && "text-blue-500")} />
@@ -392,7 +392,7 @@ export function MobileResponsiveTrainingLayout({
               transition={{ delay: 0.3 }}
               className="hidden lg:block mb-8"
             >
-              <div className="flex items-center mb-4">
+              <div className="flex items-centre mb-4">
                 <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl mr-4">
                   <BookOpen className="w-6 h-6 text-white" />
                 </div>
@@ -443,12 +443,12 @@ export function MobileResponsiveTrainingLayout({
             </motion.div>
             
             {/* Mobile Navigation */}
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 lg:hidden">
+            <div className="flex items-centre justify-between mt-8 pt-6 border-t border-gray-200 lg:hidden">
               <button
                 onClick={() => onNavigate?.(Math.max(1, currentDay - 1))}
                 disabled={currentDay === 1}
                 className={cn(
-                  "flex items-center px-4 py-2 rounded-lg font-medium",
+                  "flex items-centre px-4 py-2 rounded-lg font-medium",
                   currentDay === 1 
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
                     : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
@@ -466,7 +466,7 @@ export function MobileResponsiveTrainingLayout({
                 onClick={() => onNavigate?.(Math.min(totalDays, currentDay + 1))}
                 disabled={currentDay === totalDays}
                 className={cn(
-                  "flex items-center px-4 py-2 rounded-lg font-medium",
+                  "flex items-centre px-4 py-2 rounded-lg font-medium",
                   currentDay === totalDays 
                     ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
                     : "bg-blue-600 text-white hover:bg-blue-700"
@@ -481,12 +481,12 @@ export function MobileResponsiveTrainingLayout({
       </div>
       
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-4 bg-white border-t border-gray-200">
+      <div className="hidden lg:flex items-centre justify-between px-8 py-4 bg-white border-t border-gray-200">
         <button
           onClick={() => onNavigate?.(Math.max(1, currentDay - 1))}
           disabled={currentDay === 1}
           className={cn(
-            "flex items-center px-6 py-3 rounded-lg font-medium transition-colors",
+            "flex items-centre px-6 py-3 rounded-lg font-medium transition-colours",
             currentDay === 1 
               ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
               : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
@@ -496,7 +496,7 @@ export function MobileResponsiveTrainingLayout({
           Previous Module
         </button>
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-centre space-x-2">
           {Array.from({ length: Math.min(7, totalDays) }, (_, i) => {
             const day = currentDay - 3 + i;
             if (day < 1 || day > totalDays) return null;
@@ -506,7 +506,7 @@ export function MobileResponsiveTrainingLayout({
                 key={day}
                 onClick={() => onNavigate?.(day)}
                 className={cn(
-                  "w-10 h-10 rounded-full font-medium transition-colors",
+                  "w-10 h-10 rounded-full font-medium transition-colours",
                   day === currentDay 
                     ? "bg-blue-600 text-white" 
                     : "bg-gray-200 text-gray-600 hover:bg-gray-300"
@@ -522,7 +522,7 @@ export function MobileResponsiveTrainingLayout({
           onClick={() => onNavigate?.(Math.min(totalDays, currentDay + 1))}
           disabled={currentDay === totalDays}
           className={cn(
-            "flex items-center px-6 py-3 rounded-lg font-medium transition-colors",
+            "flex items-centre px-6 py-3 rounded-lg font-medium transition-colours",
             currentDay === totalDays 
               ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
               : "bg-blue-600 text-white hover:bg-blue-700"
@@ -535,8 +535,8 @@ export function MobileResponsiveTrainingLayout({
       
       {/* Orientation Warning for Mobile */}
       {orientation === 'landscape' && (
-        <div className="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center lg:hidden">
-          <div className="bg-white rounded-lg p-6 mx-4 max-w-sm text-center">
+        <div className="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-centre justify-centre lg:hidden">
+          <div className="bg-white rounded-lg p-6 mx-4 max-w-sm text-centre">
             <div className="mb-4">
               <svg className="w-16 h-16 mx-auto text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -578,7 +578,7 @@ export function TrainingVideoPlayer({
             alt={title}
             className="w-full"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-centre justify-centre">
             <button
               onClick={() => setIsPlaying(true)}
               className="bg-white bg-opacity-90 rounded-full p-4 hover:bg-opacity-100 transition-all transform hover:scale-110"
@@ -652,7 +652,7 @@ export function TrainingQuiz({
           <label
             key={index}
             className={cn(
-              "flex items-center p-3 rounded-lg border-2 cursor-pointer transition-all",
+              "flex items-centre p-3 rounded-lg border-2 cursor-pointer transition-all",
               selectedAnswer === index
                 ? "border-blue-500 bg-blue-100"
                 : "border-gray-200 bg-white hover:border-gray-300",
@@ -682,7 +682,7 @@ export function TrainingQuiz({
           onClick={handleSubmit}
           disabled={selectedAnswer === null}
           className={cn(
-            "w-full py-3 rounded-lg font-medium transition-colors",
+            "w-full py-3 rounded-lg font-medium transition-colours",
             selectedAnswer === null
               ? "bg-gray-200 text-gray-400 cursor-not-allowed"
               : "bg-blue-600 text-white hover:bg-blue-700"

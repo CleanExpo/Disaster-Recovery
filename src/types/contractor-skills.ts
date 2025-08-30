@@ -1,6 +1,6 @@
 /**
  * Contractor Skill Categorization & Certification Framework
- * Defines specialized training requirements and service limitations
+ * Defines specialised training requirements and service limitations
  */
 
 // Base contractor certification levels
@@ -11,7 +11,7 @@ export enum ContractorTier {
   PLATINUM = 'platinum'   // Master level + regulatory compliance
 }
 
-// Specialized skill categories
+// Specialised skill categories
 export enum SkillCategory {
   THERMAL_IMAGING = 'thermal_imaging',
   MOISTURE_SCIENCE = 'moisture_science',
@@ -130,7 +130,7 @@ export interface ServiceRequirement {
   serviceId: string;
   name: string;
   description: string;
-  skillLevel: 'standard' | 'specialized' | 'licensed';
+  skillLevel: 'standard' | 'specialised' | 'licensed';
   requiredCertifications: string[];
   optionalCertifications?: string[];
   limitations: string[];
@@ -157,7 +157,7 @@ export const SERVICE_REQUIREMENTS: Record<string, ServiceRequirement> = {
     serviceId: 'electrical_thermal',
     name: 'Electrical Hot Spot Analysis',
     description: 'Certified thermal analysis of electrical components and systems',
-    skillLevel: 'specialized',
+    skillLevel: 'specialised',
     requiredCertifications: ['thermo_l1'],
     optionalCertifications: ['thermo_l2'],
     limitations: [
@@ -173,7 +173,7 @@ export const SERVICE_REQUIREMENTS: Record<string, ServiceRequirement> = {
     serviceId: 'building_envelope',
     name: 'Quantitative Building Envelope Assessment',
     description: 'Professional thermal analysis for energy audits and building performance',
-    skillLevel: 'specialized',
+    skillLevel: 'specialised',
     requiredCertifications: ['thermo_l1'],
     optionalCertifications: ['thermo_l2'],
     limitations: [
@@ -227,7 +227,7 @@ export interface ContractorSkillKPIs {
   crossReferralSuccess: number;         // % successful referrals to specialists
   qualityScoreBySkillLevel: {
     standard: number;
-    specialized: number;
+    specialised: number;
     licensed: number;
   };
 }
@@ -245,7 +245,7 @@ export interface ServiceMatchResult {
   contractorId: string;
   matchScore: number;           // 0-100 compatibility score
   certificationLevel: 'meets' | 'exceeds' | 'insufficient';
-  serviceQuality: 'standard' | 'specialized' | 'expert';
+  serviceQuality: 'standard' | 'specialised' | 'expert';
   riskFactors: string[];        // Potential limitations or risks
   alternatives?: {              // If current contractor insufficient
     referralContractor: string;
@@ -313,7 +313,7 @@ export class SkillAssessmentEngine {
         'Will you need to refer any aspects to specialists?'
       ],
       redFlags: [
-        'Claims all technicians can perform specialized services',
+        'Claims all technicians can perform specialised services',
         'Cannot explain certification requirements',
         'Promises results beyond service limitations',
         'No mention of when specialist referral is needed'

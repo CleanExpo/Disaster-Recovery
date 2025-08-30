@@ -130,11 +130,11 @@ function PaymentPageContent() {
       {/* Header */}
       <div className="bg-white border-b sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre gap-4">
               <button
                 onClick={() => router.back()}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colours"
               >
                 <ArrowLeft className="h-5 w-5" />
               </button>
@@ -143,7 +143,7 @@ function PaymentPageContent() {
                 <p className="text-sm text-gray-600">Complete your booking</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Lock className="h-5 w-5 text-green-600" />
               <span className="text-sm font-medium text-green-600">Secure Checkout</span>
             </div>
@@ -160,7 +160,7 @@ function PaymentPageContent() {
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Payment Amount</h2>
                 <div className="bg-blue-50 rounded-lg p-4">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-centre justify-between">
                     <div>
                       <p className="text-sm text-gray-600">Initial Assessment Fee</p>
                       <p className="text-3xl font-bold text-gray-900">${amount}.00</p>
@@ -409,7 +409,7 @@ function PaymentPageContent() {
               <button
                 onClick={handlePayment}
                 disabled={isProcessing}
-                className="w-full py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colours flex items-centre justify-centre gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isProcessing ? (
                   <>
@@ -486,12 +486,12 @@ function PaymentPageContent() {
 
                   {/* Security Badges */}
                   <div className="pt-4 border-t">
-                    <div className="flex items-center justify-center gap-4">
+                    <div className="flex items-centre justify-centre gap-4">
                       <Shield className="h-8 w-8 text-gray-400" />
                       <Lock className="h-8 w-8 text-gray-400" />
                       <CreditCard className="h-8 w-8 text-gray-400" />
                     </div>
-                    <p className="text-xs text-center text-gray-500 mt-2">
+                    <p className="text-xs text-centre text-gray-500 mt-2">
                       Secure payment powered by Stripe
                     </p>
                   </div>
@@ -502,11 +502,11 @@ function PaymentPageContent() {
               <div className="mt-6 bg-blue-50 rounded-lg p-4">
                 <h4 className="font-medium text-blue-900 mb-2">Need Help?</h4>
                 <div className="space-y-2 text-sm">
-                  <a href="tel:1800DISASTER" className="flex items-center gap-2 text-blue-700 hover:text-blue-800">
+                  <a href="tel:1800DISASTER" className="flex items-centre gap-2 text-blue-700 hover:text-blue-800">
                     <Phone className="h-4 w-4" />
                     1800 DISASTER
                   </a>
-                  <a href="mailto:support@nrp.com.au" className="flex items-center gap-2 text-blue-700 hover:text-blue-800">
+                  <a href="mailto:support@nrp.com.au" className="flex items-centre gap-2 text-blue-700 hover:text-blue-800">
                     <Mail className="h-4 w-4" />
                     support@nrp.com.au
                   </a>
@@ -523,8 +523,8 @@ function PaymentPageContent() {
 export default function PaymentPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading payment...</p>
         </div>

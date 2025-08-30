@@ -1,7 +1,7 @@
 /**
  * UI/UX Design Agent System
  * 
- * A comprehensive system of specialized agents that work together to deliver
+ * A comprehensive system of specialised agents that work together to deliver
  * premium 10/10 UI/UX quality using the R6 Digital design system as the foundation.
  * 
  * Features:
@@ -9,7 +9,7 @@
  * - Smooth transitions and micro-interactions
  * - Mobile-first responsive design
  * - WCAG accessibility compliance
- * - Component gap analysis and optimization
+ * - Component gap analysis and optimisation
  */
 
 export * from './types/interfaces'

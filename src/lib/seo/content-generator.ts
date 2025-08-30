@@ -185,8 +185,8 @@ export function generateContent(
       <h3 class="text-xl font-semibold text-blue-900 mb-3">Need Immediate Assistance?</h3>
       <p class="text-blue-800 mb-4">Our ${locationName} emergency response team is available 24/7 for immediate ${service.name.toLowerCase()} services. Don't let damage worsen - contact us now for rapid professional response.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="tel:1300123456" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Call 1300 123 456</a>
-        <a href="/contact" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">Get Free Quote</a>
+        <a href="tel:1300123456" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-centre">Call 1300 123 456</a>
+        <a href="/contact" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-centre">Get Free Quote</a>
       </div>
     </div>
   </div>
@@ -202,12 +202,12 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
         <li><strong>Structural Drying:</strong> Industrial-grade air movers and dehumidifiers create optimal drying conditions</li>
         <li><strong>Moisture Detection:</strong> Thermal imaging and moisture meters identify hidden water damage</li>
         <li><strong>Antimicrobial Treatment:</strong> EPA-approved treatments prevent mould and bacteria growth</li>
-        <li><strong>Contents Restoration:</strong> Specialized cleaning and restoration of affected belongings</li>
+        <li><strong>Contents Restoration:</strong> Specialised cleaning and restoration of affected belongings</li>
       </ul>
       <p>Every ${propertyType.name.toLowerCase()} property in ${locationName} receives a customized drying plan based on IICRC S500 standards, ensuring complete water removal and proper drying conditions.</p>`,
     
     'mould-remediation': `
-      <p>Mould contamination poses serious health risks and requires specialized remediation following strict protocols. Our certified mould specialists provide:</p>
+      <p>Mould contamination poses serious health risks and requires specialised remediation following strict protocols. Our certified mould specialists provide:</p>
       <ul>
         <li><strong>Mould Inspection & Testing:</strong> Comprehensive assessment using air quality testing and surface sampling</li>
         <li><strong>Containment Setup:</strong> Negative air pressure systems prevent cross-contamination during removal</li>
@@ -221,8 +221,8 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
       <p>Fire damage restoration extends beyond visible damage to address smoke, soot, and water damage from firefighting efforts. Our comprehensive approach includes:</p>
       <ul>
         <li><strong>Emergency Board-Up:</strong> Secure property against weather and unauthorized entry</li>
-        <li><strong>Smoke & Soot Removal:</strong> Specialized cleaning techniques for different types of fire residue</li>
-        <li><strong>Odor Elimination:</strong> Advanced deodorization including ozone treatment and thermal fogging</li>
+        <li><strong>Smoke & Soot Removal:</strong> Specialised cleaning techniques for different types of fire residue</li>
+        <li><strong>Odour Elimination:</strong> Advanced deodorization including ozone treatment and thermal fogging</li>
         <li><strong>Structural Cleaning:</strong> Deep cleaning of affected building materials and surfaces</li>
         <li><strong>Content Restoration:</strong> Ultrasonic cleaning and restoration of salvageable items</li>
       </ul>
@@ -323,7 +323,7 @@ function generateProcessContent(service: typeof SERVICE_TYPES[0]): string {
       'Damage Assessment & Documentation',
       'Smoke & Soot Removal',
       'Deep Structural Cleaning',
-      'Odor Elimination Treatment',
+      'Odour Elimination Treatment',
       'Content Cleaning & Restoration',
       'Reconstruction Planning',
       'Final Quality Inspection'
@@ -345,7 +345,7 @@ function generateProcessContent(service: typeof SERVICE_TYPES[0]): string {
   steps.forEach((step, index) => {
     processHtml += `
       <div class="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+        <div class="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-sm font-bold">
           ${index + 1}
         </div>
         <div class="font-medium text-gray-800">${step}</div>

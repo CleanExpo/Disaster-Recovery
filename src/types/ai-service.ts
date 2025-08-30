@@ -61,7 +61,7 @@ export enum AITaskType {
   CONTRACTOR_MATCHING = 'contractor-matching',
   ESTIMATE_GENERATION = 'estimate-generation',
   
-  // Content & Communication (Speed Optimized)
+  // Content & Communication (Speed Optimised)
   CONTENT_GENERATION = 'content-generation',
   EMAIL_RESPONSES = 'email-responses',
   FAQ_ANSWERS = 'faq-answers',
@@ -195,7 +195,7 @@ export interface AIServiceConfig {
   };
 }
 
-// Specialized Types for Disaster Recovery Context
+// Specialised Types for Disaster Recovery Context
 export interface DisasterAssessmentRequest {
   images?: string[]; // Base64 or URLs
   description: string;

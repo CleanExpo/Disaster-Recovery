@@ -120,7 +120,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
   };
 
   const getContractorColor = (contractor: Contractor, index: number): string => {
-    const colors = [
+    const colours = [
       '#3B82F6', // blue
       '#10B981', // green
       '#F59E0B', // amber
@@ -130,7 +130,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
       '#06B6D4', // cyan
       '#84CC16', // lime
     ];
-    return colors[index % colors.length];
+    return colours[index % colours.length];
   };
 
   const MapView = () => (
@@ -252,7 +252,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
       <div className="absolute bottom-4 left-4 flex space-x-2">
         <button
           onClick={() => setShowOverlaps(!showOverlaps)}
-          className={`flex items-center px-3 py-2 bg-white rounded-lg shadow-md text-sm ${
+          className={`flex items-centre px-3 py-2 bg-white rounded-lg shadow-md text-sm ${
             showOverlaps ? 'bg-blue-50 text-blue-600' : ''
           }`}
         >
@@ -261,7 +261,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
         </button>
         <button
           onClick={() => setShowLabels(!showLabels)}
-          className={`flex items-center px-3 py-2 bg-white rounded-lg shadow-md text-sm ${
+          className={`flex items-centre px-3 py-2 bg-white rounded-lg shadow-md text-sm ${
             showLabels ? 'bg-blue-50 text-blue-600' : ''
           }`}
         >
@@ -274,15 +274,15 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
       <div className="absolute top-4 left-4 bg-white rounded-lg shadow-md p-3">
         <h4 className="text-xs font-semibold text-gray-700 mb-2">Legend</h4>
         <div className="space-y-1">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <div className="w-3 h-3 bg-blue-500 rounded-full opacity-30"></div>
             <span className="text-xs text-gray-600">Service Area</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <div className="w-3 h-3 border-2 border-blue-500 rounded-full border-dashed"></div>
             <span className="text-xs text-gray-600">Max Radius</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-centre space-x-2">
             <div className="w-3 h-3 bg-red-600 rounded-full"></div>
             <span className="text-xs text-gray-600">Job Location</span>
           </div>
@@ -299,7 +299,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
       
       <div className="space-y-3 max-h-96 overflow-y-auto">
         {eligibleContractors.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-centre py-8 text-gray-500">
             <MapPin className="w-12 h-12 mx-auto mb-3 text-gray-300" />
             <p>No eligible contractors for this location</p>
           </div>
@@ -324,31 +324,31 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-3">
                     <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
+                      className="w-10 h-10 rounded-full flex items-centre justify-centre text-white font-bold"
                       style={{ backgroundColor: getContractorColor(contractor, index) }}
                     >
                       {ec.score.rank}
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium text-gray-900">{ec.companyName}</h4>
-                      <div className="flex items-center space-x-4 mt-1 text-sm text-gray-600">
-                        <span className="flex items-center">
+                      <div className="flex items-centre space-x-4 mt-1 text-sm text-gray-600">
+                        <span className="flex items-centre">
                           <Navigation className="w-3 h-3 mr-1" />
                           {ec.distance.toFixed(1)} mi
                         </span>
-                        <span className="flex items-center">
+                        <span className="flex items-centre">
                           <Clock className="w-3 h-3 mr-1" />
                           ~{ec.drivingTime} min
                         </span>
-                        <span className="flex items-center">
+                        <span className="flex items-centre">
                           <Activity className="w-3 h-3 mr-1" />
                           {ec.capacity} slots
                         </span>
                       </div>
                       
                       {/* Score breakdown */}
-                      <div className="mt-2 flex items-center space-x-2">
-                        <div className="flex items-center text-xs">
+                      <div className="mt-2 flex items-centre space-x-2">
+                        <div className="flex items-centre text-xs">
                           <div className="px-2 py-1 bg-gray-100 rounded">
                             Base: {ec.score.baseScore}
                           </div>
@@ -376,17 +376,17 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
                 </div>
                 
                 {/* KPI indicators */}
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-                  <div className="flex items-center space-x-3 text-xs">
-                    <div className="flex items-center">
+                <div className="flex items-centre justify-between mt-3 pt-3 border-t border-gray-100">
+                  <div className="flex items-centre space-x-3 text-xs">
+                    <div className="flex items-centre">
                       <TrendingUp className="w-3 h-3 mr-1 text-green-600" />
                       <span>{ec.kpiScore}% KPI</span>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-centre">
                       <Award className="w-3 h-3 mr-1 text-yellow-600" />
                       <span>{contractor.leadStatistics.acceptanceRate}% Accept</span>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-centre">
                       <User className="w-3 h-3 mr-1 text-blue-600" />
                       <span>{ec.leadSharePercentage}% Share</span>
                     </div>
@@ -411,7 +411,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
 
     return (
       <div className="bg-white rounded-lg border border-blue-200 p-4 mt-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-centre justify-between mb-4">
           <h4 className="font-semibold text-gray-900">Selected Contractor</h4>
           <button
             onClick={() => setSelectedContractor(null)}
@@ -445,21 +445,21 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
         </div>
         
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="text-center">
+          <div className="flex items-centre justify-between">
+            <div className="flex items-centre space-x-4">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-blue-600">
                   {selectedContractor.kpiScore.overallScore}%
                 </p>
                 <p className="text-xs text-gray-600">KPI Score</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-green-600">
                   {selectedContractor.leadStatistics.totalLeadsAccepted}
                 </p>
                 <p className="text-xs text-gray-600">Jobs Completed</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-2xl font-bold text-yellow-600">
                   {selectedContractor.leadStatistics.acceptanceRate}%
                 </p>
@@ -492,7 +492,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <div>
           <h2 className="text-xl font-bold text-gray-900">Contractor Service Coverage</h2>
           <p className="text-gray-600 mt-1">
@@ -501,14 +501,14 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
               : 'Interactive map showing contractor service areas'}
           </p>
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="flex items-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <div className="flex items-centre space-x-2">
+          <button className="flex items-centre px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Filter className="w-4 h-4 mr-2" />
             Filter
           </button>
           <button 
             onClick={calculateEligibleContractors}
-            className="flex items-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            className="flex items-centre px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh
@@ -542,7 +542,7 @@ const ContractorServiceMap: React.FC<ContractorServiceMapProps> = ({
                 </div>
                 <div>
                   <p className="text-xs text-gray-600">Priority</p>
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                  <span className={`inline-flex items-centre px-2 py-1 rounded-full text-xs font-medium ${
                     lead.priority === 'critical' ? 'bg-red-100 text-red-800' :
                     lead.priority === 'high' ? 'bg-orange-100 text-orange-800' :
                     lead.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :

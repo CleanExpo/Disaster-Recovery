@@ -100,7 +100,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Specialized Restoration Services
+  // Specialised Restoration Services
   const specializedServices = [
     {
       url: `${baseUrl}/services/content-restoration`,

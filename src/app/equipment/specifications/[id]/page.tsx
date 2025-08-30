@@ -70,7 +70,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
       {/* Breadcrumb Navigation */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center space-x-2 text-sm">
+          <nav className="flex items-centre space-x-2 text-sm">
             <Link href="/equipment" className="text-gray-600 hover:text-blue-600">
               Equipment
             </Link>
@@ -138,7 +138,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                 {/* Rental Pricing */}
                 {equipment.rentalPrice && (
                   <div className="p-4 border-t">
-                    <h3 className="font-semibold mb-3 flex items-center">
+                    <h3 className="font-semibold mb-3 flex items-centre">
                       <DollarSign className="h-5 w-5 mr-2 text-green-600" />
                       Rental Pricing
                     </h3>
@@ -200,7 +200,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
               <TabsContent value="specifications" className="mt-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="flex items-center">
+                    <CardTitle className="flex items-centre">
                       <Settings className="mr-2 h-5 w-5" />
                       Technical Specifications
                     </CardTitle>
@@ -224,7 +224,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                     {/* Dimensions */}
                     {equipment.dimensions && (
                       <div className="mt-6">
-                        <h4 className="font-semibold mb-3 flex items-center">
+                        <h4 className="font-semibold mb-3 flex items-centre">
                           <Ruler className="mr-2 h-4 w-4" />
                           Dimensions & Weight
                         </h4>
@@ -303,7 +303,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                   <CardContent>
                     <div className="space-y-3">
                       {equipment.applications.map((application, index) => (
-                        <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                        <div key={index} className="flex items-centre p-3 bg-gray-50 rounded-lg">
                           <CheckCircle className="h-5 w-5 text-blue-500 mr-3" />
                           <span className="text-gray-700">{application}</span>
                         </div>
@@ -313,7 +313,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                     {/* Certifications */}
                     {equipment.certifications.length > 0 && (
                       <div className="mt-6">
-                        <h4 className="font-semibold mb-3 flex items-center">
+                        <h4 className="font-semibold mb-3 flex items-centre">
                           <Shield className="mr-2 h-4 w-4" />
                           Certifications & Standards
                         </h4>
@@ -333,7 +333,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
               <TabsContent value="technical" className="mt-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="flex items-center">
+                    <CardTitle className="flex items-centre">
                       <FileText className="mr-2 h-5 w-5" />
                       Technical Details
                     </CardTitle>
@@ -361,7 +361,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
               <TabsContent value="safety" className="mt-6">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="flex items-center">
+                    <CardTitle className="flex items-centre">
                       <Shield className="mr-2 h-5 w-5" />
                       Safety Features
                     </CardTitle>
@@ -370,7 +370,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                     {equipment.safetyFeatures && equipment.safetyFeatures.length > 0 ? (
                       <div className="space-y-3">
                         {equipment.safetyFeatures.map((feature, index) => (
-                          <div key={index} className="flex items-center p-3 bg-green-50 rounded-lg">
+                          <div key={index} className="flex items-centre p-3 bg-green-50 rounded-lg">
                             <Shield className="h-5 w-5 text-green-600 mr-3" />
                             <span className="text-gray-700">{feature}</span>
                           </div>
@@ -419,14 +419,14 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
 
       {/* Call to Action Footer */}
       <section className="mt-16 py-12 bg-gradient-to-r from-blue-600 to-green-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-4">
             Ready to Rent the {equipment.name}?
           </h2>
           <p className="text-lg mb-6 max-w-2xl mx-auto">
             Get this professional equipment delivered to your project site with expert support
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-centre">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
               <Calendar className="mr-2 h-5 w-5" />
               Check Availability

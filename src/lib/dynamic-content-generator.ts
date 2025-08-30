@@ -1,4 +1,4 @@
-// Dynamic Content Generator for SEO-Optimized Location Pages
+// Dynamic Content Generator for SEO-Optimised Location Pages
 // This system generates unique, non-plagiarized content for every Australian location
 
 interface LocationData {
@@ -248,7 +248,7 @@ function generateWaterDamageContent(location: LocationData): string {
 
     <h3>Local ${location.city} Factors Affecting Water Damage</h3>
     <p>Properties near ${location.landmarks[0]} and ${location.landmarks[1]} face increased water damage risks. 
-    The ${location.climate} climate means ${climateFactors.description}, requiring specialized restoration approaches 
+    The ${location.climate} climate means ${climateFactors.description}, requiring specialised restoration approaches 
     for ${location.city} homes and businesses.</p>
 
     <h3>Suburbs We Service in ${location.city}</h3>
@@ -281,7 +281,7 @@ function generateMouldContent(location: LocationData): string {
 
     <h3>Health Impacts for ${location.city} Residents</h3>
     <p>Mould exposure in ${location.city}'s ${humidityLevel} humidity environment can cause severe health issues. 
-    With local hospitals and medical centers reporting increased respiratory complaints during ${mouldRisk.season}, 
+    With local hospitals and medical centres reporting increased respiratory complaints during ${mouldRisk.season}, 
     professional mould remediation is essential for ${location.city} families.</p>
 
     <h3>Building Code Compliance in ${location.state}</h3>
@@ -302,7 +302,7 @@ function generateFireContent(location: LocationData): string {
   return `
     <h2>${location.city} Fire Damage Restoration Services</h2>
     
-    <p>Fire damage restoration in ${location.city} requires specialized knowledge of local ${location.climate} conditions 
+    <p>Fire damage restoration in ${location.city} requires specialised knowledge of local ${location.climate} conditions 
     and ${location.state} building regulations. Our teams serve all ${location.population.toLocaleString()} residents 
     across ${location.city} and surrounding suburbs.</p>
 
@@ -313,7 +313,7 @@ function generateFireContent(location: LocationData): string {
 
     <h3>Smoke and Soot Damage in ${location.climate} Climate</h3>
     <p>The ${location.climate} conditions in ${location.city} affect how smoke and soot penetrate building materials. 
-    Properties throughout ${location.suburbs.slice(2, 5).join(', ')} require specialized cleaning techniques to address 
+    Properties throughout ${location.suburbs.slice(2, 5).join(', ')} require specialised cleaning techniques to address 
     climate-specific damage patterns.</p>
 
     <h3>Insurance Claims Support for ${location.city} Residents</h3>
@@ -354,7 +354,7 @@ function generateStormContent(location: LocationData): string {
 
     <h3>Building Resilience in ${location.city}</h3>
     <p>Understanding ${location.city}'s unique weather patterns and ${location.state} building codes helps create 
-    storm-resistant properties. Areas near ${location.landmarks[2]} require specialized preparation strategies 
+    storm-resistant properties. Areas near ${location.landmarks[2]} require specialised preparation strategies 
     adapted to local conditions.</p>
   `;
 }
@@ -371,7 +371,7 @@ function generateIEPContent(location: LocationData): string {
 
     <h3>Environmental Health Risks in ${location.city}</h3>
     <p>${location.city}'s ${environmentalFactors.primary} create specific indoor health challenges. Properties 
-    in ${location.suburbs.slice(0, 3).join(', ')} face ${environmentalFactors.risks} requiring specialized 
+    in ${location.suburbs.slice(0, 3).join(', ')} face ${environmentalFactors.risks} requiring specialised 
     environmental assessment and remediation.</p>
 
     <h3>Building Science Considerations for ${location.state}</h3>
@@ -386,7 +386,7 @@ function generateIEPContent(location: LocationData): string {
 
     <h3>Testing and Remediation Protocols</h3>
     <p>IEP services in ${location.city} follow ${location.state} environmental health standards while addressing 
-    ${location.climate}-specific challenges. The postcode ${location.postcode} region requires specialized 
+    ${location.climate}-specific challenges. The postcode ${location.postcode} region requires specialised 
     testing protocols adapted to local conditions.</p>
   `;
 }
@@ -437,7 +437,7 @@ function generateGenericContent(location: LocationData): string {
     <h3>Local Expertise for ${location.city}</h3>
     <p>Understanding ${location.city}'s unique ${location.climate} conditions and ${location.state} regulations 
     ensures effective restoration. Common issues including ${location.commonIssues.slice(0, 3).join(', ')} 
-    require specialized local knowledge.</p>
+    require specialised local knowledge.</p>
   `;
 }
 

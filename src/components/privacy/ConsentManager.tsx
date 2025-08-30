@@ -116,12 +116,12 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
     {
       id: 'cookies',
       name: 'Cookies & Analytics',
-      description: 'Use cookies to improve your experience and analyze usage',
+      description: 'Use cookies to improve your experience and analyse usage',
       icon: <Cookie className="h-5 w-5" />,
       required: false,
       details: [
         'Essential cookies for authentication',
-        'Performance cookies for optimization',
+        'Performance cookies for optimisation',
         'Analytics to improve services',
         'Preference storage'
       ]
@@ -217,8 +217,8 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
       {/* Compliance Status */}
       <Card className={hasRequiredConsents() ? 'border-green-200' : 'border-yellow-200'}>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2">
+          <CardTitle className="flex items-centre justify-between">
+            <span className="flex items-centre gap-2">
               <Shield className="h-5 w-5" />
               Privacy & Consent Management
             </span>
@@ -273,10 +273,10 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-centre gap-3">
                         {consentType.icon}
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-centre gap-2">
                             <p className="font-medium">{consentType.name}</p>
                             {consentType.required && (
                               <Badge variant="outline" className="text-xs">Required</Badge>
@@ -313,7 +313,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
                       )}
                     </div>
                     
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-centre gap-3">
                       <Switch
                         checked={!!consent}
                         onCheckedChange={(checked) => updateConsent(consentType.id, checked)}
@@ -342,7 +342,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
 
           {/* GDPR Rights */}
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h4 className="font-medium mb-3 flex items-center gap-2">
+            <h4 className="font-medium mb-3 flex items-centre gap-2">
               <Lock className="h-4 w-4" />
               Your Privacy Rights
             </h4>
@@ -387,16 +387,16 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
           </div>
 
           {/* Compliance Badges */}
-          <div className="mt-6 flex items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="mt-6 flex items-centre gap-4">
+            <div className="flex items-centre gap-2 text-sm text-gray-600">
               <Shield className="h-4 w-4" />
               <span>OAIC Compliant</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-centre gap-2 text-sm text-gray-600">
               <Shield className="h-4 w-4" />
               <span>GDPR Ready</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-centre gap-2 text-sm text-gray-600">
               <Lock className="h-4 w-4" />
               <span>AES-256 Encrypted</span>
             </div>
@@ -424,8 +424,8 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
               {consentTypes.map(consentType => {
                 const consent = getConsentStatus(consentType.id);
                 return (
-                  <div key={consentType.id} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div className="flex items-center gap-3">
+                  <div key={consentType.id} className="flex items-centre justify-between p-3 border rounded-lg">
+                    <div className="flex items-centre gap-3">
                       {consentType.icon}
                       <div>
                         <p className="font-medium">{consentType.name}</p>

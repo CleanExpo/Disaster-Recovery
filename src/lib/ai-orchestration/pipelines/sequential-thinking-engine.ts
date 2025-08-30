@@ -265,7 +265,7 @@ ${stepsContext}
 
 **Your Task for Step ${stepNumber}:**
 Think through the next logical step in solving this problem. Consider:
-1. What specific aspect should be analyzed next?
+1. What specific aspect should be analysed next?
 2. What information do you need to gather or process?
 3. What logical deductions can be made from previous steps?
 4. How confident are you in your reasoning?
@@ -612,20 +612,20 @@ Please synthesize these findings into a clear, actionable final conclusion that 
    * Get system prompt for specific agent persona
    */
   private getSystemPromptForAgent(persona: AgentPersona): string {
-    const basePrompt = "You are an expert AI agent specializing in disaster recovery and emergency response for the Australian market.";
+    const basePrompt = "You are an expert AI agent specialising in disaster recovery and emergency response for the Australian market.";
     
     switch (persona) {
       case AgentPersona.LEAD_ARCHITECT:
         return `${basePrompt} As the Lead Architect, you focus on strategic planning, system design, and coordinating complex multi-step solutions. You excel at breaking down complex problems into manageable components and orchestrating comprehensive response strategies.`;
       
       case AgentPersona.TECHNICAL_EXPERT:
-        return `${basePrompt} As a Technical Expert, you specialize in detailed technical analysis, damage assessment, and understanding the engineering aspects of disaster recovery. You provide precise, technically accurate insights about structural damage, equipment needs, and restoration processes.`;
+        return `${basePrompt} As a Technical Expert, you specialise in detailed technical analysis, damage assessment, and understanding the engineering aspects of disaster recovery. You provide precise, technically accurate insights about structural damage, equipment needs, and restoration processes.`;
       
       case AgentPersona.SAFETY_INSPECTOR:
         return `${basePrompt} As a Safety Inspector, you prioritize safety protocols, compliance requirements, and risk assessment. You ensure all recommendations meet Australian safety standards and regulatory requirements.`;
       
       case AgentPersona.COST_ANALYST:
-        return `${basePrompt} As a Cost Analyst, you focus on financial planning, resource optimization, and cost-effective solutions. You provide detailed cost estimates, budget planning, and resource allocation strategies for disaster recovery projects.`;
+        return `${basePrompt} As a Cost Analyst, you focus on financial planning, resource optimisation, and cost-effective solutions. You provide detailed cost estimates, budget planning, and resource allocation strategies for disaster recovery projects.`;
       
       default:
         return basePrompt;
