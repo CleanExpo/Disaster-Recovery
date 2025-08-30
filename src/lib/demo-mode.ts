@@ -161,7 +161,7 @@ export const DEMO_DATA = {
 export const simulateTyping = async (
   element: HTMLInputElement | HTMLTextAreaElement,
   text: string,
-  delay: number = 50
+  delay: number = 58 // Increased by 15% from 50
 ) => {
   element.focus();
   element.value = '';
@@ -177,7 +177,7 @@ export const simulateTyping = async (
 /**
  * Simulate click with visual feedback
  */
-export const simulateClick = async (element: HTMLElement, delay: number = 500) => {
+export const simulateClick = async (element: HTMLElement, delay: number = 575) => { // Increased by 15% from 500
   element.classList.add('ring-4', 'ring-yellow-400', 'ring-offset-2');
   element.scrollIntoView({ behavior: 'smooth', block: 'center' });
   
@@ -192,7 +192,7 @@ export const simulateClick = async (element: HTMLElement, delay: number = 500) =
 /**
  * Auto-fill form with demo data
  */
-export const autoFillForm = async (formData: any, delay: number = 100) => {
+export const autoFillForm = async (formData: any, delay: number = 115) => { // Increased by 15% from 100
   for (const [key, value] of Object.entries(formData)) {
     const input = document.querySelector(`[name="${key}"]`) as HTMLInputElement;
     if (input) {
@@ -205,7 +205,7 @@ export const autoFillForm = async (formData: any, delay: number = 100) => {
         input.dispatchEvent(new Event('change', { bubbles: true }));
         await new Promise(resolve => setTimeout(resolve, delay));
       } else {
-        await simulateTyping(input, value as string, 30);
+        await simulateTyping(input, value as string, 35); // Increased by 15% from 30
       }
     }
   }

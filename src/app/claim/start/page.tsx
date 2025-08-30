@@ -52,15 +52,15 @@ function ClaimStartContent() {
       const input = document.querySelector(`[name="${field.name}"]`) as HTMLInputElement;
       if (input) {
         input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        await simulateTyping(input, field.value, 40);
+        await simulateTyping(input, field.value, 46); // 15% slower
         setFormData(prev => ({ ...prev, [field.name]: field.value }));
       }
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 575)); // 15% slower
     }
 
     // Set urgency to urgent
     setFormData(prev => ({ ...prev, urgency: 'urgent' }));
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1150)); // 15% slower
 
     // Submit the form
     const submitBtn = document.querySelector('[type="submit"]') as HTMLButtonElement;
@@ -71,9 +71,43 @@ function ClaimStartContent() {
     }
 
     setTimeout(() => {
-      alert('Demo Complete! This shows how a client would submit an insurance claim.');
+      // Show detailed completion modal
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-center justify-center p-4';
+      modal.innerHTML = `
+        <div class="bg-white rounded-xl p-8 max-w-3xl animate-scale-in">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Claim Successfully Submitted!</h2>
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-green-900 mb-2">Immediate Actions:</h3>
+              <ul class="text-sm text-green-800 space-y-1">
+                <li>• Emergency crew dispatched</li>
+                <li>• ETA: 45 minutes</li>
+                <li>• SMS updates enabled</li>
+                <li>• Contractor: Demo Restorations</li>
+              </ul>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-blue-900 mb-2">What Happens Next:</h3>
+              <ul class="text-sm text-blue-800 space-y-1">
+                <li>• Initial assessment & photos</li>
+                <li>• Moisture mapping</li>
+                <li>• Emergency mitigation</li>
+                <li>• Insurance coordination</li>
+                <li>• Full restoration quote</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-amber-900 mb-2">📱 AI Damage Assessment Available</h3>
+            <p class="text-sm text-amber-800">Take photos with your phone for instant AI analysis and accurate quote estimation.</p>
+          </div>
+          <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Close Demo</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
       setIsDemoRunning(false);
-    }, 2000);
+    }, 2300); // 15% slower
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

@@ -57,30 +57,81 @@ function ContractorApplicationContent() {
     }
   }, []);
   
-  // Auto-demo functionality
+  // Auto-demo functionality with enhanced timing
   const runAutoDemo = async () => {
     setIsDemoRunning(true);
+    
+    // Show initial message
+    const showMessage = (msg: string) => {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed bottom-4 right-4 z-[2000] bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg animate-slide-in';
+      messageDiv.textContent = msg;
+      document.body.appendChild(messageDiv);
+      setTimeout(() => messageDiv.remove(), 3000);
+    };
+    
+    showMessage('Starting Contractor Application Demo...');
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
     // Set demo data
     setOnboardingData(DEMO_DATA.contractor);
     
-    // Auto-progress through steps
+    // Progress through each step with descriptions
+    const stepDescriptions = [
+      'Filling business information and ABN details...',
+      'Adding insurance policies and licenses...',
+      'Documenting experience and references...',
+      'Listing equipment and team resources...',
+      'Confirming health & safety compliance...',
+      'Setting up banking and payment details...',
+      'Reviewing and submitting application...'
+    ];
+    
     for (let step = 1; step <= 7; step++) {
       setCurrentStep(step);
-      setCompletedSteps(prev => [...prev, step]);
+      showMessage(stepDescriptions[step - 1]);
       
-      // Wait a bit on each step to show the data
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Simulate form filling animation
+      await new Promise(resolve => setTimeout(resolve, 2300)); // 15% slower
+      
+      setCompletedSteps(prev => [...prev, step]);
       
       // Save progress
       await saveProgress();
+      
+      // Longer pause on final step
+      if (step === 7) {
+        await new Promise(resolve => setTimeout(resolve, 3450)); // 15% slower
+      } else {
+        await new Promise(resolve => setTimeout(resolve, 2300)); // 15% slower
+      }
     }
     
-    // Show completion message
+    // Show completion with training module preview
+    showMessage('Application Complete! Contractor now has access to training modules.');
     setTimeout(() => {
-      alert('Demo Complete! This is how a contractor would complete the application process.');
+      const completionModal = document.createElement('div');
+      completionModal.className = 'fixed inset-0 z-[3000] bg-black/50 flex items-center justify-center p-4';
+      completionModal.innerHTML = `
+        <div class="bg-white rounded-xl p-8 max-w-2xl animate-scale-in">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Demo Application Complete!</h2>
+          <p class="text-gray-600 mb-6">The contractor application has been submitted successfully.</p>
+          <div class="bg-blue-50 p-4 rounded-lg mb-6">
+            <h3 class="font-semibold text-blue-900 mb-2">Next Steps for Contractor:</h3>
+            <ul class="text-sm text-blue-800 space-y-1">
+              <li>• Complete mandatory training modules (8 hours)</li>
+              <li>• Upload insurance certificates</li>
+              <li>• Schedule vehicle inspection</li>
+              <li>• Attend virtual onboarding session</li>
+              <li>• Receive first leads within 48 hours</li>
+            </ul>
+          </div>
+          <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Close Demo</button>
+        </div>
+      `;
+      document.body.appendChild(completionModal);
       setIsDemoRunning(false);
-    }, 1000);
+    }, 4000);
   };
 
   // Auto-save progress
