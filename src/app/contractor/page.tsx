@@ -74,7 +74,7 @@ export default function ContractorPortalLanding() {
               <div className="text-center">
                 <div className="mb-8">
                   <img
-                    src="/logos/3D Disaster Recovery Logo Image.png"
+                    src="/logos/disaster-recovery-logo.png"
                     alt="National Restoration Professionals"
                     className="h-20 mx-auto"
                     onError={(e) => {

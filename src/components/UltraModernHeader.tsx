@@ -334,7 +334,7 @@ export default function UltraModernHeader() {
                     }}
                   />
                   <Image
-                    src="/logos/3D Disaster Recovery Logo Image.png"
+                    src="/logos/disaster-recovery-logo.png"
                     alt="Disaster Recovery"
                     width={isScrolled ? 50 : 60}
                     height={isScrolled ? 50 : 60}
