@@ -297,8 +297,8 @@ async function generatePriority100Images() {
         
         console.log(`   🎨 Generating: ${image.service} ${image.imageType} in ${image.location}`);
         
-        // Simulate image generation (replace with actual API call)
-        const result = await simulateImageGeneration(image);
+        // Generate and optimize image with full pipeline
+        const result = await generateAndOptimizeImage(image);
         
         results.push(result);
         monitor.recordGeneration(result.success, 0.03);
@@ -386,33 +386,150 @@ async function generatePriority100Images() {
 }
 
 /**
- * Simulate image generation (replace with actual API call)
+ * Generate and optimize image with full pipeline
  */
-async function simulateImageGeneration(imageSpec) {
-  // Simulate generation time
-  await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+async function generateAndOptimizeImage(imageSpec) {
+  const { generateSEOMetadata, optimizeImage } = require('./priority-image-optimizer');
   
-  // 95% success rate simulation
-  const success = Math.random() > 0.05;
+  // Phase 1: Generate the image (simulation or actual API call)
+  const generationStart = Date.now();
   
-  if (success) {
+  // In production, replace this with actual OpenRouter API call
+  const USE_ACTUAL_API = process.env.OPENROUTER_API_KEY && process.env.GENERATE_ACTUAL === 'true';
+  
+  let generationResult;
+  
+  if (USE_ACTUAL_API) {
+    // Actual API call to OpenRouter
+    try {
+      const response = await fetch('https://openrouter.ai/api/v1/images/generations', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'https://disaster-recovery.vercel.app',
+          'X-Title': 'Disaster Recovery Priority Images'
+        },
+        body: JSON.stringify({
+          model: 'flux-schnell',
+          prompt: imageSpec.prompt,
+          n: 1,
+          size: '1920x1080',
+          quality: 'standard',
+          response_format: 'url'
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.data && data.data[0]) {
+        // Download and save the image
+        const imageUrl = data.data[0].url;
+        const imageResponse = await fetch(imageUrl);
+        const buffer = await imageResponse.buffer();
+        
+        const filename = `${imageSpec.id}.webp`;
+        const outputPath = path.join('public/images/generated', filename);
+        await fs.mkdir(path.dirname(outputPath), { recursive: true });
+        await fs.writeFile(outputPath, buffer);
+        
+        generationResult = {
+          success: true,
+          filename,
+          path: outputPath,
+          generationTime: Date.now() - generationStart
+        };
+      } else {
+        throw new Error('No image data in response');
+      }
+    } catch (error) {
+      generationResult = {
+        success: false,
+        error: error.message
+      };
+    }
+  } else {
+    // Simulation mode
+    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+    const success = Math.random() > 0.05;
+    
+    if (success) {
+      const filename = `${imageSpec.id}.webp`;
+      const outputPath = path.join('public/images/generated', filename);
+      
+      generationResult = {
+        success: true,
+        filename,
+        path: outputPath,
+        generationTime: Date.now() - generationStart
+      };
+    } else {
+      generationResult = {
+        success: false,
+        error: 'Generation failed - simulated failure'
+      };
+    }
+  }
+  
+  // Phase 2: Optimize and add metadata if generation succeeded
+  if (generationResult.success) {
+    const imageInfo = {
+      service: imageSpec.service,
+      location: imageSpec.location,
+      imageType: imageSpec.imageType,
+      filename: generationResult.filename
+    };
+    
+    // Generate SEO metadata
+    const seoMetadata = generateSEOMetadata(imageInfo);
+    
+    // In production, optimize the image
+    if (USE_ACTUAL_API && generationResult.path) {
+      try {
+        const optimizationResult = await optimizeImage(generationResult.path, imageInfo);
+        
+        return {
+          success: true,
+          filename: generationResult.filename,
+          path: generationResult.path,
+          prompt: imageSpec.prompt,
+          metadata: {
+            ...seoMetadata,
+            location: imageSpec.location,
+            service: imageSpec.service,
+            imageType: imageSpec.imageType,
+            priorityScore: imageSpec.score,
+            generatedAt: new Date().toISOString(),
+            generationTime: generationResult.generationTime,
+            optimized: optimizationResult.success,
+            variants: optimizationResult.files ? optimizationResult.files.length : 0
+          }
+        };
+      } catch (error) {
+        console.log(`      ⚠️ Optimization failed: ${error.message}`);
+      }
+    }
+    
+    // Return with metadata even if optimization fails
     return {
       success: true,
-      filename: `${imageSpec.id}.webp`,
-      url: `https://generated-image-${Date.now()}.webp`,
+      filename: generationResult.filename,
+      path: generationResult.path || `public/images/generated/${generationResult.filename}`,
       prompt: imageSpec.prompt,
       metadata: {
+        ...seoMetadata,
         location: imageSpec.location,
         service: imageSpec.service,
         imageType: imageSpec.imageType,
         priorityScore: imageSpec.score,
-        generatedAt: new Date().toISOString()
+        generatedAt: new Date().toISOString(),
+        generationTime: generationResult.generationTime
       }
     };
   } else {
     return {
       success: false,
-      error: 'Generation failed - simulated failure',
+      error: generationResult.error,
       spec: imageSpec
     };
   }

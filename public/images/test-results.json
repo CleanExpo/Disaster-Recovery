@@ -1,1009 +1,552 @@
 {
-  "testResults": {
-    "prompts": [
+  "metadata": {
+    "passed": 4,
+    "failed": 0,
+    "details": [
       {
-        "context": {
+        "testCase": {
           "service": "water-damage-restoration",
           "location": "Sydney",
-          "imageType": "hero"
+          "imageType": "hero",
+          "expectedPriority": 100
         },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, powerful water extraction equipment in action, industrial dehumidifiers with visible air flow, moisture meters showing readings, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
+        "metadata": {
+          "alt": "Water Damage Restoration in Sydney - Professional hero image showing Disaster Recovery Australia's 24/7 emergency water damage restoration services",
+          "title": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+          "description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate water damage restoration assistance.",
+          "keywords": [
+            "water damage restoration",
+            "Sydney water damage restoration",
+            "water damage restoration Sydney",
+            "disaster recovery",
+            "emergency restoration",
+            "hero image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate water damage restoration assistance.",
+            "keywords": "water damage restoration, Sydney water damage restoration, water damage restoration Sydney, disaster recovery, emergency restoration, hero image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/water-damage-restoration-sydney-hero.webp",
+            "thumbnailUrl": "/images/thumbnails/water-damage-restoration-sydney-hero.webp",
+            "datePublished": "2025-08-31T08:27:43.679Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate water damage restoration assistance.",
+            "XPTitle": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate water damage restoration assistance.",
+            "XPKeywords": "water damage restoration; Sydney water damage restoration; water damage restoration Sydney; disaster recovery; emergency restoration; hero image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "water damage restoration",
+              "Sydney water damage restoration",
+              "water damage restoration Sydney",
+              "disaster recovery",
+              "emergency restoration",
+              "hero image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate water damage restoration assistance.",
+            "og:image": "/images/social/water-damage-restoration-sydney-hero.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Water Damage Restoration in Sydney - Professional hero image showing Disaster Recovery Australia's 24/7 emergency water damage restoration services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate water damage restoration assistance.",
+            "twitter:image": "/images/social/water-damage-restoration-sydney-hero.webp",
+            "twitter:image:alt": "Water Damage Restoration in Sydney - Professional hero image showing Disaster Recovery Australia's 24/7 emergency water damage restoration services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
         },
-        "length": 1113
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
       },
       {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, powerful water extraction equipment in action, industrial dehumidifiers with visible air flow, moisture meters showing readings, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1113
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, powerful water extraction equipment in action, industrial dehumidifiers with visible air flow, moisture meters showing readings, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1122
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, powerful water extraction equipment in action, industrial dehumidifiers with visible air flow, moisture meters showing readings, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1122
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, smoke damage restoration with HEPA filtration systems, soot removal equipment, thermal foggers creating visible cleaning mist, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1111
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, smoke damage restoration with HEPA filtration systems, soot removal equipment, thermal foggers creating visible cleaning mist, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1111
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, smoke damage restoration with HEPA filtration systems, soot removal equipment, thermal foggers creating visible cleaning mist, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1120
-      },
-      {
-        "context": {
+        "testCase": {
           "service": "fire-damage-restoration",
           "location": "Melbourne",
-          "imageType": "process"
+          "imageType": "equipment",
+          "expectedPriority": 94
         },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, smoke damage restoration with HEPA filtration systems, soot removal equipment, thermal foggers creating visible cleaning mist, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
+        "metadata": {
+          "alt": "Fire Damage Restoration in Melbourne - Professional equipment image showing Disaster Recovery Australia's 24/7 emergency fire damage restoration services",
+          "title": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+          "description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate fire damage restoration assistance.",
+          "keywords": [
+            "fire damage restoration",
+            "Melbourne fire damage restoration",
+            "fire damage restoration Melbourne",
+            "disaster recovery",
+            "emergency restoration",
+            "equipment image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate fire damage restoration assistance.",
+            "keywords": "fire damage restoration, Melbourne fire damage restoration, fire damage restoration Melbourne, disaster recovery, emergency restoration, equipment image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/fire-damage-restoration-melbourne-equipment.webp",
+            "thumbnailUrl": "/images/thumbnails/fire-damage-restoration-melbourne-equipment.webp",
+            "datePublished": "2025-08-31T08:27:43.681Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate fire damage restoration assistance.",
+            "XPTitle": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate fire damage restoration assistance.",
+            "XPKeywords": "fire damage restoration; Melbourne fire damage restoration; fire damage restoration Melbourne; disaster recovery; emergency restoration; equipment image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "fire damage restoration",
+              "Melbourne fire damage restoration",
+              "fire damage restoration Melbourne",
+              "disaster recovery",
+              "emergency restoration",
+              "equipment image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate fire damage restoration assistance.",
+            "og:image": "/images/social/fire-damage-restoration-melbourne-equipment.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Fire Damage Restoration in Melbourne - Professional equipment image showing Disaster Recovery Australia's 24/7 emergency fire damage restoration services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate fire damage restoration assistance.",
+            "twitter:image": "/images/social/fire-damage-restoration-melbourne-equipment.webp",
+            "twitter:image:alt": "Fire Damage Restoration in Melbourne - Professional equipment image showing Disaster Recovery Australia's 24/7 emergency fire damage restoration services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
         },
-        "length": 1120
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
       },
       {
-        "context": {
+        "testCase": {
           "service": "mould-remediation",
-          "location": "Sydney",
-          "imageType": "hero"
+          "location": "Brisbane",
+          "imageType": "process",
+          "expectedPriority": 85
         },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, HEPA air scrubbers with visible filtration, containment barriers with negative pressure, technicians in full PPE suits, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
+        "metadata": {
+          "alt": "Mould Remediation in Brisbane - Professional process image showing Disaster Recovery Australia's 24/7 emergency mould remediation services",
+          "title": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+          "description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate mould remediation assistance.",
+          "keywords": [
+            "mould remediation",
+            "Brisbane mould remediation",
+            "mould remediation Brisbane",
+            "disaster recovery",
+            "emergency restoration",
+            "process image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate mould remediation assistance.",
+            "keywords": "mould remediation, Brisbane mould remediation, mould remediation Brisbane, disaster recovery, emergency restoration, process image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/mould-remediation-brisbane-process.webp",
+            "thumbnailUrl": "/images/thumbnails/mould-remediation-brisbane-process.webp",
+            "datePublished": "2025-08-31T08:27:43.681Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate mould remediation assistance.",
+            "XPTitle": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate mould remediation assistance.",
+            "XPKeywords": "mould remediation; Brisbane mould remediation; mould remediation Brisbane; disaster recovery; emergency restoration; process image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "mould remediation",
+              "Brisbane mould remediation",
+              "mould remediation Brisbane",
+              "disaster recovery",
+              "emergency restoration",
+              "process image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate mould remediation assistance.",
+            "og:image": "/images/social/mould-remediation-brisbane-process.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Mould Remediation in Brisbane - Professional process image showing Disaster Recovery Australia's 24/7 emergency mould remediation services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate mould remediation assistance.",
+            "twitter:image": "/images/social/mould-remediation-brisbane-process.webp",
+            "twitter:image:alt": "Mould Remediation in Brisbane - Professional process image showing Disaster Recovery Australia's 24/7 emergency mould remediation services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
         },
-        "length": 1104
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
       },
       {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, HEPA air scrubbers with visible filtration, containment barriers with negative pressure, technicians in full PPE suits, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1104
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, HEPA air scrubbers with visible filtration, containment barriers with negative pressure, technicians in full PPE suits, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1113
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, HEPA air scrubbers with visible filtration, containment barriers with negative pressure, technicians in full PPE suits, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1113
-      },
-      {
-        "context": {
+        "testCase": {
           "service": "flood-recovery",
-          "location": "Sydney",
-          "imageType": "hero"
+          "location": "Perth",
+          "imageType": "team",
+          "expectedPriority": 75
         },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, submersible pumps removing flood water, truck-mounted extraction units, infrared cameras detecting moisture, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
+        "metadata": {
+          "alt": "Flood Recovery in Perth - Professional team image showing Disaster Recovery Australia's 24/7 emergency flood recovery services",
+          "title": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+          "description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate flood recovery assistance.",
+          "keywords": [
+            "flood recovery",
+            "Perth flood recovery",
+            "flood recovery Perth",
+            "disaster recovery",
+            "emergency restoration",
+            "team image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate flood recovery assistance.",
+            "keywords": "flood recovery, Perth flood recovery, flood recovery Perth, disaster recovery, emergency restoration, team image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/flood-recovery-perth-team.webp",
+            "thumbnailUrl": "/images/thumbnails/flood-recovery-perth-team.webp",
+            "datePublished": "2025-08-31T08:27:43.681Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate flood recovery assistance.",
+            "XPTitle": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate flood recovery assistance.",
+            "XPKeywords": "flood recovery; Perth flood recovery; flood recovery Perth; disaster recovery; emergency restoration; team image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "flood recovery",
+              "Perth flood recovery",
+              "flood recovery Perth",
+              "disaster recovery",
+              "emergency restoration",
+              "team image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate flood recovery assistance.",
+            "og:image": "/images/social/flood-recovery-perth-team.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Flood Recovery in Perth - Professional team image showing Disaster Recovery Australia's 24/7 emergency flood recovery services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call 1300 DISASTER for immediate flood recovery assistance.",
+            "twitter:image": "/images/social/flood-recovery-perth-team.webp",
+            "twitter:image:alt": "Flood Recovery in Perth - Professional team image showing Disaster Recovery Australia's 24/7 emergency flood recovery services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
         },
-        "length": 1093
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Sydney",
-          "imageType": "process"
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
         },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, submersible pumps removing flood water, truck-mounted extraction units, infrared cameras detecting moisture, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1093
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, submersible pumps removing flood water, truck-mounted extraction units, infrared cameras detecting moisture, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1102
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, submersible pumps removing flood water, truck-mounted extraction units, infrared cameras detecting moisture, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1102
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, emergency tarping on damaged roof, tree removal equipment, structural stabilization systems, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1077
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, emergency tarping on damaged roof, tree removal equipment, structural stabilization systems, Sydney Harbor Bridge or Opera House subtly visible in background, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1077
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, emergency tarping on damaged roof, tree removal equipment, structural stabilization systems, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1086
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "prompt": "Ultra-modern 3D rendered scene, photorealistic with dramatic depth, professional studio lighting creating dynamic shadows, 8K resolution octane render quality, emergency tarping on damaged roof, tree removal equipment, structural stabilization systems, Melbourne city skyline with Eureka Tower, Victorian architecture elements, certified Australian technicians in branded Disaster Recovery uniforms, visible safety protocols and PPE equipment, modern service vehicles with company branding, dramatic depth of field with foreground and background separation, volumetric lighting effects highlighting key equipment, reflective surfaces showing environmental context, particle effects showing air movement or cleaning action, clean modern composition with rule of thirds, color grading emphasizing red (#ef4444) and green (#22c55e) brand colors, professional emergency response atmosphere, hyper-detailed textures on equipment and uniforms, ray-traced reflections and global illumination, subtle Disaster Recovery logo watermark in corner, 16:9 aspect ratio, commercial photography quality",
-        "analysis": {
-          "has3DKeywords": true,
-          "hasBrandColors": true,
-          "hasAustralianContext": true,
-          "hasProfessionalTerms": true,
-          "hasServiceContext": false,
-          "qualityScore": 0.85
-        },
-        "length": 1086
+        "passed": true
       }
-    ],
-    "seoMetadata": [
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "metadata": {
-          "alt": "water damage restoration in Sydney - Professional 3D rendered hero image by Disaster Recovery Australia",
-          "title": "Sydney water-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Sydney water-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/water-damage-restoration-Sydney-hero.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/water-damage-restoration-Sydney-hero_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "water damage restoration, Sydney, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/water-damage-restoration-Sydney-hero.webp"
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "metadata": {
-          "alt": "water damage restoration in Sydney - Professional 3D rendered process image by Disaster Recovery Australia",
-          "title": "Sydney water-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Sydney water-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/water-damage-restoration-Sydney-process.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/water-damage-restoration-Sydney-process_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "water damage restoration, Sydney, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/water-damage-restoration-Sydney-process.webp"
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "metadata": {
-          "alt": "water damage restoration in Melbourne - Professional 3D rendered hero image by Disaster Recovery Australia",
-          "title": "Melbourne water-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of water damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Melbourne water-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of water damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/water-damage-restoration-Melbourne-hero.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/water-damage-restoration-Melbourne-hero_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "water damage restoration, Melbourne, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/water-damage-restoration-Melbourne-hero.webp"
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "metadata": {
-          "alt": "water damage restoration in Melbourne - Professional 3D rendered process image by Disaster Recovery Australia",
-          "title": "Melbourne water-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of water damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Melbourne water-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of water damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/water-damage-restoration-Melbourne-process.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/water-damage-restoration-Melbourne-process_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "water damage restoration, Melbourne, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/water-damage-restoration-Melbourne-process.webp"
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "metadata": {
-          "alt": "fire damage restoration in Sydney - Professional 3D rendered hero image by Disaster Recovery Australia",
-          "title": "Sydney fire-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of fire damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Sydney fire-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of fire damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/fire-damage-restoration-Sydney-hero.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/fire-damage-restoration-Sydney-hero_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "fire damage restoration, Sydney, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/fire-damage-restoration-Sydney-hero.webp"
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "metadata": {
-          "alt": "fire damage restoration in Sydney - Professional 3D rendered process image by Disaster Recovery Australia",
-          "title": "Sydney fire-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of fire damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Sydney fire-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of fire damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/fire-damage-restoration-Sydney-process.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/fire-damage-restoration-Sydney-process_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "fire damage restoration, Sydney, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/fire-damage-restoration-Sydney-process.webp"
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "metadata": {
-          "alt": "fire damage restoration in Melbourne - Professional 3D rendered hero image by Disaster Recovery Australia",
-          "title": "Melbourne fire-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Melbourne fire-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/fire-damage-restoration-Melbourne-hero.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/fire-damage-restoration-Melbourne-hero_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "fire damage restoration, Melbourne, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/fire-damage-restoration-Melbourne-hero.webp"
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "metadata": {
-          "alt": "fire damage restoration in Melbourne - Professional 3D rendered process image by Disaster Recovery Australia",
-          "title": "Melbourne fire-damage-restoration | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Melbourne fire-damage-restoration | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/fire-damage-restoration-Melbourne-process.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/fire-damage-restoration-Melbourne-process_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "fire damage restoration, Melbourne, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/fire-damage-restoration-Melbourne-process.webp"
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "metadata": {
-          "alt": "mould remediation in Sydney - Professional 3D rendered hero image by Disaster Recovery Australia",
-          "title": "Sydney mould-remediation | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of mould remediation services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Sydney mould-remediation | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of mould remediation services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/mould-remediation-Sydney-hero.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/mould-remediation-Sydney-hero_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "mould remediation, Sydney, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/mould-remediation-Sydney-hero.webp"
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "metadata": {
-          "alt": "mould remediation in Sydney - Professional 3D rendered process image by Disaster Recovery Australia",
-          "title": "Sydney mould-remediation | Disaster Recovery 3D Visualization",
-          "description": "Professional 3D rendered visualization of mould remediation services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-          "schema": {
-            "@context": "https://schema.org",
-            "@type": "ImageObject",
-            "name": "Sydney mould-remediation | Disaster Recovery 3D Visualization",
-            "description": "Professional 3D rendered visualization of mould remediation services in Sydney, Australia. 24/7 emergency response, insurance approved, certified technicians.",
-            "contentUrl": "/images/generated/mould-remediation-Sydney-process.webp",
-            "thumbnail": {
-              "@type": "ImageObject",
-              "contentUrl": "/images/generated/mould-remediation-Sydney-process_thumb.webp"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "Disaster Recovery Australia"
-            },
-            "copyrightHolder": {
-              "@type": "Organization",
-              "name": "National Recovery Partners"
-            },
-            "license": "https://disasterrecovery.com.au/terms",
-            "acquireLicensePage": "https://disasterrecovery.com.au/contact",
-            "creditText": "Disaster Recovery Australia - Professional 3D Visualization",
-            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved.",
-            "keywords": "mould remediation, Sydney, disaster recovery, 3D visualization, emergency services, Australia"
-          }
-        },
-        "imagePath": "/images/generated/mould-remediation-Sydney-process.webp"
-      }
-    ],
-    "consistency": [
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "water-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "fire-damage-restoration",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "mould-remediation",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "flood-recovery",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Sydney",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Sydney",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Melbourne",
-          "imageType": "hero"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      },
-      {
-        "context": {
-          "service": "storm-damage-repair",
-          "location": "Melbourne",
-          "imageType": "process"
-        },
-        "scores": {
-          "depth": 0.8,
-          "lighting": 1,
-          "quality": 1,
-          "modern": 0.25
-        },
-        "overallScore": 0.7625
-      }
-    ],
-    "errors": []
+    ]
   },
-  "estimates": {
-    "totalImages": 692415,
-    "estimatedHours": 5770.125,
-    "estimatedCost": 20772.45,
-    "imagesPerDay": 2880,
-    "practicalPerDay": 1000,
-    "completionDays": 693
+  "placement": {
+    "passed": 4,
+    "failed": 0,
+    "paths": [
+      {
+        "testCase": {
+          "service": "water-damage-restoration",
+          "location": "Sydney",
+          "imageType": "hero",
+          "expectedPriority": 100
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\hero\\sydney\\water-damage-restoration",
+          "category": "public\\images\\hero\\sydney",
+          "service": "public\\images\\services\\water-damage-restoration\\sydney",
+          "location": "public\\images\\locations\\sydney\\water-damage-restoration",
+          "thumbnail": "public\\images\\thumbnails\\hero\\sydney",
+          "social": "public\\images\\social\\water-damage-restoration\\sydney",
+          "cdn": "public\\images\\cdn\\sydney-water-damage-restoration-hero"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "fire-damage-restoration",
+          "location": "Melbourne",
+          "imageType": "equipment",
+          "expectedPriority": 94
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\equipment\\melbourne\\fire-damage-restoration",
+          "category": "public\\images\\equipment\\melbourne",
+          "service": "public\\images\\services\\fire-damage-restoration\\melbourne",
+          "location": "public\\images\\locations\\melbourne\\fire-damage-restoration",
+          "thumbnail": "public\\images\\thumbnails\\equipment\\melbourne",
+          "social": "public\\images\\social\\fire-damage-restoration\\melbourne",
+          "cdn": "public\\images\\cdn\\melbourne-fire-damage-restoration-equipment"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "mould-remediation",
+          "location": "Brisbane",
+          "imageType": "process",
+          "expectedPriority": 85
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\process\\brisbane\\mould-remediation",
+          "category": "public\\images\\process\\brisbane",
+          "service": "public\\images\\services\\mould-remediation\\brisbane",
+          "location": "public\\images\\locations\\brisbane\\mould-remediation",
+          "thumbnail": "public\\images\\thumbnails\\process\\brisbane",
+          "social": "public\\images\\social\\mould-remediation\\brisbane",
+          "cdn": "public\\images\\cdn\\brisbane-mould-remediation-process"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "flood-recovery",
+          "location": "Perth",
+          "imageType": "team",
+          "expectedPriority": 75
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\team\\perth\\flood-recovery",
+          "category": "public\\images\\team\\perth",
+          "service": "public\\images\\services\\flood-recovery\\perth",
+          "location": "public\\images\\locations\\perth\\flood-recovery",
+          "thumbnail": "public\\images\\thumbnails\\team\\perth",
+          "social": "public\\images\\social\\flood-recovery\\perth",
+          "cdn": "public\\images\\cdn\\perth-flood-recovery-team"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      }
+    ]
+  },
+  "compression": {
+    "success": true
+  },
+  "directories": {
+    "created": 13,
+    "existing": 0,
+    "failed": 0
+  },
+  "storage": {
+    "perImage": {
+      "webp": 995,
+      "avif": 797,
+      "jpg": 1495
+    },
+    "total100": {
+      "kb": 328700,
+      "mb": 320.99609375,
+      "gb": 0.3134727478027344
+    },
+    "totalFull": {
+      "kb": 2275968105,
+      "mb": 2222625.1025390625,
+      "gb": 2170.532326698303,
+      "tb": 2.1196604752913117
+    }
   }
 }
