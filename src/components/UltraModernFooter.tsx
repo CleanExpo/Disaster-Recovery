@@ -151,7 +151,11 @@ export default function UltraModernFooter() {
                   height={48}
                   className="relative z-10"
                   style={{
-                    filter: 'drop-shadow(0 6px 12px rgba(99, 91, 255, 0.25))',
+                    filter: 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))',
+                    backgroundColor: 'transparent',
+                    borderRadius: '50%',
+                    objectFit: 'contain',
+                    mixBlendMode: 'normal',
                   }}
                 />
               </div>

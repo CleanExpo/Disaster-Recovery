@@ -139,7 +139,12 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                   alt="Disaster Recovery"
                   width={50}
                   height={50}
-                  className="drop-shadow-2xl group-hover:scale-110 transition-transform"
+                  className="rounded-full group-hover:scale-110 transition-transform"
+                  style={{
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+                    backgroundColor: 'transparent',
+                    objectFit: 'contain',
+                  }}
                 />
                 <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-0 group-hover:opacity-30 transition-opacity" />
               </div>

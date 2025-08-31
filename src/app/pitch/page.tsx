@@ -485,7 +485,12 @@ export default function InvestorPitchDeck() {
                 alt="Disaster Recovery"
                 width={50}
                 height={50}
-                className="drop-shadow-2xl"
+                className="rounded-full"
+                style={{
+                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+                  backgroundColor: 'transparent',
+                  objectFit: 'contain',
+                }}
               />
               <div>
                 <h1 className="text-xl font-bold">Investor Pitch Deck</h1>

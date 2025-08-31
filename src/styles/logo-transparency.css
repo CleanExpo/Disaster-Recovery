@@ -1,0 +1,36 @@
+/* Logo Transparency Styles */
+/* Ensures all Disaster Recovery logos display with transparent backgrounds */
+
+/* Apply to all logo images */
+img[src*="3D Disaster Recovery Round Borders"] {
+  background-color: transparent !important;
+  background: transparent !important;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+/* Remove any white or light backgrounds from logos */
+img[alt*="Disaster Recovery"] {
+  isolation: isolate;
+  mix-blend-mode: normal;
+}
+
+/* Ensure logo containers are transparent */
+div:has(> img[src*="3D Disaster Recovery Round Borders"]) {
+  background: transparent !important;
+}
+
+/* Enhanced drop shadow for better visibility on all backgrounds */
+.logo-shadow {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Dark background logo enhancement */
+.dark-bg-logo {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Light background logo enhancement */
+.light-bg-logo {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}

@@ -81,7 +81,12 @@ export default function EnhancedLandingPage() {
                   alt="Disaster Recovery 3D Logo"
                   width={80}
                   height={80}
-                  className="drop-shadow-2xl"
+                  className="rounded-full"
+                  style={{
+                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+                    backgroundColor: 'transparent',
+                    objectFit: 'contain',
+                  }}
                 />
                 <div>
                   <h1 className="text-4xl font-bold text-white">Disaster Recovery</h1>

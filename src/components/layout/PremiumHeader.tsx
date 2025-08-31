@@ -122,7 +122,11 @@ export default function PremiumHeader() {
                   src="/logos/3D Disaster Recovery Round Borders.png"
                   alt="Disaster Recovery QLD"
                   fill
-                  className="object-contain"
+                  className="object-contain rounded-full"
+                  style={{
+                    backgroundColor: 'transparent',
+                    filter: 'drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2))',
+                  }}
                   priority
                 />
               </div>

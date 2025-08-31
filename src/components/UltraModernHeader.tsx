@@ -211,9 +211,13 @@ export default function UltraModernHeader() {
                     alt="Disaster Recovery"
                     width={isScrolled ? 36 : 40}
                     height={isScrolled ? 36 : 40}
-                    className="relative z-10 drop-shadow-lg"
+                    className="relative z-10"
                     style={{
-                      filter: 'drop-shadow(0 4px 8px rgba(255, 69, 0, 0.2))',
+                      filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+                      mixBlendMode: 'normal',
+                      backgroundColor: 'transparent',
+                      borderRadius: '50%',
+                      objectFit: 'contain',
                     }}
                   />
                 </div>
