@@ -35,11 +35,11 @@ export const Logo: React.FC<LogoProps> = ({
 
   const config = sizeConfig[size];
 
-  // Logo paths (update these with actual logo file paths)
+  // Logo paths using compressed images
   const logoSources = {
-    'disaster-recovery': '/logos/disaster-recovery-logo.png',
+    'disaster-recovery': '/logos/3D Disaster Recovery Logo Image.png',
     'nrp': '/logos/3D NRP Logo.png',
-    'combined': '/logos/disaster-recovery-logo.png',
+    'combined': '/logos/3D Disaster Recovery Logo Image.png',
   };
 
   const logoAltText = {
@@ -129,9 +129,11 @@ export const FooterLogos: React.FC<{ darkMode?: boolean }> = ({ darkMode }) => {
 // Export a hook for dynamic logo usage
 export const useLogos = () => {
   const logos = {
-    disasterRecovery: '/logos/disaster-recovery-logo.png',
+    disasterRecovery: '/logos/3D Disaster Recovery Logo Image.png',
     nrp: '/logos/3D NRP Logo.png',
-    combined: '/logos/disaster-recovery-logo.png',
+    cleanClaims: '/logos/3D Clean Claims.png',
+    carsi: '/logos/3D CARSI Logo.png',
+    combined: '/logos/3D Disaster Recovery Logo Image.png',
   };
 
   return logos;

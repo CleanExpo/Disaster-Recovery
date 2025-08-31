@@ -245,7 +245,7 @@ export default function R6Header() {
             {/* Logo */}
             <Link href="/" className="relative group">
               <Image
-                src="/logos/disaster-recovery-logo.png"
+                src="/logos/3D Disaster Recovery Logo Image.png"
                 alt="Disaster Recovery"
                 width={60}
                 height={60}

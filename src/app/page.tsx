@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import LightningEffect from '@/components/effects/LightningEffect';
 import { Logo, HeaderLogo } from '@/components/Logo';
-import { OptimizedLogo } from '@/components/OptimizedLogo';
 import LandingHeader from '@/components/LandingHeader';
 
 export default function EnhancedLandingPage() {
@@ -77,7 +76,17 @@ export default function EnhancedLandingPage() {
             <div className="text-center lg:text-left">
               {/* Logo Integration */}
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
-                <OptimizedLogo size={120} />
+                <Image
+                  src="/logos/3D Disaster Recovery Logo Image.png"
+                  alt="Disaster Recovery"
+                  width={120}
+                  height={120}
+                  className="object-contain"
+                  style={{
+                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+                  }}
+                  priority
+                />
                 <div>
                   <p className="text-blue-300 text-lg font-medium">Powered by NRP Network</p>
                 </div>
@@ -489,7 +498,7 @@ export default function EnhancedLandingPage() {
                 <span className="text-xs text-gray-400 ml-2">(Institute of Inspection Cleaning & Restoration)</span>
               </div>
               <Image
-                src="/images/logos/3D CARSI Logo.png"
+                src="/logos/3D CARSI Logo.png"
                 alt="CARSI Certified"
                 width={150}
                 height={75}

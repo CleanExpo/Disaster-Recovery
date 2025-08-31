@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { OptimizedLogo } from '@/components/OptimizedLogo';
 
 interface SubDropdownItem {
   label: string;
@@ -324,10 +323,17 @@ export default function UltraModernHeader() {
                 transform: isScrolled ? 'scale(0.95)' : 'scale(1)',
                 transition: 'all 0.3s ease',
               }}>
-                {/* Optimized SVG Logo */}
-                <OptimizedLogo 
-                  size={isScrolled ? 50 : 60} 
-                  className="transition-all duration-300"
+                {/* Compressed PNG Logo */}
+                <Image
+                  src="/logos/3D Disaster Recovery Logo Image.png"
+                  alt="Disaster Recovery"
+                  width={isScrolled ? 50 : 60}
+                  height={isScrolled ? 50 : 60}
+                  className="transition-all duration-300 object-contain"
+                  style={{
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
+                  }}
+                  priority
                 />
               </div>
             </Link>
