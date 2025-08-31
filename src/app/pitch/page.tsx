@@ -40,7 +40,7 @@ const PITCH_SLIDES = [
   {
     id: 'title',
     title: 'Disaster Recovery Australia',
-    subtitle: 'Transforming Australia's $909 Million Disaster Recovery Industry',
+    subtitle: `Transforming Australia's $${MARKET_REALITY.totalMarketSize.current} Million Disaster Recovery Industry`,
     type: 'hero',
     background: '/images/optimised/damage/3D image of a house fire.png',
     narration: `Welcome to Disaster Recovery Australia. We're revolutionising how Australia responds to natural disasters. 
@@ -50,7 +50,7 @@ const PITCH_SLIDES = [
   },
   {
     id: 'problem',
-    title: 'The $909 Million Opportunity',
+    title: `The $${MARKET_REALITY.totalMarketSize.current} Million Opportunity`,
     type: 'statistics',
     data: {
       marketSize: `$${MARKET_REALITY.totalMarketSize.current}M`,
@@ -594,7 +594,7 @@ export default function InvestorPitchDeck() {
                       <p className="text-sm text-gray-400">Market Size</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-4xl font-bold text-blue-400">${FINANCIAL_PROJECTIONS.year5.contractors}</p>
+                      <p className="text-4xl font-bold text-blue-400">{FINANCIAL_PROJECTIONS.year5.contractors}</p>
                       <p className="text-sm text-gray-400">Contractors (Y5)</p>
                     </div>
                     <div className="text-center">
