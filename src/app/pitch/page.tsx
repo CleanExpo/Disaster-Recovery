@@ -341,8 +341,26 @@ const PITCH_SLIDES = [
     }
   },
   {
-    id: 'contact',
+    id: 'video',
     slideNumber: 12,
+    layout: 'video',
+    content: {
+      title: 'Watch Our Pitch',
+      subtitle: 'See the Disaster Recovery Vision in Action',
+      videoUrl: 'https://youtu.be/edEYKBN6Yl0',
+      embedUrl: 'https://www.youtube.com/embed/edEYKBN6Yl0',
+      description: 'Discover how we\'re revolutionizing Australia\'s disaster recovery industry with cutting-edge technology and a contractor-first approach.',
+      highlights: [
+        'Platform demonstration',
+        'Market opportunity analysis',
+        'Technology overview',
+        'Investment proposition'
+      ]
+    }
+  },
+  {
+    id: 'contact',
+    slideNumber: 13,
     layout: 'contact',
     content: {
       title: 'Let\'s Build the Future Together',
@@ -912,6 +930,80 @@ export default function InvestorPitchDeck() {
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </div>
+        );
+
+      case 'video':
+        return (
+          <div className="min-h-[600px] flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 p-12">
+            <div className="max-w-6xl mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-8"
+              >
+                <h1 className="text-5xl font-bold text-white mb-4">
+                  {currentSlideData.content.title}
+                </h1>
+                <p className="text-xl text-blue-200">
+                  {currentSlideData.content.subtitle}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="relative rounded-2xl overflow-hidden shadow-2xl mb-8"
+                style={{ aspectRatio: '16/9' }}
+              >
+                <iframe
+                  src={currentSlideData.content.embedUrl}
+                  title="Disaster Recovery Pitch Video"
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-6"
+              >
+                <p className="text-lg text-white mb-6">
+                  {currentSlideData.content.description}
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {currentSlideData.content.highlights.map((highlight, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <span className="text-white">{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 flex justify-center gap-4">
+                  <a
+                    href={currentSlideData.content.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
+                  >
+                    <Play className="h-5 w-5" />
+                    Watch on YouTube
+                  </a>
+                  <button
+                    onClick={() => navigator.share({ url: currentSlideData.content.videoUrl })}
+                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
+                  >
+                    <Share2 className="h-5 w-5" />
+                    Share Video
+                  </button>
+                </div>
+              </motion.div>
             </div>
           </div>
         );
