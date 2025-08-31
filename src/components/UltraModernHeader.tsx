@@ -4,15 +4,23 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+interface SubDropdownItem {
+  label: string;
+  href: string;
+}
+
+interface DropdownItem {
+  label: string;
+  href: string;
+  description: string;
+  icon: string;
+  subDropdown?: SubDropdownItem[];
+}
+
 interface NavItem {
   label: string;
   href: string;
-  dropdown?: {
-    label: string;
-    href: string;
-    description: string;
-    icon: string;
-  }[];
+  dropdown?: DropdownItem[];
 }
 
 const navItems: NavItem[] = [
@@ -71,6 +79,124 @@ const navItems: NavItem[] = [
     ]
   },
   { 
+    label: 'Legal', 
+    href: '/legal',
+    dropdown: [
+      { 
+        label: 'Core Business Structure Documents', 
+        href: '/legal/core-business',
+        description: 'Foundation legal documents',
+        icon: '🏢',
+        subDropdown: [
+          { label: 'Partnership/Joint Venture Agreements', href: '/legal/forms/partnership-agreements' },
+          { label: 'Shareholder Agreements', href: '/legal/forms/shareholder-agreements' },
+          { label: 'Operating Agreement (LLC)', href: '/legal/forms/operating-agreement' },
+          { label: 'Terms of Service', href: '/legal/forms/terms-of-service' },
+          { label: 'Privacy Policy & Data Protection', href: '/legal/forms/privacy-policy' },
+          { label: 'Website Terms & Conditions', href: '/legal/forms/website-terms' }
+        ]
+      },
+      { 
+        label: 'Contractor/Network Documents', 
+        href: '/legal/contractor-network',
+        description: 'Contractor relationship agreements',
+        icon: '🤝',
+        subDropdown: [
+          { label: 'Master Service Agreement', href: '/legal/forms/master-service-agreement' },
+          { label: 'Territory/Exclusivity Agreements', href: '/legal/forms/territory-agreements' },
+          { label: 'Performance Standards Agreement', href: '/legal/forms/performance-standards' },
+          { label: 'Quality Assurance & Compliance Contract', href: '/legal/forms/quality-assurance' },
+          { label: 'Insurance Requirements Agreement', href: '/legal/forms/insurance-requirements' },
+          { label: 'Background Check & Licensing Verification', href: '/legal/forms/background-check' },
+          { label: 'Training & Certification Requirements', href: '/legal/forms/training-certification' },
+          { label: 'Equipment/Supply Purchase Agreements', href: '/legal/forms/equipment-agreements' },
+          { label: 'Termination & Exit Procedures', href: '/legal/forms/termination-procedures' }
+        ]
+      },
+      { 
+        label: 'Client-Facing Documents', 
+        href: '/legal/client-facing',
+        description: 'Customer service agreements',
+        icon: '👥',
+        subDropdown: [
+          { label: 'Service Level Agreements (SLAs)', href: '/legal/forms/service-level-agreements' },
+          { label: 'Emergency Response Contracts', href: '/legal/forms/emergency-response' },
+          { label: 'Property Access & Work Authorization', href: '/legal/forms/property-access' },
+          { label: 'Liability Limitation Agreements', href: '/legal/forms/liability-limitation' },
+          { label: 'Warranty & Guarantee Terms', href: '/legal/forms/warranty-guarantee' },
+          { label: 'Dispute Resolution Agreements', href: '/legal/forms/dispute-resolution' },
+          { label: 'Insurance Claims Assistance Agreement', href: '/legal/forms/insurance-claims-assistance' }
+        ]
+      },
+      { 
+        label: 'Financial & Payment Documents', 
+        href: '/legal/financial-payment',
+        description: 'Payment and financial agreements',
+        icon: '💰',
+        subDropdown: [
+          { label: 'Fee Structure & Commission Agreements', href: '/legal/forms/fee-structure' },
+          { label: 'Payment Processing Terms', href: '/legal/forms/payment-processing' },
+          { label: 'Refund & Chargeback Policy', href: '/legal/forms/refund-chargeback' },
+          { label: 'Late Payment & Collection Procedures', href: '/legal/forms/late-payment' },
+          { label: 'Escrow Account Management Agreement', href: '/legal/forms/escrow-management' }
+        ]
+      },
+      { 
+        label: 'Affiliate & Marketing Documents', 
+        href: '/legal/affiliate-marketing',
+        description: 'Partnership and marketing agreements',
+        icon: '📢',
+        subDropdown: [
+          { label: 'Lead Generation Agreements', href: '/legal/forms/lead-generation' },
+          { label: 'Referral Partner Contracts', href: '/legal/forms/referral-partners' },
+          { label: 'Marketing Compliance Guidelines', href: '/legal/forms/marketing-compliance' },
+          { label: 'Intellectual Property License Agreements', href: '/legal/forms/ip-license' },
+          { label: 'Non-Compete Agreements', href: '/legal/forms/non-compete' }
+        ]
+      },
+      { 
+        label: 'Platform & Technology Documents', 
+        href: '/legal/platform-technology',
+        description: 'Technical and software agreements',
+        icon: '💻',
+        subDropdown: [
+          { label: 'Software License Agreements', href: '/legal/forms/software-license' },
+          { label: 'Data Usage & Sharing Agreements', href: '/legal/forms/data-usage' },
+          { label: 'API Terms of Use', href: '/legal/forms/api-terms' },
+          { label: 'Third-Party Integration Agreements', href: '/legal/forms/third-party-integration' },
+          { label: 'Cybersecurity & Data Breach Response', href: '/legal/forms/cybersecurity-protocols' }
+        ]
+      },
+      { 
+        label: 'Compliance & Industry-Specific Documents', 
+        href: '/legal/compliance-industry',
+        description: 'Regulatory compliance documents',
+        icon: '⚖️',
+        subDropdown: [
+          { label: 'Australian Consumer Law Compliance', href: '/legal/forms/consumer-law-compliance' },
+          { label: 'Building Code & Standards Compliance', href: '/legal/forms/building-code-compliance' },
+          { label: 'Environmental & Safety Protocols', href: '/legal/forms/environmental-safety' },
+          { label: 'Workers\' Compensation Coverage', href: '/legal/forms/workers-compensation' },
+          { label: 'Public Liability Insurance Requirements', href: '/legal/forms/public-liability' }
+        ]
+      },
+      { 
+        label: 'Governance Documents', 
+        href: '/legal/governance',
+        description: 'Corporate governance agreements',
+        icon: '📋',
+        subDropdown: [
+          { label: 'Advisory Board Agreements', href: '/legal/forms/advisory-board' },
+          { label: 'Director & Officer Agreements', href: '/legal/forms/director-officer' },
+          { label: 'Employment Contracts', href: '/legal/forms/employment-contracts' },
+          { label: 'Consultant & Independent Contractor', href: '/legal/forms/consultant-contractor' },
+          { label: 'Non-Disclosure Agreements (NDAs)', href: '/legal/forms/non-disclosure' },
+          { label: 'Background Check Performing Agreement', href: '/legal/forms/background-performing' }
+        ]
+      }
+    ]
+  },
+  { 
     label: 'About', 
     href: '/about'
   },
@@ -84,6 +210,7 @@ export default function UltraModernHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSubDropdown, setActiveSubDropdown] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const headerRef = useRef<HTMLElement>(null);
 
@@ -304,47 +431,84 @@ export default function UltraModernHeader() {
                         }}
                       >
                         {item.dropdown.map((subItem, idx) => (
-                          <Link
+                          <div
                             key={subItem.label}
-                            href={subItem.href}
-                            role="menuitem"
-                            className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
-                            style={{
-                              borderBottom: idx < item.dropdown!.length - 1 
-                                ? '1px solid rgba(255, 255, 255, 0.05)' 
-                                : 'none'
-                            }}
+                            className="relative"
+                            onMouseEnter={() => subItem.subDropdown && setActiveSubDropdown(subItem.label)}
+                            onMouseLeave={() => setActiveSubDropdown(null)}
                           >
-                            {/* Icon */}
-                            <div 
-                              className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
+                            <Link
+                              href={subItem.href}
+                              role="menuitem"
+                              className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
                               style={{
-                                background: 'rgba(99, 91, 255, 0.1)',
+                                borderBottom: idx < item.dropdown!.length - 1 
+                                  ? '1px solid rgba(255, 255, 255, 0.05)' 
+                                  : 'none'
                               }}
                             >
-                              {subItem.icon}
-                            </div>
-                            
-                            {/* Text content */}
-                            <div className="flex-1">
-                              <div className="text-white font-medium text-sm">
-                                {subItem.label}
+                              {/* Icon */}
+                              <div 
+                                className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
+                                style={{
+                                  background: 'rgba(99, 91, 255, 0.1)',
+                                }}
+                              >
+                                {subItem.icon}
                               </div>
-                              <div className="text-gray-500 text-xs mt-0.5">
-                                {subItem.description}
+                              
+                              {/* Text content */}
+                              <div className="flex-1">
+                                <div className="text-white font-medium text-sm">
+                                  {subItem.label}
+                                </div>
+                                <div className="text-gray-500 text-xs mt-0.5">
+                                  {subItem.description}
+                                </div>
                               </div>
-                            </div>
-                            
-                            {/* Arrow */}
-                            <svg 
-                              className="w-4 h-4 text-gray-500 group-hover:text-purple-400 transition-all transform group-hover:translate-x-1"
-                              fill="none" 
-                              stroke="currentColor" 
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
+                              
+                              {/* Arrow */}
+                              <svg 
+                                className="w-4 h-4 text-gray-500 group-hover:text-purple-400 transition-all transform group-hover:translate-x-1"
+                                fill="none" 
+                                stroke="currentColor" 
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+
+                            {/* Sub-dropdown for forms */}
+                            {subItem.subDropdown && activeSubDropdown === subItem.label && (
+                              <div
+                                className="absolute left-full top-0 ml-2 w-80 transition-all duration-300"
+                                style={{
+                                  background: 'rgba(0, 0, 0, 0.98)',
+                                  backdropFilter: 'blur(20px)',
+                                  border: '1px solid rgba(99, 91, 255, 0.3)',
+                                  borderRadius: '16px',
+                                  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)',
+                                }}
+                              >
+                                <div className="p-4">
+                                  <div className="text-white font-semibold text-sm mb-3 pb-2 border-b border-white/10">
+                                    {subItem.label} Forms
+                                  </div>
+                                  <div className="space-y-1 max-h-96 overflow-y-auto">
+                                    {subItem.subDropdown.map((formItem, formIdx) => (
+                                      <Link
+                                        key={formItem.label}
+                                        href={formItem.href}
+                                        className="block px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-all rounded-lg"
+                                      >
+                                        {formItem.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -423,15 +587,32 @@ export default function UltraModernHeader() {
                 {item.dropdown && (
                   <div className="mt-2 ml-4 space-y-1">
                     {item.dropdown.map((subItem) => (
-                      <Link
-                        key={subItem.label}
-                        href={subItem.href}
-                        className="flex items-center gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span>{subItem.icon}</span>
-                        <span>{subItem.label}</span>
-                      </Link>
+                      <div key={subItem.label}>
+                        <Link
+                          href={subItem.href}
+                          className="flex items-center gap-3 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span>{subItem.icon}</span>
+                          <span>{subItem.label}</span>
+                        </Link>
+                        
+                        {/* Sub-dropdown for mobile */}
+                        {subItem.subDropdown && (
+                          <div className="mt-1 ml-6 space-y-1">
+                            {subItem.subDropdown.map((formItem) => (
+                              <Link
+                                key={formItem.label}
+                                href={formItem.href}
+                                className="block px-3 py-1 text-xs text-gray-500 hover:text-gray-300 transition-colors"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {formItem.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 )}
