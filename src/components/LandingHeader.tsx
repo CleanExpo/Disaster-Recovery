@@ -35,9 +35,9 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
   const services = [
     { label: 'Water Damage', href: '/services/water-damage', icon: <Droplets className="h-4 w-4" /> },
     { label: 'Fire & Smoke', href: '/services/fire-damage', icon: <Flame className="h-4 w-4" /> },
-    { label: 'Mould Remediation', href: '/services/mould', icon: <Bug className="h-4 w-4" /> },
-    { label: 'Storm Damage', href: '/services/storm', icon: <Wind className="h-4 w-4" /> },
-    { label: 'Biohazard Cleanup', href: '/services/biohazard', icon: <AlertCircle className="h-4 w-4" /> },
+    { label: 'Mould Remediation', href: '/services/mould-remediation', icon: <Bug className="h-4 w-4" /> },
+    { label: 'Storm Damage', href: '/services/storm-damage', icon: <Wind className="h-4 w-4" /> },
+    { label: 'Biohazard Cleanup', href: '/services/biohazard-cleanup', icon: <AlertCircle className="h-4 w-4" /> },
     { label: 'Commercial', href: '/services/commercial', icon: <Building className="h-4 w-4" /> },
   ];
 

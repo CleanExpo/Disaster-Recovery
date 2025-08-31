@@ -61,7 +61,7 @@ export default function SitemapPage() {
             </h2>
             <ul className="space-y-2">
               <li><Link href="/services/emergency-response" className="text-blue-600 hover:underline">24/7 Emergency Response</Link></li>
-              <li><Link href="/services/biohazard" className="text-blue-600 hover:underline">Biohazard Cleanup</Link></li>
+              <li><Link href="/services/biohazard-cleanup" className="text-blue-600 hover:underline">Biohazard Cleanup</Link></li>
               <li><Link href="/services/storm-damage" className="text-blue-600 hover:underline">Storm Damage Repair</Link></li>
               <li><Link href="/services/sewage-cleanup" className="text-blue-600 hover:underline">Sewage Cleanup</Link></li>
               <li><Link href="/services/trauma-cleanup" className="text-blue-600 hover:underline">Trauma Scene Cleanup</Link></li>
