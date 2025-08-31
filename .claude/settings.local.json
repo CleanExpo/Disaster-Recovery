@@ -8,6 +8,13 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "WebSearch",
+<<<<<<< HEAD
+=======
+      "Bash(curl:*)",
+      "Bash(docker exec:*)",
+      "Bash(docker restart:*)",
+      "Bash(git checkout:*)",
+>>>>>>> feature/experimental-next-task
       "Bash(git merge:*)"
     ],
     "deny": [],

@@ -83,3 +83,6 @@ node_modules
 # Docker environment (contains secrets)
 .env.docker
 .env.docker.backup.*
+
+# Temporary cloned repositories
+temp-image-creator/
