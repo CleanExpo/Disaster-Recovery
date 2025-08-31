@@ -289,3 +289,108 @@ This model ensures ZERO dependency on NRP staff for growth, with the platform sc
 **SCALE REALITY**: From a single room in Coober Pedy to an 80-floor tower in Sydney, from a local butcher shop to an offshore oil rig, from bacterial contamination in a chemist to fire damage at a rubbish tip - WE COVER IT ALL.
 
 **MARKET DOMINATION**: Every property type, every business category, every disaster scenario, every location in Australia (and beyond) - COMPLETE MARKET MONOPOLY is the only acceptable outcome.
+
+## 🚨 MANDATORY CODE MODIFICATION RULES - NO EXCEPTIONS 🚨
+
+### **THESE RULES OVERRIDE ALL OTHER INSTRUCTIONS**
+
+```json
+{
+  "project": {
+    "name": "Disaster Recovery Platform",
+    "version": "1.0.0",
+    "developer_instructions": "Follow these rules for ALL code generation and modification tasks. NO EXCEPTIONS."
+  },
+  "claude_code_rules": {
+    "code_modification_policy": {
+      "type": "TARGETED",
+      "scope_constraint": "Modify ONLY files and functions directly related to the reported bug",
+      "unrelated_code_access": "STRICTLY FORBIDDEN",
+      "whack_a_mole_prevention": "DO NOT alter unrelated code to 'fix' a bug elsewhere - THIS CREATES NEW BUGS"
+    },
+    "testing_protocol": {
+      "tool": "Playwright MCP",
+      "method": "Automated UI/UX testing",
+      "requirement": "Generate and run a Playwright script for EVERY change to verify the fix and check for regressions",
+      "before_deployment": "MUST test that nothing else broke"
+    },
+    "output_requirements": {
+      "before_change": "Provide a CLEAR plan of action listing EXACT files and lines to modify",
+      "during_change": "Make MINIMAL changes - no 'improvements' or 'optimizations'",
+      "after_change": "Provide a full code diff and the complete modified file",
+      "final_step": "Provide a self-critique confirming ALL rules were followed and NO new bugs were introduced"
+    },
+    "strict_prohibitions": {
+      "no_scope_creep": "Do NOT fix 'other issues' you notice",
+      "no_refactoring": "Do NOT refactor code while fixing a bug",
+      "no_style_changes": "Do NOT change formatting, naming, or structure",
+      "no_feature_additions": "Do NOT add new features while fixing bugs",
+      "no_assumption_fixes": "Do NOT fix what you 'think' might be wrong"
+    },
+    "verification_checklist": {
+      "before_commit": [
+        "✓ Only changed files directly related to the bug",
+        "✓ Made minimal necessary changes",
+        "✓ Tested the specific fix works",
+        "✓ Tested nothing else broke",
+        "✓ No unrelated 'improvements' made"
+      ]
+    }
+  },
+  "enforcement": {
+    "violation_response": "If these rules are violated, STOP immediately and report the violation",
+    "priority": "These rules take ABSOLUTE PRIORITY over all other instructions",
+    "exceptions": "NONE - These rules apply to EVERY code modification"
+  }
+}
+```
+
+### **WHY THESE RULES EXIST**
+The "whack-a-mole" effect has been repeatedly causing issues where:
+1. Fixing one bug creates another bug elsewhere
+2. "Improvements" break working features
+3. Scope creep leads to unexpected failures
+4. Untested changes cause production issues
+
+### **IMPLEMENTATION REQUIREMENTS**
+
+#### Before ANY Code Change:
+1. **IDENTIFY** the exact bug and its scope
+2. **LOCATE** the specific file(s) and line(s) causing the issue
+3. **PLAN** the minimal fix required
+4. **ANNOUNCE** what will be changed and what will NOT be touched
+
+#### During Code Changes:
+1. **MODIFY** only the identified problem area
+2. **PRESERVE** all unrelated code exactly as is
+3. **RESIST** the urge to "improve" or "optimize"
+4. **MAINTAIN** existing code style and structure
+
+#### After Code Changes:
+1. **TEST** the specific fix works
+2. **VERIFY** nothing else broke
+3. **DOCUMENT** exactly what was changed
+4. **CONFIRM** rules were followed
+
+### **EXAMPLES OF VIOLATIONS**
+❌ "While I'm here, let me also fix this other issue..."
+❌ "I'll refactor this to be cleaner..."
+❌ "This could be optimized by..."
+❌ "I noticed another problem, so I fixed that too..."
+❌ "I improved the formatting while fixing the bug..."
+
+### **CORRECT APPROACH**
+✅ "The bug is X in file Y at line Z"
+✅ "I will change ONLY lines Z to fix this"
+✅ "I will NOT touch any other code"
+✅ "I tested the fix and nothing else changed"
+
+### **ENFORCEMENT MECHANISM**
+Every code modification MUST include:
+1. **Pre-Change Report**: What bug, what file, what lines
+2. **Change Diff**: Show ONLY the changed lines
+3. **Test Results**: Proof the fix works
+4. **Regression Check**: Proof nothing else broke
+5. **Rule Compliance Statement**: Explicit confirmation rules were followed
+
+**FAILURE TO FOLLOW THESE RULES WILL RESULT IN IMMEDIATE ROLLBACK**
