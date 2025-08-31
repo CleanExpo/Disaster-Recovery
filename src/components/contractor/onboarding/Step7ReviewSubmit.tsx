@@ -41,14 +41,12 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+  FormMessage } from "@/components/ui/form"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+  AccordionTrigger } from "@/components/ui/accordion"
 import { Progress } from "@/components/ui/progress"
 import { toast } from "@/components/ui/use-toast"
 
@@ -229,8 +227,7 @@ export default function Step7ReviewSubmit({
       toast({
         title: "Incomplete Application",
         description: `Please complete all required sections before submitting. ${incompleteSections} section(s) are incomplete.`,
-        variant: "destructive",
-      })
+        variant: "destructive" })
       setIsSubmitting(false)
       return
     }
@@ -242,8 +239,7 @@ export default function Step7ReviewSubmit({
       // Process payment
       toast({
         title: "Processing Payment",
-        description: "Charging application fee of $275...",
-      })
+        description: "Charging application fee of $275..." })
       
       await new Promise(resolve => setTimeout(resolve, 1500))
       
@@ -251,14 +247,12 @@ export default function Step7ReviewSubmit({
       
       toast({
         title: "Application Submitted Successfully!",
-        description: "Welcome to National Recovery Partners. Check your email for next steps.",
-      })
+        description: "Welcome to National Recovery Partners. Check your email for next steps." })
     } catch (error) {
       toast({
         title: "Submission Failed",
         description: "There was an error submitting your application. Please try again.",
-        variant: "destructive",
-      })
+        variant: "destructive" })
     } finally {
       setIsSubmitting(false)
     }
@@ -367,8 +361,7 @@ export default function Step7ReviewSubmit({
                             // Navigate to specific section for editing
                             toast({
                               title: "Edit Section",
-                              description: `Navigate to ${section.title} section to make changes`,
-                            })
+                              description: `Navigate to ${section.title} section to make changes` })
                           }}
                         >
                           <Edit className="h-4 w-4 mr-2" />
@@ -633,8 +626,7 @@ export default function Step7ReviewSubmit({
               // Save draft functionality
               toast({
                 title: "Draft Saved",
-                description: "Your application has been saved. You can continue later.",
-              })
+                description: "Your application has been saved. You can continue later." })
             }}
             disabled={isSubmitting}
           >

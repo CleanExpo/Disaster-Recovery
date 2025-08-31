@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'HEPA Air Scrubbers | Air purification | Advanced Restoration Technology',
-  description: 'Professional hepa air scrubbers for air purification. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional hepa air scrubbers for air purification. Latest technology for faster, better restoration results.' };
 
 export default function HEPAAirScrubbersPage() {
   return (

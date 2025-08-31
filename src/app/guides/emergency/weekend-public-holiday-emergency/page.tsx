@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Weekend & Public Holiday Emergency Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "weekend public holiday emergency restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'weekend public holiday emergency restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'weekend public holiday emergency restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WeekendPublicHolidayEmergencyPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WeekendPublicHolidayEmergencyPage() {
       name: 'weekend public holiday emergency restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for weekend public holiday emergency restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for weekend public holiday emergency restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

@@ -72,8 +72,7 @@ export async function POST(req: NextRequest) {
           competitionLevel: 'medium', // Default, will be updated by SEO monitoring
           
           status: 'PUBLISHED',
-          publishedAt: new Date(),
-        }
+          publishedAt: new Date() }
       });
       
       generatedPages.push({
@@ -85,8 +84,7 @@ export async function POST(req: NextRequest) {
         propertyType: propertyType.name,
         businessType,
         priorityScore,
-        estimatedSearchVolume,
-      });
+        estimatedSearchVolume });
     }
     
     return NextResponse.json({
@@ -146,8 +144,7 @@ export async function GET(req: NextRequest) {
           estimatedSearchVolume: true,
           currentRankings: true,
           organicClicks: true,
-          publishedAt: true,
-        }
+          publishedAt: true }
       }),
       prisma.sEOLocationPage.count({ where })
     ]);

@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Launceston | Emergency Services Tasmania',
-  description: '24/7 disaster recovery in Launceston, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
-};
+  description: '24/7 disaster recovery in Launceston, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
 
 export default function LauncestonPage() {
   return (

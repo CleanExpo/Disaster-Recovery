@@ -570,16 +570,13 @@ export const generateMetadata = (): Metadata => {
       title: 'Clean Claims × Disaster Recovery Partnership',
       description: 'Strategic partnership bringing US restoration technology to Australian disaster recovery market',
       images: ['/logos/3D Clean Claims.png'],
-      type: 'website',
-    },
+      type: 'website' },
     twitter: {
       card: 'summary_large_image',
       title: 'Clean Claims Partners with Disaster Recovery',
-      description: 'Major US restoration technology company invests in Australian market expansion',
-    },
+      description: 'Major US restoration technology company invests in Australian market expansion' },
     alternates: {
-      canonical: 'https://disasterrecovery.com.au/partners/clean-claims',
-    },
+      canonical: 'https://disasterrecovery.com.au/partners/clean-claims' },
     other: {
       'script:ld+json': JSON.stringify(jsonLd)
     }

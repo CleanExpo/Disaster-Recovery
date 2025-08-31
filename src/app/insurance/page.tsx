@@ -27,11 +27,9 @@ export const metadata: Metadata = {
     title: 'Insurance Claims Assistance | All Major Australian Insurers',
     description: 'Expert help with disaster recovery insurance claims. Direct billing available. Work with all major Australian insurance companies.',
     type: 'website',
-    images: ['/images/optimised/process/3D Assessment.png'],
-  },
+    images: ['/images/optimised/process/3D Assessment.png'] },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/insurance',
-  }
+    canonical: 'https://disasterrecovery.com.au/insurance' }
 };
 
 const majorInsurers = [

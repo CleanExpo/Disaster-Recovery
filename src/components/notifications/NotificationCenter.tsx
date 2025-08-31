@@ -30,15 +30,13 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+  SheetTrigger } from '@/components/ui/sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+  DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { format, formatDistanceToNow } from 'date-fns';
 import type {
   Notification,

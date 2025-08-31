@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
-import { Shield, FileCheck,, MessageSquare} from 'lucide-react';
+import { Shield, FileCheck, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Budget Direct Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred Budget Direct insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.',
-};
+  description: 'Preferred Budget Direct insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.' };
 
 export default function BudgetDirectInsurancePage() {
   return (

@@ -46,8 +46,7 @@ export const metadata: Metadata = {
   formatDetection: {
     email: false,
     address: false,
-    telephone: false,
-  },
+    telephone: false },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
@@ -60,17 +59,14 @@ export const metadata: Metadata = {
         url: '/images/disaster-recovery-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Disaster Recovery',
-      }
-    ],
-  },
+        alt: 'Disaster Recovery' }
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Disaster Recovery | 24/7 Emergency Restoration',
     description: 'Leading disaster recovery specialists. 24/7 emergency response for water, fire, mould damage.',
     images: ['/images/disaster-recovery-twitter.jpg'],
-    creator: '@DisasterRecovAU',
-  },
+    creator: '@DisasterRecovAU' },
   robots: {
     index: true,
     follow: true,
@@ -79,30 +75,22 @@ export const metadata: Metadata = {
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+      'max-snippet': -1 } },
   verification: {
     google: 'google8f4d3e5a7b9c2d1e',
     yandex: '',
     yahoo: '',
     other: {
       'msvalidate.01': 'B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1',
-      'facebook-domain-verification': 'abcdef123456789',
-    },
-  },
+      'facebook-domain-verification': 'abcdef123456789' } },
   alternates: {
     canonical: 'https://disasterrecovery.com.au',
     languages: {
-      'en-AU': 'https://disasterrecovery.com.au',
-    },
-  },
-  category: 'Disaster Recovery Services',
-}
+      'en-AU': 'https://disasterrecovery.com.au' } },
+  category: 'Disaster Recovery Services' }
 
 export default function RootLayout({
-  children,
-}: {
+  children }: {
   children: React.ReactNode
 }) {
   return (

@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Adelaide Rental Property Mould Remediation | Disaster Recovery',
   description: 'Expert answers and solutions for "adelaide mould remediation rental property". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'adelaide mould remediation rental property, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'adelaide mould remediation rental property, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function AdelaideRentalMouldRemediationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function AdelaideRentalMouldRemediationPage() {
       name: 'adelaide mould remediation rental property',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for adelaide mould remediation rental property. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for adelaide mould remediation rental property. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

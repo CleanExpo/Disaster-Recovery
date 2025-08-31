@@ -6,8 +6,7 @@ import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, DollarSign, Mess
 
 export const metadata: Metadata = {
   title: '24/7 Online Emergency Response Times & Fees | After Hours, Weekends, Holidays',
-  description: 'Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. Insurance approved.',
-};
+  description: 'Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. Insurance approved.' };
 
 const scenarios = [
   {

@@ -5,8 +5,7 @@ export const a11yConfig = {
   skipLinks: {
     main: 'Skip to main content',
     navigation: 'Skip to navigation',
-    footer: 'Skip to footer',
-  },
+    footer: 'Skip to footer' },
   
   // ARIA labels for interactive elements
   ariaLabels: {
@@ -14,8 +13,7 @@ export const a11yConfig = {
       main: 'Main navigation',
       breadcrumb: 'Breadcrumb navigation',
       footer: 'Footer navigation',
-      social: 'Social media links',
-    },
+      social: 'Social media links' },
     buttons: {
       menu: 'Open navigation menu',
       close: 'Close',
@@ -23,28 +21,23 @@ export const a11yConfig = {
       submit: 'Submit form',
       getQuote: 'Get instant quote',
       emergency: 'Emergency assistance',
-      viewMore: 'View more information',
-    },
+      viewMore: 'View more information' },
     forms: {
       search: 'Search disaster recovery services',
       contact: 'Contact form',
       quote: 'Quote request form',
-      newsletter: 'Newsletter subscription',
-    },
+      newsletter: 'Newsletter subscription' },
     regions: {
       banner: 'Site header',
       main: 'Main content',
       complementary: 'Related information',
-      contentinfo: 'Site footer',
-    },
-  },
+      contentinfo: 'Site footer' } },
   
   // Focus management
   focusStyles: {
     default: 'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
     button: 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600',
-    input: 'focus:border-blue-500 focus:ring-2 focus:ring-blue-500',
-  },
+    input: 'focus:border-blue-500 focus:ring-2 focus:ring-blue-500' },
   
   // Screen reader only text
   srOnly: 'sr-only',
@@ -53,15 +46,12 @@ export const a11yConfig = {
   highContrast: {
     text: 'contrast-more:font-semibold',
     border: 'contrast-more:border-slate-400',
-    link: 'contrast-more:underline',
-  },
+    link: 'contrast-more:underline' },
   
   // Reduced motion support
   reducedMotion: {
     transition: 'motion-safe:transition-all motion-reduce:transition-none',
-    animation: 'motion-safe:animate-pulse motion-reduce:animate-none',
-  },
-};
+    animation: 'motion-safe:animate-pulse motion-reduce:animate-none' } };
 
 // Helper function to generate accessible heading hierarchy
 export function generateHeadingId(text: string): string {
@@ -139,19 +129,15 @@ export const colorContrast = {
   // Error states
   error: {
     text: '#991b1b', // Contrast ratio: 7.2:1 (AAA)
-    background: '#fee2e2',
-  },
+    background: '#fee2e2' },
   // Success states
   success: {
     text: '#166534', // Contrast ratio: 7.4:1 (AAA)
-    background: '#dcfce7',
-  },
+    background: '#dcfce7' },
   // Warning states
   warning: {
     text: '#854d0e', // Contrast ratio: 7.1:1 (AAA)
-    background: '#fef3c7',
-  },
-};
+    background: '#fef3c7' } };
 
 // Semantic HTML elements mapping
 export const semanticElements = {
@@ -170,8 +156,7 @@ export const semanticElements = {
   heading4: 'h4',
   paragraph: 'p',
   time: 'time',
-  address: 'address',
-};
+  address: 'address' };
 
 // Keyboard navigation helpers
 export const keyboardNav = {
@@ -184,8 +169,7 @@ export const keyboardNav = {
   arrowLeft: 'ArrowLeft',
   arrowRight: 'ArrowRight',
   home: 'Home',
-  end: 'End',
-};
+  end: 'End' };
 
 // Form validation messages for screen readers
 export const validationMessages = {
@@ -195,5 +179,4 @@ export const validationMessages = {
   postcode: 'Please enter a valid 4-digit postcode',
   minLength: (min: number) => `Must be at least ${min} characters`,
   maxLength: (max: number) => `Must be no more than ${max} characters`,
-  pattern: 'Please match the requested format',
-};
+  pattern: 'Please match the requested format' };

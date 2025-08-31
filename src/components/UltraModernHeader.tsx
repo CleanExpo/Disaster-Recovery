@@ -224,8 +224,7 @@ export default function UltraModernHeader() {
         const rect = headerRef.current.getBoundingClientRect();
         setMousePosition({
           x: e.clientX - rect.left,
-          y: e.clientY - rect.top,
-        });
+          y: e.clientY - rect.top });
       }
     };
     
@@ -250,8 +249,7 @@ export default function UltraModernHeader() {
             ? 'rgba(0, 0, 0, 0.95)'
             : 'rgba(0, 0, 0, 0.85)',
           backdropFilter: 'blur(20px) saturate(150%)',
-          borderBottom: '1px solid rgba(99, 91, 255, 0.2)',
-        }}
+          borderBottom: '1px solid rgba(99, 91, 255, 0.2)' }}
       >
         {/* Realistic fire gradient effect */}
         <div 
@@ -268,8 +266,7 @@ export default function UltraModernHeader() {
               )
             `,
             opacity: 0.6,
-            mixBlendMode: 'screen',
-          }}
+            mixBlendMode: 'screen' }}
         />
         
         {/* Additional subtle fire glow */}
@@ -285,8 +282,7 @@ export default function UltraModernHeader() {
               )
             `,
             filter: 'blur(8px)',
-            animation: 'pulse 4s ease-in-out infinite',
-          }}
+            animation: 'pulse 4s ease-in-out infinite' }}
         />
         
         {/* Interactive gradient overlay */}
@@ -297,8 +293,7 @@ export default function UltraModernHeader() {
               600px circle at ${mousePosition.x}px ${mousePosition.y}px,
               rgba(99, 91, 255, 0.1),
               transparent 40%
-            )`,
-          }}
+            )` }}
         />
 
         {/* Animated border */}
@@ -307,8 +302,7 @@ export default function UltraModernHeader() {
           style={{
             background: 'linear-gradient(90deg, transparent, #635bff, #00d4ff, transparent)',
             backgroundSize: '200% 100%',
-            animation: 'gradient-x 3s ease infinite',
-          }}
+            animation: 'gradient-x 3s ease infinite' }}
         />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -321,8 +315,7 @@ export default function UltraModernHeader() {
               {/* Modern logo implementation */}
               <div className="relative flex items-center gap-3" style={{
                 transform: isScrolled ? 'scale(0.95)' : 'scale(1)',
-                transition: 'all 0.3s ease',
-              }}>
+                transition: 'all 0.3s ease' }}>
                 {/* Compressed PNG Logo */}
                 <Image
                   src="/logos/3D Disaster Recovery Logo Image.png"
@@ -331,8 +324,7 @@ export default function UltraModernHeader() {
                   height={isScrolled ? 50 : 60}
                   className="transition-all duration-300 object-contain"
                   style={{
-                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
-                  }}
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}
                   priority
                 />
               </div>
@@ -356,8 +348,7 @@ export default function UltraModernHeader() {
                     style={{
                       background: activeDropdown === item.label 
                         ? 'rgba(99, 91, 255, 0.1)' 
-                        : 'transparent',
-                    }}
+                        : 'transparent' }}
                   >
                     <span className="relative z-10">{item.label}</span>
                     
@@ -366,8 +357,7 @@ export default function UltraModernHeader() {
                       className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       style={{
                         background: 'rgba(99, 91, 255, 0.1)',
-                        filter: 'blur(10px)',
-                      }}
+                        filter: 'blur(10px)' }}
                     />
                   </Link>
 
@@ -388,8 +378,7 @@ export default function UltraModernHeader() {
                           background: 'rgba(0, 0, 0, 0.98)',
                           backdropFilter: 'blur(20px)',
                           border: '1px solid rgba(99, 91, 255, 0.3)',
-                          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)',
-                        }}
+                          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)' }}
                       >
                         {item.dropdown.map((subItem, idx) => (
                           <div
@@ -412,8 +401,7 @@ export default function UltraModernHeader() {
                               <div 
                                 className="w-10 h-10 rounded-lg flex items-center justify-center text-xl"
                                 style={{
-                                  background: 'rgba(99, 91, 255, 0.1)',
-                                }}
+                                  background: 'rgba(99, 91, 255, 0.1)' }}
                               >
                                 {subItem.icon}
                               </div>
@@ -448,8 +436,7 @@ export default function UltraModernHeader() {
                                   backdropFilter: 'blur(20px)',
                                   border: '1px solid rgba(99, 91, 255, 0.3)',
                                   borderRadius: '16px',
-                                  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)',
-                                }}
+                                  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8)' }}
                               >
                                 <div className="p-4">
                                   <div className="text-white font-semibold text-sm mb-3 pb-2 border-b border-white/10">
@@ -507,27 +494,23 @@ export default function UltraModernHeader() {
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-              }}
+                border: '1px solid rgba(255, 255, 255, 0.1)' }}
             >
               <div className="w-6 h-5 relative flex flex-col justify-between">
                 <span 
                   className="block h-0.5 w-full bg-white transition-all duration-300 origin-left"
                   style={{
-                    transform: mobileMenuOpen ? 'rotate(45deg) translateY(-2px)' : 'rotate(0)',
-                  }}
+                    transform: mobileMenuOpen ? 'rotate(45deg) translateY(-2px)' : 'rotate(0)' }}
                 />
                 <span 
                   className="block h-0.5 w-full bg-white transition-all duration-300"
                   style={{
-                    opacity: mobileMenuOpen ? 0 : 1,
-                  }}
+                    opacity: mobileMenuOpen ? 0 : 1 }}
                 />
                 <span 
                   className="block h-0.5 w-full bg-white transition-all duration-300 origin-left"
                   style={{
-                    transform: mobileMenuOpen ? 'rotate(-45deg) translateY(2px)' : 'rotate(0)',
-                  }}
+                    transform: mobileMenuOpen ? 'rotate(-45deg) translateY(2px)' : 'rotate(0)' }}
                 />
               </div>
             </button>
@@ -545,8 +528,7 @@ export default function UltraModernHeader() {
           style={{
             background: 'rgba(10, 10, 10, 0.95)',
             backdropFilter: 'blur(20px)',
-            borderTop: '1px solid rgba(99, 91, 255, 0.1)',
-          }}
+            borderTop: '1px solid rgba(99, 91, 255, 0.1)' }}
         >
           <div className="px-4 py-6 space-y-2">
             {navItems.map((item) => (
@@ -556,8 +538,7 @@ export default function UltraModernHeader() {
                   className="block px-4 py-3 rounded-xl text-gray-300 hover:text-white transition-all"
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
-                    background: 'rgba(255, 255, 255, 0.03)',
-                  }}
+                    background: 'rgba(255, 255, 255, 0.03)' }}
                 >
                   {item.label}
                 </Link>
@@ -609,8 +590,7 @@ export default function UltraModernHeader() {
                   className="px-6 py-4 rounded-full font-bold text-white"
                   style={{
                     background: 'linear-gradient(135deg, #4545ff 0%, #8845ff 100%)',
-                    boxShadow: '0 10px 40px rgba(69, 69, 255, 0.3)',
-                  }}
+                    boxShadow: '0 10px 40px rgba(69, 69, 255, 0.3)' }}
                 >
                   🔐 NRP CRM Portal
                 </div>
@@ -626,8 +606,7 @@ export default function UltraModernHeader() {
                   className="px-6 py-4 rounded-full font-bold text-white"
                   style={{
                     background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
-                    boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
-                  }}
+                    boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)' }}
                 >
                   📱 Contact Us Now
                 </div>

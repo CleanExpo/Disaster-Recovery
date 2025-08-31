@@ -10,8 +10,7 @@ export async function GET(request: NextRequest) {
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       return NextResponse.json({
         success: false,
-        message: 'Contractor authentication required',
-      }, { status: 401 });
+        message: 'Contractor authentication required' }, { status: 401 });
     }
     
     // Mock lead data (in production, fetch from database)
@@ -22,8 +21,7 @@ export async function GET(request: NextRequest) {
           name: 'Alice Thompson',
           
           email: 'alice.t@email.com',
-          location: 'Fortitude Valley, QLD',
-        },
+          location: 'Fortitude Valley, QLD' },
         service: 'Water Damage',
         urgency: 'emergency',
         propertyType: 'commercial',
@@ -36,16 +34,14 @@ export async function GET(request: NextRequest) {
         expiresAt: '2024-01-29T09:00:00Z',
         status: 'new',
         distance: '2.5km',
-        competingBids: 0,
-      },
+        competingBids: 0 },
       {
         id: 'LEAD-2024-502',
         customer: {
           name: 'Robert Brown',
           
           email: 'rbrown@email.com',
-          location: 'Paddington, QLD',
-        },
+          location: 'Paddington, QLD' },
         service: 'Mould Remediation',
         urgency: 'urgent',
         propertyType: 'residential',
@@ -58,16 +54,14 @@ export async function GET(request: NextRequest) {
         expiresAt: '2024-01-29T11:00:00Z',
         status: 'new',
         distance: '5.2km',
-        competingBids: 2,
-      },
+        competingBids: 2 },
       {
         id: 'LEAD-2024-503',
         customer: {
           name: 'Jennifer Lee',
           
           email: 'jlee@email.com',
-          location: 'South Brisbane, QLD',
-        },
+          location: 'South Brisbane, QLD' },
         service: 'Carpet Drying',
         urgency: 'routine',
         propertyType: 'residential',
@@ -80,8 +74,7 @@ export async function GET(request: NextRequest) {
         expiresAt: '2024-01-29T16:00:00Z',
         status: 'viewed',
         distance: '3.8km',
-        competingBids: 5,
-      },
+        competingBids: 5 },
     ];
     
     // Calculate time remaining for each lead
@@ -98,9 +91,7 @@ export async function GET(request: NextRequest) {
           display: minutesRemaining > 60 
             ? `${Math.floor(minutesRemaining / 60)}h ${minutesRemaining % 60}m`
             : `${minutesRemaining}m`,
-          urgent: minutesRemaining < 30,
-        },
-      };
+          urgent: minutesRemaining < 30 } };
     });
     
     // Summary statistics
@@ -116,24 +107,20 @@ export async function GET(request: NextRequest) {
       totalPotentialValue: leads.reduce((sum, l) => sum + l.estimatedValue, 0),
       averageLeadScore: Math.round(
         leads.reduce((sum, l) => sum + l.leadScore, 0) / leads.length
-      ),
-    };
+      ) };
     
     return NextResponse.json({
       success: true,
       data: {
         leads: leadsWithTimeRemaining,
-        summary,
-      },
-    }, { status: 200 });
+        summary } }, { status: 200 });
     
   } catch (error) {
     console.error('Leads API error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Failed to fetch leads',
-    }, { status: 500 });
+      message: 'Failed to fetch leads' }, { status: 500 });
   }
 }
 
@@ -145,8 +132,7 @@ export async function POST(request: NextRequest) {
     if (!user || !hasRole(user.role as UserRole, [UserRole.CONTRACTOR, UserRole.ADMIN])) {
       return NextResponse.json({
         success: false,
-        message: 'Contractor authentication required',
-      }, { status: 401 });
+        message: 'Contractor authentication required' }, { status: 401 });
     }
     
     const body = await request.json();
@@ -156,8 +142,7 @@ export async function POST(request: NextRequest) {
     if (!['accept', 'decline', 'request-info'].includes(action)) {
       return NextResponse.json({
         success: false,
-        message: 'Invalid action',
-      }, { status: 400 });
+        message: 'Invalid action' }, { status: 400 });
     }
     
     // Process lead action (in production, update database and charge credits)
@@ -199,16 +184,13 @@ export async function POST(request: NextRequest) {
         id: leadId,
         status: action === 'accept' ? 'accepted' : action === 'decline' ? 'declined' : 'pending',
         cost: leadCost,
-        actionedAt: new Date().toISOString(),
-      },
-    }, { status: 200 });
+        actionedAt: new Date().toISOString() } }, { status: 200 });
     
   } catch (error) {
     console.error('Lead action error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Failed to process lead action',
-    }, { status: 500 });
+      message: 'Failed to process lead action' }, { status: 500 });
   }
 }

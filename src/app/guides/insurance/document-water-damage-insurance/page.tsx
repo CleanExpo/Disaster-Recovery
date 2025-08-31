@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Documenting Water Damage for Insurance Claims | Disaster Recovery',
   description: 'Expert answers and solutions for "how to document water damage for insurance claim". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'how to document water damage for insurance claim, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'how to document water damage for insurance claim, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function DocumentWaterDamageInsurancePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function DocumentWaterDamageInsurancePage() {
       name: 'how to document water damage for insurance claim',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for how to document water damage for insurance claim. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for how to document water damage for insurance claim. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

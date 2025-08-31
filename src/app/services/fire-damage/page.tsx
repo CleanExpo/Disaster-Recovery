@@ -32,25 +32,20 @@ export const metadata: Metadata = {
         url: '/images/optimised/damage/3D image of a house fire.png',
         width: 1200,
         height: 630,
-        alt: 'Professional fire damage restoration service',
-      },
-    ],
-  },
+        alt: 'Professional fire damage restoration service' },
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Fire & Smoke Damage Restoration | IICRC Certified',
     description: 'Expert fire damage restoration services. IICRC S700 certified technicians. 24/7 emergency response nationwide.',
-    images: ['/images/optimised/damage/3D image of a house fire.png'],
-  },
+    images: ['/images/optimised/damage/3D image of a house fire.png'] },
   alternates: {
-    canonical: '/services/fire-damage',
-  },
+    canonical: '/services/fire-damage' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',
     'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751',
-  }
+    'ICBM': '-25.2744, 133.7751' }
 };
 
 // Schema.org structured data for fire damage restoration

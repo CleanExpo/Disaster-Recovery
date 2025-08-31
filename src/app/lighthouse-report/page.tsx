@@ -33,8 +33,7 @@ export default function LighthouseReportPage() {
             '✓ Total Blocking Time: 120ms',
             '✓ Cumulative Layout Shift: 0.02',
             '✓ Speed Index: 2.8s',
-          ],
-        },
+          ] },
         {
           category: 'Accessibility',
           score: 100,
@@ -45,8 +44,7 @@ export default function LighthouseReportPage() {
             '✓ ARIA labels properly used',
             '✓ Heading hierarchy correct',
             '✓ Focus indicators visible',
-          ],
-        },
+          ] },
         {
           category: 'Best Practices',
           score: 100,
@@ -57,8 +55,7 @@ export default function LighthouseReportPage() {
             '✓ Images properly sized',
             '✓ No vulnerable libraries',
             '✓ CSP headers configured',
-          ],
-        },
+          ] },
         {
           category: 'SEO',
           score: 100,
@@ -69,8 +66,7 @@ export default function LighthouseReportPage() {
             '✓ Structured data valid',
             '✓ Robots.txt valid',
             '✓ Canonical URL set',
-          ],
-        },
+          ] },
         {
           category: 'PWA',
           score: 100,
@@ -81,8 +77,7 @@ export default function LighthouseReportPage() {
             '✓ Icons configured',
             '✓ Theme colour set',
             '✓ Viewport configured',
-          ],
-        },
+          ] },
       ]);
       setAuditing(false);
     }, 3000);

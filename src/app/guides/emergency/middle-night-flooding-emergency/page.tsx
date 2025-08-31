@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Middle of Night Flooding: Emergency Response | Disaster Recovery',
   description: 'Expert answers and solutions for "middle of night flooding emergency help". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'middle of night flooding emergency help, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'middle of night flooding emergency help, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function MiddleNightFloodingEmergencyPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function MiddleNightFloodingEmergencyPage() {
       name: 'middle of night flooding emergency help',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for middle of night flooding emergency help. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for middle of night flooding emergency help. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

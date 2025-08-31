@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: '24 Hour Emergency Restoration Services Near You | Disaster Recovery',
   description: 'Expert answers and solutions for "where to find 24 hour emergency restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'where to find 24 hour emergency restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'where to find 24 hour emergency restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function Find24HourEmergencyRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function Find24HourEmergencyRestorationPage() {
       name: 'where to find 24 hour emergency restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for where to find 24 hour emergency restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for where to find 24 hour emergency restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

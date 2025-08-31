@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-11-20.acacia',
-});
+  apiVersion: '2024-11-20.acacia' });
 
 interface KPICheckpoint {
   id: string;
@@ -62,36 +61,31 @@ const defaultKPIs: KPICheckpoint[] = [
     name: 'Initial Contact',
     description: 'Contractor has contacted the customer within the agreed timeframe',
     required: true,
-    status: 'pending',
-  },
+    status: 'pending' },
   {
     id: 'kpi-002',
     name: 'Site Attendance',
     description: 'Contractor has attended the property for initial assessment',
     required: true,
-    status: 'pending',
-  },
+    status: 'pending' },
   {
     id: 'kpi-003',
     name: 'Damage Assessment',
     description: 'Complete damage assessment report submitted',
     required: true,
-    status: 'pending',
-  },
+    status: 'pending' },
   {
     id: 'kpi-004',
     name: 'Work Commencement',
     description: 'Emergency mitigation work has commenced',
     required: true,
-    status: 'pending',
-  },
+    status: 'pending' },
   {
     id: 'kpi-005',
     name: 'Customer Confirmation',
     description: 'Customer has confirmed contractor attendance and work commencement',
     required: true,
-    status: 'pending',
-  },
+    status: 'pending' },
 ];
 
 // Validate KPIs are met for payment release
@@ -114,15 +108,13 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
         valid: true,
         message: 'Emergency release criteria met',
         completedCount: completedRequired.length,
-        requiredCount: minRequiredForEmergency,
-      };
+        requiredCount: minRequiredForEmergency };
     }
     return {
       valid: false,
       message: `Emergency release requires at least ${minRequiredForEmergency} KPIs completed`,
       completedCount: completedRequired.length,
-      requiredCount: minRequiredForEmergency,
-    };
+      requiredCount: minRequiredForEmergency };
   }
 
   if (releaseType === 'partial') {
@@ -134,15 +126,13 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
         valid: true,
         message: 'Partial release criteria met',
         completedCount: completedRequired.length,
-        requiredCount: minRequired,
-      };
+        requiredCount: minRequired };
     }
     return {
       valid: false,
       message: `Partial release requires at least ${minRequired} KPIs completed`,
       completedCount: completedRequired.length,
-      requiredCount: minRequired,
-    };
+      requiredCount: minRequired };
   }
 
   // Full release requires all required KPIs
@@ -151,16 +141,14 @@ function validateKPIs(kpiCheckpoints: KPICheckpoint[], releaseType: string): {
       valid: true,
       message: 'All required KPIs completed',
       completedCount: completedRequired.length,
-      requiredCount: requiredKPIs.length,
-    };
+      requiredCount: requiredKPIs.length };
   }
 
   return {
     valid: false,
     message: `Full release requires all ${requiredKPIs.length} KPIs to be completed`,
     completedCount: completedRequired.length,
-    requiredCount: requiredKPIs.length,
-  };
+    requiredCount: requiredKPIs.length };
 }
 
 export async function POST(request: NextRequest) {
@@ -177,9 +165,7 @@ export async function POST(request: NextRequest) {
         data: {
           completedKPIs: kpiValidation.completedCount,
           requiredKPIs: kpiValidation.requiredCount,
-          kpiDetails: releaseRequest.kpiCheckpoints,
-        },
-      }, { status: 400 });
+          kpiDetails: releaseRequest.kpiCheckpoints } }, { status: 400 });
     }
 
     // Calculate release amount
@@ -228,9 +214,7 @@ export async function POST(request: NextRequest) {
             .filter(kpi => kpi.status === 'completed')
             .map(kpi => kpi.id)
             .join(','),
-          authorizedBy: releaseRequest.authorizedBy,
-        },
-      });
+          authorizedBy: releaseRequest.authorizedBy } });
 
       // Create payout to contractor's bank account (optional - Connect handles this)
       // Contractors can configure their payout schedule in their Connect dashboard
@@ -246,8 +230,7 @@ export async function POST(request: NextRequest) {
           .filter(kpi => kpi.status === 'completed')
           .map(kpi => kpi.id),
         authorizedBy: releaseRequest.authorizedBy,
-        notes: releaseRequest.adminNotes,
-      };
+        notes: releaseRequest.adminNotes };
 
       // In production, update database records
       // await updateJobPaymentStatus(releaseRequest.bookingId, paymentRelease);
@@ -262,9 +245,7 @@ export async function POST(request: NextRequest) {
           amount: releaseAmount,
           type: releaseRequest.releaseType,
           transferId: transfer.id,
-          expectedArrival: '1-2 business days',
-        },
-      };
+          expectedArrival: '1-2 business days' } };
 
       // Calculate remaining balance
       const remainingBalance = contractorTotalAmount - releaseAmount;
@@ -285,9 +266,7 @@ export async function POST(request: NextRequest) {
           notification: contractorNotification,
           nextSteps: remainingBalance > 0 ? 
             'Complete remaining KPIs for full payment release' : 
-            'All payments have been released',
-        },
-      });
+            'All payments have been released' } });
 
     } catch (stripeError) {
       console.error('Stripe transfer error:', stripeError);
@@ -299,8 +278,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: false,
       message: 'Failed to release payment',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { status: 500 });
+      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
   }
 }
 
@@ -313,8 +291,7 @@ export async function GET(request: NextRequest) {
   if (!bookingId && !contractorId) {
     return NextResponse.json({
       success: false,
-      message: 'Either bookingId or contractorId is required',
-    }, { status: 400 });
+      message: 'Either bookingId or contractorId is required' }, { status: 400 });
   }
 
   // Mock payment history
@@ -337,8 +314,7 @@ export async function GET(request: NextRequest) {
         stripeTransferId: 'tr_1234567890',
         kpisCompleted: ['kpi-001', 'kpi-002'],
         authorizedBy: 'admin@nrp.com.au',
-        notes: 'Emergency release for immediate work commencement',
-      },
+        notes: 'Emergency release for immediate work commencement' },
       {
         id: 'REL-002',
         amount: 44000,
@@ -347,10 +323,8 @@ export async function GET(request: NextRequest) {
         stripeTransferId: 'tr_',
         kpisCompleted: ['kpi-003', 'kpi-004'],
         authorizedBy: 'admin@nrp.com.au',
-        notes: 'Partial release after damage assessment completed',
-      },
-    ],
-  };
+        notes: 'Partial release after damage assessment completed' },
+    ] };
 
   // Also return current KPI status
   const currentKPIs = defaultKPIs.map(kpi => ({
@@ -358,8 +332,7 @@ export async function GET(request: NextRequest) {
     status: ['kpi-001', 'kpi-002', 'kpi-003', 'kpi-004'].includes(kpi.id) ? 'completed' : 'pending',
     completedAt: ['kpi-001', 'kpi-002', 'kpi-003', 'kpi-004'].includes(kpi.id) 
       ? new Date(Date.now() - Math.random() * 86400000).toISOString() 
-      : undefined,
-  }));
+      : undefined }));
 
   return NextResponse.json({
     success: true,
@@ -372,8 +345,5 @@ export async function GET(request: NextRequest) {
         pending: `$${(mockPaymentHistory.amountPending / 100).toFixed(2)}`,
         releaseCount: mockPaymentHistory.releases.length,
         completedKPIs: currentKPIs.filter(k => k.status === 'completed').length,
-        totalKPIs: currentKPIs.length,
-      },
-    },
-  });
+        totalKPIs: currentKPIs.length } } });
 }

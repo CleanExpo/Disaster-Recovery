@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Bridgewater | Emergency Services Tasmania',
-  description: '24/7 disaster recovery in Bridgewater, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
-};
+  description: '24/7 disaster recovery in Bridgewater, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
 
 export default function BridgewaterPage() {
   return (

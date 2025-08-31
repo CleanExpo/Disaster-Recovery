@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Public Holiday Emergency Services | All Australian Holidays | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available All Australian Holidays. No call-out fees, immediate response nationwide.',
-};
+  description: 'Emergency disaster recovery services available All Australian Holidays. No call-out fees, immediate response nationwide.' };
 
 export default function PublicHolidayEmergencyPage() {
   return (

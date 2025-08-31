@@ -32,25 +32,20 @@ export const metadata: Metadata = {
         url: '/images/optimised/process/3D Assessment.png',
         width: 1200,
         height: 630,
-        alt: '24/7 emergency response service',
-      },
-    ],
-  },
+        alt: '24/7 emergency response service' },
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: '24/7 Online Emergency Response Services | Disaster Recovery',
     description: 'Professional emergency response team available 24/7. 1-hour response time for disaster recovery emergencies.',
-    images: ['/images/optimised/process/3D Assessment.png'],
-  },
+    images: ['/images/optimised/process/3D Assessment.png'] },
   alternates: {
-    canonical: '/services/emergency-response',
-  },
+    canonical: '/services/emergency-response' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',
     'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751',
-  }
+    'ICBM': '-25.2744, 133.7751' }
 };
 
 // Schema.org structured data for emergency response

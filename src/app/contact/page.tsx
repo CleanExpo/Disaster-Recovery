@@ -85,8 +85,7 @@ export default function ModernContactPage() {
       const response = await fetch('/api/contact/submit', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
           urgency: formData.urgency || 'routine',
@@ -98,8 +97,7 @@ export default function ModernContactPage() {
           propertyType: 'residential',
           hasInsurance: true,
           preferredContact: 'both'
-        }),
-      });
+        }) });
 
       const data = await response.json();
 

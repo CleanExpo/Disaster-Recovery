@@ -11,8 +11,7 @@ import {
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
-  password: z.string().min(1, 'Password is required'),
-});
+  password: z.string().min(1, 'Password is required') });
 
 // SECURITY: Production users stored in database only - NO hardcoded credentials
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -35,8 +34,7 @@ const getDemoUsers = () => {
       name: 'Development Admin',
       password: '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY3pp/eQhJ2XWIa',
       role: UserRole.ADMIN,
-      companyId: 'dev-company',
-    },
+      companyId: 'dev-company' },
   ];
 };
 
@@ -69,8 +67,7 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({
         success: false,
-        message: 'Invalid email or password',
-      }, { status: 401 });
+        message: 'Invalid email or password' }, { status: 401 });
     }
     
     // Verify password
@@ -79,8 +76,7 @@ export async function POST(request: NextRequest) {
     if (!isPasswordValid) {
       return NextResponse.json({
         success: false,
-        message: 'Invalid email or password',
-      }, { status: 401 });
+        message: 'Invalid email or password' }, { status: 401 });
     }
     
     // Get role-based permissions
@@ -93,8 +89,7 @@ export async function POST(request: NextRequest) {
       name: user.name,
       role: user.role,
       companyId: user.companyId,
-      permissions,
-    };
+      permissions };
     
     const accessToken = await generateAccessToken(userPayload);
     const refreshToken = await generateRefreshToken(user.id);
@@ -111,14 +106,11 @@ export async function POST(request: NextRequest) {
         email: user.email,
         name: user.name,
         role: user.role,
-        companyId: user.companyId,
-      },
+        companyId: user.companyId },
       tokens: {
         access: accessToken,
-        refresh: refreshToken,
-      },
-      permissions,
-    }, { status: 200 });
+        refresh: refreshToken },
+      permissions }, { status: 200 });
     
   } catch (error) {
     console.error('Login error:', error);
@@ -129,15 +121,12 @@ export async function POST(request: NextRequest) {
         message: 'Validation error',
         errors: error.errors.map(e => ({
           field: e.path.join('.'),
-          message: e.message,
-        })),
-      }, { status: 400 });
+          message: e.message })) }, { status: 400 });
     }
     
     return NextResponse.json({
       success: false,
-      message: 'An error occurred during login. Please try again.',
-    }, { status: 500 });
+      message: 'An error occurred during login. Please try again.' }, { status: 500 });
   }
 }
 
@@ -147,7 +136,5 @@ export async function OPTIONS(request: NextRequest) {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorisation',
-    },
-  });
+      'Access-Control-Allow-Headers': 'Content-Type, Authorisation' } });
 }

@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Townsville | Emergency Services Queensland',
-  description: '24/7 disaster recovery in Townsville, Queensland. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
-};
+  description: '24/7 disaster recovery in Townsville, Queensland. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
 
 export default function TownsvillePage() {
   return (

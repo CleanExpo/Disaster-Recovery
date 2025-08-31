@@ -14,8 +14,7 @@ export async function POST(req: Request) {
     }
 
     const existingUser = await prisma.user.findUnique({
-      where: { email },
-    })
+      where: { email } })
 
     if (existingUser) {
       return NextResponse.json(
@@ -40,14 +39,9 @@ export async function POST(req: Request) {
         agency: {
           create: {
             name: agencyName,
-            slug,
-          },
-        },
-      },
+            slug } } },
       include: {
-        agency: true,
-      },
-    })
+        agency: true } })
 
     return NextResponse.json({
       message: 'User created successfully',
@@ -55,9 +49,7 @@ export async function POST(req: Request) {
         id: user.id,
         email: user.email,
         name: user.name,
-        role: user.role,
-      },
-    })
+        role: user.role } })
   } catch (error) {
     console.error('Signup error:', error)
     return NextResponse.json(

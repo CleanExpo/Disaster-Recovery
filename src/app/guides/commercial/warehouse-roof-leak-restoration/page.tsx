@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Warehouse Roof Leak Damage Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "warehouse roof leak damage restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'warehouse roof leak damage restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'warehouse roof leak damage restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WarehouseRoofLeakRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WarehouseRoofLeakRestorationPage() {
       name: 'warehouse roof leak damage restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for warehouse roof leak damage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for warehouse roof leak damage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

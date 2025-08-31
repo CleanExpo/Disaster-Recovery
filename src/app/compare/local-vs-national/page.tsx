@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Local vs National Companies | Comparison Guide | Make the Right Choice',
-  description: 'Compare local vs national companies. Pros, cons, costs, and expert recommendations to help you decide.',
-};
+  description: 'Compare local vs national companies. Pros, cons, costs, and expert recommendations to help you decide.' };
 
 export default function LocalvsNationalCompaniesPage() {
   return (

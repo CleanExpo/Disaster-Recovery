@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Ozone Generators | Deodorization | Advanced Restoration Technology',
-  description: 'Professional ozone generators for deodorization. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional ozone generators for deodorization. Latest technology for faster, better restoration results.' };
 
 export default function OzoneGeneratorsPage() {
   return (

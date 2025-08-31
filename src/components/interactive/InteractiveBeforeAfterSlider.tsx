@@ -125,11 +125,9 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
           <motion.div 
             className="absolute inset-0 overflow-hidden"
             style={{
-              clipPath: `polygon(${sliderPosition}% 0%, 100% 0%, 100% 100%, ${sliderPosition}% 100%)`,
-            }}
+              clipPath: `polygon(${sliderPosition}% 0%, 100% 0%, 100% 100%, ${sliderPosition}% 100%)` }}
             animate={{
-              clipPath: `polygon(${sliderPosition}% 0%, 100% 0%, 100% 100%, ${sliderPosition}% 100%)`,
-            }}
+              clipPath: `polygon(${sliderPosition}% 0%, 100% 0%, 100% 100%, ${sliderPosition}% 100%)` }}
             transition={{ type: "tween", duration: isDragging ? 0 : 0.2 }}
           >
             {/* Since we don't have actual after images, we'll show a restoration complete state */}
@@ -137,13 +135,11 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
               <div className="text-center p-6">
                 <motion.div
                   animate={{
-                    scale: [1, 1.1, 1],
-                  }}
+                    scale: [1, 1.1, 1] }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                    ease: "easeInOut" }}
                 >
                   <CheckCircle className="h-20 w-20 text-green-600 mx-auto mb-4" />
                 </motion.div>
@@ -158,8 +154,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             <motion.div 
               className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold"
               animate={{
-                opacity: sliderPosition > 20 ? 1 : 0.3,
-              }}
+                opacity: sliderPosition > 20 ? 1 : 0.3 }}
             >
               {caseData.beforeLabel}
             </motion.div>
@@ -169,8 +164,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             <motion.div 
               className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold"
               animate={{
-                opacity: sliderPosition < 80 ? 1 : 0.3,
-              }}
+                opacity: sliderPosition < 80 ? 1 : 0.3 }}
             >
               {caseData.afterLabel}
             </motion.div>
@@ -181,11 +175,9 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             className="absolute top-0 bottom-0 flex items-center justify-center z-10"
             style={{
               left: `${sliderPosition}%`,
-              transform: 'translateX(-50%)',
-            }}
+              transform: 'translateX(-50%)' }}
             animate={{
-              left: `${sliderPosition}%`,
-            }}
+              left: `${sliderPosition}%` }}
             transition={{ type: "tween", duration: isDragging ? 0 : 0.2 }}
           >
             <motion.div 
@@ -195,14 +187,12 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
               animate={{
                 boxShadow: isDragging 
                   ? "0 0 20px rgba(59, 130, 246, 0.5)"
-                  : "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-              }}
+                  : "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }}
             >
               <motion.div 
                 className="flex items-center space-x-1"
                 animate={{
-                  scale: isDragging ? 1.2 : 1,
-                }}
+                  scale: isDragging ? 1.2 : 1 }}
               >
                 <ArrowLeft className="h-3 w-3 text-blue-600" />
                 <ArrowRight className="h-3 w-3 text-blue-600" />
@@ -215,11 +205,9 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             className="absolute top-0 bottom-0 w-1 bg-white shadow-lg"
             style={{
               left: `${sliderPosition}%`,
-              transform: 'translateX(-50%)',
-            }}
+              transform: 'translateX(-50%)' }}
             animate={{
-              left: `${sliderPosition}%`,
-            }}
+              left: `${sliderPosition}%` }}
             transition={{ type: "tween", duration: isDragging ? 0 : 0.2 }}
           />
 
@@ -233,13 +221,11 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
               <div className="text-white text-center">
                 <motion.div
                   animate={{
-                    x: [-10, 10, -10],
-                  }}
+                    x: [-10, 10, -10] }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+                    ease: "easeInOut" }}
                 >
                   <RotateCcw className="h-8 w-8 mx-auto mb-2" />
                 </motion.div>
@@ -256,8 +242,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
             <motion.span 
               className="font-bold text-blue-600"
               animate={{
-                scale: isDragging ? 1.1 : 1,
-              }}
+                scale: isDragging ? 1.1 : 1 }}
             >
               {Math.round(sliderPosition)}% restored
             </motion.span>
@@ -268,8 +253,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
               className="h-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full"
               style={{ width: `${sliderPosition}%` }}
               animate={{
-                width: `${sliderPosition}%`,
-              }}
+                width: `${sliderPosition}%` }}
               transition={{ type: "tween", duration: isDragging ? 0 : 0.2 }}
             />
           </div>
@@ -292,8 +276,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
 export default function InteractiveBeforeAfterSlider() {
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" ref={ref}>
@@ -340,13 +323,11 @@ export default function InteractiveBeforeAfterSlider() {
         >
           <motion.div
             animate={{
-              x: [0, 5, -5, 0],
-            }}
+              x: [0, 5, -5, 0] }}
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut",
-            }}
+              ease: "easeInOut" }}
             className="mr-3"
           >
             👆

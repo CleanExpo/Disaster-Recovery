@@ -293,17 +293,14 @@ export default function PremiumDashboard() {
             className="absolute w-1 h-1 bg-blue-400 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
+              top: `${Math.random() * 100}%` }}
             animate={{
               y: [-20, -60, -20],
-              opacity: [0, 1, 0],
-            }}
+              opacity: [0, 1, 0] }}
             transition={{
               duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
+              delay: Math.random() * 2 }}
           />
         ))}
       </div>

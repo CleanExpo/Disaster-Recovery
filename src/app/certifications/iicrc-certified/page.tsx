@@ -3,8 +3,7 @@ import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'IICRC Certified | International restoration standard | Disaster Recovery',
-  description: 'IICRC Certified restoration services. International restoration standard. Qualified, certified, and compliant disaster recovery.',
-};
+  description: 'IICRC Certified restoration services. International restoration standard. Qualified, certified, and compliant disaster recovery.' };
 
 export default function IICRCCertifiedPage() {
   return (

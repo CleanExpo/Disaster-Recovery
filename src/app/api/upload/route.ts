@@ -33,8 +33,7 @@ export async function POST(request: NextRequest) {
       quality,
       width: maxWidth,
       format,
-      maintainAspectRatio: true,
-    });
+      maintainAspectRatio: true });
 
     // Get optimization stats
     const stats = await ImageOptimizer.getOptimizationStats(buffer, optimizedBuffer);
@@ -64,9 +63,7 @@ export async function POST(request: NextRequest) {
         originalSize: `${(stats.originalSize / 1024).toFixed(2)} KB`,
         optimizedSize: `${(stats.optimizedSize / 1024).toFixed(2)} KB`,
         reduction: `${(stats.reduction / 1024).toFixed(2)} KB`,
-        reductionPercent: `${stats.reductionPercent}%`,
-      },
-    });
+        reductionPercent: `${stats.reductionPercent}%` } });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
@@ -93,8 +90,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({
       success: true,
       optimized: results.length,
-      results,
-    });
+      results });
   } catch (error) {
     console.error('Batch optimization error:', error);
     return NextResponse.json(

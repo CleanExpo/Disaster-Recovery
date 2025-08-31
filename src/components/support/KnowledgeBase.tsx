@@ -570,5 +570,5 @@ export function KnowledgeBase() {
 }
 
 // Add missing imports
-import { MessageSquare, Mail,  } from 'lucide-react';
+import { MessageSquare, Mail } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';

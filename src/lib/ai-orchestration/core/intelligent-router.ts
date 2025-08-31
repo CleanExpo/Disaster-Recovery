@@ -9,8 +9,7 @@ import {
   AITaskType,
   TaskComplexity,
   OrchestrationDecision,
-  DisasterContext,
-} from './types';
+  DisasterContext } from './types';
 
 export class IntelligentRouter {
   private performanceHistory: Map<string, number[]> = new Map();
@@ -107,8 +106,7 @@ export class IntelligentRouter {
       reasoning,
       estimatedDuration,
       estimatedCost,
-      confidence,
-    };
+      confidence };
   }
   
   /**
@@ -126,8 +124,7 @@ export class IntelligentRouter {
       [AITaskType.COST_ESTIMATION]: 6,
       [AITaskType.EMERGENCY_RESPONSE]: 5,
       [AITaskType.CODE_GENERATION]: 5,
-      [AITaskType.QUICK_RESPONSE]: 2,
-    };
+      [AITaskType.QUICK_RESPONSE]: 2 };
     
     score += typeComplexity[request.type] || 5;
     
@@ -170,8 +167,7 @@ export class IntelligentRouter {
       critical: 8,
       high: 6,
       normal: 3,
-      low: 1,
-    };
+      low: 1 };
     score += priorityScores[request.priority];
     
     // Response time requirements
@@ -265,8 +261,7 @@ export class IntelligentRouter {
       direct: 2000,
       sequential: 10000,
       'multi-agent': 15000,
-      hybrid: 8000,
-    };
+      hybrid: 8000 };
     
     const complexityMultiplier = complexity / 5;
     return Math.round(baseDurations[approach] * complexityMultiplier);
@@ -282,8 +277,7 @@ export class IntelligentRouter {
       direct: 1,
       sequential: 3,
       'multi-agent': 5,
-      hybrid: 2.5,
-    };
+      hybrid: 2.5 };
     
     const complexityMultiplier = 1 + (complexity / 10);
     
@@ -342,8 +336,7 @@ export class IntelligentRouter {
     const weights = {
       standard: 1.0,
       high: 1.5,
-      critical: 2.0,
-    };
+      critical: 2.0 };
     return weights[accuracy as keyof typeof weights] || 1.0;
   }
 }

@@ -17,8 +17,7 @@ export enum UserRole {
   ADMIN = 'admin',
   TECHNICIAN = 'technician',
   CONTRACTOR = 'contractor',
-  CUSTOMER = 'customer',
-}
+  CUSTOMER = 'customer' }
 
 export interface User {
   id: string;
@@ -62,8 +61,7 @@ export async function generateAccessToken(user: User): Promise<string> {
     userId: user.id,
     email: user.email,
     role: user.role,
-    permissions: user.permissions,
-  })
+    permissions: user.permissions })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setIssuedAt()
     .setExpirationTime(ACCESS_TOKEN_EXPIRY)
@@ -176,8 +174,7 @@ export function getRolePermissions(role: UserRole): string[] {
       'invoices:read:own',
       'profile:read:own',
       'profile:update:own',
-    ],
-  };
+    ] };
   
   return permissions[role] || [];
 }
@@ -213,8 +210,7 @@ export function validatePasswordStrength(password: string): {
   
   return {
     isValid: errors.length === 0,
-    errors,
-  };
+    errors };
 }
 
 /**

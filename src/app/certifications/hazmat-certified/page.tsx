@@ -3,8 +3,7 @@ import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'HAZMAT Certified | Hazardous materials | Disaster Recovery',
-  description: 'HAZMAT Certified restoration services. Hazardous materials. Qualified, certified, and compliant disaster recovery.',
-};
+  description: 'HAZMAT Certified restoration services. Hazardous materials. Qualified, certified, and compliant disaster recovery.' };
 
 export default function HAZMATCertifiedPage() {
   return (

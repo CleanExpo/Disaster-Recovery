@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Newcastle Industrial Flood Recovery Services | Disaster Recovery',
   description: 'Expert answers and solutions for "newcastle industrial flood recovery services". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'newcastle industrial flood recovery services, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'newcastle industrial flood recovery services, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function NewcastleIndustrialFloodRecoveryPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
       name: 'newcastle industrial flood recovery services',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for newcastle industrial flood recovery services. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for newcastle industrial flood recovery services. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

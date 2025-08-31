@@ -165,8 +165,7 @@ export class ShadcnExpertAgent extends EventEmitter {
           `const { toast } = useToast();
 toast({
   title: "Success",
-  description: "Your action was completed.",
-})`
+  description: "Your action was completed." })`
         ]
       }
     ];

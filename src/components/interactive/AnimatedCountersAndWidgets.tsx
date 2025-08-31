@@ -28,8 +28,7 @@ function AnimatedCounter({ target, duration = 2000, prefix = '', suffix = '', de
   const [count, setCount] = useState(0);
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   useEffect(() => {
     if (!inView) return;
@@ -84,8 +83,7 @@ function LiveAvailabilityWidget() {
     available: true,
     responseTime: 45,
     activeJobs: 12,
-    teamsReady: 8,
-  });
+    teamsReady: 8 });
 
   const [pulseKey, setPulseKey] = useState(0);
 
@@ -118,13 +116,11 @@ function LiveAvailabilityWidget() {
           className="w-3 h-3 bg-green-500 rounded-full"
           animate={{
             scale: [1, 1.3, 1],
-            opacity: [1, 0.7, 1],
-          }}
+            opacity: [1, 0.7, 1] }}
           transition={{
             duration: 1.5,
             repeat: Infinity,
-            ease: "easeInOut",
-          }}
+            ease: "easeInOut" }}
         />
       </div>
 
@@ -228,8 +224,7 @@ interface StatCardProps {
 function StatCard({ icon: Icon, value, label, suffix = '', prefix = '', colour, delay = 0 }: StatCardProps) {
   const [ref, inView] = useInView({
     threshold: 0.3,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   return (
     <motion.div
@@ -293,13 +288,11 @@ function ResponseTimeMap() {
         <h3 className="text-lg font-bold text-blue-800">Live Response Times</h3>
         <motion.div
           animate={{
-            rotate: 360,
-          }}
+            rotate: 360 }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear",
-          }}
+            ease: "linear" }}
         >
           <MapPin className="h-5 w-5 text-blue-600" />
         </motion.div>
@@ -320,13 +313,11 @@ function ResponseTimeMap() {
                 className={`w-3 h-3 bg-gradient-to-r ${location.colour} rounded-full`}
                 animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.7, 1, 0.7],
-                }}
+                  opacity: [0.7, 1, 0.7] }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  delay: index * 0.3,
-                }}
+                  delay: index * 0.3 }}
               />
               <span className="font-semibold text-gray-700">{location.city}</span>
             </div>
@@ -353,8 +344,7 @@ function ResponseTimeMap() {
 export default function AnimatedCountersAndWidgets() {
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   const stats = [
     {
@@ -363,32 +353,28 @@ export default function AnimatedCountersAndWidgets() {
       suffix: '%',
       label: 'Customer Satisfaction',
       colour: 'from-blue-500 to-blue-600',
-      delay: 0,
-    },
+      delay: 0 },
     {
       icon: Users,
       value: 2500,
       suffix: '+',
       label: 'Properties Restored',
       colour: 'from-green-500 to-green-600',
-      delay: 0.2,
-    },
+      delay: 0.2 },
     {
       icon: Award,
       value: 15,
       suffix: '+',
       label: 'Years Experience',
       colour: 'from-purple-500 to-purple-600',
-      delay: 0.4,
-    },
+      delay: 0.4 },
     {
       icon: Star,
       value: 4.9,
       decimals: 1,
       label: 'Average Rating',
       colour: 'from-yellow-500 to-yellow-600',
-      delay: 0.6,
-    },
+      delay: 0.6 },
   ];
 
   return (

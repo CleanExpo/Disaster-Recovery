@@ -32,25 +32,20 @@ export const metadata: Metadata = {
         url: '/images/optimised/damage/3D Hurricane Damage.png',
         width: 1200,
         height: 630,
-        alt: 'Professional storm damage restoration service',
-      },
-    ],
-  },
+        alt: 'Professional storm damage restoration service' },
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Storm & Natural Disaster Recovery | Emergency Response',
     description: 'Expert storm damage restoration services. Professional cyclone, hail, and wind damage repair available 24/7.',
-    images: ['/images/optimised/damage/3D Hurricane Damage.png'],
-  },
+    images: ['/images/optimised/damage/3D Hurricane Damage.png'] },
   alternates: {
-    canonical: '/services/storm-damage',
-  },
+    canonical: '/services/storm-damage' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',
     'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751',
-  }
+    'ICBM': '-25.2744, 133.7751' }
 };
 
 // Schema.org structured data for storm damage restoration

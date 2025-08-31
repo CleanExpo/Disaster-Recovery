@@ -27,14 +27,12 @@ export default function ImageUpload({
   maxWidthOrHeight = 1920,
   quality = 0.85,
   acceptedFormats = 'image/*',
-  multiple = false,
-}: ImageUploadProps) {
+  multiple = false }: ImageUploadProps) {
   const [status, setStatus] = useState<UploadStatus>({
     isUploading: false,
     progress: 0,
     error: null,
-    success: false,
-  });
+    success: false });
   
   const [preview, setPreview] = useState<string | null>(null);
   const [stats, setStats] = useState<any>(null);
@@ -61,8 +59,7 @@ export default function ImageUpload({
         useWebWorker: true,
         onProgress: (progress: number) => {
           setStatus(prev => ({ ...prev, progress: Math.min(50, progress / 2) }));
-        },
-      };
+        } };
 
       setStatus(prev => ({ ...prev, progress: 20 }));
 
@@ -92,8 +89,7 @@ export default function ImageUpload({
       // Upload to server for additional optimization
       const response = await fetch('/api/upload', {
         method: 'POST',
-        body: formData,
-      });
+        body: formData });
 
       setStatus(prev => ({ ...prev, progress: 90 }));
 

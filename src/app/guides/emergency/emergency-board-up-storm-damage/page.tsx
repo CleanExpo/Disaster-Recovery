@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Emergency Board Up Services After Storm Damage | Disaster Recovery',
   description: 'Expert answers and solutions for "emergency board up services after storm". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'emergency board up services after storm, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'emergency board up services after storm, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function EmergencyBoardUpStormDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function EmergencyBoardUpStormDamagePage() {
       name: 'emergency board up services after storm',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for emergency board up services after storm. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for emergency board up services after storm. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

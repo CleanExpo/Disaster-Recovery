@@ -2,8 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { 
-  , 
+import {  
   MessageCircle, 
   Mail, 
   MapPin, 
@@ -99,8 +98,7 @@ function MagneticFloatingButton({
         className={`absolute inset-0 rounded-full border-2 border-dashed ${colour.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}'
         animate={{
           scale: isHovered ? [1, 1.3, 1.1] : 1,
-          opacity: isHovered ? [0, 0.3, 0.1] : 0,
-        }}
+          opacity: isHovered ? [0, 0.3, 0.1] : 0 }}
         transition={{ duration: 0.5 }}
       />
 
@@ -113,8 +111,7 @@ function MagneticFloatingButton({
         `}
         style={{
           x: mouseXSpring,
-          y: mouseYSpring,
-        }}
+          y: mouseYSpring }}
         onClick={action}
         onMouseEnter={() => setIsHovered(true)}
         whileTap={{ scale: 0.95 }}
@@ -220,24 +217,20 @@ function ExpandableFABMenu() {
                   initial={{ 
                     opacity: 0, 
                     scale: 0,
-                    y: 20,
-                  }}
+                    y: 20 }}
                   animate={{ 
                     opacity: 1, 
                     scale: 1,
-                    y: -(index + 1) * 70,
-                  }}
+                    y: -(index + 1) * 70 }}
                   exit={{ 
                     opacity: 0, 
                     scale: 0,
-                    y: 20,
-                  }}
+                    y: 20 }}
                   transition={{ 
                     delay: index * 0.1,
                     type: "spring",
                     stiffness: 300,
-                    damping: 25,
-                  }}
+                    damping: 25 }}
                 >
                   <MagneticFloatingButton
                     icon={item.icon}
@@ -266,13 +259,11 @@ function ExpandableFABMenu() {
               className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
               animate={{
                 scale: [1, 1.3, 1],
-                opacity: [0.7, 0, 0.7],
-              }}
+                opacity: [0.7, 0, 0.7] }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut",
-              }}
+                ease: "easeInOut" }}
             />
           )}
 
@@ -388,13 +379,11 @@ function QuickActionDock() {
             className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-xl -z-10"
             animate={{
               scale: [1, 1.1, 1],
-              opacity: [0.5, 0.7, 0.5],
-            }}
+              opacity: [0.5, 0.7, 0.5] }}
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut",
-            }}
+              ease: "easeInOut" }}
           />
         </motion.div>
       )}
@@ -442,13 +431,11 @@ function EmergencyResponseTimer() {
                 className="w-3 h-3 bg-green-500 rounded-full"
                 animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [1, 0.7, 1],
-                }}
+                  opacity: [1, 0.7, 1] }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                  ease: "easeInOut" }}
               />
               <div className="flex-1">"
                 <div className="text-sm font-semibold text-gray-700">Response Timer</div>"

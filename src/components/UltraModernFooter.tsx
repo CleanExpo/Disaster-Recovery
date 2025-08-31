@@ -11,8 +11,7 @@ export default function UltraModernFooter() {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
+        y: (e.clientY / window.innerHeight) * 100 });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -68,8 +67,7 @@ export default function UltraModernFooter() {
         style={{
           background: 'linear-gradient(90deg, transparent, #635bff, #00d4ff, transparent)',
           backgroundSize: '200% 100%',
-          animation: 'gradient-x 3s ease infinite',
-        }}
+          animation: 'gradient-x 3s ease infinite' }}
       />
 
       {/* Grid pattern overlay */}
@@ -80,8 +78,7 @@ export default function UltraModernFooter() {
             linear-gradient(rgba(99, 91, 255, 0.3) 1px, transparent 1px),
             linear-gradient(90deg, rgba(99, 91, 255, 0.3) 1px, transparent 1px)
           `,
-          backgroundSize: '50px 50px',
-        }}
+          backgroundSize: '50px 50px' }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -91,8 +88,7 @@ export default function UltraModernFooter() {
           style={{
             background: 'rgba(99, 91, 255, 0.05)',
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(99, 91, 255, 0.2)',
-          }}
+            border: '1px solid rgba(99, 91, 255, 0.2)' }}
         >
           <h3 
             className="text-3xl font-bold mb-4"
@@ -100,8 +96,7 @@ export default function UltraModernFooter() {
               background: 'linear-gradient(135deg, #635bff 0%, #00d4ff 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
+              backgroundClip: 'text' }}
           >
             24/7 Online Emergency Response
           </h3>
@@ -113,8 +108,7 @@ export default function UltraModernFooter() {
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-white transition-all hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
-              boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
-            }}
+              boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.boxShadow = '0 20px 60px rgba(255, 69, 69, 0.4)';
             }}
@@ -141,8 +135,7 @@ export default function UltraModernFooter() {
                   style={{
                     background: 'linear-gradient(135deg, rgba(99, 91, 255, 0.15) 0%, rgba(0, 212, 255, 0.1) 100%)',
                     filter: 'blur(10px)',
-                    transform: 'scale(1.3)',
-                  }}
+                    transform: 'scale(1.3)' }}
                 />
                 <Image
                   src="/logos/disaster-recovery-logo.png"
@@ -155,8 +148,7 @@ export default function UltraModernFooter() {
                     backgroundColor: 'transparent',
                     borderRadius: '50%',
                     objectFit: 'contain',
-                    mixBlendMode: 'normal',
-                  }}
+                    mixBlendMode: 'normal' }}
                 />
               </div>
               <div>
@@ -166,8 +158,7 @@ export default function UltraModernFooter() {
                     background: 'linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
+                    backgroundClip: 'text' }}
                 >
                   Disaster Recovery
                 </div>
@@ -175,8 +166,7 @@ export default function UltraModernFooter() {
                   className="text-xs uppercase tracking-[0.2em] mt-0.5"
                   style={{
                     color: 'rgba(99, 91, 255, 0.7)',
-                    fontWeight: '500',
-                  }}
+                    fontWeight: '500' }}
                 >
                   Premier Restoration
                 </div>
@@ -196,8 +186,7 @@ export default function UltraModernFooter() {
                   className="px-3 py-1.5 rounded-full text-xs font-medium text-purple-300"
                   style={{
                     background: 'rgba(99, 91, 255, 0.1)',
-                    border: '1px solid rgba(99, 91, 255, 0.3)',
-                  }}
+                    border: '1px solid rgba(99, 91, 255, 0.3)' }}
                 >
                   ✓ {badge}
                 </div>
@@ -293,8 +282,7 @@ export default function UltraModernFooter() {
         <div 
           className="pt-8 mt-8"
           style={{
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-          }}
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright */}
@@ -314,8 +302,7 @@ export default function UltraModernFooter() {
                   className="relative w-12 h-12 rounded-lg flex items-center justify-center transition-all hover:scale-110 group overflow-hidden"
                   style={{
                     background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                  }}
+                    border: '1px solid rgba(255, 255, 255, 0.1)' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = 'rgba(99, 91, 255, 0.2)';
                     e.currentTarget.style.borderColor = 'rgba(99, 91, 255, 0.5)';
@@ -354,14 +341,12 @@ export default function UltraModernFooter() {
            style={{
              background: 'radial-gradient(circle, #635bff 0%, transparent 70%)',
              filter: 'blur(40px)',
-             animation: 'float 20s ease-in-out infinite',
-           }} />
+             animation: 'float 20s ease-in-out infinite' }} />
       <div className="absolute bottom-20 right-10 w-48 h-48 rounded-full opacity-20"
            style={{
              background: 'radial-gradient(circle, #00d4ff 0%, transparent 70%)',
              filter: 'blur(40px)',
-             animation: 'float 15s ease-in-out infinite reverse',
-           }} />
+             animation: 'float 15s ease-in-out infinite reverse' }} />
     </footer>
   );
 }

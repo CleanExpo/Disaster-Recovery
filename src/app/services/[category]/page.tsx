@@ -18,8 +18,7 @@ import {
 // Generate static params for all GMB categories
 export async function generateStaticParams() {
   return GMB_CATEGORIES.map((category) => ({
-    category: category.slug,
-  }));
+    category: category.slug }));
 }
 
 // Generate metadata for SEO
@@ -31,8 +30,7 @@ export async function generateMetadata(
   if (!category) {
     return {
       title: 'Service Not Found',
-      description: 'The requested service page could not be found.',
-    };
+      description: 'The requested service page could not be found.' };
   }
 
   const title = generateCategoryTitle(category);
@@ -52,19 +50,14 @@ export async function generateMetadata(
           url: '/images/optimised/damage/3D image of a house fire.png',
           width: 1200,
           height: 630,
-          alt: title,
-        },
-      ],
-    },
+          alt: title },
+      ] },
     twitter: {
       card: 'summary_large_image',
       title,
-      description,
-    },
+      description },
     alternates: {
-      canonical: `https://disasterrecovery.com.au/services/${category.slug}`,
-    },
-  };
+      canonical: `https://disasterrecovery.com.au/services/${category.slug}` } };
 }
 
 // Icon mapping for services

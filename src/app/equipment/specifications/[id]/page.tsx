@@ -33,8 +33,7 @@ export async function generateMetadata({ params }: EquipmentPageProps): Promise<
   if (!equipment) {
     return {
       title: 'Equipment Not Found',
-      description: 'The requested equipment specification could not be found.',
-    };
+      description: 'The requested equipment specification could not be found.' };
   }
 
   return {
@@ -45,15 +44,12 @@ export async function generateMetadata({ params }: EquipmentPageProps): Promise<
       title: `${equipment.name} - Professional Restoration Equipment`,
       description: equipment.description,
       images: [equipment.primaryImage],
-      type: 'website',
-    },
-  };
+      type: 'website' } };
 }
 
 export async function generateStaticParams() {
   return equipmentCatalog.map((equipment) => ({
-    id: equipment.id,
-  }));
+    id: equipment.id }));
 }
 
 export default function EquipmentSpecificationPage({ params }: EquipmentPageProps) {

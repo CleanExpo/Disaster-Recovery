@@ -7,8 +7,7 @@ import { CONTRACTOR_REQUIREMENTS, SERVICE_RADIUS_OPTIONS } from '@/lib/constants
 
 export const metadata: Metadata = {
   title: 'Join Our Network | IICRC Certified Contractors | Disaster Recovery',
-  description: 'Join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your service area.',
-};
+  description: 'Join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your service area.' };
 
 export default function ContractorsPage() {
   const benefits = [

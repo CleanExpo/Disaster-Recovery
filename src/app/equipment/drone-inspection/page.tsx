@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Drone Roof Inspection | Damage assessment | Advanced Restoration Technology',
-  description: 'Professional drone roof inspection for damage assessment. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional drone roof inspection for damage assessment. Latest technology for faster, better restoration results.' };
 
 export default function DroneRoofInspectionPage() {
   return (

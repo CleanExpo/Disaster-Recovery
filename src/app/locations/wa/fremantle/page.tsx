@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Fremantle | Emergency Services Western Australia',
-  description: '24/7 disaster recovery in Fremantle, Western Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
-};
+  description: '24/7 disaster recovery in Fremantle, Western Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
 
 export default function FremantlePage() {
   return (

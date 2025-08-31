@@ -107,8 +107,7 @@ export default function DocumentUpload({
     const response = await fetch('/api/fraud-detection/analyse', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json' },
       body: JSON.stringify({
         contractorId,
         documentType,
@@ -117,10 +116,8 @@ export default function DocumentUpload({
           filename: file.name,
           fileSize: file.size,
           fileType: file.type,
-          documentUrl,
-        }
-      }),
-    });
+          documentUrl }
+      }) });
 
     if (!response.ok) {
       const errorData = await response.json();

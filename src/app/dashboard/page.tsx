@@ -12,26 +12,22 @@ export default function DashboardPage() {
       name: 'Total Clients',
       value: '12',
       icon: Users,
-      change: '+2 this month',
-    },
+      change: '+2 this month' },
     {
       name: 'Active Audits',
       value: '5',
       icon: FileText,
-      change: '3 in progress',
-    },
+      change: '3 in progress' },
     {
       name: 'Proposals Sent',
       value: '8',
       icon: FileCheck,
-      change: '2 pending',
-    },
+      change: '2 pending' },
     {
       name: 'Revenue',
       value: '$12,450',
       icon: DollarSign,
-      change: '+15% from last month',
-    },
+      change: '+15% from last month' },
   ]
 
   return (

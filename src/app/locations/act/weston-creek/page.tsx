@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Weston Creek | Emergency Services Australian Capital Territory',
-  description: '24/7 disaster recovery in Weston Creek, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
-};
+  description: '24/7 disaster recovery in Weston Creek, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
 
 export default function WestonCreekPage() {
   return (

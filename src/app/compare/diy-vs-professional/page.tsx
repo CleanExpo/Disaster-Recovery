@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'DIY vs Professional Restoration | Comparison Guide | Make the Right Choice',
-  description: 'Compare diy vs professional restoration. Pros, cons, costs, and expert recommendations to help you decide.',
-};
+  description: 'Compare diy vs professional restoration. Pros, cons, costs, and expert recommendations to help you decide.' };
 
 export default function DIYvsProfessionalRestorationPage() {
   return (

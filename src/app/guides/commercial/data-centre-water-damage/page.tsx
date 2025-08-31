@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Data Centre Water Damage Recovery Services | Disaster Recovery',
   description: 'Expert answers and solutions for "data centre water damage recovery". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'data centre water damage recovery, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'data centre water damage recovery, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function DataCentreWaterDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function DataCentreWaterDamagePage() {
       name: 'data centre water damage recovery',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for data centre water damage recovery. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for data centre water damage recovery. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

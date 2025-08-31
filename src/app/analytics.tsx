@@ -165,7 +165,6 @@ export function trackConversion(conversionData: {
   if (typeof window !== 'undefined' && (window as any).fbq) {
     (window as any).fbq('track', 'Purchase', {
       value: conversionData.value,
-      currency: conversionData.currency || 'AUD',
-    });
+      currency: conversionData.currency || 'AUD' });
   }
 }

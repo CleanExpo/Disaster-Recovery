@@ -19,8 +19,7 @@ export const semrushConfig: SEMrushConfig = {
     'Co', // Competition
     'Nr', // Number of results
     'Td', // Trends
-  ],
-};
+  ] };
 
 // Keyword research for disaster recovery services
 export const targetKeywords = {
@@ -107,8 +106,7 @@ export const targetKeywords = {
     'where to find emergency restoration',
     'which restoration company is best',
     'what does disaster recovery include',
-  ],
-};
+  ] };
 
 // Competitor domains to monitor
 export const competitorDomains = [
@@ -130,8 +128,7 @@ export const semrushEndpoints = {
   keywordOverview: '/analytics/v1/',
   organicResearch: '/analytics/v1/',
   backlinks: '/analytics/v1/',
-  competitorAnalysis: '/analytics/v1/',
-};
+  competitorAnalysis: '/analytics/v1/' };
 
 // Fetch keyword data from SEMrush
 export async function fetchKeywordData(keyword: string) {
@@ -145,8 +142,7 @@ export async function fetchKeywordData(keyword: string) {
     key: SEMRUSH_API_KEY,
     phrase: keyword,
     export_columns: semrushConfig.exportColumns.join(','),
-    database: semrushConfig.database,
-  });
+    database: semrushConfig.database });
 
   try {
     const response = await fetch(`${SEMRUSH_BASE_URL}?${params}`);
@@ -185,8 +181,7 @@ export async function getCompetitorAnalysis(domain: string) {
     type: 'domain_ranks',
     key: SEMRUSH_API_KEY,
     domain: domain,
-    database: semrushConfig.database,
-  });
+    database: semrushConfig.database });
 
   try {
     const response = await fetch(`${SEMRUSH_BASE_URL}?${params}`);
@@ -214,8 +209,7 @@ export function generateSEORecommendations(keywordData: any[]) {
         reason: 'High volume, low competition',
         searchVolume,
         competition,
-        cpc,
-      });
+        cpc });
     } else if (searchVolume > 500 && cpc > 5) {
       recommendations.push({
         keyword: keyword.Ph,
@@ -223,8 +217,7 @@ export function generateSEORecommendations(keywordData: any[]) {
         reason: 'Good commercial intent',
         searchVolume,
         competition,
-        cpc,
-      });
+        cpc });
     }
   }
   
@@ -258,7 +251,5 @@ export function trackRankingImprovements(previousRankings: any, currentRankings:
       totalKeywords: 0,
       improved: 0,
       declined: 0,
-      stable: 0,
-    },
-  };
+      stable: 0 } };
 }

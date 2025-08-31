@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { , Clock, Shield, Building2, Store, Factory, Briefcase, Users, CheckCircle2, ArrowRight, AlertTriangle, FileText, MessageSquare} from 'lucide-react';
+import {  Clock, Shield, Building2, Store, Factory, Briefcase, Users, CheckCircle2, ArrowRight, AlertTriangle, FileText, MessageSquare} from 'lucide-react';
 
 export default function CommercialServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);

@@ -5,7 +5,7 @@ import { z } from 'zod';
  */
 export const ValidationPatterns = {
   // Australian Email Address (mobile and landline)
-  PHONE_AU: /^(\+?61|0)[2-478][\d\s-]{8,}$/,
+  PHONE_AU: /^(\+?61|0)[2-478][\d\s-]{8 }$/,
   
   // Australian postcode (4 digits)
   POSTCODE_AU: /^\d{4}$/,
@@ -17,10 +17,10 @@ export const ValidationPatterns = {
   ACN: /^\d{9}$/,
   
   // Email pattern
-  EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2 }$/,
   
   // Strong password pattern
-  STRONG_PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+  STRONG_PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8 }$/,
   
   // Australian Medicare number
   MEDICARE: /^\d{10}$/,
@@ -28,8 +28,7 @@ export const ValidationPatterns = {
   // Credit card patterns
   VISA: /^4[0-9]{12}(?:[0-9]{3})?$/,
   MASTERCARD: /^5[1-5][0-9]{14}$/,
-  AMEX: /^3[47][0-9]{13}$/,
-};
+  AMEX: /^3[47][0-9]{13}$/ };
 
 /**
  * Australian states and territories
@@ -142,8 +141,7 @@ export const ValidationSchemas = {
     password: z.string()
       .min(1, 'Password is required'),'
     
-    rememberMe: z.boolean().optional(),
-  }),
+    rememberMe: z.boolean().optional() }),
   
   // Registration form validation
   registrationForm: z.object({
@@ -204,8 +202,7 @@ export const ValidationSchemas = {
     excessAmount: z.number()
       .min(0, 'Excess cannot be negative')'
       .max(10000, 'Excess amount seems too high'),'
-  }),
-};
+  }) };
 
 /**
  * Custom validation functions
@@ -258,8 +255,7 @@ export const CustomValidators = {
     
     return {
       isValid: true,
-      formatted: hasCountryCode ? `+61 ${formatted.substring(1)}` : formatted,
-    };
+      formatted: hasCountryCode ? `+61 ${formatted.substring(1)}` : formatted };
   },
   
   /**
@@ -281,8 +277,7 @@ export const CustomValidators = {
       SA: [[5000, 5799], [5800, 5999]],
       WA: [[6000, 6797], [6800, 6999]],
       TAS: [[7000, 7799], [7800, 7999]],
-      NT: [[800, 899], [900, 999]],
-    };
+      NT: [[800, 899], [900, 999]] };
     
     if (state && stateRanges[state]) {
       const ranges = stateRanges[state];
@@ -337,8 +332,7 @@ export const CustomValidators = {
     
     return {
       isValid: true,
-      formatted,
-    };
+      formatted };
   },
   
   /**
@@ -373,8 +367,7 @@ export const CustomValidators = {
     if (file.size > maxSize * 1024 * 1024) {
       return {
         isValid: false,
-        error: `File size must be less than ${maxSize}MB`,
-      };
+        error: `File size must be less than ${maxSize}MB` };
     }
     
     // Check file type
@@ -397,8 +390,7 @@ export const CustomValidators = {
     }
     
     return { isValid: true };
-  },
-};
+  } };
 
 /**
  * Form field error messages

@@ -16,8 +16,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+  TableRow } from '@/components/ui/table';
 import {
   Dialog,
   DialogContent,
@@ -25,8 +24,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  DialogTrigger } from '@/components/ui/dialog';
 import {
   Ticket,
   Plus,

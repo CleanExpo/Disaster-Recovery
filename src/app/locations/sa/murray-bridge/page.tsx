@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Murray Bridge | Emergency Services South Australia',
-  description: '24/7 disaster recovery in Murray Bridge, South Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
-};
+  description: '24/7 disaster recovery in Murray Bridge, South Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
 
 export default function MurrayBridgePage() {
   return (

@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Hydroxyl Generators | Odour elimination | Advanced Restoration Technology',
-  description: 'Professional hydroxyl generators for odour elimination. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional hydroxyl generators for odour elimination. Latest technology for faster, better restoration results.' };
 
 export default function HydroxylGeneratorsPage() {
   return (

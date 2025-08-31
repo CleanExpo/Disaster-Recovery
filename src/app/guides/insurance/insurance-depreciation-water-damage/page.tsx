@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Understanding Depreciation in Water Damage Claims | Disaster Recovery',
   description: 'Expert answers and solutions for "insurance claim water damage depreciation". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'insurance claim water damage depreciation, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'insurance claim water damage depreciation, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function InsuranceDepreciationWaterDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function InsuranceDepreciationWaterDamagePage() {
       name: 'insurance claim water damage depreciation',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for insurance claim water damage depreciation. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for insurance claim water damage depreciation. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

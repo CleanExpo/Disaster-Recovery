@@ -3,8 +3,7 @@ import { Award, CheckCircle, Shield } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Asbestos Removal Licensed | Class A & B asbestos | Disaster Recovery',
-  description: 'Asbestos Removal Licensed restoration services. Class A & B asbestos. Qualified, certified, and compliant disaster recovery.',
-};
+  description: 'Asbestos Removal Licensed restoration services. Class A & B asbestos. Qualified, certified, and compliant disaster recovery.' };
 
 export default function AsbestosRemovalLicensedPage() {
   return (

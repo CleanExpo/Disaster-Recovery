@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Structural Drying Equipment: Rental vs Professional Service | Disaster Recovery',
   description: 'Expert answers and solutions for "structural drying equipment rental cost". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'structural drying equipment rental cost, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'structural drying equipment rental cost, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function StructuralDryingEquipmentCostPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function StructuralDryingEquipmentCostPage() {
       name: 'structural drying equipment rental cost',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for structural drying equipment rental cost. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for structural drying equipment rental cost. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

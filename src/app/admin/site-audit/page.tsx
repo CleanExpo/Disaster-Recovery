@@ -44,30 +44,26 @@ export default function SiteAuditPage() {
           item: 'Header Component',
           status: 'pass',
           severity: 'critical',
-          details: 'Header component with full navigation implemented',
-        },
+          details: 'Header component with full navigation implemented' },
         {
           category: 'Navigation',
           item: 'Footer Component',
           status: 'pass',
           severity: 'critical',
-          details: 'Footer component with comprehensive links implemented',
-        },
+          details: 'Footer component with comprehensive links implemented' },
         {
           category: 'Navigation',
           item: 'Mobile Navigation',
           status: 'pass',
           severity: 'high',
-          details: 'Responsive mobile menu with hamburger navigation',
-        },
+          details: 'Responsive mobile menu with hamburger navigation' },
         {
           category: 'Navigation',
           item: 'Breadcrumbs',
           status: 'warning',
           severity: 'medium',
           details: 'Breadcrumb component exists but not implemented on all pages',
-          recommendation: 'Add breadcrumbs to all interior pages for better navigation',
-        },
+          recommendation: 'Add breadcrumbs to all interior pages for better navigation' },
         
         // Google Integrations
         {
@@ -75,30 +71,26 @@ export default function SiteAuditPage() {
           item: 'Google Analytics (GA4)',
           status: 'pass',
           severity: 'critical',
-          details: 'GA4 tracking implemented in layout.tsx',
-        },
+          details: 'GA4 tracking implemented in layout.tsx' },
         {
           category: 'Google Services',
           item: 'Google Tag Manager',
           status: 'pass',
           severity: 'high',
-          details: 'GTM container implemented and configured',
-        },
+          details: 'GTM container implemented and configured' },
         {
           category: 'Google Services',
           item: 'Google Search Console',
           status: 'pass',
           severity: 'high',
-          details: 'Verification file present: google8f4d3e5a7b9c2d1e.html',
-        },
+          details: 'Verification file present: google8f4d3e5a7b9c2d1e.html' },
         {
           category: 'Google Services',
           item: 'Google Maps Integration',
           status: 'warning',
           severity: 'low',
           details: 'API key configured but not implemented',
-          recommendation: 'Add interactive maps for service areas',
-        },
+          recommendation: 'Add interactive maps for service areas' },
         
         // Microsoft/Windows Integrations
         {
@@ -106,22 +98,19 @@ export default function SiteAuditPage() {
           item: 'Microsoft Clarity',
           status: 'pass',
           severity: 'high',
-          details: 'Clarity analytics script implemented',
-        },
+          details: 'Clarity analytics script implemented' },
         {
           category: 'Microsoft Services',
           item: 'Bing Webmaster Tools',
           status: 'pass',
           severity: 'medium',
-          details: 'BingSiteAuth.xml verification file present',
-        },
+          details: 'BingSiteAuth.xml verification file present' },
         {
           category: 'Microsoft Services',
           item: 'Windows App Manifest',
           status: 'pass',
           severity: 'low',
-          details: 'PWA manifest configured for Windows',
-        },
+          details: 'PWA manifest configured for Windows' },
         
         // SEO & Marketing
         {
@@ -129,43 +118,37 @@ export default function SiteAuditPage() {
           item: 'SEMrush Integration',
           status: 'pass',
           severity: 'high',
-          details: 'SEMrush API integration configured for keyword tracking',
-        },
+          details: 'SEMrush API integration configured for keyword tracking' },
         {
           category: 'SEO',
           item: 'Meta Tags',
           status: 'pass',
           severity: 'critical',
-          details: 'All pages have unique title and description tags',
-        },
+          details: 'All pages have unique title and description tags' },
         {
           category: 'SEO',
           item: 'Structured Data',
           status: 'pass',
           severity: 'high',
-          details: 'Schema.org LocalBusiness markup implemented',
-        },
+          details: 'Schema.org LocalBusiness markup implemented' },
         {
           category: 'SEO',
           item: 'Sitemap.xml',
           status: 'pass',
           severity: 'high',
-          details: 'Dynamic sitemap generation implemented',
-        },
+          details: 'Dynamic sitemap generation implemented' },
         {
           category: 'SEO',
           item: 'Robots.txt',
           status: 'pass',
           severity: 'medium',
-          details: 'Robots.txt file properly configured',
-        },
+          details: 'Robots.txt file properly configured' },
         {
           category: 'SEO',
           item: 'Canonical URLs',
           status: 'pass',
           severity: 'high',
-          details: 'Canonical tags implemented on all pages',
-        },
+          details: 'Canonical tags implemented on all pages' },
         
         // Performance
         {
@@ -173,29 +156,25 @@ export default function SiteAuditPage() {
           item: 'Lighthouse Scores',
           status: 'pass',
           severity: 'critical',
-          details: 'All pages achieve 100/100 Lighthouse scores',
-        },
+          details: 'All pages achieve 100/100 Lighthouse scores' },
         {
           category: 'Performance',
           item: 'Image Optimisation',
           status: 'pass',
           severity: 'high',
-          details: 'Next/Image component with WebP/AVIF formats',
-        },
+          details: 'Next/Image component with WebP/AVIF formats' },
         {
           category: 'Performance',
           item: 'Code Splitting',
           status: 'pass',
           severity: 'high',
-          details: 'Dynamic imports and route-based splitting',
-        },
+          details: 'Dynamic imports and route-based splitting' },
         {
           category: 'Performance',
           item: 'Caching Headers',
           status: 'pass',
           severity: 'medium',
-          details: 'Proper cache-control headers configured',
-        },
+          details: 'Proper cache-control headers configured' },
         
         // Security
         {
@@ -203,22 +182,19 @@ export default function SiteAuditPage() {
           item: 'HTTPS',
           status: 'pass',
           severity: 'critical',
-          details: 'SSL certificate configured',
-        },
+          details: 'SSL certificate configured' },
         {
           category: 'Security',
           item: 'Security Headers',
           status: 'pass',
           severity: 'high',
-          details: 'CSP, HSTS, X-Frame-Options configured',
-        },
+          details: 'CSP, HSTS, X-Frame-Options configured' },
         {
           category: 'Security',
           item: 'Environment Variables',
           status: 'pass',
           severity: 'critical',
-          details: 'Sensitive data properly secured in .env',
-        },
+          details: 'Sensitive data properly secured in .env' },
         
         // Forms & Functionality
         {
@@ -226,23 +202,20 @@ export default function SiteAuditPage() {
           item: 'Contact Forms',
           status: 'pass',
           severity: 'critical',
-          details: 'Get Help form with radius-based matching',
-        },
+          details: 'Get Help form with radius-based matching' },
         {
           category: 'Functionality',
           item: 'Error Handling',
           status: 'pass',
           severity: 'high',
-          details: 'Custom 404 page and error boundaries',
-        },
+          details: 'Custom 404 page and error boundaries' },
         {
           category: 'Functionality',
           item: 'Email Configuration',
           status: 'warning',
           severity: 'high',
           details: 'SMTP configured but needs production credentials',
-          recommendation: 'Update email credentials for production',
-        },
+          recommendation: 'Update email credentials for production' },
         
         // Content & Pages
         {
@@ -250,22 +223,19 @@ export default function SiteAuditPage() {
           item: 'Page Count',
           status: 'pass',
           severity: 'high',
-          details: '400+ pages generated for comprehensive coverage',
-        },
+          details: '400+ pages generated for comprehensive coverage' },
         {
           category: 'Content',
           item: 'Dynamic Routes',
           status: 'pass',
           severity: 'high',
-          details: 'Catch-all route for dynamic content generation',
-        },
+          details: 'Catch-all route for dynamic content generation' },
         {
           category: 'Content',
           item: 'Coming Soon Mode',
           status: 'pass',
           severity: 'medium',
-          details: 'Area activation system implemented',
-        },
+          details: 'Area activation system implemented' },
         
         // Accessibility
         {
@@ -273,22 +243,19 @@ export default function SiteAuditPage() {
           item: 'WCAG Compliance',
           status: 'pass',
           severity: 'critical',
-          details: 'WCAG AAA colour contrast and ARIA labels',
-        },
+          details: 'WCAG AAA colour contrast and ARIA labels' },
         {
           category: 'Accessibility',
           item: 'Skip Links',
           status: 'pass',
           severity: 'high',
-          details: 'Skip to main content links implemented',
-        },
+          details: 'Skip to main content links implemented' },
         {
           category: 'Accessibility',
           item: 'Keyboard Navigation',
           status: 'pass',
           severity: 'high',
-          details: 'Full keyboard navigation support',
-        },
+          details: 'Full keyboard navigation support' },
         
         // Database & API
         {
@@ -296,22 +263,19 @@ export default function SiteAuditPage() {
           item: 'Database',
           status: 'pass',
           severity: 'critical',
-          details: 'SQLite database configured with Prisma ORM',
-        },
+          details: 'SQLite database configured with Prisma ORM' },
         {
           category: 'Infrastructure',
           item: 'API Routes',
           status: 'pass',
           severity: 'high',
-          details: 'Next.js API routes for lead capture',
-        },
+          details: 'Next.js API routes for lead capture' },
         {
           category: 'Infrastructure',
           item: 'Authentication',
           status: 'pass',
           severity: 'high',
-          details: 'NextAuth.js configured for partner portal',
-        },
+          details: 'NextAuth.js configured for partner portal' },
       ];
       
       setAuditResults(results);

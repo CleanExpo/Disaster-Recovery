@@ -14,8 +14,7 @@ import { CONTRACTOR_REQUIREMENTS, SERVICE_RADIUS_OPTIONS } from '@/lib/constants
 
 const metadata: Metadata = {
   title: 'Apply to Join Network | Contractor Application | Disaster Recovery',
-  description: 'Apply to join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your territory.',
-};
+  description: 'Apply to join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your territory.' };
 
 export default function ContractorApplicationPage() {
   const [formData, setFormData] = useState({

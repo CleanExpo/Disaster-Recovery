@@ -85,9 +85,7 @@ export const POSTCODE_DATABASE: ServiceArea[] = [
     activationRequirements: {
       minimumContractors: 2,
       requiredServices: ['waterDamage', 'fireDamage'],
-      coverageRadius: 20,
-    },
-  },
+      coverageRadius: 20 } },
   {
     postcode: '4101',
     suburb: 'West End',
@@ -100,9 +98,7 @@ export const POSTCODE_DATABASE: ServiceArea[] = [
     activationRequirements: {
       minimumContractors: 1,
       requiredServices: ['waterDamage'],
-      coverageRadius: 20,
-    },
-  },
+      coverageRadius: 20 } },
   // Sydney
   {
     postcode: '2000',
@@ -116,9 +112,7 @@ export const POSTCODE_DATABASE: ServiceArea[] = [
     activationRequirements: {
       minimumContractors: 3,
       requiredServices: ['waterDamage', 'fireDamage', 'mouldRemediation'],
-      coverageRadius: 25,
-    },
-  },
+      coverageRadius: 25 } },
   // Melbourne
   {
     postcode: '3000',
@@ -132,9 +126,7 @@ export const POSTCODE_DATABASE: ServiceArea[] = [
     activationRequirements: {
       minimumContractors: 3,
       requiredServices: ['waterDamage', 'fireDamage'],
-      coverageRadius: 25,
-    },
-  },
+      coverageRadius: 25 } },
 ];
 
 /**
@@ -206,8 +198,7 @@ export function getAreaStatus(postcode: string): {
   if (!area) {
     return {
       status: 'inactive',
-      message: 'This area is not yet in our network. Register your interest to help us expand.',
-    };
+      message: 'This area is not yet in our network. Register your interest to help us expand.' };
   }
   
   switch (area.status) {
@@ -215,8 +206,7 @@ export function getAreaStatus(postcode: string): {
       return {
         status: 'active',
         message: `Service available! ${area.contractors.length} verified contractors ready to help.`,
-        contractors: area.contractors.length,
-      };
+        contractors: area.contractors.length };
     
     case 'pending':
       const needed = area.activationRequirements.minimumContractors - area.contractors.length;
@@ -224,15 +214,13 @@ export function getAreaStatus(postcode: string): {
         status: 'pending',
         message: `Almost ready! We need ${needed} more verified contractor${needed > 1 ? 's' : ''} to activate this area.`,
         contractors: area.contractors.length,
-        requirements: area.activationRequirements.requiredServices,
-      };
+        requirements: area.activationRequirements.requiredServices };
     
     case 'inactive':
       return {
         status: 'inactive',
         message: 'No contractors yet. Are you a restoration professional? Help us launch this area!',
-        requirements: area.activationRequirements.requiredServices,
-      };
+        requirements: area.activationRequirements.requiredServices };
   }
 }
 
@@ -267,8 +255,7 @@ export function matchContractors(
         suburb: 'Brisbane',
         state: 'QLD',
         postcode: '4000',
-        coordinates: { lat: -27.4698, lng: 153.0251 },
-      },
+        coordinates: { lat: -27.4698, lng: 153.0251 } },
       serviceRadius: 25,
       serviceAreas: ['4000', '4101', '4102'],
       services: {
@@ -277,26 +264,21 @@ export function matchContractors(
         mouldRemediation: true,
         biohazard: false,
         traumaCleanup: false,
-        floodRecovery: true,
-      },
+        floodRecovery: true },
       capacity: {
         technicians: 8,
         vehicles: 4,
-        maxJobsPerWeek: 20,
-      },
+        maxJobsPerWeek: 20 },
       insurance: {
         publicLiability: 20000000,
         professionalIndemnity: 5000000,
-        expiryDate: new Date('2025-01-01'),
-      },
+        expiryDate: new Date('2025-01-01') },
       membershipTier: 'regional',
       performance: {
         jobsCompleted: 450,
         averageRating: 4.8,
         responseTime: 35,
-        insuranceApprovalRate: 98,
-      },
-    },
+        insuranceApprovalRate: 98 } },
   ];
   
   // Filter by service needed and radius
@@ -319,8 +301,7 @@ export function distributeLeads(
   // Sort contractors by performance and availability
   const ranked = contractors.map(contractor => ({
     contractorId: contractor.id,
-    priority: calculatePriority(contractor, urgency),
-  })).sort((a, b) => b.priority - a.priority);
+    priority: calculatePriority(contractor, urgency) })).sort((a, b) => b.priority - a.priority);
   
   // Return top 3 contractors for customer choice
   return ranked.slice(0, 3);
@@ -350,8 +331,7 @@ function calculatePriority(
   const tierBonus = {
     premium: 10,
     regional: 5,
-    local: 0,
-  };
+    local: 0 };
   priority += tierBonus[contractor.membershipTier];
   
   return priority;

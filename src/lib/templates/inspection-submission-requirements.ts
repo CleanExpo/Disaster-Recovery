@@ -234,8 +234,7 @@ export const PHOTO_VALIDATION_RULES = {
   },
   resolution: {
     minimum_width: 1280,
-    minimum_height: 720,
-  },
+    minimum_height: 720 },
   formats: ['image/jpeg', 'image/png'],
   required_metadata: ['timestamp', 'location'],
   description_requirements: {

@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'carpet drying FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about carpet drying. Expert answers to common questions, tips, and advice.',
-};
+  description: 'Everything you need to know about carpet drying. Expert answers to common questions, tips, and advice.' };
 
 export default function carpetdryingFAQPage() {
   return (

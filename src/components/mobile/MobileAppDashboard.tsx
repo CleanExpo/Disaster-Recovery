@@ -50,9 +50,7 @@ const mockJobs: MobileJob[] = [
     status: 'in_progress',
     priority: 'urgent',
     client: {
-      name: 'Sarah Johnson',
-      
-    },
+      name: 'Sarah Johnson' },
     location: {
       address: '123 George St, Sydney NSW 2000',
       coordinates: { latitude: -33.8688, longitude: 151.2093 },
@@ -73,9 +71,7 @@ const mockJobs: MobileJob[] = [
     status: 'assigned',
     priority: 'routine',
     client: {
-      name: 'Mike Chen',
-      
-    },
+      name: 'Mike Chen' },
     location: {
       address: '456 Pitt St, Sydney NSW 2000',
       coordinates: { latitude: -33.8732, longitude: 151.2069 },

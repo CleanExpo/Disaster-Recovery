@@ -22,8 +22,7 @@ export function PerformanceMonitor() {
               event_category: 'Web Vitals',
               name: 'LCP',
               value: Math.round(lastEntry.startTime),
-              event_label: 'LCP',
-            });
+              event_label: 'LCP' });
           }
         });
         
@@ -38,8 +37,7 @@ export function PerformanceMonitor() {
                 event_category: 'Web Vitals',
                 name: 'FID',
                 value: Math.round(entry.processingStart - entry.startTime),
-                event_label: 'FID',
-              });
+                event_label: 'FID' });
             }
           });
         });

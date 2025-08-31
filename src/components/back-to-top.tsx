@@ -24,8 +24,7 @@ export function BackToTop() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behaviour: 'smooth',
-    });
+      behaviour: 'smooth' });
   };
   
   if (!isVisible) {

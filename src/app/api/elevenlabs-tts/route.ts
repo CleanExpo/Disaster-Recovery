@@ -19,8 +19,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'Accept': 'audio/mpeg',
         'Content-Type': 'application/json',
-        'xi-api-key': ELEVENLABS_API_KEY,
-      },
+        'xi-api-key': ELEVENLABS_API_KEY },
       body: JSON.stringify({
         text,
         model_id,
@@ -46,8 +45,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'Content-Type': 'audio/mpeg',
         'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
-      },
-    });
+      } });
 
   } catch (error) {
     console.error('ElevenLabs TTS error:', error);

@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Wollongong Coastal Property Storm Damage Repair | Disaster Recovery',
   description: 'Expert answers and solutions for "wollongong coastal property storm damage". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'wollongong coastal property storm damage, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'wollongong coastal property storm damage, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WollongongCoastalStormDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WollongongCoastalStormDamagePage() {
       name: 'wollongong coastal property storm damage',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for wollongong coastal property storm damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for wollongong coastal property storm damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

@@ -13,8 +13,7 @@ import { SERVICE_RADIUS_OPTIONS, CONTRACTOR_REQUIREMENTS } from '@/lib/constants
 
 const metadata: Metadata = {
   title: 'Get Emergency Help | Instant Quote | IICRC Certified Contractors',
-  description: 'Get instant help from IICRC certified disaster recovery contractors in your area. 24/7 emergency response, insurance approved.',
-};
+  description: 'Get instant help from IICRC certified disaster recovery contractors in your area. 24/7 emergency response, insurance approved.' };
 
 export default function GetHelpPage() {
   const [formData, setFormData] = useState({

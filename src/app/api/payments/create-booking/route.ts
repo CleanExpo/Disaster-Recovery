@@ -6,8 +6,7 @@ import { isProductionMode } from '@/lib/services/mock';
 // Initialize Stripe with your secret key or use mock in demo mode
 const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-11-20.acacia',
-    })
+      apiVersion: '2024-11-20.acacia' })
   : getMockStripe() as any;
 
 interface BookingData {
@@ -74,8 +73,7 @@ export async function POST(request: NextRequest) {
     try {
       const customers = await stripe.customers.list({
         email: bookingData.email,
-        limit: 1,
-      });
+        limit: 1 });
 
       if (customers.data.length > 0) {
         customer = customers.data[0];
@@ -87,9 +85,7 @@ export async function POST(request: NextRequest) {
           address: bookingData.billingAddress,
           metadata: {
             bookingId,
-            propertyAddress: `${bookingData.address}, ${bookingData.suburb}, ${bookingData.state} ${bookingData.postcode}`,
-          },
-        });
+            propertyAddress: `${bookingData.address}, ${bookingData.suburb}, ${bookingData.state} ${bookingData.postcode}` } });
       }
     } catch (error) {
       console.error('Error creating/retrieving customer:', error);
@@ -115,14 +111,11 @@ export async function POST(request: NextRequest) {
           contractorAmount: contractorAmount.toString(),
           hasInsurance: bookingData.hasInsurance.toString(),
           insuranceCompany: bookingData.insuranceCompany || '',
-          claimNumber: bookingData.claimNumber || '',
-        },
+          claimNumber: bookingData.claimNumber || '' },
         automatic_payment_methods: {
-          enabled: true,
-        },
+          enabled: true },
         // Set up for future contractor payout
-        transfer_group: bookingId,
-      });
+        transfer_group: bookingId });
 
       // In production, you would also:
       // 1. Store booking details in database
@@ -138,9 +131,7 @@ export async function POST(request: NextRequest) {
           paymentIntentId: paymentIntent.id,
           amount: totalAmount,
           serviceFee,
-          contractorAmount,
-        },
-      });
+          contractorAmount } });
     } else {
       // Handle bank transfer
       // Create an invoice for bank transfer payments
@@ -152,9 +143,7 @@ export async function POST(request: NextRequest) {
         metadata: {
           bookingId,
           serviceType: bookingData.serviceType,
-          urgencyLevel: bookingData.urgencyLevel,
-        },
-      });
+          urgencyLevel: bookingData.urgencyLevel } });
 
       // Add line item for the service
       await stripe.invoiceItems.create({
@@ -162,8 +151,7 @@ export async function POST(request: NextRequest) {
         invoice: invoice.id,
         amount: totalAmount,
         currency: 'aud',
-        description: `Emergency ${bookingData.serviceType} Service - Initial Booking Fee`,
-      });
+        description: `Emergency ${bookingData.serviceType} Service - Initial Booking Fee` });
 
       // Finalize and send the invoice
       const finalizedInvoice = await stripe.invoices.finalizeInvoice(invoice.id);
@@ -185,10 +173,7 @@ export async function POST(request: NextRequest) {
             accountName: 'Natural Response Pty Ltd',
             bsb: '123-456',
             accountNumber: '12345678',
-            reference: bookingId,
-          },
-        },
-      });
+            reference: bookingId } } });
     }
   } catch (error) {
     console.error('Payment processing error:', error);
@@ -198,8 +183,7 @@ export async function POST(request: NextRequest) {
         { 
           success: false, 
           message: `Payment error: ${error.message}`,
-          code: error.code,
-        },
+          code: error.code },
         { status: 400 }
       );
     }
@@ -207,8 +191,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { 
         success: false, 
-        message: 'An error occurred processing your payment. Please try again.',
-      },
+        message: 'An error occurred processing your payment. Please try again.' },
       { status: 500 }
     );
   }

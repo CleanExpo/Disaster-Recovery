@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { , Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare} from 'lucide-react';
+import {  Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare} from 'lucide-react';
 
 export default function HoardingCleanupServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);

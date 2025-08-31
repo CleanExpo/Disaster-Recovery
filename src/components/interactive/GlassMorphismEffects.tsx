@@ -515,19 +515,16 @@ export default function GlassMorphismEffects({
             )}
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
+              top: `${Math.random() * 100}%` }}
             animate={{
               x: [0, 50, -50, 0],
               y: [0, -30, 30, 0],
-              scale: [1, 1.2, 0.8, 1],
-            }}
+              scale: [1, 1.2, 0.8, 1] }}
             transition={{
               duration: 8 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.5,
-            }}
+              delay: i * 0.5 }}
           />
         ))}
       </div>

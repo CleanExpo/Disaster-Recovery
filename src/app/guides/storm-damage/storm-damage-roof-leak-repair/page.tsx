@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Emergency Storm Damage Roof Leak Repairs | Disaster Recovery',
   description: 'Expert answers and solutions for "storm damage roof leak emergency repair". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'storm damage roof leak emergency repair, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'storm damage roof leak emergency repair, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function StormDamageRoofLeakRepairPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function StormDamageRoofLeakRepairPage() {
       name: 'storm damage roof leak emergency repair',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for storm damage roof leak emergency repair. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for storm damage roof leak emergency repair. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

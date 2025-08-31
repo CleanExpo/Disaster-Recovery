@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Gold Coast High Rise Water Damage Specialists | Disaster Recovery',
   description: 'Expert answers and solutions for "gold coast high rise water damage". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'gold coast high rise water damage, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'gold coast high rise water damage, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function GoldCoastHighRiseWaterDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function GoldCoastHighRiseWaterDamagePage() {
       name: 'gold coast high rise water damage',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for gold coast high rise water damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for gold coast high rise water damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

@@ -12,8 +12,7 @@ export const metadata: Metadata = {
     'infectious waste removal',
     'hazmat cleanup',
     'OSHA compliance cleanup'
-  ],
-};
+  ] };
 
 export default function BiohazardPage() {
   return (

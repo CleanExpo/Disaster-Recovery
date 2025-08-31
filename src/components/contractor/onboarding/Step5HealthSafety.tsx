@@ -44,14 +44,12 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+  FormMessage } from "@/components/ui/form"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+  AccordionTrigger } from "@/components/ui/accordion"
 import { toast } from "@/components/ui/use-toast"
 
 const safetySchema = z.object({
@@ -169,8 +167,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
     onNext(data)
     toast({
       title: "Health & Safety Information Saved",
-      description: "Your safety compliance details have been recorded.",
-    })
+      description: "Your safety compliance details have been recorded." })
   }
 
   const swmsOptions = [

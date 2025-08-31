@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Insurance Claim vs Cash Payment | Comparison Guide | Make the Right Choice',
-  description: 'Compare insurance claim vs cash payment. Pros, cons, costs, and expert recommendations to help you decide.',
-};
+  description: 'Compare insurance claim vs cash payment. Pros, cons, costs, and expert recommendations to help you decide.' };
 
 export default function InsuranceClaimvsCashPaymentPage() {
   return (

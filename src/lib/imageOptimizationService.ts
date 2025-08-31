@@ -21,37 +21,31 @@ export const IMAGE_OPTIMIZATION_CONFIG = {
       maxHeight: 400,
       quality: 70,
       format: 'webp' as const,
-      targetSizeKB: 50,
-    },
+      targetSizeKB: 50 },
     hero: {
       maxWidth: 1920,
       maxHeight: 1080,
       quality: 85,
       format: 'webp' as const,
-      targetSizeKB: 500,
-    },
+      targetSizeKB: 500 },
     content: {
       maxWidth: 1200,
       maxHeight: 800,
       quality: 80,
       format: 'webp' as const,
-      targetSizeKB: 300,
-    },
+      targetSizeKB: 300 },
     logo: {
       maxWidth: 500,
       maxHeight: 500,
       quality: 90,
       format: 'webp' as const,
-      targetSizeKB: 100,
-    },
+      targetSizeKB: 100 },
     icon: {
       maxWidth: 128,
       maxHeight: 128,
       quality: 90,
       format: 'png' as const,
-      targetSizeKB: 30,
-    },
-  },
+      targetSizeKB: 30 } },
   
   // Directory-based rules
   directoryRules: {
@@ -63,8 +57,7 @@ export const IMAGE_OPTIMIZATION_CONFIG = {
     '/public/images/equipment': 'content',
     '/public/images/damage': 'content',
     '/public/uploads': 'content',
-    '/uploads': 'content',
-  },
+    '/uploads': 'content' },
   
   // File patterns to ignore
   ignorePatterns: [
@@ -80,8 +73,7 @@ export const IMAGE_OPTIMIZATION_CONFIG = {
   maxFileSizeMB: 5,
   
   // Minimum file size to trigger optimization (in KB)
-  minFileSizeKB: 100,
-};
+  minFileSizeKB: 100 };
 
 export class ImageOptimizationService {
   private static instance: ImageOptimizationService;
@@ -148,9 +140,7 @@ export class ImageOptimizationService {
       ignoreInitial: true,
       awaitWriteFinish: {
         stabilityThreshold: 2000,
-        pollInterval: 100,
-      },
-    });
+        pollInterval: 100 } });
     
     // Watch for new or changed images
     this.watcher
@@ -299,8 +289,7 @@ export class ImageOptimizationService {
         if (metadata.width && metadata.width > profile.maxWidth) {
           sharpInstance.resize(profile.maxWidth, null, {
             withoutEnlargement: true,
-            fit: 'inside',
-          });
+            fit: 'inside' });
         }
         
         // Convert format and compress
@@ -309,13 +298,11 @@ export class ImageOptimizationService {
         } else if (profile.format === 'png') {
           optimizedBuffer = await sharpInstance.png({ 
             compressionLevel: 9,
-            palette: true,
-          }).toBuffer();
+            palette: true }).toBuffer();
         } else {
           optimizedBuffer = await sharpInstance.jpeg({ 
             quality,
-            progressive: true,
-          }).toBuffer();
+            progressive: true }).toBuffer();
         }
         
         const optimizedSizeKB = optimizedBuffer.length / 1024;
@@ -396,8 +383,7 @@ export class ImageOptimizationService {
     return {
       isRunning: this.isRunning,
       queueSize: this.queue.size,
-      optimizedCount: this.optimizedCache.size,
-    };
+      optimizedCount: this.optimizedCache.size };
   }
 }
 

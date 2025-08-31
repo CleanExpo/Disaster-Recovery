@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Insurance Approved Restoration Contractors | Disaster Recovery',
   description: 'Expert answers and solutions for "insurance approved restoration contractors australia". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'insurance approved restoration contractors australia, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'insurance approved restoration contractors australia, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function InsuranceApprovedContractorsPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function InsuranceApprovedContractorsPage() {
       name: 'insurance approved restoration contractors australia',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for insurance approved restoration contractors australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for insurance approved restoration contractors australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

@@ -28,14 +28,12 @@ export async function POST(request: NextRequest) {
           context: entry.context,
           metadata: entry.metadata,
           error: entry.error,
-          duration: entry.duration,
-        }),
+          duration: entry.duration }),
         ipAddress: entry.context?.ipAddress || request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
         userAgent: entry.context?.userAgent || request.headers.get('user-agent'),
         performedBy: entry.context?.userId || entry.context?.contractorId || 'SYSTEM',
         performedByType: entry.context?.contractorId ? 'CONTRACTOR' : entry.context?.userId ? 'USER' : 'SYSTEM',
-        createdAt: new Date(entry.timestamp),
-      }));
+        createdAt: new Date(entry.timestamp) }));
 
       // Use transaction for batch insert
       await prisma.$transaction(async (tx) => {
@@ -51,9 +49,7 @@ export async function POST(request: NextRequest) {
                 ipAddress: log.ipAddress,
                 userAgent: log.userAgent,
                 performedBy: log.performedBy,
-                performedByType: log.performedByType,
-              },
-            });
+                performedByType: log.performedByType } });
           }
         }
       });

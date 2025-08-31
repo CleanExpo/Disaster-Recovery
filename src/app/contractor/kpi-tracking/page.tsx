@@ -192,12 +192,10 @@ export default function KPITrackingPage() {
             customerRating: 5,
             photosTaken: 25,
             reportSubmitted: true,
-            insuranceApproved: true,
-          },
+            insuranceApproved: true },
           status: 'completed',
           completedAt: '2024-06-15',
-          paymentReleased: 2200,
-        },
+          paymentReleased: 2200 },
         {
           jobId: 'JOB-002',
           bookingId: 'NRP-2024-DEF456',
@@ -210,11 +208,9 @@ export default function KPITrackingPage() {
             customerRating: 4.5,
             photosTaken: 30,
             reportSubmitted: true,
-            insuranceApproved: false,
-          },
+            insuranceApproved: false },
           status: 'in_progress',
-          paymentReleased: 1100,
-        },
+          paymentReleased: 1100 },
       ]);
       setLoading(false);
     }, 1000);

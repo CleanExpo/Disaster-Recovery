@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
-import { DollarSign, Calculator,  } from 'lucide-react';
+import { DollarSign, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Melbourne mould removal Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does mould removal cost in Melbourne? Average prices, insurance coverage, payment plans. Get free quote now.',
-};
+  description: 'How much does mould removal cost in Melbourne? Average prices, insurance coverage, payment plans. Get free quote now.' };
 
 export default function MelbournemouldremovalCostPage() {
   return (

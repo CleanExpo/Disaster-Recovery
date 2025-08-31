@@ -3,8 +3,7 @@ import { FileText, TrendingUp, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Brisbane Floods 2022 Recovery | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Brisbane Floods 2022 Recovery. Real results, timelines, and restoration process.',
-};
+  description: 'How we helped recover from Brisbane Floods 2022 Recovery. Real results, timelines, and restoration process.' };
 
 export default function BrisbaneFloods2022RecoveryPage() {
   return (

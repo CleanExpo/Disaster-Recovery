@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'biohazard cleanup FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about biohazard cleanup. Expert answers to common questions, tips, and advice.',
-};
+  description: 'Everything you need to know about biohazard cleanup. Expert answers to common questions, tips, and advice.' };
 
 export default function biohazardcleanupFAQPage() {
   return (

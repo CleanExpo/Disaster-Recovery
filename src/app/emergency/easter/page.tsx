@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Easter Emergency Services | Easter Long Weekend | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available Easter Long Weekend. No call-out fees, immediate response nationwide.',
-};
+  description: 'Emergency disaster recovery services available Easter Long Weekend. No call-out fees, immediate response nationwide.' };
 
 export default function EasterEmergencyPage() {
   return (

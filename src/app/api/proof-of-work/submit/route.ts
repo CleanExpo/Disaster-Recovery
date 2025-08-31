@@ -107,8 +107,7 @@ export async function POST(req: NextRequest) {
         where: {
           contractorId,
           workType: claim.workType,
-          projectName: claim.projectName,
-        }
+          projectName: claim.projectName }
       });
 
       if (existingClaim) {
@@ -129,8 +128,7 @@ export async function POST(req: NextRequest) {
             insuranceCompany: claim.insuranceCompany,
             evidence: JSON.stringify(claim.evidence),
             verificationStatus: 'PENDING',
-            submittedAt: new Date(),
-          }
+            submittedAt: new Date() }
         });
         createdClaims.push(updatedClaim);
       } else {
@@ -153,8 +151,7 @@ export async function POST(req: NextRequest) {
             insuranceCompany: claim.insuranceCompany,
             evidence: JSON.stringify(claim.evidence),
             verificationStatus: 'PENDING',
-            submittedAt: new Date(),
-          }
+            submittedAt: new Date() }
         });
         createdClaims.push(newClaim);
       }
@@ -168,8 +165,7 @@ export async function POST(req: NextRequest) {
     const requiredWorkTypesCount = await prisma.competencyTestResult.count({
       where: {
         contractorId,
-        passed: true,
-      }
+        passed: true }
     });
 
     const submittedProofCount = await prisma.proofOfWork.count({
@@ -202,10 +198,8 @@ export async function POST(req: NextRequest) {
           contractorId,
           proofOfWorkId: claim.id,
           workType: claim.workType,
-          projectValue: claim.projectValue,
-        }),
-        read: false,
-      }))
+          projectValue: claim.projectValue }),
+        read: false }))
     });
 
     return NextResponse.json({
@@ -256,14 +250,12 @@ export async function GET(req: NextRequest) {
             select: {
               email: true,
               businessName: true,
-              status: true,
-            }
+              status: true }
           }
         },
         orderBy: { submittedAt: 'desc' },
         skip,
-        take: limit,
-      }),
+        take: limit }),
       prisma.proofOfWork.count({ where })
     ]);
 

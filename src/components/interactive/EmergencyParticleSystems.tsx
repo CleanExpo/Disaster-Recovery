@@ -24,23 +24,19 @@ export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: 
       case 'fire':
         return {
           colours: ['#FF4500', '#FF6347', '#FFD700', '#FF8C00'],
-          size: 'w-2 h-2',
-        };
+          size: 'w-2 h-2' };
       case 'water':
         return {
           colours: ['#00BFFF', '#1E90FF', '#4169E1', '#0000CD'],
-          size: 'w-1.5 h-1.5',
-        };
+          size: 'w-1.5 h-1.5' };
       case 'storm':
         return {
           colours: ['#708090', '#778899', '#B0C4DE', '#C0C0C0'],
-          size: 'w-1 h-3',
-        };
+          size: 'w-1 h-3' };
       default:
         return {
           colours: ['#FF4500', '#00BFFF', '#FFD700', '#708090'],
-          size: 'w-1.5 h-1.5',
-        };
+          size: 'w-1.5 h-1.5' };
     }
   };
 
@@ -56,22 +52,18 @@ export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: 
           className={`absolute ${style.size} rounded-full`}
           style={{
             backgroundColor: style.colours[i % style.colours.length],
-            left: `${Math.random() * 100}%`,
-          }}
+            left: `${Math.random() * 100}%` }}
           initial={{
             y: -20,
-            opacity: 0,
-          }}
+            opacity: 0 }}
           animate={{
             y: typeof window !== 'undefined' ? window.innerHeight + 20 : 1080,
-            opacity: [0, 1, 1, 0],
-          }}
+            opacity: [0, 1, 1, 0] }}
           transition={{
             duration: Math.random() * 5 + 5,
             repeat: Infinity,
             delay: Math.random() * 5,
-            ease: "linear",
-          }}
+            ease: "linear" }}
         />
       ))}
     </div>
@@ -131,8 +123,7 @@ export function EmergencyResponseParticles({ intensity = 'medium', className = '
         animate={{
           background: currentType === 'fire' 
             ? 'radial-gradient(circle at centre, rgba(255,69,0,0.1) 0%, transparent 70%)'
-            : 'radial-gradient(circle at centre, rgba(0,191,255,0.1) 0%, transparent 70%)',
-        }}
+            : 'radial-gradient(circle at centre, rgba(0,191,255,0.1) 0%, transparent 70%)' }}
         transition={{ duration: 2 }}
       />
     </div>

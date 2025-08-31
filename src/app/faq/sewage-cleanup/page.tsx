@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'sewage cleanup FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about sewage cleanup. Expert answers to common questions, tips, and advice.',
-};
+  description: 'Everything you need to know about sewage cleanup. Expert answers to common questions, tips, and advice.' };
 
 export default function sewagecleanupFAQPage() {
   return (

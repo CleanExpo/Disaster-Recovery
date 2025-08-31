@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { , Users, Clock, Shield, CheckCircle, Star, Zap, MessageSquare} from 'lucide-react';
+import {  Users, Clock, Shield, CheckCircle, Star, Zap, MessageSquare} from 'lucide-react';
 
 export default function AnimatedHero() {
   return (
@@ -15,17 +15,14 @@ export default function AnimatedHero() {
             className="absolute w-1 h-1 bg-white rounded-full opacity-50"
             initial={{
               x: Math.random() * 1920,
-              y: Math.random() * 1080,
-            }}
+              y: Math.random() * 1080 }}
             animate={{
               x: Math.random() * 1920,
-              y: Math.random() * 1080,
-            }}
+              y: Math.random() * 1080 }}
             transition={{
               duration: Math.random() * 20 + 10,
               repeat: Infinity,
-              ease: "linear",
-            }}
+              ease: "linear" }}
           />
         ))}
       </div>
@@ -39,8 +36,7 @@ export default function AnimatedHero() {
             "radial-gradient(circle at 80% 50%, rgba(0,100,255,0.3) 0%, transparent 50%)",
             "radial-gradient(circle at 50% 50%, rgba(255,100,0,0.3) 0%, transparent 50%)",
             "radial-gradient(circle at 20% 50%, rgba(255,0,0,0.3) 0%, transparent 50%)",
-          ],
-        }}
+          ] }}
         transition={{ duration: 10, repeat: Infinity }}
       />
 
@@ -63,13 +59,11 @@ export default function AnimatedHero() {
               <motion.div
                 animate={{
                   scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0],
-                }}
+                  rotate: [0, 5, -5, 0] }}
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  delay: index * 0.3,
-                }}
+                  delay: index * 0.3 }}
                 className={`p-3 bg-${item.colour}-500/20 rounded-full border-2 border-${item.colour}-400`}
               >
                 <item.icon className={`h-6 w-6 text-${item.colour}-400`} />
@@ -94,8 +88,7 @@ export default function AnimatedHero() {
                 "0 0 40px rgba(255,0,0,0.8)",
                 "0 0 60px rgba(255,100,0,0.6)",
                 "0 0 20px rgba(255,0,0,0)",
-              ],
-            }}
+              ] }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             EMERGENCY
@@ -104,8 +97,7 @@ export default function AnimatedHero() {
           <motion.h2
             className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent"
             animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
             transition={{ duration: 5, repeat: Infinity }}
             style={{ backgroundSize: "200% 200%" }}
           >
@@ -158,24 +150,20 @@ export default function AnimatedHero() {
               key={index}
               className="text-center"
               animate={{
-                y: [0, -5, 0],
-              }}
+                y: [0, -5, 0] }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                delay: index * 0.2,
-              }}
+                delay: index * 0.2 }}
             >
               <motion.div
                 className="text-3xl font-bold text-white"
                 animate={{
-                  scale: [1, 1.1, 1],
-                }}
+                  scale: [1, 1.1, 1] }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  delay: index * 0.3,
-                }}
+                  delay: index * 0.3 }}
               >
                 {stat.number}
               </motion.div>
@@ -188,23 +176,19 @@ export default function AnimatedHero() {
         <motion.div
           className="absolute bottom-5 left-1/2 transform -translate-x-1/2"
           animate={{
-            y: [0, 10, 0],
-          }}
+            y: [0, 10, 0] }}
           transition={{
             duration: 1.5,
-            repeat: Infinity,
-          }}
+            repeat: Infinity }}
         >
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
             <motion.div
               className="w-1 h-2 bg-white rounded-full mt-2"
               animate={{
-                y: [0, 12, 0],
-              }}
+                y: [0, 12, 0] }}
               transition={{
                 duration: 1.5,
-                repeat: Infinity,
-              }}
+                repeat: Infinity }}
             />
           </div>
         </motion.div>

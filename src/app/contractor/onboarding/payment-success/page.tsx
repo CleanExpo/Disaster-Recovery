@@ -23,8 +23,7 @@ function PaymentSuccessPageContent() {
       const response = await fetch('/api/stripe/verify-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId }),
-      });
+        body: JSON.stringify({ sessionId }) });
 
       if (response.ok) {
         setPaymentVerified(true);

@@ -127,8 +127,7 @@ export function generateAustralianMetadata({
     formatDetection: {
       email: false,
       address: false,
-      telephone: "",
-    },
+      telephone: "" },
     openGraph: {
       title,
       description,
@@ -139,18 +138,15 @@ export function generateAustralianMetadata({
           url: image,
           width: 1200,
           height: 630,
-          alt: title,
-        },
+          alt: title },
       ],
       locale: 'en_AU',
-      type: 'website',
-    },
+      type: 'website' },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
-    },
+      images: [image] },
     robots: {
       index: true,
       follow: true,
@@ -159,13 +155,9 @@ export function generateAustralianMetadata({
         follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
+        'max-snippet': -1 } },
     alternates: {
-      canonical: `https://disasterrecovery.com.au${path}`,
-    },
-  };
+      canonical: `https://disasterrecovery.com.au${path}` } };
 }
 
 // Schema.org Generator for Australian Business

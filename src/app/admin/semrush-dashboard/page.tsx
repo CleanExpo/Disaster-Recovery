@@ -81,8 +81,7 @@ export default function SEMrushDashboard() {
         cpc: metrics?.cpc || Math.random() * 20,
         competition: metrics?.competition || Math.random(),
         pageExists,
-        url: pageExists ? `/${slug}` : undefined,
-      });
+        url: pageExists ? `/${slug}` : undefined });
     }
     
     setKeywordData(results);

@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Emergency Water Damage: Who to Call First | Disaster Recovery',
   description: 'Expert answers and solutions for "who to call for emergency water damage". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'who to call for emergency water damage, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'who to call for emergency water damage, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WhoToCallWaterDamageEmergencyPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WhoToCallWaterDamageEmergencyPage() {
       name: 'who to call for emergency water damage',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for who to call for emergency water damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for who to call for emergency water damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

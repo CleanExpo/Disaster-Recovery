@@ -14,9 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Insurance Delays Crisis - ASIC & ICA Data Reveals System Failures',
     description: 'ASIC concerned about ongoing 2022 flood claims. One in 10 AFCA complaints about claims handling delays.',
-    images: ['/images/insurance-delays-cost.jpg'],
-  },
-};
+    images: ['/images/insurance-delays-cost.jpg'] } };
 
 const delayStages = [
   {

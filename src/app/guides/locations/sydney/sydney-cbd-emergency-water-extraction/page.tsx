@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Sydney CBD Emergency Water Extraction - 24/7 Service | Disaster Recovery',
   description: 'Expert answers and solutions for "emergency water extraction sydney cbd after hours". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'emergency water extraction sydney cbd after hours, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'emergency water extraction sydney cbd after hours, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function SydneyCbdEmergencyWaterExtractionPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
       name: 'emergency water extraction sydney cbd after hours',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for emergency water extraction sydney cbd after hours. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for emergency water extraction sydney cbd after hours. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

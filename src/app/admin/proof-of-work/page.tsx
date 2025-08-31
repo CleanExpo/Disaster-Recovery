@@ -75,8 +75,7 @@ export default function ProofOfWorkAdmin() {
         page: page.toString(),
         limit: pagination.limit.toString(),
         ...(filters.workType && { workType: filters.workType }),
-        ...(filters.verificationStatus && { verificationStatus: filters.verificationStatus }),
-      });
+        ...(filters.verificationStatus && { verificationStatus: filters.verificationStatus }) });
 
       const response = await fetch(`/api/proof-of-work/submit?${params}`);
       const data = await response.json();
@@ -101,9 +100,7 @@ export default function ProofOfWorkAdmin() {
         body: JSON.stringify({
           claimId,
           verificationStatus: status,
-          verificationNotes: notes,
-        }),
-      });
+          verificationNotes: notes }) });
 
       if (response.ok) {
         await fetchClaims(); // Refresh the list

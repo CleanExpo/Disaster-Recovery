@@ -25,8 +25,7 @@ export function OptimizedImage({
   className,
   sizes = '100vw',
   fill = false,
-  quality = 85,
-}: OptimizedImageProps) {
+  quality = 85 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (

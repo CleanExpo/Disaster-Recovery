@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Contents Pack Out & Storage During Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "contents pack out storage restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'contents pack out storage restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'contents pack out storage restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function ContentsPackOutStoragePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function ContentsPackOutStoragePage() {
       name: 'contents pack out storage restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for contents pack out storage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for contents pack out storage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

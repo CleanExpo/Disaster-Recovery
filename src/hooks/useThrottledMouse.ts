@@ -32,13 +32,11 @@ export function useThrottledMouse(
         const rect = containerRef.current.getBoundingClientRect();
         setMousePosition({
           x: (e.clientX - rect.left) / rect.width,
-          y: (e.clientY - rect.top) / rect.height,
-        });
+          y: (e.clientY - rect.top) / rect.height });
       } else {
         setMousePosition({
           x: e.clientX / window.innerWidth,
-          y: e.clientY / window.innerHeight,
-        });
+          y: e.clientY / window.innerHeight });
       }
       lastUpdateTime.current = now;
     });

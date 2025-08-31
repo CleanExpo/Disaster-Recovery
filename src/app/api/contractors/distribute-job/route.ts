@@ -77,8 +77,7 @@ const mockContractors: Contractor[] = [
       suburbs: ['Brisbane', 'Gold Coast', 'Ipswich'],
       postcodes: ['4000', '4001', '4002', '4217', '4218'],
       states: ['QLD'],
-      maxRadius: 50,
-    },
+      maxRadius: 50 },
     certifications: ['IICRC', 'WRT', 'ASD'],
     rating: 4.9,
     completedJobs: 234,
@@ -86,21 +85,17 @@ const mockContractors: Contractor[] = [
     availability: {
       emergency: true,
       urgent: true,
-      standard: true,
-    },
+      standard: true },
     preferences: {
       minJobValue: 1000,
       maxActiveJobs: 10,
-      insuranceWorkOnly: false,
-    },
+      insuranceWorkOnly: false },
     performance: {
       acceptanceRate: 0.85,
       completionRate: 0.98,
       customerSatisfaction: 4.9,
-      kpiScore: 95,
-    },
-    currentActiveJobs: 3,
-  },
+      kpiScore: 95 },
+    currentActiveJobs: 3 },
   {
     id: 'CONT-002',
     businessName: 'Rapid Response Restorations',
@@ -111,8 +106,7 @@ const mockContractors: Contractor[] = [
       suburbs: ['Sydney', 'Parramatta', 'Penrith'],
       postcodes: ['2000', '2001', '2150', '2750'],
       states: ['NSW'],
-      maxRadius: 75,
-    },
+      maxRadius: 75 },
     certifications: ['IICRC', 'FSRT'],
     rating: 4.7,
     completedJobs: 156,
@@ -120,21 +114,17 @@ const mockContractors: Contractor[] = [
     availability: {
       emergency: true,
       urgent: true,
-      standard: false,
-    },
+      standard: false },
     preferences: {
       minJobValue: 2000,
       maxActiveJobs: 5,
-      insuranceWorkOnly: true,
-    },
+      insuranceWorkOnly: true },
     performance: {
       acceptanceRate: 0.75,
       completionRate: 0.95,
       customerSatisfaction: 4.7,
-      kpiScore: 88,
-    },
-    currentActiveJobs: 2,
-  },
+      kpiScore: 88 },
+    currentActiveJobs: 2 },
 ];
 
 // Calculate contractor score for job matching
@@ -146,8 +136,7 @@ function calculateContractorScore(contractor: Contractor, job: JobDistributionRe
     'Water Damage': 'water-damage',
     'Fire Damage': 'fire-damage',
     'Storm Damage': 'storm-damage',
-    'Mold Services': 'mold-remediation',
-  };
+    'Mold Services': 'mold-remediation' };
   
   const mappedService = serviceTypeMap[job.serviceType] || job.serviceType.toLowerCase().replace(/\s+/g, '-');
   if (!contractor.services.includes(mappedService)) {
@@ -224,8 +213,7 @@ export async function POST(request: NextRequest) {
     const eligibleContractors = mockContractors
       .map(contractor => ({
         contractor,
-        score: calculateContractorScore(contractor, jobData),
-      }))
+        score: calculateContractorScore(contractor, jobData) }))
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score);
 
@@ -235,9 +223,7 @@ export async function POST(request: NextRequest) {
         message: 'No contractors available for this job',
         data: {
           bookingId: jobData.bookingId,
-          notifiedCount: 0,
-        },
-      }, { status: 404 });
+          notifiedCount: 0 } }, { status: 404 });
     }
 
     // Notification strategy based on urgency
@@ -269,11 +255,9 @@ export async function POST(request: NextRequest) {
             location: `${jobData.location.suburb}, ${jobData.location.state}`,
             estimatedValue: jobData.estimatedValue,
             customeremail: jobData.customerDetails.phone,
-            description: jobData.damageDescription,
-          },
+            description: jobData.damageDescription },
           acceptanceUrl: `https://portal.disasterrecovery.com.au/jobs/${jobData.bookingId}/accept`,
-          expiresIn: jobData.urgencyLevel === 'emergency' ? '30 minutes' : '2 hours',
-        };
+          expiresIn: jobData.urgencyLevel === 'emergency' ? '30 minutes' : '2 hours' };
 
         // In production, you would:
         // 1. Send actual email via SendGrid/AWS SES
@@ -301,11 +285,9 @@ export async function POST(request: NextRequest) {
         id: c.id,
         businessName: c.businessName,
         notifiedAt: new Date().toISOString(),
-        score: eligibleContractors.find(e => e.contractor.id === c.id)?.score || 0,
-      })),
+        score: eligibleContractors.find(e => e.contractor.id === c.id)?.score || 0 })),
       createdAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + (jobData.urgencyLevel === 'emergency' ? 30 : 120) * 60000).toISOString(),
-    };
+      expiresAt: new Date(Date.now() + (jobData.urgencyLevel === 'emergency' ? 30 : 120) * 60000).toISOString() };
 
     // In production, save jobRecord to database
     // await saveJobRecord(jobRecord);
@@ -320,20 +302,16 @@ export async function POST(request: NextRequest) {
           id: c.id,
           businessName: c.businessName,
           responseTime: c.responseTime,
-          rating: c.rating,
-        })),
+          rating: c.rating })),
         notifications,
-        jobExpiresAt: jobRecord.expiresAt,
-      },
-    });
+        jobExpiresAt: jobRecord.expiresAt } });
 
   } catch (error) {
     console.error('Job distribution error:', error);
     return NextResponse.json({
       success: false,
       message: 'Failed to distribute job to contractors',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { status: 500 });
+      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
   }
 }
 
@@ -345,8 +323,7 @@ export async function GET(request: NextRequest) {
   if (!bookingId) {
     return NextResponse.json({
       success: false,
-      message: 'Booking ID is required',
-    }, { status: 400 });
+      message: 'Booking ID is required' }, { status: 400 });
   }
 
   // In production, fetch from database
@@ -362,20 +339,16 @@ export async function GET(request: NextRequest) {
         contractorId: 'CONT-001',
         businessName: 'Elite Water Damage Restoration',
         status: 'viewed',
-        viewedAt: new Date(Date.now() - 5 * 60000).toISOString(),
-      },
+        viewedAt: new Date(Date.now() - 5 * 60000).toISOString() },
       {
         contractorId: 'CONT-002',
         businessName: 'Rapid Response Restorations',
-        status: 'pending',
-      },
+        status: 'pending' },
     ],
     acceptedBy: null,
-    expiresAt: new Date(Date.now() + 25 * 60000).toISOString(),
-  };
+    expiresAt: new Date(Date.now() + 25 * 60000).toISOString() };
 
   return NextResponse.json({
     success: true,
-    data: mockJobStatus,
-  });
+    data: mockJobStatus });
 }

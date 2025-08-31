@@ -65,8 +65,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
       style={{
         rotateX,
         rotateY,
-        transformStyle: "preserve-3d",
-      }}
+        transformStyle: "preserve-3d" }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
@@ -78,8 +77,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
         delay: index * 0.2,
         type: "spring",
         stiffness: 100,
-        damping: 20,
-      }}
+        damping: 20 }}
       whileHover={{
         scale: 1.05,
         z: 50,
@@ -90,16 +88,14 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
       <motion.div
         className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-red-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          transform: transformStyle,
-        }}
+          transform: transformStyle }}
       />
 
       {/* Main card */}
       <motion.div
         className="relative bg-white rounded-2xl shadow-xl overflow-hidden backdrop-blur-sm border border-white/20"
         style={{
-          transform: "translateZ(50px)",
-        }}
+          transform: "translateZ(50px)" }}
       >
         {/* Image section with parallax effect */}
         <div className="relative h-64 overflow-hidden">
@@ -107,8 +103,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
             style={{
               transform: useTransform([mouseXSpring, mouseYSpring], ([x, y]) => 
                 `translate3d(${x * 20}px, ${y * 20}px, 0px) scale(1.1)`
-              ),
-            }}
+              ) }}
           >
             <Image
               src={imageUrl}
@@ -125,8 +120,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
           <motion.div 
             className="absolute bottom-4 left-4"
             style={{
-              transform: "translateZ(100px)",
-            }}
+              transform: "translateZ(100px)" }}
             animate={isHovered ? { scale: 1.1, y: -5 } : { scale: 1, y: 0 }}
           >
             <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg backdrop-blur-sm">
@@ -145,18 +139,15 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
                   initial={{
                     x: Math.random() * 300,
                     y: Math.random() * 200,
-                    opacity: 0,
-                  }}
+                    opacity: 0 }}
                   animate={{
                     y: -50,
                     opacity: [0, 1, 0],
-                    scale: [0.5, 1, 0.5],
-                  }}
+                    scale: [0.5, 1, 0.5] }}
                   transition={{
                     duration: 2,
                     delay: i * 0.2,
-                    repeat: Infinity,
-                  }}
+                    repeat: Infinity }}
                 />
               ))}
             </>
@@ -167,8 +158,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
         <motion.div 
           className="p-8"
           style={{
-            transform: "translateZ(80px)",
-          }}
+            transform: "translateZ(80px)" }}
         >
           <motion.h3 
             className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colours duration-300"
@@ -208,8 +198,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
           {/* CTA Button */}
           <motion.div
             style={{
-              transform: "translateZ(100px)",
-            }}
+              transform: "translateZ(100px)" }}
             animate={isHovered ? { y: -5 } : { y: 0 }}
             transition={{ delay: 0.3 }}
           >
@@ -251,8 +240,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
 export default function Interactive3DServiceCards() {
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   const services = [
     {

@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Christmas Day Water Damage Emergency Services | Disaster Recovery',
   description: 'Expert answers and solutions for "christmas day water damage emergency". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'christmas day water damage emergency, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'christmas day water damage emergency, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function ChristmasEmergencyWaterDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function ChristmasEmergencyWaterDamagePage() {
       name: 'christmas day water damage emergency',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for christmas day water damage emergency. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for christmas day water damage emergency. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

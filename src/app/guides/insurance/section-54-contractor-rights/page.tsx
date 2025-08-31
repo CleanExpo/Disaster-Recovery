@@ -14,9 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Section 54: Your Legal Right to Choose Emergency Contractors',
     description: 'Understanding your protected rights under Australian insurance law.',
-    images: ['/images/section-54-rights.jpg'],
-  },
-};
+    images: ['/images/section-54-rights.jpg'] } };
 
 const section54Provisions = [
   {

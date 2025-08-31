@@ -49,14 +49,12 @@ const Navigation = forwardRef(({
   const variantClasses = {
     default: 'bg-white border-b border-neutral-200',
     transparent: 'bg-transparent',
-    dark: 'bg-neutral-900 text-white',
-  };
+    dark: 'bg-neutral-900 text-white' };
   
   const scrolledClasses = {
     default: 'bg-white/95 backdrop-blur-md shadow-md',
     transparent: 'bg-white/95 backdrop-blur-md shadow-md',
-    dark: 'bg-neutral-900/95 backdrop-blur-md shadow-md',
-  };
+    dark: 'bg-neutral-900/95 backdrop-blur-md shadow-md' };
   
   const navClasses = clsx(
     baseClasses,
@@ -191,8 +189,7 @@ const NavLink = ({ href, children, variant = 'default', className, ...props }) =
   const variantClasses = {
     default: 'text-neutral-700 hover:text-primary hover:bg-neutral-50',
     transparent: 'text-neutral-700 hover:text-primary hover:bg-white/10',
-    dark: 'text-neutral-300 hover:text-white hover:bg-neutral-800',
-  };
+    dark: 'text-neutral-300 hover:text-white hover:bg-neutral-800' };
   
   const linkClasses = clsx(
     baseClasses,
@@ -237,31 +234,26 @@ Navigation.propTypes = {
     src: PropTypes.string,
     alt: PropTypes.string,
     text: PropTypes.string,
-    href: PropTypes.string,
-  }),
+    href: PropTypes.string }),
   /** Navigation links */
   links: PropTypes.arrayOf(
     PropTypes.shape({
       href: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
+      label: PropTypes.string.isRequired })
   ),
   /** Call-to-action button */
   ctaButton: PropTypes.shape({
     href: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  }),
+    label: PropTypes.string.isRequired }),
   /** Navigation variant */
   variant: PropTypes.oneOf(['default', 'transparent', 'dark']),
   /** Enable sticky positioning */
-  sticky: PropTypes.bool,
-};
+  sticky: PropTypes.bool };
 
 NavLink.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(['default', 'transparent', 'dark']),
-  className: PropTypes.string,
-};
+  className: PropTypes.string };
 
 export default Navigation;

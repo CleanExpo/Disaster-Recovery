@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Late Night Emergency Services | 10PM - 2AM | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available 10PM - 2AM. No call-out fees, immediate response nationwide.',
-};
+  description: 'Emergency disaster recovery services available 10PM - 2AM. No call-out fees, immediate response nationwide.' };
 
 export default function LateNightEmergencyPage() {
   return (

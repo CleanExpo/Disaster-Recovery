@@ -3,8 +3,7 @@ import { FileText, TrendingUp, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Cyclone Debbie Recovery | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Cyclone Debbie Recovery. Real results, timelines, and restoration process.',
-};
+  description: 'How we helped recover from Cyclone Debbie Recovery. Real results, timelines, and restoration process.' };
 
 export default function CycloneDebbieRecoveryPage() {
   return (

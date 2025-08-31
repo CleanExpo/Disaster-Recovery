@@ -17,8 +17,7 @@ export class AnthropicProvider {
     }
     
     this.client = new Anthropic({
-      apiKey,
-    });
+      apiKey });
   }
   
   /**
@@ -53,8 +52,7 @@ export class AnthropicProvider {
       
       const messages: Anthropic.MessageParam[] = [{
         role: 'user',
-        content: prompt,
-      }];
+        content: prompt }];
       
       if (options.streamCallback) {
         // Handle streaming
@@ -64,8 +62,7 @@ export class AnthropicProvider {
           temperature: options.temperature || 0.7,
           system: options.systemPrompt,
           messages,
-          stream: true,
-        });
+          stream: true });
         
         let fullResponse = '';
         let tokenCount = 0;
@@ -85,8 +82,7 @@ export class AnthropicProvider {
           response: fullResponse,
           tokensUsed: tokenCount,
           cost: this.calculateCost(tokenCount, model),
-          latency,
-        };
+          latency };
       } else {
         // Regular request
         const response = await this.client.messages.create({
@@ -94,8 +90,7 @@ export class AnthropicProvider {
           max_tokens: options.maxTokens || 4000,
           temperature: options.temperature || 0.7,
           system: options.systemPrompt,
-          messages,
-        });
+          messages });
         
         const latency = Date.now() - startTime;
         const content = response.content[0].type === 'text' ? response.content[0].text : '';
@@ -104,8 +99,7 @@ export class AnthropicProvider {
           response: content,
           tokensUsed: response.usage?.input_tokens + response.usage?.output_tokens || 0,
           cost: this.calculateCost(response.usage?.input_tokens + response.usage?.output_tokens || 0, model),
-          latency,
-        };
+          latency };
       }
     } catch (error) {
       console.error('Anthropic API error:', error);
@@ -133,14 +127,12 @@ export class AnthropicProvider {
     const result = await this.complete(prompt, AIModel.CLAUDE_SONNET_LATEST, {
       systemPrompt,
       temperature: 0.3,
-      maxTokens: 500,
-    });
+      maxTokens: 500 });
     
     return {
       response: result.response,
       confidence: 0.9, // Claude is highly reliable for direct responses
-      latency: Date.now() - startTime,
-    };
+      latency: Date.now() - startTime };
   }
   
   /**
@@ -172,8 +164,7 @@ export class AnthropicProvider {
     const result = await this.complete(prompt, AIModel.CLAUDE_SONNET_LATEST, {
       systemPrompt,
       temperature: 0.2,
-      maxTokens: 2000,
-    });
+      maxTokens: 2000 });
     
     // Parse code and explanation
     const codeMatch = result.response.match(/```[\w]*\n([\s\S]*?)```/);
@@ -213,8 +204,7 @@ export class AnthropicProvider {
   async testConnection(): Promise<boolean> {
     try {
       await this.complete('Test connection', AIModel.CLAUDE_SONNET_LATEST, {
-        maxTokens: 10,
-      });
+        maxTokens: 10 });
       return true;
     } catch (error) {
       console.error('Anthropic connection test failed:', error);

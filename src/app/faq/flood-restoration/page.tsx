@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'flood restoration FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about flood restoration. Expert answers to common questions, tips, and advice.',
-};
+  description: 'Everything you need to know about flood restoration. Expert answers to common questions, tips, and advice.' };
 
 export default function floodrestorationFAQPage() {
   return (

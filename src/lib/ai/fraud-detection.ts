@@ -6,8 +6,7 @@ const prisma = new PrismaClient();
 // Initialize OpenAI client only if API key is available
 const openai = process.env.OPENAI_API_KEY 
   ? new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    })
+      apiKey: process.env.OPENAI_API_KEY })
   : null;
 
 export interface FraudDetectionResult {
@@ -63,8 +62,7 @@ class FraudDetectionService {
           documentType: input.documentType,
           analysisStatus: 'PROCESSING',
           ipAddress: input.metadata?.ipAddress,
-          userAgent: input.metadata?.userAgent,
-        }
+          userAgent: input.metadata?.userAgent }
       });
 
       // Run parallel fraud detection checks
@@ -103,8 +101,7 @@ class FraudDetectionService {
           contentAnalysis: contentAnalysis.summary,
           plagiarismCheck: plagiarismCheck.summary,
           consistencyCheck: consistencyCheck.summary,
-          metadataAnalysis: metadataAnalysis.summary,
-        },
+          metadataAnalysis: metadataAnalysis.summary },
         riskFactors
       };
 
@@ -117,8 +114,7 @@ class FraudDetectionService {
           riskLevel: this.getRiskLevel(confidenceScore),
           suspiciousElements: JSON.stringify(result.suspiciousElements),
           analysisResults: JSON.stringify(result),
-          reviewRequired: recommendedAction === 'REVIEW',
-        }
+          reviewRequired: recommendedAction === 'REVIEW' }
       });
 
       return result;
@@ -137,8 +133,7 @@ class FraudDetectionService {
           contentAnalysis: 'Analysis failed',
           plagiarismCheck: 'Analysis failed',
           consistencyCheck: 'Analysis failed',
-          metadataAnalysis: 'Analysis failed',
-        },
+          metadataAnalysis: 'Analysis failed' },
         riskFactors: [{
           category: 'SYSTEM_ERROR',
           severity: 'HIGH',
@@ -193,8 +188,7 @@ Focus on identifying:
           content: prompt
         }
       ],
-      temperature: 0.1,
-    });
+      temperature: 0.1 });
 
     const analysis = response.choices[0].message.content || '';
     
@@ -240,8 +234,7 @@ Focus on identifying:
       },
       select: {
         content: true,
-        contractorId: true,
-      }
+        contractorId: true }
     });
 
     for (const doc of existingDocuments) {
@@ -274,8 +267,7 @@ Focus on identifying:
       select: {
         documentType: true,
         content: true,
-        metadata: true,
-      }
+        metadata: true }
     });
 
     const risks = [];

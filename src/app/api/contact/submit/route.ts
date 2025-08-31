@@ -6,14 +6,13 @@ import { sendEmail, emailTemplates } from '@/lib/email';
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
-  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8,}$/, 'Invalid Australian phone number'),
+  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8 }$/, 'Invalid Australian phone number'),
   service: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'biohazard', 'other']),
   urgency: z.enum(['emergency', 'urgent', 'planning', 'routine']),
   message: z.string().min(10, 'Message must be at least 10 characters'),
   propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),
   hasInsurance: z.boolean().optional(),
-  preferredContact: z.enum(['phone', 'email', 'both']).optional(),
-});
+  preferredContact: z.enum(['phone', 'email', 'both']).optional() });
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,8 +27,7 @@ export async function POST(request: NextRequest) {
       serviceType: validatedData.service,
       propertyType: validatedData.propertyType,
       hasInsurance: validatedData.hasInsurance,
-      contactMethod: 'form',
-    });
+      contactMethod: 'form' });
     
     const priority = getLeadPriority(leadScore);
     const assignment = assignLeadToTeam(leadScore, validatedData.service);
@@ -53,8 +51,7 @@ export async function POST(request: NextRequest) {
       leadScore,
       leadValue: Math.round(leadScore * 10),
       description: validatedData.message,
-      createdAt: new Date().toISOString(),
-    });
+      createdAt: new Date().toISOString() });
     
     // Send confirmation email to customer
     const confirmationEmail = emailTemplates.leadConfirmation({
@@ -66,8 +63,7 @@ export async function POST(request: NextRequest) {
       urgencyLevel: validatedData.urgency,
       suburb: 'Brisbane',
       state: 'QLD',
-      postcode: '4000',
-    });
+      postcode: '4000' });
     
     // Send emails asynchronously
     Promise.all([
@@ -89,8 +85,7 @@ export async function POST(request: NextRequest) {
       priority,
       assignment,
       submittedAt: new Date().toISOString(),
-      status: 'pending',
-    };
+      status: 'pending' };
     
     // Log submission for monitoring
     console.log('Contact form submission:', submission);
@@ -106,8 +101,7 @@ export async function POST(request: NextRequest) {
       priority,
       estimatedResponse: priority === 'critical' ? '15 minutes' : 
                         priority === 'high' ? '30 minutes' :
-                        priority === 'medium' ? '1 hour' : '4 hours',
-    }, { status: 200 });
+                        priority === 'medium' ? '1 hour' : '4 hours' }, { status: 200 });
     
   } catch (error) {
     console.error('Contact form error:', error);
@@ -118,15 +112,12 @@ export async function POST(request: NextRequest) {
         message: 'Validation error',
         errors: error.errors.map(e => ({
           field: e.path.join('.'),
-          message: e.message,
-        })),
-      }, { status: 400 });
+          message: e.message })) }, { status: 400 });
     }
     
     return NextResponse.json({
       success: false,
-      message: 'An error occurred processing your request. Please try again.',
-    }, { status: 500 });
+      message: 'An error occurred processing your request. Please try again.' }, { status: 500 });
   }
 }
 
@@ -136,7 +127,5 @@ export async function OPTIONS(request: NextRequest) {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
-  });
+      'Access-Control-Allow-Headers': 'Content-Type' } });
 }

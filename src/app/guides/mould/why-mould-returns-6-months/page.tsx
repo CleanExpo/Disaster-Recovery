@@ -22,9 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'VBA Research: 92% of Insurance Claims Have Water Defects Leading to Mould',
     description: 'Victorian Building Authority data reveals the mould crisis affecting one in three Australian homes.',
-    images: ['/images/mould-remediation-failure.jpg'],
-  },
-};
+    images: ['/images/mould-remediation-failure.jpg'] } };
 
 const failureReasons = [
   {

@@ -18,9 +18,7 @@ export const metadata: Metadata = {
     title: 'Professional Disaster Recovery Equipment Catalog',
     description: 'Complete catalog of professional-grade restoration equipment with detailed specifications and rental options.',
     images: ['/images/equipment/catalog-hero.jpg'],
-    type: 'website',
-  },
-};
+    type: 'website' } };
 
 export default function EquipmentCatalogPage() {
   const featuredEquipment = getFeaturedEquipment();

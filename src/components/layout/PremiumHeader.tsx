@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { 
-  , 
+import {  
   Menu, 
   X, 
   ChevronDown,
@@ -124,8 +123,7 @@ export default function PremiumHeader() {
                   className="object-contain rounded-full"
                   style={{
                     backgroundColor: 'transparent',
-                    filter: 'drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2))',
-                  }}
+                    filter: 'drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2))' }}
                   priority
                 />
               </div>

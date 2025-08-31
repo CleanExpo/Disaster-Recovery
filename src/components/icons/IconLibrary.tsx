@@ -188,8 +188,7 @@ import {
   X,
   Youtube,
   ZoomIn,
-  ZoomOut,
-} from 'lucide-react'
+  ZoomOut } from 'lucide-react'
 
 // Icon categories for the restoration industry
 export const restorationIcons = {
@@ -198,96 +197,84 @@ export const restorationIcons = {
     alert: AlertTriangle,
     warning: AlertCircle,
     critical: AlertOctagon,
-    siren: Bell,
-  },
+    siren: Bell },
 
   // Protection & Safety
   safety: {
     shield: Shield,
     shieldCheck: ShieldCheck,
     shieldAlert: ShieldAlert,
-    safety: HardHat,
-  },
+    safety: HardHat },
 
   // Time & Response
   time: {
     clock: Clock,
     timer: Timer,
     calendar: Calendar,
-    history: History,
-  },
+    history: History },
 
   // Damage Types
   damage: {
     water: Droplets,
     fire: Flame,
     wind: Wind,
-    storm: CloudRain,
-  },
+    storm: CloudRain },
 
   // Property Types
   property: {
     residential: Home,
     commercial: Building,
     industrial: Briefcase,
-    facility: Building,
-  },
+    facility: Building },
 
   // Documentation & Legal
   legal: {
     document: FileText,
     contract: FileCheck,
     gavel: Gavel,
-    scale: Scale,
-  },
+    scale: Scale },
 
   // Financial
   financial: {
     dollar: DollarSign,
     payment: CreditCard,
     invoice: Banknote,
-    trending: TrendingUp,
-  },
+    trending: TrendingUp },
 
   // Professional & Certification
   professional: {
     certified: Award,
     badge: BadgeCheck,
     verified: CheckCircle2,
-    expert: UserCheck,
-  },
+    expert: UserCheck },
 
   // Tools & Equipment
   tools: {
     wrench: Wrench,
     settings: Settings,
     gauge: Gauge,
-    thermometer: Thermometer,
-  },
+    thermometer: Thermometer },
 
   // Communication
   communication: {
     phone: Phone,
     mail: Mail,
     message: MessageSquare,
-    help: HelpCircle,
-  },
+    help: HelpCircle },
 
   // Navigation & Location
   location: {
     map: Map,
     mapPin: MapPin,
     navigation: Navigation,
-    compass: Compass,
-  },
+    compass: Compass },
 
   // Status & Progress
   status: {
     check: CheckCircle2,
     cross: XCircle,
     info: Info,
-    pending: Circle,
-  },
+    pending: Circle },
 
   // Actions
   actions: {
@@ -298,24 +285,21 @@ export const restorationIcons = {
     download: Download,
     upload: Upload,
     share: Share2,
-    send: Send,
-  },
+    send: Send },
 
   // User & Team
   team: {
     users: Users,
     userAdd: UserPlus,
     userCheck: UserCheck,
-    userRemove: UserMinus,
-  },
+    userRemove: UserMinus },
 
   // Analytics & Reporting
   analytics: {
     chart: BarChart,
     lineChart: LineChart,
     pieChart: PieChart,
-    activity: Activity,
-  },
+    activity: Activity },
 
   // General UI
   ui: {
@@ -328,9 +312,7 @@ export const restorationIcons = {
     chevronDown: ChevronDown,
     moreHorizontal: MoreHorizontal,
     moreVertical: MoreVertical,
-    close: X,
-  },
-}
+    close: X } }
 
 // Export individual icons for easy access
 export {
@@ -420,7 +402,6 @@ export {
   BarChart,
   LineChart,
   PieChart,
-  TrendingDown,
-}
+  TrendingDown }
 
 export default restorationIcons

@@ -52,8 +52,7 @@ export default function FraudDetectionAdmin() {
         page: page.toString(),
         limit: pagination.limit.toString(),
         ...(filters.riskLevel && { riskLevel: filters.riskLevel }),
-        ...(filters.documentType && { documentType: filters.documentType }),
-      });
+        ...(filters.documentType && { documentType: filters.documentType }) });
 
       const response = await fetch(`/api/fraud-detection/analyse?${params}`);
       const data = await response.json();

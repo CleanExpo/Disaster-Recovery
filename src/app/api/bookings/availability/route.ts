@@ -14,8 +14,7 @@ export async function GET(request: NextRequest) {
   if (!date) {
     return NextResponse.json({
       success: false,
-      message: 'Date parameter is required',
-    }, { status: 400 });
+      message: 'Date parameter is required' }, { status: 400 });
   }
   
   // Emergency services are always available
@@ -25,8 +24,7 @@ export async function GET(request: NextRequest) {
       date,
       slots: [
         { time: 'Immediate', available: true },
-      ],
-    });
+      ] });
   }
   
   // Generate time slots for the day
@@ -50,8 +48,7 @@ export async function GET(request: NextRequest) {
       slots.push({
         time: timeString,
         available: false,
-        reason: 'Past time',
-      });
+        reason: 'Past time' });
       continue;
     }
     
@@ -61,8 +58,7 @@ export async function GET(request: NextRequest) {
     slots.push({
       time: timeString,
       available: isAvailable,
-      reason: isAvailable ? undefined : 'Fully booked',
-    });
+      reason: isAvailable ? undefined : 'Fully booked' });
   }
   
   // Always ensure at least 2 slots are available
@@ -83,8 +79,7 @@ export async function GET(request: NextRequest) {
     success: true,
     date,
     slots,
-    nextAvailableDate: getNextAvailableDate(date),
-  });
+    nextAvailableDate: getNextAvailableDate(date) });
 }
 
 function getNextAvailableDate(currentDate: string): string {

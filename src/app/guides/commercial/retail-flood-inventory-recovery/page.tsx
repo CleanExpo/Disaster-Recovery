@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Retail Store Flood: Inventory Recovery Process | Disaster Recovery',
   description: 'Expert answers and solutions for "retail store flood damage inventory recovery". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'retail store flood damage inventory recovery, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'retail store flood damage inventory recovery, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function RetailFloodInventoryRecoveryPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function RetailFloodInventoryRecoveryPage() {
       name: 'retail store flood damage inventory recovery',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for retail store flood damage inventory recovery. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for retail store flood damage inventory recovery. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

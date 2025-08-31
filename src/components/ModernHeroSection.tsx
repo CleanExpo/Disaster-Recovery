@@ -113,8 +113,7 @@ const ModernHeroSection: React.FC = () => {
               rgba(139, 92, 246, 0.1) 30%,
               rgba(236, 72, 153, 0.05) 60%,
               transparent 100%
-            )`,
-          }}
+            )` }}
         />
 
         {/* Noise Texture */}
@@ -128,19 +127,16 @@ const ModernHeroSection: React.FC = () => {
               className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-40"
               style={{
                 left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
+                top: `${Math.random() * 100}%` }}
               animate={{
                 y: [-20, -40, -20],
                 x: [-5, 5, -5],
-                opacity: [0.2, 0.8, 0.2],
-              }}
+                opacity: [0.2, 0.8, 0.2] }}
               transition={{
                 duration: 3 + Math.random() * 2,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: Math.random() * 2,
-              }}
+                delay: Math.random() * 2 }}
             />
           ))}
         </div>
@@ -157,8 +153,7 @@ const ModernHeroSection: React.FC = () => {
               style={{
                 background: 'rgba(239, 68, 68, 0.1)',
                 border: '1px solid rgba(239, 68, 68, 0.3)',
-                backdropFilter: 'blur(20px)',
-              }}
+                backdropFilter: 'blur(20px)' }}
             >
               <div className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
@@ -198,8 +193,7 @@ const ModernHeroSection: React.FC = () => {
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
                     backgroundSize: '200% 200%',
-                    animation: 'gradient-x 4s ease infinite',
-                  }}
+                    animation: 'gradient-x 4s ease infinite' }}
                 >
                   When Every Second Counts
                 </motion.span>
@@ -216,8 +210,7 @@ const ModernHeroSection: React.FC = () => {
                 <motion.span 
                   className="font-semibold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
                   animate={{ 
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
                   transition={{ 
                     duration: 3,
                     repeat: Infinity,
@@ -243,8 +236,7 @@ const ModernHeroSection: React.FC = () => {
                   className="group relative px-12 py-5 text-lg font-bold text-white rounded-2xl overflow-hidden premium-button"
                   style={{
                     background: 'linear-gradient(135deg, #ef4444 0%, #f97316 100%)',
-                    boxShadow: '0 20px 60px rgba(239, 68, 68, 0.4)',
-                  }}
+                    boxShadow: '0 20px 60px rgba(239, 68, 68, 0.4)' }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

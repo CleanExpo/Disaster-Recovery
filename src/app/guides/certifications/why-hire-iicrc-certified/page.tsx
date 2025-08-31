@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Why IICRC Certification Matters for Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "why hire iicrc certified restoration company". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'why hire iicrc certified restoration company, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'why hire iicrc certified restoration company, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WhyHireIicrcCertifiedPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WhyHireIicrcCertifiedPage() {
       name: 'why hire iicrc certified restoration company',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for why hire iicrc certified restoration company. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for why hire iicrc certified restoration company. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

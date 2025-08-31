@@ -74,8 +74,7 @@ class SEMrushAPI {
       key: this.apiKey,
       domain: domain,
       database: this.database,
-      export_columns: 'Or,Ot,Oc,Ad,At,Ac',
-    });
+      export_columns: 'Or,Ot,Oc,Ad,At,Ac' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -92,8 +91,7 @@ class SEMrushAPI {
             organic_cost: parseFloat(row[2] || '0'),
             adwords_keywords: parseInt(row[3] || '0'),
             adwords_traffic: parseInt(row[4] || '0'),
-            adwords_cost: parseFloat(row[5] || '0'),
-          };
+            adwords_cost: parseFloat(row[5] || '0') };
         }
       }
     } catch (error) {
@@ -114,8 +112,7 @@ class SEMrushAPI {
       key: this.apiKey,
       phrase: keyword,
       database: this.database,
-      export_columns: 'Ph,Nq,Cp,Co,Kd,Td,Sf',
-    });
+      export_columns: 'Ph,Nq,Cp,Co,Kd,Td,Sf' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -132,8 +129,7 @@ class SEMrushAPI {
             competition: parseFloat(row[3] || '0'),
             difficulty: parseFloat(row[4] || '0'),
             trend: row[5] ? row[5].split(',').map(Number) : [],
-            serp_features: row[6] ? row[6].split(',') : [],
-          };
+            serp_features: row[6] ? row[6].split(',') : [] };
         }
       }
     } catch (error) {
@@ -155,8 +151,7 @@ class SEMrushAPI {
       domain: domain,
       database: this.database,
       display_limit: limit.toString(),
-      export_columns: 'Ph,Po,Nq,Cp,Co,Ur,Tr,Tc,Nr,Td',
-    });
+      export_columns: 'Ph,Po,Nq,Cp,Co,Ur,Tr,Tc,Nr,Td' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -174,8 +169,7 @@ class SEMrushAPI {
           traffic_percent: parseFloat(row[6] || '0'),
           traffic_cost: parseFloat(row[7] || '0'),
           results: parseInt(row[8] || '0'),
-          trends: row[9] ? row[9].split(',').map(Number) : [],
-        }));
+          trends: row[9] ? row[9].split(',').map(Number) : [] }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
@@ -195,8 +189,7 @@ class SEMrushAPI {
       key: this.apiKey,
       target: domain,
       target_type: 'domain',
-      export_columns: 'total,domains_num,ips_num,follows_num,nofollows_num,texts_num,images_num,forms_num,frames_num',
-    });
+      export_columns: 'total,domains_num,ips_num,follows_num,nofollows_num,texts_num,images_num,forms_num,frames_num' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -216,8 +209,7 @@ class SEMrushAPI {
             texts_total: parseInt(row[5] || '0'),
             images_total: parseInt(row[6] || '0'),
             forms_total: parseInt(row[7] || '0'),
-            frames_total: parseInt(row[8] || '0'),
-          };
+            frames_total: parseInt(row[8] || '0') };
         }
       }
     } catch (error) {
@@ -239,8 +231,7 @@ class SEMrushAPI {
       domain: domain,
       database: this.database,
       display_limit: limit.toString(),
-      export_columns: 'Dn,Cr,Np,Or,Ot,Oc,Ad',
-    });
+      export_columns: 'Dn,Cr,Np,Or,Ot,Oc,Ad' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -255,8 +246,7 @@ class SEMrushAPI {
           organic_keywords: parseInt(row[3] || '0'),
           organic_traffic: parseInt(row[4] || '0'),
           organic_cost: parseFloat(row[5] || '0'),
-          adwords_keywords: parseInt(row[6] || '0'),
-        }));
+          adwords_keywords: parseInt(row[6] || '0') }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
@@ -279,8 +269,7 @@ class SEMrushAPI {
       key: this.apiKey,
       phrase: domains,
       database: this.database,
-      export_columns: 'Ph,Nq,Cp,Co,Nr',
-    });
+      export_columns: 'Ph,Nq,Cp,Co,Nr' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -293,8 +282,7 @@ class SEMrushAPI {
           volume: parseInt(row[1] || '0'),
           cpc: parseFloat(row[2] || '0'),
           competition: parseFloat(row[3] || '0'),
-          results: parseInt(row[4] || '0'),
-        }));
+          results: parseInt(row[4] || '0') }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
@@ -340,8 +328,7 @@ class SEMrushAPI {
       url: `*.${domain}/*`,
       database: this.database,
       display_limit: limit.toString(),
-      export_columns: 'Ur,Pc,Nq,Tr',
-    });
+      export_columns: 'Ur,Pc,Nq,Tr' });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
@@ -353,8 +340,7 @@ class SEMrushAPI {
           url: row[0],
           keywords_count: parseInt(row[1] || '0'),
           traffic: parseInt(row[2] || '0'),
-          traffic_cost: parseFloat(row[3] || '0'),
-        }));
+          traffic_cost: parseFloat(row[3] || '0') }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
@@ -371,8 +357,7 @@ export const semrushAPI = new SEMrushAPI();
 export type {
   KeywordMetrics,
   DomainMetrics,
-  BacklinkMetrics,
-};
+  BacklinkMetrics };
 
 // Helper functions for the application
 export async function checkSEMrushConnection(): Promise<boolean> {
@@ -393,8 +378,7 @@ export async function getCompetitorAnalysis(domain: string = 'disasterrecovery.c
   return {
     overview,
     competitors,
-    backlinks,
-  };
+    backlinks };
 }
 
 export async function getKeywordOpportunities(domain: string = 'disasterrecovery.com.au') {

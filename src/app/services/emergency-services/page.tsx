@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { , Clock, Shield, Siren, AlertTriangle, Zap, Droplets, Flame, Wind, Users, CheckCircle2, ArrowRight, MapPin, Car, MessageSquare} from 'lucide-react';
+import {  Clock, Shield, Siren, AlertTriangle, Zap, Droplets, Flame, Wind, Users, CheckCircle2, ArrowRight, MapPin, Car, MessageSquare} from 'lucide-react';
 
 export default function EmergencyServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);

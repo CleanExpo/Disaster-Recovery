@@ -27,9 +27,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
     openGraph: {
       title: `${title} | Disaster Recovery`,
       description,
-      type: 'website',
-    },
-  };
+      type: 'website' } };
 }
 
 // Generate static params for known routes (optional, for better performance)

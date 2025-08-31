@@ -17,16 +17,14 @@ export async function POST(request: NextRequest) {
     if (!prompt) {
       return NextResponse.json({
         success: false,
-        message: 'Prompt is required',
-      }, { status: 400 });
+        message: 'Prompt is required' }, { status: 400 });
     }
     
     console.log('📨 Received AI orchestration request:', {
       prompt: prompt.substring(0, 100) + '...',
       type,
       priority,
-      useSequentialThinking,
-    });
+      useSequentialThinking });
     
     // Map string type to enum
     const taskType = AITaskType[type as keyof typeof AITaskType] || AITaskType.QUICK_RESPONSE;
@@ -37,16 +35,14 @@ export async function POST(request: NextRequest) {
       priority,
       accuracyRequired,
       context,
-      useSequentialThinking,
-    });
+      useSequentialThinking });
     
     console.log('✅ Orchestration complete:', {
       model: response.model,
       provider: response.provider,
       confidence: response.confidence,
       cost: `$${response.metadata.cost.toFixed(4)}`,
-      tokensUsed: response.metadata.tokensUsed,
-    });
+      tokensUsed: response.metadata.tokensUsed });
     
     return NextResponse.json({
       success: true,
@@ -59,18 +55,14 @@ export async function POST(request: NextRequest) {
           cost: response.metadata.cost,
           tokensUsed: response.metadata.tokensUsed,
           latency: response.metadata.latency,
-          steps: response.metadata.steps,
-        },
-      },
-    }, { status: 200 });
+          steps: response.metadata.steps } } }, { status: 200 });
     
   } catch (error) {
     console.error('AI orchestration error:', error);
     
     return NextResponse.json({
       success: false,
-      message: error instanceof Error ? error.message : 'AI orchestration failed',
-    }, { status: 500 });
+      message: error instanceof Error ? error.message : 'AI orchestration failed' }, { status: 500 });
   }
 }
 
@@ -83,15 +75,13 @@ export async function GET(request: NextRequest) {
       success: true,
       health,
       message: 'AI orchestration service is running',
-      availableTypes: Object.keys(AITaskType),
-    }, { status: 200 });
+      availableTypes: Object.keys(AITaskType) }, { status: 200 });
     
   } catch (error) {
     console.error('Health check error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Health check failed',
-    }, { status: 500 });
+      message: 'Health check failed' }, { status: 500 });
   }
 }

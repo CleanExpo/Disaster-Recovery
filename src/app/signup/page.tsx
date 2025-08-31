@@ -12,8 +12,7 @@ export default function SignupPage() {
     email: '',
     password: '',
     confirmPassword: '',
-    agencyName: '',
-  })
+    agencyName: '' })
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -32,15 +31,12 @@ export default function SignupPage() {
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           password: formData.password,
-          agencyName: formData.agencyName,
-        }),
-      })
+          agencyName: formData.agencyName }) })
 
       if (!response.ok) {
         const data = await response.json()
@@ -58,8 +54,7 @@ export default function SignupPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
-    }))
+      [e.target.name]: e.target.value }))
   }
 
   return (

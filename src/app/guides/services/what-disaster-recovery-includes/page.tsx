@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'What\'s Included in Disaster Recovery Services | Disaster Recovery',
   description: 'Expert answers and solutions for "what does disaster recovery service include". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'what does disaster recovery service include, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'what does disaster recovery service include, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WhatDisasterRecoveryIncludesPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
       name: 'what does disaster recovery service include',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for what does disaster recovery service include. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for what does disaster recovery service include. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

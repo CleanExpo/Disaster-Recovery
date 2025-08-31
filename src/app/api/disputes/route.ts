@@ -143,8 +143,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: error.message || 'Failed to create dispute',
-      },
+        message: error.message || 'Failed to create dispute' },
       { status: 400 }
     );
   }
@@ -190,8 +189,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: error.message || 'Failed to update dispute',
-      },
+        message: error.message || 'Failed to update dispute' },
       { status: 400 }
     );
   }

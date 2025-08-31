@@ -7,8 +7,7 @@ export enum AIProvider {
   ANTHROPIC = 'anthropic',
   OPENROUTER = 'openrouter',
   OPENAI = 'openai',
-  FALLBACK = 'fallback',
-}
+  FALLBACK = 'fallback' }
 
 export enum AIModel {
   CLAUDE_3_OPUS = 'claude-3-opus-20240229',
@@ -16,8 +15,7 @@ export enum AIModel {
   CLAUDE_3_HAIKU = 'claude-3-5-haiku-20241022',
   CLAUDE_SONNET_LATEST = 'claude-3-5-sonnet-latest',
   GPT_OSS_120B = 'gpt-oss-120b',
-  GPT_4_TURBO = 'gpt-4-turbo',
-}
+  GPT_4_TURBO = 'gpt-4-turbo' }
 
 export enum AITaskType {
   SEQUENTIAL_THINKING = 'sequential_thinking',
@@ -27,8 +25,7 @@ export enum AITaskType {
   DAMAGE_ASSESSMENT = 'damage_assessment',
   COST_ESTIMATION = 'cost_estimation',
   EMERGENCY_RESPONSE = 'emergency_response',
-  INSURANCE_ANALYSIS = 'insurance_analysis',
-}
+  INSURANCE_ANALYSIS = 'insurance_analysis' }
 
 export enum TaskComplexity {
   TRIVIAL = 1,
@@ -36,8 +33,7 @@ export enum TaskComplexity {
   MODERATE = 5,
   COMPLEX = 7,
   VERY_COMPLEX = 9,
-  EXTREME = 10,
-}
+  EXTREME = 10 }
 
 export interface AIRequest {
   id: string;
@@ -170,8 +166,7 @@ export enum AgentPersona {
   QUALITY_AUDITOR = 'quality-auditor',
   INSURANCE_SPECIALIST = 'insurance-specialist',
   CUSTOMER_LIAISON = 'customer-liaison',
-  IMPLEMENTATION_SPECIALIST = 'implementation-specialist',
-}
+  IMPLEMENTATION_SPECIALIST = 'implementation-specialist' }
 
 export interface AgentPersonaConfig {
   id: string;

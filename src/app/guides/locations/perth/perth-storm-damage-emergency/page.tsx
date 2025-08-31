@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Perth Storm Damage Emergency Response | Disaster Recovery',
   description: 'Expert answers and solutions for "perth storm damage emergency response team". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'perth storm damage emergency response team, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'perth storm damage emergency response team, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function PerthStormDamageEmergencyPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function PerthStormDamageEmergencyPage() {
       name: 'perth storm damage emergency response team',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for perth storm damage emergency response team. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for perth storm damage emergency response team. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

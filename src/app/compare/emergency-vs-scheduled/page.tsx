@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Emergency vs Scheduled Service | Comparison Guide | Make the Right Choice',
-  description: 'Compare emergency vs scheduled service. Pros, cons, costs, and expert recommendations to help you decide.',
-};
+  description: 'Compare emergency vs scheduled service. Pros, cons, costs, and expert recommendations to help you decide.' };
 
 export default function EmergencyvsScheduledServicePage() {
   return (

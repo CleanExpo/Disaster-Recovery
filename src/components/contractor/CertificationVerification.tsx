@@ -77,40 +77,35 @@ const CERTIFICATION_TYPES = [
     description: 'Required for buildings constructed before 1990',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 24,
-  },
+    renewalPeriod: 24 },
   {
     type: 'CONFINED_SPACE',
     name: 'Confined Space Entry',
     description: 'Required for basement, tank, and enclosed space work',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 36,
-  },
+    renewalPeriod: 36 },
   {
     type: 'WORKING_AT_HEIGHTS',
     name: 'Working at Heights',
     description: 'Required for multi-story building work',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 24,
-  },
+    renewalPeriod: 24 },
   {
     type: 'FIRST_AID',
     name: 'First Aid Certificate',
     description: 'Current first aid certification',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 36,
-  },
+    renewalPeriod: 36 },
   {
     type: 'FIRE_SAFETY',
     name: 'Fire Safety Training',
     description: 'Fire safety and emergency response training',
     required: false,
     verificationMethod: 'DOCUMENT_VERIFICATION',
-    renewalPeriod: 12,
-  }
+    renewalPeriod: 12 }
 ];
 
 export default function CertificationVerification({
@@ -150,8 +145,7 @@ export default function CertificationVerification({
         body: JSON.stringify({
           contractorId,
           ...certData
-        }),
-      });
+        }) });
 
       if (response.ok) {
         const result = await response.json();
@@ -181,8 +175,7 @@ export default function CertificationVerification({
       const response = await fetch('/api/certifications/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ certificationId }),
-      });
+        body: JSON.stringify({ certificationId }) });
 
       if (response.ok) {
         const result = await response.json();
@@ -208,8 +201,7 @@ export default function CertificationVerification({
 
     try {
       const response = await fetch(`/api/certifications/${certificationId}`, {
-        method: 'DELETE',
-      });
+        method: 'DELETE' });
 
       if (response.ok) {
         setCertifications(prev => prev.filter(cert => cert.id !== certificationId));
@@ -246,8 +238,7 @@ export default function CertificationVerification({
         body: JSON.stringify({
           contractorId,
           certificationIds: certifications.map(c => c.id)
-        }),
-      });
+        }) });
 
       if (response.ok) {
         const result = await response.json();
@@ -590,8 +581,7 @@ function AddCertificationModal({
     issuingAuthority: certType?.name || '',
     issueDate: '',
     expiryDate: '',
-    documentUrl: '',
-  });
+    documentUrl: '' });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -618,8 +608,7 @@ function AddCertificationModal({
       expiryDate: calculatedExpiryDate || undefined,
       documentUrl: formData.documentUrl || undefined,
       verificationStatus: 'PENDING',
-      autoVerified: false,
-    });
+      autoVerified: false });
   };
 
   const handleDocumentUpload = (result: any) => {

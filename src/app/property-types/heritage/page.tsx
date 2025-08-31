@@ -5,8 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Heritage Buildings Disaster Recovery | Protected and historical properties | Australia',
-  description: 'Specialised disaster recovery for heritage buildings. Protected and historical properties. Insurance approved, 24/7 response.',
-};
+  description: 'Specialised disaster recovery for heritage buildings. Protected and historical properties. Insurance approved, 24/7 response.' };
 
 export default function HeritageBuildingsPage() {
   return (

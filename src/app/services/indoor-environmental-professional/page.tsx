@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { , Clock, Shield, Wind, Thermometer, Activity, Home, AlertTriangle, CheckCircle2, ArrowRight, Microscope, FileText, Gauge, Heart, Brain, MessageSquare} from 'lucide-react';
+import {  Clock, Shield, Wind, Thermometer, Activity, Home, AlertTriangle, CheckCircle2, ArrowRight, Microscope, FileText, Gauge, Heart, Brain, MessageSquare} from 'lucide-react';
 
 export default function IndoorEnvironmentalProfessionalPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -33,8 +33,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
     name: 'Indoor Environmental Professional Services',
     description: 'Expert IEP services including air quality testing, mould assessment, EMF testing, building biology, HVAC analysis, and comprehensive environmental health consulting.',
     provider: businessInfo.name,
-    areaServed: ['Brisbane', 'Sydney', 'Melbourne', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Newcastle', 'Hobart', 'Darwin'],
-  });
+    areaServed: ['Brisbane', 'Sydney', 'Melbourne', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Newcastle', 'Hobart', 'Darwin'] });
 
   const faqs = [
     {

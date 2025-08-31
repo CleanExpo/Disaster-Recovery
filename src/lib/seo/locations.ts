@@ -29,8 +29,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 247000,
     averagePropertyValue: 1500000,
     priorityScore: 100,
-    monthlySearchVolume: 2500,
-  },
+    monthlySearchVolume: 2500 },
   {
     state: 'NSW',
     city: 'Sydney',
@@ -41,8 +40,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 12000,
     averagePropertyValue: 2200000,
     priorityScore: 95,
-    monthlySearchVolume: 800,
-  },
+    monthlySearchVolume: 800 },
   {
     state: 'NSW',
     city: 'Sydney',
@@ -53,8 +51,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 9500,
     averagePropertyValue: 3500000,
     priorityScore: 98,
-    monthlySearchVolume: 450,
-  },
+    monthlySearchVolume: 450 },
   {
     state: 'NSW',
     city: 'Sydney',
@@ -65,8 +62,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 30000,
     averagePropertyValue: 2800000,
     priorityScore: 96,
-    monthlySearchVolume: 650,
-  },
+    monthlySearchVolume: 650 },
   {
     state: 'NSW',
     city: 'Sydney',
@@ -77,8 +73,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 15000,
     averagePropertyValue: 4200000,
     priorityScore: 97,
-    monthlySearchVolume: 380,
-  },
+    monthlySearchVolume: 380 },
 
   // Melbourne Metro - Top Priority
   {
@@ -91,8 +86,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 178000,
     averagePropertyValue: 1200000,
     priorityScore: 99,
-    monthlySearchVolume: 2200,
-  },
+    monthlySearchVolume: 2200 },
   {
     state: 'VIC',
     city: 'Melbourne',
@@ -103,8 +97,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 12500,
     averagePropertyValue: 3800000,
     priorityScore: 97,
-    monthlySearchVolume: 420,
-  },
+    monthlySearchVolume: 420 },
   {
     state: 'VIC',
     city: 'Melbourne',
@@ -115,8 +108,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 25000,
     averagePropertyValue: 2100000,
     priorityScore: 94,
-    monthlySearchVolume: 780,
-  },
+    monthlySearchVolume: 780 },
   {
     state: 'VIC',
     city: 'Melbourne',
@@ -127,8 +119,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 22500,
     averagePropertyValue: 2600000,
     priorityScore: 93,
-    monthlySearchVolume: 680,
-  },
+    monthlySearchVolume: 680 },
 
   // Brisbane Metro - High Priority
   {
@@ -141,8 +132,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 24000,
     averagePropertyValue: 800000,
     priorityScore: 92,
-    monthlySearchVolume: 1800,
-  },
+    monthlySearchVolume: 1800 },
   {
     state: 'QLD',
     city: 'Brisbane',
@@ -153,8 +143,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 13500,
     averagePropertyValue: 1800000,
     priorityScore: 89,
-    monthlySearchVolume: 520,
-  },
+    monthlySearchVolume: 520 },
   {
     state: 'QLD',
     city: 'Brisbane',
@@ -165,8 +154,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 8500,
     averagePropertyValue: 1600000,
     priorityScore: 87,
-    monthlySearchVolume: 380,
-  },
+    monthlySearchVolume: 380 },
 
   // Gold Coast - High Priority
   {
@@ -179,8 +167,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 25000,
     averagePropertyValue: 950000,
     priorityScore: 88,
-    monthlySearchVolume: 890,
-  },
+    monthlySearchVolume: 890 },
   {
     state: 'QLD',
     city: 'Gold Coast',
@@ -191,8 +178,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 5500,
     averagePropertyValue: 1200000,
     priorityScore: 85,
-    monthlySearchVolume: 450,
-  },
+    monthlySearchVolume: 450 },
 
   // Perth Metro - High Priority
   {
@@ -205,8 +191,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 21000,
     averagePropertyValue: 750000,
     priorityScore: 90,
-    monthlySearchVolume: 1500,
-  },
+    monthlySearchVolume: 1500 },
   {
     state: 'WA',
     city: 'Perth',
@@ -217,8 +202,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 19500,
     averagePropertyValue: 1400000,
     priorityScore: 86,
-    monthlySearchVolume: 420,
-  },
+    monthlySearchVolume: 420 },
   {
     state: 'WA',
     city: 'Perth',
@@ -229,8 +213,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 7500,
     averagePropertyValue: 2200000,
     priorityScore: 88,
-    monthlySearchVolume: 380,
-  },
+    monthlySearchVolume: 380 },
 
   // Adelaide Metro - Medium-High Priority
   {
@@ -243,8 +226,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 25000,
     averagePropertyValue: 650000,
     priorityScore: 82,
-    monthlySearchVolume: 1200,
-  },
+    monthlySearchVolume: 1200 },
   {
     state: 'SA',
     city: 'Adelaide',
@@ -255,8 +237,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 5500,
     averagePropertyValue: 1100000,
     priorityScore: 79,
-    monthlySearchVolume: 280,
-  },
+    monthlySearchVolume: 280 },
 
   // Canberra - Medium-High Priority
   {
@@ -269,8 +250,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 4500,
     averagePropertyValue: 850000,
     priorityScore: 81,
-    monthlySearchVolume: 950,
-  },
+    monthlySearchVolume: 950 },
   {
     state: 'ACT',
     city: 'Canberra',
@@ -281,8 +261,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 1800,
     averagePropertyValue: 1650000,
     priorityScore: 78,
-    monthlySearchVolume: 180,
-  },
+    monthlySearchVolume: 180 },
 
   // Hobart - Medium Priority
   {
@@ -295,8 +274,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 4500,
     averagePropertyValue: 580000,
     priorityScore: 75,
-    monthlySearchVolume: 680,
-  },
+    monthlySearchVolume: 680 },
   {
     state: 'TAS',
     city: 'Hobart',
@@ -307,8 +285,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 3500,
     averagePropertyValue: 1200000,
     priorityScore: 76,
-    monthlySearchVolume: 220,
-  },
+    monthlySearchVolume: 220 },
 
   // Darwin - Medium Priority
   {
@@ -321,8 +298,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 4600,
     averagePropertyValue: 650000,
     priorityScore: 72,
-    monthlySearchVolume: 580,
-  },
+    monthlySearchVolume: 580 },
 
   // International - Pacific Region
   {
@@ -335,8 +311,7 @@ export const PRIORITY_LOCATIONS: LocationData[] = [
     population: 12500,
     averagePropertyValue: 350000,
     priorityScore: 85, // High priority for international expansion
-    monthlySearchVolume: 150,
-  },
+    monthlySearchVolume: 150 },
 ];
 
 // Service types for disaster recovery
@@ -345,62 +320,52 @@ export const SERVICE_TYPES = [
     slug: 'water-damage-restoration',
     name: 'Water Damage Restoration',
     searchVolume: 1000,
-    priority: 100,
-  },
+    priority: 100 },
   {
     slug: 'flood-damage-restoration',
     name: 'Flood Damage Restoration',
     searchVolume: 800,
-    priority: 95,
-  },
+    priority: 95 },
   {
     slug: 'mould-remediation',
     name: 'Mould Remediation',
     searchVolume: 600,
-    priority: 90,
-  },
+    priority: 90 },
   {
     slug: 'fire-damage-restoration',
     name: 'Fire Damage Restoration',
     searchVolume: 500,
-    priority: 85,
-  },
+    priority: 85 },
   {
     slug: 'storm-damage-repair',
     name: 'Storm Damage Repair',
     searchVolume: 700,
-    priority: 88,
-  },
+    priority: 88 },
   {
     slug: 'sewage-cleanup',
     name: 'Sewage Cleanup',
     searchVolume: 300,
-    priority: 75,
-  },
+    priority: 75 },
   {
     slug: 'smoke-damage-restoration',
     name: 'Smoke Damage Restoration',
     searchVolume: 250,
-    priority: 70,
-  },
+    priority: 70 },
   {
     slug: 'biohazard-cleaning',
     name: 'Biohazard Cleaning',
     searchVolume: 180,
-    priority: 65,
-  },
+    priority: 65 },
   {
     slug: 'trauma-scene-cleaning',
     name: 'Trauma Scene Cleaning',
     searchVolume: 120,
-    priority: 60,
-  },
+    priority: 60 },
   {
     slug: 'vandalism-repair',
     name: 'Vandalism Repair',
     searchVolume: 150,
-    priority: 55,
-  },
+    priority: 55 },
 ];
 
 // Property types for targeted content
@@ -409,32 +374,27 @@ export const PROPERTY_TYPES = [
     slug: 'residential',
     name: 'Residential',
     priority: 100,
-    examples: ['homes', 'apartments', 'units', 'townhouses'],
-  },
+    examples: ['homes', 'apartments', 'units', 'townhouses'] },
   {
     slug: 'commercial',
     name: 'Commercial',
     priority: 95,
-    examples: ['offices', 'retail stores', 'restaurants', 'warehouses'],
-  },
+    examples: ['offices', 'retail stores', 'restaurants', 'warehouses'] },
   {
     slug: 'industrial',
     name: 'Industrial',
     priority: 85,
-    examples: ['factories', 'manufacturing', 'processing plants'],
-  },
+    examples: ['factories', 'manufacturing', 'processing plants'] },
   {
     slug: 'institutional',
     name: 'Institutional',
     priority: 80,
-    examples: ['schools', 'hospitals', 'government buildings'],
-  },
+    examples: ['schools', 'hospitals', 'government buildings'] },
   {
     slug: 'high-rise',
     name: 'High-Rise',
     priority: 90,
-    examples: ['apartment towers', 'office buildings', 'mixed-use developments'],
-  },
+    examples: ['apartment towers', 'office buildings', 'mixed-use developments'] },
 ];
 
 // Business types for hyper-local targeting
@@ -461,8 +421,7 @@ export function generateLocationCombinations(): Array<{
         combinations.push({
           location,
           service,
-          propertyType,
-        });
+          propertyType });
 
         // Add business-specific combinations for commercial properties
         if (propertyType.slug === 'commercial') {
@@ -471,8 +430,7 @@ export function generateLocationCombinations(): Array<{
               location,
               service,
               propertyType,
-              businessType,
-            });
+              businessType });
           }
         }
       }

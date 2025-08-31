@@ -6,8 +6,7 @@ import { Building, Home, Briefcase, Building2, School, Hotel, Warehouse, Hospita
 
 export const metadata: Metadata = {
   title: 'Property Type Disaster Recovery | Residential, Commercial, Strata | All Properties',
-  description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
-};
+  description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.' };
 
 const properties = [
   {

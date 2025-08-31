@@ -130,7 +130,7 @@ export default function BookServicePage() {
         if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
           newErrors.email = 'Valid email is required';
         }
-        if (!formData.phone || !/^(\+?61|0)[2-478][\d\s-]{8,}$/.test(formData.phone.replace(/\s/g, ''))) {
+        if (!formData.phone || !/^(\+?61|0)[2-478][\d\s-]{8 }$/.test(formData.phone.replace(/\s/g, ''))) {
           newErrors.phone = 'Valid Australian phone number required';
         }
         break;

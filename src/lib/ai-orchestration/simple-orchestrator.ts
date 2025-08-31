@@ -51,8 +51,7 @@ export class SimpleOrchestrator {
       context: options.context,
       priority: options.priority || 'normal',
       accuracyRequired: options.accuracyRequired || 'standard',
-      allowFallback: true,
-    };
+      allowFallback: true };
     
     // Get routing decision
     const decision = await this.router.route(request);
@@ -61,8 +60,7 @@ export class SimpleOrchestrator {
       approach: decision.approach,
       model: decision.primaryModel,
       reasoning: decision.reasoning,
-      estimatedCost: `$${decision.estimatedCost.toFixed(4)}`,
-    });
+      estimatedCost: `$${decision.estimatedCost.toFixed(4)}` });
     
     try {
       let response: AIResponse;
@@ -142,10 +140,8 @@ export class SimpleOrchestrator {
         latency: Date.now() - Date.now(),
         cost: result.cost,
         steps: result.steps,
-        cacheHit: false,
-      },
-      timestamp: new Date(),
-    };
+        cacheHit: false },
+      timestamp: new Date() };
   }
   
   /**
@@ -197,8 +193,7 @@ export class SimpleOrchestrator {
       {
         systemPrompt,
         temperature: request.accuracyRequired === 'critical' ? 0.2 : 0.7,
-        maxTokens: 2000,
-      }
+        maxTokens: 2000 }
     );
     
     return {
@@ -212,10 +207,8 @@ export class SimpleOrchestrator {
         tokensUsed: result.tokensUsed,
         latency: Date.now() - startTime,
         cost: result.cost,
-        cacheHit: false,
-      },
-      timestamp: new Date(),
-    };
+        cacheHit: false },
+      timestamp: new Date() };
   }
   
   /**
@@ -255,8 +248,7 @@ export class SimpleOrchestrator {
     
     return {
       openrouter: openrouterOk,
-      anthropic: anthropicOk,
-    };
+      anthropic: anthropicOk };
   }
   
   /**
@@ -274,8 +266,7 @@ export class SimpleOrchestrator {
     return {
       status: allHealthy ? 'healthy' : someHealthy ? 'degraded' : 'unhealthy',
       providers: connections,
-      requestsProcessed: this.requestCount,
-    };
+      requestsProcessed: this.requestCount };
   }
 }
 

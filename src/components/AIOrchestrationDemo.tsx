@@ -67,8 +67,7 @@ export function AIOrchestrationDemo() {
       const response = await fetch('/api/ai/orchestrate', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: inputPrompt,
           taskType: 'DAMAGE_ASSESSMENT',
@@ -76,8 +75,7 @@ export function AIOrchestrationDemo() {
           accuracyRequired: 'critical',
           forceSequentialThinking: useSequentialThinking,
           maxSteps: 6
-        }),
-      });
+        }) });
 
       const data = await response.json();
       setResult(data);

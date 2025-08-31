@@ -6,8 +6,7 @@ import { Building2, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Industry-Specific Disaster Recovery | Commercial & Industrial Restoration',
-  description: 'Specialised disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
-};
+  description: 'Specialised disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.' };
 
 const industries = [
   {

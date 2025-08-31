@@ -32,25 +32,20 @@ export const metadata: Metadata = {
         url: '/images/optimised/equipment/3D Dehumidifier.png',
         width: 1200,
         height: 630,
-        alt: 'Professional structural drying equipment',
-      },
-    ],
-  },
+        alt: 'Professional structural drying equipment' },
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Structural Drying Services | Professional Water Extraction',
     description: 'Expert structural drying services. Industrial dehumidifiers, air movers, and professional moisture monitoring available 24/7.',
-    images: ['/images/optimised/equipment/3D Dehumidifier.png'],
-  },
+    images: ['/images/optimised/equipment/3D Dehumidifier.png'] },
   alternates: {
-    canonical: '/services/structural-drying',
-  },
+    canonical: '/services/structural-drying' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',
     'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751',
-  }
+    'ICBM': '-25.2744, 133.7751' }
 };
 
 // Schema.org structured data for structural drying

@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Office Water Damage: Minimizing Business Interruption | Disaster Recovery',
   description: 'Expert answers and solutions for "office building water damage business interruption". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'office building water damage business interruption, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'office building water damage business interruption, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function OfficeWaterDamageBusinessInterruptionPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function OfficeWaterDamageBusinessInterruptionPage() {
       name: 'office building water damage business interruption',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for office building water damage business interruption. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for office building water damage business interruption. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

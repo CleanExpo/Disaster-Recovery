@@ -9,8 +9,7 @@ export async function GET(request: NextRequest) {
     if (!user) {
       return NextResponse.json({
         success: false,
-        message: 'Authentication required',
-      }, { status: 401 });
+        message: 'Authentication required' }, { status: 401 });
     }
     
     // Check role-based access
@@ -18,8 +17,7 @@ export async function GET(request: NextRequest) {
     if (!hasRole(user.role as UserRole, allowedRoles)) {
       return NextResponse.json({
         success: false,
-        message: 'Insufficient permissions',
-      }, { status: 403 });
+        message: 'Insufficient permissions' }, { status: 403 });
     }
     
     // Generate dashboard data based on role
@@ -34,8 +32,7 @@ export async function GET(request: NextRequest) {
           revenue: 45678.90,
           teamMembers: 8,
           alerts: 3,
-          performanceScore: 94,
-        };
+          performanceScore: 94 };
         break;
         
       case UserRole.TECHNICIAN:
@@ -47,13 +44,10 @@ export async function GET(request: NextRequest) {
             customer: 'John Smith',
             address: '123 Main St, Sydney NSW',
             time: '2:00 PM',
-            type: 'Water Damage',
-          },
+            type: 'Water Damage' },
           equipment: {
             checked: true,
-            lastUpdated: new Date().toISOString(),
-          },
-        };
+            lastUpdated: new Date().toISOString() } };
         break;
         
       case UserRole.CONTRACTOR:
@@ -62,14 +56,12 @@ export async function GET(request: NextRequest) {
           pendingInvoices: 3,
           totalRevenue: 23456.78,
           rating: 4.8,
-          completionRate: 96,
-        };
+          completionRate: 96 };
         break;
         
       default:
         dashboardData = {
-          message: 'Limited dashboard access',
-        };
+          message: 'Limited dashboard access' };
     }
     
     return NextResponse.json({
@@ -77,18 +69,15 @@ export async function GET(request: NextRequest) {
       user: {
         userId: user.userId,
         email: user.email,
-        role: user.role,
-      },
-      dashboard: dashboardData,
-    }, { status: 200 });
+        role: user.role },
+      dashboard: dashboardData }, { status: 200 });
     
   } catch (error) {
     console.error('Dashboard API error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Failed to load dashboard data',
-    }, { status: 500 });
+      message: 'Failed to load dashboard data' }, { status: 500 });
   }
 }
 
@@ -98,7 +87,5 @@ export async function OPTIONS(request: NextRequest) {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorisation',
-    },
-  });
+      'Access-Control-Allow-Headers': 'Content-Type, Authorisation' } });
 }

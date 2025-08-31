@@ -79,7 +79,6 @@ Container.propTypes = {
   /** Container padding */
   padding: PropTypes.oneOf(['none', 'sm', 'base', 'lg', 'xl', 'responsive']),
   /** Component to render as */
-  as: PropTypes.elementType,
-};
+  as: PropTypes.elementType };
 
 export default Container;

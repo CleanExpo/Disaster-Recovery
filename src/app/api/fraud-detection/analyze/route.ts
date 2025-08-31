@@ -60,10 +60,8 @@ export async function POST(req: NextRequest) {
         ...metadata,
         ipAddress: req.ip || req.headers.get('x-forwarded-for')?.split(',')[0],
         userAgent: req.headers.get('user-agent') || undefined,
-        uploadTimestamp: new Date().toISOString(),
-      },
-      contractorId,
-    };
+        uploadTimestamp: new Date().toISOString() },
+      contractorId };
 
     // Run fraud detection analysis
     const fraudDetectionService = FraudDetectionService.getInstance();
@@ -153,14 +151,12 @@ export async function GET(req: NextRequest) {
             select: {
               email: true,
               businessName: true,
-              status: true,
-            }
+              status: true }
           }
         },
         orderBy: { createdAt: 'desc' },
         skip,
-        take: limit,
-      }),
+        take: limit }),
       prisma.fraudDetectionLog.count({ where })
     ]);
 

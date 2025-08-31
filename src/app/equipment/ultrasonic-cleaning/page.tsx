@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Ultrasonic Cleaning | Contents restoration | Advanced Restoration Technology',
-  description: 'Professional ultrasonic cleaning for contents restoration. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional ultrasonic cleaning for contents restoration. Latest technology for faster, better restoration results.' };
 
 export default function UltrasonicCleaningPage() {
   return (

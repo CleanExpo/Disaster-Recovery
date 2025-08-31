@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { DollarSign, Shield, Clock, CheckCircle2, Award, Users, Truck,, MessageSquare} from 'lucide-react';
+import { DollarSign, Shield, Clock, CheckCircle2, Award, Users, Truck, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 

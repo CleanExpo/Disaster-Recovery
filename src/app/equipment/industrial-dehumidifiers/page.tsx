@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Industrial Dehumidifiers | Structural drying | Advanced Restoration Technology',
-  description: 'Professional industrial dehumidifiers for structural drying. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional industrial dehumidifiers for structural drying. Latest technology for faster, better restoration results.' };
 
 export default function IndustrialDehumidifiersPage() {
   return (

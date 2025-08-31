@@ -130,8 +130,7 @@ const ModernServiceCards: React.FC = () => {
               linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px),
               linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px',
-          }}
+            backgroundSize: '60px 60px' }}
         />
 
         {/* Floating orbs */}
@@ -146,19 +145,16 @@ const ModernServiceCards: React.FC = () => {
                 ['rgba(99, 102, 241, 0.1)', 'rgba(139, 92, 246, 0.1)', 'rgba(236, 72, 153, 0.1)'][i]
               } 0%, transparent 70%)`,
               left: `${20 + i * 30}%`,
-              top: `${10 + i * 20}%`,
-            }}
+              top: `${10 + i * 20}%` }}
             animate={{
               x: [0, 50, 0],
               y: [0, -30, 0],
-              scale: [1, 1.1, 1],
-            }}
+              scale: [1, 1.1, 1] }}
             transition={{
               duration: 8 + i * 2,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 1.5,
-            }}
+              delay: i * 1.5 }}
           />
         ))}
       </div>
@@ -221,8 +217,7 @@ const ModernServiceCards: React.FC = () => {
                 style={{
                   background: `linear-gradient(135deg, ${service.bgGradient})`,
                   backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                }}
+                  border: '1px solid rgba(255, 255, 255, 0.1)' }}
                 whileHover={{ 
                   y: -10,
                   transition: { duration: 0.3 }
@@ -240,8 +235,7 @@ const ModernServiceCards: React.FC = () => {
                     background: `linear-gradient(135deg, ${service.colour.replace('from-', 'rgba(').replace('to-', 'rgba(').replace('-500', ', 0.3)')})`,
                     padding: '2px',
                     WebkitMask: 'linear-gradient(white 0 0) content-box, linear-gradient(white 0 0)',
-                    WebkitMaskComposite: 'xor',
-                  }}
+                    WebkitMaskComposite: 'xor' }}
                 />
 
                 {/* Icon with animated background */}

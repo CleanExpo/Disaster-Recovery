@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
-import { , Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
+import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({

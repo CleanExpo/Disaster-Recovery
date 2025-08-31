@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Infrared Drying Systems | Targeted drying | Advanced Restoration Technology',
-  description: 'Professional infrared drying systems for targeted drying. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional infrared drying systems for targeted drying. Latest technology for faster, better restoration results.' };
 
 export default function InfraredDryingSystemsPage() {
   return (

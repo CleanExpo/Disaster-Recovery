@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Easter Long Weekend Emergency Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "easter long weekend emergency restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'easter long weekend emergency restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'easter long weekend emergency restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function EasterWeekendEmergencyRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function EasterWeekendEmergencyRestorationPage() {
       name: 'easter long weekend emergency restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for easter long weekend emergency restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for easter long weekend emergency restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

@@ -15,9 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Builder vs Restorer: The Professional Difference That Saves Thousands',
     description: 'Restore what can be saved. Replace only what cannot be restored.',
-    images: ['/images/builder-vs-restorer.jpg'],
-  },
-};
+    images: ['/images/builder-vs-restorer.jpg'] } };
 
 const methodologyComparison = {
   builder: {

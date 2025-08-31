@@ -4,8 +4,7 @@ import Stripe from 'stripe';
 export const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
       apiVersion: '2024-11-20.acacia',
-      typescript: true,
-    })
+      typescript: true })
   : null;
 
 // Helper function to check if Stripe is configured
@@ -19,8 +18,7 @@ export const STRIPE_PRICES = {
     MONTH_1: process.env.STRIPE_SUB_MONTH_1_PRICE_ID || 'price_sub_month1_free',
     MONTH_2: process.env.STRIPE_SUB_MONTH_2_PRICE_ID || 'price_sub_month2_198',
     MONTH_3: process.env.STRIPE_SUB_MONTH_3_PRICE_ID || 'price_sub_month3_247',
-    REGULAR: process.env.STRIPE_SUB_REGULAR_PRICE_ID || 'price_sub_regular_495',
-  }
+    REGULAR: process.env.STRIPE_SUB_REGULAR_PRICE_ID || 'price_sub_regular_495' }
 };
 
 // Payment amounts in cents (for Stripe)
@@ -52,9 +50,7 @@ export async function createStripeCustomer(
     metadata: {
       contractorId,
       platform: 'NRP',
-      ...metadata,
-    },
-  });
+      ...metadata } });
   
   return customer;
 }
@@ -74,11 +70,9 @@ export async function createOnboardingPaymentIntent(
       contractorId,
       type: 'onboarding',
       applicationFee: PAYMENT_AMOUNTS.APPLICATION_FEE.toString(),
-      joiningFee: PAYMENT_AMOUNTS.JOINING_FEE.toString(),
-    },
+      joiningFee: PAYMENT_AMOUNTS.JOINING_FEE.toString() },
     description: 'NRP Contractor Onboarding - Application Fee ($275) + Joining Fee ($2,200)',
-    statement_descriptor: 'NRP ONBOARDING',
-  });
+    statement_descriptor: 'NRP ONBOARDING' });
   
   return paymentIntent;
 }
@@ -97,10 +91,8 @@ export async function createContractorSubscription(
     trial_period_days: 30, // First month free
     metadata: {
       contractorId,
-      promoSchedule: 'month1_free_month2_60off_month3_50off',
-    },
-    description: 'NRP Contractor Subscription',
-  });
+      promoSchedule: 'month1_free_month2_60off_month3_50off' },
+    description: 'NRP Contractor Subscription' });
   
   // Schedule price changes for months 2 and 3
   await createSubscriptionSchedule(subscription.id, customerId);
@@ -129,20 +121,16 @@ async function createSubscriptionSchedule(
         // Month 2: 60% off (30 days)
         items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
         coupon: 'sixty_percent_off', // 60% off coupon
-        iterations: 1,
-      },
+        iterations: 1 },
       {
         // Month 3: 50% off (30 days)
         items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
         coupon: 'fifty_percent_off', // 50% off coupon
-        iterations: 1,
-      },
+        iterations: 1 },
       {
         // Month 4+: Regular price
-        items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
-      },
-    ],
-  });
+        items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }] },
+    ] });
   
   return schedule;
 }
@@ -202,31 +190,23 @@ export async function createOnboardingCheckoutSession(
           currency: 'aud',
           product_data: {
             name: 'Application Fee',
-            description: 'NRP Contractor Application Processing Fee',
-          },
-          unit_amount: PAYMENT_AMOUNTS.APPLICATION_FEE,
-        },
-        quantity: 1,
-      },
+            description: 'NRP Contractor Application Processing Fee' },
+          unit_amount: PAYMENT_AMOUNTS.APPLICATION_FEE },
+        quantity: 1 },
       {
         price_data: {
           currency: 'aud',
           product_data: {
             name: 'Joining Fee',
-            description: 'NRP Network Access & Training Materials',
-          },
-          unit_amount: PAYMENT_AMOUNTS.JOINING_FEE,
-        },
-        quantity: 1,
-      },
+            description: 'NRP Network Access & Training Materials' },
+          unit_amount: PAYMENT_AMOUNTS.JOINING_FEE },
+        quantity: 1 },
     ],
     metadata: {
       contractorId,
-      type: 'onboarding',
-    },
+      type: 'onboarding' },
     success_url: successUrl,
-    cancel_url: cancelUrl,
-  });
+    cancel_url: cancelUrl });
   
   return session;
 }
@@ -240,8 +220,7 @@ export async function verifyPaymentStatus(paymentIntentId: string) {
     amount: paymentIntent.amount,
     currency: paymentIntent.currency,
     metadata: paymentIntent.metadata,
-    succeeded: paymentIntent.status === 'succeeded',
-  };
+    succeeded: paymentIntent.status === 'succeeded' };
 }
 
 // Create refund
@@ -253,8 +232,7 @@ export async function createRefund(
   const refund = await stripe.refunds.create({
     payment_intent: paymentIntentId,
     amount, // If not specified, refunds entire amount
-    reason: reason as Stripe.RefundCreateParams.Reason || 'requested_by_customer',
-  });
+    reason: reason as Stripe.RefundCreateParams.Reason || 'requested_by_customer' });
   
   return refund;
 }

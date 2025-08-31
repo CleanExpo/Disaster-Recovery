@@ -3,8 +3,7 @@
 import React from 'react';
 import { PremiumSupportTickets } from '@/components/contractor/dashboard/sections/PremiumSupportTickets';
 import { Button } from '@/components/ui/button';
-import { 
-  , 
+import {  
   ArrowRight, 
   Shield, 
   Zap, 

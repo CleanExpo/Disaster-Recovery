@@ -6,8 +6,7 @@ import { HelpCircle, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | All FAQs | Disaster Recovery',
-  description: 'Find answers to all your questions about disaster recovery, water damage, fire restoration, mould removal, insurance claims, and emergency response.',
-};
+  description: 'Find answers to all your questions about disaster recovery, water damage, fire restoration, mould removal, insurance claims, and emergency response.' };
 
 const categories = [
   {

@@ -92,8 +92,7 @@ export default function ProofOfWorkSubmission({
       emergencyResponse: false,
       insuranceClaim: false,
       evidence: [],
-      verificationStatus: 'PENDING' as const,
-    }));
+      verificationStatus: 'PENDING' as const }));
     setClaims(initialClaims);
   }, [requiredWorkTypes]);
 
@@ -113,8 +112,7 @@ export default function ProofOfWorkSubmission({
       emergencyResponse: false,
       insuranceClaim: false,
       evidence: [],
-      verificationStatus: 'PENDING',
-    });
+      verificationStatus: 'PENDING' });
     setShowClaimForm(true);
   };
 
@@ -153,8 +151,7 @@ export default function ProofOfWorkSubmission({
         body: JSON.stringify({
           contractorId,
           claims
-        }),
-      });
+        }) });
 
       if (!response.ok) {
         throw new Error('Failed to submit proof of work claims');
@@ -655,8 +652,7 @@ function EvidenceUploadSection({
       type: selectedEvidenceType as any,
       url: result.documentUrl,
       description: `${selectedEvidenceType.replace(/_/g, ' ')} - ${result.file.name}`,
-      uploadedAt: new Date().toISOString(),
-    };
+      uploadedAt: new Date().toISOString() };
     onAddEvidence(newEvidence);
   };
 

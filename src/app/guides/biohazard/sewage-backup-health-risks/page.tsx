@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Sewage Backup: Health Risks & Safe Cleanup | Disaster Recovery',
   description: 'Expert answers and solutions for "sewage backup cleanup health risks". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'sewage backup cleanup health risks, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'sewage backup cleanup health risks, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function SewageBackupHealthRisksPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function SewageBackupHealthRisksPage() {
       name: 'sewage backup cleanup health risks',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for sewage backup cleanup health risks. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for sewage backup cleanup health risks. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

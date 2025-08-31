@@ -106,37 +106,31 @@ export default function LeadManagementDashboard() {
         address: '123 Example Street',
         suburb: 'Brisbane',
         state: 'QLD',
-        postcode: '4000',
-      },
+        postcode: '4000' },
       service: {
         type: 'Water Damage Restoration',
         urgency: 'emergency',
         description: 'Burst pipe in kitchen, water spreading to living room',
         propertyType: 'residential',
-        affectedAreas: ['Kitchen', 'Living Room'],
-      },
+        affectedAreas: ['Kitchen', 'Living Room'] },
       insurance: {
         hasInsurance: true,
         company: 'NRMA Insurance',
-        claimNumber: 'CLM-2024-789',
-      },
+        claimNumber: 'CLM-2024-789' },
       payment: {
         status: 'completed',
         amount: 2750,
         method: 'card',
-        paidAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-      },
+        paidAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString() },
       contractor: {
         assigned: true,
         id: 'CONT-001',
         businessName: 'Elite Water Damage Restoration',
         acceptedAt: new Date(Date.now() - 1.5 * 60 * 60 * 1000).toISOString(),
-        responseTime: 15,
-      },
+        responseTime: 15 },
       status: 'in_progress',
       priority: 'high',
-      notes: ['Customer very stressed, needs immediate help', 'Contractor on the way'],
-    },
+      notes: ['Customer very stressed, needs immediate help', 'Contractor on the way'] },
     {
       id: 'LEAD-002',
       bookingId: 'NRP-2024-DEF456',
@@ -148,32 +142,26 @@ export default function LeadManagementDashboard() {
         address: '456 Test Avenue',
         suburb: 'Sydney',
         state: 'NSW',
-        postcode: '2000',
-      },
+        postcode: '2000' },
       service: {
         type: 'Fire Damage Restoration',
         urgency: 'urgent',
         description: 'Kitchen fire damage, smoke throughout property',
         propertyType: 'residential',
-        affectedAreas: ['Kitchen', 'Dining Room', 'Hallway'],
-      },
+        affectedAreas: ['Kitchen', 'Dining Room', 'Hallway'] },
       insurance: {
         hasInsurance: true,
         company: 'Allianz',
-        claimNumber: 'CLM-2024-456',
-      },
+        claimNumber: 'CLM-2024-456' },
       payment: {
         status: 'processing',
         amount: 2750,
-        method: 'bank_transfer',
-      },
+        method: 'bank_transfer' },
       contractor: {
-        assigned: false,
-      },
+        assigned: false },
       status: 'new',
       priority: 'high',
-      notes: ['Awaiting payment confirmation'],
-    },
+      notes: ['Awaiting payment confirmation'] },
     {
       id: 'LEAD-003',
       bookingId: 'NRP-2024-GHI789',
@@ -185,35 +173,29 @@ export default function LeadManagementDashboard() {
         address: '789 Sample Road',
         suburb: 'Melbourne',
         state: 'VIC',
-        postcode: '3000',
-      },
+        postcode: '3000' },
       service: {
         type: 'Mould Remediation',
         urgency: 'standard',
         description: 'Mould found in bathroom and bedroom walls',
         propertyType: 'rental',
-        affectedAreas: ['Bathroom', 'Master Bedroom'],
-      },
+        affectedAreas: ['Bathroom', 'Master Bedroom'] },
       insurance: {
-        hasInsurance: false,
-      },
+        hasInsurance: false },
       payment: {
         status: 'completed',
         amount: 2750,
         method: 'card',
-        paidAt: new Date(Date.now() - 23 * 60 * 60 * 1000).toISOString(),
-      },
+        paidAt: new Date(Date.now() - 23 * 60 * 60 * 1000).toISOString() },
       contractor: {
         assigned: true,
         id: 'CONT-003',
         businessName: 'Pro Mould Solutions',
         acceptedAt: new Date(Date.now() - 20 * 60 * 60 * 1000).toISOString(),
-        responseTime: 180,
-      },
+        responseTime: 180 },
       status: 'completed',
       priority: 'low',
-      notes: ['Job completed successfully', 'Customer satisfied'],
-    },
+      notes: ['Job completed successfully', 'Customer satisfied'] },
   ];
 
   useEffect(() => {
@@ -238,8 +220,7 @@ export default function LeadManagementDashboard() {
         completed: mockLeads.filter(l => l.status === 'completed').length,
         revenue: totalRevenue,
         conversionRate: (mockLeads.filter(l => l.status === 'completed').length / mockLeads.length) * 100,
-        avgResponseTime: Math.round(avgResponseTime),
-      });
+        avgResponseTime: Math.round(avgResponseTime) });
       
       setLoading(false);
     }, 1000);
@@ -278,8 +259,7 @@ export default function LeadManagementDashboard() {
       assigned: 'bg-purple-100 text-purple-800',
       in_progress: 'bg-indigo-100 text-indigo-800',
       completed: 'bg-green-100 text-green-800',
-      cancelled: 'bg-red-100 text-red-800',
-    };
+      cancelled: 'bg-red-100 text-red-800' };
     return colours[status] || 'bg-gray-100 text-gray-800';
   };
 

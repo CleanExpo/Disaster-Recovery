@@ -8,8 +8,7 @@ export const metadata: Metadata = {
   keywords: 'NRP best practices, professional standards, disaster recovery procedures, emergency response protocols, contractor certification, industry standards',
   openGraph: {
     title: 'NRP Best Practices Guide - Professional Standards',
-    description: 'Official guide to professional standards and mandatory procedures for NRP contractors in emergency response and disaster recovery.',
-  }
+    description: 'Official guide to professional standards and mandatory procedures for NRP contractors in emergency response and disaster recovery.' }
 };
 
 export default function NRPBestPracticesGuidePage() {

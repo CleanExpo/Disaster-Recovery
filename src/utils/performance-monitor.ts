@@ -15,8 +15,7 @@ export const performanceMonitor = {
         dnsTime: dnsTime / 1000,
         tcpTime: tcpTime / 1000,
         requestTime: requestTime / 1000,
-        domProcessing: domProcessing / 1000,
-      };
+        domProcessing: domProcessing / 1000 };
     }
     return null;
   },

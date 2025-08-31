@@ -12,9 +12,7 @@ export async function POST(request: NextRequest) {
       return new NextResponse(null, {
         status: 200,
         headers: {
-          'Content-Type': 'audio/mpeg',
-        },
-      });
+          'Content-Type': 'audio/mpeg' } });
     }
 
     const { text } = await request.json();
@@ -34,8 +32,7 @@ export async function POST(request: NextRequest) {
         headers: {
           'Accept': 'audio/mpeg',
           'Content-Type': 'application/json',
-          'xi-api-key': ELEVENLABS_API_KEY,
-        },
+          'xi-api-key': ELEVENLABS_API_KEY },
         body: JSON.stringify({
           text,
           model_id: 'eleven_monolingual_v1',
@@ -43,10 +40,7 @@ export async function POST(request: NextRequest) {
             stability: 0.75,
             similarity_boost: 0.75,
             style: 0.5,
-            use_speaker_boost: true,
-          },
-        }),
-      }
+            use_speaker_boost: true } }) }
     );
 
     if (!response.ok) {
@@ -55,9 +49,7 @@ export async function POST(request: NextRequest) {
       return new NextResponse(null, {
         status: 200,
         headers: {
-          'Content-Type': 'audio/mpeg',
-        },
-      });
+          'Content-Type': 'audio/mpeg' } });
     }
 
     // Stream the audio response
@@ -67,9 +59,7 @@ export async function POST(request: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Cache-Control': 'public, max-age=3600',
-      },
-    });
+        'Cache-Control': 'public, max-age=3600' } });
 
   } catch (error) {
     console.error('Error generating narration:', error);
@@ -77,8 +67,6 @@ export async function POST(request: NextRequest) {
     return new NextResponse(null, {
       status: 200,
       headers: {
-        'Content-Type': 'audio/mpeg',
-      },
-    });
+        'Content-Type': 'audio/mpeg' } });
   }
 }

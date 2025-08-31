@@ -15,9 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Real Emergency Response Costs - Transparent vs Hidden Pricing',
     description: 'What professional emergency response actually includes - no surprise invoices.',
-    images: ['/images/transparent-pricing.jpg'],
-  },
-};
+    images: ['/images/transparent-pricing.jpg'] } };
 
 const comprehensiveService = {
   price: 2750,

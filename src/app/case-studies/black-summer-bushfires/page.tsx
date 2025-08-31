@@ -3,8 +3,7 @@ import { FileText, TrendingUp, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Black Summer Bushfire Restoration | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Black Summer Bushfire Restoration. Real results, timelines, and restoration process.',
-};
+  description: 'How we helped recover from Black Summer Bushfire Restoration. Real results, timelines, and restoration process.' };
 
 export default function BlackSummerBushfireRestorationPage() {
   return (

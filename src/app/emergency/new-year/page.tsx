@@ -4,8 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'New Year Emergency Services | December 31 - January 2 | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available December 31 - January 2. No call-out fees, immediate response nationwide.',
-};
+  description: 'Emergency disaster recovery services available December 31 - January 2. No call-out fees, immediate response nationwide.' };
 
 export default function NewYearEmergencyPage() {
   return (

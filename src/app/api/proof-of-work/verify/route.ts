@@ -33,8 +33,7 @@ export async function POST(req: NextRequest) {
             id: true,
             email: true,
             businessName: true,
-            status: true,
-          }
+            status: true }
         }
       }
     });
@@ -52,8 +51,7 @@ export async function POST(req: NextRequest) {
       data: {
         verificationStatus,
         verificationNotes,
-        verifiedAt: verificationStatus === 'VERIFIED' ? new Date() : null,
-      }
+        verifiedAt: verificationStatus === 'VERIFIED' ? new Date() : null }
     });
 
     // If claim is verified or rejected, check contractor's overall status
@@ -65,19 +63,16 @@ export async function POST(req: NextRequest) {
         where: { contractorId },
         select: {
           workType: true,
-          verificationStatus: true,
-        }
+          verificationStatus: true }
       });
 
       // Get required work types from passed competency tests
       const competencyTests = await prisma.competencyTestResult.findMany({
         where: {
           contractorId,
-          passed: true,
-        },
+          passed: true },
         select: {
-          workType: true,
-        }
+          workType: true }
       });
 
       const requiredWorkTypes = competencyTests.map(test => test.workType);
@@ -107,8 +102,7 @@ export async function POST(req: NextRequest) {
         newContractorStatus = 'UNDER_REVIEW';
         statusUpdateData = {
           status: 'UNDER_REVIEW',
-          reviewNotes: `Proof of work verification incomplete. Rejected: ${rejectedClaims.length}, Verified: ${verifiedClaims.length}`,
-        };
+          reviewNotes: `Proof of work verification incomplete. Rejected: ${rejectedClaims.length}, Verified: ${verifiedClaims.length}` };
       }
 
       if (newContractorStatus !== existingClaim.contractor.status) {
@@ -131,12 +125,10 @@ export async function POST(req: NextRequest) {
             proofOfWorkId: claimId,
             workType: existingClaim.workType,
             verificationNotes,
-            newStatus: newContractorStatus,
-          }),
+            newStatus: newContractorStatus }),
           read: false,
           recipientType: 'CONTRACTOR',
-          recipientId: contractorId,
-        }
+          recipientId: contractorId }
       });
 
       // If contractor is now approved, create welcome notification
@@ -148,12 +140,10 @@ export async function POST(req: NextRequest) {
             message: 'Your contractor application has been fully approved. You can now start receiving leads.',
             metadata: JSON.stringify({
               contractorId,
-              approvedAt: new Date().toISOString(),
-            }),
+              approvedAt: new Date().toISOString() }),
             read: false,
             recipientType: 'CONTRACTOR',
-            recipientId: contractorId,
-          }
+            recipientId: contractorId }
         });
       }
     }
@@ -164,8 +154,7 @@ export async function POST(req: NextRequest) {
         ...updatedClaim,
         evidence: JSON.parse(updatedClaim.evidence as string || '[]')
       },
-      message: `Proof of work claim ${verificationStatus.toLowerCase()} successfully`,
-    });
+      message: `Proof of work claim ${verificationStatus.toLowerCase()} successfully` });
 
   } catch (error) {
     console.error('Error verifying proof of work:', error);
@@ -199,8 +188,7 @@ export async function GET(req: NextRequest) {
             email: true,
             businessName: true,
             status: true,
-            phone: true,
-          }
+            phone: true }
         }
       }
     });

@@ -37,24 +37,21 @@ const Card = forwardRef(({
     default: '',
     elevated: 'shadow-md',
     bordered: 'border-2',
-    ghost: 'border-0 shadow-none bg-transparent',
-  };
+    ghost: 'border-0 shadow-none bg-transparent' };
   
   const paddingClasses = {
     none: 'p-0',
     sm: 'p-4',
     default: 'p-6',
     lg: 'p-8',
-    xl: 'p-10',
-  };
+    xl: 'p-10' };
   
   const classes = clsx(
     baseClasses,
     variantClasses[variant],
     paddingClasses[padding],
     {
-      'hover-lift transition-transform transition-shadow': hover,
-    },
+      'hover-lift transition-transform transition-shadow': hover },
     className
   );
   
@@ -188,8 +185,7 @@ const CardImage = forwardRef(({
     '1/1': 'aspect-square',
     '16/9': 'aspect-video',
     '4/3': 'aspect-4/3',
-    '3/2': 'aspect-3/2',
-  };
+    '3/2': 'aspect-3/2' };
   
   return (
     <div
@@ -230,41 +226,34 @@ Card.propTypes = {
   /** Card variant */
   variant: PropTypes.oneOf(['default', 'elevated', 'bordered', 'ghost']),
   /** Card padding */
-  padding: PropTypes.oneOf(['none', 'sm', 'default', 'lg', 'xl']),
-};
+  padding: PropTypes.oneOf(['none', 'sm', 'default', 'lg', 'xl']) };
 
 CardHeader.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
+  className: PropTypes.string };
 
 CardTitle.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  as: PropTypes.elementType,
-};
+  as: PropTypes.elementType };
 
 CardSubtitle.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  as: PropTypes.elementType,
-};
+  as: PropTypes.elementType };
 
 CardBody.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
+  className: PropTypes.string };
 
 CardFooter.propTypes = {
   children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
+  className: PropTypes.string };
 
 CardImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   className: PropTypes.string,
-  aspectRatio: PropTypes.oneOf(['1/1', '16/9', '4/3', '3/2']),
-};
+  aspectRatio: PropTypes.oneOf(['1/1', '16/9', '4/3', '3/2']) };
 
 export default Card;

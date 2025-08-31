@@ -30,8 +30,7 @@ export default function ImageOptimizerPage() {
           maxWidthOrHeight: maxWidth,
           useWebWorker: true,
           fileType: 'image/webp',
-          quality: quality,
-        };
+          quality: quality };
 
         const compressedFile = await imageCompression(file, options);
         const compressedSize = compressedFile.size;

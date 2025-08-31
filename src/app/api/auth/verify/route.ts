@@ -8,8 +8,7 @@ export async function GET(request: NextRequest) {
     if (!user) {
       return NextResponse.json({
         success: false,
-        message: 'Not authenticated',
-      }, { status: 401 });
+        message: 'Not authenticated' }, { status: 401 });
     }
     
     return NextResponse.json({
@@ -18,17 +17,14 @@ export async function GET(request: NextRequest) {
         userId: user.userId,
         email: user.email,
         role: user.role,
-        permissions: user.permissions,
-      },
-    }, { status: 200 });
+        permissions: user.permissions } }, { status: 200 });
     
   } catch (error) {
     console.error('Auth verification error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Invalid or expired token',
-    }, { status: 401 });
+      message: 'Invalid or expired token' }, { status: 401 });
   }
 }
 
@@ -38,7 +34,5 @@ export async function OPTIONS(request: NextRequest) {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorisation',
-    },
-  });
+      'Access-Control-Allow-Headers': 'Content-Type, Authorisation' } });
 }

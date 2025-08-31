@@ -287,7 +287,7 @@ graph TD
     let formatted = content;
     
     // Ensure consistent line breaks
-    formatted = formatted.replace(/\n{3,}/g, '\n\n');
+    formatted = formatted.replace(/\n{3 }/g, '\n\n');
     
     // Ensure spaces after list markers
     formatted = formatted.replace(/^-([^ ])/gm, '- $1');

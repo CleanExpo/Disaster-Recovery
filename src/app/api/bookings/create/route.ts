@@ -18,7 +18,7 @@ const bookingSchema = z.object({
   firstName: z.string().min(2, 'First name is required'),
   lastName: z.string().min(2, 'Last name is required'),
   email: z.string().email('Invalid email address'),
-  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8,}$/, 'Invalid Australian phone number'),
+  phone: z.string().regex(/^(\+?61|0)[2-478][\d\s-]{8 }$/, 'Invalid Australian phone number'),
   preferredContact: z.enum(['phone', 'email', 'both']),
   
   // Address
@@ -33,8 +33,7 @@ const bookingSchema = z.object({
   claimNumber: z.string().optional(),
   additionalNotes: z.string().optional(),
   photos: z.array(z.string()).optional(),
-  accessInstructions: z.string().optional(),
-});
+  accessInstructions: z.string().optional() });
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,8 +49,7 @@ export async function POST(request: NextRequest) {
       propertyType: validatedData.propertyType,
       hasInsurance: validatedData.hasInsurance,
       contactMethod: 'form',
-      estimatedValue: parseInt(validatedData.estimatedDamage.replace(/\D/g, '')) || 0,
-    });
+      estimatedValue: parseInt(validatedData.estimatedDamage.replace(/\D/g, '')) || 0 });
     
     const priority = getLeadPriority(leadScore);
     const assignment = assignLeadToTeam(leadScore, validatedData.serviceType);
@@ -75,8 +73,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: false,
         message: 'The selected time slot is not available',
-        alternatives: alternativeTimes,
-      }, { status: 409 });
+        alternatives: alternativeTimes }, { status: 409 });
     }
     
     // Create booking object
@@ -89,8 +86,7 @@ export async function POST(request: NextRequest) {
       responseTimeMinutes: responseTime,
       status: validatedData.urgency === 'emergency' ? 'confirmed' : 'pending_confirmation',
       createdAt: new Date().toISOString(),
-      estimatedArrival: calculateEstimatedArrival(validatedData.date, validatedData.time, validatedData.urgency),
-    };
+      estimatedArrival: calculateEstimatedArrival(validatedData.date, validatedData.time, validatedData.urgency) };
     
     // Send notification email to team
     const leadData = {
@@ -109,8 +105,7 @@ export async function POST(request: NextRequest) {
       leadValue: Math.round(leadScore * 10),
       description: validatedData.additionalNotes || 'Booking via online form',
       address: `${validatedData.streetAddress}, ${validatedData.suburb}, ${validatedData.state} ${validatedData.postcode}`,
-      createdAt: new Date().toISOString(),
-    };
+      createdAt: new Date().toISOString() };
     
     // Send emails
     Promise.all([
@@ -141,9 +136,7 @@ export async function POST(request: NextRequest) {
         status: booking.status,
         estimatedArrival: booking.estimatedArrival,
         priority,
-        assignedTeam: assignment.team,
-      },
-    }, { status: 201 });
+        assignedTeam: assignment.team } }, { status: 201 });
     
   } catch (error) {
     console.error('Booking error:', error);
@@ -154,15 +147,12 @@ export async function POST(request: NextRequest) {
         message: 'Validation error',
         errors: error.errors.map(e => ({
           field: e.path.join('.'),
-          message: e.message,
-        })),
-      }, { status: 400 });
+          message: e.message })) }, { status: 400 });
     }
     
     return NextResponse.json({
       success: false,
-      message: 'Failed to create booking. Please try again or call 1800 DISASTER.',
-    }, { status: 500 });
+      message: 'Failed to create booking. Please try again or call 1800 DISASTER.' }, { status: 500 });
   }
 }
 
@@ -172,9 +162,7 @@ export async function OPTIONS(request: NextRequest) {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
-  });
+      'Access-Control-Allow-Headers': 'Content-Type' } });
 }
 
 function getNextDay(dateString: string): string {

@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'When to Call Professional Disaster Restoration Services | Disaster Recovery',
   description: 'Expert answers and solutions for "when to call professional disaster restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'when to call professional disaster restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'when to call professional disaster restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WhenToCallDisasterRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WhenToCallDisasterRestorationPage() {
       name: 'when to call professional disaster restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for when to call professional disaster restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for when to call professional disaster restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

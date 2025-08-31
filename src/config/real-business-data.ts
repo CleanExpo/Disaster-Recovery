@@ -21,8 +21,7 @@ export const BUSINESS_CONFIG = {
     emergencyemail: null, // No Email Address
     designedBy: 'Zenith',
     designerWebsite: 'https://zenith.engineer',
-    parentAgency: 'Unite-Group Agency',
-  },
+    parentAgency: 'Unite-Group Agency' },
 
   // REAL MARKET DATA (Based on IBISWorld, Insurance Council of Australia)
   market: {
@@ -166,8 +165,7 @@ export const BUSINESS_CONFIG = {
     currentRankings: {
       page1: 0, // Currently none
       page2: 0,
-      page3Plus: 0,
-    },
+      page3Plus: 0 },
     targetRankings: {
       page1: 0.60, // 60% page 1 target
       page2: 0.25, // 25% page 2
@@ -210,8 +208,7 @@ export const BUSINESS_CONFIG = {
       cache: 'Redis',
       cdn: 'Cloudflare',
       monitoring: 'Datadog',
-      analytics: 'Plausible + Custom',
-    },
+      analytics: 'Plausible + Custom' },
     ai: {
       provider: 'Anthropic Claude',
       model: 'Claude 3.5 Sonnet',
@@ -231,8 +228,7 @@ export const BUSINESS_CONFIG = {
       authentication: 'OAuth 2.0 + MFA',
       compliance: ['GDPR', 'Australian Privacy Act', 'PCI DSS'],
       audit: 'SOC 2 Type II (planned)',
-      backups: 'Hourly snapshots, 30-day retention',
-    }
+      backups: 'Hourly snapshots, 30-day retention' }
   },
 
   // REAL TEAM STRUCTURE (Current + Planned)
@@ -249,16 +245,14 @@ export const BUSINESS_CONFIG = {
       productManager: 1,
       growthMarketing: 1,
       dataAnalyst: 1,
-      total: 6,
-    },
+      total: 6 },
     yearThreeTarget: {
       engineering: 12,
       product: 3,
       marketing: 4,
       operations: 2,
       leadership: 4,
-      total: 25,
-    }
+      total: 25 }
   },
 
   // REAL INVESTMENT REQUIREMENTS
@@ -284,8 +278,7 @@ export const BUSINESS_CONFIG = {
         technologyPlatform: 0.25,
         salesMarketing: 0.20,
         teamScaling: 0.15,
-        workingCapital: 0.05,
-      }
+        workingCapital: 0.05 }
     },
     exitStrategy: {
       timeline: '5-7 years',
@@ -363,8 +356,7 @@ export const CALCULATED_METRICS = {
   averageRevenuePerContractor: BUSINESS_CONFIG.pricing.subscriptionTiers.standard.monthly,
   projectedYear3Revenue: BUSINESS_CONFIG.revenue.year3Target * 12,
   marketShareYear5: BUSINESS_CONFIG.revenue.year5Target * 12 / BUSINESS_CONFIG.market.serviceableMarket,
-  contractorPenetration: BUSINESS_CONFIG.contractors.targetYear5 / BUSINESS_CONFIG.contractors.totalInAustralia,
-};
+  contractorPenetration: BUSINESS_CONFIG.contractors.targetYear5 / BUSINESS_CONFIG.contractors.totalInAustralia };
 
 // Validation function to ensure data consistency
 export function validateBusinessData(): boolean {

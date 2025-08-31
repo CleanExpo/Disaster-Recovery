@@ -9,8 +9,7 @@ import { Brain, Zap, Target } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'AI Orchestration Demo - GPT-OSS-120B Integration',
-  description: 'Test the advanced AI orchestration system with GPT-OSS-120B sequential thinking capabilities',
-};
+  description: 'Test the advanced AI orchestration system with GPT-OSS-120B sequential thinking capabilities' };
 
 export default function AIDemoPage() {
   return (

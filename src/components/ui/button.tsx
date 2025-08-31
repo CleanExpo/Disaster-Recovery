@@ -20,21 +20,16 @@ const buttonVariants = cva(
         premium: "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200",
         success: "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg hover:from-green-700 hover:to-emerald-700 transform hover:scale-105",
         glass: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-200",
-        gradient: "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105",
-      },
+        gradient: "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg hover:from-cyan-600 hover:to-blue-700 transform hover:scale-105" },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-11 rounded-md px-8 text-base",
         xl: "h-14 rounded-lg px-12 text-lg font-semibold",
-        icon: "h-9 w-9",
-      },
-    },
+        icon: "h-9 w-9" } },
     defaultVariants: {
       variant: "default",
-      size: "default",
-    },
-  }
+      size: "default" } }
 )
 
 export interface ButtonProps

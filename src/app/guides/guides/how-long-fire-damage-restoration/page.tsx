@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Fire Damage Restoration Timeline: What to Expect | Disaster Recovery',
   description: 'Expert answers and solutions for "how long does fire damage restoration take". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'how long does fire damage restoration take, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'how long does fire damage restoration take, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function HowLongFireDamageRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function HowLongFireDamageRestorationPage() {
       name: 'how long does fire damage restoration take',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for how long does fire damage restoration take. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for how long does fire damage restoration take. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

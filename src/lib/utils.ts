@@ -17,8 +17,7 @@ export const colours = {
     600: '#2563eb',
     700: '#1d4ed8',
     800: '#1e40af',
-    900: '#1e3a8a',
-  },
+    900: '#1e3a8a' },
   emergency: {
     50: '#fef2f2',
     100: '#fee2e2',
@@ -29,8 +28,7 @@ export const colours = {
     600: '#dc2626',
     700: '#b91c1c',
     800: '#991b1b',
-    900: '#7f1d1d',
-  },
+    900: '#7f1d1d' },
   success: {
     50: '#f0fdf4',
     100: '#dcfce7',
@@ -41,8 +39,7 @@ export const colours = {
     600: '#16a34a',
     700: '#15803d',
     800: '#166534',
-    900: '#14532d',
-  },
+    900: '#14532d' },
   neutral: {
     50: '#f8fafc',
     100: '#f1f5f9',
@@ -53,8 +50,7 @@ export const colours = {
     600: '#475569',
     700: '#334155',
     800: '#1e293b',
-    900: '#0f172a',
-  }
+    900: '#0f172a' }
 } as const
 
 // Utility functions for animations
@@ -88,14 +84,12 @@ export const formatEmail = (email: string): string => {
 export const formatCurrency = (amount: number): string => {
   return new Intl.NumberFormat('en-AU', {
     style: 'currency',
-    currency: 'AUD',
-  }).format(amount);
+    currency: 'AUD' }).format(amount);
 }
 
 export const formatDate = (date: Date): string => {
   return new Intl.DateTimeFormat('en-AU', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
-  }).format(date);
+    day: 'numeric' }).format(date);
 }

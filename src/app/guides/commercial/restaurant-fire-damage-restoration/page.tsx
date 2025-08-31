@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Restaurant Kitchen Fire Damage Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "restaurant kitchen fire damage restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'restaurant kitchen fire damage restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'restaurant kitchen fire damage restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function RestaurantFireDamageRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function RestaurantFireDamageRestorationPage() {
       name: 'restaurant kitchen fire damage restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for restaurant kitchen fire damage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for restaurant kitchen fire damage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

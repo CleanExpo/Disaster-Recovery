@@ -23,15 +23,13 @@ export const Logo: React.FC<LogoProps> = ({
   size = 'md',
   className,
   showText = true,
-  darkMode = false,
-}) => {
+  darkMode = false }) => {
   // Size mappings
   const sizeConfig = {
     sm: { width: 32, height: 32, textSize: 'text-sm' },
     md: { width: 48, height: 48, textSize: 'text-base' },
     lg: { width: 64, height: 64, textSize: 'text-lg' },
-    xl: { width: 96, height: 96, textSize: 'text-xl' },
-  };
+    xl: { width: 96, height: 96, textSize: 'text-xl' } };
 
   const config = sizeConfig[size];
 
@@ -39,14 +37,12 @@ export const Logo: React.FC<LogoProps> = ({
   const logoSources = {
     'disaster-recovery': '/logos/3D Disaster Recovery Logo Image.png',
     'nrp': '/logos/3D NRP Logo.png',
-    'combined': '/logos/3D Disaster Recovery Logo Image.png',
-  };
+    'combined': '/logos/3D Disaster Recovery Logo Image.png' };
 
   const logoAltText = {
     'disaster-recovery': 'Disaster Recovery',
     'nrp': 'NRP',
-    'combined': 'Disaster Recovery by NRP',
-  };
+    'combined': 'Disaster Recovery by NRP' };
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
@@ -133,8 +129,7 @@ export const useLogos = () => {
     nrp: '/logos/3D NRP Logo.png',
     cleanClaims: '/logos/3D Clean Claims.png',
     carsi: '/logos/3D CARSI Logo.png',
-    combined: '/logos/3D Disaster Recovery Logo Image.png',
-  };
+    combined: '/logos/3D Disaster Recovery Logo Image.png' };
 
   return logos;
 };

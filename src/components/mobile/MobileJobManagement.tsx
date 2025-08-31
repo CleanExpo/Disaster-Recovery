@@ -70,9 +70,7 @@ export default function MobileJobManagement() {
       status: 'assigned',
       priority: 'urgent',
       client: {
-        name: 'Michael Chen',
-        
-      },
+        name: 'Michael Chen' },
       location: {
         address: '456 Park Ave, Melbourne VIC 3000',
         coordinates: { latitude: -37.8136, longitude: 144.9631 },

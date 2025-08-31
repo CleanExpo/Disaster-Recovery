@@ -204,8 +204,7 @@ export default function UltraModernServicesPage() {
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
           animate={{
             x: [0, 100, 0],
-            y: [0, -100, 0],
-          }}
+            y: [0, -100, 0] }}
           transition={{
             duration: 25,
             repeat: Infinity,
@@ -216,8 +215,7 @@ export default function UltraModernServicesPage() {
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
           animate={{
             x: [0, -100, 0],
-            y: [0, 100, 0],
-          }}
+            y: [0, 100, 0] }}
           transition={{
             duration: 20,
             repeat: Infinity,
@@ -232,8 +230,7 @@ export default function UltraModernServicesPage() {
         style={{
           x: smoothMouseX,
           y: smoothMouseY,
-          transform: 'translate(-50%, -50%)',
-        }}
+          transform: 'translate(-50%, -50%)' }}
       >
         <div className="w-full h-full bg-cyan-400 rounded-full opacity-50 blur-sm" />
       </motion.div>
@@ -386,8 +383,7 @@ export default function UltraModernServicesPage() {
                   <motion.div
                     className="absolute inset-0 rounded-2xl pointer-events-none"
                     animate={hoveredCard === service.id ? {
-                      boxShadow: '0 0 40px rgba(59, 130, 246, 0.3)',
-                    } : {}}
+                      boxShadow: '0 0 40px rgba(59, 130, 246, 0.3)' } : {}}
                   />
                 </motion.div>
 

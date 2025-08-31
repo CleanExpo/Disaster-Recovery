@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Best Restoration Companies in Australia: How to Choose | Disaster Recovery',
   description: 'Expert answers and solutions for "which restoration company is best in australia". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'which restoration company is best in australia, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'which restoration company is best in australia, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function BestRestorationCompanyAustraliaPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function BestRestorationCompanyAustraliaPage() {
       name: 'which restoration company is best in australia',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for which restoration company is best in australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for which restoration company is best in australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

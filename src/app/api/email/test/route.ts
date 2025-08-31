@@ -10,8 +10,7 @@ export async function POST(request: NextRequest) {
     if (!user || !hasRole(user.role as UserRole, [UserRole.ADMIN])) {
       return NextResponse.json({
         success: false,
-        message: 'Admin authentication required',
-      }, { status: 401 });
+        message: 'Admin authentication required' }, { status: 401 });
     }
     
     // Verify email configuration
@@ -20,8 +19,7 @@ export async function POST(request: NextRequest) {
     if (!configValid) {
       return NextResponse.json({
         success: false,
-        message: 'Email configuration is not valid. Please check SMTP settings.',
-      }, { status: 500 });
+        message: 'Email configuration is not valid. Please check SMTP settings.' }, { status: 500 });
     }
     
     // Parse request body
@@ -31,8 +29,7 @@ export async function POST(request: NextRequest) {
     if (!recipientEmail) {
       return NextResponse.json({
         success: false,
-        message: 'Recipient email is required',
-      }, { status: 400 });
+        message: 'Recipient email is required' }, { status: 400 });
     }
     
     // Send test email
@@ -71,8 +68,7 @@ export async function POST(request: NextRequest) {
             <p>Disaster Recovery - Email System Test</p>
           </div>
         </div>
-      `,
-    };
+      ` };
     
     const result = await sendEmail(recipientEmail, testEmail);
     
@@ -80,14 +76,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         success: true,
         message: 'Test email sent successfully',
-        messageId: result.messageId,
-      }, { status: 200 });
+        messageId: result.messageId }, { status: 200 });
     } else {
       return NextResponse.json({
         success: false,
         message: 'Failed to send test email',
-        error: result.error,
-      }, { status: 500 });
+        error: result.error }, { status: 500 });
     }
     
   } catch (error) {
@@ -96,8 +90,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: false,
       message: 'An error occurred during email test',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { status: 500 });
+      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
   }
 }
 
@@ -109,8 +102,7 @@ export async function GET(request: NextRequest) {
     if (!user || !hasRole(user.role as UserRole, [UserRole.ADMIN])) {
       return NextResponse.json({
         success: false,
-        message: 'Admin authentication required',
-      }, { status: 401 });
+        message: 'Admin authentication required' }, { status: 401 });
     }
     
     // Check email configuration status
@@ -124,16 +116,13 @@ export async function GET(request: NextRequest) {
         port: process.env.SMTP_PORT || '587',
         secure: process.env.SMTP_SECURE === 'true',
         from: process.env.EMAIL_FROM || 'noreply@disasterrecovery.com.au',
-        userConfigured: !!process.env.SMTP_USER,
-      },
-    }, { status: 200 });
+        userConfigured: !!process.env.SMTP_USER } }, { status: 200 });
     
   } catch (error) {
     console.error('Email config check error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Failed to check email configuration',
-    }, { status: 500 });
+      message: 'Failed to check email configuration' }, { status: 500 });
   }
 }

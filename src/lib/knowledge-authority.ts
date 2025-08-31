@@ -55,78 +55,61 @@ export const SCIENTIFIC_FACTS = {
       fact: "Mould can begin growing within 24-48 hours in conditions above 60% relative humidity",
       source: "IICRC S520 Standard",
       technical: "Fungal growth initiates when moisture content exceeds 16% in organic materials at temperatures between 5°C and 38°C",
-      common: "Mould starts growing in just 1-2 days when things stay wet",
-    },
+      common: "Mould starts growing in just 1-2 days when things stay wet" },
     drying_time: {
       fact: "Structural drying requires maintaining vapor pressure differential of at least 4.5 mmHg",
       source: "IICRC S500 Water Damage Restoration Standard",
       technical: "Evaporation rate = (Vapor Pressure Differential × Air Flow) / Material Resistance",
-      common: "Proper drying needs the right temperature, air movement, and humidity control",
-    },
+      common: "Proper drying needs the right temperature, air movement, and humidity control" },
     categories: {
       fact: "Water contamination is classified into 3 categories based on source and contamination level",
       source: "IICRC S500",
       technical: "Category 1: <1 CFU/mL, Category 2: <10⁴ CFU/mL, Category 3: >10⁴ CFU/mL bacteria",
-      common: "Clean water, grey water, and black water need different cleaning methods",
-    },
-  },
+      common: "Clean water, grey water, and black water need different cleaning methods" } },
   fire_damage: {
     smoke_particles: {
       fact: "Smoke particles range from 0.01 to 4 microns, penetrating deep into materials",
       source: "Journal of Fire Sciences",
       technical: "PM2.5 particles penetrate alveolar regions, requiring HEPA filtration (99.97% @ 0.3μm)",
-      common: "Smoke particles are so tiny they get into everything and need special filters to remove",
-    },
+      common: "Smoke particles are so tiny they get into everything and need special filters to remove" },
     toxicity: {
       fact: "Combustion produces over 400 identified toxic compounds including PAHs and VOCs",
       source: "EPA Fire Research",
       technical: "Polycyclic aromatic hydrocarbons and volatile organic compounds require specialised remediation",
-      common: "Fire smoke contains hundreds of dangerous chemicals that need professional removal",
-    },
-  },
+      common: "Fire smoke contains hundreds of dangerous chemicals that need professional removal" } },
   mould: {
     health_impacts: {
       fact: "Exposure to mould can cause respiratory issues in 21% of asthma cases",
       source: "WHO Guidelines for Indoor Air Quality",
       technical: "Mycotoxins and MVOCs trigger IgE-mediated and non-IgE inflammatory responses",
-      common: "Mould can trigger asthma and allergies, especially in sensitive people",
-    },
+      common: "Mould can trigger asthma and allergies, especially in sensitive people" },
     species: {
       fact: "Over 100,000 mould species exist, with 1,000+ common in Australian buildings",
       source: "Australian Mycology Research",
       technical: "Aspergillus, Penicillium, and Cladosporium represent 80% of indoor fungal ecology",
-      common: "Thousands of mould types exist, but a few dozen are most common in homes",
-    },
-  },
+      common: "Thousands of mould types exist, but a few dozen are most common in homes" } },
   materials: {
     porosity: {
       fact: "Materials are classified by porosity: non-porous (<0.5%), semi-porous (0.5-40%), porous (>40%)",
       source: "IICRC Material Classification",
       technical: "Porosity = (Volume of voids / Total volume) × 100%",
-      common: "Hard surfaces, semi-soft materials, and soft materials absorb water differently",
-    },
+      common: "Hard surfaces, semi-soft materials, and soft materials absorb water differently" },
     moisture_content: {
       fact: "Normal moisture content for wood framing should be 8-12% in most Australian climates",
       source: "Australian Building Codes",
       technical: "MC% = ((Wet weight - Dry weight) / Dry weight) × 100",
-      common: "Wood should stay below 15% moisture to prevent rot and mould",
-    },
-  },
+      common: "Wood should stay below 15% moisture to prevent rot and mould" } },
   psychrometrics: {
     relative_humidity: {
       fact: "Optimal indoor RH is 30-50% for health and building preservation",
       source: "ASHRAE Standards",
       technical: "RH = (Actual vapor pressure / Saturation vapor pressure) × 100%",
-      common: "Keep indoor humidity between 30-50% for comfort and to prevent mould",
-    },
+      common: "Keep indoor humidity between 30-50% for comfort and to prevent mould" },
     dew_point: {
       fact: "Condensation occurs when surface temperature drops below dew point",
       source: "Building Physics Fundamentals",
       technical: "Td = T - ((100 - RH) / 5) where T is temperature in Celsius",
-      common: "Water forms on surfaces colder than the 'dew point' temperature",
-    },
-  },
-};
+      common: "Water forms on surfaces colder than the 'dew point' temperature" } } };
 
 /**
  * Generate E.E.A.T compliant content
@@ -189,8 +172,7 @@ export function convertTechnicalToCommon(technical: string): string {
     'volatile organic compounds': 'harmful chemical vapors',
     'substrate': 'surface or material',
     'moisture content': 'how wet something is',
-    'equilibrium moisture content': 'normal moisture level',
-  };
+    'equilibrium moisture content': 'normal moisture level' };
   
   let common = technical.toLowerCase();
   Object.entries(conversions).forEach(([tech, simple]) => {
@@ -209,6 +191,5 @@ export function generateLocalAuthorityContent(location: string, disaster: string
     buildingCodes: `Source: Australian Building Codes - ${location} requirements`,
     historicalEvents: `Source: Emergency Management Australia - ${location} ${disaster} history`,
     localRegulations: `Source: ${location} Council - Building and planning regulations`,
-    insuranceData: `Source: Insurance Council of Australia - ${location} claim statistics`,
-  };
+    insuranceData: `Source: Insurance Council of Australia - ${location} claim statistics` };
 }

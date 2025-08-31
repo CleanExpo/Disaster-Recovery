@@ -43,8 +43,7 @@ interface StaggeredListProps {
 function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: StaggeredListProps) {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.1,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   const getInitialPosition = () => {
     switch (direction) {
@@ -64,16 +63,12 @@ function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: Stagg
       opacity: 1,
       transition: {
         staggerChildren: staggerDelay,
-        delayChildren: 0.3,
-      },
-    },
-  };
+        delayChildren: 0.3 } } };
 
   const item = {
     hidden: { 
       opacity: 0,
-      ...initial,
-    },
+      ...initial },
     show: {
       opacity: 1,
       x: 0,
@@ -81,10 +76,7 @@ function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: Stagg
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
+        damping: 12 } } };
 
   return (
     <motion.div
@@ -133,8 +125,7 @@ function FadeInOnScroll({
 }: FadeInOnScrollProps) {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.1,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   const getAnimation = () => {
     const baseAnimation = {
@@ -168,8 +159,7 @@ function FadeInOnScroll({
         ...(direction === 'down' && { y: -50 }),
         ...(direction === 'left' && { x: 50 }),
         ...(direction === 'right' && { x: -50 }),
-        ...(direction === 'scale' && { scale: 0.8 }),
-      }}
+        ...(direction === 'scale' && { scale: 0.8 }) }}
       animate={getAnimation()}
     >
       {children}
@@ -187,8 +177,7 @@ interface TextRevealProps {
 function TextReveal({ text, className = '', delay = 0 }: TextRevealProps) {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.1,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   const container = {
     hidden: { opacity: 0 },
@@ -196,17 +185,13 @@ function TextReveal({ text, className = '', delay = 0 }: TextRevealProps) {
       opacity: 1,
       transition: {
         staggerChildren: 0.05,
-        delayChildren: delay,
-      },
-    },
-  };
+        delayChildren: delay } } };
 
   const child = {
     hidden: { 
       opacity: 0,
       y: 20,
-      filter: 'blur(4px)',
-    },
+      filter: 'blur(4px)' },
     show: { 
       opacity: 1,
       y: 0,
@@ -214,10 +199,7 @@ function TextReveal({ text, className = '', delay = 0 }: TextRevealProps) {
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
+        damping: 12 } } };
 
   return (
     <motion.div
@@ -252,8 +234,7 @@ interface ScrollCounterProps {
 function ScrollCounter({ target, duration = 2000, suffix = '', className = '' }: ScrollCounterProps) {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.3,
-    triggerOnce: true,
-  });
+    triggerOnce: true });
 
   const [count, setCount] = React.useState(0);
 
@@ -387,8 +368,7 @@ interface HorizontalScrollProps {
 function HorizontalScroll({ children, className = '' }: HorizontalScrollProps) {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+    target: targetRef });
 
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
@@ -420,8 +400,7 @@ const ScrollAnimations = {
   ScrollCounter,
   ParallaxSection,
   StickyScrollElement,
-  HorizontalScroll,
-};
+  HorizontalScroll };
 
 export default ScrollAnimations;
 
@@ -435,5 +414,4 @@ export {
   ScrollCounter,
   ParallaxSection,
   StickyScrollElement,
-  HorizontalScroll,
-};
+  HorizontalScroll };

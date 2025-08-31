@@ -12,11 +12,9 @@ export const metadata: Metadata = {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
     description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call Contact Us.',
     images: ['/images/optimised/damage/3D Water Damage.png'],
-    type: 'website',
-  },
+    type: 'website' },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/services/water-damage',
-  }
+    canonical: 'https://disasterrecovery.com.au/services/water-damage' }
 };
 
 const schemaData = {

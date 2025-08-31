@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'ceiling repairs FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about ceiling repairs. Expert answers to common questions, tips, and advice.',
-};
+  description: 'Everything you need to know about ceiling repairs. Expert answers to common questions, tips, and advice.' };
 
 export default function ceilingrepairsFAQPage() {
   return (

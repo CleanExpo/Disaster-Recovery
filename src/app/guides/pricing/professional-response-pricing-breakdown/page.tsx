@@ -8,8 +8,7 @@ export const metadata: Metadata = {
   keywords: 'NRP pricing guidance, professional contractor standards, fair pricing framework, policy holder empowerment, insurance claims streamlining',
   openGraph: {
     title: 'NRP Pricing Guidance - Empowering Policy Holders',
-    description: 'Professional contractor guidance framework that puts decision-making power back in the hands of policy holders and bill payers.',
-  }
+    description: 'Professional contractor guidance framework that puts decision-making power back in the hands of policy holders and bill payers.' }
 };
 
 export default function ProfessionalResponsePricingBreakdownPage() {

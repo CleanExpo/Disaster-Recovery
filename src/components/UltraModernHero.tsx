@@ -65,8 +65,7 @@ export default function UltraModernHero() {
       y: Math.random() * 100,
       size: Math.random() * 3 + 1,
       opacity: Math.random() * 0.5 + 0.2,
-      speed: Math.random() * 2 + 1,
-    }));
+      speed: Math.random() * 2 + 1 }));
     setParticles(newParticles);
   }, []);
 
@@ -81,8 +80,7 @@ export default function UltraModernHero() {
         const rect = heroRef.current.getBoundingClientRect();
         setMousePosition({
           x: (e.clientX - rect.left) / rect.width,
-          y: (e.clientY - rect.top) / rect.height,
-        });
+          y: (e.clientY - rect.top) / rect.height });
       }
       const x = (e.clientX / window.innerWidth) * 100;
       const y = (e.clientY / window.innerHeight) * 100;
@@ -135,18 +133,15 @@ export default function UltraModernHero() {
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               width: `${particle.size}px`,
-              height: `${particle.size}px`,
-            }}
+              height: `${particle.size}px` }}
             animate={{
               y: [0, -20, 0],
               x: [0, Math.random() * 10 - 5, 0],
-              opacity: [particle.opacity, particle.opacity * 0.5, particle.opacity],
-            }}
+              opacity: [particle.opacity, particle.opacity * 0.5, particle.opacity] }}
             transition={{
               duration: particle.speed * 3,
               repeat: Infinity,
-              ease: "easeInOut",
-            }}
+              ease: "easeInOut" }}
           />
         ))}
       </div>
@@ -166,8 +161,7 @@ export default function UltraModernHero() {
               rgba(139, 92, 246, 0.2) 25%,
               rgba(236, 72, 153, 0.1) 50%,
               transparent 70%
-            )`,
-          }}
+            )` }}
         />
 
         {/* Noise Texture Overlay */}
@@ -187,8 +181,7 @@ export default function UltraModernHero() {
           style={{
             background: 'rgba(99, 91, 255, 0.1)',
             borderColor: 'rgba(99, 91, 255, 0.3)',
-            backdropFilter: 'blur(10px)',
-          }}
+            backdropFilter: 'blur(10px)' }}
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
@@ -211,8 +204,7 @@ export default function UltraModernHero() {
               background: 'linear-gradient(135deg, #fff 0%, #888 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
+              backgroundClip: 'text' }}
           >
             Disaster Recovery
           </span>
@@ -225,8 +217,7 @@ export default function UltraModernHero() {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               animation: 'gradient-x 3s ease infinite',
-              backgroundSize: '200% 200%',
-            }}
+              backgroundSize: '200% 200%' }}
           >
             Reimagined
             <svg 
@@ -244,8 +235,7 @@ export default function UltraModernHero() {
                 style={{
                   strokeDasharray: 300,
                   strokeDashoffset: 300,
-                  animation: 'draw 2s ease forwards 1s',
-                }}
+                  animation: 'draw 2s ease forwards 1s' }}
               />
               <defs>
                 <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -278,8 +268,7 @@ export default function UltraModernHero() {
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105"
             style={{
               background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
-              boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
-            }}
+              boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)' }}
             onMouseEnter={(e) => {
               const btn = e.currentTarget;
               btn.style.transform = 'scale(1.05) translateY(-2px)';
@@ -306,8 +295,7 @@ export default function UltraModernHero() {
             style={{
               borderColor: 'rgba(99, 91, 255, 0.5)',
               background: 'rgba(99, 91, 255, 0.1)',
-              backdropFilter: 'blur(10px)',
-            }}
+              backdropFilter: 'blur(10px)' }}
             onMouseEnter={(e) => {
               const btn = e.currentTarget;
               btn.style.background = 'rgba(99, 91, 255, 0.2)';
@@ -345,8 +333,7 @@ export default function UltraModernHero() {
                 background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
-                animationDelay: `${index * 100}ms`,
-              }}
+                animationDelay: `${index * 100}ms` }}
             >
               <span className="text-xl">{badge.icon}</span>
               <span className="text-sm text-gray-300 font-medium">{badge.text}</span>

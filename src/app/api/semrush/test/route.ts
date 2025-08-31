@@ -10,8 +10,7 @@ export async function GET() {
       return NextResponse.json({
         success: false,
         message: 'SEMrush API key not configured. Please add SEMRUSH_API_KEY to your .env file',
-        configured: false,
-      }, { status: 400 });
+        configured: false }, { status: 400 });
     }
 
     // Test connection with a simple keyword lookup
@@ -27,23 +26,19 @@ export async function GET() {
           keyword: keywordData.keyword,
           volume: keywordData.volume,
           difficulty: keywordData.difficulty,
-          cpc: keywordData.cpc,
-        },
-        remainingUnits: semrushAPI.getRemainingUnits(),
-      });
+          cpc: keywordData.cpc },
+        remainingUnits: semrushAPI.getRemainingUnits() });
     } else {
       return NextResponse.json({
         success: false,
         message: 'SEMrush API configured but unable to fetch data. Check your API key and permissions.',
-        configured: true,
-      }, { status: 500 });
+        configured: true }, { status: 500 });
     }
   } catch (error) {
     console.error('SEMrush API test error:', error);
     return NextResponse.json({
       success: false,
       message: 'Error testing SEMrush API connection',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    }, { status: 500 });
+      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
   }
 }

@@ -27,8 +27,7 @@ async function getDirectoryStats(dirPath: string): Promise<ImageStats> {
     savedSpace: 0,
     largeImages: [],
     unoptimizedImages: [],
-    breakdown: {},
-  };
+    breakdown: {} };
 
   const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.bmp'];
 
@@ -125,23 +124,19 @@ export async function GET(request: NextRequest) {
         optimizedCount: stats.optimizedCount,
         optimizationRate: `${((stats.optimizedCount / stats.totalImages) * 100).toFixed(1)}%`,
         savedSpace: formatSize(stats.savedSpace),
-        averageSize: formatSize(stats.totalImages > 0 ? stats.totalSize / stats.totalImages : 0),
-      },
+        averageSize: formatSize(stats.totalImages > 0 ? stats.totalSize / stats.totalImages : 0) },
       issues: {
         largeImages: stats.largeImages.slice(0, 10), // Top 10 largest
         unoptimizedImages: stats.unoptimizedImages.slice(0, 10), // Top 10 unoptimized
         totalLargeImages: stats.largeImages.length,
-        totalUnoptimized: stats.unoptimizedImages.length,
-      },
+        totalUnoptimized: stats.unoptimizedImages.length },
       breakdown: Object.entries(stats.breakdown).map(([ext, data]) => ({
         extension: ext,
         count: data.count,
         totalSize: formatSize(data.size),
         avgSize: formatSize(data.avgSize),
-        percentage: `${((data.size / stats.totalSize) * 100).toFixed(1)}%`,
-      })),
-      recommendations: [],
-    };
+        percentage: `${((data.size / stats.totalSize) * 100).toFixed(1)}%` })),
+      recommendations: [] };
 
     // Add recommendations
     if (stats.largeImages.length > 0) {

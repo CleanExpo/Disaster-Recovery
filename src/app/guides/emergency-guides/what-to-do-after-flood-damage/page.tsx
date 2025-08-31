@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Immediate Steps After Flood Damage: Emergency Guide | Disaster Recovery',
   description: 'Expert answers and solutions for "what to do immediately after flood damage". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'what to do immediately after flood damage, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'what to do immediately after flood damage, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function WhatToDoAfterFloodDamagePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function WhatToDoAfterFloodDamagePage() {
       name: 'what to do immediately after flood damage',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for what to do immediately after flood damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for what to do immediately after flood damage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

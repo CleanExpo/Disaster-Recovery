@@ -6,8 +6,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Professional vs DIY Disaster Recovery | Cost & Risk Comparison',
-  description: 'Compare professional disaster recovery vs DIY attempts. Understand the real costs, risks, and why professional restoration saves money.',
-};
+  description: 'Compare professional disaster recovery vs DIY attempts. Understand the real costs, risks, and why professional restoration saves money.' };
 
 export default function ProfessionalVsDIYPage() {
   const comparisonData = [

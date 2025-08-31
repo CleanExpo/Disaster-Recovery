@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Smoke Damage Cleaning After House Fire | Disaster Recovery',
   description: 'Expert answers and solutions for "smoke damage cleaning after house fire". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'smoke damage cleaning after house fire, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'smoke damage cleaning after house fire, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function SmokeDamageCleaningGuidePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function SmokeDamageCleaningGuidePage() {
       name: 'smoke damage cleaning after house fire',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for smoke damage cleaning after house fire. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for smoke damage cleaning after house fire. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

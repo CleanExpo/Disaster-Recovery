@@ -1,8 +1,7 @@
 import ErrorBoundary from '@/components/error-boundary/ErrorBoundary';
 
 export default function ContractorDashboardLayout({
-  children,
-}: {
+  children }: {
   children: React.ReactNode;
 }) {
   return (

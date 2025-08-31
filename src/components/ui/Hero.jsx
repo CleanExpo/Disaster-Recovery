@@ -48,28 +48,24 @@ const Hero = forwardRef(({
     dark: 'bg-neutral-900 text-white',
     gradient: 'bg-gradient-to-br from-primary/10 via-white to-neutral-50 text-neutral-900',
     'gradient-dark': 'bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white',
-    primary: 'bg-primary text-white',
-  };
+    primary: 'bg-primary text-white' };
   
   const sizeClasses = {
     small: 'min-h-[60vh] py-16',
     medium: 'min-h-[80vh] py-20',
     large: 'min-h-screen py-24',
-    auto: 'min-h-0 py-24',
-  };
+    auto: 'min-h-0 py-24' };
   
   const overlayClasses = {
     light: 'bg-black/20',
     medium: 'bg-black/40',
     dark: 'bg-black/60',
-    'very-dark': 'bg-black/80',
-  };
+    'very-dark': 'bg-black/80' };
   
   const textAlignClasses = {
     left: 'text-left',
     centre: 'text-centre',
-    right: 'text-right',
-  };
+    right: 'text-right' };
   
   const heroClasses = clsx(
     baseClasses,
@@ -248,13 +244,11 @@ Hero.propTypes = {
   /** Primary call-to-action button */
   primaryButton: PropTypes.shape({
     label: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-  }),
+    href: PropTypes.string.isRequired }),
   /** Secondary call-to-action button */
   secondaryButton: PropTypes.shape({
     label: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-  }),
+    href: PropTypes.string.isRequired }),
   /** Background image URL */
   backgroundImage: PropTypes.string,
   /** Background video URL */
@@ -268,7 +262,6 @@ Hero.propTypes = {
   /** Container size */
   containerSize: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full']),
   /** Custom children */
-  children: PropTypes.node,
-};
+  children: PropTypes.node };
 
 export default Hero;

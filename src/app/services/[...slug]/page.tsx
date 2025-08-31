@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
 import { Metadata } from 'next';
-import { , MapPin, Clock, CheckCircle, Star, Shield, MessageSquare} from 'lucide-react';
+import {  MapPin, Clock, CheckCircle, Star, Shield, MessageSquare} from 'lucide-react';
 import Link from 'next/link';
 
 const prisma = new PrismaClient();
@@ -72,16 +72,14 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
           url: '/images/disaster-recovery-og.jpg',
           width: 1200,
           height: 630,
-          alt: page.serviceName + ' in ' + page.city,
-        }
+          alt: page.serviceName + ' in ' + page.city }
       ]
     },
     twitter: {
       card: 'summary_large_image',
       title: page.title,
       description: page.metaDescription,
-      images: ['/images/disaster-recovery-twitter.jpg'],
-    },
+      images: ['/images/disaster-recovery-twitter.jpg'] },
     alternates: {
       canonical: `https://disasterrecovery.com.au/services/${slug}`
     },
@@ -93,9 +91,7 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
         follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
+        'max-snippet': -1 } },
     other: structuredData ? {
       'script': JSON.stringify(structuredData)
     } : {}

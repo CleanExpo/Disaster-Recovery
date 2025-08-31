@@ -16,8 +16,7 @@ export class ImageOptimizer {
   private static defaultOptions: ImageOptimizationOptions = {
     quality: 85,
     format: 'webp',
-    maintainAspectRatio: true,
-  };
+    maintainAspectRatio: true };
 
   /**
    * Optimize an image buffer (simplified version without Sharp)
@@ -89,8 +88,7 @@ export class ImageOptimizer {
       originalSize,
       optimizedSize,
       reduction: Math.max(0, reduction),
-      reductionPercent: reduction > 0 ? reductionPercent : '0',
-    };
+      reductionPercent: reduction > 0 ? reductionPercent : '0' };
   }
 
   /**
@@ -103,8 +101,7 @@ export class ImageOptimizer {
     // For now, return the original buffer for all sizes
     return sizes.map(width => ({
       width,
-      buffer,
-    }));
+      buffer }));
   }
 
   /**

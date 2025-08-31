@@ -126,8 +126,7 @@ export function RegistrationWizard() {
         
         toast({
           title: 'Application Submitted',
-          description: 'Your application has been submitted successfully. We will review it and contact you soon.',
-        });
+          description: 'Your application has been submitted successfully. We will review it and contact you soon.' });
         
         // Redirect to success page or login
         router.push('/contractor/application-success');

@@ -32,8 +32,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       hasError: false,
       error: null,
       errorInfo: null,
-      errorId: null,
-    };
+      errorId: null };
   }
 
   static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
@@ -42,15 +41,13 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return {
       hasError: true,
       error,
-      errorId,
-    };
+      errorId };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({
       error,
-      errorInfo,
-    });
+      errorInfo });
 
     // Log error to console in development
     if (process.env.NODE_ENV === 'development') {
@@ -90,8 +87,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       componentStack: errorInfo?.componentStack,
       timestamp: new Date().toISOString(),
       userAgent: navigator.userAgent,
-      url: window.location.href,
-    };
+      url: window.location.href };
 
     // In a real app, send this to your error reporting service
     console.log('Error report generated:', errorReport);

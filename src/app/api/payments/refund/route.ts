@@ -7,8 +7,7 @@ import { calculateCoolingOffPeriod } from '@/lib/utils/australian-compliance';
 // Initialize Stripe or use mock
 const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-11-20.acacia',
-    })
+      apiVersion: '2024-11-20.acacia' })
   : getMockStripe() as any;
 
 const emailService = process.env.EMAIL_SERVER_HOST

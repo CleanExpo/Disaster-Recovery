@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'New Year\'s Eve Disaster Recovery Services | Disaster Recovery',
   description: 'Expert answers and solutions for "new years eve disaster recovery services". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'new years eve disaster recovery services, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'new years eve disaster recovery services, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function NewYearsEveDisasterRecoveryPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function NewYearsEveDisasterRecoveryPage() {
       name: 'new years eve disaster recovery services',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for new years eve disaster recovery services. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for new years eve disaster recovery services. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

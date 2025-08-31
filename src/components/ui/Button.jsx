@@ -35,15 +35,13 @@ const Button = forwardRef(({
     primary: 'btn-primary',
     secondary: 'btn-secondary',
     outline: 'btn-outline',
-    ghost: 'btn-ghost',
-  };
+    ghost: 'btn-ghost' };
   
   const sizeClasses = {
     sm: 'btn-sm',
     base: '',
     lg: 'btn-lg',
-    xl: 'btn-xl',
-  };
+    xl: 'btn-xl' };
   
   const classes = clsx(
     baseClasses,
@@ -52,8 +50,7 @@ const Button = forwardRef(({
     {
       'btn-full': fullWidth,
       'disabled': disabled,
-      'loading': loading,
-    },
+      'loading': loading },
     className
   );
   
@@ -126,7 +123,6 @@ Button.propTypes = {
   /** Click handler */
   onClick: PropTypes.func,
   /** Button type */
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
-};
+  type: PropTypes.oneOf(['button', 'submit', 'reset']) };
 
 export default Button;

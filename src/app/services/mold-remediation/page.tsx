@@ -32,25 +32,20 @@ export const metadata: Metadata = {
         url: '/images/optimised/damage/3D Mould Damage.png',
         width: 1200,
         height: 630,
-        alt: 'Professional mould remediation service',
-      },
-    ],
-  },
+        alt: 'Professional mould remediation service' },
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Mould Remediation Services | IICRC S520 Certified',
     description: 'Expert mould remediation services. IICRC S520 certified technicians. Professional black mould removal available 24/7.',
-    images: ['/images/optimised/damage/3D Mould Damage.png'],
-  },
+    images: ['/images/optimised/damage/3D Mould Damage.png'] },
   alternates: {
-    canonical: '/services/mould-remediation',
-  },
+    canonical: '/services/mould-remediation' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',
     'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751',
-  }
+    'ICBM': '-25.2744, 133.7751' }
 };
 
 // Schema.org structured data for mould remediation

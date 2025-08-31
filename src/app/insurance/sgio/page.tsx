@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
-import { Shield, FileCheck,, MessageSquare} from 'lucide-react';
+import { Shield, FileCheck, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'SGIO Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred SGIO insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.',
-};
+  description: 'Preferred SGIO insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.' };
 
 export default function SGIOInsurancePage() {
   return (

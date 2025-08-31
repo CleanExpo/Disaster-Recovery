@@ -12,8 +12,7 @@ export async function GET(request: NextRequest) {
     if (!user) {
       return NextResponse.json({
         success: false,
-        message: 'Authentication required',
-      }, { status: 401 });
+        message: 'Authentication required' }, { status: 401 });
     }
     
     // Check role-based access
@@ -21,8 +20,7 @@ export async function GET(request: NextRequest) {
     if (!hasRole(user.role as UserRole, allowedRoles)) {
       return NextResponse.json({
         success: false,
-        message: 'Contractor access required',
-      }, { status: 403 });
+        message: 'Contractor access required' }, { status: 403 });
     }
     
     // Generate dashboard data based on user
@@ -39,17 +37,14 @@ export async function GET(request: NextRequest) {
           location: 'Brisbane CBD',
           scheduledTime: '2:00 PM Today',
           estimatedDuration: '3 hours',
-          value: 2850.00,
-        },
-      },
+          value: 2850.00 } },
       
       performance: {
         jobCompletionRate: 96,
         averageResponseTime: '28 minutes',
         customerSatisfaction: 94,
         repeatCustomerRate: 42,
-        monthlyGrowth: 12.5,
-      },
+        monthlyGrowth: 12.5 },
       
       recentJobs: [
         {
@@ -60,8 +55,7 @@ export async function GET(request: NextRequest) {
           completedAt: '2024-01-28T10:30:00Z',
           value: 3200.00,
           rating: 5,
-          status: 'completed',
-        },
+          status: 'completed' },
         {
           id: 'JOB-2024-097',
           customer: 'Emma Williams',
@@ -70,8 +64,7 @@ export async function GET(request: NextRequest) {
           completedAt: '2024-01-27T15:45:00Z',
           value: 8500.00,
           rating: 5,
-          status: 'completed',
-        },
+          status: 'completed' },
         {
           id: 'JOB-2024-096',
           customer: 'James Wilson',
@@ -80,8 +73,7 @@ export async function GET(request: NextRequest) {
           completedAt: '2024-01-27T09:20:00Z',
           value: 4750.00,
           rating: 4,
-          status: 'completed',
-        },
+          status: 'completed' },
       ],
       
       upcomingJobs: [
@@ -93,8 +85,7 @@ export async function GET(request: NextRequest) {
           scheduledTime: '2024-01-29T09:00:00Z',
           estimatedDuration: '2 hours',
           value: 1850.00,
-          priority: 'urgent',
-        },
+          priority: 'urgent' },
         {
           id: 'JOB-2024-102',
           customer: 'David Thompson',
@@ -103,8 +94,7 @@ export async function GET(request: NextRequest) {
           scheduledTime: '2024-01-29T14:00:00Z',
           estimatedDuration: '4 hours',
           value: 2200.00,
-          priority: 'normal',
-        },
+          priority: 'normal' },
       ],
       
       earnings: {
@@ -113,39 +103,32 @@ export async function GET(request: NextRequest) {
         thisMonth: 78540.50,
         lastMonth: 69850.00,
         pending: 12300.00,
-        projectedMonthEnd: 92000.00,
-      },
+        projectedMonthEnd: 92000.00 },
       
       inventory: {
         dehumidifiers: {
           available: 8,
           inUse: 4,
-          maintenance: 1,
-        },
+          maintenance: 1 },
         airMovers: {
           available: 12,
           inUse: 8,
-          maintenance: 0,
-        },
+          maintenance: 0 },
         moistureMeters: {
           available: 6,
           inUse: 2,
-          maintenance: 0,
-        },
+          maintenance: 0 },
         thermalCameras: {
           available: 2,
           inUse: 1,
-          maintenance: 0,
-        },
-      },
+          maintenance: 0 } },
       
       leads: {
         new: 5,
         accepted: 3,
         pending: 2,
         conversionRate: 68,
-        averageValue: 3200.00,
-      },
+        averageValue: 3200.00 },
       
       calendar: {
         todayJobs: 3,
@@ -155,30 +138,25 @@ export async function GET(request: NextRequest) {
           { date: '2024-01-29', slots: ['09:00', '11:00', '15:00'] },
           { date: '2024-01-30', slots: ['10:00', '14:00'] },
           { date: '2024-01-31', slots: ['09:00', '13:00', '16:00'] },
-        ],
-      },
+        ] },
       
       alerts: [
         {
           type: 'lead',
           message: 'New high-value lead in Brisbane CBD',
           time: '10 minutes ago',
-          priority: 'high',
-        },
+          priority: 'high' },
         {
           type: 'inventory',
           message: 'Dehumidifier #DH-003 due for maintenance',
           time: '2 hours ago',
-          priority: 'medium',
-        },
+          priority: 'medium' },
         {
           type: 'payment',
           message: 'Payment received for JOB-2024-095',
           time: '3 hours ago',
-          priority: 'low',
-        },
-      ],
-    };
+          priority: 'low' },
+      ] };
     
     return NextResponse.json({
       success: true,
@@ -186,16 +164,13 @@ export async function GET(request: NextRequest) {
       user: {
         id: user.userId,
         email: user.email,
-        role: user.role,
-      },
-    }, { status: 200 });
+        role: user.role } }, { status: 200 });
     
   } catch (error) {
     console.error('Dashboard API error:', error);
     
     return NextResponse.json({
       success: false,
-      message: 'Failed to load dashboard data',
-    }, { status: 500 });
+      message: 'Failed to load dashboard data' }, { status: 500 });
   }
 }

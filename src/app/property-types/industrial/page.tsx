@@ -5,8 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Industrial Facilities Disaster Recovery | Factories and warehouses | Australia',
-  description: 'Specialised disaster recovery for industrial facilities. Factories and warehouses. Insurance approved, 24/7 response.',
-};
+  description: 'Specialised disaster recovery for industrial facilities. Factories and warehouses. Insurance approved, 24/7 response.' };
 
 export default function IndustrialFacilitiesPage() {
   return (

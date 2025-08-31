@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Melbourne Apartment Flood Damage Restoration | Disaster Recovery',
   description: 'Expert answers and solutions for "melbourne apartment flood damage restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'melbourne apartment flood damage restoration, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'melbourne apartment flood damage restoration, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function MelbourneApartmentFloodRestorationPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function MelbourneApartmentFloodRestorationPage() {
       name: 'melbourne apartment flood damage restoration',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for melbourne apartment flood damage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for melbourne apartment flood damage restoration. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

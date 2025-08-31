@@ -39,8 +39,7 @@ const Grid = forwardRef(({
       4: 'grid-cols-4',
       5: 'grid-cols-5',
       6: 'grid-cols-6',
-      12: 'grid-cols-12',
-    };
+      12: 'grid-cols-12' };
     return colClasses[colCount] || `grid-cols-${colCount}`;
   };
   
@@ -52,8 +51,7 @@ const Grid = forwardRef(({
       3: 'grid-rows-3',
       4: 'grid-rows-4',
       5: 'grid-rows-5',
-      6: 'grid-rows-6',
-    };
+      6: 'grid-rows-6' };
     return rowClasses[rowCount] || `grid-rows-${rowCount}`;
   };
   
@@ -69,8 +67,7 @@ const Grid = forwardRef(({
       6: 'gap-6',
       8: 'gap-8',
       10: 'gap-10',
-      12: 'gap-12',
-    };
+      12: 'gap-12' };
     return gapClasses[gapSize] || `gap-${gapSize}`;
   };
   
@@ -79,15 +76,13 @@ const Grid = forwardRef(({
     start: 'items-start',
     centre: 'items-centre',
     end: 'items-end',
-    stretch: 'items-stretch',
-  };
+    stretch: 'items-stretch' };
   
   const justifyClasses = {
     start: 'justify-items-start',
     centre: 'justify-items-centre',
     end: 'justify-items-end',
-    stretch: 'justify-items-stretch',
-  };
+    stretch: 'justify-items-stretch' };
   
   // Build responsive classes
   const responsiveClasses = [];
@@ -160,8 +155,7 @@ const GridItem = forwardRef(({
       10: 'col-span-10',
       11: 'col-span-11',
       12: 'col-span-12',
-      full: 'col-span-full',
-    };
+      full: 'col-span-full' };
     return colSpanClasses[span] || `col-span-${span}`;
   };
   
@@ -174,8 +168,7 @@ const GridItem = forwardRef(({
       4: 'row-span-4',
       5: 'row-span-5',
       6: 'row-span-6',
-      full: 'row-span-full',
-    };
+      full: 'row-span-full' };
     return rowSpanClasses[span] || `row-span-${span}`;
   };
   
@@ -223,15 +216,13 @@ Grid.propTypes = {
     sm: PropTypes.number,
     md: PropTypes.number,
     lg: PropTypes.number,
-    xl: PropTypes.number,
-  }),
+    xl: PropTypes.number }),
   /** Items alignment */
   align: PropTypes.oneOf(['start', 'centre', 'end', 'stretch']),
   /** Items justification */
   justify: PropTypes.oneOf(['start', 'centre', 'end', 'stretch']),
   /** Component to render as */
-  as: PropTypes.elementType,
-};
+  as: PropTypes.elementType };
 
 GridItem.propTypes = {
   /** Grid item content */
@@ -251,7 +242,6 @@ GridItem.propTypes = {
   /** Row end position */
   rowEnd: PropTypes.number,
   /** Component to render as */
-  as: PropTypes.elementType,
-};
+  as: PropTypes.elementType };
 
 export default Grid;

@@ -32,25 +32,20 @@ export const metadata: Metadata = {
         url: '/images/optimised/process/3D Hazardous Cleaning.png',
         width: 1200,
         height: 630,
-        alt: 'Professional biohazard cleanup service',
-      },
-    ],
-  },
+        alt: 'Professional biohazard cleanup service' },
+    ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Biohazard Cleanup Services | IICRC S540 Certified',
     description: 'Expert biohazard cleanup services. IICRC S540 certified technicians. Professional trauma and crime scene cleanup available 24/7.',
-    images: ['/images/optimised/process/3D Hazardous Cleaning.png'],
-  },
+    images: ['/images/optimised/process/3D Hazardous Cleaning.png'] },
   alternates: {
-    canonical: '/services/biohazard-cleanup',
-  },
+    canonical: '/services/biohazard-cleanup' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',
     'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751',
-  }
+    'ICBM': '-25.2744, 133.7751' }
 };
 
 // Schema.org structured data for biohazard cleanup

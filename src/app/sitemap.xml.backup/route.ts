@@ -106,8 +106,7 @@ export async function GET() {
       headers: {
         'Content-Type': 'application/xml',
         'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
-      },
-    });
+      } });
 
   } catch (error) {
     console.error('Error generating sitemap:', error);
@@ -116,9 +115,7 @@ export async function GET() {
       {
         status: 500,
         headers: {
-          'Content-Type': 'application/xml',
-        },
-      }
+          'Content-Type': 'application/xml' } }
     );
   }
 }

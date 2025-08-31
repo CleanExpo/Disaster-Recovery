@@ -4,8 +4,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Negative Air Machines | Containment | Advanced Restoration Technology',
-  description: 'Professional negative air machines for containment. Latest technology for faster, better restoration results.',
-};
+  description: 'Professional negative air machines for containment. Latest technology for faster, better restoration results.' };
 
 export default function NegativeAirMachinesPage() {
   return (

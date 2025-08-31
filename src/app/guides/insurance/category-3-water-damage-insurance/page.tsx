@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Category 3 Water Damage: Insurance Claims Guide | Disaster Recovery',
   description: 'Expert answers and solutions for "category 3 water damage insurance claim". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'category 3 water damage insurance claim, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'category 3 water damage insurance claim, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function Category3WaterDamageInsurancePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function Category3WaterDamageInsurancePage() {
       name: 'category 3 water damage insurance claim',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for category 3 water damage insurance claim. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for category 3 water damage insurance claim. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

@@ -131,8 +131,7 @@ async function handleWebhook(req: NextRequest) {
               totalPaid: (session.amount_total || 0) / 100, // Convert from cents
               paymentMethod: 'stripe_checkout',
               status: 'COMPLETED',
-              stripePaymentIntentId: session.payment_intent as string,
-            }
+              stripePaymentIntentId: session.payment_intent as string }
           });
 
           // Update contractor status to allow onboarding to begin
@@ -140,8 +139,7 @@ async function handleWebhook(req: NextRequest) {
             where: { id: contractorId },
             data: {
               status: 'UNDER_REVIEW',
-              onboardingStep: 1,
-            }
+              onboardingStep: 1 }
           });
 
           // Create onboarding progress record
@@ -163,8 +161,7 @@ async function handleWebhook(req: NextRequest) {
                   contractorId,
                   day,
                   moduleTitle: `Day ${day} Module`,
-                  status: day === 1 ? 'AVAILABLE' : 'LOCKED',
-                }
+                  status: day === 1 ? 'AVAILABLE' : 'LOCKED' }
               })
             );
           }
@@ -194,8 +191,7 @@ async function handleWebhook(req: NextRequest) {
                   month,
                   discountPercentage,
                   discountedPrice,
-                  status: 'PENDING',
-                }
+                  status: 'PENDING' }
               })
             );
           }
@@ -214,8 +210,7 @@ async function handleWebhook(req: NextRequest) {
             where: { contractorId },
             data: {
               stripePaymentIntentId: paymentIntent.id,
-              status: 'COMPLETED',
-            }
+              status: 'COMPLETED' }
           });
         }
         break;
@@ -230,8 +225,7 @@ async function handleWebhook(req: NextRequest) {
           await prisma.onboardingPayment.update({
             where: { contractorId },
             data: {
-              status: 'FAILED',
-            }
+              status: 'FAILED' }
           });
         }
         break;
@@ -260,8 +254,7 @@ async function handleWebhook(req: NextRequest) {
               stripeSubscriptionId: subscription.id,
               status: subscription.status === 'active' ? 'ACTIVE' : 'PENDING',
               startDate: new Date(subscription.current_period_start * 1000),
-              endDate: new Date(subscription.current_period_end * 1000),
-            }
+              endDate: new Date(subscription.current_period_end * 1000) }
           });
         }
         break;
@@ -283,14 +276,12 @@ async function handleWebhook(req: NextRequest) {
             where: {
               contractorId_month: {
                 contractorId,
-                month: Math.min(monthsDiff, 3),
-              }
+                month: Math.min(monthsDiff, 3) }
             },
             data: {
               paidAt: new Date(),
               status: 'PAID',
-              invoiceUrl: invoice.hosted_invoice_url || undefined,
-            }
+              invoiceUrl: invoice.hosted_invoice_url || undefined }
           });
         }
         break;
@@ -305,13 +296,11 @@ async function handleWebhook(req: NextRequest) {
           await prisma.subscriptionPricing.updateMany({
             where: {
               contractorId,
-              stripeSubscriptionId: subscription.id,
-            },
+              stripeSubscriptionId: subscription.id },
             data: {
               status: 'CANCELLED',
               cancelledAt: new Date(),
-              cancellationReason: subscription.cancellation_details?.reason || 'Customer requested',
-            }
+              cancellationReason: subscription.cancellation_details?.reason || 'Customer requested' }
           });
         }
         break;

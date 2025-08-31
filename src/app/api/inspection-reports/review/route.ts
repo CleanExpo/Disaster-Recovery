@@ -52,8 +52,7 @@ export async function POST(req: NextRequest) {
         reviewNotes,
         reviewedBy,
         reviewedAt: new Date(),
-        approvedAt: reviewStatus === 'APPROVED' ? new Date() : null,
-      }
+        approvedAt: reviewStatus === 'APPROVED' ? new Date() : null }
     });
 
     // Create notification for contractor
@@ -82,12 +81,10 @@ export async function POST(req: NextRequest) {
           reviewStatus,
           reviewNotes,
           reviewedBy,
-          reviewedAt: new Date().toISOString(),
-        }),
+          reviewedAt: new Date().toISOString() }),
         read: false,
         recipientType: 'CONTRACTOR',
-        recipientId: existingReport.contractorId,
-      }
+        recipientId: existingReport.contractorId }
     });
 
     // Update contractor quality metrics
@@ -122,8 +119,7 @@ export async function POST(req: NextRequest) {
       success: true,
       reportId: updatedReport.id,
       reviewStatus,
-      message: `Inspection report ${reviewStatus.toLowerCase().replace('_', ' ')} successfully`,
-    });
+      message: `Inspection report ${reviewStatus.toLowerCase().replace('_', ' ')} successfully` });
 
   } catch (error) {
     console.error('Error reviewing inspection report:', error);

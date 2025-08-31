@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { , Clock, Shield, Droplets, AlertTriangle, Home, ChevronDown, CheckCircle2, ArrowRight, XCircle, AlertCircle, Zap, MessageSquare} from 'lucide-react';
+import {  Clock, Shield, Droplets, AlertTriangle, Home, ChevronDown, CheckCircle2, ArrowRight, XCircle, AlertCircle, Zap, MessageSquare} from 'lucide-react';
 
 export default function CeilingWaterDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -33,8 +33,7 @@ export default function CeilingWaterDamagePage() {
     name: 'Ceiling Water Damage Repair & Restoration',
     description: 'Professional ceiling water damage restoration including leak detection, structural drying, mould prevention, and complete ceiling repairs across Brisbane and Queensland.',
     provider: businessInfo.name,
-    areaServed: ['Brisbane', 'Gold Coast', 'Sunshine Coast', 'Ipswich', 'Logan', 'Redlands', 'Moreton Bay'],
-  });
+    areaServed: ['Brisbane', 'Gold Coast', 'Sunshine Coast', 'Ipswich', 'Logan', 'Redlands', 'Moreton Bay'] });
 
   const faqs = [
     {

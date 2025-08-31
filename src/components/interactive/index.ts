@@ -21,8 +21,7 @@ export {
   ScrollCounter,
   ParallaxSection,
   StickyScrollElement,
-  HorizontalScroll,
-} from './ScrollTriggeredAnimations';
+  HorizontalScroll } from './ScrollTriggeredAnimations';
 
 // Particle Systems
 export { default as EmergencyParticleSystem } from './EmergencyParticleSystems';
@@ -31,8 +30,7 @@ export {
   FireParticles,
   StormParticles,
   EmergencyResponseParticles,
-  CSSParticleEffect,
-} from './EmergencyParticleSystems';
+  CSSParticleEffect } from './EmergencyParticleSystems';
 
 // Glass Morphism and Visual Effects
 export { default as GlassMorphismEffects } from './GlassMorphismEffects';
@@ -42,8 +40,7 @@ export {
   NeonText,
   FrostedGlassPanel,
   HolographicCard,
-  CyberpunkGrid,
-} from './GlassMorphismEffects';
+  CyberpunkGrid } from './GlassMorphismEffects';
 
 // Performance Optimisation
 export { default as PerformanceOptimizer } from './PerformanceOptimizer';
@@ -57,8 +54,7 @@ export {
   OptimizedImage,
   useResourcePreloader,
   PerformanceDashboard,
-  usePerformanceMonitor,
-} from './PerformanceOptimizer';
+  usePerformanceMonitor } from './PerformanceOptimizer';
 
 // Types and Interfaces
 export interface InteractiveComponentProps {
@@ -100,8 +96,7 @@ export const createInteractiveComponent = (
       ...props,
       ...componentProps,
       animate: animate && performanceMode !== 'low',
-      gpu: performanceMode === 'high',
-    };
+      gpu: performanceMode === 'high' };
     
     return React.createElement(component, optimizedProps);
   });
@@ -135,8 +130,7 @@ export const getInteractivePerformanceMetrics = () => {
     domContentLoaded: navigation.domContentLoadedEventEnd - navigation.fetchStart,
     firstPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-paint')?.startTime,
     firstContentfulPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint')?.startTime,
-    currentTime: now,
-  };
+    currentTime: now };
 };
 
 // Component factory for creating optimised interactive elements
@@ -155,29 +149,23 @@ export const animationPresets = {
   fadeIn: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
-    transition: { duration: 0.5 },
-  },
+    transition: { duration: 0.5 } },
   slideUp: {
     initial: { opacity: 0, y: 50 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
+    transition: { duration: 0.6, ease: 'easeOut' } },
   slideLeft: {
     initial: { opacity: 0, x: 50 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
+    transition: { duration: 0.6, ease: 'easeOut' } },
   scale: {
     initial: { opacity: 0, scale: 0.8 },
     animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
+    transition: { duration: 0.5, ease: 'easeOut' } },
   rotate: {
     initial: { opacity: 0, rotate: -10 },
     animate: { opacity: 1, rotate: 0 },
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
-};
+    transition: { duration: 0.6, ease: 'easeOut' } } };
 
 // Particle system presets
 export const particlePresets = {
@@ -185,8 +173,7 @@ export const particlePresets = {
   fire: { type: 'fire' as const, intensity: 'medium' as const, use3D: true },
   storm: { type: 'storm' as const, intensity: 'high' as const, use3D: true },
   emergency: { type: 'emergency' as const, intensity: 'medium' as const, use3D: true },
-  subtle: { type: 'water' as const, intensity: 'low' as const, use3D: false },
-};
+  subtle: { type: 'water' as const, intensity: 'low' as const, use3D: false } };
 
 // Glass effect presets
 export const glassPresets = {
@@ -194,7 +181,6 @@ export const glassPresets = {
   medium: { intensity: 'medium' as const, blur: 'md' as const, border: true, glow: false },
   strong: { intensity: 'strong' as const, blur: 'lg' as const, border: true, glow: true },
   holographic: { intensity: 'medium' as const, blur: 'md' as const, border: false, glow: true, glowColor: 'purple' as const },
-  emergency: { intensity: 'strong' as const, blur: 'xl' as const, border: true, glow: true, glowColor: 'red' as const },
-};
+  emergency: { intensity: 'strong' as const, blur: 'xl' as const, border: true, glow: true, glowColor: 'red' as const } };
 
 // Default export removed - use named exports instead

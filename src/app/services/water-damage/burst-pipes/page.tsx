@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { , Clock, Shield, Droplets, AlertTriangle, Wrench, Home, CheckCircle2, ArrowRight, XCircle, Gauge, MessageSquare} from 'lucide-react';
+import {  Clock, Shield, Droplets, AlertTriangle, Wrench, Home, CheckCircle2, ArrowRight, XCircle, Gauge, MessageSquare} from 'lucide-react';
 
 export default function BurstPipesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -33,8 +33,7 @@ export default function BurstPipesPage() {
     name: 'Burst Pipe Emergency Repair & Water Damage Restoration',
     description: 'Immediate response for burst pipes, emergency plumbing, water extraction, and complete restoration services across Brisbane and Queensland.',
     provider: businessInfo.name,
-    areaServed: ['Brisbane', 'Gold Coast', 'Sunshine Coast', 'Ipswich', 'Logan', 'Redlands', 'Moreton Bay'],
-  });
+    areaServed: ['Brisbane', 'Gold Coast', 'Sunshine Coast', 'Ipswich', 'Logan', 'Redlands', 'Moreton Bay'] });
 
   const faqs = [
     {

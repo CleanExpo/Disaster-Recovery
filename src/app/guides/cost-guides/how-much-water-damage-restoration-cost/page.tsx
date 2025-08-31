@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cost Guide Australia 2024 | Disaster Recovery',
   description: 'Expert answers and solutions for "how much does water damage restoration cost in australia". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'how much does water damage restoration cost in australia, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'how much does water damage restoration cost in australia, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function HowMuchWaterDamageRestorationCostPage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function HowMuchWaterDamageRestorationCostPage() {
       name: 'how much does water damage restoration cost in australia',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for how much does water damage restoration cost in australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for how much does water damage restoration cost in australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

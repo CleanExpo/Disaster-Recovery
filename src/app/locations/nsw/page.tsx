@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { , MapPin, Shield, AlertTriangle, Clock, CheckCircle2, MessageSquare} from 'lucide-react';
+import {  MapPin, Shield, AlertTriangle, Clock, CheckCircle2, MessageSquare} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery New South Wales | 24/7 Emergency Services | Sydney & All Cities',

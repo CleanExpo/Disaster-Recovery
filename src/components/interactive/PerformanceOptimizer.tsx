@@ -114,8 +114,7 @@ export function GPUAccelerated({
     transform: 'translateZ(0)',
     willChange: 'transform, opacity',
     backfaceVisibility: 'hidden' as const,
-    perspective: 1000,
-  } : {};
+    perspective: 1000 } : {};
 
   return (
     <div className={className} style={style}>
@@ -269,8 +268,7 @@ export function VirtualList<T>({
             position: 'absolute',
             top: 0,
             left: 0,
-            right: 0,
-          }}
+            right: 0 }}
         >
           {items.slice(visibleStart, visibleEnd).map((item, index) => (
             <div

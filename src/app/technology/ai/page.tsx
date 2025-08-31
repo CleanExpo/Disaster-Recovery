@@ -16,9 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Detection Systems | Disaster Recovery',
     description: 'Experience 10x faster damage detection with our AI-powered analysis technology.',
-    images: ['/images/ai-technology.jpg'],
-  },
-};
+    images: ['/images/ai-technology.jpg'] } };
 
 const capabilities = [
   {

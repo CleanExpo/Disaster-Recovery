@@ -10,10 +10,8 @@ const EMAIL_CONFIG = {
   secure: process.env.SMTP_SECURE === 'true',
   auth: {
     user: process.env.SMTP_USER || '',
-    pass: process.env.SMTP_PASS || '',
-  },
-  from: process.env.EMAIL_FROM || 'noreply@disasterrecovery.com.au',
-};
+    pass: process.env.SMTP_PASS || '' },
+  from: process.env.EMAIL_FROM || 'noreply@disasterrecovery.com.au' };
 
 // Create transporter
 const transporter = nodemailer.createTransport(EMAIL_CONFIG);
@@ -100,8 +98,7 @@ export const emailTemplates = {
           <p>Response time requirement: ${leadData.urgencyLevel === 'emergency' ? '30 minutes' : '2-4 hours'}</p>
         </div>
       </div>
-    `,
-  }),
+    ` }),
 
   leadConfirmation: (leadData: any) => ({
     subject: 'We\'ve Received Your Emergency Request - Disaster Recovery',
@@ -171,8 +168,7 @@ export const emailTemplates = {
           <p><a href="${SITE_URL}" style="colour: #0052CC;">www.disasterrecovery.com.au</a></p>
         </div>
       </div>
-    `,
-  }),
+    ` }),
 
   partnerLeadAssignment: (partnerData: any, leadData: any) => ({
     subject: `New $${leadData.leadValue} Lead Assignment - ${leadData.suburb}`,
@@ -267,9 +263,7 @@ export const emailTemplates = {
           <p>Support: partners@disasterrecovery.com.au | 1300 PARTNER</p>
         </div>
       </div>
-    `,
-  }),
-};
+    ` }) };
 
 // Send email function
 export async function sendEmail(to: string | string[], template: { subject: string; html: string }) {
@@ -278,8 +272,7 @@ export async function sendEmail(to: string | string[], template: { subject: stri
       from: EMAIL_CONFIG.from,
       to: Array.isArray(to) ? to.join(', ') : to,
       subject: template.subject,
-      html: template.html,
-    };
+      html: template.html };
 
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent:', info.messageId);

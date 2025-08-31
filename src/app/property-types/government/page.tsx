@@ -5,8 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Government Facilities Disaster Recovery | Federal, state, local government | Australia',
-  description: 'Specialised disaster recovery for government facilities. Federal, state, local government. Insurance approved, 24/7 response.',
-};
+  description: 'Specialised disaster recovery for government facilities. Federal, state, local government. Insurance approved, 24/7 response.' };
 
 export default function GovernmentFacilitiesPage() {
   return (

@@ -12,8 +12,7 @@ export const metadata: Metadata = {
     'insurance inspection',
     'damage documentation',
     'restoration planning'
-  ],
-};
+  ] };
 
 export default function TechnicalAssessmentPage() {
   return (

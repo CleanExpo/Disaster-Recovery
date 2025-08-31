@@ -23,8 +23,7 @@ export class OpenRouterProvider {
         'Authorisation': `Bearer ${this.apiKey}`,
         'HTTP-Referer': process.env.NEXT_PUBLIC_SITE_URL || 'https://disasterrecovery.com.au',
         'X-Title': 'Disaster Recovery',
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json' },
       timeout: 60000, // 60 second timeout for complex reasoning
     });
   }
@@ -54,30 +53,26 @@ export class OpenRouterProvider {
         [AIModel.GPT_OSS_120B]: 'gpt-oss-120b',
         [AIModel.GPT_4_TURBO]: 'openai/gpt-4-turbo-preview',
         [AIModel.CLAUDE_3_OPUS]: 'anthropic/claude-3-opus',
-        [AIModel.CLAUDE_3_SONNET]: 'anthropic/claude-3-sonnet',
-      };
+        [AIModel.CLAUDE_3_SONNET]: 'anthropic/claude-3-sonnet' };
       
       const messages = [];
       
       if (options.systemPrompt) {
         messages.push({
           role: 'system',
-          content: options.systemPrompt,
-        });
+          content: options.systemPrompt });
       }
       
       messages.push({
         role: 'user',
-        content: prompt,
-      });
+        content: prompt });
       
       const response = await this.client.post('/chat/completions', {
         model: modelMapping[model] || 'gpt-oss-120b',
         messages,
         max_tokens: options.maxTokens || 4000,
         temperature: options.temperature || 0.7,
-        stream: !!options.streamCallback,
-      });
+        stream: !!options.streamCallback });
       
       const latency = Date.now() - startTime;
       
@@ -94,8 +89,7 @@ export class OpenRouterProvider {
         response: content,
         tokensUsed: usage.total_tokens || 0,
         cost: this.calculateCost(usage.total_tokens || 0, model),
-        latency,
-      };
+        latency };
       
     } catch (error) {
       console.error('OpenRouter API error:', error);
@@ -154,8 +148,7 @@ export class OpenRouterProvider {
       const result = await this.complete(stepPrompt, AIModel.GPT_OSS_120B, {
         systemPrompt,
         temperature: 0.3, // Lower temperature for consistent reasoning
-        maxTokens: 1000,
-      });
+        maxTokens: 1000 });
       
       // Parse the step response
       const stepData = this.parseThinkingStep(result.response, stepCount);
@@ -187,8 +180,7 @@ export class OpenRouterProvider {
     const finalResult = await this.complete(finalPrompt, AIModel.GPT_OSS_120B, {
       systemPrompt: 'Provide a clear, actionable answer based on the analysis.',
       temperature: 0.2,
-      maxTokens: 500,
-    });
+      maxTokens: 500 });
     
     totalTokens += finalResult.tokensUsed;
     totalCost += finalResult.cost;
@@ -201,8 +193,7 @@ export class OpenRouterProvider {
       steps,
       confidence: avgConfidence,
       tokensUsed: totalTokens,
-      cost: totalCost,
-    };
+      cost: totalCost };
   }
   
   /**
@@ -219,8 +210,7 @@ export class OpenRouterProvider {
       confidence: confidenceMatch ? parseFloat(confidenceMatch[1]) : 0.5,
       duration: 0,
       revision: !!revisionMatch,
-      revisedFrom: revisionMatch ? parseInt(revisionMatch[1]) : undefined,
-    };
+      revisedFrom: revisionMatch ? parseInt(revisionMatch[1]) : undefined };
   }
   
   /**
@@ -256,8 +246,7 @@ export class OpenRouterProvider {
       response: fullResponse,
       tokensUsed: tokenCount,
       cost: this.calculateCost(tokenCount, AIModel.GPT_OSS_120B),
-      latency,
-    };
+      latency };
   }
   
   /**
@@ -269,8 +258,7 @@ export class OpenRouterProvider {
       [AIModel.GPT_OSS_120B]: 15.0,
       [AIModel.GPT_4_TURBO]: 30.0,
       [AIModel.CLAUDE_3_OPUS]: 75.0,
-      [AIModel.CLAUDE_3_SONNET]: 15.0,
-    };
+      [AIModel.CLAUDE_3_SONNET]: 15.0 };
     
     const costPerMillion = pricing[model] || 15.0;
     return (tokens / 1000000) * costPerMillion;

@@ -209,8 +209,7 @@ export class UIDesignerAgent extends EventEmitter {
   duration: 5000,
   action: (
     <ToastAction altText="Undo">Undo</ToastAction>
-  ),
-})`,
+  ) })`,
         bestPractices: [
           'Position consistently (usually top-right)',
           'Auto-dismiss after appropriate time',

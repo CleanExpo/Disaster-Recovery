@@ -12,12 +12,10 @@ import {
   FileCheck,
   CreditCard,
   Settings,
-  LogOut,
-} from 'lucide-react'
+  LogOut } from 'lucide-react'
 
 export default function DashboardLayout({
-  children,
-}: {
+  children }: {
   children: React.ReactNode
 }) {
   const { data: session, status } = useSession()

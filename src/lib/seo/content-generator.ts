@@ -77,8 +77,7 @@ export function generateTitle(
     'flood-damage-restoration': ['Flood Damage Restoration', 'Flood Recovery', 'Flood Cleanup'],
     'mould-remediation': ['Mould Remediation', 'Mould Removal', 'Mould Treatment'],
     'fire-damage-restoration': ['Fire Damage Restoration', 'Fire Recovery', 'Smoke Damage Repair'],
-    'storm-damage-repair': ['Storm Damage Repair', 'Storm Recovery', 'Weather Damage Restoration'],
-  };
+    'storm-damage-repair': ['Storm Damage Repair', 'Storm Recovery', 'Weather Damage Restoration'] };
 
   const serviceTitle = serviceVariations[service.slug]?.[0] || service.name;
   
@@ -226,8 +225,7 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
         <li><strong>Structural Cleaning:</strong> Deep cleaning of affected building materials and surfaces</li>
         <li><strong>Content Restoration:</strong> Ultrasonic cleaning and restoration of salvageable items</li>
       </ul>
-      <p>Our ${propertyType.name.toLowerCase()} fire restoration specialists work closely with insurance adjusters to ensure comprehensive damage assessment and restoration.</p>`,
-  };
+      <p>Our ${propertyType.name.toLowerCase()} fire restoration specialists work closely with insurance adjusters to ensure comprehensive damage assessment and restoration.</p>` };
 
   return serviceDescriptions[service.slug] || `<p>Professional ${service.name.toLowerCase()} services tailored to ${propertyType.name.toLowerCase()} properties in ${locationName}.</p>`;
 }
@@ -386,8 +384,7 @@ function getClimateDescription(state: string): string {
     'SA': 'a Mediterranean climate with hot, dry summers',
     'TAS': 'a cool temperate climate with year-round moisture',
     'ACT': 'a continental climate with distinct seasonal variations',
-    'NT': 'a tropical climate with distinct wet and dry seasons',
-  };
+    'NT': 'a tropical climate with distinct wet and dry seasons' };
   
   return climates[state] || 'varying seasonal conditions';
 }
@@ -506,6 +503,5 @@ export async function generateSEOContent(
     h1Title,
     content,
     schemaMarkup,
-    canonicalUrl,
-  };
+    canonicalUrl };
 }

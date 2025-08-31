@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Make Safe Services: What Insurance Covers | Disaster Recovery',
   description: 'Expert answers and solutions for "make safe services insurance coverage". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'make safe services insurance coverage, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'make safe services insurance coverage, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function MakeSafeInsuranceCoveragePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function MakeSafeInsuranceCoveragePage() {
       name: 'make safe services insurance coverage',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for make safe services insurance coverage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for make safe services insurance coverage. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

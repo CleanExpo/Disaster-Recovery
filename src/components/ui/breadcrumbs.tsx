@@ -22,9 +22,7 @@ export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.href ? `https://disasterrecovery.com.au${item.href}` : undefined,
-    })),
-  };
+      item: item.href ? `https://disasterrecovery.com.au${item.href}` : undefined })) };
 
   return (
     <>
@@ -82,8 +80,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
     
     breadcrumbs.push({
       name,
-      href: isLast ? undefined : href,
-    });
+      href: isLast ? undefined : href });
   });
   
   return breadcrumbs;
@@ -102,8 +99,7 @@ function formatSegmentName(segment: string): string {
     'content-restoration': 'Content Restoration',
     'structural-services': 'Structural Services',
     'iicrc': 'IICRC Standards',
-    'get-help': 'Get Emergency Help',
-  };
+    'get-help': 'Get Emergency Help' };
   
   if (specialCases[segment]) {
     return specialCases[segment];

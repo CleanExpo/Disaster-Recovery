@@ -179,8 +179,7 @@ export default function ModernAboutPage() {
                   className="w-full h-full object-contain"
                   style={{
                     maxHeight: '100%',
-                    maxWidth: '100%',
-                  }}
+                    maxWidth: '100%' }}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';

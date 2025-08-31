@@ -446,10 +446,8 @@ export const CRM_CONFIG = {
       ],
       validation: {
         abn: /^\d{11}$/,
-        insurance: /^\d{8,}$/,
-        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        
-      }
+        insurance: /^\d{8 }$/,
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }
     },
     lead: {
       fields: [

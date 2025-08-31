@@ -97,10 +97,8 @@ class Logger {
         const response = await fetch('/api/logs', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ entries }),
-        });
+            'Content-Type': 'application/json' },
+          body: JSON.stringify({ entries }) });
 
         if (!response.ok) {
           console.error('Failed to send logs to service:', response.statusText);
@@ -151,8 +149,7 @@ class Logger {
       category,
       message,
       context,
-      metadata,
-    };
+      metadata };
 
     // Console output
     const formattedLog = this.formatLogEntry(entry);
@@ -203,9 +200,7 @@ class Logger {
       error: error ? {
         name: error.name,
         message: error.message,
-        stack: error.stack,
-      } : undefined,
-    };
+        stack: error.stack } : undefined };
 
     const formattedLog = this.formatLogEntry(entry);
     console.error(formattedLog);
@@ -225,9 +220,7 @@ class Logger {
       error: error ? {
         name: error.name,
         message: error.message,
-        stack: error.stack,
-      } : undefined,
-    };
+        stack: error.stack } : undefined };
 
     const formattedLog = this.formatLogEntry(entry);
     console.error(formattedLog);
@@ -252,8 +245,7 @@ class Logger {
   // Contractor-specific logging methods
   logContractorRegistration(contractorId: string, step: string, success: boolean, metadata?: Record<string, any>): void {
     this.info('contractor', `Registration ${step} ${success ? 'succeeded' : 'failed'}`, {
-      contractorId,
-    }, metadata);
+      contractorId }, metadata);
   }
 
   logContractorLogin(contractorId: string, success: boolean, ipAddress?: string, userAgent?: string): void {
@@ -261,34 +253,29 @@ class Logger {
     this.log(level as LogLevel, 'auth', `Contractor login ${success ? 'successful' : 'failed'}`, {
       contractorId,
       ipAddress,
-      userAgent,
-    });
+      userAgent });
   }
 
   logBackgroundCheck(contractorId: string, checkType: string, result: string, metadata?: Record<string, any>): void {
     this.info('background-check', `Background check ${checkType} completed with result: ${result}`, {
-      contractorId,
-    }, metadata);
+      contractorId }, metadata);
   }
 
   logCleanClaimsSync(contractorId: string, operation: string, success: boolean, recordsAffected?: number): void {
     this.info('clean-claims', `Clean Claims ${operation} ${success ? 'succeeded' : 'failed'}`, {
-      contractorId,
-    }, { recordsAffected });
+      contractorId }, { recordsAffected });
   }
 
   logPayment(contractorId: string, amount: number, type: string, success: boolean, transactionId?: string): void {
     const level = success ? 'info' : 'error';
     this.log(level as LogLevel, 'payment', `Payment ${type} ${success ? 'processed' : 'failed'}`, {
-      contractorId,
-    }, { amount, transactionId });
+      contractorId }, { amount, transactionId });
   }
 
   logSecurityEvent(event: string, userId?: string, ipAddress?: string, metadata?: Record<string, any>): void {
     this.warn('security', event, {
       userId,
-      ipAddress,
-    }, metadata);
+      ipAddress }, metadata);
   }
 
   // API logging
@@ -303,8 +290,7 @@ class Logger {
     const level = statusCode >= 500 ? 'error' : statusCode >= 400 ? 'warn' : 'info';
     
     this.log(level as LogLevel, 'api', `${method} ${path} - ${statusCode}`, {
-      userId,
-    }, { duration, statusCode });
+      userId }, { duration, statusCode });
     
     if (error) {
       this.error('api', `API Error: ${method} ${path}`, error, { userId });

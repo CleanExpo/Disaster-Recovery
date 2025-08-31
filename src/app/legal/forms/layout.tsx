@@ -1,6 +1,5 @@
 export default function LegalFormsLayout({
-  children,
-}: {
+  children }: {
   children: React.ReactNode
 }) {
   return (

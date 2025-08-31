@@ -226,8 +226,7 @@ export function useFormValidation<T extends Record<string, any>>(
     
     // Validation
     validateForm,
-    validateField,
-  };
+    validateField };
 }
 
 // Export commonly used validation schemas

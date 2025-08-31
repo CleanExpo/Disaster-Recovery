@@ -16,8 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Is Mould Removal Covered by Insurance in Australia? | Disaster Recovery',
   description: 'Expert answers and solutions for "is mould removal covered by insurance in australia". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'is mould removal covered by insurance in australia, disaster recovery, restoration services, Australia, IICRC certified',
-};
+  keywords: 'is mould removal covered by insurance in australia, disaster recovery, restoration services, Australia, IICRC certified' };
 
 export default function MouldRemovalInsuranceCoveragePage() {
   const structuredData = {
@@ -28,10 +27,7 @@ export default function MouldRemovalInsuranceCoveragePage() {
       name: 'is mould removal covered by insurance in australia',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Professional disaster recovery services for is mould removal covered by insurance in australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.',
-      },
-    }],
-  };
+        text: 'Professional disaster recovery services for is mould removal covered by insurance in australia. Our IICRC certified technicians provide expert solutions with 24/7 emergency response nationwide.' } }] };
 
   return (
     <>

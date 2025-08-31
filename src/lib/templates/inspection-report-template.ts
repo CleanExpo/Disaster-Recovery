@@ -309,8 +309,7 @@ export function createInspectionReport(
       exteriorWeather: {
         temperature: 0,
         humidity: 0,
-        conditions: '',
-      },
+        conditions: '' },
       interiorConditions: []
     },
     damageAssessment: [],

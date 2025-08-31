@@ -5,8 +5,7 @@ import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Rental Properties Disaster Recovery | Investment and rental homes | Australia',
-  description: 'Specialised disaster recovery for rental properties. Investment and rental homes. Insurance approved, 24/7 response.',
-};
+  description: 'Specialised disaster recovery for rental properties. Investment and rental homes. Insurance approved, 24/7 response.' };
 
 export default function RentalPropertiesPage() {
   return (
