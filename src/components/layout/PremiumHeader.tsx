@@ -119,7 +119,7 @@ export default function PremiumHeader() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
                 <Image
-                  src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                  src="/logos/3D Disaster Recovery Round Borders.png"
                   alt="Disaster Recovery QLD"
                   fill
                   className="object-contain"

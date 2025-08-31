@@ -75,7 +75,7 @@ export default function EnhancedLandingPage() {
               {/* Logo Integration */}
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
                 <Image
-                  src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                  src="/logos/3D Disaster Recovery Round Borders.png"
                   alt="Disaster Recovery 3D Logo"
                   width={80}
                   height={80}

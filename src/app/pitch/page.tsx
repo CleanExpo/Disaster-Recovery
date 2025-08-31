@@ -481,7 +481,7 @@ export default function InvestorPitchDeck() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Image
-                src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                src="/logos/3D Disaster Recovery Round Borders.png"
                 alt="Disaster Recovery"
                 width={50}
                 height={50}

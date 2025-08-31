@@ -207,7 +207,7 @@ export default function UltraModernHeader() {
                     }}
                   />
                   <Image
-                    src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                    src="/logos/3D Disaster Recovery Round Borders.png"
                     alt="Disaster Recovery"
                     width={isScrolled ? 36 : 40}
                     height={isScrolled ? 36 : 40}

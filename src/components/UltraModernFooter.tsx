@@ -145,7 +145,7 @@ export default function UltraModernFooter() {
                   }}
                 />
                 <Image
-                  src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                  src="/logos/3D Disaster Recovery Round Borders.png"
                   alt="Disaster Recovery"
                   width={48}
                   height={48}

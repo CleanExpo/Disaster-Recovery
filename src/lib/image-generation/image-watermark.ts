@@ -45,7 +45,7 @@ export interface ImageMetadata {
  */
 export class WatermarkManager {
   private defaultConfig: WatermarkConfig = {
-    logoPath: '/images/optimised/branding/Disaster Recovery Logo.png',
+    logoPath: '/logos/3D Disaster Recovery Round Borders.png',
     position: 'bottom-right',
     opacity: 0.9,
     size: 'medium',
@@ -53,9 +53,9 @@ export class WatermarkManager {
   };
   
   private alternateLogos = {
-    light: '/images/optimised/branding/Disaster Recovery Logo.png',
-    dark: '/images/optimised/branding/3D Disaster Recovery Logo.png',
-    compact: '/images/optimised/branding/Disaster Recovery Logo.png'
+    light: '/logos/3D Disaster Recovery Round Borders.png',
+    dark: '/logos/3D Disaster Recovery Round Borders.png',
+    compact: '/logos/3D Disaster Recovery Round Borders.png'
   };
   
   /**
