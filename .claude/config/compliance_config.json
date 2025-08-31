@@ -1,0 +1,148 @@
+{
+  "llm_instruction_compliance_system": {
+    "name": "Critical LLM Discretion Analysis & Prompt Enhancement Engine",
+    "version": "2.0.0",
+    "description": "Addresses LLM discretion failures by implementing strict instruction following and real prompt enhancement for investor-grade real data projects",
+    
+    "critical_discretion_analysis": {
+      "problem_identification": {
+        "core_issue": "LLMs perform assumed tasks instead of following actual human instructions",
+        "impact": "Leads to incorrect solutions, wasted time, and system failures",
+        "solution_approach": "Implement strict instruction parsing with discretion checkpoints"
+      },
+      
+      "instruction_compliance_protocol": {
+        "step_1_exact_parsing": {
+          "action": "PARSE_EXACT_HUMAN_INTENT",
+          "requirements": [
+            "Read human prompt word-for-word without interpretation",
+            "Identify ACTUAL task requested vs assumed task",
+            "Flag any assumptions being made about user intent",
+            "Document exact requirements without additions"
+          ]
+        },
+        
+        "step_2_discretion_checkpoint": {
+          "action": "VALIDATE_UNDERSTANDING",
+          "critical_questions": [
+            "Am I doing exactly what the human asked?",
+            "Am I adding my own interpretation?",
+            "Am I solving a different problem than requested?",
+            "Have I followed the specific format/method requested?"
+          ]
+        },
+        
+        "step_3_compliance_verification": {
+          "action": "VERIFY_BEFORE_EXECUTION",
+          "checklist": [
+            "Task matches human request exactly",
+            "Method follows specified approach",
+            "Output format matches requirements",
+            "No unauthorized additions or modifications"
+          ]
+        }
+      }
+    },
+    
+    "project_context": {
+      "project_name": "Disaster Recovery Australia",
+      "project_type": "Real Data Investor Pitch Deck Website",
+      "deployment_url": "https://disaster-recovery.vercel.app",
+      "data_requirements": "REAL DATA ONLY - NO MOCK OR PLACEHOLDER DATA",
+      "security_level": "PRODUCTION_GRADE_SECURITY",
+      
+      "critical_components": {
+        "pitch_deck": {
+          "location": "src/app/pitch/page.tsx",
+          "features": ["Auto-play presentation", "ElevenLabs narration", "Real financial data"],
+          "status": "FIXED - Audio working, slides displaying"
+        },
+        "docker_orchestrator": {
+          "location": "docker-compose.claude-simple.yml",
+          "endpoints": ["http://localhost:3000", "http://localhost:3001"],
+          "services": ["claude-main", "claude-redis"],
+          "status": "RUNNING - API healthy"
+        },
+        "real_data_sources": {
+          "financial": "src/data/realistic-financial-projections.ts",
+          "disaster_stats": "src/data/australian-disaster-facts.ts",
+          "market_data": "$909M market size (verified)"
+        }
+      },
+      
+      "environment_config": {
+        "env_location": "Vercel .env and .env.local",
+        "security_priority": "MAXIMUM - Site must remain secure",
+        "api_keys_available": [
+          "ELEVENLABS_API_KEY - Voice narration",
+          "ANTHROPIC_API_KEY - Content generation",
+          "OPENROUTER_API_KEY - Model access",
+          "SUPABASE credentials - Database",
+          "NEXTAUTH_SECRET - Authentication"
+        ]
+      }
+    },
+    
+    "docker_orchestrator_integration": {
+      "primary_endpoint": "http://localhost:3000",
+      "available_routes": {
+        "/process": "Process prompts with agents",
+        "/status/:id": "Check request status",
+        "/batch": "Batch processing",
+        "/stats": "Get statistics",
+        "/health": "Health check"
+      },
+      "agent_types": {
+        "generate": "Content generation",
+        "analyze": "Code analysis",
+        "test": "Testing",
+        "optimize": "Optimization",
+        "deploy": "Deployment",
+        "seo": "SEO optimization"
+      }
+    },
+    
+    "compliance_scoring": {
+      "perfect_compliance": 100,
+      "acceptable_compliance": 75,
+      "warning_threshold": 50,
+      "failure_threshold": 25,
+      
+      "deduction_rules": {
+        "unauthorized_addition": -25,
+        "method_deviation": -25,
+        "format_change": -25,
+        "scope_creep": -25
+      }
+    },
+    
+    "real_data_validation": {
+      "required_sources": [
+        "IBISWorld reports",
+        "Insurance Council of Australia",
+        "Bureau of Meteorology",
+        "Australian Government statistics"
+      ],
+      "prohibited_content": [
+        "Lorem ipsum",
+        "Placeholder",
+        "Mock data",
+        "Example data",
+        "Test data"
+      ]
+    }
+  },
+  
+  "usage_instructions": {
+    "windows_powershell": ".\\..\\scripts\\claude_enhanced.ps1 'your exact request'",
+    "python_direct": "python .claude/scripts/enhance_prompt.py 'your exact request'",
+    "docker_integrated": "Automatically uses Docker orchestrator when available",
+    
+    "critical_reminders": [
+      "ALWAYS check compliance score before execution",
+      "NEVER accept score below 75% without review",
+      "VERIFY real data sources are being used",
+      "ENSURE API keys remain secure in Vercel .env"
+    ]
+  }
+}
