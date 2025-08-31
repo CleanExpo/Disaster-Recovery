@@ -18,15 +18,14 @@ class MockSMSService {
     };
     
     this.sentMessages.push(sms);
-    console.log('📱 Mock SMS Sent:', { to, message: message.substring(0, 50) + '...' });
+    console.log('📱 Mock SMS Sent:', { to, message: message.substring(0, 50) + '...' });'
     
     return { success: true, messageId: sms.id };
   }
   
   async sendEmergencyAlert(<void> {
     await this.sendSMS(email, 
-      `🚨 EMERGENCY JOB ${jobId} - Immediate response required. Log in to accept.`
-    );
+      `🚨 EMERGENCY JOB ${jobId} - Immediate response required. Log in to accept.` );
   }
 }
 

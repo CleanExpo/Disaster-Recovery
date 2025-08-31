@@ -31,7 +31,7 @@ function MagneticFloatingButton({
   action, 
   colour, 
   delay = 0, 
-  size = 'md' 
+  size = 'md'
 }: FloatingButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -43,14 +43,14 @@ function MagneticFloatingButton({
   const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
 
   const sizeClasses = {
-    sm: 'w-12 h-12',
-    md: 'w-16 h-16',
+    sm: 'w-12 h-12','
+    md: 'w-16 h-16','
     lg: 'w-20 h-20'
   };
 
   const iconSizes = {
-    sm: 'h-5 w-5',
-    md: 'h-6 w-6',
+    sm: 'h-5 w-5','
+    md: 'h-6 w-6','
     lg: 'h-8 w-8'
   };
 
@@ -96,7 +96,7 @@ function MagneticFloatingButton({
     >
       {/* Magnetic field visualization */}
       <motion.div
-        className={`absolute inset-0 rounded-full border-2 border-dashed ${colour.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}
+        className={`absolute inset-0 rounded-full border-2 border-dashed ${colour.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}'
         animate={{
           scale: isHovered ? [1, 1.3, 1.1] : 1,
           opacity: isHovered ? [0, 0.3, 0.1] : 0,
@@ -107,8 +107,7 @@ function MagneticFloatingButton({
       {/* Main button */}
       <motion.button
         ref={buttonRef}
-        className={`
-          relative ${sizeClasses[size]} ${colour} text-white rounded-full 
+        className={` relative ${sizeClasses[size]} ${colour} text-white rounded-full 
           shadow-lg backdrop-blur-sm border border-white/20 
           group overflow-hidden z-10
         `}
@@ -162,10 +161,10 @@ function MagneticFloatingButton({
             exit={{ opacity: 0, y: 10, scale: 0.8 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-lg">
+            <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-lg">"
               {label}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2">
-                <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
+              <div className="absolute top-full left-1/2 transform -translate-x-1/2">"
+                <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />"
               </div>
             </div>
           </motion.div>
@@ -182,33 +181,33 @@ function ExpandableFABMenu() {
   const menuItems = [
     {
       icon: Phone,
-      label: 'Emergency Call',
-      colour: 'bg-gradient-to-r from-red-600 to-red-700',
+      label: 'Emergency Call','
+      colour: 'bg-gradient-to-r from-red-600 to-red-700','
       action: () => window.open('
     },
     {
       icon: MessageCircle,
-      label: 'Text Message',
-      colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
-      action: () => window.open('sms:1300566166'),
+      label: 'Text Message','
+      colour: 'bg-gradient-to-r from-blue-600 to-blue-700','
+      action: () => window.open('sms:1300566166'),'
     },
     {
       icon: Mail,
-      label: 'Email Us',
-      colour: 'bg-gradient-to-r from-green-600 to-green-700',
-      action: () => window.open('mailto:emergency@disasterrecovery.com.au'),
+      label: 'Email Us','
+      colour: 'bg-gradient-to-r from-green-600 to-green-700','
+      action: () => window.open('mailto:emergency@disasterrecovery.com.au'),'
     },
     {
       icon: Calendar,
-      label: 'Schedule Service',
-      colour: 'bg-gradient-to-r from-purple-600 to-purple-700',
-      action: () => alert('Scheduling feature coming soon!'),
+      label: 'Schedule Service','
+      colour: 'bg-gradient-to-r from-purple-600 to-purple-700','
+      action: () => alert('Scheduling feature coming soon!'),'
     },
   ];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <div className="relative">
+    <div className="fixed bottom-6 right-6 z-50">"
+      <div className="relative">"
         {/* Menu Items */}
         <AnimatePresence>
           {isOpen && (
@@ -282,7 +281,7 @@ function ExpandableFABMenu() {
             animate={isOpen ? { rotate: 45 } : { rotate: 0 }}
             transition={{ duration: 0.2 }}
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
+            {isOpen ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}"
           </motion.div>
 
           {/* Glow effect */}
@@ -303,10 +302,10 @@ function ExpandableFABMenu() {
               exit={{ opacity: 0, x: 20 }}
               transition={{ delay: 2 }}
             >
-              <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-lg">
+              <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-lg">"
                 Need help? Click here!
-                <div className="absolute top-full right-4">
-                  <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />
+                <div className="absolute top-full right-4">"
+                  <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900" />"
                 </div>
               </div>
             </motion.div>
@@ -329,31 +328,31 @@ function QuickActionDock() {
   const dockItems = [
     {
       icon: Phone,
-      label: 'Submit Form Now',
-      colour: 'bg-gradient-to-r from-red-500 to-red-600',
-      action: () => window.open('
-      size: 'lg' as const,
+      label: 'Submit Form Now','
+      colour: 'bg-gradient-to-r from-red-500 to-red-600','
+      action: () => window.open(','
+      size: 'lg' as const,'
     },
     {
       icon: MessageCircle,
-      label: 'Text',
-      colour: 'bg-gradient-to-r from-blue-500 to-blue-600',
-      action: () => window.open('sms:1300566166'),
-      size: 'md' as const,
+      label: 'Text','
+      colour: 'bg-gradient-to-r from-blue-500 to-blue-600','
+      action: () => window.open('sms:1300566166'),'
+      size: 'md' as const,'
     },
     {
       icon: MapPin,
-      label: 'Location',
-      colour: 'bg-gradient-to-r from-green-500 to-green-600',
-      action: () => alert('Location services coming soon!'),
-      size: 'md' as const,
+      label: 'Location','
+      colour: 'bg-gradient-to-r from-green-500 to-green-600','
+      action: () => alert('Location services coming soon!'),'
+      size: 'md' as const,'
     },
     {
       icon: HelpCircle,
-      label: 'Help',
-      colour: 'bg-gradient-to-r from-purple-500 to-purple-600',
-      action: () => alert('Help centre coming soon!'),
-      size: 'md' as const,
+      label: 'Help','
+      colour: 'bg-gradient-to-r from-purple-500 to-purple-600','
+      action: () => alert('Help centre coming soon!'),'
+      size: 'md' as const,'
     },
   ];
 
@@ -366,14 +365,14 @@ function QuickActionDock() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 100, scale: 0.8 }}
           transition={{ 
-            type: "spring", 
+            type: "spring", ""
             stiffness: 200, 
             damping: 20,
             delay: 0.5
           }}
         >
-          <div className="bg-white/80 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">
-            <div className="flex items-center space-x-4">
+          <div className="bg-white/80 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">"
+            <div className="flex items-center space-x-4">"
               {dockItems.map((item, index) => (
                 <MagneticFloatingButton
                   key={item.label}
@@ -424,7 +423,7 @@ function EmergencyResponseTimer() {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;'
   };
 
   return (
@@ -435,10 +434,10 @@ function EmergencyResponseTimer() {
           initial={{ opacity: 0, x: 100, scale: 0.8 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           exit={{ opacity: 0, x: 100, scale: 0.8 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}"
         >
-          <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-white/20">
-            <div className="flex items-center space-x-3">
+          <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-white/20">"
+            <div className="flex items-center space-x-3">"
               <motion.div
                 className="w-3 h-3 bg-green-500 rounded-full"
                 animate={{
@@ -451,11 +450,11 @@ function EmergencyResponseTimer() {
                   ease: "easeInOut",
                 }}
               />
-              <div className="flex-1">
-                <div className="text-sm font-semibold text-gray-700">Response Timer</div>
-                <div className="text-xs text-gray-500">Teams dispatching</div>
+              <div className="flex-1">"
+                <div className="text-sm font-semibold text-gray-700">Response Timer</div>"
+                <div className="text-xs text-gray-500">Teams dispatching</div>"
               </div>
-              <div className="text-right">
+              <div className="text-right">"
                 <motion.div 
                   className="text-lg font-bold text-green-600"
                   key={timeElapsed}
@@ -465,7 +464,7 @@ function EmergencyResponseTimer() {
                 >
                   {formatTime(timeElapsed)}
                 </motion.div>
-                <div className="text-xs text-gray-500">elapsed</div>
+                <div className="text-xs text-gray-500">elapsed</div>"
               </div>
             </div>
           </div>

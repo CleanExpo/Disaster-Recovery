@@ -1,149 +1,79 @@
 const fs = require('fs');
 const path = require('path');
 
-// Fix Tool import issue
-const fixToolImport = () => {
-  const filePath = path.join(__dirname, '../src/app/compare/professional-vs-diy/page.tsx');
-  if (fs.existsSync(filePath)) {
-    let content = fs.readFileSync(filePath, 'utf8');
-    content = content.replace("'Tool'", "'Wrench'");
-    content = content.replace(/\bTool\b/g, 'Wrench');
-    fs.writeFileSync(filePath, content);
-    console.log('Fixed Tool import');
-  }
-};
+// Files with TypeScript errors that need fixing
+const filesToFix = [
+  'src/components/contractor/registration/steps/Step2Company.tsx',
+  'src/components/feedback/ReviewModerationDashboard.tsx',
+  'src/components/interactive/FloatingActionButtons.tsx',
+  'src/components/layout/R6Header.tsx',
+  'src/components/partners/AffiliateSignup.tsx',
+  'src/crm/training/Dashboard.tsx',
+  'src/crm/training/LeadManagement.tsx',
+  'src/hooks/useFormValidation.ts',
+  'src/lib/dynamic-content-generator.ts',
+  'src/lib/seo-keyword-strategy.ts',
+  'src/lib/services/mock/mockSMS.ts',
+  'src/lib/validation.ts',
+  'src/types/support.ts'
+];
 
-// Fix disaster pages
-const fixDisasterPages = () => {
-  const disasterPages = [
-    'bushfire-restoration',
-    'coastal-erosion',
-    'cyclone-response',
-    'flood-recovery',
-    'storm-damage'
-  ];
+let totalFixed = 0;
+
+filesToFix.forEach(filePath => {
+  const fullPath = path.join('D:/Disaster Recovery', filePath);
   
-  disasterPages.forEach(page => {
-    const filePath = path.join(__dirname, `../src/app/disasters/${page}/page.tsx`);
-    if (fs.existsSync(filePath)) {
-      let content = fs.readFileSync(filePath, 'utf8');
-      // Replace 'disaster' with proper variable name
-      content = content.replace(/name: disaster/g, "name: 'disaster'");
-      content = content.replace(/text: `.*disaster.*`/g, (match) => {
-        return match.replace(/\${disaster}/g, 'disaster recovery');
-      });
-      fs.writeFileSync(filePath, content);
-      console.log(`Fixed ${page}`);
+  if (!fs.existsSync(fullPath)) {
+    console.log(`File not found: ${filePath}`);
+    return;
+  }
+  
+  let content = fs.readFileSync(fullPath, 'utf8');
+  let fixedCount = 0;
+  const originalContent = content;
+  
+  // Fix unterminated string literals (common from phone removal)
+  // Fix lines ending with incomplete 'Online Form:' or similar
+  content = content.replace(/Online Form:(['"])?$/gm, 'Online Form: "Contact Us"');
+  content = content.replace(/tele(['"])?$/gm, '// Phone removed');
+  content = content.replace(/Submit Form:(['"])?$/gm, 'Submit Form: "Contact Us"');
+  
+  // Fix incomplete property assignments
+  content = content.replace(/:\s*,/g, ': "",');
+  content = content.replace(/:\s*}/g, ': "" }');
+  content = content.replace(/:\s*\]/g, ': "" ]');
+  
+  // Fix template literal issues
+  content = content.replace(/`([^`]*)`\s*\n\s*([^`])/g, '`$1` $2');
+  
+  // Fix missing commas in object literals
+  content = content.replace(/(['"])(\s*\n\s*)([a-zA-Z_$][\w$]*\s*:)/g, '$1,$2$3');
+  
+  // Fix unterminated strings at end of lines
+  content = content.replace(/(['"])([^'"\n]*?)$/gm, (match, quote, str) => {
+    if (!str.endsWith(quote)) {
+      return `${quote}${str}${quote}`;
     }
+    return match;
   });
-};
-
-// Fix location pages
-const fixLocationPages = () => {
-  const states = ['act', 'nsw', 'nt', 'qld', 'sa', 'tas', 'vic', 'wa'];
   
-  states.forEach(stateCode => {
-    const filePath = path.join(__dirname, `../src/app/locations/${stateCode}/page.tsx`);
-    if (fs.existsSync(filePath)) {
-      let content = fs.readFileSync(filePath, 'utf8');
-      
-      // Fix the state.cities.map issue
-      content = content.replace(/state\.cities\.map\(city/g, "['Sydney', 'Melbourne', 'Brisbane'].map((city: string)");
-      
-      // Fix stateCode reference
-      content = content.replace(/href=\{`\/locations\/\${stateCode}/g, `href={\`/locations/${stateCode}`);
-      
-      fs.writeFileSync(filePath, content);
-      console.log(`Fixed ${stateCode} location page`);
-    }
-  });
-};
-
-// Fix semrush integration
-const fixSemrushIntegration = () => {
-  const filePath = path.join(__dirname, '../src/lib/semrush-integration.ts');
-  if (fs.existsSync(filePath)) {
-    let content = fs.readFileSync(filePath, 'utf8');
-    
-    // Fix variable type declarations
-    content = content.replace('const improvements = [];', 'const improvements: any[] = [];');
-    content = content.replace('const declines = [];', 'const declines: any[] = [];');
-    
-    fs.writeFileSync(filePath, content);
-    console.log('Fixed semrush-integration.ts');
-  }
-};
-
-// Create missing components
-const createMissingComponents = () => {
-  // Create testimonials component
-  const testimonialsPath = path.join(__dirname, '../src/components/testimonials.tsx');
-  if (!fs.existsSync(testimonialsPath)) {
-    const testimonialsContent = `export default function TestimonialsSection() {
-  return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-centre mb-12">Customer Testimonials</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <p className="text-gray-600 mb-4">"Excellent service during our flood emergency."</p>
-            <p className="font-semibold">- John D., Sydney</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <p className="text-gray-600 mb-4">"Professional and efficient restoration team."</p>
-            <p className="font-semibold">- Sarah M., Melbourne</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <p className="text-gray-600 mb-4">"Insurance process was seamless with their help."</p>
-            <p className="font-semibold">- Mike R., Brisbane</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}`;
-    fs.writeFileSync(testimonialsPath, testimonialsContent);
-    console.log('Created testimonials component');
-  }
+  // Fix specific patterns from phone removal
+  content = content.replace(/href="tel:"/g, 'href="/contact"');
+  content = content.replace(/href=\{`tel:`\}/g, 'href="/contact"');
   
-  // Create locations-grid component
-  const locationsGridPath = path.join(__dirname, '../src/components/locations-grid.tsx');
-  if (!fs.existsSync(locationsGridPath)) {
-    const locationsGridContent = `export default function LocationsGrid() {
-  const locations = [
-    'Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide',
-    'Gold Coast', 'Newcastle', 'Canberra', 'Sunshine Coast'
-  ];
-  
-  return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-centre mb-12">Service Locations</h2>
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {locations.map(location => (
-            <a
-              key={location}
-              href={\`/locations/\${location.toLowerCase().replace(' ', '-')}\`}
-              className="text-centre p-4 border rounded hover:bg-gray-50"
-            >
-              {location}
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}`;
-    fs.writeFileSync(locationsGridPath, locationsGridContent);
-    console.log('Created locations-grid component');
+  // Count changes
+  if (content !== originalContent) {
+    fixedCount = 1;
+    fs.writeFileSync(fullPath, content, 'utf8');
+    console.log(`Fixed ${filePath}`);
+    totalFixed++;
+  } else {
+    console.log(`No changes needed in ${filePath}`);
   }
-};
+});
 
-// Run all fixes
-console.log('Starting TypeScript error fixes...\n');
-fixToolImport();
-fixDisasterPages();
-fixLocationPages();
-fixSemrushIntegration();
-createMissingComponents();
-console.log('\nAll TypeScript errors fixed!');
+console.log(`\nTotal files fixed: ${totalFixed}`);
+console.log('\nNext steps:');
+console.log('1. Run: npm run type-check');
+console.log('2. Run: npm run build');
+console.log('3. Fix any remaining errors manually');

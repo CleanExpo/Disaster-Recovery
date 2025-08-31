@@ -19,7 +19,7 @@ export function useFormValidation<T extends Record<string, any>>(
   initialValues: T,
   options: UseFormValidationOptions<T>
 ) {
-  const { schema, mode = 'onBlur', sanitise = true } = options;
+  const { schema, mode = 'onBlur', sanitise = true } = options;'
   
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -38,7 +38,7 @@ export function useFormValidation<T extends Record<string, any>>(
       if (error instanceof ZodError) {
         const newErrors: Record<string, string> = {};
         error.errors.forEach((err) => {
-          const fieldName = err.path.join('.');
+          const fieldName = err.path.join('.');'
           newErrors[fieldName] = err.message;
         });
         setErrors(newErrors);
@@ -74,7 +74,7 @@ export function useFormValidation<T extends Record<string, any>>(
   ) => {
     // Sanitise input if enabled
     let sanitisedValue = value;
-    if (sanitise && typeof value === 'string') {
+    if (sanitise && typeof value === 'string') {'
       sanitisedValue = CustomValidators.sanitiseInput(value);
     }
     
@@ -82,11 +82,11 @@ export function useFormValidation<T extends Record<string, any>>(
     setValues(prev => ({ ...prev, [fieldName]: sanitisedValue }));
     
     // Validate on change if mode is onChange
-    if (mode === 'onChange' && touched[fieldName]) {
+    if (mode === 'onChange' && touched[fieldName]) {'
       const error = await validateField(fieldName, sanitisedValue);
       setErrors(prev => ({
         ...prev,
-        [fieldName]: error || '',
+        [fieldName]: error || '
       }));
     }
   }, [mode, touched, sanitise, validateField]);
@@ -96,11 +96,11 @@ export function useFormValidation<T extends Record<string, any>>(
     setTouched(prev => ({ ...prev, [fieldName]: true }));
     
     // Validate on blur if mode is onBlur or onChange
-    if (mode === 'onBlur' || mode === 'onChange') {
+    if (mode === 'onBlur' || mode === 'onChange') {'
       const error = await validateField(fieldName, values[fieldName]);
       setErrors(prev => ({
         ...prev,
-        [fieldName]: error || '',
+        [fieldName]: error || '
       }));
     }
   }, [mode, values, validateField]);
@@ -125,7 +125,7 @@ export function useFormValidation<T extends Record<string, any>>(
       try {
         await onSubmit(values);
       } catch (error) {
-        console.error('Form submission error:', error);
+        console.error('Form submission error:', error);'
       }
     }
     
@@ -163,7 +163,7 @@ export function useFormValidation<T extends Record<string, any>>(
   
   // Validate form on values change (for real-time validation)
   useEffect(() => {
-    if (mode === 'onChange' && Object.keys(touched).length > 0) {
+    if (mode === 'onChange' && Object.keys(touched).length > 0) {'
       validateForm();
     }
   }, [values, mode, touched, validateForm]);
@@ -183,20 +183,20 @@ export function useFormValidation<T extends Record<string, any>>(
   // Get field props for input elements
   const getFieldProps = useCallback((fieldName: string) => ({
     name: fieldName,
-    value: values[fieldName] || '',
+    value: values[fieldName] || '
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       handleChange(fieldName, e.target.value);
     },
     onBlur: () => handleBlur(fieldName),
-    'aria-invalid': !!errors[fieldName],
-    'aria-describedby': errors[fieldName] ? `${fieldName}-error` : undefined,
+    'aria-invalid': !!errors[fieldName],'
+    'aria-describedby': errors[fieldName] ? `${fieldName}-error` : undefined,'
   }), [values, errors, handleChange, handleBlur]);
   
   // Get error props for error display
   const getErrorProps = useCallback((fieldName: string) => ({
     id: `${fieldName}-error`,
-    role: 'alert',
-    'aria-live': 'polite' as const,
+    role: 'alert','
+    'aria-live': 'polite' as const,'
   }), []);
   
   return {
