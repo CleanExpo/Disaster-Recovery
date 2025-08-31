@@ -9,7 +9,7 @@
     "build": "node scripts/validate-env.js && npx prisma generate && next build",
     "build:production": "node scripts/pre-build-fix.js && node scripts/validate-env.js && npx prisma generate && next build",
     "validate-env": "node scripts/validate-env.js",
-    "prebuild": "node scripts/pre-build-fix.js",
+    "prebuild": "npm run check:critical && npm run fix",
     "validate": "node scripts/pre-build-validator.js",
     "fix": "node scripts/pre-build-fix.js",
     "fix:all": "npm run fix && npm run lint || true",
@@ -51,7 +51,8 @@
     "optimize-images": "node scripts/optimize-images.js",
     "image-worker": "node scripts/image-optimization-worker.js",
     "image-worker:dev": "nodemon --watch public/images --watch public/uploads scripts/image-optimization-worker.js",
-    "postinstall": "node scripts/postinstall.js"
+    "postinstall": "node scripts/postinstall.js",
+    "check:critical": "node scripts/critical-issues-monitor.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.60.0",
