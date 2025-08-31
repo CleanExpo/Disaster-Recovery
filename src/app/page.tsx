@@ -497,16 +497,16 @@ export default function EnhancedLandingPage() {
               <Image
                 src="/images/logos/3D CARSI Logo.png"
                 alt="CARSI Certified"
-                width={120}
-                height={60}
-                className="opacity-70 hover:opacity-100 transition-opacity"
+                width={150}
+                height={75}
+                className="opacity-70 hover:opacity-100 transition-opacity object-contain"
               />
               <Image
                 src="/images/logos/3D Clean Claims Logo.png"
                 alt="Clean Claims Partner - Technology Platform"
-                width={120}
-                height={60}
-                className="opacity-70 hover:opacity-100 transition-opacity"
+                width={150}
+                height={75}
+                className="opacity-70 hover:opacity-100 transition-opacity object-contain"
               />
             </div>
           </div>
