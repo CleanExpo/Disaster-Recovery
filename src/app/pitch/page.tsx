@@ -399,8 +399,8 @@ const PITCH_SLIDES = [
 
 export default function InvestorPitchDeck() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true); // Auto-start playing
+  const [isMuted, setIsMuted] = useState(true); // Start muted for better UX
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
