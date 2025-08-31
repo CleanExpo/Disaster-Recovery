@@ -172,11 +172,15 @@ export default function ModernAboutPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden">
+              <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden flex items-center justify-center">
                 <img
                   src="/images/team/3D Shane.png"
                   alt="Shane - Founder and CEO of Disaster Recovery"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
+                  style={{
+                    maxHeight: '100%',
+                    maxWidth: '100%',
+                  }}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
