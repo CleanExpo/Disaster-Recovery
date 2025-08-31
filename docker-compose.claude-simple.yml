@@ -1,0 +1,50 @@
+services:
+  # Main Claude Orchestrator
+  claude-orchestrator:
+    build: 
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile.simple
+    container_name: claude-main
+    volumes:
+      - ./:/workspace:rw
+      - claude-outputs:/app/outputs
+      - claude-logs:/app/logs
+    env_file:
+      - .env.docker
+    environment:
+      - CLAUDE_MODE=orchestrator
+      - WORKSPACE_PATH=/workspace
+      - ENABLE_AGENTS=true
+      - HOST_PLATFORM=${OS:-linux}
+    networks:
+      - claude-net
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    restart: unless-stopped
+    depends_on:
+      - redis
+
+  # Redis for inter-agent communication
+  redis:
+    image: redis:7-alpine
+    container_name: claude-redis
+    volumes:
+      - redis-data:/data
+    networks:
+      - claude-net
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+
+networks:
+  claude-net:
+    driver: bridge
+
+volumes:
+  claude-outputs:
+    driver: local
+  claude-logs:
+    driver: local
+  redis-data:
+    driver: local

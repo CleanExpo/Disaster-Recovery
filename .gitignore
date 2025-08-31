@@ -79,3 +79,7 @@ mcp-agent/
 sequential-thinking-mcp/
 nul
 node_modules
+
+# Docker environment (contains secrets)
+.env.docker
+.env.docker.backup.*

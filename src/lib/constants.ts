@@ -4,7 +4,7 @@ export const BUSINESS_SHORT_NAME = 'Disaster Recovery';
 // No phone number - online forms only
 export const ONLINE_FORM_URL = '/get-help';
 export const CONTRACTOR_PORTAL_URL = '/contractors';
-export const EMAIL = 'info@disasterrecovery.com.au';
+export const EMAIL = 'contractors@disasterrecovery.com.au';
 
 // Lead Distribution Radius Options
 export const SERVICE_RADIUS_OPTIONS = [
@@ -23,7 +23,10 @@ export const CONTRACTOR_REQUIREMENTS = {
   response: '24/7 Emergency Response Capability'
 };
 export const WEBSITE = 'https://disasterrecovery.com.au';
-export const ABN = 'ABN: 12 345 678 901'; // Update with actual ABN
+export const ABN = '85 151 794 142';
+export const WEBSITE_DESIGNER = 'Zenith';
+export const DESIGNER_URL = 'https://zenith.engineer';
+export const PARENT_AGENCY = 'Unite-Group Agency';
 
 // Lead Pricing
 export const LEAD_PRICE = 550;

@@ -80,13 +80,21 @@ class ClaudeOrchestrator {
     this.app.use(express.json());
     
     // Health check endpoint
-    this.app.get('/health', (req, res) => {
-      res.json({
-        status: 'healthy',
-        agents: Array.from(this.agents.values()),
-        activeTasks: this.activeTasks.size,
-        queueSize: this.taskQueue.jobCounts()
-      });
+    this.app.get('/health', async (req, res) => {
+      try {
+        const jobCounts = await this.taskQueue.getJobCounts();
+        res.json({
+          status: 'healthy',
+          agents: Array.from(this.agents.values()),
+          activeTasks: this.activeTasks.size,
+          queueSize: jobCounts
+        });
+      } catch (error) {
+        res.status(500).json({
+          status: 'error',
+          error: error.message
+        });
+      }
     });
 
     // Submit task endpoint

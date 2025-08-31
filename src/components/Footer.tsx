@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { FooterLogos } from '@/components/Logo';
 import { 
   BUSINESS_NAME, 
   BUSINESS_SHORT_NAME, 
@@ -216,29 +217,29 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="grid md:grid-cols-3 gap-6 mb-6">
-              {/* Phone */}
-              <a href="tel:1300566166" className="group">
+              {/* Online Form */}
+              <Link href="/contractors/apply" className="group">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <Phone className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
-                  <div className="text-2xl font-bold mb-2">1300 566 166</div>
-                  <p className="text-sm opacity-90">Call Emergency Hotline</p>
+                  <Users className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
+                  <div className="text-2xl font-bold mb-2">Join Network</div>
+                  <p className="text-sm opacity-90">Contractor Application</p>
                   <div className="mt-2 text-xs bg-green-500/30 px-2 py-1 rounded-full inline-block">
-                    Average answer time: 12 seconds
+                    Get started today
                   </div>
                 </div>
-              </a>
+              </Link>
               
-              {/* Text */}
-              <a href="sms:1300566166" className="group">
+              {/* AI Platform */}
+              <Link href="/" className="group">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <MessageCircle className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
-                  <div className="text-2xl font-bold mb-2">Text Us</div>
-                  <p className="text-sm opacity-90">SMS Emergency Response</p>
+                  <Zap className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
+                  <div className="text-2xl font-bold mb-2">AI Platform</div>
+                  <p className="text-sm opacity-90">Automated Matching</p>
                   <div className="mt-2 text-xs bg-blue-500/30 px-2 py-1 rounded-full inline-block">
-                    Response within 5 minutes
+                    Instant contractor dispatch
                   </div>
                 </div>
-              </a>
+              </Link>
               
               {/* Email */}
               <a href={`mailto:${EMAIL}`} className="group">
@@ -268,25 +269,10 @@ const Footer: React.FC = () => {
             
             {/* COMPANY INFORMATION - Enhanced */}
             <div className="lg:col-span-4">
-              <div className="flex items-center gap-3 mb-6">
-                <img
-                  src="/images/logos/dr-logo.svg"
-                  alt={`${BUSINESS_NAME} Logo`}
-                  className="h-12 w-auto"
-                  width="48"
-                  height="48"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
-                <div>
-                  <div className="text-white font-bold text-xl">
-                    {BUSINESS_SHORT_NAME}
-                  </div>
-                  <div className="text-sm text-red-400 font-semibold">
-                    Emergency Response Specialists
-                  </div>
+              <div className="mb-6">
+                <FooterLogos darkMode={true} />
+                <div className="mt-4 text-sm text-red-400 font-semibold">
+                  Emergency Response Specialists
                 </div>
               </div>
               
@@ -586,7 +572,7 @@ const Footer: React.FC = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>ABN:</span>
-                      <span className="text-white">12 345 678 901</span>
+                      <span className="text-white">{ABN}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>License:</span>
@@ -625,7 +611,20 @@ const Footer: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-gray-400">
                 <span>© {currentYear} {BUSINESS_NAME}. All rights reserved.</span>
                 <span className="hidden sm:inline">|</span>
-                <span>Licensed & Insured nationwide</span>
+                <span>ABN: {ABN}</span>
+                <span className="hidden sm:inline">|</span>
+                <span>
+                  Website by{' '}
+                  <a 
+                    href="https://zenith.engineer" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    Zenith
+                  </a>
+                  {' '}| Part of Unite-Group Agency
+                </span>
               </div>
               
               <div className="flex items-center gap-6">

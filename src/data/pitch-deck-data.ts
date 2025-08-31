@@ -155,7 +155,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
     id: 4,
     type: 'market',
     title: 'Massive Market Opportunity',
-    subtitle: '$15B+ Total Addressable Market',
+    subtitle: '$4.2B Total Addressable Market',
     chart: {
       type: 'doughnut',
       data: {
@@ -166,7 +166,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
         }]
       }
     },
-    voiceNarration: 'We are targeting a massive 15 billion dollar market that spans every property type from single homes to 80-floor high-rises, from corner shops to offshore oil rigs. Our addressable market includes residential, commercial, industrial, and institutional properties across every disaster category.',
+    voiceNarration: 'We are targeting a massive 4.2 billion dollar Australian market that spans every property type from single homes to 80-floor high-rises, from corner shops to offshore oil rigs. Our addressable market includes residential, commercial, industrial, and institutional properties across every disaster category, with a realistic path to capturing 10% or $420 million within 5 years.',
     screenshots: ['/images/market-size-breakdown.jpg', '/images/property-types.jpg']
   },
 
@@ -206,51 +206,51 @@ export const pitchDeckData: PitchDeckSlide[] = [
   {
     id: 6,
     type: 'traction',
-    title: 'Explosive Early Growth',
-    subtitle: 'Validation Across Multiple Metrics',
+    title: 'Market Opportunity & Targets',
+    subtitle: 'Massive Untapped Market Ready for Disruption',
     metrics: [
       {
-        value: '450+',
-        label: 'Contractors Onboarded',
-        growth: '+125% MoM'
+        value: '115,350',
+        label: 'Total Contractors in Australia',
+        growth: 'Addressable Market'
       },
       {
-        value: '2,847',
-        label: 'Qualified Leads Generated',
-        growth: '+89% MoM'
+        value: '1,000',
+        label: 'Year 1 Contractor Target',
+        growth: 'Conservative Goal'
       },
       {
-        value: '$2.4M',
-        label: 'Jobs Completed',
-        growth: '+156% MoM'
+        value: '$4.2B',
+        label: 'Total Market Size',
+        growth: '+8.7% CAGR'
       },
       {
-        value: '98.7%',
-        label: 'Client Satisfaction',
-        growth: '+0.8%'
+        value: '95%',
+        label: 'Automation Target',
+        growth: 'Zero Human Ops'
       },
       {
-        value: '1,200+',
-        label: 'Location Pages Live',
-        growth: '+200% MoM'
+        value: '15,387',
+        label: 'Australian Locations',
+        growth: 'Full Coverage Plan'
       },
       {
-        value: '#1',
-        label: 'SEO Rankings Achieved',
-        growth: '+45 keywords'
+        value: '60min',
+        label: 'Response Time Target',
+        growth: 'vs 45 days industry avg'
       },
       {
-        value: '24/7',
-        label: 'AI Bot Uptime',
-        growth: '99.9% SLA'
+        value: '$40M',
+        label: 'Year 3 Revenue Target',
+        growth: '$3.3M MRR'
       },
       {
-        value: '$125',
-        label: 'Average Cost Per Lead',
+        value: '85%',
+        label: 'Target Gross Margin',
         growth: '-23% optimisation'
       }
     ],
-    voiceNarration: 'Our traction metrics demonstrate explosive growth across all key areas. We have onboarded over 450 contractors nationwide, generated nearly 3,000 qualified leads, and facilitated over 2.4 million dollars in completed jobs. Our AI bot maintains 24/7 uptime with 99.9% SLA while achieving number one SEO rankings for over 45 keywords.',
+    voiceNarration: 'The Australian disaster recovery market presents a massive opportunity with 115,350 contractors servicing a 4.2 billion dollar market. Our platform targets 1,000 contractors in Year 1, scaling to market dominance with 95% automation. We will achieve 60-minute response times compared to the industry average of 45 days, while maintaining 85% gross margins and reaching 40 million in annual revenue by Year 3.',
     screenshots: ['/images/growth-metrics.jpg', '/images/contractor-map.jpg', '/images/seo-rankings.jpg']
   },
 

@@ -1,0 +1,39 @@
+# Claude Code Orchestrator - Simplified Version
+FROM node:20-alpine AS base
+
+# Install essential tools
+RUN apk add --no-cache \
+    python3 \
+    git \
+    bash \
+    curl
+
+# Set up working directory
+WORKDIR /app/orchestrator
+
+# Copy package files
+COPY package*.json ./
+COPY healthcheck.js ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code
+COPY src ./src
+
+# Set environment variables
+ENV CLAUDE_ORCHESTRATOR=true
+ENV NODE_ENV=production
+
+# Create directories for agent workspaces
+RUN mkdir -p /app/agents /app/outputs /app/mcps /app/logs
+
+# Expose ports for inter-agent communication
+EXPOSE 3000 3001
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD node healthcheck.js || exit 1
+
+# Start the integrated orchestrator with full API support
+CMD ["npx", "tsx", "src/integrated-orchestrator.ts"]

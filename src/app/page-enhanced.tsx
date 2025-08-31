@@ -13,13 +13,11 @@ import {
 } from 'lucide-react';
 import LightningEffect from '@/components/effects/LightningEffect';
 import { Logo, HeaderLogo } from '@/components/Logo';
-import LandingHeader from '@/components/LandingHeader';
 
 export default function EnhancedLandingPage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
-  const [demoMode, setDemoMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -59,9 +57,6 @@ export default function EnhancedLandingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
-      {/* Enhanced Landing Header */}
-      <LandingHeader demoMode={demoMode} onToggleDemo={() => setDemoMode(!demoMode)} />
-      
       {/* Lightning Effect - Background */}
       <LightningEffect />
       
@@ -72,7 +67,7 @@ export default function EnhancedLandingPage() {
       </div>
 
       {/* Hero Section with 3D Visual */}
-      <section className="relative pt-8 pb-32" style={{ zIndex: 2 }}>
+      <section className="relative pt-20 pb-32" style={{ zIndex: 2 }}>
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}

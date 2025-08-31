@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { EmergencyCTA } from '@/components/ui/emergency-cta';
+import { Logo, HeaderLogo } from '@/components/Logo';
 import { cn } from '@/lib/utils';
 import { BUSINESS_NAME, BUSINESS_SHORT_NAME, STATES, CITIES_BY_STATE } from '@/lib/constants';
 import { 
@@ -374,38 +375,21 @@ const Header: React.FC = () => {
       <header className="nav-header sticky top-0 z-40 w-full bg-white border-b border-neutral-200 shadow-sm">
         <div className="container px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            {/* Logo - Using new unified Logo component */}
             <Link 
               href="/" 
               className="flex items-center gap-3 group"
               aria-label={`${BUSINESS_NAME} - Homepage`}
             >
-              <div className="flex-shrink-0">
-                <img
-                  src="/images/logos/dr-logo-white.svg"
-                  alt={`${BUSINESS_NAME} Logo`}
-                  className="h-10 w-auto"
-                  width="160"
-                  height="48"
-                />
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-bold text-lg text-neutral-900 group-hover:text-primary-600 transition-colours duration-150">
-                  {BUSINESS_SHORT_NAME}
-                </div>
-                <div className="text-xs text-neutral-500 -mt-1">
-                  24/7 Emergency Response
-                </div>
-              </div>
+              <HeaderLogo darkMode={false} />
+              
               {/* NRP Certification Badge */}
               <div className="hidden md:flex items-center ml-4 pl-4 border-l border-neutral-300">
-                <img
-                  src="/images/logos/nrp/nrp-badge-3d.png"
-                  alt="National Restoration Professionals Certified"
-                  className="h-12 w-auto"
-                  width="48"
-                  height="48"
-                  title="NRP Certified Network"
+                <Logo 
+                  variant="nrp" 
+                  size="md" 
+                  showText={false}
+                  className="opacity-90 hover:opacity-100 transition-opacity"
                 />
               </div>
             </Link>
