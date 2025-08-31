@@ -75,7 +75,7 @@ export const generateLocalBusinessSchema = (businessInfo: any) => ({
   },
   image: 'https://disasterrecovery.com.au/hero-image.jpg',
   description: 'Queensland\'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.',
-  tele
+  telephone: "",
   email: 'info@disasterrecovery.com.au',
   address: {
     '@type': 'PostalAddress',

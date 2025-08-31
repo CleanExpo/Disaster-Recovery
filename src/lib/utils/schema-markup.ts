@@ -105,7 +105,7 @@ export interface LocalBusinessSchema {
   name: string;
   image: string;
   url: string;
-  tele
+  telephone: "",
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
@@ -196,7 +196,7 @@ export interface EmergencyServiceSchema {
   '@type': 'EmergencyService';
   name: string;
   description: string;
-  tele
+  telephone: "",
   availableChannel: {
     '@type': 'ServiceChannel';
     serviceUrl: string;

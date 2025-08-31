@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Heart, Sh
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Biohazard Cleaning Brisbane | Crime Scene & Trauma Cleanup | Disaster Recovery',
-  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Use Our Online Form
+  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Use Our Online Form'
   keywords: [
     'biohazard cleaning Brisbane',
     'crime scene cleanup Queensland',
@@ -134,7 +134,7 @@ export default function BiohazardCleaningPage() {
                       </div>
                       <a href="#contact-form" className="flex items-center justify-center gap-2 bg-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800">
                         <Phone className="h-5 w-5" />
-                        Use Our Online Form
+                        Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
@@ -544,7 +544,7 @@ export default function BiohazardCleaningPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact-form" className="bg-white text-gray-800 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
-              Use Our Online Form
+              Use Our Online Form'
             </a>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-gray-800">
               Request Discrete Service

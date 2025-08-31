@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, Ar
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery',
-  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. Insurance approved, IICRC certified. Use Our Online Form
+  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. Insurance approved, IICRC certified. Use Our Online Form'
   keywords: [
     'fire damage restoration Brisbane',
     'smoke damage cleanup Queensland',
@@ -126,7 +126,7 @@ export default function FireDamageRestorationPage() {
                     <div className="space-y-4 pt-4">
                       <a href="#contact-form" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <Phone className="h-5 w-5" />
-                        Use Our Online Form
+                        Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
@@ -485,7 +485,7 @@ export default function FireDamageRestorationPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact-form" className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
-              Use Our Online Form
+              Use Our Online Form'
             </a>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-orange-600">
               Schedule Assessment

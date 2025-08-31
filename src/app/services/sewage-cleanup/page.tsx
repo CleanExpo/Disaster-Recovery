@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertOctagon, Droplets, Home, AlertTriangle, Chec
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Sewage Cleanup Brisbane | Emergency Sewage Removal & Sanitization | Disaster Recovery',
-  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form
+  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form'
   keywords: [
     'sewage cleanup Brisbane',
     'sewage backup cleanup',
@@ -131,7 +131,7 @@ export default function SewageCleanupPage() {
                       </div>
                       <a href="#contact-form" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <Phone className="h-5 w-5" />
-                        Use Our Online Form
+                        Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
