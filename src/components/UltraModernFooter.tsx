@@ -134,14 +134,13 @@ export default function UltraModernFooter() {
           {/* Brand section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div 
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{
-                  background: 'linear-gradient(135deg, #635bff 0%, #00d4ff 100%)',
-                }}
-              >
-                <span className="text-white font-bold text-xl">DR</span>
-              </div>
+              <Image
+                src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                alt="Disaster Recovery"
+                width={60}
+                height={60}
+                className="drop-shadow-2xl"
+              />
               <div>
                 <div 
                   className="text-xl font-bold"

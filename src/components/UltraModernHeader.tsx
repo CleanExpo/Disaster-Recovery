@@ -220,9 +220,13 @@ export default function UltraModernHeader() {
                   className="items-center gap-3"
                   style={{ display: 'none' }}
                 >
-                  <div className="relative w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br from-teal-600 to-teal-700">
-                    <span className="text-white font-bold text-xl">DR</span>
-                  </div>
+                  <Image
+                    src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                    alt="Disaster Recovery"
+                    width={40}
+                    height={40}
+                    className="drop-shadow-xl"
+                  />
                   <div className="flex flex-col">
                     <span className="text-lg font-bold text-white">
                       Disaster Recovery
