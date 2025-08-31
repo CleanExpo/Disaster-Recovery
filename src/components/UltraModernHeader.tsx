@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface NavItem {
   label: string;
@@ -190,51 +191,57 @@ export default function UltraModernHeader() {
               href="/" 
               className="group relative flex items-center gap-3"
             >
-              {/* Use actual logo image */}
-              <div className="relative" style={{
-                transform: isScrolled ? 'scale(0.9)' : 'scale(1)',
-                transition: 'transform 0.3s ease',
+              {/* Modern logo implementation */}
+              <div className="relative flex items-center gap-3" style={{
+                transform: isScrolled ? 'scale(0.95)' : 'scale(1)',
+                transition: 'all 0.3s ease',
               }}>
-                <img
-                  id="main-logo"
-                  src="/images/logos/dr-logo-white.svg"
-                  alt="Disaster Recovery - Property Restoration Services"
-                  width={isScrolled ? 135 : 150}
-                  height={isScrolled ? 41 : 45}
-                  className="transition-all duration-300 block"
-                  style={{ display: 'block' }}
-                  onError={(e) => {
-                    // Fallback to text logo if image fails
-                    e.currentTarget.style.display = 'none';
-                    const fallback = document.getElementById('logo-fallback');
-                    if (fallback) {
-                      fallback.style.display = 'flex';
-                      fallback.classList.remove('hidden');
-                    }
-                  }}
-                />
-                
-                {/* Fallback text logo - only shown if main logo fails */}
-                <div 
-                  id="logo-fallback"
-                  className="items-center gap-3"
-                  style={{ display: 'none' }}
-                >
+                {/* Logo icon with modern glass effect */}
+                <div className="relative">
+                  <div 
+                    className="absolute inset-0 rounded-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255, 69, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%)',
+                      filter: 'blur(8px)',
+                      transform: 'scale(1.2)',
+                    }}
+                  />
                   <Image
                     src="/images/optimised/branding/3D Disaster Recovery Logo.png"
                     alt="Disaster Recovery"
-                    width={40}
-                    height={40}
-                    className="drop-shadow-xl"
+                    width={isScrolled ? 36 : 40}
+                    height={isScrolled ? 36 : 40}
+                    className="relative z-10 drop-shadow-lg"
+                    style={{
+                      filter: 'drop-shadow(0 4px 8px rgba(255, 69, 0, 0.2))',
+                    }}
                   />
-                  <div className="flex flex-col">
-                    <span className="text-lg font-bold text-white">
-                      Disaster Recovery
-                    </span>
-                    <span className="text-[10px] text-gray-400 uppercase tracking-widest">
-                      Property Restoration Services
-                    </span>
-                  </div>
+                </div>
+                
+                {/* Modern text styling */}
+                <div className="flex flex-col">
+                  <span 
+                    className="font-bold tracking-tight leading-tight"
+                    style={{
+                      fontSize: isScrolled ? '1.1rem' : '1.25rem',
+                      background: 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    Disaster Recovery
+                  </span>
+                  <span 
+                    className="text-[10px] uppercase tracking-[0.2em] opacity-70"
+                    style={{
+                      color: 'rgba(255, 140, 0, 0.8)',
+                      fontWeight: '500',
+                    }}
+                  >
+                    Property Restoration
+                  </span>
                 </div>
               </div>
             </Link>

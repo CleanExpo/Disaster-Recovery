@@ -134,18 +134,32 @@ export default function UltraModernFooter() {
           {/* Brand section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <Image
-                src="/images/optimised/branding/3D Disaster Recovery Logo.png"
-                alt="Disaster Recovery"
-                width={60}
-                height={60}
-                className="drop-shadow-2xl"
-              />
+              {/* Logo with modern glass effect */}
+              <div className="relative">
+                <div 
+                  className="absolute inset-0 rounded-xl"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(99, 91, 255, 0.15) 0%, rgba(0, 212, 255, 0.1) 100%)',
+                    filter: 'blur(10px)',
+                    transform: 'scale(1.3)',
+                  }}
+                />
+                <Image
+                  src="/images/optimised/branding/3D Disaster Recovery Logo.png"
+                  alt="Disaster Recovery"
+                  width={48}
+                  height={48}
+                  className="relative z-10"
+                  style={{
+                    filter: 'drop-shadow(0 6px 12px rgba(99, 91, 255, 0.25))',
+                  }}
+                />
+              </div>
               <div>
                 <div 
-                  className="text-xl font-bold"
+                  className="text-xl font-bold tracking-tight"
                   style={{
-                    background: 'linear-gradient(135deg, #fff 0%, #888 100%)',
+                    background: 'linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -153,7 +167,13 @@ export default function UltraModernFooter() {
                 >
                   Disaster Recovery
                 </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wider">
+                <div 
+                  className="text-xs uppercase tracking-[0.2em] mt-0.5"
+                  style={{
+                    color: 'rgba(99, 91, 255, 0.7)',
+                    fontWeight: '500',
+                  }}
+                >
                   Premier Restoration
                 </div>
               </div>
