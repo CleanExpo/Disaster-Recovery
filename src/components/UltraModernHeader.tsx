@@ -336,42 +336,27 @@ export default function UltraModernHeader() {
                   <Image
                     src="/logos/3D Disaster Recovery Logo Image.png"
                     alt="Disaster Recovery"
-                    width={isScrolled ? 36 : 40}
-                    height={isScrolled ? 36 : 40}
+                    width={isScrolled ? 50 : 60}
+                    height={isScrolled ? 50 : 60}
                     className="relative z-10"
                     style={{
                       filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
-                      mixBlendMode: 'normal',
-                      backgroundColor: 'transparent',
-                      borderRadius: '50%',
                       objectFit: 'contain',
                     }}
+                    priority
                   />
                 </div>
                 
-                {/* Modern text styling */}
-                <div className="flex flex-col">
+                {/* Tagline only - no "Disaster Recovery" text */}
+                <div className="flex flex-col ml-3">
                   <span 
-                    className="font-bold tracking-tight leading-tight"
+                    className="text-[12px] uppercase tracking-[0.2em]"
                     style={{
-                      fontSize: isScrolled ? '1.1rem' : '1.25rem',
-                      background: 'linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                      color: 'rgba(255, 255, 255, 0.9)',
+                      fontWeight: '600',
                     }}
                   >
-                    Disaster Recovery
-                  </span>
-                  <span 
-                    className="text-[10px] uppercase tracking-[0.2em] opacity-70"
-                    style={{
-                      color: 'rgba(255, 140, 0, 0.8)',
-                      fontWeight: '500',
-                    }}
-                  >
-                    Property Restoration
+                    AI-Powered Restoration Network
                   </span>
                 </div>
               </div>

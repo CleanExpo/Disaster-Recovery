@@ -77,20 +77,18 @@ export default function EnhancedLandingPage() {
               {/* Logo Integration */}
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
                 <Image
-                  src="/logos/3D Disaster Recovery Round Borders.png"
-                  alt="Disaster Recovery 3D Logo"
-                  width={80}
-                  height={80}
-                  className="rounded-full"
+                  src="/logos/3D Disaster Recovery Logo Image.png"
+                  alt="Disaster Recovery"
+                  width={120}
+                  height={120}
+                  className="object-contain"
                   style={{
                     filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
-                    backgroundColor: 'transparent',
-                    objectFit: 'contain',
                   }}
+                  priority
                 />
                 <div>
-                  <h1 className="text-4xl font-bold text-white">Disaster Recovery</h1>
-                  <p className="text-blue-300 text-sm">Powered by NRP Network</p>
+                  <p className="text-blue-300 text-lg font-medium">Powered by NRP Network</p>
                 </div>
               </div>
 
