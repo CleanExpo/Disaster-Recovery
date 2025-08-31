@@ -1,0 +1,166 @@
+# Disaster Recovery Image Generation Orchestration
+# Complete system for analyzing, generating, and optimizing images
+
+version: '3.8'
+
+services:
+  # Main orchestrator service
+  image-orchestrator:
+    build:
+      context: ./docker/image-orchestrator
+      dockerfile: Dockerfile
+      target: production
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - LOG_LEVEL=info
+      - BATCH_SIZE=5
+      - QUALITY_THRESHOLD=0.85
+      - ENABLE_3D_CONSISTENCY=true
+      - BRAND_COMPLIANCE_REQUIRED=true
+    volumes:
+      - ./src:/app/src:ro  # Read-only source code for analysis
+      - ./public/images:/app/images  # Output directory
+      - image-cache:/app/cache
+      - ./logs/image-generation:/app/logs
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - image-network
+
+  # Claude Research Agent (for prompt optimization)
+  prompt-researcher:
+    build:
+      context: ./docker/claude-orchestrator
+      dockerfile: Dockerfile
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - RESEARCH_MODE=prompt_optimization
+      - TARGET_DOMAIN=disaster_recovery_3d
+      - CONSISTENCY_ENGINE=enabled
+    volumes:
+      - ./docker/claude-orchestrator/research:/app/research
+      - prompt-research:/app/data
+    ports:
+      - "3002:3000"
+    restart: unless-stopped
+    depends_on:
+      - image-orchestrator
+    networks:
+      - image-network
+
+  # Image optimization service
+  image-optimizer:
+    build:
+      context: ./docker/image-optimizer
+      dockerfile: Dockerfile
+    environment:
+      - OPTIMIZATION_QUALITY=high
+      - OUTPUT_FORMATS=webp,avif,jpg
+      - GENERATE_THUMBNAILS=true
+      - PROGRESSIVE_JPEG=true
+      - WATERMARK_ENABLED=true
+      - SEO_METADATA_REQUIRED=true
+    volumes:
+      - ./public/images:/app/input
+      - ./public/images/optimized:/app/output
+      - ./public/logos:/app/watermarks:ro
+    ports:
+      - "3003:3000"
+    restart: unless-stopped
+    networks:
+      - image-network
+
+  # Quality control service
+  quality-controller:
+    build:
+      context: ./docker/quality-controller
+      dockerfile: Dockerfile
+    environment:
+      - CONSISTENCY_THRESHOLD=0.85
+      - BRAND_COMPLIANCE_REQUIRED=true
+      - MODERN_3D_REQUIRED=true
+      - AUSTRALIAN_CONTEXT_PREFERRED=true
+      - REJECT_BELOW_THRESHOLD=false  # Flag for review instead
+    volumes:
+      - ./public/images:/app/images
+      - quality-reports:/app/reports
+      - ./src/config/brand-guidelines.json:/app/config/brand.json:ro
+    ports:
+      - "3004:3000"
+    restart: unless-stopped
+    networks:
+      - image-network
+
+  # Redis for caching and queuing
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - image-network
+
+  # Monitoring and metrics
+  monitoring:
+    image: prom/prometheus:latest
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    volumes:
+      - ./docker/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    networks:
+      - image-network
+
+volumes:
+  image-cache:
+    driver: local
+  prompt-research:
+    driver: local
+  quality-reports:
+    driver: local
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+
+networks:
+  image-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+# Additional configurations
+x-common-variables: &common-variables
+  TIMEZONE: Australia/Sydney
+  LOG_FORMAT: json
+  LOG_LEVEL: info
+  
+x-restart-policy: &restart-policy
+  restart: unless-stopped
