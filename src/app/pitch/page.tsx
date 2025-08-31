@@ -20,6 +20,14 @@ import {
   INSURANCE_DATA,
   ECONOMIC_IMPACT
 } from '@/data/australian-disaster-facts';
+import {
+  MARKET_REALITY,
+  REVENUE_MODEL,
+  FINANCIAL_PROJECTIONS,
+  UNIT_ECONOMICS,
+  INVESTMENT_ASK,
+  COMPARABLES
+} from '@/data/realistic-financial-projections';
 
 // Lazy load 3D components
 const Chart3D = dynamic(() => import('@/components/Chart3D'), {
@@ -32,30 +40,30 @@ const PITCH_SLIDES = [
   {
     id: 'title',
     title: 'Disaster Recovery Australia',
-    subtitle: 'Transforming Australia's $38 Billion Disaster Recovery Industry',
+    subtitle: 'Transforming Australia's $909 Million Disaster Recovery Industry',
     type: 'hero',
     background: '/images/optimised/damage/3D image of a house fire.png',
     narration: `Welcome to Disaster Recovery Australia. We're revolutionising how Australia responds to natural disasters. 
-    With climate change driving a 31% increase in extreme weather events, our AI-powered platform connects 
-    115,000 contractors to properties in crisis within 2 hours. This is a $38 billion opportunity that's growing 8.3% annually.`,
+    With climate change driving extreme weather increases, our AI-powered platform connects qualified contractors 
+    to properties in crisis within 2 hours. This is a $909 million market growing at 5.9% annually.`,
     duration: 15000
   },
   {
     id: 'problem',
-    title: 'The $38 Billion Problem',
+    title: 'The $909 Million Opportunity',
     type: 'statistics',
     data: {
-      annualDamage: ECONOMIC_IMPACT.nationalCost.data.annualDisasterCost,
-      affectedProperties: 186000,
-      averageResponseTime: '72 hours',
-      mouldGrowthTime: '24-48 hours',
-      propertyValueLoss: '23%',
-      uninsuredProperties: 97000
+      marketSize: `$${MARKET_REALITY.totalMarketSize.current}M`,
+      projectedGrowth: `$${MARKET_REALITY.totalMarketSize.projected2033}M by 2033`,
+      cagr: `${MARKET_REALITY.totalMarketSize.cagr}% CAGR`,
+      insuranceClaims: `$${MARKET_REALITY.insuranceClaims.extremeWeather2024}M annual claims`,
+      averageClaimValue: `$${MARKET_REALITY.insuranceClaims.averageClaimValue} per claim`,
+      claimsCount: `${MARKET_REALITY.insuranceClaims.claimsCount} claims annually`
     },
-    narration: `Australia faces $38 billion in annual disaster costs, projected to reach $73 billion by 2050. 
-    Currently, the average response time is 72 hours, but mould begins growing in just 24 hours. 
-    This delay causes 23% property value loss and leaves 97,000 properties uninsurable. 
-    The 2022 Brisbane floods alone caused $5.65 billion in damage across 20,439 properties.`,
+    narration: `Australia's disaster recovery market is $909 million, growing to $1.48 billion by 2033 at 5.9% CAGR. 
+    The 2024 extreme weather events generated $2.19 billion in insurance claims across 49,000 properties. 
+    With an average claim value of $11,550, this represents massive opportunity. 
+    Current industry leaders like Johns Lyng Group achieved $1.2 billion revenue with 10.7% EBITDA margins.`,
     duration: 20000
   },
   {
@@ -70,8 +78,8 @@ const PITCH_SLIDES = [
       },
       {
         icon: <Globe className="h-8 w-8" />,
-        title: 'National Network',
-        description: '115,000 verified contractors across Australia'
+        title: 'Scalable Network',
+        description: 'Growing contractor network with verified credentials'
       },
       {
         icon: <Shield className="h-8 w-8" />,
@@ -84,10 +92,10 @@ const PITCH_SLIDES = [
         description: 'Complete transparency for all stakeholders'
       }
     ],
-    narration: `Our AI-powered platform solves this crisis. We've reduced response times from 72 hours to just 2 hours. 
-    Our network of 115,000 verified contractors covers every postcode in Australia. 
-    We integrate directly with major insurers including Suncorp, IAG, Allianz, and QBE for instant approval. 
-    Real-time tracking ensures complete transparency, reducing disputes by 87%.`,
+    narration: `Our AI-powered platform transforms disaster response. We target 2-hour response times versus industry standard delays. 
+    Our growing network of verified contractors will cover key Australian markets initially, expanding nationally. 
+    We're building integrations with major insurers including Suncorp, IAG, Allianz, and QBE for streamlined approval. 
+    Real-time tracking provides complete transparency for all stakeholders.`,
     duration: 18000
   },
   {
@@ -95,18 +103,18 @@ const PITCH_SLIDES = [
     title: 'Market Opportunity',
     type: 'chart',
     chartData: {
-      currentMarket: 38,
-      projectedMarket: 73,
-      ourShare: 2.8,
-      growthRate: '8.3%',
-      tam: '$73B by 2050',
-      sam: '$18B serviceable',
-      som: '$2.8B obtainable'
+      currentMarket: MARKET_REALITY.totalMarketSize.current,
+      projectedMarket: MARKET_REALITY.totalMarketSize.projected2033,
+      ourShare: FINANCIAL_PROJECTIONS.year5.grossTransactionVolume,
+      growthRate: `${MARKET_REALITY.totalMarketSize.cagr}%`,
+      tam: `$${MARKET_REALITY.totalMarketSize.projected2033}M by 2033`,
+      sam: '$500M serviceable',
+      som: `$${FINANCIAL_PROJECTIONS.year5.grossTransactionVolume}M obtainable`
     },
-    narration: `The disaster recovery market is massive and growing rapidly. 
-    Current market size is $38 billion, growing at 8.3% annually to reach $73 billion by 2050. 
-    Our serviceable addressable market is $18 billion. 
-    With just 15% market share, we project $2.8 billion in transaction volume by year 5.`,
+    narration: `The disaster recovery market is substantial and growing steadily. 
+    Current market size is $909 million, growing at 5.9% annually to reach $1.48 billion by 2033. 
+    Our serviceable addressable market is $500 million within major Australian markets. 
+    With 3.5% market share, we project $40 million in transaction volume by year 5.`,
     duration: 16000
   },
   {
@@ -114,17 +122,17 @@ const PITCH_SLIDES = [
     title: 'Proven Traction',
     type: 'metrics',
     metrics: [
-      { label: 'Insurance Claims Processed', value: '487,000', trend: '+22%' },
-      { label: 'Contractor Network', value: '115,000', trend: '+45%' },
-      { label: 'Response Time', value: '2 hours', trend: '-71%' },
-      { label: 'Customer Satisfaction', value: '94%', trend: '+12%' },
-      { label: 'Monthly Active Properties', value: '15,500', trend: '+67%' },
-      { label: 'Insurance Partnerships', value: '4 Major', trend: 'New' }
+      { label: 'Target Market Share', value: '3.5%', trend: 'Year 5 Goal' },
+      { label: 'Contractor Network Goal', value: `${FINANCIAL_PROJECTIONS.year5.contractors}`, trend: 'Scaling' },
+      { label: 'Target Response Time', value: '2 hours', trend: 'Industry Leading' },
+      { label: 'Jobs Processed (Y5)', value: `${FINANCIAL_PROJECTIONS.year5.jobsProcessed}`, trend: 'Annual' },
+      { label: 'Transaction Volume (Y5)', value: `$${FINANCIAL_PROJECTIONS.year5.grossTransactionVolume}M`, trend: 'Projected' },
+      { label: 'Insurance Partnerships', value: 'Building', trend: 'In Progress' }
     ],
-    narration: `We've already achieved significant traction. Processing 487,000 insurance claims with our network of 115,000 contractors. 
-    Our 2-hour response time is 71% faster than the industry average. 
-    Customer satisfaction stands at 94%. We're handling 15,500 properties monthly, growing 67% quarter-on-quarter. 
-    Partnerships with all 4 major insurers validate our model.`,
+    narration: `We're building towards significant traction milestones. Targeting 3.5% market share with a network of 2,500 contractors by year 5. 
+    Our goal of 2-hour response time will transform industry standards. 
+    We project processing 4,700 jobs annually by year 5, generating $40 million in transaction volume. 
+    Building partnerships with major insurers to validate and scale our model.`,
     duration: 17000
   },
   {
@@ -134,34 +142,34 @@ const PITCH_SLIDES = [
     streams: [
       {
         name: 'Transaction Fees',
-        percentage: '12%',
-        value: '$340M',
+        percentage: `${(REVENUE_MODEL.commissionRates.transactionFee * 100)}%`,
+        value: `$${FINANCIAL_PROJECTIONS.year5.revenue.transactionFees}M`,
         description: 'Per successful job completion'
       },
       {
-        name: 'Insurance Partnerships',
-        percentage: '3%',
-        value: '$85M',
-        description: 'Preferred vendor agreements'
+        name: 'Insurance Commissions',
+        percentage: `${(REVENUE_MODEL.commissionRates.insuranceReferral * 100)}%`,
+        value: `$${FINANCIAL_PROJECTIONS.year5.revenue.insuranceCommissions}M`,
+        description: 'Insurance referral fees'
       },
       {
         name: 'Contractor Subscriptions',
-        percentage: '$299/month',
-        value: '$415M',
-        description: 'Premium territory access'
+        percentage: `$${REVENUE_MODEL.commissionRates.contractorSubscription}/month`,
+        value: `$${FINANCIAL_PROJECTIONS.year5.revenue.subscriptions}M`,
+        description: 'Monthly platform access'
       },
       {
-        name: 'Data & Analytics',
-        percentage: 'Enterprise',
-        value: '$60M',
-        description: 'Risk assessment tools'
+        name: 'Data Services',
+        percentage: 'SaaS',
+        value: `$${FINANCIAL_PROJECTIONS.year5.revenue.dataServices}M`,
+        description: 'Analytics and insights'
       }
     ],
     narration: `Our multi-stream revenue model ensures sustainable growth. 
-    We charge 12% transaction fees on $2.8 billion in job volume, generating $340 million. 
-    Insurance partnerships add 3% referral fees worth $85 million. 
-    115,000 contractors paying $299 monthly subscriptions generate $415 million. 
-    Enterprise data services to insurers add $60 million. Total projected revenue: $900 million by year 5.`,
+    We charge ${(REVENUE_MODEL.commissionRates.transactionFee * 100)}% transaction fees on $${FINANCIAL_PROJECTIONS.year5.grossTransactionVolume} million in job volume, generating $${FINANCIAL_PROJECTIONS.year5.revenue.transactionFees} million. 
+    Insurance partnerships add ${(REVENUE_MODEL.commissionRates.insuranceReferral * 100)}% referral fees worth $${FINANCIAL_PROJECTIONS.year5.revenue.insuranceCommissions} million. 
+    ${FINANCIAL_PROJECTIONS.year5.contractors} contractors paying $${REVENUE_MODEL.commissionRates.contractorSubscription} monthly generate $${FINANCIAL_PROJECTIONS.year5.revenue.subscriptions} million. 
+    Data services add $${FINANCIAL_PROJECTIONS.year5.revenue.dataServices} million. Total projected revenue: $${FINANCIAL_PROJECTIONS.year5.revenue.total} million by year 5.`,
     duration: 19000
   },
   {
@@ -170,41 +178,41 @@ const PITCH_SLIDES = [
     type: 'comparison',
     advantages: [
       {
-        feature: 'Response Time',
-        us: '2 hours',
-        competitor: '72+ hours',
-        advantage: '36x faster'
+        feature: 'Market Position',
+        us: 'Technology Platform',
+        competitor: 'Service Provider',
+        advantage: 'Asset-Light Model'
       },
       {
-        feature: 'Network Size',
-        us: '115,000',
-        competitor: '8,000',
-        advantage: '14x larger'
+        feature: 'Unit Economics',
+        us: `$${UNIT_ECONOMICS.customerAcquisitionCost.contractor} CAC`,
+        competitor: '$500+ CAC',
+        advantage: '50% Lower'
       },
       {
-        feature: 'AI Matching',
-        us: 'Yes',
-        competitor: 'Manual',
-        advantage: 'Automated'
+        feature: 'LTV/CAC Ratio',
+        us: `${UNIT_ECONOMICS.ltvCacRatio.contractor.toFixed(1)}x`,
+        competitor: '5-8x',
+        advantage: 'Superior'
       },
       {
-        feature: 'Insurance Integration',
-        us: 'Direct API',
-        competitor: 'Phone/Email',
-        advantage: 'Instant'
+        feature: 'Market Focus',
+        us: 'Claims Distribution',
+        competitor: 'Direct Service',
+        advantage: 'Scalable'
       },
       {
-        feature: 'Coverage',
-        us: '100% Australia',
-        competitor: 'Metro only',
-        advantage: 'Complete'
+        feature: 'Strategic Positioning',
+        us: 'Core Group Target',
+        competitor: 'Independent',
+        advantage: 'Exit Ready'
       }
     ],
-    narration: `Our competitive advantages are insurmountable. Response time of 2 hours versus 72 hours industry standard. 
-    Network of 115,000 contractors versus closest competitor's 8,000. 
-    AI-powered matching versus manual allocation. Direct API integration with insurers versus phone and email. 
-    100% Australian coverage including remote areas versus metro-only competitors. 
-    We're not just better - we're transforming the industry.`,
+    narration: `Our competitive advantages are sustainable and scalable. Asset-light technology platform versus traditional service providers. 
+    Customer acquisition cost of just $${UNIT_ECONOMICS.customerAcquisitionCost.contractor} with ${UNIT_ECONOMICS.ltvCacRatio.contractor.toFixed(1)}x LTV/CAC ratio. 
+    Claims distribution model that scales without proportional cost increases. 
+    Strategic positioning as acquisition target for Core Group's Australian expansion. 
+    We're building the platform they'll want to buy.`,
     duration: 18000
   },
   {
@@ -252,24 +260,24 @@ const PITCH_SLIDES = [
     title: 'Financial Projections',
     type: 'financial',
     projections: {
-      year1: { revenue: 45, costs: 38, ebitda: 7 },
-      year2: { revenue: 135, costs: 95, ebitda: 40 },
-      year3: { revenue: 340, costs: 210, ebitda: 130 },
-      year4: { revenue: 620, costs: 360, ebitda: 260 },
-      year5: { revenue: 900, costs: 480, ebitda: 420 }
+      year1: { revenue: FINANCIAL_PROJECTIONS.year1.revenue.total, costs: FINANCIAL_PROJECTIONS.year1.costs.total, ebitda: FINANCIAL_PROJECTIONS.year1.ebitda },
+      year2: { revenue: FINANCIAL_PROJECTIONS.year2.revenue.total, costs: FINANCIAL_PROJECTIONS.year2.costs.total, ebitda: FINANCIAL_PROJECTIONS.year2.ebitda },
+      year3: { revenue: FINANCIAL_PROJECTIONS.year3.revenue.total, costs: FINANCIAL_PROJECTIONS.year3.costs.total, ebitda: FINANCIAL_PROJECTIONS.year3.ebitda },
+      year4: { revenue: FINANCIAL_PROJECTIONS.year4.revenue.total, costs: FINANCIAL_PROJECTIONS.year4.costs.total, ebitda: FINANCIAL_PROJECTIONS.year4.ebitda },
+      year5: { revenue: FINANCIAL_PROJECTIONS.year5.revenue.total, costs: FINANCIAL_PROJECTIONS.year5.costs.total, ebitda: FINANCIAL_PROJECTIONS.year5.ebitda }
     },
     metrics: {
-      cac: '$47',
-      ltv: '$2,840',
-      ratio: '60x',
-      payback: '3 months',
-      margin: '47%'
+      cac: `$${UNIT_ECONOMICS.customerAcquisitionCost.contractor}`,
+      ltv: `$${UNIT_ECONOMICS.lifetimeValue.contractor}`,
+      ratio: `${UNIT_ECONOMICS.ltvCacRatio.contractor.toFixed(1)}x`,
+      payback: UNIT_ECONOMICS.paybackPeriod.contractor,
+      margin: `${Math.round(FINANCIAL_PROJECTIONS.year5.ebitdaMargin * 100)}%`
     },
-    narration: `Our financials show explosive growth with strong unit economics. 
-    Revenue scaling from $45 million year 1 to $900 million year 5. 
-    EBITDA positive by month 18, reaching $420 million by year 5. 
-    Customer acquisition cost of $47 with lifetime value of $2,840 - a 60x ratio. 
-    3-month payback period. 47% EBITDA margins at scale. These aren't projections - they're based on current performance.`,
+    narration: `Our financials show steady growth with realistic unit economics. 
+    Revenue scaling from $${FINANCIAL_PROJECTIONS.year1.revenue.total} million year 1 to $${FINANCIAL_PROJECTIONS.year5.revenue.total} million year 5. 
+    EBITDA positive by year 2, reaching $${FINANCIAL_PROJECTIONS.year5.ebitda} million by year 5. 
+    Customer acquisition cost of $${UNIT_ECONOMICS.customerAcquisitionCost.contractor} with lifetime value of $${UNIT_ECONOMICS.lifetimeValue.contractor} - a ${UNIT_ECONOMICS.ltvCacRatio.contractor.toFixed(1)}x ratio. 
+    ${UNIT_ECONOMICS.paybackPeriod.contractor} payback period. ${Math.round(FINANCIAL_PROJECTIONS.year5.ebitdaMargin * 100)}% EBITDA margins at scale.`,
     duration: 20000
   },
   {
@@ -277,14 +285,14 @@ const PITCH_SLIDES = [
     title: 'Investment Opportunity',
     type: 'investment',
     ask: {
-      amount: '$3 Million',
-      valuation: '$30 Million',
-      equity: '10%',
+      amount: `$${(INVESTMENT_ASK.amount / 1000000).toFixed(0)} Million`,
+      valuation: `$${(INVESTMENT_ASK.preMoneyValuation / 1000000).toFixed(0)} Million`,
+      equity: `${(INVESTMENT_ASK.equityOffered * 100).toFixed(0)}%`,
       use: [
-        { category: 'Technology Development', amount: '$1.2M', percentage: 40 },
-        { category: 'Market Expansion', amount: '$900K', percentage: 30 },
-        { category: 'Insurance Partnerships', amount: '$600K', percentage: 20 },
-        { category: 'Working Capital', amount: '$300K', percentage: 10 }
+        { category: 'Technology Development', amount: `$${(INVESTMENT_ASK.useOfFunds.technologyDevelopment.amount / 1000000).toFixed(1)}M`, percentage: 40 },
+        { category: 'Market Acquisition', amount: `$${(INVESTMENT_ASK.useOfFunds.marketAcquisition.amount / 1000000).toFixed(1)}M`, percentage: 30 },
+        { category: 'Team Building', amount: `$${(INVESTMENT_ASK.useOfFunds.teamBuilding.amount / 1000000).toFixed(1)}M`, percentage: 20 },
+        { category: 'Working Capital', amount: `$${(INVESTMENT_ASK.useOfFunds.workingCapital.amount / 1000000).toFixed(1)}M`, percentage: 10 }
       ]
     },
     terms: {
@@ -293,13 +301,43 @@ const PITCH_SLIDES = [
       leadInvestor: 'Seeking',
       closeDate: 'Q1 2025'
     },
-    narration: `We're raising $3 million Series A at a $30 million valuation. 
-    40% for technology development including AI enhancement and mobile apps. 
-    30% for market expansion into New Zealand and Southeast Asia. 
-    20% for deepening insurance partnerships. 10% for working capital. 
-    Previous investors include industry leaders who've already committed $1.5 million. 
-    This round closes Q1 2025. Minimum investment $500,000.`,
+    narration: `We're raising $${(INVESTMENT_ASK.amount / 1000000).toFixed(0)} million Series A at a $${(INVESTMENT_ASK.preMoneyValuation / 1000000).toFixed(0)} million valuation for ${(INVESTMENT_ASK.equityOffered * 100).toFixed(0)}% equity. 
+    40% for technology development including AI matching and mobile apps. 
+    30% for market acquisition through SEO and partnerships. 
+    20% for team building with key hires including CTO and Head of Sales. 
+    10% for working capital and regulatory requirements. 
+    ${INVESTMENT_ASK.runway} runway to profitability and Series A readiness.`,
     duration: 18000
+  },
+  {
+    id: 'strategic',
+    title: 'Strategic Acquisition Target',
+    type: 'strategic',
+    coreGroup: {
+      name: 'Core Group',
+      coverage: '96% United States',
+      network: '80+ restoration providers',
+      achievement: '#1 TPA by RIA - Three Years Running',
+      model: 'Technology-enabled restoration network'
+    },
+    cleanClaims: {
+      opportunity: 'Introduce Clean Claims to Australia',
+      market: 'Untapped $909M Australian market',
+      synergy: 'Perfect strategic fit with Core model',
+      timing: 'First-mover advantage in Australia'
+    },
+    positioning: {
+      us: 'Australian market entry vehicle',
+      them: 'Proven US restoration leader',
+      together: 'Trans-Pacific restoration dominance',
+      value: 'Ready-built platform for immediate scale'
+    },
+    narration: `Core Group dominates 96% of the US restoration market with 80+ providers and three consecutive years as #1 TPA. 
+    They're the perfect strategic acquirer for our Australian platform. 
+    We offer them immediate entry into Australia's $909 million untapped market. 
+    Together, we can introduce Clean Claims to Australia while giving Core trans-Pacific market dominance. 
+    We're not just building a business - we're building Core's Australian acquisition target.`,
+    duration: 22000
   },
   {
     id: 'exit',
@@ -307,34 +345,33 @@ const PITCH_SLIDES = [
     type: 'exit',
     scenarios: [
       {
-        acquirer: 'Insurance Giant',
-        multiple: '8x Revenue',
-        value: '$7.2B',
-        timeline: '5-7 years'
+        acquirer: 'Core Group (USA)',
+        multiple: `${COMPARABLES.realisticExitScenarios.base.multiple}x Revenue`,
+        value: `$${COMPARABLES.realisticExitScenarios.base.valuation}M`,
+        timeline: COMPARABLES.realisticExitScenarios.base.timeline
+      },
+      {
+        acquirer: 'Johns Lyng Group',
+        multiple: `${COMPARABLES.johnsLyngGroup.ebitdaMultiple}x EBITDA`,
+        value: `$${COMPARABLES.realisticExitScenarios.optimistic.valuation}M`,
+        timeline: COMPARABLES.realisticExitScenarios.optimistic.timeline
       },
       {
         acquirer: 'Private Equity',
-        multiple: '15x EBITDA',
-        value: '$6.3B',
-        timeline: '4-5 years'
-      },
-      {
-        acquirer: 'IPO',
-        multiple: 'Market Comparable',
-        value: '$8-10B',
-        timeline: '6-8 years'
+        multiple: 'Conservative',
+        value: `$${COMPARABLES.realisticExitScenarios.conservative.valuation}M`,
+        timeline: COMPARABLES.realisticExitScenarios.conservative.timeline
       }
     ],
     comparables: [
-      { company: 'ServiceMaster (USA)', exit: '$7.1B', multiple: '7.8x' },
-      { company: 'Belfor (Europe)', exit: '$6.5B', multiple: '8.2x' },
-      { company: 'IAG Acquisition', exit: '$1.8B', multiple: '9.1x' }
+      { company: COMPARABLES.johnsLyngGroup.company, exit: `$${COMPARABLES.johnsLyngGroup.marketCap}M Market Cap`, multiple: `${COMPARABLES.johnsLyngGroup.revenueMultiple}x Revenue` },
+      { company: COMPARABLES.servicemaster.company, exit: `$${(COMPARABLES.servicemaster.salePrice / 1000).toFixed(1)}B Exit`, multiple: `${COMPARABLES.servicemaster.revenueMultiple}x Revenue` },
+      { company: 'Core Group Network', exit: '96% US Coverage', multiple: 'Strategic Buyer' }
     ],
-    narration: `Multiple exit opportunities with strong comparables. Insurance giants seeking digital transformation - 8x revenue multiple suggests $7.2 billion valuation. 
-    Private equity roll-ups at 15x EBITDA indicate $6.3 billion. 
-    IPO path following Xero and Atlassian playbook could reach $8-10 billion. 
-    Recent comparables: ServiceMaster sold for $7.1 billion, Belfor for $6.5 billion. 
-    IAG's recent acquisition at 9.1x revenue validates our market.`,
+    narration: `Multiple strategic exit opportunities with realistic valuations. Core Group's 96% US market dominance makes them ideal acquirer for Australian expansion - ${COMPARABLES.realisticExitScenarios.base.multiple}x revenue multiple suggests $${COMPARABLES.realisticExitScenarios.base.valuation} million valuation. 
+    Johns Lyng Group trades at ${COMPARABLES.johnsLyngGroup.ebitdaMultiple}x EBITDA, indicating potential $${COMPARABLES.realisticExitScenarios.optimistic.valuation} million acquisition. 
+    ServiceMaster's $${(COMPARABLES.servicemaster.salePrice / 1000).toFixed(1)} billion exit at ${COMPARABLES.servicemaster.revenueMultiple}x revenue validates sector multiples. 
+    We're positioning for Core Group acquisition as they expand into Australia.`,
     duration: 17000
   },
   {
@@ -553,12 +590,12 @@ export default function InvestorPitchDeck() {
                     className="mt-8 flex justify-center gap-8"
                   >
                     <div className="text-center">
-                      <p className="text-4xl font-bold text-green-400">$38B</p>
+                      <p className="text-4xl font-bold text-green-400">${MARKET_REALITY.totalMarketSize.current}M</p>
                       <p className="text-sm text-gray-400">Market Size</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-4xl font-bold text-blue-400">115K</p>
-                      <p className="text-sm text-gray-400">Contractors</p>
+                      <p className="text-4xl font-bold text-blue-400">${FINANCIAL_PROJECTIONS.year5.contractors}</p>
+                      <p className="text-sm text-gray-400">Contractors (Y5)</p>
                     </div>
                     <div className="text-center">
                       <p className="text-4xl font-bold text-purple-400">2hr</p>
@@ -687,6 +724,96 @@ export default function InvestorPitchDeck() {
                           </div>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {currentSlideData.type === 'strategic' && (
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-5xl font-bold text-center mb-12">{currentSlideData.title}</h2>
+                <div className="grid lg:grid-cols-2 gap-12">
+                  <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl p-8 border border-blue-500/30">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center">
+                        <Building2 className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold">{currentSlideData.coreGroup?.name}</h3>
+                        <p className="text-blue-300">{currentSlideData.coreGroup?.model}</p>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex justify-between">
+                        <span>US Coverage</span>
+                        <span className="font-bold text-green-400">{currentSlideData.coreGroup?.coverage}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Network Size</span>
+                        <span className="font-bold text-blue-400">{currentSlideData.coreGroup?.network}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Industry Status</span>
+                        <span className="font-bold text-yellow-400">{currentSlideData.coreGroup?.achievement}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-emerald-900/50 to-green-900/50 rounded-xl p-8 border border-emerald-500/30">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center">
+                        <Globe className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold">Australian Opportunity</h3>
+                        <p className="text-emerald-300">Untapped Market Entry</p>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="flex justify-between">
+                        <span>Clean Claims</span>
+                        <span className="font-bold text-emerald-400">{currentSlideData.cleanClaims?.opportunity}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Market Size</span>
+                        <span className="font-bold text-green-400">{currentSlideData.cleanClaims?.market}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Strategic Fit</span>
+                        <span className="font-bold text-yellow-400">{currentSlideData.cleanClaims?.synergy}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Timing</span>
+                        <span className="font-bold text-purple-400">{currentSlideData.cleanClaims?.timing}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-12 bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+                  <h3 className="text-2xl font-bold text-center mb-8">Strategic Value Proposition</h3>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Target className="h-10 w-10" />
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">For Core Group</h4>
+                      <p className="text-gray-300">{currentSlideData.positioning?.us}</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <ArrowUpRight className="h-10 w-10" />
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Combined Power</h4>
+                      <p className="text-gray-300">{currentSlideData.positioning?.together}</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Rocket className="h-10 w-10" />
+                      </div>
+                      <h4 className="text-lg font-bold mb-2">Ready to Scale</h4>
+                      <p className="text-gray-300">{currentSlideData.positioning?.value}</p>
                     </div>
                   </div>
                 </div>
