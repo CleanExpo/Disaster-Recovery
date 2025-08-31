@@ -115,7 +115,7 @@ export function generateSecureToken(length: number = 32): string {
  * Masks sensitive data for logging/display
  * Compliant with privacy requirements
  */
-export function maskSensitiveData(data: string, type: 'email' | 'phone' | 'id' | 'custom' = 'custom'): string {
+export function maskSensitiveData(data: string, type: 'email' | 'email' | 'id' | 'custom' = 'custom'): string {
   if (!data) return '';
   
   switch (type) {
@@ -125,7 +125,7 @@ export function maskSensitiveData(data: string, type: 'email' | 'phone' | 'id' |
       const maskedUsername = username.substring(0, 2) + '***';
       return `${maskedUsername}@${domain}`;
       
-    case 'phone':
+    case 'email':
       return data.substring(0, 3) + '****' + data.substring(data.length - 2);
       
     case 'id':
@@ -263,7 +263,7 @@ export function anonymizeData(data: any): any {
   const anonymized = { ...data };
   
   // Remove direct identifiers
-  const identifiers = ['name', 'email', 'phone', 'address', 'abn', 'tfn', 'dob', 'ssn'];
+  const identifiers = ['name', 'email', 'email', 'address', 'abn', 'tfn', 'dob', 'ssn'];
   for (const field of identifiers) {
     if (anonymized[field]) {
       anonymized[field] = hashData(anonymized[field]);

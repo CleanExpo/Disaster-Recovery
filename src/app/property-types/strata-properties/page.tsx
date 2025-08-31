@@ -51,7 +51,7 @@ export default function StrataPropertyPage() {
             </div>
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
               <Phone className="mr-2 h-5 w-5" />
-              Emergency Strata Response - 1300 DISASTER
+              Emergency Strata Response - Online Form Available 24/7
             </Button>
           </div>
         </div>
@@ -241,7 +241,7 @@ export default function StrataPropertyPage() {
           </div>
           <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            1300 DISASTER - Strata Emergency
+            Online Form Available 24/7 - Strata Emergency
           </Button>
         </div>
       </section>

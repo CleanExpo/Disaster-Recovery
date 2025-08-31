@@ -10,7 +10,7 @@ import {
   Clock, 
   CheckCircle, 
   Star, 
-  Phone,
+  email,
   ArrowRight,
   Zap,
   PlayCircle
@@ -166,7 +166,7 @@ const ModernHeroSection: React.FC = () => {
               </div>
               <AlertTriangle className="h-5 w-5 text-red-400" />
               <span className="text-sm font-semibold text-red-300 tracking-wide">
-                24/7 Emergency Response Available
+                24/7 Online Emergency Response Available
               </span>
               <Zap className="h-4 w-4 text-yellow-400 animate-pulse" />
             </motion.div>
@@ -249,7 +249,7 @@ const ModernHeroSection: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="relative flex items-center gap-3">
-                    <Phone className="h-6 w-6" />
+                    <email className="h-6 w-6" />
                     <span>Emergency Help Now</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </div>

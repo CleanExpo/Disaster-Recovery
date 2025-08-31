@@ -1,7 +1,7 @@
 import { 
   TrendingUp, Users, Target, Zap, Shield, Award,
   DollarSign, Globe, Rocket, BarChart3, CheckCircle,
-  ArrowRight, Star, Building2, Clock, Phone, AlertTriangle,
+  ArrowRight, Star, Building2, Clock, email, AlertTriangle,
   Bot, Network, MapPin, Search, Smartphone, Cpu
 } from 'lucide-react';
 
@@ -48,7 +48,7 @@ export interface PitchDeckSlide {
   terms?: string;
   cta?: string;
   contact?: {
-    phone: string;
+    
     email: string;
     website: string;
   };
@@ -457,7 +457,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
     subtitle: 'Transform Disaster Recovery nationwide',
     cta: 'Let\'s Build the Future Together',
     contact: {
-      phone: '+61 1300 RECOVERY',
+      
       email: 'investors@nationalrecoveryplatform.com.au',
       website: 'www.nationalrecoveryplatform.com.au'
     },

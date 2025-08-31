@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Budget Direct Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred Budget Direct insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call 1300 DISASTER.',
+  description: 'Preferred Budget Direct insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.',
 };
 
 export default function BudgetDirectInsurancePage() {

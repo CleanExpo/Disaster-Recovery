@@ -14,7 +14,6 @@ import { toast } from 'sonner';
 interface LeadFormData {
   // Contact Information
   fullName: string;
-  phone: string;
   email: string;
   
   // Property Information
@@ -56,7 +55,7 @@ interface LeadFormData {
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState<LeadFormData>({
     fullName: '',
-    phone: '',
+    
     email: '',
     propertyType: 'residential',
     propertyAddress: '',
@@ -223,8 +222,8 @@ export default function LeadCaptureForm() {
                 type="tel"
                 required
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                placeholder="0400 000 000"
+                onChange={(e) => setFormData({...formData, 
+                placeholder=""
               />
             </div>
             <div className="md:col-span-2">

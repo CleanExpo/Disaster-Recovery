@@ -15,7 +15,7 @@ export default function CeilingWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Ceiling Water Damage Specialists',
     description: 'Expert ceiling water damage repair and restoration in Queensland. Emergency response for ceiling leaks, sagging, and collapse prevention.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function CeilingWaterDamagePage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au/services/water-damage/ceiling-water-damage',
     image: '/images/ceiling-water-damage.jpg',
     priceRange: '$$-$$$'
@@ -549,7 +549,7 @@ export default function CeilingWaterDamagePage() {
               onClick={() => setShowQuoteDialog(true)}
             >
               <Phone className="mr-2" />
-              Call 1300 814 870 Now
+              Use Our Online Form
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-slate-900 hover:bg-gray-100">
               <Zap className="mr-2" />

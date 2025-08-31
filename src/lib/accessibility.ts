@@ -191,7 +191,7 @@ export const keyboardNav = {
 export const validationMessages = {
   required: 'This field is required',
   email: 'Please enter a valid email address',
-  phone: 'Please enter a valid phone number',
+  
   postcode: 'Please enter a valid 4-digit postcode',
   minLength: (min: number) => `Must be at least ${min} characters`,
   maxLength: (max: number) => `Must be no more than ${max} characters`,

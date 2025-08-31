@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Suncorp Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred Suncorp insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call 1300 DISASTER.',
+  description: 'Preferred Suncorp insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.',
 };
 
 export default function SuncorpInsurancePage() {

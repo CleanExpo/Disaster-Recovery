@@ -16,7 +16,7 @@ const DEMO_CREDENTIALS = {
     credentials: {
       name: 'John Smith',
       email: 'john.smith@example.com',
-      phone: '0411 234 567',
+      
       address: '42 Harbour View Drive, Sydney NSW 2000',
       claimNumber: 'CLM-2024-001234',
       insuranceCompany: 'NRMA Insurance',
@@ -40,7 +40,7 @@ const DEMO_CREDENTIALS = {
       businessName: 'Demo Restorations Pty Ltd',
       abn: '12 345 678 901',
       email: 'admin@demorestorations.com.au',
-      phone: '0400 555 666',
+      
       address: '100 Business Park Drive, Brisbane QLD 4000',
       insurancePolicy: 'POL-2024-789456',
       licenses: ['QBCC 123456', 'IICRC WRT', 'IICRC ASD'],

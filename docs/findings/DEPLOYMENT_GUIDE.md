@@ -784,7 +784,7 @@ test.describe('Production Smoke Tests', () => {
     
     await page.fill('[data-testid="full-name"]', 'Production Test User');
     await page.fill('[data-testid="email"]', 'test@example.com');
-    await page.fill('[data-testid="phone"]', '0412345678');
+    await page.fill('[data-testid="phone"]', '');
     
     // Don't submit in production, just verify form loads
     await expect(page.locator('[data-testid="submit-lead"]')).toBeVisible();

@@ -12,7 +12,7 @@ export const HERO_CONTENT = {
   ctaSecondary: 'View Investor Deck',
   trustBadges: [
     'IICRC Certified Network',
-    '24/7 Emergency Response',
+    '24/7 Online Emergency Response',
     'Insurance Approved',
     'AI-Powered Matching'
   ],
@@ -364,8 +364,8 @@ export const FOOTER_CONTENT = {
     designCredit: 'Website by Zenith | Part of Unite-Group Agency'
   },
   contact: {
-    phone: null, // No phone service
-    emergency: null, // No phone service
+    
+    emergency: null, // No email service
     email: 'contractors@disasterrecovery.com.au',
     contractor: 'contractors@disasterrecovery.com.au',
     investor: 'contractors@disasterrecovery.com.au'

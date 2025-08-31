@@ -224,50 +224,18 @@ export function validatePostcode(postcode: string, state?: string): boolean {
 }
 
 /**
- * Validate Australian phone number
+ * Validate Australian Email Address
  */
-export function validatePhoneNumber(phone: string): boolean {
-  const cleaned = phone.replace(/\D/g, '');
-  
-  // Australian mobile: 04XX XXX XXX (10 digits starting with 04)
-  if (cleaned.startsWith('04') && cleaned.length === 10) {
-    return true;
-  }
-  
-  // Australian landline: 0X XXXX XXXX (10 digits starting with 02,03,07,08)
-  if (/^0[2378]\d{8}$/.test(cleaned)) {
-    return true;
-  }
-  
-  // International format: +614XX XXX XXX or +612 XXXX XXXX
-  if (cleaned.startsWith('61')) {
-    const withoutCountry = cleaned.slice(2);
-    if (withoutCountry.startsWith('4') && withoutCountry.length === 9) {
-      return true;
-    }
-    if (/^[2378]\d{8}$/.test(withoutCountry)) {
-      return true;
-    }
-  }
-  
-  return false;
+export function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 /**
- * Format Australian phone number
+ * Format Australian Email Address
  */
-export function formatPhoneNumber(phone: string): string {
-  const cleaned = phone.replace(/\D/g, '');
-  
-  if (cleaned.startsWith('04') && cleaned.length === 10) {
-    return `${cleaned.slice(0, 4)} ${cleaned.slice(4, 7)} ${cleaned.slice(7)}`;
-  }
-  
-  if (/^0[2378]\d{8}$/.test(cleaned)) {
-    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)} ${cleaned.slice(6)}`;
-  }
-  
-  return phone;
+export function formatEmail(email: string): string {
+  return email.trim().toLowerCase();
 }
 
 /**

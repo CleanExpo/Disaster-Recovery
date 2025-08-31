@@ -79,7 +79,7 @@ export interface GoogleBusinessProfile {
   placeId: string;
   businessName: string;
   address: string;
-  phone: string;
+  
   website?: string;
   reviewsUrl: string;
   averageRating: number;

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Woden Valley | Emergency Services Australian Capital Territory',
-  description: '24/7 disaster recovery in Woden Valley, Australian Capital Territory. Water damage, fire restoration, mould removal. Call 1300 DISASTER.',
+  description: '24/7 disaster recovery in Woden Valley, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
 };
 
 export default function WodenValleyPage() {

@@ -465,7 +465,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
               <Input
                 id="accountantContact"
                 {...register('accountantContact')}
-                placeholder="e.g., John Smith CPA - 0412 345 678"
+                placeholder="e.g., John Smith CPA - "
               />
             </div>
           </div>

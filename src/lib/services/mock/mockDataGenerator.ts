@@ -8,7 +8,7 @@ interface MockContractor {
   businessName: string;
   abn: string;
   email: string;
-  phone: string;
+  
   services: string[];
   locations: string[];
   rating: number;
@@ -30,7 +30,7 @@ interface MockLead {
   id: string;
   customerName: string;
   email: string;
-  phone: string;
+  
   serviceType: string;
   urgencyLevel: 'emergency' | 'urgent' | 'standard';
   propertyType: 'residential' | 'commercial' | 'industrial';
@@ -116,7 +116,7 @@ class MockDataGenerator {
         businessName,
         abn: `${11 + i}${234567890 + i}`,
         email: `contact@${businessName.toLowerCase().replace(/\s+/g, '')}.com.au`,
-        phone: `04${20000000 + i}`,
+        
         services: services.slice(0, Math.floor(Math.random() * 4) + 2),
         locations: state.suburbs.slice(0, Math.floor(Math.random() * 3) + 1),
         rating: 3.5 + Math.random() * 1.5,
@@ -172,7 +172,7 @@ class MockDataGenerator {
         id: `lead_${i + 1}`,
         customerName: `${firstName} ${lastName}`,
         email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@email.com`,
-        phone: `04${10000000 + Math.floor(Math.random() * 90000000)}`,
+        
         serviceType: ['water-damage', 'fire-damage', 'storm-damage', 'mould-remediation'][Math.floor(Math.random() * 4)],
         urgencyLevel: isEmergency ? 'emergency' : Math.random() < 0.3 ? 'urgent' : 'standard',
         propertyType: Math.random() < 0.7 ? 'residential' : Math.random() < 0.8 ? 'commercial' : 'industrial',

@@ -15,7 +15,7 @@ export default function BasementFloodingPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Basement Flooding Specialists',
     description: 'Emergency basement flooding cleanup and restoration in Brisbane. 24/7 water extraction, drying, and flood damage repair services.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function BasementFloodingPage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au/services/water-damage/basement-flooding',
     image: '/images/basement-flooding.jpg',
     priceRange: '$$-$$$'

@@ -23,8 +23,8 @@ export const DEMO_DATA = {
       annualRevenue: '$2-5M',
       website: 'https://demo-restoration.com.au',
       email: 'demo@restoration.com.au',
-      phone: '0400 123 456',
-      mobile: '0400 123 456',
+      
+      mobile: '',
       address: '123 Demo Street',
       suburb: 'Brisbane',
       state: 'QLD',
@@ -87,13 +87,13 @@ export const DEMO_DATA = {
         {
           name: 'John Smith',
           company: 'ABC Insurance Adjusters',
-          phone: '0411 222 333',
+          
           email: 'john@abc-adjusters.com.au'
         },
         {
           name: 'Sarah Johnson',
           company: 'XYZ Property Management',
-          phone: '0422 333 444',
+          
           email: 'sarah@xyz-property.com.au'
         }
       ]
@@ -145,7 +145,7 @@ export const DEMO_DATA = {
   client: {
     name: 'Sarah Thompson',
     email: 'sarah.demo@example.com',
-    phone: '0433 555 666',
+    
     address: '456 Client Avenue, Sydney NSW 2000',
     claimNumber: 'DEMO-2024-001234',
     insuranceCompany: 'Demo Insurance Co',

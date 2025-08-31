@@ -371,7 +371,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
               className="w-5 h-5 text-blue-600 bg-slate-800 border-slate-600 rounded focus:ring-blue-500"
             />
             <div>
-              <div className="font-medium text-white">24/7 Emergency Response</div>
+              <div className="font-medium text-white">24/7 Online Emergency Response</div>
               <div className="text-sm text-slate-400">Available for emergency callouts</div>
             </div>
           </label>

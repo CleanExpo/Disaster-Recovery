@@ -75,7 +75,7 @@ const navigation: NavItem[] = [
     label: 'Emergency',
     items: [
       { 
-        label: '24/7 Emergency Response', 
+        label: '24/7 Online Emergency Response', 
         href: '/services/emergency-services', 
         description: 'Immediate disaster response',
         icon: '🚨'
@@ -209,7 +209,7 @@ export default function R6Header() {
                 <span>Live Chat</span>
               </button>
               <a 
-                href="tel:1300566166" 
+                href="#contact-form" 
                 className={cn(
                   "flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-300 group font-bold",
                   emergencyMode 
@@ -363,7 +363,7 @@ export default function R6Header() {
                   <span className="group-hover:scale-105 transition-transform">Free Assessment</span>
                 </R6Button>
                 
-                <a href="tel:1300566166">
+                <a href="#contact-form">
                   <R6Button
                     variant={emergencyMode ? "danger" : "gradient"}
                     size="sm"
@@ -374,7 +374,7 @@ export default function R6Header() {
                     )}
                   >
                     <span className="relative z-10">
-                      {emergencyMode ? "EMERGENCY CALL" : "Call Now"}
+                      {emergencyMode ? "EMERGENCY CALL" : "Submit Form Now"}
                     </span>
                     {emergencyMode && (
                       <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 opacity-90 group-hover:opacity-100 transition-opacity" />
@@ -464,7 +464,7 @@ export default function R6Header() {
               </button>
 
               {/* Emergency Call Button */}
-              <a href="tel:1300566166" className="block">
+              <a href="#contact-form" className="block">
                 <R6Button 
                   variant={emergencyMode ? "danger" : "gradient"}
                   fullWidth
@@ -475,7 +475,7 @@ export default function R6Header() {
                   )}
                 >
                   <span className="relative z-10">
-                    {emergencyMode ? "🚨 EMERGENCY CALL NOW" : "Call 1300 566 166"}
+                    {emergencyMode ? "🚨 EMERGENCY CALL NOW" : "Use Our Online Form
                   </span>
                 </R6Button>
               </a>
@@ -557,10 +557,10 @@ export default function R6Header() {
                 <p className="text-xs text-gray-500 mb-2">
                   For immediate emergencies, call directly:
                 </p>
-                <a href="tel:1300566166">
+                <a href="#contact-form">
                   <R6Button variant="danger" size="sm" className="animate-pulse">
                     <Phone className="w-4 h-4 mr-2" />
-                    Call 1300 566 166
+                    Use Our Online Form
                   </R6Button>
                 </a>
               </div>

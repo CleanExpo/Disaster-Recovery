@@ -151,7 +151,7 @@ export default function CommunicationModule() {
 • In-App Messaging - Contractor collaboration
 • Insurance Portal - Direct claim updates
 • Customer Updates - Automated progress reports
-• Emergency Hotline - 24/7 support access
+• Emergency Response - 24/7 support access
                 </div>
               </div>
 

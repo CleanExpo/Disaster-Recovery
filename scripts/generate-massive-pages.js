@@ -105,7 +105,7 @@ export default function ${timePage.name.replace(/\s+/g, '')}Page() {
           <p className="text-xl mb-2">Available ${timePage.time}</p>
           <p className="text-2xl mb-8">No Extra Charges • Same Day Response</p>
           <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
-            <Phone className="mr-2" /> Call 1300 DISASTER Now
+            <Phone className="mr-2" /> Call Online Form Available 24/7 Now
           </Button>
         </div>
       </section>
@@ -203,7 +203,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: '${company} Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred ${company} insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call 1300 DISASTER.',
+  description: 'Preferred ${company} insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.',
 };
 
 export default function ${company.replace(/\s+/g, '')}InsurancePage() {

@@ -149,7 +149,7 @@ describe('Lead Capture Form Validation', () => {
     const validData = {
       fullName: 'John Smith',
       email: 'john@example.com',
-      phone: '0412345678',
+      
       propertyAddress: '123 Main St, Sydney NSW 2000'
     };
     
@@ -226,7 +226,7 @@ describe('POST /api/leads/capture', () => {
     const leadData = {
       fullName: 'John Smith',
       email: 'john@example.com',
-      phone: '0412345678',
+      
       propertyType: 'residential',
       damageType: ['Water Damage'],
       hasInsurance: true,
@@ -247,7 +247,7 @@ describe('POST /api/leads/capture', () => {
     const invalidData = {
       fullName: 'x', // Too short
       email: 'invalid-email',
-      phone: '123' // Invalid format
+      
     };
 
     await request(app)
@@ -408,7 +408,7 @@ test.describe('Lead Submission Journey', () => {
     // Fill lead capture form
     await page.fill('[data-testid="full-name"]', 'John Smith');
     await page.fill('[data-testid="email"]', 'john@example.com');
-    await page.fill('[data-testid="phone"]', '0412345678');
+    await page.fill('[data-testid="phone"]', '');
     await page.fill('[data-testid="address"]', '123 Main St, Sydney NSW 2000');
     
     // Select damage type
@@ -466,7 +466,7 @@ test.describe('Contractor Registration', () => {
     await page.fill('[data-testid="business-name"]', 'Smith Restoration Pty Ltd');
     await page.fill('[data-testid="contact-name"]', 'John Smith');
     await page.fill('[data-testid="email"]', 'john@smithrestoration.com.au');
-    await page.fill('[data-testid="phone"]', '0412345678');
+    await page.fill('[data-testid="phone"]', '');
     await page.click('[data-testid="next-step"]');
     
     // Step 2: Business Information
@@ -538,7 +538,7 @@ export default function () {
   let payload = JSON.stringify({
     fullName: 'Performance Test User',
     email: 'test@example.com',
-    phone: '0412345678',
+    
     propertyType: 'residential',
     damageType: ['Water Damage'],
     urgencyLevel: 'urgent'
@@ -607,7 +607,7 @@ test.describe('Security Testing', () => {
       data: {
         fullName: sqlPayload,
         email: 'test@example.com',
-        phone: '0412345678'
+        
       }
     });
     

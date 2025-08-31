@@ -292,7 +292,7 @@ export function RegistrationWizard() {
               contractors@nrp.com.au
             </a>
             {' '}or call{' '}
-            <a href="tel:1300000000" className="text-blue-600 hover:underline">
+            <a href="#contact-form" className="text-blue-600 hover:underline">
               1300 XXX XXX
             </a>
           </p>

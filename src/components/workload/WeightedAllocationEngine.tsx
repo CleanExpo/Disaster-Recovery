@@ -87,7 +87,7 @@ const WeightedAllocationEngine: React.FC = () => {
         companyName: 'Elite Restoration Co',
         contactName: 'John Smith',
         email: 'john@eliterestore.com',
-        phone: '555-0001',
+        
         address: {
           street: '123 Main St',
           city: 'Houston',
@@ -161,7 +161,7 @@ const WeightedAllocationEngine: React.FC = () => {
         companyName: 'Rapid Response Restoration',
         contactName: 'Jane Doe',
         email: 'jane@rapidresponse.com',
-        phone: '555-0002',
+        
         address: {
           street: '456 Oak Ave',
           city: 'Houston',
@@ -217,7 +217,7 @@ const WeightedAllocationEngine: React.FC = () => {
           preferredJobTypes: ['water_damage', 'storm_damage'],
           autoAcceptLeads: false,
           preferredSchedule: { daysOfWeek: [1,2,3,4,5,6], startTime: '07:00', endTime: '19:00' },
-          notificationChannels: ['email', 'phone']
+          notificationChannels: ['email', 'email']
         },
         status: 'active',
         certifications: ['IICRC', 'BBB A+'],
@@ -237,8 +237,8 @@ const WeightedAllocationEngine: React.FC = () => {
       id: 'L001',
       customerInfo: {
         name: 'Robert Johnson',
-        phone: '555-1234',
-        preferredContact: 'phone'
+        
+        preferredContact: 'email'
       },
       jobLocation: {
         address: '789 Elm St',

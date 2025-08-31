@@ -15,7 +15,7 @@ export default function CommercialServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery',
     description: 'Professional commercial restoration services for businesses across Queensland. Minimizing downtime and protecting your business assets.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function CommercialServicesPage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au',
     image: '/images/disaster-recovery-logo.jpg',
     priceRange: '$$-$$$'
@@ -497,7 +497,7 @@ export default function CommercialServicesPage() {
               onClick={() => setShowQuoteDialog(true)}
             >
               <Phone className="mr-2" />
-              Call 1300 814 870 Now
+              Use Our Online Form
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-gray-100">
               <ArrowRight className="mr-2" />
@@ -523,7 +523,7 @@ export default function CommercialServicesPage() {
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
-                <p className="font-semibold">Call Now</p>
+                <p className="font-semibold">Submit Form Now</p>
                 <p className="text-2xl font-bold text-orange-600">1300 814 870</p>
               </div>
             </div>

@@ -63,7 +63,7 @@ const TechnicianSyncManager: React.FC = () => {
         cleanClaimsId: 'CC-TECH-001',
         name: 'John Smith',
         profileImage: '/api/placeholder/150/150',
-        contactNumber: '+61 400 123 456',
+        contactNumber: 'Contact Form',
         email: 'john.smith@eliterestore.com',
         certifications: [
           {
@@ -97,7 +97,7 @@ const TechnicianSyncManager: React.FC = () => {
           logo: '/api/placeholder/100/100',
           website: 'https://eliterestore.com',
           contactEmail: 'info@eliterestore.com',
-          contactPhone: '+61 2 9000 1234',
+          contactOnline Form: 'Contact Form',
           address: {
             street: '123 Main St',
             suburb: 'Sydney',
@@ -147,7 +147,7 @@ const TechnicianSyncManager: React.FC = () => {
           id: 'COMP002',
           name: 'Rapid Response Team',
           contactEmail: 'info@rapidresponse.com',
-          contactPhone: '+61 3 9000 5678',
+          contactOnline Form: 'Contact Form',
           address: {
             suburb: 'Melbourne',
             state: 'VIC',
@@ -180,7 +180,7 @@ const TechnicianSyncManager: React.FC = () => {
           id: 'COMP003',
           name: 'Premier Services',
           contactEmail: 'info@premier.com',
-          contactPhone: '+61 7 3000 9999',
+          contactOnline Form: 'Contact Form',
           address: {
             suburb: 'Brisbane',
             state: 'QLD',

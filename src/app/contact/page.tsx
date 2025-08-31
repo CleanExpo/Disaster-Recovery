@@ -20,7 +20,7 @@ export default function ModernContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    
     service: '',
     urgency: '',
     message: ''
@@ -111,11 +111,11 @@ export default function ModernContactPage() {
         }
       } else {
         console.error('Submission failed:', data.message);
-        alert(`Error: ${data.message}. Please try again or call 1300 123 456.`);
+        alert(`Error: ${data.message}. Please try again or Use Our Online Form
       }
     } catch (error) {
       console.error('Network error:', error);
-      alert('Network error. Please check your connection or call 1300 123 456.');
+      alert('Network error. Please check your connection or Use Our Online Form
     } finally {
       setIsSubmitting(false);
     }
@@ -157,7 +157,7 @@ export default function ModernContactPage() {
               transition={{ duration: 2, repeat: Infinity }}
             >
               <ExclamationTriangleIcon className="w-4 h-4 text-red-400" />
-              <span className="text-sm font-medium text-red-300">24/7 Emergency Response</span>
+              <span className="text-sm font-medium text-red-300">24/7 Online Emergency Response</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
@@ -215,7 +215,7 @@ export default function ModernContactPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="max-w-4xl mx-auto"
+                className="max-w-4xl overflow-hidden mx-auto"
               >
                 <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30">
                   <div className="text-center mb-8">
@@ -294,7 +294,7 @@ export default function ModernContactPage() {
                           onFocus={() => setActiveField('phone')}
                           onBlur={() => setActiveField(null)}
                           className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-500"
-                          placeholder="0400 123 456"
+                          placeholder=""
                         />
                       </motion.div>
 
@@ -482,7 +482,7 @@ export default function ModernContactPage() {
                       setFormData({
                         name: '',
                         email: '',
-                        phone: '',
+                        
                         service: '',
                         urgency: '',
                         message: ''
@@ -506,7 +506,7 @@ export default function ModernContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl overflow-hidden mx-auto text-center"
         >
           <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl p-12 border border-blue-500/30">
             <ChatBubbleOvalLeftEllipsisIcon className="w-16 h-16 text-blue-400 mx-auto mb-6" />

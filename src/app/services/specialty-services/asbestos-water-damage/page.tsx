@@ -15,7 +15,7 @@ export default function AsbestosWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Asbestos Water Damage',
     description: 'Professional asbestos water damage services in Queensland. 24/7 emergency response for wet asbestos, contaminated materials.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function AsbestosWaterDamagePage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au/services/specialty-services/asbestos-water-damage',
     image: '/images/asbestos-water-damage.jpg',
     priceRange: '$$-$$$'
@@ -72,7 +72,7 @@ export default function AsbestosWaterDamagePage() {
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Call 1300 814 870
+                Use Our Online Form
               </Button>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function AsbestosWaterDamagePage() {
             onClick={() => setShowQuoteDialog(true)}
           >
             <Phone className="mr-2" />
-            Call 1300 814 870 Now
+            Use Our Online Form
           </Button>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function AsbestosWaterDamagePage() {
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
-                <p className="font-semibold">Call Now</p>
+                <p className="font-semibold">Submit Form Now</p>
                 <p className="text-2xl font-bold text-orange-600">1300 814 870</p>
               </div>
             </div>

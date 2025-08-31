@@ -37,7 +37,7 @@ const navigation: NavItem[] = [
   {
     label: 'Emergency',
     items: [
-      { label: '24/7 Emergency Response', href: '/services/emergency-services', description: 'Immediate disaster response' },
+      { label: '24/7 Online Emergency Response', href: '/services/emergency-services', description: 'Immediate disaster response' },
       { label: 'Insurance Claims', href: '/insurance-claims', description: 'We work with all insurers' },
       { label: 'Free Assessment', href: '/free-assessment', description: 'No-obligation damage assessment' }
     ]
@@ -94,7 +94,7 @@ export default function PremiumHeader() {
                 <Clock className="w-4 h-4" />
                 <span>24/7 Emergency Service</span>
               </div>
-              <a href="tel:1300566166" className="flex items-center gap-2 font-semibold hover:text-blue-200 transition-colours">
+              <a href="#contact-form" className="flex items-center gap-2 font-semibold hover:text-blue-200 transition-colours">
                 <Phone className="w-4 h-4" />
                 <span>1300 566 166</span>
               </a>
@@ -219,7 +219,7 @@ export default function PremiumHeader() {
                 Partner Portal
               </Link>
               <a
-                href="tel:1300566166"
+                href="#contact-form"
                 className={cn(
                   "flex items-center gap-2 px-5 py-2.5 rounded-lg",
                   "bg-gradient-to-r from-red-600 to-red-500",
@@ -322,7 +322,7 @@ export default function PremiumHeader() {
             {/* Mobile Menu Footer */}
             <div className="p-6 border-t space-y-4">
               <a
-                href="tel:1300566166"
+                href="#contact-form"
                 className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 <Phone className="w-5 h-5" />

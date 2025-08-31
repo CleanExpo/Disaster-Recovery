@@ -323,7 +323,7 @@ function EmergencyPage() {
           Emergency Response
         </h1>
         <button className="btn-emergency btn-xl">
-          Call Now: 1800 EMERGENCY
+          Submit Form Now: 1800 EMERGENCY
         </button>
       </section>
       

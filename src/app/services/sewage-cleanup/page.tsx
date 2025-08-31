@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertOctagon, Droplets, Home, AlertTriangle, Chec
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Sewage Cleanup Brisbane | Emergency Sewage Removal & Sanitization | Disaster Recovery',
-  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Call 1300 309 361.',
+  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form
   keywords: [
     'sewage cleanup Brisbane',
     'sewage backup cleanup',
@@ -91,7 +91,7 @@ export default function SewageCleanupPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertOctagon className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Emergency Sewage Cleanup</span>
-          <a href="tel:1300309361" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
         </div>
       </div>
 
@@ -129,9 +129,9 @@ export default function SewageCleanupPage() {
                         <p className="font-bold text-red-900">Health Warning:</p>
                         <p className="text-sm text-red-800">Do not attempt cleanup. Evacuate affected areas immediately.</p>
                       </div>
-                      <a href="tel:1300309361" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
+                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <Phone className="h-5 w-5" />
-                        Call 1300 309 361 NOW
+                        Use Our Online Form
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
@@ -508,7 +508,7 @@ export default function SewageCleanupPage() {
             have the equipment and expertise to handle any sewage contamination safely.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:1300309361" className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="#contact-form" className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
               Emergency: 1300 309 361
             </a>

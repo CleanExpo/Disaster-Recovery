@@ -40,7 +40,7 @@ interface BusinessReference {
   name: string;
   relationship: string;
   companyName: string;
-  phone: string;
+  
   email: string;
   projectDescription: string;
   canContact: boolean;
@@ -96,7 +96,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       name: '',
       relationship: '',
       companyName: '',
-      phone: '',
+      
       email: '',
       projectDescription: '',
       canContact: true
@@ -105,7 +105,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       name: '',
       relationship: '',
       companyName: '',
-      phone: '',
+      
       email: '',
       projectDescription: '',
       canContact: true
@@ -176,7 +176,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
       name: '',
       relationship: '',
       companyName: '',
-      phone: '',
+      
       email: '',
       projectDescription: '',
       canContact: true
@@ -536,7 +536,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                     <Phone className="h-4 w-4 text-gray-400" />
                     <Input
                       type="tel"
-                      placeholder="+61 400 000 000"
+                      placeholder="Contact Form"
                       value={ref.phone}
                       onChange={(e) => updateReference(index, 'phone', formatPhoneNumber(e.target.value))}
                       className={errors[`reference.${index}.phone`] ? 'border-red-500' : ''}

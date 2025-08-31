@@ -624,10 +624,10 @@ function getEnvironmentalFactors(location: LocationData): { primary: string; ris
 // Generate meta descriptions
 export function generateMetaDescription(city: string, service: string): string {
   const templates = [
-    `24/7 ${service} services in ${city}. IICRC certified restoration experts with rapid response. Insurance approved. Call 1300 814 870 for immediate help.`,
-    `Professional ${service} in ${city}. Emergency response, insurance claims support, guaranteed results. Leading restoration specialists. Call now 1300 814 870.`,
+    `24/7 ${service} services in ${city}. IICRC certified restoration experts with rapid response. Insurance approved. Use Our Online Form
+    `Professional ${service} in ${city}. Emergency response, insurance claims support, guaranteed results. Leading restoration specialists. Get Help Now 1300 814 870.`,
     `${city} ${service} experts. Same-day emergency response, direct insurance billing, certified technicians. Trusted local restoration. 1300 814 870.`,
-    `Emergency ${service} ${city} - 24/7 rapid response, insurance approved, IICRC certified. Professional restoration services. Call 1300 814 870 now.`
+    `Emergency ${service} ${city} - 24/7 rapid response, insurance approved, IICRC certified. Professional restoration services. Use Our Online Form
   ];
   
   return templates[Math.floor(Math.random() * templates.length)];
@@ -636,8 +636,8 @@ export function generateMetaDescription(city: string, service: string): string {
 // Generate unique title tags
 export function generateTitleTag(city: string, state: string, service: string): string {
   const templates = [
-    `${service} ${city} | 24/7 Emergency Response | Disaster Recovery ${state}`,
-    `${city} ${service} Services | Insurance Approved | Call 1300 814 870`,
+    `${service} ${city} | 24/7 Online Emergency Response | Disaster Recovery ${state}`,
+    `${city} ${service} Services | Insurance Approved | Use Our Online Form
     `Professional ${service} in ${city} ${state} | Same Day Service`,
     `${service} Specialists ${city} | Certified Restoration Experts ${state}`
   ];

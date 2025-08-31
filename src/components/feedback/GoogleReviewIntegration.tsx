@@ -61,7 +61,7 @@ export default function GoogleReviewIntegration({
     placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
     businessName: 'AquaTech Water Damage Restoration',
     address: '123 Industrial Drive, Sydney NSW 2000',
-    phone: '+61 2 9555 0123',
+    
     website: 'https://www.aquatech.com.au',
     reviewsUrl: 'https://g.page/aquatech-restoration/review?rc',
     averageRating: 4.6,
@@ -123,7 +123,7 @@ export default function GoogleReviewIntegration({
       contractorId,
       customerId: 'cust-1',
       customerEmail: 'sarah.johnson@email.com',
-      customerPhone: '+61 412 345 678',
+      customerOnline Form: 'Contact Form',
       type: 'google',
       status: 'completed',
       sentDate: new Date('2024-03-10'),

@@ -15,7 +15,7 @@ interface JobDistributionRequest {
   };
   customerDetails: {
     name: string;
-    phone: string;
+    
     email: string;
     address: string;
   };
@@ -33,7 +33,7 @@ interface Contractor {
   id: string;
   businessName: string;
   email: string;
-  phone: string;
+  
   services: string[];
   serviceAreas: {
     suburbs: string[];
@@ -71,7 +71,7 @@ const mockContractors: Contractor[] = [
     id: 'CONT-001',
     businessName: 'Elite Water Damage Restoration',
     email: 'contact@elitewater.com.au',
-    phone: '0412345678',
+    
     services: ['water-damage', 'flood-restoration', 'mold-remediation'],
     serviceAreas: {
       suburbs: ['Brisbane', 'Gold Coast', 'Ipswich'],
@@ -105,7 +105,7 @@ const mockContractors: Contractor[] = [
     id: 'CONT-002',
     businessName: 'Rapid Response Restorations',
     email: 'jobs@rapidresponse.com.au',
-    phone: '0423456789',
+    
     services: ['water-damage', 'fire-damage', 'storm-damage'],
     serviceAreas: {
       suburbs: ['Sydney', 'Parramatta', 'Penrith'],
@@ -268,7 +268,7 @@ export async function POST(request: NextRequest) {
             urgency: jobData.urgencyLevel,
             location: `${jobData.location.suburb}, ${jobData.location.state}`,
             estimatedValue: jobData.estimatedValue,
-            customerPhone: jobData.customerDetails.phone,
+            customerOnline Form: jobData.customerDetails.phone,
             description: jobData.damageDescription,
           },
           acceptanceUrl: `https://portal.disasterrecovery.com.au/jobs/${jobData.bookingId}/accept`,

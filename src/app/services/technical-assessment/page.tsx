@@ -30,7 +30,7 @@ export default function TechnicalAssessmentPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:1300277377"
+                href="#contact-form"
                 className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition"
               >
                 Emergency: 1300 ASSESS
@@ -135,10 +135,10 @@ export default function TechnicalAssessmentPage() {
             process. Our technical specialists provide 24/7 emergency assessment services.
           </p>
           <a
-            href="tel:1300277377"
+            href="#contact-form"
             className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition"
           >
-            Call 1300 ASSESS (1300 277 377)
+            Use Our Online Form
           </a>
         </div>
       </section>

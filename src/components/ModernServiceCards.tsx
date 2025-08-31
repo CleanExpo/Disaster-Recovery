@@ -39,7 +39,7 @@ const ModernServiceCards: React.FC = () => {
       title: 'Water Damage Restoration',
       description: 'Advanced moisture extraction and structural drying with AI-powered damage assessment technology.',
       features: [
-        '24/7 Emergency Response',
+        '24/7 Online Emergency Response',
         'Thermal Imaging Detection', 
         'Advanced Drying Equipment',
         'Insurance Pre-Approval'

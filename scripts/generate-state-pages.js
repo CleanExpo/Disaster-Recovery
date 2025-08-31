@@ -71,7 +71,7 @@ import { Phone, MapPin, Shield, AlertTriangle, Clock, CheckCircle2 } from 'lucid
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery ${state.name} | 24/7 Emergency Services | ${state.capital} & All Cities',
-  description: 'Leading disaster recovery services across ${state.name}. Emergency response for ${state.disasters.join(', ')}. Serving ${state.capital}, ${state.cities.slice(0, 3).join(', ')} and all ${stateCode.toUpperCase()} regions. Call 1300 DISASTER.',
+  description: 'Leading disaster recovery services across ${state.name}. Emergency response for ${state.disasters.join(', ')}. Serving ${state.capital}, ${state.cities.slice(0, 3).join(', ')} and all ${stateCode.toUpperCase()} regions. Call Online Form Available 24/7.',
   keywords: [
     'disaster recovery ${state.name}',
     'emergency services ${state.capital}',
@@ -98,12 +98,12 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
               Disaster Recovery ${state.name}
             </h1>
             <p className="text-xl md:text-2xl mb-8">
-              24/7 Emergency Response Across All ${stateCode.toUpperCase()} Regions
+              24/7 Online Emergency Response Across All ${stateCode.toUpperCase()} Regions
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-centre mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                 <Phone className="mr-2 h-5 w-5" />
-                1300 DISASTER
+                Online Form Available 24/7
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-gray-100">
                 Get Immediate Help
@@ -230,7 +230,7 @@ export default function ${state.name.replace(/\s+/g, '')}Page() {
           <div className="flex flex-col md:flex-row gap-4 justify-centre">
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
               <Phone className="mr-2 h-5 w-5" />
-              Call 1300 DISASTER
+              Call Online Form Available 24/7
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-900">
               Request Service Online
@@ -274,7 +274,7 @@ Object.entries(stateData).forEach(([stateCode, state]) => {
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery ${city} | Emergency Services ${state.name}',
-  description: '24/7 disaster recovery in ${city}, ${state.name}. Water damage, fire restoration, mould removal. Call 1300 DISASTER.',
+  description: '24/7 disaster recovery in ${city}, ${state.name}. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.',
 };
 
 export default function ${city.replace(/\s+/g, '')}Page() {

@@ -172,7 +172,7 @@ When properly configured, you'll see:
 
 ### Platform Support:
 - Email: tech@disasterrecovery.com.au
-- Emergency: 1300 DISASTER (1300 347 278)
+- Emergency: Online Form Available 24/7
 
 ## 🔄 Switching Back to Demo Mode
 

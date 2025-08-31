@@ -48,7 +48,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
     causeOfLoss: 'Burst 50mm water supply pipe on level 3 due to freezing temperatures during overnight cold snap. Pipe failure occurred in ceiling space above accounting department, causing water to flow through ceiling tiles and damage office areas below.',
     insuranceClaimNumber: 'INS-2023-WD-98765',
     adjusterName: 'Sarah Thompson',
-    adjusterContact: 'sarah.thompson@insurancecorp.com.au | 0412 345 678',
+    adjusterContact: 'sarah.thompson@insurancecorp.com.au | ',
     firstNoticeDate: new Date('2023-10-12T07:15:00Z'),
     emergencyServicesContacted: false
   },

@@ -186,8 +186,8 @@ export async function validateLeadQuality(data: any): Promise<{
     reasons.push('Invalid name provided');
   }
   
-  if (!data.phone || !isValidPhone(data.phone)) {
-    reasons.push('Invalid phone number');
+  if (!data.email || !isValidPhone(data.email)) {
+    reasons.push('Invalid Email Address');
   }
   
   if (!data.email || !isValidEmail(data.email)) {
@@ -211,7 +211,7 @@ export async function validateLeadQuality(data: any): Promise<{
     reasons.push('Potential spam content detected');
   }
   
-  if (await isDuplicateSubmission(data.email, data.phone)) {
+  if (await isDuplicateSubmission(data.email, data.email)) {
     reasons.push('Duplicate submission detected');
   }
   
@@ -222,10 +222,10 @@ export async function validateLeadQuality(data: any): Promise<{
 }
 
 // Helper functions
-function isValidPhone(phone: string): boolean {
-  // Australian phone number validation
+function isValidPhone(
+  // Australian Email Address validation
   const phoneRegex = /^(\+61|0)[2-478][\d]{8}$/;
-  const cleanPhone = phone.replace(/[\s()-]/g, '');
+  const cleanPhone = email.replace(/[\s()-]/g, '');
   return phoneRegex.test(cleanPhone);
 }
 
@@ -243,7 +243,7 @@ function containsSpamKeywords(text: string): boolean {
   return spamKeywords.some(keyword => lowerText.includes(keyword));
 }
 
-async function isDuplicateSubmission(email: string, phone: string): Promise<boolean> {
+async function isDuplicateSubmission(email: string, <boolean> {
   // Check for recent duplicate submissions (within last hour)
   const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
   
@@ -251,7 +251,7 @@ async function isDuplicateSubmission(email: string, phone: string): Promise<bool
     where: {
       OR: [
         { email: email },
-        { phone: phone }
+        { 
       ],
       createdAt: {
         gte: oneHourAgo

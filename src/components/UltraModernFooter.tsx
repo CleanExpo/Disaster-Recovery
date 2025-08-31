@@ -103,10 +103,10 @@ export default function UltraModernFooter() {
               backgroundClip: 'text',
             }}
           >
-            24/7 Emergency Response
+            24/7 Online Emergency Response
           </h3>
           <p className="text-gray-400 mb-6">
-            Disaster doesn't wait. Neither do we. Call now for immediate assistance.
+            Disaster doesn't wait. Neither do we. Get Help Now for immediate assistance.
           </p>
           <Link
             href="/contact"

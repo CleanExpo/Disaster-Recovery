@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: 'Commercial Restoration Services | Business Continuity | 24/7 Emergency Response',
+  title: 'Commercial Restoration Services | Business Continuity | 24/7 Online Emergency Response',
   description: 'Professional commercial restoration services with business continuity focus. Office water damage, retail fire damage, industrial restoration. Minimize downtime with expert disaster recovery.',
   keywords: [
     'commercial restoration',
@@ -163,7 +163,7 @@ export default function CommercialRestorationPage() {
           <div className="bg-white rounded-xl p-8 shadow-lg">
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                '24/7 Emergency Response',
+                '24/7 Online Emergency Response',
                 'Business Continuity Focus',
                 'Insurance Claim Assistance',
                 'Minimal Operational Disruption',

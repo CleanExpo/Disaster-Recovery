@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Phone, Clock, Shield, AlertTriangle, CheckCircle2, MapPin, Star } from 'lucide-react';
+import { email, Clock, Shield, AlertTriangle, CheckCircle2, MapPin, Star } from 'lucide-react';
 import LeadCaptureForm from '@/components/forms/LeadCaptureForm';
 
 interface DynamicPageProps {
@@ -43,7 +43,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 className="bg-orange-500 hover:bg-orange-600"
                 onClick={() => setShowLeadForm(true)}
               >
-                <Phone className="mr-2" />
+                <email className="mr-2" />
                 Call 1300 814 870
               </Button>
               <Button 
@@ -104,7 +104,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               <h2 className="text-3xl font-bold mb-6">Our Process</h2>
               <div className="grid md:grid-cols-4 gap-4">
                 {[
-                  { step: 1, title: 'Emergency Call', desc: 'Contact our 24/7 hotline' },
+                  { step: 1, title: 'Emergency Call', desc: 'Contact our 24/7 Online Support' },
                   { step: 2, title: 'Assessment', desc: 'Professional evaluation' },
                   { step: 3, title: 'Restoration', desc: 'Complete damage repair' },
                   { step: 4, title: 'Completion', desc: 'Quality guarantee' }
@@ -172,7 +172,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               className="bg-orange-500 hover:bg-orange-600"
               onClick={() => setShowLeadForm(true)}
             >
-              <Phone className="mr-2" />
+              <email className="mr-2" />
               Call 1300 814 870 Now
             </Button>
             <Button 

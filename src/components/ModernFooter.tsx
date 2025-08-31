@@ -110,7 +110,7 @@ export default function UltraModernFooter() {
                 </div>
               </div>
 
-              {/* Emergency Hotline Banner */}
+              {/* Emergency Response Banner */}
               <div className="relative inline-block transition-transform hover:scale-105">
                 <div className="relative rounded-full border border-red-500/30 bg-gradient-to-r from-red-900/20 to-orange-900/20">
                   <div className="backdrop-blur-sm rounded-full px-8 py-4 flex items-center gap-4">
@@ -118,7 +118,7 @@ export default function UltraModernFooter() {
                       <BoltIcon className="w-8 h-8 text-yellow-400 animate-pulse" />
                     </div>
                     <div>
-                      <p className="text-sm text-gray-400 uppercase tracking-wider">24/7 Emergency Hotline</p>
+                      <p className="text-sm text-gray-400 uppercase tracking-wider">24/7 Emergency Response</p>
                       <a href="/contact" className="text-3xl font-bold text-white hover:text-cyan-400 transition-colours">
                         Contact Us
                       </a>

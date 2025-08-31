@@ -48,7 +48,7 @@ interface FormData {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
+  
   preferredContact: 'phone' | 'email' | 'both';
   bestTimeToCall: string;
   
@@ -78,7 +78,7 @@ const INITIAL_FORM_DATA: FormData = {
   firstName: '',
   lastName: '',
   email: '',
-  phone: '',
+  
   preferredContact: 'both',
   bestTimeToCall: '',
   hasInsurance: false,
@@ -586,7 +586,7 @@ export default function BookServicePage() {
                     className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
                       errors.phone ? 'border-red-300' : 'border-gray-300'
                     }`}
-                    placeholder="0400 000 000"
+                    placeholder=""
                   />
                   {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
                 </div>
@@ -919,7 +919,7 @@ export default function BookServicePage() {
             </div>
             <div className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-orange-600" />
-              <span>24/7 Emergency Response</span>
+              <span>24/7 Online Emergency Response</span>
             </div>
           </div>
         </div>

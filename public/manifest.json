@@ -65,7 +65,7 @@
     {
       "name": "Emergency Services",
       "short_name": "Emergency",
-      "description": "24/7 Emergency Response",
+      "description": "24/7 Online Emergency Response",
       "url": "/emergency",
       "icons": [{ "src": "/emergency-icon.png", "sizes": "96x96" }]
     },

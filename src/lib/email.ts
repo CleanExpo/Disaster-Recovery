@@ -35,8 +35,8 @@ export const emailTemplates = {
               <td style="padding: 8px 0;">${leadData.fullName}</td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; colour: #666;"><strong>Phone:</strong></td>
-              <td style="padding: 8px 0;">${leadData.phone}</td>
+              <td style="padding: 8px 0; colour: #666;"><strong>Online Form:</strong></td>
+              <td style="padding: 8px 0;">${leadData.email}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; colour: #666;"><strong>Email:</strong></td>
@@ -150,13 +150,13 @@ export const emailTemplates = {
           
           <div style="text-align: centre; margin: 30px 0;">
             <p style="font-size: 18px; colour: #0052CC; font-weight: bold;">
-              24/7 Emergency Hotline: 1300 DISASTER
+              24/7 
             </p>
-            <p style="colour: #666;">(1300 347 278)</p>
+            <p style="colour: #666;">()</p>
           </div>
           
           <p style="font-size: 16px; line-height: 1.6;">
-            If your situation becomes more urgent, please don't hesitate to call us immediately.
+            If your situation becomes more urgent, please don't hesitate to Contact Us Online immediately.
           </p>
           
           <p style="font-size: 16px;">
@@ -202,9 +202,9 @@ export const emailTemplates = {
               <td style="padding: 10px; border: 1px solid #ddd;">${leadData.fullName}</td>
             </tr>
             <tr>
-              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone:</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Online Form:</strong></td>
               <td style="padding: 10px; border: 1px solid #ddd;">
-                <a href="tel:${leadData.phone}" style="colour: #0052CC; font-weight: bold;">${leadData.phone}</a>
+                <a href="#contact-form" style="colour: #0052CC; font-weight: bold;">${leadData.email}</a>
               </td>
             </tr>
             <tr style="background: #f5f5f5;">

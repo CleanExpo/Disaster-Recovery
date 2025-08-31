@@ -7,7 +7,7 @@ export interface Partner {
   abn: string;
   acn?: string;
   email: string;
-  phone: string;
+  
   website?: string;
   logo?: string;
   description: string;
@@ -55,7 +55,7 @@ export interface PartnerContact {
   name: string;
   role: string;
   email: string;
-  phone: string;
+  
   mobile?: string;
   isPrimary: boolean;
   notifications: {

@@ -68,7 +68,7 @@ export default function MarketplaceListing() {
       tradingName: 'AquaTech',
       abn: '12345678901',
       email: 'info@aquatech.com.au',
-      phone: '+61 2 9555 0123',
+      
       website: 'https://www.aquatech.com.au',
       logo: '/logos/aquatech.png',
       description: 'Leading supplier of water damage restoration equipment and tools nationwide.',
@@ -83,7 +83,7 @@ export default function MarketplaceListing() {
         name: 'Sarah Johnson',
         role: 'Business Development Manager',
         email: 'sarah.johnson@aquatech.com.au',
-        phone: '+61 2 9555 0124',
+        
         isPrimary: true,
         notifications: {
           commission: true,
@@ -309,7 +309,7 @@ export default function MarketplaceListing() {
       tradingName: 'SecureShield',
       abn: '98765432109',
       email: 'partners@secureshield.com.au',
-      phone: '+61 3 8555 0200',
+      
       website: 'https://www.secureshield.com.au',
       description: 'Comprehensive insurance solutions for restoration professionals and contractors.',
       category: 'insurance_provider',
@@ -323,7 +323,7 @@ export default function MarketplaceListing() {
         name: 'Michael Chen',
         role: 'Partner Relations Manager',
         email: 'michael.chen@secureshield.com.au',
-        phone: '+61 3 8555 0201',
+        
         isPrimary: true,
         notifications: {
           commission: true,

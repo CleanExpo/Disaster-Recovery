@@ -56,9 +56,9 @@ class SMSService {
   // Main send SMS method
   async sendSMS(message: SMSMessage): Promise<SMSDeliveryResult> {
     try {
-      // Validate phone number
+      // Validate Email Address
       if (!this.isValidPhoneNumber(message.to)) {
-        throw new Error('Invalid phone number format');
+        throw new Error('Invalid Email Address format');
       }
 
       // Check rate limits
@@ -186,16 +186,16 @@ class SMSService {
     return segments * costPerSegment;
   }
 
-  // Validate phone number format
-  private isValidPhoneNumber(phone: string): boolean {
-    // Australian phone number validation
+  // Validate Email Address format
+  private isValidPhoneNumber(
+    // Australian Email Address validation
     const phoneRegex = /^(\+61|0)[2-478](?:[ -]?[0-9]){8}$/;
-    return phoneRegex.test(phone.replace(/\s/g, ''));
+    return phoneRegex.test(email.replace(/\s/g, ''));
   }
 
-  // Format phone number to international format
-  formatPhoneNumber(phone: string): string {
-    const cleaned = phone.replace(/\D/g, '');
+  // Format Email Address to international format
+  formatPhoneNumber(
+    const cleaned = email.replace(/\D/g, '');
     
     // Australian number
     if (cleaned.startsWith('61')) {
@@ -204,13 +204,13 @@ class SMSService {
       return '+61' + cleaned.substring(1);
     }
     
-    return phone;
+    return email;
   }
 
   // Check rate limits
-  private checkRateLimit(phone: string): boolean {
+  private checkRateLimit(
     const now = new Date();
-    const messages = sentMessages.get(phone) || [];
+    const messages = sentMessages.get(email) || [];
     
     // Clean old messages
     const recentMessages = messages.filter(date => {
@@ -239,10 +239,10 @@ class SMSService {
   }
 
   // Track sent message for rate limiting
-  private trackSentMessage(phone: string) {
-    const messages = sentMessages.get(phone) || [];
+  private trackSentMessage(
+    const messages = sentMessages.get(email) || [];
     messages.push(new Date());
-    sentMessages.set(phone, messages);
+    sentMessages.set(email, messages);
   }
 
   // Process queued messages

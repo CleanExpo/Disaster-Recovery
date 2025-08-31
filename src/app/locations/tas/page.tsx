@@ -6,7 +6,7 @@ import { Phone, MapPin, Shield, AlertTriangle, Clock, CheckCircle2 } from 'lucid
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Tasmania | 24/7 Emergency Services | Hobart & All Cities',
-  description: 'Leading disaster recovery services across Tasmania. Emergency response for Bushfires, Flooding, Severe Storms, Landslides. Serving Hobart, Launceston, Devonport, Burnie and all TAS regions. Call 1300 DISASTER.',
+  description: 'Leading disaster recovery services across Tasmania. Emergency response for Bushfires, Flooding, Severe Storms, Landslides. Serving Hobart, Launceston, Devonport, Burnie and all TAS regions. Call Online Form Available 24/7.',
   keywords: [
     'disaster recovery Tasmania',
     'emergency services Hobart',
@@ -33,12 +33,12 @@ export default function TasmaniaPage() {
               Disaster Recovery Tasmania
             </h1>
             <p className="text-xl md:text-2xl mb-8">
-              24/7 Emergency Response Across All TAS Regions
+              24/7 Online Emergency Response Across All TAS Regions
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                 <Phone className="mr-2 h-5 w-5" />
-                1300 DISASTER
+                Online Form Available 24/7
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-gray-100">
                 Get Immediate Help
@@ -165,7 +165,7 @@ export default function TasmaniaPage() {
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
               <Phone className="mr-2 h-5 w-5" />
-              Call 1300 DISASTER
+              Call Online Form Available 24/7
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-900">
               Request Service Online

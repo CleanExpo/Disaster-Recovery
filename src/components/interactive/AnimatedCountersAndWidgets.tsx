@@ -201,14 +201,14 @@ function LiveAvailabilityWidget() {
       {/* CTA Button */}
       <motion.div className="mt-6">
         <motion.a
-          href="tel:1300566166"
+          href="#contact-form"
           className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-lg font-bold text-center block"
           whileHover={{ scale: 1.02, y: -1 }}
           whileTap={{ scale: 0.98 }}
         >
           <div className="flex items-center justify-center space-x-2">
             <Phone className="h-5 w-5" />
-            <span>Call Now - Teams Standing By</span>
+            <span>Submit Form Now - Teams Standing By</span>
           </div>
         </motion.a>
       </motion.div>

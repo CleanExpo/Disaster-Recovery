@@ -87,7 +87,7 @@ export function generateTitle(
     return `${serviceTitle} for ${businessName} | ${locationName} ${location.postcode} | 24/7 Emergency`;
   }
   
-  return `${serviceTitle} ${locationName} ${location.postcode} | ${propertyType.name} | 24/7 Emergency Response`;
+  return `${serviceTitle} ${locationName} ${location.postcode} | ${propertyType.name} | 24/7 Online Emergency Response`;
 }
 
 // Generate meta description
@@ -103,7 +103,7 @@ export function generateMetaDescription(
   
   if (businessType) {
     const businessName = businessType.replace(/-/g, ' ');
-    return `Professional ${service.name.toLowerCase()} for ${businessName} in ${locationName}. ${urgencyPhrase} from ${professionalPhrase}. Insurance approved contractors. Call now!`;
+    return `Professional ${service.name.toLowerCase()} for ${businessName} in ${locationName}. ${urgencyPhrase} from ${professionalPhrase}. Insurance approved contractors. Get Help Now!`;
   }
   
   return `Expert ${service.name.toLowerCase()} services in ${locationName} ${location.postcode}. ${urgencyPhrase} from ${professionalPhrase}. IICRC certified, insurance approved. Free quotes.`;
@@ -178,14 +178,14 @@ export function generateContent(
     <h2>Our Proven ${service.name} Process</h2>
     ${processContent}
 
-    <h2>24/7 Emergency Response in ${locationName}</h2>
+    <h2>24/7 Online Emergency Response in ${locationName}</h2>
     ${emergencyContent}
 
     <div class="bg-blue-50 border-l-4 border-blue-400 p-6 my-8">
       <h3 class="text-xl font-semibold text-blue-900 mb-3">Need Immediate Assistance?</h3>
       <p class="text-blue-800 mb-4">Our ${locationName} emergency response team is available 24/7 for immediate ${service.name.toLowerCase()} services. Don't let damage worsen - contact us now for rapid professional response.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="tel:1300123456" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Call 1300 123 456</a>
+        <a href="#contact-form" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Use Our Online Form</a>
         <a href="/contact" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">Get Free Quote</a>
       </div>
     </div>
@@ -366,7 +366,7 @@ function generateEmergencyContent(locationName: string, service: typeof SERVICE_
     <div class="bg-red-50 border-l-4 border-red-400 p-6 my-6">
       <h4 class="font-semibold text-red-900 mb-3">⚠️ Emergency Response Protocol:</h4>
       <ol class="list-decimal list-inside space-y-2 text-red-800">
-        <li><strong>Call Immediately:</strong> Contact our emergency hotline for immediate dispatch</li>
+        <li><strong>Call Immediately:</strong> Contact our Emergency Response for immediate dispatch</li>
         <li><strong>Safety First:</strong> Ensure all occupants are safe and utilities are secured if necessary</li>
         <li><strong>Document Damage:</strong> Take photos for insurance purposes before any cleanup</li>
         <li><strong>Minimize Exposure:</strong> Limit access to damaged areas until professionals arrive</li>
@@ -409,7 +409,7 @@ export function generateSchemaMarkup(
     "alternateName": "NRP Australia",
     "description": generateMetaDescription(location, service, propertyType, businessType),
     "url": `https://nrpaus.com.au/${generateSlug(location, service, propertyType, businessType)}`,
-    "telephone": "1300-123-456",
+    "email": "",
     "email": "emergency@nrpaus.com.au",
     "address": {
       "@type": "PostalAddress",

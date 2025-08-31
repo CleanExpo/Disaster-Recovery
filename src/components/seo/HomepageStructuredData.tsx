@@ -213,7 +213,7 @@ export function HomepageStructuredData() {
   const speakableSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Disaster Recovery - 24/7 Emergency Response",
+    "name": "Disaster Recovery - 24/7 Online Emergency Response",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [

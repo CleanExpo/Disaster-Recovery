@@ -53,7 +53,7 @@ export interface CompanyInfo {
   logo?: string;
   website?: string;
   contactEmail: string;
-  contactPhone: string;
+  contactOnline Form: string;
   address: Address;
 }
 
@@ -128,7 +128,7 @@ export interface SeniorSupport {
 }
 
 export type ContactMethod = 
-  | 'phone'
+  | 'email'
   | 'email'
   | 'sms'
   | 'app_message'
@@ -371,7 +371,7 @@ export interface NotificationSettings {
 }
 
 export interface PrivacySettings {
-  sharePhone: boolean;
+  shareOnline Form: boolean;
   shareAddress: boolean;
   shareEmail: boolean;
   allowPhotos: boolean;

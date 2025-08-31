@@ -15,7 +15,7 @@ export default function EmergencyServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery',
     description: '24/7 emergency disaster response services across Queensland. Immediate response for water, fire, storm, and hazardous material incidents.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function EmergencyServicesPage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au',
     image: '/images/disaster-recovery-logo.jpg',
     priceRange: '$$-$$$'
@@ -180,7 +180,7 @@ export default function EmergencyServicesPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-red-800/50 px-4 py-2 rounded-full mb-6 animate-pulse">
               <Siren className="h-5 w-5" />
-              <span className="text-sm font-bold uppercase tracking-wide">24/7 Emergency Response Active</span>
+              <span className="text-sm font-bold uppercase tracking-wide">24/7 Online Emergency Response Active</span>
             </div>
             <h1 className="text-5xl font-bold mb-6">
               Emergency Disaster Response Queensland
@@ -527,7 +527,7 @@ export default function EmergencyServicesPage() {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <Siren className="h-16 w-16 mx-auto mb-6 animate-pulse" />
-            <h2 className="text-4xl font-bold mb-6">Emergency? Don\'t Wait - Call Now!</h2>
+            <h2 className="text-4xl font-bold mb-6">Emergency? Don\'t Wait - Submit Form Now!</h2>
             <p className="text-xl mb-8">
               Every minute counts in a disaster. Get immediate professional help 24/7.
             </p>
@@ -559,7 +559,7 @@ export default function EmergencyServicesPage() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Siren className="h-5 w-5 text-red-600 animate-pulse" />
-              24/7 Emergency Response
+              24/7 Online Emergency Response
             </DialogTitle>
             <DialogDescription>
               Immediate disaster response available. Our emergency teams are standing by.

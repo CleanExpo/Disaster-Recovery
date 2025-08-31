@@ -394,7 +394,7 @@ export const pitchDeckData = {
       cta: 'Schedule Investment Discussion',
       contact: {
         email: 'investors@disasterrecovery.com.au',
-        phone: '1300 566 166',
+        
         website: 'disasterrecovery.com.au'
       },
       background: 'epic',

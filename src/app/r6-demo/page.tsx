@@ -24,7 +24,7 @@ export default function R6DemoPage() {
       icon: Droplets,
       title: 'Water Damage Restoration',
       description: 'Rapid water extraction and structural drying using advanced equipment.',
-      features: ['24/7 Emergency Response', 'Insurance Approved', 'Certified Technicians'],
+      features: ['24/7 Online Emergency Response', 'Insurance Approved', 'Certified Technicians'],
       colour: 'primary'
     },
     {
@@ -92,7 +92,7 @@ export default function R6DemoPage() {
           <div className="r6-hero-content">
             <div className="r6-stagger">
               <div className="r6-mb-4">
-                <span className="r6-text-primary r6-font-semibold">24/7 Emergency Response</span>
+                <span className="r6-text-primary r6-font-semibold">24/7 Online Emergency Response</span>
               </div>
               <h1 className="r6-hero-title">
                 Queensland's Premier
@@ -198,7 +198,7 @@ export default function R6DemoPage() {
             <div className="r6-flex r6-justify-center r6-gap-3">
               <button className="r6-btn r6-btn-primary r6-btn-lg">
                 <Phone className="w-5 h-5" />
-                Call 1300 566 166
+                Use Our Online Form
               </button>
               <button className="r6-btn r6-btn-secondary r6-btn-lg" style={{
                 background: 'transparent',

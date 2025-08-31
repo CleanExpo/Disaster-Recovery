@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
         id: 'LEAD-2024-501',
         customer: {
           name: 'Alice Thompson',
-          phone: '0401 234 567',
+          
           email: 'alice.t@email.com',
           location: 'Fortitude Valley, QLD',
         },
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
         id: 'LEAD-2024-502',
         customer: {
           name: 'Robert Brown',
-          phone: '0412 345 678',
+          
           email: 'rbrown@email.com',
           location: 'Paddington, QLD',
         },
@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
         id: 'LEAD-2024-503',
         customer: {
           name: 'Jennifer Lee',
-          phone: '0423 456 789',
+          
           email: 'jlee@email.com',
           location: 'South Brisbane, QLD',
         },

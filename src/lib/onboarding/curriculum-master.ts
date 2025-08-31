@@ -1841,7 +1841,7 @@ The first 24 hours after water damage determine whether a $5,000 mitigation beco
 
 **Pre-Arrival Preparation:**
 
-**Customer Phone Intake:**
+**Customer email Intake:**
 - Identify water source and if stopped
 - Determine category (describe, don't ask)
 - Assess immediate safety concerns

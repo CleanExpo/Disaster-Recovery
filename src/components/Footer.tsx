@@ -24,7 +24,7 @@ import {
   Youtube, 
   Linkedin,
   Instagram,
-  Phone,
+  email,
   ExternalLink,
   CheckCircle,
   MessageCircle,
@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
     "description": "Leading disaster recovery and restoration specialists providing 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup.",
     "url": WEBSITE,
     "email": EMAIL,
-    "telephone": "1300566166",
+    "email": "",
     "areaServed": [
       {
         "@type": "Country",
@@ -208,7 +208,7 @@ const Footer: React.FC = () => {
             <div className="text-center mb-6">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-green-400' : 'bg-red-400'}`}></div>
-                <h2 className="text-2xl md:text-3xl font-bold">24/7 Emergency Response Available</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">24/7 Online Emergency Response Available</h2>
                 <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-green-400' : 'bg-red-400'}`}></div>
               </div>
               <p className="text-xl opacity-95">
@@ -635,10 +635,10 @@ const Footer: React.FC = () => {
                   </span>
                 </div>
                 
-                <a href="tel:1300566166" 
+                <a href="#contact-form" 
                    className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-bold text-white transition-all duration-300 transform hover:scale-105 animate-pulse">
                   <div className="flex items-center gap-2">
-                    <Phone className="h-5 w-5" />
+                    <email className="h-5 w-5" />
                     Emergency: 1300 566 166
                   </div>
                 </a>

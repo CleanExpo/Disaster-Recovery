@@ -23,7 +23,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
     annualRevenue: '',
     website: '',
     email: '',
-    phone: '',
+    
     mobile: '',
     address: '',
     suburb: '',
@@ -332,7 +332,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
             value={businessInfo.phone || ''}
             onChange={(e) => handleInputChange('phone', e.target.value)}
             className="w-full px-4 py-3 bg-slate-900/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
-            placeholder="0400 000 000"
+            placeholder=""
             required
           />
         </div>

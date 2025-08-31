@@ -256,10 +256,10 @@ export default function PremiumServicesGrid({
               
               <div className="flex gap-3">
                 <a
-                  href="tel:1300566166"
+                  href="#contact-form"
                   className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
                 >
-                  Call 1300 566 166
+                  Use Our Online Form
                 </a>
                 <a
                   href="/services"

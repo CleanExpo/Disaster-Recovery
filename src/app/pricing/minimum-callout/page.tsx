@@ -85,7 +85,7 @@ export default function MinimumCalloutPage() {
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
                 <Phone className="mr-2 h-5 w-5" />
-                Call 1300 DISASTER - Insurance Covered
+                Call Online Form Available 24/7 - Insurance Covered
               </Button>
             </div>
           </div>
@@ -254,7 +254,7 @@ export default function MinimumCalloutPage() {
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
                 <Phone className="mr-2 h-5 w-5" />
-                Protect Your Property - Call Now
+                Protect Your Property - Submit Form Now
               </Button>
             </div>
           </div>
@@ -323,7 +323,7 @@ export default function MinimumCalloutPage() {
           </div>
           <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            Call 1300 DISASTER - Get $2,200+ Value Now
+            Call Online Form Available 24/7 - Get $2,200+ Value Now
           </Button>
         </div>
       </section>

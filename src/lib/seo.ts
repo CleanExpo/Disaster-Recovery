@@ -34,7 +34,7 @@ export function generateSEO(config: SEOConfig): Metadata {
           url: `${baseUrl}/og-image.jpg`,
           width: 1200,
           height: 630,
-          alt: 'Disaster Recovery - 24/7 Emergency Response',
+          alt: 'Disaster Recovery - 24/7 Online Emergency Response',
         },
       ],
       locale: 'en_AU',
@@ -75,7 +75,7 @@ export const generateLocalBusinessSchema = (businessInfo: any) => ({
   },
   image: 'https://disasterrecovery.com.au/hero-image.jpg',
   description: 'Queensland\'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.',
-  telephone: '1300 309 361',
+  tele
   email: 'info@disasterrecovery.com.au',
   address: {
     '@type': 'PostalAddress',
@@ -183,7 +183,7 @@ export const generateServiceSchema = (service: {
   availableChannel: service.availableChannel || {
     '@type': 'ServiceChannel',
     serviceUrl: 'https://disasterrecovery.com.au/emergency-service',
-    servicePhone: '1300 309 361',
+    serviceOnline Form: '1300 309 361',
     availableLanguage: {
       '@type': 'Language',
       name: 'English',

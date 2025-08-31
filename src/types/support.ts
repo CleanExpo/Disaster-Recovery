@@ -3,7 +3,7 @@
 export type TicketStatus = 'open' | 'in_progress' | 'pending' | 'resolved' | 'closed';
 export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
 export type TicketCategory = 'technical' | 'billing' | 'compliance' | 'account' | 'feature_request' | 'other';
-export type SupportChannel = 'chat' | 'email' | 'phone' | 'ticket';
+export type SupportChannel = 'chat' | 'email' | 'email' | 'ticket';
 
 // Knowledge Base
 export interface KnowledgeArticle {
@@ -293,7 +293,7 @@ export interface SupportConfig {
     welcomeMessage: string;
     offlineMessage: string;
   };
-  phone: {
+  
     mainNumber: string;
     emergencyNumber: string;
     businessHours: string;

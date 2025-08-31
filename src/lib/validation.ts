@@ -4,7 +4,7 @@ import { z } from 'zod';
  * Australian-specific validation patterns
  */
 export const ValidationPatterns = {
-  // Australian phone number (mobile and landline)
+  // Australian Email Address (mobile and landline)
   PHONE_AU: /^(\+?61|0)[2-478][\d\s-]{8,}$/,
   
   // Australian postcode (4 digits)
@@ -51,8 +51,8 @@ export const ValidationSchemas = {
       .email('Please enter a valid email address')
       .max(254, 'Email address is too long'),
     
-    phone: z.string()
-      .regex(ValidationPatterns.PHONE_AU, 'Please enter a valid Australian phone number'),
+    
+      .regex(ValidationPatterns.PHONE_AU, 'Please enter a valid Australian Email Address'),
     
     service: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'biohazard', 'other'], {
       errorMap: () => ({ message: 'Please select a valid service type' }),
@@ -68,7 +68,7 @@ export const ValidationSchemas = {
     
     propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),
     hasInsurance: z.boolean().optional(),
-    preferredContact: z.enum(['phone', 'email', 'both']).optional(),
+    preferredContact: z.enum(['email', 'email', 'both']).optional(),
   }),
   
   // Booking form validation
@@ -105,10 +105,10 @@ export const ValidationSchemas = {
     
     email: z.string().email('Invalid email address'),
     
-    phone: z.string()
-      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian phone number'),
     
-    preferredContact: z.enum(['phone', 'email', 'both']),
+      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian Email Address'),
+    
+    preferredContact: z.enum(['email', 'email', 'both']),
     
     // Address
     streetAddress: z.string()
@@ -164,8 +164,8 @@ export const ValidationSchemas = {
       .min(2, 'Last name must be at least 2 characters')
       .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),
     
-    phone: z.string()
-      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian phone number'),
+    
+      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian Email Address'),
     
     companyName: z.string().optional(),
     
@@ -212,11 +212,11 @@ export const ValidationSchemas = {
  */
 export const CustomValidators = {
   /**
-   * Validate Australian phone number with formatting
+   * Validate Australian Email Address with formatting
    */
-  validatePhoneAU: (phone: string): { isValid: boolean; formatted: string; error?: string } => {
+  validatePhoneAU: (
     // Remove all non-digit characters
-    const cleaned = phone.replace(/\D/g, '');
+    const cleaned = email.replace(/\D/g, '');
     
     // Check if it starts with 61 (country code)
     const hasCountryCode = cleaned.startsWith('61');
@@ -229,8 +229,8 @@ export const CustomValidators = {
     if (normalised.length !== 10) {
       return {
         isValid: false,
-        formatted: phone,
-        error: 'Phone number must be 10 digits',
+        formatted: email,
+        error: 'Email Address must be 10 digits',
       };
     }
     
@@ -241,7 +241,7 @@ export const CustomValidators = {
     if (!validAreaCodes.includes(areaCode)) {
       return {
         isValid: false,
-        formatted: phone,
+        formatted: email,
         error: 'Invalid Australian area code',
       };
     }
@@ -249,7 +249,7 @@ export const CustomValidators = {
     // Format the number
     let formatted: string;
     if (areaCode === '04') {
-      // Mobile: 0400 000 000
+      // Mobile: 
       formatted = `${normalised.substring(0, 4)} ${normalised.substring(4, 7)} ${normalised.substring(7)}`;
     } else {
       // Landline: (02) 0000 0000
@@ -406,7 +406,7 @@ export const CustomValidators = {
 export const ErrorMessages = {
   required: 'This field is required',
   email: 'Please enter a valid email address',
-  phone: 'Please enter a valid Australian phone number',
+  
   postcode: 'Please enter a valid 4-digit postcode',
   abn: 'Please enter a valid 11-digit ABN',
   password: 'Password must be at least 8 characters with uppercase, lowercase, number, and special character',

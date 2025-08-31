@@ -15,7 +15,7 @@ export default function BurstPipesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Burst Pipe Emergency Services',
     description: 'Emergency burst pipe repair and water damage restoration in Queensland. 24/7 response for pipe bursts, leaks, and flooding.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function BurstPipesPage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au/services/water-damage/burst-pipes',
     image: '/images/burst-pipe-emergency.jpg',
     priceRange: '$$-$$$'
@@ -513,7 +513,7 @@ export default function BurstPipesPage() {
               onClick={() => setShowQuoteDialog(true)}
             >
               <Phone className="mr-2 animate-pulse" />
-              Call 1300 814 870 Now
+              Use Our Online Form
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-gray-100">
               <ArrowRight className="mr-2" />

@@ -726,7 +726,7 @@ export function getContentOptimizationTips(keyword: KeywordOpportunity): string[
   
   if (keyword.intent === 'Transactional') {
     tips.push('Include clear CTAs above the fold');
-    tips.push('Add phone number in title and H1');
+    tips.push('Add Email Address in title and H1');
     tips.push('Include "Open Now" or "24/7" messaging');
     tips.push('Add schema markup for LocalBusiness');
     tips.push('Include pricing or "Free Quote" messaging');
@@ -768,13 +768,13 @@ export function getContentOptimizationTips(keyword: KeywordOpportunity): string[
 // Generate Meta Title Variations
 export function generateMetaTitles(keyword: string, location?: string): string[] {
   const templates = [
-    `${keyword} | 24/7 Emergency Service | Call 1300 814 870`,
+    `${keyword} | 24/7 Emergency Service | Use Our Online Form
     `${keyword} - Same Day Response ${location ? `in ${location}` : ''} | Free Quote`,
     `Professional ${keyword} | Insurance Approved | Available Now`,
     `${keyword} Experts | ${location ? location + ' ' : ''}Certified & Insured`,
     `Emergency ${keyword} | Open Now | Direct Insurance Billing`,
     `${keyword} Near Me | 5-Star Rated | 30min Response`,
-    `#1 ${keyword} Service ${location ? `in ${location}` : ''} | Call Now`,
+    `#1 ${keyword} Service ${location ? `in ${location}` : ''} | Submit Form Now`,
     `${keyword} Today | Free Assessment | Licensed Professionals`
   ];
   
@@ -784,11 +784,11 @@ export function generateMetaTitles(keyword: string, location?: string): string[]
 // Generate Meta Descriptions
 export function generateMetaDescriptions(keyword: string, location?: string): string[] {
   const templates = [
-    `Professional ${keyword} services ${location ? `in ${location}` : ''}. 24/7 emergency response, insurance approved, certified technicians. Call 1300 814 870 for immediate help.`,
+    `Professional ${keyword} services ${location ? `in ${location}` : ''}. 24/7 emergency response, insurance approved, certified technicians. Use Our Online Form
     `Need ${keyword}? Same-day service, free quotes, direct insurance billing. ${location ? `Servicing all ${location} areas` : 'nationwide coverage'}. Available now - 1300 814 870.`,
-    `Expert ${keyword} with 30-minute response time. IICRC certified, 100% guarantee, insurance claims handled. ${location ? location + ' locals' : 'Australian'} trust us. Call 1300 814 870.`,
+    `Expert ${keyword} with 30-minute response time. IICRC certified, 100% guarantee, insurance claims handled. ${location ? location + ' locals' : 'Australian'} trust us. Use Our Online Form
     `Emergency ${keyword} available 24/7. Professional assessment, competitive pricing, insurance approved. ${location ? `All ${location} suburbs` : 'All areas'} covered. 1300 814 870.`,
-    `Fast, reliable ${keyword} service. Free inspection, written quotes, direct insurance billing. ${location ? `${location}'s` : "Australia's"} trusted restoration experts. Call now 1300 814 870.`
+    `Fast, reliable ${keyword} service. Free inspection, written quotes, direct insurance billing. ${location ? `${location}'s` : "Australia's"} trusted restoration experts. Get Help Now 1300 814 870.`
   ];
   
   return templates;

@@ -15,7 +15,7 @@ export default function StormDrainSewageBackupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Storm Drain Sewage Backup',
     description: 'Professional storm drain sewage backup services in Queensland. 24/7 emergency response for stormwater overflow, drain flooding.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function StormDrainSewageBackupPage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au/services/sewage-cleanup/storm-drain-backup',
     image: '/images/storm-drain-backup.jpg',
     priceRange: '$$-$$$'
@@ -72,7 +72,7 @@ export default function StormDrainSewageBackupPage() {
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Call 1300 814 870
+                Use Our Online Form
               </Button>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function StormDrainSewageBackupPage() {
             onClick={() => setShowQuoteDialog(true)}
           >
             <Phone className="mr-2" />
-            Call 1300 814 870 Now
+            Use Our Online Form
           </Button>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function StormDrainSewageBackupPage() {
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
               <Phone className="h-5 w-5 text-orange-600" />
               <div>
-                <p className="font-semibold">Call Now</p>
+                <p className="font-semibold">Submit Form Now</p>
                 <p className="text-2xl font-bold text-orange-600">1300 814 870</p>
               </div>
             </div>

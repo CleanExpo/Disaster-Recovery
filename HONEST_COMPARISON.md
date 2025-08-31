@@ -38,7 +38,7 @@ You have ALL the tools to make a Stripe-level website:
 // You have this (basic):
 <h1>24/7 Emergency</h1>
 <p>Professional Restoration Services</p>
-<button>Call Now</button>
+<button>Submit Form Now</button>
 
 // Should have this (modern):
 <motion.h1 

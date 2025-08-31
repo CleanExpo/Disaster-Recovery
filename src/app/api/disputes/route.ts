@@ -7,7 +7,7 @@ export interface DisputeRequest {
   contractorId?: string;
   customerName: string;
   customerEmail: string;
-  customerPhone: string;
+  customerOnline Form: string;
   disputeType: 'service_quality' | 'incomplete_work' | 'damage_claim' | 'billing' | 'contractor_conduct' | 'other';
   severity: 'low' | 'medium' | 'high' | 'critical';
   description: string;
@@ -342,7 +342,7 @@ function generateDisputeConfirmationEmail(dispute: any, nextSteps: string[]): st
           <p>If you need to provide additional information or have questions, please contact us:</p>
           <ul>
             <li>Email: disputes@disasterrecovery.com.au</li>
-            <li>Phone: 1300 DISPUTE (1300 347 788)</li>
+            <li>Online Form: 1300 DISPUTE (1300 347 788)</li>
             <li>Reference: ${dispute.disputeId}</li>
           </ul>
         </div>

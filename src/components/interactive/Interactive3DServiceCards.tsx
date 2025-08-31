@@ -213,7 +213,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
             animate={isHovered ? { y: -5 } : { y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <Link href="tel:1300566166" className="group/btn">
+            <Link href="#contact-form" className="group/btn">
               <motion.button
                 className="inline-flex items-center text-blue-600 hover:text-blue-700 font-bold text-lg relative overflow-hidden"
                 whileHover={{ x: 5 }}

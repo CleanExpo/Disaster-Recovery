@@ -344,7 +344,7 @@ export async function GET(request: NextRequest) {
         amount: 44000,
         type: 'partial',
         releasedAt: new Date(Date.now() - 43200000).toISOString(),
-        stripeTransferId: 'tr_0987654321',
+        stripeTransferId: 'tr_',
         kpisCompleted: ['kpi-003', 'kpi-004'],
         authorizedBy: 'admin@nrp.com.au',
         notes: 'Partial release after damage assessment completed',

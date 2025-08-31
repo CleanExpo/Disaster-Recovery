@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Heart, Sh
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Biohazard Cleaning Brisbane | Crime Scene & Trauma Cleanup | Disaster Recovery',
-  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Call 1300 309 361.',
+  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Use Our Online Form
   keywords: [
     'biohazard cleaning Brisbane',
     'crime scene cleanup Queensland',
@@ -93,7 +93,7 @@ export default function BiohazardCleaningPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Heart className="h-5 w-5" />
           <span className="font-medium">Compassionate & Discrete Biohazard Cleaning Services</span>
-          <a href="tel:1300309361" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
         </div>
       </div>
 
@@ -132,9 +132,9 @@ export default function BiohazardCleaningPage() {
                           <strong>Confidential Service:</strong> Unmarked vehicles, discrete uniforms, complete privacy assured.
                         </p>
                       </div>
-                      <a href="tel:1300309361" className="flex items-center justify-center gap-2 bg-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800">
+                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-800">
                         <Phone className="h-5 w-5" />
-                        Call 1300 309 361
+                        Use Our Online Form
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
@@ -542,9 +542,9 @@ export default function BiohazardCleaningPage() {
             with the utmost respect and care. Available 24/7 to support you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:1300309361" className="bg-white text-gray-800 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="#contact-form" className="bg-white text-gray-800 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
-              Call 1300 309 361
+              Use Our Online Form
             </a>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-gray-800">
               Request Discrete Service

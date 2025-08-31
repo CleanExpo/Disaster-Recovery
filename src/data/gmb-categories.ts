@@ -412,7 +412,7 @@ export const generateLocationCategories = (location: string) => {
 export const generateCategoryTitle = (category: GMBCategory, location?: string) => {
   const baseTitle = category.name.replace(' Service', '');
   if (location) {
-    return `${baseTitle} ${location} | 24/7 Emergency Response`;
+    return `${baseTitle} ${location} | 24/7 Online Emergency Response`;
   }
   return `${baseTitle} Australia | Disaster Recovery Services`;
 };
@@ -420,7 +420,7 @@ export const generateCategoryTitle = (category: GMBCategory, location?: string) 
 // Meta description generators
 export const generateCategoryDescription = (category: GMBCategory, location?: string) => {
   const locationText = location ? `in ${location}` : 'across Australia';
-  return `Professional ${category.name.toLowerCase()} ${locationText}. 24/7 emergency response, insurance approved contractors, free quotes. Call now for immediate assistance.`;
+  return `Professional ${category.name.toLowerCase()} ${locationText}. 24/7 emergency response, insurance approved contractors, free quotes. Get Help Now for immediate assistance.`;
 };
 
 // Schema markup generator
@@ -435,7 +435,7 @@ export const generateCategorySchema = (category: GMBCategory, location?: string)
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: 'https://disasterrecovery.com.au',
-      servicePhone: '24/7 Emergency Line',
+      serviceOnline Form: '24/7 Emergency Line',
       availableLanguage: 'English'
     },
     provider: {

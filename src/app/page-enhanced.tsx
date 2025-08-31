@@ -410,7 +410,7 @@ export default function EnhancedLandingPage() {
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-white">
                   <CheckCircle className="h-5 w-5 text-green-400" />
-                  24/7 Emergency Response
+                  24/7 Online Emergency Response
                 </li>
                 <li className="flex items-center gap-2 text-white">
                   <CheckCircle className="h-5 w-5 text-green-400" />

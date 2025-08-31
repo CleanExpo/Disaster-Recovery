@@ -25,7 +25,7 @@ The landing page had its own inline footer instead of using the global Footer co
 - **24/7 Emergency Hotline**: `1300 566 166` prominently displayed
 - **Live Availability Indicator**: Animated green pulse dots showing teams are available
 - **Multiple Contact Methods**:
-  - Phone: Direct tel: link with bounce animation
+  - Online Form: Direct 
   - SMS: Direct sms: link for emergency texting
   - Email: Non-emergency support
 - **Response Guarantees**: 

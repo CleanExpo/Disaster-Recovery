@@ -31,7 +31,7 @@ export default function ContractorApplicationPage() {
     position: '',
     email: '',
     mobile: '',
-    officePhone: '',
+    officeOnline Form: '',
     website: '',
     
     // Address
@@ -444,7 +444,7 @@ export default function ContractorApplicationPage() {
                         onCheckedChange={(checked) => setFormData({...formData, emergencyResponse: checked as boolean})}
                       />
                       <Label htmlFor="emergencyResponse" className="font-normal">
-                        24/7 Emergency Response Capability *
+                        24/7 Online Emergency Response Capability *
                       </Label>
                     </div>
                   </div>

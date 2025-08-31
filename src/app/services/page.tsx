@@ -69,7 +69,7 @@ export default function UltraModernServicesPage() {
       icon: HomeIcon,
       gradient: 'from-blue-600 via-cyan-500 to-teal-400',
       features: [
-        '24/7 Emergency Response',
+        '24/7 Online Emergency Response',
         'Thermal Imaging Detection',
         'Molecular Drying Systems',
         'Anti-Microbial Treatment',

@@ -75,7 +75,7 @@ export interface Director {
   lastName: string;
   position: string;
   email: string;
-  phone: string;
+  
   directorId?: string;
 }
 
@@ -123,7 +123,7 @@ export interface Reference {
   companyName: string;
   position: string;
   email: string;
-  phone: string;
+  
   relationship: ReferenceRelationship;
   projectDescription?: string;
 }
@@ -401,7 +401,7 @@ export const contractorValidationSchemas = {
   step1: {
     email: 'required|email',
     username: 'required|min:3|max:50|unique',
-    mobileNumber: 'required|phone',
+    mobileNumber: 'required|email',
     companyName: 'required|min:2|max:100',
     acceptedTerms: 'required|boolean:true',
     acceptedPrivacy: 'required|boolean:true'

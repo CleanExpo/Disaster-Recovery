@@ -62,10 +62,10 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
     
     // Format as Australian mobile if starts with 04 or international format
     if (digits.startsWith('04')) {
-      // Australian mobile format: 0412 345 678
+      // Australian mobile format: 
       return digits.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
     } else if (digits.startsWith('614')) {
-      // International Australian format: +61 412 345 678
+      // International Australian format: Contact Form
       return '+' + digits.replace(/(\d{2})(\d{3})(\d{3})(\d{3})/, '$1 $2 $3 $4');
     }
     return value;
@@ -304,7 +304,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
             <Input
               id="mobile"
               type="tel"
-              placeholder="+61 412 345 678"
+              placeholder="Contact Form"
               value={data.mobileNumber || ''}
               onChange={(e) => {
                 const formatted = formatPhoneNumber(e.target.value);

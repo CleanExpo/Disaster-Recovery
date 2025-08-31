@@ -53,7 +53,7 @@ export interface MobileJob {
   priority: 'routine' | 'urgent' | 'emergency';
   client: {
     name: string;
-    phone: string;
+    
     email?: string;
   };
   location: JobLocation;
@@ -270,7 +270,7 @@ export interface SafetyCheckIn {
 export interface EmergencyContact {
   id: string;
   name: string;
-  phone: string;
+  
   relationship: string;
   isPrimary: boolean;
 }
@@ -445,5 +445,5 @@ export const APP_PERMISSIONS = [
   'notifications',
   'biometric',
   'contacts',
-  'phone'
+  'email'
 ] as const;

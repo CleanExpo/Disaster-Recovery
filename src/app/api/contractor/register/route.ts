@@ -51,9 +51,9 @@ const registrationSchema = z.object({
       lastName: z.string(),
       position: z.string(),
       email: z.string().email(),
-      phone: z.string()
+      
     })),
-    officePhone: z.string().optional(),
+    officeOnline Form: z.string().optional(),
     website: z.string().url().optional()
   }),
   insurance: z.array(z.object({
@@ -80,7 +80,7 @@ const registrationSchema = z.object({
       companyName: z.string(),
       position: z.string(),
       email: z.string().email(),
-      phone: z.string(),
+      
       relationship: z.enum(['CLIENT', 'SUPPLIER', 'PARTNER', 'OTHER']),
       projectDescription: z.string().optional()
     }))
@@ -184,7 +184,7 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           mailingState: validatedData.company.mailingAddress?.state,
           mailingPostcode: validatedData.company.mailingAddress?.postcode,
           directors: JSON.stringify(validatedData.company.directors),
-          officePhone: validatedData.company.officePhone,
+          officeOnline Form: validatedData.company.officePhone,
           website: validatedData.company.website
         }
       });
@@ -238,7 +238,7 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
               companyName: ref.companyName,
               position: ref.position,
               email: ref.email,
-              phone: ref.phone,
+              
               relationship: ref.relationship,
               projectDescription: ref.projectDescription
             }

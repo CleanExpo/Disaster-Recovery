@@ -42,7 +42,7 @@ const trustBadges = [
 
 export default function PremiumHero({
   title = "Queensland's Premier Disaster Recovery Experts",
-  subtitle = "24/7 Emergency Response",
+  subtitle = "24/7 Online Emergency Response",
   description = "When disaster strikes, every second counts. Our IICRC certified team provides immediate response for water damage, fire restoration, mould remediation, and more across Queensland.",
   backgroundImage = "/images/optimised/damage/3D Vehicle into Home.png",
   showStats = true,
@@ -144,7 +144,7 @@ export default function PremiumHero({
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="tel:1300566166"
+                href="#contact-form"
                 className={cn(
                   "group flex items-center justify-center gap-3 px-8 py-4",
                   "bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600",

@@ -206,7 +206,7 @@ export interface NotificationCondition {
 }
 
 export interface NotificationRecipient {
-  type: 'user' | 'role' | 'group' | 'email' | 'phone';
+  type: 'user' | 'role' | 'group' | 'email' | 'email';
   value: string;
   includeConditions?: NotificationCondition[];
 }

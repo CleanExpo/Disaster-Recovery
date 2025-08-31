@@ -254,7 +254,7 @@ Clear communication and realistic expectations prevent most client service probl
 - **Weekend Updates**: Communication plan for weekends and after-hours
 
 **Weekly Progress Reviews:**
-- **Scheduled Meetings**: Weekly face-to-face or phone meetings to review progress
+- **Scheduled Meetings**: Weekly face-to-face or email meetings to review progress
 - **Photo Updates**: Share progress photos showing before/during/after conditions
 - **Timeline Updates**: Adjust timelines based on actual progress and any changes
 - **Upcoming Work**: Discuss upcoming work phases and what client can expect

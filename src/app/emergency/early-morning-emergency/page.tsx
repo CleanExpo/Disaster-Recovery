@@ -16,7 +16,7 @@ export default function EarlyMorningEmergencyPage() {
       <div className="bg-red-600 text-white py-3 animate-pulse">
         <div className="container mx-auto px-4 flex items-center justify-center">
           <AlertTriangle className="h-5 w-5 mr-2" />
-          <span className="font-bold">HIGH EMERGENCY - CALL NOW: 1300 DISASTER</span>
+          <span className="font-bold">HIGH EMERGENCY - CALL NOW: Online Form Available 24/7</span>
         </div>
       </div>
 
@@ -55,7 +55,7 @@ export default function EarlyMorningEmergencyPage() {
             </div>
             <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6">
               <Phone className="mr-2 h-6 w-6" />
-              Call 1300 DISASTER - 4AM - 7AM Service
+              Call Online Form Available 24/7 - 4AM - 7AM Service
             </Button>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function EarlyMorningEmergencyPage() {
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
                 <Phone className="mr-2 h-5 w-5" />
-                Call Now - Save $15,000+ in Damage
+                Submit Form Now - Save $15,000+ in Damage
               </Button>
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function EarlyMorningEmergencyPage() {
           </div>
           <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            1300 DISASTER - 4AM - 7AM Emergency
+            Online Form Available 24/7 - 4AM - 7AM Emergency
           </Button>
         </div>
       </section>

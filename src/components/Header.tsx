@@ -15,7 +15,7 @@ import {
   MapPin, 
   Clock, 
   HelpCircle,
-  Phone,
+  email,
   Shield,
   Flame,
   Droplets,
@@ -151,7 +151,7 @@ const Header: React.FC = () => {
 
   const emergencyMenuData: DropdownSection[] = [
     {
-      title: "24/7 Emergency Response",
+      title: "24/7 Online Emergency Response",
       items: [
         {
           href: "/emergency/24-7",

@@ -348,7 +348,7 @@ const PITCH_SLIDES = [
       title: 'Watch Our Pitch',
       subtitle: 'See the Disaster Recovery Vision in Action',
       videoUrl: 'https://youtu.be/edEYKBN6Yl0',
-      embedUrl: 'https://www.youtube.com/embed/edEYKBN6Yl0',
+      embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=1&rel=0',
       description: 'Discover how we\'re revolutionizing Australia\'s disaster recovery industry with cutting-edge technology and a contractor-first approach.',
       highlights: [
         'Platform demonstration',

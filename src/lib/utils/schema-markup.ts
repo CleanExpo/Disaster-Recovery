@@ -17,7 +17,7 @@ export interface OrganizationSchema {
   };
   contactPoint: {
     '@type': 'ContactPoint';
-    telephone: string;
+    tele
     contactType: string;
     areaServed: string;
     availableLanguage: string;
@@ -105,7 +105,7 @@ export interface LocalBusinessSchema {
   name: string;
   image: string;
   url: string;
-  telephone: string;
+  tele
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
@@ -196,11 +196,11 @@ export interface EmergencyServiceSchema {
   '@type': 'EmergencyService';
   name: string;
   description: string;
-  telephone: string;
+  tele
   availableChannel: {
     '@type': 'ServiceChannel';
     serviceUrl: string;
-    servicePhone: string;
+    serviceOnline Form: string;
     availableLanguage: {
       '@type': 'Language';
       name: string;
@@ -231,7 +231,7 @@ export function generateOrganizationSchema(): OrganizationSchema {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+61-1300-DISASTER',
+      tele
       contactType: 'Emergency Services',
       areaServed: 'AU',
       availableLanguage: 'English'
@@ -360,11 +360,11 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     '@type': 'EmergencyService',
     name: '24/7 Emergency Disaster Response',
     description: 'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation nationwide',
-    telephone: '1300-DISASTER',
+    tele
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: 'https://disasterrecovery.com.au/emergency',
-      servicePhone: '+61-1300-DISASTER',
+      serviceOnline Form: '+61-1300-DISASTER',
       availableLanguage: {
         '@type': 'Language',
         name: 'English'

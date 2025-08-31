@@ -31,7 +31,7 @@ async function seedTestContractor() {
         username: 'testcontractor',
         email: 'test@contractor.com',
         passwordHash: hashedPassword,
-        mobileNumber: '0412345678',
+        mobileNumber: '',
         emailVerified: true,
         status: 'APPROVED',
         onboardingCompleted: true,
@@ -49,7 +49,7 @@ async function seedTestContractor() {
             registeredCity: 'Brisbane',
             registeredState: 'QLD',
             registeredPostcode: '4000',
-            officePhone: '0731234567',
+            officeOnline Form: '',
             website: 'https://test-restoration.com.au',
             companyEmail: 'info@test-restoration.com.au',
             directors: JSON.stringify([

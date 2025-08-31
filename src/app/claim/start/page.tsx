@@ -10,7 +10,7 @@ function ClaimStartContent() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    
     address: '',
     claimNumber: '',
     insuranceCompany: '',
@@ -166,7 +166,7 @@ function ClaimStartContent() {
               <Shield className="h-8 w-8 text-blue-600" />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">Start Your Claim</h1>
-                <p className="text-sm text-gray-600">24/7 Emergency Response</p>
+                <p className="text-sm text-gray-600">24/7 Online Emergency Response</p>
               </div>
             </div>
             {isDemoRunning && (
@@ -185,10 +185,10 @@ function ClaimStartContent() {
           <div className="flex items-start gap-3">
             <AlertCircle className="h-6 w-6 text-red-600 mt-0.5" />
             <div>
-              <h2 className="font-bold text-red-900 mb-1">Emergency? Call Now!</h2>
-              <p className="text-red-700">For immediate emergency response, call our 24/7 hotline:</p>
-              <a href="tel:1300DISASTER" className="text-2xl font-bold text-red-600 hover:text-red-700">
-                1300 DISASTER (1300 347 278)
+              <h2 className="font-bold text-red-900 mb-1">Emergency? Submit Form Now!</h2>
+              <p className="text-red-700">For immediate emergency response, use our 24/7 online form:</p>
+              <a href="
+                Online Form Available 24/7
               </a>
             </div>
           </div>
@@ -251,7 +251,7 @@ function ClaimStartContent() {
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                     currentField === 'phone' ? 'ring-2 ring-yellow-400' : ''
                   }`}
-                  placeholder="0400 000 000"
+                  placeholder=""
                 />
               </div>
               

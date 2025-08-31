@@ -42,7 +42,7 @@ export default function ContractorsPage() {
     'IICRC Certification (Water, Fire, or Mould)',
     'Current Disaster Recovery Network Membership',
     'Minimum $20M Public Liability Insurance',
-    '24/7 Emergency Response Capability',
+    '24/7 Online Emergency Response Capability',
     'Professional Equipment & Vehicles',
     'Trained & Certified Technicians',
     'Quality Management Systems',

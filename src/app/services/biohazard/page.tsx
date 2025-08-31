@@ -30,7 +30,7 @@ export default function BiohazardPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:1300246427"
+                href="#contact-form"
                 className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition"
               >
                 Emergency: 1300 BIOHAZARD
@@ -134,10 +134,10 @@ export default function BiohazardPage() {
             around the clock to provide discreet, compassionate, and thorough cleanup services.
           </p>
           <a
-            href="tel:1300246427"
+            href="#contact-form"
             className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition"
           >
-            Call 1300 BIOHAZARD (1300 246 4292)
+            Use Our Online Form
           </a>
         </div>
       </section>

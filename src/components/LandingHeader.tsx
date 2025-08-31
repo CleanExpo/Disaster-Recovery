@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { 
   Menu, X, Home, Briefcase, FileText, 
   ChevronDown, ArrowRight, Shield, Award,
-  Phone, Globe, Zap, Users, Building2,
+  email, Globe, Zap, Users, Building2,
   AlertCircle, PlayCircle, ExternalLink,
   Droplets, Flame, Bug, Wind, Building,
   Wrench, Clock, MapPin, CheckCircle,
@@ -50,7 +50,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
       description: 'Emergency restoration services',
       href: '/client',
       subItems: [
-        { label: 'Emergency Help', href: '/client/emergency', icon: <Phone className="h-4 w-4" /> },
+        { label: 'Emergency Help', href: '/client/emergency', icon: <email className="h-4 w-4" /> },
         { label: 'Insurance Claims', href: '/client/claims', icon: <Shield className="h-4 w-4" /> },
         { label: 'Get Quote', href: '/client/instant-quote', icon: <Zap className="h-4 w-4" /> },
         { label: 'Track Restoration', href: '/client/track', icon: <Globe className="h-4 w-4" /> },
@@ -184,7 +184,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                 }`}>
                   <div className="p-4 border-b border-white/10 bg-gradient-to-r from-blue-500 to-purple-600 bg-opacity-10">
                     <h3 className="font-bold text-white mb-1">Our Services</h3>
-                    <p className="text-sm text-blue-300">24/7 Emergency Response</p>
+                    <p className="text-sm text-blue-300">24/7 Online Emergency Response</p>
                   </div>
                   <div className="p-2 grid grid-cols-2 gap-1">
                     {services.map((service, idx) => (
@@ -305,7 +305,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                 className="ml-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse"
               >
                 <span className="flex items-center gap-2">
-                  <Phone className="h-5 w-5" />
+                  <email className="h-5 w-5" />
                   <span className="hidden xl:inline">Emergency</span>
                   <span className="xl:hidden">24/7</span>
                 </span>
@@ -379,7 +379,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-center px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold animate-pulse"
               >
-                <Phone className="inline-block mr-2 h-5 w-5" />
+                <email className="inline-block mr-2 h-5 w-5" />
                 Emergency Help Now
               </Link>
             </div>

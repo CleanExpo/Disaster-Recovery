@@ -51,7 +51,7 @@ const mockJobs: MobileJob[] = [
     priority: 'urgent',
     client: {
       name: 'Sarah Johnson',
-      phone: '+61 412 345 678'
+      
     },
     location: {
       address: '123 George St, Sydney NSW 2000',
@@ -74,7 +74,7 @@ const mockJobs: MobileJob[] = [
     priority: 'routine',
     client: {
       name: 'Mike Chen',
-      phone: '+61 423 456 789'
+      
     },
     location: {
       address: '456 Pitt St, Sydney NSW 2000',

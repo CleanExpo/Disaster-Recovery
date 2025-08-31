@@ -49,7 +49,7 @@ export default function ReviewModerationDashboard() {
 
   const mockModerationQueue: (ModerationQueue & { 
     feedback: CustomerFeedback;
-    contractor: { name: string; email: string; phone: string };
+    contractor: { name: string; email: string; 
   })[] = [
     {
       id: '1',
@@ -69,7 +69,7 @@ export default function ReviewModerationDashboard() {
         customerId: 'cust-1',
         customerName: 'John Smith',
         customerEmail: 'john.smith@email.com',
-        customerPhone: '+61 412 345 678',
+        customerOnline Form: 'Contact Form',
         jobType: 'water_damage',
         completedDate: new Date('2024-03-10'),
         submittedDate: new Date('2024-03-15'),
@@ -100,7 +100,7 @@ export default function ReviewModerationDashboard() {
       contractor: {
         name: 'AquaTech Water Restoration',
         email: 'info@aquatech.com.au',
-        phone: '+61 2 9555 0123'
+        
       }
     },
     {
@@ -152,7 +152,7 @@ export default function ReviewModerationDashboard() {
       contractor: {
         name: 'FireRescue Pro Services',
         email: 'contact@firerescuepro.com.au',
-        phone: '+61 3 8555 0200'
+        
       }
     },
     {
@@ -202,7 +202,7 @@ export default function ReviewModerationDashboard() {
       contractor: {
         name: 'AquaTech Water Restoration',
         email: 'info@aquatech.com.au',
-        phone: '+61 2 9555 0123'
+        
       }
     }
   ];

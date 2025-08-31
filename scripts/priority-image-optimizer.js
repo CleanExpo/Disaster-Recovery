@@ -88,7 +88,7 @@ function generateSEOMetadata(imageInfo) {
   // Generate description
   const description = `Professional 3D rendered ${imageType} image of ${serviceName.toLowerCase()} services in ${location}, Australia. ` +
     `24/7 emergency response, insurance approved, IICRC certified technicians. ` +
-    `Call 1300 DISASTER for immediate ${serviceName.toLowerCase()} assistance.`;
+    `Call Online Form Available 24/7 for immediate ${serviceName.toLowerCase()} assistance.`;
   
   // Keywords for SEO
   const keywords = [

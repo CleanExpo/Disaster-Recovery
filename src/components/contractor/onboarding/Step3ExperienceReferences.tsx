@@ -25,7 +25,7 @@ interface Reference {
   company: string;
   position: string;
   relationship: string;
-  phone: string;
+  
   email: string;
   projectReference?: string;
 }
@@ -82,7 +82,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
           company: '',
           position: '',
           relationship: '',
-          phone: '',
+          
           email: '',
           projectReference: ''
         }
@@ -415,7 +415,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                 company: '',
                 position: '',
                 relationship: '',
-                phone: '',
+                
                 email: '',
                 projectReference: ''
               })}
@@ -495,7 +495,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                     {...register(`references.${index}.phone` as const, {
                       required: 'Phone number is required'
                     })}
-                    placeholder="e.g., 0412 345 678"
+                    placeholder="e.g., "
                   />
                 </div>
                 

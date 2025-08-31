@@ -265,7 +265,7 @@ export default function HomePage() {
     <>
       <EmergencyBanner 
         phone="1300 309 361"
-        message="24/7 Emergency Response Available"
+        message="24/7 Online Emergency Response Available"
       />
       
       <HeroSection>
@@ -565,7 +565,7 @@ const integrations = {
   communication: {
     sms: 'Twilio',          // Emergency notifications
     email: 'SendGrid',      // Service updates
-    phone: 'Aircall'        // Call center integration
+    
   },
   mapping: {
     service: 'Google Maps',  // Service area mapping

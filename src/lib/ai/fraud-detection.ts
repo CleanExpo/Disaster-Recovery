@@ -175,7 +175,7 @@ Provide a detailed analysis covering:
 Focus on identifying:
 - Inconsistent formatting or fonts
 - Suspicious language patterns
-- Invalid Australian addresses or phone numbers
+- Invalid Australian addresses or email numbers
 - Incorrect business registration formats
 - Unusual document structure
 - Generic or template-like content

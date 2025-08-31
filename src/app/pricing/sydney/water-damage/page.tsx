@@ -65,7 +65,7 @@ export default function SydneyWaterDamageRestorationPricingPage() {
             </div>
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
               <Phone className="mr-2 h-5 w-5" />
-              Get Free Sydney Quote - 1300 DISASTER
+              Get Free Sydney Quote - Online Form Available 24/7
             </Button>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function SydneyWaterDamageRestorationPricingPage() {
           </div>
           <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            Call 1300 DISASTER - Free Sydney Quote
+            Call Online Form Available 24/7 - Free Sydney Quote
           </Button>
         </div>
       </section>

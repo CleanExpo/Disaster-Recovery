@@ -15,7 +15,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Indoor Environmental Professional Services',
     description: 'Certified Indoor Environmental Professionals (IEP) providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting nationwide.',
-    telephone: '1300 814 870',
+    tele
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
@@ -23,7 +23,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       postalCode: '4000',
       addressCountry: 'AU'
     },
-    hours: '24/7 Emergency Response',
+    hours: '24/7 Online Emergency Response',
     url: 'https://disasterrecovery.com.au/services/indoor-environmental-professional',
     image: '/images/iep-services.jpg',
     priceRange: '$$$-$$$$'

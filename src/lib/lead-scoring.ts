@@ -10,7 +10,7 @@ export interface LeadData {
   propertyType?: 'commercial' | 'residential' | 'industrial';
   hasInsurance?: boolean;
   estimatedValue?: number;
-  contactMethod?: 'phone' | 'email' | 'form' | 'chat';
+  contactMethod?: 'email' | 'email' | 'form' | 'chat';
   timeFrame?: 'immediate' | '24hours' | 'week' | 'month' | 'planning';
   previousCustomer?: boolean;
   referralSource?: string;
@@ -97,7 +97,7 @@ export function calculateLeadScore(data: LeadData): number {
   
   // Contact method scoring (0-5 points)
   switch (data.contactMethod) {
-    case 'phone':
+    case 'email':
       score += 5;
       break;
     case 'chat':

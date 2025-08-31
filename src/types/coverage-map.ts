@@ -262,7 +262,7 @@ export interface AdminMapData {
     companyName: string;
     contactName: string;
     email: string;
-    phone: string;
+    
     address: Address;
   };
   coverage: CoverageArea;

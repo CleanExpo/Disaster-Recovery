@@ -83,7 +83,7 @@ export default function ModernAboutPage() {
               transition={{ duration: 2, repeat: Infinity }}
             >
               <SparklesIcon className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-medium text-purple-300">Trusted Since 2008</span>
+              <span className="text-sm font-medium text-purple-300">Trusted Since 2025</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
@@ -150,7 +150,7 @@ export default function ModernAboutPage() {
               </h2>
               <div className="space-y-4 text-gray-300">
                 <p>
-                  Founded in 2008, Disaster Recovery Pro emerged from a simple mission: 
+                  Founded in 2025, Disaster Recovery Pro emerged from a simple mission: 
                   to provide rapid, professional disaster recovery services when people need them most.
                 </p>
                 <p>

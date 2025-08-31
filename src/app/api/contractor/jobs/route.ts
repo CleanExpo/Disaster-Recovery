@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
         id: 'JOB-2024-101',
         customer: {
           name: 'Sarah Johnson',
-          phone: '0412 345 678',
+          
           email: 'sarah.j@email.com',
           address: '123 Queen St, Brisbane CBD, QLD 4000',
         },
@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
         id: 'JOB-2024-102',
         customer: {
           name: 'David Chen',
-          phone: '0423 456 789',
+          
           email: 'dchen@email.com',
           address: '456 Park Rd, Milton, QLD 4064',
         },
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
         id: 'JOB-2024-099',
         customer: {
           name: 'Emma Williams',
-          phone: '0434 567 890',
+          
           email: 'emma.w@email.com',
           address: '789 River Tce, Kangaroo Point, QLD 4169',
         },

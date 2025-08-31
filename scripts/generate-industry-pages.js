@@ -87,7 +87,7 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                 <Phone className="mr-2 h-5 w-5" />
-                Emergency: 1300 DISASTER
+                Emergency: Online Form Available 24/7
               </Button>
               <Button size="lg" variant="outline" className="bg-transparent border-white hover:bg-white hover:text-gray-900">
                 Get Priority Response
@@ -179,7 +179,7 @@ export default function ${industry.name.replace(/[&\s]+/g, '')}Page() {
           </p>
           <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
             <Phone className="mr-2 h-5 w-5" />
-            Call 1300 DISASTER Now
+            Call Online Form Available 24/7 Now
           </Button>
         </div>
       </section>

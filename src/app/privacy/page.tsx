@@ -134,7 +134,7 @@ export default function PrivacyPolicy() {
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="font-semibold">Disaster Recovery</p>
                 <p>Email: privacy@disasterrecovery.com.au</p>
-                <p>Phone: 1300 DISASTER (1300 347 278)</p>
+                <p>Online Form: Online Form Available 24/7</p>
                 <p>Address: Brisbane, Queensland, Australia</p>
               </div>
             </div>

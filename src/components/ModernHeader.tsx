@@ -244,7 +244,7 @@ export default function UltraModernHeader() {
                 <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 blur-xl opacity-50" />
                 <div className="relative px-6 py-4 flex items-center justify-center gap-3 text-white font-bold">
                   <BoltIcon className="w-6 h-6 animate-pulse" />
-                  <span>24/7 Emergency Hotline</span>
+                  <span>24/7 Emergency Response</span>
                   <PhoneIcon className="w-6 h-6" />
                 </div>
               </button>

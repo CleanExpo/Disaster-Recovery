@@ -668,7 +668,7 @@ export default function UltraModernHeader() {
                     boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
                   }}
                 >
-                  🚨 Emergency Hotline
+                  🚨 Emergency Response
                 </div>
               </Link>
             </div>

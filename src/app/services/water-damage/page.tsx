@@ -6,7 +6,7 @@ import { ServicePageLayout } from '@/components/services/ServicePageLayout';
 import { SEOImage } from '@/components/ui/seo-image';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Services | 24/7 Emergency Response | IICRC S500 Certified',
+  title: 'Water Damage Restoration Services | 24/7 Online Emergency Response | IICRC S500 Certified',
   description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
@@ -27,7 +27,7 @@ const schemaData = {
   "provider": {
     "@type": "Organisation",
     "name": "Disaster Recovery",
-    "telephone": "Contact Us",
+    "telephone": "",
     "url": "https://disasterrecovery.com.au"
   },
   "areaServed": {

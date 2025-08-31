@@ -407,7 +407,7 @@ export const LINKING_STRATEGY = {
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: 'https://disasterrecovery.com.au',
-        telephone: 'Online Only',
+        tele
         address: {
           '@type': 'PostalAddress',
           addressCountry: 'AU'
@@ -448,7 +448,7 @@ export const CRM_CONFIG = {
         abn: /^\d{11}$/,
         insurance: /^\d{8,}$/,
         email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        phone: /^(\+61|0)[2-478]\d{8}$/
+        
       }
     },
     lead: {
@@ -538,8 +538,8 @@ export const SEO_CONFIG = {
   pages: {
     dynamic: {
       pattern: '/[state]/[city]/[service]',
-      title: '[Service] in [City], [State] | 24/7 Emergency Response',
-      description: 'Professional [service] services in [City]. IICRC certified, insurance approved. Rapid response for [disaster] emergencies. Call now!',
+      title: '[Service] in [City], [State] | 24/7 Online Emergency Response',
+      description: 'Professional [service] services in [City]. IICRC certified, insurance approved. Rapid response for [disaster] emergencies. Get Help Now!',
       h1: 'Emergency [Service] Services in [City]',
       content: {
         intro: 'When disaster strikes in [City], you need immediate professional help.',

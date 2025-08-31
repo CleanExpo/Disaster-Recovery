@@ -37,7 +37,7 @@ interface Lead {
   customer: {
     name: string;
     email: string;
-    phone: string;
+    
     address: string;
     suburb: string;
     state: string;
@@ -103,7 +103,7 @@ export default function LeadManagementDashboard() {
       customer: {
         name: 'John Smith',
         email: 'john.smith@email.com',
-        phone: '0412 345 678',
+        
         address: '123 Example Street',
         suburb: 'Brisbane',
         state: 'QLD',
@@ -145,7 +145,7 @@ export default function LeadManagementDashboard() {
       customer: {
         name: 'Sarah Johnson',
         email: 'sarah.j@email.com',
-        phone: '0423 456 789',
+        
         address: '456 Test Avenue',
         suburb: 'Sydney',
         state: 'NSW',
@@ -182,7 +182,7 @@ export default function LeadManagementDashboard() {
       customer: {
         name: 'Michael Brown',
         email: 'mbrown@email.com',
-        phone: '0434 567 890',
+        
         address: '789 Sample Road',
         suburb: 'Melbourne',
         state: 'VIC',

@@ -25,7 +25,7 @@ interface BookingDetails {
   urgencyLevel: string;
   customerName: string;
   email: string;
-  phone: string;
+  
   address: string;
   suburb: string;
   state: string;
@@ -52,7 +52,7 @@ function BookingSuccessPageContent() {
       urgencyLevel: searchParams?.get('urgency') || 'emergency',
       customerName: 'John Smith',
       email: 'john.smith@email.com',
-      phone: '0412 345 678',
+      
       address: '123 Example Street',
       suburb: 'Brisbane',
       state: 'QLD',
@@ -305,7 +305,7 @@ function BookingSuccessPageContent() {
         {/* Support Contact */}
         <div className="text-center mt-8 p-6 bg-gray-100 rounded-lg">
           <p className="text-gray-600 mb-2">Need immediate assistance?</p>
-          <p className="text-lg font-semibold">Call our 24/7 Support: 1300 DISASTER</p>
+          <p className="text-lg font-semibold">Call our 24/7 Support: Online Form Available 24/7</p>
           <p className="text-sm text-gray-500 mt-1">Reference: {bookingDetails.bookingId}</p>
         </div>
       </div>

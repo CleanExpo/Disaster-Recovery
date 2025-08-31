@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'bushfire damage recovery'
   ],
   openGraph: {
-    title: 'Storm & Natural Disaster Recovery Services | 24/7 Emergency Response',
+    title: 'Storm & Natural Disaster Recovery Services | 24/7 Online Emergency Response',
     description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response nationwide.',
     images: [
       {
@@ -67,7 +67,7 @@ const schemaData = {
       "@type": "PostalAddress",
       "addressCountry": "AU"
     },
-    "telephone": "1800-DISASTER",
+    "telephone": "",
     "email": "emergency@disasterrecoveryaustralia.com.au"
   },
   "areaServed": {
@@ -663,9 +663,9 @@ export default function StormDamagePage() {
             <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
               <span className="text-lg font-bold text-orange-600">2</span>
             </div>
-            <h3 className="text-lg font-semibold text-neutral-900 mb-3">Call Us Immediately</h3>
+            <h3 className="text-lg font-semibold text-neutral-900 mb-3">Contact Us Online Immediately</h3>
             <ul className="text-neutral-700 text-sm space-y-1">
-              <li>• Phone: Contact Us</li>
+              <li>• Online Form: Contact Us</li>
               <li>• 24/7 emergency response</li>
               <li>• Immediate dispatch</li>
               <li>• Professional assessment</li>

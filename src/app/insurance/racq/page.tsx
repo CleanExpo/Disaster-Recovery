@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'RACQ Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred RACQ insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call 1300 DISASTER.',
+  description: 'Preferred RACQ insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.',
 };
 
 export default function RACQInsurancePage() {

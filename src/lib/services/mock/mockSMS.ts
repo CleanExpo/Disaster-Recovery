@@ -23,8 +23,8 @@ class MockSMSService {
     return { success: true, messageId: sms.id };
   }
   
-  async sendEmergencyAlert(phone: string, jobId: string): Promise<void> {
-    await this.sendSMS(phone, 
+  async sendEmergencyAlert(<void> {
+    await this.sendSMS(email, 
       `🚨 EMERGENCY JOB ${jobId} - Immediate response required. Log in to accept.`
     );
   }

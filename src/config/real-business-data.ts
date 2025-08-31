@@ -16,9 +16,9 @@ export const BUSINESS_CONFIG = {
     headquarters: 'Brisbane, Queensland, Australia',
     founded: '2024',
     website: 'https://disasterrecovery.com.au',
-    contactPhone: null, // No phone number
+    contactOnline Form: null, // No Email Address
     contactEmail: 'contractors@disasterrecovery.com.au',
-    emergencyPhone: null, // No phone number
+    emergencyOnline Form: null, // No Email Address
     designedBy: 'Zenith',
     designerWebsite: 'https://zenith.engineer',
     parentAgency: 'Unite-Group Agency',

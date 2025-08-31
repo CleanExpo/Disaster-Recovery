@@ -6,8 +6,8 @@ const glob = require('glob');
 // Files to update phone numbers
 const replacements = [
   // Replace phone links with contact page
-  { pattern: /href="tel:1-?800-?DISASTER"/gi, replacement: 'href="/contact"' },
-  { pattern: /href='tel:1-?800-?DISASTER'/gi, replacement: "href='/contact'" },
+  { pattern: /href="#contact-form"/gi, replacement: 'href="/contact"' },
+  { pattern: /href='
   
   // Replace phone number text
   { pattern: /1-800-DISASTER/g, replacement: 'Contact Us' },
@@ -15,7 +15,7 @@ const replacements = [
   { pattern: /Emergency:\s*1-800-DISASTER/g, replacement: 'Emergency Contact' },
   { pattern: /EMERGENCY:\s*1-800-DISASTER/g, replacement: 'EMERGENCY CONTACT' },
   { pattern: /Business Emergency:\s*1-800-DISASTER/g, replacement: 'Business Emergency Contact' },
-  { pattern: /Call Now:\s*1-800-DISASTER/g, replacement: 'Get Help Now' },
+  { pattern: /Submit Form Now:\s*1-800-DISASTER/g, replacement: 'Get Help Now' },
   { pattern: /Emergency Hotline:\s*1-800-DISASTER/g, replacement: 'Emergency Contact Form' },
   { pattern: /Start Your Claim:\s*1-800-DISASTER/g, replacement: 'Start Your Claim Online' },
   

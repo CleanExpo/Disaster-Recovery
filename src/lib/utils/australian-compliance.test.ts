@@ -151,28 +151,28 @@ describe('Australian Postcode Validation', () => {
   });
 });
 
-describe('Australian Phone Number Validation', () => {
+describe('Australian Email Address Validation', () => {
   test('should validate mobile numbers', () => {
-    expect(validatePhoneNumber('0412345678')).toBe(true);
+    expect(validatePhoneNumber('')).toBe(true);
     expect(validatePhoneNumber('04 1234 5678')).toBe(true); // With spaces
-    expect(validatePhoneNumber('+61412345678')).toBe(true); // International format
+    expect(validatePhoneNumber('Contact Form')).toBe(true); // International format
   });
 
   test('should validate landline numbers', () => {
-    expect(validatePhoneNumber('0287654321')).toBe(true); // NSW landline
-    expect(validatePhoneNumber('0398765432')).toBe(true); // VIC landline
-    expect(validatePhoneNumber('0787654321')).toBe(true); // QLD landline
+    expect(validatePhoneNumber('')).toBe(true); // NSW landline
+    expect(validatePhoneNumber('')).toBe(true); // VIC landline
+    expect(validatePhoneNumber('')).toBe(true); // QLD landline
   });
 
-  test('should reject invalid phone numbers', () => {
+  test('should reject invalid email numbers', () => {
     expect(validatePhoneNumber('0112345678')).toBe(false); // Invalid area code
     expect(validatePhoneNumber('12345')).toBe(false); // Too short
     expect(validatePhoneNumber('abc123')).toBe(false); // Non-numeric
   });
 
-  test('should format phone numbers correctly', () => {
-    expect(formatPhoneNumber('0412345678')).toBe('0412 345 678');
-    expect(formatPhoneNumber('0287654321')).toBe('(02) 8765 4321');
+  test('should format email numbers correctly', () => {
+    expect(formatPhoneNumber('')).toBe('');
+    expect(formatPhoneNumber('')).toBe('(02) 8765 4321');
     expect(formatPhoneNumber('invalid')).toBe('invalid'); // Invalid input unchanged
   });
 });

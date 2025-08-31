@@ -105,7 +105,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
       <div className="bg-red-600 text-white py-3 animate-pulse">
         <div className="container mx-auto px-4 flex items-centre justify-centre">
           <AlertTriangle className="h-5 w-5 mr-2" />
-          <span className="font-bold">${scenario.urgencyLevel.toUpperCase()} EMERGENCY - CALL NOW: 1300 DISASTER</span>
+          <span className="font-bold">${scenario.urgencyLevel.toUpperCase()} EMERGENCY - CALL NOW: Online Form Available 24/7</span>
         </div>
       </div>
 
@@ -144,7 +144,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
             </div>
             <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6">
               <Phone className="mr-2 h-6 w-6" />
-              Call 1300 DISASTER - ${scenario.timeframe} Service
+              Call Online Form Available 24/7 - ${scenario.timeframe} Service
             </Button>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
                 <Phone className="mr-2 h-5 w-5" />
-                Call Now - Save $15,000+ in Damage
+                Submit Form Now - Save $15,000+ in Damage
               </Button>
             </div>
           </div>
@@ -313,7 +313,7 @@ export default function ${scenario.name.replace(/[\s-]+/g, '')}Page() {
           </div>
           <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            1300 DISASTER - ${scenario.timeframe} Emergency
+            Online Form Available 24/7 - ${scenario.timeframe} Emergency
           </Button>
         </div>
       </section>
@@ -340,7 +340,7 @@ import { Button } from '@/components/ui/button';
 import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, Phone, DollarSign } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '24/7 Emergency Response Times & Fees | After Hours, Weekends, Holidays',
+  title: '24/7 Online Emergency Response Times & Fees | After Hours, Weekends, Holidays',
   description: 'Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. Insurance approved.',
 };
 
@@ -493,7 +493,7 @@ export default function EmergencyTimesPage() {
           </p>
           <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            1300 DISASTER - 24/7 Emergency Line
+            Online Form Available 24/7 - 24/7 Emergency Line
           </Button>
         </div>
       </section>

@@ -168,9 +168,9 @@ export function useFormValidation<T extends Record<string, any>>(
     }
   }, [values, mode, touched, validateForm]);
   
-  // Format phone number
-  const formatPhoneNumber = useCallback((phone: string): string => {
-    const result = CustomValidators.validatePhoneAU(phone);
+  // Format Email Address
+  const formatPhoneNumber = useCallback((
+    const result = CustomValidators.validatePhoneAU(email);
     return result.formatted;
   }, []);
   

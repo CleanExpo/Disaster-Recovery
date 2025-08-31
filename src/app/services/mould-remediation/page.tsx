@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Mic
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery',
-  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Call 1300 309 361.',
+  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form
   keywords: [
     'mould remediation Brisbane',
     'mould removal Queensland',
@@ -41,7 +41,7 @@ export const metadata: Metadata = generateSEO({
 const mouldFAQs = [
   {
     question: "How do I know if I have a mould problem?",
-    answer: "Common signs include visible mould growth (black, green, or white patches), musty odours, water stains, peeling paint, and health symptoms like allergies or respiratory issues. If you suspect mould, call 1300 309 361 for a professional inspection and air quality testing."
+    answer: "Common signs include visible mould growth (black, green, or white patches), musty odours, water stains, peeling paint, and health symptoms like allergies or respiratory issues. If you suspect mould, Use Our Online Form
   },
   {
     question: "Is mould dangerous to my health?",
@@ -97,7 +97,7 @@ export default function MouldRemediationPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertTriangle className="h-5 w-5 animate-pulse" />
           <span className="font-bold">Professional Mould Remediation Services</span>
-          <a href="tel:1300309361" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
         </div>
       </div>
 
@@ -131,9 +131,9 @@ export default function MouldRemediationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="tel:1300309361" className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700">
+                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700">
                         <Phone className="h-5 w-5" />
-                        Call 1300 309 361
+                        Use Our Online Form
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
@@ -517,9 +517,9 @@ export default function MouldRemediationPage() {
             Our certified experts provide safe, thorough mould removal with guaranteed results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:1300309361" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="#contact-form" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <Phone className="h-5 w-5" />
-              Call 1300 309 361
+              Use Our Online Form
             </a>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-green-600">
               Book Mould Inspection

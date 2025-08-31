@@ -10,7 +10,7 @@ import {
   Clock, 
   CheckCircle, 
   Star, 
-  Phone,
+  email,
   ArrowRight,
   Zap
 } from 'lucide-react';

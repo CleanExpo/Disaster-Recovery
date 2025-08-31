@@ -640,7 +640,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 checked={coverage24x7}
                 onCheckedChange={(checked) => setValue('coverage24x7', checked as boolean)}
               />
-              <Label htmlFor="coverage24x7">24/7 Emergency Response Available</Label>
+              <Label htmlFor="coverage24x7">24/7 Online Emergency Response Available</Label>
             </div>
             
             <div className="flex items-center space-x-2">
@@ -694,7 +694,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
               <Input
                 id="emergencyContacts"
                 {...register('emergencyContacts', { required: 'Emergency contacts are required' })}
-                placeholder="e.g., Operations Manager: 0400 123 456"
+                placeholder="e.g., Operations Manager: "
               />
               {errors.emergencyContacts && (
                 <p className="text-red-500 text-sm mt-1">{errors.emergencyContacts.message}</p>

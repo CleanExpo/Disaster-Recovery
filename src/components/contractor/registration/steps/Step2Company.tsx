@@ -32,7 +32,7 @@ interface Step2CompanyProps {
 
 interface Director {
   name: string;
-  phone: string;
+  
   email: string;
 }
 
@@ -56,9 +56,9 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   const [directors, setDirectors] = useState<Director[]>(
     data.company?.directors?.map(d => ({
       name: `${d.firstName} ${d.lastName}`,
-      phone: d.phone,
+      
       email: d.email
-    })) || [{ name: '', phone: '', email: '' }]
+    })) || [{ name: '', 
   );
 
   const [insurance, setInsurance] = useState<InsuranceDetails>({
@@ -193,7 +193,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
         lastName: lastNameParts.join(' ') || '',
         position: 'Director',
         email: d.email,
-        phone: d.phone,
+        
         directorId: ''
       };
     });
@@ -207,7 +207,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
   };
 
   const addDirector = () => {
-    setDirectors([...directors, { name: '', phone: '', email: '' }]);
+    setDirectors([...directors, { name: '', 
   };
 
   const removeDirector = (index: number) => {
@@ -489,7 +489,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   </Label>
                   <Input
                     type="tel"
-                    placeholder="+61 400 000 000"
+                    placeholder="Contact Form"
                     value={director.phone}
                     onChange={(e) => updateDirector(index, 'phone', e.target.value)}
                   />

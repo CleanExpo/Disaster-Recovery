@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 // SEO Metadata with comprehensive emergency response keywords
 export const metadata: Metadata = {
-  title: '24/7 Emergency Response Services | Disaster Recovery Specialists | 1-Hour Response Time',
+  title: '24/7 Online Emergency Response Services | Disaster Recovery Specialists | 1-Hour Response Time',
   description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
   keywords: [
     'emergency response services',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'disaster mitigation'
   ],
   openGraph: {
-    title: '24/7 Emergency Response Services | 1-Hour Response Time',
+    title: '24/7 Online Emergency Response Services | 1-Hour Response Time',
     description: 'Professional 24/7 emergency response for disaster recovery. Rapid response team available for water, fire, and storm damage emergencies.',
     images: [
       {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '24/7 Emergency Response Services | Disaster Recovery',
+    title: '24/7 Online Emergency Response Services | Disaster Recovery',
     description: 'Professional emergency response team available 24/7. 1-hour response time for disaster recovery emergencies.',
     images: ['/images/optimised/process/3D Assessment.png'],
   },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 const schemaData = {
   "@context": "https://schema.org",
   "@type": ["Service", "LocalBusiness", "EmergencyService"],
-  "name": "24/7 Emergency Response Services",
+  "name": "24/7 Online Emergency Response Services",
   "description": "Professional 24/7 emergency response services for disaster recovery including water damage, fire damage, and storm damage mitigation.",
   "serviceType": "Emergency Response",
   "provider": {
@@ -67,7 +67,7 @@ const schemaData = {
       "@type": "PostalAddress",
       "addressCountry": "AU"
     },
-    "telephone": "1800-DISASTER",
+    "telephone": "",
     "email": "emergency@disasterrecoveryaustralia.com.au"
   },
   "areaServed": {
@@ -172,7 +172,7 @@ const faqs = [
 export default function EmergencyResponsePage() {
   return (
     <ServicePageLayout
-      title="24/7 Emergency Response Services"
+      title="24/7 Online Emergency Response Services"
       description="Professional 24/7 emergency response services for disaster recovery. Rapid response team available for water damage, fire damage, storm damage, and all disaster emergencies with 1-hour response guarantee."
       heroImage="/images/optimised/process/3D Assessment.png"
       heroImageAlt="24/7 emergency response team conducting rapid disaster assessment and mitigation"
@@ -662,7 +662,7 @@ export default function EmergencyResponsePage() {
       {/* Call to Action */}
       <section className="bg-gradient-to-r from-emergency-500 to-emergency-600 rounded-2xl p-8 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
-          Emergency? Don't Wait - Call Now
+          Emergency? Don't Wait - Submit Form Now
         </h2>
         <p className="text-xl text-emergency-100 mb-8 max-w-3xl mx-auto">
           Our emergency response teams are standing by 24/7 to respond to your disaster emergency. 

@@ -160,7 +160,7 @@ export class MDCreatorAgent extends EventEmitter {
             title: 'Value Proposition',
             level: 3,
             content: `- **National Coverage**: Every location in Australia, from Sydney to Coober Pedy
-- **Complete Automation**: 100% AI-driven operations with zero phone support
+- **Complete Automation**: 100% AI-driven operations with zero Online Support
 - **SEO Domination**: Lock out all competitors through keyword saturation
 - **Scale**: From single rooms to 80-floor buildings, all disaster types`
           },

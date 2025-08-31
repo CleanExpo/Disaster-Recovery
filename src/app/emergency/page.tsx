@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, Phone, DollarSign } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: '24/7 Emergency Response Times & Fees | After Hours, Weekends, Holidays',
+  title: '24/7 Online Emergency Response Times & Fees | After Hours, Weekends, Holidays',
   description: 'Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. Insurance approved.',
 };
 
@@ -216,7 +216,7 @@ export default function EmergencyTimesPage() {
           </p>
           <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 text-lg px-8 py-6">
             <Phone className="mr-2 h-6 w-6" />
-            1300 DISASTER - 24/7 Emergency Line
+            Online Form Available 24/7 - 24/7 Emergency Line
           </Button>
         </div>
       </section>

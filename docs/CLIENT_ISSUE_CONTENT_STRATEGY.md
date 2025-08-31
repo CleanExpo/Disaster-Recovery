@@ -74,7 +74,7 @@ Client Frustrated → Contractor Blamed → Extended Timeline → Quality Issues
    - Equipment and labor justification
    - Insurance coverage guidance
 
-3. **"24/7 Emergency Response: What You Should Expect"**
+3. **"24/7 Online Emergency Response: What You Should Expect"**
    - Response time standards
    - Equipment and team requirements
    - Quality assurance processes

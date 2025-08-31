@@ -48,7 +48,7 @@ export default function MobileJobManagement() {
       priority: 'emergency',
       client: {
         name: 'Sarah Johnson',
-        phone: '+61 412 345 678',
+        
         email: 'sarah.j@email.com'
       },
       location: {
@@ -72,7 +72,7 @@ export default function MobileJobManagement() {
       priority: 'urgent',
       client: {
         name: 'Michael Chen',
-        phone: '+61 423 456 789'
+        
       },
       location: {
         address: '456 Park Ave, Melbourne VIC 3000',
@@ -95,7 +95,7 @@ export default function MobileJobManagement() {
       priority: 'routine',
       client: {
         name: 'Emma Wilson',
-        phone: '+61 434 567 890',
+        
         email: 'emma.w@email.com'
       },
       location: {

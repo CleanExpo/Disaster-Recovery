@@ -104,14 +104,14 @@ export default function AffiliateSignup() {
     abn: '',
     acn: '',
     email: '',
-    phone: '',
+    
     website: '',
     description: '',
     category: '' as PartnerCategory,
     contactName: '',
     contactRole: '',
     contactEmail: '',
-    contactPhone: '',
+    contactOnline Form: '',
     street1: '',
     street2: '',
     city: '',
@@ -271,7 +271,7 @@ export default function AffiliateSignup() {
                 <input
                   type="tel"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, 
                   className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
                     errors.phone ? 'border-red-300' : 'border-gray-300'
                   }`}
@@ -373,7 +373,7 @@ export default function AffiliateSignup() {
                 <input
                   type="tel"
                   value={formData.contactPhone}
-                  onChange={(e) => setFormData({ ...formData, contactPhone: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, contactOnline Form: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                 />
               </div>

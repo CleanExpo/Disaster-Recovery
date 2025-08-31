@@ -58,7 +58,7 @@ export interface DocumentMetadata {
   companyInfo?: {
     name: string;
     address: string;
-    phone: string;
+    
     email: string;
   };
   signatureRequired: boolean;
@@ -299,7 +299,7 @@ export type TemplateFieldType =
   | 'text'
   | 'textarea'
   | 'email'
-  | 'phone'
+  | 'email'
   | 'date'
   | 'number'
   | 'select'
@@ -309,7 +309,7 @@ export type TemplateFieldType =
   | 'signature';
 
 export interface ValidationRule {
-  type: 'required' | 'minLength' | 'maxLength' | 'pattern' | 'email' | 'phone';
+  type: 'required' | 'minLength' | 'maxLength' | 'pattern' | 'email' | 'email';
   value?: any;
   message: string;
 }

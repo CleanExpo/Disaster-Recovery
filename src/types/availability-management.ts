@@ -233,7 +233,7 @@ export type NotificationChannel =
   | 'sms'
   | 'push'
   | 'in_app'
-  | 'phone';
+  | 'email';
 
 export interface AvailabilityChangeRequest {
   id: string;

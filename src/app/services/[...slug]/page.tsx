@@ -155,7 +155,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <Clock className="w-6 h-6 text-orange-400" />
-                    <span>24/7 Emergency Response</span>
+                    <span>24/7 Online Emergency Response</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Shield className="w-6 h-6 text-orange-400" />

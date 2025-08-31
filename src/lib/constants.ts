@@ -1,7 +1,7 @@
 // Business Constants
 export const BUSINESS_NAME = 'Disaster Recovery';
 export const BUSINESS_SHORT_NAME = 'Disaster Recovery';
-// No phone number - online forms only
+// No Email Address - online forms only
 export const ONLINE_FORM_URL = '/get-help';
 export const CONTRACTOR_PORTAL_URL = '/contractors';
 export const EMAIL = 'contractors@disasterrecovery.com.au';
@@ -20,7 +20,7 @@ export const CONTRACTOR_REQUIREMENTS = {
   standards: 'Disaster Recovery Standards Compliant',
   membership: 'Current Disaster Recovery Network Member',
   insurance: 'Minimum $20M Public Liability',
-  response: '24/7 Emergency Response Capability'
+  response: '24/7 Online Emergency Response Capability'
 };
 export const WEBSITE = 'https://disasterrecovery.com.au';
 export const ABN = '85 151 794 142';

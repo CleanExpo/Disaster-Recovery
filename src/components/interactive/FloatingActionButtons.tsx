@@ -184,7 +184,7 @@ function ExpandableFABMenu() {
       icon: Phone,
       label: 'Emergency Call',
       colour: 'bg-gradient-to-r from-red-600 to-red-700',
-      action: () => window.open('tel:1300566166'),
+      action: () => window.open('
     },
     {
       icon: MessageCircle,
@@ -329,9 +329,9 @@ function QuickActionDock() {
   const dockItems = [
     {
       icon: Phone,
-      label: 'Call Now',
+      label: 'Submit Form Now',
       colour: 'bg-gradient-to-r from-red-500 to-red-600',
-      action: () => window.open('tel:1300566166'),
+      action: () => window.open('
       size: 'lg' as const,
     },
     {

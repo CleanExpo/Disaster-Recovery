@@ -257,7 +257,7 @@ export class MockDataFactory {
           state: location.state,
           postcode: location.postcode
         },
-        contactNumber: faker.phone.number('04## ### ###'),
+        contactNumber: faker.email.number('04## ### ###'),
         email: faker.internet.email()
       },
       disaster: {
