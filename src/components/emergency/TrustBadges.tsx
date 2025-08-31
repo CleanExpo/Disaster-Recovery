@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Shield, Award, Certificate, BadgeCheck, Briefcase } from 'lucide-react'
+import { Shield, Award, FileCheck, BadgeCheck, Briefcase } from 'lucide-react'
 
 export default function TrustBadges() {
   const certifications = [
@@ -17,7 +17,7 @@ export default function TrustBadges() {
       description: 'Restoration Industry Association'
     },
     { 
-      icon: Certificate,
+      icon: FileCheck,
       name: 'All Insurers Approved',
       description: 'Preferred Partner Status'
     },
