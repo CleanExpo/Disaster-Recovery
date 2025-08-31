@@ -170,7 +170,7 @@ function generateRefundEmail(
           <p>If you have any questions about your refund, please contact us at:</p>
           <ul>
             <li>Email: support@disasterrecovery.com.au</li>
-            <li>Online Form: Online Form Available 24/7</li>
+            <li>email: Online Form Available 24/7</li>
           </ul>
           
           <p>Thank you for your understanding.</p>

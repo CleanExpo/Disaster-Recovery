@@ -35,7 +35,7 @@ export const emailTemplates = {
               <td style="padding: 8px 0;">${leadData.fullName}</td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; colour: #666;"><strong>Online Form:</strong></td>
+              <td style="padding: 8px 0; colour: #666;"><strong>email:</strong></td>
               <td style="padding: 8px 0;">${leadData.email}</td>
             </tr>
             <tr>
@@ -202,7 +202,7 @@ export const emailTemplates = {
               <td style="padding: 10px; border: 1px solid #ddd;">${leadData.fullName}</td>
             </tr>
             <tr>
-              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Online Form:</strong></td>
+              <td style="padding: 10px; border: 1px solid #ddd;"><strong>email:</strong></td>
               <td style="padding: 10px; border: 1px solid #ddd;">
                 <a href="#contact-form" style="colour: #0052CC; font-weight: bold;">${leadData.email}</a>
               </td>

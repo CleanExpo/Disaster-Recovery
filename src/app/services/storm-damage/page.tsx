@@ -665,7 +665,7 @@ export default function StormDamagePage() {
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Contact Us Online Immediately</h3>
             <ul className="text-neutral-700 text-sm space-y-1">
-              <li>• Online Form: Contact Us</li>
+              <li>• email: Contact Us</li>
               <li>• 24/7 emergency response</li>
               <li>• Immediate dispatch</li>
               <li>• Professional assessment</li>

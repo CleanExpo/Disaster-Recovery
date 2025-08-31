@@ -111,7 +111,7 @@ export default function AffiliateSignup() {
     contactName: '',
     contactRole: '',
     contactEmail: '',
-    contactOnline Form: '',
+    contactemail: '',
     street1: '',
     street2: '',
     city: '',
@@ -373,7 +373,7 @@ export default function AffiliateSignup() {
                 <input
                   type="tel"
                   value={formData.contactPhone}
-                  onChange={(e) => setFormData({ ...formData, contactOnline Form: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, contactemail: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                 />
               </div>

@@ -435,7 +435,7 @@ export const generateCategorySchema = (category: GMBCategory, location?: string)
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: 'https://disasterrecovery.com.au',
-      serviceOnline Form: '24/7 Emergency Line',
+      servicePhone: '24/7 Emergency Line',
       availableLanguage: 'English'
     },
     provider: {

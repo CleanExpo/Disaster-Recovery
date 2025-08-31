@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Mic
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery',
-  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form'
+  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form',
   keywords: [
     'mould remediation Brisbane',
     'mould removal Queensland',

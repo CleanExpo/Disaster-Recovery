@@ -97,7 +97,7 @@ const TechnicianSyncManager: React.FC = () => {
           logo: '/api/placeholder/100/100',
           website: 'https://eliterestore.com',
           contactEmail: 'info@eliterestore.com',
-          contactOnline Form: 'Contact Form',
+          contactemail: 'Contact Form',
           address: {
             street: '123 Main St',
             suburb: 'Sydney',
@@ -147,7 +147,7 @@ const TechnicianSyncManager: React.FC = () => {
           id: 'COMP002',
           name: 'Rapid Response Team',
           contactEmail: 'info@rapidresponse.com',
-          contactOnline Form: 'Contact Form',
+          contactemail: 'Contact Form',
           address: {
             suburb: 'Melbourne',
             state: 'VIC',
@@ -180,7 +180,7 @@ const TechnicianSyncManager: React.FC = () => {
           id: 'COMP003',
           name: 'Premier Services',
           contactEmail: 'info@premier.com',
-          contactOnline Form: 'Contact Form',
+          contactemail: 'Contact Form',
           address: {
             suburb: 'Brisbane',
             state: 'QLD',

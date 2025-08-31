@@ -200,7 +200,7 @@ export interface EmergencyServiceSchema {
   availableChannel: {
     '@type': 'ServiceChannel';
     serviceUrl: string;
-    serviceOnline Form: string;
+    servicePhone: string;
     availableLanguage: {
       '@type': 'Language';
       name: string;
@@ -364,7 +364,7 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: 'https://disasterrecovery.com.au/emergency',
-      serviceOnline Form: '+61-1300-DISASTER',
+      servicePhone: '+61-1300-DISASTER',
       availableLanguage: {
         '@type': 'Language',
         name: 'English'

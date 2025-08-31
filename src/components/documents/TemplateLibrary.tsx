@@ -75,7 +75,7 @@ This Network Participation Agreement ("Agreement") is entered into between Natio
 1. CONTRACTOR INFORMATION
    Company Name: {{company_name}}
    Address: {{company_address}}
-   Online Form: {{company_phone}}
+   email: {{company_phone}}
    Email: {{company_email}}
    License Number: {{license_number}}
 

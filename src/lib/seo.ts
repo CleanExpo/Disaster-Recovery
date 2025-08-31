@@ -183,7 +183,7 @@ export const generateServiceSchema = (service: {
   availableChannel: service.availableChannel || {
     '@type': 'ServiceChannel',
     serviceUrl: 'https://disasterrecovery.com.au/emergency-service',
-    serviceOnline Form: '1300 309 361',
+    servicePhone: '1300 309 361',
     availableLanguage: {
       '@type': 'Language',
       name: 'English',

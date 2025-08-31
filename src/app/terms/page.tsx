@@ -167,7 +167,7 @@ export default function TermsOfService() {
             <div className="bg-gray-50 p-4 rounded-lg text-gray-700">
               <p className="font-semibold">Disaster Recovery</p>
               <p>Email: legal@disasterrecovery.com.au</p>
-              <p>Online Form: Online Form Available 24/7</p>
+              <p>email: Online Form Available 24/7</p>
               <p>Address: Brisbane, Australia</p>
               <p>ABN: [To be provided]</p>
             </div>

@@ -344,7 +344,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
     html += `
           <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: centre; colour: #666; font-size: 12px;">
             <p>Elite Restoration Co • 123 Main St, Sydney NSW 2000</p>
-            <p>Online Form: Contact Form • Email: info@eliterestore.com</p>
+            <p>email: Contact Form • Email: info@eliterestore.com</p>
           </div>
         </div>
       </body>

@@ -53,7 +53,7 @@ export interface CompanyInfo {
   logo?: string;
   website?: string;
   contactEmail: string;
-  contactOnline Form: string;
+  contactemail: string;
   address: Address;
 }
 
@@ -371,7 +371,7 @@ export interface NotificationSettings {
 }
 
 export interface PrivacySettings {
-  shareOnline Form: boolean;
+  shareemail: boolean;
   shareAddress: boolean;
   shareEmail: boolean;
   allowPhotos: boolean;

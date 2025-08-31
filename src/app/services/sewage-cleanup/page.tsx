@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertOctagon, Droplets, Home, AlertTriangle, Chec
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Sewage Cleanup Brisbane | Emergency Sewage Removal & Sanitization | Disaster Recovery',
-  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form'
+  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form',
   keywords: [
     'sewage cleanup Brisbane',
     'sewage backup cleanup',

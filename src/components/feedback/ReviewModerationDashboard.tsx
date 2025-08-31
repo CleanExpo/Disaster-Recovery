@@ -69,7 +69,7 @@ export default function ReviewModerationDashboard() {
         customerId: 'cust-1',
         customerName: 'John Smith',
         customerEmail: 'john.smith@email.com',
-        customerOnline Form: 'Contact Form',
+        customeremail: 'Contact Form',
         jobType: 'water_damage',
         completedDate: new Date('2024-03-10'),
         submittedDate: new Date('2024-03-15'),

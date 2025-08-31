@@ -11,7 +11,7 @@ import { Phone, Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Heart, Sh
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Biohazard Cleaning Brisbane | Crime Scene & Trauma Cleanup | Disaster Recovery',
-  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Use Our Online Form'
+  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police & insurance approved. Use Our Online Form',
   keywords: [
     'biohazard cleaning Brisbane',
     'crime scene cleanup Queensland',
