@@ -15,7 +15,7 @@ export default function MoretonBayFloodServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Moreton Bay Flood Services',
     description: 'Professional moreton bay flood services services in Queensland. 24/7 emergency response for northern flooding, bay area.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

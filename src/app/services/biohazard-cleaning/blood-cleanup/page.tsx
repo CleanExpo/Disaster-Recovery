@@ -15,7 +15,7 @@ export default function BloodSpillCleanupServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Blood Spill Cleanup Services',
     description: 'Professional blood spill cleanup services services in Queensland. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

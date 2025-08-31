@@ -15,7 +15,7 @@ export default function CarpetMouldRemediationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Carpet Mould Remediation',
     description: 'Professional carpet mould remediation services in Queensland. 24/7 emergency response for mouldy carpet, underlay mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

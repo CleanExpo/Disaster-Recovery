@@ -15,7 +15,7 @@ export default function GreyWaterDamageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Grey Water Damage Cleanup',
     description: 'Professional grey water damage cleanup services in Queensland. 24/7 emergency response for washing machine water, sink overflow.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

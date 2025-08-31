@@ -15,7 +15,7 @@ export default function AntiqueWaterDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Antique Water Damage Restoration',
     description: 'Professional antique water damage restoration services in Queensland. 24/7 emergency response for heritage items, valuable restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function ChimneyFireDamageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Chimney Fire Damage Cleanup',
     description: 'Professional chimney fire damage cleanup services in Queensland. 24/7 emergency response for flue fire, chimney restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

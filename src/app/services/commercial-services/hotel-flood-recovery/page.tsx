@@ -15,7 +15,7 @@ export default function HotelFloodRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Hotel Flood Restoration',
     description: 'Professional hotel flood restoration services in Queensland. 24/7 emergency response for accommodation flooding, guest room water.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

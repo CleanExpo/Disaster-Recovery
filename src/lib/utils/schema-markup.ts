@@ -17,7 +17,7 @@ export interface OrganizationSchema {
   };
   contactPoint: {
     '@type': 'ContactPoint';
-    tele
+    telephone: "",
     contactType: string;
     areaServed: string;
     availableLanguage: string;
@@ -231,7 +231,7 @@ export function generateOrganizationSchema(): OrganizationSchema {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      tele
+      telephone: "",
       contactType: 'Emergency Services',
       areaServed: 'AU',
       availableLanguage: 'English'
@@ -360,7 +360,7 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     '@type': 'EmergencyService',
     name: '24/7 Emergency Disaster Response',
     description: 'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation nationwide',
-    tele
+    telephone: "",
     availableChannel: {
       '@type': 'ServiceChannel',
       serviceUrl: 'https://disasterrecovery.com.au/emergency',

@@ -15,7 +15,7 @@ export default function MarineWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Marine Water Damage',
     description: 'Professional marine water damage services in Queensland. 24/7 emergency response for boat flooding, yacht restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

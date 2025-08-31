@@ -15,7 +15,7 @@ export default function EmergencyStructuralDryingPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Emergency Structural Drying',
     description: 'Professional emergency structural drying services in Queensland. 24/7 emergency response for rapid drying, moisture removal.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

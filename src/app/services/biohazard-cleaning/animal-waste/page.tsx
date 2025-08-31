@@ -15,7 +15,7 @@ export default function AnimalWasteCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Animal Waste Cleanup',
     description: 'Professional animal waste cleanup services in Queensland. 24/7 emergency response for pet hoarding, feces removal.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

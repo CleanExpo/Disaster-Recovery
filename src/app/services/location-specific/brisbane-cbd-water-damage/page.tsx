@@ -15,7 +15,7 @@ export default function BrisbaneCBDWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Brisbane CBD Water Damage',
     description: 'Professional brisbane cbd water damage services in Queensland. 24/7 emergency response for city flooding, downtown Brisbane.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

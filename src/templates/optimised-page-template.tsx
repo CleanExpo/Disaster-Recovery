@@ -127,7 +127,7 @@ export function generateAustralianMetadata({
     formatDetection: {
       email: false,
       address: false,
-      tele
+      telephone: "",
     },
     openGraph: {
       title,
@@ -186,7 +186,7 @@ export function generateAustralianSchema({
     name: serviceName,
     description,
     url,
-    tele
+    telephone: "",
     areaServed: {
       '@type': 'Country',
       name: 'Australia',

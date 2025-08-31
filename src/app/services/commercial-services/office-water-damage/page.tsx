@@ -15,7 +15,7 @@ export default function OfficeWaterDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Office Water Damage Restoration',
     description: 'Professional office water damage restoration services in Queensland. 24/7 emergency response for commercial flooding, workplace water.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

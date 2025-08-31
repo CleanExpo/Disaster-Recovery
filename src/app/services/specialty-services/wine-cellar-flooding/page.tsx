@@ -15,7 +15,7 @@ export default function WineCellarFloodRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Wine Cellar Flood Recovery',
     description: 'Professional wine cellar flood recovery services in Queensland. 24/7 emergency response for wine storage, cellar water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

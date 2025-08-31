@@ -15,7 +15,7 @@ export default function CeilingWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Ceiling Water Damage Specialists',
     description: 'Expert ceiling water damage repair and restoration in Queensland. Emergency response for ceiling leaks, sagging, and collapse prevention.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

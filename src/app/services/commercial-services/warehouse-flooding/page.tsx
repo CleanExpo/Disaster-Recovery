@@ -15,7 +15,7 @@ export default function WarehouseFloodCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Warehouse Flood Cleanup',
     description: 'Professional warehouse flood cleanup services in Queensland. 24/7 emergency response for industrial flooding, storage water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

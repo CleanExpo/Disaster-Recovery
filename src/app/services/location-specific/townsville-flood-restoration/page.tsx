@@ -15,7 +15,7 @@ export default function TownsvilleFloodRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Townsville Flood Restoration',
     description: 'Professional townsville flood restoration services in Queensland. 24/7 emergency response for north QLD flooding, tropical recovery.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

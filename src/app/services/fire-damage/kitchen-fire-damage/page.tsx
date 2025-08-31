@@ -15,7 +15,7 @@ export default function KitchenFireDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Kitchen Fire Damage Restoration',
     description: 'Professional kitchen fire damage restoration services in Queensland. 24/7 emergency response for cooking fire, kitchen smoke damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

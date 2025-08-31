@@ -15,7 +15,7 @@ export default function ElectricalFireDamageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Electrical Fire Damage Cleanup',
     description: 'Professional electrical fire damage cleanup services in Queensland. 24/7 emergency response for wiring fire, electrical burn damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

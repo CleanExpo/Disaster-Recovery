@@ -15,7 +15,7 @@ export default function EmergencySanitizationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Emergency Sanitization',
     description: 'Professional emergency sanitization services in Queensland. 24/7 emergency response for urgent disinfection, contamination control.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

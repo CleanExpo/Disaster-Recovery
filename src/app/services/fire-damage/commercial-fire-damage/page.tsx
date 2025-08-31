@@ -15,7 +15,7 @@ export default function CommercialFireRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Commercial Fire Restoration',
     description: 'Professional commercial fire restoration services in Queensland. 24/7 emergency response for business fire, office fire damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

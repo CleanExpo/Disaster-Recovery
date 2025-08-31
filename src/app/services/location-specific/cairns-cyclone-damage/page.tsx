@@ -15,7 +15,7 @@ export default function CairnsCycloneRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Cairns Cyclone Recovery',
     description: 'Professional cairns cyclone recovery services in Queensland. 24/7 emergency response for tropical damage, FNQ restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function FactoryFloodRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Factory Flood Recovery',
     description: 'Professional factory flood recovery services in Queensland. 24/7 emergency response for manufacturing plant, industrial water.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

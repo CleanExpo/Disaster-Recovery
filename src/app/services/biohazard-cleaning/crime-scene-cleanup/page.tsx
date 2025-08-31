@@ -15,7 +15,7 @@ export default function CrimeSceneCleanupBrisbanePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Crime Scene Cleanup Brisbane',
     description: 'Professional crime scene cleanup brisbane services in Queensland. 24/7 emergency response for forensic cleaning, trauma cleanup.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

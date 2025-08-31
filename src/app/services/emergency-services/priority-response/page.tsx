@@ -15,7 +15,7 @@ export default function PriorityEmergencyResponsePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Priority Emergency Response',
     description: 'Professional priority emergency response services in Queensland. 24/7 emergency response for rapid deployment, first response.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

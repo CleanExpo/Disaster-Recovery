@@ -15,7 +15,7 @@ export default function EmergencyPowerSolutionsPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Emergency Power Solutions',
     description: 'Professional emergency power solutions services in Queensland. 24/7 emergency response for generators, temporary power.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function IpswichFloodRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Ipswich Flood Recovery',
     description: 'Professional ipswich flood recovery services in Queensland. 24/7 emergency response for western flooding, Ipswich restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

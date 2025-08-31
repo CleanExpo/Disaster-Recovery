@@ -15,7 +15,7 @@ export default function ShowerLeakWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Shower Leak Water Damage',
     description: 'Professional shower leak water damage services in Queensland. 24/7 emergency response for shower pan leak, bathroom flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

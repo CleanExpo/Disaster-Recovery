@@ -15,7 +15,7 @@ export default function GarageFireRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Garage Fire Restoration',
     description: 'Professional garage fire restoration services in Queensland. 24/7 emergency response for vehicle fire, garage smoke damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

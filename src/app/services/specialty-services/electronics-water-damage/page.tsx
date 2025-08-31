@@ -15,7 +15,7 @@ export default function ElectronicsWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Electronics Water Damage',
     description: 'Professional electronics water damage services in Queensland. 24/7 emergency response for computer water damage, device recovery.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

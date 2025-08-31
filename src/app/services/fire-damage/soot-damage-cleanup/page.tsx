@@ -15,7 +15,7 @@ export default function SootDamageCleaningPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Soot Damage Cleaning',
     description: 'Professional soot damage cleaning services in Queensland. 24/7 emergency response for soot removal, carbon cleaning.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

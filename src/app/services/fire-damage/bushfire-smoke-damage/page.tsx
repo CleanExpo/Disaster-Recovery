@@ -15,7 +15,7 @@ export default function BushfireSmokeDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Bushfire Smoke Damage',
     description: 'Professional bushfire smoke damage services in Queensland. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

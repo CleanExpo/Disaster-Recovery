@@ -15,7 +15,7 @@ export default function RestaurantWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Restaurant Water Damage',
     description: 'Professional restaurant water damage services in Queensland. 24/7 emergency response for kitchen flooding, hospitality water.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

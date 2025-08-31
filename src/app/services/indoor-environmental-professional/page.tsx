@@ -15,7 +15,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Indoor Environmental Professional Services',
     description: 'Certified Indoor Environmental Professionals (IEP) providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting nationwide.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function TwentyFourHourWaterExtractionPage() {
   const businessInfo = {
     name: 'Disaster Recovery - 24 Hour Water Extraction',
     description: 'Professional 24 hour water extraction services in Queensland. 24/7 emergency response for emergency pumping, rapid extraction.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

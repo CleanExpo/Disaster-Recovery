@@ -15,7 +15,7 @@ export default function CrawlSpaceMouldTreatmentPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Crawl Space Mould Treatment',
     description: 'Professional crawl space mould treatment services in Queensland. 24/7 emergency response for subfloor mould, under house mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

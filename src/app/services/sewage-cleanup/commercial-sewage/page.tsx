@@ -15,7 +15,7 @@ export default function CommercialSewageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Commercial Sewage Cleanup',
     description: 'Professional commercial sewage cleanup services in Queensland. 24/7 emergency response for business sewage, workplace contamination.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

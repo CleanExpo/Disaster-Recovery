@@ -15,7 +15,7 @@ export default function TornadoDamageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Tornado Damage Cleanup',
     description: 'Professional tornado damage cleanup services in Queensland. 24/7 emergency response for twister damage, severe wind.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -407,7 +407,7 @@ export const LINKING_STRATEGY = {
         '@type': 'LocalBusiness',
         name: BUSINESS_NAME,
         url: 'https://disasterrecovery.com.au',
-        tele
+        telephone: "",
         address: {
           '@type': 'PostalAddress',
           addressCountry: 'AU'

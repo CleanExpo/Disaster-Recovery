@@ -15,7 +15,7 @@ export default function BlackMouldRemovalBrisbanePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Black Mould Removal Brisbane',
     description: 'Professional black mould removal brisbane services in Queensland. 24/7 emergency response for toxic black mould, stachybotrys removal.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

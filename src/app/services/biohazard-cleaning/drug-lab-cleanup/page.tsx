@@ -15,7 +15,7 @@ export default function DrugLabDecontaminationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Drug Lab Decontamination',
     description: 'Professional drug lab decontamination services in Queensland. 24/7 emergency response for meth lab cleanup, chemical remediation.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

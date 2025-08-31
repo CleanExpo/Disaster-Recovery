@@ -15,7 +15,7 @@ export default function SchoolWaterDamageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - School Water Damage Cleanup',
     description: 'Professional school water damage cleanup services in Queensland. 24/7 emergency response for education facility, classroom flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

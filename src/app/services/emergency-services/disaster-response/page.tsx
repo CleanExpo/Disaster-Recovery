@@ -15,7 +15,7 @@ export default function NaturalDisasterResponsePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Natural Disaster Response',
     description: 'Professional natural disaster response services in Queensland. 24/7 emergency response for catastrophe response, major event.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

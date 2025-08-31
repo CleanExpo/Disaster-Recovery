@@ -15,7 +15,7 @@ export default function SolarPanelWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Solar Panel Water Damage',
     description: 'Professional solar panel water damage services in Queensland. 24/7 emergency response for solar system, panel flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

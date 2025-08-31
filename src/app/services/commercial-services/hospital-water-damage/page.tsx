@@ -15,7 +15,7 @@ export default function HealthcareFacilityWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Healthcare Facility Water Damage',
     description: 'Professional healthcare facility water damage services in Queensland. 24/7 emergency response for medical facility, hospital flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function NeedleSharpsDisposalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Needle & Sharps Disposal',
     description: 'Professional needle & sharps disposal services in Queensland. 24/7 emergency response for syringe cleanup, medical waste.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

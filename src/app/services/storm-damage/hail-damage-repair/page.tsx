@@ -15,7 +15,7 @@ export default function HailDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Hail Damage Restoration',
     description: 'Professional hail damage restoration services in Queensland. 24/7 emergency response for hailstorm damage, ice damage repair.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function BedroomMouldRemediationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Bedroom Mould Remediation',
     description: 'Professional bedroom mould remediation services in Queensland. 24/7 emergency response for sleeping area mould, health risks.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

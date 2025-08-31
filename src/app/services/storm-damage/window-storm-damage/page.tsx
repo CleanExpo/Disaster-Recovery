@@ -15,7 +15,7 @@ export default function StormWindowDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Storm Window Damage',
     description: 'Professional storm window damage services in Queensland. 24/7 emergency response for broken windows, glass damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

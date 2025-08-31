@@ -15,7 +15,7 @@ export default function BodilyFluidCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Bodily Fluid Cleanup',
     description: 'Professional bodily fluid cleanup services in Queensland. 24/7 emergency response for vomit cleanup, human waste.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function WashingMachineFloodDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Washing Machine Flood Damage',
     description: 'Professional washing machine flood damage services in Queensland. 24/7 emergency response for washing machine overflow, laundry flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

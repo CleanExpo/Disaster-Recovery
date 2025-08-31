@@ -15,7 +15,7 @@ export default function DataCenterWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Data Centre Water Damage',
     description: 'Professional data centre water damage services in Queensland. 24/7 emergency response for server room flooding, IT disaster.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

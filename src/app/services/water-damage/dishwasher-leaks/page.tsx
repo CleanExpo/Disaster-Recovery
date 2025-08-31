@@ -15,7 +15,7 @@ export default function DishwasherLeakWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Dishwasher Leak Water Damage',
     description: 'Professional dishwasher leak water damage services in Queensland. 24/7 emergency response for dishwasher flooding, kitchen water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

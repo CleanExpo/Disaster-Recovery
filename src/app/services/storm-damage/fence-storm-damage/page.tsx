@@ -15,7 +15,7 @@ export default function FenceStormDamageRepairPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Fence Storm Damage Repair',
     description: 'Professional fence storm damage repair services in Queensland. 24/7 emergency response for fence repair, boundary damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

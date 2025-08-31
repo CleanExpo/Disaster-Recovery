@@ -15,7 +15,7 @@ export default function HotWaterSystemBurstDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Hot Water System Burst Damage',
     description: 'Professional hot water system burst damage services in Queensland. 24/7 emergency response for hot water tank leak, heater flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

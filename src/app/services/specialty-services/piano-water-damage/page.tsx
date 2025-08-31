@@ -15,7 +15,7 @@ export default function PianoWaterDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Piano Water Damage Restoration',
     description: 'Professional piano water damage restoration services in Queensland. 24/7 emergency response for musical instrument, piano flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

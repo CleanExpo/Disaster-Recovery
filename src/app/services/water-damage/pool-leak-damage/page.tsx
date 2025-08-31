@@ -15,7 +15,7 @@ export default function PoolLeakPropertyDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Pool Leak Property Damage',
     description: 'Professional pool leak property damage services in Queensland. 24/7 emergency response for swimming pool leak, pool water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

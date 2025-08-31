@@ -15,7 +15,7 @@ export default function EmergencyBoardUpServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Emergency Board Up Services',
     description: 'Professional emergency board up services services in Queensland. 24/7 emergency response for security boarding, window boarding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

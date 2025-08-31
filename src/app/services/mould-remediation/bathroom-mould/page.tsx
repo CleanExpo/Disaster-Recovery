@@ -15,7 +15,7 @@ export default function BathroomMouldRemediationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Bathroom Mould Remediation',
     description: 'Professional bathroom mould remediation services in Queensland. 24/7 emergency response for shower mould, bathroom ceiling mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

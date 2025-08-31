@@ -15,7 +15,7 @@ export default function SewageDecontaminationServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Sewage Decontamination Services',
     description: 'Professional sewage decontamination services services in Queensland. 24/7 emergency response for sanitization, bacterial cleanup.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

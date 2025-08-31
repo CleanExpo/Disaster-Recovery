@@ -15,7 +15,7 @@ export default function FireDamagedContentsRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Fire Damaged Contents Restoration',
     description: 'Professional fire damaged contents restoration services in Queensland. 24/7 emergency response for belongings restoration, document recovery.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

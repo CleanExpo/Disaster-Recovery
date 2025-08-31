@@ -15,7 +15,7 @@ export default function HoardingCleanupServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Hoarding Cleanup Services',
     description: 'Professional hoarding cleanup services services in Queensland. 24/7 emergency response for hoarder house, extreme cleaning.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

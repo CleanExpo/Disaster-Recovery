@@ -15,7 +15,7 @@ export default function GymFitnessCenterFloodingPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Gym & Fitness Centre Flooding',
     description: 'Professional gym & fitness centre flooding services in Queensland. 24/7 emergency response for sports facility, gym water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

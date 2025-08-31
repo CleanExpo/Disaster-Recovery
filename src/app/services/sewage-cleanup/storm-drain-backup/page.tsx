@@ -15,7 +15,7 @@ export default function StormDrainSewageBackupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Storm Drain Sewage Backup',
     description: 'Professional storm drain sewage backup services in Queensland. 24/7 emergency response for stormwater overflow, drain flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

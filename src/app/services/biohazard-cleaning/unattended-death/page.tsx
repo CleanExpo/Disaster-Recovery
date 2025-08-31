@@ -15,7 +15,7 @@ export default function UnattendedDeathCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Unattended Death Cleanup',
     description: 'Professional unattended death cleanup services in Queensland. 24/7 emergency response for decomposition cleanup, deceased estate.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

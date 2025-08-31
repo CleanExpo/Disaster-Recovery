@@ -15,7 +15,7 @@ export default function WindDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Wind Damage Restoration',
     description: 'Professional wind damage restoration services in Queensland. 24/7 emergency response for cyclone damage, storm wind repair.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

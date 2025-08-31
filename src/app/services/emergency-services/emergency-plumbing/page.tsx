@@ -15,7 +15,7 @@ export default function EmergencyPlumbingServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Emergency Plumbing Services',
     description: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

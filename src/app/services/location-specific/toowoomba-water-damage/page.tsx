@@ -15,7 +15,7 @@ export default function ToowoombaWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Toowoomba Water Damage',
     description: 'Professional toowoomba water damage services in Queensland. 24/7 emergency response for highlands flooding, mountain damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

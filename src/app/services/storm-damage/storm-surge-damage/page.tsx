@@ -15,7 +15,7 @@ export default function StormSurgeFloodDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Storm Surge Flood Damage',
     description: 'Professional storm surge flood damage services in Queensland. 24/7 emergency response for coastal flooding, tidal damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function BasementSewageFloodingPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Basement Sewage Flooding',
     description: 'Professional basement sewage flooding services in Queensland. 24/7 emergency response for lower level sewage, underground backup.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

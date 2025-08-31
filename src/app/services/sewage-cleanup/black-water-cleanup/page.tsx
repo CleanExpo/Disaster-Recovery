@@ -15,7 +15,7 @@ export default function BlackWaterContaminationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Black Water Contamination',
     description: 'Professional black water contamination services in Queensland. 24/7 emergency response for category 3 water, hazardous sewage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

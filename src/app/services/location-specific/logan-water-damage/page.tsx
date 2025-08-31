@@ -15,7 +15,7 @@ export default function LoganWaterDamageServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Logan Water Damage Services',
     description: 'Professional logan water damage services services in Queensland. 24/7 emergency response for Logan flooding, southern Brisbane.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

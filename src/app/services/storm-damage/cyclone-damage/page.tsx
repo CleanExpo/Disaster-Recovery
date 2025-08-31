@@ -15,7 +15,7 @@ export default function CycloneDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Cyclone Damage Restoration',
     description: 'Professional cyclone damage restoration services in Queensland. 24/7 emergency response for tropical cyclone, hurricane damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

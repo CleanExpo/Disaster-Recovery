@@ -15,7 +15,7 @@ export default function TimberMouldTreatmentPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Timber Mould Treatment',
     description: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

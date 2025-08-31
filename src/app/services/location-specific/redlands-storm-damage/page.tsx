@@ -15,7 +15,7 @@ export default function RedlandsStormDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Redlands Storm Damage',
     description: 'Professional redlands storm damage services in Queensland. 24/7 emergency response for bayside damage, island restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

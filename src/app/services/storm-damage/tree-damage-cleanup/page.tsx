@@ -15,7 +15,7 @@ export default function FallenTreeDamageCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Fallen Tree Damage Cleanup',
     description: 'Professional fallen tree damage cleanup services in Queensland. 24/7 emergency response for tree removal, storm tree damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

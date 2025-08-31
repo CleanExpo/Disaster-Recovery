@@ -15,7 +15,7 @@ export default function SepticTankOverflowCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Septic Tank Overflow Cleanup',
     description: 'Professional septic tank overflow cleanup services in Queensland. 24/7 emergency response for septic backup, tank overflow.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

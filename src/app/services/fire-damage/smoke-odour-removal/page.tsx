@@ -15,7 +15,7 @@ export default function SmokeOdourRemovalServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Smoke Odour Removal Services',
     description: 'Professional smoke odour removal services services in Queensland. 24/7 emergency response for smoke smell, fire odour elimination.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

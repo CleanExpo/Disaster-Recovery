@@ -15,7 +15,7 @@ export default function SuicideCleanupServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Suicide Cleanup Services',
     description: 'Professional suicide cleanup services services in Queensland. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

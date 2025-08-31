@@ -15,7 +15,7 @@ export default function GreaseTrapOverflowPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Grease Trap Overflow',
     description: 'Professional grease trap overflow services in Queensland. 24/7 emergency response for commercial kitchen, grease spill.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

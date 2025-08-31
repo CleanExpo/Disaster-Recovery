@@ -15,7 +15,7 @@ export default function GarageFloodCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Garage Flood Cleanup',
     description: 'Professional garage flood cleanup services in Queensland. 24/7 emergency response for garage water damage, carport flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

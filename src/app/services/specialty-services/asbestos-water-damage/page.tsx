@@ -15,7 +15,7 @@ export default function AsbestosWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Asbestos Water Damage',
     description: 'Professional asbestos water damage services in Queensland. 24/7 emergency response for wet asbestos, contaminated materials.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

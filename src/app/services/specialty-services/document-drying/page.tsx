@@ -15,7 +15,7 @@ export default function DocumentWaterDamageRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Document Water Damage Recovery',
     description: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

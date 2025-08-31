@@ -15,7 +15,7 @@ export default function RoofLeakWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Roof Leak Water Damage',
     description: 'Professional roof leak water damage services in Queensland. 24/7 emergency response for roof leaking, storm water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

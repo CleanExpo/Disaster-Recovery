@@ -15,7 +15,7 @@ export default function AirConditioningMouldRemovalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Air Conditioning Mould Removal',
     description: 'Professional air conditioning mould removal services in Queensland. 24/7 emergency response for AC duct mould, HVAC contamination.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

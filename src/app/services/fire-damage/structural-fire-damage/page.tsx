@@ -15,7 +15,7 @@ export default function StructuralFireDamageRepairPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Structural Fire Damage Repair',
     description: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

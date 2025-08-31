@@ -15,7 +15,7 @@ export default function CrawlSpaceWaterRemovalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Crawl Space Water Removal',
     description: 'Professional crawl space water removal services in Queensland. 24/7 emergency response for under house flooding, subfloor water.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

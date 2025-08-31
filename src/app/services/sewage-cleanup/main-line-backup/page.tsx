@@ -15,7 +15,7 @@ export default function MainSewerLineBackupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Main Sewer Line Backup',
     description: 'Professional main sewer line backup services in Queensland. 24/7 emergency response for sewer blockage, main drain backup.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

@@ -15,7 +15,7 @@ export default function FlashFloodDamageRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Flash Flood Damage Recovery',
     description: 'Professional flash flood damage recovery services in Queensland. 24/7 emergency response for flood cleanup, storm flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

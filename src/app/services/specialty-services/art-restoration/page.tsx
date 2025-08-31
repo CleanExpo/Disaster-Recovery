@@ -15,7 +15,7 @@ export default function WaterDamagedArtRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Water Damaged Art Restoration',
     description: 'Professional water damaged art restoration services in Queensland. 24/7 emergency response for painting restoration, artwork recovery.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

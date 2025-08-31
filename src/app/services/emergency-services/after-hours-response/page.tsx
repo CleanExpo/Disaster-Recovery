@@ -15,7 +15,7 @@ export default function AfterHoursEmergencyResponsePage() {
   const businessInfo = {
     name: 'Disaster Recovery - After Hours Emergency Response',
     description: 'Professional after hours emergency response services in Queensland. 24/7 emergency response for night emergency, weekend service.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

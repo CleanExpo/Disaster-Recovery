@@ -15,7 +15,7 @@ export default function RetailStoreFloodRecoveryPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Retail Store Flood Recovery',
     description: 'Professional retail store flood recovery services in Queensland. 24/7 emergency response for shop flooding, retail water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

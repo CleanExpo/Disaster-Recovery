@@ -15,7 +15,7 @@ export default function WallCavityMouldRemovalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Wall Cavity Mould Removal',
     description: 'Professional wall cavity mould removal services in Queensland. 24/7 emergency response for inside wall mould, hidden mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

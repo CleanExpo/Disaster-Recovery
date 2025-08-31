@@ -15,7 +15,7 @@ export default function BurstPipesPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Burst Pipe Emergency Services',
     description: 'Emergency burst pipe repair and water damage restoration in Queensland. 24/7 response for pipe bursts, leaks, and flooding.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

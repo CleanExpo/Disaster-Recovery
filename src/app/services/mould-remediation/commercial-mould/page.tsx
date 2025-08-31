@@ -15,7 +15,7 @@ export default function CommercialMouldRemediationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Commercial Mould Remediation',
     description: 'Professional commercial mould remediation services in Queensland. 24/7 emergency response for office mould, workplace mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

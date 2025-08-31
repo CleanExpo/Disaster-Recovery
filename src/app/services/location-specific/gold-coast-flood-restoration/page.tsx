@@ -15,7 +15,7 @@ export default function GoldCoastFloodRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Gold Coast Flood Restoration',
     description: 'Professional gold coast flood restoration services in Queensland. 24/7 emergency response for coastal flooding, beach property.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

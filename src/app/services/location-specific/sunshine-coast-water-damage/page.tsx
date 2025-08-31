@@ -15,7 +15,7 @@ export default function SunshineCoastWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Sunshine Coast Water Damage',
     description: 'Professional sunshine coast water damage services in Queensland. 24/7 emergency response for coastal damage, beach restoration.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

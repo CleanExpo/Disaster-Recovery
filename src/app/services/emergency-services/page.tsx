@@ -15,7 +15,7 @@ export default function EmergencyServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery',
     description: '24/7 emergency disaster response services across Queensland. Immediate response for water, fire, storm, and hazardous material incidents.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

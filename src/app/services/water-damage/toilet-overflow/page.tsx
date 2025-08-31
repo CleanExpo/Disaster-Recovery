@@ -15,7 +15,7 @@ export default function ToiletOverflowCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Toilet Overflow Cleanup',
     description: 'Professional toilet overflow cleanup services in Queensland. 24/7 emergency response for toilet flooding, bathroom water damage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

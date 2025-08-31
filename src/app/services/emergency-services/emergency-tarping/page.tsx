@@ -15,7 +15,7 @@ export default function EmergencyRoofTarpingPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Emergency Roof Tarping',
     description: 'Professional emergency roof tarping services in Queensland. 24/7 emergency response for temporary roof, tarp installation.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

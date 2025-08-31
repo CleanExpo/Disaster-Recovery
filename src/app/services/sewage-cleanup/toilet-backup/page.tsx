@@ -15,7 +15,7 @@ export default function ToiletSewageBackupCleanupPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Toilet Sewage Backup Cleanup',
     description: 'Professional toilet sewage backup cleanup services in Queensland. 24/7 emergency response for toilet overflow, bathroom sewage.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

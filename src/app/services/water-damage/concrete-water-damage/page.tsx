@@ -15,7 +15,7 @@ export default function ConcreteWaterDamageRestorationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Concrete Water Damage Restoration',
     description: 'Professional concrete water damage restoration services in Queensland. 24/7 emergency response for concrete flooding, slab moisture.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

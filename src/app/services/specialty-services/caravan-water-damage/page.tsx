@@ -15,7 +15,7 @@ export default function CaravanWaterDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Caravan Water Damage',
     description: 'Professional caravan water damage services in Queensland. 24/7 emergency response for RV flooding, mobile home water.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

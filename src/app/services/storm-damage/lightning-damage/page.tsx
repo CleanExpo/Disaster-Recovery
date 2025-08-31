@@ -15,7 +15,7 @@ export default function LightningStrikeDamagePage() {
   const businessInfo = {
     name: 'Disaster Recovery - Lightning Strike Damage',
     description: 'Professional lightning strike damage services in Queensland. 24/7 emergency response for electrical surge, lightning fire.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

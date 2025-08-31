@@ -15,7 +15,7 @@ export default function BasementFloodingPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Basement Flooding Specialists',
     description: 'Emergency basement flooding cleanup and restoration in Brisbane. 24/7 water extraction, drying, and flood damage repair services.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

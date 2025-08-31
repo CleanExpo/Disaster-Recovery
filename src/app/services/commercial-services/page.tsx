@@ -15,7 +15,7 @@ export default function CommercialServicesPage() {
   const businessInfo = {
     name: 'Disaster Recovery',
     description: 'Professional commercial restoration services for businesses across Queensland. Minimizing downtime and protecting your business assets.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

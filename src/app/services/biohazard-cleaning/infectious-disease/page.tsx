@@ -15,7 +15,7 @@ export default function InfectiousDiseaseSanitizationPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Infectious Disease Sanitization',
     description: 'Professional infectious disease sanitization services in Queensland. 24/7 emergency response for COVID cleaning, virus disinfection.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',

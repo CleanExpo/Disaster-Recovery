@@ -15,7 +15,7 @@ export default function AtticMouldRemovalPage() {
   const businessInfo = {
     name: 'Disaster Recovery - Attic Mould Removal',
     description: 'Professional attic mould removal services in Queensland. 24/7 emergency response for roof cavity mould, ceiling mould.',
-    tele
+    telephone: "",
     address: {
       streetAddress: 'Servicing All Areas',
       addressLocality: 'Brisbane',
