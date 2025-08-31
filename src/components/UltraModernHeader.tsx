@@ -323,41 +323,56 @@ export default function UltraModernHeader() {
                 transform: isScrolled ? 'scale(0.95)' : 'scale(1)',
                 transition: 'all 0.3s ease',
               }}>
-                {/* Logo icon with modern glass effect */}
+                {/* 3D Logo Style Text - Since images aren't loading */}
                 <div className="relative">
                   <div 
-                    className="absolute inset-0 rounded-xl"
+                    className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl opacity-30"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(255, 69, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%)',
-                      filter: 'blur(8px)',
-                      transform: 'scale(1.2)',
+                      filter: 'blur(10px)',
+                      transform: 'scale(1.15)',
                     }}
                   />
-                  <Image
-                    src="/logos/disaster-recovery-logo.png"
-                    alt="Disaster Recovery"
-                    width={isScrolled ? 50 : 60}
-                    height={isScrolled ? 50 : 60}
-                    className="relative z-10"
+                  <div 
+                    className="relative z-10 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl px-4 py-2 border border-gray-700"
                     style={{
-                      filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
-                      objectFit: 'contain',
-                    }}
-                    priority
-                  />
-                </div>
-                
-                {/* Tagline only - no "Disaster Recovery" text */}
-                <div className="flex flex-col ml-3">
-                  <span 
-                    className="text-[12px] uppercase tracking-[0.2em]"
-                    style={{
-                      color: 'rgba(255, 255, 255, 0.9)',
-                      fontWeight: '600',
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
                     }}
                   >
-                    AI-Powered Restoration Network
-                  </span>
+                    <div className="flex items-center gap-2">
+                      <span 
+                        className="font-black text-3xl"
+                        style={{
+                          background: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFB347 100%)',
+                          WebkitBackgroundClip: 'text',
+                          WebkitTextFillColor: 'transparent',
+                          backgroundClip: 'text',
+                          filter: 'drop-shadow(0 2px 4px rgba(255,107,107,0.4))',
+                          letterSpacing: '-0.03em',
+                        }}
+                      >
+                        DR
+                      </span>
+                      <div className="h-8 w-px bg-gradient-to-b from-transparent via-gray-600 to-transparent" />
+                      <div className="flex flex-col">
+                        <span 
+                          className="text-[10px] uppercase tracking-wider font-semibold"
+                          style={{
+                            color: 'rgba(255, 180, 100, 0.9)',
+                          }}
+                        >
+                          24/7 Emergency
+                        </span>
+                        <span 
+                          className="text-[8px] uppercase tracking-widest"
+                          style={{
+                            color: 'rgba(255, 255, 255, 0.6)',
+                          }}
+                        >
+                          AI-Powered Network
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Link>
