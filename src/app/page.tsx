@@ -127,15 +127,15 @@ export default function EnhancedLandingPage() {
                   </span>
                 </Link>
                 
-                <button 
-                  onClick={() => setVideoModalOpen(true)}
-                  className="group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white font-bold text-lg hover:bg-white/20 transition-all duration-300"
+                <Link 
+                  href="/pitch"
+                  className="group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 inline-block"
                 >
                   <span className="flex items-center justify-center gap-2">
                     <Play className="h-5 w-5" />
-                    Watch Demo
+                    Watch Presentation
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
 

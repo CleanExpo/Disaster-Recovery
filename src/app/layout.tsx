@@ -4,7 +4,7 @@ import Script from 'next/script'
 import '@/styles/globals.css'
 import '@/styles/modern-system.css'
 import { Providers } from './providers'
-import LandingHeader from '@/components/LandingHeader'
+import UltraModernHeader from '@/components/UltraModernHeader'
 import UltraModernFooter from '@/components/UltraModernFooter'
 import DemoModeIndicator from '@/components/DemoModeIndicator'
 import DemoModeBanner from '@/components/demo/DemoModeBanner'
@@ -105,10 +105,11 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/NRP favicon_32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/NRP favicon_16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/NRP favicon_512x512.png" />
+        <link rel="icon" type="image/png" href="/images/optimised/branding/3D Disaster Recovery Logo.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/optimised/branding/3D Disaster Recovery Logo.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/optimised/branding/3D Disaster Recovery Logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/optimised/branding/3D Disaster Recovery Logo.png" />
+        <link rel="shortcut icon" href="/images/optimised/branding/3D Disaster Recovery Logo.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-colour" content="#0052CC" />
       </head>
@@ -116,7 +117,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <LandingHeader />
+          <UltraModernHeader />
           <main id="main-content">
             {children}
           </main>
