@@ -143,6 +143,7 @@
     "jest": "^30.1.1",
     "jest-environment-jsdom": "^30.1.1",
     "p-queue": "^8.1.0",
+    "picomatch": "^4.0.3",
     "playwright": "^1.55.0",
     "postcss": "^8.4.40",
     "prisma": "^5.22.0",
