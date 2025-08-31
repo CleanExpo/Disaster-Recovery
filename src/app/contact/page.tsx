@@ -111,11 +111,11 @@ export default function ModernContactPage() {
         }
       } else {
         console.error('Submission failed:', data.message);
-        alert(`Error: ${data.message}. Please try again or Use Our Online Form
+        alert(`Error: ${data.message}. Please try again or Use Our Online Form`);
       }
     } catch (error) {
       console.error('Network error:', error);
-      alert('Network error. Please check your connection or Use Our Online Form
+      alert('Network error. Please check your connection or Use Our Online Form');
     } finally {
       setIsSubmitting(false);
     }
@@ -332,28 +332,31 @@ export default function ModernContactPage() {
                         Urgency Level *
                       </label>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        {urgencyLevels.map((level) => (
-                          <motion.button
-                            key={level.value}
-                            type="button"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() => handleChange('urgency', level.value)}
-                            className={`relative p-3 rounded-xl border transition-all ${
-                              formData.urgency === level.value
-                                ? 'border-purple-500 bg-purple-500/20'
-                                : 'border-gray-700 bg-gray-900/50 hover:border-gray-600'
-                            }`}
-                          >
-                            {formData.urgency === level.value && (
-                              <motion.div
-                                layoutId="urgency-selector"
-                                className={`absolute inset-0 bg-gradient-to-r ${level.colour} rounded-xl opacity-20`}
-                              />
-                            )}
-                            <span className="relative text-sm font-medium">{level.label}</span>
-                          </motion.button>
-                        ))}
+                        {urgencyLevels.map((level) => {
+                          const buttonClassName = formData.urgency === level.value
+                            ? 'relative p-3 rounded-xl border transition-all border-purple-500 bg-purple-500/20'
+                            : 'relative p-3 rounded-xl border transition-all border-gray-700 bg-gray-900/50 hover:border-gray-600';
+                          const overlayClassName = 'absolute inset-0 bg-gradient-to-r ' + level.colour + ' rounded-xl opacity-20';
+                          
+                          return (
+                            <motion.button
+                              key={level.value}
+                              type="button"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={() => handleChange('urgency', level.value)}
+                              className={buttonClassName}
+                            >
+                              {formData.urgency === level.value && (
+                                <motion.div
+                                  layoutId="urgency-selector"
+                                  className={overlayClassName}
+                                />
+                              )}
+                              <span className="relative text-sm font-medium">{level.label}</span>
+                            </motion.button>
+                          );
+                        })}
                       </div>
                     </div>
 
