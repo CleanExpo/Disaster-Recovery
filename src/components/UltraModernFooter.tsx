@@ -278,7 +278,7 @@ export default function UltraModernFooter() {
               className="group relative bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all hover:scale-105"
             >
               <Image
-                src="/images/logos/3D Clean Claims Logo.png"
+                src="/logos/3D Clean Claims.png"
                 alt="Clean Claims - Strategic Technology Partner"
                 width={150}
                 height={60}

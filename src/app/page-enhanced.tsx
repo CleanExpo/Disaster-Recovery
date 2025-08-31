@@ -476,7 +476,7 @@ export default function EnhancedLandingPage() {
               className="opacity-70 hover:opacity-100 transition-opacity"
             />
             <Image
-              src="/images/logos/3D Clean Claims Logo.png"
+              src="/logos/3D Clean Claims.png"
               alt="Clean Claims Partner"
               width={120}
               height={60}

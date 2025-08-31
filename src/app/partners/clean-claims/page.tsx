@@ -102,7 +102,7 @@ export default function CleanClaimsPartnershipPage() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                 <Image
-                  src="/images/logos/3D Clean Claims Logo.png"
+                  src="/logos/3D Clean Claims.png"
                   alt="Clean Claims - Strategic Technology Partner"
                   width={200}
                   height={80}
@@ -337,7 +337,7 @@ export default function CleanClaimsPartnershipPage() {
             <div className="bg-gradient-to-br from-blue-900/30 to-blue-900/50 backdrop-blur-sm rounded-xl p-8 border border-blue-500/20">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                 <Image
-                  src="/images/logos/3D Clean Claims Logo.png"
+                  src="/logos/3D Clean Claims.png"
                   alt="Clean Claims"
                   width={40}
                   height={40}
@@ -569,7 +569,7 @@ export const generateMetadata = (): Metadata => {
     openGraph: {
       title: 'Clean Claims × Disaster Recovery Partnership',
       description: 'Strategic partnership bringing US restoration technology to Australian disaster recovery market',
-      images: ['/images/logos/3D Clean Claims Logo.png'],
+      images: ['/logos/3D Clean Claims.png'],
       type: 'website',
     },
     twitter: {
