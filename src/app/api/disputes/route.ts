@@ -7,7 +7,7 @@ export interface DisputeRequest {
   contractorId?: string;
   customerName: string;
   customerEmail: string;
-  customerOnline Form: string;
+  customerPhone: string;
   disputeType: 'service_quality' | 'incomplete_work' | 'damage_claim' | 'billing' | 'contractor_conduct' | 'other';
   severity: 'low' | 'medium' | 'high' | 'critical';
   description: string;

@@ -183,7 +183,7 @@ async function handleRegistration(request: NextRequest, validatedData: z.infer<t
           mailingState: validatedData.company.mailingAddress?.state,
           mailingPostcode: validatedData.company.mailingAddress?.postcode,
           directors: JSON.stringify(validatedData.company.directors),
-          officeOnline Form: validatedData.company.officePhone,
+          officeEmail: validatedData.company.officeEmail,
           website: validatedData.company.website
         }
       });

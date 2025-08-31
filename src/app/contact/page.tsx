@@ -49,8 +49,8 @@ export default function ModernContactPage() {
   const contactInfo = [
     {
       icon: <PhoneIcon className="w-6 h-6" />,
-      title: '24/7 Emergency Hotline',
-      value: '1300 123 456',
+      title: '24/7 Emergency Response',
+      value: 'Online Form Available',
       subtext: 'Immediate response',
       colour: 'from-red-500 to-orange-500'
     },

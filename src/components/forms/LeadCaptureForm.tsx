@@ -222,7 +222,7 @@ export default function LeadCaptureForm() {
                 type="tel"
                 required
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, 
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
                 placeholder="Your contact details"
               />
             </div>
