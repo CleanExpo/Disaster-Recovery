@@ -95,7 +95,7 @@ export const HeaderLogo: React.FC<{ darkMode?: boolean }> = ({ darkMode }) => {
     <Logo
       variant="disaster-recovery"
       size="md"
-      showText={true}
+      showText={false}
       darkMode={darkMode}
       className="cursor-pointer hover:opacity-90 transition-opacity"
     />

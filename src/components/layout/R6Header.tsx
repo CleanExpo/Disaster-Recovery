@@ -245,12 +245,12 @@ export default function R6Header() {
             {/* Logo */}
             <Link href="/" className="relative group">
               <Image
-                src="/logo.svg"
+                src="/logos/3D Disaster Recovery Logo Image.png"
                 alt="Disaster Recovery"
-                width={200}
-                height={50}
+                width={60}
+                height={60}
                 priority
-                className="transition-transform duration-300 group-hover:scale-105"
+                className="transition-transform duration-300 group-hover:scale-105 object-contain"
               />
               <div className="absolute -inset-2 bg-gradient-to-r from-[#131cff]/20 to-[#00a0d2]/20 rounded-lg opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10" />
             </Link>

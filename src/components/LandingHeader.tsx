@@ -149,7 +149,6 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                 <div className="absolute inset-0 bg-blue-500 rounded-full blur-xl opacity-0 group-hover:opacity-30 transition-opacity" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">Disaster Recovery</h1>
                 <p className="text-xs text-blue-400">AI-Powered Restoration Network</p>
               </div>
             </Link>
