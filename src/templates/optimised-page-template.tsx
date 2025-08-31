@@ -437,6 +437,9 @@ export const AustralianLocationGrid = ({ serviceSlug }: { serviceSlug: string })
 
 // Export all components and utilities
 export {
+  generateAustralianMetadata,
+  generateAustralianSchema,
+  AUSTRALIAN_CONFIG,
   DataVisualisation,
   EmergencyCTA,
   TrustIndicators,
