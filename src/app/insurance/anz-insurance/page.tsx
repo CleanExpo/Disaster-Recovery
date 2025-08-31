@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Shield, FileCheck, Phone } from 'lucide-react';
+import { Shield, FileCheck,, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function ANZInsuranceInsurancePage() {
           <h1 className="text-4xl font-bold mb-4">ANZ Insurance Insurance Claims</h1>
           <p className="text-xl mb-8">Preferred Provider • Direct Billing • No Upfront Costs</p>
           <Button size="lg" className="bg-green-600 hover:bg-green-700">
-            <Phone className="mr-2" /> Start Your Claim
+            <MessageSquare className="mr-2" /> Start Your Claim
           </Button>
         </div>
       </section>

@@ -21,13 +21,11 @@ import {
   AlertCircle,
   Info,
   Lock,
-  Phone,
   Mail,
   Building,
   FileText,
   Camera,
-  Calendar
-} from 'lucide-react';
+  Calendar, MessageSquare} from 'lucide-react';
 import type { ContractorOnboardingData } from '@/types/contractor';
 
 interface Step4BackgroundProps {
@@ -533,7 +531,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                     Contact Phone <span className="text-red-500">*</span>
                   </Label>
                   <div className="flex items-center gap-2">
-                    <Phone className="h-4 w-4 text-gray-400" />
+                    <MessageSquare className="h-4 w-4 text-gray-400" />
                     <Input
                       type="tel"
                       placeholder="Contact Form"

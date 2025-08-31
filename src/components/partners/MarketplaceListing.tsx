@@ -6,7 +6,6 @@ import {
   Filter,
   Star,
   MapPin,
-  Phone,
   Mail,
   Globe,
   Award,

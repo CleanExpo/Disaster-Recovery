@@ -25,8 +25,7 @@ import {
   ArrowRight,
   BookOpen,
   ExternalLink,
-  Home
-} from 'lucide-react';
+  Home, MessageSquare} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { KnowledgeArticle, ArticleCategory, SearchResult } from '@/types/support';
 
@@ -444,7 +443,7 @@ export function KnowledgeBase() {
                   Email Support
                 </Button>
                 <Button className="w-full justify-start" variant="outline">
-                  <Phone className="h-4 w-4 mr-2" />
+                  <MessageSquare className="h-4 w-4 mr-2" />
                   Call 1300 XXX XXX
                 </Button>
               </CardContent>
@@ -571,5 +570,5 @@ export function KnowledgeBase() {
 }
 
 // Add missing imports
-import { MessageSquare, Mail, Phone } from 'lucide-react';
+import { MessageSquare, Mail,  } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { Phone, Clock, Shield, Droplets, AlertTriangle, Home, ChevronDown, CheckCircle2, ArrowRight, XCircle, AlertCircle, Zap } from 'lucide-react';
+import { , Clock, Shield, Droplets, AlertTriangle, Home, ChevronDown, CheckCircle2, ArrowRight, XCircle, AlertCircle, Zap, MessageSquare} from 'lucide-react';
 
 export default function CeilingWaterDamagePage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -221,7 +221,7 @@ export default function CeilingWaterDamagePage() {
                 className="bg-orange-600 hover:bg-orange-700 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Emergency: 1300 814 870
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-slate-900 hover:bg-slate-50">
@@ -422,7 +422,7 @@ export default function CeilingWaterDamagePage() {
                   className="bg-orange-600 hover:bg-orange-700"
                   onClick={() => setShowQuoteDialog(true)}
                 >
-                  <Phone className="mr-2" />
+                  <MessageSquare className="mr-2" />
                   Get Emergency Help Now
                 </Button>
               </div>
@@ -548,7 +548,7 @@ export default function CeilingWaterDamagePage() {
               className="bg-orange-600 hover:bg-orange-700"
               onClick={() => setShowQuoteDialog(true)}
             >
-              <Phone className="mr-2" />
+              <MessageSquare className="mr-2" />
               Use Our Online Form'
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-slate-900 hover:bg-gray-100">
@@ -573,7 +573,7 @@ export default function CeilingWaterDamagePage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border-2 border-orange-200">
-              <Phone className="h-6 w-6 text-orange-600" />
+              <MessageSquare className="h-6 w-6 text-orange-600" />
               <div>
                 <p className="font-semibold">24/7 Emergency Line</p>
                 <p className="text-2xl font-bold text-orange-600">1300 814 870</p>

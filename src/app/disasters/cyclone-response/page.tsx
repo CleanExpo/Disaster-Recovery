@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { AlertTriangle, Clock, Shield, Phone, MapPin, CheckCircle2, Zap, Users } from 'lucide-react';
+import { AlertTriangle, Clock, Shield, MapPin, CheckCircle2, Zap, Users, MessageSquare} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Cyclone Damage Recovery Services | 24/7 Online Emergency Response | Disaster Recovery',
@@ -44,7 +44,7 @@ export default function CycloneDamageRecoveryPage() {
             </p>
             <div className="flex flex-col md:flex-row gap-4">
               <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Emergency Response Now
               </Button>
               <Button size="lg" variant="outline" className="bg-transparent border-white hover:bg-white hover:text-gray-900">
@@ -172,7 +172,7 @@ export default function CycloneDamageRecoveryPage() {
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
-              <Phone className="mr-2 h-5 w-5" />
+              <MessageSquare className="mr-2 h-5 w-5" />
               Call Online Form Available 24/7 Now
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-red-600">

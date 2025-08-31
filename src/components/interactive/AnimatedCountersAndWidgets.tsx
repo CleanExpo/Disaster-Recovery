@@ -10,11 +10,9 @@ import {
   CheckCircle, 
   Star, 
   Award, 
-  TrendingUp, 
-  Phone,
+  TrendingUp,
   MapPin,
-  Zap
-} from 'lucide-react';
+  Zap, MessageSquare} from 'lucide-react';
 
 // Animated Counter Component
 interface AnimatedCounterProps {
@@ -207,7 +205,7 @@ function LiveAvailabilityWidget() {
           whileTap={{ scale: 0.98 }}
         >
           <div className="flex items-center justify-center space-x-2">
-            <Phone className="h-5 w-5" />
+            <MessageSquare className="h-5 w-5" />
             <span>Submit Form Now - Teams Standing By</span>
           </div>
         </motion.a>

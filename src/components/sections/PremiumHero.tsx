@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { 
-  Phone, 
+  , 
   Shield, 
   Clock, 
   CheckCircle, 
@@ -13,8 +13,7 @@ import {
   Star,
   Award,
   Users,
-  Home
-} from 'lucide-react';
+  Home, MessageSquare} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface HeroProps {
@@ -154,7 +153,7 @@ export default function PremiumHero({
                   "animate-pulse-emergency"
                 )}
               >
-                <Phone className="w-5 h-5" />
+                <MessageSquare className="w-5 h-5" />
                 <span>Call Emergency Line</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>

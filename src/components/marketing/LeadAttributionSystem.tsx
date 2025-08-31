@@ -26,7 +26,6 @@ import {
   Globe,
   Smartphone,
   Mail,
-  Phone,
   Calendar
 } from 'lucide-react';
 import type { 

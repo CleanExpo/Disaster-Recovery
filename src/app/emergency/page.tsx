@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, Phone, DollarSign } from 'lucide-react';
+import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, DollarSign, MessageSquare} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '24/7 Online Emergency Response Times & Fees | After Hours, Weekends, Holidays',
@@ -215,7 +215,7 @@ export default function EmergencyTimesPage() {
             any time, any day. Insurance covers all emergency fees.
           </p>
           <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 text-lg px-8 py-6">
-            <Phone className="mr-2 h-6 w-6" />
+            <MessageSquare className="mr-2 h-6 w-6" />
             Online Form Available 24/7 - 24/7 Emergency Line
           </Button>
         </div>

@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { 
   AlertTriangle, Clock, DollarSign, Scale, Shield, TrendingUp,
-  CheckCircle, ArrowRight, Phone, FileText, Calculator, Eye
-} from 'lucide-react';
+  CheckCircle, ArrowRight, FileText, Calculator, Eye, MessageSquare} from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -212,7 +211,7 @@ export default function RealCostInsuranceDelaysPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/schedule">
                 <Button size="lg" className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600">
-                  <Phone className="mr-2 h-5 w-5" />
+                  <MessageSquare className="mr-2 h-5 w-5" />
                   Get Emergency Response Now
                 </Button>
               </Link>
@@ -509,7 +508,7 @@ export default function RealCostInsuranceDelaysPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 px-8 py-6 text-lg">
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Get Emergency Response Now
               </Button>
             </Link>

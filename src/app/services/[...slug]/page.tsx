@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
 import { Metadata } from 'next';
-import { Phone, MapPin, Clock, CheckCircle, Star, Shield } from 'lucide-react';
+import { , MapPin, Clock, CheckCircle, Star, Shield, MessageSquare} from 'lucide-react';
 import Link from 'next/link';
 
 const prisma = new PrismaClient();
@@ -141,7 +141,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2">
-                    <Phone className="w-5 h-5" />
+                    <MessageSquare className="w-5 h-5" />
                     Get Instant Quote
                   </button>
                   <button className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition">

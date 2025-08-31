@@ -8,7 +8,6 @@ import {
   CheckCircle2, 
   Clock, 
   Shield,
-  Phone,
   FileText,
   Users,
   Zap

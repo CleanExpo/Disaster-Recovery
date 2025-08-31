@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { Phone, Clock, Shield, Wind, Thermometer, Activity, Home, AlertTriangle, CheckCircle2, ArrowRight, Microscope, FileText, Gauge, Heart, Brain } from 'lucide-react';
+import { , Clock, Shield, Wind, Thermometer, Activity, Home, AlertTriangle, CheckCircle2, ArrowRight, Microscope, FileText, Gauge, Heart, Brain, MessageSquare} from 'lucide-react';
 
 export default function IndoorEnvironmentalProfessionalPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -246,7 +246,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
                 className="bg-orange-500 hover:bg-orange-600 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Book IEP Assessment
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-emerald-900 hover:bg-emerald-50">
@@ -566,7 +566,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
               className="bg-orange-500 hover:bg-orange-600"
               onClick={() => setShowQuoteDialog(true)}
             >
-              <Phone className="mr-2" />
+              <MessageSquare className="mr-2" />
               Book IEP Assessment Now
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-emerald-900 hover:bg-emerald-50">
@@ -591,7 +591,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-lg">
-              <Phone className="h-5 w-5 text-emerald-600" />
+              <MessageSquare className="h-5 w-5 text-emerald-600" />
               <div>
                 <p className="font-semibold">Call Our IEP Team</p>
                 <p className="text-2xl font-bold text-emerald-600">1300 814 870</p>

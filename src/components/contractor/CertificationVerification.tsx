@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Upload, Shield, CheckCircle, AlertTriangle, Clock, X, ExternalLink, Phone, Calendar, FileText, Award } from 'lucide-react';
+import { Upload, Shield, CheckCircle, AlertTriangle, Clock, X, ExternalLink, Calendar, FileText, Award } from 'lucide-react';
 import { DocumentUpload } from './DocumentUpload';
 
 interface Certification {

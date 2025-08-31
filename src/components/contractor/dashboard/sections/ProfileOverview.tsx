@@ -16,7 +16,6 @@ import {
   Upload,
   Shield,
   MapPin,
-  Phone,
   Mail,
   Globe,
   Key,

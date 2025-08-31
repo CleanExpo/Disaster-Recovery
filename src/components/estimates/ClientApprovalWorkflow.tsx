@@ -19,7 +19,6 @@ import {
   ThumbsDown,
   RefreshCw,
   Mail,
-  Phone,
   Lock,
   CheckSquare
 } from 'lucide-react';

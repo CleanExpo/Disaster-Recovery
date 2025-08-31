@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { Phone, Clock, Shield, Siren, AlertTriangle, Zap, Droplets, Flame, Wind, Users, CheckCircle2, ArrowRight, MapPin, Car } from 'lucide-react';
+import { , Clock, Shield, Siren, AlertTriangle, Zap, Droplets, Flame, Wind, Users, CheckCircle2, ArrowRight, MapPin, Car, MessageSquare} from 'lucide-react';
 
 export default function EmergencyServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -195,7 +195,7 @@ export default function EmergencyServicesPage() {
                 className="bg-white text-red-900 hover:bg-red-50 shadow-xl"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 h-5 w-5 animate-pulse" />
+                <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
                 EMERGENCY: 1300 814 870
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -541,7 +541,7 @@ export default function EmergencyServicesPage() {
                 className="bg-white text-red-900 hover:bg-gray-100"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 animate-pulse" />
+                <MessageSquare className="mr-2 animate-pulse" />
                 Call Emergency Line Now
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -567,7 +567,7 @@ export default function EmergencyServicesPage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
-              <Phone className="h-6 w-6 text-red-600 animate-pulse" />
+              <MessageSquare className="h-6 w-6 text-red-600 animate-pulse" />
               <div>
                 <p className="font-semibold">Emergency Hotline</p>
                 <p className="text-2xl font-bold text-red-600">1300 814 870</p>

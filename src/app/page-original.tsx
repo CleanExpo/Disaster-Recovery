@@ -6,9 +6,7 @@ import Image from 'next/image';
 import { 
   Shield, Building2, Globe2, Zap, Users, CheckCircle, 
   ArrowRight, Briefcase, Home, Factory, Hospital, Plane,
-  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench,
-  Phone, Clock, Award
-} from 'lucide-react';
+  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench, Clock, Award, MessageSquare} from 'lucide-react';
 import LightningEffect from '@/components/effects/LightningEffect';
 
 // Metadata should be handled in layout.tsx for client components
@@ -225,7 +223,7 @@ export default function ComingSoonPage() {
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center gap-6 mt-12">
             <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
-              <Phone className="h-4 w-4 text-green-400" />
+              <MessageSquare className="h-4 w-4 text-green-400" />
               <span className="text-green-300 text-sm font-medium">24/7 Online Emergency Response</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">

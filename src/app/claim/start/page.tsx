@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Shield, Home, Phone, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send, Upload, Image, X, Info } from 'lucide-react';
+import { Shield, Home, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send, Upload, Image, X, Info } from 'lucide-react';
 import { DEMO_DATA, simulateTyping } from '@/lib/demo-mode';
 
 function ClaimStartContent() {

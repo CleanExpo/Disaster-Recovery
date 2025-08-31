@@ -13,7 +13,6 @@ import {
   Calendar,
   User,
   Building,
-  Phone,
   Mail,
   MapPin,
   Clock,

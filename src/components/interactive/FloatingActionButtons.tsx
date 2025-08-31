@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { 
-  Phone, 
+  , 
   MessageCircle, 
   Mail, 
   MapPin, 

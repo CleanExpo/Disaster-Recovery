@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { DollarSign, Calculator, Phone } from 'lucide-react';
+import { DollarSign, Calculator,  } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {

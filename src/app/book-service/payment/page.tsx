@@ -11,12 +11,10 @@ import {
   ArrowLeft,
   DollarSign,
   Clock,
-  Phone,
   Mail,
   Building2,
   FileText,
-  Info
-} from 'lucide-react';
+  Info, MessageSquare} from 'lucide-react';
 
 function PaymentPageContent() {
   const searchParams = useSearchParams();
@@ -503,7 +501,7 @@ function PaymentPageContent() {
                 <h4 className="font-medium text-blue-900 mb-2">Need Help?</h4>
                 <div className="space-y-2 text-sm">
                   <a href="/contact" className="flex items-center gap-2 text-blue-700 hover:text-blue-800">
-                    <Phone className="h-4 w-4" />
+                    <MessageSquare className="h-4 w-4" />
                     1800 DISASTER
                   </a>
                   <a href="mailto:support@nrp.com.au" className="flex items-center gap-2 text-blue-700 hover:text-blue-800">

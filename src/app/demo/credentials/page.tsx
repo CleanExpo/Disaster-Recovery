@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { 
   Shield, Users, Rocket, Copy, ExternalLink, 
-  CheckCircle, Clock, MapPin, Phone, Mail,
+  CheckCircle, Clock, MapPin, Mail,
   Building2, FileText, DollarSign, AlertCircle
 } from 'lucide-react';
 

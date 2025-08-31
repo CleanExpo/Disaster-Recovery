@@ -7,7 +7,7 @@ import {
   Shield, Building2, Globe2, Zap, Users, CheckCircle, 
   ArrowRight, Briefcase, Home, Factory, Hospital, Plane,
   Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench,
-  Phone, Clock, Award, Star, TrendingUp, Target,
+  Clock, Award, Star, TrendingUp, Target, MessageSquare,
   CheckSquare, FileCheck, DollarSign, MapPin, 
   ChevronRight, Play, X
 } from 'lucide-react';
@@ -210,10 +210,10 @@ export default function EnhancedLandingPage() {
                   1
                 </div>
                 <div className="mt-4">
-                  <Phone className="h-12 w-12 text-blue-400 mb-4" />
+                  <MessageSquare className="h-12 w-12 text-blue-400 mb-4" />
                   <h4 className="text-xl font-bold text-white mb-3">Report Damage</h4>
                   <p className="text-blue-200">
-                    Call or use our AI chat. Instant assessment and contractor matching.
+                    Use our AI chat for instant assessment and contractor matching.
                   </p>
                 </div>
               </div>

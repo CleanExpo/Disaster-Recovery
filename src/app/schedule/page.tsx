@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
-  Calendar, Clock, MapPin, User, Phone, Mail, 
+  Calendar, Clock, MapPin, User, Mail, 
   Briefcase, Home, AlertTriangle, Shield, CheckCircle,
   ChevronLeft, ChevronRight, Loader2, AlertCircle,
-  Building2, FileText, DollarSign, Sparkles
-} from 'lucide-react';
+  Building2, FileText, DollarSign, Sparkles, MessageSquare} from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -682,7 +681,7 @@ export default function SchedulePage() {
                     </label>
                     <div className="grid grid-cols-3 gap-3">
                       {[
-                        { value: 'phone', label: 'Phone', icon: <Phone /> },
+                        { value: 'phone', label: 'Phone', icon: <MessageSquare /> },
                         { value: 'email', label: 'Email', icon: <Mail /> },
                         { value: 'sms', label: 'SMS', icon: <Mail /> }
                       ].map((method) => (

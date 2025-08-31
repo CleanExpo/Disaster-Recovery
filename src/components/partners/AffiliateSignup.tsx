@@ -5,7 +5,6 @@ import {
   Building,
   User,
   Mail,
-  Phone,
   Globe,
   FileText,
   DollarSign,

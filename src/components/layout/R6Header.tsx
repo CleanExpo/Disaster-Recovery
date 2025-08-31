@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { 
-  Phone, 
+  , 
   Menu, 
   X, 
   ChevronDown,
@@ -18,8 +18,7 @@ import {
   Zap,
   Users,
   AlertTriangle,
-  Headphones
-} from 'lucide-react';
+  Headphones, MessageSquare} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { R6Button } from '@/components/ui/r6-button';
 
@@ -217,7 +216,7 @@ export default function R6Header() {
                     : "bg-white/20 text-white hover:bg-white/30"
                 )}
               >
-                <Phone className="w-4 h-4 group-hover:rotate-12 transition-transform" />"
+                <MessageSquare className="w-4 h-4 group-hover:rotate-12 transition-transform" />"
                 <span>1300 566 166</span>
                 {emergencyMode && (
                   <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full ml-1">"
@@ -367,7 +366,7 @@ export default function R6Header() {
                   <R6Button
                     variant={emergencyMode ? "danger" : "gradient"}"
                     size="sm"
-                    rightIcon={<Phone className="w-4 h-4" />}"
+                    rightIcon={<MessageSquare className="w-4 h-4" />}"
                     className={cn(
                       "relative overflow-hidden group",
                       emergencyMode && "animate-pulse shadow-lg shadow-red-500/25"
@@ -468,7 +467,7 @@ export default function R6Header() {
                 <R6Button 
                   variant={emergencyMode ? "danger" : "gradient"}"
                   fullWidth
-                  leftIcon={<Phone className="w-4 h-4" />}"
+                  leftIcon={<MessageSquare className="w-4 h-4" />}"
                   className={cn(
                     "relative overflow-hidden",
                     emergencyMode && "animate-pulse shadow-lg shadow-red-500/25"
@@ -559,7 +558,7 @@ export default function R6Header() {
                 </p>
                 <a href="#contact-form">"
                   <R6Button variant="danger" size="sm" className="animate-pulse">"
-                    <Phone className="w-4 h-4 mr-2" />"
+                    <MessageSquare className="w-4 h-4 mr-2" />"
                     Use Our Online Form
                   </R6Button>
                 </a>

@@ -6,7 +6,7 @@ import {
   Building2, Shield, TrendingUp, DollarSign, Clock, Star,
   AlertTriangle, CheckCircle, Activity, Users, Award, FileText,
   Droplets, Flame, Wind, Home, Briefcase, MessageSquare,
-  User, Camera, Phone, Navigation, ChevronRight, Bell,
+  User, Camera, Navigation, ChevronRight, Bell,
   Settings, LogOut, Zap, ArrowUp, ArrowDown, Plus,
   Calendar, MapPin, BarChart3, PieChart, Target, Rocket,
   Sparkles, Cpu, Brain, Wifi, WifiOff, Download, Upload,

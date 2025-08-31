@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { DollarSign, Users, TrendingUp, MapPin, Phone, Mail, Calendar, AlertCircle, CheckCircle, Clock, FileText, Download, CreditCard } from 'lucide-react';
+import { DollarSign, Users, TrendingUp, MapPin, Mail, Calendar, AlertCircle, CheckCircle, Clock, FileText, Download, CreditCard, MessageSquare} from 'lucide-react';
 
 interface PartnerDashboardData {
   partner: {
@@ -202,7 +202,7 @@ export default function PartnerPortal() {
                                 <span>{lead.suburb}, {lead.state}</span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <Phone className="h-4 w-4 text-gray-500" />
+                                <MessageSquare className="h-4 w-4 text-gray-500" />
                                 <span>{lead.phone}</span>
                               </div>
                               <div className="flex items-center gap-2">

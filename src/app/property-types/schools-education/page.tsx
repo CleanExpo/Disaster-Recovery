@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Building, Home, Briefcase, Shield, Clock, DollarSign, CheckCircle2, Phone, AlertTriangle } from 'lucide-react';
+import { Building, Home, Briefcase, Shield, Clock, DollarSign, CheckCircle2, AlertTriangle, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -50,7 +50,7 @@ export default function SchoolEducationPage() {
               </Card>
             </div>
             <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
-              <Phone className="mr-2 h-5 w-5" />
+              <MessageSquare className="mr-2 h-5 w-5" />
               Emergency Education Response - Online Form Available 24/7
             </Button>
           </div>
@@ -240,7 +240,7 @@ export default function SchoolEducationPage() {
             <p className="text-lg mt-2">✓ 100% Insurance Covered</p>
           </div>
           <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 text-lg px-8 py-6">
-            <Phone className="mr-2 h-6 w-6" />
+            <MessageSquare className="mr-2 h-6 w-6" />
             Online Form Available 24/7 - Education Emergency
           </Button>
         </div>

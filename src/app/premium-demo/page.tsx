@@ -4,7 +4,7 @@ import React from 'react';
 import { PremiumSupportTickets } from '@/components/contractor/dashboard/sections/PremiumSupportTickets';
 import { Button } from '@/components/ui/button';
 import { 
-  Phone, 
+  , 
   ArrowRight, 
   Shield, 
   Zap, 
@@ -18,8 +18,7 @@ import {
   User,
   Home,
   Search,
-  Filter
-} from 'lucide-react';
+  Filter, MessageSquare} from 'lucide-react';
 
 export default function PremiumDemoPage() {
   return (
@@ -105,7 +104,7 @@ export default function PremiumDemoPage() {
               </Button>
               
               <Button variant="danger" size="lg">
-                <Phone className="w-5 h-5" />
+                <MessageSquare className="w-5 h-5" />
                 Emergency
               </Button>
             </div>

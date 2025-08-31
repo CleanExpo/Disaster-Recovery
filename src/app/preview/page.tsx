@@ -16,9 +16,7 @@ import {
   Shield,
   Award,
   Clock,
-  Phone,
-  Star
-} from 'lucide-react';
+  Star, MessageSquare} from 'lucide-react';
 
 export default function PreviewPage() {
   return (
@@ -173,7 +171,7 @@ export default function PreviewPage() {
               </h4>
               <div className="space-y-3">
                 <button className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-pulse-subtle">
-                  <Phone className="w-4 h-4" />
+                  <MessageSquare className="w-4 h-4" />
                   Emergency (Refined)
                 </button>
                 <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">

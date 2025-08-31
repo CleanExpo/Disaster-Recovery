@@ -9,7 +9,6 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   HelpCircle,
   MessageSquare,
-  Phone,
   Mail,
   Book,
   Ticket,
@@ -404,7 +403,7 @@ export function HelpCenter() {
       <Card className="bg-red-50 border-red-200">
         <CardContent className="pt-6">
           <div className="flex items-start gap-3">
-            <Phone className="h-5 w-5 text-red-600 mt-0.5" />
+            <MessageSquare className="h-5 w-5 text-red-600 mt-0.5" />
             <div>
               <h3 className="font-semibold text-red-900">Emergency Support</h3>
               <p className="text-sm text-red-700 mt-1">
@@ -424,4 +423,4 @@ export function HelpCenter() {
 }
 
 // Add missing import
-import { Settings } from 'lucide-react';
+import { Settings, MessageSquare} from 'lucide-react';

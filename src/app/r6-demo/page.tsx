@@ -3,7 +3,6 @@
 import React from 'react';
 import { 
   Shield, 
-  Phone, 
   ArrowRight,
   Check,
   Clock,
@@ -15,8 +14,7 @@ import {
   Home,
   ChevronRight,
   Star,
-  TrendingUp
-} from 'lucide-react';
+  TrendingUp, MessageSquare} from 'lucide-react';
 
 export default function R6DemoPage() {
   const services = [
@@ -77,7 +75,7 @@ export default function R6DemoPage() {
                 Partner Portal
               </button>
               <button className="r6-btn r6-btn-primary">
-                <Phone className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4" />
                 <span>1300 566 166</span>
               </button>
             </div>
@@ -197,7 +195,7 @@ export default function R6DemoPage() {
             </p>
             <div className="r6-flex r6-justify-center r6-gap-3">
               <button className="r6-btn r6-btn-primary r6-btn-lg">
-                <Phone className="w-5 h-5" />
+                <MessageSquare className="w-5 h-5" />
                 Use Our Online Form
               </button>
               <button className="r6-btn r6-btn-secondary r6-btn-lg" style={{

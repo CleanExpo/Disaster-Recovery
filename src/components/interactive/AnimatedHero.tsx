@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Users, Clock, Shield, CheckCircle, Star, Zap } from 'lucide-react';
+import { , Users, Clock, Shield, CheckCircle, Star, Zap, MessageSquare} from 'lucide-react';
 
 export default function AnimatedHero() {
   return (
@@ -128,7 +128,7 @@ export default function AnimatedHero() {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
             >
-              <Phone className="h-6 w-6" />
+              <MessageSquare className="h-6 w-6" />
               <span>Call 1300 566 166</span>
             </motion.button>
 

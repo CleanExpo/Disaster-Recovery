@@ -9,7 +9,6 @@ import {
   TrendingUp,
   Calendar,
   MapPin,
-  Phone,
   Globe,
   Mail,
   Send,
@@ -236,7 +235,7 @@ export default function GoogleReviewIntegration({
           <span>{businessProfile?.address}</span>
         </div>
         <div className="flex items-center">
-          <Phone className="w-4 h-4 mr-2" />
+          <MessageSquare className="w-4 h-4 mr-2" />
           <span>{businessProfile?.phone}</span>
         </div>
         <div className="flex items-center">

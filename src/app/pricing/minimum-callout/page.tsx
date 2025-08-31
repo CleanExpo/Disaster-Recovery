@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { DollarSign, Shield, Clock, CheckCircle2, Award, Users, Truck, Phone } from 'lucide-react';
+import { DollarSign, Shield, Clock, CheckCircle2, Award, Users, Truck,, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -84,7 +84,7 @@ export default function MinimumCalloutPage() {
                 We bill your insurance directly - you pay nothing upfront.
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Call Online Form Available 24/7 - Insurance Covered
               </Button>
             </div>
@@ -253,7 +253,7 @@ export default function MinimumCalloutPage() {
                 Our $2,200 callout fee is a fraction of the cost of delayed action.
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Protect Your Property - Submit Form Now
               </Button>
             </div>
@@ -322,7 +322,7 @@ export default function MinimumCalloutPage() {
             </p>
           </div>
           <Button size="lg" className="bg-white text-blue-900 hover:bg-gray-100 text-lg px-8 py-6">
-            <Phone className="mr-2 h-6 w-6" />
+            <MessageSquare className="mr-2 h-6 w-6" />
             Call Online Form Available 24/7 - Get $2,200+ Value Now
           </Button>
         </div>

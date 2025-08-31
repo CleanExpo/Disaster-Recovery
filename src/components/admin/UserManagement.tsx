@@ -27,7 +27,6 @@ import {
   Building,
   User,
   Mail,
-  Phone,
   Calendar,
   Activity,
   Settings,

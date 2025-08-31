@@ -13,7 +13,6 @@ import {
   MessageSquare,
   Eye,
   Send,
-  Phone,
   Mail,
   MapPin,
   Filter,
@@ -505,7 +504,7 @@ export default function ReviewModerationDashboard() {
                   </div>
                   {item.feedback.customerPhone && (
                     <div className="flex items-center">"
-                      <Phone className="w-4 h-4 text-gray-500 mr-2" />"
+                      <MessageSquare className="w-4 h-4 text-gray-500 mr-2" />"
                       <span className="text-sm">{item.feedback.customerPhone}</span>"
                     </div>
                   )}

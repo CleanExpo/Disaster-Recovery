@@ -10,7 +10,6 @@ import {
   Calendar,
   Star,
   Clock,
-  Phone,
   Droplets,
   Flame,
   Wind,
@@ -19,8 +18,7 @@ import {
   Shield,
   TrendingUp,
   ChevronDown,
-  SlidersHorizontal
-} from 'lucide-react';
+  SlidersHorizontal, MessageSquare} from 'lucide-react';
 
 interface SearchResult {
   id: string;
@@ -408,7 +406,7 @@ function SearchPageContent() {
                   </a>
                   {result.type === 'service' && (
                     <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours flex items-center gap-2">
-                      <Phone className="h-4 w-4" />
+                      <MessageSquare className="h-4 w-4" />
                       Contact
                     </button>
                   )}

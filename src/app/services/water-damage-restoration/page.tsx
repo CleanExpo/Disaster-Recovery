@@ -3,12 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { 
-  Droplets, Clock, Shield, Award, Phone, CheckCircle,
+  Droplets, Clock, Shield, Award, CheckCircle,
   ArrowRight, AlertTriangle, TrendingUp, Users, MapPin,
   BookOpen, GraduationCap, Building2, Heart, Zap, Globe,
   BarChart3, PieChart, Activity, FileText, ExternalLink,
-  Thermometer, Wind, Gauge
-} from 'lucide-react';
+  Thermometer, Wind, Gauge, MessageSquare} from 'lucide-react';
 
 import {
   generateAustralianMetadata,
@@ -144,7 +143,7 @@ export default function WaterDamageRestorationPage() {
                     href="/client/emergency"
                     className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center animate-pulse"
                   >
-                    <Phone className="inline-block mr-2 h-5 w-5" />
+                    <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Call {AUSTRALIAN_CONFIG.emergency.number} Now
                   </Link>
                   <Link
@@ -468,7 +467,7 @@ export default function WaterDamageRestorationPage() {
               href="/client/emergency"
               className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"
             >
-              <Phone className="inline-block mr-2 h-6 w-6" />
+              <MessageSquare className="inline-block mr-2 h-6 w-6" />
               Emergency: {AUSTRALIAN_CONFIG.emergency.number}
             </Link>
           </div>

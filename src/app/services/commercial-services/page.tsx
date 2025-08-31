@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { Phone, Clock, Shield, Building2, Store, Factory, Briefcase, Users, CheckCircle2, ArrowRight, AlertTriangle, FileText } from 'lucide-react';
+import { , Clock, Shield, Building2, Store, Factory, Briefcase, Users, CheckCircle2, ArrowRight, AlertTriangle, FileText, MessageSquare} from 'lucide-react';
 
 export default function CommercialServicesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -165,7 +165,7 @@ export default function CommercialServicesPage() {
                 className="bg-orange-500 hover:bg-orange-600 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 24/7 Commercial Response
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-blue-50">
@@ -496,7 +496,7 @@ export default function CommercialServicesPage() {
               className="bg-orange-500 hover:bg-orange-600"
               onClick={() => setShowQuoteDialog(true)}
             >
-              <Phone className="mr-2" />
+              <MessageSquare className="mr-2" />
               Use Our Online Form'
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-gray-100">
@@ -521,7 +521,7 @@ export default function CommercialServicesPage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
-              <Phone className="h-5 w-5 text-orange-600" />
+              <MessageSquare className="h-5 w-5 text-orange-600" />
               <div>
                 <p className="font-semibold">Submit Form Now</p>
                 <p className="text-2xl font-bold text-orange-600">1300 814 870</p>

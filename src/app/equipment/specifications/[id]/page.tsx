@@ -12,7 +12,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { 
   ArrowLeft, 
   Download, 
-  Phone, 
   CheckCircle, 
   AlertCircle,
   DollarSign,
@@ -20,8 +19,7 @@ import {
   Shield,
   Settings,
   FileText,
-  Calendar
-} from 'lucide-react';
+  Calendar, MessageSquare} from 'lucide-react';
 
 interface EquipmentPageProps {
   params: {
@@ -162,7 +160,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                 {/* Quick Actions */}
                 <div className="p-4 border-t space-y-2">
                   <Button className="w-full bg-green-600 hover:bg-green-700">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <MessageSquare className="mr-2 h-4 w-4" />
                     Request Quote
                   </Button>
                   <Button variant="outline" className="w-full">
@@ -432,7 +430,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
               Check Availability
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
-              <Phone className="mr-2 h-5 w-5" />
+              <MessageSquare className="mr-2 h-5 w-5" />
               1300 776 062
             </Button>
           </div>

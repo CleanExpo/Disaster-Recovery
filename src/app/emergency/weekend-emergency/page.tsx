@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Clock, AlertTriangle, Phone, DollarSign, Zap, Shield, Calendar, Moon } from 'lucide-react';
+import { Clock, AlertTriangle, DollarSign, Zap, Shield, Calendar, Moon, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -54,7 +54,7 @@ export default function WeekendEmergencyResponsePage() {
               </Card>
             </div>
             <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6">
-              <Phone className="mr-2 h-6 w-6" />
+              <MessageSquare className="mr-2 h-6 w-6" />
               Call Online Form Available 24/7 - Saturday & Sunday Service
             </Button>
           </div>
@@ -159,7 +159,7 @@ export default function WeekendEmergencyResponsePage() {
                 of the cost of waiting until regular hours.
               </p>
               <Button size="lg" className="bg-green-600 hover:bg-green-700">
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Submit Form Now - Save $15,000+ in Damage
               </Button>
             </div>
@@ -223,7 +223,7 @@ export default function WeekendEmergencyResponsePage() {
             <p className="text-lg mt-2">Insurance Approved • Direct Billing Available</p>
           </div>
           <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6">
-            <Phone className="mr-2 h-6 w-6" />
+            <MessageSquare className="mr-2 h-6 w-6" />
             Online Form Available 24/7 - Saturday & Sunday Emergency
           </Button>
         </div>

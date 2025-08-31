@@ -26,7 +26,6 @@ import {
   RefreshCcw,
   AlertCircle,
   Building,
-  Phone,
   Mail,
   MapPin,
   Calendar,
@@ -35,8 +34,7 @@ import {
   ExternalLink,
   UserCheck,
   ShieldCheck,
-  ShieldAlert
-} from 'lucide-react';
+  ShieldAlert, MessageSquare} from 'lucide-react';
 
 interface BackgroundCheck {
   id: string;
@@ -470,7 +468,7 @@ export function BackgroundChecks() {
                               <span>Known for {ref.yearsKnown} years</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Phone className="h-3 w-3" />
+                              <MessageSquare className="h-3 w-3" />
                               <span>{ref.phone}</span>
                             </div>
                             <div className="flex items-center gap-2">
@@ -484,7 +482,7 @@ export function BackgroundChecks() {
                             size="sm"
                             onClick={() => contactReference(ref)}
                           >
-                            <Phone className="h-4 w-4 mr-2" />
+                            <MessageSquare className="h-4 w-4 mr-2" />
                             Contact
                           </Button>
                           <Button

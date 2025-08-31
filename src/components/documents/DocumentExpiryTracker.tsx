@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   AlertTriangle, Clock, Calendar, FileText, CheckCircle, XCircle,
-  Upload, RefreshCw, Bell, Filter, Download, Mail, Phone,
-  ChevronDown, ChevronRight, Users, Building2, Award, Shield
-} from 'lucide-react';
+  Upload, RefreshCw, Bell, Filter, Download, Mail,
+  ChevronDown, ChevronRight, Users, Building2, Award, Shield, MessageSquare} from 'lucide-react';
 import type { 
   ExpirationAlert, 
   ComplianceStatus, 
@@ -298,7 +297,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
               Email Support
             </button>
             <button className="w-full flex items-center px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 rounded-lg transition-colours">
-              <Phone className="w-4 h-4 mr-2" />
+              <MessageSquare className="w-4 h-4 mr-2" />
               Call Support
             </button>
           </div>

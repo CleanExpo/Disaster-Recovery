@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Plus, Trash2, Building, Phone, Mail, Calendar, Award, Info } from 'lucide-react';
+import { Plus, Trash2, Building, Mail, Calendar, Award, Info, MessageSquare} from 'lucide-react';
 
 interface WorkExperience {
   projectName: string;
@@ -403,7 +403,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-lg font-semibold flex items-center">
-              <Phone className="mr-2 h-5 w-5 text-indigo-600" />
+              <MessageSquare className="mr-2 h-5 w-5 text-indigo-600" />
               Professional References (Minimum 3)
             </h3>
             <Button

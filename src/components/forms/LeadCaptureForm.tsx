@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
-import { AlertCircle, CheckCircle2, Phone, MapPin, Home, DollarSign, Calendar, Camera, FileText, Shield } from 'lucide-react';
+import { AlertCircle, CheckCircle2, MapPin, Home, DollarSign, Calendar, Camera, FileText, Shield, MessageSquare} from 'lucide-react';
 import { toast } from 'sonner';
 
 interface LeadFormData {
@@ -176,7 +176,7 @@ export default function LeadCaptureForm() {
             <span>Insurance Approved</span>
           </div>
           <div className="flex items-center gap-2 text-sm">
-            <Phone className="h-4 w-4 text-blue-600" />
+            <MessageSquare className="h-4 w-4 text-blue-600" />
             <span>30min Response</span>
           </div>
           <div className="flex items-center gap-2 text-sm">
@@ -201,7 +201,7 @@ export default function LeadCaptureForm() {
         {/* Contact Information */}
         <div className="space-y-4">
           <h3 className="text-xl font-bold flex items-center gap-2">
-            <Phone className="h-5 w-5" />
+            <MessageSquare className="h-5 w-5" />
             Contact Information
           </h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -619,7 +619,7 @@ export default function LeadCaptureForm() {
               'Processing...'
             ) : (
               <>
-                <Phone className="mr-2" />
+                <MessageSquare className="mr-2" />
                 Get Immediate Help Now
               </>
             )}

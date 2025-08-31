@@ -6,7 +6,6 @@ import {
   Filter,
   Download,
   RefreshCw,
-  Phone,
   Mail,
   MapPin,
   Calendar,

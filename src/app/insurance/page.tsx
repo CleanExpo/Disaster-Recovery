@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Shield, FileCheck, Phone, CheckCircle2, AlertCircle, Users, Clock } from 'lucide-react';
+import { Shield, FileCheck, CheckCircle2, AlertCircle, Users, Clock, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -137,7 +137,7 @@ export default function InsurancePage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                <Phone className="mr-2" />
+                <MessageSquare className="mr-2" />
                 Start Your Claim: Contact Us
               </Button>
               <Link
@@ -431,7 +431,7 @@ export default function InsurancePage() {
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
             >
-              <Phone className="w-6 h-6 mr-3" />
+              <MessageSquare className="w-6 h-6 mr-3" />
               Call: Contact Us
             </a>
             <Link

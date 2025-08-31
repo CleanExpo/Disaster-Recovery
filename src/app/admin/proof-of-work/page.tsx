@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Filter, Eye, CheckCircle, X, Clock, AlertTriangle, FileText, Image, Phone, MapPin, Calendar, DollarSign } from 'lucide-react';
+import { Search, Filter, Eye, CheckCircle, X, Clock, AlertTriangle, FileText, Image, MapPin, Calendar, DollarSign, MessageSquare} from 'lucide-react';
 import Link from 'next/link';
 
 interface ProofOfWorkClaim {
@@ -504,7 +504,7 @@ function ClaimReviewModal({
                   <label className="text-sm font-medium text-gray-700">Client</label>
                   <p className="text-sm text-gray-900">{claim.clientName}</p>
                   <p className="text-xs text-gray-600 flex items-center gap-1">
-                    <Phone className="w-3 h-3" />
+                    <MessageSquare className="w-3 h-3" />
                     {claim.clientContact}
                   </p>
                 </div>

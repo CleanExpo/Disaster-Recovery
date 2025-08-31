@@ -10,7 +10,6 @@ import {
   Wind,
   Building2,
   MapPin,
-  Phone,
   Mail,
   CreditCard,
   Shield,

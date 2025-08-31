@@ -3,10 +3,9 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { 
-  Shield, Clock, MapPin, Users, Phone, CheckCircle, 
+  Shield, Clock, MapPin, Users, CheckCircle, 
   ArrowRight, Star, TrendingUp, Award, Zap,
-  Droplets, Flame, Bug, Wind, AlertTriangle, Building2
-} from 'lucide-react';
+  Droplets, Flame, Bug, Wind, AlertTriangle, Building2, MessageSquare} from 'lucide-react';
 import LandingHeader from '@/components/LandingHeader';
 import { 
   GMB_CATEGORIES, 
@@ -323,7 +322,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
                 href="/client/emergency"
                 className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all animate-pulse"
               >
-                <Phone className="inline-block mr-2 h-5 w-5" />
+                <MessageSquare className="inline-block mr-2 h-5 w-5" />
                 Emergency Response Now
               </Link>
               <Link

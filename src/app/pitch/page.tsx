@@ -6,8 +6,7 @@ import {
   ChevronLeft, ChevronRight, Play, Pause, Maximize2,
   TrendingUp, Users, Globe, DollarSign, Target, Zap,
   Shield, Award, Building2, BarChart3, PieChart, Activity,
-  ArrowUpRight, CheckCircle, AlertTriangle, Rocket,
-  Phone, Mail, MapPin, Calendar, Clock, Star,
+  ArrowUpRight, CheckCircle, AlertTriangle, Rocket, Mail, MapPin, Calendar, Clock, Star,
   FileText, Eye, Download, Share2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';

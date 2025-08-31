@@ -6,11 +6,9 @@ import Image from 'next/image';
 import { 
   Shield, Building2, Globe2, Zap, Users, CheckCircle, 
   ArrowRight, Briefcase, Home, Factory, Hospital, Plane,
-  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench,
-  Phone, Clock, Award, Star, TrendingUp, Target,
+  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench, Clock, Award, Star, TrendingUp, Target,
   CheckSquare, FileCheck, DollarSign, MapPin, 
-  ChevronRight, Play, X
-} from 'lucide-react';
+  ChevronRight, Play, X, MessageSquare} from 'lucide-react';
 import LightningEffect from '@/components/effects/LightningEffect';
 import { Logo, HeaderLogo } from '@/components/Logo';
 
@@ -296,7 +294,7 @@ export default function EnhancedLandingPage() {
                   1
                 </div>
                 <div className="mt-4">
-                  <Phone className="h-12 w-12 text-blue-400 mb-4" />
+                  <MessageSquare className="h-12 w-12 text-blue-400 mb-4" />
                   <h4 className="text-xl font-bold text-white mb-3">Report Damage</h4>
                   <p className="text-blue-200">
                     Call or use our AI chat. Instant assessment and contractor matching.
@@ -521,7 +519,7 @@ export default function EnhancedLandingPage() {
           href="/client/emergency"
           className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-2xl hover:bg-red-700 transition-all animate-pulse"
         >
-          <Phone className="h-5 w-5" />
+          <MessageSquare className="h-5 w-5" />
           Emergency Help
         </Link>
       </div>

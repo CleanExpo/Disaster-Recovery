@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { 
   CheckCircle2, 
   FileText, 
-  Phone, 
   Mail, 
   MapPin, 
   Calendar,
@@ -15,8 +14,7 @@ import {
   Home,
   Download,
   Send,
-  User
-} from 'lucide-react';
+  User, MessageSquare} from 'lucide-react';
 import Link from 'next/link';
 
 interface BookingDetails {
@@ -235,7 +233,7 @@ function BookingSuccessPageContent() {
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             <div className="flex items-center gap-3">
-              <Phone className="h-5 w-5 text-blue-600" />
+              <MessageSquare className="h-5 w-5 text-blue-600" />
               <div>
                 <p className="text-sm text-gray-600">Phone</p>
                 <p className="font-semibold">{bookingDetails.phone}</p>

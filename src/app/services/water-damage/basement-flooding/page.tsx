@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { Phone, Clock, Shield, Droplets, AlertTriangle, Home, ArrowDown, CheckCircle2, ArrowRight, XCircle, Zap, Gauge } from 'lucide-react';
+import { , Clock, Shield, Droplets, AlertTriangle, Home, ArrowDown, CheckCircle2, ArrowRight, XCircle, Zap, Gauge, MessageSquare} from 'lucide-react';
 
 export default function BasementFloodingPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -88,7 +88,7 @@ export default function BasementFloodingPage() {
                 className="bg-red-600 hover:bg-red-700 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 h-5 w-5 animate-pulse" />
+                <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
                 Emergency: 1300 814 870
               </Button>
             </div>

@@ -23,7 +23,6 @@ import {
   CheckCircle,
   XCircle,
   Send,
-  Phone,
   Mail,
   Activity,
   TrendingUp,
@@ -32,8 +31,7 @@ import {
   UserX,
   Database,
   Eye,
-  Download
-} from 'lucide-react';
+  Download, MessageSquare} from 'lucide-react';
 import { DataBreach } from '@/types/privacy';
 
 export function DataBreachNotification() {
@@ -634,7 +632,7 @@ export function DataBreachNotification() {
 
             {incidentData.severity === 'critical' && (
               <Alert className="bg-yellow-50 border-yellow-200">
-                <Phone className="h-4 w-4 text-yellow-600" />
+                <MessageSquare className="h-4 w-4 text-yellow-600" />
                 <AlertDescription className="text-yellow-700">
                   <strong>Critical Incident Protocol:</strong> Security team will be immediately 
                   notified. Prepare to join emergency response call within 15 minutes.

@@ -17,7 +17,6 @@ import {
   Wind,
   AlertCircle,
   Timer,
-  Phone,
   Mail,
   Heart,
   ShieldCheck,

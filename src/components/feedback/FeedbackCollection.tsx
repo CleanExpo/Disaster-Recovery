@@ -14,7 +14,6 @@ import {
   User,
   MapPin,
   Calendar,
-  Phone,
   Mail,
   Flag,
   Send,

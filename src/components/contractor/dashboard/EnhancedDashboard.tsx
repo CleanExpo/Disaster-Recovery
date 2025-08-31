@@ -44,7 +44,6 @@ import {
   CloudRain,
   Wind,
   ChevronRight,
-  Phone,
   Mail,
   Loader2,
   WifiOff,
@@ -685,7 +684,7 @@ export function EnhancedDashboard() {
         <CardContent>
           <div className="space-y-4">
             <Button className="w-full justify-start" variant="outline">
-              <Phone className="h-4 w-4 mr-2" />
+              <MessageSquare className="h-4 w-4 mr-2" />
               Call Support
             </Button>
             <Button className="w-full justify-start" variant="outline">

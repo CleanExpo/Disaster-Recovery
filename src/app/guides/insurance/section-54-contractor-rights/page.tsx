@@ -1,9 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { 
-  Scale, Shield, FileText, CheckCircle, AlertTriangle, Phone,
-  ArrowRight, Download, BookOpen, Gavel, Building
-} from 'lucide-react';
+  Scale, Shield, FileText, CheckCircle, AlertTriangle,
+  ArrowRight, Download, BookOpen, Gavel, Building, MessageSquare} from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -217,7 +216,7 @@ export default function Section54ContractorRightsPage() {
               </Link>
               <Link href="/schedule">
                 <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
-                  <Phone className="mr-2 h-5 w-5" />
+                  <MessageSquare className="mr-2 h-5 w-5" />
                   Get Emergency Response
                 </Button>
               </Link>
@@ -484,7 +483,7 @@ export default function Section54ContractorRightsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/schedule">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
-                <Phone className="mr-2 h-5 w-5" />
+                <MessageSquare className="mr-2 h-5 w-5" />
                 Get Emergency Response Now
               </Button>
             </Link>

@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
-import { Phone, Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck } from 'lucide-react'
+import { , Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
@@ -112,7 +112,7 @@ export default function FireDamageRestorationPage() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
-                      <Phone className="mr-2 h-5 w-5" />
+                      <MessageSquare className="mr-2 h-5 w-5" />
                       Emergency Fire Response
                     </Button>
                   </DialogTrigger>
@@ -125,7 +125,7 @@ export default function FireDamageRestorationPage() {
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
                       <a href="#contact-form" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
-                        <Phone className="h-5 w-5" />
+                        <MessageSquare className="h-5 w-5" />
                         Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
@@ -484,7 +484,7 @@ export default function FireDamageRestorationPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact-form" className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
-              <Phone className="h-5 w-5" />
+              <MessageSquare className="h-5 w-5" />
               Use Our Online Form'
             </a>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-orange-600">

@@ -5,15 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { 
-  Phone, 
+  , 
   Menu, 
   X, 
   ChevronDown,
   Shield,
   Clock,
   Award,
-  MapPin
-} from 'lucide-react';
+  MapPin, MessageSquare} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavItem {
@@ -95,7 +94,7 @@ export default function PremiumHeader() {
                 <span>24/7 Emergency Service</span>
               </div>
               <a href="#contact-form" className="flex items-center gap-2 font-semibold hover:text-blue-200 transition-colours">
-                <Phone className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4" />
                 <span>1300 566 166</span>
               </a>
             </div>
@@ -228,7 +227,7 @@ export default function PremiumHeader() {
                   "animate-pulse-subtle"
                 )}
               >
-                <Phone className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4" />
                 <span>Emergency Call</span>
               </a>
             </div>
@@ -324,7 +323,7 @@ export default function PremiumHeader() {
                 href="#contact-form"
                 className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
-                <Phone className="w-5 h-5" />
+                <MessageSquare className="w-5 h-5" />
                 <span>Call Emergency: 1300 566 166</span>
               </a>
               <Link

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import { Phone, Clock, Shield, Droplets, AlertTriangle, Wrench, Home, CheckCircle2, ArrowRight, XCircle, Gauge } from 'lucide-react';
+import { , Clock, Shield, Droplets, AlertTriangle, Wrench, Home, CheckCircle2, ArrowRight, XCircle, Gauge, MessageSquare} from 'lucide-react';
 
 export default function BurstPipesPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
@@ -182,7 +182,7 @@ export default function BurstPipesPage() {
                 className="bg-red-600 hover:bg-red-700 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2 h-5 w-5 animate-pulse" />
+                <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
                 Emergency: 1300 814 870
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-blue-50">
@@ -239,7 +239,7 @@ export default function BurstPipesPage() {
                 className="bg-red-600 hover:bg-red-700"
                 onClick={() => setShowQuoteDialog(true)}
               >
-                <Phone className="mr-2" />
+                <MessageSquare className="mr-2" />
                 Call Emergency Team Now
               </Button>
             </div>
@@ -453,7 +453,7 @@ export default function BurstPipesPage() {
                   </div>
                 </div>
                 <Button className="w-full mt-4" variant="outline">
-                  <Phone className="mr-2 h-4 w-4" />
+                  <MessageSquare className="mr-2 h-4 w-4" />
                   Insurance Claim Help
                 </Button>
               </Card>
@@ -512,7 +512,7 @@ export default function BurstPipesPage() {
               className="bg-red-600 hover:bg-red-700"
               onClick={() => setShowQuoteDialog(true)}
             >
-              <Phone className="mr-2 animate-pulse" />
+              <MessageSquare className="mr-2 animate-pulse" />
               Use Our Online Form'
             </Button>
             <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-gray-100">
@@ -537,7 +537,7 @@ export default function BurstPipesPage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
-              <Phone className="h-6 w-6 text-red-600 animate-pulse" />
+              <MessageSquare className="h-6 w-6 text-red-600 animate-pulse" />
               <div>
                 <p className="font-semibold">Emergency Hotline</p>
                 <p className="text-2xl font-bold text-red-600">1300 814 870</p>

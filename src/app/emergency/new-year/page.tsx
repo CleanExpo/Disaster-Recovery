@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Clock, Phone, AlertTriangle } from 'lucide-react';
+import { Clock, AlertTriangle, MessageSquare} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function NewYearEmergencyPage() {
           <p className="text-xl mb-2">Available December 31 - January 2</p>
           <p className="text-2xl mb-8">No Extra Charges • Same Day Response</p>
           <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100">
-            <Phone className="mr-2" /> Call Online Form Available 24/7 Now
+            <MessageSquare className="mr-2" /> Call Online Form Available 24/7 Now
           </Button>
         </div>
       </section>
