@@ -437,8 +437,6 @@ export const AustralianLocationGrid = ({ serviceSlug }: { serviceSlug: string })
 
 // Export all components and utilities
 export {
-  LandingHeader,
-  PerformanceWrapper,
   DataVisualisation,
   EmergencyCTA,
   TrustIndicators,
