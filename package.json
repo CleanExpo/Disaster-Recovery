@@ -8,7 +8,7 @@
     "dev:optimized": "node scripts/dev-with-optimization.js",
     "build": "node scripts/validate-env.js && npx prisma generate && next build",
     "validate-env": "node scripts/validate-env.js",
-    "prebuild": "node scripts/validate-env.js",
+    "prebuild": "echo 'Prebuild step'",
     "vercel-build": "node scripts/vercel-build.js",
     "start": "next start",
     "lint": "next lint",
@@ -47,7 +47,6 @@
     "optimize-images": "node scripts/optimize-images.js",
     "image-worker": "node scripts/image-optimization-worker.js",
     "image-worker:dev": "nodemon --watch public/images --watch public/uploads scripts/image-optimization-worker.js",
-    "prebuild": "echo 'Prebuild step'",
     "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
