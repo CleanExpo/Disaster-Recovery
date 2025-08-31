@@ -249,10 +249,7 @@ async function isDuplicateSubmission(email: string): Promise<boolean> {
   
   const duplicate = await prisma.lead.findFirst({
     where: {
-      OR: [
-        { email: email },
-        { 
-      ],
+      email: email,
       createdAt: {
         gte: oneHourAgo
       }
