@@ -243,7 +243,7 @@ function containsSpamKeywords(text: string): boolean {
   return spamKeywords.some(keyword => lowerText.includes(keyword));
 }
 
-async function isDuplicateSubmission(email: string, <boolean> {
+async function isDuplicateSubmission(email: string): Promise<boolean> {
   // Check for recent duplicate submissions (within last hour)
   const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
   

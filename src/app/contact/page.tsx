@@ -182,26 +182,31 @@ export default function ModernContactPage() {
       <section className="relative z-10 px-6 pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {contactInfo.map((info, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="relative group"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${info.colour || 'from-gray-500 to-gray-600'} rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`} />
-                <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${info.colour || 'from-gray-500 to-gray-600'} bg-opacity-20`}>
-                    {info.icon}
+            {contactInfo.map((info, i) => {
+              const gradientClass = `absolute inset-0 bg-gradient-to-r ${info.colour} rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`;
+              const iconBgClass = `inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${info.colour} bg-opacity-20`;
+              
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="relative group"
+                >
+                  <div className={gradientClass} />
+                  <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
+                    <div className={iconBgClass}>
+                      {info.icon}
+                    </div>
+                    <h3 className="text-sm text-gray-400 mb-1">{info.title}</h3>
+                    <p className="text-xl font-bold mb-1">{info.value}</p>
+                    <p className="text-xs text-gray-500">{info.subtext}</p>
                   </div>
-                  <h3 className="text-sm text-gray-400 mb-1">{info.title}</h3>
-                  <p className="text-xl font-bold mb-1">{info.value}</p>
-                  <p className="text-xs text-gray-500">{info.subtext}</p>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
