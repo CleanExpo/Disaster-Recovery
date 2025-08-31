@@ -59,9 +59,6 @@ export default function EnhancedLandingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
-      {/* Enhanced Landing Header */}
-      <LandingHeader demoMode={demoMode} onToggleDemo={() => setDemoMode(!demoMode)} />
-      
       {/* Lightning Effect - Background */}
       <LightningEffect />
       
@@ -199,7 +196,7 @@ export default function EnhancedLandingPage() {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/80 to-blue-800/50 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-500 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/images/optimised/damage/3D Vehicle into Home.png"
+                  src="/images/optimized/damage/3D Water Damage to a Home.png"
                   alt="Emergency Water Damage"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -251,7 +248,7 @@ export default function EnhancedLandingPage() {
             <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/80 to-purple-800/50 backdrop-blur-sm border border-purple-500/30 hover:border-purple-400/50 transition-all duration-500 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
-                  src="/images/optimised/process/3D Hazardous Cleaning.png"
+                  src="/images/optimized/damage/3D Emergency Squalor Cleanup.png"
                   alt="Biohazard Cleanup"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"

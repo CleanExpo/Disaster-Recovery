@@ -87,8 +87,6 @@ export default function WaterDamageRestorationPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <LandingHeader />
-
       <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
         {/* Hero Section with Real Data */}
         <section className="relative pt-32 pb-20 overflow-hidden" aria-label="Hero">
@@ -162,7 +160,7 @@ export default function WaterDamageRestorationPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimised/damage/3D Vehicle into Home.png"
+                    src="/images/optimized/damage/3D Burst Water Pipe.png"
                     alt="Water damage emergency response - 3D visualisation"
                     fill
                     className="object-contain drop-shadow-2xl"

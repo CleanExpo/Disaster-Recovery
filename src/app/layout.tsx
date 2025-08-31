@@ -4,7 +4,7 @@ import Script from 'next/script'
 import '@/styles/globals.css'
 import '@/styles/modern-system.css'
 import { Providers } from './providers'
-import UltraModernHeader from '@/components/UltraModernHeader'
+import LandingHeader from '@/components/LandingHeader'
 import UltraModernFooter from '@/components/UltraModernFooter'
 import DemoModeIndicator from '@/components/DemoModeIndicator'
 import DemoModeBanner from '@/components/demo/DemoModeBanner'
@@ -116,7 +116,7 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <UltraModernHeader />
+          <LandingHeader />
           <main id="main-content">
             {children}
           </main>
