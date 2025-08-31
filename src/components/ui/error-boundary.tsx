@@ -179,4 +179,134 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                             </pre>
                           </details>
                         )}
-                      </div>\n                    </div>\n                  </motion.div>\n                )}\n\n                {/* Action Buttons */}\n                <motion.div \n                  initial={{ opacity: 0, y: 20 }}\n                  animate={{ opacity: 1, y: 0 }}\n                  transition={{ delay: 0.4 }}\n                  className="flex flex-col sm:flex-row gap-3 justify-center"\n                >\n                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>\n                    <Button \n                      onClick={this.handleRefresh}\n                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 w-full sm:w-auto"\n                    >\n                      <RefreshCw className="h-4 w-4 mr-2" />\n                      Refresh Page\n                    </Button>\n                  </motion.div>\n                  \n                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>\n                    <Button \n                      onClick={this.handleGoHome}\n                      variant="outline"\n                      className="px-6 py-3 w-full sm:w-auto"\n                    >\n                      <Home className="h-4 w-4 mr-2" />\n                      Go Home\n                    </Button>\n                  </motion.div>\n                  \n                  {showReportButton && (\n                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>\n                      <Button \n                        onClick={this.handleReportError}\n                        variant="outline"\n                        className="text-red-600 border-red-200 hover:bg-red-50 px-6 py-3 w-full sm:w-auto"\n                      >\n                        <Mail className="h-4 w-4 mr-2" />\n                        Report Error\n                      </Button>\n                    </motion.div>\n                  )}\n                </motion.div>\n\n                {/* Help Text */}\n                <motion.div \n                  initial={{ opacity: 0 }}\n                  animate={{ opacity: 1 }}\n                  transition={{ delay: 0.6 }}\n                  className="text-center text-sm text-gray-500 space-y-2"\n                >\n                  <p>\n                    If the problem persists, please contact our support team.\n                  </p>\n                  <p className="flex items-center justify-center gap-2">\n                    <Mail className="h-4 w-4" />\n                    support@nrpaustralia.com.au\n                  </p>\n                </motion.div>\n              </CardContent>\n            </Card>\n          </motion.div>\n        </div>\n      );\n    }\n\n    return this.props.children;\n  }\n}\n\n// Higher-order component for wrapping components with error boundary\nexport function withErrorBoundary<P extends {}>(  \n  Component: React.ComponentType<P>,\n  errorBoundaryProps?: Partial<ErrorBoundaryProps>\n) {\n  return function WithErrorBoundaryComponent(props: P) {\n    return (\n      <ErrorBoundary {...errorBoundaryProps}>\n        <Component {...props} />\n      </ErrorBoundary>\n    );\n  };\n}\n\n// Hook for manually reporting errors\nexport function useErrorHandler() {\n  return {\n    reportError: (error: Error, context?: string) => {\n      console.error(`Manual error report ${context ? `(${context})` : ''}:`, error);\n      \n      // In production, send to error tracking service\n      // Sentry.captureException(error, { tags: { context } });\n    }\n  };\n}\n\n// Simple error fallback components\nexport const SimpleErrorFallback = ({ error }: { error?: Error }) => (\n  <div className="flex items-center justify-center p-8\">\n    <div className="text-center\">\n      <FileX className=\"h-12 w-12 text-gray-400 mx-auto mb-4\" />\n      <p className=\"text-gray-600\">Something went wrong loading this component.</p>\n      <Button \n        onClick={() => window.location.reload()} \n        size=\"sm\" \n        className=\"mt-4\"\n      >\n        Retry\n      </Button>\n    </div>\n  </div>\n);\n\nexport const InlineErrorFallback = ({ error }: { error?: Error }) => (\n  <div className=\"bg-red-50 border border-red-200 rounded-lg p-4 my-4\">\n    <div className=\"flex items-start\">\n      <AlertTriangle className=\"h-5 w-5 text-red-600 mt-0.5 mr-3 flex-shrink-0\" />\n      <div>\n        <p className=\"text-red-800 font-medium\">Error loading component</p>\n        <p className=\"text-red-600 text-sm mt-1\">\n          {error?.message || 'An unexpected error occurred'}\n        </p>\n      </div>\n    </div>\n  </div>\n);\n\nexport default ErrorBoundary;
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Action Buttons */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="flex flex-col sm:flex-row gap-3 justify-center"
+                >
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button 
+                      onClick={this.handleRefresh}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 w-full sm:w-auto"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Refresh Page
+                    </Button>
+                  </motion.div>
+                  
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button 
+                      onClick={this.handleGoHome}
+                      variant="outline"
+                      className="px-6 py-3 w-full sm:w-auto"
+                    >
+                      <Home className="h-4 w-4 mr-2" />
+                      Go Home
+                    </Button>
+                  </motion.div>
+                  
+                  {showReportButton && (
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button 
+                        onClick={this.handleReportError}
+                        variant="outline"
+                        className="text-red-600 border-red-200 hover:bg-red-50 px-6 py-3 w-full sm:w-auto"
+                      >
+                        <Mail className="h-4 w-4 mr-2" />
+                        Report Error
+                      </Button>
+                    </motion.div>
+                  )}
+                </motion.div>
+
+                {/* Help Text */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="text-center text-sm text-gray-500 space-y-2"
+                >
+                  <p>
+                    If the problem persists, please contact our support team.
+                  </p>
+                  <p className="flex items-center justify-center gap-2">
+                    <Mail className="h-4 w-4" />
+                    support@disasterrecovery.com.au
+                  </p>
+                </motion.div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+// Higher-order component for wrapping components with error boundary
+export function withErrorBoundary<P extends {}>(  
+  Component: React.ComponentType<P>,
+  errorBoundaryProps?: Partial<ErrorBoundaryProps>
+) {
+  return function WithErrorBoundaryComponent(props: P) {
+    return (
+      <ErrorBoundary {...errorBoundaryProps}>
+        <Component {...props} />
+      </ErrorBoundary>
+    );
+  };
+}
+
+// Hook for manually reporting errors
+export function useErrorHandler() {
+  return {
+    reportError: (error: Error, context?: string) => {
+      console.error(`Manual error report ${context ? `(${context})` : ''}:`, error);
+      
+      // In production, send to error tracking service
+      // Sentry.captureException(error, { tags: { context } });
+    }
+  };
+}
+
+// Simple error fallback components
+export const SimpleErrorFallback = ({ error }: { error?: Error }) => (
+  <div className="flex items-center justify-center p-8">
+    <div className="text-center">
+      <FileX className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+      <p className="text-gray-600">Something went wrong loading this component.</p>
+      <Button 
+        onClick={() => window.location.reload()} 
+        size="sm" 
+        className="mt-4"
+      >
+        Retry
+      </Button>
+    </div>
+  </div>
+);
+
+export const InlineErrorFallback = ({ error }: { error?: Error }) => (
+  <div className="bg-red-50 border border-red-200 rounded-lg p-4 my-4">
+    <div className="flex items-start">
+      <AlertTriangle className="h-5 w-5 text-red-600 mt-0.5 mr-3 flex-shrink-0" />
+      <div>
+        <p className="text-red-800 font-medium">Error loading component</p>
+        <p className="text-red-600 text-sm mt-1">
+          {error?.message || 'An unexpected error occurred'}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
+export default ErrorBoundary;

@@ -387,7 +387,7 @@ export const LINKING_STRATEGY = {
       anchor: {
         branded: 'Disaster Recovery Australia',
         partial: 'disaster recovery services',
-        natural: 'click here', 'learn more', 'read more',
+        natural: ['click here', 'learn more', 'read more'],
         exact: 'water damage restoration Australia'
       }
     }
