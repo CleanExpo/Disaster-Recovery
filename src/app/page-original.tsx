@@ -27,7 +27,7 @@ export default function ComingSoonPage() {
               {/* Logo/Brand - Using actual NRP logo */}
               <div className="flex items-center justify-center gap-3 mb-8">
                 <img 
-                  src="/images/logos/nrp/NRP favicon_128x128.png" 
+                  src="/logos/3D NRP Logo.png" 
                   alt="NRP Logo" 
                   className="h-16 w-16"
                 />
