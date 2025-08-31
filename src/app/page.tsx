@@ -422,10 +422,10 @@ export default function EnhancedLandingPage() {
                 </li>
               </ul>
               <Link 
-                href="/client/emergency"
+                href="/contact"
                 className="block w-full text-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl text-white font-bold hover:shadow-xl transition-all"
               >
-                Get Emergency Help Now
+                Submit Claim Request
               </Link>
             </div>
 
@@ -542,11 +542,11 @@ export default function EnhancedLandingPage() {
       {/* Floating CTA Button */}
       <div className="fixed bottom-8 right-8 z-40">
         <Link
-          href="/client/emergency"
-          className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-2xl hover:bg-red-700 transition-all animate-pulse"
+          href="/contact"
+          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:from-blue-700 hover:to-purple-700 transition-all"
         >
-          <Phone className="h-5 w-5" />
-          Emergency Help
+          <ArrowRight className="h-5 w-5" />
+          Get Help Now
         </Link>
       </div>
     </div>

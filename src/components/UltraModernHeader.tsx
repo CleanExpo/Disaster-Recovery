@@ -488,12 +488,12 @@ export default function UltraModernHeader() {
                 NRP CRM Portal
               </Link>
               
-              {/* Emergency Button */}
+              {/* Contact Button */}
               <Link
                 href="/contact"
                 className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-orange-600 rounded-full hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl"
               >
-                🚨 Emergency
+                📱 Contact
               </Link>
             </div>
 
@@ -616,7 +616,7 @@ export default function UltraModernHeader() {
                 </div>
               </Link>
               
-              {/* Emergency Button */}
+              {/* Contact Button */}
               <Link
                 href="/contact"
                 className="block w-full text-center"
@@ -629,7 +629,7 @@ export default function UltraModernHeader() {
                     boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
                   }}
                 >
-                  🚨 Emergency Response
+                  📱 Contact Us Now
                 </div>
               </Link>
             </div>
