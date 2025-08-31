@@ -820,6 +820,102 @@ export default function InvestorPitchDeck() {
           </div>
         );
 
+      case 'comparison':
+        return (
+          <div className="min-h-[600px] p-12">
+            <h2 className="text-4xl font-bold text-center mb-4">{currentSlideData.content.title}</h2>
+            <p className="text-xl text-gray-600 text-center mb-12">{currentSlideData.content.subtitle}</p>
+            
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {currentSlideData.content.competitors.map((competitor, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-white rounded-xl p-6 shadow-lg"
+                >
+                  <h3 className="text-xl font-bold mb-4 text-blue-900">{competitor.name}</h3>
+                  
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-green-700 mb-2">Strengths:</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      {competitor.strengths.map((strength, sIdx) => (
+                        <li key={sIdx} className="flex items-start gap-2">
+                          <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span>{strength}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-red-700 mb-2">Weaknesses:</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      {competitor.weaknesses.map((weakness, wIdx) => (
+                        <li key={wIdx} className="flex items-start gap-2">
+                          <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+                          <span>{weakness}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="border-t pt-4">
+                    <h4 className="text-sm font-semibold text-purple-700 mb-2">Our Advantage:</h4>
+                    <p className="text-sm font-medium text-purple-600">{competitor.ourAdvantage}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        );
+
+      case 'team':
+        return (
+          <div className="min-h-[600px] p-12">
+            <h2 className="text-4xl font-bold text-center mb-4">{currentSlideData.content.title}</h2>
+            <p className="text-xl text-gray-600 text-center mb-12">{currentSlideData.content.subtitle}</p>
+            
+            <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto mb-8">
+              {currentSlideData.content.members.map((member, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-white rounded-xl p-6 shadow-lg text-center"
+                >
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-10 w-10 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">{member.name}</h3>
+                  <p className="text-sm text-gray-600 mb-2">{member.background}</p>
+                  <p className="text-xs text-blue-600 font-medium">{member.achievement}</p>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div className="bg-gray-50 rounded-xl p-6 max-w-4xl mx-auto">
+              <h3 className="text-lg font-bold mb-4 text-center">Advisory Board</h3>
+              <div className="grid md:grid-cols-3 gap-4">
+                {currentSlideData.content.advisors.map((advisor, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 + idx * 0.1 }}
+                    className="flex items-center gap-2 justify-center"
+                  >
+                    <Award className="h-5 w-5 text-yellow-500" />
+                    <span className="text-sm text-gray-700">{advisor}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+
       case 'contact':
         return (
           <div className="min-h-[600px] flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-slate-900">
