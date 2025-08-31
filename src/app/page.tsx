@@ -460,30 +460,54 @@ export default function EnhancedLandingPage() {
         </div>
       </section>
 
-      {/* Trust Badges Section */}
+      {/* Insurance Partners Section */}
       <section className="relative py-16 bg-black/40 backdrop-blur-sm" style={{ zIndex: 2 }}>
         <div className="container mx-auto px-6">
           <p className="text-center text-blue-300 mb-8">Trusted by Leading Insurance Companies</p>
-          <div className="flex flex-wrap justify-center items-center gap-8">
-            <Image
-              src="/images/logos/3D CARSI Logo.png"
-              alt="CARSI Certified"
-              width={120}
-              height={60}
-              className="opacity-70 hover:opacity-100 transition-opacity"
-            />
-            <Image
-              src="/images/logos/3D Clean Claims Logo.png"
-              alt="Clean Claims Partner"
-              width={120}
-              height={60}
-              className="opacity-70 hover:opacity-100 transition-opacity"
-            />
-            <div className="px-6 py-3 bg-white/10 rounded-lg">
-              <p className="text-white font-bold">RIA Member</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
+            {/* Major Australian Insurance Companies */}
+            <div className="px-8 py-4 bg-white/10 rounded-lg">
+              <p className="text-white font-bold text-lg">Suncorp</p>
             </div>
-            <div className="px-6 py-3 bg-white/10 rounded-lg">
-              <p className="text-white font-bold">IICRC Certified</p>
+            <div className="px-8 py-4 bg-white/10 rounded-lg">
+              <p className="text-white font-bold text-lg">IAG</p>
+            </div>
+            <div className="px-8 py-4 bg-white/10 rounded-lg">
+              <p className="text-white font-bold text-lg">Allianz</p>
+            </div>
+            <div className="px-8 py-4 bg-white/10 rounded-lg">
+              <p className="text-white font-bold text-lg">QBE</p>
+            </div>
+          </div>
+          
+          {/* Certifications & Associations Section */}
+          <div className="border-t border-white/20 pt-8">
+            <p className="text-center text-blue-300 mb-6">Industry Certifications & Strategic Partners</p>
+            <div className="flex flex-wrap justify-center items-center gap-6">
+              <div className="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-lg">
+                <span className="text-green-400">✓</span>
+                <p className="text-white font-bold">RIA Member</p>
+                <span className="text-xs text-gray-400 ml-2">(Restoration Industry Association)</span>
+              </div>
+              <div className="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-lg">
+                <span className="text-green-400">✓</span>
+                <p className="text-white font-bold">IICRC Certified</p>
+                <span className="text-xs text-gray-400 ml-2">(Institute of Inspection Cleaning & Restoration)</span>
+              </div>
+              <Image
+                src="/images/logos/3D CARSI Logo.png"
+                alt="CARSI Certified"
+                width={120}
+                height={60}
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <Image
+                src="/images/logos/3D Clean Claims Logo.png"
+                alt="Clean Claims Partner - Technology Platform"
+                width={120}
+                height={60}
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
             </div>
           </div>
         </div>
