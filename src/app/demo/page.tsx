@@ -9,12 +9,12 @@ import {
 
 const demos = [
   {
-    title: 'Investor Pitch Deck',
-    description: 'Professional 12-slide presentation showcasing our vision, market opportunity, and growth strategy',
-    icon: Rocket,
-    href: '/demo/investor-pitch',
-    features: ['Auto-play mode', '12 slides', 'Professional design', 'Mobile responsive'],
-    bgColor: 'from-purple-600 to-pink-600',
+    title: 'Insurance Claim Portal',
+    description: 'Watch how customers submit claims with our intelligent form auto-completion and AI damage assessment',
+    icon: Shield,
+    href: '/claim/start?demo=auto',
+    features: ['Auto-fill demo', 'Photo upload', 'Urgency triage', 'Instant dispatch'],
+    bgColor: 'from-green-600 to-emerald-600',
     status: 'live'
   },
   {
@@ -24,6 +24,15 @@ const demos = [
     href: '/contractor/apply?demo=auto',
     features: ['7-step process', 'Auto-fill demo', 'Document upload', 'Real-time validation'],
     bgColor: 'from-blue-600 to-cyan-600',
+    status: 'live'
+  },
+  {
+    title: 'Investor Pitch Deck',
+    description: 'Professional 12-slide presentation showcasing our vision, market opportunity, and growth strategy',
+    icon: Rocket,
+    href: '/demo/investor-pitch',
+    features: ['Auto-play mode', '12 slides', 'Professional design', 'Mobile responsive'],
+    bgColor: 'from-purple-600 to-pink-600',
     status: 'live'
   },
   {
@@ -79,13 +88,21 @@ export default function DemoPage() {
                 Experience the power of our disaster recovery platform through interactive demos
               </p>
             </div>
-            <Link 
-              href="/"
-              className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition flex items-center gap-2"
-            >
-              <Building2 className="h-5 w-5" />
-              Back to Main Site
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link 
+                href="/demo/credentials"
+                className="px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 rounded-lg transition flex items-center gap-2"
+              >
+                View Test Credentials
+              </Link>
+              <Link 
+                href="/"
+                className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition flex items-center gap-2"
+              >
+                <Building2 className="h-5 w-5" />
+                Back to Main Site
+              </Link>
+            </div>
           </div>
         </div>
       </div>

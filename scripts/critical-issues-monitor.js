@@ -95,16 +95,13 @@ const CRITICAL_CHECKS = {
   
   noSyntaxErrors: {
     name: 'No Syntax Errors',
-    files: [
+    searchPaths: [
       {
-        path: 'src',
-        pattern: /export\s+default\s+function\s+[^a-zA-Z_$]/, // Invalid function names
-        shouldNotMatch: true
-      },
-      {
-        path: 'src',
-        pattern: /FaUsersClass/, // Non-existent icon
-        shouldNotMatch: true
+        directory: 'src',
+        patterns: [
+          { pattern: /export\s+default\s+function\s+[^a-zA-Z_$]/, shouldNotMatch: true, description: 'Invalid function names' },
+          { pattern: /FaUsersClass/, shouldNotMatch: true, description: 'Non-existent icon' }
+        ]
       }
     ]
   }
@@ -163,6 +160,34 @@ async function checkExists(filePath) {
   }
 }
 
+async function searchInDirectory(directory, patterns) {
+  const glob = require('glob');
+  const issues = [];
+  
+  // Get all TypeScript/JavaScript files in directory
+  const files = glob.sync(`${directory}/**/*.{ts,tsx,js,jsx}`, { 
+    ignore: ['node_modules/**', '.next/**', 'build/**'] 
+  });
+  
+  for (const file of files) {
+    try {
+      const content = await fs.readFile(file, 'utf8');
+      for (const { pattern, shouldNotMatch, description } of patterns) {
+        if (pattern.test(content) && shouldNotMatch) {
+          issues.push({
+            file,
+            issues: [`Contains forbidden pattern: ${description || pattern}`]
+          });
+        }
+      }
+    } catch (error) {
+      // Skip files that can't be read
+    }
+  }
+  
+  return issues;
+}
+
 async function runChecks() {
   console.log(`\n${colors.blue}╔══════════════════════════════════════════════════╗`);
   console.log(`║     CRITICAL ISSUES MONITOR - NEVER AGAIN!      ║`);
@@ -185,6 +210,14 @@ async function runChecks() {
             issues
           });
         }
+      }
+    }
+    
+    // Check search paths
+    if (check.searchPaths) {
+      for (const searchPath of check.searchPaths) {
+        const searchIssues = await searchInDirectory(searchPath.directory, searchPath.patterns);
+        checkIssues.push(...searchIssues);
       }
     }
     
