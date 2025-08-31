@@ -60,12 +60,12 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.vercel-insights.com;
-              style-src 'self' 'unsafe-inline';
-              img-src 'self' data: https: blob:;
-              font-src 'self' data:;
-              connect-src 'self' https://vitals.vercel-insights.com;
-              frame-src 'self';
+              script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.vercel-insights.com https://*.googletagmanager.com https://*.google-analytics.com https://*.clarity.ms;
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+              img-src 'self' data: https: blob: https://*.google-analytics.com https://*.googletagmanager.com;
+              font-src 'self' data: https://fonts.gstatic.com;
+              connect-src 'self' https://vitals.vercel-insights.com https://*.google-analytics.com https://*.clarity.ms https://*.googletagmanager.com;
+              frame-src 'self' https://*.googletagmanager.com;
               object-src 'none';
               base-uri 'self';
               form-action 'self';

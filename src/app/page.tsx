@@ -14,6 +14,11 @@ import {
 import LightningEffect from '@/components/effects/LightningEffect';
 import { Logo, HeaderLogo } from '@/components/Logo';
 import LandingHeader from '@/components/LandingHeader';
+import EmergencyHero from '@/components/emergency/EmergencyHero';
+import SocialProofBar from '@/components/emergency/SocialProofBar';
+import TrustBadges from '@/components/emergency/TrustBadges';
+import BeforeAfterSlider from '@/components/emergency/BeforeAfterSlider';
+import InsuranceCalculator from '@/components/emergency/InsuranceCalculator';
 
 export default function EnhancedLandingPage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -58,112 +63,21 @@ export default function EnhancedLandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 relative overflow-hidden">
-      {/* Lightning Effect - Background */}
-      <LightningEffect />
+    <div className="min-h-screen">
+      {/* Emergency Hero Section - $2.5B Enterprise Level */}
+      <EmergencyHero />
       
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl opacity-10 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-green-500 rounded-full filter blur-3xl opacity-10 animate-pulse animation-delay-2000" />
-      </div>
-
-      {/* Hero Section with 3D Visual */}
-      <section className="relative pt-8 pb-32" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-center lg:text-left">
-              {/* Logo Integration */}
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-8">
-                <Image
-                  src="/logos/3D Disaster Recovery Logo Image.png"
-                  alt="Disaster Recovery"
-                  width={120}
-                  height={120}
-                  className="object-contain"
-                  style={{
-                    filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
-                  }}
-                  priority
-                />
-                <div>
-                  <p className="text-blue-300 text-lg font-medium">Powered by NRP Network</p>
-                </div>
-              </div>
-
-              {/* Main Headline */}
-              <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Australia's First
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
-                  AI-Powered Restoration Network
-                </span>
-              </h2>
-
-              {/* Value Proposition */}
-              <p className="text-xl text-blue-200 mb-8 leading-relaxed">
-                Connecting insurance claims to verified contractors in minutes, not days.
-                Every disaster. Every location. Zero callbacks.
-              </p>
-
-              {/* Trust Signals */}
-              <div className="flex flex-wrap gap-4 mb-8 justify-center lg:justify-start">
-                <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
-                  <Shield className="h-5 w-5 text-green-400" />
-                  <span className="text-white text-sm">Insurance Approved</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
-                  <Award className="h-5 w-5 text-yellow-400" />
-                  <span className="text-white text-sm">Certified Network</span>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link 
-                  href="/client/instant-quote"
-                  className="group px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl text-white font-bold text-lg hover:shadow-2xl hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Get Instant Help
-                    <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-                
-                <Link 
-                  href="/pitch"
-                  className="group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white font-bold text-lg hover:bg-white/20 transition-all duration-300 inline-block"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <Play className="h-5 w-5" />
-                    Watch Presentation
-                  </span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Visual - 3D Hero Image */}
-            <div className="relative">
-              <div className="relative w-full h-[500px]">
-                <Image
-                  src="/images/optimized/damage/3D Water Damage to a Home.png"
-                  alt="3D Water Damage Emergency Response Visual"
-                  fill
-                  className="object-contain drop-shadow-2xl animate-float"
-                  priority
-                />
-                {/* Floating badges around image */}
-                <div className="absolute top-10 right-10 px-4 py-2 bg-red-500/90 backdrop-blur-sm rounded-full text-white font-bold animate-bounce">
-                  24/7 Response
-                </div>
-                <div className="absolute bottom-10 left-10 px-4 py-2 bg-blue-500/90 backdrop-blur-sm rounded-full text-white font-bold animate-bounce animation-delay-1000">
-                  AI Matching
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Social Proof Bar with Live Stats */}
+      <SocialProofBar />
+      
+      {/* Trust Badges Section */}
+      <TrustBadges />
+      
+      {/* Before/After Transformation Slider */}
+      <BeforeAfterSlider />
+      
+      {/* Insurance Calculator Widget */}
+      <InsuranceCalculator />
 
       {/* Stats Section with Animation */}
       <section className="relative py-20 bg-black/30 backdrop-blur-sm" style={{ zIndex: 2 }}>

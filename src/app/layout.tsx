@@ -13,6 +13,7 @@ import DemoModeIndicator from '@/components/DemoModeIndicator'
 import DemoModeBanner from '@/components/demo/DemoModeBanner'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
+import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -219,6 +220,7 @@ export default function RootLayout({
             {children}
           </main>
           <UltraModernFooter />
+          <MobileEmergencyCTA />
         </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}
