@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { FaUsersClass, FaFileContract, FaCheckCircle, FaInfoCircle } from 'react-icons/fa'
+import { FaUsers, FaFileContract, FaCheckCircle, FaInfoCircle } from 'react-icons/fa'
 
 export default function AdvisoryBoardAgreementsPage() {
   const [activeSection, setActiveSection] = useState('overview')
@@ -19,7 +19,7 @@ export default function AdvisoryBoardAgreementsPage() {
 
       <div className="grid md:grid-cols-4 gap-6 mb-8">
         <div className="bg-blue-50 p-4 rounded-lg">
-          <FaUsersClass className="text-3xl text-blue-600 mb-2" />
+          <FaUsers className="text-3xl text-blue-600 mb-2" />
           <h3 className="font-semibold">Legal Framework</h3>
           <p className="text-sm text-gray-600">Compliant with Australian law</p>
         </div>

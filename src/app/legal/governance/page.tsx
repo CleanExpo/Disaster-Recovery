@@ -1,13 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { FaUsersClass, FaUserTie, FaBriefcase, FaUserCog, FaExclamationCircle } from 'react-icons/fa'
+import { FaUsers, FaUserTie, FaBriefcase, FaUserCog, FaExclamationCircle } from 'react-icons/fa'
 
 const documents = [
   {
     "title": "Advisory Board",
     "href": "/legal/forms/advisory-board",
-    icon: FaUsersClass
+    icon: FaUsers
   },
   {
     "title": "Director & Officer",

@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
+    // Dynamically import Prisma to avoid build-time issues
+    const { PrismaClient } = await import('@prisma/client');
+    const prisma = new PrismaClient();
+    
     // Fetch all published SEO pages
     const pages = await prisma.sEOLocationPage.findMany({
       where: {

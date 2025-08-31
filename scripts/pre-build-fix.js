@@ -149,6 +149,30 @@ async function fixAllPageFiles() {
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
         
+        // Fix react-icons imports
+        if (line.includes('react-icons/fa')) {
+          // Check for non-existent icons
+          const invalidIcons = ['FaUsersClass', 'FaUserClass', 'FaClassroom'];
+          const replacements = {
+            'FaUsersClass': 'FaUsers',
+            'FaUserClass': 'FaUser',
+            'FaClassroom': 'FaChalkboardTeacher'
+          };
+          
+          let modifiedLine = line;
+          for (const [invalid, valid] of Object.entries(replacements)) {
+            if (modifiedLine.includes(invalid)) {
+              modifiedLine = modifiedLine.replace(new RegExp(invalid, 'g'), valid);
+              modified = true;
+              console.log(`${colors.green}✓${colors.reset} Fixed icon import: ${invalid} → ${valid}`);
+            }
+          }
+          if (modifiedLine !== line) {
+            lines[i] = modifiedLine;
+            modified = true;
+          }
+        }
+        
         // Fix duplicate imports
         if (line.includes('import') && line.includes('{') && line.includes('}')) {
           const importMatch = line.match(/import\s*{([^}]+)}\s*from/);
