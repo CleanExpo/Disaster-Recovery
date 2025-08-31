@@ -2,7 +2,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SEOImage } from '@/components/ui/seo-image';
 
 interface ServicePageLayoutProps {
   title: string;

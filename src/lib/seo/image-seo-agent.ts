@@ -160,6 +160,11 @@ export class ImageSEOAgent {
       serviceType?: string;
     } = {}
   ): SEOOptimizedImage {
+    // Validate image object
+    if (!image) {
+      throw new Error('Image object is required for SEO optimization');
+    }
+    
     // Determine service type and keywords
     const keywords = this.extractKeywords(image, context);
     
@@ -224,6 +229,16 @@ export class ImageSEOAgent {
     let longTailKeywords: string[] = [];
     let semanticKeywords: string[] = [];
     
+    // Check if image and category exist
+    if (!image || !image.category) {
+      return {
+        primaryKeyword: 'disaster recovery',
+        secondaryKeywords: ['emergency response', 'restoration services'],
+        longTailKeywords: ['24/7 emergency disaster recovery services'],
+        semanticKeywords: ['restoration', 'recovery', 'emergency']
+      };
+    }
+    
     // Determine primary service category
     if (image.category.includes('water')) {
       primaryKeyword = SEO_KEYWORDS.waterDamage.primary;
@@ -270,7 +285,7 @@ export class ImageSEOAgent {
    */
   private static generateSEOFilename(image: ImageAsset, primaryKeyword: string): string {
     const keyword = primaryKeyword.toLowerCase().replace(/\s+/g, '-');
-    const category = image.category.split('/').pop();
+    const category = image.category ? image.category.split('/').pop() : 'image';
     const uniqueId = image.id.split('-').pop();
     
     return `${keyword}-${category}-${uniqueId}`;
@@ -293,7 +308,7 @@ export class ImageSEOAgent {
       'equipment-extractors': `Professional ${keywords.primaryKeyword} - ${image.name}. Heavy-duty ${keywords.secondaryKeywords[0]} for emergency response`
     };
     
-    const template = templates[image.category as keyof typeof templates] || image.alt;
+    const template = templates[image.category as keyof typeof templates] || image.alt || 'Professional disaster recovery service';
     
     // Add location if provided
     if (context.location) {
@@ -332,7 +347,7 @@ export class ImageSEOAgent {
       'equipment-extractors': `Powerful ${keywords.primaryKeyword} in operation. Professional-grade ${keywords.secondaryKeywords[0]} for immediate water removal.`
     };
     
-    return captions[image.category as keyof typeof captions] || image.description;
+    return captions[image.category as keyof typeof captions] || image.description || 'Professional disaster recovery and restoration services';
   }
   
   /**
@@ -395,10 +410,10 @@ export class ImageSEOAgent {
    * Determine image priority
    */
   private static determinePriority(image: ImageAsset): 'high' | 'medium' | 'low' {
-    if (image.category.includes('damage') && image.tags.includes('emergency')) {
+    if (image.category && image.category.includes('damage') && image.tags && image.tags.includes('emergency')) {
       return 'high';
     }
-    if (image.category.includes('equipment')) {
+    if (image.category && image.category.includes('equipment')) {
       return 'medium';
     }
     return 'low';
@@ -408,10 +423,10 @@ export class ImageSEOAgent {
    * Determine optimal placement on page
    */
   private static determineOptimalPlacement(image: ImageAsset): 'above-fold' | 'in-content' | 'gallery' {
-    if (image.tags.includes('hero') || image.tags.includes('emergency')) {
+    if (image.tags && (image.tags.includes('hero') || image.tags.includes('emergency'))) {
       return 'above-fold';
     }
-    if (image.category.includes('equipment')) {
+    if (image.category && image.category.includes('equipment')) {
       return 'gallery';
     }
     return 'in-content';
@@ -422,6 +437,10 @@ export class ImageSEOAgent {
    */
   private static findRelatedContent(image: ImageAsset): string[] {
     const related: string[] = [];
+    
+    if (!image.category) {
+      return ['Emergency Response Services', 'Disaster Recovery', 'Restoration Services'];
+    }
     
     if (image.category.includes('water')) {
       related.push(
