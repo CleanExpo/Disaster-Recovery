@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-08-31T10:10:13.977Z",
+  "currentRating": 3.65,
+  "targetRating": 10,
+  "brandValue": 2500000000,
+  "issues": [
+    {
+      "type": "Logo Underutilized",
+      "logo": "Main",
+      "severity": "medium"
+    },
+    {
+      "type": "Logo Underutilized",
+      "logo": "NRP",
+      "severity": "medium"
+    },
+    {
+      "type": "Logo Underutilized",
+      "logo": "Partner",
+      "severity": "medium"
+    },
+    {
+      "type": "Slow Page Load",
+      "current": 5.2,
+      "target": 3,
+      "severity": "high"
+    },
+    {
+      "type": "Large Bundle Size",
+      "current": 1200,
+      "target": 500,
+      "severity": "high"
+    },
+    {
+      "type": "Poor Image Optimization",
+      "current": 45,
+      "target": 90,
+      "severity": "medium"
+    },
+    {
+      "type": "Poor Readability",
+      "score": 72,
+      "target": 100,
+      "severity": "medium"
+    }
+  ],
+  "categories": {
+    "UI/UX": {
+      "issues": 0,
+      "critical": 0
+    },
+    "Branding": {
+      "issues": 3,
+      "critical": 0
+    },
+    "CRM": {
+      "issues": 0,
+      "critical": 0
+    },
+    "SEO": {
+      "issues": 0,
+      "critical": 0
+    },
+    "Performance": {
+      "issues": 3,
+      "critical": 0
+    },
+    "Mobile": {
+      "issues": 0,
+      "critical": 0
+    },
+    "Content": {
+      "issues": 1,
+      "critical": 0
+    },
+    "Missing Pages": {
+      "issues": 0,
+      "critical": 0
+    }
+  },
+  "totalIssues": 7,
+  "criticalIssues": 0
+}

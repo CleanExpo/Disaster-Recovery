@@ -1,46 +1,43 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Security headers - minimal and serverless-compatible
-const securityHeaders = {
-  'X-DNS-Prefetch-Control': 'on',
-  'X-XSS-Protection': '1; mode=block',
-  'X-Frame-Options': 'SAMEORIGIN',
-  'X-Content-Type-Options': 'nosniff',
-  'Referrer-Policy': 'origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-};
-
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const response = NextResponse.next();
-  const pathname = request.nextUrl.pathname;
   
-  // Apply security headers to all responses
-  Object.entries(securityHeaders).forEach(([key, value]) => {
-    response.headers.set(key, value);
-  });
+  // Security headers
+  response.headers.set('X-Frame-Options', 'DENY');
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   
-  // Image optimization headers for uploads (simplified)
-  if (pathname.startsWith('/api/upload') || 
-      pathname.startsWith('/api/image')) {
-    response.headers.set('x-optimize-images', 'true');
+  // Performance headers
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  
+  // Cache control based on path
+  const path = request.nextUrl.pathname;
+  
+  // Static assets - cache for 1 year
+  if (path.match(/\.(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2|ttf|otf)$/)) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
   }
   
-  // Add response timing for monitoring
-  response.headers.set('X-Response-Time', Date.now().toString());
+  // CSS and JS - cache for 1 month
+  else if (path.match(/\.(css|js)$/)) {
+    response.headers.set('Cache-Control', 'public, max-age=2592000, immutable');
+  }
+  
+  // HTML and API - cache for 1 hour with revalidation
+  else {
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
+    );
+  }
   
   return response;
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     */
-    '/((?!_next/static|_next/image|favicon.ico|public/).*)',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
