@@ -113,6 +113,99 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/logos/3D Disaster Recovery Logo Image.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-colour" content="#0052CC" />
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Disaster Recovery",
+              "alternateName": "NRP - National Restoration Platform",
+              "url": "https://disasterrecovery.com.au",
+              "logo": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
+              "description": "Leading disaster recovery and restoration specialists providing 24/7 emergency response across Australia",
+              "areaServed": {
+                "@type": "Country",
+                "name": "Australia"
+              },
+              "serviceArea": {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                  "@type": "GeoCoordinates",
+                  "latitude": -25.2744,
+                  "longitude": 133.7751
+                },
+                "geoRadius": "4000000"
+              },
+              "sameAs": [
+                "https://www.facebook.com/DisasterRecoveryAU",
+                "https://www.linkedin.com/company/disaster-recovery-au",
+                "https://www.instagram.com/disasterrecoveryau",
+                "https://www.youtube.com/@DisasterRecoveryAU"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+61-1300-DISASTER",
+                "contactType": "Emergency Service",
+                "availableLanguage": "English",
+                "areaServed": "AU",
+                "contactOption": "TollFree",
+                "availableHours": "Mo,Tu,We,Th,Fr,Sa,Su 00:00-23:59"
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "AU",
+                "addressRegion": "QLD",
+                "addressLocality": "Brisbane"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Disaster Recovery Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Water Damage Restoration",
+                      "description": "24/7 emergency water damage restoration and flood recovery"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Fire Damage Restoration",
+                      "description": "Complete fire and smoke damage restoration services"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Mould Remediation",
+                      "description": "Professional mould removal and remediation services"
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Biohazard Cleanup",
+                      "description": "Specialized biohazard and trauma scene cleanup"
+                    }
+                  }
+                ]
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "reviewCount": "1247",
+                "bestRating": "5"
+              }
+            })
+          }}
+        />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <GoogleTagManager />

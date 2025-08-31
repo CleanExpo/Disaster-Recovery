@@ -1,0 +1,31 @@
+
+DISASTER RECOVERY HEALTH CHECK REPORT
+=====================================
+Generated: 2025-08-31T08:49:54.653Z
+Environment: Node v20.19.4 on win32
+Base URL: http://localhost:3002
+
+TEST RESULTS
+============
+Routes: 28/28 passed
+Assets: 10/10 passed
+API Endpoints: 1/2 passed
+SEO Elements: 11 passed, 0 failed
+Broken Links: 0 found
+
+PERFORMANCE
+===========
+Average Load Time: 802ms
+Min Load Time: 760ms
+Max Load Time: 864ms
+
+ISSUES
+======
+Errors (0):
+None
+
+Warnings (0):
+None
+
+OVERALL STATUS: HEALTHY
+=====================================

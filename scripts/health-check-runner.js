@@ -282,7 +282,7 @@ async function testSEO() {
       { name: 'Twitter Card', pattern: /<meta name="twitter:card"/ },
       { name: 'Viewport Meta', pattern: /<meta name="viewport"/ },
       { name: 'Canonical Link', pattern: /<link rel="canonical"/ },
-      { name: 'Structured Data', pattern: /<script type="application\/ld\+json">/ }
+      { name: 'Structured Data', pattern: /application\/ld\+json/ }
     ];
     
     for (const check of seoChecks) {

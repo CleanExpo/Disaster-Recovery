@@ -1,0 +1,141 @@
+version: '3.8'
+
+services:
+  # Main Pitch Deck Orchestrator
+  pitch-orchestrator:
+    build:
+      context: ./docker/pitch-deck-orchestrator
+      dockerfile: Dockerfile
+    container_name: pitch-deck-orchestrator
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=production
+      - API_PORT=3005
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - YOUTUBE_VIDEO_ID=edEYKBN6Yl0
+      - ENABLE_ANALYTICS=true
+      - ENABLE_EXPORT=true
+    volumes:
+      - ./public:/app/public
+      - ./src/data:/app/src/data
+      - ./dist/pitch-deck:/app/dist
+      - pitch-cache:/app/.cache
+    networks:
+      - pitch-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3005/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Graphics Processor
+  graphics-processor:
+    image: dpokidov/imagemagick:latest
+    container_name: pitch-graphics-processor
+    volumes:
+      - ./public/logos:/input/logos
+      - ./public/images:/input/images
+      - ./public/pitch-deck/optimized:/output
+    environment:
+      - PROCESS_3D=true
+      - OPTIMIZE_WEBP=true
+      - GENERATE_THUMBNAILS=true
+    networks:
+      - pitch-network
+    command: >
+      sh -c "
+        echo 'Processing 3D graphics...' &&
+        find /input -name '*.png' -exec convert {} -quality 95 /output/{}.webp \; &&
+        echo 'Graphics processing complete'
+      "
+
+  # Data Analytics Engine
+  data-analytics:
+    image: jupyter/datascience-notebook:latest
+    container_name: pitch-data-analytics
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=PitchDeck2024
+    volumes:
+      - ./src/data:/home/jovyan/data
+      - ./notebooks:/home/jovyan/notebooks
+      - analytics-output:/home/jovyan/output
+    networks:
+      - pitch-network
+    command: >
+      sh -c "
+        pip install plotly pandas matplotlib seaborn &&
+        jupyter lab --ip=0.0.0.0 --no-browser --allow-root
+      "
+
+  # Video & Media Processor
+  media-processor:
+    image: jrottenberg/ffmpeg:latest
+    container_name: pitch-media-processor
+    volumes:
+      - ./public/videos:/input
+      - ./public/pitch-deck/media:/output
+    environment:
+      - YOUTUBE_DL=true
+      - COMPRESS_VIDEO=true
+      - GENERATE_PREVIEW=true
+    networks:
+      - pitch-network
+    command: >
+      sh -c "
+        echo 'Media processor ready' &&
+        sleep infinity
+      "
+
+  # Export Service (PDF, PPTX, Video)
+  export-service:
+    image: thecodingmachine/gotenberg:7
+    container_name: pitch-export-service
+    ports:
+      - "3006:3000"
+    environment:
+      - DEFAULT_WAIT_TIMEOUT=60
+      - LOG_LEVEL=info
+    networks:
+      - pitch-network
+    command: >
+      gotenberg --api-timeout=60s
+
+  # Preview Server
+  preview-server:
+    image: nginx:alpine
+    container_name: pitch-preview-server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./dist/pitch-deck:/usr/share/nginx/html:ro
+      - ./nginx/pitch-deck.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - pitch-network
+    depends_on:
+      - pitch-orchestrator
+
+  # Cache & Performance
+  redis-cache:
+    image: redis:alpine
+    container_name: pitch-redis-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - pitch-network
+    command: redis-server --appendonly yes
+
+networks:
+  pitch-network:
+    driver: bridge
+
+volumes:
+  pitch-cache:
+  analytics-output:
+  redis-data:

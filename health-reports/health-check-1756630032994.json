@@ -1,0 +1,212 @@
+{
+  "timestamp": "2025-08-31T08:45:22.540Z",
+  "environment": {
+    "nodeVersion": "v20.19.4",
+    "platform": "win32",
+    "baseUrl": "http://localhost:3002"
+  },
+  "tests": {
+    "routes": {
+      "total": 28,
+      "passed": 24,
+      "failed": 4,
+      "details": [
+        {
+          "path": "/services/mould-remediation",
+          "name": "Mould Remediation",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/services/commercial",
+          "name": "Commercial Services",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/technology",
+          "name": "Technology",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/technology/ai",
+          "name": "AI Detection",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/technology/thermal",
+          "name": "Thermal Imaging",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/technology/hepa",
+          "name": "HEPA Systems",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal",
+          "name": "Legal",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/core-business",
+          "name": "Core Business Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/contractor-network",
+          "name": "Contractor Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/client-facing",
+          "name": "Client Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/financial-payment",
+          "name": "Financial Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/affiliate-marketing",
+          "name": "Marketing Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/platform-technology",
+          "name": "Technology Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/compliance-industry",
+          "name": "Compliance Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/legal/governance",
+          "name": "Governance Documents",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/about",
+          "name": "About",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/contact",
+          "name": "Contact",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/pitch",
+          "name": "Pitch Deck",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/contractor",
+          "name": "Contractor Portal",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/contractor/apply",
+          "name": "Contractor Application",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/partners/clean-claims",
+          "name": "Clean Claims Partner",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/emergency-guide",
+          "name": "Emergency Guide",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/insurance",
+          "name": "Insurance",
+          "status": "passed",
+          "statusCode": 200
+        },
+        {
+          "path": "/faq",
+          "name": "FAQ",
+          "status": "passed",
+          "statusCode": 200
+        }
+      ]
+    },
+    "assets": {
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "details": []
+    },
+    "api": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "details": []
+    },
+    "links": {
+      "total": 89,
+      "passed": 87,
+      "failed": 0,
+      "broken": []
+    },
+    "seo": {
+      "passed": 10,
+      "failed": 1,
+      "details": []
+    },
+    "performance": {
+      "metrics": {
+        "average": 682,
+        "min": 625,
+        "max": 736,
+        "measurements": [
+          736,
+          625,
+          686
+        ]
+      }
+    }
+  },
+  "errors": [
+    "Failed to test /: Request timeout",
+    "Failed to test /services: Request timeout",
+    "Failed to test /services/water-damage: Request timeout",
+    "Failed to test /services/fire-damage: Request timeout",
+    "Missing SEO element: Structured Data"
+  ],
+  "warnings": [],
+  "summary": {
+    "totalTests": 51,
+    "totalPassed": 45,
+    "totalFailed": 6,
+    "totalErrors": 5,
+    "totalWarnings": 0,
+    "overallStatus": "CRITICAL"
+  }
+}
