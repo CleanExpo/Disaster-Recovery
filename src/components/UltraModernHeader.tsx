@@ -517,7 +517,24 @@ export default function UltraModernHeader() {
               ))}
             </nav>
 
-            {/* Removed CTA Section - circles were causing visual issues */}
+            {/* CTA Buttons - CRM and Emergency */}
+            <div className="hidden md:flex items-center gap-3 ml-6">
+              {/* CRM Portal Button */}
+              <Link
+                href="/crm"
+                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                NRP CRM Portal
+              </Link>
+              
+              {/* Emergency Button */}
+              <Link
+                href="/contact"
+                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-orange-600 rounded-full hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl"
+              >
+                🚨 Emergency
+              </Link>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -619,22 +636,42 @@ export default function UltraModernHeader() {
               </div>
             ))}
             
-            {/* Mobile CTA */}
-            <Link
-              href="/contact"
-              className="block w-full mt-4 text-center"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <div 
-                className="px-6 py-4 rounded-full font-bold text-white"
-                style={{
-                  background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
-                  boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
-                }}
+            {/* Mobile CTAs */}
+            <div className="space-y-3 mt-4">
+              {/* CRM Portal Button */}
+              <Link
+                href="/crm"
+                className="block w-full text-center"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                🚨 Emergency Hotline
-              </div>
-            </Link>
+                <div 
+                  className="px-6 py-4 rounded-full font-bold text-white"
+                  style={{
+                    background: 'linear-gradient(135deg, #4545ff 0%, #8845ff 100%)',
+                    boxShadow: '0 10px 40px rgba(69, 69, 255, 0.3)',
+                  }}
+                >
+                  🔐 NRP CRM Portal
+                </div>
+              </Link>
+              
+              {/* Emergency Button */}
+              <Link
+                href="/contact"
+                className="block w-full text-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <div 
+                  className="px-6 py-4 rounded-full font-bold text-white"
+                  style={{
+                    background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
+                    boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)',
+                  }}
+                >
+                  🚨 Emergency Hotline
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
