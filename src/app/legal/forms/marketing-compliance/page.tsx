@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { FaCheckCircle, FaFileContract, FaCheckCircle, FaInfoCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaFileContract, FaInfoCircle } from 'react-icons/fa'
 
 export default function MarketingComplianceGuidelinesPage() {
   const [activeSection, setActiveSection] = useState('overview')
