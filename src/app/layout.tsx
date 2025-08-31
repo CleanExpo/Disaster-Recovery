@@ -106,11 +106,11 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
-        <link rel="icon" type="image/png" href="/logos/3D Disaster Recovery Round Borders.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/logos/3D Disaster Recovery Round Borders.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/logos/3D Disaster Recovery Round Borders.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/logos/3D Disaster Recovery Round Borders.png" />
-        <link rel="shortcut icon" href="/logos/3D Disaster Recovery Round Borders.png" />
+        <link rel="icon" type="image/png" href="/logos/3D Disaster Recovery Logo Image.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/logos/3D Disaster Recovery Logo Image.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/logos/3D Disaster Recovery Logo Image.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logos/3D Disaster Recovery Logo Image.png" />
+        <link rel="shortcut icon" href="/logos/3D Disaster Recovery Logo Image.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-colour" content="#0052CC" />
       </head>

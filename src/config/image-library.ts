@@ -488,9 +488,9 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     description: 'Disaster Recovery standard company logo',
     tags: ['logo', 'branding', 'disaster-recovery', 'company', 'official', 'standard-logo', 'header'],
     formats: {
-      webp: '/images/branding/disaster-recovery-logo.webp',
-      jpg: '/images/branding/disaster-recovery-logo.jpg',
-      png: '/images/branding/disaster-recovery-logo.png'
+      webp: '/logos/3D Disaster Recovery Logo Image.png',
+      jpg: '/logos/3D Disaster Recovery Logo Image.png',
+      png: '/logos/3D Disaster Recovery Logo Image.png'
     },
     sizes: {
       thumbnail: '/images/branding/disaster-recovery-logo-thumb.webp',

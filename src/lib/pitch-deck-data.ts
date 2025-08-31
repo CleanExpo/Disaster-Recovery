@@ -9,7 +9,7 @@ export const pitchDeckData = {
       animation: 'fadeIn',
       duration: 8000,
       narration: 'Welcome to Disaster Recovery. We are building Australia\'s first pre-vetted restoration network, transforming a 2.8 billion dollar industry dominated by corporate middlemen.',
-      image: '/images/logos/disaster-recovery-logo.png',
+      image: '/logos/3D Disaster Recovery Logo Image.png',
       music: 'epic-intro'
     },
     {
