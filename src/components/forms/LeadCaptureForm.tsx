@@ -223,7 +223,7 @@ export default function LeadCaptureForm() {
                 required
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, 
-                placeholder=""
+                placeholder="Your contact details"
               />
             </div>
             <div className="md:col-span-2">

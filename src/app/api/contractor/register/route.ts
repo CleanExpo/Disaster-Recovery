@@ -50,10 +50,9 @@ const registrationSchema = z.object({
       firstName: z.string(),
       lastName: z.string(),
       position: z.string(),
-      email: z.string().email(),
-      
+      email: z.string().email()
     })),
-    officeOnline Form: z.string().optional(),
+    officeEmail: z.string().optional(),
     website: z.string().url().optional()
   }),
   insurance: z.array(z.object({

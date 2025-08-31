@@ -187,7 +187,7 @@ function ClaimStartContent() {
             <div>
               <h2 className="font-bold text-red-900 mb-1">Emergency? Submit Form Now!</h2>
               <p className="text-red-700">For immediate emergency response, use our 24/7 online form:</p>
-              <a href="
+              <a href="#contact-form" className="text-2xl font-bold text-red-600 hover:text-red-700">
                 Online Form Available 24/7
               </a>
             </div>
@@ -251,8 +251,7 @@ function ClaimStartContent() {
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                     currentField === 'phone' ? 'ring-2 ring-yellow-400' : ''
                   }`}
-                  placeholder=""
-                />
+                  placeholder="Enter details" />
               </div>
               
               <div>

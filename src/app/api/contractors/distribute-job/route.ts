@@ -268,7 +268,7 @@ export async function POST(request: NextRequest) {
             urgency: jobData.urgencyLevel,
             location: `${jobData.location.suburb}, ${jobData.location.state}`,
             estimatedValue: jobData.estimatedValue,
-            customerOnline Form: jobData.customerDetails.phone,
+            customeremail: jobData.customerDetails.phone,
             description: jobData.damageDescription,
           },
           acceptanceUrl: `https://portal.disasterrecovery.com.au/jobs/${jobData.bookingId}/accept`,
