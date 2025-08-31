@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ServicePageLayout } from '@/components/services/ServicePageLayout';
-import { SEOImage } from '@/components/ui/seo-image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // SEO Metadata with comprehensive biohazard cleanup keywords
@@ -206,7 +206,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/process/3D Emergency Squalor Cleanup.png"
               alt="Professional biohazard cleanup team with specialised protective equipment"
               width={500}

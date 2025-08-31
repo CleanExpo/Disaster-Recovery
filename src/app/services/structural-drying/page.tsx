@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ServicePageLayout } from '@/components/services/ServicePageLayout';
-import { SEOImage } from '@/components/ui/seo-image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // SEO Metadata with comprehensive structural drying keywords
@@ -206,7 +206,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/equipment/3D Industrial Fan.png"
               alt="Professional air mover equipment for structural drying and water damage restoration"
               width={500}
@@ -404,7 +404,7 @@ export default function StructuralDryingPage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/equipment/3D Moisture Meter Reading.png"
               alt="Professional moisture meter for monitoring structural drying progress and verification"
               width={500}

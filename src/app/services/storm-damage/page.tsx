@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ServicePageLayout } from '@/components/services/ServicePageLayout';
-import { SEOImage } from '@/components/ui/seo-image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // SEO Metadata with comprehensive storm damage keywords
@@ -206,7 +206,7 @@ export default function StormDamagePage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/damage/3D Vehicle into Home.png"
               alt="Professional storm damage assessment showing severe structural damage requiring immediate response"
               width={500}
@@ -451,7 +451,7 @@ export default function StormDamagePage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/equipment/3D Thermal Camera.png"
               alt="Professional thermal imaging equipment for detecting hidden storm damage"
               width={500}

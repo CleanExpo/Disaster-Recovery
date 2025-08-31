@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ServicePageLayout } from '@/components/services/ServicePageLayout';
-import { SEOImage } from '@/components/ui/seo-image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // SEO Metadata with comprehensive emergency response keywords
@@ -206,7 +206,7 @@ export default function EmergencyResponsePage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/equipment/3D Extraction Unit.png"
               alt="Emergency water extraction equipment ready for rapid deployment"
               width={500}
@@ -464,7 +464,7 @@ export default function EmergencyResponsePage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/equipment/3D Industrial Fan.png"
               alt="Industrial emergency response equipment including powerful drying fans"
               width={500}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ServicePageLayout } from '@/components/services/ServicePageLayout';
-import { SEOImage } from '@/components/ui/seo-image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // SEO Metadata with comprehensive mould remediation keywords
@@ -206,7 +206,7 @@ export default function MoldRemediationPage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/process/3D Remediation.png"
               alt="Professional mould remediation process with containment and HEPA filtration"
               width={500}
@@ -435,7 +435,7 @@ export default function MoldRemediationPage() {
           </div>
           
           <div className="relative">
-            <SEOImage
+            <Image
               src="/images/optimised/equipment/3D Moisture Meter Reading.png"
               alt="Professional moisture meter reading during mould assessment and remediation"
               width={500}
