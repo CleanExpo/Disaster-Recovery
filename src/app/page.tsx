@@ -148,8 +148,8 @@ export default function EnhancedLandingPage() {
             <div className="relative">
               <div className="relative w-full h-[500px]">
                 <Image
-                  src="/images/optimised/damage/3D image of a house fire.png"
-                  alt="3D Emergency Response Visual"
+                  src="/images/optimized/damage/3D Water Damage to a Home.png"
+                  alt="3D Water Damage Emergency Response Visual"
                   fill
                   className="object-contain drop-shadow-2xl animate-float"
                   priority

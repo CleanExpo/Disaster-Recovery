@@ -348,7 +348,7 @@ const PITCH_SLIDES = [
       title: 'Watch Our Pitch',
       subtitle: 'See the Disaster Recovery Vision in Action',
       videoUrl: 'https://youtu.be/edEYKBN6Yl0',
-      embedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=1&rel=0',
+      embedUrl: 'https://www.youtube.com/embed/edEYKBN6Yl0?autoplay=0&controls=1&rel=0',
       description: 'Discover how we\'re revolutionizing Australia\'s disaster recovery industry with cutting-edge technology and a contractor-first approach.',
       highlights: [
         'Platform demonstration',
@@ -1085,13 +1085,22 @@ export default function InvestorPitchDeck() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Image
-                src="/logos/3D Disaster Recovery Round Borders.png"
-                alt="Disaster Recovery"
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/logos/3D Disaster Recovery Round Borders.png"
+                  alt="Disaster Recovery"
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+                <Image
+                  src="/logos/NRP-Logo.png"
+                  alt="NRP"
+                  width={35}
+                  height={35}
+                  className="rounded"
+                />
+              </div>
               <div>
                 <h1 className="text-lg font-bold">Investor Pitch Deck</h1>
                 <p className="text-sm text-gray-600">Series A - $3M Raise</p>
