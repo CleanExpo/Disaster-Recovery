@@ -400,8 +400,9 @@ const PITCH_SLIDES = [
 export default function InvestorPitchDeck() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true); // Auto-start playing
-  const [isMuted, setIsMuted] = useState(true); // Start muted for better UX
+  const [isMuted, setIsMuted] = useState(false); // Start unmuted for full experience
   const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressInterval = useRef<NodeJS.Timeout | null>(null);
 
@@ -441,11 +442,14 @@ export default function InvestorPitchDeck() {
 
   // Play narration
   const playNarration = async (text: string) => {
+    if (!text) return;
+    
+    setIsLoading(true);
     try {
       const response = await fetch('/api/elevenlabs/narrate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, voice: 'professional' })
+        body: JSON.stringify({ text })
       });
 
       if (response.ok) {
@@ -454,13 +458,20 @@ export default function InvestorPitchDeck() {
         
         if (audioRef.current) {
           audioRef.current.src = audioUrl;
+          audioRef.current.volume = 0.8;
           if (!isMuted) {
-            audioRef.current.play();
+            try {
+              await audioRef.current.play();
+            } catch (e) {
+              console.log('Auto-play blocked, click unmute to hear narration');
+            }
           }
         }
       }
     } catch (error) {
       console.error('Error playing narration:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 

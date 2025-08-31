@@ -1,29 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// ElevenLabs voice IDs for different narration styles
-const VOICE_IDS = {
-  professional: 'pNInz6obpgDQGcFmaJgB', // Adam - Professional male voice
-  confident: 'EXAVITQu4vr4xnSDxMaL', // Sarah - Confident female voice
-  energetic: 'MF3mGyEYCl7XYWbV9V6O', // Emily - Energetic female voice
-  trustworthy: 'TxGEqnHWrfWFTfGW9XjX', // Josh - Deep trustworthy male
-};
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+const VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Professional male voice for investor pitches
 
 export async function POST(request: NextRequest) {
   try {
-    const { text, voice = 'professional' } = await request.json();
-
-    if (!text) {
-      return NextResponse.json(
-        { error: 'Text is required' },
-        { status: 400 }
-      );
-    }
-
-    const apiKey = process.env.ELEVENLABS_API_KEY;
-    
-    if (!apiKey) {
+    // Check for API key
+    if (!ELEVENLABS_API_KEY) {
       console.error('ElevenLabs API key not configured');
-      // Return silent audio if API key not configured
+      // Return a silent audio file if no API key
       return new NextResponse(null, {
         status: 200,
         headers: {
@@ -32,37 +17,41 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Get voice ID
-    const voiceId = VOICE_IDS[voice as keyof typeof VOICE_IDS] || VOICE_IDS.professional;
+    const { text } = await request.json();
+
+    if (!text) {
+      return NextResponse.json(
+        { error: 'Text is required' },
+        { status: 400 }
+      );
+    }
 
     // Call ElevenLabs API
     const response = await fetch(
-      `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}/stream`,
+      `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}/stream`,
       {
         method: 'POST',
         headers: {
           'Accept': 'audio/mpeg',
           'Content-Type': 'application/json',
-          'xi-api-key': apiKey,
+          'xi-api-key': ELEVENLABS_API_KEY,
         },
         body: JSON.stringify({
           text,
           model_id: 'eleven_monolingual_v1',
           voice_settings: {
             stability: 0.75,
-            similarity_boost: 0.85,
+            similarity_boost: 0.75,
             style: 0.5,
-            use_speaker_boost: true
+            use_speaker_boost: true,
           },
         }),
       }
     );
 
     if (!response.ok) {
-      const error = await response.text();
-      console.error('ElevenLabs API error:', error);
-      
-      // Return silent audio on error
+      console.error('ElevenLabs API error:', response.status);
+      // Return empty audio on error
       return new NextResponse(null, {
         status: 200,
         headers: {
@@ -72,9 +61,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Stream the audio response
-    const audioData = await response.arrayBuffer();
+    const audioStream = response.body;
     
-    return new NextResponse(audioData, {
+    return new NextResponse(audioStream, {
       status: 200,
       headers: {
         'Content-Type': 'audio/mpeg',
@@ -84,8 +73,7 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error generating narration:', error);
-    
-    // Return silent audio on error
+    // Return empty response on error to not break the presentation
     return new NextResponse(null, {
       status: 200,
       headers: {
