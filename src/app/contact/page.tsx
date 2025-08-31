@@ -191,9 +191,9 @@ export default function ModernContactPage() {
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="relative group"
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${info.colour} rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`} />
+                <div className={`absolute inset-0 bg-gradient-to-r ${info.colour || 'from-gray-500 to-gray-600'} rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`} />
                 <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${info.colour} bg-opacity-20`}>
+                  <div className={`inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${info.colour || 'from-gray-500 to-gray-600'} bg-opacity-20`}>
                     {info.icon}
                   </div>
                   <h3 className="text-sm text-gray-400 mb-1">{info.title}</h3>

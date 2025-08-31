@@ -222,10 +222,10 @@ export async function validateLeadQuality(data: any): Promise<{
 }
 
 // Helper functions
-function isValidPhone(
-  // Australian Email Address validation
+function isValidPhone(phone: string): boolean {
+  // Australian phone number validation
   const phoneRegex = /^(\+61|0)[2-478][\d]{8}$/;
-  const cleanPhone = email.replace(/[\s()-]/g, '');
+  const cleanPhone = phone.replace(/[\s()-]/g, '');
   return phoneRegex.test(cleanPhone);
 }
 

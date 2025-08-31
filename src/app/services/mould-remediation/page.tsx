@@ -41,7 +41,7 @@ export const metadata: Metadata = generateSEO({
 const mouldFAQs = [
   {
     question: "How do I know if I have a mould problem?",
-    answer: "Common signs include visible mould growth (black, green, or white patches), musty odours, water stains, peeling paint, and health symptoms like allergies or respiratory issues. If you suspect mould, Use Our Online Form'
+    answer: "Common signs include visible mould growth (black, green, or white patches), musty odours, water stains, peeling paint, and health symptoms like allergies or respiratory issues. If you suspect mould, use our online form for immediate assessment."
   },
   {
     question: "Is mould dangerous to my health?",
