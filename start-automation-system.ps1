@@ -1,7 +1,7 @@
 # Unified Automation System Startup Script
 # Starts all 5 critical automation systems with Docker orchestrator
 
-Write-Host "🚀 STARTING UNIFIED AUTOMATION SYSTEM" -ForegroundColor Cyan
+Write-Host "[LAUNCH] STARTING UNIFIED AUTOMATION SYSTEM" -ForegroundColor Cyan
 Write-Host "=====================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Initializing 5 Critical Systems:" -ForegroundColor Green
@@ -13,18 +13,18 @@ Write-Host "5. Continuous Improvement Engine" -ForegroundColor White
 Write-Host ""
 
 # Step 1: Ensure Docker is running
-Write-Host "📦 Checking Docker status..." -ForegroundColor Yellow
+Write-Host "[CHECK] Checking Docker status..." -ForegroundColor Yellow
 $dockerRunning = docker version 2>&1
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Docker not running! Starting Docker Desktop..." -ForegroundColor Red
+    Write-Host "[ERROR] Docker not running! Starting Docker Desktop..." -ForegroundColor Red
     Start-Process "C:\Program Files\Docker\Docker\Docker Desktop.exe"
     Start-Sleep -Seconds 10
 }
-Write-Host "✅ Docker is running" -ForegroundColor Green
+Write-Host "[OK] Docker is running" -ForegroundColor Green
 
 # Step 2: Start Docker orchestrator if not running
 Write-Host ""
-Write-Host "🐳 Starting Docker Claude Orchestrator..." -ForegroundColor Yellow
+Write-Host "[DOCKER] Starting Docker Claude Orchestrator..." -ForegroundColor Yellow
 $orchestratorStatus = docker ps --filter "name=claude-main" --format "{{.Status}}"
 if (-not $orchestratorStatus) {
     Write-Host "Starting orchestrator containers..." -ForegroundColor Yellow
@@ -36,21 +36,21 @@ if (-not $orchestratorStatus) {
 try {
     $health = Invoke-RestMethod -Uri "http://localhost:3000/health" -Method Get
     if ($health.status -eq "healthy") {
-        Write-Host "✅ Orchestrator API healthy" -ForegroundColor Green
+        Write-Host "[OK] Orchestrator API healthy" -ForegroundColor Green
     }
 } catch {
-    Write-Host "⚠️ Orchestrator not responding, waiting..." -ForegroundColor Yellow
+    Write-Host "[WARN] Orchestrator not responding, waiting..." -ForegroundColor Yellow
     Start-Sleep -Seconds 5
 }
 
 # Step 3: Compile and inject automation pipeline
 Write-Host ""
-Write-Host "🔧 Compiling automation pipeline..." -ForegroundColor Yellow
+Write-Host "[BUILD] Compiling automation pipeline..." -ForegroundColor Yellow
 docker exec claude-main npx tsc /app/orchestrator/src/full-automation-pipeline.ts 2>$null
 
 # Step 4: Initialize automation system
 Write-Host ""
-Write-Host "⚡ Initializing Unified Automation System..." -ForegroundColor Yellow
+Write-Host "[INIT] Initializing Unified Automation System..." -ForegroundColor Yellow
 
 $initRequest = @{
     prompt = "Initialize unified automation system with all 5 components"
@@ -75,14 +75,14 @@ try {
         -Body $initRequest `
         -ContentType "application/json"
     
-    Write-Host "✅ System initialization request sent: $($response.requestId)" -ForegroundColor Green
+    Write-Host "[OK] System initialization request sent: $($response.requestId)" -ForegroundColor Green
 } catch {
-    Write-Host "⚠️ Failed to initialize: $_" -ForegroundColor Yellow
+    Write-Host "[WARN] Failed to initialize: $_" -ForegroundColor Yellow
 }
 
 # Step 5: Start MCP servers (if configured)
 Write-Host ""
-Write-Host "🔌 Checking MCP servers..." -ForegroundColor Yellow
+Write-Host "[MCP] Checking MCP servers..." -ForegroundColor Yellow
 
 $mcpServers = @(
     @{name="context7-upstash"; port=8080},
@@ -94,15 +94,15 @@ $mcpServers = @(
 foreach ($server in $mcpServers) {
     try {
         $test = Invoke-WebRequest -Uri "http://localhost:$($server.port)/health" -TimeoutSec 2 2>$null
-        Write-Host "✅ MCP $($server.name) available on port $($server.port)" -ForegroundColor Green
+        Write-Host "[OK] MCP $($server.name) available on port $($server.port)" -ForegroundColor Green
     } catch {
-        Write-Host "⚠️ MCP $($server.name) not available on port $($server.port)" -ForegroundColor Gray
+        Write-Host "[INFO] MCP $($server.name) not available on port $($server.port)" -ForegroundColor Gray
     }
 }
 
 # Step 6: Test automation capabilities
 Write-Host ""
-Write-Host "🧪 Testing automation capabilities..." -ForegroundColor Yellow
+Write-Host "[TEST] Testing automation capabilities..." -ForegroundColor Yellow
 
 # Test 1: Multi-agent coordination
 $testCoordination = @{
@@ -119,9 +119,9 @@ try {
         -Method Post `
         -Body $testCoordination `
         -ContentType "application/json"
-    Write-Host "✅ Multi-agent coordination: WORKING" -ForegroundColor Green
+    Write-Host "[OK] Multi-agent coordination: WORKING" -ForegroundColor Green
 } catch {
-    Write-Host "❌ Multi-agent coordination: FAILED" -ForegroundColor Red
+    Write-Host "[FAIL] Multi-agent coordination: FAILED" -ForegroundColor Red
 }
 
 # Test 2: Auto-content generation
@@ -140,13 +140,13 @@ try {
         -Method Post `
         -Body $testContent `
         -ContentType "application/json"
-    Write-Host "✅ Auto-content generation: WORKING" -ForegroundColor Green
+    Write-Host "[OK] Auto-content generation: WORKING" -ForegroundColor Green
 } catch {
-    Write-Host "❌ Auto-content generation: FAILED" -ForegroundColor Red
+    Write-Host "[FAIL] Auto-content generation: FAILED" -ForegroundColor Red
 }
 
 # Test 3: Continuous improvement
-Write-Host "✅ Continuous improvement: MONITORING" -ForegroundColor Green
+Write-Host "[OK] Continuous improvement: MONITORING" -ForegroundColor Green
 
 # Step 7: Display system status
 Write-Host ""
@@ -157,43 +157,43 @@ Write-Host ""
 
 $status = @"
 System Components:
-  1. Orchestration Pipeline   : ✅ ACTIVE
-  2. MCP Integration         : ✅ CONNECTED
-  3. Auto-Content Gen        : ✅ READY
-  4. Multi-Agent Coord       : ✅ OPERATIONAL
-  5. Continuous Improvement  : ✅ LEARNING
+  1. Orchestration Pipeline   : [OK] ACTIVE
+  2. MCP Integration         : [OK] CONNECTED
+  3. Auto-Content Gen        : [OK] READY
+  4. Multi-Agent Coord       : [OK] OPERATIONAL
+  5. Continuous Improvement  : [OK] LEARNING
 
 Available Agents:
-  • research-agent     : Gathering real data
-  • content-agent      : Creating content
-  • design-agent       : Visual presentation
-  • validation-agent   : Data verification
-  • optimization-agent : Performance tuning
-  • seo-agent         : SEO optimization
-  • pitch-agent       : Pitch specialist
+  - research-agent     : Gathering real data
+  - content-agent      : Creating content
+  - design-agent       : Visual presentation
+  - validation-agent   : Data verification
+  - optimization-agent : Performance tuning
+  - seo-agent         : SEO optimization
+  - pitch-agent       : Pitch specialist
 
 Real Data Sources:
-  • Financial projections : $909M market
-  • Disaster statistics   : Verified data
-  • ElevenLabs API       : Voice narration
-  • Insurance APIs       : Claims data
+  - Financial projections : $909M market
+  - Disaster statistics   : Verified data
+  - ElevenLabs API       : Voice narration
+  - Insurance APIs       : Claims data
 
 Endpoints:
-  • Orchestrator  : http://localhost:3000
-  • Health Check  : http://localhost:3000/health
-  • Process      : http://localhost:3000/process
-  • Statistics   : http://localhost:3000/stats
+  - Orchestrator  : http://localhost:3000
+  - Health Check  : http://localhost:3000/health
+  - Process      : http://localhost:3000/process
+  - Statistics   : http://localhost:3000/stats
 
 Security:
-  • Vercel .env  : PROTECTED
-  • API Keys     : SECURED
-  • Real Data    : ENFORCED
+  - Vercel .env  : PROTECTED
+  - API Keys     : SECURED
+  - Real Data    : ENFORCED
 "@
 
 Write-Host $status -ForegroundColor White
 
 Write-Host ""
-Write-Host "🎯 UNIFIED AUTOMATION SYSTEM READY!" -ForegroundColor Green
+Write-Host "[SUCCESS] UNIFIED AUTOMATION SYSTEM READY!" -ForegroundColor Green
 Write-Host "================================================" -ForegroundColor Green
 Write-Host ""
 Write-Host "Usage Examples:" -ForegroundColor Cyan
