@@ -4,6 +4,7 @@ import Script from 'next/script'
 import '@/styles/globals.css'
 import '@/styles/modern-system.css'
 import '@/styles/logo-transparency.css'
+import '@/styles/mobile-responsive.css'
 import { Providers } from './providers'
 import UltraModernHeader from '@/components/UltraModernHeader'
 import UltraModernFooter from '@/components/UltraModernFooter'
@@ -105,6 +106,7 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
         <link rel="icon" type="image/png" href="/logos/3D Disaster Recovery Logo Image.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logos/3D Disaster Recovery Logo Image.png" />

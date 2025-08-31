@@ -1,0 +1,207 @@
+version: '3.8'
+
+services:
+  # Main Audit & Fix Orchestrator
+  audit-orchestrator:
+    build:
+      context: ./docker/audit-orchestrator
+      dockerfile: Dockerfile
+    container_name: disaster-recovery-audit
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - AUDIT_MODE=comprehensive
+      - TARGET_RATING=10
+      - BRAND_VALUE=2500000000
+      - FIX_AUTO_APPLY=true
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./audit-reports:/app/reports
+      - audit-cache:/app/.cache
+    networks:
+      - audit-network
+    depends_on:
+      - lighthouse
+      - puppeteer
+      - redis-audit
+
+  # Lighthouse Performance Testing
+  lighthouse:
+    image: femtopixel/google-lighthouse
+    container_name: lighthouse-audit
+    volumes:
+      - ./lighthouse-reports:/home/chrome/reports
+    command: >
+      sh -c "
+        lighthouse https://disaster-recovery.vercel.app 
+        --output=json,html 
+        --output-path=/home/chrome/reports/report
+        --chrome-flags='--headless --no-sandbox'
+      "
+    networks:
+      - audit-network
+
+  # Puppeteer for UI Testing
+  puppeteer:
+    image: buildkite/puppeteer:latest
+    container_name: puppeteer-testing
+    volumes:
+      - ./src:/app/src
+      - ./test-results:/app/test-results
+    environment:
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
+    networks:
+      - audit-network
+    command: >
+      sh -c "
+        npm install &&
+        npm run test:ui
+      "
+
+  # SEO Analyzer
+  seo-analyzer:
+    build:
+      context: ./docker/seo-analyzer
+      dockerfile: Dockerfile
+    container_name: seo-analyzer
+    ports:
+      - "4001:4001"
+    environment:
+      - ANALYZE_EEAT=true
+      - TARGET_SCORE=100
+      - SCHEMA_VALIDATION=strict
+    volumes:
+      - ./src:/app/src
+      - ./seo-reports:/app/reports
+    networks:
+      - audit-network
+
+  # Content Quality Checker
+  content-analyzer:
+    image: node:18-alpine
+    container_name: content-analyzer
+    working_dir: /app
+    volumes:
+      - ./src:/app/src
+      - ./content-reports:/app/reports
+    command: >
+      sh -c "
+        npm install textstat readability-scores &&
+        node /app/analyze-content.js
+      "
+    networks:
+      - audit-network
+
+  # Mobile/Responsive Tester
+  responsive-tester:
+    image: selenium/standalone-chrome:latest
+    container_name: responsive-tester
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    environment:
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_SESSION_TIMEOUT=300
+    volumes:
+      - ./responsive-tests:/tests
+    networks:
+      - audit-network
+
+  # Performance Monitor
+  performance-monitor:
+    image: grafana/grafana:latest
+    container_name: performance-monitor
+    ports:
+      - "3030:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=redis-app
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+    networks:
+      - audit-network
+
+  # Redis for Caching
+  redis-audit:
+    image: redis:alpine
+    container_name: redis-audit
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-audit-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - audit-network
+
+  # Brand Asset Manager
+  brand-manager:
+    build:
+      context: ./docker/brand-manager
+      dockerfile: Dockerfile
+    container_name: brand-manager
+    ports:
+      - "4002:4002"
+    environment:
+      - BRAND_VALUE=2500000000
+      - LOGO_3D_ENABLED=true
+      - CONSISTENCY_CHECK=strict
+    volumes:
+      - ./public/logos:/app/logos
+      - ./public/images:/app/images
+      - ./brand-guidelines:/app/guidelines
+    networks:
+      - audit-network
+
+  # E.E.A.T. Content Generator
+  eeat-generator:
+    build:
+      context: ./docker/eeat-generator
+      dockerfile: Dockerfile
+    container_name: eeat-generator
+    ports:
+      - "4003:4003"
+    environment:
+      - GENERATE_CASE_STUDIES=true
+      - GENERATE_TESTIMONIALS=true
+      - GENERATE_AUTHORITY_CONTENT=true
+    volumes:
+      - ./src/content:/app/content
+      - ./public/case-studies:/app/case-studies
+    networks:
+      - audit-network
+
+  # CRM Fix Service
+  crm-fixer:
+    build:
+      context: ./docker/crm-fixer
+      dockerfile: Dockerfile
+    container_name: crm-fixer
+    ports:
+      - "4004:4004"
+    environment:
+      - FIX_NAVIGATION=true
+      - CREATE_TRAINING_MODULES=true
+      - ENABLE_HEADER_LINK=true
+    volumes:
+      - ./src/crm:/app/crm
+      - ./src/components:/app/components
+    networks:
+      - audit-network
+
+networks:
+  audit-network:
+    driver: bridge
+
+volumes:
+  audit-cache:
+  redis-audit-data:
+  grafana-data:
+  lighthouse-reports:
+  test-results:
+  seo-reports:
+  content-reports:
+  responsive-tests:

@@ -1,0 +1,537 @@
+/* ============================================
+   COMPREHENSIVE MOBILE RESPONSIVE SYSTEM
+   Disaster Recovery $2.5B Brand Standards
+   ============================================ */
+
+/* ===========================================
+   RESPONSIVE BREAKPOINTS
+   =========================================== */
+:root {
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+  --breakpoint-4k: 2560px;
+}
+
+/* ===========================================
+   MOBILE-FIRST BASE STYLES
+   =========================================== */
+
+/* Extra Small Devices (320px - 639px) */
+@media screen and (max-width: 639px) {
+  /* Typography Scaling */
+  html {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem) !important;
+    line-height: 1.3 !important;
+  }
+  
+  h3 {
+    font-size: clamp(1.25rem, 3.5vw, 1.75rem) !important;
+  }
+  
+  h4 {
+    font-size: clamp(1.125rem, 3vw, 1.5rem) !important;
+  }
+  
+  p, .text-base {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Container Adjustments */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Section Spacing */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Card Layouts */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  /* Navigation */
+  .nav-header {
+    height: auto !important;
+    padding: 0.75rem 0 !important;
+  }
+  
+  /* Buttons */
+  .btn, button {
+    min-height: 44px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 1rem !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  /* Forms */
+  input, textarea, select {
+    min-height: 44px !important;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 0.75rem !important;
+  }
+  
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Tables - Make responsive */
+  table {
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+  
+  /* Hide desktop-only elements */
+  .desktop-only {
+    display: none !important;
+  }
+  
+  /* Hero Sections */
+  .hero-section {
+    min-height: 60vh !important;
+    padding: 2rem 1rem !important;
+  }
+  
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 3rem) !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.25rem) !important;
+  }
+  
+  /* Emergency CTA Mobile Optimization */
+  .emergency-cta {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    padding: 1rem !important;
+    background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0.95)) !important;
+    box-shadow: 0 -4px 6px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Modal Adjustments */
+  .modal, .dialog {
+    width: 95% !important;
+    max-width: none !important;
+    margin: 1rem !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* ===========================================
+   SMALL TABLETS (640px - 767px)
+   =========================================== */
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  html {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Buttons can be inline on tablets */
+  .btn, button {
+    width: auto !important;
+    min-width: 120px !important;
+  }
+  
+  .hero-section {
+    min-height: 70vh !important;
+  }
+}
+
+/* ===========================================
+   TABLETS (768px - 1023px)
+   =========================================== */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 16px;
+  }
+  
+  .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 768px !important;
+  }
+  
+  /* Grid System */
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr) !important; /* Fallback to 2 cols */
+  }
+  
+  /* Section Spacing */
+  section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  /* Show tablet-specific elements */
+  .tablet-only {
+    display: block !important;
+  }
+  
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* ===========================================
+   DESKTOP (1024px - 1279px)
+   =========================================== */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .container {
+    max-width: 1024px !important;
+  }
+  
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(3, 1fr) !important; /* Fallback to 3 cols */
+  }
+}
+
+/* ===========================================
+   LARGE DESKTOP (1280px+)
+   =========================================== */
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px !important;
+  }
+  
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, 1fr) !important;
+  }
+}
+
+/* ===========================================
+   LANDSCAPE ORIENTATION FIXES
+   =========================================== */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+  .hero-section {
+    min-height: 100vh !important;
+  }
+  
+  .nav-header {
+    position: relative !important; /* Prevent fixed header eating space */
+  }
+  
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* ===========================================
+   TOUCH DEVICE OPTIMIZATIONS
+   =========================================== */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  a, button, input, textarea, select {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .hover\:scale-105:hover {
+    transform: none !important;
+  }
+  
+  .hover\:shadow-lg:hover {
+    box-shadow: none !important;
+  }
+  
+  /* Add active states for better feedback */
+  button:active, a:active {
+    opacity: 0.8 !important;
+    transform: scale(0.98) !important;
+  }
+}
+
+/* ===========================================
+   HIGH DPI DISPLAYS
+   =========================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Use higher resolution images */
+  .logo-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Sharper borders */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ===========================================
+   ACCESSIBILITY IMPROVEMENTS
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================================
+   PRINT STYLES
+   =========================================== */
+@media print {
+  /* Hide non-essential elements */
+  .nav-header, 
+  .footer,
+  .emergency-cta,
+  .modal,
+  .mobile-menu,
+  button,
+  .no-print {
+    display: none !important;
+  }
+  
+  /* Optimize for print */
+  body {
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* ===========================================
+   COMPONENT-SPECIFIC RESPONSIVE STYLES
+   =========================================== */
+
+/* Service Cards */
+@media (max-width: 768px) {
+  .service-card {
+    flex-direction: column !important;
+  }
+  
+  .service-card-image {
+    width: 100% !important;
+    height: 200px !important;
+  }
+  
+  .service-card-content {
+    padding: 1rem !important;
+  }
+}
+
+/* Testimonials */
+@media (max-width: 640px) {
+  .testimonial-card {
+    padding: 1.5rem !important;
+  }
+  
+  .testimonial-quote {
+    font-size: 1rem !important;
+  }
+  
+  .testimonial-author {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+}
+
+/* Stats Section */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .stat-number {
+    font-size: 2rem !important;
+  }
+}
+
+/* CRM Dashboard */
+@media (max-width: 1024px) {
+  .crm-sidebar {
+    position: fixed !important;
+    left: -100% !important;
+    transition: left 0.3s ease !important;
+    z-index: 999 !important;
+  }
+  
+  .crm-sidebar.open {
+    left: 0 !important;
+  }
+  
+  .crm-main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* Location Pages */
+@media (max-width: 768px) {
+  .location-hero {
+    background-attachment: scroll !important; /* Fix iOS parallax issues */
+  }
+  
+  .location-map {
+    height: 300px !important;
+  }
+  
+  .location-services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Footer */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column !important;
+  }
+  
+  .footer-column {
+    width: 100% !important;
+    margin-bottom: 2rem !important;
+    text-align: center !important;
+  }
+  
+  .footer-links {
+    justify-content: center !important;
+  }
+  
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 1rem !important;
+  }
+}
+
+/* ===========================================
+   UTILITY CLASSES
+   =========================================== */
+
+/* Display utilities */
+.mobile-only { display: none; }
+.tablet-only { display: none; }
+.desktop-only { display: block; }
+
+@media (max-width: 640px) {
+  .mobile-only { display: block !important; }
+  .tablet-only { display: none !important; }
+  .desktop-only { display: none !important; }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .mobile-only { display: none !important; }
+  .tablet-only { display: block !important; }
+  .desktop-only { display: none !important; }
+}
+
+@media (min-width: 1024px) {
+  .mobile-only { display: none !important; }
+  .tablet-only { display: none !important; }
+  .desktop-only { display: block !important; }
+}
+
+/* Text alignment utilities */
+@media (max-width: 640px) {
+  .mobile-text-center { text-align: center !important; }
+  .mobile-text-left { text-align: left !important; }
+  .mobile-text-right { text-align: right !important; }
+}
+
+/* Spacing utilities */
+@media (max-width: 640px) {
+  .mobile-p-0 { padding: 0 !important; }
+  .mobile-p-1 { padding: 0.25rem !important; }
+  .mobile-p-2 { padding: 0.5rem !important; }
+  .mobile-p-4 { padding: 1rem !important; }
+  .mobile-m-0 { margin: 0 !important; }
+  .mobile-m-auto { margin: auto !important; }
+}
+
+/* ===========================================
+   PERFORMANCE OPTIMIZATIONS
+   =========================================== */
+
+/* Lazy loading images on mobile */
+@media (max-width: 768px) {
+  img[loading="lazy"] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===========================================
+   CRITICAL CSS FOR ABOVE-THE-FOLD
+   =========================================== */
+@media (max-width: 768px) {
+  /* Ensure critical content loads fast */
+  .hero-section,
+  .nav-header,
+  .emergency-cta {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}

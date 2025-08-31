@@ -1,0 +1,221 @@
+{
+  "timestamp": "2025-08-31T09:37:01.450Z",
+  "currentRating": 0.34999999999999964,
+  "targetRating": 10,
+  "brandValue": 2500000000,
+  "issues": [
+    {
+      "type": "Missing Page",
+      "page": "/locations",
+      "severity": "critical",
+      "impact": "Broken user journey"
+    },
+    {
+      "type": "Missing Page",
+      "page": "/crm",
+      "severity": "critical",
+      "impact": "Broken user journey"
+    },
+    {
+      "type": "Missing Page",
+      "page": "/commercial",
+      "severity": "critical",
+      "impact": "Broken user journey"
+    },
+    {
+      "type": "Logo Underutilized",
+      "logo": "Main",
+      "severity": "medium"
+    },
+    {
+      "type": "Logo Underutilized",
+      "logo": "NRP",
+      "severity": "medium"
+    },
+    {
+      "type": "Logo Underutilized",
+      "logo": "Partner",
+      "severity": "medium"
+    },
+    {
+      "type": "Missing CRM Link",
+      "location": "Header",
+      "severity": "critical"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "Introduction",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "Dashboard",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "LeadManagement",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "Reporting",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "Communication",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "Automation",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "Analytics",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Training Module",
+      "module": "AdvancedFeatures",
+      "severity": "high"
+    },
+    {
+      "type": "Missing E.E.A.T.",
+      "element": "authors",
+      "severity": "critical",
+      "impact": "Reduced authority signals"
+    },
+    {
+      "type": "Missing E.E.A.T.",
+      "element": "company-history",
+      "severity": "critical",
+      "impact": "Reduced authority signals"
+    },
+    {
+      "type": "Missing E.E.A.T.",
+      "element": "certifications",
+      "severity": "critical",
+      "impact": "Reduced authority signals"
+    },
+    {
+      "type": "Missing E.E.A.T.",
+      "element": "case-studies",
+      "severity": "critical",
+      "impact": "Reduced authority signals"
+    },
+    {
+      "type": "Missing E.E.A.T.",
+      "element": "reviews",
+      "severity": "critical",
+      "impact": "Reduced authority signals"
+    },
+    {
+      "type": "Missing E.E.A.T.",
+      "element": "awards",
+      "severity": "critical",
+      "impact": "Reduced authority signals"
+    },
+    {
+      "type": "Slow Page Load",
+      "current": 5.2,
+      "target": 3,
+      "severity": "high"
+    },
+    {
+      "type": "Large Bundle Size",
+      "current": 1200,
+      "target": 500,
+      "severity": "high"
+    },
+    {
+      "type": "Poor Image Optimization",
+      "current": 45,
+      "target": 90,
+      "severity": "medium"
+    },
+    {
+      "type": "Missing Viewport Meta",
+      "severity": "high"
+    },
+    {
+      "type": "Poor Readability",
+      "score": 72,
+      "target": 100,
+      "severity": "medium"
+    },
+    {
+      "type": "Missing Page",
+      "page": "cookies",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Page",
+      "page": "testimonials",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Page",
+      "page": "case-studies",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Page",
+      "page": "certifications",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Page",
+      "page": "careers",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Page",
+      "page": "investors",
+      "severity": "high"
+    },
+    {
+      "type": "Missing Page",
+      "page": "media",
+      "severity": "high"
+    }
+  ],
+  "categories": {
+    "UI/UX": {
+      "issues": 3,
+      "critical": 3
+    },
+    "Branding": {
+      "issues": 3,
+      "critical": 0
+    },
+    "CRM": {
+      "issues": 9,
+      "critical": 1
+    },
+    "SEO": {
+      "issues": 6,
+      "critical": 6
+    },
+    "Performance": {
+      "issues": 3,
+      "critical": 0
+    },
+    "Mobile": {
+      "issues": 1,
+      "critical": 0
+    },
+    "Content": {
+      "issues": 1,
+      "critical": 0
+    },
+    "Missing Pages": {
+      "issues": 7,
+      "critical": 0
+    }
+  },
+  "totalIssues": 33,
+  "criticalIssues": 10
+}
