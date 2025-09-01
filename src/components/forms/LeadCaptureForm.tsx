@@ -152,7 +152,7 @@ export default function LeadCaptureForm() {
         window.location.href = '/thank-you';
       }
     } catch (error) {
-      toast.error('Something went wrong. Please call us directly at 1300 814 870');
+      toast.error('Something went wrong. Please try again or use our online chat support.');
     } finally {
       setSubmitting(false);
     }
@@ -197,7 +197,7 @@ export default function LeadCaptureForm() {
             <AlertCircle className="h-6 w-6 text-red-600 animate-pulse" />
             <div>
               <p className="font-bold text-red-900">Life-Threatening Emergency?</p>
-              <p className="text-red-700">Call 000 immediately, then call us at 1300 814 870</p>
+              <p className="text-red-700">Call 000 immediately for emergency services</p>
             </div>
           </div>
         </div>
@@ -629,7 +629,7 @@ export default function LeadCaptureForm() {
             )}
           </Button>
           <p className="text-sm text-gray-600 text-center">
-            Or call us directly 24/7: <span className="font-bold">1300 814 870</span>
+            Use our 24/7 online chat support for immediate assistance
           </p>
         </div>
       </form>

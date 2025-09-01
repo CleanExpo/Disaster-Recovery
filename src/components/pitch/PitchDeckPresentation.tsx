@@ -56,7 +56,7 @@ export default function PitchDeckPresentation() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 1 }}
-            className="text-2xl text-gray-300 mb-8 max-w-4xl mx-auto"
+            className="text-2xl text-gray-100 mb-8 max-w-4xl mx-auto"
           >
             Transforming a $1B Australian market with AI orchestration,
             creating an unstoppable platform positioned for 10x growth.
@@ -66,7 +66,7 @@ export default function PitchDeckPresentation() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 1 }}
-            className="flex items-center justify-center gap-2 text-blue-300"
+            className="flex items-center justify-center gap-2 text-blue-200"
           >
             <Rocket className="h-8 w-8" />
             <span className="text-xl font-semibold">Investment Opportunity</span>
@@ -105,7 +105,7 @@ export default function PitchDeckPresentation() {
                 className="flex items-start gap-4 bg-red-950/30 backdrop-blur-sm rounded-xl p-6 border border-red-600/30"
               >
                 <span className="text-red-400 text-2xl font-bold mt-1">•</span>
-                <span className="text-xl text-gray-300">{point}</span>
+                <span className="text-xl text-gray-100">{point}</span>
               </motion.div>
             ))}
           </div>
@@ -143,7 +143,7 @@ export default function PitchDeckPresentation() {
                 className="flex items-start gap-4 bg-green-900/20 backdrop-blur-sm rounded-xl p-6 border border-green-500/30"
               >
                 <span className="text-emerald-600 text-2xl font-bold mt-1">✓</span>
-                <span className="text-xl text-gray-300">{point}</span>
+                <span className="text-xl text-gray-100">{point}</span>
               </motion.div>
             ))}
           </div>
@@ -182,7 +182,7 @@ export default function PitchDeckPresentation() {
                 <metric.icon className="h-12 w-12 text-blue-400 mx-auto mb-4" />
                 <div className="text-4xl font-bold text-white mb-2">{metric.value}</div>
                 <div className="text-lg font-semibold text-blue-300 mb-1">{metric.label}</div>
-                <div className="text-sm text-gray-400">{metric.description}</div>
+                <div className="text-sm text-gray-200">{metric.description}</div>
               </motion.div>
             ))}
           </div>
@@ -236,7 +236,7 @@ export default function PitchDeckPresentation() {
               >
                 <advantage.icon className="h-12 w-12 text-blue-400 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">{advantage.title}</h3>
-                <p className="text-gray-400">{advantage.description}</p>
+                <p className="text-gray-200">{advantage.description}</p>
               </motion.div>
             ))}
           </div>
@@ -278,7 +278,7 @@ export default function PitchDeckPresentation() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-gray-300">{milestone.target}</span>
+                    <span className="text-gray-100">{milestone.target}</span>
                     <span className="text-emerald-600 font-semibold">{milestone.revenue}</span>
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-3">
@@ -303,7 +303,7 @@ export default function PitchDeckPresentation() {
             className="p-6 bg-purple-900/30 rounded-xl border border-purple-500/30 text-center"
           >
             <div className="text-2xl font-bold text-white mb-2">12-Month Target</div>
-            <div className="text-gray-400 mb-4">$120M annualized revenue run rate</div>
+            <div className="text-gray-200 mb-4">$120M annualized revenue run rate</div>
             <div className="text-4xl font-bold text-emerald-600">Exponential Growth</div>
           </motion.div>
         </div>
@@ -339,19 +339,19 @@ export default function PitchDeckPresentation() {
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Industry Growth Program</span>
+                  <span className="text-gray-100">Industry Growth Program</span>
                   <span className="text-yellow-400 font-bold">Up to $5M</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Clean Energy Innovation</span>
+                  <span className="text-gray-100">Clean Energy Innovation</span>
                   <span className="text-yellow-400 font-bold">$500M Pool</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Defence Industry Grants</span>
+                  <span className="text-gray-100">Defence Industry Grants</span>
                   <span className="text-yellow-400 font-bold">Up to $1M</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">CSIRO Kick-Start</span>
+                  <span className="text-gray-100">CSIRO Kick-Start</span>
                   <span className="text-yellow-400 font-bold">$10K-$50K</span>
                 </div>
               </div>
@@ -368,7 +368,7 @@ export default function PitchDeckPresentation() {
                 <Award className="h-6 w-6" />
                 Industry Recognition Framework
               </h3>
-              <div className="space-y-3 text-gray-300">
+              <div className="space-y-3 text-gray-100">
                 <div className="flex items-start gap-2">
                   <span className="text-blue-400 font-bold">•</span>
                   <span>CPP40421 Certificate IV Recognition</span>
@@ -400,15 +400,15 @@ export default function PitchDeckPresentation() {
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-yellow-400 mb-2">Regulatory Moat</div>
-                <div className="text-gray-300">Government-backed industry standards create competitive barriers</div>
+                <div className="text-gray-100">Government-backed industry standards create competitive barriers</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-400 mb-2">Revenue Streams</div>
-                <div className="text-gray-300">Training, certification, and accreditation programs</div>
+                <div className="text-gray-100">Training, certification, and accreditation programs</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-green-400 mb-2">Market Position</div>
-                <div className="text-gray-300">First-mover advantage as industry standard setter</div>
+                <div className="text-gray-100">First-mover advantage as industry standard setter</div>
               </div>
             </div>
           </motion.div>
@@ -445,7 +445,7 @@ export default function PitchDeckPresentation() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-2xl text-gray-300 mb-12 max-w-4xl mx-auto"
+            className="text-2xl text-gray-100 mb-12 max-w-4xl mx-auto"
           >
             We're raising $3M to accelerate growth and build market presence.
             With our AI technology and early traction, this is your opportunity
@@ -461,15 +461,15 @@ export default function PitchDeckPresentation() {
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-emerald-600 mb-2">$3M</div>
-                <div className="text-gray-300">Raising</div>
+                <div className="text-gray-100">Raising</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-blue-400 mb-2">5%</div>
-                <div className="text-gray-300">Market Share Target</div>
+                <div className="text-gray-100">Market Share Target</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-purple-400 mb-2">$20M</div>
-                <div className="text-gray-300">Revenue Target</div>
+                <div className="text-gray-100">Revenue Target</div>
               </div>
             </div>
             
@@ -488,7 +488,12 @@ export default function PitchDeckPresentation() {
   ]
 
   const playNarration = async (text: string) => {
-    if (!audioEnabled) return
+    if (!audioEnabled) {
+      // If audio is disabled, just wait for a proportional time based on text length
+      const readingTime = Math.max(3000, text.length * 50) // 50ms per character, min 3 seconds
+      await new Promise(resolve => setTimeout(resolve, readingTime))
+      return
+    }
 
     try {
       const response = await fetch('/api/elevenlabs/narrate', {
@@ -513,14 +518,26 @@ export default function PitchDeckPresentation() {
               URL.revokeObjectURL(audioUrl)
               resolve()
             }
-            audioRef.current.play().catch(() => resolve())
+            audioRef.current.play().catch((err) => {
+              console.log('Audio playback failed:', err)
+              // Fallback to timed delay if audio fails
+              const readingTime = Math.max(3000, text.length * 50)
+              setTimeout(resolve, readingTime)
+            })
           } else {
             resolve()
           }
         })
+      } else {
+        // If API fails, use timed delay
+        const readingTime = Math.max(3000, text.length * 50)
+        await new Promise(resolve => setTimeout(resolve, readingTime))
       }
     } catch (error) {
-      console.log('Audio narration not available, continuing silently')
+      console.log('Audio narration not available, using timed transitions')
+      // Fallback to timed delay
+      const readingTime = Math.max(3000, text.length * 50)
+      await new Promise(resolve => setTimeout(resolve, readingTime))
     }
   }
 
@@ -594,6 +611,16 @@ export default function PitchDeckPresentation() {
 
     document.addEventListener('fullscreenchange', handleFullscreenChange)
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange)
+  }, [])
+
+  // Auto-start presentation on mount
+  useEffect(() => {
+    // Start presentation automatically after a short delay
+    const timer = setTimeout(() => {
+      startPresentation()
+    }, 1000)
+
+    return () => clearTimeout(timer)
   }, [])
 
   return (
