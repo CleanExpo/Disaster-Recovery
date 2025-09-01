@@ -132,20 +132,22 @@ export default function CleanLandingPage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {/* Severe Storm Background at 15% opacity */}
-      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        {/* Dark storm clouds gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/15 via-blue-900/15 to-indigo-900/15" />
+      {/* Severe Storm Background at 15% opacity - ENHANCED */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+        {/* Dark storm clouds gradient - increased visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-[0.15]" />
         
-        {/* Animated storm clouds */}
-        <div className="absolute inset-0 opacity-15">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-blue-900 animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-slate-900/50 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/50 via-transparent to-transparent" />
-        </div>
+        {/* Animated storm clouds with CSS classes */}
+        <div className={`absolute inset-0 ${styles.stormClouds} opacity-[0.15]`} />
         
-        {/* Rain effect pattern */}
-        <div className={`absolute inset-0 opacity-15 ${styles.rainAnimation}`} style={{
+        {/* Thunder flash effect */}
+        <div className={styles.thunderFlash} />
+        
+        {/* Rain effect pattern - enhanced visibility */}
+        <div className={`absolute inset-0 ${styles.rainEffect} opacity-20`} />
+        
+        {/* Additional rain streaks */}
+        <div className={`absolute inset-0 opacity-[0.15] ${styles.rainAnimation}`} style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='rain' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0,20 Q5,40 0,60' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M20,10 Q25,30 20,50' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M40,25 Q45,45 40,65' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M60,15 Q65,35 60,55' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M80,30 Q85,50 80,70' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23rain)' width='100%25' height='100%25'/%3E%3C/svg%3E")`
         }} />
         
