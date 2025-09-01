@@ -122,7 +122,9 @@ export default function CleanLandingPage() {
       {/* Thunderstorm Background at 10% opacity */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/10 via-blue-900/10 to-indigo-900/10" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="storm" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M30 0v60M0 30h60" stroke="%23000" stroke-width="0.1" opacity="0.1"/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill="url(%23storm)" width="100%25" height="100%25"/%3E%3C/svg%3E')] opacity-10" />
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='storm' x='0' y='0' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23000' stroke-width='0.1' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23storm)' width='100%25' height='100%25'/%3E%3C/svg%3E")`
+        }} />
       </div>
       
       {/* Lightning Effect */}
