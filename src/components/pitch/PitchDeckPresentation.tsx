@@ -115,7 +115,7 @@ export default function PitchDeckPresentation() {
     {
       id: 3,
       title: "Our Solution",
-      narration: "Our AI provides instant, accurate damage assessments in under one hundred milliseconds. We deliver automated insurance approval with a ninety-five percent success rate. Our intelligent job matching connects contractors instantly. We've created a complete ecosystem with network effects and an unbreachable data moat."
+      narration: "Our AI provides instant, accurate damage assessments in under one hundred milliseconds. We deliver automated insurance approval with a ninety-five percent success rate. Our intelligent job matching connects contractors instantly. We've created a complete ecosystem with network effects and an unbreachable data moat.",
       duration: 12000,
       content: (
         <div className="max-w-6xl mx-auto">
