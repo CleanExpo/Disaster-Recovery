@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
+import FloodingEffect from '@/components/effects/FloodingEffect';
 
 export default function CleanLandingPage() {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -410,9 +411,9 @@ export default function CleanLandingPage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-700 relative">
-        <div className="container mx-auto px-4 md:px-6 text-center">
+      {/* Final CTA Section with Flooding Effect */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-700 relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
             Property Emergency? We're Here 24/7
           </h2>
@@ -431,6 +432,9 @@ export default function CleanLandingPage() {
             </Button>
           </div>
         </div>
+        
+        {/* Flooding Effect at Bottom */}
+        <FloodingEffect />
       </section>
       
       {/* CSS Animations for Storm Effects */}
