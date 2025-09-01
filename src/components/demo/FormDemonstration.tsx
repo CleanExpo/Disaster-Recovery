@@ -123,7 +123,7 @@ export default function FormDemonstration() {
     setIsPlaying(false)
     
     if (audioEnabled) {
-      await playNarration('Demonstration complete. This showcases how our HRM-powered platform processes emergency restoration requests with speed and accuracy.')
+      await playNarration('Demonstration complete. This showcases how our AI-powered platform processes emergency restoration requests with speed and accuracy.')
     }
   }
 
@@ -179,7 +179,7 @@ export default function FormDemonstration() {
             Interactive Form Demonstration
           </h1>
           <p className="text-xl text-blue-100 mb-8">
-            Experience how our HRM-powered platform processes emergency restoration requests
+            Experience how our AI-powered platform processes emergency restoration requests
           </p>
           
           {/* Demo Controls */}
@@ -359,7 +359,7 @@ export default function FormDemonstration() {
                   <h3 className="text-xl font-bold text-white">Demonstration Active</h3>
                 </div>
                 <p className="text-green-100">
-                  This demonstration shows how our HRM-powered platform processes {demonstrationMode === 'lead' ? 'emergency restoration requests' : 'user feedback'} with 
+                  This demonstration shows how our AI-powered platform processes {demonstrationMode === 'lead' ? 'emergency restoration requests' : 'user feedback'} with 
                   realistic mock data. Watch the form fields populate automatically with professionally crafted responses.
                 </p>
                 {audioEnabled && (

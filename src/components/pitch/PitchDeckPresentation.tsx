@@ -28,12 +28,13 @@ export default function PitchDeckPresentation() {
   const [isFullscreen, setIsFullscreen] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const playingRef = useRef<boolean>(false)
 
   const slides: Slide[] = [
     {
       id: 1,
       title: "Disaster Recovery Reimagined",
-      narration: "Welcome to the future of disaster recovery. We're transforming a one billion dollar Australian market with cutting-edge HRM-powered AI orchestration, creating an unstoppable platform positioned for explosive ten times growth.",
+      narration: "Welcome to the future of disaster recovery. We're transforming a one billion dollar Australian market with cutting-edge AI orchestration, creating an unstoppable platform positioned for explosive ten times growth.",
       duration: 8000,
       content: (
         <div className="text-center">
@@ -57,7 +58,7 @@ export default function PitchDeckPresentation() {
             transition={{ delay: 0.5, duration: 1 }}
             className="text-2xl text-gray-300 mb-8 max-w-4xl mx-auto"
           >
-            Transforming a $1B Australian market with HRM-powered AI orchestration,
+            Transforming a $1B Australian market with AI orchestration,
             creating an unstoppable platform positioned for 10x growth.
           </motion.p>
 
@@ -114,7 +115,7 @@ export default function PitchDeckPresentation() {
     {
       id: 3,
       title: "Our Solution",
-      narration: "Our HRM AI provides instant, accurate damage assessments in under one hundred milliseconds. We deliver automated insurance approval with a ninety-five percent success rate. Our intelligent job matching connects contractors instantly. We've created a complete ecosystem with network effects and an unbreachable data moat.",
+      narration: "Our AI provides instant, accurate damage assessments in under one hundred milliseconds. We deliver automated insurance approval with a ninety-five percent success rate. Our intelligent job matching connects contractors instantly. We've created a complete ecosystem with network effects and an unbreachable data moat."
       duration: 12000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -129,7 +130,7 @@ export default function PitchDeckPresentation() {
           
           <div className="space-y-6">
             {[
-              "HRM AI provides instant, accurate damage assessments in under 100ms",
+              "AI provides instant, accurate damage assessments in under 100ms",
               "Automated insurance approval with 95% success rate",
               "Intelligent job matching connecting contractors instantly", 
               "Complete ecosystem with network effects and data moat"
@@ -152,7 +153,7 @@ export default function PitchDeckPresentation() {
     {
       id: 4,
       title: "Market Opportunity",
-      narration: "We're targeting a one billion dollar Australian disaster recovery market with fifteen percent annual growth. Our conservative target is twenty percent market share within eighteen months, leading to a twenty million dollar valuation.",
+      narration: "We're targeting the Australian disaster recovery market, valued at approximately four hundred million dollars annually with steady growth. Our target is to capture five percent market share within twenty-four months, representing significant revenue opportunity."
       duration: 8000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -166,10 +167,10 @@ export default function PitchDeckPresentation() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { label: 'Market Size', value: '$1B+', description: 'Australian disaster recovery market', icon: Globe },
-              { label: 'Growth Rate', value: '15%', description: 'Annual market growth', icon: TrendingUp },
-              { label: 'Target Share', value: '20%', description: 'In 18 months', icon: Target },
-              { label: 'Valuation Target', value: '$20M', description: 'Conservative estimate', icon: DollarSign }
+              { label: 'Market Size', value: '$400M+', description: 'Australian disaster recovery market', icon: Globe },
+              { label: 'Growth Rate', value: '8%', description: 'Annual market growth', icon: TrendingUp },
+              { label: 'Target Share', value: '5%', description: 'In 24 months', icon: Target },
+              { label: 'Revenue Target', value: '$20M', description: 'Annual revenue potential', icon: DollarSign }
             ].map((metric, index) => (
               <motion.div
                 key={metric.label}
@@ -191,7 +192,7 @@ export default function PitchDeckPresentation() {
     {
       id: 5,
       title: "Competitive Advantages",
-      narration: "Our competitive advantages are insurmountable. Our twenty-seven million parameter brain-inspired HRM AI Technology provides instant assessments. Network effects make each contractor and claim strengthen the platform exponentially. Direct insurance integration through API connections with major providers. And complete national coverage across Australia with Pacific expansion ready.",
+      narration: "Our competitive advantages are insurmountable. Our advanced AI Technology provides instant assessments. Network effects make each contractor and claim strengthen the platform exponentially. Direct insurance integration through API connections with major providers. And complete national coverage across Australia with Pacific expansion ready."
       duration: 14000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -207,8 +208,8 @@ export default function PitchDeckPresentation() {
             {[
               {
                 icon: Brain,
-                title: 'HRM AI Technology',
-                description: '27M parameter brain-inspired AI providing instant assessments'
+                title: 'AI Technology',
+                description: 'Advanced AI providing instant assessments'
               },
               {
                 icon: Zap,
@@ -245,7 +246,7 @@ export default function PitchDeckPresentation() {
     {
       id: 6,
       title: "Growth Trajectory",
-      narration: "Our growth trajectory is exponential. We've achieved one hundred contractors in Q1 2024. We're targeting one thousand contractors and two million monthly revenue in Q2. Five thousand contractors and five million monthly revenue in Q3. And ten thousand contractors with ten million monthly revenue by Q4. This represents an eight times growth multiple from our current two point five million dollar valuation to twenty million dollars in just eighteen months.",
+      narration: "Our growth plan is ambitious but realistic. We currently have fifty contractors in our network. We're targeting two hundred and fifty contractors and five hundred thousand monthly revenue by Q4 2024. Then scaling to one thousand contractors and two million monthly revenue by Q2 2025. This represents sustainable growth building to twenty million annual revenue."
       duration: 16000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -260,10 +261,10 @@ export default function PitchDeckPresentation() {
           
           <div className="space-y-6 mb-8">
             {[
-              { quarter: 'Q1 2024', target: '100 contractors', revenue: '$500K/mo', achieved: true },
-              { quarter: 'Q2 2024', target: '1,000 contractors', revenue: '$2M/mo', achieved: false },
-              { quarter: 'Q3 2024', target: '5,000 contractors', revenue: '$5M/mo', achieved: false },
-              { quarter: 'Q4 2024', target: '10,000 contractors', revenue: '$10M/mo', achieved: false }
+              { quarter: 'Q2 2024', target: '50 contractors', revenue: '$50K/mo', achieved: true },
+              { quarter: 'Q4 2024', target: '250 contractors', revenue: '$500K/mo', achieved: false },
+              { quarter: 'Q2 2025', target: '1,000 contractors', revenue: '$2M/mo', achieved: false },
+              { quarter: 'Q4 2025', target: '2,500 contractors', revenue: '$5M/mo', achieved: false }
             ].map((milestone, index) => (
               <motion.div
                 key={milestone.quarter}
@@ -301,9 +302,9 @@ export default function PitchDeckPresentation() {
             transition={{ delay: 2, duration: 1 }}
             className="p-6 bg-purple-900/30 rounded-xl border border-purple-500/30 text-center"
           >
-            <div className="text-2xl font-bold text-white mb-2">18-Month Target</div>
-            <div className="text-gray-400 mb-4">From $2.5M to $20M valuation</div>
-            <div className="text-4xl font-bold text-emerald-600">8x Growth Multiple</div>
+            <div className="text-2xl font-bold text-white mb-2">24-Month Target</div>
+            <div className="text-gray-400 mb-4">$20M annual revenue potential</div>
+            <div className="text-4xl font-bold text-emerald-600">Sustainable Growth</div>
           </motion.div>
         </div>
       )
@@ -428,7 +429,7 @@ export default function PitchDeckPresentation() {
     {
       id: 8,
       title: "Investment Opportunity", 
-      narration: "We're raising three million dollars to accelerate growth and capture twenty percent market share. With our HRM AI technology, proven traction, and government partnership pathway, this is your opportunity to invest in the future of disaster recovery. Join us in revolutionizing this industry and achieving explosive growth from two point five million to twenty million dollar valuation.",
+      narration: "We're raising three million dollars to accelerate growth and build market presence. With our AI technology, early traction, and government partnership pathway, this is your opportunity to invest in the future of disaster recovery. Join us in building a sustainable business that transforms this industry."
       duration: 12000,
       content: (
         <div className="max-w-6xl mx-auto text-center">
@@ -446,8 +447,8 @@ export default function PitchDeckPresentation() {
             transition={{ delay: 0.5 }}
             className="text-2xl text-gray-300 mb-12 max-w-4xl mx-auto"
           >
-            We're raising $3M to accelerate growth and capture 20% market share.
-            With our HRM AI technology and proven traction, this is your opportunity
+            We're raising $3M to accelerate growth and build market presence.
+            With our AI technology and early traction, this is your opportunity
             to invest in the future of disaster recovery.
           </motion.p>
 
@@ -463,12 +464,12 @@ export default function PitchDeckPresentation() {
                 <div className="text-gray-300">Raising</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-blue-400 mb-2">20%</div>
+                <div className="text-4xl font-bold text-blue-400 mb-2">5%</div>
                 <div className="text-gray-300">Market Share Target</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-purple-400 mb-2">8x</div>
-                <div className="text-gray-300">Growth Multiple</div>
+                <div className="text-4xl font-bold text-purple-400 mb-2">$20M</div>
+                <div className="text-gray-300">Revenue Target</div>
               </div>
             </div>
             
@@ -525,13 +526,14 @@ export default function PitchDeckPresentation() {
 
   const startPresentation = async () => {
     setIsPlaying(true)
+    playingRef.current = true
     
     for (let i = 0; i < slides.length; i++) {
-      if (!isPlaying) break
+      if (!playingRef.current) break
       
       setCurrentSlide(i)
       
-      if (audioEnabled) {
+      if (audioEnabled && playingRef.current) {
         await playNarration(slides[i].narration)
       }
       
@@ -541,17 +543,19 @@ export default function PitchDeckPresentation() {
       const steps = duration / interval
       
       for (let step = 0; step <= steps; step++) {
-        if (!isPlaying) break
+        if (!playingRef.current) break
         setProgress((step / steps) * 100)
         await new Promise(resolve => setTimeout(resolve, interval))
       }
     }
     
+    playingRef.current = false
     setIsPlaying(false)
     setProgress(0)
   }
 
   const stopPresentation = () => {
+    playingRef.current = false
     setIsPlaying(false)
     if (audioRef.current) {
       audioRef.current.pause()

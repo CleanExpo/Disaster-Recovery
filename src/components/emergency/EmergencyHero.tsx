@@ -6,7 +6,9 @@ import { ArrowRight, Shield, Clock, Users, DollarSign } from 'lucide-react'
 
 export default function EmergencyHero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-red-600 via-blue-700 to-red-700 text-white">
+    <section className="relative overflow-hidden bg-slate-900 text-white">
+      {/* Background gradient at 10% opacity */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-blue-700/10 to-red-700/10 pointer-events-none"></div>
       {/* Crisis Badge */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
