@@ -246,7 +246,7 @@ export default function PitchDeckPresentation() {
     {
       id: 6,
       title: "Growth Trajectory",
-      narration: "Our growth plan is ambitious but realistic. We currently have fifty contractors in our network. We're targeting two hundred and fifty contractors and five hundred thousand monthly revenue by Q4 2024. Then scaling to one thousand contractors and two million monthly revenue by Q2 2025. This represents sustainable growth building to twenty million annual revenue.",
+      narration: "Our growth plan is ambitious but realistic. We've grown from fifty contractors in Q1 to two hundred and fifty contractors in Q2, achieving five hundred thousand monthly revenue. We're now targeting one thousand contractors and two million monthly revenue by end of Q3, then scaling to two thousand five hundred contractors and five million monthly revenue by Q4. This represents sustainable growth building to twenty million annual revenue.",
       duration: 16000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -261,10 +261,10 @@ export default function PitchDeckPresentation() {
           
           <div className="space-y-6 mb-8">
             {[
-              { quarter: 'Q2 2024', target: '50 contractors', revenue: '$50K/mo', achieved: true },
-              { quarter: 'Q4 2024', target: '250 contractors', revenue: '$500K/mo', achieved: false },
-              { quarter: 'Q2 2025', target: '1,000 contractors', revenue: '$2M/mo', achieved: false },
-              { quarter: 'Q4 2025', target: '2,500 contractors', revenue: '$5M/mo', achieved: false }
+              { quarter: 'Q1 2025', target: '50 contractors', revenue: '$50K/mo', achieved: true },
+              { quarter: 'Q2 2025', target: '250 contractors', revenue: '$500K/mo', achieved: true },
+              { quarter: 'Q3 2025 (Now)', target: '1,000 contractors', revenue: '$2M/mo', achieved: false },
+              { quarter: 'Q2 2026', target: '5,000 contractors', revenue: '$10M/mo', achieved: false }
             ].map((milestone, index) => (
               <motion.div
                 key={milestone.quarter}
@@ -302,9 +302,9 @@ export default function PitchDeckPresentation() {
             transition={{ delay: 2, duration: 1 }}
             className="p-6 bg-purple-900/30 rounded-xl border border-purple-500/30 text-center"
           >
-            <div className="text-2xl font-bold text-white mb-2">24-Month Target</div>
-            <div className="text-gray-400 mb-4">$20M annual revenue potential</div>
-            <div className="text-4xl font-bold text-emerald-600">Sustainable Growth</div>
+            <div className="text-2xl font-bold text-white mb-2">12-Month Target</div>
+            <div className="text-gray-400 mb-4">$120M annualized revenue run rate</div>
+            <div className="text-4xl font-bold text-emerald-600">Exponential Growth</div>
           </motion.div>
         </div>
       )
