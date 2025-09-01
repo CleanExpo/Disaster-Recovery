@@ -1,18 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   BookOpen, Award, Clock, Calendar, ChevronRight,
   PlayCircle, CheckCircle, Lock, AlertCircle,
   FileText, Users, Shield, Wrench, Heart, Brain,
-  ArrowLeft, Download, Star, TrendingUp
+  ArrowLeft, Download, Star, TrendingUp, Play, Video
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { trainingModules, getAvailableModules, isModuleAccessible } from './config/moduleConfig';
 
 export default function TrainingHub() {
   const [selectedWeek, setSelectedWeek] = useState<'week1' | 'week2'>('week1');
