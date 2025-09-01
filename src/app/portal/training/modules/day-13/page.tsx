@@ -156,23 +156,23 @@ export default function Day13Module() {
               <h2>🛠️ Today's Practical Exercises</h2>
               <div className={styles.exerciseList}>
                 <div className={styles.exerciseItem}>
-                  <span className={practicalProgress.waterDamage ? '✅' : '⭕'}</span>
+                  <span>{practicalProgress.waterDamage ? '✅' : '⭕'}</span>
                   <p>Complete water damage assessment and setup</p>
                 </div>
                 <div className={styles.exerciseItem}>
-                  <span className={practicalProgress.mouldAssessment ? '✅' : '⭕'}</span>
+                  <span>{practicalProgress.mouldAssessment ? '✅' : '⭕'}</span>
                   <p>Perform mould inspection and containment</p>
                 </div>
                 <div className={styles.exerciseItem}>
-                  <span className={practicalProgress.fireRestoration ? '✅' : '⭕'}</span>
+                  <span>{practicalProgress.fireRestoration ? '✅' : '⭕'}</span>
                   <p>Execute fire damage restoration plan</p>
                 </div>
                 <div className={styles.exerciseItem}>
-                  <span className={practicalProgress.documentation ? '✅' : '⭕'}</span>
+                  <span>{practicalProgress.documentation ? '✅' : '⭕'}</span>
                   <p>Create complete job documentation</p>
                 </div>
                 <div className={styles.exerciseItem}>
-                  <span className={practicalProgress.customerInteraction ? '✅' : '⭕'}</span>
+                  <span>{practicalProgress.customerInteraction ? '✅' : '⭕'}</span>
                   <p>Handle customer interaction scenarios</p>
                 </div>
               </div>

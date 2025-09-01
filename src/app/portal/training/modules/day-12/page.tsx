@@ -246,19 +246,19 @@ export default function Day12Module() {
                 <div>
                   <h3>Operational KPIs</h3>
                   <ul>
-                    <li>First response time (<4 hours)</li>
+                    <li>First response time (&lt;4 hours)</li>
                     <li>Job completion time</li>
-                    <li>Customer satisfaction (>90%)</li>
+                    <li>Customer satisfaction (&gt;90%)</li>
                     <li>Safety incidents (zero target)</li>
-                    <li>Quality callbacks (<2%)</li>
+                    <li>Quality callbacks (&lt;2%)</li>
                   </ul>
                 </div>
                 <div>
                   <h3>Financial KPIs</h3>
                   <ul>
-                    <li>Gross profit margin (>35%)</li>
-                    <li>Days sales outstanding (<45)</li>
-                    <li>Quote conversion rate (>60%)</li>
+                    <li>Gross profit margin (&gt;35%)</li>
+                    <li>Days sales outstanding (&lt;45)</li>
+                    <li>Quote conversion rate (&gt;60%)</li>
                     <li>Average job value</li>
                     <li>Revenue per technician</li>
                   </ul>

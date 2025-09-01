@@ -218,7 +218,7 @@ export default function LeadManagement() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">42 min</div>
-              <p className="text-xs text-gray-500 mt-1">Target: <60 min</p>
+              <p className="text-xs text-gray-500 mt-1">Target: &lt;60 min</p>
             </CardContent>
           </Card>
           

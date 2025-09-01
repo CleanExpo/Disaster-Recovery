@@ -87,7 +87,7 @@ export default function Day2WaterDamageRestoration() {
               ppe: "Full PPE - Tyvek suit, respirator, gloves, boots",
               treatment: "Complete containment and remediation",
               materials: "Most porous materials must be removed"
-            ],
+            },
             australianContext: [
               "Brisbane River flooding events",
               "Tropical cyclone storm surge",

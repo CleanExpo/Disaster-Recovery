@@ -433,7 +433,7 @@
 }
 
 /* Tables */
-table {
+.moduleTable {
   width: 100%;
   background-color: white;
   border-radius: 8px;
@@ -441,7 +441,7 @@ table {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-th {
+.moduleTable th {
   background-color: #f5f5f5;
   padding: 1rem;
   text-align: left;
@@ -449,7 +449,7 @@ th {
   color: #333;
 }
 
-td {
+.moduleTable td {
   padding: 1rem;
   border-top: 1px solid #e0e0e0;
 }
