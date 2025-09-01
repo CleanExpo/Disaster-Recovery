@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import LightningEffect from '@/components/effects/LightningEffect';
 
 export default function CleanLandingPage() {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -117,12 +118,21 @@ export default function CleanLandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white relative">
+      {/* Thunderstorm Background at 10% opacity */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/10 via-blue-900/10 to-indigo-900/10" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="storm" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M30 0v60M0 30h60" stroke="%23000" stroke-width="0.1" opacity="0.1"/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill="url(%23storm)" width="100%25" height="100%25"/%3E%3C/svg%3E')] opacity-10" />
+      </div>
+      
+      {/* Lightning Effect */}
+      <LightningEffect />
+      
       {/* Hero Section - Clean and Focused */}
-      <section className="relative bg-gradient-to-b from-slate-50 to-white pt-20 pb-32 overflow-hidden">
+      <section className="relative bg-gradient-to-b from-slate-50/90 to-white/90 pt-20 pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none" />
         
-        <div className="container mx-auto px-6 relative">
+        <div className="container mx-auto px-4 md:px-6 relative">
           <div className="max-w-4xl mx-auto text-center">
             {/* Emergency Badge */}
             <motion.div
@@ -142,7 +152,7 @@ export default function CleanLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6"
             >
               Property Disaster?
               <span className="block text-blue-600 mt-2">
@@ -155,7 +165,7 @@ export default function CleanLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto"
+              className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto"
             >
               Australia's largest emergency restoration network. 
               115,000+ certified contractors ready to help, with insurance approval guaranteed.
@@ -166,13 +176,13 @@ export default function CleanLandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
             >
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
                 Get Emergency Help
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6 text-lg">
+              <Button size="lg" variant="outline" className="px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Chat with AI Assistant
               </Button>
@@ -203,18 +213,18 @@ export default function CleanLandingPage() {
       </section>
 
       {/* Features Section - Clean Grid */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-white/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               Why Choose Our Network
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               We connect you with the best restoration professionals in Australia
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -243,18 +253,18 @@ export default function CleanLandingPage() {
       </section>
 
       {/* Services Section - Simple and Clear */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-gray-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               Emergency Services We Cover
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               Professional restoration for all types of property damage
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -270,7 +280,7 @@ export default function CleanLandingPage() {
                   </span>
                 )}
                 <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                   {service.title}
                 </h3>
                 <p className="text-gray-600 mb-4">
@@ -287,19 +297,19 @@ export default function CleanLandingPage() {
       </section>
 
       {/* Process Section - Visual Steps */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-white/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               How It Works
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
               From disaster to restoration in 4 simple steps
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
               {process.map((item, index) => (
                 <motion.div
                   key={index}
@@ -331,10 +341,10 @@ export default function CleanLandingPage() {
       </section>
 
       {/* Testimonials Section - Social Proof */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
+      <section className="py-20 bg-gray-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               What Our Clients Say
             </h2>
             <div className="flex justify-center gap-1 mb-4">
@@ -347,7 +357,7 @@ export default function CleanLandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
@@ -383,21 +393,21 @@ export default function CleanLandingPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-700">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-700 relative">
+        <div className="container mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
             Property Emergency? We're Here 24/7
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Get connected with certified restoration professionals in minutes. 
             Insurance approved. No call-out fees.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
               Get Immediate Help
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 px-8 py-6 text-lg">
+            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
               <Phone className="mr-2 h-5 w-5" />
               Chat Support 24/7
             </Button>
