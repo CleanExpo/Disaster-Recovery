@@ -91,11 +91,18 @@ export default function PitchDeckPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link 
-                href="/pitch-deck/investor"
+                href="/pitch-deck/presentation"
                 className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <Play className="h-5 w-5" />
-                View Full Presentation
+                Interactive Presentation
+              </Link>
+              <Link 
+                href="/demo/forms"
+                className="px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <Play className="h-5 w-5" />
+                Form Demonstration
               </Link>
               <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center gap-2">
                 <Download className="h-5 w-5" />

@@ -42,19 +42,19 @@ export function FeedbackForm({
 }: FeedbackFormProps) {
   const [formData, setFormData] = useState({
     type: defaultType,
-    category: '',
-    title: '',
-    description: '',
-    impact: 'medium' as 'low' | 'medium' | 'high',
+    category: defaultType === 'bug_report' ? 'Data Display' : defaultType === 'feature_request' ? 'Dashboard' : 'Performance',
+    title: defaultType === 'bug_report' ? 'Dashboard not loading contractor metrics correctly' : defaultType === 'feature_request' ? 'Add real-time job notifications for contractors' : 'Love the new HRM AI integration - incredibly fast!',
+    description: defaultType === 'bug_report' ? 'When I log into my contractor dashboard, the earnings section shows $0 even though I completed 3 jobs this week. The job completion rate also displays as 0% when it should be 98%. This started happening after the recent platform update. Steps to reproduce: 1. Log into contractor portal 2. Navigate to dashboard 3. Check earnings and stats sections. Browser: Chrome 131, Device: Windows 11.' : defaultType === 'feature_request' ? 'It would be amazing if contractors could get real-time push notifications when new jobs matching their skills and location become available. Currently we have to keep checking the job board manually. This feature would help us respond faster and win more work. Could include filters for job value, urgency level, and distance from our base location.' : 'The new HRM AI system is incredible! The damage assessment accuracy is spot-on and the speed is unmatched. Our job completion time has improved by 40% since the update. The automated insurance claim processing is a game-changer. Thank you for building such powerful technology for our industry.',
+    impact: 'high' as 'low' | 'medium' | 'high',
     isAnonymous: false,
-    userName: '',
-    userEmail: '',
+    userName: 'Michael Chen',
+    userEmail: 'michael.chen@restoration.com.au',
     attachments: [] as File[]
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(defaultType === 'feedback' ? 5 : 0);
 
   const categories = {
     feedback: [

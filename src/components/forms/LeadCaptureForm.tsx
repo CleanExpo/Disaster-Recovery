@@ -14,6 +14,7 @@ import { toast } from 'sonner';
 interface LeadFormData {
   // Contact Information
   fullName: string;
+  phone: string;
   email: string;
   
   // Property Information
@@ -54,29 +55,32 @@ interface LeadFormData {
 
 export default function LeadCaptureForm() {
   const [formData, setFormData] = useState<LeadFormData>({
-    fullName: '',
-    
-    email: '',
+    fullName: 'Sarah Melbourne',
+    phone: '0412 345 678',
+    email: 'sarah.melbourne@example.com',
     propertyType: 'residential',
-    propertyAddress: '',
-    suburb: '',
-    state: 'QLD',
-    postcode: '',
-    damageType: [],
-    damageDate: '',
-    damageDescription: '',
-    estimatedAreaAffected: '',
+    propertyAddress: '123 Collins Street',
+    suburb: 'Melbourne',
+    state: 'VIC',
+    postcode: '3000',
+    damageType: ['Water/Flood Damage', 'Mould Growth'],
+    damageDate: '2024-01-28',
+    damageDescription: 'Burst pipe in kitchen ceiling caused extensive water damage. Water has been spreading through the walls and we can see mould starting to form in multiple rooms. The damage covers our kitchen, dining room, and part of the living area. We need immediate help as the property is becoming unsafe to live in.',
+    estimatedAreaAffected: 'multiple_rooms',
     hasInsurance: true,
-    urgencyLevel: 'urgent',
-    propertyValue: '',
+    insuranceCompany: 'NRMA',
+    claimNumber: 'CLM-2024-558942',
+    excessAmount: '1000',
+    urgencyLevel: 'emergency',
+    propertyValue: '750000',
     isBusinessProperty: false,
-    requiresAccommodation: false,
-    hasPhotos: false,
+    requiresAccommodation: true,
+    hasPhotos: true,
     readyToStart: 'immediately',
-    budget: '',
+    budget: '25000',
     decisionMaker: true,
-    consentToContact: false,
-    agreeToTerms: false
+    consentToContact: true,
+    agreeToTerms: true
   });
 
   const [leadScore, setLeadScore] = useState(0);

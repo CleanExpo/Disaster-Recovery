@@ -267,7 +267,19 @@ const navItems: NavItem[] = [
     href: '/pitch-deck',
     dropdown: [
       { 
-        label: 'Investor Presentation', 
+        label: 'Interactive Presentation', 
+        href: '/pitch-deck/presentation',
+        description: 'AI-narrated pitch presentation', 
+        icon: '🎬' 
+      },
+      { 
+        label: 'Form Demonstration', 
+        href: '/demo/forms',
+        description: 'Live form filling demo', 
+        icon: '📋' 
+      },
+      { 
+        label: 'Investor Overview', 
         href: '/pitch-deck/investor',
         description: 'Full investor pitch deck',
         icon: '📈'
