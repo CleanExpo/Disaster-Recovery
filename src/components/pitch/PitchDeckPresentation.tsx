@@ -153,7 +153,7 @@ export default function PitchDeckPresentation() {
     {
       id: 4,
       title: "Market Opportunity",
-      narration: "We're targeting the Australian disaster recovery market, valued at approximately four hundred million dollars annually with steady growth. Our target is to capture five percent market share within twenty-four months, representing significant revenue opportunity."
+      narration: "We're targeting the Australian disaster recovery market, valued at approximately four hundred million dollars annually with steady growth. Our target is to capture five percent market share within twenty-four months, representing significant revenue opportunity.",
       duration: 8000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -192,7 +192,7 @@ export default function PitchDeckPresentation() {
     {
       id: 5,
       title: "Competitive Advantages",
-      narration: "Our competitive advantages are insurmountable. Our advanced AI Technology provides instant assessments. Network effects make each contractor and claim strengthen the platform exponentially. Direct insurance integration through API connections with major providers. And complete national coverage across Australia with Pacific expansion ready."
+      narration: "Our competitive advantages are insurmountable. Our advanced AI Technology provides instant assessments. Network effects make each contractor and claim strengthen the platform exponentially. Direct insurance integration through API connections with major providers. And complete national coverage across Australia with Pacific expansion ready.",
       duration: 14000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -246,7 +246,7 @@ export default function PitchDeckPresentation() {
     {
       id: 6,
       title: "Growth Trajectory",
-      narration: "Our growth plan is ambitious but realistic. We currently have fifty contractors in our network. We're targeting two hundred and fifty contractors and five hundred thousand monthly revenue by Q4 2024. Then scaling to one thousand contractors and two million monthly revenue by Q2 2025. This represents sustainable growth building to twenty million annual revenue."
+      narration: "Our growth plan is ambitious but realistic. We currently have fifty contractors in our network. We're targeting two hundred and fifty contractors and five hundred thousand monthly revenue by Q4 2024. Then scaling to one thousand contractors and two million monthly revenue by Q2 2025. This represents sustainable growth building to twenty million annual revenue.",
       duration: 16000,
       content: (
         <div className="max-w-6xl mx-auto">
@@ -429,7 +429,7 @@ export default function PitchDeckPresentation() {
     {
       id: 8,
       title: "Investment Opportunity", 
-      narration: "We're raising three million dollars to accelerate growth and build market presence. With our AI technology, early traction, and government partnership pathway, this is your opportunity to invest in the future of disaster recovery. Join us in building a sustainable business that transforms this industry."
+      narration: "We're raising three million dollars to accelerate growth and build market presence. With our AI technology, early traction, and government partnership pathway, this is your opportunity to invest in the future of disaster recovery. Join us in building a sustainable business that transforms this industry.",
       duration: 12000,
       content: (
         <div className="max-w-6xl mx-auto text-center">
