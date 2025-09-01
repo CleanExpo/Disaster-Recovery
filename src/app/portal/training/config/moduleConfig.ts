@@ -12,13 +12,36 @@ export interface ModuleConfig {
   isBeta?: boolean;
 }
 
+// Get the release configuration from environment variable
+const getReleaseConfig = (): number[] => {
+  // NEXT_PUBLIC_AVAILABLE_MODULES should be a comma-separated list of day numbers
+  // Example: "1,2,3,4,5,6,7" for week 1 only
+  // Example: "1,2,3,4,5,6,7,8,9" for week 1 + first 2 days of week 2
+  // Example: "all" for all modules
+  
+  const config = process.env.NEXT_PUBLIC_AVAILABLE_MODULES || '1,2,3,4,5,6,7';
+  
+  if (config === 'all') {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  }
+  
+  if (config === 'none') {
+    return [];
+  }
+  
+  // Parse comma-separated numbers
+  return config.split(',').map(num => parseInt(num.trim())).filter(num => !isNaN(num));
+};
+
+const availableDays = getReleaseConfig();
+
 export const trainingModules: ModuleConfig[] = [
   {
     id: 'day-1',
     day: 1,
     title: 'Industry Introduction & Safety',
     description: 'Foundation knowledge and safety protocols',
-    isAvailable: true,
+    isAvailable: availableDays.includes(1),
     releaseDate: '2024-01-01'
   },
   {
@@ -26,7 +49,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 2,
     title: 'Water Damage Fundamentals',
     description: 'Understanding water damage categories and classes',
-    isAvailable: true,
+    isAvailable: availableDays.includes(2),
     releaseDate: '2024-01-02',
     requiresPrerequisites: [1]
   },
@@ -35,7 +58,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 3,
     title: 'Water Damage Assessment',
     description: 'Professional assessment techniques',
-    isAvailable: true,
+    isAvailable: availableDays.includes(3),
     releaseDate: '2024-01-03',
     requiresPrerequisites: [1, 2]
   },
@@ -44,7 +67,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 4,
     title: 'Advanced Water Damage',
     description: 'Complex water damage scenarios',
-    isAvailable: true,
+    isAvailable: availableDays.includes(4),
     releaseDate: '2024-01-04',
     requiresPrerequisites: [1, 2, 3]
   },
@@ -53,7 +76,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 5,
     title: 'Structural Drying Science',
     description: 'Psychrometry and drying principles',
-    isAvailable: true,
+    isAvailable: availableDays.includes(5),
     releaseDate: '2024-01-05',
     requiresPrerequisites: [1, 2, 3, 4]
   },
@@ -62,7 +85,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 6,
     title: 'Equipment & Technology',
     description: 'Professional equipment operation',
-    isAvailable: true,
+    isAvailable: availableDays.includes(6),
     releaseDate: '2024-01-06',
     requiresPrerequisites: [1, 2, 3, 4, 5]
   },
@@ -71,7 +94,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 7,
     title: 'Documentation & Quality',
     description: 'Professional documentation standards',
-    isAvailable: true,
+    isAvailable: availableDays.includes(7),
     releaseDate: '2024-01-07',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6]
   },
@@ -81,7 +104,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 8,
     title: 'Mould Remediation',
     description: 'Professional mould assessment and remediation',
-    isAvailable: false, // Set to true when ready
+    isAvailable: availableDays.includes(8),
     releaseDate: '2024-01-08',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7],
     isBeta: true
@@ -91,7 +114,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 9,
     title: 'Fire & Smoke Damage',
     description: 'Fire and smoke restoration techniques',
-    isAvailable: false,
+    isAvailable: availableDays.includes(9),
     releaseDate: '2024-01-09',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7, 8]
   },
@@ -100,7 +123,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 10,
     title: 'Biohazard & Trauma',
     description: 'Biohazard cleaning protocols',
-    isAvailable: false,
+    isAvailable: availableDays.includes(10),
     releaseDate: '2024-01-10',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7, 8, 9]
   },
@@ -109,7 +132,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 11,
     title: 'Commercial & Large Loss',
     description: 'Large scale project management',
-    isAvailable: false,
+    isAvailable: availableDays.includes(11),
     releaseDate: '2024-01-11',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
@@ -118,7 +141,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 12,
     title: 'Business Operations',
     description: 'Business and administrative skills',
-    isAvailable: false,
+    isAvailable: availableDays.includes(12),
     releaseDate: '2024-01-12',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
   },
@@ -127,7 +150,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 13,
     title: 'Practical Application',
     description: 'Hands-on practical exercises',
-    isAvailable: false,
+    isAvailable: availableDays.includes(13),
     releaseDate: '2024-01-13',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   },
@@ -136,7 +159,7 @@ export const trainingModules: ModuleConfig[] = [
     day: 14,
     title: 'Final Certification',
     description: 'Assessment and certification',
-    isAvailable: false,
+    isAvailable: availableDays.includes(14),
     releaseDate: '2024-01-14',
     requiresPrerequisites: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
   }
@@ -164,35 +187,13 @@ export const isModuleAccessible = (day: number, completedDays: number[] = []): b
   return true;
 };
 
-// Environment-based configuration
-export const getModuleAvailability = () => {
-  const env = process.env.NODE_ENV;
-  const releaseMode = process.env.NEXT_PUBLIC_TRAINING_RELEASE_MODE || 'gradual';
-  
-  switch (releaseMode) {
-    case 'all':
-      // All modules available (for testing/development)
-      return trainingModules.map(m => ({ ...m, isAvailable: true }));
-    
-    case 'week1':
-      // Only Week 1 available
-      return trainingModules.map(m => ({ 
-        ...m, 
-        isAvailable: m.day <= 7 
-      }));
-    
-    case 'gradual':
-      // Use the configured availability
-      return trainingModules;
-    
-    case 'beta':
-      // Week 1 + beta modules
-      return trainingModules.map(m => ({ 
-        ...m, 
-        isAvailable: m.day <= 7 || m.isBeta === true 
-      }));
-    
-    default:
-      return trainingModules;
-  }
+// Debug helper - shows current configuration
+export const getCurrentReleaseInfo = () => {
+  return {
+    mode: process.env.NEXT_PUBLIC_AVAILABLE_MODULES || 'default (1-7)',
+    availableModules: availableDays,
+    totalAvailable: availableDays.length,
+    week1Complete: availableDays.includes(1) && availableDays.includes(7),
+    week2Started: availableDays.some(day => day > 7)
+  };
 };
