@@ -1084,23 +1084,23 @@ Customer: ______________ Date: _______"
                 <h3>Exercise Completion Status:</h3>
                 <div className={styles.statusGrid}>
                   <div className={styles.statusItem}>
-                    <span className={practicalProgress.waterDamage ? '✅' : '❌'}</span>
+                    <span>{practicalProgress.waterDamage ? '✅' : '❌'}</span>
                     <p>Water Damage Scenario</p>
                   </div>
                   <div className={styles.statusItem}>
-                    <span className={practicalProgress.mouldAssessment ? '✅' : '❌'}</span>
+                    <span>{practicalProgress.mouldAssessment ? '✅' : '❌'}</span>
                     <p>Mould Assessment</p>
                   </div>
                   <div className={styles.statusItem}>
-                    <span className={practicalProgress.fireRestoration ? '✅' : '❌'}</span>
+                    <span>{practicalProgress.fireRestoration ? '✅' : '❌'}</span>
                     <p>Fire Restoration</p>
                   </div>
                   <div className={styles.statusItem}>
-                    <span className={practicalProgress.documentation ? '✅' : '❌'}</span>
+                    <span>{practicalProgress.documentation ? '✅' : '❌'}</span>
                     <p>Documentation</p>
                   </div>
                   <div className={styles.statusItem}>
-                    <span className={practicalProgress.customerInteraction ? '✅' : '❌'}</span>
+                    <span>{practicalProgress.customerInteraction ? '✅' : '❌'}</span>
                     <p>Customer Service</p>
                   </div>
                 </div>
