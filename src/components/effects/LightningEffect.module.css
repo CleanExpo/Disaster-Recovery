@@ -1,0 +1,144 @@
+/* Lightning Effect Animations */
+@keyframes lightning-strike {
+  0%, 100% {
+    opacity: 0;
+    stroke-dasharray: 0 1000;
+  }
+  1% {
+    opacity: 0.6;
+    stroke-dasharray: 1000 0;
+  }
+  2% {
+    opacity: 0.3;
+  }
+  3% {
+    opacity: 0.6;
+  }
+  4% {
+    opacity: 0.2;
+  }
+  5% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-branch-left {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  1.5% {
+    opacity: 0.3;
+    transform: translateX(-2px);
+  }
+  3% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes lightning-branch-right {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  2% {
+    opacity: 0.3;
+    transform: translateX(2px);
+  }
+  3.5% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes lightning-branch-small {
+  0%, 100% {
+    opacity: 0;
+  }
+  2.5% {
+    opacity: 0.15;
+  }
+  3% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-glow {
+  0%, 100% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 0.5;
+  }
+  2% {
+    opacity: 0.2;
+  }
+  3% {
+    opacity: 0.4;
+  }
+  4% {
+    opacity: 0.1;
+  }
+  5% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-flash {
+  0%, 100% {
+    opacity: 0;
+  }
+  48% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes lightning-flash-delayed {
+  0%, 100% {
+    opacity: 0;
+  }
+  73% {
+    opacity: 0;
+  }
+  74% {
+    opacity: 0.2;
+  }
+  75% {
+    opacity: 0;
+  }
+}
+
+.animateLightningStrike {
+  animation: lightning-strike 8s infinite;
+}
+
+.animateLightningBranchLeft {
+  animation: lightning-branch-left 8s infinite;
+}
+
+.animateLightningBranchRight {
+  animation: lightning-branch-right 8s infinite;
+}
+
+.animateLightningGlow {
+  animation: lightning-glow 8s infinite;
+}
+
+.animateLightningFlash {
+  animation: lightning-flash 6s infinite;
+}
+
+.animateLightningFlashDelayed {
+  animation: lightning-flash-delayed 7s infinite;
+}
+
+.animateLightningBranchSmall {
+  animation: lightning-branch-small 8s infinite;
+}

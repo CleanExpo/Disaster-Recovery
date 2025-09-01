@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import styles from './FloodingEffect.module.css';
 
 export default function FloodingEffect() {
   return (
@@ -16,16 +17,15 @@ export default function FloodingEffect() {
           className="absolute bottom-0 left-0 right-0 h-16 opacity-80"
           style={{
             background: 'linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.3) 50%, rgba(37, 99, 235, 0.4) 100%)',
-            animation: 'waterRise 8s ease-in-out infinite'
+            animation: `${styles.waterRiseAnimation}`
           }}
         />
         
         {/* Wave Layer 1 - Primary waves */}
         <svg 
-          className="absolute bottom-0 left-0 w-full h-24"
+          className={`absolute bottom-0 left-0 w-full h-24 ${styles.waveAnimation}`}
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
-          style={{ animation: 'wave 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite' }}
         >
           <defs>
             <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -42,10 +42,9 @@ export default function FloodingEffect() {
         
         {/* Wave Layer 2 - Secondary waves */}
         <svg 
-          className="absolute bottom-0 left-0 w-full h-24"
+          className={`absolute bottom-0 left-0 w-full h-24 ${styles.waveAnimationReverse}`}
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
-          style={{ animation: 'wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite reverse' }}
         >
           <defs>
             <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -62,10 +61,9 @@ export default function FloodingEffect() {
         
         {/* Wave Layer 3 - Surface ripples */}
         <svg 
-          className="absolute bottom-0 left-0 w-full h-20"
+          className={`absolute bottom-0 left-0 w-full h-20 ${styles.waveAnimationFast}`}
           preserveAspectRatio="none"
           viewBox="0 0 1200 120"
-          style={{ animation: 'wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite' }}
         >
           <defs>
             <linearGradient id="wave-gradient-3" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -84,11 +82,11 @@ export default function FloodingEffect() {
         <div className="absolute bottom-0 left-0 right-0 h-8">
           <div className="relative w-full h-full">
             {/* Foam particles */}
-            <div className="absolute bottom-2 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-bubble" />
-            <div className="absolute bottom-3 left-1/3 w-1 h-1 bg-white/30 rounded-full animate-bubble-delayed" />
-            <div className="absolute bottom-1 left-1/2 w-1.5 h-1.5 bg-white/25 rounded-full animate-bubble" />
-            <div className="absolute bottom-4 left-2/3 w-1 h-1 bg-white/20 rounded-full animate-bubble-delayed" />
-            <div className="absolute bottom-2 left-3/4 w-2 h-2 bg-white/15 rounded-full animate-bubble" />
+            <div className={`absolute bottom-2 left-1/4 w-2 h-2 bg-white/20 rounded-full ${styles.animateBubble}`} />
+            <div className={`absolute bottom-3 left-1/3 w-1 h-1 bg-white/30 rounded-full ${styles.animateBubbleDelayed}`} />
+            <div className={`absolute bottom-1 left-1/2 w-1.5 h-1.5 bg-white/25 rounded-full ${styles.animateBubble}`} />
+            <div className={`absolute bottom-4 left-2/3 w-1 h-1 bg-white/20 rounded-full ${styles.animateBubbleDelayed}`} />
+            <div className={`absolute bottom-2 left-3/4 w-2 h-2 bg-white/15 rounded-full ${styles.animateBubble}`} />
           </div>
         </div>
         
@@ -97,125 +95,15 @@ export default function FloodingEffect() {
           className="absolute bottom-0 left-0 right-0 h-12 opacity-30"
           style={{
             background: 'linear-gradient(180deg, rgba(147, 197, 253, 0.2) 0%, transparent 100%)',
-            animation: 'shimmer 4s ease-in-out infinite'
+            animation: `${styles.shimmerAnimation}`
           }}
         />
         
         {/* Debris floating (optional dramatic effect) */}
-        <div className="absolute bottom-8 left-10 w-8 h-1 bg-gray-700/30 rounded animate-float" />
-        <div className="absolute bottom-10 right-20 w-6 h-1 bg-gray-600/20 rounded animate-float-delayed" />
-        <div className="absolute bottom-6 left-1/3 w-4 h-0.5 bg-gray-800/25 rounded animate-float" />
+        <div className={`absolute bottom-8 left-10 w-8 h-1 bg-gray-700/30 rounded ${styles.animateFloat}`} />
+        <div className={`absolute bottom-10 right-20 w-6 h-1 bg-gray-600/20 rounded ${styles.animateFloatDelayed}`} />
+        <div className={`absolute bottom-6 left-1/3 w-4 h-0.5 bg-gray-800/25 rounded ${styles.animateFloat}`} />
       </div>
-
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes wave {
-          0%, 100% {
-            transform: translateX(0) translateY(0);
-          }
-          25% {
-            transform: translateX(-25px) translateY(-3px);
-          }
-          50% {
-            transform: translateX(-50px) translateY(2px);
-          }
-          75% {
-            transform: translateX(-25px) translateY(-2px);
-          }
-        }
-        
-        @keyframes waterRise {
-          0%, 100% {
-            transform: translateY(0);
-            opacity: 0.8;
-          }
-          50% {
-            transform: translateY(-5px);
-            opacity: 0.9;
-          }
-        }
-        
-        @keyframes bubble {
-          0% {
-            transform: translateY(0) scale(1);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.3;
-          }
-          100% {
-            transform: translateY(-30px) scale(1.2);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes bubble-delayed {
-          0% {
-            transform: translateY(0) scale(1);
-            opacity: 0;
-          }
-          10% {
-            opacity: 0.25;
-          }
-          100% {
-            transform: translateY(-25px) scale(1.1);
-            opacity: 0;
-          }
-        }
-        
-        @keyframes shimmer {
-          0%, 100% {
-            opacity: 0.3;
-            transform: translateX(0);
-          }
-          50% {
-            opacity: 0.5;
-            transform: translateX(10px);
-          }
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0) rotate(0deg);
-          }
-          33% {
-            transform: translateY(-3px) rotate(1deg);
-          }
-          66% {
-            transform: translateY(2px) rotate(-1deg);
-          }
-        }
-        
-        @keyframes float-delayed {
-          0%, 100% {
-            transform: translateY(0) rotate(0deg);
-          }
-          33% {
-            transform: translateY(2px) rotate(-1deg);
-          }
-          66% {
-            transform: translateY(-3px) rotate(1deg);
-          }
-        }
-        
-        .animate-bubble {
-          animation: bubble 4s ease-in-out infinite;
-        }
-        
-        .animate-bubble-delayed {
-          animation: bubble-delayed 4s ease-in-out infinite;
-          animation-delay: 2s;
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-float-delayed {
-          animation: float-delayed 6s ease-in-out infinite;
-          animation-delay: 3s;
-        }
-      `}</style>
     </>
   );
 }

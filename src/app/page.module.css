@@ -1,0 +1,13 @@
+/* Storm and Rain Animations */
+@keyframes rainFall {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 10px 100px;
+  }
+}
+
+.rainAnimation {
+  animation: rainFall 3s linear infinite;
+}

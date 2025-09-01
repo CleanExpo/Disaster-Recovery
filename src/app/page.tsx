@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
 import FloodingEffect from '@/components/effects/FloodingEffect';
+import styles from './page.module.css';
 
 export default function CleanLandingPage() {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -144,9 +145,8 @@ export default function CleanLandingPage() {
         </div>
         
         {/* Rain effect pattern */}
-        <div className="absolute inset-0 opacity-15" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='rain' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0,20 Q5,40 0,60' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M20,10 Q25,30 20,50' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M40,25 Q45,45 40,65' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M60,15 Q65,35 60,55' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M80,30 Q85,50 80,70' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23rain)' width='100%25' height='100%25'/%3E%3C/svg%3E")`,
-          animation: 'rainFall 3s linear infinite'
+        <div className={`absolute inset-0 opacity-15 ${styles.rainAnimation}`} style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='rain' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0,20 Q5,40 0,60' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M20,10 Q25,30 20,50' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M40,25 Q45,45 40,65' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M60,15 Q65,35 60,55' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M80,30 Q85,50 80,70' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23rain)' width='100%25' height='100%25'/%3E%3C/svg%3E")`
         }} />
         
         {/* Turbulent cloud texture */}
@@ -466,18 +466,6 @@ export default function CleanLandingPage() {
         {/* Flooding Effect at Bottom */}
         <FloodingEffect />
       </section>
-      
-      {/* CSS Animations for Storm Effects */}
-      <style jsx>{`
-        @keyframes rainFall {
-          0% {
-            background-position: 0 0;
-          }
-          100% {
-            background-position: 10px 100px;
-          }
-        }
-      `}</style>
     </div>
   );
 }

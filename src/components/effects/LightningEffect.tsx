@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import styles from './LightningEffect.module.css';
 
 export default function LightningEffect() {
   return (
@@ -75,7 +76,7 @@ export default function LightningEffect() {
               strokeWidth="8"
               fill="none"
               filter="url(#lightning-shadow)"
-              className="animate-lightning-strike"
+              className={styles.animateLightningStrike}
               opacity="0.2"
               transform="translate(4, 8)"
             />
@@ -87,7 +88,7 @@ export default function LightningEffect() {
               strokeWidth="12"
               fill="none"
               filter="url(#lightning-3d-glow)"
-              className="animate-lightning-strike"
+              className={styles.animateLightningStrike}
               opacity="0.3"
             />
             
@@ -98,7 +99,7 @@ export default function LightningEffect() {
               strokeWidth="6"
               fill="none"
               filter="url(#lightning-inner-glow)"
-              className="animate-lightning-strike"
+              className={styles.animateLightningStrike}
               opacity="0.4"
             />
             
@@ -108,7 +109,7 @@ export default function LightningEffect() {
               stroke="#dbeafe"
               strokeWidth="3"
               fill="none"
-              className="animate-lightning-strike"
+              className={styles.animateLightningStrike}
               opacity="0.6"
             />
             
@@ -118,7 +119,7 @@ export default function LightningEffect() {
               stroke="url(#lightning-gradient-core)"
               strokeWidth="1.5"
               fill="none"
-              className="animate-lightning-strike"
+              className={styles.animateLightningStrike}
               opacity="0.9"
             />
           </svg>
@@ -126,7 +127,7 @@ export default function LightningEffect() {
           {/* Lightning branches - 3D layered */}
           <svg className="absolute inset-0 w-80 h-full -left-40" viewBox="0 0 320 1000" preserveAspectRatio="none">
             {/* Left branch - Multiple layers */}
-            <g className="animate-lightning-branch-left">
+            <g className={styles.animateLightningBranchLeft}>
               <path
                 d="M 160 200 L 130 250 L 110 320 L 100 360"
                 stroke="#1e3a8a"
@@ -153,7 +154,7 @@ export default function LightningEffect() {
             </g>
             
             {/* Right branch - Multiple layers */}
-            <g className="animate-lightning-branch-right">
+            <g className={styles.animateLightningBranchRight}>
               <path
                 d="M 160 400 L 190 450 L 210 520 L 220 580"
                 stroke="#1e3a8a"
@@ -180,7 +181,7 @@ export default function LightningEffect() {
             </g>
             
             {/* Small branches with 3D effect */}
-            <g className="animate-lightning-branch-small">
+            <g className={styles.animateLightningBranchSmall}>
               <path
                 d="M 160 600 L 145 640 L 135 680"
                 stroke="#60a5fa"
@@ -202,7 +203,7 @@ export default function LightningEffect() {
 
           {/* Ambient glow effect */}
           <div className="absolute inset-0 w-32 -left-16">
-            <div className="w-full h-full bg-gradient-to-b from-transparent via-blue-400/5 to-transparent animate-lightning-glow" />
+            <div className={`w-full h-full bg-gradient-to-b from-transparent via-blue-400/5 to-transparent ${styles.animateLightningGlow}`} />
           </div>
         </div>
       </div>
@@ -215,7 +216,7 @@ export default function LightningEffect() {
             stroke="#60a5fa"
             strokeWidth="0.5"
             fill="none"
-            className="animate-lightning-flash"
+            className={styles.animateLightningFlash}
             opacity="0.2"
           />
         </svg>
@@ -228,158 +229,12 @@ export default function LightningEffect() {
             stroke="#60a5fa"
             strokeWidth="0.5"
             fill="none"
-            className="animate-lightning-flash-delayed"
+            className={styles.animateLightningFlashDelayed}
             opacity="0.2"
           />
         </svg>
       </div>
 
-      {/* CSS Animations */}
-      <style jsx>{`
-        @keyframes lightning-strike {
-          0%, 100% {
-            opacity: 0;
-            stroke-dasharray: 0 1000;
-          }
-          1% {
-            opacity: 0.6;
-            stroke-dasharray: 1000 0;
-          }
-          2% {
-            opacity: 0.3;
-          }
-          3% {
-            opacity: 0.6;
-          }
-          4% {
-            opacity: 0.2;
-          }
-          5% {
-            opacity: 0;
-          }
-        }
-
-        @keyframes lightning-branch-left {
-          0%, 100% {
-            opacity: 0;
-            transform: translateX(0);
-          }
-          1.5% {
-            opacity: 0.3;
-            transform: translateX(-2px);
-          }
-          3% {
-            opacity: 0;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes lightning-branch-right {
-          0%, 100% {
-            opacity: 0;
-            transform: translateX(0);
-          }
-          2% {
-            opacity: 0.3;
-            transform: translateX(2px);
-          }
-          3.5% {
-            opacity: 0;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes lightning-branch-small {
-          0%, 100% {
-            opacity: 0;
-          }
-          2.5% {
-            opacity: 0.15;
-          }
-          3% {
-            opacity: 0;
-          }
-        }
-
-        @keyframes lightning-glow {
-          0%, 100% {
-            opacity: 0;
-          }
-          1% {
-            opacity: 0.5;
-          }
-          2% {
-            opacity: 0.2;
-          }
-          3% {
-            opacity: 0.4;
-          }
-          4% {
-            opacity: 0.1;
-          }
-          5% {
-            opacity: 0;
-          }
-        }
-
-        @keyframes lightning-flash {
-          0%, 100% {
-            opacity: 0;
-          }
-          48% {
-            opacity: 0;
-          }
-          49% {
-            opacity: 0.2;
-          }
-          50% {
-            opacity: 0;
-          }
-        }
-
-        @keyframes lightning-flash-delayed {
-          0%, 100% {
-            opacity: 0;
-          }
-          73% {
-            opacity: 0;
-          }
-          74% {
-            opacity: 0.2;
-          }
-          75% {
-            opacity: 0;
-          }
-        }
-
-        .animate-lightning-strike {
-          animation: lightning-strike 8s infinite;
-        }
-
-        .animate-lightning-branch-left {
-          animation: lightning-branch-left 8s infinite;
-        }
-
-        .animate-lightning-branch-right {
-          animation: lightning-branch-right 8s infinite;
-        }
-
-        .animate-lightning-glow {
-          animation: lightning-glow 8s infinite;
-        }
-
-        .animate-lightning-flash {
-          animation: lightning-flash 6s infinite;
-        }
-
-        .animate-lightning-flash-delayed {
-          animation: lightning-flash-delayed 7s infinite;
-        }
-
-        .animate-lightning-branch-small {
-          animation: lightning-branch-small 8s infinite;
-        }
-      `}</style>
     </>
   );
 }
