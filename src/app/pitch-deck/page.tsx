@@ -104,6 +104,13 @@ export default function PitchDeckPage() {
                 <Play className="h-5 w-5" />
                 Form Demonstration
               </Link>
+              <Link 
+                href="/pitch-deck/government-funding"
+                className="px-8 py-4 bg-gradient-to-r from-yellow-600 to-orange-600 text-white rounded-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <Shield className="h-5 w-5" />
+                Secret Weapon Framework
+              </Link>
               <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center gap-2">
                 <Download className="h-5 w-5" />
                 Download Deck (PDF)

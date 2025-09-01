@@ -310,8 +310,125 @@ export default function PitchDeckPresentation() {
     },
     {
       id: 7,
+      title: "Secret Weapon: Government Partnership", 
+      narration: "Here's our secret weapon: A comprehensive government funding and industry recognition framework. We've identified two point four billion dollars in Australian government funding for innovative startups. Our pathway includes Industry Growth Program grants up to five million dollars, and establishing CPP40421 Certificate IV in Specialty Cleaning and Restoration as a government-recognised industry. This creates a regulatory moat, professional accreditation requirements, and positions us as the industry standard backed by government recognition.",
+      duration: 18000,
+      content: (
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl font-bold text-white mb-8 text-center flex items-center justify-center gap-3"
+          >
+            <Shield className="h-12 w-12 text-yellow-400" />
+            Secret Weapon: Government Partnership
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            {/* Government Funding */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-yellow-900/20 backdrop-blur-sm rounded-xl p-6 border border-yellow-500/30"
+            >
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                <DollarSign className="h-6 w-6" />
+                $2.4B Government Funding
+              </h3>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Industry Growth Program</span>
+                  <span className="text-yellow-400 font-bold">Up to $5M</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Clean Energy Innovation</span>
+                  <span className="text-yellow-400 font-bold">$500M Pool</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">Defence Industry Grants</span>
+                  <span className="text-yellow-400 font-bold">Up to $1M</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-300">CSIRO Kick-Start</span>
+                  <span className="text-yellow-400 font-bold">$10K-$50K</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Industry Recognition */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="bg-blue-900/20 backdrop-blur-sm rounded-xl p-6 border border-blue-500/30"
+            >
+              <h3 className="text-2xl font-bold text-blue-400 mb-4 flex items-center gap-2">
+                <Award className="h-6 w-6" />
+                Industry Recognition Framework
+              </h3>
+              <div className="space-y-3 text-gray-300">
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-400 font-bold">•</span>
+                  <span>CPP40421 Certificate IV Recognition</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-400 font-bold">•</span>
+                  <span>ANZSIC Industry Classification</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-400 font-bold">•</span>
+                  <span>Australian Standards Development</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-400 font-bold">•</span>
+                  <span>Professional Registration System</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Strategic Advantage */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="bg-gradient-to-r from-yellow-900/30 to-blue-900/30 rounded-xl p-8 border border-yellow-500/30"
+          >
+            <h3 className="text-3xl font-bold text-white mb-6 text-center">Strategic Advantage</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-400 mb-2">Regulatory Moat</div>
+                <div className="text-gray-300">Government-backed industry standards create competitive barriers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-400 mb-2">Revenue Streams</div>
+                <div className="text-gray-300">Training, certification, and accreditation programs</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-400 mb-2">Market Position</div>
+                <div className="text-gray-300">First-mover advantage as industry standard setter</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="mt-8 text-center"
+          >
+            <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-blue-400">
+              Government Partnership = Unstoppable Market Domination
+            </div>
+          </motion.div>
+        </div>
+      )
+    },
+    {
+      id: 8,
       title: "Investment Opportunity", 
-      narration: "We're raising five million dollars to accelerate growth and capture twenty percent market share. With our HRM AI technology and proven traction, this is your opportunity to invest in the future of disaster recovery. Join us in revolutionizing this industry and achieving explosive growth from two point five million to twenty million dollar valuation.",
+      narration: "We're raising three million dollars to accelerate growth and capture twenty percent market share. With our HRM AI technology, proven traction, and government partnership pathway, this is your opportunity to invest in the future of disaster recovery. Join us in revolutionizing this industry and achieving explosive growth from two point five million to twenty million dollar valuation.",
       duration: 12000,
       content: (
         <div className="max-w-6xl mx-auto text-center">
@@ -329,7 +446,7 @@ export default function PitchDeckPresentation() {
             transition={{ delay: 0.5 }}
             className="text-2xl text-gray-300 mb-12 max-w-4xl mx-auto"
           >
-            We're raising $5M to accelerate growth and capture 20% market share.
+            We're raising $3M to accelerate growth and capture 20% market share.
             With our HRM AI technology and proven traction, this is your opportunity
             to invest in the future of disaster recovery.
           </motion.p>
@@ -342,7 +459,7 @@ export default function PitchDeckPresentation() {
           >
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-emerald-600 mb-2">$5M</div>
+                <div className="text-4xl font-bold text-emerald-600 mb-2">$3M</div>
                 <div className="text-gray-300">Raising</div>
               </div>
               <div className="text-center">
