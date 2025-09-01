@@ -1,132 +1,38 @@
-/* Storm and Rain Animations - Enhanced for Production */
-
-/* Rain falling animation */
+/* Storm and Rain Animations */
 @keyframes rainFall {
   0% {
-    background-position: 0px 0px, 0px 0px;
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.3;
-  }
-  90% {
-    opacity: 0.3;
+    background-position: 0px 0px;
   }
   100% {
-    background-position: -10px 100px, 10px 100px;
-    opacity: 0;
+    background-position: -10px 100px;
   }
 }
 
 .rainAnimation {
-  animation: rainFall 2s linear infinite;
+  animation: rainFall 3s linear infinite;
   background-image: 
     repeating-linear-gradient(
       90deg,
       transparent,
       transparent 2px,
-      rgba(100, 120, 160, 0.2) 2px,
-      rgba(100, 120, 160, 0.2) 3px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 4px,
-      rgba(80, 100, 140, 0.15) 4px,
-      rgba(80, 100, 140, 0.15) 5px
+      rgba(100, 120, 160, 0.1) 2px,
+      rgba(100, 120, 160, 0.1) 3px
     );
   background-size: 100px 100px;
 }
 
-/* Animated storm clouds */
+/* Storm movement animation */
 @keyframes stormMovement {
   0%, 100% {
     transform: translateX(0) translateY(0);
-    filter: blur(0px);
   }
   25% {
     transform: translateX(-20px) translateY(10px);
-    filter: blur(1px);
   }
   50% {
     transform: translateX(10px) translateY(-5px);
-    filter: blur(0.5px);
   }
   75% {
     transform: translateX(-10px) translateY(5px);
-    filter: blur(1px);
   }
-}
-
-.stormClouds {
-  background-image: 
-    radial-gradient(ellipse at top left, rgba(30, 41, 59, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at top right, rgba(30, 58, 138, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom left, rgba(55, 65, 81, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at bottom right, rgba(30, 41, 59, 0.3) 0%, transparent 50%);
-  background-size: 50% 50%, 50% 50%, 50% 50%, 50% 50%;
-  background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%;
-  animation: stormMovement 15s ease-in-out infinite;
-}
-
-/* Enhanced rain effect */
-.rainEffect {
-  background-image: 
-    linear-gradient(to bottom,
-      transparent 0%,
-      transparent 89%,
-      rgba(100, 150, 200, 0.05) 90%,
-      rgba(100, 150, 200, 0.1) 95%,
-      transparent 100%
-    );
-  background-size: 100% 10px;
-  animation: rainFall 0.5s linear infinite;
-}
-
-/* Thunder flash animation */
-@keyframes thunderFlash {
-  0%, 100% {
-    opacity: 0;
-  }
-  10%, 11% {
-    opacity: 0.3;
-  }
-  12% {
-    opacity: 0;
-  }
-  20%, 21% {
-    opacity: 0.2;
-  }
-}
-
-.thunderFlash {
-  position: fixed;
-  inset: 0;
-  background: white;
-  pointer-events: none;
-  z-index: 100;
-  animation: thunderFlash 8s infinite;
-  animation-delay: 3s;
-}
-
-/* Make storm effects more visible in production */
-@media (prefers-color-scheme: dark) {
-  .rainAnimation {
-    opacity: 0.25 !important;
-  }
-  .stormClouds {
-    opacity: 0.2 !important;
-  }
-}
-
-/* Ensure animations work in all browsers */
-.rainAnimation,
-.stormClouds,
-.rainEffect,
-.thunderFlash {
-  -webkit-animation-duration: inherit;
-  -moz-animation-duration: inherit;
-  -o-animation-duration: inherit;
-  animation-duration: inherit;
-  will-change: transform, opacity;
 }
