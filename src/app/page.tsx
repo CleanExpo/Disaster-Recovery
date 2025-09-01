@@ -46,28 +46,39 @@ export default function CleanLandingPage() {
 
   const services = [
     {
-      title: "Water Damage",
-      description: "Burst pipes, flooding, and water extraction",
+      title: "Water Damage Restoration",
+      description: "Category 1 clean water - Burst pipes, flooding, and water extraction",
       icon: "💧",
+      image: "/images/optimized/damage/Cat 1 - Water Damage Restoration.png",
       urgent: true
     },
     {
-      title: "Fire & Smoke",
-      description: "Complete fire damage restoration and smoke removal",
-      icon: "🔥",
+      title: "Sewage Cleanup",
+      description: "Category 3 black water - Professional sewage and contaminated water cleanup",
+      icon: "🚰",
+      image: "/images/optimized/damage/Cat 3 Water Damage - Sewage Clean up.png",
       urgent: true
     },
     {
       title: "Mould Remediation",
-      description: "Safe and thorough mould removal and prevention",
+      description: "Black mould removal - Safe and thorough remediation with prevention",
       icon: "🦠",
+      image: "/images/optimized/damage/Mould Remediation - Black Mould.png",
       urgent: false
     },
     {
-      title: "Storm Damage",
-      description: "Emergency repairs and full restoration",
-      icon: "⛈️",
+      title: "Timber Floor Drying",
+      description: "Specialized hardwood and timber floor drying and restoration",
+      icon: "🪵",
+      image: "/images/optimized/damage/Timber Floor Drying.png",
       urgent: true
+    },
+    {
+      title: "Professional Carpet Cleaning",
+      description: "Deep carpet and rug cleaning with advanced extraction methods",
+      icon: "🧹",
+      image: "/images/optimized/damage/Professional Carpet and Rug Cleaning.png",
+      urgent: false
     }
   ];
 
@@ -283,7 +294,7 @@ export default function CleanLandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -291,24 +302,43 @@ export default function CleanLandingPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 hover:shadow-lg transition-all cursor-pointer"
+                className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all cursor-pointer group"
               >
-                {service.urgent && (
-                  <span className="inline-block px-2 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-full mb-3">
-                    URGENT
-                  </span>
-                )}
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  {service.description}
-                </p>
-                <Link href="/contact" className="text-blue-600 font-medium inline-flex items-center hover:text-blue-700">
-                  Get Help Now
-                  <ChevronRight className="h-4 w-4 ml-1" />
-                </Link>
+                {/* Service Image */}
+                <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+                  {service.image ? (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-6xl">
+                      {service.icon}
+                    </div>
+                  )}
+                  {service.urgent && (
+                    <span className="absolute top-2 right-2 px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-full">
+                      URGENT
+                    </span>
+                  )}
+                </div>
+                
+                {/* Service Content */}
+                <div className="p-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {service.description}
+                  </p>
+                  <Link href="/contact" className="text-blue-600 font-medium inline-flex items-center hover:text-blue-700">
+                    Get Help Now
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
