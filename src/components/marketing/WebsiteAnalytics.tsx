@@ -308,7 +308,7 @@ export default function WebsiteAnalytics() {
         value={formatDuration(mockAnalytics.googleAnalytics.avgSessionDuration)}
         change={{ value: 3.8, isPositive: false }}
         icon={<Clock className="w-6 h-6 text-white" />}
-        colour="bg-orange-500"
+        colour="bg-blue-600"
       />
     </div>
   );

@@ -348,7 +348,7 @@ export default function ContractorApplicationPage() {
                   <h2 className="text-2xl font-bold border-b pb-2">Certifications & Insurance</h2>
                   <Card className="bg-orange-50 p-4 border-orange-200">
                     <div className="flex items-start">
-                      <AlertCircle className="h-5 w-5 text-orange-600 mr-2 mt-0.5" />
+                      <AlertCircle className="h-5 w-5 text-blue-700 mr-2 mt-0.5" />
                       <p className="text-sm">IICRC certification is mandatory for all network members</p>
                     </div>
                   </Card>

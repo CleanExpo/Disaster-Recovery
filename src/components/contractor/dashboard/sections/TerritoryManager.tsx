@@ -47,7 +47,7 @@ export function TerritoryManager({ territories = [] }: TerritoryManagerProps) {
       case 'ACTIVE':
         return <CheckCircle className="h-4 w-4 text-green-500" />;
       case 'PENDING':
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />;
+        return <AlertCircle className="h-4 w-4 text-blue-600" />;
       case 'INACTIVE':
         return <XCircle className="h-4 w-4 text-gray-500" />;
       default:

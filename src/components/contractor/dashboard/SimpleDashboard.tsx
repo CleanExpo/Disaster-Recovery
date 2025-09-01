@@ -181,7 +181,7 @@ export function SimpleDashboard() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Award className="h-5 w-5 text-yellow-500" />
+                  <Award className="h-5 w-5 text-blue-600" />
                   <div className="flex-1">
                     <p className="text-sm font-medium">5-star review received</p>
                     <p className="text-xs text-gray-500">From John Smith - Yesterday</p>

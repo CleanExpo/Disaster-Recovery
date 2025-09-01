@@ -195,7 +195,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
               placeholder="contact@company.com.au"
               value={data.email || ''}
               onChange={(e) => handleInputChange('email', e.target.value)}
-              className={errors.email ? 'border-red-500' : ''}
+              className={errors.email ? 'border-red-600' : ''}
             />
             {data.email && validateEmail(data.email) && !emailVerified && (
               <Button
@@ -253,7 +253,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
                 type={showPassword ? 'text' : 'password'}
                 value={data.password || ''}
                 readOnly
-                className={`${errors.password ? 'border-red-500' : ''} bg-gray-50`}
+                className={`${errors.password ? 'border-red-600' : ''} bg-gray-50`}
               />
               <button
                 type="button"
@@ -310,7 +310,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
                 const formatted = formatPhoneNumber(e.target.value);
                 handleInputChange('mobileNumber', formatted);
               }}
-              className={errors.mobileNumber ? 'border-red-500' : ''}
+              className={errors.mobileNumber ? 'border-red-600' : ''}
             />
             {data.mobileNumber && data.mobileNumber.replace(/\D/g, '').length >= 10 && !mobileVerified && (
               <Button
@@ -368,7 +368,7 @@ export function Step1Account({ data, updateData, errors }: Step1AccountProps) {
             value={data.companyName || ''}
             onChange={(e) => handleInputChange('companyName', e.target.value)}
             onBlur={(e) => checkCompanyNameAvailability(e.target.value)}
-            className={errors.companyName ? 'border-red-500' : ''}
+            className={errors.companyName ? 'border-red-600' : ''}
           />
           {isCheckingCompanyName && (
             <p className="text-sm text-gray-500">Checking availability...</p>

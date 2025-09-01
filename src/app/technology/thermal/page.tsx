@@ -68,7 +68,7 @@ export default function ThermalImagingPage() {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-centre opacity-20" />
           {/* Heat map effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-red-500/20 to-transparent animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-red-500/20 to-transparent animate-pulse" />
         </div>
 
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
@@ -82,7 +82,7 @@ export default function ThermalImagingPage() {
               <span className="text-white">Thermal Imaging</span>
             </nav>
 
-            <Badge className="mb-4 bg-orange-500/20 text-orange-300 border-orange-500/30">
+            <Badge className="mb-4 bg-blue-600/20 text-orange-300 border-blue-600/30">
               <Shield className="h-3 w-3 mr-1" />
               Certified Level 1/2 Thermography
             </Badge>
@@ -96,9 +96,9 @@ export default function ThermalImagingPage() {
               Only ~15 contractors nationally hold Level 1/2 Thermography certification for electrical analysis and building envelope assessment.
             </p>
             
-            <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-4 mb-8">
+            <div className="bg-red-900/30 border border-red-600/30 rounded-lg p-4 mb-8">
               <div className="flex items-start gap-3">
-                <AlertTriangle className="h-5 w-5 text-yellow-400 mt-1 flex-shrink-0" />
+                <AlertTriangle className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-sm text-gray-200 leading-relaxed">
                     <strong>Important:</strong> Basic thermal cameras are common restoration tools for moisture detection. 
@@ -111,7 +111,7 @@ export default function ThermalImagingPage() {
             {/* Key Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
-                <div className="text-3xl font-bold text-orange-400">±0.1°C</div>
+                <div className="text-3xl font-bold text-blue-500">±0.1°C</div>
                 <div className="text-sm text-gray-300">Precision</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
@@ -119,18 +119,18 @@ export default function ThermalImagingPage() {
                 <div className="text-sm text-gray-300">Resolution</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
-                <div className="text-3xl font-bold text-yellow-400">30m</div>
+                <div className="text-3xl font-bold text-blue-500">30m</div>
                 <div className="text-sm text-gray-300">Range</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
-                <div className="text-3xl font-bold text-green-400">100%</div>
+                <div className="text-3xl font-bold text-emerald-600">100%</div>
                 <div className="text-sm text-gray-300">Non-Invasive</div>
               </div>
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/schedule">
-                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-red-500 hover:from-blue-700 hover:to-red-600">
                   <Camera className="mr-2 h-5 w-5" />
                   Book Thermal Inspection
                 </Button>
@@ -168,7 +168,7 @@ export default function ThermalImagingPage() {
                     <div className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center ${
                       isSpecialized 
                         ? 'bg-gradient-to-br from-purple-500 to-indigo-500' 
-                        : 'bg-gradient-to-br from-orange-500 to-red-500'
+                        : 'bg-gradient-to-br from-blue-600 to-red-500'
                     }`}>
                       <Icon className="h-7 w-7 text-white" />
                     </div>
@@ -253,11 +253,11 @@ export default function ThermalImagingPage() {
               }
             ].map((step, idx) => (
               <div key={idx} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-white text-2xl font-bold mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-red-500 text-white text-2xl font-bold mb-4">
                   {step.step}
                 </div>
                 <Card className="p-6 h-full">
-                  <step.icon className="h-10 w-10 text-orange-500 mb-4 mx-auto" />
+                  <step.icon className="h-10 w-10 text-blue-600 mb-4 mx-auto" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
                 </Card>
@@ -356,7 +356,7 @@ export default function ThermalImagingPage() {
             {/* Questions to Ask */}
             <Card className="p-8 bg-amber-50 border border-amber-200">
               <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <AlertTriangle className="h-5 w-5 text-amber-600" />
+                <AlertTriangle className="h-5 w-5 text-blue-700" />
                 Questions to Ask Your Contractor
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
@@ -410,7 +410,7 @@ export default function ThermalImagingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <section className="py-20 lg:py-32 bg-gradient-to-r from-blue-700 to-red-600 text-white">
         <div className="container mx-auto px-6 text-center">
           <Thermometer className="h-12 w-12 mx-auto mb-4" />
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
@@ -422,7 +422,7 @@ export default function ThermalImagingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/schedule">
-              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-6 text-lg">
+              <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-100 px-8 py-6 text-lg">
                 Schedule Thermal Inspection
               </Button>
             </Link>

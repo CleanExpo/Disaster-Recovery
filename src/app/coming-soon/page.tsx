@@ -25,11 +25,11 @@ export default function ComingSoonPage() {
       <section className="relative text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Shield className="h-20 w-20 mx-auto mb-6 text-yellow-400 animate-pulse" />
+            <Shield className="h-20 w-20 mx-auto mb-6 text-blue-500 animate-pulse" />
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Coming Soon: #1
-              <span className="block text-yellow-400">Disaster Recovery Network</span>
+              <span className="block text-blue-500">Disaster Recovery Network</span>
             </h1>
             
             <p className="text-2xl mb-8 text-blue-200">
@@ -48,21 +48,21 @@ export default function ComingSoonPage() {
               
               <div className="grid md:grid-cols-3 gap-4 text-left">
                 <div className="flex items-start">
-                  <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-1" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600 mr-2 mt-1" />
                   <div>
                     <p className="font-bold">100% Verified Contractors</p>
                     <p className="text-sm text-blue-200">IICRC certified only</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-1" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600 mr-2 mt-1" />
                   <div>
                     <p className="font-bold">Scientific Authority</p>
                     <p className="text-sm text-blue-200">Peer-reviewed sources</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-1" />
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600 mr-2 mt-1" />
                   <div>
                     <p className="font-bold">E.E.A.T Compliant</p>
                     <p className="text-sm text-blue-200">Google's highest standards</p>
@@ -152,18 +152,18 @@ export default function ComingSoonPage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-4 text-orange-600">🔄 In Progress</h3>
+                  <h3 className="font-bold mb-4 text-blue-700">🔄 In Progress</h3>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center">
-                      <MapPin className="h-4 w-4 mr-2 text-orange-600" />
+                      <MapPin className="h-4 w-4 mr-2 text-blue-700" />
                       <span>Perth Metro - Verification pending</span>
                     </li>
                     <li className="flex items-center">
-                      <MapPin className="h-4 w-4 mr-2 text-orange-600" />
+                      <MapPin className="h-4 w-4 mr-2 text-blue-700" />
                       <span>Adelaide CBD - Documentation review</span>
                     </li>
                     <li className="flex items-center">
-                      <MapPin className="h-4 w-4 mr-2 text-orange-600" />
+                      <MapPin className="h-4 w-4 mr-2 text-blue-700" />
                       <span>Gold Coast - IICRC verification</span>
                     </li>
                   </ul>
@@ -275,8 +275,8 @@ export default function ComingSoonPage() {
             </h2>
             
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="p-6 bg-white/10 backdrop-blur border-yellow-400">
-                <h3 className="text-xl font-bold mb-4 text-yellow-400">
+              <Card className="p-6 bg-white/10 backdrop-blur border-blue-500">
+                <h3 className="text-xl font-bold mb-4 text-blue-500">
                   Unmatched Authority
                 </h3>
                 <p className="text-blue-200">
@@ -285,8 +285,8 @@ export default function ComingSoonPage() {
                 </p>
               </Card>
               
-              <Card className="p-6 bg-white/10 backdrop-blur border-yellow-400">
-                <h3 className="text-xl font-bold mb-4 text-yellow-400">
+              <Card className="p-6 bg-white/10 backdrop-blur border-blue-500">
+                <h3 className="text-xl font-bold mb-4 text-blue-500">
                   Dual Language Approach
                 </h3>
                 <p className="text-blue-200">
@@ -295,8 +295,8 @@ export default function ComingSoonPage() {
                 </p>
               </Card>
               
-              <Card className="p-6 bg-white/10 backdrop-blur border-yellow-400">
-                <h3 className="text-xl font-bold mb-4 text-yellow-400">
+              <Card className="p-6 bg-white/10 backdrop-blur border-blue-500">
+                <h3 className="text-xl font-bold mb-4 text-blue-500">
                   Real-Time Verification
                 </h3>
                 <p className="text-blue-200">
@@ -305,8 +305,8 @@ export default function ComingSoonPage() {
                 </p>
               </Card>
               
-              <Card className="p-6 bg-white/10 backdrop-blur border-yellow-400">
-                <h3 className="text-xl font-bold mb-4 text-yellow-400">
+              <Card className="p-6 bg-white/10 backdrop-blur border-blue-500">
+                <h3 className="text-xl font-bold mb-4 text-blue-500">
                   Global Standards, Local Expertise
                 </h3>
                 <p className="text-blue-200">
@@ -317,7 +317,7 @@ export default function ComingSoonPage() {
             </div>
             
             <div className="mt-12 text-center">
-              <p className="text-2xl font-bold text-yellow-400 mb-4">
+              <p className="text-2xl font-bold text-blue-500 mb-4">
                 "The Wikipedia of Disaster Recovery"
               </p>
               <p className="text-lg text-blue-200">

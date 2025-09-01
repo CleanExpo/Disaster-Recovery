@@ -32,7 +32,7 @@ export default function CoastalStormSurgeDamagePage() {
               <span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">
                 EXTREME PRIORITY
               </span>
-              <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+              <span className="bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-bold">
                 30-60MIN RESPONSE
               </span>
             </div>
@@ -74,7 +74,7 @@ export default function CoastalStormSurgeDamagePage() {
             </Card>
             <Card className="p-6 text-center">
               <div className="bg-orange-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl font-bold text-orange-600">2</span>
+                <span className="text-2xl font-bold text-blue-700">2</span>
               </div>
               <h3 className="font-bold mb-2">Rapid Assessment</h3>
               <p className="text-sm text-gray-600">
@@ -139,19 +139,19 @@ export default function CoastalStormSurgeDamagePage() {
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div>
-                <p className="text-4xl font-bold text-orange-600">24/7</p>
+                <p className="text-4xl font-bold text-blue-700">24/7</p>
                 <p className="text-gray-600">Emergency Response</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-orange-600">2-4 hours</p>
+                <p className="text-4xl font-bold text-blue-700">2-4 hours</p>
                 <p className="text-gray-600">Response Time</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-orange-600">100%</p>
+                <p className="text-4xl font-bold text-blue-700">100%</p>
                 <p className="text-gray-600">Insurance Approved</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-orange-600">10,000+</p>
+                <p className="text-4xl font-bold text-blue-700">10,000+</p>
                 <p className="text-gray-600">Properties Restored</p>
               </div>
             </div>
@@ -160,7 +160,7 @@ export default function CoastalStormSurgeDamagePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-600 to-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-3xl md:text-4xl font-bold mb-6">

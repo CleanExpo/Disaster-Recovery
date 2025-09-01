@@ -350,7 +350,7 @@ export default function InsurancePage() {
               </Card>
               <Card className="p-6 text-center">
                 <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-orange-600" />
+                  <Clock className="w-8 h-8 text-blue-700" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Claims Advocacy</h3>
                 <p className="text-gray-700">
@@ -381,7 +381,7 @@ export default function InsurancePage() {
       </section>
 
       {/* Important Information */}
-      <section className="py-16 bg-yellow-50 border-t-4 border-yellow-400">
+      <section className="py-16 bg-yellow-50 border-t-4 border-blue-500">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start">

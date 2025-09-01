@@ -410,7 +410,7 @@ Customer Signature: _________________________ Date: _____________`,
       case 'agreement': return <FileText className="w-5 h-5 text-blue-600" />;
       case 'form': return <Edit3 className="w-5 h-5 text-green-600" />;
       case 'certificate': return <Award className="w-5 h-5 text-purple-600" />;
-      case 'report': return <FileText className="w-5 h-5 text-orange-600" />;
+      case 'report': return <FileText className="w-5 h-5 text-blue-700" />;
       case 'invoice': return <FileText className="w-5 h-5 text-red-600" />;
       case 'proposal': return <FileText className="w-5 h-5 text-indigo-600" />;
       default: return <FileText className="w-5 h-5 text-gray-600" />;

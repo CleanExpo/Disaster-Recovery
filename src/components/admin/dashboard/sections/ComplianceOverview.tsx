@@ -160,7 +160,7 @@ export function ComplianceOverview() {
                     {rate >= 80 ? (
                       <CheckCircle className="h-4 w-4 text-green-500" />
                     ) : rate >= 60 ? (
-                      <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                      <AlertTriangle className="h-4 w-4 text-blue-600" />
                     ) : (
                       <XCircle className="h-4 w-4 text-red-500" />
                     )}
@@ -246,7 +246,7 @@ export function ComplianceOverview() {
               <Clock className="h-4 w-4 text-gray-400" />
               <div>
                 <p className="text-xs text-gray-500">Expiring Soon</p>
-                <p className="text-sm font-bold text-orange-600">
+                <p className="text-sm font-bold text-blue-700">
                   {metrics.expiringCertifications}
                 </p>
               </div>

@@ -12,10 +12,10 @@ export default function ResidentialPropertiesPage() {
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <Building2 className="h-16 w-16 text-orange-500 mb-6" />
+          <Building2 className="h-16 w-16 text-blue-600 mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Residential Properties Disaster Recovery</h1>
           <p className="text-xl mb-8">Houses, units, apartments</p>
-          <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+          <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
             Get Immediate Help
           </Button>
         </div>

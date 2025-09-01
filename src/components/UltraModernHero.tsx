@@ -114,7 +114,7 @@ export default function UltraModernHero() {
       icon: Star, 
       label: 'Customer Rating', 
       value: '4.9/5 Stars',
-      colour: 'from-yellow-500 to-orange-500'
+      colour: 'from-blue-600 to-blue-600'
     }
   ];
 

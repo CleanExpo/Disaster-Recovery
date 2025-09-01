@@ -487,7 +487,7 @@ export function APIDocumentation() {
             <CardContent className="p-6">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-orange-100 rounded-lg">
-                  <Play className="h-5 w-5 text-orange-600" />
+                  <Play className="h-5 w-5 text-blue-700" />
                 </div>
                 <div>
                   <h3 className="font-semibold">API Playground</h3>

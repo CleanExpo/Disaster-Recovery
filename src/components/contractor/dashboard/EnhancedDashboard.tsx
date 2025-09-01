@@ -207,7 +207,7 @@ function QuickActionsFAB() {
     { icon: Camera, label: 'Photo', colour: 'bg-blue-500' },
     { icon: Phone, label: 'Call', colour: 'bg-green-500' },
     { icon: FileText, label: 'Report', colour: 'bg-purple-500' },
-    { icon: Navigation, label: 'Navigate', colour: 'bg-orange-500' }
+    { icon: Navigation, label: 'Navigate', colour: 'bg-blue-600' }
   ];
 
   return (
@@ -450,7 +450,7 @@ export function EnhancedDashboard() {
           <PriorityCard priority="normal" title="Avg Rating">
             <div className="text-2xl font-bold flex items-center gap-1">
               {kpiData.avgRating}
-              <Star className="h-4 w-4 text-yellow-500" />
+              <Star className="h-4 w-4 text-blue-600" />
             </div>
             <p className="text-xs text-gray-600 mt-1">89 reviews</p>
           </PriorityCard>

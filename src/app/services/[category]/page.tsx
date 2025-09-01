@@ -118,7 +118,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
               {/* Trust Badges */}
               <div className="flex flex-wrap justify-center gap-4 mb-8">
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
-                  <Clock className="h-5 w-5 text-green-400" />
+                  <Clock className="h-5 w-5 text-emerald-600" />
                   <span className="text-white">24/7 Response</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
@@ -165,7 +165,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
                   className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-blue-400/50 transition-all"
                 >
                   <div className="flex items-start gap-4">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0 mt-1" />
+                    <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-2">
                         {service}
@@ -214,7 +214,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
               </div>
 
               <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-red-600 rounded-2xl mb-4">
                   <Zap className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">AI Matching</h3>

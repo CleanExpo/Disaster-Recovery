@@ -178,14 +178,14 @@ export const simulateTyping = async (
  * Simulate click with visual feedback
  */
 export const simulateClick = async (element: HTMLElement, delay: number = 575) => { // Increased by 15% from 500
-  element.classList.add('ring-4', 'ring-yellow-400', 'ring-offset-2');
+  element.classList.add('ring-4', 'ring-blue-500', 'ring-offset-2');
   element.scrollIntoView({ behaviour: 'smooth', block: 'centre' });
   
   await new Promise(resolve => setTimeout(resolve, delay));
   element.click();
   
   setTimeout(() => {
-    element.classList.remove('ring-4', 'ring-yellow-400', 'ring-offset-2');
+    element.classList.remove('ring-4', 'ring-blue-500', 'ring-offset-2');
   }, 1000);
 };
 

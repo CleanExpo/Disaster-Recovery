@@ -209,7 +209,7 @@ export default function SEOPagesAdmin() {
                 </p>
               </div>
               <div className="p-3 bg-orange-100 rounded-full">
-                <Search className="w-6 h-6 text-orange-600" />
+                <Search className="w-6 h-6 text-blue-700" />
               </div>
             </div>
           </div>

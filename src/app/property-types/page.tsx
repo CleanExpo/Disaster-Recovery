@@ -115,7 +115,7 @@ export default function PropertyTypesPage() {
       case 'Healthcare': return 'bg-pink-600';
       case 'Education': return 'bg-yellow-600';
       case 'Industrial': return 'bg-gray-600';
-      case 'Hospitality': return 'bg-orange-600';
+      case 'Hospitality': return 'bg-blue-700';
       default: return 'bg-gray-600';
     }
   };

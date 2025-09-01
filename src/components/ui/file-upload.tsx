@@ -27,7 +27,7 @@ const getFileIcon = (file: File) => {
   if (type.startsWith('audio/')) return <Music className="h-5 w-5 text-green-500" />;
   if (type.includes('pdf')) return <FileText className="h-5 w-5 text-red-500" />;
   if (type.includes('zip') || type.includes('rar') || type.includes('7z')) 
-    return <Archive className="h-5 w-5 text-orange-500" />;
+    return <Archive className="h-5 w-5 text-blue-600" />;
   
   return <FileText className="h-5 w-5 text-gray-500" />;
 };

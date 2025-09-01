@@ -197,6 +197,108 @@ const navItems: NavItem[] = [
     ]
   },
   { 
+    label: 'Client Portal', 
+    href: '/client-portal',
+    dropdown: [
+      { 
+        label: 'Dashboard', 
+        href: '/client-portal/dashboard',
+        description: 'View your claims and recovery status',
+        icon: '📊'
+      },
+      { 
+        label: 'Claims Tracker', 
+        href: '/client-portal/claims',
+        description: 'Track all your insurance claims',
+        icon: '📋'
+      },
+      { 
+        label: 'Documents', 
+        href: '/client-portal/documents',
+        description: 'Access reports and documentation',
+        icon: '📄'
+      },
+      { 
+        label: 'Messages', 
+        href: '/client-portal/messages',
+        description: 'Communicate with your team',
+        icon: '💬'
+      }
+    ]
+  },
+  { 
+    label: 'Contractor Portal', 
+    href: '/contractor-portal',
+    dropdown: [
+      { 
+        label: 'Dashboard', 
+        href: '/contractor-portal/dashboard',
+        description: 'Manage your jobs and schedule',
+        icon: '🛠️'
+      },
+      { 
+        label: 'Job Board', 
+        href: '/contractor-portal/jobs',
+        description: 'View available jobs in your area',
+        icon: '📍'
+      },
+      { 
+        label: 'Training', 
+        href: '/contractor-portal/training',
+        description: 'Access certification courses',
+        icon: '🎓'
+      },
+      { 
+        label: 'Resources', 
+        href: '/contractor-portal/resources',
+        description: 'Tools and documentation',
+        icon: '📚'
+      },
+      { 
+        label: 'Earnings', 
+        href: '/contractor-portal/earnings',
+        description: 'Track payments and invoices',
+        icon: '💰'
+      }
+    ]
+  },
+  { 
+    label: 'Pitch Deck', 
+    href: '/pitch-deck',
+    dropdown: [
+      { 
+        label: 'Investor Presentation', 
+        href: '/pitch-deck/investor',
+        description: 'Full investor pitch deck',
+        icon: '📈'
+      },
+      { 
+        label: 'Business Model', 
+        href: '/pitch-deck/business-model',
+        description: 'Platform economics and strategy',
+        icon: '💡'
+      },
+      { 
+        label: 'Market Analysis', 
+        href: '/pitch-deck/market',
+        description: '$1B market opportunity',
+        icon: '🌏'
+      },
+      { 
+        label: 'Technology', 
+        href: '/pitch-deck/technology',
+        description: 'HRM AI and platform architecture',
+        icon: '🤖'
+      },
+      { 
+        label: 'Financials', 
+        href: '/pitch-deck/financials',
+        description: 'Projections and unit economics',
+        icon: '💵'
+      }
+    ]
+  },
+  { 
     label: 'About', 
     href: '/about'
   },
@@ -478,7 +580,7 @@ export default function UltraModernHeader() {
               {/* Contact Button */}
               <Link
                 href="/contact"
-                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-orange-600 rounded-full hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl"
+                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-blue-700 rounded-full hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl"
               >
                 📱 Contact
               </Link>

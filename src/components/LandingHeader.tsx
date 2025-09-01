@@ -90,7 +90,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
     <>
       {/* Demo Mode Banner */}
       {demoMode && (
-        <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-2 px-4">
+        <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-blue-600 to-blue-600 text-white py-2 px-4">
           <div className="container mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
@@ -112,7 +112,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
               </Link>
               <button
                 onClick={onToggleDemo}
-                className="text-xs px-3 py-1 bg-white text-orange-600 font-bold rounded-full hover:bg-white/90 transition-colors"
+                className="text-xs px-3 py-1 bg-white text-blue-700 font-bold rounded-full hover:bg-white/90 transition-colors"
               >
                 Exit Demo
               </button>
@@ -282,7 +282,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
               {/* Stats Badge */}
               <div className="hidden xl:flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl border border-white/10">
                 <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4 text-green-400" />
+                  <Clock className="h-4 w-4 text-emerald-600" />
                   <span className="text-xs text-white font-bold">24/7</span>
                 </div>
                 <div className="h-4 w-px bg-white/20" />

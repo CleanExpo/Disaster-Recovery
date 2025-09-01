@@ -268,7 +268,7 @@ export default function LeadManagementDashboard() {
       case 'emergency':
         return <AlertTriangle className="h-4 w-4 text-red-500" />;
       case 'urgent':
-        return <Clock className="h-4 w-4 text-orange-500" />;
+        return <Clock className="h-4 w-4 text-blue-600" />;
       default:
         return <Timer className="h-4 w-4 text-blue-500" />;
     }
@@ -345,7 +345,7 @@ export default function LeadManagementDashboard() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-orange-100 rounded-lg">
-                <Clock className="h-6 w-6 text-orange-600" />
+                <Clock className="h-6 w-6 text-blue-700" />
               </div>
               <span className="text-sm text-gray-500">Response</span>
             </div>

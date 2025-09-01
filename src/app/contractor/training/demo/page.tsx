@@ -57,7 +57,7 @@ function TrainingDemoContent() {
               </div>
               <div className="text-right">
                 <div className="text-sm text-slate-400">Rank</div>
-                <div className="text-sm font-semibold text-yellow-400">{progress.rank}</div>
+                <div className="text-sm font-semibold text-blue-500">{progress.rank}</div>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ function TrainingDemoContent() {
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
             <div className="flex items-center justify-between mb-2">
-              <CheckCircle className="h-8 w-8 text-green-400" />
+              <CheckCircle className="h-8 w-8 text-emerald-600" />
               <span className="text-2xl font-bold text-white">{progress.completed}</span>
             </div>
             <div className="text-slate-400">Completed</div>
@@ -85,7 +85,7 @@ function TrainingDemoContent() {
           
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50">
             <div className="flex items-center justify-between mb-2">
-              <Award className="h-8 w-8 text-yellow-400" />
+              <Award className="h-8 w-8 text-blue-500" />
               <span className="text-2xl font-bold text-white">{progress.certificates.length}</span>
             </div>
             <div className="text-slate-400">Certificates</div>
@@ -103,20 +103,20 @@ function TrainingDemoContent() {
         {/* Active Certificates */}
         <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50 mb-8">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-            <Award className="h-6 w-6 text-yellow-400" />
+            <Award className="h-6 w-6 text-blue-500" />
             Your Certifications
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
             {progress.certificates.map((cert, index) => (
               <div key={index} className="bg-slate-700/50 rounded-lg p-4 border border-slate-600/50">
                 <div className="flex items-start justify-between mb-2">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600" />
                   <span className="text-xs text-slate-400">Valid until 2026</span>
                 </div>
                 <h3 className="font-semibold text-white text-sm">{cert}</h3>
                 <div className="flex items-center gap-1 mt-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="h-3 w-3 fill-blue-500 text-blue-500" />
                   ))}
                 </div>
               </div>
@@ -236,7 +236,7 @@ function TrainingDemoContent() {
                         {module.content.substring(0, 300)}...
                       </div>
                       {module.safetyAlert && (
-                        <div className="mt-3 p-3 bg-red-600/20 border border-red-500/50 rounded-lg">
+                        <div className="mt-3 p-3 bg-red-600/20 border border-red-600/50 rounded-lg">
                           <p className="text-sm text-red-300 font-medium">⚠️ {module.safetyAlert}</p>
                         </div>
                       )}
@@ -275,7 +275,7 @@ function TrainingDemoContent() {
 
         {/* Demo Mode Indicator */}
         {isAutoPlaying && (
-          <div className="fixed bottom-4 right-4 bg-yellow-500 text-black px-4 py-2 rounded-lg shadow-lg animate-pulse">
+          <div className="fixed bottom-4 right-4 bg-blue-600 text-black px-4 py-2 rounded-lg shadow-lg animate-pulse">
             Auto-Demo Running...
           </div>
         )}

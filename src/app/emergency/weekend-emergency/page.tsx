@@ -25,12 +25,12 @@ export default function WeekendEmergencyResponsePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
-              <Clock className="h-16 w-16 text-orange-400 animate-spin-slow" />
+              <Clock className="h-16 w-16 text-blue-500 animate-spin-slow" />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Weekend Emergency Response
             </h1>
-            <div className="bg-orange-600 text-white inline-block px-6 py-3 rounded-full mb-6">
+            <div className="bg-blue-700 text-white inline-block px-6 py-3 rounded-full mb-6">
               <span className="text-2xl font-bold">Saturday & Sunday</span>
             </div>
             <p className="text-xl mb-8">
@@ -38,12 +38,12 @@ export default function WeekendEmergencyResponsePage() {
             </p>
             <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
               <Card className="bg-white/10 backdrop-blur p-4">
-                <Zap className="h-8 w-8 text-yellow-400 mx-auto mb-2" />
+                <Zap className="h-8 w-8 text-blue-500 mx-auto mb-2" />
                 <p className="text-lg font-bold">30 minutes</p>
                 <p className="text-sm">Response Time</p>
               </Card>
               <Card className="bg-white/10 backdrop-blur p-4">
-                <DollarSign className="h-8 w-8 text-green-400 mx-auto mb-2" />
+                <DollarSign className="h-8 w-8 text-emerald-600 mx-auto mb-2" />
                 <p className="text-lg font-bold">$2200 + $750</p>
                 <p className="text-sm">Total Minimum</p>
               </Card>
@@ -69,7 +69,7 @@ export default function WeekendEmergencyResponsePage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card className="p-8">
-              <h3 className="text-2xl font-bold mb-4 text-orange-600">
+              <h3 className="text-2xl font-bold mb-4 text-blue-700">
                 Saturday & Sunday Surcharge: $750
               </h3>
               <ul className="space-y-3">
@@ -140,7 +140,7 @@ export default function WeekendEmergencyResponsePage() {
                 <p className="text-gray-600">Additional damage from water spreading</p>
               </Card>
               <Card className="p-6 bg-white">
-                <p className="text-4xl font-bold text-orange-600 mb-2">+$8,000</p>
+                <p className="text-4xl font-bold text-blue-700 mb-2">+$8,000</p>
                 <p className="font-bold mb-2">After 12 Hours</p>
                 <p className="text-gray-600">Mould growth begins, structural damage</p>
               </Card>
@@ -207,7 +207,7 @@ export default function WeekendEmergencyResponsePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-red-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <Clock className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">
@@ -222,7 +222,7 @@ export default function WeekendEmergencyResponsePage() {
             <p className="text-3xl font-bold">$2,200 base + $750 = $2,950</p>
             <p className="text-lg mt-2">Insurance Approved • Direct Billing Available</p>
           </div>
-          <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 text-lg px-8 py-6">
+          <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-100 text-lg px-8 py-6">
             <MessageSquare className="mr-2 h-6 w-6" />
             Online Form Available 24/7 - Saturday & Sunday Emergency
           </Button>

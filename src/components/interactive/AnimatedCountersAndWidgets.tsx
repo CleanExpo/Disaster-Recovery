@@ -272,8 +272,8 @@ function ResponseTimeMap() {
   const locations = [
     { city: 'Sydney', time: 35, colour: 'from-green-500 to-green-600', lat: -33.8688, lng: 151.2093 },
     { city: 'Melbourne', time: 42, colour: 'from-green-500 to-green-600', lat: -37.8136, lng: 144.9631 },
-    { city: 'Brisbane', time: 48, colour: 'from-yellow-500 to-yellow-600', lat: -27.4698, lng: 153.0251 },
-    { city: 'Perth', time: 55, colour: 'from-yellow-500 to-yellow-600', lat: -31.9505, lng: 115.8605 },
+    { city: 'Brisbane', time: 48, colour: 'from-blue-600 to-yellow-600', lat: -27.4698, lng: 153.0251 },
+    { city: 'Perth', time: 55, colour: 'from-blue-600 to-yellow-600', lat: -31.9505, lng: 115.8605 },
   ];
 
   return (
@@ -373,7 +373,7 @@ export default function AnimatedCountersAndWidgets() {
       value: 4.9,
       decimals: 1,
       label: 'Average Rating',
-      colour: 'from-yellow-500 to-yellow-600',
+      colour: 'from-blue-600 to-yellow-600',
       delay: 0.6 },
   ];
 

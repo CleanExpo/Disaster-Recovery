@@ -341,7 +341,7 @@ export function DataBreachNotification() {
                             {breach.notificationsSent ? (
                               <CheckCircle className="h-4 w-4 text-green-500" />
                             ) : (
-                              <Clock className="h-4 w-4 text-yellow-500" />
+                              <Clock className="h-4 w-4 text-blue-600" />
                             )}
                             <span className="font-medium">
                               {breach.notificationsSent ? 'Sent' : 'Pending'}

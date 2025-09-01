@@ -83,8 +83,8 @@ export default function ComingSoonPage() {
               </div>
 
               {/* Coming Soon Badge */}
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500/20 border border-yellow-500/30 rounded-full mb-8">
-                <Zap className="h-5 w-5 text-yellow-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600/20 border border-blue-600/30 rounded-full mb-8">
+                <Zap className="h-5 w-5 text-blue-500 animate-pulse" />
                 <span className="text-yellow-300 font-semibold">Launching Q1 2025 - Contractors Apply Now</span>
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function ComingSoonPage() {
             </div>
 
             {/* Fire Damage */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-red-900/50 to-orange-800/30 backdrop-blur-sm border border-red-500/30 hover:border-red-400/50 transition-all duration-300 hover:scale-105">
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-red-900/50 to-orange-800/30 backdrop-blur-sm border border-red-600/30 hover:border-red-400/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
                   src="/images/optimized/damage/3D Kitchen Fire.png"
@@ -155,7 +155,7 @@ export default function ComingSoonPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <Bug className="h-5 w-5 text-green-400 mb-1" />
+                  <Bug className="h-5 w-5 text-emerald-600 mb-1" />
                   <h4 className="text-white font-semibold text-sm">Mould Removal</h4>
                   <p className="text-green-300 text-xs">Health Priority</p>
                 </div>
@@ -201,7 +201,7 @@ export default function ComingSoonPage() {
             </div>
 
             {/* Professional Equipment */}
-            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-yellow-900/50 to-orange-800/30 backdrop-blur-sm border border-yellow-500/30 hover:border-yellow-400/50 transition-all duration-300 hover:scale-105">
+            <div className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-yellow-900/50 to-orange-800/30 backdrop-blur-sm border border-blue-600/30 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
               <div className="aspect-square relative">
                 <Image
                   src="/images/optimized/equipment/3D LGR Dehumidifier.png"
@@ -212,7 +212,7 @@ export default function ComingSoonPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <Award className="h-5 w-5 text-yellow-400 mb-1" />
+                  <Award className="h-5 w-5 text-blue-500 mb-1" />
                   <h4 className="text-white font-semibold text-sm">Pro Equipment</h4>
                   <p className="text-yellow-300 text-xs">Industry Leading</p>
                 </div>
@@ -223,7 +223,7 @@ export default function ComingSoonPage() {
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center gap-6 mt-12">
             <div className="flex items-center gap-2 px-4 py-2 bg-green-500/20 border border-green-500/30 rounded-full">
-              <MessageSquare className="h-4 w-4 text-green-400" />
+              <MessageSquare className="h-4 w-4 text-emerald-600" />
               <span className="text-green-300 text-sm font-medium">24/7 Online Emergency Response</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
@@ -257,7 +257,7 @@ export default function ComingSoonPage() {
                 }}
               />
               <div className="relative z-10">
-                <Home className="h-8 w-8 text-green-400 mb-3" />
+                <Home className="h-8 w-8 text-emerald-600 mb-3" />
                 <h4 className="font-semibold text-green-300 mb-2">Residential</h4>
                 <p className="text-green-200 text-sm">
                   Granny flat → 80-floor luxury tower
@@ -285,7 +285,7 @@ export default function ComingSoonPage() {
             </div>
 
             {/* Industrial */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-orange-900/50 to-orange-800/30 backdrop-blur-sm border border-orange-500/30 rounded-xl p-6">
+            <div className="relative overflow-hidden bg-gradient-to-br from-orange-900/50 to-orange-800/30 backdrop-blur-sm border border-blue-600/30 rounded-xl p-6">
               <div 
                 className="absolute inset-0 opacity-20"
                 style={{
@@ -295,7 +295,7 @@ export default function ComingSoonPage() {
                 }}
               />
               <div className="relative z-10">
-                <Factory className="h-8 w-8 text-orange-400 mb-3" />
+                <Factory className="h-8 w-8 text-blue-500 mb-3" />
                 <h4 className="font-semibold text-orange-300 mb-2">Industrial</h4>
                 <p className="text-orange-200 text-sm">
                   Workshop → Offshore oil rig
@@ -323,7 +323,7 @@ export default function ComingSoonPage() {
             </div>
 
             {/* Infrastructure */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-red-900/50 to-red-800/30 backdrop-blur-sm border border-red-500/30 rounded-xl p-6">
+            <div className="relative overflow-hidden bg-gradient-to-br from-red-900/50 to-red-800/30 backdrop-blur-sm border border-red-600/30 rounded-xl p-6">
               <div 
                 className="absolute inset-0 opacity-20"
                 style={{
@@ -357,11 +357,11 @@ export default function ComingSoonPage() {
               <span className="text-slate-200 font-medium">Water/Flood</span>
             </div>
             <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
-              <Flame className="h-6 w-6 text-orange-400" />
+              <Flame className="h-6 w-6 text-blue-500" />
               <span className="text-slate-200 font-medium">Fire/Smoke</span>
             </div>
             <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
-              <Bug className="h-6 w-6 text-green-400" />
+              <Bug className="h-6 w-6 text-emerald-600" />
               <span className="text-slate-200 font-medium">Mould/Bacteria</span>
             </div>
             <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
@@ -373,7 +373,7 @@ export default function ComingSoonPage() {
               <span className="text-slate-200 font-medium">Storm/Cyclone</span>
             </div>
             <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-lg p-4">
-              <Wrench className="h-6 w-6 text-yellow-400" />
+              <Wrench className="h-6 w-6 text-blue-500" />
               <span className="text-slate-200 font-medium">Structural</span>
             </div>
           </div>
@@ -401,7 +401,7 @@ export default function ComingSoonPage() {
               </div>
               
               <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-xl p-6">
-                <Zap className="h-10 w-10 text-yellow-400 mb-4" />
+                <Zap className="h-10 w-10 text-blue-500 mb-4" />
                 <h4 className="text-lg font-semibold text-white mb-2">Instant Leads</h4>
                 <p className="text-slate-300">
                   Insurance claims routed directly to you. No cold calling. No marketing costs.
@@ -409,7 +409,7 @@ export default function ComingSoonPage() {
               </div>
               
               <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-xl p-6">
-                <Shield className="h-10 w-10 text-green-400 mb-4" />
+                <Shield className="h-10 w-10 text-emerald-600 mb-4" />
                 <h4 className="text-lg font-semibold text-white mb-2">Verified Network</h4>
                 <p className="text-slate-300">
                   Background checks, qualifications verified, insurance confirmed. Premium contractors only.
@@ -425,7 +425,7 @@ export default function ComingSoonPage() {
               </div>
               
               <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-600/30 rounded-xl p-6">
-                <Users className="h-10 w-10 text-orange-400 mb-4" />
+                <Users className="h-10 w-10 text-blue-500 mb-4" />
                 <h4 className="text-lg font-semibold text-white mb-2">Clean Claims Integration</h4>
                 <p className="text-slate-300">
                   Seamless connection to your existing CRM and job management system.
@@ -471,11 +471,11 @@ export default function ComingSoonPage() {
               <div className="text-slate-300">Capital Cities</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-green-400 mb-2">100+</div>
+              <div className="text-4xl font-bold text-emerald-600 mb-2">100+</div>
               <div className="text-slate-300">Regional Centres</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-400 mb-2">15,000+</div>
+              <div className="text-4xl font-bold text-blue-500 mb-2">15,000+</div>
               <div className="text-slate-300">Suburbs & Towns</div>
             </div>
             <div className="text-center">

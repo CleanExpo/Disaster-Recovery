@@ -170,11 +170,11 @@ export function NotificationCenter() {
 
   const getNotificationIcon = (type: NotificationType, priority: NotificationPriority) => {
     if (priority === 'urgent') return <AlertCircle className="h-5 w-5 text-red-500" />;
-    if (priority === 'high') return <AlertTriangle className="h-5 w-5 text-orange-500" />;
+    if (priority === 'high') return <AlertTriangle className="h-5 w-5 text-blue-600" />;
     
     switch (type) {
       case 'compliance':
-        return <AlertTriangle className="h-5 w-5 text-yellow-500" />;
+        return <AlertTriangle className="h-5 w-5 text-blue-600" />;
       case 'billing':
         return <DollarSign className="h-5 w-5 text-blue-500" />;
       case 'job':

@@ -40,7 +40,7 @@ export default function ModernAboutPage() {
     {
       title: 'Transparent Process',
       description: 'Clear communication, honest pricing, and detailed documentation throughout.',
-      colour: 'from-orange-500 to-red-500'
+      colour: 'from-blue-600 to-red-500'
     }
   ];
 

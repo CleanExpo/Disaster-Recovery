@@ -866,7 +866,7 @@ export function AdminNotificationManager() {
                   </div>
                   <div className="p-3 bg-yellow-50 rounded-lg">
                     <div className="flex items-start gap-2">
-                      <AlertCircle className="h-4 w-4 text-yellow-500 mt-0.5" />
+                      <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5" />
                       <div>
                         <p className="text-sm font-medium">Email Bounce</p>
                         <p className="text-xs text-gray-600">Mailbox full</p>

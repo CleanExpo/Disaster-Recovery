@@ -103,7 +103,7 @@ export default function BeforeAfterSlider() {
               onClick={() => setActiveCase(index)}
               className={`px-4 py-2 rounded-full transition-all ${
                 index === activeCase 
-                  ? 'bg-yellow-400 text-black font-bold' 
+                  ? 'bg-blue-500 text-black font-bold' 
                   : 'bg-gray-700 text-white hover:bg-gray-600'
               }`}
             >
@@ -179,7 +179,7 @@ export default function BeforeAfterSlider() {
                     {currentCase.afterTitle}
                   </div>
                   <div className="mt-2 bg-black/80 text-white px-4 py-2 rounded text-right">
-                    <span className="text-green-400">AFTER:</span> Complete Restoration
+                    <span className="text-emerald-600">AFTER:</span> Complete Restoration
                   </div>
                 </div>
               </div>
@@ -202,7 +202,7 @@ export default function BeforeAfterSlider() {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-red-900/20 border border-red-500 rounded-xl p-4"
+              className="bg-red-950/30 border border-red-600 rounded-xl p-4"
             >
               <h3 className="text-2xl font-bold text-white mb-2">
                 {currentCase.description}
@@ -213,7 +213,7 @@ export default function BeforeAfterSlider() {
                   {currentCase.location}
                 </div>
                 <div className="text-gray-300">
-                  <Clock className="h-5 w-5 text-yellow-400 inline mr-2" />
+                  <Clock className="h-5 w-5 text-blue-500 inline mr-2" />
                   Response: {currentCase.responseTime}
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function BeforeAfterSlider() {
               <div className="space-y-3">
                 {currentCase.details.map((detail, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">{detail}</span>
                   </div>
                 ))}
@@ -248,14 +248,14 @@ export default function BeforeAfterSlider() {
             >
               <div className="flex items-center justify-between mb-4">
                 <h4 className="text-lg font-bold text-white">Insurance Approved</h4>
-                <span className="text-3xl font-bold text-green-400">
+                <span className="text-3xl font-bold text-emerald-600">
                   {currentCase.insuranceAmount}
                 </span>
               </div>
               <p className="text-gray-300 mb-4">
                 Full restoration covered. We handle all paperwork and deal directly with your insurer.
               </p>
-              <button className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform">
+              <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform">
                 Get Your Free Assessment Now
               </button>
             </motion.div>
@@ -271,11 +271,11 @@ export default function BeforeAfterSlider() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-3xl font-bold text-yellow-400">48hrs</div>
+              <div className="text-3xl font-bold text-blue-500">48hrs</div>
               <div className="text-gray-400">Average Restoration</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-green-400">100%</div>
+              <div className="text-3xl font-bold text-emerald-600">100%</div>
               <div className="text-gray-400">Insurance Approved</div>
             </div>
             <div>

@@ -189,7 +189,7 @@ export default function R6Header() {
               <div className="flex items-center gap-2 group">"
                 <Users className="w-4 h-4 group-hover:scale-110 transition-transform" />"
                 <span className="text-sm font-medium">"
-                  <span className="inline-block w-2 h-2 bg-green-400 rounded-full animate-pulse mr-1"></span>"
+                  <span className="inline-block w-2 h-2 bg-emerald-500 rounded-full animate-pulse mr-1"></span>"
                   Teams Available Now
                 </span>
               </div>
@@ -502,7 +502,7 @@ export default function R6Header() {
                 <div>
                   <h3 className="font-semibold">Emergency Support</h3>"
                   <p className="text-sm opacity-90 flex items-center gap-2">"
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>"
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>"
                     Available now • Avg response: 30 seconds
                   </p>
                 </div>

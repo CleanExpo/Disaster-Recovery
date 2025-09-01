@@ -809,7 +809,7 @@ export default function ToxinsContaminationKnowledgePage() {
                   <ul className="space-y-1">
                     {selectedToxin.symptoms.map((symptom, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <Info className="h-4 w-4 text-orange-500 flex-shrink-0 mt-0.5" />
+                        <Info className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
                         <span className="text-sm">{symptom}</span>
                       </li>
                     ))}

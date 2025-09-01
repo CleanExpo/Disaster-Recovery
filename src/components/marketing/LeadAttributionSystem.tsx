@@ -317,7 +317,7 @@ export default function LeadAttributionSystem() {
     'bg-blue-500',
     'bg-green-500', 
     'bg-purple-500',
-    'bg-orange-500',
+    'bg-blue-600',
     'bg-pink-500',
     'bg-indigo-500'
   ];
@@ -409,7 +409,7 @@ export default function LeadAttributionSystem() {
             </p>
           </div>
           <div className="p-3 bg-orange-100 rounded-lg">
-            <Activity className="w-6 h-6 text-orange-600" />
+            <Activity className="w-6 h-6 text-blue-700" />
           </div>
         </div>
       </div>
@@ -590,7 +590,7 @@ export default function LeadAttributionSystem() {
                 </div>
                 <div className={`w-3 h-3 rounded-full ${
                   conversionRate >= 5 ? 'bg-green-500' :
-                  conversionRate >= 3.5 ? 'bg-yellow-500' :
+                  conversionRate >= 3.5 ? 'bg-blue-600' :
                   'bg-red-500'
                 }`} />
               </div>

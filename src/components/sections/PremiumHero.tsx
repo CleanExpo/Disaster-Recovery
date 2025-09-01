@@ -105,7 +105,7 @@ export default function PremiumHero({
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
               <span className="text-white text-sm font-medium">Available Now - {subtitle}</span>
@@ -219,7 +219,7 @@ export default function PremiumHero({
                     <div className="flex items-center justify-center">
                       <div className="flex -space-x-2">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                          <Star key={i} className="w-6 h-6 text-blue-500 fill-blue-500" />
                         ))}
                       </div>
                       <span className="ml-3 text-white font-medium">4.9/5 Rating</span>

@@ -419,7 +419,7 @@ export default function ReviewModerationDashboard() {
                 <td className="px-6 py-4">"
                   <div className="flex items-center">"
                     <Star className={`w-4 h-4 mr-1 ${
-                      item.feedback.rating.overall >= 3 ? 'text-yellow-400' : 'text-red-400'
+                      item.feedback.rating.overall >= 3 ? 'text-blue-500' : 'text-red-400'
                     } fill-current`} />
                     <span className="text-sm font-medium">"
                       {item.feedback.rating.overall}/5
@@ -538,7 +538,7 @@ export default function ReviewModerationDashboard() {
                   <div key={category} className="text-center">"
                     <p className="text-sm text-gray-600 capitalize">{category}</p>"
                     <div className="flex items-center justify-center mt-1">"
-                      <Star className={`w-5 h-5 ${rating >= 3 ? 'text-yellow-400' : 'text-red-400'} fill-current`} />'
+                      <Star className={`w-5 h-5 ${rating >= 3 ? 'text-blue-500' : 'text-red-400'} fill-current`} />'
                       <span className="ml-1 font-medium">{rating}/5</span>"
                     </div>
                   </div>

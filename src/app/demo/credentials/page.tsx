@@ -207,7 +207,7 @@ export default function DemoCredentialsPage() {
                         className="p-1 hover:bg-white/10 rounded transition"
                       >
                         {copiedItem === `${key}-${field}` ? (
-                          <CheckCircle className="h-4 w-4 text-green-400" />
+                          <CheckCircle className="h-4 w-4 text-emerald-600" />
                         ) : (
                           <Copy className="h-4 w-4 text-gray-400" />
                         )}
@@ -222,7 +222,7 @@ export default function DemoCredentialsPage() {
                 <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Demo Features</h3>
                 {demo.features.map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-400 mt-0.5" />
+                    <CheckCircle className="h-4 w-4 text-emerald-600 mt-0.5" />
                     <span className="text-sm text-gray-300">{feature}</span>
                   </div>
                 ))}
@@ -267,12 +267,12 @@ export default function DemoCredentialsPage() {
                       <td className="py-3 px-4 text-sm text-gray-300">{claim.customer}</td>
                       <td className="py-3 px-4 text-sm text-gray-300">{claim.type}</td>
                       <td className="py-3 px-4 text-sm text-gray-300">{claim.location}</td>
-                      <td className="py-3 px-4 text-sm text-green-400 font-semibold">{claim.value}</td>
+                      <td className="py-3 px-4 text-sm text-emerald-600 font-semibold">{claim.value}</td>
                       <td className="py-3 px-4">
                         <span className={`text-xs px-2 py-1 rounded-full ${
-                          claim.status === 'Completed' ? 'bg-green-500/20 text-green-400' :
+                          claim.status === 'Completed' ? 'bg-green-500/20 text-emerald-600' :
                           claim.status === 'In Progress' ? 'bg-blue-500/20 text-blue-400' :
-                          'bg-yellow-500/20 text-yellow-400'
+                          'bg-blue-600/20 text-blue-500'
                         }`}>
                           {claim.status}
                         </span>
@@ -300,7 +300,7 @@ export default function DemoCredentialsPage() {
                       </p>
                     </div>
                     <div className="flex items-center gap-1">
-                      <span className="text-yellow-400 text-sm">★</span>
+                      <span className="text-blue-500 text-sm">★</span>
                       <span className="text-white font-semibold text-sm">{contractor.rating}</span>
                     </div>
                   </div>
@@ -312,7 +312,7 @@ export default function DemoCredentialsPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Response Time:</span>
-                      <span className="text-green-400 font-semibold">{contractor.responseTime}</span>
+                      <span className="text-emerald-600 font-semibold">{contractor.responseTime}</span>
                     </div>
                     <div className="pt-2 border-t border-gray-700">
                       <div className="flex flex-wrap gap-1">
@@ -331,9 +331,9 @@ export default function DemoCredentialsPage() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-8 bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-6">
+        <div className="mt-8 bg-blue-600/10 border border-blue-600/30 rounded-xl p-6">
           <div className="flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-yellow-400 mt-0.5" />
+            <AlertCircle className="h-5 w-5 text-blue-500 mt-0.5" />
             <div>
               <h3 className="font-semibold text-yellow-300 mb-2">Demo Mode Instructions</h3>
               <ul className="text-sm text-yellow-200 space-y-1">

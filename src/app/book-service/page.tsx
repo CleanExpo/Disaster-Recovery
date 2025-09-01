@@ -917,7 +917,7 @@ export default function BookServicePage() {
               <span>IICRC Certified Contractors</span>
             </div>
             <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-orange-600" />
+              <Clock className="h-5 w-5 text-blue-700" />
               <span>24/7 Online Emergency Response</span>
             </div>
           </div>

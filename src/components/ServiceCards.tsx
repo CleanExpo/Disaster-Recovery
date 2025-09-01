@@ -37,7 +37,7 @@ const services: ServiceCard[] = [
     description: 'Complete restoration from fire, smoke, and soot damage',
     icon: FireIcon,
     colour: 'orange',
-    gradient: 'from-orange-500 to-red-500',
+    gradient: 'from-blue-600 to-red-500',
     href: '/services/fire-damage',
     features: ['Odour Removal', 'Structural Repair', 'Content Restoration']
   },

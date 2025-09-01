@@ -706,7 +706,7 @@ ${slide.speakerNotes}
               {slide.content.problems?.map((problem, index) => (
                 <motion.div
                   key={index}
-                  className="bg-red-900/30 backdrop-blur-sm rounded-xl p-6 border border-red-500/30"
+                  className="bg-red-900/30 backdrop-blur-sm rounded-xl p-6 border border-red-600/30"
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.2 }}
@@ -768,7 +768,7 @@ ${slide.speakerNotes}
                   >
                     <div className="text-sm opacity-60">{proj.year}</div>
                     <div className="text-2xl font-bold">{proj.revenue}</div>
-                    <div className="text-sm text-green-400">{proj.margin} margin</div>
+                    <div className="text-sm text-emerald-600">{proj.margin} margin</div>
                   </motion.div>
                 ))}
               </div>

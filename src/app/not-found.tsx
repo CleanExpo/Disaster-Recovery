@@ -9,7 +9,7 @@ export default function NotFound() {
       <div className="max-w-2xl w-full">
         <Card className="p-8 text-center">
           <div className="mb-6">
-            <AlertTriangle className="h-24 w-24 text-orange-500 mx-auto mb-4" />
+            <AlertTriangle className="h-24 w-24 text-blue-600 mx-auto mb-4" />
             <h1 className="text-6xl font-bold text-gray-900 mb-2">404</h1>
             <h2 className="text-2xl font-semibold text-gray-700 mb-4">
               Page Not Found

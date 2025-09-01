@@ -342,7 +342,7 @@ export function PrivacyComplianceDashboard({ userId, userRole }: PrivacyComplian
                   
                   <div className="flex items-center justify-between p-3 border rounded-lg">
                     <div className="flex items-center gap-3">
-                      <AlertTriangle className="h-5 w-5 text-yellow-500" />
+                      <AlertTriangle className="h-5 w-5 text-blue-600" />
                       <div>
                         <p className="font-medium">Penetration Testing</p>
                         <p className="text-xs text-gray-500">Due in 45 days</p>

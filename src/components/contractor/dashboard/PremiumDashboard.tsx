@@ -22,7 +22,7 @@ import { useMagneticEffect, use3DRotateEffect } from '@/hooks/useMagneticEffect'
 const colours = {
   primary: 'from-blue-500 to-purple-600',
   success: 'from-green-500 to-emerald-600',
-  warning: 'from-yellow-500 to-orange-600',
+  warning: 'from-blue-600 to-blue-700',
   danger: 'from-red-500 to-pink-600',
   info: 'from-cyan-500 to-blue-600',
   dark: 'from-gray-800 to-gray-900'
@@ -71,8 +71,8 @@ function LiveActivityFeed() {
   const activities = [
     { id: 1, type: 'job', text: 'New water damage job assigned', time: '2m ago', icon: Droplets, colour: 'text-blue-500' },
     { id: 2, type: 'payment', text: 'Payment received: $3,450', time: '15m ago', icon: DollarSign, colour: 'text-green-500' },
-    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, colour: 'text-yellow-500' },
-    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, colour: 'text-orange-500' }
+    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, colour: 'text-blue-600' },
+    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, colour: 'text-blue-600' }
   ];
   
   return (
@@ -153,10 +153,10 @@ function PerformanceChart() {
 // AI Insights Component
 function AIInsights() {
   const insights = [
-    { icon: TrendingUp, text: 'Revenue up 23% this month', colour: 'text-green-400' },
+    { icon: TrendingUp, text: 'Revenue up 23% this month', colour: 'text-emerald-600' },
     { icon: Clock, text: 'Response time improved by 15%', colour: 'text-blue-400' },
     { icon: Target, text: '3 jobs near completion', colour: 'text-purple-400' },
-    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-orange-400' }
+    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-blue-500' }
   ];
   
   return (
@@ -171,7 +171,7 @@ function AIInsights() {
         >
           <insight.icon className={`h-5 w-5 ${insight.colour}`} />
           <span className="text-sm text-gray-200">{insight.text}</span>
-          <Sparkles className="h-4 w-4 text-yellow-400 ml-auto" />
+          <Sparkles className="h-4 w-4 text-blue-500 ml-auto" />
         </motion.div>
       ))}
     </div>
@@ -183,7 +183,7 @@ function JobCard({ job }: any) {
   const statusColors: any = {
     urgent: 'from-red-500 to-pink-600',
     active: 'from-blue-500 to-cyan-600',
-    pending: 'from-yellow-500 to-orange-600',
+    pending: 'from-blue-600 to-blue-700',
     completed: 'from-green-500 to-emerald-600'
   };
   
@@ -325,7 +325,7 @@ export default function PremiumDashboard() {
             <div className="flex items-center gap-3">
               {/* Connection Status */}
               <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
-                isOnline ? 'bg-green-500/20 text-green-400' : 'bg-orange-500/20 text-orange-400'
+                isOnline ? 'bg-green-500/20 text-emerald-600' : 'bg-blue-600/20 text-blue-500'
               }`}>
                 {isOnline ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
                 {isOnline ? 'Online' : 'Offline'}
@@ -371,12 +371,12 @@ export default function PremiumDashboard() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 p-4 rounded-xl bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 backdrop-blur-sm"
+          className="mb-6 p-4 rounded-xl bg-gradient-to-r from-blue-600/20 to-red-500/20 border border-blue-600/30 backdrop-blur-sm"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-orange-500/20">
-                <AlertTriangle className="h-5 w-5 text-orange-400" />
+              <div className="p-2 rounded-lg bg-blue-600/20">
+                <AlertTriangle className="h-5 w-5 text-blue-500" />
               </div>
               <div>
                 <p className="text-sm font-semibold text-orange-300">Emergency Job Available</p>
@@ -386,7 +386,7 @@ export default function PremiumDashboard() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-medium"
+              className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-red-500 text-white text-sm font-medium"
             >
               Accept Job
             </motion.button>
@@ -413,7 +413,7 @@ export default function PremiumDashboard() {
                   <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.colour} opacity-20`}>
                     <stat.icon className="h-4 w-4 text-white" />
                   </div>
-                  <span className="text-xs text-green-400">{stat.trend}</span>
+                  <span className="text-xs text-emerald-600">{stat.trend}</span>
                 </div>
                 <p className="text-xs text-gray-400 mb-1">{stat.label}</p>
                 <p className="text-lg font-bold text-white">
@@ -506,7 +506,7 @@ export default function PremiumDashboard() {
               <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <Activity className="h-5 w-5" />
                 Live Activity
-                <span className="ml-auto h-2 w-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="ml-auto h-2 w-2 bg-emerald-500 rounded-full animate-pulse" />
               </h3>
               <LiveActivityFeed />
             </div>

@@ -561,7 +561,7 @@ const TransparencyBillingDashboard: React.FC = () => {
                               </div>
                               <div>
                                 <p className="text-sm text-gray-500">After Hours</p>
-                                <p className="text-lg font-semibold text-orange-600">
+                                <p className="text-lg font-semibold text-blue-700">
                                   ${item.priceRange.afterHours?.min}–${item.priceRange.afterHours?.max}/hr
                                 </p>
                               </div>
@@ -656,24 +656,24 @@ const TransparencyBillingDashboard: React.FC = () => {
       {/* Additional Information */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h3 className="font-semibold mb-4 flex items-center">
-          <AlertCircle className="h-5 w-5 mr-2 text-amber-600" />
+          <AlertCircle className="h-5 w-5 mr-2 text-blue-700" />
           Client Information
         </h3>
         <ul className="space-y-2 text-sm text-gray-700">
           <li className="flex items-start">
-            <span className="text-amber-600 mr-2">•</span>
+            <span className="text-blue-700 mr-2">•</span>
             All price guidelines above are inclusive of GST.
           </li>
           <li className="flex items-start">
-            <span className="text-amber-600 mr-2">•</span>
+            <span className="text-blue-700 mr-2">•</span>
             Clients receive itemized quote before works commence and are notified of any additional costs or 'extras' required.
           </li>
           <li className="flex items-start">
-            <span className="text-amber-600 mr-2">•</span>
+            <span className="text-blue-700 mr-2">•</span>
             Final pricing may vary based on specific job requirements, site conditions, and contractor assessment.
           </li>
           <li className="flex items-start">
-            <span className="text-amber-600 mr-2">•</span>
+            <span className="text-blue-700 mr-2">•</span>
             Emergency and after-hours services may incur additional charges as specified in the labour rates section.
           </li>
         </ul>

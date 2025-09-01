@@ -208,7 +208,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                     key={i}
                     className={`h-4 w-4 ${
                       i < Math.floor(complianceScore() / 20) 
-                        ? 'fill-yellow-400 text-yellow-400' 
+                        ? 'fill-blue-500 text-blue-500' 
                         : 'text-gray-300'
                     }`}
                   />
@@ -268,7 +268,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                 placeholder="CERT-123456"
                 value={cpp40421Number}
                 onChange={(e) => setCpp40421Number(e.target.value)}
-                className={errors['cpp40421.number'] ? 'border-red-500' : ''}
+                className={errors['cpp40421.number'] ? 'border-red-600' : ''}
               />
             </div>
             
@@ -281,7 +281,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                 placeholder="Training Provider Name"
                 value={cpp40421Issuer}
                 onChange={(e) => setCpp40421Issuer(e.target.value)}
-                className={errors['cpp40421.issuer'] ? 'border-red-500' : ''}
+                className={errors['cpp40421.issuer'] ? 'border-red-600' : ''}
               />
             </div>
             
@@ -294,7 +294,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                 value={cpp40421Date}
                 onChange={(e) => setCpp40421Date(e.target.value)}
                 max={new Date().toISOString().split('T')[0]}
-                className={errors['cpp40421.date'] ? 'border-red-500' : ''}
+                className={errors['cpp40421.date'] ? 'border-red-600' : ''}
               />
             </div>
           </div>
@@ -550,7 +550,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                   }
                 }}
               >
-                <SelectTrigger className={errors['association.name'] ? 'border-red-500' : ''}>
+                <SelectTrigger className={errors['association.name'] ? 'border-red-600' : ''}>
                   <SelectValue placeholder="Select association" />
                 </SelectTrigger>
                 <SelectContent>
@@ -577,7 +577,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
                     setValidationStatus(prev => ({ ...prev, association: true }));
                   }
                 }}
-                className={errors['association.memberNumber'] ? 'border-red-500' : ''}
+                className={errors['association.memberNumber'] ? 'border-red-600' : ''}
               />
             </div>
             

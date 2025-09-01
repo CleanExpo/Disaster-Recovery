@@ -19,7 +19,7 @@ export default function NRPBestPracticesGuidePage() {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Shield className="h-12 w-12 text-blue-400" />
-            <Award className="h-10 w-10 text-yellow-400" />
+            <Award className="h-10 w-10 text-blue-500" />
           </div>
           <h1 className="text-5xl font-bold text-white mb-6">
             NRP Best Practices Guide
@@ -41,7 +41,7 @@ export default function NRPBestPracticesGuidePage() {
         {/* Standards Overview */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <CheckCircle className="h-8 w-8 text-green-400" />
+            <CheckCircle className="h-8 w-8 text-emerald-600" />
             Mandatory Standards for NRP Contractors
           </h2>
           
@@ -50,23 +50,23 @@ export default function NRPBestPracticesGuidePage() {
               <h3 className="text-xl font-semibold text-blue-300 mb-4">Professional Certification Requirements</h3>
               <ul className="space-y-3 text-slate-300">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>IICRC Applied Structural Drying (ASD) Certification</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Water Restoration Technician (WRT) Certification</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Applied Microbial Remediation Technician (AMRT)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Level 1 Thermography Certification (<Link href="/technology/thermal" className="underline hover:text-blue-200">Thermal Imaging Reality</Link>)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>AS-IICRC S520:2025 Draft Standard (<a href="https://www.standards.org.au/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-200">Standards Australia</a>)</span>
                 </li>
               </ul>
@@ -79,19 +79,19 @@ export default function NRPBestPracticesGuidePage() {
               <h3 className="text-xl font-semibold text-blue-300 mb-4">Equipment Standards</h3>
               <ul className="space-y-3 text-slate-300">
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Professional moisture meters (penetrating & non-invasive)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Calibrated thermal imaging cameras (FLIR T-series minimum)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Professional dehumidification equipment</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                   <span>Air filtration systems (HEPA standard)</span>
                 </li>
               </ul>
@@ -102,7 +102,7 @@ export default function NRPBestPracticesGuidePage() {
         {/* Emergency Response Procedures */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <Clock className="h-8 w-8 text-orange-400" />
+            <Clock className="h-8 w-8 text-blue-500" />
             Emergency Response Procedures
           </h2>
           
@@ -235,19 +235,19 @@ export default function NRPBestPracticesGuidePage() {
                 <h3 className="text-xl font-semibold text-purple-300 mb-4">Australian Compliance Standards</h3>
                 <ul className="space-y-3 text-slate-300">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Australian Consumer Law compliance</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Work Health and Safety Act 2011</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Environmental Protection regulations</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span><Link href="/guides/insurance/section-54-contractor-rights" className="underline hover:text-blue-200">Section 54 Insurance Contracts Act 1984</Link></span>
                   </li>
                 </ul>
@@ -257,19 +257,19 @@ export default function NRPBestPracticesGuidePage() {
                 <h3 className="text-xl font-semibold text-purple-300 mb-4">Professional Standards Verification</h3>
                 <ul className="space-y-3 text-slate-300">
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Continuous education requirements</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Annual certification renewals</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Equipment calibration schedules</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <span>Quality assurance audits</span>
                   </li>
                 </ul>

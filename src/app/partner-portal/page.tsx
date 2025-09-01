@@ -149,7 +149,7 @@ export default function PartnerPortal() {
                 <p className="text-sm text-gray-600">Conversion Rate</p>
                 <p className="text-2xl font-bold">{dashboardData.stats.conversionRate}%</p>
               </div>
-              <TrendingUp className="h-8 w-8 text-orange-600" />
+              <TrendingUp className="h-8 w-8 text-blue-700" />
             </div>
           </Card>
           <Card className="p-6">

@@ -203,7 +203,7 @@ export default function CeilingWaterDamagePage() {
       <section className="relative bg-gradient-to-r from-slate-900 to-slate-700 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-orange-600/90 px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-blue-700/90 px-4 py-2 rounded-full mb-6">
               <ChevronDown className="h-5 w-5 animate-bounce" />
               <span className="text-sm font-bold">CEILING WATER DAMAGE EXPERTS</span>
             </div>
@@ -217,7 +217,7 @@ export default function CeilingWaterDamagePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-orange-600 hover:bg-orange-700 text-white"
+                className="bg-blue-700 hover:bg-orange-700 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
@@ -230,15 +230,15 @@ export default function CeilingWaterDamagePage() {
             </div>
             <div className="mt-8 flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-orange-400" />
+                <Clock className="h-5 w-5 text-blue-500" />
                 <span>Fast Response</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-orange-400" />
+                <Shield className="h-5 w-5 text-blue-500" />
                 <span>Insurance Approved</span>
               </div>
               <div className="flex items-center gap-2">
-                <Home className="h-5 w-5 text-orange-400" />
+                <Home className="h-5 w-5 text-blue-500" />
                 <span>Structural Experts</span>
               </div>
             </div>
@@ -271,9 +271,9 @@ export default function CeilingWaterDamagePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {ceilingDamageTypes.map((item, index) => (
               <Card key={index} className={`p-6 hover:shadow-xl transition-shadow border-2 ${
-                item.severity === 'Critical' ? 'border-red-500' : 
-                item.severity === 'Serious' ? 'border-orange-500' :
-                item.severity === 'Urgent' ? 'border-yellow-500' : 'border-gray-200'
+                item.severity === 'Critical' ? 'border-red-600' : 
+                item.severity === 'Serious' ? 'border-blue-600' :
+                item.severity === 'Urgent' ? 'border-blue-600' : 'border-gray-200'
               }`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-lg font-bold">{item.type}</h3>
@@ -293,7 +293,7 @@ export default function CeilingWaterDamagePage() {
                 <p className="text-sm text-gray-600 mb-2">
                   <strong>Action:</strong> {item.action}
                 </p>
-                <p className="text-sm font-semibold text-orange-600">
+                <p className="text-sm font-semibold text-blue-700">
                   Timeline: {item.timeline}
                 </p>
               </Card>
@@ -368,7 +368,7 @@ export default function CeilingWaterDamagePage() {
           <div className="max-w-5xl mx-auto">
             <Card className="p-8 border-2 border-orange-300 bg-white">
               <div className="text-center mb-6">
-                <AlertCircle className="h-12 w-12 text-orange-600 mx-auto mb-3" />
+                <AlertCircle className="h-12 w-12 text-blue-700 mx-auto mb-3" />
                 <h2 className="text-2xl font-bold">Ceiling Safety Guidelines</h2>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
@@ -418,7 +418,7 @@ export default function CeilingWaterDamagePage() {
               <div className="mt-6 text-center">
                 <Button 
                   size="lg"
-                  className="bg-orange-600 hover:bg-orange-700"
+                  className="bg-blue-700 hover:bg-orange-700"
                   onClick={() => setShowQuoteDialog(true)}
                 >
                   <MessageSquare className="mr-2" />
@@ -544,7 +544,7 @@ export default function CeilingWaterDamagePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-orange-600 hover:bg-orange-700"
+              className="bg-blue-700 hover:bg-orange-700"
               onClick={() => setShowQuoteDialog(true)}
             >
               <MessageSquare className="mr-2" />
@@ -563,7 +563,7 @@ export default function CeilingWaterDamagePage() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-orange-600" />
+              <AlertTriangle className="h-5 w-5 text-blue-700" />
               Ceiling Water Damage Emergency
             </DialogTitle>
             <DialogDescription>
@@ -572,10 +572,10 @@ export default function CeilingWaterDamagePage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border-2 border-orange-200">
-              <MessageSquare className="h-6 w-6 text-orange-600" />
+              <MessageSquare className="h-6 w-6 text-blue-700" />
               <div>
                 <p className="font-semibold">24/7 Emergency Line</p>
-                <p className="text-2xl font-bold text-orange-600">1300 814 870</p>
+                <p className="text-2xl font-bold text-blue-700">1300 814 870</p>
               </div>
             </div>
             <div className="space-y-3">
@@ -596,7 +596,7 @@ export default function CeilingWaterDamagePage() {
                 <span>Complete restoration service</span>
               </div>
             </div>
-            <Button className="w-full bg-orange-600 hover:bg-orange-700">
+            <Button className="w-full bg-blue-700 hover:bg-orange-700">
               Get Emergency Response
             </Button>
           </div>

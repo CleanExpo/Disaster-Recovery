@@ -288,7 +288,7 @@ export function KPIPerformanceDashboard() {
                   key={i}
                   className={`h-4 w-4 ${
                     i < Math.floor(metrics.customerSatisfactionScore)
-                      ? 'fill-yellow-400 text-yellow-400'
+                      ? 'fill-blue-500 text-blue-500'
                       : 'text-gray-300'
                   }`}
                 />

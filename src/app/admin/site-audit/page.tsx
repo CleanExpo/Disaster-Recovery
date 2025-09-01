@@ -294,7 +294,7 @@ export default function SiteAuditPage() {
       case 'pass':
         return <CheckCircle2 className="h-5 w-5 text-green-600" />;
       case 'warning':
-        return <AlertCircle className="h-5 w-5 text-orange-600" />;
+        return <AlertCircle className="h-5 w-5 text-blue-700" />;
       case 'fail':
         return <XCircle className="h-5 w-5 text-red-600" />;
       default:
@@ -387,7 +387,7 @@ export default function SiteAuditPage() {
                 <>
                   <div className="mb-6">
                     <div className="text-6xl font-bold mb-2">
-                      <span className={overallHealth >= 90 ? 'text-green-600' : overallHealth >= 70 ? 'text-orange-600' : 'text-red-600'}>
+                      <span className={overallHealth >= 90 ? 'text-green-600' : overallHealth >= 70 ? 'text-blue-700' : 'text-red-600'}>
                         {overallHealth}%
                       </span>
                     </div>
@@ -402,7 +402,7 @@ export default function SiteAuditPage() {
                       <p className="text-sm text-gray-600">Passed</p>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-orange-600">
+                      <div className="text-2xl font-bold text-blue-700">
                         {auditResults.filter(r => r.status === 'warning').length}
                       </div>
                       <p className="text-sm text-gray-600">Warnings</p>

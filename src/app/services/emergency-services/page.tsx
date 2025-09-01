@@ -84,7 +84,7 @@ export default function EmergencyServicesPage() {
       icon: Wind,
       title: 'Storm & Wind Damage',
       severity: 'URGENT',
-      colour: 'text-orange-600',
+      colour: 'text-blue-700',
       bgColor: 'bg-orange-100',
       situations: ['Cyclones', 'Hail damage', 'Fallen trees', 'Structural damage']
     },
@@ -205,15 +205,15 @@ export default function EmergencyServicesPage() {
             </div>
             <div className="flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-yellow-400 animate-pulse" />
+                <Clock className="h-5 w-5 text-blue-500 animate-pulse" />
                 <span className="font-semibold">24/7/365 Available</span>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-yellow-400" />
+                <MapPin className="h-5 w-5 text-blue-500" />
                 <span className="font-semibold">All QLD Areas</span>
               </div>
               <div className="flex items-center gap-2">
-                <Car className="h-5 w-5 text-yellow-400" />
+                <Car className="h-5 w-5 text-blue-500" />
                 <span className="font-semibold">30min Response</span>
               </div>
             </div>
@@ -446,23 +446,23 @@ export default function EmergencyServicesPage() {
                 <h3 className="font-bold text-lg mb-4 text-orange-900">Regional Centres</h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-orange-600" />
+                    <MapPin className="h-4 w-4 text-blue-700" />
                     Toowoomba & Darling Downs
                   </li>
                   <li className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-orange-600" />
+                    <MapPin className="h-4 w-4 text-blue-700" />
                     Bundaberg & Wide Bay
                   </li>
                   <li className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-orange-600" />
+                    <MapPin className="h-4 w-4 text-blue-700" />
                     Rockhampton & Capricornia
                   </li>
                   <li className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-orange-600" />
+                    <MapPin className="h-4 w-4 text-blue-700" />
                     Mackay & Whitsundays
                   </li>
                   <li className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-orange-600" />
+                    <MapPin className="h-4 w-4 text-blue-700" />
                     Gladstone & Central QLD
                   </li>
                 </ul>

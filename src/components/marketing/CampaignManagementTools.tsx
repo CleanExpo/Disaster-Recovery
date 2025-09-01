@@ -397,7 +397,7 @@ export default function CampaignManagementTools() {
             </p>
           </div>
           <div className="p-3 bg-orange-100 rounded-lg">
-            <Target className="w-6 h-6 text-orange-600" />
+            <Target className="w-6 h-6 text-blue-700" />
           </div>
         </div>
       </div>
@@ -650,7 +650,7 @@ export default function CampaignManagementTools() {
               <p className="text-sm text-gray-600">Allocated</p>
             </div>
             <div className="text-center p-4 bg-orange-50 rounded-lg">
-              <p className="text-2xl font-bold text-orange-600">
+              <p className="text-2xl font-bold text-blue-700">
                 {formatPercentage((pool.allocatedBudget / pool.totalBudget) * 100)}
               </p>
               <p className="text-sm text-gray-600">Utilization</p>
@@ -697,7 +697,7 @@ export default function CampaignManagementTools() {
               <div className="space-y-2">
                 {pool.restrictions.map((restriction, index) => (
                   <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                    <AlertTriangle className="w-4 h-4 text-yellow-500" />
+                    <AlertTriangle className="w-4 h-4 text-blue-600" />
                     <span>{restriction.description}</span>
                   </div>
                 ))}

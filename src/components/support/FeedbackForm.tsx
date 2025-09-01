@@ -272,7 +272,7 @@ export function FeedbackForm({
 
               <label
                 className={`flex items-center gap-3 p-4 border rounded-lg cursor-pointer transition-colours ${
-                  formData.type === 'bug_report' ? 'border-red-500 bg-red-50' : 'hover:bg-gray-50'
+                  formData.type === 'bug_report' ? 'border-red-600 bg-red-50' : 'hover:bg-gray-50'
                 }`}
               >
                 <RadioGroupItem value="bug_report" />
@@ -381,7 +381,7 @@ export function FeedbackForm({
                   <Star
                     className={`h-8 w-8 ${
                       star <= rating
-                        ? 'fill-yellow-400 text-yellow-400'
+                        ? 'fill-blue-500 text-blue-500'
                         : 'text-gray-300'
                     }`}
                   />

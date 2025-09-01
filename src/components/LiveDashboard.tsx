@@ -118,8 +118,8 @@ export default function LiveDashboard() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'critical': return 'bg-red-500';
-      case 'high': return 'bg-orange-500';
-      case 'medium': return 'bg-yellow-500';
+      case 'high': return 'bg-blue-600';
+      case 'medium': return 'bg-blue-600';
       case 'low': return 'bg-green-500';
       default: return 'bg-gray-500';
     }
@@ -127,10 +127,10 @@ export default function LiveDashboard() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'pending': return 'text-yellow-400';
+      case 'pending': return 'text-blue-500';
       case 'dispatched': return 'text-blue-400';
       case 'in-progress': return 'text-purple-400';
-      case 'completed': return 'text-green-400';
+      case 'completed': return 'text-emerald-600';
       default: return 'text-gray-400';
     }
   };
@@ -161,7 +161,7 @@ export default function LiveDashboard() {
               <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
               <div className="w-2 h-2 bg-green-500 rounded-full" />
             </div>
-            <span className="text-sm font-medium text-green-400">
+            <span className="text-sm font-medium text-emerald-600">
               {isConnected ? 'Live Dashboard Connected' : 'Connecting...'}
             </span>
           </div>
@@ -178,7 +178,7 @@ export default function LiveDashboard() {
           {[
             { label: 'Active Requests', value: stats.activeRequests, colour: 'text-red-400', icon: '🚨' },
             { label: 'Avg Response', value: stats.avgResponseTime, colour: 'text-blue-400', icon: '⏱️' },
-            { label: 'Techs Available', value: stats.techsAvailable, colour: 'text-green-400', icon: '👷' },
+            { label: 'Techs Available', value: stats.techsAvailable, colour: 'text-emerald-600', icon: '👷' },
             { label: 'Completed Today', value: stats.completedToday, colour: 'text-purple-400', icon: '✅' }
           ].map((stat, index) => (
             <div
@@ -254,7 +254,7 @@ export default function LiveDashboard() {
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${
                         tech.status === 'available' ? 'bg-green-500' :
-                        tech.status === 'busy' ? 'bg-orange-500' : 'bg-gray-500'
+                        tech.status === 'busy' ? 'bg-blue-600' : 'bg-gray-500'
                       }`} />
                       <span className="text-white font-medium text-sm">{tech.name}</span>
                     </div>
@@ -295,7 +295,7 @@ export default function LiveDashboard() {
                 <span className="text-gray-500 w-20 text-right">{activity.time}</span>
                 <div className={`w-2 h-2 rounded-full ${
                   activity.type === 'new' ? 'bg-blue-500' :
-                  activity.type === 'dispatch' ? 'bg-yellow-500' :
+                  activity.type === 'dispatch' ? 'bg-blue-600' :
                   activity.type === 'complete' ? 'bg-green-500' : 'bg-red-500'
                 }`} />
                 <span className="text-gray-300">{activity.event}</span>

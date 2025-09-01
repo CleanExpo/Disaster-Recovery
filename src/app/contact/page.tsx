@@ -40,8 +40,8 @@ export default function ModernContactPage() {
   ];
 
   const urgencyLevels = [
-    { value: 'emergency', label: 'Emergency (< 2 hours)', colour: 'from-red-500 to-orange-500' },
-    { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-orange-500 to-yellow-500' },
+    { value: 'emergency', label: 'Emergency (< 2 hours)', colour: 'from-red-500 to-blue-600' },
+    { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-blue-600 to-blue-600' },
     { value: 'standard', label: 'Standard (2-3 days)', colour: 'from-blue-500 to-cyan-500' },
     { value: 'quote', label: 'Quote Only', colour: 'from-purple-500 to-indigo-500' }
   ];
@@ -52,7 +52,7 @@ export default function ModernContactPage() {
       title: '24/7 Emergency Response',
       value: 'Online Form Available',
       subtext: 'Immediate response',
-      colour: 'from-red-500 to-orange-500'
+      colour: 'from-red-500 to-blue-600'
     },
     {
       icon: <EnvelopeIcon className="w-6 h-6" />,
@@ -150,7 +150,7 @@ export default function ModernContactPage() {
             className="text-center"
           >
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30"
+              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-blue-600/20 border border-red-600/30"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -163,7 +163,7 @@ export default function ModernContactPage() {
                 Get Immediate
               </span>
               <br />
-              <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-blue-500 bg-clip-text text-transparent">
                 Emergency Help
               </span>
             </h1>
@@ -383,9 +383,9 @@ export default function ModernContactPage() {
                       whileTap={{ scale: 0.98 }}
                       className="w-full relative group overflow-hidden"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
-                      <div className="relative bg-gradient-to-r from-red-600 to-orange-600 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-xl" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
+                      <div className="relative bg-gradient-to-r from-red-600 to-blue-700 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
                         {isSubmitting ? (
                           <>
                             <motion.div
@@ -435,7 +435,7 @@ export default function ModernContactPage() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
                   >
-                    <CheckCircleIcon className="w-24 h-24 text-green-400 mx-auto mb-6" />
+                    <CheckCircleIcon className="w-24 h-24 text-emerald-600 mx-auto mb-6" />
                   </motion.div>
                   
                   <motion.h2
@@ -464,17 +464,17 @@ export default function ModernContactPage() {
                     transition={{ delay: 0.5 }}
                     className="bg-gray-900/50 rounded-xl p-6 text-left space-y-3"
                   >
-                    <h3 className="font-semibold text-green-400 mb-3">What happens next:</h3>
+                    <h3 className="font-semibold text-emerald-600 mb-3">What happens next:</h3>
                     <div className="flex items-start gap-3">
-                      <span className="text-green-400">1.</span>
+                      <span className="text-emerald-600">1.</span>
                       <span className="text-gray-300">Immediate phone call from our dispatch team</span>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-green-400">2.</span>
+                      <span className="text-emerald-600">2.</span>
                       <span className="text-gray-300">Emergency crew dispatched to your location</span>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-green-400">3.</span>
+                      <span className="text-emerald-600">3.</span>
                       <span className="text-gray-300">On-site assessment and immediate action</span>
                     </div>
                   </motion.div>

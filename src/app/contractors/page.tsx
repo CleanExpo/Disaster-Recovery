@@ -114,7 +114,7 @@ export default function ContractorsPage() {
               </p>
             </div>
             <Link href="/contractors/apply">
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-lg px-8 py-6">
+              <Button size="lg" className="bg-blue-700 hover:bg-orange-700 text-lg px-8 py-6">
                 Apply to Join Network
               </Button>
             </Link>
@@ -153,7 +153,7 @@ export default function ContractorsPage() {
             </h2>
             <Card className="p-8">
               <div className="flex items-center mb-6">
-                <Award className="h-8 w-8 text-orange-600 mr-3" />
+                <Award className="h-8 w-8 text-blue-700 mr-3" />
                 <h3 className="text-2xl font-bold">Qualification Standards</h3>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
@@ -189,11 +189,11 @@ export default function ContractorsPage() {
             {membershipTiers.map((tier, index) => (
               <Card 
                 key={index} 
-                className={`p-8 ${tier.popular ? 'border-2 border-orange-600 relative' : ''}`}
+                className={`p-8 ${tier.popular ? 'border-2 border-blue-700 relative' : ''}`}
               >
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                    <span className="bg-blue-700 text-white px-4 py-1 rounded-full text-sm font-bold">
                       MOST POPULAR
                     </span>
                   </div>
@@ -213,7 +213,7 @@ export default function ContractorsPage() {
                 </ul>
                 <Link href="/contractors/apply">
                   <Button 
-                    className={`w-full ${tier.popular ? 'bg-orange-600 hover:bg-orange-700' : ''}`}
+                    className={`w-full ${tier.popular ? 'bg-blue-700 hover:bg-orange-700' : ''}`}
                     variant={tier.popular ? 'default' : 'outline'}
                   >
                     Select {tier.name}
@@ -307,7 +307,7 @@ export default function ContractorsPage() {
             <Card className="p-6">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star key={i} className="h-5 w-5 text-blue-600 fill-current" />
                 ))}
               </div>
               <p className="text-gray-600 mb-4">
@@ -321,7 +321,7 @@ export default function ContractorsPage() {
             <Card className="p-6">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star key={i} className="h-5 w-5 text-blue-600 fill-current" />
                 ))}
               </div>
               <p className="text-gray-600 mb-4">
@@ -335,7 +335,7 @@ export default function ContractorsPage() {
             <Card className="p-6">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
+                  <Star key={i} className="h-5 w-5 text-blue-600 fill-current" />
                 ))}
               </div>
               <p className="text-gray-600 mb-4">

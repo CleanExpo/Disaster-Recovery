@@ -51,7 +51,7 @@ export function GlassMorphismCard({
       case 'purple': return 'shadow-purple-500/25';
       case 'green': return 'shadow-green-500/25';
       case 'red': return 'shadow-red-500/25';
-      case 'yellow': return 'shadow-yellow-500/25';
+      case 'yellow': return 'shadow-blue-600/25';
       default: return 'shadow-blue-500/25';
     }
   };
@@ -120,18 +120,18 @@ export function NeonGlowButton({
       },
       green: {
         solid: 'bg-green-600 text-white border-green-500 shadow-green-500/50',
-        outline: 'border-green-500 text-green-400 hover:bg-green-500/10',
-        ghost: 'text-green-400 hover:bg-green-500/10'
+        outline: 'border-green-500 text-emerald-600 hover:bg-green-500/10',
+        ghost: 'text-emerald-600 hover:bg-green-500/10'
       },
       red: {
-        solid: 'bg-red-600 text-white border-red-500 shadow-red-500/50',
-        outline: 'border-red-500 text-red-400 hover:bg-red-500/10',
+        solid: 'bg-red-600 text-white border-red-600 shadow-red-500/50',
+        outline: 'border-red-600 text-red-400 hover:bg-red-500/10',
         ghost: 'text-red-400 hover:bg-red-500/10'
       },
       yellow: {
-        solid: 'bg-yellow-600 text-white border-yellow-500 shadow-yellow-500/50',
-        outline: 'border-yellow-500 text-yellow-400 hover:bg-yellow-500/10',
-        ghost: 'text-yellow-400 hover:bg-yellow-500/10'
+        solid: 'bg-yellow-600 text-white border-blue-600 shadow-blue-600/50',
+        outline: 'border-blue-600 text-blue-500 hover:bg-blue-600/10',
+        ghost: 'text-blue-500 hover:bg-blue-600/10'
       },
       pink: {
         solid: 'bg-pink-600 text-white border-pink-500 shadow-pink-500/50',
@@ -246,9 +246,9 @@ export function NeonText({
     switch (colour) {
       case 'blue': return 'text-blue-400';
       case 'purple': return 'text-purple-400';
-      case 'green': return 'text-green-400';
+      case 'green': return 'text-emerald-600';
       case 'red': return 'text-red-400';
-      case 'yellow': return 'text-yellow-400';
+      case 'yellow': return 'text-blue-500';
       case 'pink': return 'text-pink-400';
       case 'cyan': return 'text-cyan-400';
       default: return 'text-blue-400';

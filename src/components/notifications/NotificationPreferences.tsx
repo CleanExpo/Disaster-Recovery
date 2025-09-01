@@ -415,7 +415,7 @@ export function NotificationPreferences() {
 
                     {/* Immediate notifications */}
                     <div className="flex items-center gap-2">
-                      <AlertCircle className="h-4 w-4 text-orange-500" />
+                      <AlertCircle className="h-4 w-4 text-blue-600" />
                       <Label className="text-sm">
                         Send immediately for urgent priority (bypass quiet hours)
                       </Label>

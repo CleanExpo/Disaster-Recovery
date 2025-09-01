@@ -522,7 +522,7 @@ export default function BiohazardCleanupPage() {
             
             <div className="space-y-4">
               <div className="flex items-start">
-                <svg className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <div>
@@ -532,7 +532,7 @@ export default function BiohazardCleanupPage() {
               </div>
               
               <div className="flex items-start">
-                <svg className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <div>
@@ -542,7 +542,7 @@ export default function BiohazardCleanupPage() {
               </div>
               
               <div className="flex items-start">
-                <svg className="w-6 h-6 text-orange-500 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
                 <div>
@@ -563,7 +563,7 @@ export default function BiohazardCleanupPage() {
             
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
               <h4 className="font-semibold text-orange-700 mb-2">Documentation Includes:</h4>
-              <ul className="text-sm text-orange-600 space-y-1">
+              <ul className="text-sm text-blue-700 space-y-1">
                 <li>• Detailed work scope and procedures</li>
                 <li>• Before and after photographs</li>
                 <li>• ATP test results and verification</li>

@@ -259,7 +259,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
   const getPriorityColor = (priority: Priority) => {
     switch (priority) {
       case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-orange-600 bg-orange-100';
+      case 'high': return 'text-blue-700 bg-orange-100';
       case 'medium': return 'text-yellow-600 bg-yellow-100';
       case 'low': return 'text-blue-600 bg-blue-100';
       default: return 'text-gray-600 bg-gray-100';

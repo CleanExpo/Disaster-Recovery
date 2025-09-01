@@ -422,7 +422,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
         {/* Financial Information */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <CreditCard className="mr-2 h-5 w-5 text-orange-600" />
+            <CreditCard className="mr-2 h-5 w-5 text-blue-700" />
             Financial Information
           </h3>
           

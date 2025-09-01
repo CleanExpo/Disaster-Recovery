@@ -232,7 +232,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
       case 'signed': return <CheckCircle className="w-4 h-4 text-purple-600" />;
       case 'approved': return <CheckCircle className="w-4 h-4 text-green-600" />;
       case 'rejected': return <AlertCircle className="w-4 h-4 text-red-600" />;
-      case 'archived': return <Trash2 className="w-4 h-4 text-orange-600" />;
+      case 'archived': return <Trash2 className="w-4 h-4 text-blue-700" />;
       default: return <FileText className="w-4 h-4 text-gray-600" />;
     }
   };
@@ -361,7 +361,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
           <div className="p-6">
             <div className="flex items-center space-x-3 mb-4">
               <div className="p-2 bg-orange-50 rounded-lg">
-                <AlertCircle className="w-6 h-6 text-orange-600" />
+                <AlertCircle className="w-6 h-6 text-blue-700" />
               </div>
               <div>
                 <p className="font-medium text-gray-900">Are you sure you want to restore this version?</p>
@@ -387,7 +387,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
             </button>
             <button 
               onClick={() => handleRestoreVersion(showRestoreModal)}
-              className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
+              className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-orange-700"
             >
               Restore Version
             </button>
@@ -560,7 +560,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                     {index !== 0 && userRole === 'admin' && (
                       <button 
                         onClick={() => setShowRestoreModal(version)}
-                        className="flex items-center px-3 py-2 text-sm text-orange-600 border border-orange-300 rounded-lg hover:bg-orange-50"
+                        className="flex items-center px-3 py-2 text-sm text-blue-700 border border-orange-300 rounded-lg hover:bg-blue-50"
                       >
                         <RotateCcw className="w-4 h-4 mr-1" />
                         Restore

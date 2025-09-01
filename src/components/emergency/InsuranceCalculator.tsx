@@ -99,7 +99,7 @@ export default function InsuranceCalculator() {
           <div className="text-center mb-12">
             <div className="flex justify-center mb-4">
               <div className="bg-white/10 p-4 rounded-full">
-                <Calculator className="h-12 w-12 text-yellow-400" />
+                <Calculator className="h-12 w-12 text-blue-500" />
               </div>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -119,7 +119,7 @@ export default function InsuranceCalculator() {
               <select
                 value={damageType}
                 onChange={(e) => setDamageType(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:border-yellow-400 focus:outline-none"
+                className="w-full px-4 py-3 rounded-lg bg-white/20 text-white border border-white/30 focus:border-blue-500 focus:outline-none"
               >
                 <option value="">Select damage type...</option>
                 <option value="water-burst">Water Damage - Burst Pipe</option>
@@ -140,7 +140,7 @@ export default function InsuranceCalculator() {
                   onClick={() => setPropertyType('residential')}
                   className={`px-6 py-3 rounded-lg font-bold transition-all ${
                     propertyType === 'residential'
-                      ? 'bg-yellow-400 text-black'
+                      ? 'bg-blue-500 text-black'
                       : 'bg-white/20 text-white hover:bg-white/30'
                   }`}
                 >
@@ -150,7 +150,7 @@ export default function InsuranceCalculator() {
                   onClick={() => setPropertyType('commercial')}
                   className={`px-6 py-3 rounded-lg font-bold transition-all ${
                     propertyType === 'commercial'
-                      ? 'bg-yellow-400 text-black'
+                      ? 'bg-blue-500 text-black'
                       : 'bg-white/20 text-white hover:bg-white/30'
                   }`}
                 >
@@ -176,14 +176,14 @@ export default function InsuranceCalculator() {
                 className="mt-8 bg-black/30 rounded-xl p-6"
               >
                 <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                  <Shield className="h-6 w-6 text-green-400" />
+                  <Shield className="h-6 w-6 text-emerald-600" />
                   Your Estimated Coverage
                 </h3>
 
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-white/10 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <CheckCircle className="h-5 w-5 text-emerald-600" />
                       <span className="text-white/80">Typically Covered</span>
                     </div>
                     <div className="text-2xl font-bold text-white">
@@ -193,7 +193,7 @@ export default function InsuranceCalculator() {
 
                   <div className="bg-white/10 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <DollarSign className="h-5 w-5 text-yellow-400" />
+                      <DollarSign className="h-5 w-5 text-blue-500" />
                       <span className="text-white/80">Coverage Range</span>
                     </div>
                     <div className="text-2xl font-bold text-white">
@@ -202,9 +202,9 @@ export default function InsuranceCalculator() {
                   </div>
                 </div>
 
-                <div className="bg-yellow-400/20 border border-yellow-400/40 rounded-lg p-4 mb-6">
+                <div className="bg-blue-500/20 border border-blue-500/40 rounded-lg p-4 mb-6">
                   <div className="flex items-start gap-2">
-                    <Info className="h-5 w-5 text-yellow-400 mt-0.5" />
+                    <Info className="h-5 w-5 text-blue-500 mt-0.5" />
                     <div>
                       <div className="text-white font-bold mb-1">Important Note</div>
                       <div className="text-white/80 text-sm">{coverage.notes}</div>

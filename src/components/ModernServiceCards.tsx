@@ -61,8 +61,8 @@ const ModernServiceCards: React.FC = () => {
         'Structural Repairs'
       ],
       href: '/services/fire-damage',
-      colour: 'from-red-500 to-orange-500',
-      bgGradient: 'from-red-500/10 to-orange-500/10',
+      colour: 'from-red-500 to-blue-600',
+      bgGradient: 'from-red-500/10 to-blue-600/10',
       stats: { label: 'Restoration Time', value: '72hrs' }
     },
     {
@@ -349,7 +349,7 @@ const ModernServiceCards: React.FC = () => {
                       ease: "easeInOut"
                     }}
                   >
-                    <Zap className="h-6 w-6 text-yellow-400" />
+                    <Zap className="h-6 w-6 text-blue-500" />
                   </motion.div>
                 </div>
               </motion.div>
@@ -370,7 +370,7 @@ const ModernServiceCards: React.FC = () => {
               <span>Industry Certified</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">
-              <Clock className="h-4 w-4 text-green-400" />
+              <Clock className="h-4 w-4 text-emerald-600" />
               <span>24/7 Response</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400">

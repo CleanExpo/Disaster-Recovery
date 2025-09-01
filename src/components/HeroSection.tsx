@@ -58,7 +58,7 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
         {/* Emergency badge */}
-        <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-red-500/10 border border-red-500/30 rounded-full animate-pulse">
+        <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-red-500/10 border border-red-600/30 rounded-full animate-pulse">
           <BoltIcon className="w-4 h-4 text-red-400" />
           <span className="text-sm font-semibold text-red-400">Emergency Services Available Now</span>
           <div className="w-2 h-2 bg-red-400 rounded-full animate-ping" />
@@ -93,11 +93,11 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a
             href="/contact"
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-blue-700 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/25"
           >
             <PhoneIcon className="w-6 h-6 animate-pulse" />
             <span>Contact Us</span>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-orange-600 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-blue-700 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
           </a>
           
           <Link

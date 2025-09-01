@@ -192,7 +192,7 @@ export default function MouldRemediationPage() {
       </section>
 
       {/* Health Warning Section */}
-      <section className="bg-red-50 border-t-4 border-red-500 py-8">
+      <section className="bg-red-50 border-t-4 border-red-600 py-8">
         <div className="container mx-auto px-4">
           <div className="flex items-start gap-4">
             <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />

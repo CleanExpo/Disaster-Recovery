@@ -129,14 +129,14 @@ export default function EnhancedLandingPage() {
                   Immediate extraction, drying, and restoration. Insurance approved processes.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-green-400 font-semibold">Available 24/7</span>
+                  <span className="text-emerald-600 font-semibold">Available 24/7</span>
                   <ArrowRight className="h-5 w-5 text-blue-400 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
             </div>
 
             {/* Fire Damage Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-900/80 to-orange-800/50 backdrop-blur-sm border border-red-500/30 hover:border-red-400/50 transition-all duration-500 hover:scale-105">
+            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-900/80 to-orange-800/50 backdrop-blur-sm border border-red-600/30 hover:border-red-400/50 transition-all duration-500 hover:scale-105">
               <div className="aspect-video relative">
                 <Image
                   src="/images/optimised/damage/3D image of a house fire.png"
@@ -155,7 +155,7 @@ export default function EnhancedLandingPage() {
                   Complete fire damage restoration, smoke removal, and structural repairs.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-green-400 font-semibold">Rapid Response</span>
+                  <span className="text-emerald-600 font-semibold">Rapid Response</span>
                   <ArrowRight className="h-5 w-5 text-red-400 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
@@ -181,7 +181,7 @@ export default function EnhancedLandingPage() {
                   Certified biohazard, trauma, and contamination cleanup specialists.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-green-400 font-semibold">Certified Teams</span>
+                  <span className="text-emerald-600 font-semibold">Certified Teams</span>
                   <ArrowRight className="h-5 w-5 text-purple-400 group-hover:translate-x-2 transition-transform" />
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function EnhancedLandingPage() {
                   2
                 </div>
                 <div className="mt-4">
-                  <Users className="h-12 w-12 text-green-400 mb-4" />
+                  <Users className="h-12 w-12 text-emerald-600 mb-4" />
                   <h4 className="text-xl font-bold text-white mb-3">Contractor Arrives</h4>
                   <p className="text-green-200">
                     Certified professional on-site within hours. Insurance paperwork handled.
@@ -263,7 +263,7 @@ export default function EnhancedLandingPage() {
             </h3>
             <div className="flex justify-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+                <Star key={i} className="h-6 w-6 text-blue-500 fill-current" />
               ))}
             </div>
             <p className="text-xl text-blue-300">
@@ -279,7 +279,7 @@ export default function EnhancedLandingPage() {
                 </p>
                 <div className="flex justify-center gap-1 mb-4">
                   {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    <Star key={i} className="h-5 w-5 text-blue-500 fill-current" />
                   ))}
                 </div>
                 <p className="text-blue-300">
@@ -315,7 +315,7 @@ export default function EnhancedLandingPage() {
             {/* For Property Owners */}
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
               <div className="flex items-center gap-3 mb-4">
-                <Home className="h-10 w-10 text-green-400" />
+                <Home className="h-10 w-10 text-emerald-600" />
                 <h3 className="text-2xl font-bold text-white">Property Owners</h3>
               </div>
               <p className="text-blue-200 mb-6">
@@ -323,15 +323,15 @@ export default function EnhancedLandingPage() {
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600" />
                   24/7 Online Emergency Response
                 </li>
                 <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600" />
                   Insurance Claim Assistance
                 </li>
                 <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
+                  <CheckCircle className="h-5 w-5 text-emerald-600" />
                   Guaranteed Quality Work
                 </li>
               </ul>
@@ -402,12 +402,12 @@ export default function EnhancedLandingPage() {
             <p className="text-center text-blue-300 mb-6">Industry Certifications & Strategic Partners</p>
             <div className="flex flex-wrap justify-center items-center gap-6">
               <div className="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-lg">
-                <span className="text-green-400">✓</span>
+                <span className="text-emerald-600">✓</span>
                 <p className="text-white font-bold">RIA Member</p>
                 <span className="text-xs text-gray-400 ml-2">(Restoration Industry Association)</span>
               </div>
               <div className="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-lg">
-                <span className="text-green-400">✓</span>
+                <span className="text-emerald-600">✓</span>
                 <p className="text-white font-bold">IICRC Certified</p>
                 <span className="text-xs text-gray-400 ml-2">(Institute of Inspection Cleaning & Restoration)</span>
               </div>

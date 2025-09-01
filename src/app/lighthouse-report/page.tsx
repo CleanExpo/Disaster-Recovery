@@ -85,7 +85,7 @@ export default function LighthouseReportPage() {
 
   const getScoreColor = (score: number) => {
     if (score >= 90) return 'text-green-600';
-    if (score >= 50) return 'text-orange-600';
+    if (score >= 50) return 'text-blue-700';
     return 'text-red-600';
   };
 
@@ -94,7 +94,7 @@ export default function LighthouseReportPage() {
       case 'pass':
         return <CheckCircle2 className="h-6 w-6 text-green-600" />;
       case 'warning':
-        return <AlertCircle className="h-6 w-6 text-orange-600" />;
+        return <AlertCircle className="h-6 w-6 text-blue-700" />;
       case 'fail':
         return <XCircle className="h-6 w-6 text-red-600" />;
       default:

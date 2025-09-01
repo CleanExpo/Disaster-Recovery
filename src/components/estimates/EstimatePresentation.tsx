@@ -67,7 +67,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
     const colours: Record<string, string> = {
       minimal: 'text-green-600',
       moderate: 'text-yellow-600',
-      significant: 'text-orange-600',
+      significant: 'text-blue-700',
       severe: 'text-red-600',
       total_loss: 'text-red-800'
     };
@@ -210,7 +210,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   </div>
                   <div>
                     <p className="text-sm text-gray-600 mb-1">Affected Area</p>
-                    <p className="font-medium text-orange-600">{estimate.assessment.propertyDetails.affectedArea} sqm</p>
+                    <p className="font-medium text-blue-700">{estimate.assessment.propertyDetails.affectedArea} sqm</p>
                   </div>
                 </div>
               </div>
@@ -218,7 +218,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
               {/* Damage Assessment */}
               <div>
                 <h3 className="text-lg font-semibold mb-4 flex items-center">
-                  <AlertTriangle className="h-5 w-5 mr-2 text-orange-600" />
+                  <AlertTriangle className="h-5 w-5 mr-2 text-blue-700" />
                   Damage Assessment
                 </h3>
                 <div className="bg-orange-50 border border-orange-200 rounded p-4">

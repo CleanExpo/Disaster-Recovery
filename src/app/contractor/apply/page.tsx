@@ -267,7 +267,7 @@ function ContractorApplicationContent() {
             
             <div className="flex items-center gap-4">
               {isDemoRunning && (
-                <div className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 text-yellow-300 rounded-lg animate-pulse">
+                <div className="flex items-center gap-2 px-4 py-2 bg-blue-600/20 text-yellow-300 rounded-lg animate-pulse">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Demo Running...
                 </div>

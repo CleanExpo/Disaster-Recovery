@@ -337,7 +337,7 @@ const AvailabilityCalendar: React.FC = () => {
   const getStatusColor = (status: AvailabilityStatus) => {
     switch (status) {
       case 'available': return 'bg-green-500';
-      case 'busy': return 'bg-yellow-500';
+      case 'busy': return 'bg-blue-600';
       case 'offline': return 'bg-gray-500';
       case 'vacation': return 'bg-blue-500';
       case 'sick_leave': return 'bg-red-500';

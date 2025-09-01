@@ -34,7 +34,7 @@ export default function PartnershipAgreements() {
           <p className="text-sm text-gray-600">Clear distribution models</p>
         </div>
         <div className="bg-orange-50 p-4 rounded-lg">
-          <FaBalanceScale className="text-3xl text-orange-600 mb-2" />
+          <FaBalanceScale className="text-3xl text-blue-700 mb-2" />
           <h3 className="font-semibold">Dispute Resolution</h3>
           <p className="text-sm text-gray-600">Fair resolution procedures</p>
         </div>

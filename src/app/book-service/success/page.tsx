@@ -124,7 +124,7 @@ function BookingSuccessPageContent() {
               <div>
                 <h3 className="font-semibold text-gray-900">Contractor Assignment</h3>
                 <p className="text-gray-600">We're immediately notifying qualified contractors in your area about your emergency.</p>
-                <p className="text-sm text-orange-600 mt-1">
+                <p className="text-sm text-blue-700 mt-1">
                   Expected response: {bookingDetails.estimatedResponse}
                 </p>
               </div>
@@ -264,19 +264,19 @@ function BookingSuccessPageContent() {
           </h3>
           <ul className="space-y-2 text-orange-800">
             <li className="flex items-start gap-2">
-              <span className="text-orange-600 mt-1">•</span>
+              <span className="text-blue-700 mt-1">•</span>
               <span>Keep your phone available - the contractor will call you directly</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-orange-600 mt-1">•</span>
+              <span className="text-blue-700 mt-1">•</span>
               <span>Have your booking reference {bookingDetails.bookingId} ready when the contractor calls</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-orange-600 mt-1">•</span>
+              <span className="text-blue-700 mt-1">•</span>
               <span>If you don't receive a call within the estimated response time, please contact our support team</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-orange-600 mt-1">•</span>
+              <span className="text-blue-700 mt-1">•</span>
               <span>Take photos of the damage for insurance purposes before work begins</span>
             </li>
           </ul>

@@ -444,7 +444,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                           )}
                           {item.priceComparison.variance && (
                             <span className={`flex items-center ${
-                              Math.abs(item.priceComparison.variance) > 10 ? 'text-orange-600' : 'text-green-600'
+                              Math.abs(item.priceComparison.variance) > 10 ? 'text-blue-700' : 'text-green-600'
                             }`}>
                               <TrendingUp className="h-3 w-3 mr-1" />
                               {item.priceComparison.variance > 0 ? '+' : ''}{item.priceComparison.variance.toFixed(1)}%

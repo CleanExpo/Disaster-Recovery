@@ -278,10 +278,10 @@ export default function CommissionTracking() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Pending</p>
-              <p className="text-2xl font-bold text-orange-600">{formatCurrency(totalEarnings.pending)}</p>
+              <p className="text-2xl font-bold text-blue-700">{formatCurrency(totalEarnings.pending)}</p>
             </div>
             <div className="p-3 bg-orange-100 rounded-lg">
-              <Clock className="w-6 h-6 text-orange-600" />
+              <Clock className="w-6 h-6 text-blue-700" />
             </div>
           </div>
           <div className="mt-2 flex items-center text-sm">

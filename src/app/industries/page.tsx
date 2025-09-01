@@ -46,7 +46,7 @@ export default function IndustriesPage() {
     <div className="min-h-screen">
       <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <Building2 className="h-16 w-16 text-orange-500 mx-auto mb-6" />
+          <Building2 className="h-16 w-16 text-blue-600 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Industry-Specific Disaster Recovery
           </h1>

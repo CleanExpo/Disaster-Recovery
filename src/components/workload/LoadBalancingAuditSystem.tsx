@@ -373,7 +373,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-orange-600 bg-orange-100';
+      case 'high': return 'text-blue-700 bg-orange-100';
       case 'medium': return 'text-yellow-600 bg-yellow-100';
       case 'low': return 'text-blue-600 bg-blue-100';
       default: return 'text-gray-600 bg-gray-100';
@@ -418,7 +418,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
               disabled={!systemHealth?.redistributionNeeded}
               className={`px-4 py-2 rounded-lg flex items-center space-x-2 ${
                 systemHealth?.redistributionNeeded
-                  ? 'bg-orange-600 text-white hover:bg-orange-700'
+                  ? 'bg-blue-700 text-white hover:bg-orange-700'
                   : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             >
@@ -612,7 +612,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 <div
                   className={`h-full transition-all duration-500 ${
                     metric.utilizationRate > 80 ? 'bg-red-500' :
-                    metric.utilizationRate > 60 ? 'bg-yellow-500' :
+                    metric.utilizationRate > 60 ? 'bg-blue-600' :
                     metric.utilizationRate > 30 ? 'bg-green-500' :
                     'bg-blue-500'
                   }`}
@@ -660,16 +660,16 @@ const LoadBalancingAuditSystem: React.FC = () => {
       {systemHealth && systemHealth.alerts.length > 0 && (
         <div className="bg-white rounded-lg shadow-sm p-6">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <AlertCircle className="h-5 w-5 mr-2 text-orange-600" />
+            <AlertCircle className="h-5 w-5 mr-2 text-blue-700" />
             System Alerts
           </h3>
 
           <div className="space-y-3">
             {systemHealth.alerts.map((alert) => (
               <div key={alert.id} className={`border-l-4 pl-4 py-2 ${
-                alert.severity === 'critical' ? 'border-red-500' :
-                alert.severity === 'high' ? 'border-orange-500' :
-                alert.severity === 'medium' ? 'border-yellow-500' :
+                alert.severity === 'critical' ? 'border-red-600' :
+                alert.severity === 'high' ? 'border-blue-600' :
+                alert.severity === 'medium' ? 'border-blue-600' :
                 'border-blue-500'
               }`}>
                 <div className="flex items-center justify-between">
@@ -806,7 +806,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
               </button>
               <button
                 onClick={triggerRebalance}
-                className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
+                className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-orange-700"
               >
                 Rebalance Now
               </button>

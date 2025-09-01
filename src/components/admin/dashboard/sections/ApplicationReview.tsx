@@ -259,7 +259,7 @@ export function ApplicationReview() {
                           }`}>
                             {score}%
                           </span>
-                          {score >= 80 && <Star className="h-4 w-4 text-yellow-500" />}
+                          {score >= 80 && <Star className="h-4 w-4 text-blue-600" />}
                         </div>
                       </td>
                       <td className="p-4">

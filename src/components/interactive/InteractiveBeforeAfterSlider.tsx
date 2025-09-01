@@ -250,7 +250,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
           </div>
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full"
+              className="h-full bg-gradient-to-r from-red-500 via-blue-600 to-green-500 rounded-full"
               style={{ width: `${sliderPosition}%` }}
               animate={{
                 width: `${sliderPosition}%` }}

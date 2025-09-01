@@ -215,7 +215,7 @@ function ClaimStartContent() {
                   onChange={handleInputChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'name' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'name' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="John Smith"
                 />
@@ -232,7 +232,7 @@ function ClaimStartContent() {
                   onChange={handleInputChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'email' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'email' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="john@example.com"
                 />
@@ -249,7 +249,7 @@ function ClaimStartContent() {
                   onChange={handleInputChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'phone' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'phone' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="Enter details" />
               </div>
@@ -265,7 +265,7 @@ function ClaimStartContent() {
                   onChange={handleInputChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'address' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'address' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="123 Main St, Sydney NSW 2000"
                 />
@@ -292,7 +292,7 @@ function ClaimStartContent() {
                   onChange={handleInputChange}
                   required
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'insuranceCompany' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'insuranceCompany' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="ABC Insurance"
                 />
@@ -308,7 +308,7 @@ function ClaimStartContent() {
                   value={formData.claimNumber}
                   onChange={handleInputChange}
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'claimNumber' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'claimNumber' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="CLM-123456"
                 />
@@ -335,7 +335,7 @@ function ClaimStartContent() {
                     onChange={handleInputChange}
                     required
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                      currentField === 'incidentType' ? 'ring-2 ring-yellow-400' : ''
+                      currentField === 'incidentType' ? 'ring-2 ring-blue-500' : ''
                     }`}
                   >
                     <option value="">Select damage type</option>
@@ -359,7 +359,7 @@ function ClaimStartContent() {
                     onChange={handleInputChange}
                     required
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                      currentField === 'incidentDate' ? 'ring-2 ring-yellow-400' : ''
+                      currentField === 'incidentDate' ? 'ring-2 ring-blue-500' : ''
                     }`}
                   />
                 </div>
@@ -376,7 +376,7 @@ function ClaimStartContent() {
                   required
                   rows={4}
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'description' ? 'ring-2 ring-yellow-400' : ''
+                    currentField === 'description' ? 'ring-2 ring-blue-500' : ''
                   }`}
                   placeholder="Please describe what happened and the extent of the damage..."
                 />
@@ -468,9 +468,9 @@ function ClaimStartContent() {
                       className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition ${
                         formData.urgency === level
                           ? level === 'emergency' 
-                            ? 'border-red-500 bg-red-50'
+                            ? 'border-red-600 bg-red-50'
                             : level === 'urgent'
-                            ? 'border-orange-500 bg-orange-50'
+                            ? 'border-blue-600 bg-orange-50'
                             : 'border-blue-500 bg-blue-50'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
@@ -502,7 +502,7 @@ function ClaimStartContent() {
                   
                   <div className="p-3 bg-orange-50 border border-orange-200 rounded-lg">
                     <div className="flex items-start gap-2">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mt-1.5"></div>
+                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-1.5"></div>
                       <div>
                         <p className="text-sm font-semibold text-orange-900">Urgent (4-12 hours)</p>
                         <p className="text-xs text-orange-700">Significant damage affecting habitability, spreading damage risk. Example: Active water leak, large mould area, smoke damage.</p>

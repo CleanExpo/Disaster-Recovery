@@ -350,7 +350,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
                 placeholder="Business or individual name"
                 value={billingDetails.accountHolder}
                 onChange={(e) => setBillingDetails({...billingDetails, accountHolder: e.target.value})}
-                className={errors['billing.accountHolder'] ? 'border-red-500' : ''}
+                className={errors['billing.accountHolder'] ? 'border-red-600' : ''}
               />
             </div>
             
@@ -363,7 +363,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
                 placeholder="accounts@company.com.au"
                 value={billingDetails.billingEmail}
                 onChange={(e) => setBillingDetails({...billingDetails, billingEmail: e.target.value})}
-                className={errors['billing.email'] ? 'border-red-500' : ''}
+                className={errors['billing.email'] ? 'border-red-600' : ''}
               />
             </div>
           </div>
@@ -377,7 +377,7 @@ export function Step5Subscription({ data, updateData, errors }: Step5Subscriptio
               placeholder="123 Business Street"
               value={billingDetails.billingAddress}
               onChange={(e) => setBillingDetails({...billingDetails, billingAddress: e.target.value})}
-              className={errors['billing.address'] ? 'border-red-500' : ''}
+              className={errors['billing.address'] ? 'border-red-600' : ''}
             />
           </div>
 

@@ -127,10 +127,10 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
       case 'OPEN':
         return {
           icon: AlertCircle,
-          colour: 'text-amber-600',
+          colour: 'text-blue-700',
           bg: 'bg-gradient-to-br from-amber-50 to-yellow-50',
           border: 'border-amber-200',
-          badge: 'bg-gradient-to-r from-amber-500 to-yellow-500'
+          badge: 'bg-gradient-to-r from-blue-600 to-blue-600'
         };
       case 'IN_PROGRESS':
         return {
@@ -171,15 +171,15 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
       case 'HIGH':
         return {
           icon: ArrowUp,
-          colour: 'text-orange-600',
-          bg: 'bg-gradient-to-r from-orange-500 to-amber-500',
+          colour: 'text-blue-700',
+          bg: 'bg-gradient-to-r from-blue-600 to-blue-600',
           animation: ''
         };
       case 'MEDIUM':
         return {
           icon: Activity,
           colour: 'text-yellow-600',
-          bg: 'bg-gradient-to-r from-yellow-500 to-amber-500',
+          bg: 'bg-gradient-to-r from-blue-600 to-blue-600',
           animation: ''
         };
       case 'LOW':
@@ -211,7 +211,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'Total Tickets', value: animatedNumbers.total, icon: FileText, gradient: 'from-violet-600 to-indigo-600', trend: '+12%' },
-          { label: 'Open', value: animatedNumbers.open, icon: AlertCircle, gradient: 'from-amber-600 to-yellow-600', trend: '-5%' },
+          { label: 'Open', value: animatedNumbers.open, icon: AlertCircle, gradient: 'from-blue-700 to-yellow-600', trend: '-5%' },
           { label: 'In Progress', value: animatedNumbers.inProgress, icon: Clock, gradient: 'from-blue-600 to-cyan-600', trend: '+8%' },
           { label: 'Resolved', value: animatedNumbers.resolved, icon: CheckCircle, gradient: 'from-emerald-600 to-green-600', trend: '+15%' }
         ].map((stat, index) => (
@@ -444,7 +444,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                                       className={cn(
                                         "w-3 h-3",
                                         i < ticket.satisfaction
-                                          ? "text-yellow-500 fill-yellow-500"
+                                          ? "text-blue-600 fill-blue-600"
                                           : "text-gray-300"
                                       )}
                                     />

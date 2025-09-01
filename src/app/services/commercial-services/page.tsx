@@ -162,7 +162,7 @@ export default function CommercialServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+                className="bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
@@ -175,15 +175,15 @@ export default function CommercialServicesPage() {
             </div>
             <div className="mt-8 flex items-center justify-center gap-8 text-sm">
               <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-orange-400" />
+                <Clock className="h-5 w-5 text-blue-500" />
                 <span>2-Hour Response Time</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-orange-400" />
+                <Shield className="h-5 w-5 text-blue-500" />
                 <span>Fully Licensed & Insured</span>
               </div>
               <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-orange-400" />
+                <Users className="h-5 w-5 text-blue-500" />
                 <span>500+ Businesses Restored</span>
               </div>
             </div>
@@ -268,7 +268,7 @@ export default function CommercialServicesPage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <AlertTriangle className="h-10 w-10 text-orange-500 mb-4" />
+              <AlertTriangle className="h-10 w-10 text-blue-600 mb-4" />
               <h3 className="text-xl font-bold mb-3">Emergency Response</h3>
               <ul className="space-y-2 text-gray-600">
                 <li className="flex items-start gap-2">
@@ -493,7 +493,7 @@ export default function CommercialServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-orange-500 hover:bg-orange-600"
+              className="bg-blue-600 hover:bg-blue-700"
               onClick={() => setShowQuoteDialog(true)}
             >
               <MessageSquare className="mr-2" />
@@ -521,10 +521,10 @@ export default function CommercialServicesPage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
-              <MessageSquare className="h-5 w-5 text-orange-600" />
+              <MessageSquare className="h-5 w-5 text-blue-700" />
               <div>
                 <p className="font-semibold">Submit Form Now</p>
-                <p className="text-2xl font-bold text-orange-600">1300 814 870</p>
+                <p className="text-2xl font-bold text-blue-700">1300 814 870</p>
               </div>
             </div>
             <div className="space-y-3">

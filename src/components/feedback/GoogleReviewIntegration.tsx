@@ -217,7 +217,7 @@ export default function GoogleReviewIntegration({
           </div>
         </div>
         <div className="text-right">
-          <div className="flex items-center text-yellow-500">
+          <div className="flex items-center text-blue-600">
             <Star className="w-5 h-5 fill-current" />
             <span className="font-semibold text-gray-900 ml-1">
               {businessProfile?.averageRating}
@@ -279,7 +279,7 @@ export default function GoogleReviewIntegration({
               {businessProfile?.averageRating}
             </p>
           </div>
-          <Star className="w-8 h-8 text-yellow-500" />
+          <Star className="w-8 h-8 text-blue-600" />
         </div>
         <p className="text-xs text-green-600 mt-1">↑ 0.2 from last month</p>
       </div>
@@ -439,7 +439,7 @@ export default function GoogleReviewIntegration({
                           key={star}
                           className={`w-4 h-4 ${
                             star <= review.rating
-                              ? 'text-yellow-400 fill-current'
+                              ? 'text-blue-500 fill-current'
                               : 'text-gray-300'
                           }`}
                         />
@@ -563,7 +563,7 @@ export default function GoogleReviewIntegration({
 
           <div className="bg-gray-50 rounded-lg p-4 mb-6">
             <div className="flex items-center justify-center space-x-2 mb-2">
-              <Star className="w-5 h-5 text-yellow-400 fill-current" />
+              <Star className="w-5 h-5 text-blue-500 fill-current" />
               <span className="font-semibold text-gray-900">
                 {businessProfile?.averageRating}
               </span>

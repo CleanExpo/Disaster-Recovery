@@ -63,7 +63,7 @@ export default function NewcastleMouldRemediationPricingPage() {
                 <p className="text-sm">Insurance Covered</p>
               </Card>
             </div>
-            <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+            <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
               <MessageSquare className="mr-2 h-5 w-5" />
               Get Free Newcastle Quote - Online Form Available 24/7
             </Button>

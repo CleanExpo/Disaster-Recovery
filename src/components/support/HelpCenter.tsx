@@ -188,7 +188,7 @@ export function HelpCenter() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Target className="h-5 w-5 text-orange-600" />
+                  <Target className="h-5 w-5 text-blue-700" />
                   <CardTitle>Your Onboarding Progress</CardTitle>
                 </div>
                 <Button
@@ -354,7 +354,7 @@ export function HelpCenter() {
                   <p className="text-sm text-gray-500">SLA Compliance</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-orange-600">
+                  <p className="text-2xl font-bold text-blue-700">
                     {mockMetrics.knowledge.helpfulPercentage}%
                   </p>
                   <p className="text-sm text-gray-500">Articles Helpful</p>

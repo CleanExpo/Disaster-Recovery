@@ -616,9 +616,9 @@ export default function AffiliateSignup() {
                   }`}
                 >
                   <Award className={`w-8 h-8 mx-auto mb-2 ${
-                    tier === 'bronze' ? 'text-orange-600' :'
+                    tier === 'bronze' ? 'text-blue-700' :'
                     tier === 'silver' ? 'text-gray-500' :'
-                    tier === 'gold' ? 'text-yellow-500' :'
+                    tier === 'gold' ? 'text-blue-600' :'
                     'text-purple-600'
                   }`} />
                   <p className="font-semibold text-gray-900 capitalize">{tier}</p>"

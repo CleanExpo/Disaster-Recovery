@@ -109,7 +109,7 @@ export function AuditLogs() {
 
   const getActionColor = (action: string, success: boolean) => {
     if (!success) return 'text-red-600';
-    if (action.includes('delete') || action.includes('remove')) return 'text-orange-600';
+    if (action.includes('delete') || action.includes('remove')) return 'text-blue-700';
     if (action.includes('create') || action.includes('add')) return 'text-green-600';
     if (action.includes('update') || action.includes('modify')) return 'text-blue-600';
     return 'text-gray-600';
@@ -226,7 +226,7 @@ export function AuditLogs() {
             <CardTitle className="text-sm">Critical Events</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-orange-600">{criticalLogs.length}</p>
+            <p className="text-2xl font-bold text-blue-700">{criticalLogs.length}</p>
             <p className="text-xs text-gray-500">Security issues</p>
           </CardContent>
         </Card>
@@ -382,7 +382,7 @@ export function AuditLogs() {
                         <div>
                           <div className="flex items-center gap-2 mb-2">
                             <Shield className={`h-5 w-5 ${
-                              log.severity === 'critical' ? 'text-red-500' : 'text-orange-500'
+                              log.severity === 'critical' ? 'text-red-500' : 'text-blue-600'
                             }`} />
                             <p className="font-medium">{log.action}</p>
                             <Badge className={getSeverityColor(log.severity)}>

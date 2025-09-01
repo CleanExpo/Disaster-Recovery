@@ -409,7 +409,7 @@ export function PerformanceDashboard({ enabled = false }: { enabled?: boolean })
       transition={{ duration: 0.3 }}
     >
       <div className="space-y-1">
-        <div>FPS: <span className={metrics.fps < 50 ? 'text-red-400' : 'text-green-400'}>{metrics.fps}</span></div>
+        <div>FPS: <span className={metrics.fps < 50 ? 'text-red-400' : 'text-emerald-600'}>{metrics.fps}</span></div>
         <div>Frame Time: {metrics.frameTime}ms</div>
         <div>Memory: {metrics.memoryUsage}MB</div>
         <div>Renders: {metrics.renderCount}</div>

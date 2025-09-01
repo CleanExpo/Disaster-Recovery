@@ -469,7 +469,7 @@ export function SubscriptionManager() {
                       ) : payment.status === 'failed' ? (
                         <XCircle className="h-5 w-5 text-red-500" />
                       ) : (
-                        <Clock className="h-5 w-5 text-yellow-500" />
+                        <Clock className="h-5 w-5 text-blue-600" />
                       )}
                       <div>
                         <p className="font-medium">Invoice #{payment.invoiceNumber}</p>

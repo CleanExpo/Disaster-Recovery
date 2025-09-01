@@ -304,7 +304,7 @@ export default function WhyMouldReturnsPage() {
               <span className="text-white">Why Mould Returns</span>
             </nav>
 
-            <Badge className="mb-4 bg-red-500/20 text-red-300 border-red-500/30">
+            <Badge className="mb-4 bg-red-500/20 text-red-300 border-red-600/30">
               <AlertCircle className="h-3 w-3 mr-1" />
               VBA Research: 92% of Claims Have Water Defects
             </Badge>
@@ -325,7 +325,7 @@ export default function WhyMouldReturnsPage() {
             </p>
 
             {/* Shocking Statistics */}
-            <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6 mb-8">
+            <div className="bg-red-900/30 border border-red-600/30 rounded-lg p-6 mb-8">
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-3xl font-bold text-red-300 mb-2">1 in 3</div>
@@ -344,7 +344,7 @@ export default function WhyMouldReturnsPage() {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="#failure-reasons">
-                <Button size="lg" className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600">
+                <Button size="lg" className="bg-gradient-to-r from-red-500 to-blue-600 hover:from-red-600 hover:to-blue-700">
                   <Microscope className="mr-2 h-5 w-5" />
                   See The 7 Failure Reasons
                 </Button>
@@ -378,7 +378,7 @@ export default function WhyMouldReturnsPage() {
                 <div className="flex items-start gap-6">
                   {/* Rank indicator */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-2xl">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-blue-600 flex items-center justify-center text-white font-bold text-2xl">
                       #{failure.rank}
                     </div>
                   </div>
@@ -659,7 +659,7 @@ export default function WhyMouldReturnsPage() {
                 <Card key={idx} className={`p-6 ${item.critical ? 'border-red-200 bg-red-50' : 'border-yellow-200 bg-yellow-50'}`}>
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                      item.critical ? 'bg-red-500' : 'bg-yellow-500'
+                      item.critical ? 'bg-red-500' : 'bg-blue-600'
                     }`}>
                       {item.critical ? (
                         <AlertCircle className="h-6 w-6 text-white" />

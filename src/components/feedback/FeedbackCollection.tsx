@@ -68,8 +68,8 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
 
   const ratingLabels = {
     1: { label: 'Very Poor', icon: <Frown className="w-5 h-5" />, colour: 'text-red-500' },
-    2: { label: 'Poor', icon: <Frown className="w-5 h-5" />, colour: 'text-orange-500' },
-    3: { label: 'Average', icon: <Meh className="w-5 h-5" />, colour: 'text-yellow-500' },
+    2: { label: 'Poor', icon: <Frown className="w-5 h-5" />, colour: 'text-blue-600' },
+    3: { label: 'Average', icon: <Meh className="w-5 h-5" />, colour: 'text-blue-600' },
     4: { label: 'Good', icon: <Smile className="w-5 h-5" />, colour: 'text-green-500' },
     5: { label: 'Excellent', icon: <Smile className="w-5 h-5" />, colour: 'text-green-600' }
   };
@@ -149,7 +149,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
 
   const getRatingColor = (rating: number) => {
     if (rating >= 4) return 'text-green-500';
-    if (rating === 3) return 'text-yellow-500';
+    if (rating === 3) return 'text-blue-600';
     if (rating >= 1) return 'text-red-500';
     return 'text-gray-300';
   };
@@ -179,7 +179,7 @@ export default function FeedbackCollection({ jobId, contractorId, jobDetails, on
             onClick={() => onChange(rating)}
             onMouseEnter={() => {}}
             className={`p-1 transition-colours ${
-              rating <= value ? getRatingColor(value) : 'text-gray-300 hover:text-yellow-400'
+              rating <= value ? getRatingColor(value) : 'text-gray-300 hover:text-blue-500'
             }`}
           >
             <Star className={`w-6 h-6 ${rating <= value ? 'fill-current' : ''}`} />

@@ -555,7 +555,7 @@ const ContractorPriceUpload: React.FC = () => {
                             <div className="mt-1">
                               {rate.validationResult.flags.map((flag, index) => (
                                 <div key={index} className="flex items-center space-x-1">
-                                  <AlertTriangle className="h-3 w-3 text-yellow-500" />
+                                  <AlertTriangle className="h-3 w-3 text-blue-600" />
                                   <span className="text-xs text-gray-600">{flag.message}</span>
                                 </div>
                               ))}

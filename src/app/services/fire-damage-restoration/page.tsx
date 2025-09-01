@@ -87,7 +87,7 @@ export default function FireDamageRestorationPage() {
       <StructuredData data={breadcrumbSchema} />
 
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-3 px-4">
+      <div className="bg-gradient-to-r from-blue-700 to-red-600 text-white py-3 px-4">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Flame className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Fire Damage Emergency Response</span>
@@ -111,7 +111,7 @@ export default function FireDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+                    <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
                       <MessageSquare className="mr-2 h-5 w-5" />
                       Emergency Fire Response
                     </Button>
@@ -124,18 +124,18 @@ export default function FireDamageRestorationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
+                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <MessageSquare className="h-5 w-5" />
                         Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
-                          <Truck className="h-8 w-8 mx-auto mb-1 text-orange-600" />
+                          <Truck className="h-8 w-8 mx-auto mb-1 text-blue-700" />
                           <p className="font-medium">Rapid Response</p>
                           <p className="text-gray-600">&lt; 60 minutes</p>
                         </div>
                         <div className="text-center">
-                          <Shield className="h-8 w-8 mx-auto mb-1 text-orange-600" />
+                          <Shield className="h-8 w-8 mx-auto mb-1 text-blue-700" />
                           <p className="font-medium">Insurance Help</p>
                           <p className="text-gray-600">We manage claims</p>
                         </div>
@@ -151,15 +151,15 @@ export default function FireDamageRestorationPage() {
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-orange-600" />
+                  <Clock className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">24/7 Response</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-orange-600" />
+                  <Shield className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">Insurance Approved</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-orange-600" />
+                  <CheckCircle className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">IICRC Certified</span>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function FireDamageRestorationPage() {
                 priority
                 loading="eager"
               />
-              <div className="absolute -bottom-4 -right-4 bg-orange-600 text-white p-4 rounded-lg shadow-lg">
+              <div className="absolute -bottom-4 -right-4 bg-blue-700 text-white p-4 rounded-lg shadow-lg">
                 <p className="font-bold text-lg">Emergency Response</p>
                 <p className="text-2xl font-bold">24/7 Available</p>
               </div>
@@ -185,7 +185,7 @@ export default function FireDamageRestorationPage() {
       </section>
 
       {/* Critical Services Alert */}
-      <section className="bg-red-50 border-t-4 border-red-500 py-8">
+      <section className="bg-red-50 border-t-4 border-red-600 py-8">
         <div className="container mx-auto px-4">
           <div className="flex items-start gap-4">
             <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
@@ -211,7 +211,7 @@ export default function FireDamageRestorationPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <Card>
               <CardHeader>
-                <Flame className="h-10 w-10 text-orange-600 mb-4" />
+                <Flame className="h-10 w-10 text-blue-700 mb-4" />
                 <CardTitle>Emergency Board-Up & Securing</CardTitle>
                 <CardDescription>
                   Immediate property protection to prevent further damage
@@ -241,7 +241,7 @@ export default function FireDamageRestorationPage() {
 
             <Card>
               <CardHeader>
-                <Wind className="h-10 w-10 text-orange-600 mb-4" />
+                <Wind className="h-10 w-10 text-blue-700 mb-4" />
                 <CardTitle>Smoke & Soot Removal</CardTitle>
                 <CardDescription>
                   Advanced cleaning techniques for complete smoke elimination
@@ -271,7 +271,7 @@ export default function FireDamageRestorationPage() {
 
             <Card>
               <CardHeader>
-                <Home className="h-10 w-10 text-orange-600 mb-4" />
+                <Home className="h-10 w-10 text-blue-700 mb-4" />
                 <CardTitle>Structural Restoration</CardTitle>
                 <CardDescription>
                   Complete rebuild and repair of fire-damaged structures
@@ -312,19 +312,19 @@ export default function FireDamageRestorationPage() {
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Ultrasonic cleaning for electronics</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Document & photo restoration</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Textile & clothing cleaning</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Furniture restoration</span>
                   </li>
                 </ul>
@@ -341,19 +341,19 @@ export default function FireDamageRestorationPage() {
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Water extraction & drying</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Mould prevention treatment</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Dehumidification services</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Moisture monitoring</span>
                   </li>
                 </ul>
@@ -412,14 +412,14 @@ export default function FireDamageRestorationPage() {
               ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
                       {item.step}
                     </div>
                   </div>
                   <div className="flex-grow">
                     <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                     <p className="text-gray-700 mb-2">{item.description}</p>
-                    <span className="text-sm text-orange-600 font-medium">{item.time}</span>
+                    <span className="text-sm text-blue-700 font-medium">{item.time}</span>
                   </div>
                 </div>
               ))}
@@ -473,7 +473,7 @@ export default function FireDamageRestorationPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-red-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Fire Damage? We're Here to Help 24/7
@@ -483,11 +483,11 @@ export default function FireDamageRestorationPage() {
             are ready to respond immediately and restore your home or business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <MessageSquare className="h-5 w-5" />
               Use Our Online Form'
             </a>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-orange-600">
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-blue-700">
               Schedule Assessment
             </Button>
           </div>

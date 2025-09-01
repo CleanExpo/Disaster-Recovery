@@ -459,7 +459,7 @@ const AvailabilityToggle: React.FC = () => {
                   {item.status === 'completed' ? (
                     <CheckCircle className="h-5 w-5 text-green-500" />
                   ) : item.status === 'in_progress' ? (
-                    <Clock className="h-5 w-5 text-yellow-500" />
+                    <Clock className="h-5 w-5 text-blue-600" />
                   ) : (
                     <XCircle className="h-5 w-5 text-gray-400" />
                   )}

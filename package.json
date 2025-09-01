@@ -31,6 +31,8 @@
     "analyze:platform": "tsx scripts/analyze-platform-transformation.ts",
     "analyze:hrm": "tsx scripts/analyze-platform-transformation.ts --hrm-only",
     "analyze:agents": "tsx scripts/analyze-platform-transformation.ts --agents-only",
+    "audit:site": "tsx scripts/audit-site-hrm.ts",
+    "fix:colors": "tsx scripts/fix-color-scheme.ts",
     "web-optimise:downloads": "node scripts/web-optimise-images.js \"C:\\Users\\Disaster Recovery 4\\Downloads\"",
     "deploy": "node scripts/auto-deploy.js once",
     "deploy:watch": "node scripts/auto-deploy.js watch",

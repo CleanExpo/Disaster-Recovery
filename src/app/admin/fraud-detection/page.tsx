@@ -192,12 +192,12 @@ export default function FraudDetectionAdmin() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Needs Review</p>
-                <p className="text-3xl font-bold text-orange-600">
+                <p className="text-3xl font-bold text-blue-700">
                   {logs.filter(log => log.reviewRequired).length}
                 </p>
               </div>
               <div className="p-3 bg-orange-100 rounded-full">
-                <Eye className="w-6 h-6 text-orange-600" />
+                <Eye className="w-6 h-6 text-blue-700" />
               </div>
             </div>
           </div>
@@ -348,7 +348,7 @@ export default function FraudDetectionAdmin() {
                           <div
                             className={`h-1 rounded-full ${
                               log.confidenceScore >= 70 ? 'bg-green-500' :
-                              log.confidenceScore >= 40 ? 'bg-yellow-500' : 'bg-red-500'
+                              log.confidenceScore >= 40 ? 'bg-blue-600' : 'bg-red-500'
                             }`}
                             style={{ width: `${log.confidenceScore}%` }}
                           ></div>
@@ -364,7 +364,7 @@ export default function FraudDetectionAdmin() {
                           {log.analysisStatus}
                         </span>
                         {log.reviewRequired && (
-                          <div className="flex items-center gap-1 text-xs text-orange-600">
+                          <div className="flex items-center gap-1 text-xs text-blue-700">
                             <Eye className="w-3 h-3" />
                             Review Required
                           </div>

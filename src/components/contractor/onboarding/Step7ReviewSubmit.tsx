@@ -263,7 +263,7 @@ export default function Step7ReviewSubmit({
       case 'complete':
         return <CheckCircle2 className="h-5 w-5 text-green-500" />
       case 'warning':
-        return <AlertTriangle className="h-5 w-5 text-yellow-500" />
+        return <AlertTriangle className="h-5 w-5 text-blue-600" />
       case 'incomplete':
         return <XCircle className="h-5 w-5 text-red-500" />
     }

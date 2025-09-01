@@ -193,7 +193,7 @@ export function NotificationHistory() {
       case 'failed':
         return <XCircle className="h-4 w-4 text-red-500" />;
       case 'sent':
-        return <Clock className="h-4 w-4 text-yellow-500" />;
+        return <Clock className="h-4 w-4 text-blue-600" />;
       default:
         return <AlertCircle className="h-4 w-4 text-gray-500" />;
     }
@@ -648,8 +648,8 @@ export function NotificationHistory() {
                           <div
                             className={`h-2 rounded-full ${
                               priority === 'urgent' ? 'bg-red-500' :
-                              priority === 'high' ? 'bg-orange-500' :
-                              priority === 'medium' ? 'bg-yellow-500' :
+                              priority === 'high' ? 'bg-blue-600' :
+                              priority === 'medium' ? 'bg-blue-600' :
                               'bg-gray-500'
                             }`}
                             style={{ width: `${(count / analytics.totalSent) * 100}%` }}

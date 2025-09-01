@@ -104,7 +104,7 @@ export default function WhyIndependentProfessionalsPage() {
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Award className="h-16 w-16 mx-auto mb-6 text-yellow-400" />
+            <Award className="h-16 w-16 mx-auto mb-6 text-blue-500" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               The Truth About Restoration Qualifications
             </h1>
@@ -125,7 +125,7 @@ export default function WhyIndependentProfessionalsPage() {
       <section className="py-16 bg-red-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Card className="p-8 border-2 border-red-500">
+            <Card className="p-8 border-2 border-red-600">
               <h2 className="text-3xl font-bold mb-6 text-red-600 text-center">
                 The Industry Secret Big Restoration Companies Don't Want You to Know
               </h2>
@@ -251,7 +251,7 @@ export default function WhyIndependentProfessionalsPage() {
               </div>
             </Card>
             
-            <Card className="p-8 border-2 border-red-500">
+            <Card className="p-8 border-2 border-red-600">
               <Building className="h-12 w-12 text-red-600 mb-4" />
               <h3 className="text-2xl font-bold mb-6 text-red-600">
                 Builder/Restorer Employee Training
@@ -338,7 +338,7 @@ export default function WhyIndependentProfessionalsPage() {
           </div>
           
           <div className="mt-12 max-w-3xl mx-auto">
-            <Card className="p-8 bg-yellow-50 border-2 border-yellow-400">
+            <Card className="p-8 bg-yellow-50 border-2 border-blue-500">
               <h3 className="text-2xl font-bold mb-4 text-center">
                 The Industry Evolution
               </h3>
@@ -392,7 +392,7 @@ export default function WhyIndependentProfessionalsPage() {
               </p>
             </Card>
             <Card className="p-6 text-center">
-              <Clock className="h-10 w-10 text-orange-600 mx-auto mb-3" />
+              <Clock className="h-10 w-10 text-blue-700 mx-auto mb-3" />
               <h3 className="font-bold mb-2">Faster Resolution</h3>
               <p className="text-sm text-gray-600">
                 Direct communication, no corporate delays

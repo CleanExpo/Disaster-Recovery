@@ -89,7 +89,7 @@ const ModernHeroSection: React.FC = () => {
       icon: Star, 
       label: 'Customer Rating', 
       value: '4.9/5 Stars',
-      colour: 'from-yellow-500 to-orange-500'
+      colour: 'from-blue-600 to-blue-600'
     }
   ];
 
@@ -163,7 +163,7 @@ const ModernHeroSection: React.FC = () => {
               <span className="text-sm font-semibold text-red-300 tracking-wide">
                 24/7 Online Emergency Response Available
               </span>
-              <Zap className="h-4 w-4 text-yellow-400 animate-pulse" />
+              <Zap className="h-4 w-4 text-blue-500 animate-pulse" />
             </motion.div>
             
             {/* Main Heading */}

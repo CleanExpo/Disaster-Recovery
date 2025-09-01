@@ -23,7 +23,7 @@ export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: 
     switch (type) {
       case 'fire':
         return {
-          colours: ['#FF4500', '#FF6347', '#FFD700', '#FF8C00'],
+          colours: ['#FF4500', '#FF6347', '#FFD700', '#2563EB'],
           size: 'w-2 h-2' };
       case 'water':
         return {
@@ -83,7 +83,7 @@ export function FireParticles({ intensity = 'medium', className = '' }: Particle
   return (
     <div className={`relative ${className}`}>
       <CSSParticleEffect type="fire" intensity={intensity} />
-      <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 via-red-500/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 via-red-500/5 to-transparent" />
     </div>
   );
 }

@@ -72,7 +72,7 @@ export default function EquipmentCatalogPage() {
               <div className="text-gray-600 mt-2">Categories</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-orange-600">24/7</div>
+              <div className="text-4xl font-bold text-blue-700">24/7</div>
               <div className="text-gray-600 mt-2">Availability</div>
             </div>
             <div>

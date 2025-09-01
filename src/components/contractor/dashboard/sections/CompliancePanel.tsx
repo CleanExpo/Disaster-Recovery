@@ -46,7 +46,7 @@ export function CompliancePanel({ compliance, certifications = [], insurance = [
       case 'VALID':
         return <CheckCircle className="h-4 w-4 text-green-500" />;
       case 'EXPIRING':
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />;
+        return <AlertCircle className="h-4 w-4 text-blue-600" />;
       case 'EXPIRED':
         return <XCircle className="h-4 w-4 text-red-500" />;
       case 'PENDING':
@@ -95,7 +95,7 @@ export function CompliancePanel({ compliance, certifications = [], insurance = [
             <div className="flex items-center gap-2">
               <Shield className={`h-5 w-5 ${
                 compliance.overallStatus === 'COMPLIANT' ? 'text-green-500' :
-                compliance.overallStatus === 'ACTION_REQUIRED' ? 'text-yellow-500' :
+                compliance.overallStatus === 'ACTION_REQUIRED' ? 'text-blue-600' :
                 'text-red-500'
               }`} />
               <Badge className={

@@ -493,7 +493,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                     placeholder="John Smith"
                     value={ref.name}
                     onChange={(e) => updateReference(index, 'name', e.target.value)}
-                    className={errors[`reference.${index}.name`] ? 'border-red-500' : ''}
+                    className={errors[`reference.${index}.name`] ? 'border-red-600' : ''}
                   />
                 </div>
 
@@ -506,7 +506,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                     placeholder="ABC Insurance"
                     value={ref.companyName}
                     onChange={(e) => updateReference(index, 'companyName', e.target.value)}
-                    className={errors[`reference.${index}.companyName`] ? 'border-red-500' : ''}
+                    className={errors[`reference.${index}.companyName`] ? 'border-red-600' : ''}
                   />
                 </div>
 
@@ -537,7 +537,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                       placeholder="Contact Form"
                       value={ref.phone}
                       onChange={(e) => updateReference(index, 'phone', formatPhoneNumber(e.target.value))}
-                      className={errors[`reference.${index}.phone`] ? 'border-red-500' : ''}
+                      className={errors[`reference.${index}.phone`] ? 'border-red-600' : ''}
                     />
                   </div>
                 </div>

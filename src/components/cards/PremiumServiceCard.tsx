@@ -41,12 +41,12 @@ const categoryConfig = {
   },
   fire: {
     icon: Flame,
-    gradient: 'from-orange-500 to-red-500',
-    shadowColor: 'shadow-orange-500/20',
-    borderColor: 'border-orange-500/20',
+    gradient: 'from-blue-600 to-red-500',
+    shadowColor: 'shadow-blue-600/20',
+    borderColor: 'border-blue-600/20',
     bgPattern: 'bg-gradient-to-br from-orange-50 to-red-50',
     iconBg: 'bg-gradient-to-br from-orange-100 to-red-100',
-    iconColor: 'text-orange-600'
+    iconColor: 'text-blue-700'
   },
   mould: {
     icon: Shield,
@@ -70,7 +70,7 @@ const categoryConfig = {
     icon: AlertTriangle,
     gradient: 'from-red-500 to-pink-500',
     shadowColor: 'shadow-red-500/20',
-    borderColor: 'border-red-500/20',
+    borderColor: 'border-red-600/20',
     bgPattern: 'bg-gradient-to-br from-red-50 to-pink-50',
     iconBg: 'bg-gradient-to-br from-red-100 to-pink-100',
     iconColor: 'text-red-600'

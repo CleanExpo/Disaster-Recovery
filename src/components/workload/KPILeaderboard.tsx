@@ -145,11 +145,11 @@ const KPILeaderboard: React.FC<KPILeaderboardProps> = ({
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:
-        return <Trophy className="w-5 h-5 text-yellow-500" />;
+        return <Trophy className="w-5 h-5 text-blue-600" />;
       case 2:
         return <Medal className="w-5 h-5 text-gray-400" />;
       case 3:
-        return <Medal className="w-5 h-5 text-orange-600" />;
+        return <Medal className="w-5 h-5 text-blue-700" />;
       default:
         return <span className="w-5 h-5 flex items-center justify-center text-sm font-bold text-gray-600">{rank}</span>;
     }

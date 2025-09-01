@@ -36,7 +36,7 @@ export default function QueenslandPage() {
               24/7 Online Emergency Response Across All QLD Regions
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+              <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Online Form Available 24/7
               </Button>
@@ -75,7 +75,7 @@ export default function QueenslandPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {disasters.map((disaster, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                <AlertTriangle className="h-12 w-12 text-orange-600 mb-4" />
+                <AlertTriangle className="h-12 w-12 text-blue-700 mb-4" />
                 <h3 className="text-xl font-bold mb-2">{disaster}</h3>
                 <p className="text-gray-600 mb-4">
                   Rapid response and complete restoration for {disaster.toLowerCase()} damage.
@@ -118,7 +118,7 @@ export default function QueenslandPage() {
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <AlertTriangle className="h-16 w-16 text-orange-600 mx-auto mb-6" />
+            <AlertTriangle className="h-16 w-16 text-blue-700 mx-auto mb-6" />
             <h2 className="text-3xl font-bold mb-6">
               Queensland Climate & Disaster Risks
             </h2>
@@ -163,7 +163,7 @@ export default function QueenslandPage() {
             From Brisbane to regional areas, no location is too remote.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+            <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
               <MessageSquare className="mr-2 h-5 w-5" />
               Call Online Form Available 24/7
             </Button>

@@ -435,7 +435,7 @@ const AutomatedReallocationEngine: React.FC = () => {
             }`}>
               <div className={`w-2 h-2 rounded-full ${
                 engineStatus === 'active' ? 'bg-green-500' :
-                engineStatus === 'processing' ? 'bg-yellow-500 animate-pulse' :
+                engineStatus === 'processing' ? 'bg-blue-600 animate-pulse' :
                 'bg-gray-500'
               }`} />
               <span className="text-sm font-medium capitalize">{engineStatus}</span>
@@ -514,7 +514,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                   <div
                     className={`absolute left-0 top-0 h-full transition-all ${
                       contractor.utilizationRate > 80 ? 'bg-red-500' :
-                      contractor.utilizationRate > 60 ? 'bg-yellow-500' :
+                      contractor.utilizationRate > 60 ? 'bg-blue-600' :
                       'bg-green-500'
                     }`}
                     style={{ width: `${contractor.utilizationRate}%` }}

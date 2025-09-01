@@ -141,7 +141,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'urgent': return 'text-red-600 bg-red-50 border-red-200';
-      case 'high': return 'text-orange-600 bg-orange-50 border-orange-200';
+      case 'high': return 'text-blue-700 bg-orange-50 border-orange-200';
       case 'medium': return 'text-yellow-600 bg-yellow-50 border-yellow-200';
       case 'low': return 'text-blue-600 bg-blue-50 border-blue-200';
       default: return 'text-gray-600 bg-gray-50 border-gray-200';
@@ -385,7 +385,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
                     Expires: {new Date(alert.expiryDate).toLocaleDateString()}
                   </div>
                   <div className={`flex items-center font-medium ${
-                    alert.daysUntilExpiry < 0 ? 'text-red-600' : 'text-orange-600'
+                    alert.daysUntilExpiry < 0 ? 'text-red-600' : 'text-blue-700'
                   }`}>
                     <Clock className="w-4 h-4 mr-1" />
                     {alert.daysUntilExpiry < 0 

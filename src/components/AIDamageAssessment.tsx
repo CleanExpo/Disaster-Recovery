@@ -60,9 +60,9 @@ export default function AIDamageAssessment() {
 
   const getSeverityColor = (severity: string) => {
     switch (severity) {
-      case 'minor': return 'text-green-400 bg-green-400/10 border-green-400/30';
-      case 'moderate': return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/30';
-      case 'severe': return 'text-orange-400 bg-orange-400/10 border-orange-400/30';
+      case 'minor': return 'text-emerald-600 bg-emerald-500/10 border-green-400/30';
+      case 'moderate': return 'text-blue-500 bg-blue-500/10 border-blue-500/30';
+      case 'severe': return 'text-blue-500 bg-blue-500/10 border-blue-500/30';
       case 'critical': return 'text-red-400 bg-red-400/10 border-red-400/30';
       default: return 'text-gray-400 bg-gray-400/10 border-gray-400/30';
     }
@@ -71,8 +71,8 @@ export default function AIDamageAssessment() {
   const getUrgencyColor = (urgency: string) => {
     switch (urgency) {
       case 'low': return 'bg-green-500';
-      case 'medium': return 'bg-yellow-500';
-      case 'high': return 'bg-orange-500';
+      case 'medium': return 'bg-blue-600';
+      case 'high': return 'bg-blue-600';
       case 'immediate': return 'bg-red-500';
       default: return 'bg-gray-500';
     }
@@ -261,7 +261,7 @@ export default function AIDamageAssessment() {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <button className="flex-1 py-2 px-4 bg-orange-600 hover:bg-orange-700 rounded-lg font-medium text-white transition-colours">
+                  <button className="flex-1 py-2 px-4 bg-blue-700 hover:bg-orange-700 rounded-lg font-medium text-white transition-colours">
                     Request Service
                   </button>
                   <button className="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium text-white transition-colours">

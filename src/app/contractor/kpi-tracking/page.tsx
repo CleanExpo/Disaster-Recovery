@@ -352,7 +352,7 @@ export default function KPITrackingPage() {
                     className={`h-2 rounded-full ${
                       metric.status === 'excellent' ? 'bg-green-500' :
                       metric.status === 'good' ? 'bg-blue-500' :
-                      metric.status === 'warning' ? 'bg-yellow-500' :
+                      metric.status === 'warning' ? 'bg-blue-600' :
                       'bg-red-500'
                     }`}
                     style={{ width: `${Math.min((metric.value / metric.target) * 100, 100)}%` }}
@@ -475,7 +475,7 @@ export default function KPITrackingPage() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center gap-1">
-                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                          <Star className="h-4 w-4 text-blue-500 fill-current" />
                           <span className="text-sm text-gray-900">
                             {job.kpis.customerRating || 'Pending'}
                           </span>

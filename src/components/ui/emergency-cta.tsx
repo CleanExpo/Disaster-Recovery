@@ -20,7 +20,7 @@ export function EmergencyCTA({
       case 'urgent':
         return 'bg-red-600 hover:bg-red-700 text-white animate-pulse';
       case 'hero':
-        return 'bg-orange-600 hover:bg-orange-700 text-white text-lg px-8 py-6';
+        return 'bg-blue-700 hover:bg-orange-700 text-white text-lg px-8 py-6';
       default:
         return 'bg-blue-600 hover:bg-blue-700 text-white';
     }

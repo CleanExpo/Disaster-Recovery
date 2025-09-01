@@ -402,7 +402,7 @@ export function UserManagement() {
                             MFA
                           </Badge>
                         ) : (
-                          <Badge variant="outline" className="text-xs text-orange-600">
+                          <Badge variant="outline" className="text-xs text-blue-700">
                             <Shield className="h-3 w-3 mr-1" />
                             No MFA
                           </Badge>

@@ -299,7 +299,7 @@ export default function GetHelpPage() {
                 </Card>
 
                 {/* Submit Button */}
-                <Button type="submit" size="lg" className="w-full bg-orange-600 hover:bg-orange-700">
+                <Button type="submit" size="lg" className="w-full bg-blue-700 hover:bg-orange-700">
                   Submit Emergency Request - Get Multiple Quotes
                 </Button>
               </form>
@@ -318,7 +318,7 @@ export default function GetHelpPage() {
             <div className="grid md:grid-cols-4 gap-6">
               <Card className="p-6 text-center">
                 <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-orange-600">1</span>
+                  <span className="font-bold text-blue-700">1</span>
                 </div>
                 <h3 className="font-bold mb-2">Submit Request</h3>
                 <p className="text-sm text-gray-600">
@@ -327,7 +327,7 @@ export default function GetHelpPage() {
               </Card>
               <Card className="p-6 text-center">
                 <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-orange-600">2</span>
+                  <span className="font-bold text-blue-700">2</span>
                 </div>
                 <h3 className="font-bold mb-2">Smart Matching</h3>
                 <p className="text-sm text-gray-600">
@@ -336,7 +336,7 @@ export default function GetHelpPage() {
               </Card>
               <Card className="p-6 text-center">
                 <div className="bg-orange-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                  <span className="font-bold text-orange-600">3</span>
+                  <span className="font-bold text-blue-700">3</span>
                 </div>
                 <h3 className="font-bold mb-2">Receive Quotes</h3>
                 <p className="text-sm text-gray-600">

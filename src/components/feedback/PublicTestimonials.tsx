@@ -244,11 +244,11 @@ export default function PublicTestimonials({
     >
       {testimonial.featured && (
         <div className="flex items-center justify-between mb-4">
-          <span className="px-3 py-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-xs font-medium rounded-full flex items-center">
+          <span className="px-3 py-1 bg-gradient-to-r from-blue-500 to-yellow-600 text-white text-xs font-medium rounded-full flex items-center">
             <Award className="w-3 h-3 mr-1" />
             Featured
           </span>
-          <div className="flex items-center text-yellow-500">
+          <div className="flex items-center text-blue-600">
             {[...Array(testimonial.rating)].map((_, i) => (
               <Star key={i} className="w-4 h-4 fill-current" />
             ))}
@@ -440,7 +440,7 @@ export default function PublicTestimonials({
             <div className="flex items-center space-x-4">
               <span>Average rating:</span>
               <div className="flex items-center">
-                <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                <Star className="w-4 h-4 text-blue-500 fill-current mr-1" />
                 <span className="font-medium">4.8/5</span>
               </div>
             </div>
@@ -454,7 +454,7 @@ export default function PublicTestimonials({
           <div className="flex items-center justify-center space-x-2">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                <Star key={i} className="w-5 h-5 text-blue-500 fill-current" />
               ))}
             </div>
             <span className="text-gray-600">

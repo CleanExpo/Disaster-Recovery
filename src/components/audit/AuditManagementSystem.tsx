@@ -266,7 +266,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
   const getRiskColor = (risk: RiskLevel) => {
     switch (risk) {
       case 'critical': return 'text-red-600 bg-red-50';
-      case 'high': return 'text-orange-600 bg-orange-50';
+      case 'high': return 'text-blue-700 bg-orange-50';
       case 'medium': return 'text-yellow-600 bg-yellow-50';
       case 'low': return 'text-green-600 bg-green-50';
       case 'minimal': return 'text-blue-600 bg-blue-50';
@@ -548,7 +548,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
             <>
               <button 
                 onClick={triggerSurpriseAudit}
-                className="flex items-center px-4 py-2 border border-orange-300 text-orange-600 rounded-lg hover:bg-orange-50"
+                className="flex items-center px-4 py-2 border border-orange-300 text-blue-700 rounded-lg hover:bg-blue-50"
               >
                 <Shuffle className="w-4 h-4 mr-2" />
                 Surprise Audit

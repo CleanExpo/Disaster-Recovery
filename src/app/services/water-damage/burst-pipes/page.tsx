@@ -191,15 +191,15 @@ export default function BurstPipesPage() {
             </div>
             <div className="mt-8 flex items-center justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-yellow-400" />
+                <Clock className="h-5 w-5 text-blue-500" />
                 <span>60min Response</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-yellow-400" />
+                <Shield className="h-5 w-5 text-blue-500" />
                 <span>Insurance Approved</span>
               </div>
               <div className="flex items-center gap-2">
-                <Wrench className="h-5 w-5 text-yellow-400" />
+                <Wrench className="h-5 w-5 text-blue-500" />
                 <span>Licensed Plumbers</span>
               </div>
             </div>
@@ -217,7 +217,7 @@ export default function BurstPipesPage() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {emergencySteps.map((item, index) => (
-                <Card key={index} className={`p-4 ${item.critical ? 'border-2 border-red-500 bg-red-50' : ''}`}>
+                <Card key={index} className={`p-4 ${item.critical ? 'border-2 border-red-600 bg-red-50' : ''}`}>
                   <div className="flex items-start gap-3">
                     <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                       item.critical ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
@@ -366,7 +366,7 @@ export default function BurstPipesPage() {
           <div className="max-w-5xl mx-auto">
             <Card className="p-8 bg-orange-50 border-2 border-orange-200">
               <h2 className="text-2xl font-bold mb-6 text-center">
-                <Gauge className="inline-block h-8 w-8 text-orange-600 mr-2" />
+                <Gauge className="inline-block h-8 w-8 text-blue-700 mr-2" />
                 Warning Signs of Pipe Problems
               </h2>
               <p className="text-center text-gray-600 mb-6">
@@ -375,7 +375,7 @@ export default function BurstPipesPage() {
               <div className="grid md:grid-cols-2 gap-4">
                 {warningSignsOfPipeFailure.map((sign, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <XCircle className="h-5 w-5 text-orange-600 flex-shrink-0" />
+                    <XCircle className="h-5 w-5 text-blue-700 flex-shrink-0" />
                     <span className="text-gray-700">{sign}</span>
                   </div>
                 ))}
@@ -386,7 +386,7 @@ export default function BurstPipesPage() {
                 </p>
                 <Button 
                   variant="outline"
-                  className="border-orange-600 text-orange-600 hover:bg-orange-50"
+                  className="border-blue-700 text-blue-700 hover:bg-blue-50"
                   onClick={() => setShowQuoteDialog(true)}
                 >
                   Schedule Inspection

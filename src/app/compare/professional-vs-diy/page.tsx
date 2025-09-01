@@ -283,7 +283,7 @@ export default function ProfessionalVsDIYPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Card className="p-6">
-              <Wrench className="h-10 w-10 text-orange-600 mb-4" />
+              <Wrench className="h-10 w-10 text-blue-700 mb-4" />
               <h3 className="text-xl font-bold mb-3">Wrong Equipment</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Home dehumidifiers too small</li>
@@ -293,7 +293,7 @@ export default function ProfessionalVsDIYPage() {
               </ul>
             </Card>
             <Card className="p-6">
-              <Clock className="h-10 w-10 text-orange-600 mb-4" />
+              <Clock className="h-10 w-10 text-blue-700 mb-4" />
               <h3 className="text-xl font-bold mb-3">Time Critical Mistakes</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• 24-48 hour mould window missed</li>

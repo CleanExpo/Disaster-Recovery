@@ -321,7 +321,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
         {/* Safety Equipment */}
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
-            <AlertTriangle className="mr-2 h-5 w-5 text-orange-600" />
+            <AlertTriangle className="mr-2 h-5 w-5 text-blue-700" />
             Safety Equipment
           </h3>
           

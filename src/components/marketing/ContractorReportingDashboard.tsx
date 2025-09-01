@@ -273,7 +273,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             </p>
           </div>
           <div className="p-3 bg-orange-50 rounded-lg">
-            <Award className="w-6 h-6 text-orange-600" />
+            <Award className="w-6 h-6 text-blue-700" />
           </div>
         </div>
       </div>
@@ -429,7 +429,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
   const MarketingOpportunities = () => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center space-x-2 mb-6">
-        <Lightbulb className="w-5 h-5 text-yellow-500" />
+        <Lightbulb className="w-5 h-5 text-blue-600" />
         <h3 className="text-lg font-semibold text-gray-900">Marketing Opportunities</h3>
       </div>
       

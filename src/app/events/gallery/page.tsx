@@ -163,7 +163,7 @@ export default function EventsGalleryPage() {
             {[
               { value: '1000+', label: 'Properties Restored', colour: 'text-blue-600', bgColor: 'bg-blue-100', delay: 0.1 },
               { value: '24/7', label: 'Emergency Response', colour: 'text-green-600', bgColor: 'bg-green-100', delay: 0.2 },
-              { value: '50+', label: 'Major Events', colour: 'text-orange-600', bgColor: 'bg-orange-100', delay: 0.3 },
+              { value: '50+', label: 'Major Events', colour: 'text-blue-700', bgColor: 'bg-orange-100', delay: 0.3 },
               { value: '100%', label: 'Success Rate', colour: 'text-purple-600', bgColor: 'bg-purple-100', delay: 0.4 },
               { value: '< 2hrs', label: 'Response Time', colour: 'text-red-600', bgColor: 'bg-red-100', delay: 0.5 },
             ].map((stat, index) => (
@@ -522,7 +522,7 @@ export default function EventsGalleryPage() {
                     <div className="mb-4">
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-yellow-400">★</span>
+                          <span key={i} className="text-blue-500">★</span>
                         ))}
                       </div>
                     </div>

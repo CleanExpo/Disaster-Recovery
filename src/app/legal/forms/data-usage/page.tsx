@@ -34,7 +34,7 @@ export default function DataUsageSharingAgreementsPage() {
           <p className="text-sm text-gray-600">Best practice compliance</p>
         </div>
         <div className="bg-orange-50 p-4 rounded-lg">
-          <FaInfoCircle className="text-3xl text-orange-600 mb-2" />
+          <FaInfoCircle className="text-3xl text-blue-700 mb-2" />
           <h3 className="font-semibold">Regular Updates</h3>
           <p className="text-sm text-gray-600">Kept current with regulations</p>
         </div>

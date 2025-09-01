@@ -612,7 +612,7 @@ export default function LeadCaptureForm() {
           <Button
             type="submit"
             size="lg"
-            className="w-full md:w-auto bg-orange-600 hover:bg-orange-700 text-white px-12 py-6 text-lg"
+            className="w-full md:w-auto bg-blue-700 hover:bg-orange-700 text-white px-12 py-6 text-lg"
             disabled={submitting || !formData.consentToContact || !formData.agreeToTerms}
           >
             {submitting ? (

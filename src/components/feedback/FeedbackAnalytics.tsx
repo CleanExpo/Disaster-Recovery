@@ -136,7 +136,7 @@ export default function FeedbackAnalytics() {
   const getSentimentIcon = (rating: number) => {
     if (rating >= 4.5) return <ThumbsUp className="w-5 h-5 text-green-500" />;
     if (rating >= 4.0) return <CheckCircle className="w-5 h-5 text-blue-500" />;
-    if (rating >= 3.0) return <Clock className="w-5 h-5 text-yellow-500" />;
+    if (rating >= 3.0) return <Clock className="w-5 h-5 text-blue-600" />;
     return <AlertTriangle className="w-5 h-5 text-red-500" />;
   };
 
@@ -150,7 +150,7 @@ export default function FeedbackAnalytics() {
               {mockAnalytics.metrics.averageRating}
             </p>
             <div className="flex items-center mt-2">
-              <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+              <Star className="w-4 h-4 text-blue-500 fill-current mr-1" />
               <span className="text-sm text-gray-600">
                 {mockAnalytics.metrics.totalFeedbacks} reviews
               </span>
@@ -212,7 +212,7 @@ export default function FeedbackAnalytics() {
               {formatPercentage(mockAnalytics.metrics.googleReviewRate)}
             </p>
             <div className="flex items-center mt-2">
-              <Star className="w-4 h-4 text-green-400 mr-1" />
+              <Star className="w-4 h-4 text-emerald-600 mr-1" />
               <span className="text-sm text-gray-600">conversion rate</span>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function FeedbackAnalytics() {
             <div key={key} className="flex items-center space-x-4">
               <div className="flex items-center w-20">
                 <span className="text-sm text-gray-600 mr-2">{starValue}</span>
-                <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                <Star className="w-4 h-4 text-blue-500 fill-current" />
               </div>
               <div className="flex-1">
                 <div className="w-full bg-gray-200 rounded-full h-2">
@@ -268,7 +268,7 @@ export default function FeedbackAnalytics() {
               <div>
                 <p className="font-medium text-gray-900 capitalize">{category.category}</p>
                 <div className="flex items-center space-x-2">
-                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                  <Star className="w-4 h-4 text-blue-500 fill-current" />
                   <span className="text-sm text-gray-600">{category.averageRating.toFixed(1)}/5</span>
                 </div>
               </div>
@@ -318,7 +318,7 @@ export default function FeedbackAnalytics() {
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                    <Star className="w-4 h-4 text-blue-500 fill-current mr-1" />
                     <span className="text-sm font-medium">{jobType.averageRating.toFixed(1)}</span>
                   </div>
                 </td>
@@ -357,7 +357,7 @@ export default function FeedbackAnalytics() {
             </div>
             <div className="text-right">
               <div className="flex items-center">
-                <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                <Star className="w-4 h-4 text-blue-500 fill-current mr-1" />
                 <span className="font-medium">{location.averageRating.toFixed(1)}</span>
               </div>
             </div>

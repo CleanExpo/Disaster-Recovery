@@ -173,7 +173,7 @@ export default function MobileAuthentication() {
         </div>
 
         <div className="flex items-start space-x-3">
-          <Clock className="w-5 h-5 text-orange-500 mt-0.5" />
+          <Clock className="w-5 h-5 text-blue-600 mt-0.5" />
           <div className="flex-1">
             <p className="text-sm font-medium text-gray-900">Session Management</p>
             <p className="text-xs text-gray-500">Auto-logout after {mockAuthSettings.sessionTimeout} minutes</p>
@@ -501,7 +501,7 @@ export default function MobileAuthentication() {
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <AlertCircle className="w-4 h-4 text-yellow-500 mt-0.5" />
+                <AlertCircle className="w-4 h-4 text-blue-600 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm text-gray-900">2FA code requested</p>
                   <p className="text-xs text-gray-500">Yesterday at 2:15 PM</p>

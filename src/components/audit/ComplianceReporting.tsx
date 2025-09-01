@@ -401,10 +401,10 @@ const ComplianceReporting: React.FC<ComplianceReportingProps> = ({
                 </div>
                 <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
                   <div className="flex items-center">
-                    <AlertTriangle className="w-5 h-5 text-orange-600 mr-2" />
+                    <AlertTriangle className="w-5 h-5 text-blue-700 mr-2" />
                     <span className="font-medium">Open Findings</span>
                   </div>
-                  <span className="text-xl font-bold text-orange-600">
+                  <span className="text-xl font-bold text-blue-700">
                     {selectedReport.summary.openFindings}
                   </span>
                 </div>

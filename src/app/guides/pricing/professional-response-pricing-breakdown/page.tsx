@@ -18,7 +18,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
       <div className="relative py-24 px-6 text-center bg-gradient-to-r from-blue-900/80 to-slate-900/80">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <Calculator className="h-12 w-12 text-green-400" />
+            <Calculator className="h-12 w-12 text-emerald-600" />
             <Shield className="h-10 w-10 text-blue-400" />
           </div>
           <h1 className="text-5xl font-bold text-white mb-6">
@@ -77,7 +77,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
           </div>
 
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <CheckCircle className="h-8 w-8 text-green-400" />
+            <CheckCircle className="h-8 w-8 text-emerald-600" />
             NRP Recommended Service Inclusions Framework
           </h2>
           
@@ -95,7 +95,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <li>• Qualified technician dispatch</li>
                   <li>• Emergency vehicle equipment</li>
                 </ul>
-                <div className="mt-4 text-green-400 font-semibold">NRP Guidance: $400-600 elsewhere</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Guidance: $400-600 elsewhere</div>
               </div>
 
               <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6">
@@ -109,7 +109,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <li>• Regulatory compliance</li>
                   <li>• Communication management</li>
                 </ul>
-                <div className="mt-4 text-green-400 font-semibold">NRP Guidance: $300-450 elsewhere</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Guidance: $300-450 elsewhere</div>
               </div>
 
               <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6">
@@ -123,7 +123,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <li>• Damage classification</li>
                   <li>• Risk evaluation</li>
                 </ul>
-                <div className="mt-4 text-green-400 font-semibold">NRP Guidance: $500-750 elsewhere</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Guidance: $500-750 elsewhere</div>
               </div>
 
               <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6">
@@ -137,7 +137,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <li>• Environmental monitoring</li>
                   <li>• Calibrated instruments</li>
                 </ul>
-                <div className="mt-4 text-green-400 font-semibold">NRP Guidance: $400-600 elsewhere</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Guidance: $400-600 elsewhere</div>
               </div>
 
               <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6">
@@ -151,7 +151,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <li>• Contamination control</li>
                   <li>• Safety measures</li>
                 </ul>
-                <div className="mt-4 text-green-400 font-semibold">NRP Guidance: $600-900 elsewhere</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Guidance: $600-900 elsewhere</div>
               </div>
 
               <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6">
@@ -165,7 +165,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <li>• Timeline estimation</li>
                   <li>• Clear expectations</li>
                 </ul>
-                <div className="mt-4 text-green-400 font-semibold">NRP Standard: Required transparency</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Standard: Required transparency</div>
               </div>
 
               <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 md:col-span-2 lg:col-span-3">
@@ -190,7 +190,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                     <li>• Professional certification</li>
                   </ul>
                 </div>
-                <div className="mt-4 text-green-400 font-semibold">NRP Guidance: $800-1,200 range</div>
+                <div className="mt-4 text-emerald-600 font-semibold">NRP Guidance: $800-1,200 range</div>
               </div>
 
             </div>
@@ -246,7 +246,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
               {/* Current System Problems */}
               <div>
                 <h3 className="text-2xl font-semibold text-red-300 mb-6">Current Industry Problems</h3>
-                <div className="bg-slate-800/50 border border-red-500/30 rounded-lg p-6 mb-6">
+                <div className="bg-slate-800/50 border border-red-600/30 rounded-lg p-6 mb-6">
                   <div className="text-center">
                     <p className="text-red-300 text-lg mb-2">Initial Phone Quote</p>
                     <p className="text-3xl font-bold text-red-400">$500-800</p>
@@ -256,23 +256,23 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                 
                 <h4 className="font-semibold text-red-300 mb-4">Then the hidden costs appear:</h4>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-red-900/20 rounded">
+                  <div className="flex justify-between items-center p-3 bg-red-950/30 rounded">
                     <span className="text-red-200">Hidden callout fee</span>
                     <span className="text-red-300 font-semibold">+$400</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-red-900/20 rounded">
+                  <div className="flex justify-between items-center p-3 bg-red-950/30 rounded">
                     <span className="text-red-200">Equipment "rental"</span>
                     <span className="text-red-300 font-semibold">+$200/day</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-red-900/20 rounded">
+                  <div className="flex justify-between items-center p-3 bg-red-950/30 rounded">
                     <span className="text-red-200">Hourly rates (not disclosed)</span>
                     <span className="text-red-300 font-semibold">+$300/hr</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-red-900/20 rounded">
+                  <div className="flex justify-between items-center p-3 bg-red-950/30 rounded">
                     <span className="text-red-200">"Additional scope" discovered</span>
                     <span className="text-red-300 font-semibold">+$1,500-3,000</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-red-900/20 rounded">
+                  <div className="flex justify-between items-center p-3 bg-red-950/30 rounded">
                     <span className="text-red-200">Documentation fees</span>
                     <span className="text-red-300 font-semibold">+$300-500</span>
                   </div>
@@ -291,7 +291,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                 <div className="bg-slate-800/50 border border-green-500/30 rounded-lg p-6 mb-6">
                   <div className="text-center">
                     <p className="text-green-300 text-lg mb-2">NRP Guided Range</p>
-                    <p className="text-3xl font-bold text-green-400">$2,400-3,200</p>
+                    <p className="text-3xl font-bold text-emerald-600">$2,400-3,200</p>
                     <p className="text-green-200 text-sm">"Professional contractor sets price within guidance framework"</p>
                   </div>
                 </div>
@@ -322,7 +322,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                 
                 <div className="mt-6 p-4 bg-green-900/40 border border-green-400/50 rounded-lg text-center">
                   <p className="text-green-100 text-lg font-semibold">Final Invoice:</p>
-                  <p className="text-3xl font-bold text-green-400">Within Guidance Range</p>
+                  <p className="text-3xl font-bold text-emerald-600">Within Guidance Range</p>
                   <p className="text-green-200 text-sm mt-2">Exactly as quoted - no hidden costs, policy holder empowered</p>
                 </div>
               </div>
@@ -439,7 +439,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
         {/* Cost Comparison Summary */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <DollarSign className="h-8 w-8 text-yellow-400" />
+            <DollarSign className="h-8 w-8 text-blue-500" />
             Real Cost Comparison Summary
           </h2>
           
@@ -489,9 +489,9 @@ export default function ProfessionalResponsePricingBreakdownPage() {
             </div>
 
             {/* Standard Contractor */}
-            <div className="bg-gradient-to-b from-orange-900/30 to-yellow-800/20 backdrop-blur-sm border border-orange-400/40 rounded-lg p-6">
+            <div className="bg-gradient-to-b from-orange-900/30 to-yellow-800/20 backdrop-blur-sm border border-blue-500/40 rounded-lg p-6">
               <div className="text-center mb-6">
-                <AlertTriangle className="h-12 w-12 text-orange-400 mx-auto mb-3" />
+                <AlertTriangle className="h-12 w-12 text-blue-500 mx-auto mb-3" />
                 <h3 className="text-xl font-semibold text-orange-300">Standard Contractor</h3>
                 <p className="text-orange-200 text-sm">Some standards, some surprises</p>
               </div>
@@ -505,27 +505,27 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <span className="text-orange-200">Additional costs:</span>
                   <span className="text-orange-300">+$1,200-2,200</span>
                 </div>
-                <div className="border-t border-orange-400/30 pt-2 flex justify-between font-semibold">
+                <div className="border-t border-blue-500/30 pt-2 flex justify-between font-semibold">
                   <span className="text-orange-200">Total actual:</span>
-                  <span className="text-orange-400 text-lg">$2,400-4,000</span>
+                  <span className="text-blue-500 text-lg">$2,400-4,000</span>
                 </div>
               </div>
               
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-orange-400" />
+                  <CheckCircle className="h-4 w-4 text-blue-500" />
                   <span className="text-orange-300">Some certifications</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-orange-400" />
+                  <CheckCircle className="h-4 w-4 text-blue-500" />
                   <span className="text-orange-300">Adequate equipment</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <XCircle className="h-4 w-4 text-orange-400" />
+                  <XCircle className="h-4 w-4 text-blue-500" />
                   <span className="text-orange-300">Partial documentation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <XCircle className="h-4 w-4 text-orange-400" />
+                  <XCircle className="h-4 w-4 text-blue-500" />
                   <span className="text-orange-300">Some price surprises</span>
                 </div>
               </div>
@@ -534,7 +534,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
             {/* Professional NRP */}
             <div className="bg-gradient-to-b from-green-900/30 to-blue-800/20 backdrop-blur-sm border border-green-400/40 rounded-lg p-6">
               <div className="text-center mb-6">
-                <Shield className="h-12 w-12 text-green-400 mx-auto mb-3" />
+                <Shield className="h-12 w-12 text-emerald-600 mx-auto mb-3" />
                 <h3 className="text-xl font-semibold text-green-300">Professional NRP</h3>
                 <p className="text-green-200 text-sm">Transparent, comprehensive, certified</p>
               </div>
@@ -550,25 +550,25 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                 </div>
                 <div className="border-t border-green-400/30 pt-2 flex justify-between font-semibold">
                   <span className="text-green-200">Total final:</span>
-                  <span className="text-green-400 text-lg">$2,750</span>
+                  <span className="text-emerald-600 text-lg">$2,750</span>
                 </div>
               </div>
               
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span className="text-green-300">IICRC certified technicians</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span className="text-green-300">Professional equipment</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span className="text-green-300">Complete documentation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span className="text-green-300">Zero price surprises</span>
                 </div>
               </div>

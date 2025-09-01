@@ -561,7 +561,7 @@ export default function MarketplaceListing() {
                 <span className={`px-2 py-1 rounded-full text-xs font-medium border ${tierColors[partner.tier]}`}>
                   {partner.tier.toUpperCase()}
                 </span>
-                <div className="flex items-center text-yellow-500">
+                <div className="flex items-center text-blue-600">
                   <Star className="w-4 h-4 fill-current" />
                   <span className="text-sm text-gray-600 ml-1">
                     {partner.marketplace.reviews.average} ({partner.marketplace.reviews.count})

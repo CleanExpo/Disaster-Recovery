@@ -382,7 +382,7 @@ export const TrustIndicators = () => {
   return (
     <div className="flex flex-wrap justify-center items-center gap-6 py-8">
       <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
-        <Shield className="h-5 w-5 text-green-400" />
+        <Shield className="h-5 w-5 text-emerald-600" />
         <span className="text-white text-sm">Insurance Approved</span>
       </div>
       <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
@@ -394,7 +394,7 @@ export const TrustIndicators = () => {
         <span className="text-white text-sm">CSIRO Approved</span>
       </div>
       <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
-        <Clock className="h-5 w-5 text-orange-400" />
+        <Clock className="h-5 w-5 text-blue-500" />
         <span className="text-white text-sm">24/7 Response</span>
       </div>
     </div>

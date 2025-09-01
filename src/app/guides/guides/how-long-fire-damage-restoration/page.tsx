@@ -48,7 +48,7 @@ export default function HowLongFireDamageRestorationPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
                 Get Immediate Help
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">

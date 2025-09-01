@@ -476,7 +476,7 @@ export default function CampaignTrackingDashboard() {
             </p>
           </div>
           <div className="p-3 bg-orange-100 rounded-lg">
-            <Activity className="w-6 h-6 text-orange-600" />
+            <Activity className="w-6 h-6 text-blue-700" />
           </div>
         </div>
       </div>
@@ -719,14 +719,14 @@ export default function CampaignTrackingDashboard() {
           return (
             <div key={territory} className={`p-4 rounded-lg border-2 ${
               efficiency >= 10 ? 'border-green-500 bg-green-50' :
-              efficiency >= 5 ? 'border-yellow-500 bg-yellow-50' :
-              'border-red-500 bg-red-50'
+              efficiency >= 5 ? 'border-blue-600 bg-yellow-50' :
+              'border-red-600 bg-red-50'
             }`}>
               <div className="flex items-center justify-between mb-2">
                 <h4 className="font-medium text-gray-900">{territory}</h4>
                 <div className={`w-3 h-3 rounded-full ${
                   efficiency >= 10 ? 'bg-green-500' :
-                  efficiency >= 5 ? 'bg-yellow-500' :
+                  efficiency >= 5 ? 'bg-blue-600' :
                   'bg-red-500'
                 }`} />
               </div>

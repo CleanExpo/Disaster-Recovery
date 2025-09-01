@@ -190,7 +190,7 @@ export default function ContractorLoginPage() {
 
       {/* Gradient orbs */}
       <div className="absolute top-0 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob" />
-      <div className="absolute top-0 -right-40 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
+      <div className="absolute top-0 -right-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
       <div className="absolute -bottom-32 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
 
       <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
@@ -314,7 +314,7 @@ export default function ContractorLoginPage() {
 
                 {/* Error message */}
                 {error && (
-                  <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-3 flex items-start backdrop-blur-sm">
+                  <div className="bg-red-500/10 border border-red-600/50 rounded-lg p-3 flex items-start backdrop-blur-sm">
                     <AlertCircle className="h-5 w-5 text-red-400 mr-2 flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-red-200">{error}</span>
                   </div>
@@ -350,7 +350,7 @@ export default function ContractorLoginPage() {
                 <div className="text-center">
                   <p className="text-xs text-gray-400 mb-2">Demo Credentials:</p>
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg backdrop-blur-sm">
-                    <Sparkles className="h-3 w-3 text-yellow-400" />
+                    <Sparkles className="h-3 w-3 text-blue-500" />
                     <code className="text-xs text-gray-300">demo / Demo123!</code>
                   </div>
                 </div>

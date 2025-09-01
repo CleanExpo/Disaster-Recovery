@@ -157,9 +157,9 @@ export default function PartnerDashboard() {
     new Intl.NumberFormat('en-AU').format(num);
 
   const tierColors = {
-    bronze: 'from-orange-400 to-orange-600',
+    bronze: 'from-blue-500 to-blue-700',
     silver: 'from-gray-400 to-gray-600',
-    gold: 'from-yellow-400 to-yellow-600',
+    gold: 'from-blue-500 to-yellow-600',
     platinum: 'from-purple-400 to-purple-600'
   };
 
@@ -260,7 +260,7 @@ export default function PartnerDashboard() {
           title="Pending Earnings"
           value={mockDashboard.earnings.pending}
           icon={<Clock className="w-6 h-6 text-white" />}
-          colour="bg-orange-500"
+          colour="bg-blue-600"
         />
 
         <StatusCard
@@ -433,7 +433,7 @@ export default function PartnerDashboard() {
                     className={`p-4 rounded-lg border-l-4 ${
                       announcement.type === 'info' ? 'bg-blue-50 border-blue-400' :
                       announcement.type === 'success' ? 'bg-green-50 border-green-400' :
-                      announcement.type === 'warning' ? 'bg-yellow-50 border-yellow-400' :
+                      announcement.type === 'warning' ? 'bg-yellow-50 border-blue-500' :
                       'bg-red-50 border-red-400'
                     }`}
                   >

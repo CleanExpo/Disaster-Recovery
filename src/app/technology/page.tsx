@@ -39,7 +39,7 @@ export default function TechnologyPage() {
         'Complete damage mapping'
       ],
       link: '/technology/thermal',
-      colour: 'from-orange-500 to-red-600',
+      colour: 'from-blue-600 to-red-600',
       stats: { detection: '100%', depth: '10cm+', resolution: '640x480' }
     },
     {

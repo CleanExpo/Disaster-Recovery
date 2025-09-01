@@ -147,11 +147,11 @@ export default function AIDetectionPage() {
                 <div className="text-sm text-gray-300">Faster Detection</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
-                <div className="text-3xl font-bold text-green-400">24/7</div>
+                <div className="text-3xl font-bold text-emerald-600">24/7</div>
                 <div className="text-sm text-gray-300">Monitoring</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
-                <div className="text-3xl font-bold text-orange-400">500+</div>
+                <div className="text-3xl font-bold text-blue-500">500+</div>
                 <div className="text-sm text-gray-300">Pattern Types</div>
               </div>
             </div>

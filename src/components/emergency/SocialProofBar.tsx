@@ -33,7 +33,7 @@ export default function SocialProofBar() {
       number: "98.6%", 
       label: "Customer Satisfaction",
       icon: Star,
-      color: "text-yellow-500"
+      color: "text-blue-600"
     },
     { 
       number: "24/7", 

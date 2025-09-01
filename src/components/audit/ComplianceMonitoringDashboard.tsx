@@ -219,7 +219,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
   const getPriorityColor = (priority: Priority) => {
     switch (priority) {
       case 'critical': return 'text-red-600 bg-red-100';
-      case 'high': return 'text-orange-600 bg-orange-100';
+      case 'high': return 'text-blue-700 bg-orange-100';
       case 'medium': return 'text-yellow-600 bg-yellow-100';
       case 'low': return 'text-blue-600 bg-blue-100';
       default: return 'text-gray-600 bg-gray-100';
@@ -235,7 +235,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
   const getRiskLevelLabel = (score: number) => {
     if (score <= 25) return { label: 'Low Risk', colour: 'text-green-600 bg-green-50' };
     if (score <= 50) return { label: 'Medium Risk', colour: 'text-yellow-600 bg-yellow-50' };
-    if (score <= 75) return { label: 'High Risk', colour: 'text-orange-600 bg-orange-50' };
+    if (score <= 75) return { label: 'High Risk', colour: 'text-blue-700 bg-orange-50' };
     return { label: 'Critical Risk', colour: 'text-red-600 bg-red-50' };
   };
 
@@ -469,9 +469,9 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
               <div 
                 key={alert.id} 
                 className={`border-l-4 p-4 rounded-lg ${
-                  alert.severity === 'critical' ? 'border-red-500 bg-red-50' :
-                  alert.severity === 'high' ? 'border-orange-500 bg-orange-50' :
-                  alert.severity === 'medium' ? 'border-yellow-500 bg-yellow-50' :
+                  alert.severity === 'critical' ? 'border-red-600 bg-red-50' :
+                  alert.severity === 'high' ? 'border-blue-600 bg-orange-50' :
+                  alert.severity === 'medium' ? 'border-blue-600 bg-yellow-50' :
                   'border-blue-500 bg-blue-50'
                 }`}
               >
@@ -485,7 +485,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
                     }`}>
                       <AlertOctagon className={`w-4 h-4 ${
                         alert.severity === 'critical' ? 'text-red-600' :
-                        alert.severity === 'high' ? 'text-orange-600' :
+                        alert.severity === 'high' ? 'text-blue-700' :
                         alert.severity === 'medium' ? 'text-yellow-600' :
                         'text-blue-600'
                       }`} />
@@ -576,7 +576,7 @@ const ComplianceMonitoringDashboard: React.FC<ComplianceMonitoringDashboardProps
               <p className="text-sm text-gray-600">Audits Failed</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-orange-600">
+              <p className="text-2xl font-bold text-blue-700">
                 {dashboard.trends.reduce((sum, t) => sum + t.findingsOpened, 0)}
               </p>
               <p className="text-sm text-gray-600">Findings Opened</p>

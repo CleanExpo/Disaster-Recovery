@@ -340,8 +340,8 @@ export function SecuritySettings() {
     switch (passwordStrength.level) {
       case 'very-strong': return 'bg-green-600';
       case 'strong': return 'bg-green-500';
-      case 'fair': return 'bg-yellow-500';
-      case 'weak': return 'bg-orange-500';
+      case 'fair': return 'bg-blue-600';
+      case 'weak': return 'bg-blue-600';
       default: return 'bg-red-500';
     }
   };

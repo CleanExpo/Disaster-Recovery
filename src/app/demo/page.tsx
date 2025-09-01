@@ -50,7 +50,7 @@ const demos = [
     icon: FileText,
     href: '/contractor/training/demo?auto=true',
     features: ['Video content', 'Certifications', 'Progress tracking', 'Interactive tests'],
-    bgColor: 'from-orange-600 to-red-600',
+    bgColor: 'from-blue-700 to-red-600',
     status: 'live'
   },
   {
@@ -125,7 +125,7 @@ export default function DemoPage() {
                 <div className="relative p-8">
                   {/* Status Badge */}
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-semibold rounded-full border border-green-500/30">
+                    <span className="px-3 py-1 bg-green-500/20 text-emerald-600 text-xs font-semibold rounded-full border border-green-500/30">
                       {demo.status === 'live' ? 'LIVE DEMO' : 'COMING SOON'}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ export default function DemoPage() {
                 <div className="text-sm text-gray-400">Contractors</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-green-400">$2.8B</div>
+                <div className="text-3xl font-bold text-emerald-600">$2.8B</div>
                 <div className="text-sm text-gray-400">Market Size</div>
               </div>
               <div>

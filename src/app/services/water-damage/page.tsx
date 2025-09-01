@@ -217,19 +217,19 @@ export default function WaterDamageRestorationPage() {
               </p>
               <ul className="space-y-2 text-sm text-neutral-600">
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Washing machine overflow
                 </li>
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Dishwasher discharge
                 </li>
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-5 h-5 text-yellow-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-blue-500 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Aquarium water
@@ -509,7 +509,7 @@ export default function WaterDamageRestorationPage() {
                         height={50}
                         className="mr-3 rounded"
                       />
-                      <h4 className="font-semibold text-green-400">Thermal Fogging</h4>
+                      <h4 className="font-semibold text-emerald-600">Thermal Fogging</h4>
                     </div>
                     <p className="text-sm text-gray-400">
                       Penetrates porous materials for deep deodorization
@@ -517,10 +517,10 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
                     <div className="flex items-center mb-2">
-                      <svg className="w-12 h-12 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-12 h-12 text-emerald-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <h4 className="font-semibold text-green-400">HEPA Filtration</h4>
+                      <h4 className="font-semibold text-emerald-600">HEPA Filtration</h4>
                     </div>
                     <p className="text-sm text-gray-400">
                       Removes 99.97% of airborne particles and mould spores
@@ -664,25 +664,25 @@ export default function WaterDamageRestorationPage() {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-emerald-600 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-300">Direct insurance billing - no out-of-pocket expense</span>
                 </li>
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-emerald-600 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-300">Complete photo documentation and moisture mapping</span>
                 </li>
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-emerald-600 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-300">Xactimate estimating for accurate pricing</span>
                 </li>
                 <li className="flex items-start r6-list-item">
-                  <svg className="w-6 h-6 text-green-400 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-6 h-6 text-emerald-600 mr-3 mt-0.5 r6-icon-glow" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   <span className="text-gray-300">Daily progress reports to adjusters</span>

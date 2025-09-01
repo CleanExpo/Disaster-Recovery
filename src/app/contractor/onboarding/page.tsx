@@ -86,7 +86,7 @@ export default function ContractorOnboardingPage() {
       case 'available':
         return <Clock className="w-5 h-5 text-blue-500" />;
       case 'in_progress':
-        return <Clock className="w-5 h-5 text-yellow-500 animate-pulse" />;
+        return <Clock className="w-5 h-5 text-blue-600 animate-pulse" />;
       default:
         return <Lock className="w-5 h-5 text-gray-400" />;
     }
@@ -368,7 +368,7 @@ export default function ContractorOnboardingPage() {
                                     <Headphones className="w-3 h-3 text-purple-600" />
                                   </div>
                                   <div className="p-1 bg-orange-100 rounded" title="Interactive Assignments">
-                                    <FileText className="w-3 h-3 text-orange-600" />
+                                    <FileText className="w-3 h-3 text-blue-700" />
                                   </div>
                                 </div>
                               </div>

@@ -40,7 +40,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-orange-500 hover:bg-orange-600"
+                className="bg-blue-600 hover:bg-blue-700"
                 onClick={() => setShowLeadForm(true)}
               >
                 <email className="mr-2" />
@@ -169,7 +169,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-orange-500 hover:bg-orange-600"
+              className="bg-blue-600 hover:bg-blue-700"
               onClick={() => setShowLeadForm(true)}
             >
               <email className="mr-2" />

@@ -187,19 +187,19 @@ export default function Section54ContractorRightsPage() {
               <h3 className="text-lg font-semibold mb-4">Your Protected Rights:</h3>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span>Choose qualified contractors for emergency work</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span>Act immediately to prevent further damage</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span>Receive full payment unless proven prejudice</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-400" />
+                  <CheckCircle className="h-4 w-4 text-emerald-600" />
                   <span>Reject insurer preferred contractor requirements</span>
                 </div>
               </div>

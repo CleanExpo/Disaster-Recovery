@@ -340,7 +340,7 @@ export function ComplianceReports() {
                         {deadline.type === 'certification' && <Award className="h-4 w-4 text-blue-500" />}
                         {deadline.type === 'insurance' && <Shield className="h-4 w-4 text-green-500" />}
                         {deadline.type === 'training' && <GraduationCap className="h-4 w-4 text-purple-500" />}
-                        {deadline.type === 'audit' && <FileText className="h-4 w-4 text-orange-500" />}
+                        {deadline.type === 'audit' && <FileText className="h-4 w-4 text-blue-600" />}
                         <div>
                           <p className="font-medium text-sm">{deadline.item}</p>
                           <p className="text-xs text-gray-500">

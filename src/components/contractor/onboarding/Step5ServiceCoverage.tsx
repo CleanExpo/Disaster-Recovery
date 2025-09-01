@@ -351,7 +351,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                   </div>
                   <div className="text-sm text-slate-500">{scale.floors}</div>
                 </div>
-                {isSelected && <CheckCircle className="h-5 w-5 text-green-400" />}
+                {isSelected && <CheckCircle className="h-5 w-5 text-emerald-600" />}
               </button>
             );
           })}
@@ -420,7 +420,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
       {/* Estimated Impact */}
       <div className="p-6 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/30 rounded-lg">
         <div className="flex items-start gap-4">
-          <Zap className="h-6 w-6 text-yellow-400 mt-1" />
+          <Zap className="h-6 w-6 text-blue-500 mt-1" />
           <div>
             <h4 className="font-semibold text-white mb-2">Your Coverage Impact</h4>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
@@ -430,11 +430,11 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
               </div>
               <div>
                 <div className="text-slate-400">Disaster Types</div>
-                <div className="text-2xl font-bold text-green-400">{serviceCoverage.disasterTypes.length}</div>
+                <div className="text-2xl font-bold text-emerald-600">{serviceCoverage.disasterTypes.length}</div>
               </div>
               <div>
                 <div className="text-slate-400">Est. Pages Generated</div>
-                <div className="text-2xl font-bold text-yellow-400">{estimatedPageCount.toLocaleString()}+</div>
+                <div className="text-2xl font-bold text-blue-500">{estimatedPageCount.toLocaleString()}+</div>
               </div>
             </div>
             <p className="text-blue-200 text-sm mt-3">

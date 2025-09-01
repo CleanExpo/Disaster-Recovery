@@ -341,7 +341,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
                         <div className="space-y-2">
                           {equipment.operationalRequirements.map((req, index) => (
                             <div key={index} className="flex items-start">
-                              <AlertCircle className="h-5 w-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" />
+                              <AlertCircle className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
                               <span className="text-gray-700">{req}</span>
                             </div>
                           ))}

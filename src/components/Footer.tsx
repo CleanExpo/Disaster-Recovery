@@ -207,9 +207,9 @@ const Footer: React.FC = () => {
           <div className="container px-4 sm:px-6 lg:px-8 py-8 relative z-10">
             <div className="text-center mb-6">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-green-400' : 'bg-red-400'}`}></div>
+                <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-emerald-500' : 'bg-red-400'}`}></div>
                 <h2 className="text-2xl md:text-3xl font-bold">24/7 Online Emergency Response Available</h2>
-                <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-green-400' : 'bg-red-400'}`}></div>
+                <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-emerald-500' : 'bg-red-400'}`}></div>
               </div>
               <p className="text-xl opacity-95">
                 Teams ready to respond within <strong className="text-yellow-300">60 minutes</strong> nationwide
@@ -247,7 +247,7 @@ const Footer: React.FC = () => {
                   <Mail className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
                   <div className="text-xl font-bold mb-2">Email Support</div>
                   <p className="text-sm opacity-90">{EMAIL}</p>
-                  <div className="mt-2 text-xs bg-yellow-500/30 px-2 py-1 rounded-full inline-block">
+                  <div className="mt-2 text-xs bg-blue-600/30 px-2 py-1 rounded-full inline-block">
                     Non-emergency inquiries
                   </div>
                 </div>
@@ -292,7 +292,7 @@ const Footer: React.FC = () => {
                     <div className="text-xs text-gray-400">Years Experience</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-400">98%</div>
+                    <div className="text-2xl font-bold text-emerald-600">98%</div>
                     <div className="text-xs text-gray-400">Customer Satisfaction</div>
                   </div>
                 </div>
@@ -303,11 +303,11 @@ const Footer: React.FC = () => {
                     <span>50+ Certified Technicians</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <Zap className="h-4 w-4 text-yellow-400" />
+                    <Zap className="h-4 w-4 text-blue-500" />
                     <span>State-of-the-art Equipment</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <Shield className="h-4 w-4 text-green-400" />
+                    <Shield className="h-4 w-4 text-emerald-600" />
                     <span>$20M+ Insurance Coverage</span>
                   </div>
                 </div>
@@ -319,7 +319,7 @@ const Footer: React.FC = () => {
                   <h4 className="font-semibold">Customer Reviews</h4>
                   <div className="flex items-center">
                     {[1,2,3,4,5].map(star => (
-                      <Star key={star} className="h-4 w-4 text-yellow-400 fill-current" />
+                      <Star key={star} className="h-4 w-4 text-blue-500 fill-current" />
                     ))}
                     <span className="ml-2 text-sm text-gray-400">4.9/5</span>
                   </div>
@@ -402,7 +402,7 @@ const Footer: React.FC = () => {
             {/* COVERAGE & LOCATIONS */}
             <div className="lg:col-span-3">
               <h3 className="text-lg font-bold mb-6 flex items-center">
-                <MapPin className="h-5 w-5 mr-2 text-green-400" />
+                <MapPin className="h-5 w-5 mr-2 text-emerald-600" />
                 Coverage Areas
               </h3>
               
@@ -421,11 +421,11 @@ const Footer: React.FC = () => {
                       <div className="text-sm text-gray-400">Response: {location.time}</div>
                     </div>
                     <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      location.status === 'live' ? 'bg-green-500/30 text-green-400' : 'bg-blue-500/30 text-blue-400'
+                      location.status === 'live' ? 'bg-green-500/30 text-emerald-600' : 'bg-blue-500/30 text-blue-400'
                     }`}>
                       <div className="flex items-center gap-1">
                         <div className={`w-2 h-2 rounded-full ${
-                          location.status === 'live' ? 'bg-green-400 animate-pulse' : 'bg-blue-400'
+                          location.status === 'live' ? 'bg-emerald-500 animate-pulse' : 'bg-blue-400'
                         }`}></div>
                         {location.status === 'live' ? 'Teams Available' : 'On-Call'}
                       </div>
@@ -460,7 +460,7 @@ const Footer: React.FC = () => {
             {/* TRUST & RESOURCES */}
             <div className="lg:col-span-2">
               <h3 className="text-lg font-bold mb-6 flex items-center">
-                <Shield className="h-5 w-5 mr-2 text-yellow-400" />
+                <Shield className="h-5 w-5 mr-2 text-blue-500" />
                 Trust & Resources
               </h3>
               
@@ -468,8 +468,8 @@ const Footer: React.FC = () => {
               <div className="bg-gray-800 rounded-lg p-4 mb-6">
                 <h4 className="font-semibold mb-4 text-center">Industry Certifications</h4>
                 <div className="grid grid-cols-2 gap-3 text-center">
-                  <div className="p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
-                    <Award className="h-8 w-8 mx-auto mb-2 text-yellow-400" />
+                  <div className="p-3 bg-blue-600/10 rounded-lg border border-blue-600/30">
+                    <Award className="h-8 w-8 mx-auto mb-2 text-blue-500" />
                     <div className="text-xs font-medium">IICRC Certified</div>
                   </div>
                   <div className="p-3 bg-blue-500/10 rounded-lg border border-blue-500/30">
@@ -477,10 +477,10 @@ const Footer: React.FC = () => {
                     <div className="text-xs font-medium">RIA Member</div>
                   </div>
                   <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-                    <CheckCircle className="h-8 w-8 mx-auto mb-2 text-green-400" />
+                    <CheckCircle className="h-8 w-8 mx-auto mb-2 text-emerald-600" />
                     <div className="text-xs font-medium">ISO 9001</div>
                   </div>
-                  <div className="p-3 bg-red-500/10 rounded-lg border border-red-500/30">
+                  <div className="p-3 bg-red-500/10 rounded-lg border border-red-600/30">
                     <AlertTriangle className="h-8 w-8 mx-auto mb-2 text-red-400" />
                     <div className="text-xs font-medium">HAZMAT Licensed</div>
                   </div>
@@ -537,12 +537,12 @@ const Footer: React.FC = () => {
               {/* Insurance Partners */}
               <div>
                 <h4 className="text-white font-semibold mb-4 flex items-center">
-                  <CreditCard className="h-5 w-5 mr-2 text-green-400" />
+                  <CreditCard className="h-5 w-5 mr-2 text-emerald-600" />
                   Insurance Partners & Direct Billing
                 </h4>
                 <div className="bg-gray-700 rounded-lg p-4 mb-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
+                    <CheckCircle className="h-5 w-5 text-emerald-600" />
                     <span className="font-medium">No upfront payment required</span>
                   </div>
                   <p className="text-sm text-gray-300">
@@ -629,8 +629,8 @@ const Footer: React.FC = () => {
               
               <div className="flex items-center gap-6">
                 <div className="flex items-center gap-2">
-                  <div className={`h-3 w-3 rounded-full animate-pulse ${isAvailable ? 'bg-green-400' : 'bg-red-400'}`}></div>
-                  <span className="text-sm font-medium text-green-400">
+                  <div className={`h-3 w-3 rounded-full animate-pulse ${isAvailable ? 'bg-emerald-500' : 'bg-red-400'}`}></div>
+                  <span className="text-sm font-medium text-emerald-600">
                     {isAvailable ? 'Emergency Teams Available Now' : 'Emergency Teams On-Call'}
                   </span>
                 </div>

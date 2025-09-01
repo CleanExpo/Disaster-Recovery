@@ -68,7 +68,7 @@ export default function CarpetMouldRemediationPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white"
+                className="bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
@@ -164,7 +164,7 @@ export default function CarpetMouldRemediationPage() {
           </p>
           <Button 
             size="lg" 
-            className="bg-orange-500 hover:bg-orange-600"
+            className="bg-blue-600 hover:bg-blue-700"
             onClick={() => setShowQuoteDialog(true)}
           >
             <MessageSquare className="mr-2" />
@@ -184,10 +184,10 @@ export default function CarpetMouldRemediationPage() {
           </DialogHeader>
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
-              <MessageSquare className="h-5 w-5 text-orange-600" />
+              <MessageSquare className="h-5 w-5 text-blue-700" />
               <div>
                 <p className="font-semibold">Submit Form Now</p>
-                <p className="text-2xl font-bold text-orange-600">1300 814 870</p>
+                <p className="text-2xl font-bold text-blue-700">1300 814 870</p>
               </div>
             </div>
             <Button className="w-full bg-blue-600 hover:bg-blue-700">

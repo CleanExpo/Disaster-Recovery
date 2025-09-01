@@ -195,7 +195,7 @@ function SearchPageContent() {
       case 'Fire Damage': return <Flame className="h-5 w-5 text-red-500" />;
       case 'Mould Services': return <Wind className="h-5 w-5 text-green-500" />;
       case 'Storm Damage': return <Home className="h-5 w-5 text-purple-500" />;
-      case 'Restoration Contractor': return <Building2 className="h-5 w-5 text-orange-500" />;
+      case 'Restoration Contractor': return <Building2 className="h-5 w-5 text-blue-600" />;
       default: return <Shield className="h-5 w-5 text-gray-500" />;
     }
   };
@@ -374,7 +374,7 @@ function SearchPageContent() {
                   )}
                   {result.rating && (
                     <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <Star className="h-4 w-4 text-blue-500 fill-current" />
                       <span>{result.rating}/5</span>
                     </div>
                   )}

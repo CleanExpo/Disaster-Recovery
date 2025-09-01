@@ -212,7 +212,7 @@ export default function StormDamagePage() {
         </div>
         
         {/* Storm Warning Alert */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-xl p-6 text-white mb-8">
+        <div className="bg-gradient-to-r from-blue-600 to-red-500 rounded-xl p-6 text-white mb-8">
           <div className="flex items-center">
             <svg className="w-8 h-8 mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
@@ -237,7 +237,7 @@ export default function StormDamagePage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-orange-600">1</span>
+              <span className="text-2xl font-bold text-blue-700">1</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Immediate Response</h3>
             <p className="text-neutral-700 text-sm mb-4">
@@ -253,7 +253,7 @@ export default function StormDamagePage() {
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-orange-600">2</span>
+              <span className="text-2xl font-bold text-blue-700">2</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Emergency Stabilization</h3>
             <p className="text-neutral-700 text-sm mb-4">
@@ -269,7 +269,7 @@ export default function StormDamagePage() {
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-orange-600">3</span>
+              <span className="text-2xl font-bold text-blue-700">3</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Damage Assessment</h3>
             <p className="text-neutral-700 text-sm mb-4">
@@ -285,7 +285,7 @@ export default function StormDamagePage() {
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
             <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-              <span className="text-2xl font-bold text-orange-600">4</span>
+              <span className="text-2xl font-bold text-blue-700">4</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Complete Restoration</h3>
             <p className="text-neutral-700 text-sm mb-4">
@@ -656,7 +656,7 @@ export default function StormDamagePage() {
           
           <div className="bg-gradient-to-br from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-xl p-6">
             <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-              <span className="text-lg font-bold text-orange-600">2</span>
+              <span className="text-lg font-bold text-blue-700">2</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Contact Us Online Immediately</h3>
             <ul className="text-neutral-700 text-sm space-y-1">
@@ -696,7 +696,7 @@ export default function StormDamagePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-8 text-center text-white">
+      <section className="bg-gradient-to-r from-blue-600 to-red-600 rounded-2xl p-8 text-center text-white">
         <h2 className="text-3xl font-bold mb-4">
           Storm Damage? We're Ready to Respond
         </h2>
@@ -707,7 +707,7 @@ export default function StormDamagePage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-orange-600 rounded-lg font-bold text-lg hover:bg-orange-50 transition-colours"
+            className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-700 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
           >
             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -722,7 +722,7 @@ export default function StormDamagePage() {
           </Link>
         </div>
         
-        <div className="mt-8 pt-8 border-t border-orange-400">
+        <div className="mt-8 pt-8 border-t border-blue-500">
           <p className="text-orange-100 mb-2">
             <strong>Storm Season Tip:</strong> Save our number before severe weather arrives
           </p>

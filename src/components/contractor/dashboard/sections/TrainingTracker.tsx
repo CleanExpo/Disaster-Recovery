@@ -290,7 +290,7 @@ export function TrainingTracker({
             <p className="text-sm font-medium">Upcoming Reminders:</p>
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-yellow-400 rounded-full" />
+                <div className="w-2 h-2 bg-blue-500 rounded-full" />
                 <span>IICRC WRT Renewal - Due in 45 days</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -298,7 +298,7 @@ export function TrainingTracker({
                 <span>CARSI Compliance Training - March 20</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
-                <div className="w-2 h-2 bg-green-400 rounded-full" />
+                <div className="w-2 h-2 bg-emerald-500 rounded-full" />
                 <span>WHS Refresher - April 5</span>
               </div>
             </div>

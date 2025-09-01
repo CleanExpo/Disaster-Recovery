@@ -166,7 +166,7 @@ export default function CleanClaimsPartnershipPage() {
               <div className="space-y-4">
                 {cleanClaimsAdvantages.map((advantage, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
                     <span className="text-gray-300">{advantage}</span>
                   </div>
                 ))}
@@ -401,7 +401,7 @@ export default function CleanClaimsPartnershipPage() {
 
           <div className="mt-12 text-center">
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full">
-              <Zap className="h-5 w-5 text-yellow-400" />
+              <Zap className="h-5 w-5 text-blue-500" />
               <span className="text-white font-semibold">
                 Combined Platform Value: $3.2M+ in Technology Investment
               </span>

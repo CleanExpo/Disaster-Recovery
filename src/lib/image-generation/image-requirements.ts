@@ -234,7 +234,7 @@ export const IMAGE_REQUIREMENTS: ImageRequirement[] = [
     format: 'png',
     priority: 3,
     style: 'flat design, modern, clean',
-    colorScheme: ['#FFA500', '#FFB833'],
+    colorScheme: ['#3B82F6', '#FFB833'],
     keywords: ['status', 'pending', 'indicator', 'ui'],
     altText: 'Pending job status indicator',
     usage: ['crm/job-status'],

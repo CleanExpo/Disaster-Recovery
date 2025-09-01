@@ -283,7 +283,7 @@ export function BackgroundChecks() {
             <CardTitle className="text-sm">Requires Review</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-orange-600">
+            <p className="text-2xl font-bold text-blue-700">
               {checks.filter(c => c.status === 'requires_review').length}
             </p>
             <p className="text-xs text-gray-500 mt-1">Need attention</p>
@@ -306,7 +306,7 @@ export function BackgroundChecks() {
       {/* Alert for pending reviews */}
       {checks.filter(c => c.status === 'requires_review').length > 0 && (
         <Alert className="bg-orange-50 border-orange-200">
-          <AlertTriangle className="h-4 w-4 text-orange-600" />
+          <AlertTriangle className="h-4 w-4 text-blue-700" />
           <AlertDescription className="text-orange-700">
             <strong>{checks.filter(c => c.status === 'requires_review').length} background checks</strong> require 
             manual review due to flagged issues or incomplete information.
@@ -415,7 +415,7 @@ export function BackgroundChecks() {
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="text-orange-600"
+                                  className="text-blue-700"
                                   onClick={() => {
                                     setSelectedCheck(check);
                                     setReviewModal(true);
@@ -536,7 +536,7 @@ export function BackgroundChecks() {
                                   <div
                                     key={i}
                                     className={`w-4 h-4 rounded-full ${
-                                      i < ref.rating! ? 'bg-yellow-400' : 'bg-gray-300'
+                                      i < ref.rating! ? 'bg-blue-500' : 'bg-gray-300'
                                     }`}
                                   />
                                 ))}

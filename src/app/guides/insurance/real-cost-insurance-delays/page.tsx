@@ -170,7 +170,7 @@ export default function RealCostInsuranceDelaysPage() {
               <span className="text-white">Real Cost of Delays</span>
             </nav>
 
-            <Badge className="mb-4 bg-red-500/20 text-red-300 border-red-500/30">
+            <Badge className="mb-4 bg-red-500/20 text-red-300 border-red-600/30">
               <AlertTriangle className="h-3 w-3 mr-1" />
               ASIC Concerned About Unresolved 2022 Flood Claims
             </Badge>
@@ -184,7 +184,7 @@ export default function RealCostInsuranceDelaysPage() {
             </p>
 
             {/* Shocking Statistics */}
-            <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6 mb-8">
+            <div className="bg-red-900/30 border border-red-600/30 rounded-lg p-6 mb-8">
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-3xl font-bold text-red-300 mb-2">10,000+</div>
@@ -208,7 +208,7 @@ export default function RealCostInsuranceDelaysPage() {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/schedule">
-                <Button size="lg" className="bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600">
+                <Button size="lg" className="bg-gradient-to-r from-red-500 to-blue-600 hover:from-red-600 hover:to-blue-700">
                   <MessageSquare className="mr-2 h-5 w-5" />
                   Get Emergency Response Now
                 </Button>
@@ -247,7 +247,7 @@ export default function RealCostInsuranceDelaysPage() {
                 <div className="flex items-start gap-6">
                   {/* Stage indicator */}
                   <div className="flex-shrink-0">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-red-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg">
                       {idx + 1}
                     </div>
                   </div>
@@ -256,7 +256,7 @@ export default function RealCostInsuranceDelaysPage() {
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-2xl font-semibold text-gray-900">{stage.stage}</h3>
                       <div className="flex items-center gap-4">
-                        <Badge variant="outline" className="text-orange-600 border-orange-600">
+                        <Badge variant="outline" className="text-blue-700 border-blue-700">
                           <Clock className="h-4 w-4 mr-1" />
                           {stage.timeline}
                         </Badge>
@@ -288,10 +288,10 @@ export default function RealCostInsuranceDelaysPage() {
                       {stage.damage && (
                         <div>
                           <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                            <TrendingUp className="h-4 w-4 text-orange-500" />
+                            <TrendingUp className="h-4 w-4 text-blue-600" />
                             Meanwhile, Your Property...
                           </h4>
-                          <p className="text-sm text-orange-600 bg-orange-50 p-3 rounded-lg">
+                          <p className="text-sm text-blue-700 bg-orange-50 p-3 rounded-lg">
                             {stage.damage}
                           </p>
                         </div>

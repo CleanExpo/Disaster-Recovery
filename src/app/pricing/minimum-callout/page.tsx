@@ -236,7 +236,7 @@ export default function MinimumCalloutPage() {
                 <p className="text-gray-700">Average cost of untreated water damage after 48 hours</p>
               </Card>
               <Card className="p-6 bg-white">
-                <p className="text-4xl font-bold text-orange-600 mb-2">$8,500</p>
+                <p className="text-4xl font-bold text-blue-700 mb-2">$8,500</p>
                 <p className="text-gray-700">Average mould remediation if not addressed immediately</p>
               </Card>
               <Card className="p-6 bg-white">

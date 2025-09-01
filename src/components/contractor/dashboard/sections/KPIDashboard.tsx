@@ -92,7 +92,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                 </span>
               </div>
             </div>
-            <Trophy className="h-8 w-8 text-yellow-500" />
+            <Trophy className="h-8 w-8 text-blue-600" />
           </div>
           <Progress value={metrics.overallScore} className="mt-4 h-3" />
         </CardContent>
@@ -150,7 +150,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                   key={i}
                   className={`h-3 w-3 ${
                     i < Math.floor(metrics.customerRating)
-                      ? 'fill-yellow-400 text-yellow-400'
+                      ? 'fill-blue-500 text-blue-500'
                       : 'text-gray-300'
                   }`}
                 />
@@ -240,7 +240,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                       <div className="flex justify-between items-start">
                         <div>
                           <div className="flex items-center gap-2">
-                            <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                            <AlertTriangle className="h-4 w-4 text-blue-600" />
                             <p className="font-medium">{incident.type}</p>
                           </div>
                           <p className="text-sm text-gray-600 mt-1">{incident.description}</p>
@@ -314,7 +314,7 @@ export function KPIDashboard({ metrics, activeJobs, incidents }: KPIDashboardPro
                 <div className="grid grid-cols-2 gap-3">
                   {metrics.achievements?.map((achievement: any, index: number) => (
                     <div key={index} className="flex items-center gap-2 p-3 border rounded-lg">
-                      <Award className="h-5 w-5 text-yellow-500" />
+                      <Award className="h-5 w-5 text-blue-600" />
                       <div>
                         <p className="text-sm font-medium">{achievement.title}</p>
                         <p className="text-xs text-gray-500">{achievement.date}</p>

@@ -233,7 +233,7 @@ const categoryInfo = {
   training: {
     title: 'Training & Education',
     icon: GraduationCap,
-    colour: 'text-orange-600 bg-orange-100'
+    colour: 'text-blue-700 bg-orange-100'
   },
   setup: {
     title: 'Platform Setup',
@@ -371,7 +371,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
               <p className="text-sm text-gray-500">Completed</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-orange-600">
+              <p className="text-2xl font-bold text-blue-700">
                 {checklist.items.filter(i => !i.isCompleted && i.isRequired).length}
               </p>
               <p className="text-sm text-gray-500">Required Remaining</p>
@@ -402,7 +402,7 @@ export function OnboardingChecklist({ embedded = false, onComplete }: Onboarding
       {/* Next Steps Alert */}
       {!isFullyOnboarded && (
         <Alert className="border-orange-200 bg-orange-50">
-          <Zap className="h-4 w-4 text-orange-600" />
+          <Zap className="h-4 w-4 text-blue-700" />
           <AlertDescription className="text-orange-900">
             <strong>Next Step:</strong> {
               checklist.items.find(i => !i.isCompleted && i.isRequired)?.title ||

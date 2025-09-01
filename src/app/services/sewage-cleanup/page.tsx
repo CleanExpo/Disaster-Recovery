@@ -87,7 +87,7 @@ export default function SewageCleanupPage() {
       <StructuredData data={breadcrumbSchema} />
 
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-yellow-600 to-orange-600 text-white py-3 px-4">
+      <div className="bg-gradient-to-r from-yellow-600 to-blue-700 text-white py-3 px-4">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertOctagon className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Emergency Sewage Cleanup</span>
@@ -112,7 +112,7 @@ export default function SewageCleanupPage() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+                    <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
                       <MessageSquare className="mr-2 h-5 w-5" />
                       Emergency Sewage Response
                     </Button>
@@ -125,22 +125,22 @@ export default function SewageCleanupPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <div className="bg-red-50 border-l-4 border-red-500 p-4">
+                      <div className="bg-red-50 border-l-4 border-red-600 p-4">
                         <p className="font-bold text-red-900">Health Warning:</p>
                         <p className="text-sm text-red-800">Do not attempt cleanup. Evacuate affected areas immediately.</p>
                       </div>
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
+                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <MessageSquare className="h-5 w-5" />
                         Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div className="text-center">
-                          <Truck className="h-8 w-8 mx-auto mb-1 text-orange-600" />
+                          <Truck className="h-8 w-8 mx-auto mb-1 text-blue-700" />
                           <p className="font-medium">Rapid Response</p>
                           <p className="text-gray-600">&lt; 60 minutes</p>
                         </div>
                         <div className="text-center">
-                          <ShieldAlert className="h-8 w-8 mx-auto mb-1 text-orange-600" />
+                          <ShieldAlert className="h-8 w-8 mx-auto mb-1 text-blue-700" />
                           <p className="font-medium">Health Certified</p>
                           <p className="text-gray-600">Safe cleanup</p>
                         </div>
@@ -156,15 +156,15 @@ export default function SewageCleanupPage() {
 
               <div className="grid grid-cols-3 gap-4">
                 <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-orange-600" />
+                  <Clock className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">24/7 Response</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-orange-600" />
+                  <Heart className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">Health Certified</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-orange-600" />
+                  <Shield className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">Insurance Approved</span>
                 </div>
               </div>
@@ -190,7 +190,7 @@ export default function SewageCleanupPage() {
       </section>
 
       {/* Health Warning Section */}
-      <section className="bg-red-50 border-t-4 border-red-500 py-8">
+      <section className="bg-red-50 border-t-4 border-red-600 py-8">
         <div className="container mx-auto px-4">
           <div className="flex items-start gap-4">
             <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
@@ -231,7 +231,7 @@ export default function SewageCleanupPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <Card>
               <CardHeader>
-                <AlertOctagon className="h-10 w-10 text-orange-600 mb-4" />
+                <AlertOctagon className="h-10 w-10 text-blue-700 mb-4" />
                 <CardTitle>Emergency Extraction</CardTitle>
                 <CardDescription>
                   Immediate sewage removal and containment
@@ -261,7 +261,7 @@ export default function SewageCleanupPage() {
 
             <Card>
               <CardHeader>
-                <ShieldAlert className="h-10 w-10 text-orange-600 mb-4" />
+                <ShieldAlert className="h-10 w-10 text-blue-700 mb-4" />
                 <CardTitle>Sanitization & Disinfection</CardTitle>
                 <CardDescription>
                   Hospital-grade cleaning and decontamination
@@ -291,7 +291,7 @@ export default function SewageCleanupPage() {
 
             <Card>
               <CardHeader>
-                <Home className="h-10 w-10 text-orange-600 mb-4" />
+                <Home className="h-10 w-10 text-blue-700 mb-4" />
                 <CardTitle>Restoration & Prevention</CardTitle>
                 <CardDescription>
                   Complete restoration and future protection
@@ -328,19 +328,19 @@ export default function SewageCleanupPage() {
                 <h4 className="font-bold mb-3">Residential</h4>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Toilet overflow and backup</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Basement sewage flooding</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Bathroom floor drain backup</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Septic system failure</span>
                   </li>
                 </ul>
@@ -349,19 +349,19 @@ export default function SewageCleanupPage() {
                 <h4 className="font-bold mb-3">Commercial</h4>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Restaurant grease trap overflow</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Office building main line backup</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Healthcare facility contamination</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-orange-600 mt-0.5" />
+                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
                     <span className="text-sm">Multi-unit building sewage issues</span>
                   </li>
                 </ul>
@@ -420,14 +420,14 @@ export default function SewageCleanupPage() {
               ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
                       {item.step}
                     </div>
                   </div>
                   <div className="flex-grow">
                     <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                     <p className="text-gray-700 mb-2">{item.description}</p>
-                    <span className="text-sm text-orange-600 font-medium">{item.time}</span>
+                    <span className="text-sm text-blue-700 font-medium">{item.time}</span>
                   </div>
                 </div>
               ))}
@@ -467,28 +467,28 @@ export default function SewageCleanupPage() {
           <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="bg-white p-4 rounded-lg shadow mb-3">
-                <Shield className="h-8 w-8 text-orange-600 mx-auto" />
+                <Shield className="h-8 w-8 text-blue-700 mx-auto" />
               </div>
               <h4 className="font-bold">Full PPE</h4>
               <p className="text-sm text-gray-600">Hazmat suits, respirators, gloves</p>
             </div>
             <div className="text-center">
               <div className="bg-white p-4 rounded-lg shadow mb-3">
-                <Droplets className="h-8 w-8 text-orange-600 mx-auto" />
+                <Droplets className="h-8 w-8 text-blue-700 mx-auto" />
               </div>
               <h4 className="font-bold">Extraction Equipment</h4>
               <p className="text-sm text-gray-600">Industrial pumps & vacuums</p>
             </div>
             <div className="text-center">
               <div className="bg-white p-4 rounded-lg shadow mb-3">
-                <ShieldAlert className="h-8 w-8 text-orange-600 mx-auto" />
+                <ShieldAlert className="h-8 w-8 text-blue-700 mx-auto" />
               </div>
               <h4 className="font-bold">Disinfectants</h4>
               <p className="text-sm text-gray-600">Hospital-grade sanitizers</p>
             </div>
             <div className="text-center">
               <div className="bg-white p-4 rounded-lg shadow mb-3">
-                <CheckCircle className="h-8 w-8 text-orange-600 mx-auto" />
+                <CheckCircle className="h-8 w-8 text-blue-700 mx-auto" />
               </div>
               <h4 className="font-bold">Testing Equipment</h4>
               <p className="text-sm text-gray-600">Bacteria & pathogen testing</p>
@@ -498,7 +498,7 @@ export default function SewageCleanupPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-red-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Sewage Emergency? Don't Risk Your Health
@@ -508,11 +508,11 @@ export default function SewageCleanupPage() {
             have the equipment and expertise to handle any sewage contamination safely.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <MessageSquare className="h-5 w-5" />
               Emergency: 1300 309 361
             </a>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-orange-600">
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-blue-700">
               Get Immediate Help
             </Button>
           </div>

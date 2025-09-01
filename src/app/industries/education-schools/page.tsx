@@ -20,7 +20,7 @@ export default function EducationSchoolsPage() {
       <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
-            <Building2 className="h-16 w-16 text-orange-500 mb-6" />
+            <Building2 className="h-16 w-16 text-blue-600 mb-6" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Education & Schools Disaster Recovery
             </h1>
@@ -28,7 +28,7 @@ export default function EducationSchoolsPage() {
               School and university disaster recovery with minimal disruption to learning
             </p>
             <div className="flex flex-col md:flex-row gap-4 mb-8">
-              <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+              <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Emergency: Online Form Available 24/7
               </Button>
@@ -49,7 +49,7 @@ export default function EducationSchoolsPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {risks.map((risk, index) => (
               <Card key={index} className="p-6">
-                <AlertTriangle className="h-10 w-10 text-orange-600 mb-4" />
+                <AlertTriangle className="h-10 w-10 text-blue-700 mb-4" />
                 <h3 className="font-bold mb-2">{risk}</h3>
                 <p className="text-sm text-gray-600">
                   Specialised response protocols for education & schools sector
@@ -111,7 +111,7 @@ export default function EducationSchoolsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-orange-600 text-white">
+      <section className="py-20 bg-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Protect Your Education & Schools Assets
@@ -120,7 +120,7 @@ export default function EducationSchoolsPage() {
             Don't let disasters disrupt your operations. Get priority emergency response 
             and expert restoration services tailored to education & schools.
           </p>
-          <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
+          <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-100">
             <MessageSquare className="mr-2 h-5 w-5" />
             Call Online Form Available 24/7 Now
           </Button>

@@ -38,7 +38,7 @@ export default function UltraModernHeader() {
       icon: HomeIcon,
       dropdown: [
         { label: 'Water Damage', href: '/services/water-damage', colour: 'from-blue-500 to-cyan-500' },
-        { label: 'Fire & Smoke', href: '/services/fire-damage', colour: 'from-orange-500 to-red-500' },
+        { label: 'Fire & Smoke', href: '/services/fire-damage', colour: 'from-blue-600 to-red-500' },
         { label: 'Mould Remediation', href: '/services/mould-remediation', colour: 'from-green-500 to-teal-500' },
         { label: 'Biohazard Cleanup', href: '/services/biohazard', colour: 'from-purple-500 to-pink-500' },
       ]
@@ -172,14 +172,14 @@ export default function UltraModernHeader() {
                     <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
                     <div className="w-2 h-2 bg-green-500 rounded-full" />
                   </div>
-                  <span className="text-xs font-medium text-green-400">LIVE</span>
+                  <span className="text-xs font-medium text-emerald-600">LIVE</span>
                 </div>
               </div>
 
               {/* Emergency Button */}
               <button className="relative group overflow-hidden rounded-full transition-transform hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-full" />
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-full blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-full" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-full blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
                 <div className="relative px-6 py-3 flex items-center gap-2 text-white font-bold">
                   <BoltIcon className="w-5 h-5 animate-pulse" />
                   <span>Emergency</span>
@@ -240,8 +240,8 @@ export default function UltraModernHeader() {
               
               {/* Mobile Emergency CTA */}
               <button className="w-full mt-4 relative overflow-hidden rounded-2xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600" />
-                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 blur-xl opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 blur-xl opacity-50" />
                 <div className="relative px-6 py-4 flex items-center justify-center gap-3 text-white font-bold">
                   <BoltIcon className="w-6 h-6 animate-pulse" />
                   <span>24/7 Emergency Response</span>
@@ -260,8 +260,8 @@ export default function UltraModernHeader() {
             href="/contact"
             className="relative block transition-transform hover:scale-110"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 rounded-full blur-lg animate-pulse" />
-            <div className="relative w-16 h-16 bg-gradient-to-r from-red-600 to-orange-600 rounded-full flex items-center justify-center shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-full blur-lg animate-pulse" />
+            <div className="relative w-16 h-16 bg-gradient-to-r from-red-600 to-blue-700 rounded-full flex items-center justify-center shadow-2xl">
               <PhoneIcon className="w-8 h-8 text-white" />
             </div>
           </a>

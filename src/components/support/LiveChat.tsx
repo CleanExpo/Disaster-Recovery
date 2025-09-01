@@ -239,7 +239,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
             <p className="text-xs text-blue-100 flex items-center gap-1">
               {session ? (
                 <>
-                  <span className="h-2 w-2 bg-green-400 rounded-full animate-pulse" />
+                  <span className="h-2 w-2 bg-emerald-500 rounded-full animate-pulse" />
                   Active now
                 </>
               ) : isBusinessHours() ? (

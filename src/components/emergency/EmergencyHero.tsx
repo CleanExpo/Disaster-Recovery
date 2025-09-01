@@ -6,14 +6,14 @@ import { ArrowRight, Shield, Clock, Users, DollarSign } from 'lucide-react'
 
 export default function EmergencyHero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-red-600 via-orange-600 to-red-700 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-red-600 via-blue-700 to-red-700 text-white">
       {/* Crisis Badge */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="absolute top-4 left-1/2 transform -translate-x-1/2 z-20"
       >
-        <div className="bg-yellow-400 text-black px-4 py-2 rounded-full font-bold text-sm md:text-base flex items-center gap-2 shadow-lg">
+        <div className="bg-blue-500 text-black px-4 py-2 rounded-full font-bold text-sm md:text-base flex items-center gap-2 shadow-lg">
           <span className="animate-pulse">⚡</span>
           EMERGENCY RESPONSE ACTIVE 24/7
           <span className="animate-pulse">⚡</span>
@@ -30,7 +30,7 @@ export default function EmergencyHero() {
         >
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             Property Disaster?
-            <span className="block text-yellow-400 mt-2">
+            <span className="block text-blue-500 mt-2">
               Help Arrives in 60 Minutes
             </span>
           </h1>
@@ -49,7 +49,7 @@ export default function EmergencyHero() {
         >
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
             <div className="flex items-center justify-center mb-2">
-              <Users className="h-6 w-6 text-yellow-400" />
+              <Users className="h-6 w-6 text-blue-500" />
             </div>
             <div className="text-2xl font-bold">115,000+</div>
             <div className="text-sm opacity-90">Contractors</div>
@@ -57,7 +57,7 @@ export default function EmergencyHero() {
           
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
             <div className="flex items-center justify-center mb-2">
-              <Shield className="h-6 w-6 text-yellow-400" />
+              <Shield className="h-6 w-6 text-blue-500" />
             </div>
             <div className="text-2xl font-bold">100%</div>
             <div className="text-sm opacity-90">Insurance Approved</div>
@@ -65,7 +65,7 @@ export default function EmergencyHero() {
           
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
             <div className="flex items-center justify-center mb-2">
-              <DollarSign className="h-6 w-6 text-yellow-400" />
+              <DollarSign className="h-6 w-6 text-blue-500" />
             </div>
             <div className="text-2xl font-bold">$4.2B</div>
             <div className="text-sm opacity-90">Properties Restored</div>
@@ -73,7 +73,7 @@ export default function EmergencyHero() {
           
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
             <div className="flex items-center justify-center mb-2">
-              <Clock className="h-6 w-6 text-yellow-400" />
+              <Clock className="h-6 w-6 text-blue-500" />
             </div>
             <div className="text-2xl font-bold">24/7/365</div>
             <div className="text-sm opacity-90">Always Available</div>
@@ -89,14 +89,14 @@ export default function EmergencyHero() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-3 bg-yellow-400 text-black px-8 py-5 rounded-full text-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-2xl animate-pulse"
+            className="inline-flex items-center gap-3 bg-blue-500 text-black px-8 py-5 rounded-full text-xl font-bold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-2xl animate-pulse"
           >
             GET IMMEDIATE HELP
             <ArrowRight className="h-6 w-6" />
           </Link>
           
           <div className="mt-4 text-lg opacity-90">
-            Average response time: <span className="font-bold text-yellow-400">47 minutes</span>
+            Average response time: <span className="font-bold text-blue-500">47 minutes</span>
           </div>
         </motion.div>
 
@@ -108,7 +108,7 @@ export default function EmergencyHero() {
           className="mt-12 text-center"
         >
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-            <span className="h-2 w-2 bg-green-400 rounded-full animate-ping"></span>
+            <span className="h-2 w-2 bg-emerald-500 rounded-full animate-ping"></span>
             <span className="text-sm">
               <span className="font-bold">2,847</span> active emergency responses right now
             </span>

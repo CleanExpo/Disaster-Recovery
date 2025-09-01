@@ -120,7 +120,7 @@ export default function FAQIndexPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-red-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Can't Find Your Answer?
@@ -129,7 +129,7 @@ export default function FAQIndexPage() {
             Get immediate help from certified professionals in your area
           </p>
           <Link href="/get-help">
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
+            <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-100">
               Get Help Now
             </Button>
           </Link>

@@ -240,7 +240,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
       case 'public_link': return <Globe className="w-5 h-5 text-blue-600" />;
       case 'email': return <Mail className="w-5 h-5 text-green-600" />;
       case 'user_specific': return <UserCheck className="w-5 h-5 text-purple-600" />;
-      case 'organisation': return <Users className="w-5 h-5 text-orange-600" />;
+      case 'organisation': return <Users className="w-5 h-5 text-blue-700" />;
       default: return <Share2 className="w-5 h-5 text-gray-600" />;
     }
   };

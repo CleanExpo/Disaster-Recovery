@@ -476,7 +476,7 @@ export default function InvestorPitchDeck() {
               >
                 {currentSlideData.content.stats.map((stat, idx) => (
                   <div key={idx} className="text-center">
-                    <p className="text-3xl font-bold text-green-400">{stat.value}</p>
+                    <p className="text-3xl font-bold text-emerald-600">{stat.value}</p>
                     <p className="text-sm text-gray-400 mt-1">{stat.label}</p>
                   </div>
                 ))}
@@ -828,7 +828,7 @@ export default function InvestorPitchDeck() {
               <div className="grid md:grid-cols-3 gap-4">
                 {currentSlideData.content.comparables.map((comp, idx) => (
                   <div key={idx} className="text-center">
-                    <Award className="h-6 w-6 text-yellow-500 mx-auto mb-2" />
+                    <Award className="h-6 w-6 text-blue-600 mx-auto mb-2" />
                     <p className="text-sm">{comp}</p>
                   </div>
                 ))}
@@ -924,7 +924,7 @@ export default function InvestorPitchDeck() {
                     transition={{ delay: 0.5 + idx * 0.1 }}
                     className="flex items-center gap-2 justify-center"
                   >
-                    <Award className="h-5 w-5 text-yellow-500" />
+                    <Award className="h-5 w-5 text-blue-600" />
                     <span className="text-sm text-gray-700">{advisor}</span>
                   </motion.div>
                 ))}
@@ -979,7 +979,7 @@ export default function InvestorPitchDeck() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {currentSlideData.content.highlights.map((highlight, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-green-400" />
+                      <CheckCircle className="h-5 w-5 text-emerald-600" />
                       <span className="text-white">{highlight}</span>
                     </div>
                   ))}
@@ -1063,7 +1063,7 @@ export default function InvestorPitchDeck() {
                     transition={{ delay: 0.3 + idx * 0.1 }}
                     className="flex items-center gap-2 text-gray-300"
                   >
-                    <CheckCircle className="h-4 w-4 text-green-400" />
+                    <CheckCircle className="h-4 w-4 text-emerald-600" />
                     <span className="text-sm">{step}</span>
                   </motion.div>
                 ))}

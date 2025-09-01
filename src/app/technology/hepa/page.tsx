@@ -142,7 +142,7 @@ export default function HEPAFiltrationPage() {
                 <div className="text-sm text-gray-300">CFM Airflow</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">
-                <div className="text-3xl font-bold text-green-400">0.3μm</div>
+                <div className="text-3xl font-bold text-emerald-600">0.3μm</div>
                 <div className="text-sm text-gray-300">Particle Size</div>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/10 backdrop-blur">

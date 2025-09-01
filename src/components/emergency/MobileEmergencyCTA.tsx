@@ -42,7 +42,7 @@ export default function MobileEmergencyCTA() {
         >
           <Link
             href="/contact"
-            className="block w-full bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-full py-4 px-6 font-bold text-lg shadow-2xl"
+            className="block w-full bg-gradient-to-r from-red-600 to-blue-700 text-white rounded-full py-4 px-6 font-bold text-lg shadow-2xl"
           >
             <div className="flex items-center justify-center gap-3">
               <AlertCircle className="h-6 w-6 animate-pulse" />

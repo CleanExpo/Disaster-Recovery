@@ -427,7 +427,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
       <Card className="border-orange-200 bg-orange-50/50">
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
-            <AlertCircle className="h-5 w-5 text-orange-600" />
+            <AlertCircle className="h-5 w-5 text-blue-700" />
             Important Legal Information
           </CardTitle>
         </CardHeader>
@@ -436,19 +436,19 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
             <p className="font-semibold mb-2">By accepting these agreements, you acknowledge that:</p>
             <ul className="space-y-2 ml-4">
               <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5" />
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5" />
                 <span>These agreements constitute legally binding contracts between your business and NRP</span>
               </li>
               <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5" />
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5" />
                 <span>You have the authority to enter into these agreements on behalf of your business</span>
               </li>
               <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5" />
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5" />
                 <span>Breach of these agreements may result in termination and legal action</span>
               </li>
               <li className="flex items-start gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-1.5" />
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5" />
                 <span>These agreements are governed by the laws of Australia</span>
               </li>
             </ul>

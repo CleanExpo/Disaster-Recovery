@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        emergency: "bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg hover:from-red-700 hover:to-orange-700 transform hover:scale-105 transition-all duration-200 relative overflow-hidden",
+        emergency: "bg-gradient-to-r from-red-600 to-blue-700 text-white shadow-lg hover:from-red-700 hover:to-orange-700 transform hover:scale-105 transition-all duration-200 relative overflow-hidden",
         premium: "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200",
         success: "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg hover:from-green-700 hover:to-emerald-700 transform hover:scale-105",
         glass: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-200",
@@ -67,7 +67,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           children
         )}
         {variant === "emergency" && (
-          <div className="absolute inset-0 rounded-md bg-gradient-to-r from-red-600 to-orange-600 blur opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
+          <div className="absolute inset-0 rounded-md bg-gradient-to-r from-red-600 to-blue-700 blur opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
         )}
       </Comp>
     )

@@ -421,7 +421,7 @@ export default function SocialMediaInsights() {
             </p>
           </div>
           <div className="p-3 bg-orange-100 rounded-lg">
-            <Star className="w-6 h-6 text-orange-600" />
+            <Star className="w-6 h-6 text-blue-700" />
           </div>
         </div>
       </div>

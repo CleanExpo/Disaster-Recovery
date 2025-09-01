@@ -186,7 +186,7 @@ export default function MobileJobManagement() {
         </div>
 
         {job.syncStatus === 'pending' && (
-          <div className="flex items-center text-orange-600">
+          <div className="flex items-center text-blue-700">
             <WifiOff className="w-4 h-4 mr-2" />
             <span className="text-xs">Pending sync</span>
           </div>

@@ -543,7 +543,7 @@ const CoverageAreaMap: React.FC<MapProps> = ({
                 <span className="text-xs">Premium Coverage</span>
               </div>
               <div className="flex items-center space-x-2">
-                <div className="w-4 h-4 rounded-full bg-amber-500 opacity-60" />
+                <div className="w-4 h-4 rounded-full bg-blue-600 opacity-60" />
                 <span className="text-xs">Specialist Coverage</span>
               </div>
               <div className="flex items-center space-x-2">

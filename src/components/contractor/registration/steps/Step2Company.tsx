@@ -284,7 +284,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 placeholder="XX XXX XXX XXX"
                 value={formatABN(data.company?.abn || '')}'
                 onChange={(e) => handleInputChange('company.abn', e.target.value.replace(/\D/g, ''))}'
-                className={errors['company.abn'] ? 'border-red-500' : ''}'
+                className={errors['company.abn'] ? 'border-red-600' : ''}'
               />
               <Button
                 type="button"
@@ -312,7 +312,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
               value={data.company?.companyStructure || ''}'
               onValueChange={(value) => handleInputChange('company.companyStructure', value)}'
             >
-              <SelectTrigger className={errors['company.companyStructure'] ? 'border-red-500' : ''}>'
+              <SelectTrigger className={errors['company.companyStructure'] ? 'border-red-600' : ''}>'
                 <SelectValue placeholder="Select company structure" />"
               </SelectTrigger>
               <SelectContent>
@@ -353,7 +353,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   ...data.company?.registeredAddress,
                   street: e.target.value
                 })}
-                className={errors['company.registeredAddress.street'] ? 'border-red-500' : ''}'
+                className={errors['company.registeredAddress.street'] ? 'border-red-600' : ''}'
               />
             </div>
             
@@ -370,7 +370,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   ...data.company?.registeredAddress,
                   city: e.target.value
                 })}
-                className={errors['company.registeredAddress.city'] ? 'border-red-500' : ''}'
+                className={errors['company.registeredAddress.city'] ? 'border-red-600' : ''}'
               />
             </div>
             
@@ -385,7 +385,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   state: value
                 })}
               >
-                <SelectTrigger className={errors['company.registeredAddress.state'] ? 'border-red-500' : ''}>'
+                <SelectTrigger className={errors['company.registeredAddress.state'] ? 'border-red-600' : ''}>'
                   <SelectValue placeholder="Select state" />"
                 </SelectTrigger>
                 <SelectContent>
@@ -415,7 +415,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                   ...data.company?.registeredAddress,
                   postcode: e.target.value.replace(/\D/g, '')'
                 })}
-                className={errors['company.registeredAddress.postcode'] ? 'border-red-500' : ''}'
+                className={errors['company.registeredAddress.postcode'] ? 'border-red-600' : ''}'
               />
             </div>
 

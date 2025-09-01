@@ -85,7 +85,7 @@ export default function EmergencyTimesPage() {
 
   const getColorClass = (level: string) => {
     if (level === 'Extreme') return 'bg-red-600';
-    if (level === 'Critical') return 'bg-orange-600';
+    if (level === 'Critical') return 'bg-blue-700';
     return 'bg-yellow-600';
   };
 
@@ -93,7 +93,7 @@ export default function EmergencyTimesPage() {
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-orange-900 to-red-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <Clock className="h-16 w-16 text-yellow-400 mx-auto mb-6 animate-spin-slow" />
+          <Clock className="h-16 w-16 text-blue-500 mx-auto mb-6 animate-spin-slow" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             24/7/365 Emergency Response
           </h1>
@@ -122,7 +122,7 @@ export default function EmergencyTimesPage() {
               return (
                 <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
                   <div className="flex items-center justify-between mb-4">
-                    <IconComponent className="h-10 w-10 text-orange-600" />
+                    <IconComponent className="h-10 w-10 text-blue-700" />
                     <span className={`px-3 py-1 rounded-full text-white text-sm font-bold ${colorClass}`}>
                       {scenario.urgencyLevel}
                     </span>
@@ -138,7 +138,7 @@ export default function EmergencyTimesPage() {
                       Surcharge: {scenario.surcharge}
                     </p>
                     <p className="flex items-center font-bold text-black">
-                      <AlertTriangle className="h-4 w-4 mr-2 text-orange-600" />
+                      <AlertTriangle className="h-4 w-4 mr-2 text-blue-700" />
                       Total: $${totalFee.toLocaleString()}
                     </p>
                   </div>
@@ -168,7 +168,7 @@ export default function EmergencyTimesPage() {
           <div className="max-w-4xl mx-auto">
             <Card className="overflow-hidden">
               <table className="w-full">
-                <thead className="bg-orange-600 text-white">
+                <thead className="bg-blue-700 text-white">
                   <tr>
                     <th className="p-4 text-left">Time Period</th>
                     <th className="p-4 text-center">Surcharge</th>
@@ -188,7 +188,7 @@ export default function EmergencyTimesPage() {
                           </div>
                         </td>
                         <td className="p-4 text-center font-bold">{scenario.surcharge}</td>
-                        <td className="p-4 text-center font-bold text-orange-600">
+                        <td className="p-4 text-center font-bold text-blue-700">
                           $${total.toLocaleString()}
                         </td>
                         <td className="p-4 text-center">{scenario.responseTime}</td>
@@ -203,7 +203,7 @@ export default function EmergencyTimesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-600 to-blue-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">

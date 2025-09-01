@@ -166,7 +166,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
               w-full px-4 py-3 pr-12 bg-slate-900/50 border rounded-lg text-white placeholder-slate-400 
               focus:ring-1 transition
               ${abnValidation.isValid === true ? 'border-green-500 focus:border-green-500 focus:ring-green-500' :
-                abnValidation.isValid === false ? 'border-red-500 focus:border-red-500 focus:ring-red-500' :
+                abnValidation.isValid === false ? 'border-red-600 focus:border-red-600 focus:ring-red-500' :
                 'border-slate-600 focus:border-blue-500 focus:ring-blue-500'}
             `}
             placeholder="XX XXX XXX XXX"
@@ -178,7 +178,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
               <Loader2 className="h-5 w-5 text-blue-400 animate-spin" />
             )}
             {abnValidation.isValid === true && (
-              <CheckCircle className="h-5 w-5 text-green-400" />
+              <CheckCircle className="h-5 w-5 text-emerald-600" />
             )}
             {abnValidation.isValid === false && (
               <AlertCircle className="h-5 w-5 text-red-400" />
@@ -186,7 +186,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           </div>
         </div>
         {abnValidation.message && (
-          <p className={`mt-1 text-sm ${abnValidation.isValid ? 'text-green-400' : 'text-red-400'}`}>
+          <p className={`mt-1 text-sm ${abnValidation.isValid ? 'text-emerald-600' : 'text-red-400'}`}>
             {abnValidation.message}
           </p>
         )}

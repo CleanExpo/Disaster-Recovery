@@ -227,7 +227,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
                       <div key={index} className="flex items-start gap-3">
                         <div className={`mt-1 w-2 h-2 rounded-full ${
                           notification.type === 'application' ? 'bg-blue-500' :
-                          notification.type === 'compliance' ? 'bg-yellow-500' :
+                          notification.type === 'compliance' ? 'bg-blue-600' :
                           notification.type === 'payment' ? 'bg-green-500' :
                           'bg-gray-500'
                         }`} />

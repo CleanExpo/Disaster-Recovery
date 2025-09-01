@@ -19,7 +19,7 @@ export default function WarehouseStoragePage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center mb-6">
-              <span className="bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold mr-3">
+              <span className="bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-bold mr-3">
                 INDUSTRIAL
               </span>
               <span className="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-bold">
@@ -49,7 +49,7 @@ export default function WarehouseStoragePage() {
                 <p className="text-sm">Insurance Coverage</p>
               </Card>
             </div>
-            <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
+            <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
               <MessageSquare className="mr-2 h-5 w-5" />
               Emergency Industrial Response - Online Form Available 24/7
             </Button>
@@ -66,7 +66,7 @@ export default function WarehouseStoragePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {commonIssues.map((issue, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                <AlertTriangle className="h-10 w-10 text-orange-600 mb-4" />
+                <AlertTriangle className="h-10 w-10 text-blue-700 mb-4" />
                 <h3 className="font-bold text-lg mb-2">{issue}</h3>
                 <p className="text-gray-600 text-sm mb-4">
                   Specialised response for industrial properties

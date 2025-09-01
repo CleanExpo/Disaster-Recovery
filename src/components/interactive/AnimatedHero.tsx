@@ -95,7 +95,7 @@ export default function AnimatedHero() {
           </motion.h1>
           
           <motion.h2
-            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent"
+            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-red-400 via-blue-500 to-blue-500 bg-clip-text text-transparent"
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
             transition={{ duration: 5, repeat: Infinity }}
@@ -118,7 +118,7 @@ export default function AnimatedHero() {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255,0,0,0.6)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
+              className="px-8 py-4 bg-gradient-to-r from-red-600 to-blue-700 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
             >
               <MessageSquare className="h-6 w-6" />
               <span>Call 1300 566 166</span>

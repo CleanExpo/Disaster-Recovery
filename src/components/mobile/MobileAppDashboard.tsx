@@ -244,7 +244,7 @@ export function MobileAppDashboard() {
             <span className="text-xs">Scan Doc</span>
           </button>
           <button className="flex flex-col items-center p-3 bg-gray-50 rounded-xl">
-            <MessageSquare className="h-5 w-5 text-orange-600 mb-1" />
+            <MessageSquare className="h-5 w-5 text-blue-700 mb-1" />
             <span className="text-xs">Support</span>
           </button>
         </div>

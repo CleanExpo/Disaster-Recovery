@@ -139,7 +139,7 @@ export default function SEMrushDashboard() {
                 ) : isConnected ? (
                   <CheckCircle2 className="h-6 w-6 mr-3 text-green-600" />
                 ) : (
-                  <AlertCircle className="h-6 w-6 mr-3 text-orange-600" />
+                  <AlertCircle className="h-6 w-6 mr-3 text-blue-700" />
                 )}
                 <div>
                   <h2 className="text-lg font-semibold">
@@ -264,7 +264,7 @@ export default function SEMrushDashboard() {
                                   Exists
                                 </span>
                               ) : (
-                                <span className="text-orange-600 flex items-center">
+                                <span className="text-blue-700 flex items-center">
                                   <AlertCircle className="h-4 w-4 mr-1" />
                                   Missing
                                 </span>
@@ -370,7 +370,7 @@ export default function SEMrushDashboard() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Opportunities</p>
-                    <p className="text-2xl font-bold text-orange-600">12</p>
+                    <p className="text-2xl font-bold text-blue-700">12</p>
                   </div>
                 </div>
               </div>

@@ -97,7 +97,7 @@ export default function UltraModernServicesPage() {
       subtitle: 'Complete Fire Damage Recovery',
       description: 'Comprehensive fire restoration with advanced soot removal and odour elimination technology.',
       icon: FireIcon,
-      gradient: 'from-orange-600 via-red-500 to-pink-400',
+      gradient: 'from-blue-700 via-red-500 to-pink-400',
       features: [
         'Smoke Odour Elimination',
         'Soot & Debris Removal',
@@ -259,7 +259,7 @@ export default function UltraModernServicesPage() {
             </nav>
             <Link
               href="/contact"
-              className="neon-button bg-gradient-to-r from-red-600 to-orange-500 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
+              className="neon-button bg-gradient-to-r from-red-600 to-blue-600 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
             >
               <PhoneIcon className="w-5 h-5" />
               Emergency
@@ -426,7 +426,7 @@ export default function UltraModernServicesPage() {
                               transition={{ delay: i * 0.05 }}
                               className="flex items-center gap-2"
                             >
-                              <CheckCircleIcon className="w-5 h-5 text-green-400 flex-shrink-0" />
+                              <CheckCircleIcon className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                               <span className="text-gray-300 text-sm">{feature}</span>
                             </motion.div>
                           ))}
@@ -516,7 +516,7 @@ export default function UltraModernServicesPage() {
             >
               <Link
                 href="/contact"
-                className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-orange-500 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
+                className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-blue-600 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
               >
                 <PhoneIcon className="w-8 h-8" />
                 Call Contact Us

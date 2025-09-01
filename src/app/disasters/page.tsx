@@ -69,7 +69,7 @@ export default function DisastersPage() {
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-red-900 to-orange-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <AlertTriangle className="h-16 w-16 text-yellow-400 mx-auto mb-6 animate-pulse" />
+          <AlertTriangle className="h-16 w-16 text-blue-500 mx-auto mb-6 animate-pulse" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             All Disaster Types Coverage
           </h1>
@@ -86,7 +86,7 @@ export default function DisastersPage() {
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-center mb-3">
                   <span className={`px-2 py-1 rounded text-xs font-bold text-white ${
-                    disaster.severity === 'Extreme' ? 'bg-red-600' : 'bg-orange-600'
+                    disaster.severity === 'Extreme' ? 'bg-red-600' : 'bg-blue-700'
                   }`}>
                     {disaster.severity}
                   </span>

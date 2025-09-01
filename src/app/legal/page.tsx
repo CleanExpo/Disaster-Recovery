@@ -135,7 +135,7 @@ export default function LegalDocumentsHub() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <FaBalanceScale className="text-2xl text-orange-600 mt-1" />
+              <FaBalanceScale className="text-2xl text-blue-700 mt-1" />
               <div>
                 <h3 className="font-semibold mb-1">Regular Updates</h3>
                 <p className="text-sm text-gray-600">Kept current with regulations</p>

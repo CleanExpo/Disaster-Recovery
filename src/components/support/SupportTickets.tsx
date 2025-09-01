@@ -266,11 +266,11 @@ export function SupportTickets() {
   const getStatusIcon = (status: TicketStatus) => {
     switch (status) {
       case 'open':
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />;
+        return <AlertCircle className="h-4 w-4 text-blue-600" />;
       case 'in_progress':
         return <Clock className="h-4 w-4 text-blue-500" />;
       case 'pending':
-        return <Clock className="h-4 w-4 text-orange-500" />;
+        return <Clock className="h-4 w-4 text-blue-600" />;
       case 'resolved':
         return <CheckCircle className="h-4 w-4 text-green-500" />;
       case 'closed':
@@ -674,7 +674,7 @@ export function SupportTickets() {
                         });
                       }}
                     >
-                      <Star className={`h-4 w-4 ${rating <= 3 ? 'text-gray-400' : 'text-yellow-500'}`} />
+                      <Star className={`h-4 w-4 ${rating <= 3 ? 'text-gray-400' : 'text-blue-600'}`} />
                     </Button>
                   ))}
                 </div>
