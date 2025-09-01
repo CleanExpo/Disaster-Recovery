@@ -119,11 +119,27 @@ export default function CleanLandingPage() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      {/* Thunderstorm Background at 10% opacity */}
+      {/* Severe Storm Background at 15% opacity */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/10 via-blue-900/10 to-indigo-900/10" />
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='storm' x='0' y='0' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23000' stroke-width='0.1' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23storm)' width='100%25' height='100%25'/%3E%3C/svg%3E")`
+        {/* Dark storm clouds gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/15 via-blue-900/15 to-indigo-900/15" />
+        
+        {/* Animated storm clouds */}
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-blue-900 animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-slate-900/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-blue-900/50 via-transparent to-transparent" />
+        </div>
+        
+        {/* Rain effect pattern */}
+        <div className="absolute inset-0 opacity-15" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='rain' x='0' y='0' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0,20 Q5,40 0,60' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M20,10 Q25,30 20,50' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M40,25 Q45,45 40,65' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M60,15 Q65,35 60,55' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3Cpath d='M80,30 Q85,50 80,70' stroke='%234a5568' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23rain)' width='100%25' height='100%25'/%3E%3C/svg%3E")`,
+          animation: 'rainFall 3s linear infinite'
+        }} />
+        
+        {/* Turbulent cloud texture */}
+        <div className="absolute inset-0 opacity-15" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='turbulence'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.2 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23turbulence)'/%3E%3C/svg%3E")`
         }} />
       </div>
       
@@ -416,6 +432,18 @@ export default function CleanLandingPage() {
           </div>
         </div>
       </section>
+      
+      {/* CSS Animations for Storm Effects */}
+      <style jsx>{`
+        @keyframes rainFall {
+          0% {
+            background-position: 0 0;
+          }
+          100% {
+            background-position: 10px 100px;
+          }
+        }
+      `}</style>
     </div>
   );
 }
