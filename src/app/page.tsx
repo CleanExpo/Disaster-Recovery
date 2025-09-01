@@ -341,6 +341,232 @@ export default function CleanLandingPage() {
         </div>
       </section>
 
+      {/* Contractor Portal Section */}
+      <section className="py-20 bg-gradient-to-br from-indigo-50/90 to-blue-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              Contractor Portal - Professional Certification Program
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+              Join Australia's premier disaster recovery network. Complete our comprehensive 14-day certification program and become an approved restoration contractor.
+            </p>
+          </div>
+
+          {/* Course Topics Grid */}
+          <div className="max-w-6xl mx-auto">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">Course Topics</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { day: "Day 1", title: "Insurance Fundamentals", topics: ["Claims Process", "Documentation", "Compliance"] },
+                { day: "Day 2", title: "Water Damage Categories", topics: ["CAT 1-3 Water", "Assessment", "Mitigation"] },
+                { day: "Day 3", title: "Drying & Moisture", topics: ["Psychrometry", "Equipment", "Monitoring"] },
+                { day: "Day 4", title: "Mould Remediation", topics: ["Identification", "Containment", "Removal"] },
+                { day: "Day 5", title: "Fire & Smoke", topics: ["Damage Types", "Restoration", "Deodorization"] },
+                { day: "Day 6", title: "Biohazard Safety", topics: ["PPE", "Contamination", "Disposal"] },
+                { day: "Day 7", title: "Structural Drying", topics: ["Materials", "Techniques", "Documentation"] },
+                { day: "Day 8", title: "Commercial Projects", topics: ["Large Loss", "Coordination", "Timelines"] },
+                { day: "Day 9", title: "Health & Safety", topics: ["WHS", "Risk Assessment", "Compliance"] },
+                { day: "Day 10", title: "Customer Service", topics: ["Communication", "Expectations", "Resolution"] },
+                { day: "Day 11", title: "Advanced Tech", topics: ["Thermal Imaging", "3D Scanning", "Software"] },
+                { day: "Day 12", title: "Business Operations", topics: ["Estimating", "Project Management", "Quality"] },
+                { day: "Day 13", title: "Emergency Response", topics: ["24/7 Operations", "Triage", "Mobilization"] },
+                { day: "Day 14", title: "Final Assessment", topics: ["Certification Exam", "Practical Demo", "Approval"] }
+              ].map((module, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-bold text-indigo-600">{module.day}</span>
+                    <h4 className="text-sm font-semibold text-gray-900">{module.title}</h4>
+                  </div>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    {module.topics.map((topic, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle className="h-3 w-3 text-green-500 mr-1 mt-0.5 flex-shrink-0" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="text-center mt-10">
+              <Link href="/portal/training">
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg">
+                  Start Certification Program
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NRP CRM Portal Section */}
+      <section className="py-20 bg-gradient-to-br from-purple-50/90 to-pink-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              NRP CRM Portal - Complete Training Modules
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+              Access our comprehensive training system with detailed modules covering every aspect of disaster recovery and restoration.
+            </p>
+          </div>
+
+          {/* Training Modules List */}
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                {
+                  week: "Week 1: Foundation",
+                  modules: [
+                    { day: 1, title: "Insurance Claims & Documentation", duration: "4 hours", status: "Available" },
+                    { day: 2, title: "Water Damage Categories & Assessment", duration: "4 hours", status: "Available" },
+                    { day: 3, title: "Psychrometry & Drying Science", duration: "4 hours", status: "Available" },
+                    { day: 4, title: "Mould Identification & Remediation", duration: "4 hours", status: "Available" },
+                    { day: 5, title: "Fire & Smoke Damage Restoration", duration: "4 hours", status: "Available" },
+                    { day: 6, title: "Biohazard & Contamination Control", duration: "4 hours", status: "Available" },
+                    { day: 7, title: "Structural Drying Techniques", duration: "4 hours", status: "Available" }
+                  ]
+                },
+                {
+                  week: "Week 2: Advanced",
+                  modules: [
+                    { day: 8, title: "Commercial & Large Loss Projects", duration: "4 hours", status: "Available" },
+                    { day: 9, title: "Health, Safety & Compliance", duration: "4 hours", status: "Available" },
+                    { day: 10, title: "Customer Service Excellence", duration: "4 hours", status: "Available" },
+                    { day: 11, title: "Advanced Technology & Equipment", duration: "4 hours", status: "Available" },
+                    { day: 12, title: "Business Operations & Management", duration: "4 hours", status: "Available" },
+                    { day: 13, title: "Emergency Response Protocols", duration: "4 hours", status: "Available" },
+                    { day: 14, title: "Final Assessment & Certification", duration: "8 hours", status: "Available" }
+                  ]
+                }
+              ].map((week, weekIndex) => (
+                <div key={weekIndex} className="bg-white rounded-xl p-6 shadow-lg">
+                  <h3 className="text-lg font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">
+                    {week.week}
+                  </h3>
+                  <div className="space-y-3">
+                    {week.modules.map((module, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        viewport={{ once: true }}
+                        className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                            {module.day}
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-semibold text-gray-900">{module.title}</h4>
+                            <p className="text-xs text-gray-600">{module.duration}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                            {module.status}
+                          </span>
+                          <Link href={`/portal/training/modules/day-${module.day}`}>
+                            <ChevronRight className="h-5 w-5 text-gray-400 hover:text-purple-600 transition-colors" />
+                          </Link>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Portal Features */}
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4">
+              {[
+                { icon: "📚", title: "56 Hours", description: "Total Training Content" },
+                { icon: "🎓", title: "IICRC Aligned", description: "Industry Standards" },
+                { icon: "💼", title: "Business Ready", description: "Operational Excellence" },
+                { icon: "🏆", title: "Certification", description: "Industry Recognition" }
+              ].map((feature, index) => (
+                <div key={index} className="bg-white rounded-lg p-4 text-center shadow-md">
+                  <div className="text-2xl mb-2">{feature.icon}</div>
+                  <h4 className="text-sm font-bold text-gray-900">{feature.title}</h4>
+                  <p className="text-xs text-gray-600 mt-1">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="text-center mt-10 space-y-4">
+              <Link href="/portal/training">
+                <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-6 text-lg">
+                  Access Training Portal
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <div className="text-sm text-gray-600">
+                Already enrolled? <Link href="/portal/login" className="text-purple-600 hover:underline">Login to continue</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* YouTube Pitch Deck Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Learn More About Our Vision
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
+              Watch our comprehensive pitch deck to understand how we're revolutionizing disaster recovery in Australia
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="aspect-video bg-gray-700 rounded-xl overflow-hidden shadow-2xl">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="NRP Disaster Recovery Pitch Deck"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 mb-4">
+                Discover how we're building Australia's largest disaster recovery network
+              </p>
+              <div className="flex justify-center gap-4">
+                <Link href="/pitch-deck">
+                  <Button variant="outline" className="text-white border-white hover:bg-white/10">
+                    <Play className="mr-2 h-4 w-4" />
+                    View Full Presentation
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button className="bg-white text-gray-900 hover:bg-gray-100">
+                    Get In Touch
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process Section - Visual Steps */}
       <section className="py-20 bg-white/90 relative">
         <div className="container mx-auto px-4 md:px-6">
