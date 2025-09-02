@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { 
   BoltIcon, 
-  PhoneIcon, 
   CheckCircleIcon,
   ClockIcon,
   ShieldCheckIcon,
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
+import { AlertCircle } from 'lucide-react';
 
 export default function HeroSection() {
   const [currentWord, setCurrentWord] = useState(0);
@@ -92,11 +92,11 @@ export default function HeroSection() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a
-            href="/contact"
+            href="/emergency"
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-blue-700 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/25"
           >
-            <PhoneIcon className="w-6 h-6 animate-pulse" />
-            <span>Contact Us</span>
+            <AlertCircle className="w-6 h-6 animate-pulse" />
+            <span>Emergency Help</span>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-blue-700 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
           </a>
           

@@ -119,8 +119,8 @@ export default function UltraModernFooter() {
                     </div>
                     <div>
                       <p className="text-sm text-gray-400 uppercase tracking-wider">24/7 Emergency Response</p>
-                      <a href="/contact" className="text-3xl font-bold text-white hover:text-cyan-400 transition-colours">
-                        Contact Us
+                      <a href="/emergency" className="text-3xl font-bold text-white hover:text-cyan-400 transition-colours">
+                        Get Help Now
                       </a>
                     </div>
                     <div className="flex items-center gap-2">
@@ -187,10 +187,10 @@ export default function UltraModernFooter() {
             <div className="grid md:grid-cols-3 gap-6 py-8 border-t border-white/10">
               {[
                 {
-                  icon: PhoneIcon,
-                  label: 'Emergency Line',
-                  value: 'Contact Us',
-                  href: 'tel:Contact Us',
+                  icon: ShieldCheckIcon,
+                  label: 'Emergency Response',
+                  value: 'Online Support 24/7',
+                  href: '/emergency',
                   colour: 'text-red-400'
                 },
                 {

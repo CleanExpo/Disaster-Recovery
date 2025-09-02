@@ -722,7 +722,7 @@ export default function UltraModernHeader() {
                     background: 'linear-gradient(135deg, #ff4545 0%, #ff8845 100%)',
                     boxShadow: '0 10px 40px rgba(255, 69, 69, 0.3)' }}
                 >
-                  📱 Contact Us Now
+                  🚨 Emergency Response
                 </div>
               </Link>
             </div>
