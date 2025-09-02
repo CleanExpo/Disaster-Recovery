@@ -409,14 +409,14 @@ export const TICKET_CATEGORIES: Record<TicketCategory, {
   }
 };
 
-export const DEFAULT_BUSINESS_HOURS: SupportConfig['businessHours'] = {'
-  timezone: 'Australia/Sydney','
+export const DEFAULT_BUSINESS_HOURS: SupportConfig['businessHours'] = {
+  timezone: 'Australia/Sydney',
   schedule: {
-    monday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },'
-    tuesday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },'
-    wednesday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },'
-    thursday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },'
-    friday: { isOpen: true, openTime: '08:00', closeTime: '17:00' },'
+    monday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },
+    tuesday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },
+    wednesday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },
+    thursday: { isOpen: true, openTime: '08:00', closeTime: '18:00' },
+    friday: { isOpen: true, openTime: '08:00', closeTime: '17:00' },
     saturday: { isOpen: false },
     sunday: { isOpen: false }
   },

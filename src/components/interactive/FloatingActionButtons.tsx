@@ -42,8 +42,8 @@ function MagneticFloatingButton({
   const mouseYSpring = useSpring(y, { stiffness: 300, damping: 20 });
 
   const sizeClasses = {
-    sm: 'w-12 h-12','
-    md: 'w-16 h-16','
+    sm: 'w-12 h-12',
+    md: 'w-16 h-16',
     lg: 'w-20 h-20'
   };
 

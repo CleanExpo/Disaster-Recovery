@@ -272,8 +272,8 @@ export const isValidPostcode = (postcode: string, state?: string): boolean => {
     'SA': [[5000, 5999]],
     'WA': [[6000, 6799], [6800, 6999]],
     'TAS': [[7000, 7999]],
-    'NT': [[0800, 0999]],
-    'ACT': [[0200, 0299], [2600, 2618], [2900, 2920]],
+    'NT': [[800, 999]],
+    'ACT': [[200, 299], [2600, 2618], [2900, 2920]],
   };
   
   const code = parseInt(postcode);

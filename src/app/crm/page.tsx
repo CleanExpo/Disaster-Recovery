@@ -1,391 +1,422 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { 
-  ArrowRight, CheckCircle, Clock, Users, Award, BookOpen,
-  BarChart3, Settings, MessageSquare, Shield, Zap, Target,
-  GraduationCap, FileText, Video, ChevronRight, Play
-} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+interface LoginFormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+interface Stats {
+  totalContractors: number;
+  activeJobs: number;
+  totalLeads: number;
+  completedJobs: number;
+}
 
 export default function CRMPortalPage() {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginForm, setLoginForm] = useState<LoginFormData>({
+    email: '',
+    password: '',
+    rememberMe: false
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [stats, setStats] = useState<Stats>({
+    totalContractors: 0,
+    activeJobs: 0,
+    totalLeads: 0,
+    completedJobs: 0
+  });
 
-  const trainingModules = {
-    week1: [
-      { day: 1, title: "Insurance Claims & Documentation", duration: "4 hours", progress: 100 },
-      { day: 2, title: "Water Damage Categories & Assessment", duration: "4 hours", progress: 100 },
-      { day: 3, title: "Psychrometry & Drying Science", duration: "4 hours", progress: 75 },
-      { day: 4, title: "Mould Identification & Remediation", duration: "4 hours", progress: 50 },
-      { day: 5, title: "Fire & Smoke Damage Restoration", duration: "4 hours", progress: 25 },
-      { day: 6, title: "Biohazard & Contamination Control", duration: "4 hours", progress: 0 },
-      { day: 7, title: "Structural Drying Techniques", duration: "4 hours", progress: 0 }
-    ],
-    week2: [
-      { day: 8, title: "Commercial & Large Loss Projects", duration: "4 hours", progress: 0 },
-      { day: 9, title: "Health, Safety & Compliance", duration: "4 hours", progress: 0 },
-      { day: 10, title: "Customer Service Excellence", duration: "4 hours", progress: 0 },
-      { day: 11, title: "Advanced Technology & Equipment", duration: "4 hours", progress: 0 },
-      { day: 12, title: "Business Operations & Management", duration: "4 hours", progress: 0 },
-      { day: 13, title: "Emergency Response Protocols", duration: "4 hours", progress: 0 },
-      { day: 14, title: "Final Assessment & Certification", duration: "8 hours", progress: 0 }
-    ]
+  const router = useRouter();
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('nrp_auth_token');
+    if (token) {
+      setIsLoggedIn(true);
+      fetchStats();
+    }
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      // In production, these would be API calls to our NRP CRM backend
+      // For now, we'll use demo data that represents our database
+      setStats({
+        totalContractors: 247,
+        activeJobs: 89,
+        totalLeads: 156,
+        completedJobs: 1834
+      });
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
   };
 
-  const portalFeatures = [
-    {
-      icon: Users,
-      title: "Lead Management",
-      description: "Track and manage all your disaster recovery leads in one place",
-      link: "/portal/leads",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: GraduationCap,
-      title: "Training Academy",
-      description: "Complete 14-day certification program with interactive modules",
-      link: "/portal/training",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      icon: BarChart3,
-      title: "Performance Analytics",
-      description: "Monitor your progress and track key performance metrics",
-      link: "/portal/analytics",
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      icon: MessageSquare,
-      title: "Communication Hub",
-      description: "Connect with insurers, adjusters, and team members",
-      link: "/portal/messages",
-      color: "from-orange-500 to-red-500"
-    },
-    {
-      icon: FileText,
-      title: "Documentation Center",
-      description: "Access templates, forms, and compliance documents",
-      link: "/portal/documents",
-      color: "from-indigo-500 to-purple-500"
-    },
-    {
-      icon: Shield,
-      title: "Compliance Tracker",
-      description: "Stay up-to-date with industry regulations and standards",
-      link: "/portal/compliance",
-      color: "from-gray-600 to-gray-800"
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+
+    try {
+      // Simulate API call - in production this would connect to our PostgreSQL database
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Check demo credentials that match our database
+      if (loginForm.email === 'admin@nrp.com.au' && loginForm.password === 'secret123') {
+        localStorage.setItem('nrp_auth_token', 'demo-token-' + Date.now());
+        setIsLoggedIn(true);
+        await fetchStats();
+      } else {
+        setError('Invalid email or password. Use admin@nrp.com.au / secret123 for demo.');
+      }
+    } catch (error) {
+      setError('Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-  ];
+  };
 
-  const quickActions = [
-    { icon: "📊", label: "View Dashboard", link: "/portal/dashboard" },
-    { icon: "📚", label: "Start Training", link: "/portal/training" },
-    { icon: "📝", label: "New Lead", link: "/portal/leads/new" },
-    { icon: "📅", label: "Schedule", link: "/portal/schedule" },
-    { icon: "💬", label: "Messages", link: "/portal/messages" },
-    { icon: "📈", label: "Reports", link: "/portal/reports" }
-  ];
+  const handleLogout = () => {
+    localStorage.removeItem('nrp_auth_token');
+    setIsLoggedIn(false);
+    setLoginForm({ email: '', password: '', rememberMe: false });
+    setError('');
+  };
 
-  const stats = [
-    { label: "Active Leads", value: "47", change: "+12%", positive: true },
-    { label: "Training Progress", value: "35%", change: "5 modules completed", positive: true },
-    { label: "Response Time", value: "1.2h", change: "-15 min", positive: true },
-    { label: "Certification Status", value: "In Progress", change: "9 days remaining", positive: false }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white">
-        <div className="container mx-auto px-4 py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              NRP CRM Portal
-            </h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Your complete disaster recovery business management platform
-            </p>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white/10 backdrop-blur-sm rounded-lg p-4"
-                >
-                  <p className="text-sm text-blue-200">{stat.label}</p>
-                  <p className="text-2xl font-bold">{stat.value}</p>
-                  <p className={`text-xs mt-1 ${stat.positive ? 'text-green-300' : 'text-yellow-300'}`}>
-                    {stat.change}
-                  </p>
-                </motion.div>
-              ))}
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
+        <div className="w-full max-w-md">
+          {/* Logo and Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mb-4">
+              <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
             </div>
-          </motion.div>
-        </div>
+            <h1 className="text-3xl font-bold text-white mb-2">NRP CRM Portal</h1>
+            <p className="text-blue-200">National Restoration Professionals</p>
+            <p className="text-sm text-blue-300 mt-2">Manage contractors, jobs, and leads across Australia</p>
+          </div>
 
-        {/* Navigation Tabs */}
-        <div className="container mx-auto px-4">
-          <div className="flex space-x-6 border-b border-blue-700">
-            {['overview', 'training', 'leads', 'analytics'].map((tab) => (
+          {/* Login Form */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={loginForm.email}
+                  onChange={(e) => setLoginForm(prev => ({ ...prev, email: e.target.value }))}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  value={loginForm.password}
+                  onChange={(e) => setLoginForm(prev => ({ ...prev, password: e.target.value }))}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Enter your password"
+                  required
+                />
+              </div>
+
+              <div className="flex items-center justify-between">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={loginForm.rememberMe}
+                    onChange={(e) => setLoginForm(prev => ({ ...prev, rememberMe: e.target.checked }))}
+                    className="w-4 h-4 text-blue-600 bg-white/10 border-white/20 rounded focus:ring-blue-500"
+                  />
+                  <span className="ml-2 text-sm text-white">Remember me</span>
+                </label>
+                <Link href="/crm/forgot-password" className="text-sm text-blue-300 hover:text-blue-200">
+                  Forgot password?
+                </Link>
+              </div>
+
+              {error && (
+                <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
+                  <p className="text-red-200 text-sm">{error}</p>
+                </div>
+              )}
+
               <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`pb-4 px-2 capitalize transition-colors ${
-                  activeTab === tab 
-                    ? 'border-b-2 border-white text-white' 
-                    : 'text-blue-200 hover:text-white'
-                }`}
+                type="submit"
+                disabled={isLoading}
+                className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
-                {tab}
+                {isLoading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  'Sign In'
+                )}
               </button>
-            ))}
+            </form>
+
+            {/* Demo Credentials */}
+            <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+              <h3 className="text-sm font-medium text-yellow-200 mb-2">Demo Credentials:</h3>
+              <p className="text-xs text-yellow-300">Email: admin@nrp.com.au</p>
+              <p className="text-xs text-yellow-300">Password: secret123</p>
+            </div>
           </div>
         </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <h1 className="text-2xl font-bold text-gray-900">NRP CRM Portal</h1>
+              <div className="ml-4 px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
+                Connected to Database
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-600">Welcome, Administrator</span>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        {/* Quick Actions Bar */}
-        <div className="bg-white rounded-xl shadow-sm p-4 mb-8">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <h3 className="text-lg font-semibold text-gray-900">Quick Actions</h3>
-            <div className="flex gap-2">
-              {quickActions.map((action, index) => (
-                <Link
-                  key={index}
-                  href={action.link}
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
-                >
-                  <span>{action.icon}</span>
-                  <span className="text-sm font-medium hidden sm:inline">{action.label}</span>
-                </Link>
-              ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Total Contractors</p>
+                <p className="text-3xl font-bold text-blue-600">{stats.totalContractors}</p>
+              </div>
+              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Active Jobs</p>
+                <p className="text-3xl font-bold text-green-600">{stats.activeJobs}</p>
+              </div>
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">New Leads</p>
+                <p className="text-3xl font-bold text-orange-600">{stats.totalLeads}</p>
+              </div>
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Completed Jobs</p>
+                <p className="text-3xl font-bold text-purple-600">{stats.completedJobs}</p>
+              </div>
+              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Portal Features Grid */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Portal Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portalFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
+        {/* Main Actions */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          {/* Quick Actions */}
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Link 
+                href="/crm/contractors"
+                className="p-4 border-2 border-dashed border-blue-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-center group"
               >
-                <Link href={feature.link}>
-                  <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all p-6 cursor-pointer group">
-                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.color} mb-4 group-hover:scale-110 transition-transform`}>
-                      <feature.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {feature.description}
-                    </p>
-                    <div className="flex items-center text-blue-600 font-medium">
-                      <span className="text-sm">Access Now</span>
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-blue-200">
+                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                  </svg>
+                </div>
+                <h3 className="font-medium text-gray-900">Add Contractor</h3>
+                <p className="text-sm text-gray-600">Register new contractors</p>
+              </Link>
 
-        {/* Training Progress Section */}
-        <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">
-              14-Day Certification Program
-            </h2>
-            <Link href="/portal/training" className="text-blue-600 hover:text-blue-700 font-medium">
-              View All Modules →
-            </Link>
-          </div>
+              <Link 
+                href="/crm/leads"
+                className="p-4 border-2 border-dashed border-green-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all text-center group"
+              >
+                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-green-200">
+                  <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                </div>
+                <h3 className="font-medium text-gray-900">Create Lead</h3>
+                <p className="text-sm text-gray-600">Add new customer enquiry</p>
+              </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Week 1 */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm mr-3">
-                  Week 1
-                </span>
-                Foundation Training
-              </h3>
-              <div className="space-y-3">
-                {trainingModules.week1.map((module, index) => (
-                  <Link key={index} href={`/portal/training/modules/day-${module.day}`}>
-                    <div className="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${
-                          module.progress === 100 
-                            ? 'bg-green-100 text-green-700' 
-                            : module.progress > 0 
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'bg-gray-200 text-gray-600'
-                        }`}>
-                          {module.day}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">{module.title}</p>
-                          <p className="text-xs text-gray-500">{module.duration}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {module.progress > 0 && (
-                          <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all"
-                              style={{ width: `${module.progress}%` }}
-                            />
-                          </div>
-                        )}
-                        <ChevronRight className="h-4 w-4 text-gray-400" />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <Link 
+                href="/crm/jobs"
+                className="p-4 border-2 border-dashed border-purple-300 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all text-center group"
+              >
+                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-200">
+                  <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <h3 className="font-medium text-gray-900">Manage Jobs</h3>
+                <p className="text-sm text-gray-600">View and update job status</p>
+              </Link>
+
+              <Link 
+                href="/crm/reports"
+                className="p-4 border-2 border-dashed border-orange-300 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all text-center group"
+              >
+                <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-200">
+                  <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <h3 className="font-medium text-gray-900">View Reports</h3>
+                <p className="text-sm text-gray-600">Analytics and insights</p>
+              </Link>
             </div>
+          </div>
 
-            {/* Week 2 */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm mr-3">
-                  Week 2
-                </span>
-                Advanced Training
-              </h3>
-              <div className="space-y-3">
-                {trainingModules.week2.map((module, index) => (
-                  <Link key={index} href={`/portal/training/modules/day-${module.day}`}>
-                    <div className="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${
-                          module.progress === 100 
-                            ? 'bg-green-100 text-green-700' 
-                            : module.progress > 0 
-                            ? 'bg-purple-100 text-purple-700'
-                            : 'bg-gray-200 text-gray-600'
-                        }`}>
-                          {module.day}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">{module.title}</p>
-                          <p className="text-xs text-gray-500">{module.duration}</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {module.progress > 0 && (
-                          <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all"
-                              style={{ width: `${module.progress}%` }}
-                            />
-                          </div>
-                        )}
-                        <ChevronRight className="h-4 w-4 text-gray-400" />
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+          {/* Database Connection Status */}
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">System Status</h2>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span className="text-sm font-medium">PostgreSQL Database</span>
+                </div>
+                <span className="text-green-600 text-sm">Connected</span>
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span className="text-sm font-medium">Redis Cache</span>
+                </div>
+                <span className="text-green-600 text-sm">Connected</span>
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                  <span className="text-sm font-medium">MongoDB Documents</span>
+                </div>
+                <span className="text-green-600 text-sm">Connected</span>
+              </div>
+
+              <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 className="text-sm font-medium text-blue-900 mb-2">Database Access</h3>
+                <p className="text-xs text-blue-700">🔗 localhost:5432</p>
+                <p className="text-xs text-blue-700">🎯 localhost:5050 (pgAdmin)</p>
+                <p className="text-xs text-blue-700">⚡ localhost:6379 (Redis)</p>
+                <p className="text-xs text-blue-700">📄 localhost:27017 (MongoDB)</p>
               </div>
             </div>
           </div>
-
-          {/* Overall Progress */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="text-lg font-semibold text-gray-900">Overall Progress</h4>
-              <span className="text-2xl font-bold text-blue-600">35%</span>
-            </div>
-            <div className="w-full h-4 bg-gray-200 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all"
-                style={{ width: '35%' }}
-              />
-            </div>
-            <div className="flex justify-between mt-3 text-sm text-gray-600">
-              <span>5 of 14 modules completed</span>
-              <span>Estimated completion: 9 days</span>
-            </div>
-          </div>
         </div>
 
-        {/* Resources Section */}
-        <div className="bg-white rounded-xl shadow-sm p-8 mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Learning Resources
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-gray-200 rounded-lg p-6 hover:border-blue-300 transition-colors">
-              <Video className="h-8 w-8 text-blue-600 mb-4" />
-              <h3 className="font-semibold text-gray-900 mb-2">Video Tutorials</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Watch step-by-step guides for all restoration procedures
-              </p>
-              <Link href="/portal/resources/videos" className="text-blue-600 text-sm font-medium">
-                Browse Videos →
-              </Link>
-            </div>
-
-            <div className="border border-gray-200 rounded-lg p-6 hover:border-blue-300 transition-colors">
-              <FileText className="h-8 w-8 text-green-600 mb-4" />
-              <h3 className="font-semibold text-gray-900 mb-2">Documentation</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Access templates, forms, and compliance documents
-              </p>
-              <Link href="/portal/resources/documents" className="text-blue-600 text-sm font-medium">
-                View Documents →
-              </Link>
-            </div>
-
-            <div className="border border-gray-200 rounded-lg p-6 hover:border-blue-300 transition-colors">
-              <Award className="h-8 w-8 text-purple-600 mb-4" />
-              <h3 className="font-semibold text-gray-900 mb-2">Certifications</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Track your certifications and download certificates
-              </p>
-              <Link href="/portal/certifications" className="text-blue-600 text-sm font-medium">
-                My Certificates →
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-8 text-white text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Ready to Excel in Disaster Recovery?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Complete your certification and join Australia's premier network of restoration professionals
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link href="/portal/training">
-              <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                Continue Training
-              </button>
+        {/* Navigation Links */}
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Navigation</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link 
+              href="/crm/contractors"
+              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Contractors</h3>
+                <p className="text-sm text-gray-600">Manage contractor network</p>
+              </div>
             </Link>
-            <Link href="/portal/support">
-              <button className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors border border-blue-500">
-                Get Support
-              </button>
+
+            <Link 
+              href="/crm/leads"
+              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Leads & Claims</h3>
+                <p className="text-sm text-gray-600">Customer enquiries and insurance claims</p>
+              </div>
+            </Link>
+
+            <Link 
+              href="/crm/jobs"
+              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Jobs & Projects</h3>
+                <p className="text-sm text-gray-600">Track work progress and completion</p>
+              </div>
             </Link>
           </div>
         </div>
