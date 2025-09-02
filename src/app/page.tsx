@@ -9,27 +9,6 @@ import {
   Zap, Star, ChevronRight, Play, MessageSquare,
   Phone, Home, Building2, AlertTriangle
 } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-// Dynamically import YouTube components to avoid SSR issues
-const LiteYouTubeEmbed = dynamic(() => import('react-lite-youtube-embed'), { 
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-gray-700 rounded-xl flex items-center justify-center">
-      <div className="text-white text-center">
-        <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Play className="w-8 h-8 text-white ml-1" />
-        </div>
-        <p>Loading video player...</p>
-      </div>
-    </div>
-  )
-});
-
-// Import the CSS only on client side
-if (typeof window !== 'undefined') {
-  import('react-lite-youtube-embed/dist/LiteYouTubeEmbed.css');
-}
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
