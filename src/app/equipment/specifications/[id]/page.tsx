@@ -427,7 +427,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
               <MessageSquare className="mr-2 h-5 w-5" />
-              1300 776 062
+              online support
             </Button>
           </div>
         </div>

@@ -795,7 +795,7 @@ export default function SchedulePage() {
               <AlertTriangle className="h-4 w-4 text-red-600" />
               <AlertDescription>
                 <strong>Emergency Service:</strong> For immediate emergency assistance, 
-                please call our 24/7 hotline at <strong>1300 RESTORE (1300 737 867)</strong>
+                please use our 24/7 online emergency form</strong>
               </AlertDescription>
             </Alert>
           )}

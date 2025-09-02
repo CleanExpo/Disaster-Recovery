@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
     ).join(' '))
     .join(' | ');
     
-  const description = `Professional ${title.toLowerCase()} services. 24/7 emergency response, insurance approved. Call 1300 814 870 for immediate help.`;
+  const description = `Professional ${title.toLowerCase()} services. 24/7 emergency response, insurance approved. Call online support for immediate help.`;
   
   return {
     title: `${title} | Disaster Recovery`,

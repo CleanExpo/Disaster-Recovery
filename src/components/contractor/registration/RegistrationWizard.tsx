@@ -292,8 +292,7 @@ export function RegistrationWizard() {
             </a>
             {' '}or call{' '}
             <a href="#contact-form" className="text-blue-600 hover:underline">
-              1300 XXX XXX
-            </a>
+              online support</a>
           </p>
         </div>
       </div>

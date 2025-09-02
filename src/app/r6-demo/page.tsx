@@ -76,7 +76,7 @@ export default function R6DemoPage() {
               </button>
               <button className="r6-btn r6-btn-primary">
                 <MessageSquare className="w-4 h-4" />
-                <span>1300 566 166</span>
+                <span>online support</span>
               </button>
             </div>
           </div>

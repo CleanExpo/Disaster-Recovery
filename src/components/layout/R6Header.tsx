@@ -216,7 +216,7 @@ export default function R6Header() {
                 )}
               >
                 <MessageSquare className="w-4 h-4 group-hover:rotate-12 transition-transform" />"
-                <span>1300 566 166</span>
+                <span>online support</span>
                 {emergencyMode && (
                   <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full ml-1">"
                     EMERGENCY

@@ -593,7 +593,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
               <MessageSquare className="h-5 w-5 text-emerald-600" />
               <div>
                 <p className="font-semibold">Call Our IEP Team</p>
-                <p className="text-2xl font-bold text-emerald-600">1300 814 870</p>
+                <p className="text-2xl font-bold text-emerald-600">online support</p>
               </div>
             </div>
             <div className="space-y-3">

@@ -39,11 +39,11 @@ export const metadata: Metadata = generateSEO({
 const sewageFAQs = [
   {
     question: "Is sewage backup dangerous to my health?",
-    answer: "Yes, sewage contains dangerous bacteria, viruses, parasites, and other pathogens that can cause serious illness. Category 3 'black water' poses immediate health risks. Never attempt cleanup without proper PPE. Call our certified technicians at 1300 309 361 for safe, professional removal."
+    answer: "Yes, sewage contains dangerous bacteria, viruses, parasites, and other pathogens that can cause serious illness. Category 3 'black water' poses immediate health risks. Never attempt cleanup without proper PPE. Call our certified technicians at online support for safe, professional removal."
   },
   {
     question: "What should I do if sewage backs up in my home?",
-    answer: "Immediately evacuate the affected area, avoid contact with contaminated water, turn off electricity to affected areas if safe, stop using water fixtures, and call our 24/7 emergency line at 1300 309 361. Do not attempt cleanup yourself due to serious health risks."
+    answer: "Immediately evacuate the affected area, avoid contact with contaminated water, turn off electricity to affected areas if safe, stop using water fixtures, and call our 24/7 emergency line at online support. Do not attempt cleanup yourself due to serious health risks."
   },
   {
     question: "How quickly should sewage be cleaned up?",
@@ -91,7 +91,7 @@ export default function SewageCleanupPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertOctagon className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Emergency Sewage Cleanup</span>
-          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">online support</a>
         </div>
       </div>
 
@@ -510,7 +510,7 @@ export default function SewageCleanupPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <MessageSquare className="h-5 w-5" />
-              Emergency: 1300 309 361
+              Emergency: online support
             </a>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-blue-700">
               Get Immediate Help

@@ -97,7 +97,7 @@ export default function MouldRemediationPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertTriangle className="h-5 w-5 animate-pulse" />
           <span className="font-bold">Professional Mould Remediation Services</span>
-          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">online support</a>
         </div>
       </div>
 

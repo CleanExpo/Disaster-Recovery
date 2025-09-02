@@ -39,7 +39,7 @@ export const metadata: Metadata = generateSEO({
 const fireDamageFAQs = [
   {
     question: "What should I do immediately after a fire?",
-    answer: "First, ensure everyone is safe and don't re-enter the property until cleared by fire services. Contact your insurance company and call our 24/7 emergency line at 1300 309 361. We'll secure your property, assess damage, and begin restoration immediately to prevent further damage from smoke and water."
+    answer: "First, ensure everyone is safe and don't re-enter the property until cleared by fire services. Contact your insurance company and call our 24/7 emergency line at online support. We'll secure your property, assess damage, and begin restoration immediately to prevent further damage from smoke and water."
   },
   {
     question: "How long does fire damage restoration take?",
@@ -91,7 +91,7 @@ export default function FireDamageRestorationPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Flame className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Fire Damage Emergency Response</span>
-          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">online support</a>
         </div>
       </div>
 

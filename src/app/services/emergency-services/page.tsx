@@ -196,7 +196,7 @@ export default function EmergencyServicesPage() {
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
-                EMERGENCY: 1300 814 870
+                EMERGENCY: online support
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 <Zap className="mr-2 h-5 w-5" />
@@ -361,7 +361,7 @@ export default function EmergencyServicesPage() {
                   </li>
                   <li className="flex gap-3">
                     <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
-                    <span>Call us at 1300 814 870 for property emergencies</span>
+                    <span>Call us at online support for property emergencies</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">4</span>
@@ -533,7 +533,7 @@ export default function EmergencyServicesPage() {
             </p>
             <div className="bg-white/10 backdrop-blur rounded-lg p-8 mb-8">
               <p className="text-2xl font-bold mb-4">24/7 EMERGENCY HOTLINE</p>
-              <p className="text-5xl font-bold">1300 814 870</p>
+              <p className="text-5xl font-bold">online support</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -570,7 +570,7 @@ export default function EmergencyServicesPage() {
               <MessageSquare className="h-6 w-6 text-red-600 animate-pulse" />
               <div>
                 <p className="font-semibold">Emergency Hotline</p>
-                <p className="text-2xl font-bold text-red-600">1300 814 870</p>
+                <p className="text-2xl font-bold text-red-600">online support</p>
               </div>
             </div>
             <div className="space-y-3">

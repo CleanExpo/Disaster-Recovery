@@ -192,7 +192,7 @@ export default function SitemapPage() {
             <div>
               <h3 className="font-semibold text-gray-700 mb-2">Contact</h3>
               <ul className="space-y-1 text-sm">
-                <li className="text-gray-600">24/7 Emergency: 1300 123 456</li>
+                <li className="text-gray-600">24/7 Emergency: online support</li>
                 <li className="text-gray-600">Email: help@disasterrecovery.com.au</li>
               </ul>
             </div>

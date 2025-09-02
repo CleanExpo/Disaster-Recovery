@@ -639,7 +639,7 @@ const Footer: React.FC = () => {
                    className="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-lg font-bold text-white transition-all duration-300 transform hover:scale-105 animate-pulse">
                   <div className="flex items-center gap-2">
                     <email className="h-5 w-5" />
-                    Emergency: 1300 566 166
+                    Emergency: online support
                   </div>
                 </a>
               </div>

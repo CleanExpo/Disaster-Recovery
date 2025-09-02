@@ -127,8 +127,8 @@ export function HelpCenter() {
       icon: Phone,
       title: 'Phone Support',
       description: 'For urgent issues only',
-      action: () => window.location.href = 'tel:1300NRPSUP',
-      stats: '1300 NRP SUP',
+      action: () => window.location.href = 'tel:online support',
+      stats: 'online support',
       available: isBusinessHours()
     }
   ];
@@ -408,7 +408,7 @@ export function HelpCenter() {
               <h3 className="font-semibold text-red-900">Emergency Support</h3>
               <p className="text-sm text-red-700 mt-1">
                 For urgent compliance or system emergencies outside business hours, 
-                call our emergency hotline: <strong>1300 EMERGENCY</strong>
+                call our emergency hotline: <strong>online support</strong>
               </p>
               <p className="text-xs text-red-600 mt-2">
                 * Emergency support is limited to critical issues only. Standard support 

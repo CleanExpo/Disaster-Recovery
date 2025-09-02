@@ -221,7 +221,7 @@ export default function CeilingWaterDamagePage() {
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
-                Emergency: 1300 814 870
+                Emergency: online support
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-slate-900 hover:bg-slate-50">
                 <AlertTriangle className="mr-2 h-5 w-5" />
@@ -575,7 +575,7 @@ export default function CeilingWaterDamagePage() {
               <MessageSquare className="h-6 w-6 text-blue-700" />
               <div>
                 <p className="font-semibold">24/7 Emergency Line</p>
-                <p className="text-2xl font-bold text-blue-700">1300 814 870</p>
+                <p className="text-2xl font-bold text-blue-700">online support</p>
               </div>
             </div>
             <div className="space-y-3">

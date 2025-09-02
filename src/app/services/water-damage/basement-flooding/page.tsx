@@ -32,7 +32,7 @@ export default function BasementFloodingPage() {
   const faqs = [
     {
       question: 'How quickly should basement flooding be addressed?',
-      answer: 'Basement flooding requires immediate action within 24-48 hours to prevent mould growth, structural damage, and foundation issues. Standing water can compromise your home\'s foundation and create serious health hazards. Call us immediately at 1300 814 870.'
+      answer: 'Basement flooding requires immediate action within 24-48 hours to prevent mould growth, structural damage, and foundation issues. Standing water can compromise your home\'s foundation and create serious health hazards. Call us immediately at online support.'
     },
     {
       question: 'Is basement flooding covered by insurance in Queensland?',
@@ -89,7 +89,7 @@ export default function BasementFloodingPage() {
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
-                Emergency: 1300 814 870
+                Emergency: online support
               </Button>
             </div>
           </div>

@@ -44,7 +44,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 onClick={() => setShowLeadForm(true)}
               >
                 <email className="mr-2" />
-                Call 1300 814 870
+                Call online support
               </Button>
               <Button 
                 size="lg" 
@@ -173,7 +173,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               onClick={() => setShowLeadForm(true)}
             >
               <email className="mr-2" />
-              Call 1300 814 870 Now
+              Call online support Now
             </Button>
             <Button 
               size="lg" 

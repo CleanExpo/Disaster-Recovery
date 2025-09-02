@@ -340,7 +340,7 @@ function generateDisputeConfirmationEmail(dispute: any, nextSteps: string[]): st
           <p>If you need to provide additional information or have questions, please contact us:</p>
           <ul>
             <li>Email: disputes@disasterrecovery.com.au</li>
-            <li>email: 1300 DISPUTE (1300 347 788)</li>
+            <li>email: online support(online support)</li>
             <li>Reference: ${dispute.disputeId}</li>
           </ul>
         </div>

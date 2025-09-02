@@ -93,7 +93,7 @@ export default function BiohazardCleaningPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Heart className="h-5 w-5" />
           <span className="font-medium">Compassionate & Discrete Biohazard Cleaning Services</span>
-          <a href="#contact-form" className="font-bold underline">1300 309 361</a>
+          <a href="#contact-form" className="font-bold underline">online support</a>
         </div>
       </div>
 
@@ -514,17 +514,17 @@ export default function BiohazardCleaningPage() {
               <div className="bg-white p-4 rounded-lg">
                 <h4 className="font-bold mb-2">Beyond Blue</h4>
                 <p className="text-sm text-gray-600">Mental health support</p>
-                <p className="font-bold text-blue-600">1300 22 4636</p>
+                <p className="font-bold text-blue-600">online support22 4636</p>
               </div>
               <div className="bg-white p-4 rounded-lg">
                 <h4 className="font-bold mb-2">Victim Assist Queensland</h4>
                 <p className="text-sm text-gray-600">Support for victims of crime</p>
-                <p className="font-bold text-blue-600">1300 546 587</p>
+                <p className="font-bold text-blue-600">online support</p>
               </div>
               <div className="bg-white p-4 rounded-lg">
                 <h4 className="font-bold mb-2">Griefline</h4>
                 <p className="text-sm text-gray-600">Grief counselling and support</p>
-                <p className="font-bold text-blue-600">1300 845 745</p>
+                <p className="font-bold text-blue-600">online support</p>
               </div>
             </div>
           </div>

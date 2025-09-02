@@ -444,8 +444,7 @@ export function KnowledgeBase() {
                 </Button>
                 <Button className="w-full justify-start" variant="outline">
                   <MessageSquare className="h-4 w-4 mr-2" />
-                  Call 1300 XXX XXX
-                </Button>
+                  Call online support</Button>
               </CardContent>
             </Card>
 

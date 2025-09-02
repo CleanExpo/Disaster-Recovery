@@ -72,8 +72,8 @@ const schemaData = {
   "availableChannel": {
     "@type": "ServiceChannel",
     "serviceUrl": "/services/storm-damage",
-    "serviceSmsNumber": "1800-DISASTER",
-    "servicePhone": "1800-DISASTER"
+    "serviceSmsNumber": "online support",
+    "servicePhone": "online support"
   },
   "hoursAvailable": {
     "@type": "OpeningHoursSpecification",

@@ -121,7 +121,7 @@ export default function AnimatedHero() {
               className="px-8 py-4 bg-gradient-to-r from-red-600 to-blue-700 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
             >
               <MessageSquare className="h-6 w-6" />
-              <span>Call 1300 566 166</span>
+              <span>Call online support</span>
             </motion.button>
 
             <motion.button

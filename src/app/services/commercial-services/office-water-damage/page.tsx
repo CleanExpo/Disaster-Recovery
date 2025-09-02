@@ -187,7 +187,7 @@ export default function OfficeWaterDamageRestorationPage() {
               <MessageSquare className="h-5 w-5 text-blue-700" />
               <div>
                 <p className="font-semibold">Submit Form Now</p>
-                <p className="text-2xl font-bold text-blue-700">1300 814 870</p>
+                <p className="text-2xl font-bold text-blue-700">online support</p>
               </div>
             </div>
             <Button className="w-full bg-blue-600 hover:bg-blue-700">

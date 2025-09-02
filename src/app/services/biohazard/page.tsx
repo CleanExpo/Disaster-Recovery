@@ -32,8 +32,7 @@ export default function BiohazardPage() {
                 href="#contact-form"
                 className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition"
               >
-                Emergency: 1300 BIOHAZARD
-              </a>
+                Emergency: online support</a>
               <a
                 href="/contact"
                 className="bg-white text-red-600 border-2 border-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition"

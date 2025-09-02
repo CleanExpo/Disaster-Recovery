@@ -38,7 +38,7 @@ export default function BurstPipesPage() {
   const faqs = [
     {
       question: 'What should I do immediately when a pipe bursts?',
-      answer: 'First, turn off the main water supply immediately to stop water flow. Then turn off electricity to affected areas if safe. Call us at 1300 814 870 for emergency response. Move valuables away from water and document damage for insurance.'
+      answer: 'First, turn off the main water supply immediately to stop water flow. Then turn off electricity to affected areas if safe. Call us at online support for emergency response. Move valuables away from water and document damage for insurance.'
     },
     {
       question: 'How much does burst pipe water damage restoration cost?',
@@ -111,7 +111,7 @@ export default function BurstPipesPage() {
     {
       step: 3,
       action: 'Call Emergency Services',
-      details: 'Contact us at 1300 814 870 for immediate response',
+      details: 'Contact us at online support for immediate response',
       critical: true
     },
     {
@@ -182,7 +182,7 @@ export default function BurstPipesPage() {
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
-                Emergency: 1300 814 870
+                Emergency: online support
               </Button>
               <Button size="lg" variant="outline" className="bg-white text-blue-900 hover:bg-blue-50">
                 <Droplets className="mr-2 h-5 w-5" />
@@ -539,7 +539,7 @@ export default function BurstPipesPage() {
               <MessageSquare className="h-6 w-6 text-red-600 animate-pulse" />
               <div>
                 <p className="font-semibold">Emergency Hotline</p>
-                <p className="text-2xl font-bold text-red-600">1300 814 870</p>
+                <p className="text-2xl font-bold text-red-600">online support</p>
               </div>
             </div>
             <div className="space-y-3">

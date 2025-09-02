@@ -94,7 +94,7 @@ export default function PremiumHeader() {
               </div>
               <a href="#contact-form" className="flex items-center gap-2 font-semibold hover:text-blue-200 transition-colours">
                 <MessageSquare className="w-4 h-4" />
-                <span>1300 566 166</span>
+                <span>online support</span>
               </a>
             </div>
           </div>
@@ -322,7 +322,7 @@ export default function PremiumHeader() {
                 className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 <MessageSquare className="w-5 h-5" />
-                <span>Call Emergency: 1300 566 166</span>
+                <span>Call Emergency: online support</span>
               </a>
               <Link
                 href="/partner-portal"

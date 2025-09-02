@@ -885,8 +885,8 @@ export default function Day14Module() {
               
               <div className={styles.contactInfo}>
                 <h3>Important Contacts</h3>
-                <p>📞 Operations Manager: 1300 XXX XXX</p>
-                <p>📞 24/7 Technical Support: 1300 XXX XXX</p>
+                <p>📞 Operations Manager: online support</p>
+                <p>📞 24/7 Technical Support: online support</p>
                 <p>📧 Training Department: training@nrp.com.au</p>
                 <p>📧 HR Department: hr@nrp.com.au</p>
               </div>
