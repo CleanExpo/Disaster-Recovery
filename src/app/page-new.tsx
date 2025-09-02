@@ -397,7 +397,7 @@ export default function CleanLandingPage() {
               Get Immediate Help
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white px-8 py-6 text-lg">
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg">
               View All Services
             </Button>
           </div>
