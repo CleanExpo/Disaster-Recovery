@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, CheckCircle, Clock, Shield, Users, 
-  Zap, Star, ChevronRight, Play, MessageSquare,
+  Zap, Star, ChevronRight, Play,
   Home, Building2, AlertTriangle, FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -209,8 +209,8 @@ export default function CleanLandingPage() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button size="lg" variant="outline" className="px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Chat with AI Assistant
+                <FileText className="mr-2 h-5 w-5" />
+                Submit Claim Online
               </Button>
             </motion.div>
 
@@ -227,11 +227,11 @@ export default function CleanLandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>No Call-Out Fees</span>
+                <span>Fixed Price Quotes</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>Fixed Price Quotes</span>
+                <span>Certified Network</span>
               </div>
             </motion.div>
           </div>
@@ -561,7 +561,7 @@ export default function CleanLandingPage() {
           </h2>
           <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Get connected with certified restoration professionals in minutes. 
-            Insurance approved. No call-out fees.
+            Insurance approved. Fixed pricing guaranteed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
