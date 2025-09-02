@@ -9,6 +9,8 @@ import {
   Zap, Star, ChevronRight, Play, MessageSquare,
   Phone, Home, Building2, AlertTriangle
 } from 'lucide-react';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
@@ -425,14 +427,21 @@ export default function CleanLandingPage() {
 
           <div className="max-w-4xl mx-auto">
             <div className="aspect-video bg-gray-700 rounded-xl overflow-hidden shadow-2xl">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="NRP Disaster Recovery Pitch Deck"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              <LiteYouTubeEmbed
+                id="QH_YnXEPIqc"
+                title="NRP Disaster Recovery - Australia's Premier Emergency Response Network"
+                poster="maxresdefault"
+                webp={true}
+                params="?rel=0&showinfo=0&modestbranding=1"
+                playlist={false}
+                playlistCoverId=""
+                adNetwork={true}
+                cookie={true}
+                wrapperClass="yt-lite rounded-xl"
+                iframeClass=""
+                playerClass="lty-playbtn"
+                activatedClass="lyt-activated"
+              />
             </div>
             <div className="mt-6 text-center">
               <p className="text-gray-400 mb-4">
