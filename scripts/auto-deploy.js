@@ -119,6 +119,14 @@ Timestamp: ${new Date().toISOString()}`;
   // Main deployment cycle
   async deploy() {
     console.log('\n🔄 Checking for changes...');
+
+    // Run environment protection validation before deploying
+    try {
+      require('./env-protection');
+    } catch (err) {
+      console.error('❌ Environment protection validation failed:', err.message);
+      return;
+    }
     
     // Check if we're on the main branch
     const currentBranch = this.getCurrentBranch();
