@@ -48,8 +48,8 @@ function MagneticFloatingButton({
   };
 
   const iconSizes = {
-    sm: 'h-5 w-5','
-    md: 'h-6 w-6','
+    sm: 'h-5 w-5',
+    md: 'h-6 w-6',
     lg: 'h-8 w-8'
   };
 
@@ -95,7 +95,7 @@ function MagneticFloatingButton({
     >
       {/* Magnetic field visualization */}
       <motion.div
-        className={`absolute inset-0 rounded-full border-2 border-dashed ${colour.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}'
+        className={`absolute inset-0 rounded-full border-2 border-dashed ${colour.replace('bg-', 'border-').replace('-600', '-300')} opacity-0`}
         animate={{
           scale: isHovered ? [1, 1.3, 1.1] : 1,
           opacity: isHovered ? [0, 0.3, 0.1] : 0 }}
@@ -178,27 +178,27 @@ function ExpandableFABMenu() {
   const menuItems = [
     {
       icon: Phone,
-      label: 'Emergency Call','
-      colour: 'bg-gradient-to-r from-red-600 to-red-700','
-      action: () => window.open('
+      label: 'Emergency Call',
+      colour: 'bg-gradient-to-r from-red-600 to-red-700',
+      action: () => window.open('tel:1800123456', '_self')
     },
     {
       icon: MessageCircle,
-      label: 'Text Message','
-      colour: 'bg-gradient-to-r from-blue-600 to-blue-700','
-      action: () => window.open('sms:1300566166'),'
+      label: 'Text Message',
+      colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
+      action: () => window.open('sms:1300566166', '_self')
     },
     {
       icon: Mail,
-      label: 'Email Us','
-      colour: 'bg-gradient-to-r from-green-600 to-green-700','
-      action: () => window.open('mailto:emergency@disasterrecovery.com.au'),'
+      label: 'Email Us',
+      colour: 'bg-gradient-to-r from-green-600 to-green-700',
+      action: () => window.open('mailto:emergency@disasterrecovery.com.au', '_self')
     },
     {
       icon: Calendar,
-      label: 'Schedule Service','
-      colour: 'bg-gradient-to-r from-purple-600 to-purple-700','
-      action: () => alert('Scheduling feature coming soon!'),'
+      label: 'Schedule Service',
+      colour: 'bg-gradient-to-r from-purple-600 to-purple-700',
+      action: () => alert('Scheduling feature coming soon!')
     },
   ];
 
@@ -319,29 +319,29 @@ function QuickActionDock() {
   const dockItems = [
     {
       icon: Phone,
-      label: 'Submit Form Now','
-      colour: 'bg-gradient-to-r from-red-500 to-red-600','
-      action: () => window.open(','
-      size: 'lg' as const,'
+      label: 'Submit Form Now',
+      colour: 'bg-gradient-to-r from-red-500 to-red-600',
+      action: () => console.log('Submit form'),
+      size: 'lg' as const
     },
     {
       icon: MessageCircle,
-      label: 'Text','
-      colour: 'bg-gradient-to-r from-blue-500 to-blue-600','
-      action: () => window.open('sms:1300566166'),'
-      size: 'md' as const,'
+      label: 'Text',
+      colour: 'bg-gradient-to-r from-blue-500 to-blue-600',
+      action: () => window.open('sms:1300566166', '_self'),
+      size: 'md' as const
     },
     {
       icon: MapPin,
-      label: 'Location','
-      colour: 'bg-gradient-to-r from-green-500 to-green-600','
+      label: 'Location',
+      colour: 'bg-gradient-to-r from-green-500 to-green-600',
       action: () => alert('Location services coming soon!'),'
       size: 'md' as const,'
     },
     {
       icon: HelpCircle,
-      label: 'Help','
-      colour: 'bg-gradient-to-r from-purple-500 to-purple-600','
+      label: 'Help',
+      colour: 'bg-gradient-to-r from-purple-500 to-purple-600',
       action: () => alert('Help centre coming soon!'),'
       size: 'md' as const,'
     },

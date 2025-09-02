@@ -1,18 +1,25 @@
 const { execSync } = require('child_process');
 const fetch = require('node-fetch');
 
-const VERCEL_PROJECT = 'unite-group/disaster-recovery';
-const VERCEL_TOKEN = process.env.VERCEL_TOKEN || '';
+const VERCEL_PROJECT_ID = 'prj_a776Ydu6bNc7va8zrGfwXosp2xif'; // Actual Vercel project ID provided by user
+
+// Accept token override from command line argument for testing
+const args = process.argv.slice(2);
+const tokenArgIndex = args.indexOf('--token');
+const VERCEL_TOKEN = tokenArgIndex !== -1 && args[tokenArgIndex + 1] ? args[tokenArgIndex + 1] : process.env.VERCEL_TOKEN || '';
 const GITHUB_REPO = 'CleanExpo/Disaster-Recovery';
 const GITHUB_BRANCH = 'main';
 
 async function getLatestVercelDeployment() {
-  const url = `https://api.vercel.com/v6/deployments?projectId=${VERCEL_PROJECT}`;
+  const url = `https://api.vercel.com/v6/deployments?projectId=${VERCEL_PROJECT_ID}`;
+  console.log('DEBUG: Fetching Vercel deployments with token present:', !!VERCEL_TOKEN);
   const res = await fetch(url, {
     headers: {
       Authorization: `Bearer ${VERCEL_TOKEN}`,
+      'Content-Type': 'application/json'
     },
   });
+  console.log('DEBUG: Vercel API response status:', res.status);
   if (!res.ok) {
     throw new Error(`Failed to fetch Vercel deployments: ${res.statusText}`);
   }

@@ -87,3 +87,5 @@ node_modules
 # Temporary cloned repositories
 temp-image-creator/
 .env.vercel
+
+.vercel
