@@ -427,7 +427,7 @@ export default function CleanLandingPage() {
             <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                src="https://www.youtube.com/embed/edEYKBN6Yl0?start=4"
                 title="Disaster Recovery Services Australia - Emergency Response"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
