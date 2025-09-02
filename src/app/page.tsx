@@ -445,17 +445,15 @@ export default function CleanLandingPage() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="aspect-video bg-gray-700 rounded-xl overflow-hidden shadow-2xl">
-              <div className="relative w-full h-full">
-                <LiteYouTubeEmbed
-                  id="dQw4w9WgXcQ"
-                  title="NRP Disaster Recovery - Company Overview"
-                  poster="maxresdefault"
-                  webp={true}
-                  params="rel=0&modestbranding=1"
-                  wrapperClass="yt-lite rounded-xl w-full h-full"
-                />
-              </div>
+            <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/ScMzIvxBSi4"
+                title="Disaster Recovery Services Australia - Emergency Response"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
             </div>
             <div className="mt-6 text-center">
               <p className="text-gray-400 mb-4">
@@ -463,13 +461,13 @@ export default function CleanLandingPage() {
               </p>
               <div className="flex justify-center gap-4">
                 <Link href="/pitch-deck">
-                  <Button variant="outline" className="text-white border-white hover:bg-white/10">
+                  <Button className="bg-[#FF0000] text-white hover:bg-[#CC0000] border-0 px-6 py-3">
                     <Play className="mr-2 h-4 w-4" />
                     View Full Presentation
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button className="bg-white text-gray-900 hover:bg-gray-100">
+                  <Button variant="outline" className="text-white border-white hover:bg-white/10">
                     Get In Touch
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
