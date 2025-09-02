@@ -373,7 +373,7 @@ export default function CRMPortalPage() {
         {/* Navigation Links */}
         <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Navigation</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link 
               href="/crm/contractors"
               className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
@@ -418,6 +418,183 @@ export default function CRMPortalPage() {
                 <p className="text-sm text-gray-600">Track work progress and completion</p>
               </div>
             </Link>
+
+            <Link 
+              href="/contractor-portal/training"
+              className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors group"
+            >
+              <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-indigo-200">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900">Training Modules</h3>
+                <p className="text-sm text-gray-600">Contractor certification courses</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Contractor Training Modules Section */}
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">Contractor Training Modules</h2>
+              <p className="text-gray-600 mt-1">14-Day Professional Certification Program</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">
+                Active Program
+              </div>
+              <Link 
+                href="/contractor-portal/training"
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium"
+              >
+                View All Modules
+              </Link>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {/* Day 1-4 Modules */}
+            <div className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-bold text-indigo-600 bg-indigo-100 px-2 py-1 rounded">Day 1-4</span>
+                <span className="text-xs text-green-600 font-medium">Foundation</span>
+              </div>
+              <h4 className="font-medium text-gray-900 mb-2">Core Fundamentals</h4>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Insurance Fundamentals</li>
+                <li>• Water Damage Categories</li>
+                <li>• Drying & Moisture Control</li>
+                <li>• Mould Remediation</li>
+              </ul>
+              <Link 
+                href="/contractor-portal/training?module=fundamentals"
+                className="inline-flex items-center mt-3 text-xs text-indigo-600 hover:text-indigo-700 font-medium"
+              >
+                Start Learning
+                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Day 5-8 Modules */}
+            <div className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-bold text-purple-600 bg-purple-100 px-2 py-1 rounded">Day 5-8</span>
+                <span className="text-xs text-blue-600 font-medium">Advanced</span>
+              </div>
+              <h4 className="font-medium text-gray-900 mb-2">Specialized Skills</h4>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Fire & Smoke Damage</li>
+                <li>• Biohazard Safety</li>
+                <li>• Structural Drying</li>
+                <li>• Commercial Projects</li>
+              </ul>
+              <Link 
+                href="/contractor-portal/training?module=advanced"
+                className="inline-flex items-center mt-3 text-xs text-purple-600 hover:text-purple-700 font-medium"
+              >
+                Continue Course
+                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Day 9-12 Modules */}
+            <div className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-bold text-orange-600 bg-orange-100 px-2 py-1 rounded">Day 9-12</span>
+                <span className="text-xs text-orange-600 font-medium">Professional</span>
+              </div>
+              <h4 className="font-medium text-gray-900 mb-2">Business Excellence</h4>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Health & Safety</li>
+                <li>• Customer Service</li>
+                <li>• Advanced Technology</li>
+                <li>• Business Operations</li>
+              </ul>
+              <Link 
+                href="/contractor-portal/training?module=professional"
+                className="inline-flex items-center mt-3 text-xs text-orange-600 hover:text-orange-700 font-medium"
+              >
+                Access Module
+                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Day 13-14 Certification */}
+            <div className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-bold text-green-600 bg-green-100 px-2 py-1 rounded">Day 13-14</span>
+                <span className="text-xs text-green-600 font-medium">Certification</span>
+              </div>
+              <h4 className="font-medium text-gray-900 mb-2">Final Assessment</h4>
+              <ul className="text-xs text-gray-600 space-y-1">
+                <li>• Emergency Response</li>
+                <li>• Certification Exam</li>
+                <li>• Practical Demonstration</li>
+                <li>• NRP Network Approval</li>
+              </ul>
+              <Link 
+                href="/contractor-portal/training?module=certification"
+                className="inline-flex items-center mt-3 text-xs text-green-600 hover:text-green-700 font-medium"
+              >
+                Take Exam
+                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          {/* Quick Access Links */}
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <h3 className="text-sm font-medium text-gray-900 mb-3">Quick Access</h3>
+            <div className="flex flex-wrap gap-2">
+              <Link 
+                href="/contractor-portal/training?module=introduction"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+              >
+                📚 Course Introduction
+              </Link>
+              <Link 
+                href="/contractor-portal/training?module=dashboard"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+              >
+                📊 Training Dashboard
+              </Link>
+              <Link 
+                href="/contractor-portal/training?module=analytics"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+              >
+                📈 Progress Analytics
+              </Link>
+              <Link 
+                href="/contractor-portal/training?module=communication"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+              >
+                💬 Communication Tools
+              </Link>
+              <Link 
+                href="/contractor-portal/training?module=reporting"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+              >
+                📋 Training Reports
+              </Link>
+              <Link 
+                href="/contractor-portal/training?module=automation"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded text-sm transition-colors"
+              >
+                🤖 Automation Features
+              </Link>
+            </div>
           </div>
         </div>
       </div>
