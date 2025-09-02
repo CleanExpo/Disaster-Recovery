@@ -140,7 +140,7 @@ export default function EventsGalleryPage() {
                 </Button>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" variant="outline" className="text-white border-white/50 hover:bg-white/10 backdrop-blur-sm px-8 py-4">
+                <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white text-white ">
                   <Download className="mr-2 h-5 w-5" />
                   Download Case Studies
                 </Button>
@@ -555,7 +555,7 @@ export default function EventsGalleryPage() {
               <Shield className="mr-2 h-5 w-5" />
               Emergency Response: online support
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white text-white ">
               Request Assessment
             </Button>
           </div>

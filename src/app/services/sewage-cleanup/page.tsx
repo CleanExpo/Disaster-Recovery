@@ -512,7 +512,7 @@ export default function SewageCleanupPage() {
               <MessageSquare className="h-5 w-5" />
               Emergency: online support
             </a>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-blue-700">
+            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white bg-transparent text-white ">
               Get Immediate Help
             </Button>
           </div>

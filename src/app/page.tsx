@@ -570,7 +570,7 @@ export default function CleanLandingPage() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
+            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
               <Link href="/services">
                 View All Services
                 <FileText className="ml-2 h-5 w-5" />

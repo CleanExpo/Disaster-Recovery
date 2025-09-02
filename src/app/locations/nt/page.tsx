@@ -167,7 +167,7 @@ export default function NorthernTerritoryPage() {
               <MessageSquare className="mr-2 h-5 w-5" />
               Call Online Form Available 24/7
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-blue-900">
+            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white bg-transparent border-white ">
               Request Service Online
             </Button>
           </div>

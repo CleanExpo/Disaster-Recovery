@@ -227,7 +227,7 @@ export default function BuilderVsRestorerPage() {
                 </Button>
               </Link>
               <Link href="/schedule">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                   <Shield className="mr-2 h-5 w-5" />
                   Get Professional Assessment
                 </Button>
@@ -643,7 +643,7 @@ export default function BuilderVsRestorerPage() {
               </Button>
             </Link>
             <Link href="/guides/insurance/real-cost-insurance-delays">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                 <ArrowRight className="mr-2 h-5 w-5" />
                 Learn About Insurance Rights
               </Button>

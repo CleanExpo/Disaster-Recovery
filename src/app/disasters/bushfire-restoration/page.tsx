@@ -47,7 +47,7 @@ export default function BushfireSmokeDamagePage() {
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Emergency Response Now
               </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-white hover:bg-white hover:text-gray-900">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white bg-transparent ">
                 <Zap className="mr-2 h-5 w-5" />
                 Rapid Assessment
               </Button>
@@ -175,7 +175,7 @@ export default function BushfireSmokeDamagePage() {
               <MessageSquare className="mr-2 h-5 w-5" />
               Call Online Form Available 24/7 Now
             </Button>
-            <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-red-600">
+            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white bg-transparent border-white ">
               <CheckCircle2 className="mr-2 h-5 w-5" />
               Request Immediate Help
             </Button>

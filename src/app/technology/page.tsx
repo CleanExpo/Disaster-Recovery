@@ -255,7 +255,7 @@ export default function TechnologyPage() {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white text-white ">
                   Contact Expert
                   <Cpu className="ml-2 h-5 w-5" />
                 </Button>

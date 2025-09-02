@@ -51,7 +51,7 @@ export default function MakeSafeInsuranceCoveragePage() {
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
                 Get Immediate Help
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                 Free Assessment
               </Button>
             </div>

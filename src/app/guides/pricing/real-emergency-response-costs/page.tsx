@@ -243,7 +243,7 @@ export default function RealEmergencyResponseCostsPage() {
                 </Button>
               </Link>
               <Link href="#hidden-cost-comparison">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                   <Calculator className="mr-2 h-5 w-5" />
                   Compare Hidden Costs
                 </Button>
@@ -593,7 +593,7 @@ export default function RealEmergencyResponseCostsPage() {
               </Button>
             </Link>
             <Link href="/guides/pricing/nrp-best-practices">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                 <FileText className="mr-2 h-5 w-5" />
                 NRP Best Practices Guide
               </Button>

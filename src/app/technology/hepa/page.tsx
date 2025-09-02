@@ -159,7 +159,7 @@ export default function HEPAFiltrationPage() {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white border-white/20 ">
                   Learn More
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -328,7 +328,7 @@ export default function HEPAFiltrationPage() {
               </Button>
             </Link>
             <Link href="/technology">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white border-white ">
                 Explore All Technology
               </Button>
             </Link>

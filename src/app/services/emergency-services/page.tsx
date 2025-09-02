@@ -198,7 +198,7 @@ export default function EmergencyServicesPage() {
                 <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
                 EMERGENCY: online support
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white border-white ">
                 <Zap className="mr-2 h-5 w-5" />
                 Immediate Response Available
               </Button>
@@ -544,7 +544,7 @@ export default function EmergencyServicesPage() {
                 <MessageSquare className="mr-2 animate-pulse" />
                 Call Emergency Line Now
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white border-white ">
                 <ArrowRight className="mr-2" />
                 Request Immediate Response
               </Button>

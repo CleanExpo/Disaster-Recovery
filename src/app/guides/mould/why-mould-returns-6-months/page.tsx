@@ -350,7 +350,7 @@ export default function WhyMouldReturnsPage() {
                 </Button>
               </Link>
               <Link href="/schedule">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                   <Shield className="mr-2 h-5 w-5" />
                   Get Guaranteed Removal
                 </Button>
@@ -732,7 +732,7 @@ export default function WhyMouldReturnsPage() {
               </Button>
             </Link>
             <Link href="/guides/mould/how-to-verify-mould-professional">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg">
+              <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
                 <Gauge className="mr-2 h-5 w-5" />
                 Verify Contractor Credentials
               </Button>

@@ -425,7 +425,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
               <Calendar className="mr-2 h-5 w-5" />
               Check Availability
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white text-white ">
               <MessageSquare className="mr-2 h-5 w-5" />
               online support
             </Button>
