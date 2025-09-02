@@ -3,15 +3,15 @@
 ## ⚠️ CRITICAL ENVIRONMENT CONFIGURATION ⚠️
 
 ### **NEVER MODIFY WITHOUT APPROVAL**
-- **Production URL**: https://disaster-recovery.vercel.app
+- **Production URL**: https://disaster-recovery-seven.vercel.app
 - **Staging URL**: https://disaster-recovery-staging.vercel.app
 - **FORBIDDEN**: disasterrecovery.com.au (DO NOT USE IN ENV VARIABLES)
 
 ### **Environment Variable Requirements**
 ```bash
 # CORRECT Configuration
-NEXT_PUBLIC_APP_URL=https://disaster-recovery.vercel.app
-NEXTAUTH_URL=https://disaster-recovery.vercel.app
+NEXT_PUBLIC_APP_URL=https://disaster-recovery-seven.vercel.app
+NEXTAUTH_URL=https://disaster-recovery-seven.vercel.app
 
 # INCORRECT - NEVER USE
 NEXT_PUBLIC_APP_URL=https://disasterrecovery.com.au  # ❌ WRONG
