@@ -177,22 +177,22 @@ function ExpandableFABMenu() {
 
   const menuItems = [
     {
-      icon: MessageCircle,
-      label: 'Chat Support',
+      icon: FileText,
+      label: 'Submit Claim Form',
       colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
-      action: () => window.location.href = '/contact'
+      action: () => window.location.href = '/book-service'
     },
     {
       icon: Mail,
-      label: 'Email Us',
+      label: 'Email Documentation',
       colour: 'bg-gradient-to-r from-green-600 to-green-700',
-      action: () => window.open('mailto:emergency@disasterrecovery.com.au', '_self')
+      action: () => window.open('mailto:claims@disasterrecovery.com.au', '_self')
     },
     {
       icon: Calendar,
-      label: 'Schedule Service',
+      label: 'Schedule Assessment',
       colour: 'bg-gradient-to-r from-purple-600 to-purple-700',
-      action: () => alert('Scheduling feature coming soon!')
+      action: () => window.location.href = '/schedule'
     },
   ];
 
@@ -312,32 +312,32 @@ function QuickActionDock() {
 
   const dockItems = [
     {
-      icon: Mail,
-      label: 'Submit Form Now',
+      icon: FileText,
+      label: 'Submit Claim',
       colour: 'bg-gradient-to-r from-red-500 to-red-600',
-      action: () => window.location.href = '/contact',
+      action: () => window.location.href = '/book-service',
       size: 'lg' as const
     },
     {
-      icon: MessageCircle,
-      label: 'Chat',
+      icon: Clock,
+      label: 'Track Claim',
       colour: 'bg-gradient-to-r from-blue-500 to-blue-600',
-      action: () => window.location.href = '/contact',
+      action: () => window.location.href = '/portal/client',
       size: 'md' as const
     },
     {
       icon: MapPin,
-      label: 'Location',
+      label: 'Service Areas',
       colour: 'bg-gradient-to-r from-green-500 to-green-600',
-      action: () => alert('Location services coming soon!'),'
-      size: 'md' as const,'
+      action: () => window.location.href = '/services',
+      size: 'md' as const
     },
     {
       icon: HelpCircle,
-      label: 'Help',
+      label: 'Resources',
       colour: 'bg-gradient-to-r from-purple-500 to-purple-600',
-      action: () => alert('Help centre coming soon!'),'
-      size: 'md' as const,'
+      action: () => window.location.href = '/resources',
+      size: 'md' as const
     },
   ];
 

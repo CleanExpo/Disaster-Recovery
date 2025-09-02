@@ -14,6 +14,8 @@ import DemoModeBanner from '@/components/demo/DemoModeBanner'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
+import MobileNav from '@/components/mobile/MobileNav'
+import MobileFAB from '@/components/mobile/MobileFAB'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -47,6 +49,23 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: 'cover'
+  },
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
+  ],
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Disaster Recovery'
+  },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
@@ -203,11 +222,17 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <UltraModernHeader />
-          <main id="main-content">
+          <div className="hidden lg:block">
+            <UltraModernHeader />
+          </div>
+          <MobileNav />
+          <main id="main-content" className="min-h-screen">
             {children}
           </main>
-          <UltraModernFooter />
+          <div className="pb-16 lg:pb-0">
+            <UltraModernFooter />
+          </div>
+          <MobileFAB />
           <MobileEmergencyCTA />
         </Providers>
         <Script
