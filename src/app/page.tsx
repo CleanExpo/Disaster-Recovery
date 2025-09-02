@@ -427,7 +427,7 @@ export default function CleanLandingPage() {
             <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/edEYKBN6Yl0?start=4"
+                src="https://www.youtube.com/embed/edEYKBN6Yl0?start=4&autoplay=0"
                 title="Disaster Recovery Services Australia - Emergency Response"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -446,7 +446,7 @@ export default function CleanLandingPage() {
                   </Button>
                 </Link>
                 <Link href="/contact">
-                  <Button variant="outline" className="text-white border-white hover:bg-white/10">
+                  <Button className="bg-[#FF0000] text-white hover:bg-[#CC0000] border-0 px-6 py-3">
                     Get In Touch
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
