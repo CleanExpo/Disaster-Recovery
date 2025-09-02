@@ -197,7 +197,7 @@ export default function CommercialRestorationPage() {
               href="/contact"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors"
             >
-              Contact Us Now
+              Get Help Now
             </Link>
             <Link
               href="/emergency"

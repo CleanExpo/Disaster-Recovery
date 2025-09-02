@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
-    description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call Contact Us.',
+    description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call Get Help Now.',
     images: ['/images/optimised/damage/3D Water Damage.png'],
     type: 'website' },
   alternates: {

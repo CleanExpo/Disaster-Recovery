@@ -519,7 +519,7 @@ export default function UltraModernServicesPage() {
                 className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-blue-600 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
               >
                 <PhoneIcon className="w-8 h-8" />
-                Call Contact Us
+                Call Get Help Now
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
