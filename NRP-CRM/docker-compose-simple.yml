@@ -1,0 +1,64 @@
+version: '3.9'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: nrp-postgres
+    environment:
+      POSTGRES_USER: nrp_admin
+      POSTGRES_PASSWORD: NRP2024SecurePass!
+      POSTGRES_DB: nrp_crm
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/postgres/init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - nrp-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: nrp-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - nrp-network
+
+  # MongoDB for Documents
+  mongo:
+    image: mongo:7
+    container_name: nrp-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: nrp_mongo
+      MONGO_INITDB_ROOT_PASSWORD: NRP2024MongoPass!
+      MONGO_INITDB_DATABASE: nrp_documents
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - nrp-network
+
+  # pgAdmin for Database Management
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: nrp-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@nrp.com.au
+      PGADMIN_DEFAULT_PASSWORD: NRP2024Admin!
+    ports:
+      - "5050:80"
+    networks:
+      - nrp-network
+    depends_on:
+      - postgres
+
+networks:
+  nrp-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  mongo-data:

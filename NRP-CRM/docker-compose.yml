@@ -1,0 +1,535 @@
+version: '3.9'
+
+services:
+  # ============================================
+  # CORE DATABASES
+  # ============================================
+  
+  # PostgreSQL - Primary CRM Database
+  postgres-crm:
+    image: postgres:16-alpine
+    container_name: nrp-postgres-crm
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-nrp_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-NRP2024SecurePass!}
+      POSTGRES_DB: ${POSTGRES_DB:-nrp_crm}
+      POSTGRES_MULTIPLE_DATABASES: nrp_crm,nrp_leads,nrp_finance,nrp_insurance
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-crm-data:/var/lib/postgresql/data
+      - ./docker/postgres/init-scripts:/docker-entrypoint-initdb.d
+      - ./docker/postgres/backups:/backups
+    networks:
+      - nrp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nrp_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  # MongoDB - Document Storage
+  mongo-docs:
+    image: mongo:7-jammy
+    container_name: nrp-mongo-docs
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-nrp_mongo}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-NRP2024MongoPass!}
+      MONGO_INITDB_DATABASE: nrp_documents
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-docs-data:/data/db
+      - ./docker/mongo/init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - nrp-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 2G
+
+  # Redis - Caching & Queue Management
+  redis-cache:
+    image: redis:7-alpine
+    container_name: nrp-redis-cache
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD:-NRP2024RedisPass!}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-cache-data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - nrp-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+
+  # TimescaleDB - Time-series Analytics
+  timescale-analytics:
+    image: timescale/timescaledb:latest-pg16
+    container_name: nrp-timescale
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${TIMESCALE_USER:-nrp_analytics}
+      POSTGRES_PASSWORD: ${TIMESCALE_PASSWORD:-NRP2024TimePass!}
+      POSTGRES_DB: nrp_analytics
+    ports:
+      - "5433:5432"
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+    networks:
+      - nrp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${TIMESCALE_USER:-nrp_analytics}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # MICROSERVICES
+  # ============================================
+
+  # 1. CRM Core Service
+  crm-core:
+    build:
+      context: ./services/crm-core
+      dockerfile: Dockerfile
+    container_name: nrp-crm-core
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4001
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_crm
+      REDIS_URL: redis://:${REDIS_PASSWORD:-NRP2024RedisPass!}@redis-cache:6379
+      JWT_SECRET: ${JWT_SECRET:-NRP2024JWTSecretKey!}
+      SERVICE_NAME: crm-core
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./services/crm-core:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+    depends_on:
+      postgres-crm:
+        condition: service_healthy
+      redis-cache:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 2. Lead Distribution Service
+  lead-distribution:
+    build:
+      context: ./services/lead-distribution
+      dockerfile: Dockerfile
+    container_name: nrp-lead-distribution
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4002
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_leads
+      REDIS_URL: redis://:${REDIS_PASSWORD:-NRP2024RedisPass!}@redis-cache:6379
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      SERVICE_NAME: lead-distribution
+    ports:
+      - "4002:4002"
+    volumes:
+      - ./services/lead-distribution:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+    depends_on:
+      - crm-core
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 3. Job Tracking Service
+  job-tracking:
+    build:
+      context: ./services/job-tracking
+      dockerfile: Dockerfile
+    container_name: nrp-job-tracking
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4003
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_crm
+      TIMESCALE_URL: postgresql://${TIMESCALE_USER:-nrp_analytics}:${TIMESCALE_PASSWORD:-NRP2024TimePass!}@timescale-analytics:5432/nrp_analytics
+      SERVICE_NAME: job-tracking
+    ports:
+      - "4003:4003"
+    volumes:
+      - ./services/job-tracking:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+    depends_on:
+      - postgres-crm
+      - timescale-analytics
+
+  # 4. Insurance Integration Service
+  insurance-integration:
+    build:
+      context: ./services/insurance-integration
+      dockerfile: Dockerfile
+    container_name: nrp-insurance
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4004
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_insurance
+      IAG_API_KEY: ${IAG_API_KEY}
+      SUNCORP_API_KEY: ${SUNCORP_API_KEY}
+      ALLIANZ_API_KEY: ${ALLIANZ_API_KEY}
+      QBE_API_KEY: ${QBE_API_KEY}
+      SERVICE_NAME: insurance-integration
+    ports:
+      - "4004:4004"
+    volumes:
+      - ./services/insurance-integration:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+
+  # 5. Financial Tracking Service
+  financial-tracking:
+    build:
+      context: ./services/financial-tracking
+      dockerfile: Dockerfile
+    container_name: nrp-financial
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4005
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_finance
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      XERO_CLIENT_ID: ${XERO_CLIENT_ID}
+      XERO_CLIENT_SECRET: ${XERO_CLIENT_SECRET}
+      SERVICE_NAME: financial-tracking
+    ports:
+      - "4005:4005"
+    volumes:
+      - ./services/financial-tracking:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+
+  # 6. Document Management Service
+  document-management:
+    build:
+      context: ./services/document-management
+      dockerfile: Dockerfile
+    container_name: nrp-documents
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4006
+      MONGO_URL: mongodb://${MONGO_USER:-nrp_mongo}:${MONGO_PASSWORD:-NRP2024MongoPass!}@mongo-docs:27017/nrp_documents?authSource=admin
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-nrp-documents}
+      SERVICE_NAME: document-management
+    ports:
+      - "4006:4006"
+    volumes:
+      - ./services/document-management:/app
+      - /app/node_modules
+      - ./uploads:/app/uploads
+    networks:
+      - nrp-network
+    depends_on:
+      - mongo-docs
+
+  # 7. SEO Bot Service
+  seo-bot:
+    build:
+      context: ./services/seo-bot
+      dockerfile: Dockerfile
+    container_name: nrp-seo-bot
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4007
+      DATABASE_URL: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_crm
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      CLAUDE_API_KEY: ${CLAUDE_API_KEY}
+      SERVICE_NAME: seo-bot
+    ports:
+      - "4007:4007"
+    volumes:
+      - ./services/seo-bot:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+
+  # 8. Integration Hub Service
+  integration-hub:
+    build:
+      context: ./services/integration-hub
+      dockerfile: Dockerfile
+    container_name: nrp-integration-hub
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      PORT: 4008
+      REDIS_URL: redis://:${REDIS_PASSWORD:-NRP2024RedisPass!}@redis-cache:6379
+      SERVICE_NAME: integration-hub
+    ports:
+      - "4008:4008"
+    volumes:
+      - ./services/integration-hub:/app
+      - /app/node_modules
+    networks:
+      - nrp-network
+
+  # ============================================
+  # FRONTEND APPLICATION
+  # ============================================
+
+  # Next.js CRM Frontend
+  crm-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: ${NODE_ENV:-development}
+    container_name: nrp-crm-frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-development}
+      NEXT_PUBLIC_API_URL: ${API_URL:-http://localhost/api}
+      NEXT_PUBLIC_WS_URL: ${WS_URL:-ws://localhost/ws}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - nrp-network
+    depends_on:
+      - nginx-gateway
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================
+  # API GATEWAY & LOAD BALANCER
+  # ============================================
+
+  nginx-gateway:
+    image: nginx:alpine
+    container_name: nrp-nginx-gateway
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+      - nginx-cache:/var/cache/nginx
+    networks:
+      - nrp-network
+    depends_on:
+      - crm-core
+      - lead-distribution
+      - job-tracking
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ============================================
+  # MONITORING & OBSERVABILITY
+  # ============================================
+
+  # Prometheus - Metrics Collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: nrp-prometheus
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    networks:
+      - nrp-network
+
+  # Grafana - Metrics Visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nrp-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-NRP2024Grafana!}
+      GF_INSTALL_PLUGINS: grafana-clock-panel
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - nrp-network
+    depends_on:
+      - prometheus
+
+  # Elasticsearch - Log Storage
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: nrp-elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - nrp-network
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+
+  # Kibana - Log Visualization
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: nrp-kibana
+    restart: unless-stopped
+    environment:
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    ports:
+      - "5601:5601"
+    networks:
+      - nrp-network
+    depends_on:
+      - elasticsearch
+
+  # ============================================
+  # MESSAGE QUEUE
+  # ============================================
+
+  # RabbitMQ - Message Broker
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: nrp-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-nrp_rabbit}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-NRP2024RabbitPass!}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - nrp-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # ============================================
+  # BACKUP SERVICE
+  # ============================================
+
+  backup-service:
+    build:
+      context: ./services/backup
+      dockerfile: Dockerfile
+    container_name: nrp-backup
+    restart: unless-stopped
+    environment:
+      BACKUP_SCHEDULE: "0 2 * * *"  # Daily at 2 AM
+      POSTGRES_CONNECTION: postgresql://${POSTGRES_USER:-nrp_admin}:${POSTGRES_PASSWORD:-NRP2024SecurePass!}@postgres-crm:5432/nrp_crm
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_S3_BACKUP_BUCKET: ${AWS_S3_BACKUP_BUCKET:-nrp-backups}
+    volumes:
+      - ./backups:/backups
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - nrp-network
+    depends_on:
+      - postgres-crm
+      - mongo-docs
+
+# ============================================
+# NETWORKS
+# ============================================
+
+networks:
+  nrp-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+# ============================================
+# VOLUMES
+# ============================================
+
+volumes:
+  postgres-crm-data:
+    driver: local
+  mongo-docs-data:
+    driver: local
+  redis-cache-data:
+    driver: local
+  timescale-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  elasticsearch-data:
+    driver: local
+  rabbitmq-data:
+    driver: local
+  nginx-cache:
+    driver: local

@@ -1,0 +1,405 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      UserRole @default(CONTRACTOR)
+  firstName String?
+  lastName  String?
+  phone     String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  contractor Contractor?
+  auditLogs  AuditLog[]
+  sessions   UserSession[]
+
+  @@map("users")
+}
+
+model UserSession {
+  id           String   @id @default(uuid())
+  userId       String
+  token        String   @unique
+  refreshToken String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  lastUsedAt   DateTime @default(now())
+  ipAddress    String?
+  userAgent    String?
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_sessions")
+}
+
+model Contractor {
+  id               String           @id @default(uuid())
+  userId           String           @unique
+  businessName     String
+  abn              String           @unique
+  email            String
+  phone            String
+  status           ContractorStatus @default(PENDING)
+  verified         Boolean          @default(false)
+  serviceRadius    Int              @default(50) // km
+  rating           Float            @default(0.0)
+  totalJobs        Int              @default(0)
+  completedJobs    Int              @default(0)
+  profileImageUrl  String?
+  website          String?
+  description      String?
+  emergencyContact Json?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  // Relations
+  user                User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address             ContractorAddress?
+  contactPerson       ContactPerson?
+  services            ContractorService[]
+  certifications      Certification[]
+  insuranceDetails    InsuranceDetail[]
+  serviceAreas        ServiceArea[]
+  performanceMetrics  PerformanceMetric[]
+  jobs                Job[]
+  reviews             Review[]
+  documents           Document[]
+  notifications       Notification[]
+
+  @@map("contractors")
+}
+
+model ContractorAddress {
+  id           String @id @default(uuid())
+  contractorId String @unique
+  street       String
+  suburb       String
+  state        String
+  postcode     String
+  country      String @default("Australia")
+  latitude     Float?
+  longitude    Float?
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_addresses")
+}
+
+model ContactPerson {
+  id           String @id @default(uuid())
+  contractorId String @unique
+  firstName    String
+  lastName     String
+  email        String
+  phone        String
+  position     String
+  mobile       String?
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("contact_persons")
+}
+
+model ContractorService {
+  id           String          @id @default(uuid())
+  contractorId String
+  service      ServiceCategory
+  experience   Int? // years
+  certified    Boolean         @default(false)
+  pricing      Json? // flexible pricing structure
+  available    Boolean         @default(true)
+  createdAt    DateTime        @default(now())
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@unique([contractorId, service])
+  @@map("contractor_services")
+}
+
+model Certification {
+  id                String   @id @default(uuid())
+  contractorId      String
+  name              String
+  issuedBy          String
+  certificateNumber String
+  issueDate         DateTime
+  expiryDate        DateTime
+  verified          Boolean  @default(false)
+  documentUrl       String?
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("certifications")
+}
+
+model InsuranceDetail {
+  id                    String   @id @default(uuid())
+  contractorId          String
+  provider              String
+  policyNumber          String
+  coverageAmount        Decimal  @db.Money
+  expiryDate            DateTime
+  publicLiability       Boolean  @default(false)
+  professionalIndemnity Boolean  @default(false)
+  workersCompensation   Boolean  @default(false)
+  documentUrl           String?
+  verified              Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("insurance_details")
+}
+
+model ServiceArea {
+  id           String   @id @default(uuid())
+  contractorId String
+  postcode     String
+  suburb       String
+  state        String
+  priority     Int      @default(1) // 1 = highest priority
+  active       Boolean  @default(true)
+  travelTime   Int? // minutes
+  calloutFee   Decimal? @db.Money
+  createdAt    DateTime @default(now())
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@unique([contractorId, postcode])
+  @@map("service_areas")
+}
+
+model PerformanceMetric {
+  id                   String   @id @default(uuid())
+  contractorId         String   @unique
+  averageRating        Float    @default(0.0)
+  responseTime         Int      @default(0) // average minutes
+  completionRate       Float    @default(0.0) // percentage
+  customerSatisfaction Float    @default(0.0) // percentage
+  onTimePercentage     Float    @default(0.0)
+  repeatCustomers      Int      @default(0)
+  totalRevenue         Decimal  @default(0) @db.Money
+  lastCalculated       DateTime @default(now())
+  calculatedAt         DateTime @default(now())
+
+  // Relations
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("performance_metrics")
+}
+
+model Job {
+  id               String    @id @default(uuid())
+  contractorId     String
+  jobNumber        String    @unique
+  title            String
+  description      String
+  serviceCategory  ServiceCategory
+  status           JobStatus @default(PENDING)
+  priority         Priority  @default(MEDIUM)
+  estimatedValue   Decimal?  @db.Money
+  actualValue      Decimal?  @db.Money
+  startDate        DateTime?
+  completionDate   DateTime?
+  address          Json
+  clientDetails    Json
+  insuranceDetails Json?
+  notes            String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  // Relations
+  contractor Contractor  @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  reviews    Review[]
+  documents  Document[]
+  timeline   JobTimeline[]
+
+  @@map("jobs")
+}
+
+model JobTimeline {
+  id          String   @id @default(uuid())
+  jobId       String
+  action      String
+  description String
+  performedBy String?
+  timestamp   DateTime @default(now())
+  metadata    Json?
+
+  // Relations
+  job Job @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@map("job_timeline")
+}
+
+model Review {
+  id           String   @id @default(uuid())
+  jobId        String
+  contractorId String
+  rating       Int      @db.SmallInt // 1-5 stars
+  comment      String?
+  clientName   String?
+  clientEmail  String?
+  verified     Boolean  @default(false)
+  published    Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  job        Job        @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  contractor Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
+}
+
+model Document {
+  id           String       @id @default(uuid())
+  contractorId String?
+  jobId        String?
+  name         String
+  type         DocumentType
+  url          String
+  size         Int // bytes
+  mimeType     String
+  uploadedBy   String?
+  verified     Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  // Relations
+  contractor Contractor? @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  job        Job?        @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@map("documents")
+}
+
+model Notification {
+  id           String             @id @default(uuid())
+  contractorId String?
+  userId       String?
+  type         NotificationType
+  title        String
+  message      String
+  data         Json?
+  read         Boolean            @default(false)
+  priority     Priority           @default(MEDIUM)
+  expiresAt    DateTime?
+  createdAt    DateTime           @default(now())
+
+  // Relations
+  contractor Contractor? @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  action     String
+  resource   String
+  resourceId String
+  changes    Json?
+  ipAddress  String?
+  userAgent  String?
+  timestamp  DateTime @default(now())
+
+  // Relations
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("audit_logs")
+}
+
+// Enums
+enum UserRole {
+  ADMIN
+  MANAGER
+  CONTRACTOR
+  SUPPORT
+}
+
+enum ContractorStatus {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+  REJECTED
+}
+
+enum ServiceCategory {
+  WATER_DAMAGE
+  FIRE_DAMAGE
+  MOULD_REMEDIATION
+  STORM_DAMAGE
+  FLOOD_RECOVERY
+  SEWAGE_CLEANUP
+  BIOHAZARD_CLEANING
+  TRAUMA_SCENE_CLEANING
+  VANDALISM_REPAIR
+  EMERGENCY_BOARD_UP
+  GENERAL_RESTORATION
+  COMMERCIAL_CLEANING
+}
+
+enum JobStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  ON_HOLD
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum DocumentType {
+  CERTIFICATION
+  INSURANCE
+  LICENSE
+  CONTRACT
+  INVOICE
+  PHOTO
+  REPORT
+  OTHER
+}
+
+enum NotificationType {
+  JOB_ASSIGNED
+  JOB_UPDATED
+  PAYMENT_DUE
+  CERTIFICATION_EXPIRY
+  INSURANCE_EXPIRY
+  SYSTEM_ALERT
+  PERFORMANCE_REVIEW
+  MESSAGE
+}
