@@ -65,7 +65,7 @@ const nextConfig = {
               img-src 'self' data: https: blob: https://*.google-analytics.com https://*.googletagmanager.com;
               font-src 'self' data: https://fonts.gstatic.com;
               connect-src 'self' https://vitals.vercel-insights.com https://*.google-analytics.com https://*.clarity.ms https://*.googletagmanager.com;
-              frame-src 'self' https://*.googletagmanager.com;
+              frame-src 'self' https://*.googletagmanager.com https://www.youtube.com https://youtube.com;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
