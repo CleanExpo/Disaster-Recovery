@@ -14,6 +14,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
 import FloodingEffect from '@/components/effects/FloodingEffect';
 import StormCloudBackground from '@/components/StormCloudBackground';
+import EnhancedStormSystem from '@/components/EnhancedStormSystem';
 import styles from './page.module.css';
 
 export default function CleanLandingPage() {
@@ -135,6 +136,9 @@ export default function CleanLandingPage() {
     <div className="min-h-screen relative" style={{ backgroundColor: '#f8fafc' }}>
       {/* Storm Cloud Background Animation */}
       <StormCloudBackground />
+      
+      {/* Enhanced Storm System with Rain, Lightning, and Effects */}
+      <EnhancedStormSystem />
       
       {/* Legacy storm background - can be removed if not needed */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
