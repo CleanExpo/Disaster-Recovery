@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
 import FloodingEffect from '@/components/effects/FloodingEffect';
+import StormCloudBackground from '@/components/StormCloudBackground';
 import styles from './page.module.css';
 
 export default function CleanLandingPage() {
@@ -132,7 +133,10 @@ export default function CleanLandingPage() {
 
   return (
     <div className="min-h-screen relative" style={{ backgroundColor: '#f8fafc' }}>
-      {/* Severe Storm Background at 15% opacity */}
+      {/* Storm Cloud Background Animation */}
+      <StormCloudBackground />
+      
+      {/* Legacy storm background - can be removed if not needed */}
       <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
         {/* Dark storm clouds gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-[0.15]" />

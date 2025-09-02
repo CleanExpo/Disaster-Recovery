@@ -1,0 +1,293 @@
+/* Storm Cloud Background Animation */
+
+.storm-cloud-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Multiple cloud layers for depth */
+.cloud-layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  opacity: 0.3;
+  will-change: transform;
+}
+
+/* Dark storm clouds */
+.cloud-layer-1 {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(31, 41, 55, 0.8) 10%,
+    rgba(55, 65, 81, 0.9) 20%,
+    rgba(75, 85, 99, 0.7) 30%,
+    rgba(31, 41, 55, 0.9) 40%,
+    rgba(17, 24, 39, 0.8) 50%,
+    rgba(31, 41, 55, 0.8) 60%,
+    rgba(55, 65, 81, 0.9) 70%,
+    rgba(75, 85, 99, 0.7) 80%,
+    rgba(31, 41, 55, 0.9) 90%,
+    transparent 100%
+  );
+  animation: rollClouds1 60s linear infinite;
+  filter: blur(2px);
+}
+
+/* Medium storm clouds */
+.cloud-layer-2 {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(55, 65, 81, 0.7) 15%,
+    rgba(75, 85, 99, 0.8) 25%,
+    rgba(107, 114, 128, 0.6) 35%,
+    rgba(55, 65, 81, 0.8) 45%,
+    rgba(31, 41, 55, 0.7) 55%,
+    rgba(55, 65, 81, 0.7) 65%,
+    rgba(75, 85, 99, 0.8) 75%,
+    rgba(107, 114, 128, 0.6) 85%,
+    transparent 100%
+  );
+  animation: rollClouds2 45s linear infinite;
+  filter: blur(1px);
+}
+
+/* Light clouds with sun breaks */
+.cloud-layer-3 {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(156, 163, 175, 0.5) 10%,
+    rgba(209, 213, 219, 0.3) 20%,
+    rgba(243, 244, 246, 0.2) 25%,
+    transparent 30%,
+    rgba(156, 163, 175, 0.5) 40%,
+    rgba(107, 114, 128, 0.6) 50%,
+    rgba(156, 163, 175, 0.5) 60%,
+    rgba(209, 213, 219, 0.3) 70%,
+    rgba(243, 244, 246, 0.2) 75%,
+    transparent 80%,
+    rgba(156, 163, 175, 0.5) 90%,
+    transparent 100%
+  );
+  animation: rollClouds3 30s linear infinite;
+}
+
+/* Sunshine breaks layer */
+.sunshine-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    rgba(251, 191, 36, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  animation: sunshineBreaks 120s ease-in-out infinite;
+}
+
+/* Lightning flash effect */
+.lightning-flash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(147, 197, 253, 0.1) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  animation: lightningFlash 15s ease-in-out infinite;
+}
+
+/* Smooth rolling animations */
+@keyframes rollClouds1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rollClouds2 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rollClouds3 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Sunshine breaks animation */
+@keyframes sunshineBreaks {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  15% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  20% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  35% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  75% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  80% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* Lightning flash animation */
+@keyframes lightningFlash {
+  0%, 100% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+  }
+  10.5% {
+    opacity: 0.8;
+  }
+  11% {
+    opacity: 0;
+  }
+  11.5% {
+    opacity: 0.6;
+  }
+  12% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  50.5% {
+    opacity: 0.7;
+  }
+  51% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  80.5% {
+    opacity: 0.5;
+  }
+  81% {
+    opacity: 0;
+  }
+}
+
+/* Storm intensity variations */
+.storm-intensity-light {
+  filter: brightness(1.2) contrast(0.9);
+}
+
+.storm-intensity-moderate {
+  filter: brightness(1) contrast(1);
+}
+
+.storm-intensity-severe {
+  filter: brightness(0.8) contrast(1.2);
+}
+
+/* Ensure content is above clouds */
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cloud-layer-1 {
+    animation-duration: 40s;
+  }
+  .cloud-layer-2 {
+    animation-duration: 30s;
+  }
+  .cloud-layer-3 {
+    animation-duration: 20s;
+  }
+}
+
+/* Performance optimization for smooth animation */
+@media (prefers-reduced-motion: reduce) {
+  .cloud-layer,
+  .sunshine-layer,
+  .lightning-flash {
+    animation: none;
+  }
+  
+  .cloud-layer {
+    opacity: 0.2;
+  }
+}
+
+/* Additional storm effects */
+.rain-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(100, 116, 139, 0.03) 3px,
+      rgba(100, 116, 139, 0.03) 4px
+    );
+  animation: rainfall 0.5s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes rainfall {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
