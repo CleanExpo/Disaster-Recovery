@@ -398,8 +398,7 @@ export default function CleanLandingPage() {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 px-8 py-6 text-lg">
-              <Phone className="mr-2 h-5 w-5" />
-              Chat Support 24/7
+              View All Services
             </Button>
           </div>
         </div>

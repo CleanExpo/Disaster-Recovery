@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { 
   ArrowRight, CheckCircle, Clock, Shield, Users, 
   Zap, Star, ChevronRight, Play, MessageSquare,
-  Phone, Home, Building2, AlertTriangle
+  Home, Building2, AlertTriangle, FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -564,13 +564,17 @@ export default function CleanLandingPage() {
             Insurance approved. No call-out fees.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
-              Get Immediate Help
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
+              <Link href="/book-service">
+                Submit Emergency Claim
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
-              <Phone className="mr-2 h-5 w-5" />
-              Chat Support 24/7
+            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
+              <Link href="/services">
+                View All Services
+                <FileText className="ml-2 h-5 w-5" />
+              </Link>
             </Button>
           </div>
         </div>
