@@ -48,8 +48,7 @@ interface FormData {
   lastName: string;
   email: string;
   
-  preferredContact: 'phone' | 'email' | 'both';
-  bestTimeToCall: string;
+  preferredContact: 'email';
   
   // Step 4: Insurance & Additional
   hasInsurance: boolean;
@@ -78,8 +77,7 @@ const INITIAL_FORM_DATA: FormData = {
   lastName: '',
   email: '',
   
-  preferredContact: 'both',
-  bestTimeToCall: '',
+  preferredContact: 'email',
   hasInsurance: false,
   insuranceCompany: '',
   claimNumber: '',
@@ -573,30 +571,14 @@ export default function BookServicePage() {
                   {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) => updateFormData('phone', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
-                      errors.phone ? 'border-red-300' : 'border-gray-300'
-                    }`}
-                    placeholder=""
-                  />
-                  {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
-                </div>
+                {/* Phone field hidden - no phone support available */}
+                <input type="hidden" id="phone" value="" />
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Contact Method</label>
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { value: 'phone', label: 'Phone', icon: Phone },
-                      { value: 'email', label: 'Email', icon: Mail },
-                      { value: 'both', label: 'Both', icon: Phone }
+                      { value: 'email', label: 'Email', icon: Mail }
                     ].map((method) => {
                       const Icon = method.icon;
                       return (
@@ -618,19 +600,7 @@ export default function BookServicePage() {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="bestTime" className="block text-sm font-medium text-gray-700 mb-2">
-                    Best Time to Call
-                  </label>
-                  <input
-                    type="text"
-                    id="bestTime"
-                    value={formData.bestTimeToCall}
-                    onChange={(e) => updateFormData('bestTimeToCall', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                    placeholder="e.g., Weekdays after 5pm"
-                  />
-                </div>
+                {/* Best time to call field hidden - no phone support available */}
               </div>
             )}
 

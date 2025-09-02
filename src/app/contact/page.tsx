@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  PhoneIcon, 
+  ChatBubbleLeftRightIcon,
   EnvelopeIcon, 
   MapPinIcon, 
   ClockIcon,
@@ -20,7 +20,6 @@ export default function ModernContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     service: '',
     urgency: '',
     message: ''
@@ -48,9 +47,9 @@ export default function ModernContactPage() {
 
   const contactInfo = [
     {
-      icon: <PhoneIcon className="w-6 h-6" />,
-      title: '24/7 Emergency Response',
-      value: 'Online Form Available',
+      icon: <ChatBubbleLeftRightIcon className="w-6 h-6" />,
+      title: '24/7 Online Support',
+      value: 'Chat & Form Available',
       subtext: 'Immediate response',
       colour: 'from-red-500 to-blue-600'
     },
@@ -281,25 +280,6 @@ export default function ModernContactPage() {
                         />
                       </motion.div>
 
-                      {/* Phone Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={formData.phone}
-                          onChange={(e) => handleChange('phone', e.target.value)}
-                          onFocus={() => setActiveField('phone')}
-                          onBlur={() => setActiveField(null)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-500"
-                          placeholder=""
-                        />
-                      </motion.div>
 
                       {/* Service Field */}
                       <motion.div

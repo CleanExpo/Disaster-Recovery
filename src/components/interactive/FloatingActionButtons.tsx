@@ -177,16 +177,10 @@ function ExpandableFABMenu() {
 
   const menuItems = [
     {
-      icon: Phone,
-      label: 'Emergency Call',
-      colour: 'bg-gradient-to-r from-red-600 to-red-700',
-      action: () => window.open('tel:1800123456', '_self')
-    },
-    {
       icon: MessageCircle,
-      label: 'Text Message',
+      label: 'Chat Support',
       colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
-      action: () => window.open('sms:1300566166', '_self')
+      action: () => window.location.href = '/contact'
     },
     {
       icon: Mail,
@@ -318,17 +312,17 @@ function QuickActionDock() {
 
   const dockItems = [
     {
-      icon: Phone,
+      icon: Mail,
       label: 'Submit Form Now',
       colour: 'bg-gradient-to-r from-red-500 to-red-600',
-      action: () => console.log('Submit form'),
+      action: () => window.location.href = '/contact',
       size: 'lg' as const
     },
     {
       icon: MessageCircle,
-      label: 'Text',
+      label: 'Chat',
       colour: 'bg-gradient-to-r from-blue-500 to-blue-600',
-      action: () => window.open('sms:1300566166', '_self'),
+      action: () => window.location.href = '/contact',
       size: 'md' as const
     },
     {
