@@ -131,45 +131,14 @@ export default function EnhancedStormSystem() {
         </>
       )}
 
-      {/* Rain effect */}
-      {stormPhase !== 'calm' && stormPhase !== 'rainbow' && (
-        <div className="rain-container">
-          {rainDrops.slice(0, getRainIntensity()).map(drop => (
-            <div
-              key={drop.id}
-              className="rain-drop"
-              style={{
-                left: `${drop.left}%`,
-                animationDelay: `${drop.delay}s`,
-                animationDuration: `${drop.duration}s`
-              }}
-            />
-          ))}
-          {stormPhase === 'peak' && (
-            <div className="heavy-rain" />
-          )}
-        </div>
-      )}
+      {/* Rain effect removed per user request */}
 
       {/* Wind effect */}
       {(stormPhase === 'building' || stormPhase === 'peak') && (
         <div className="wind-effect" />
       )}
 
-      {/* Debris particles */}
-      {stormPhase === 'peak' && debris.map(particle => (
-        <div
-          key={particle.id}
-          className="debris-particle"
-          style={{
-            left: `${particle.left}%`,
-            bottom: `${particle.bottom}%`,
-            animationDelay: `${particle.delay}s`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`
-          }}
-        />
-      ))}
+      {/* Debris particles removed per user request */}
 
       {/* Fog layer */}
       {(stormPhase === 'passing' || stormPhase === 'building') && (
