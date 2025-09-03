@@ -12,7 +12,7 @@ import {
   AIMessage,
   AIProvider 
 } from '@/types/ai-service';
-import { logger } from '@/lib/logger';
+import logger from '@/lib/logger';
 
 export interface OrchestrationConfig {
   enableHRM?: boolean;

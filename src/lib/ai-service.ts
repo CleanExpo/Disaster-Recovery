@@ -14,10 +14,17 @@ import {
   AIServiceConfig,
   AIMetrics,
   IAIService,
-  AIServiceError,
   AICacheEntry
 } from '@/types/ai-service';
-import { logger } from '@/lib/logger';
+import logger from '@/lib/logger';
+
+// Define AIServiceError class since it's not exported from types
+class AIServiceError extends Error {
+  constructor(message: string, public code?: string) {
+    super(message);
+    this.name = 'AIServiceError';
+  }
+}
 
 export class AIService implements IAIService {
   private config: AIServiceConfig;
