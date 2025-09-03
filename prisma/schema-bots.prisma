@@ -1,0 +1,352 @@
+// Bot System Database Schema
+// All content must be verified and approved before use
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// VERIFIED CONTENT
+// ============================================
+
+model VerifiedContent {
+  id          String   @id @default(cuid())
+  type        String   // service_procedure, emergency_guide, etc.
+  title       String
+  content     String   @db.Text
+  metadata    Json?
+  active      Boolean  @default(true)
+  approved    Boolean  @default(false)
+  approvedBy  String?
+  approvedAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([type, active])
+}
+
+// ============================================
+// STEP-BY-STEP GUIDES
+// ============================================
+
+model StepByStepGuide {
+  id                String   @id @default(cuid())
+  type              String   // water_damage, fire_damage, etc.
+  userType          String   // customer, contractor
+  title             String
+  description       String
+  estimatedReadTime String?
+  priority          Int      @default(0)
+  active            Boolean  @default(true)
+  lastUpdated       DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  steps             GuideStep[]
+  
+  @@index([type, userType, active])
+}
+
+model GuideStep {
+  id            String   @id @default(cuid())
+  guideId       String
+  stepNumber    Int
+  title         String
+  description   String   @db.Text
+  warningNotes  String[]
+  estimatedTime String?
+  requiredTools String[]
+  imageUrl      String?
+  videoUrl      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  guide         StepByStepGuide @relation(fields: [guideId], references: [id])
+  
+  @@index([guideId, stepNumber])
+}
+
+// ============================================
+// SERVICE PROCEDURES
+// ============================================
+
+model ServiceProcedure {
+  id               String   @id @default(cuid())
+  serviceType      String   // water_extraction, mould_remediation, etc.
+  title            String
+  description      String   @db.Text
+  safetyNotes      String[]
+  requiredPPE      String[]
+  estimatedTime    String
+  difficultyLevel  String   // basic, intermediate, advanced
+  certificationReq String[]
+  active           Boolean  @default(true)
+  version          String   @default("1.0.0")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  @@index([serviceType, active])
+}
+
+// ============================================
+// EMERGENCY GUIDES
+// ============================================
+
+model EmergencyGuide {
+  id              String   @id @default(cuid())
+  emergencyType   String   // flood, fire, storm, etc.
+  title           String
+  immediateSteps  String[] // Array of immediate actions
+  safetyWarnings  String[]
+  doNotActions    String[] // Things NOT to do
+  contactNumbers  Json     // Emergency contact numbers
+  active          Boolean  @default(true)
+  priority        Int      // Higher priority shown first
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([emergencyType, active, priority])
+}
+
+// ============================================
+// INSURANCE PROCESSES
+// ============================================
+
+model InsuranceProcess {
+  id              String   @id @default(cuid())
+  insurerName     String
+  processType     String   // claim_submission, documentation, etc.
+  requirements    String[]
+  timeline        String
+  contactInfo     Json
+  specialNotes    String?
+  active          Boolean  @default(true)
+  lastVerified    DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([insurerName, processType, active])
+}
+
+// ============================================
+// CONTRACTORS
+// ============================================
+
+model Contractor {
+  id                String   @id @default(cuid())
+  businessName      String
+  abn               String   @unique
+  email             String   @unique
+  phone             String
+  address           String
+  serviceAreas      String[]
+  services          String[]
+  certifications    Json[]
+  insuranceDetails  Json
+  
+  // Performance Metrics
+  responseTime      Float    @default(0)
+  completionRate    Float    @default(0)
+  customerRating    Float    @default(0)
+  totalJobs         Int      @default(0)
+  
+  // Status
+  active            Boolean  @default(true)
+  verified          Boolean  @default(false)
+  verifiedAt        DateTime?
+  backgroundCheck   Boolean  @default(false)
+  backgroundCheckAt DateTime?
+  
+  // Availability
+  currentCapacity   Int      @default(10)
+  maxCapacity       Int      @default(10)
+  emergencyAvailable Boolean @default(false)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  territories       ContractorTerritory[]
+  availability      ContractorAvailability[]
+  jobs              Job[]
+  
+  @@index([active, verified])
+  @@index([serviceAreas])
+}
+
+model ContractorTerritory {
+  id            String   @id @default(cuid())
+  contractorId  String
+  postcode      String
+  suburb        String
+  state         String
+  radius        Int      // Service radius in km
+  primary       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  
+  contractor    Contractor @relation(fields: [contractorId], references: [id])
+  
+  @@index([contractorId, postcode])
+  @@index([suburb, state])
+}
+
+model ContractorAvailability {
+  id            String   @id @default(cuid())
+  contractorId  String
+  dayOfWeek     Int      // 0-6 (Sunday-Saturday)
+  startTime     String   // HH:MM format
+  endTime       String   // HH:MM format
+  available     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  contractor    Contractor @relation(fields: [contractorId], references: [id])
+  
+  @@index([contractorId, dayOfWeek])
+}
+
+// ============================================
+// JOBS & LEADS
+// ============================================
+
+model Job {
+  id              String   @id @default(cuid())
+  leadId          String?
+  contractorId    String?
+  
+  // Job Details
+  serviceType     String
+  urgency         String   // emergency, urgent, standard
+  status          String   // pending, assigned, in_progress, completed
+  
+  // Location
+  address         String
+  suburb          String
+  state           String
+  postcode        String
+  coordinates     Json?    // {lat, lng}
+  
+  // Customer Info (encrypted)
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  
+  // Insurance
+  insuranceClaim  Boolean  @default(false)
+  insurerName     String?
+  claimNumber     String?
+  policyNumber    String?
+  
+  // Assignment
+  assignedAt      DateTime?
+  acceptedAt      DateTime?
+  startedAt       DateTime?
+  completedAt     DateTime?
+  
+  // Notes
+  description     String   @db.Text
+  internalNotes   String?  @db.Text
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  contractor      Contractor? @relation(fields: [contractorId], references: [id])
+  conversations   BotConversation[]
+  
+  @@index([status, urgency])
+  @@index([contractorId, status])
+  @@index([suburb, state])
+}
+
+// ============================================
+// BOT CONVERSATIONS
+// ============================================
+
+model BotConversation {
+  id            String   @id @default(cuid())
+  sessionId     String   @unique
+  channel       String   // web, sms, whatsapp, email
+  userType      String   // customer, contractor
+  
+  // Related Entities
+  jobId         String?
+  contractorId  String?
+  
+  // Conversation Data
+  messages      Json[]   // Array of message objects
+  context       Json?    // Conversation context
+  
+  // Status
+  status        String   @default("active") // active, completed, abandoned
+  startedAt     DateTime @default(now())
+  endedAt       DateTime?
+  lastMessageAt DateTime @default(now())
+  
+  job           Job? @relation(fields: [jobId], references: [id])
+  
+  @@index([sessionId])
+  @@index([status, userType])
+}
+
+// ============================================
+// COMPLIANCE AUDIT LOG
+// ============================================
+
+model ComplianceAudit {
+  id              String   @id @default(cuid())
+  conversationId  String?
+  requestType     String
+  requestContent  String   @db.Text
+  responseContent String   @db.Text
+  
+  // Compliance Check Results
+  verified        Boolean
+  prohibited      Boolean  @default(false)
+  disclaimersAdded String[]
+  dataSources     String[]
+  
+  // Metadata
+  timestamp       DateTime @default(now())
+  channel         String
+  userType        String
+  
+  @@index([conversationId])
+  @@index([timestamp])
+}
+
+// ============================================
+// BOT METRICS
+// ============================================
+
+model BotMetrics {
+  id              String   @id @default(cuid())
+  date            DateTime @default(now())
+  
+  // Performance Metrics
+  totalRequests   Int      @default(0)
+  avgResponseTime Float    @default(0) // milliseconds
+  successRate     Float    @default(0) // percentage
+  
+  // Usage Metrics
+  uniqueSessions  Int      @default(0)
+  messagesProcessed Int    @default(0)
+  emergencyRequests Int    @default(0)
+  claimsProcessed Int      @default(0)
+  
+  // Channel Distribution
+  webRequests     Int      @default(0)
+  smsRequests     Int      @default(0)
+  whatsappRequests Int     @default(0)
+  emailRequests   Int      @default(0)
+  
+  // Error Tracking
+  totalErrors     Int      @default(0)
+  validationErrors Int     @default(0)
+  systemErrors    Int      @default(0)
+  
+  @@index([date])
+}

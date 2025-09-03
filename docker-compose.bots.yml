@@ -1,0 +1,335 @@
+version: '3.9'
+
+services:
+  # ============================================
+  # CORE INFRASTRUCTURE
+  # ============================================
+  
+  postgres-bots:
+    image: postgres:16-alpine
+    container_name: nrp-postgres-bots
+    environment:
+      POSTGRES_USER: ${DB_USER:-nrp_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secure_password}
+      POSTGRES_DB: ${DB_NAME:-disaster_recovery_bots}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_bots_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-bots.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - nrp-bot-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-nrp_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-bots:
+    image: redis:7-alpine
+    container_name: nrp-redis-bots
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_bots_data:/data
+    networks:
+      - nrp-bot-network
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_secure}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # ELYSIA BOT ENGINE (HIGH PERFORMANCE)
+  # ============================================
+  
+  elysia-bot-engine:
+    build:
+      context: ./docker/elysia-bot
+      dockerfile: Dockerfile
+    container_name: nrp-elysia-bot
+    ports:
+      - "3001:3001"  # ElysiaJS Bot API
+      - "3002:3002"  # WebSocket for real-time
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${DB_USER:-nrp_admin}:${DB_PASSWORD:-secure_password}@postgres-bots:5432/${DB_NAME:-disaster_recovery_bots}
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_secure}@redis-bots:6379
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      PORT: 3001
+      WS_PORT: 3002
+      QDRANT_URL: http://qdrant:6333
+      # MCP Configuration
+      MCP_PLAYWRIGHT_ENABLED: true
+      MCP_IDE_ENABLED: true
+      MCP_CONTEXT7_ENABLED: true
+    depends_on:
+      postgres-bots:
+        condition: service_healthy
+      redis-bots:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    volumes:
+      - ./src/bots:/app/src/bots
+      - ./src/lib:/app/src/lib
+      - bot_logs:/app/logs
+    networks:
+      - nrp-bot-network
+    restart: unless-stopped
+
+  # ============================================
+  # CLIENT BOT CLI
+  # ============================================
+  
+  client-bot-cli:
+    build:
+      context: ./docker/client-bot-cli
+      dockerfile: Dockerfile
+    container_name: nrp-client-bot-cli
+    environment:
+      BOT_TYPE: client
+      ELYSIA_API_URL: http://elysia-bot-engine:3001
+      WS_URL: ws://elysia-bot-engine:3002
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY}
+      WHATSAPP_TOKEN: ${WHATSAPP_TOKEN}
+      # Emergency Response Config
+      EMERGENCY_THRESHOLD: 30  # seconds
+      MAX_CONCURRENT_CHATS: 1000
+      RESPONSE_TIMEOUT: 1000    # milliseconds
+    depends_on:
+      - elysia-bot-engine
+    volumes:
+      - ./cli/client-bot:/app
+      - client_bot_data:/app/data
+    networks:
+      - nrp-bot-network
+    command: ["npm", "run", "start:prod"]
+    restart: unless-stopped
+
+  # ============================================
+  # CONTRACTOR BOT CLI
+  # ============================================
+  
+  contractor-bot-cli:
+    build:
+      context: ./docker/contractor-bot-cli
+      dockerfile: Dockerfile
+    container_name: nrp-contractor-bot-cli
+    environment:
+      BOT_TYPE: contractor
+      ELYSIA_API_URL: http://elysia-bot-engine:3001
+      WS_URL: ws://elysia-bot-engine:3002
+      STRIPE_API_KEY: ${STRIPE_API_KEY}
+      CHECKR_API_KEY: ${CHECKR_API_KEY}
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+      # Job Distribution Config
+      MAX_TERRITORY_RADIUS: 50  # km
+      AUTO_ASSIGN_THRESHOLD: 0.8  # confidence score
+      ESCALATION_TIMEOUT: 300  # seconds
+    depends_on:
+      - elysia-bot-engine
+    volumes:
+      - ./cli/contractor-bot:/app
+      - contractor_bot_data:/app/data
+    networks:
+      - nrp-bot-network
+    command: ["npm", "run", "start:prod"]
+    restart: unless-stopped
+
+  # ============================================
+  # AGENT ORCHESTRATOR
+  # ============================================
+  
+  agent-orchestrator:
+    build:
+      context: ./docker/orchestrator
+      dockerfile: Dockerfile
+    container_name: nrp-orchestrator
+    environment:
+      ORCHESTRATOR_MODE: master
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_secure}@redis-bots:6379
+      DATABASE_URL: postgresql://${DB_USER:-nrp_admin}:${DB_PASSWORD:-secure_password}@postgres-bots:5432/${DB_NAME:-disaster_recovery_bots}
+      # Agent Configuration
+      MAX_AGENTS: 100
+      AGENT_TIMEOUT: 30000
+      TASK_QUEUE_SIZE: 10000
+    depends_on:
+      - postgres-bots
+      - redis-bots
+    volumes:
+      - ./src/bots/orchestration:/app/orchestration
+      - orchestrator_logs:/app/logs
+    networks:
+      - nrp-bot-network
+    restart: unless-stopped
+
+  # ============================================
+  # SUB-AGENTS CONTAINERS
+  # ============================================
+  
+  emergency-agent:
+    build:
+      context: ./docker/agents/emergency
+      dockerfile: Dockerfile
+    container_name: nrp-emergency-agent
+    environment:
+      AGENT_TYPE: emergency_response
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_secure}@redis-bots:6379
+      PRIORITY_LEVELS: "critical,urgent,standard,scheduled"
+    networks:
+      - nrp-bot-network
+    restart: unless-stopped
+
+  insurance-agent:
+    build:
+      context: ./docker/agents/insurance
+      dockerfile: Dockerfile
+    container_name: nrp-insurance-agent
+    environment:
+      AGENT_TYPE: insurance_processing
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_secure}@redis-bots:6379
+      CLEAN_CLAIMS_API: ${CLEAN_CLAIMS_API_URL}
+      CLEAN_CLAIMS_KEY: ${CLEAN_CLAIMS_API_KEY}
+    networks:
+      - nrp-bot-network
+    restart: unless-stopped
+
+  matching-agent:
+    build:
+      context: ./docker/agents/matching
+      dockerfile: Dockerfile
+    container_name: nrp-matching-agent
+    environment:
+      AGENT_TYPE: contractor_matching
+      REDIS_URL: redis://:${REDIS_PASSWORD:-redis_secure}@redis-bots:6379
+      DATABASE_URL: postgresql://${DB_USER:-nrp_admin}:${DB_PASSWORD:-secure_password}@postgres-bots:5432/${DB_NAME:-disaster_recovery_bots}
+    networks:
+      - nrp-bot-network
+    restart: unless-stopped
+
+  # ============================================
+  # VECTOR DATABASE (RAG SUPPORT)
+  # ============================================
+  
+  qdrant:
+    image: qdrant/qdrant
+    container_name: nrp-qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+      - ./docker/qdrant/config.yaml:/qdrant/config/production.yaml
+    networks:
+      - nrp-bot-network
+    environment:
+      QDRANT__SERVICE__HTTP_PORT: 6333
+      QDRANT__SERVICE__GRPC_PORT: 6334
+      QDRANT__STORAGE__STORAGE_PATH: /qdrant/storage
+
+  # ============================================
+  # MESSAGE QUEUE (BULL/RABBITMQ)
+  # ============================================
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: nrp-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-secure_pass}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - nrp-bot-network
+
+  # ============================================
+  # MONITORING & OBSERVABILITY
+  # ============================================
+  
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: nrp-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - nrp-bot-network
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nrp-grafana
+    ports:
+      - "3003:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_INSTALL_PLUGINS: redis-datasource,postgres-datasource
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./docker/monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./docker/monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - nrp-bot-network
+    depends_on:
+      - prometheus
+
+  # ============================================
+  # NGINX REVERSE PROXY WITH LOAD BALANCING
+  # ============================================
+  
+  nginx:
+    image: nginx:alpine
+    container_name: nrp-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+      - ./docker/nginx/sites:/etc/nginx/sites-available
+    networks:
+      - nrp-bot-network
+    depends_on:
+      - elysia-bot-engine
+      - client-bot-cli
+      - contractor-bot-cli
+
+# ============================================
+# NETWORKS
+# ============================================
+
+networks:
+  nrp-bot-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.29.0.0/16
+
+# ============================================
+# VOLUMES
+# ============================================
+
+volumes:
+  postgres_bots_data:
+  redis_bots_data:
+  qdrant_data:
+  rabbitmq_data:
+  bot_logs:
+  client_bot_data:
+  contractor_bot_data:
+  orchestrator_logs:
+  prometheus_data:
+  grafana_data:
