@@ -1,0 +1,34 @@
+{
+  "name": "nrp-health-check",
+  "version": "1.0.0",
+  "description": "Comprehensive health check system for NRP Disaster Recovery Platform",
+  "main": "health-check-cli.js",
+  "scripts": {
+    "check": "node health-check-cli.js",
+    "check:watch": "nodemon health-check-cli.js",
+    "server": "bun run comprehensive-health-check.ts",
+    "server:node": "tsx comprehensive-health-check.ts",
+    "install": "npm install"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.0",
+    "axios": "^1.6.5",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
+    "ora": "^5.4.1",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "elysia": "^1.0.0",
+    "@elysiajs/cors": "^1.0.0",
+    "@elysiajs/swagger": "^1.0.0",
+    "nodemon": "^3.0.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "winston": "^3.11.0"
+  },
+  "bin": {
+    "nrp-health": "./health-check-cli.js"
+  }
+}
