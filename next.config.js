@@ -1,8 +1,15 @@
 /** @type {import('next').NextConfig} */
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+// Optional bundle analyzer - only load if installed
+let withBundleAnalyzer = (config) => config;
+try {
+  withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+  });
+} catch (e) {
+  // Bundle analyzer not installed, continue without it
+  console.log('Note: @next/bundle-analyzer not installed, skipping bundle analysis');
+}
 
 const nextConfig = {
   reactStrictMode: true,
@@ -143,6 +150,7 @@ const nextConfig = {
                 /node_modules[/\\]/.test(module.identifier());
             },
             name(module) {
+              const crypto = require('crypto');
               const hash = crypto.createHash('sha256');
               hash.update(module.identifier());
               return hash.digest('hex').substring(0, 8);
