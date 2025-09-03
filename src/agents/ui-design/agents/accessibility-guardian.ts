@@ -269,7 +269,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
     return this.analyse({
       type: context.component.type,
       props: context.component.props,
-      styles: context.component.styles.base,
+      styles: context.component.styles.base as any,
       children: context.component.children || [],
       accessibility: context.component.accessibility || { focusable: false },
       metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }

@@ -86,21 +86,20 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
         case 'critical':
           toast.error(message, {
             duration: 10000,
-            important: true,
           });
           break;
         case 'high':
-          toast.warning(message, {
+          toast.warning?.(message, {
             duration: 7000,
-          });
+          }) || toast(message);
           break;
         case 'medium':
-          toast.info(message, {
+          toast.info?.(message, {
             duration: 5000,
-          });
+          }) || toast(message);
           break;
         default:
-          toast.message(message);
+          toast(message);
       }
     });
 
@@ -110,7 +109,6 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
       toast.error(`🚨 EMERGENCY: ${type} in ${location}`, {
         description: `Severity: ${severity}`,
         duration: 15000,
-        important: true,
         action: {
           label: 'View Details',
           onClick: () => window.location.href = `/emergency/${data.id}`

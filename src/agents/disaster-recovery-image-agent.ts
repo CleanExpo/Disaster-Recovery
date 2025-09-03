@@ -161,7 +161,7 @@ export async function analyzePageForImages(pagePath: string): Promise<{
     if (!hasImage) {
       missingImages.push({
         type: imageType,
-        purpose: requirements.purpose,
+        purpose: (requirements as any).purpose,
         suggestedPrompt: generateOptimalPrompt(pagePath, imageType, requirements),
         priority: calculatePriority(pagePath, imageType)
       });

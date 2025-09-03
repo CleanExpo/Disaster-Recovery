@@ -52,7 +52,7 @@ interface ContractorStatus {
 }
 
 export const LiveDashboard: React.FC = () => {
-  const { on, off, connected } = useWebSocket();
+  const { on, off, connected, emit } = useWebSocket();
   
   const [metrics, setMetrics] = useState<DashboardMetrics>({
     activeJobs: 0,
@@ -74,7 +74,7 @@ export const LiveDashboard: React.FC = () => {
 
   // WebSocket event handlers
   useEffect(() => {
-    if (!connected) return;
+    if (!connected) return undefined;
 
     const handleMetricsUpdate = (data: any) => {
       setMetrics(prev => ({ ...prev, ...data }));

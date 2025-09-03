@@ -76,6 +76,16 @@
     "scripts",
     "tests",
     "playwright-report",
-    "test-results"
+    "test-results",
+    "audio-system/**",
+    "audio-system.backup/**",
+    "bots/**",
+    "bots.backup/**",
+    "cli/**",
+    "CRM_Reference/**",
+    "docker/**",
+    "health-check/**",
+    "NRP-CRM/**",
+    "Portals/**"
   ]
 }

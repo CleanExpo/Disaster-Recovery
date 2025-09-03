@@ -112,7 +112,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
   // Load contractors and emergencies
   useEffect(() => {
-    if (!connected) return;
+    if (!connected) return undefined;
 
     const handleContractorUpdate = (data: Contractor[]) => {
       setContractors(data);
