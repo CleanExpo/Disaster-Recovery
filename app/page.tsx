@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { 
   ArrowRight, CheckCircle, Clock, Shield, Users, 
   Zap, Star, ChevronRight, Play,
-  Home, Building2, AlertTriangle, FileText
+  Home, Building2, AlertTriangle, FileText, Phone
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -17,6 +17,9 @@ import StormCloudBackground from '@/components/StormCloudBackground';
 import EnhancedStormSystem from '@/components/EnhancedStormSystem';
 import { InlineEEAT } from '@/components/eeat/InlineEEAT';
 import { PricingGuidelines, ContractorPricingInfo } from '@/components/pricing/PricingGuidelines';
+import { ComprehensiveSEO, EmergencyContactBar } from '@/components/seo/ComprehensiveSEO';
+import { EnhancedChatBot } from '@/components/chat/EnhancedChatBot';
+import { TransparencyHub } from '@/components/transparency/TransparencyHub';
 import styles from './page.module.css';
 
 export default function CleanLandingPage() {
@@ -135,9 +138,19 @@ export default function CleanLandingPage() {
   ];
 
   return (
-    <div className="min-h-screen relative" style={{ backgroundColor: '#f8fafc' }}>
-      {/* Storm Cloud Background Animation */}
-      <StormCloudBackground />
+    <>
+      {/* SEO Enhancements */}
+      <ComprehensiveSEO pageType="home" />
+      
+      {/* Emergency Contact Bar */}
+      <EmergencyContactBar />
+      
+      {/* Enhanced Chat Bot */}
+      <EnhancedChatBot />
+      
+      <div className="min-h-screen relative" style={{ backgroundColor: '#f8fafc', paddingTop: '40px' }}>
+        {/* Storm Cloud Background Animation */}
+        <StormCloudBackground />
       
       {/* Enhanced Storm System with Rain, Lightning, and Effects */}
       <EnhancedStormSystem />
@@ -605,6 +618,10 @@ export default function CleanLandingPage() {
         {/* Flooding Effect at Bottom */}
         <FloodingEffect />
       </section>
+
+      {/* Transparency Hub Section */}
+      <TransparencyHub />
     </div>
+    </>
   );
 }
