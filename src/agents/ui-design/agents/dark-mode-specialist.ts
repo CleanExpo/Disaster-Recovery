@@ -159,7 +159,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
 
     try {
       // Analyse current dark mode implementation
-      const darkModeAnalysis = await this.analyzeDarkModeSupport(context)
+      const darkModeAnalysis = await this.analyzeDarkModeSupportContext(context)
       
       // Generate dark theme implementation
       improvements.push(...await this.generateDarkThemeImplementation(context))
@@ -221,17 +221,17 @@ export class DarkModeSpecialistAgent implements UIAgent {
     const recommendations = []
 
     // Analyse dark mode support
-    const darkModeSupport = this.analyzeDarkModeSupport(element as any)
+    const darkModeSupport = await this.analyzeDarkModeSupport(element as any)
     issues.push(...darkModeSupport.issues)
     strengths.push(...darkModeSupport.strengths)
 
     // Check contrast ratios
-    const contrastAnalysis = this.analyzeContrast(element as any)
+    const contrastAnalysis = await this.analyzeContrast(element as any)
     issues.push(...contrastAnalysis.issues)
     strengths.push(...contrastAnalysis.strengths)
 
     // Analyse electric blue usage
-    const electricBlueAnalysis = this.analyzeElectricBlueUsage(element as any)
+    const electricBlueAnalysis = await this.analyzeElectricBlueUsage(element as any)
     issues.push(...electricBlueAnalysis.issues)
     strengths.push(...electricBlueAnalysis.strengths)
 
@@ -259,7 +259,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
     }
   }
 
-  private async analyzeDarkModeSupport(context: UIContext): Promise<AnalysisResult> {
+  private async analyzeDarkModeSupportContext(context: UIContext): Promise<AnalysisResult> {
     return this.analyse({
       type: context.component.type,
       props: context.component.props,
@@ -270,7 +270,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
     })
   }
 
-  private analyzeDarkModeSupport(element: UIElement) {
+  private async analyzeDarkModeSupport(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
 
@@ -312,10 +312,10 @@ export class DarkModeSpecialistAgent implements UIAgent {
       })
     }
 
-    return { issues, strengths }
+    return { issues, strengths, score: 0, recommendations: [] }
   }
 
-  private analyzeContrast(element: UIElement) {
+  private async analyzeContrast(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
 
@@ -338,10 +338,10 @@ export class DarkModeSpecialistAgent implements UIAgent {
       })
     }
 
-    return { issues, strengths }
+    return { issues, strengths, score: 0, recommendations: [] }
   }
 
-  private analyzeElectricBlueUsage(element: UIElement) {
+  private async analyzeElectricBlueUsage(element: UIElement): Promise<AnalysisResult> {
     const issues = []
     const strengths = []
 
@@ -366,7 +366,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
       })
     }
 
-    return { issues, strengths }
+    return { issues, strengths, score: 0, recommendations: [] }
   }
 
   private async generateDarkThemeImplementation(context: UIContext): Promise<UIImprovement[]> {
