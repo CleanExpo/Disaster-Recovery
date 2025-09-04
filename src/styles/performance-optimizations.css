@@ -1,0 +1,134 @@
+/* Performance Optimizations - Fixing UI Jumpiness */
+
+/* Disable transition:all which causes performance issues */
+* {
+  transition: none !important;
+}
+
+/* Re-enable specific optimized transitions */
+button,
+a,
+.transition-colors {
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease !important;
+}
+
+.transition-opacity {
+  transition: opacity 200ms ease !important;
+}
+
+.transition-transform {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Fix layout shifts */
+img, video, iframe {
+  aspect-ratio: attr(width) / attr(height);
+  height: auto;
+  max-width: 100%;
+}
+
+/* Optimize fixed elements */
+.fixed {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce repaints for animations */
+@keyframes optimizedPulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+}
+
+.animate-pulse {
+  animation: optimizedPulse 2s ease-in-out infinite !important;
+  will-change: opacity, transform;
+}
+
+/* Optimize storm animations */
+.storm-cloud-container,
+.enhanced-storm-system,
+.storm-clouds-dark,
+.rainbow-arc {
+  pointer-events: none;
+  will-change: auto;
+  contain: layout style paint;
+}
+
+/* Disable heavy animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU acceleration for smooth scrolling */
+.scroll-smooth {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Optimize hover effects */
+@media (hover: hover) {
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+/* Audio Player Optimizations */
+.audio-player {
+  contain: layout;
+  will-change: auto;
+}
+
+.audio-waveform {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce paint areas */
+.card,
+.modal,
+.dropdown {
+  contain: content;
+}
+
+/* Optimize backdrop filters */
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+  .backdrop-blur {
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+}
+
+/* Font loading optimization */
+.font-loading * {
+  transition: none !important;
+}
+
+/* Critical rendering path optimization */
+.above-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Lazy load optimization */
+[loading="lazy"] {
+  content-visibility: auto;
+}
