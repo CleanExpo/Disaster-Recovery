@@ -235,7 +235,7 @@ export default function LeadManagementDashboard() {
         lead.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         lead.bookingId.toLowerCase().includes(searchQuery.toLowerCase()) ||
         lead.customer.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        lead.customer.phone.includes(searchQuery)
+        lead.customer.phone?.includes(searchQuery)
       );
     }
 
