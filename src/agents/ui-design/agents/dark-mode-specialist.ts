@@ -221,17 +221,17 @@ export class DarkModeSpecialistAgent implements UIAgent {
     const recommendations = []
 
     // Analyse dark mode support
-    const darkModeSupport = this.analyzeDarkModeSupport(element)
+    const darkModeSupport = this.analyzeDarkModeSupport(element as any)
     issues.push(...darkModeSupport.issues)
     strengths.push(...darkModeSupport.strengths)
 
     // Check contrast ratios
-    const contrastAnalysis = this.analyzeContrast(element)
+    const contrastAnalysis = this.analyzeContrast(element as any)
     issues.push(...contrastAnalysis.issues)
     strengths.push(...contrastAnalysis.strengths)
 
     // Analyse electric blue usage
-    const electricBlueAnalysis = this.analyzeElectricBlueUsage(element)
+    const electricBlueAnalysis = this.analyzeElectricBlueUsage(element as any)
     issues.push(...electricBlueAnalysis.issues)
     strengths.push(...electricBlueAnalysis.strengths)
 

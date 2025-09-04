@@ -270,8 +270,8 @@ export class AccessibilityGuardianAgent implements UIAgent {
       type: context.component.type,
       props: context.component.props,
       styles: context.component.styles.base as any,
-      children: context.component.children || [],
-      accessibility: context.component.accessibility || { focusable: false },
+      children: (context.component.children || []) as any,
+      accessibility: (context.component.accessibility || { focusable: false }) as any,
       metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
     })
   }
@@ -384,7 +384,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
     }
 
     // Check for proper roles
-    if (element.type === 'div' && element.props?.onClick && !accessibility.role) {
+    if (element.type === 'div' && element.props?.onClick && !(accessibility as any)?.role) {
       issues.push({
         id: 'missing-button-role',
         severity: 'high' as const,

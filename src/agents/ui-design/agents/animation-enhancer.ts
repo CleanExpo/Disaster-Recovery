@@ -285,9 +285,9 @@ export class AnimationEnhancerAgent implements UIAgent {
     return this.analyse({
       type: context.component.type,
       props: context.component.props,
-      styles: context.component.styles.base,
-      children: context.component.children || [],
-      accessibility: context.component.accessibility || { focusable: false },
+      styles: context.component.styles.base as any,
+      children: (context.component.children || []) as any,
+      accessibility: (context.component.accessibility || { focusable: false }) as any,
       metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
     })
   }
@@ -430,7 +430,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'r6-button-animations',
-        type: 'interaction',
+        type: 'interaction' as any,
         description: 'Add R6 Digital button animations with shimmer effect',
         impact: 'medium',
         effort: 'low',
@@ -516,7 +516,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'r6-card-animations',
-        type: 'interaction',
+        type: 'interaction' as any,
         description: 'Add R6 Digital card animations with hover effects and entrance transitions',
         impact: 'high',
         effort: 'medium',
@@ -616,7 +616,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'r6-input-animations',
-        type: 'interaction',
+        type: 'interaction' as any,
         description: 'Add R6 Digital input animations with focus effects',
         impact: 'medium',
         effort: 'low',
@@ -719,7 +719,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'r6-modal-animations',
-        type: 'entrance',
+        type: 'entrance' as any,
         description: 'Add R6 Digital modal entrance and exit animations',
         impact: 'high',
         effort: 'medium',
@@ -798,7 +798,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'generic-r6-animations',
-        type: 'visual',
+        type: 'visual' as any,
         description: 'Add R6 Digital base animations for enhanced user experience',
         impact: 'medium',
         effort: 'low',
@@ -872,7 +872,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'r6-micro-interactions',
-        type: 'micro-interaction',
+        type: 'micro-interaction' as any,
         description: 'Add R6 Digital micro-interactions for enhanced feedback',
         impact: 'medium',
         effort: 'medium',
@@ -977,7 +977,7 @@ export class AnimationEnhancerAgent implements UIAgent {
     return [
       {
         id: 'animation-performance-optimisation',
-        type: 'performance',
+        type: 'performance' as any,
         description: 'Optimise animations for better performance and smoother experience',
         impact: 'high',
         effort: 'low',
