@@ -317,8 +317,23 @@ export class DarkModeSpecialistAgent implements UIAgent {
       strengths, 
       score: 0, 
       recommendations: [],
-      compliance: { wcag: true, aria: true },
-      performance: { renderTime: 0, bundleSize: 0, optimizations: [] }
+      compliance: { 
+        wcag: { level: 'AA', score: 100, violations: [] },
+        designSystem: { adherence: 100, violations: [] },
+        performance: { score: 100, issues: [] }
+      },
+      performance: { 
+        score: 100,
+        metrics: { 
+          renderTime: 0, 
+          bundleSize: 0, 
+          cacheHits: 0, 
+          memoryUsage: 0, 
+          frameRate: 60 
+        },
+        bottlenecks: [],
+        optimizations: []
+      }
     }
   }
 
@@ -350,8 +365,23 @@ export class DarkModeSpecialistAgent implements UIAgent {
       strengths, 
       score: 0, 
       recommendations: [],
-      compliance: { wcag: true, aria: true },
-      performance: { renderTime: 0, bundleSize: 0, optimizations: [] }
+      compliance: { 
+        wcag: { level: 'AA', score: 100, violations: [] },
+        designSystem: { adherence: 100, violations: [] },
+        performance: { score: 100, issues: [] }
+      },
+      performance: { 
+        score: 100,
+        metrics: { 
+          renderTime: 0, 
+          bundleSize: 0, 
+          cacheHits: 0, 
+          memoryUsage: 0, 
+          frameRate: 60 
+        },
+        bottlenecks: [],
+        optimizations: []
+      }
     }
   }
 
@@ -385,8 +415,23 @@ export class DarkModeSpecialistAgent implements UIAgent {
       strengths, 
       score: 0, 
       recommendations: [],
-      compliance: { wcag: true, aria: true },
-      performance: { renderTime: 0, bundleSize: 0, optimizations: [] }
+      compliance: { 
+        wcag: { level: 'AA', score: 100, violations: [] },
+        designSystem: { adherence: 100, violations: [] },
+        performance: { score: 100, issues: [] }
+      },
+      performance: { 
+        score: 100,
+        metrics: { 
+          renderTime: 0, 
+          bundleSize: 0, 
+          cacheHits: 0, 
+          memoryUsage: 0, 
+          frameRate: 60 
+        },
+        bottlenecks: [],
+        optimizations: []
+      }
     }
   }
 
