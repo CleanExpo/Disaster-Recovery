@@ -89,7 +89,14 @@ export class VisualAnalyzerAgent implements UIAgent {
         type: context.component.type,
         props: context.component.props,
         styles: context.component.styles.base as any,
-        children: context.component.children || [],
+        children: (context.component.children || []).map(child => ({
+          type: child.type,
+          props: child.props,
+          styles: child.styles.base as any,
+          children: [],
+          accessibility: child.accessibility || { focusable: false },
+          metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
+        })),
         accessibility: context.component.accessibility || { focusable: false },
         metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
       })
