@@ -142,7 +142,7 @@ export default function ${location.name.replace(/\s+/g, '')}${service ? service.
                 Call 1300-DISASTER
               </a>
               <button className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 rounded-lg text-xl font-bold">
-                Get Instant Quote
+                Get Instant Estimate
               </button>
             </div>
           </div>

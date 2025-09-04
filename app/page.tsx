@@ -16,6 +16,7 @@ import FloodingEffect from '@/components/effects/FloodingEffect';
 import StormCloudBackground from '@/components/StormCloudBackground';
 import EnhancedStormSystem from '@/components/EnhancedStormSystem';
 import { InlineEEAT } from '@/components/eeat/InlineEEAT';
+import { PricingGuidelines, ContractorPricingInfo } from '@/components/pricing/PricingGuidelines';
 import styles from './page.module.css';
 
 export default function CleanLandingPage() {
@@ -236,7 +237,7 @@ export default function CleanLandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>Fixed Price Quotes</span>
+                <span>Estimates Provided</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
@@ -562,6 +563,16 @@ export default function CleanLandingPage() {
         </div>
       </section>
 
+      {/* Pricing Guidelines Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <ContractorPricingInfo />
+          <div className="mt-8">
+            <PricingGuidelines />
+          </div>
+        </div>
+      </section>
+
       {/* Complete E-E-A-T Section */}
       <InlineEEAT />
 
@@ -573,7 +584,7 @@ export default function CleanLandingPage() {
           </h2>
           <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Get connected with certified restoration professionals in minutes. 
-            Insurance approved. Fixed pricing guaranteed.
+            Insurance approved. National pricing guidelines implemented.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>

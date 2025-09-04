@@ -65,7 +65,7 @@ const comprehensiveService = {
     }
   ],
   totalValue: '2150-3200',
-  guarantee: 'Fixed price - no surprise additions to core emergency response'
+  guarantee: 'Transparent estimates - National pricing guidelines ensure fair rates within industry standards'
 };
 
 const hiddenCostOperators = [
@@ -581,7 +581,7 @@ export default function RealEmergencyResponseCostsPage() {
             <div className="bg-white/10 backdrop-blur p-6 rounded-lg">
               <CheckCircle className="h-8 w-8 mx-auto mb-3" />
               <h3 className="font-semibold mb-2">No Shock Invoices</h3>
-              <p className="text-sm text-white/80">Fixed pricing with approval required for extras</p>
+              <p className="text-sm text-white/80">Estimates provided with national pricing guidelines</p>
             </div>
           </div>
 

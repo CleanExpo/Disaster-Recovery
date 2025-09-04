@@ -191,7 +191,7 @@ export default function CleanLandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
-                <span>Fixed Price Quotes</span>
+                <span>Estimates Provided</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-green-600" />
@@ -390,7 +390,7 @@ export default function CleanLandingPage() {
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Get connected with certified restoration professionals in minutes. 
-            Insurance approved. Fixed pricing guaranteed.
+            Insurance approved. National pricing guidelines implemented.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-6 text-lg">
