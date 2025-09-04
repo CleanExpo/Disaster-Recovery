@@ -105,9 +105,17 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>(mockMessages);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [session, setSession] = useState<ChatSession | null>(null);
+  const [session, setSession] = useState<ChatSession | null>({
+    id: 'session-auto',
+    userId: 'user-auto',
+    userName: 'Guest User',
+    status: 'active',
+    startedAt: new Date(),
+    messages: mockMessages
+  });
   const [isConnecting, setIsConnecting] = useState(false);
-  const [showQuickResponses, setShowQuickResponses] = useState(true);
+  const [autoStarted, setAutoStarted] = useState(false);
+  const [showQuickResponses, setShowQuickResponses] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -369,9 +377,9 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
         </div>
       )}
 
-      {/* Chat Input */}
+      {/* Chat Input - Always Show */}
       <div className="border-t p-4">
-        {!session && !isConnecting ? (
+        {false && !session && !isConnecting ? (
           <Button onClick={handleStartChat} className="w-full">
             <MessageSquare className="h-4 w-4 mr-2" />
             Start Chat
