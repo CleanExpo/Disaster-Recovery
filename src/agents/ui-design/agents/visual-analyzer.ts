@@ -98,7 +98,7 @@ export class VisualAnalyzerAgent implements UIAgent {
             role: child.accessibility?.role,
             ariaLabel: child.accessibility?.['aria-label'],
             tabIndex: child.accessibility?.tabindex,
-            focusable: child.accessibility?.tabindex !== -1 ?? true
+            focusable: !child.accessibility?.tabindex || child.accessibility.tabindex !== -1
           },
           metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
         })),
@@ -106,7 +106,7 @@ export class VisualAnalyzerAgent implements UIAgent {
           role: context.component.accessibility?.role,
           ariaLabel: context.component.accessibility?.['aria-label'],
           tabIndex: context.component.accessibility?.tabindex,
-          focusable: context.component.accessibility?.tabindex !== -1 ?? true
+          focusable: !context.component.accessibility?.tabindex || context.component.accessibility.tabindex !== -1
         },
         metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
       })
