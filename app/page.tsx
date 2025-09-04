@@ -17,10 +17,10 @@ import StormCloudBackground from '@/components/StormCloudBackground';
 import EnhancedStormSystem from '@/components/EnhancedStormSystem';
 import { InlineEEAT } from '@/components/eeat/InlineEEAT';
 import { PricingGuidelines, ContractorPricingInfo } from '@/components/pricing/PricingGuidelines';
-import { ComprehensiveSEO, EmergencyContactBar } from '@/components/seo/ComprehensiveSEO';
+import { ComprehensiveSEO } from '@/components/seo/ComprehensiveSEO';
 import { EnhancedChatBot } from '@/components/chat/EnhancedChatBot';
 import { TransparencyHub } from '@/components/transparency/TransparencyHub';
-import UXEnhancements from '@/components/ux/UXEnhancements';
+import DigitalOnlyContactSystem from '@/components/contact/DigitalOnlyContact';
 import { CustomerJourneyWizard } from '@/components/journey/CustomerJourney';
 import styles from './page.module.css';
 
@@ -144,11 +144,8 @@ export default function CleanLandingPage() {
       {/* SEO Enhancements */}
       <ComprehensiveSEO pageType="home" />
       
-      {/* Emergency Contact Bar */}
-      <EmergencyContactBar />
-      
-      {/* UX Enhancements */}
-      <UXEnhancements />
+      {/* Digital Only Contact System - NO PHONE */}
+      <DigitalOnlyContactSystem />
       
       {/* Enhanced Chat Bot */}
       <EnhancedChatBot />
