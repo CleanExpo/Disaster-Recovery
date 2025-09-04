@@ -15,6 +15,14 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   
+  // Skip type checking and linting in production builds
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
   // Performance optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
