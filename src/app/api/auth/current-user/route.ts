@@ -26,8 +26,9 @@ export async function GET(req: NextRequest) {
         email: true,
         name: true,
         role: true,
-        permissions: true,
-        lastLoginAt: true,
+        // TODO: Add permissions and lastLoginAt fields to User model when needed
+        // permissions: true,
+        // lastLoginAt: true,
         createdAt: true
       }
     });
@@ -39,16 +40,18 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Update last login time
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { lastLoginAt: new Date() }
-    });
+    // TODO: Update last login time when lastLoginAt field is added
+    // await prisma.user.update({
+    //   where: { id: user.id },
+    //   data: { lastLoginAt: new Date() }
+    // });
 
     return NextResponse.json({
       user: {
         ...user,
-        permissions: user.permissions ? JSON.parse(user.permissions as string) : []
+        // TODO: Parse permissions when field is added
+        // permissions: user.permissions ? JSON.parse(user.permissions as string) : []
+        permissions: []
       }
     });
 

@@ -10,8 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { MultiSchemaScript } from '@/components/seo/SchemaScript';
 import { 
   generateArticleSchema, 
-  generateFAQSchema, 
-  generateHowToSchema,
+  generateFAQSchema,
   generateBreadcrumbSchema 
 } from '@/lib/utils/schema-markup';
 

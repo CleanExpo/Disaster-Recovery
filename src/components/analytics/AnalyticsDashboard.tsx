@@ -21,10 +21,11 @@ import {
 // Import all analytics components
 import { KPIPerformanceDashboard } from './KPIPerformanceDashboard';
 import { ComplianceReports } from './ComplianceReports';
-import { FinancialReports } from './FinancialReports';
-import { LeadAnalytics } from './LeadAnalytics';
-import { CustomReportBuilder } from './CustomReportBuilder';
-import { AuditLogReport } from './AuditLogReport';
+// TODO: Create these components
+// import { FinancialReports } from './FinancialReports';
+// import { LeadAnalytics } from './LeadAnalytics';
+// import { CustomReportBuilder } from './CustomReportBuilder';
+// import { AuditLogReport } from './AuditLogReport';
 
 import { usePermissions, useHasPermission } from '@/hooks/usePermissions';
 import { ProtectedComponent } from '@/components/auth/ProtectedRoute';
@@ -253,13 +254,15 @@ export function AnalyticsDashboard() {
             permission="company.billing.view"
             message="You need billing permissions to view financial reports"
           >
-            <FinancialReports />
+            {/* TODO: Add FinancialReports component */}
+            <div className="p-4">Financial Reports - Coming Soon</div>
           </ProtectedComponent>
         </TabsContent>
 
         {/* Lead Analytics Tab */}
         <TabsContent value="leads">
-          <LeadAnalytics />
+          {/* TODO: Add LeadAnalytics component */}
+          <div className="p-4">Lead Analytics - Coming Soon</div>
         </TabsContent>
 
         {/* Audit Log Tab */}
@@ -268,7 +271,8 @@ export function AnalyticsDashboard() {
             permission="audit.logs.view"
             message="You need audit permissions to view audit logs"
           >
-            <AuditLogReport />
+            {/* TODO: Add AuditLogReport component */}
+            <div className="p-4">Audit Log Report - Coming Soon</div>
           </ProtectedComponent>
         </TabsContent>
 
@@ -278,7 +282,8 @@ export function AnalyticsDashboard() {
             permission="portal.analytics.view"
             message="You need admin permissions to build custom reports"
           >
-            <CustomReportBuilder />
+            {/* TODO: Add CustomReportBuilder component */}
+            <div className="p-4">Custom Report Builder - Coming Soon</div>
           </ProtectedComponent>
         </TabsContent>
       </Tabs>

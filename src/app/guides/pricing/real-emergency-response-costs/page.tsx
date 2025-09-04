@@ -308,7 +308,7 @@ export default function RealEmergencyResponseCostsPage() {
                   Individual Service Value: ${comprehensiveService.totalValue}
                 </h3>
                 <p className="text-blue-800 mb-4">
-                  You save ${comprehensiveService.totalValue.split('-')[0] - comprehensiveService.price}-${comprehensiveService.totalValue.split('-')[1] - comprehensiveService.price} with our comprehensive package
+                  You save ${parseFloat(comprehensiveService.totalValue.split('-')[0].replace(/[^0-9.]/g, '')) - comprehensiveService.price}-${parseFloat(comprehensiveService.totalValue.split('-')[1].replace(/[^0-9.]/g, '')) - comprehensiveService.price} with our comprehensive package
                 </p>
                 <Badge className="bg-blue-600 text-white">
                   Professional Standards Pricing - No Corners Cut

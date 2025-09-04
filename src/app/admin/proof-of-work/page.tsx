@@ -31,7 +31,7 @@ interface ProofOfWorkClaim {
   submittedAt: string;
   contractor: {
     email: string;
-    businessName: string | null;
+    username: string | null;
     status: string;
   };
 }
@@ -352,7 +352,7 @@ export default function ProofOfWorkAdmin() {
                     <td className="px-6 py-4">
                       <div>
                         <div className="text-sm font-medium text-gray-900">
-                          {claim.contractor.businessName || 'N/A'}
+                          {claim.contractor.username || 'N/A'}
                         </div>
                         <div className="text-sm text-gray-500">{claim.contractor.email}</div>
                       </div>

@@ -6,6 +6,13 @@ const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
+    // TODO: Implement when errorLog and auditLog models are added
+    return NextResponse.json(
+      { error: 'Error logging not yet implemented' },
+      { status: 501 }
+    );
+
+    /* Commented out until models are added:
     const session = await getServerSession();
     const { 
       message, 
@@ -68,7 +75,7 @@ export async function POST(req: NextRequest) {
       errorId: errorLog.id,
       message: 'Error logged successfully'
     });
-
+    */
   } catch (error) {
     console.error('Error logging application error:', error);
     return NextResponse.json(
@@ -80,6 +87,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    // TODO: Implement when errorLog model is added
+    return NextResponse.json(
+      { error: 'Error logs not yet implemented' },
+      { status: 501 }
+    );
+
+    /* Commented out until model is added:
     const session = await getServerSession();
     
     if (!session?.user) {
@@ -113,7 +127,7 @@ export async function GET(req: NextRequest) {
       totalCount,
       hasMore: offset + limit < totalCount
     });
-
+    */
   } catch (error) {
     console.error('Error fetching error logs:', error);
     return NextResponse.json(

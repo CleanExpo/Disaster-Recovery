@@ -351,10 +351,10 @@ const ParticleBackground = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return () => {};
 
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) return () => {};
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -444,7 +444,7 @@ const AnimatedCounter = ({ value, duration = 2000, prefix = '', suffix = '' }: a
 
   useEffect(() => {
     const node = nodeRef.current;
-    if (!node) return;
+    if (!node) return () => {};
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -578,6 +578,7 @@ function InvestorPitchProPage() {
         if (timerRef.current) clearTimeout(timerRef.current);
       };
     }
+    return () => {};
   }, [currentSlide, isPlaying, autoAdvance, slide, playNarration]);
 
   // Keyboard shortcuts
@@ -775,7 +776,7 @@ ${slide.speakerNotes}
             </motion.div>
           );
         }
-        break;
+        return null;
 
       default:
         return (

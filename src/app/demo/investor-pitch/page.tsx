@@ -200,6 +200,7 @@ export default function InvestorPitchPage() {
     } else if (isPlaying && currentSlide === slides.length - 1) {
       setIsPlaying(false);
     }
+    return () => {};
   }, [currentSlide, isPlaying]);
 
   // Handle narration with Speech Synthesis API

@@ -14,7 +14,7 @@ import {
   Home,
   Download,
   Send,
-  User, MessageSquare} from 'lucide-react';
+  User} from 'lucide-react';
 import Link from 'next/link';
 
 interface BookingDetails {
@@ -229,16 +229,9 @@ function BookingSuccessPageContent() {
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
           <h3 className="font-bold text-gray-900 mb-4">Your Contact Information</h3>
           <p className="text-sm text-gray-600 mb-4">
-            Please ensure your phone is available. The contractor will contact you on:
+            The contractor will contact you using the information below:
           </p>
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="flex items-center gap-3">
-              <MessageSquare className="h-5 w-5 text-blue-600" />
-              <div>
-                <p className="text-sm text-gray-600">Phone</p>
-                <p className="font-semibold">{bookingDetails.phone}</p>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 gap-4">
             <div className="flex items-center gap-3">
               <Mail className="h-5 w-5 text-blue-600" />
               <div>
@@ -265,7 +258,7 @@ function BookingSuccessPageContent() {
           <ul className="space-y-2 text-orange-800">
             <li className="flex items-start gap-2">
               <span className="text-blue-700 mt-1">•</span>
-              <span>Keep your phone available - the contractor will call you directly</span>
+              <span>Check your email regularly - the contractor will contact you via email</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-blue-700 mt-1">•</span>

@@ -67,22 +67,22 @@ export async function POST(req: NextRequest) {
     const fraudDetectionService = FraudDetectionService.getInstance();
     const analysisResult = await fraudDetectionService.analyzeDocument(analysisInput);
 
-    // Update document record if documentId provided
-    if (documentId) {
-      await prisma.onboardingDocument.update({
-        where: { id: documentId },
-        data: {
-          fraudAnalysisCompleted: true,
-          fraudConfidenceScore: analysisResult.confidenceScore,
-          fraudRiskLevel: analysisResult.confidenceScore >= 80 ? 'LOW' : 
-                          analysisResult.confidenceScore >= 60 ? 'MEDIUM' : 'HIGH',
-          fraudAnalysisResults: JSON.stringify(analysisResult),
-          reviewRequired: analysisResult.recommendedAction === 'REVIEW',
-          status: analysisResult.recommendedAction === 'REJECT' ? 'REJECTED' :
-                  analysisResult.recommendedAction === 'REVIEW' ? 'UNDER_REVIEW' : 'APPROVED'
-        }
-      });
-    }
+    // TODO: Update document record when onboardingDocument model is added
+    // if (documentId) {
+    //   await prisma.onboardingDocument.update({
+    //     where: { id: documentId },
+    //     data: {
+    //       fraudAnalysisCompleted: true,
+    //       fraudConfidenceScore: analysisResult.confidenceScore,
+    //       fraudRiskLevel: analysisResult.confidenceScore >= 80 ? 'LOW' : 
+    //                       analysisResult.confidenceScore >= 60 ? 'MEDIUM' : 'HIGH',
+    //       fraudAnalysisResults: JSON.stringify(analysisResult),
+    //       reviewRequired: analysisResult.recommendedAction === 'REVIEW',
+    //       status: analysisResult.recommendedAction === 'REJECT' ? 'REJECTED' :
+    //               analysisResult.recommendedAction === 'REVIEW' ? 'UNDER_REVIEW' : 'APPROVED'
+    //     }
+    //   });
+    // }
 
     // Update contractor status if this is a critical document
     const criticalDocuments = ['INSURANCE_POLICY', 'BUSINESS_LICENSE', 'CERTIFICATION'];
@@ -99,8 +99,9 @@ export async function POST(req: NextRequest) {
         await prisma.contractor.update({
           where: { id: contractorId },
           data: {
-            status: 'UNDER_REVIEW',
-            reviewNotes: `Document requires manual review: ${analysisResult.suspiciousElements.join(', ')}`
+            status: 'UNDER_REVIEW'
+            // TODO: Add reviewNotes field to Contractor model
+            // reviewNotes: `Document requires manual review: ${analysisResult.suspiciousElements.join(', ')}`
           }
         });
       }
@@ -142,32 +143,37 @@ export async function GET(req: NextRequest) {
     if (contractorId) where.contractorId = contractorId;
     if (riskLevel) where.riskLevel = riskLevel;
 
-    // Get fraud detection logs
-    const [logs, total] = await Promise.all([
-      prisma.fraudDetectionLog.findMany({
-        where,
-        include: {
-          contractor: {
-            select: {
-              email: true,
-              businessName: true,
-              status: true }
-          }
-        },
-        orderBy: { createdAt: 'desc' },
-        skip,
-        take: limit }),
-      prisma.fraudDetectionLog.count({ where })
-    ]);
+    // TODO: Get fraud detection logs when fraudDetectionLog model is added
+    const logs: any[] = [];
+    const total = 0;
+    
+    // const [logs, total] = await Promise.all([
+    //   prisma.fraudDetectionLog.findMany({
+    //     where,
+    //     include: {
+    //       contractor: {
+    //         select: {
+    //           email: true,
+    //           username: true,
+    //           status: true }
+    //       }
+    //     },
+    //     orderBy: { createdAt: 'desc' },
+    //     skip,
+    //     take: limit }),
+    //   prisma.fraudDetectionLog.count({ where })
+    // ]);
 
-    // Get summary statistics
-    const stats = await prisma.fraudDetectionLog.groupBy({
-      by: ['riskLevel'],
-      _count: {
-        id: true
-      },
-      where: contractorId ? { contractorId } : undefined
-    });
+    // TODO: Get summary statistics when model is added
+    const stats: any[] = [];
+    
+    // const stats = await prisma.fraudDetectionLog.groupBy({
+    //   by: ['riskLevel'],
+    //   _count: {
+    //     id: true
+    //   },
+    //   where: contractorId ? { contractorId } : undefined
+    // });
 
     return NextResponse.json({
       logs,

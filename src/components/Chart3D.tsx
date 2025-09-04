@@ -45,7 +45,7 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
     const width = ctx.canvas.width / 2 - padding * 2;
     const height = ctx.canvas.height / 2 - padding * 2;
     const barWidth = width / Object.keys(data).length;
-    const maxValue = Math.max(...Object.values(data));
+    const maxValue = Math.max(...Object.values(data).map(v => Number(v)));
 
     // Draw grid
     ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
@@ -154,7 +154,7 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
     const width = ctx.canvas.width / 2 - padding * 2;
     const height = ctx.canvas.height / 2 - padding * 2;
     const points = Object.entries(data);
-    const maxValue = Math.max(...Object.values(data));
+    const maxValue = Math.max(...Object.values(data).map(v => Number(v)));
     const stepX = width / (points.length - 1);
 
     // Draw grid

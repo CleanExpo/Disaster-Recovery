@@ -7,6 +7,13 @@ const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
+    // TODO: Implement when sEOLocationPage model is added
+    return NextResponse.json(
+      { error: 'SEO page generation not yet implemented' },
+      { status: 501 }
+    );
+
+    /* Commented out until model is added:
     const { limit = 100, priority = 80 } = await req.json();
     
     // Generate all location/service combinations
@@ -93,7 +100,7 @@ export async function POST(req: NextRequest) {
       pages: generatedPages,
       message: `Generated ${generatedPages.length} SEO pages successfully`
     });
-    
+    */
   } catch (error) {
     console.error('Error generating SEO pages:', error);
     return NextResponse.json(
@@ -105,6 +112,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    // TODO: Implement when sEOLocationPage model is added
+    return NextResponse.json(
+      { error: 'SEO pages not yet implemented' },
+      { status: 501 }
+    );
+
+    /* Commented out until model is added:
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '50');
@@ -158,7 +172,7 @@ export async function GET(req: NextRequest) {
         pages: Math.ceil(total / limit)
       }
     });
-    
+    */
   } catch (error) {
     console.error('Error fetching SEO pages:', error);
     return NextResponse.json(

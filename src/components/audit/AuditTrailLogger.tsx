@@ -93,7 +93,7 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
           id: 'trail_003',
           entityType: 'evidence',
           entityId: 'evidence_001',
-          action: 'uploaded',
+          action: 'created' as AuditAction,
           performedBy: 'contractor_001',
           performedAt: '2024-04-14T16:45:00Z',
           ipAddress: '192.168.1.102',
@@ -276,7 +276,6 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
       case 'deleted': return <Trash2 className="w-4 h-4" />;
       case 'viewed': return <Eye className="w-4 h-4" />;
       case 'downloaded': return <Download className="w-4 h-4" />;
-      case 'uploaded': return <Upload className="w-4 h-4" />;
       case 'approved': return <CheckCircle className="w-4 h-4" />;
       case 'rejected': return <XCircle className="w-4 h-4" />;
       case 'assigned': return <User className="w-4 h-4" />;
@@ -292,7 +291,6 @@ const AuditTrailLogger: React.FC<AuditTrailLoggerProps> = ({
       case 'deleted': return 'bg-red-50 text-red-600';
       case 'approved': return 'bg-green-50 text-green-600';
       case 'rejected': return 'bg-red-50 text-red-600';
-      case 'uploaded': return 'bg-purple-50 text-purple-600';
       default: return 'bg-gray-50 text-gray-600';
     }
   };

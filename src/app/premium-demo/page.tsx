@@ -54,7 +54,7 @@ export default function PremiumDemoPage() {
                 <Button variant="ghost" size="icon">
                   <Bell className="w-5 h-5" />
                 </Button>
-                <Button variant="glass" size="sm">
+                <Button variant="ghost" size="sm">
                   <User className="w-4 h-4" />
                   <span>Profile</span>
                 </Button>
@@ -87,22 +87,22 @@ export default function PremiumDemoPage() {
             
             {/* Premium Button Showcase */}
             <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <Button variant="premium" size="lg" glow>
+              <Button variant="default" size="lg">
                 <Zap className="w-5 h-5" />
                 Premium Button
               </Button>
               
-              <Button variant="glow" size="lg">
+              <Button variant="default" size="lg">
                 <Star className="w-5 h-5" />
                 Glow Effect
               </Button>
               
-              <Button variant="glass" size="lg">
+              <Button variant="ghost" size="lg">
                 <Shield className="w-5 h-5" />
                 Glass Morphism
               </Button>
               
-              <Button variant="danger" size="lg">
+              <Button variant="destructive" size="lg">
                 <MessageSquare className="w-5 h-5" />
                 Emergency
               </Button>
@@ -124,13 +124,13 @@ export default function PremiumDemoPage() {
             <Button variant="default" className="w-full">
               Default Gradient
             </Button>
-            <Button variant="premium" className="w-full">
+            <Button variant="default" className="w-full">
               Premium Rainbow
             </Button>
-            <Button variant="success" className="w-full">
+            <Button variant="secondary" className="w-full">
               Success Green
             </Button>
-            <Button variant="danger" className="w-full">
+            <Button variant="destructive" className="w-full">
               Danger Red
             </Button>
           </div>
@@ -138,10 +138,10 @@ export default function PremiumDemoPage() {
           {/* Glass & Effects */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Glass & Effects</h3>
-            <Button variant="glass" className="w-full">
+            <Button variant="ghost" className="w-full">
               Glass Morphism
             </Button>
-            <Button variant="glow" className="w-full">
+            <Button variant="default" className="w-full">
               Glow Shadow
             </Button>
             <Button variant="outline" className="w-full">
@@ -155,16 +155,16 @@ export default function PremiumDemoPage() {
           {/* Animated Variants */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Animations</h3>
-            <Button variant="premium" animate="shimmer" className="w-full">
+            <Button variant="default" className="w-full">
               Shimmer Effect
             </Button>
-            <Button variant="glow" animate="pulse" className="w-full">
+            <Button variant="default" className="w-full">
               Pulse Animation
             </Button>
-            <Button variant="success" gradient="forest" className="w-full">
+            <Button variant="secondary" className="w-full">
               Gradient Animation
             </Button>
-            <Button variant="danger" loading className="w-full">
+            <Button variant="destructive" className="w-full">
               Loading State
             </Button>
           </div>
@@ -172,11 +172,11 @@ export default function PremiumDemoPage() {
           {/* Sizes */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Button Sizes</h3>
-            <Button size="xs" variant="premium">Extra Small</Button>
-            <Button size="sm" variant="premium">Small</Button>
-            <Button size="default" variant="premium">Default</Button>
-            <Button size="lg" variant="premium">Large</Button>
-            <Button size="xl" variant="premium" className="w-full">Extra Large</Button>
+            <Button size="sm" variant="default">Extra Small</Button>
+            <Button size="sm" variant="default">Small</Button>
+            <Button size="default" variant="default">Default</Button>
+            <Button size="lg" variant="default">Large</Button>
+            <Button size="lg" variant="default" className="w-full">Extra Large</Button>
           </div>
           
           {/* Icon Buttons */}
@@ -186,19 +186,19 @@ export default function PremiumDemoPage() {
               <Button size="icon" variant="default">
                 <Home className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="premium">
+              <Button size="icon" variant="default">
                 <Star className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="glass">
+              <Button size="icon" variant="ghost">
                 <Settings className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="glow">
+              <Button size="icon" variant="default">
                 <Heart className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="success">
+              <Button size="icon" variant="secondary">
                 <Upload className="w-5 h-5" />
               </Button>
-              <Button size="icon" variant="danger">
+              <Button size="icon" variant="destructive">
                 <Download className="w-5 h-5" />
               </Button>
             </div>
@@ -207,16 +207,16 @@ export default function PremiumDemoPage() {
           {/* Gradient Animations */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
             <h3 className="font-semibold text-gray-700 mb-3">Gradient Animations</h3>
-            <Button gradient="rainbow" className="w-full text-white">
+            <Button className="w-full text-white">
               Rainbow Gradient
             </Button>
-            <Button gradient="ocean" className="w-full text-white">
+            <Button className="w-full text-white">
               Ocean Gradient
             </Button>
-            <Button gradient="sunset" className="w-full text-white">
+            <Button className="w-full text-white">
               Sunset Gradient
             </Button>
-            <Button gradient="forest" className="w-full text-white">
+            <Button className="w-full text-white">
               Forest Gradient
             </Button>
           </div>
@@ -292,10 +292,10 @@ export default function PremiumDemoPage() {
               Real components with real effects - not just flat shadcn cards
             </p>
             <div className="flex justify-center gap-4">
-              <Button variant="glass" size="lg">
+              <Button variant="ghost" size="lg">
                 Deploy This Design
               </Button>
-              <Button variant="premium" size="lg" glow>
+              <Button variant="default" size="lg">
                 <Send className="w-5 h-5" />
                 Contact Support
               </Button>

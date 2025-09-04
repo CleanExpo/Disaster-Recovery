@@ -19,7 +19,8 @@ import {
   ExternalLink,
   TrendingUp,
   Star,
-  Video
+  Video,
+  Building2
 } from 'lucide-react';
 
 interface Training {
@@ -232,7 +233,7 @@ export function TrainingTracker({
                         {event.format === 'online' ? (
                           <Video className="h-3 w-3" />
                         ) : (
-                          <Building className="h-3 w-3" />
+                          <Building2 className="h-3 w-3" />
                         )}
                         {event.format === 'online' ? 'Online' : event.location}
                       </span>

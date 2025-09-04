@@ -31,12 +31,12 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Import components
-import { EndpointDocumentation } from './EndpointDocumentation';
-import { AuthenticationDocs } from './AuthenticationDocs';
-import { WebhooksDocs } from './WebhooksDocs';
-import { APIPlayground } from './APIPlayground';
-import { CodeExamples } from './CodeExamples';
+// TODO: Create these components
+// import { EndpointDocumentation } from './EndpointDocumentation';
+// import { AuthenticationDocs } from './AuthenticationDocs';
+// import { WebhooksDocs } from './WebhooksDocs';
+// import { APIPlayground } from './APIPlayground';
+// import { CodeExamples } from './CodeExamples';
 
 import type { APICategory, APIEndpoint } from '@/types/api-docs';
 import { API_BASE_URLS, API_VERSIONS } from '@/types/api-docs';
@@ -611,11 +611,11 @@ export function APIDocumentation() {
 
                 {/* Endpoint Detail Modal */}
                 {selectedEndpoint && (
-                  <EndpointDocumentation
-                    endpoint={selectedEndpoint}
-                    onClose={() => setSelectedEndpoint(null)}
-                    environment={selectedEnvironment}
-                  />
+                  <div className="p-4 border rounded">
+                    <h3 className="font-bold">{selectedEndpoint.method} {selectedEndpoint.path}</h3>
+                    <p>{selectedEndpoint.description}</p>
+                    <button onClick={() => setSelectedEndpoint(null)} className="mt-2 px-4 py-2 bg-gray-200 rounded">Close</button>
+                  </div>
                 )}
               </div>
             </div>
@@ -623,25 +623,26 @@ export function APIDocumentation() {
 
           {/* Authentication Tab */}
           <TabsContent value="authentication" className="mt-6">
-            <AuthenticationDocs environment={selectedEnvironment} />
+            {/* TODO: Add AuthenticationDocs component */}
+            <div className="p-4">Authentication Documentation - Coming Soon</div>
           </TabsContent>
 
           {/* Webhooks Tab */}
           <TabsContent value="webhooks" className="mt-6">
-            <WebhooksDocs />
+            {/* TODO: Add WebhooksDocs component */}
+            <div className="p-4">Webhooks Documentation - Coming Soon</div>
           </TabsContent>
 
           {/* Playground Tab */}
           <TabsContent value="playground" className="mt-6">
-            <APIPlayground 
-              categories={apiCategories}
-              environment={selectedEnvironment}
-            />
+            {/* TODO: Add APIPlayground component */}
+            <div className="p-4">API Playground - Coming Soon</div>
           </TabsContent>
 
           {/* Examples Tab */}
           <TabsContent value="examples" className="mt-6">
-            <CodeExamples categories={apiCategories} />
+            {/* TODO: Add CodeExamples component */}
+            <div className="p-4">Code Examples - Coming Soon</div>
           </TabsContent>
 
           {/* Getting Started Tab */}

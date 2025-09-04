@@ -409,7 +409,7 @@ export default function RealCostInsuranceDelaysPage() {
                 <Calculator className="h-8 w-8 text-yellow-600" />
                 <div>
                   <div className="text-2xl font-bold text-yellow-900">
-                    Savings: ${(realWorldExample.delayedResponse.finalCost - realWorldExample.immediateResponse.finalCost).toLocaleString()}
+                    Savings: ${(parseFloat(realWorldExample.delayedResponse.finalCost.replace(/[^0-9.]/g, '')) - parseFloat(realWorldExample.immediateResponse.finalCost.replace(/[^0-9.]/g, ''))).toLocaleString()}
                   </div>
                   <p className="text-sm text-yellow-700">Professional response prevented 73% of total damage costs</p>
                 </div>

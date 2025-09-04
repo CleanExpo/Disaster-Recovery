@@ -22,7 +22,8 @@ import {
   Smartphone,
   CheckCircle,
   AlertCircle,
-  Camera
+  Camera,
+  Lock
 } from 'lucide-react';
 
 interface ProfileOverviewProps {
@@ -36,6 +37,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
   const [activeTab, setActiveTab] = useState('company');
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(profile.twoFactorEnabled || false);
   const [uploadingLogo, setUploadingLogo] = useState(false);
+  const [show2FASetup, setShow2FASetup] = useState(false);
 
   const handleSave = async () => {
     try {
@@ -51,6 +53,11 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
     } catch (error) {
       console.error('Failed to save profile:', error);
     }
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    setEditedData(profile);
   };
 
   const handleLogoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +85,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
   const handleTwoFactorToggle = async () => {
     if (!twoFactorEnabled) {
       // Show 2FA setup modal
+      setShow2FASetup(true);
       console.log('Setting up 2FA...');
     } else {
       // Disable 2FA with confirmation
@@ -214,7 +222,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
               </div>
             </div>
             <button
-              onClick={handleToggle2FA}
+              onClick={handleTwoFactorToggle}
               className={`px-4 py-2 rounded ${
                 twoFactorEnabled
                   ? 'bg-red-600 text-white hover:bg-red-700'

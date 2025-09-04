@@ -60,7 +60,7 @@ export abstract class BaseAgent extends EventEmitter {
     this.capabilities = capabilities;
   }
 
-  abstract async execute(task: AgentTask, context: AgentContext): Promise<AgentResult>;
+  abstract execute(task: AgentTask, context: AgentContext): Promise<AgentResult>;
 
   protected async delegateToSubAgent(
     subAgentId: string, 

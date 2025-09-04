@@ -16,7 +16,7 @@ interface FraudDetectionLog {
   createdAt: string;
   contractor: {
     email: string;
-    businessName: string | null;
+    username: string | null;
     status: string;
   };
 }
@@ -313,7 +313,7 @@ export default function FraudDetectionAdmin() {
                     <td className="px-6 py-4">
                       <div>
                         <div className="text-sm font-medium text-gray-900">
-                          {log.contractor.businessName || 'N/A'}
+                          {log.contractor.username || 'N/A'}
                         </div>
                         <div className="text-sm text-gray-500">{log.contractor.email}</div>
                         <div className={`text-xs font-medium ${getContractorStatusColor(log.contractor.status)}`}>

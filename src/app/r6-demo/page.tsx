@@ -200,7 +200,7 @@ export default function R6DemoPage() {
               </button>
               <button className="r6-btn r6-btn-secondary r6-btn-lg" style={{
                 background: 'transparent',
-                colour: 'white',
+                color: 'white',
                 borderColor: 'white'
               }}>
                 Request Callback

@@ -400,6 +400,7 @@ export default function InvestorPitchDeck() {
 
       return () => clearInterval(timer);
     }
+    return () => {};
   }, [isPlaying, currentSlide]);
 
   // Progress bar animation
@@ -415,6 +416,7 @@ export default function InvestorPitchDeck() {
 
       return () => clearInterval(progressTimer);
     }
+    return () => {};
   }, [isPlaying, currentSlide]);
 
   const currentSlideData = PITCH_SLIDES[currentSlide];

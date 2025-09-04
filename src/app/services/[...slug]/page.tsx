@@ -11,27 +11,29 @@ interface PageParams {
 }
 
 async function getSEOPage(slug: string) {
-  const page = await prisma.sEOLocationPage.findUnique({
-    where: { 
-      slug: slug,
-      status: 'PUBLISHED'
-    }
-  });
+  // TODO: Implement when sEOLocationPage model is added to schema
+  // const page = await prisma.sEOLocationPage.findUnique({
+  //   where: { 
+  //     slug: slug,
+  //     status: 'PUBLISHED'
+  //   }
+  // });
   
-  if (page) {
-    // Update view count
-    await prisma.sEOLocationPage.update({
-      where: { id: page.id },
-      data: {
-        organicClicks: {
-          increment: 1
-        },
-        lastViewedAt: new Date()
-      }
-    });
-  }
+  // if (page) {
+  //   // Update view count
+  //   await prisma.sEOLocationPage.update({
+  //     where: { id: page.id },
+  //     data: {
+  //       organicClicks: {
+  //         increment: 1
+  //       },
+  //       lastViewedAt: new Date()
+  //     }
+  //   });
+  // }
   
-  return page;
+  // return page;
+  return null;
 }
 
 export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {

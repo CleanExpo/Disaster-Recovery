@@ -135,6 +135,7 @@ function SearchPageContent() {
       const timer = setTimeout(() => setIsLoading(false), 500);
       return () => clearTimeout(timer);
     }
+    return () => {};
   }, [query]);
 
   // Filter and sort results

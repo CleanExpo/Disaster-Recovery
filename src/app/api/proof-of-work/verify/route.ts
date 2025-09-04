@@ -24,19 +24,27 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check if claim exists
-    const existingClaim = await prisma.proofOfWork.findUnique({
-      where: { id: claimId },
-      include: {
-        contractor: {
-          select: {
-            id: true,
-            email: true,
-            businessName: true,
-            status: true }
-        }
-      }
-    });
+    // TODO: Implement when proofOfWork model is added
+    return NextResponse.json(
+      { error: 'Proof of work verification not yet implemented' },
+      { status: 501 }
+    );
+    
+    /* Commented out until model is added:
+    const existingClaim: any = null;
+    
+    // const existingClaim = await prisma.proofOfWork.findUnique({
+    //   where: { id: claimId },
+    //   include: {
+    //     contractor: {
+    //       select: {
+    //         id: true,
+    //         email: true,
+    //         username: true,
+    //         status: true }
+    //     }
+    //   }
+    // });
 
     if (!existingClaim) {
       return NextResponse.json(
@@ -45,9 +53,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Update the claim
-    const updatedClaim = await prisma.proofOfWork.update({
-      where: { id: claimId },
+    // TODO: Update the claim when model is added
+    const updatedClaim: any = { id: claimId, verificationStatus };
+    
+    // const updatedClaim = await prisma.proofOfWork.update({
+    //   where: { id: claimId },
       data: {
         verificationStatus,
         verificationNotes,
@@ -165,11 +175,25 @@ export async function POST(req: NextRequest) {
       },
       { status: 500 }
     );
+    */
+  } catch (error) {
+    console.error('Error verifying proof of work:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }
 
 export async function GET(req: NextRequest) {
   try {
+    // TODO: Implement when proofOfWork model is added
+    return NextResponse.json(
+      { error: 'Proof of work verification not yet implemented' },
+      { status: 501 }
+    );
+
+    /* Commented out until model is added:
     const { searchParams } = new URL(req.url);
     const claimId = searchParams.get('claimId');
 
@@ -206,7 +230,7 @@ export async function GET(req: NextRequest) {
         evidence: JSON.parse(claim.evidence as string || '[]')
       }
     });
-
+    */
   } catch (error) {
     console.error('Error fetching proof of work claim:', error);
     return NextResponse.json(

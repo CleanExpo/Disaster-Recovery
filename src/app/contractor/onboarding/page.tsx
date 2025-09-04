@@ -127,7 +127,7 @@ export default function ContractorOnboardingPage() {
       }
     };
     
-    setOnboardingState(newState);
+    setOnboardingState(newState as OnboardingState);
     localStorage.setItem('contractor_onboarding_state', JSON.stringify(newState));
     router.push(`/contractor/onboarding/day/${day}`);
   };

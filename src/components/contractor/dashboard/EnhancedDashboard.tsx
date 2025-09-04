@@ -47,6 +47,7 @@ import {
   Mail,
   Loader2,
   WifiOff,
+  Phone,
   Wifi
 } from 'lucide-react';
 

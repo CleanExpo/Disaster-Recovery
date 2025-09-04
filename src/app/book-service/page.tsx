@@ -128,9 +128,7 @@ export default function BookServicePage() {
         if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
           newErrors.email = 'Valid email is required';
         }
-        if (!formData.phone || !/^(\+?61|0)[2-478][\d\s-]{8 }$/.test(formData.phone.replace(/\s/g, ''))) {
-          newErrors.phone = 'Valid Australian phone number required';
-        }
+        // Phone validation removed - using email-only contact
         break;
       case 4:
         if (formData.hasInsurance && !formData.insuranceCompany) {

@@ -74,7 +74,7 @@ function ContractorApplicationContent() {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     // Set demo data
-    setOnboardingData(DEMO_DATA.contractor);
+    setOnboardingData(DEMO_DATA.contractor as Partial<ContractorOnboardingData>);
     
     // Progress through each step with descriptions
     const stepDescriptions = [
@@ -235,17 +235,23 @@ function ContractorApplicationContent() {
       case 1:
         return <Step1BusinessInfo data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
       case 2:
-        return <Step2InsuranceLicensing data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        // TODO: Fix prop mismatch - Step2 expects onNext/onBack not updateData/errors
+        return <Step2InsuranceLicensing data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
       case 3:
-        return <Step3ExperienceReferences data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        // TODO: Fix prop mismatch - Step3 expects onNext/onBack not updateData/errors
+        return <Step3ExperienceReferences data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
       case 4:
-        return <Step4EquipmentResources data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        // TODO: Fix prop mismatch - Step4 expects onNext/onBack not updateData/errors
+        return <Step4EquipmentResources data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
       case 5:
-        return <Step5HealthSafety data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        // TODO: Fix prop mismatch - Step5 expects onNext/onPrevious not updateData/errors
+        return <Step5HealthSafety onNext={() => handleNext()} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} />;
       case 6:
-        return <Step6BankingPayment data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        // TODO: Fix prop mismatch - Step6 expects onNext/onBack not updateData/errors
+        return <Step6BankingPayment data={(onboardingData || {}) as any} onNext={() => handleNext()} onBack={handlePrevious} />;
       case 7:
-        return <Step7ReviewSubmit data={onboardingData || {}} updateData={updateStepData} errors={validationErrors} />;
+        // TODO: Fix prop mismatch - Step7 expects onNext/onPrevious not updateData/errors
+        return <Step7ReviewSubmit onNext={() => handleSubmit()} onPrevious={handlePrevious} defaultValues={(onboardingData || {}) as any} applicationData={onboardingData} />;
       default:
         return null;
     }

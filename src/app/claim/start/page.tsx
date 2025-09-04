@@ -40,7 +40,6 @@ function ClaimStartContent() {
     const fields = [
       { name: 'name', value: demoClient.name },
       { name: 'email', value: demoClient.email },
-      { name: 'phone', value: demoClient.phone },
       { name: 'address', value: demoClient.address },
       { name: 'claimNumber', value: demoClient.claimNumber },
       { name: 'insuranceCompany', value: demoClient.insuranceCompany },
@@ -53,7 +52,7 @@ function ClaimStartContent() {
       setCurrentField(field.name);
       const input = document.querySelector(`[name="${field.name}"]`) as HTMLInputElement;
       if (input) {
-        input.scrollIntoView({ behaviour: 'smooth', block: 'centre' });
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
         await simulateTyping(input, field.value, 46); // 15% slower
         setFormData(prev => ({ ...prev, [field.name]: field.value }));
       }
@@ -63,7 +62,7 @@ function ClaimStartContent() {
     // Simulate image upload
     const uploadSection = document.querySelector('[type="file"]')?.parentElement?.parentElement;
     if (uploadSection) {
-      uploadSection.scrollIntoView({ behaviour: 'smooth', block: 'centre' });
+      uploadSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
       await new Promise(resolve => setTimeout(resolve, 1150)); // 15% slower
       
       // Show simulated image previews
@@ -93,7 +92,7 @@ function ClaimStartContent() {
     // Submit the form
     const submitBtn = document.querySelector('[type="submit"]') as HTMLButtonElement;
     if (submitBtn) {
-      submitBtn.scrollIntoView({ behaviour: 'smooth', block: 'centre' });
+      submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
       await new Promise(resolve => setTimeout(resolve, 1000));
       submitBtn.click();
     }
@@ -236,22 +235,6 @@ function ClaimStartContent() {
                   }`}
                   placeholder="john@example.com"
                 />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                    currentField === 'phone' ? 'ring-2 ring-blue-500' : ''
-                  }`}
-                  placeholder="Enter details" />
               </div>
               
               <div>

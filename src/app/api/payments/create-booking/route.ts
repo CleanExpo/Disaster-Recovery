@@ -6,7 +6,7 @@ import { isProductionMode } from '@/lib/services/mock';
 // Initialize Stripe with your secret key or use mock in demo mode
 const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-11-20.acacia' })
+      apiVersion: '2024-06-20' as const })
   : getMockStripe() as any;
 
 interface BookingData {

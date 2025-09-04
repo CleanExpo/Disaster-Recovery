@@ -16,6 +16,13 @@ const createPaymentSchema = z.object({
 });
 
 async function handleCreatePayment(req: NextRequest, validatedData: z.infer<typeof createPaymentSchema>) {
+  // TODO: Implement when onboardingPayment model is added
+  return NextResponse.json(
+    { error: 'Payment processing not yet implemented' },
+    { status: 501 }
+  );
+
+  /* Commented out until model is added:
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
   const userAgent = req.headers.get('user-agent') || 'unknown';
   
@@ -47,10 +54,11 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
     
     // SECURITY: Validate contractor exists and is authorised for payment
     const contractor = await prisma.contractor.findUnique({
-      where: { id: validatedData.contractorId },
-      include: { 
-        onboardingPayment: true 
-      }
+      where: { id: validatedData.contractorId }
+      // TODO: Include onboardingPayment when relation is added
+      // include: { 
+      //   onboardingPayment: true 
+      // }
     });
 
     if (!contractor) {
@@ -74,8 +82,9 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       );
     }
 
-    // SECURITY: Check if contractor has already paid
-    if (contractor.onboardingPayment?.status === 'COMPLETED') {
+    // TODO: Check if contractor has already paid when onboardingPayment is available
+    const hasAlreadyPaid = false; // Placeholder - should check contractor.onboardingPayment?.status === 'COMPLETED'
+    if (hasAlreadyPaid) {
       PaymentAuditLogger.logPaymentAttempt({
         contractorId: validatedData.contractorId,
         amount: expectedPayment.amount,
@@ -204,6 +213,7 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       { status: 500 }
     );
   }
+  */
 }
 
 // SECURITY: Apply comprehensive security middleware

@@ -8,6 +8,13 @@ import { withSecurityHeaders, withRateLimit } from '@/lib/auth-middleware';
 const prisma = new PrismaClient();
 
 async function handleWebhook(req: NextRequest) {
+  // TODO: Implement when onboardingPayment model is added
+  return NextResponse.json(
+    { error: 'Webhook processing not yet implemented' },
+    { status: 501 }
+  );
+  
+  /* Commented out until model is added:
   const body = await req.text();
   const signature = req.headers.get('stripe-signature');
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
@@ -342,6 +349,7 @@ async function handleWebhook(req: NextRequest) {
       { status: 500 }
     );
   }
+  */
 }
 
 // SECURITY: Apply security middleware to webhook endpoint

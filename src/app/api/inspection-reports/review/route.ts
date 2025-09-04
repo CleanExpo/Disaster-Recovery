@@ -23,19 +23,27 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check if report exists
-    const existingReport = await prisma.inspectionReport.findUnique({
-      where: { id: reportId },
-      include: {
-        contractor: {
-          select: {
-            id: true,
-            email: true,
-            businessName: true
-          }
-        }
-      }
-    });
+    // TODO: Implement when inspectionReport model is added
+    return NextResponse.json(
+      { error: 'Inspection reports not yet implemented' },
+      { status: 501 }
+    );
+    
+    /* Commented out until model is added:
+    const existingReport: any = null;
+    
+    // const existingReport = await prisma.inspectionReport.findUnique({
+    //   where: { id: reportId },
+    //   include: {
+    //     contractor: {
+    //       select: {
+    //         id: true,
+    //         email: true,
+    //         username: true
+    //       }
+    //     }
+    //   }
+    // });
 
     if (!existingReport) {
       return NextResponse.json(
@@ -44,16 +52,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Update the report
-    const updatedReport = await prisma.inspectionReport.update({
-      where: { id: reportId },
-      data: {
-        reviewStatus,
-        reviewNotes,
-        reviewedBy,
-        reviewedAt: new Date(),
-        approvedAt: reviewStatus === 'APPROVED' ? new Date() : null }
-    });
+    // TODO: Update the report when model is added
+    const updatedReport: any = { id: reportId, reviewStatus };
+    
+    // const updatedReport = await prisma.inspectionReport.update({
+    //   where: { id: reportId },
+    //   data: {
+    //     reviewStatus,
+    //     reviewNotes,
+    //     reviewedBy,
+    //     reviewedAt: new Date(),
+    //     approvedAt: reviewStatus === 'APPROVED' ? new Date() : null
+    //   }
+    // });
 
     // Create notification for contractor
     const notificationType = reviewStatus === 'APPROVED' ? 'INSPECTION_REPORT_APPROVED' : 
@@ -120,7 +131,7 @@ export async function POST(req: NextRequest) {
       reportId: updatedReport.id,
       reviewStatus,
       message: `Inspection report ${reviewStatus.toLowerCase().replace('_', ' ')} successfully` });
-
+    */
   } catch (error) {
     console.error('Error reviewing inspection report:', error);
     return NextResponse.json(
@@ -135,6 +146,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    // TODO: Implement when inspectionReport model is added
+    return NextResponse.json(
+      { error: 'Inspection reports not yet implemented' },
+      { status: 501 }
+    );
+
+    /* Commented out until model is added:
     const { searchParams } = new URL(req.url);
     const status = searchParams.get('status') || 'SUBMITTED';
     const workType = searchParams.get('workType');
@@ -234,7 +252,7 @@ export async function GET(req: NextRequest) {
         })
       }
     });
-
+    */
   } catch (error) {
     console.error('Error retrieving inspection reports for review:', error);
     return NextResponse.json(

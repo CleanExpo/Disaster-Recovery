@@ -63,7 +63,7 @@ interface Lead {
   contractor: {
     assigned: boolean;
     id?: string;
-    businessName?: string;
+    username?: string;
     acceptedAt?: string;
     responseTime?: number;
   };
@@ -125,7 +125,7 @@ export default function LeadManagementDashboard() {
       contractor: {
         assigned: true,
         id: 'CONT-001',
-        businessName: 'Elite Water Damage Restoration',
+        username: 'Elite Water Damage Restoration',
         acceptedAt: new Date(Date.now() - 1.5 * 60 * 60 * 1000).toISOString(),
         responseTime: 15 },
       status: 'in_progress',
@@ -190,7 +190,7 @@ export default function LeadManagementDashboard() {
       contractor: {
         assigned: true,
         id: 'CONT-003',
-        businessName: 'Pro Mould Solutions',
+        username: 'Pro Mould Solutions',
         acceptedAt: new Date(Date.now() - 20 * 60 * 60 * 1000).toISOString(),
         responseTime: 180 },
       status: 'completed',
@@ -486,7 +486,7 @@ export default function LeadManagementDashboard() {
                     <td className="px-6 py-4">
                       {lead.contractor.assigned ? (
                         <div>
-                          <p className="text-sm text-gray-900">{lead.contractor.businessName}</p>
+                          <p className="text-sm text-gray-900">{lead.contractor.username}</p>
                           <p className="text-xs text-gray-500">
                             Response: {lead.contractor.responseTime} min
                           </p>

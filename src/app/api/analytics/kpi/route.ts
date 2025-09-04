@@ -106,29 +106,13 @@ export async function GET(req: NextRequest) {
       }
     });
 
-    // Get inspection report metrics
-    const inspectionStats = await prisma.inspectionReport.aggregate({
-      where: {
-        submittedAt: {
-          gte: startDate
-        }
-      },
-      _count: {
-        id: true
-      },
-      _avg: {
-        validationScore: true
-      }
-    });
+    // Get inspection report metrics - TODO: Implement when inspection model is added
+    const inspectionStats = {
+      _count: { id: 0 },
+      _avg: { validationScore: 0 }
+    };
 
-    const approvedReports = await prisma.inspectionReport.count({
-      where: {
-        reviewStatus: 'APPROVED',
-        submittedAt: {
-          gte: startDate
-        }
-      }
-    });
+    const approvedReports = 0;
 
     // Calculate KPIs
     const kpis = {

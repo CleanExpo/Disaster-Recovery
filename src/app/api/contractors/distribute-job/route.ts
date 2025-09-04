@@ -31,7 +31,7 @@ interface JobDistributionRequest {
 
 interface Contractor {
   id: string;
-  businessName: string;
+  username: string;
   email: string;
   
   services: string[];
@@ -69,7 +69,7 @@ interface Contractor {
 const mockContractors: Contractor[] = [
   {
     id: 'CONT-001',
-    businessName: 'Elite Water Damage Restoration',
+    username: 'Elite Water Damage Restoration',
     email: 'contact@elitewater.com.au',
     
     services: ['water-damage', 'flood-restoration', 'mold-remediation'],
@@ -98,7 +98,7 @@ const mockContractors: Contractor[] = [
     currentActiveJobs: 3 },
   {
     id: 'CONT-002',
-    businessName: 'Rapid Response Restorations',
+    username: 'Rapid Response Restorations',
     email: 'jobs@rapidresponse.com.au',
     
     services: ['water-damage', 'fire-damage', 'storm-damage'],
@@ -245,7 +245,7 @@ export async function POST(request: NextRequest) {
         // Simulate notification sending
         const notification = {
           contractorId: contractor.id,
-          businessName: contractor.businessName,
+          username: contractor.username,
           notificationMethod: 'email',
           sentAt: new Date().toISOString(),
           jobDetails: {
@@ -254,7 +254,7 @@ export async function POST(request: NextRequest) {
             urgency: jobData.urgencyLevel,
             location: `${jobData.location.suburb}, ${jobData.location.state}`,
             estimatedValue: jobData.estimatedValue,
-            customeremail: jobData.customerDetails.phone,
+            customeremail: jobData.customerDetails.email,
             description: jobData.damageDescription },
           acceptanceUrl: `https://portal.disasterrecovery.com.au/jobs/${jobData.bookingId}/accept`,
           expiresIn: jobData.urgencyLevel === 'emergency' ? '30 minutes' : '2 hours' };
@@ -266,7 +266,7 @@ export async function POST(request: NextRequest) {
         // 4. Update contractor's last notified timestamp
         // 5. Log notification in database
 
-        console.log(`Notifying ${contractor.businessName} about job ${jobData.bookingId}`);
+        console.log(`Notifying ${contractor.username} about job ${jobData.bookingId}`);
         
         return notification;
       })
@@ -283,7 +283,7 @@ export async function POST(request: NextRequest) {
       estimatedValue: jobData.estimatedValue,
       notifiedContractors: contractorsToNotify.map(c => ({
         id: c.id,
-        businessName: c.businessName,
+        username: c.username,
         notifiedAt: new Date().toISOString(),
         score: eligibleContractors.find(e => e.contractor.id === c.id)?.score || 0 })),
       createdAt: new Date().toISOString(),
@@ -300,7 +300,7 @@ export async function POST(request: NextRequest) {
         notifiedCount: contractorsToNotify.length,
         contractors: contractorsToNotify.map(c => ({
           id: c.id,
-          businessName: c.businessName,
+          username: c.username,
           responseTime: c.responseTime,
           rating: c.rating })),
         notifications,
@@ -337,12 +337,12 @@ export async function GET(request: NextRequest) {
     responses: [
       {
         contractorId: 'CONT-001',
-        businessName: 'Elite Water Damage Restoration',
+        username: 'Elite Water Damage Restoration',
         status: 'viewed',
         viewedAt: new Date(Date.now() - 5 * 60000).toISOString() },
       {
         contractorId: 'CONT-002',
-        businessName: 'Rapid Response Restorations',
+        username: 'Rapid Response Restorations',
         status: 'pending' },
     ],
     acceptedBy: null,
