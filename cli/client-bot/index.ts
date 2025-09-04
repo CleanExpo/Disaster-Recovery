@@ -209,9 +209,9 @@ class ClientBotCLI extends EventEmitter {
       },
       {
         type: 'input',
-        name: 'phone',
-        message: 'Contact phone number:',
-        validate: (input) => /^[0-9]{10}$/.test(input) || 'Please enter valid 10-digit phone'
+        name: 'email',
+        message: 'Contact email address:',
+        validate: (input) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input) || 'Please enter a valid email address'
       },
       {
         type: 'confirm',

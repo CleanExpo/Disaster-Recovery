@@ -39,54 +39,54 @@ interface SignupStep {
 const steps: SignupStep[] = [
   {
     id: 1,
-    title: 'Company Information','
-    description: 'Tell us about your business','
-    icon: <Building className="w-5 h-5" />"
+    title: 'Company Information',
+    description: 'Tell us about your business',
+    icon: <Building className="w-5 h-5" />
   },
   {
     id: 2,
-    title: 'Contact Details','
-    description: 'Primary contact information','
-    icon: <User className="w-5 h-5" />"
+    title: 'Contact Details',
+    description: 'Primary contact information',
+    icon: <User className="w-5 h-5" />
   },
   {
     id: 3,
-    title: 'Service Category','
-    description: 'Select your business type','
-    icon: <Briefcase className="w-5 h-5" />"
+    title: 'Service Category',
+    description: 'Select your business type',
+    icon: <Briefcase className="w-5 h-5" />
   },
   {
     id: 4,
-    title: 'Banking & Commission','
-    description: 'Payment and commission details','
-    icon: <DollarSign className="w-5 h-5" />"
+    title: 'Banking & Commission',
+    description: 'Payment and commission details',
+    icon: <DollarSign className="w-5 h-5" />
   },
   {
     id: 5,
-    title: 'Agreement & Terms','
-    description: 'Review and accept terms','
-    icon: <FileText className="w-5 h-5" />"
+    title: 'Agreement & Terms',
+    description: 'Review and accept terms',
+    icon: <FileText className="w-5 h-5" />
   }
 ];
 
 const categoryIcons: Record<PartnerCategory, React.ReactNode> = {
-  equipment_supplier: <Package className="w-6 h-6" />,"
-  insurance_provider: <Shield className="w-6 h-6" />,"
-  legal_services: <Gavel className="w-6 h-6" />,"
-  training_provider: <GraduationCap className="w-6 h-6" />,"
-  software_vendor: <Cpu className="w-6 h-6" />,"
-  financial_services: <PiggyBank className="w-6 h-6" />,"
-  marketing_agency: <Megaphone className="w-6 h-6" />,"
-  consulting: <Users className="w-6 h-6" />,"
-  logistics: <Truck className="w-6 h-6" />,"
-  other: <Briefcase className="w-6 h-6" />"
+  equipment_supplier: <Package className="w-6 h-6" />,
+  insurance_provider: <Shield className="w-6 h-6" />,
+  legal_services: <Gavel className="w-6 h-6" />,
+  training_provider: <GraduationCap className="w-6 h-6" />,
+  software_vendor: <Cpu className="w-6 h-6" />,
+  financial_services: <PiggyBank className="w-6 h-6" />,
+  marketing_agency: <Megaphone className="w-6 h-6" />,
+  consulting: <Users className="w-6 h-6" />,
+  logistics: <Truck className="w-6 h-6" />,
+  other: <Briefcase className="w-6 h-6" />
 };
 
 const categoryDescriptions: Record<PartnerCategory, string> = {
-  equipment_supplier: 'Restoration equipment, tools, and supplies','
-  insurance_provider: 'Insurance services and claims processing','
-  legal_services: 'Legal consultation and dispute resolution','
-  training_provider: 'Professional training and certification','
+  equipment_supplier: 'Restoration equipment, tools, and supplies',
+  insurance_provider: 'Insurance services and claims processing',
+  legal_services: 'Legal consultation and dispute resolution',
+  training_provider: 'Professional training and certification',
   software_vendor: 'Software solutions and technology','
   financial_services: 'Financing, loans, and payment processing','
   marketing_agency: 'Marketing, advertising, and lead generation','
