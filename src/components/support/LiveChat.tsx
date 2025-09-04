@@ -471,7 +471,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 z-50 h-14 w-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colours flex items-center justify-center group"
+          className="fixed bottom-4 right-4 z-50 h-14 w-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors flex items-center justify-center group"
         >
           <MessageSquare className="h-6 w-6" />
           <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full animate-pulse" />
