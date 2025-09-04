@@ -140,7 +140,6 @@ export async function GET(req: NextRequest) {
           id: true,
           username: true,
           email: true,
-          certifications: true,
           onboardingStep: true,
           createdAt: true
         },
@@ -152,11 +151,7 @@ export async function GET(req: NextRequest) {
         compliance: complianceReport,
         contractors: detailedData.map(contractor => ({
           ...contractor,
-          certifications: contractor.certifications ? 
-            (typeof contractor.certifications === 'string' ? 
-              (contractor.certifications.startsWith('[') ? JSON.parse(contractor.certifications) : [contractor.certifications]) 
-              : []) 
-            : [],
+          certifications: [],
           complianceScore: calculateContractorComplianceScore(contractor, now)
         }))
       });
@@ -178,12 +173,7 @@ export async function GET(req: NextRequest) {
 
 function calculateContractorComplianceScore(contractor: any, now: Date): number {
   let score = 0;
-  let maxScore = 2;
-
-  // Certification check
-  if (contractor.certifications && contractor.certifications.includes('IICRC')) {
-    score += 1;
-  }
+  let maxScore = 1;
 
   // Training completion
   if (contractor.onboardingStep >= 14) {

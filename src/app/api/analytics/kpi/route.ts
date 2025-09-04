@@ -64,15 +64,13 @@ export async function GET(req: NextRequest) {
     const totalContractors = await prisma.contractor.count();
     const activeContractors = await prisma.contractor.count({
       where: {
-        status: 'APPROVED',
-        lastActivityAt: {
-          gte: new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000) // Active in last 30 days
-        }
+        status: 'APPROVED'
+        // TODO: Add activity tracking when lastActivityAt field is added
       }
     });
 
-    // Get revenue metrics
-    const revenueStats = await prisma.payment.aggregate({
+    // Get revenue metrics - using ContractorPayment
+    const revenueStats = await prisma.contractorPayment.aggregate({
       where: {
         status: 'succeeded',
         createdAt: {
