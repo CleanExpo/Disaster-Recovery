@@ -350,14 +350,14 @@ function QuickActionDock() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 100, scale: 0.8 }}
           transition={{ 
-            type: "spring", ""
+            type: "spring",
             stiffness: 200, 
             damping: 20,
             delay: 0.5
           }}
         >
-          <div className="bg-white/80 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">"
-            <div className="flex items-center space-x-4">"
+          <div className="bg-white/80 backdrop-blur-lg rounded-full p-3 shadow-2xl border border-white/20">
+            <div className="flex items-center space-x-4">
               {dockItems.map((item, index) => (
                 <MagneticFloatingButton
                   key={item.label}
@@ -406,7 +406,7 @@ function EmergencyResponseTimer() {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;'
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -417,10 +417,10 @@ function EmergencyResponseTimer() {
           initial={{ opacity: 0, x: 100, scale: 0.8 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           exit={{ opacity: 0, x: 100, scale: 0.8 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}"
+          transition={{ type: "spring", stiffness: 200, damping: 20 }}
         >
-          <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-white/20">"
-            <div className="flex items-center space-x-3">"
+          <div className="bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-xl border border-white/20">
+            <div className="flex items-center space-x-3">
               <motion.div
                 className="w-3 h-3 bg-green-500 rounded-full"
                 animate={{
