@@ -18,6 +18,7 @@ import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import MobileNav from '@/components/mobile/MobileNav'
 import MobileFAB from '@/components/mobile/MobileFAB'
+import { LiveChat } from '@/components/support/LiveChat'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -236,6 +237,7 @@ export default function RootLayout({
           </div>
           <MobileFAB />
           <MobileEmergencyCTA />
+          <LiveChat />
         </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}

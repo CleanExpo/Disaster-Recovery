@@ -3,7 +3,7 @@
 export type TicketStatus = 'open' | 'in_progress' | 'pending' | 'resolved' | 'closed';
 export type TicketPriority = 'low' | 'medium' | 'high' | 'urgent';
 export type TicketCategory = 'technical' | 'billing' | 'compliance' | 'account' | 'feature_request' | 'other';
-export type SupportChannel = 'chat' | 'email' | 'email' | 'ticket';
+export type SupportChannel = 'chat' | 'email' | 'phone' | 'ticket';
 
 // Knowledge Base
 export interface KnowledgeArticle {
@@ -260,7 +260,7 @@ export interface SupportConfig {
   businessHours: {
     timezone: string;
     schedule: {
-      [key in 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday']: {'
+      [key in 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday']: {
         isOpen: boolean;
         openTime?: string; // HH:MM format
         closeTime?: string;
@@ -293,7 +293,7 @@ export interface SupportConfig {
     welcomeMessage: string;
     offlineMessage: string;
   };
-  
+  phone: {
     mainNumber: string;
     emergencyNumber: string;
     businessHours: string;
@@ -320,7 +320,7 @@ export interface SearchResult {
 
 export interface SearchFilters {
   query: string;
-  types?: ('article' | 'ticket' | 'faq')[];'
+  types?: ('article' | 'ticket' | 'faq')[];
   categories?: string[];
   tags?: string[];
   dateFrom?: Date;
@@ -351,23 +351,23 @@ export const TICKET_PRIORITIES: Record<TicketPriority, {
   slaHours: number;
 }> = {
   urgent: {
-    label: 'Urgent','
-    colour: 'red','
+    label: 'Urgent',
+    colour: 'red',
     slaHours: 2
   },
   high: {
-    label: 'High','
-    colour: 'orange','
+    label: 'High',
+    colour: 'orange',
     slaHours: 8
   },
   medium: {
-    label: 'Medium','
-    colour: 'yellow','
+    label: 'Medium',
+    colour: 'yellow',
     slaHours: 24
   },
   low: {
-    label: 'Low','
-    colour: 'gray','
+    label: 'Low',
+    colour: 'gray',
     slaHours: 72
   }
 };
@@ -378,33 +378,33 @@ export const TICKET_CATEGORIES: Record<TicketCategory, {
   description: string;
 }> = {
   technical: {
-    label: 'Technical Issue','
-    icon: 'wrench','
+    label: 'Technical Issue',
+    icon: 'wrench',
     description: 'Platform bugs, login issues, or technical problems'
   },
   billing: {
-    label: 'Billing & Payments','
-    icon: 'credit-card','
+    label: 'Billing & Payments',
+    icon: 'credit-card',
     description: 'Subscription, invoices, or payment questions'
   },
   compliance: {
-    label: 'Compliance & Certification','
-    icon: 'shield','
+    label: 'Compliance & Certification',
+    icon: 'shield',
     description: 'Certification requirements, compliance questions'
   },
   account: {
-    label: 'Account Management','
-    icon: 'user','
+    label: 'Account Management',
+    icon: 'user',
     description: 'Profile, settings, or account access'
   },
   feature_request: {
-    label: 'Feature Request','
-    icon: 'lightbulb','
+    label: 'Feature Request',
+    icon: 'lightbulb',
     description: 'Suggestions for new features or improvements'
   },
   other: {
-    label: 'Other','
-    icon: 'help-circle','
+    label: 'Other',
+    icon: 'help-circle',
     description: 'General questions or other topics'
   }
 };
