@@ -131,7 +131,6 @@ const Footer: React.FC = () => {
     "description": "Leading disaster recovery and restoration specialists providing 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup.",
     "url": WEBSITE,
     "email": EMAIL,
-    "email": "",
     "areaServed": [
       {
         "@type": "Country",

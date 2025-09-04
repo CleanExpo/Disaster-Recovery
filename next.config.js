@@ -204,16 +204,6 @@ const nextConfig = {
   // Output configuration
   output: 'standalone',
   distDir: '.next',
-
-  // TypeScript
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-
-  // ESLint
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
