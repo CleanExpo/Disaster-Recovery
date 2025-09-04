@@ -98,7 +98,7 @@ export class UIDesignOrchestrator {
   }
 
   private initializeAgents() {
-    this.agents = new Map([
+    this.agents = new Map<string, UIAgent>([
       ['visual-analyzer', new VisualAnalyzerAgent()],
       ['design-implementer', new DesignImplementerAgent()],
       ['responsive-optimizer', new ResponsiveOptimizerAgent()],
@@ -108,10 +108,10 @@ export class UIDesignOrchestrator {
     ])
 
     // Filter agents based on config
-    const enabledAgents = new Map()
+    const enabledAgents = new Map<string, UIAgent>()
     this.config.enabledAgents.forEach(agentId => {
       if (this.agents.has(agentId)) {
-        enabledAgents.set(agentId, this.agents.get(agentId))
+        enabledAgents.set(agentId, this.agents.get(agentId)!)
       }
     })
     this.agents = enabledAgents
