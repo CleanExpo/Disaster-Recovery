@@ -24,7 +24,6 @@ import {
   Youtube, 
   Linkedin,
   Instagram,
-  Mail,
   ExternalLink,
   CheckCircle,
   MessageCircle,
