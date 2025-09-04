@@ -19,7 +19,7 @@ const FORBIDDEN_DOMAINS = [
 ];
 
 const REQUIRED_DOMAINS = {
-  production: 'disaster-recovery.vercel.app',
+  production: 'disaster-recovery-seven.vercel.app',
   staging: 'disaster-recovery-staging.vercel.app'
 };
 
@@ -58,12 +58,13 @@ function validateEnvFile(filePath) {
 
     // Check for correct URL structure (skip database URLs and API endpoints)
     if ((line.includes('NEXT_PUBLIC_APP_URL=') || line.includes('NEXTAUTH_URL=')) && 
-        !line.includes('disaster-recovery') && 
+        !line.includes('disaster-recovery-seven.vercel.app') && 
+        !line.includes('disaster-recovery-staging.vercel.app') &&
         !line.includes('localhost')) {
       errors.push({
         file: filePath,
         line: index + 1,
-        error: `INVALID URL: App URLs must use disaster-recovery.vercel.app domain`,
+        error: `INVALID URL: App URLs must use disaster-recovery-seven.vercel.app domain`,
         content: line
       });
     }
@@ -97,7 +98,7 @@ function validateAllEnvFiles() {
     console.error('\n⚠️  ENVIRONMENT VALIDATION FAILED');
     console.error('Fix the above errors before deploying.');
     console.error('\nCorrect domain usage:');
-    console.error('  Production: https://disaster-recovery.vercel.app');
+    console.error('  Production: https://disaster-recovery-seven.vercel.app');
     console.error('  Staging: https://disaster-recovery-staging.vercel.app');
     console.error('  NEVER use: disasterrecovery.com.au\n');
     process.exit(1);
