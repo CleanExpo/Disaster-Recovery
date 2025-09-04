@@ -1,468 +1,632 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { 
-  Shield, Building2, Globe2, Zap, Users, CheckCircle, 
-  ArrowRight, Briefcase, Home, Factory, Hospital, Plane,
-  Droplets, Flame, Bug, AlertTriangle, Cloud, Wrench,
-  Clock, Award, Star, TrendingUp, Target, MessageSquare,
-  CheckSquare, FileCheck, DollarSign, MapPin, 
-  ChevronRight, Play, X
+  ArrowRight, CheckCircle, Clock, Shield, Users, 
+  Zap, Star, ChevronRight, Play,
+  Home, Building2, AlertTriangle, FileText, Phone
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import LightningEffect from '@/components/effects/LightningEffect';
-import { Logo, HeaderLogo } from '@/components/Logo';
-import LandingHeader from '@/components/LandingHeader';
-import EmergencyHero from '@/components/emergency/EmergencyHero';
-import SocialProofBar from '@/components/emergency/SocialProofBar';
-import TrustBadges from '@/components/emergency/TrustBadges';
-import BeforeAfterSlider from '@/components/emergency/BeforeAfterSlider';
-import InsuranceCalculator from '@/components/emergency/InsuranceCalculator';
+import FloodingEffect from '@/components/effects/FloodingEffect';
+import StormCloudBackground from '@/components/StormCloudBackground';
+import EnhancedStormSystem from '@/components/EnhancedStormSystem';
+import { InlineEEAT } from '@/components/eeat/InlineEEAT';
+import { PricingGuidelines, ContractorPricingInfo } from '@/components/pricing/PricingGuidelines';
+import { ComprehensiveSEO } from '@/components/seo/ComprehensiveSEO';
+import { EnhancedChatBot } from '@/components/chat/EnhancedChatBot';
+import { TransparencyHub } from '@/components/transparency/TransparencyHub';
+import DigitalOnlyContactSystem from '@/components/contact/DigitalOnlyContact';
+import { CustomerJourneyWizard } from '@/components/journey/CustomerJourney';
+import styles from './page.module.css';
 
-export default function EnhancedLandingPage() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-  const [demoMode, setDemoMode] = useState(false);
+export default function CleanLandingPage() {
+  const [activeFeature, setActiveFeature] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const features = [
+    {
+      title: "Instant Response",
+      description: "24/7 emergency service with contractors arriving within hours",
+      icon: Clock,
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      title: "Insurance Approved",
+      description: "Direct billing with all major insurance companies",
+      icon: Shield,
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      title: "Certified Network",
+      description: "115,000+ vetted and certified restoration professionals",
+      icon: Users,
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      title: "AI Assessment",
+      description: "Instant damage assessment and accurate quotes",
+      icon: Zap,
+      color: "from-orange-500 to-red-500"
+    }
+  ];
 
-  // Stats Counter Animation
-  const [statsVisible, setStatsVisible] = useState(false);
-  const stats = [
-    { value: '24/7', label: 'Emergency Response', icon: Clock },
-    { value: '115K+', label: 'Contractors Nationwide', icon: Users },
-    { value: '$4.2B', label: 'Market Coverage', icon: TrendingUp },
-    { value: '100%', label: 'Australia Coverage', icon: MapPin }
+  const services = [
+    {
+      title: "Water Damage Restoration",
+      description: "Category 1 clean water - Burst pipes, flooding, and water extraction",
+      icon: "💧",
+      image: "/images/optimized/damage/Cat 1 - Water Damage Restoration.png",
+      urgent: true
+    },
+    {
+      title: "Sewage Cleanup",
+      description: "Category 3 black water - Professional sewage and contaminated water cleanup",
+      icon: "🚰",
+      image: "/images/optimized/damage/Cat 3 Water Damage - Sewage Clean up.png",
+      urgent: true
+    },
+    {
+      title: "Mould Remediation",
+      description: "Black mould removal - Safe and thorough remediation with prevention",
+      icon: "🦠",
+      image: "/images/optimized/damage/Mould Remediation - Black Mould.png",
+      urgent: false
+    },
+    {
+      title: "Timber Floor Drying",
+      description: "Specialized hardwood and timber floor drying and restoration",
+      icon: "🪵",
+      image: "/images/optimized/damage/Timber Floor Drying.png",
+      urgent: true
+    },
+    {
+      title: "Professional Carpet Cleaning",
+      description: "Deep carpet and rug cleaning with advanced extraction methods",
+      icon: "🧹",
+      image: "/images/optimized/damage/Professional Carpet and Rug Cleaning.png",
+      urgent: false
+    }
   ];
 
   const testimonials = [
     {
-      quote: "Water damage at 2AM, contractor on-site by 6AM. Incredible response time.",
-      author: "Sarah M.",
+      quote: "The response was incredible. Water damage at midnight, contractor on-site by 6AM.",
+      author: "Sarah Mitchell",
       location: "Brisbane",
-      rating: 5
+      rating: 5,
+      service: "Water Damage"
     },
     {
-      quote: "Professional network that actually delivers. Insurance claim handled seamlessly.",
-      author: "James K.",
+      quote: "Insurance claim handled perfectly. No stress, just results.",
+      author: "James Chen",
       location: "Sydney",
-      rating: 5
+      rating: 5,
+      service: "Fire Restoration"
     },
     {
-      quote: "As a contractor, NRP has transformed our business. Quality leads, fair pricing.",
-      author: "Mike's Restoration",
+      quote: "Professional, fast, and the price was exactly as quoted.",
+      author: "Emma Wilson",
       location: "Melbourne",
-      rating: 5
+      rating: 5,
+      service: "Mould Removal"
+    }
+  ];
+
+  const process = [
+    {
+      step: "1",
+      title: "Report Damage",
+      description: "Use our online form or chat 24/7"
+    },
+    {
+      step: "2",
+      title: "Instant Match",
+      description: "AI connects you with the right contractor"
+    },
+    {
+      step: "3",
+      title: "Fast Response",
+      description: "Certified professional arrives quickly"
+    },
+    {
+      step: "4",
+      title: "Full Restoration",
+      description: "Property restored, insurance handled"
     }
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Emergency Hero Section - $2.5B Enterprise Level */}
-      <EmergencyHero />
+    <>
+      {/* SEO Enhancements */}
+      <ComprehensiveSEO pageType="home" />
       
-      {/* Social Proof Bar with Live Stats */}
-      <SocialProofBar />
+      {/* Digital Only Contact System - NO PHONE */}
+      <DigitalOnlyContactSystem />
       
-      {/* Trust Badges Section */}
-      <TrustBadges />
+      {/* Enhanced Chat Bot */}
+      <EnhancedChatBot />
       
-      {/* Before/After Transformation Slider */}
-      <BeforeAfterSlider />
+      <div className="min-h-screen relative" style={{ backgroundColor: '#f8fafc', paddingTop: '40px' }}>
+        {/* Storm Cloud Background Animation */}
+        <StormCloudBackground />
       
-      {/* Insurance Calculator Widget */}
-      <InsuranceCalculator />
+      {/* Enhanced Storm System with Rain, Lightning, and Effects */}
+      <EnhancedStormSystem />
+      
+      {/* Legacy storm background - can be removed if not needed */}
+      <div className="fixed inset-0 pointer-events-none" style={{ zIndex: -1 }}>
+        {/* Dark storm clouds gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 opacity-[0.15]" />
+        
+        {/* Animated storm clouds */}
+        <div className="absolute inset-0 opacity-[0.15]">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-blue-900 animate-pulse" style={{ animationDuration: '8s' }} />
+        </div>
+        
+        {/* Rain effect pattern */}
+        <div className={`absolute inset-0 ${styles.rainAnimation} opacity-[0.15]`} />
+        
+        {/* Turbulent cloud texture */}
+        <div className="absolute inset-0 opacity-15" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='turbulence'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.2 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23turbulence)'/%3E%3C/svg%3E")`
+        }} />
+      </div>
+      
+      {/* Lightning Effect */}
+      <LightningEffect />
+      
+      {/* Hero Section - Clean and Focused */}
+      <section className="relative bg-gradient-to-b from-slate-50/90 to-white/90 pt-20 pb-32 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(to_bottom,white,transparent)] pointer-events-none" />
+        
+        <div className="container mx-auto px-4 md:px-6 relative">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Emergency Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium mb-8"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+              Emergency Response Available 24/7
+            </motion.div>
 
-      {/* Stats Section with Animation */}
-      <section className="relative py-20 bg-black/30 backdrop-blur-sm" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center group">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl mb-4 group-hover:scale-110 transition-transform">
-                  <stat.icon className="h-8 w-8 text-white" />
-                </div>
-                <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-blue-300">{stat.label}</div>
+            {/* Main Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+            >
+              Property Disaster?
+              <span className="block text-blue-600 mt-2">
+                Help Arrives Fast.
+              </span>
+            </motion.h1>
+
+            {/* Subheadline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto"
+            >
+              Australia's largest emergency restoration network. 
+              115,000+ certified contractors ready to help, with insurance approval guaranteed.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+            >
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
+                Get Emergency Help
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button size="lg" variant="outline" className="px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg">
+                <FileText className="mr-2 h-5 w-5" />
+                Submit Claim Online
+              </Button>
+            </motion.div>
+
+            {/* Trust Indicators */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex items-center justify-center gap-8 mt-12 text-sm text-gray-600"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>Insurance Approved</span>
               </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>Estimates Provided</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span>Certified Network</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section - Clean Grid */}
+      <section className="py-20 bg-white/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              Why Choose Our Network
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              We connect you with the best restoration professionals in Australia
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer border-gray-200">
+                  <CardContent className="p-6">
+                    <div className={`inline-flex p-3 rounded-lg bg-gradient-to-br ${feature.color} mb-4`}>
+                      <feature.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {feature.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Grid with 3D Images */}
-      <section className="relative py-20" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
+      {/* Services Section - Simple and Clear */}
+      <section className="py-20 bg-gray-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-white mb-4">
-              Complete Disaster Coverage
-            </h3>
-            <p className="text-xl text-blue-300 max-w-3xl mx-auto">
-              From water damage to biohazards, our network handles every emergency with certified professionals
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              Emergency Services We Cover
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              Professional restoration for all types of property damage
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Water Damage Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/80 to-blue-800/50 backdrop-blur-sm border border-blue-500/30 hover:border-blue-400/50 transition-all duration-500 hover:scale-105">
-              <div className="aspect-video relative">
-                <Image
-                  src="/images/optimized/damage/3D Water Damage to a Home.png"
-                  alt="Emergency Water Damage"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Droplets className="h-8 w-8 text-blue-400" />
-                  <h4 className="text-2xl font-bold text-white">Water & Flood</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all cursor-pointer group"
+              >
+                {/* Service Image */}
+                <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+                  {service.image ? (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-6xl">
+                      {service.icon}
+                    </div>
+                  )}
+                  {service.urgent && (
+                    <span className="absolute top-2 right-2 px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-full">
+                      URGENT
+                    </span>
+                  )}
                 </div>
-                <p className="text-blue-200 mb-4">
-                  Immediate extraction, drying, and restoration. Insurance approved processes.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-emerald-600 font-semibold">Available 24/7</span>
-                  <ArrowRight className="h-5 w-5 text-blue-400 group-hover:translate-x-2 transition-transform" />
+                
+                {/* Service Content */}
+                <div className="p-6">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {service.description}
+                  </p>
+                  <Link href="/contact" className="text-blue-600 font-medium inline-flex items-center hover:text-blue-700">
+                    Get Help Now
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </Link>
                 </div>
-              </div>
-            </div>
-
-            {/* Fire Damage Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-900/80 to-orange-800/50 backdrop-blur-sm border border-red-600/30 hover:border-red-400/50 transition-all duration-500 hover:scale-105">
-              <div className="aspect-video relative">
-                <Image
-                  src="/images/optimised/damage/3D image of a house fire.png"
-                  alt="Fire Damage Restoration"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Flame className="h-8 w-8 text-red-400" />
-                  <h4 className="text-2xl font-bold text-white">Fire & Smoke</h4>
-                </div>
-                <p className="text-red-200 mb-4">
-                  Complete fire damage restoration, smoke removal, and structural repairs.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-emerald-600 font-semibold">Rapid Response</span>
-                  <ArrowRight className="h-5 w-5 text-red-400 group-hover:translate-x-2 transition-transform" />
-                </div>
-              </div>
-            </div>
-
-            {/* Biohazard Card */}
-            <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/80 to-purple-800/50 backdrop-blur-sm border border-purple-500/30 hover:border-purple-400/50 transition-all duration-500 hover:scale-105">
-              <div className="aspect-video relative">
-                <Image
-                  src="/images/optimized/damage/3D Emergency Squalor Cleanup.png"
-                  alt="Biohazard Cleanup"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <AlertTriangle className="h-8 w-8 text-purple-400" />
-                  <h4 className="text-2xl font-bold text-white">Biohazard</h4>
-                </div>
-                <p className="text-purple-200 mb-4">
-                  Certified biohazard, trauma, and contamination cleanup specialists.
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-emerald-600 font-semibold">Certified Teams</span>
-                  <ArrowRight className="h-5 w-5 text-purple-400 group-hover:translate-x-2 transition-transform" />
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works - Process Flow */}
-      <section className="relative py-20 bg-black/40 backdrop-blur-sm" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
+      {/* Contractor Portal Section */}
+      <section className="py-20 bg-gradient-to-br from-indigo-50/90 to-blue-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-white mb-4">
-              Simple 3-Step Process
-            </h3>
-            <p className="text-xl text-blue-300">
-              From disaster to restoration in record time
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              Contractor Portal - Professional Certification Program
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+              Join Australia's premier disaster recovery network. Complete our comprehensive 14-day certification program and become an approved restoration contractor.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Step 1 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-900/80 to-blue-800/50 backdrop-blur-sm rounded-2xl p-8 border border-blue-500/30">
-                <div className="absolute -top-6 left-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  1
-                </div>
-                <div className="mt-4">
-                  <MessageSquare className="h-12 w-12 text-blue-400 mb-4" />
-                  <h4 className="text-xl font-bold text-white mb-3">Report Damage</h4>
-                  <p className="text-blue-200">
-                    Use our AI chat for instant assessment and contractor matching.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-green-900/80 to-green-800/50 backdrop-blur-sm rounded-2xl p-8 border border-green-500/30">
-                <div className="absolute -top-6 left-8 w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  2
-                </div>
-                <div className="mt-4">
-                  <Users className="h-12 w-12 text-emerald-600 mb-4" />
-                  <h4 className="text-xl font-bold text-white mb-3">Contractor Arrives</h4>
-                  <p className="text-green-200">
-                    Certified professional on-site within hours. Insurance paperwork handled.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-purple-900/80 to-purple-800/50 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/30">
-                <div className="absolute -top-6 left-8 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  3
-                </div>
-                <div className="mt-4">
-                  <CheckCircle className="h-12 w-12 text-purple-400 mb-4" />
-                  <h4 className="text-xl font-bold text-white mb-3">Restoration Complete</h4>
-                  <p className="text-purple-200">
-                    Property restored. Insurance claim processed. Zero hassle guarantee.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Carousel */}
-      <section className="relative py-20" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h3 className="text-4xl font-bold text-white mb-4">
-              Trusted by Thousands
-            </h3>
-            <div className="flex justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-blue-500 fill-current" />
+          {/* Course Topics Grid */}
+          <div className="max-w-6xl mx-auto">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6 text-center">Course Topics</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                { day: "Day 1", title: "Insurance Fundamentals", topics: ["Claims Process", "Documentation", "Compliance"] },
+                { day: "Day 2", title: "Water Damage Categories", topics: ["CAT 1-3 Water", "Assessment", "Mitigation"] },
+                { day: "Day 3", title: "Drying & Moisture", topics: ["Psychrometry", "Equipment", "Monitoring"] },
+                { day: "Day 4", title: "Mould Remediation", topics: ["Identification", "Containment", "Removal"] },
+                { day: "Day 5", title: "Fire & Smoke", topics: ["Damage Types", "Restoration", "Deodorization"] },
+                { day: "Day 6", title: "Biohazard Safety", topics: ["PPE", "Contamination", "Disposal"] },
+                { day: "Day 7", title: "Structural Drying", topics: ["Materials", "Techniques", "Documentation"] },
+                { day: "Day 8", title: "Commercial Projects", topics: ["Large Loss", "Coordination", "Timelines"] },
+                { day: "Day 9", title: "Health & Safety", topics: ["WHS", "Risk Assessment", "Compliance"] },
+                { day: "Day 10", title: "Customer Service", topics: ["Communication", "Expectations", "Resolution"] },
+                { day: "Day 11", title: "Advanced Tech", topics: ["Thermal Imaging", "3D Scanning", "Software"] },
+                { day: "Day 12", title: "Business Operations", topics: ["Estimating", "Project Management", "Quality"] },
+                { day: "Day 13", title: "Emergency Response", topics: ["24/7 Operations", "Triage", "Mobilization"] },
+                { day: "Day 14", title: "Final Assessment", topics: ["Certification Exam", "Practical Demo", "Approval"] }
+              ].map((module, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-bold text-indigo-600">{module.day}</span>
+                    <h4 className="text-sm font-semibold text-gray-900">{module.title}</h4>
+                  </div>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    {module.topics.map((topic, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle className="h-3 w-3 text-green-500 mr-1 mt-0.5 flex-shrink-0" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
               ))}
             </div>
-            <p className="text-xl text-blue-300">
-              Real results from real Australians
+
+            {/* CTA Button */}
+            <div className="text-center mt-10">
+              <Link href="/portal/training">
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-6 text-lg">
+                  Start Certification Program
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* YouTube Pitch Deck Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Learn More About Our Vision
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
+              Watch our comprehensive pitch deck to understand how we're revolutionizing disaster recovery in Australia
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-900/80 to-blue-800/50 backdrop-blur-sm rounded-2xl p-8 border border-blue-500/30">
-              <div className="text-center">
-                <p className="text-2xl text-white mb-6 italic">
-                  "{testimonials[activeTestimonial].quote}"
-                </p>
-                <div className="flex justify-center gap-1 mb-4">
-                  {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-blue-500 fill-current" />
-                  ))}
-                </div>
-                <p className="text-blue-300">
-                  <span className="font-bold">{testimonials[activeTestimonial].author}</span>
-                  {' - '}
-                  {testimonials[activeTestimonial].location}
-                </p>
-              </div>
-              
-              {/* Carousel dots */}
-              <div className="flex justify-center gap-2 mt-8">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveTestimonial(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === activeTestimonial 
-                        ? 'w-8 bg-blue-400' 
-                        : 'bg-blue-600 hover:bg-blue-500'
-                    }`}
-                  />
-                ))}
-              </div>
+            <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/edEYKBN6Yl0?start=4&autoplay=0"
+                title="Disaster Recovery Services Australia - Emergency Response"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dual CTA Section */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-900/80 to-green-900/80 backdrop-blur-sm" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* For Property Owners */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <div className="flex items-center gap-3 mb-4">
-                <Home className="h-10 w-10 text-emerald-600" />
-                <h3 className="text-2xl font-bold text-white">Property Owners</h3>
-              </div>
-              <p className="text-blue-200 mb-6">
-                Disaster struck? Get immediate help from certified professionals. Insurance approved.
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 mb-4">
+                Discover how we're building Australia's largest disaster recovery network
               </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-emerald-600" />
-                  24/7 Online Emergency Response
-                </li>
-                <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-emerald-600" />
-                  Insurance Claim Assistance
-                </li>
-                <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-emerald-600" />
-                  Guaranteed Quality Work
-                </li>
-              </ul>
-              <Link 
-                href="/contact"
-                className="block w-full text-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl text-white font-bold hover:shadow-xl transition-all"
-              >
-                Submit Claim Request
-              </Link>
-            </div>
-
-            {/* For Contractors */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-              <div className="flex items-center gap-3 mb-4">
-                <Briefcase className="h-10 w-10 text-blue-400" />
-                <h3 className="text-2xl font-bold text-white">Contractors</h3>
+              <div className="flex justify-center gap-4">
+                <Link href="/pitch-deck">
+                  <Button className="bg-[#FF0000] text-white hover:bg-[#CC0000] border-0 px-6 py-3">
+                    <Play className="mr-2 h-4 w-4" />
+                    View Full Presentation
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button className="bg-[#FF0000] text-white hover:bg-[#CC0000] border-0 px-6 py-3">
+                    Get In Touch
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
-              <p className="text-blue-200 mb-6">
-                Join Australia's premier restoration network. Quality leads, fair pricing, instant payment.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-blue-400" />
-                  Pre-Qualified Insurance Jobs
-                </li>
-                <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-blue-400" />
-                  Territory Protection
-                </li>
-                <li className="flex items-center gap-2 text-white">
-                  <CheckCircle className="h-5 w-5 text-blue-400" />
-                  Instant Payment System
-                </li>
-              </ul>
-              <Link 
-                href="/contractor/apply"
-                className="block w-full text-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl text-white font-bold hover:shadow-xl transition-all"
-              >
-                Apply to Join Network
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Insurance Partners Section */}
-      <section className="relative py-16 bg-black/40 backdrop-blur-sm" style={{ zIndex: 2 }}>
-        <div className="container mx-auto px-6">
-          <p className="text-center text-blue-300 mb-8">Trusted by Leading Insurance Companies</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
-            {/* Major Australian Insurance Companies */}
-            <div className="px-8 py-4 bg-white/10 rounded-lg">
-              <p className="text-white font-bold text-lg">Suncorp</p>
-            </div>
-            <div className="px-8 py-4 bg-white/10 rounded-lg">
-              <p className="text-white font-bold text-lg">IAG</p>
-            </div>
-            <div className="px-8 py-4 bg-white/10 rounded-lg">
-              <p className="text-white font-bold text-lg">Allianz</p>
-            </div>
-            <div className="px-8 py-4 bg-white/10 rounded-lg">
-              <p className="text-white font-bold text-lg">QBE</p>
-            </div>
+      {/* Process Section - Visual Steps */}
+      <section className="py-20 bg-white/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+              From disaster to restoration in 4 simple steps
+            </p>
           </div>
-          
-          {/* Certifications & Associations Section */}
-          <div className="border-t border-white/20 pt-8">
-            <p className="text-center text-blue-300 mb-6">Industry Certifications & Strategic Partners</p>
-            <div className="flex flex-wrap justify-center items-center gap-6">
-              <div className="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-lg">
-                <span className="text-emerald-600">✓</span>
-                <p className="text-white font-bold">RIA Member</p>
-                <span className="text-xs text-gray-400 ml-2">(Restoration Industry Association)</span>
-              </div>
-              <div className="flex items-center gap-2 px-6 py-3 bg-white/10 rounded-lg">
-                <span className="text-emerald-600">✓</span>
-                <p className="text-white font-bold">IICRC Certified</p>
-                <span className="text-xs text-gray-400 ml-2">(Institute of Inspection Cleaning & Restoration)</span>
-              </div>
-              <Image
-                src="/logos/3D CARSI Logo.png"
-                alt="CARSI Certified"
-                width={150}
-                height={75}
-                className="opacity-70 hover:opacity-100 transition-opacity object-contain"
-              />
-              <Image
-                src="/logos/3D Clean Claims.png"
-                alt="Clean Claims Partner - Technology Platform"
-                width={150}
-                height={75}
-                className="opacity-70 hover:opacity-100 transition-opacity object-contain"
-              />
+
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
+              {process.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  className="text-center"
+                >
+                  <div className="relative">
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                      {item.step}
+                    </div>
+                    {index < process.length - 1 && (
+                      <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-gray-300 -translate-x-1/2" />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Video Modal */}
-      {videoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="relative w-full max-w-4xl mx-4">
-            <button
-              onClick={() => setVideoModalOpen(false)}
-              className="absolute -top-12 right-0 text-white hover:text-red-400 transition-colors"
-            >
-              <X className="h-8 w-8" />
-            </button>
-            <div className="bg-slate-900 rounded-2xl p-2">
-              <div className="aspect-video bg-slate-800 rounded-xl flex items-center justify-center">
-                <div className="text-center">
-                  <Play className="h-16 w-16 text-blue-400 mx-auto mb-4" />
-                  <p className="text-white text-xl">Demo Video Coming Soon</p>
-                  <p className="text-blue-300 mt-2">See how our AI matches you with the perfect contractor</p>
-                </div>
-              </div>
+      {/* Testimonials Section - Social Proof */}
+      <section className="py-20 bg-gray-50/90 relative">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              What Our Clients Say
+            </h2>
+            <div className="flex justify-center gap-1 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
+              ))}
             </div>
+            <p className="text-lg text-gray-600">
+              4.9/5 from 10,000+ reviews
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full">
+                  <CardContent className="p-6">
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-gray-700 mb-4 italic">
+                      "{testimonial.quote}"
+                    </p>
+                    <div className="border-t pt-4">
+                      <p className="font-semibold text-gray-900">
+                        {testimonial.author}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        {testimonial.location} • {testimonial.service}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
-      )}
+      </section>
 
-      {/* Floating CTA Button */}
-      <div className="fixed bottom-8 right-8 z-40">
-        <Link
-          href="/contact"
-          className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:from-blue-700 hover:to-purple-700 transition-all"
-        >
-          <ArrowRight className="h-5 w-5" />
-          Get Help Now
-        </Link>
-      </div>
+      {/* Pricing Guidelines Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <ContractorPricingInfo />
+          <div className="mt-8">
+            <PricingGuidelines />
+          </div>
+        </div>
+      </section>
+
+      {/* Complete E-E-A-T Section */}
+      <InlineEEAT />
+
+      {/* Final CTA Section with Flooding Effect */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-700 relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-20">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
+            Property Emergency? We're Here 24/7
+          </h2>
+          <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Get connected with certified restoration professionals in minutes. 
+            Insurance approved. National pricing guidelines implemented.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
+              <Link href="/book-service">
+                Submit Emergency Claim
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg" asChild>
+              <Link href="/services">
+                View All Services
+                <FileText className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+        
+        {/* Flooding Effect at Bottom */}
+        <FloodingEffect />
+      </section>
+
+      {/* Customer Journey Wizard */}
+      <CustomerJourneyWizard />
+      
+      {/* Transparency Hub Section */}
+      <TransparencyHub />
     </div>
+    </>
   );
 }
