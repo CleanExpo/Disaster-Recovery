@@ -115,7 +115,7 @@ export default function HomePage() {
                     <Globe className="h-10 w-10 text-purple-600 mx-auto mb-3" />
                     <h3 className="font-semibold mb-1">Email Support</h3>
                     <p className="text-sm text-gray-600">Detailed help</p>
-                    <p className="text-xs text-green-600 mt-2">< 1hr response</p>
+                    <p className="text-xs text-green-600 mt-2">&lt; 1hr response</p>
                   </CardContent>
                 </Card>
               </motion.div>
