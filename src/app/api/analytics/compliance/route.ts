@@ -152,7 +152,11 @@ export async function GET(req: NextRequest) {
         compliance: complianceReport,
         contractors: detailedData.map(contractor => ({
           ...contractor,
-          certifications: contractor.certifications ? JSON.parse(contractor.certifications as string) : [],
+          certifications: contractor.certifications ? 
+            (typeof contractor.certifications === 'string' ? 
+              (contractor.certifications.startsWith('[') ? JSON.parse(contractor.certifications) : [contractor.certifications]) 
+              : []) 
+            : [],
           complianceScore: calculateContractorComplianceScore(contractor, now)
         }))
       });
