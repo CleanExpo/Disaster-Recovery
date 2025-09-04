@@ -639,7 +639,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         userExperience: 9,
         performance: 3,
         accessibility: 8,
-        // maintainability: 7
+        maintainability: 7
       }
     })
 
@@ -693,7 +693,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         userExperience: 8,
         performance: 4,
         accessibility: 5,
-        // maintainability: 6
+        maintainability: 6
       }
     })
 
@@ -720,7 +720,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
           userExperience: 7,
           performance: 2,
           accessibility: 6,
-          // maintainability: 5
+          maintainability: 5
         }
       })
     }

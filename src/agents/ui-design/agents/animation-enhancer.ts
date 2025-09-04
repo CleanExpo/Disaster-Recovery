@@ -1170,7 +1170,7 @@ export class AnimationEnhancerAgent implements UIAgent {
         userExperience: 9,
         performance: 8,
         accessibility: 5,
-        // maintainability: 7
+        maintainability: 7
       }
     })
 
@@ -1197,7 +1197,7 @@ export class AnimationEnhancerAgent implements UIAgent {
           userExperience: 8,
           performance: 2,
           accessibility: 6,
-          // maintainability: 5
+          maintainability: 5
         }
       })
     }

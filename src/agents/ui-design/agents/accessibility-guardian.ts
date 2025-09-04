@@ -661,7 +661,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
         userExperience: 6,
         performance: 2,
         accessibility: 10,
-        // maintainability: 8
+        maintainability: 8
       }
     })
 
@@ -687,7 +687,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
         userExperience: 7,
         performance: 1,
         accessibility: 9,
-        // maintainability: 7
+        maintainability: 7
       }
     })
 
@@ -714,7 +714,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
           userExperience: 7,
           performance: 1,
           accessibility: 9,
-          // maintainability: 5
+          maintainability: 5
         }
       })
     }
@@ -736,7 +736,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
           userExperience: 8,
           performance: 1,
           accessibility: 10,
-          // maintainability: 6
+          maintainability: 6
         }
       })
     }

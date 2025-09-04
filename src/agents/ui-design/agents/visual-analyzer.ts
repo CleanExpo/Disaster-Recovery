@@ -222,7 +222,7 @@ export class VisualAnalyzerAgent implements UIAgent {
           userExperience: 8,
           performance: 0,
           accessibility: 0,
-          // maintainability: 7
+          maintainability: 7
         }
       })
     }
@@ -288,7 +288,7 @@ export class VisualAnalyzerAgent implements UIAgent {
           userExperience: 7,
           performance: 1,
           accessibility: 2,
-          // maintainability: 8
+          maintainability: 8
         }
       })
     }
@@ -357,7 +357,7 @@ export class VisualAnalyzerAgent implements UIAgent {
           userExperience: 6,
           performance: 0,
           accessibility: 0,
-          // maintainability: 9
+          maintainability: 9
         }
       })
     }
@@ -450,7 +450,7 @@ export class VisualAnalyzerAgent implements UIAgent {
           userExperience: 9,
           performance: 0,
           accessibility: 8,
-          // maintainability: 6
+          maintainability: 6
         }
       })
     }
