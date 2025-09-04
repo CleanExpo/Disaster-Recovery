@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, MessageCircle, Globe, CheckCircle, 
@@ -9,7 +9,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
-// FIXED VERSION - No overlaps, single chat, storm in background
 export default function HomePage() {
   return (
     <div className="min-h-screen">
