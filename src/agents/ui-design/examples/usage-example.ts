@@ -71,8 +71,7 @@ async function improveButtonComponent() {
       `
     },
     accessibility: {
-      role: 'button',
-      focusable: true
+      role: 'button'
     }
   }
 
