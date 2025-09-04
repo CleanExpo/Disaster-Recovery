@@ -20,6 +20,8 @@ import { PricingGuidelines, ContractorPricingInfo } from '@/components/pricing/P
 import { ComprehensiveSEO, EmergencyContactBar } from '@/components/seo/ComprehensiveSEO';
 import { EnhancedChatBot } from '@/components/chat/EnhancedChatBot';
 import { TransparencyHub } from '@/components/transparency/TransparencyHub';
+import UXEnhancements from '@/components/ux/UXEnhancements';
+import { CustomerJourneyWizard } from '@/components/journey/CustomerJourney';
 import styles from './page.module.css';
 
 export default function CleanLandingPage() {
@@ -144,6 +146,9 @@ export default function CleanLandingPage() {
       
       {/* Emergency Contact Bar */}
       <EmergencyContactBar />
+      
+      {/* UX Enhancements */}
+      <UXEnhancements />
       
       {/* Enhanced Chat Bot */}
       <EnhancedChatBot />
@@ -619,6 +624,9 @@ export default function CleanLandingPage() {
         <FloodingEffect />
       </section>
 
+      {/* Customer Journey Wizard */}
+      <CustomerJourneyWizard />
+      
       {/* Transparency Hub Section */}
       <TransparencyHub />
     </div>
