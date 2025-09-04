@@ -20,7 +20,7 @@ import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import MobileNav from '@/components/mobile/MobileNav'
 import MobileFAB from '@/components/mobile/MobileFAB'
 import { LiveChat } from '@/components/support/LiveChat'
-import { AudioSystem, AudioEmergencyProvider } from '@/components/audio/AudioSystem'
+import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -227,22 +227,20 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <AudioEmergencyProvider>
-            <div className="hidden lg:block">
-              <UltraModernHeader />
-            </div>
-            <MobileNav />
-            <main id="main-content" className="min-h-screen">
-              {children}
-            </main>
-            <div className="pb-16 lg:pb-0">
-              <UltraModernFooter />
-            </div>
-            <MobileFAB />
-            <MobileEmergencyCTA />
-            <LiveChat />
-            <AudioSystem enabled />
-          </AudioEmergencyProvider>
+          <div className="hidden lg:block">
+            <UltraModernHeader />
+          </div>
+          <MobileNav />
+          <main id="main-content" className="min-h-screen">
+            {children}
+          </main>
+          <div className="pb-16 lg:pb-0">
+            <UltraModernFooter />
+          </div>
+          <MobileFAB />
+          <MobileEmergencyCTA />
+          <LiveChat />
+          <AudioSystemSimple />
         </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}
