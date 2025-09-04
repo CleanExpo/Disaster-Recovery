@@ -10,9 +10,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 // FIXED VERSION - No overlaps, single chat, storm in background
-export default function FixedHomePage() {
+export default function HomePage() {
   return (
-    <>
+    <div className="min-h-screen">
       {/* Storm Effects - BACKGROUND ONLY with negative z-index */}
       <div 
         className="fixed inset-0 pointer-events-none"
@@ -377,6 +377,6 @@ export default function FixedHomePage() {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
