@@ -202,7 +202,7 @@ const nextConfig = {
   generateEtags: true,
 
   // Output configuration
-  output: 'standalone',
+  // Removed 'standalone' as it can cause issues with Vercel
   distDir: '.next',
 };
 
