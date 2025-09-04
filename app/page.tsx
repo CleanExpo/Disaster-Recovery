@@ -15,6 +15,9 @@ import LightningEffect from '@/components/effects/LightningEffect';
 import FloodingEffect from '@/components/effects/FloodingEffect';
 import StormCloudBackground from '@/components/StormCloudBackground';
 import EnhancedStormSystem from '@/components/EnhancedStormSystem';
+import { AuthorProfile, defaultAuthors } from '@/components/eeat/AuthorProfile';
+import { TrustBadges, IndustryStats, InsurancePartners } from '@/components/eeat/TrustBadges';
+import { TestimonialsSection } from '@/components/eeat/TestimonialsSection';
 import styles from './page.module.css';
 
 export default function CleanLandingPage() {
@@ -557,6 +560,41 @@ export default function CleanLandingPage() {
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* E-E-A-T Trust Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <IndustryStats />
+          
+          <div className="mt-12">
+            <TrustBadges variant="compact" />
+          </div>
+          
+          <div className="mt-12">
+            <InsurancePartners />
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Testimonials Section */}
+      <TestimonialsSection limit={6} />
+      
+      {/* Expert Team Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Led by Industry Experts</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Our leadership team brings decades of experience in disaster recovery, insurance, and technology
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <AuthorProfile author={defaultAuthors.technical} variant="compact" />
+            <AuthorProfile author={defaultAuthors.operations} variant="compact" />
+            <AuthorProfile author={defaultAuthors.compliance} variant="compact" />
           </div>
         </div>
       </section>
