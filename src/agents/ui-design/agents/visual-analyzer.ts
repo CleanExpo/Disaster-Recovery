@@ -94,10 +94,20 @@ export class VisualAnalyzerAgent implements UIAgent {
           props: child.props,
           styles: child.styles.base as any,
           children: [],
-          accessibility: child.accessibility || { focusable: false },
+          accessibility: {
+            role: child.accessibility?.role,
+            ariaLabel: child.accessibility?.['aria-label'],
+            tabIndex: child.accessibility?.tabindex,
+            focusable: child.accessibility?.tabindex !== -1 ?? true
+          },
           metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
         })),
-        accessibility: context.component.accessibility || { focusable: false },
+        accessibility: {
+          role: context.component.accessibility?.role,
+          ariaLabel: context.component.accessibility?.['aria-label'],
+          tabIndex: context.component.accessibility?.tabindex,
+          focusable: context.component.accessibility?.tabindex !== -1 ?? true
+        },
         metrics: { renderTime: 0, size: { width: 0, height: 0 }, position: { x: 0, y: 0 } }
       })
 
