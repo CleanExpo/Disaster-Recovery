@@ -142,8 +142,7 @@ export async function GET(req: NextRequest) {
           email: true,
           certifications: true,
           onboardingStep: true,
-          createdAt: true,
-          qualityScore: true
+          createdAt: true
         },
         take: 100 // Limit for performance
       });
@@ -175,7 +174,7 @@ export async function GET(req: NextRequest) {
 
 function calculateContractorComplianceScore(contractor: any, now: Date): number {
   let score = 0;
-  let maxScore = 4;
+  let maxScore = 2;
 
   // Certification check
   if (contractor.certifications && contractor.certifications.includes('IICRC')) {
@@ -184,16 +183,6 @@ function calculateContractorComplianceScore(contractor: any, now: Date): number 
 
   // Training completion
   if (contractor.onboardingStep >= 14) {
-    score += 1;
-  }
-
-  // Insurance validity
-  if (contractor.insuranceExpiry && new Date(contractor.insuranceExpiry) >= now) {
-    score += 1;
-  }
-
-  // Activity (last 30 days)
-  if (contractor.lastActivityAt && new Date(contractor.lastActivityAt) >= new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000)) {
     score += 1;
   }
 
