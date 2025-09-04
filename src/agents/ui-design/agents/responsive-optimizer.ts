@@ -453,7 +453,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
         ]
       },
       metrics: {
-        maintainability: 9,
+        // maintainability: 9,
         userExperienceScore: 7
       }
     })
@@ -577,7 +577,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
         userExperience: 9,
         performance: 6,
         accessibility: 5,
-        maintainability: 8
+        // maintainability: 8
       }
     })
 
@@ -629,7 +629,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
         userExperience: 8,
         performance: 7,
         accessibility: 6,
-        maintainability: 7
+        // maintainability: 7
       }
     })
 
@@ -808,7 +808,7 @@ export class ResponsiveOptimizerAgent implements UIAgent {
           userExperience: 9,
           performance: 2,
           accessibility: 8,
-          maintainability: 5
+          // maintainability: 5
         }
       })
     }

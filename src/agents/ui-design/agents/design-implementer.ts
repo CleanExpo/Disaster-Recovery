@@ -549,7 +549,7 @@ export class DesignImplementerAgent implements UIAgent {
         ]
       },
       metrics: {
-        maintainability: 10,
+        // maintainability: 10,
         userExperienceScore: 8
       }
     })
@@ -572,7 +572,7 @@ export class DesignImplementerAgent implements UIAgent {
         ]
       },
       metrics: {
-        maintainability: 9,
+        // maintainability: 9,
         userExperienceScore: 9
       }
     })
@@ -623,7 +623,7 @@ export class DesignImplementerAgent implements UIAgent {
         userExperience: 9,
         performance: 5,
         accessibility: 8,
-        maintainability: 10
+        // maintainability: 10
       }
     })
 
@@ -658,7 +658,7 @@ export class DesignImplementerAgent implements UIAgent {
         userExperience: 7,
         performance: 3,
         accessibility: 5,
-        maintainability: 10
+        // maintainability: 10
       }
     })
 
@@ -833,7 +833,7 @@ export class DesignImplementerAgent implements UIAgent {
           userExperience: 7,
           performance: 2,
           accessibility: 5,
-          maintainability: 8
+          // maintainability: 8
         }
       }
     ]
