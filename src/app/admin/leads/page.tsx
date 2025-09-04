@@ -454,7 +454,6 @@ export default function LeadManagementDashboard() {
                     <td className="px-6 py-4">
                       <div>
                         <p className="text-sm font-medium text-gray-900">{lead.customer.name}</p>
-                        <p className="text-xs text-gray-500">{lead.customer.phone}</p>
                         <p className="text-xs text-gray-500">{lead.customer.suburb}, {lead.customer.state}</p>
                       </div>
                     </td>
@@ -549,10 +548,6 @@ export default function LeadManagementDashboard() {
                   <div>
                     <p className="text-sm text-gray-600">Name</p>
                     <p className="font-medium">{selectedLead.customer.name}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Phone</p>
-                    <p className="font-medium">{selectedLead.customer.phone}</p>
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
