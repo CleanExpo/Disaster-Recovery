@@ -329,7 +329,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
           bundleSize: 0, 
           cacheHits: 0, 
           memoryUsage: 0, 
-          frameRate: 60 
+          frameRate: 60,
+          coreWebVitals: {
+            lcp: 0,
+            fid: 0,
+            cls: 0
+          }
         },
         bottlenecks: [],
         optimizations: []
@@ -377,7 +382,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
           bundleSize: 0, 
           cacheHits: 0, 
           memoryUsage: 0, 
-          frameRate: 60 
+          frameRate: 60,
+          coreWebVitals: {
+            lcp: 0,
+            fid: 0,
+            cls: 0
+          }
         },
         bottlenecks: [],
         optimizations: []
@@ -427,7 +437,12 @@ export class DarkModeSpecialistAgent implements UIAgent {
           bundleSize: 0, 
           cacheHits: 0, 
           memoryUsage: 0, 
-          frameRate: 60 
+          frameRate: 60,
+          coreWebVitals: {
+            lcp: 0,
+            fid: 0,
+            cls: 0
+          }
         },
         bottlenecks: [],
         optimizations: []
@@ -479,8 +494,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         ]
       },
       metrics: {
-        userExperienceScore: 8,
-        maintainability: 9
+        userExperienceScore: 8
       }
     })
 
@@ -625,7 +639,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         userExperience: 9,
         performance: 3,
         accessibility: 8,
-        maintainability: 7
+        // maintainability: 7
       }
     })
 
@@ -679,7 +693,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
         userExperience: 8,
         performance: 4,
         accessibility: 5,
-        maintainability: 6
+        // maintainability: 6
       }
     })
 
@@ -706,7 +720,7 @@ export class DarkModeSpecialistAgent implements UIAgent {
           userExperience: 7,
           performance: 2,
           accessibility: 6,
-          maintainability: 5
+          // maintainability: 5
         }
       })
     }
