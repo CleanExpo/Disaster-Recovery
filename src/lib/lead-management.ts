@@ -186,8 +186,8 @@ export async function validateLeadQuality(data: any): Promise<{
     reasons.push('Invalid name provided');
   }
   
-  if (!data.email || !isValidPhone(data.email)) {
-    reasons.push('Invalid Email Address');
+  if (data.phone && !isValidPhone(data.phone)) {
+    reasons.push('Invalid phone number');
   }
   
   if (!data.email || !isValidEmail(data.email)) {
@@ -211,7 +211,7 @@ export async function validateLeadQuality(data: any): Promise<{
     reasons.push('Potential spam content detected');
   }
   
-  if (await isDuplicateSubmission(data.email, data.email)) {
+  if (await isDuplicateSubmission(data.email, data.phone || '')) {
     reasons.push('Duplicate submission detected');
   }
   
