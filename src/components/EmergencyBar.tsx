@@ -25,17 +25,6 @@ export default function EmergencyBar() {
           
           <div className="flex items-center gap-3">
             <button
-              onClick={() => {
-                const event = new CustomEvent('openChat');
-                window.dispatchEvent(event);
-              }}
-              className="flex items-center gap-1 bg-white text-red-600 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors"
-            >
-              <MessageCircle className="h-4 w-4" />
-              <span className="hidden sm:inline">Live Chat</span>
-            </button>
-            
-            <button
               onClick={() => window.location.href = '/claim'}
               className="flex items-center gap-1 bg-yellow-400 text-gray-900 px-3 py-1.5 rounded-full text-sm font-medium hover:bg-yellow-300 transition-colors"
             >
