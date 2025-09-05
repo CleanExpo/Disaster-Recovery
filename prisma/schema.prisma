@@ -965,3 +965,106 @@ model ContractorAuditLog {
   @@index([category, createdAt])
   @@index([action, createdAt])
 }
+
+// ============================================
+// MISSING MODELS - Added for MVP functionality
+// ============================================
+
+// Onboarding Payment Model (MVP - Placeholder for future Stripe implementation)
+model OnboardingPayment {
+  id                String   @id @default(uuid())
+  contractorId      String
+  amount            Float
+  currency          String   @default("AUD")
+  status            String   @default("pending") // pending, completed, failed
+  stripePaymentId   String?
+  stripeSessionId   String?
+  metadata          String?  // JSON string for additional data
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([contractorId])
+  @@index([status])
+}
+
+// Onboarding Progress Model
+model OnboardingProgress {
+  id           String     @id @default(uuid())
+  contractorId String     @unique
+  currentStep  Int        @default(1)
+  totalSteps   Int        @default(14)
+  completed    Boolean    @default(false)
+  startedAt    DateTime   @default(now())
+  completedAt  DateTime?
+  metadata     String?    // JSON string for step details
+
+  @@index([contractorId])
+}
+
+// Module Progress Model
+model ModuleProgress {
+  id           String   @id @default(uuid())
+  contractorId String
+  moduleName   String
+  completed    Boolean  @default(false)
+  score        Float?
+  attempts     Int      @default(0)
+  startedAt    DateTime @default(now())
+  completedAt  DateTime?
+
+  @@unique([contractorId, moduleName])
+  @@index([contractorId])
+}
+
+// Subscription Pricing Model (MVP - Placeholder)
+model SubscriptionPricing {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  price       Float
+  currency    String   @default("AUD")
+  interval    String   @default("month") // month, year
+  features    String?  // JSON string of features
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+// Error Log Model
+model ErrorLog {
+  id         String   @id @default(uuid())
+  level      String   // error, warning, info
+  message    String
+  stack      String?
+  metadata   String?  // JSON string for additional context
+  source     String?  // API route, function name, etc.
+  userId     String?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([level])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+// Audit Log Model
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  action     String   // login, logout, create, update, delete, etc.
+  resource   String   // user, contractor, lead, etc.
+  resourceId String?
+  details    String?  // JSON string of changes
+  ipAddress  String?
+  userAgent  String?
+  success    Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([createdAt])
+}
