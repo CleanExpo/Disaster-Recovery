@@ -33,7 +33,7 @@ async function fixAllPageFiles() {
     return files;
   }
   
-  const pageFiles = await findPageFiles('src/app');
+  const pageFiles = await findPageFiles('app');
   console.log(`Found ${pageFiles.length} page files to check\n`);
   
   // Fix each page file

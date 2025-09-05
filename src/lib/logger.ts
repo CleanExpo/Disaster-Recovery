@@ -13,7 +13,11 @@ export type LogCategory =
   | 'background-check'
   | 'security'
   | 'performance'
-  | 'system';
+  | 'system'
+  | 'bot'
+  | 'email'
+  | 'lead'
+  | 'audit';
 
 interface LogContext {
   userId?: string;
@@ -295,6 +299,56 @@ class Logger {
     if (error) {
       this.error('api', `API Error: ${method} ${path}`, error, { userId });
     }
+  }
+
+  // Bot system logging
+  logBotInteraction(sessionId: string, message: string, response: string, confidence: number): void {
+    this.info('bot', 'Bot interaction', { sessionId }, { 
+      userMessage: message,
+      botResponse: response,
+      confidence 
+    });
+  }
+
+  logBotError(sessionId: string, error: Error, context?: Record<string, any>): void {
+    this.error('bot', 'Bot system error', error, { sessionId }, context);
+  }
+
+  // Email logging
+  logEmailSent(to: string, template: string, success: boolean, error?: Error): void {
+    const level = success ? 'info' : 'error';
+    this.log(level as LogLevel, 'email', `Email ${template} ${success ? 'sent' : 'failed'}`, {}, {
+      to,
+      template,
+      success
+    });
+    if (error) {
+      this.error('email', `Failed to send email: ${template}`, error, {}, { to });
+    }
+  }
+
+  // Lead management logging
+  logLeadAssignment(leadId: string, contractorId: string, success: boolean, metadata?: Record<string, any>): void {
+    this.info('lead', `Lead assignment ${success ? 'successful' : 'failed'}`, {
+      contractorId
+    }, {
+      leadId,
+      ...metadata
+    });
+  }
+
+  logLeadCreation(leadData: any, source: string): void {
+    this.info('lead', 'New lead created', {}, {
+      leadId: leadData.id,
+      source,
+      urgency: leadData.urgencyLevel,
+      value: leadData.leadValue
+    });
+  }
+
+  // Audit logging
+  logAuditEvent(userId: string, action: string, resource: string, details?: any): void {
+    this.info('audit', `${action} on ${resource}`, { userId }, details);
   }
 
   // Cleanup

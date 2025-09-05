@@ -49,7 +49,7 @@ const CRITICAL_CHECKS = {
     name: 'Commercial Page Functionality',
     files: [
       {
-        path: 'src/app/services/commercial/page.tsx',
+        path: 'app/services/commercial/page.tsx',
         mustNotContain: [
           'ServicePageLayout', // This was causing freezing
           'import { ServicePageLayout'
@@ -61,7 +61,7 @@ const CRITICAL_CHECKS = {
       }
     ],
     mustNotExist: [
-      'src/app/commercial/page.tsx' // Duplicate that causes routing issues
+      'app/commercial/page.tsx' // Duplicate that causes routing issues
     ]
   },
   
@@ -69,7 +69,7 @@ const CRITICAL_CHECKS = {
     name: 'Investment Pitch Completeness',
     files: [
       {
-        path: 'src/app/pitch/page.tsx',
+        path: 'app/pitch/page.tsx',
         mustContain: [
           'PITCH_SLIDES',
           'Series A Investment',
@@ -84,12 +84,12 @@ const CRITICAL_CHECKS = {
   criticalPages: {
     name: 'Critical Pages Exist',
     mustExist: [
-      'src/app/page.tsx',
-      'src/app/pitch/page.tsx',
-      'src/app/contact/page.tsx',
-      'src/app/services/page.tsx',
-      'src/app/crm/page.tsx',
-      'src/app/about/page.tsx'
+      'app/page.tsx',
+      'app/pitch/page.tsx',
+      'app/contact/page.tsx',
+      'app/services/page.tsx',
+      'app/crm/page.tsx',
+      'app/about/page.tsx'
     ]
   },
   
