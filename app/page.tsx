@@ -9,6 +9,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
+import EmergencyBar from '@/components/EmergencyBar';
+import Footer from '@/components/Footer';
 import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple';
 import EnhancedChatBot from '@/components/chat/EnhancedChatBot';
 
@@ -26,6 +28,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      {/* Emergency Response Bar - TOP PRIORITY */}
+      <EmergencyBar />
+      
       {/* Storm Effects - BACKGROUND ONLY with negative z-index */}
       <div 
         className="fixed inset-0 pointer-events-none"
@@ -42,8 +47,10 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Proper Header with dropdowns */}
-      <Header />
+      {/* Proper Header with dropdowns - adjusted for emergency bar */}
+      <div style={{ paddingTop: '60px' }}>
+        <Header />
+      </div>
 
       {/* Audio System */}
       <AudioSystemSimple />
@@ -51,17 +58,17 @@ export default function HomePage() {
       {/* Main Content - PROPERLY OFFSET from header */}
       <main className="relative" style={{ paddingTop: '80px', zIndex: 1 }}>
         
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-b from-blue-50/95 to-white/95 backdrop-blur-sm">
+        {/* Hero Section with Gradient Overlay */}
+        <section className="py-20 bg-gradient-to-b from-blue-50/95 to-white/95 backdrop-blur-sm hero-gradient-overlay">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+                className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 hero-title"
               >
                 Australia's #1 Digital Disaster
-                <span className="block text-blue-600">Recovery Platform</span>
+                <span className="block gradient-text">Recovery Platform</span>
               </motion.h1>
 
               <motion.p
@@ -81,27 +88,27 @@ export default function HomePage() {
                 transition={{ delay: 0.2 }}
                 className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8"
               >
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-white/95">
-                  <CardContent className="p-6 text-center">
-                    <MessageCircle className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+                <Card className="card-hover glass cursor-pointer bg-white/95 overflow-hidden group">
+                  <CardContent className="p-6 text-center relative">
+                    <MessageCircle className="h-10 w-10 text-blue-600 mx-auto mb-3 floating" />
                     <h3 className="font-semibold mb-1">Live Chat</h3>
                     <p className="text-sm text-gray-600">Instant response</p>
-                    <p className="text-xs text-green-600 mt-2">Available Now</p>
+                    <p className="text-xs text-green-600 mt-2 shimmer">Available Now</p>
                   </CardContent>
                 </Card>
 
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-white/95">
-                  <CardContent className="p-6 text-center">
-                    <Globe className="h-10 w-10 text-green-600 mx-auto mb-3" />
+                <Card className="card-hover glass cursor-pointer bg-white/95 overflow-hidden group">
+                  <CardContent className="p-6 text-center relative">
+                    <Globe className="h-10 w-10 text-green-600 mx-auto mb-3 floating" style={{ animationDelay: '0.5s' }} />
                     <h3 className="font-semibold mb-1">Online Claim</h3>
                     <p className="text-sm text-gray-600">2-minute form</p>
                     <p className="text-xs text-green-600 mt-2">Quick & Easy</p>
                   </CardContent>
                 </Card>
 
-                <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-white/95">
-                  <CardContent className="p-6 text-center">
-                    <Mail className="h-10 w-10 text-purple-600 mx-auto mb-3" />
+                <Card className="card-hover glass cursor-pointer bg-white/95 overflow-hidden group">
+                  <CardContent className="p-6 text-center relative">
+                    <Mail className="h-10 w-10 text-purple-600 mx-auto mb-3 floating" style={{ animationDelay: '1s' }} />
                     <h3 className="font-semibold mb-1">Email Support</h3>
                     <p className="text-sm text-gray-600">Detailed help</p>
                     <p className="text-xs text-green-600 mt-2">&lt; 1hr response</p>
@@ -118,23 +125,23 @@ export default function HomePage() {
               >
                 <Button 
                   size="lg" 
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg"
+                  className="btn-primary text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transform transition-all duration-300"
                   onClick={() => {
                     const event = new CustomEvent('openChat');
                     window.dispatchEvent(event);
                   }}
                 >
                   Start Live Chat
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="px-8 py-6 text-lg bg-white/95"
+                  className="px-8 py-6 text-lg bg-white/95 border-gradient hover:scale-105 transition-all duration-300"
                   onClick={() => window.location.href = '/claim'}
                 >
                   Submit Online Claim
-                  <Globe className="ml-2 h-5 w-5" />
+                  <Globe className="ml-2 h-5 w-5 animate-pulse" />
                 </Button>
               </motion.div>
             </div>
@@ -159,9 +166,10 @@ export default function HomePage() {
                   key={index}
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, rotateZ: 1 }}
+                  transition={{ delay: index * 0.1, type: "spring", stiffness: 300 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                  className="service-card bg-white rounded-xl p-6 shadow-lg cursor-pointer glass"
                 >
                   {service.urgent && (
                     <span className="inline-block px-2 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-full mb-3">
@@ -401,6 +409,9 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+
+      {/* Footer */}
+      <Footer />
 
       {/* SINGLE Enhanced Chat Bot - No duplicates */}
       <EnhancedChatBot />
