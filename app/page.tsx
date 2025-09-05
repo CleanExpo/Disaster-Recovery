@@ -11,7 +11,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import EmergencyBar from '@/components/EmergencyBar';
 import Footer from '@/components/Footer';
-import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple';
 import EnhancedChatBot from '@/components/chat/EnhancedChatBot';
 
 export default function HomePage() {
@@ -47,16 +46,13 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Proper Header with dropdowns - adjusted for emergency bar */}
-      <div style={{ paddingTop: '60px' }}>
+      {/* Proper Header with dropdowns - properly spaced from emergency bar */}
+      <div style={{ paddingTop: '50px' }}>
         <Header />
       </div>
 
-      {/* Audio System */}
-      <AudioSystemSimple />
-
-      {/* Main Content - PROPERLY OFFSET from header */}
-      <main className="relative" style={{ paddingTop: '80px', zIndex: 1 }}>
+      {/* Main Content - PROPERLY OFFSET from both emergency bar and header */}
+      <main className="relative" style={{ paddingTop: '20px', zIndex: 1 }}>
         
         {/* Hero Section with Gradient Overlay */}
         <section className="py-20 bg-gradient-to-b from-blue-50/95 to-white/95 backdrop-blur-sm hero-gradient-overlay">
