@@ -102,6 +102,15 @@ export default function HomePage() {
                   Submit Online Claim
                   <Globe className="ml-2 h-5 w-5 animate-pulse" />
                 </Button>
+                
+                <Button 
+                  size="lg" 
+                  className="ml-4 px-8 py-6 text-lg bg-purple-600 hover:bg-purple-700 text-white hover:scale-105 transition-all duration-300"
+                  onClick={() => window.location.href = '/demo/workflow'}
+                >
+                  View Workflow Demo
+                  <Zap className="ml-2 h-5 w-5" />
+                </Button>
               </motion.div>
             </div>
           </div>
