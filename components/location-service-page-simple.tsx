@@ -12,7 +12,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
   // Extract city name from data
   const location = data.location || {};
   const city = location.city || 'Your Area';
-  const suburbs = location.suburbs || [];
+  const suburbs = data.content?.serviceAreas || location.suburbs || [];
   
   // Determine service icon based on title
   const getServiceIcon = () => {
@@ -115,13 +115,115 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
       <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: data.content || '' }} />
+            {/* Introduction */}
+            {data.content?.intro && (
+              <p className="text-xl text-gray-700 mb-8">{data.content.intro}</p>
+            )}
+            
+            {/* Key Features */}
+            {data.content?.keyFeatures && data.content.keyFeatures.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">Why Choose Our Services</h2>
+                <ul className="space-y-2">
+                  {data.content.keyFeatures.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* Emergency Response */}
+            {data.content?.emergencyResponse && (
+              <div className="bg-blue-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <AlertTriangle className="w-6 h-6 text-blue-600" />
+                  Emergency Response
+                </h3>
+                <p>{data.content.emergencyResponse}</p>
+              </div>
+            )}
+            
+            {/* Local Knowledge */}
+            {data.content?.localKnowledge && data.content.localKnowledge.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-4">Local Expertise</h3>
+                <ul className="space-y-2">
+                  {data.content.localKnowledge.map((knowledge, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <MapPin className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span>{knowledge}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* Common Issues */}
+            {data.content?.commonIssues && data.content.commonIssues.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-4">Common Issues We Handle</h3>
+                <ul className="grid md:grid-cols-2 gap-3">
+                  {data.content.commonIssues.map((issue, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>{issue}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            
+            {/* Insurance Partners */}
+            {data.content?.insurancePartners && data.content.insurancePartners.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Shield className="w-6 h-6 text-blue-600" />
+                  Insurance Partners
+                </h3>
+                <p className="mb-4">We work directly with all major insurance companies:</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {data.content.insurancePartners.map((partner, idx) => (
+                    <div key={idx} className="bg-gray-50 p-3 rounded text-center font-medium">
+                      {partner}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Testimonial */}
+            {data.content?.testimonial && (
+              <div className="bg-gray-50 p-6 rounded-lg mb-8 border-l-4 border-blue-600">
+                <p className="italic text-lg mb-3">"{data.content.testimonial.text}"</p>
+                <p className="font-semibold">- {data.content.testimonial.author}, {data.content.testimonial.suburb}</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
+      {/* FAQs */}
+      {data.faqs && data.faqs.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-6">
+              {data.faqs.map((faq, idx) => (
+                <div key={idx} className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
+                  <p className="text-gray-700">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Related Links */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-8">Related Resources</h2>
           <div className="grid md:grid-cols-4 gap-6">
