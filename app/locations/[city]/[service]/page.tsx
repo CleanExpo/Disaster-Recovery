@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { LocationServiceGenerator } from '../../../../lib/location-service-generator';
-import LocationServicePageComponent from '../../../../components/location-service-page';
+import LocationServicePageComponent from '../../../../components/location-service-page-simple';
 
 // Generate static params for all location-service combinations
 export async function generateStaticParams() {
@@ -62,8 +62,6 @@ export async function generateMetadata({ params }: { params: { city: string; ser
 }
 
 export default function LocationServicePage({ params }: { params: { city: string; service: string } }) {
-  const generator = new LocationServiceGenerator();
-  
   // Validate params
   const validCities = ['sydney', 'melbourne', 'brisbane', 'perth', 'adelaide', 'darwin', 'hobart', 'canberra', 'newcastle', 'wollongong', 'gold-coast', 'sunshine-coast', 'geelong', 'townsville', 'cairns'];
   const validServices = ['water-damage-restoration', 'fire-damage-restoration', 'storm-damage-repairs', 'mould-remediation', 'flood-recovery', 'emergency-restoration'];
@@ -73,7 +71,8 @@ export default function LocationServicePage({ params }: { params: { city: string
   }
   
   // Generate page data
-  const pageData = generator.generatePageData(params.city, params.service);
+  const generator = new LocationServiceGenerator();
+  const pageData = generator.generatePage(params.service, params.city);
   
   return <LocationServicePageComponent data={pageData} />;
 }

@@ -22,33 +22,26 @@ import {
 } from 'lucide-react';
 
 interface LocationServicePageProps {
-  data: {
-    city: string;
-    service: string;
-    title: string;
-    description: string;
-    suburbs: string[];
-    emergencyResponse: string;
-    insuranceInfo: string;
-    processSteps: string[];
-    whyChooseUs: string[];
-    faqs: { question: string; answer: string }[];
-    relatedServices: { name: string; link: string }[];
-    nearbyLocations: { name: string; link: string }[];
-  };
+  data: any; // Using any for now to match the generator output
 }
 
 export default function LocationServicePageComponent({ data }: LocationServicePageProps) {
-  const getServiceIcon = (service: string) => {
-    if (service.includes('water')) return '💧';
-    if (service.includes('fire')) return '🔥';
-    if (service.includes('storm')) return '⛈️';
-    if (service.includes('mould')) return '🦠';
-    if (service.includes('flood')) return '🌊';
+  // Extract data with fallbacks
+  const title = data.h1 || data.title || 'Disaster Recovery Services';
+  const description = data.metaDescription || '';
+  const city = data.location?.city || 'Your Area';
+  const suburbs = data.location?.suburbs || [];
+  
+  const getServiceIcon = (title: string) => {
+    if (title.includes('Water')) return '💧';
+    if (title.includes('Fire')) return '🔥';
+    if (title.includes('Storm')) return '⛈️';
+    if (title.includes('Mould')) return '🦠';
+    if (title.includes('Flood')) return '🌊';
     return '🚨';
   };
 
-  const serviceIcon = getServiceIcon(data.service);
+  const serviceIcon = getServiceIcon(title);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
@@ -64,10 +57,10 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             <div className="text-center">
               <span className="text-6xl mb-6 block">{serviceIcon}</span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                {data.title}
+                {title}
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-blue-100">
-                {data.description}
+                {description}
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
