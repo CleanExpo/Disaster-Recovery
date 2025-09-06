@@ -475,17 +475,22 @@ export default function UltraModernHeader() {
                     />
                   </Link>
 
-                  {/* Dropdown Menu */}
+                  {/* Dropdown Menu with invisible bridge */}
                   {item.dropdown && (
-                    <div
-                      role="menu"
-                      aria-labelledby={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                      className={`absolute top-full left-0 mt-2 transition-all duration-300 ${
-                        activeDropdown === item.label 
-                          ? 'opacity-100 translate-y-0 pointer-events-auto' 
-                          : 'opacity-0 -translate-y-2 pointer-events-none'
-                      }`}
-                    >
+                    <>
+                      {/* Invisible bridge to maintain hover */}
+                      {activeDropdown === item.label && (
+                        <div className="absolute top-full left-0 w-full h-2 pointer-events-auto" />
+                      )}
+                      <div
+                        role="menu"
+                        aria-labelledby={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                        className={`absolute top-full left-0 pt-2 transition-all duration-300 ${
+                          activeDropdown === item.label 
+                            ? 'opacity-100 translate-y-0 pointer-events-auto' 
+                            : 'opacity-0 -translate-y-2 pointer-events-none'
+                        }`}
+                      >
                       <div 
                         className="w-72 rounded-2xl overflow-hidden"
                         style={{
@@ -543,8 +548,11 @@ export default function UltraModernHeader() {
 
                             {/* Sub-dropdown for forms */}
                             {subItem.subDropdown && activeSubDropdown === subItem.label && (
-                              <div
-                                className="absolute left-full top-0 ml-2 w-80 transition-all duration-300"
+                              <>
+                                {/* Invisible bridge for sub-dropdown */}
+                                <div className="absolute left-full top-0 w-2 h-full pointer-events-auto" />
+                                <div
+                                  className="absolute left-full top-0 pl-2 w-80 transition-all duration-300"
                                 style={{
                                   background: 'rgba(0, 0, 0, 0.98)',
                                   backdropFilter: 'blur(20px)',
@@ -569,11 +577,13 @@ export default function UltraModernHeader() {
                                   </div>
                                 </div>
                               </div>
+                              </>
                             )}
                           </div>
                         ))}
                       </div>
                     </div>
+                    </>
                   )}
                 </div>
               ))}
