@@ -238,7 +238,7 @@ export default function WaterDamageChecklistPage() {
             </div>
             <div className="bg-red-50 border-2 border-red-400 rounded-lg p-4">
               <X className="w-8 h-8 text-red-600 mb-2" />
-              <h3 className="font-bold mb-2">Don't Dispose</h3>
+              <h3 className="font-bold mb-2">Do Not Dispose</h3>
               <p className="text-sm">Keep all damaged items until insurance adjuster approves disposal.</p>
             </div>
           </div>

@@ -155,7 +155,7 @@ export default function EmergencyChecklistsPage() {
               <h3 className="text-xl font-bold mb-3">Insurance Must-Dos</h3>
               <ul className="space-y-2 text-gray-700">
                 <li>• Take photos immediately</li>
-                <li>• Don't throw anything away</li>
+                <li>• Do not throw anything away</li>
                 <li>• Keep all receipts</li>
                 <li>• Call insurer within 24hrs</li>
               </ul>

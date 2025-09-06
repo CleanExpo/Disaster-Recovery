@@ -416,7 +416,7 @@ export default function InsuranceDecoderHub() {
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">
-            Don't Let Confusion Cost You Coverage
+            Do Not Let Confusion Cost You Coverage
           </h2>
           <p className="text-xl mb-8">
             Understanding your policy BEFORE disaster strikes can mean the difference 

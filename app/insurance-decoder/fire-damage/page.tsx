@@ -87,7 +87,7 @@ export default function FireDamageInsurancePage() {
     {
       phase: 'Immediate (0-24 hours)',
       actions: [
-        'Ensure safety - don't enter until cleared',
+        'Ensure safety - do not enter until cleared',
         'Call insurance company',
         'Document everything with photos/video',
         'Get fire report from fire department',
@@ -392,14 +392,14 @@ export default function FireDamageInsurancePage() {
             
             <div className="bg-white rounded-xl shadow-lg p-6">
               <AlertCircle className="w-10 h-10 text-orange-600 mb-4" />
-              <h3 className="text-xl font-bold mb-4">Critical Don'ts</h3>
+              <h3 className="text-xl font-bold mb-4">Critical Do Not List</h3>
               <ul className="space-y-2 text-gray-700">
-                <li>• Don't throw away damaged items</li>
-                <li>• Don't sign quick settlements</li>
-                <li>• Don't forget hidden damage</li>
-                <li>• Don't clean before documenting</li>
-                <li>• Don't admit fault or negligence</li>
-                <li>• Don't forget smoke damage claims</li>
+                <li>• Do not throw away damaged items</li>
+                <li>• Do not sign quick settlements</li>
+                <li>• Do not forget hidden damage</li>
+                <li>• Do not clean before documenting</li>
+                <li>• Do not admit fault or negligence</li>
+                <li>• Do not forget smoke damage claims</li>
               </ul>
             </div>
           </div>

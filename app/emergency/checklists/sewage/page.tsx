@@ -285,7 +285,7 @@ export default function SewageChecklistPage() {
             <div className="bg-red-900 rounded-lg p-4">
               <X className="w-8 h-8 mb-2" />
               <h3 className="font-bold mb-2">Never Use</h3>
-              <p className="text-sm">Do not use household cleaners - they won't kill pathogens</p>
+              <p className="text-sm">Do not use household cleaners - they will not kill pathogens</p>
             </div>
             <div className="bg-red-900 rounded-lg p-4">
               <X className="w-8 h-8 mb-2" />

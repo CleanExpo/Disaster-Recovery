@@ -267,8 +267,8 @@ export default function FireDamageChecklistPage() {
             </div>
             <div className="bg-blue-50 border-2 border-blue-400 rounded-lg p-4">
               <Shield className="w-8 h-8 text-blue-600 mb-2" />
-              <h3 className="font-bold mb-2">Don't Clean Yet</h3>
-              <p className="text-sm">Don't clean soot or smoke residue before insurance documents it. Improper cleaning can worsen damage.</p>
+              <h3 className="font-bold mb-2">Do Not Clean Yet</h3>
+              <p className="text-sm">Do not clean soot or smoke residue before insurance documents it. Improper cleaning can worsen damage.</p>
             </div>
           </div>
         </div>

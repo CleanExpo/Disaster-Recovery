@@ -29,7 +29,7 @@ export default function StormDamageChecklistPage() {
     { id: 'safety-check', text: 'Check for injuries and provide first aid', critical: true },
     { id: 'structural-damage', text: 'Assess structural damage from safe distance', critical: true },
     { id: 'power-lines', text: 'Stay away from downed power lines', critical: true },
-    { id: 'gas-leaks', text: 'Check for gas leaks (smell, don't use flames)', critical: true },
+    { id: 'gas-leaks', text: 'Check for gas leaks (smell, do not use flames)', critical: true },
     { id: 'photo-damage', text: 'Photograph all damage immediately', critical: false },
     { id: 'call-insurance', text: 'Contact insurance company', critical: false }
   ];
@@ -47,7 +47,7 @@ export default function StormDamageChecklistPage() {
     { id: 'policy-number', text: 'Have policy number ready when calling', critical: false },
     { id: 'adjuster-appointment', text: 'Schedule adjuster visit ASAP', critical: false },
     { id: 'keep-receipts', text: 'Keep all receipts for repairs and expenses', critical: false },
-    { id: 'dont-dispose', text: 'Don't dispose of damaged items until documented', critical: false },
+    { id: 'dont-dispose', text: 'Do not dispose of damaged items until documented', critical: false },
     { id: 'written-estimates', text: 'Get written repair estimates', critical: false },
     { id: 'living-expenses', text: 'Track additional living expenses if displaced', critical: false }
   ];
