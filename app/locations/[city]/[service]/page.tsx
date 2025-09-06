@@ -4,7 +4,6 @@ import LocationServicePageComponent from '../../../../components/location-servic
 
 // Generate static params for all location-service combinations
 export async function generateStaticParams() {
-  const generator = new LocationServiceGenerator();
   const params: { city: string; service: string }[] = [];
   
   const cities = [
@@ -33,8 +32,6 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: { params: { city: string; service: string } }) {
-  const generator = new LocationServiceGenerator();
-  
   // Validate the combination exists
   const validCities = ['sydney', 'melbourne', 'brisbane', 'perth', 'adelaide', 'darwin', 'hobart', 'canberra', 'newcastle', 'wollongong', 'gold-coast', 'sunshine-coast', 'geelong', 'townsville', 'cairns'];
   const validServices = ['water-damage-restoration', 'fire-damage-restoration', 'storm-damage-repairs', 'mould-remediation', 'flood-recovery', 'emergency-restoration'];
@@ -70,9 +67,8 @@ export default function LocationServicePage({ params }: { params: { city: string
     notFound();
   }
   
-  // Generate page data
-  const generator = new LocationServiceGenerator();
-  const pageData = generator.generatePage(params.service, params.city);
+  // Generate page data - use static method with correct parameter order
+  const pageData = LocationServiceGenerator.generateLocationServicePage(params.city, params.service);
   
   return <LocationServicePageComponent data={pageData} />;
 }

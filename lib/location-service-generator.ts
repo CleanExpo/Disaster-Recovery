@@ -105,6 +105,76 @@ export class LocationServiceGenerator {
       ],
       regions: ['City and North Adelaide', 'Eastern Suburbs', 'Western Suburbs', 'Southern Suburbs'],
       population: 1350000
+    },
+    darwin: {
+      city: 'Darwin',
+      state: 'NT',
+      suburbs: ['CBD', 'Casuarina', 'Palmerston', 'Stuart Park', 'Nightcliff'],
+      regions: ['Darwin City', 'Northern Suburbs', 'Palmerston'],
+      population: 150000
+    },
+    hobart: {
+      city: 'Hobart',
+      state: 'TAS',
+      suburbs: ['CBD', 'Sandy Bay', 'Battery Point', 'North Hobart', 'Glenorchy'],
+      regions: ['Greater Hobart', 'Eastern Shore', 'Northern Suburbs'],
+      population: 240000
+    },
+    canberra: {
+      city: 'Canberra',
+      state: 'ACT',
+      suburbs: ['CBD', 'Belconnen', 'Woden', 'Tuggeranong', 'Gungahlin'],
+      regions: ['Inner North', 'Inner South', 'Woden Valley', 'Belconnen'],
+      population: 430000
+    },
+    newcastle: {
+      city: 'Newcastle',
+      state: 'NSW',
+      suburbs: ['CBD', 'Hamilton', 'Merewether', 'Charlestown', 'Mayfield'],
+      regions: ['Newcastle City', 'Lake Macquarie', 'Port Stephens'],
+      population: 320000
+    },
+    wollongong: {
+      city: 'Wollongong',
+      state: 'NSW',
+      suburbs: ['CBD', 'North Wollongong', 'Fairy Meadow', 'Corrimal', 'Figtree'],
+      regions: ['Northern Suburbs', 'Southern Suburbs', 'Illawarra'],
+      population: 300000
+    },
+    'gold-coast': {
+      city: 'Gold Coast',
+      state: 'QLD',
+      suburbs: ['Surfers Paradise', 'Broadbeach', 'Burleigh Heads', 'Coolangatta', 'Southport'],
+      regions: ['Northern Gold Coast', 'Central Gold Coast', 'Southern Gold Coast'],
+      population: 640000
+    },
+    'sunshine-coast': {
+      city: 'Sunshine Coast',
+      state: 'QLD',
+      suburbs: ['Maroochydore', 'Caloundra', 'Noosa', 'Buderim', 'Kawana'],
+      regions: ['Coastal Strip', 'Hinterland', 'Caloundra'],
+      population: 330000
+    },
+    geelong: {
+      city: 'Geelong',
+      state: 'VIC',
+      suburbs: ['CBD', 'Newtown', 'Belmont', 'Corio', 'Lara'],
+      regions: ['Geelong City', 'Bellarine Peninsula', 'Northern Suburbs'],
+      population: 260000
+    },
+    townsville: {
+      city: 'Townsville',
+      state: 'QLD',
+      suburbs: ['CBD', 'North Ward', 'Castle Hill', 'Kirwan', 'Thuringowa'],
+      regions: ['Townsville City', 'Northern Beaches', 'Thuringowa'],
+      population: 195000
+    },
+    cairns: {
+      city: 'Cairns',
+      state: 'QLD',
+      suburbs: ['CBD', 'Edge Hill', 'Manunda', 'Smithfield', 'Trinity Beach'],
+      regions: ['Cairns City', 'Northern Beaches', 'Southern Suburbs'],
+      population: 160000
     }
   };
 
@@ -137,6 +207,20 @@ export class LocationServiceGenerator {
       urgency: 'emergency',
       keywords: ['storm damage', 'roof damage', 'tree damage', 'emergency tarping'],
       variations: ['roof', 'tree', 'hail', 'wind']
+    },
+    'flood-recovery': {
+      type: 'Flood Recovery',
+      category: 'flood',
+      urgency: 'emergency',
+      keywords: ['flood damage', 'flood restoration', 'flood cleanup', 'water extraction'],
+      variations: ['emergency', 'basement', 'commercial', 'residential']
+    },
+    'emergency-restoration': {
+      type: 'Emergency Restoration',
+      category: 'emergency',
+      urgency: 'emergency',
+      keywords: ['24 hour emergency', 'disaster recovery', 'emergency restoration', 'urgent repairs'],
+      variations: ['24-hour', 'same-day', 'after-hours', 'weekend']
     }
   };
 
