@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, AlertCircle, CheckCircle, XCircle, AlertTriangle, FileText, Camera, Clock, Shield, TrendingUp, TrendingDown, Phone } from 'lucide-react';
-import { InsuranceDecoder } from '@/lib/insurance-decoder';
+import { InsuranceDecoder } from '../../lib/insurance-decoder';
 
 export default function CoverageChecker() {
   const [step, setStep] = useState(0);

@@ -81,7 +81,7 @@ export class WhosFirstGenerator {
     const scenarioId = `${damageType}-${variation}-${timeFactor}-${propertyType}${location ? `-${location.toLowerCase().replace(/\s+/g, '-')}` : ''}`;
     
     const title = this.generateTitle(damageType, variation, propertyType, location);
-    const question = this.generateQuestion(damageType, variation, timeFactor);
+    const question = this.generateQuestion(damageType, variation, timeFactor, propertyType);
     
     return {
       id: scenarioId,
@@ -108,7 +108,7 @@ export class WhosFirstGenerator {
     return location ? `${baseTitle} - ${location}` : baseTitle;
   }
 
-  private static generateQuestion(damageType: string, variation: string, timeFactor: string): string {
+  private static generateQuestion(damageType: string, variation: string, timeFactor: string, propertyType: string): string {
     const timeContext = {
       'immediate': 'happening right now',
       'within-hours': 'just happened',

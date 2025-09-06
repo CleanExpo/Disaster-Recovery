@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import WhosFirstScenarioPage from '@/components/whos-first/scenario-page';
-import { WhosFirstGenerator } from '@/lib/whos-first-generator';
+import ScenarioPageComponent from '../../../components/whos-first/scenario-page';
+import { WhosFirstGenerator } from '../../../lib/whos-first-generator';
 
 interface PageProps {
   params: {
@@ -94,5 +94,5 @@ export default function WhosFirstScenarioPage({ params }: PageProps) {
     notFound();
   }
 
-  return <WhosFirstScenarioPage scenario={scenario} />;
+  return <ScenarioPageComponent scenario={scenario} />;
 }
