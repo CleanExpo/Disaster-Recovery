@@ -4,14 +4,26 @@ import { Metadata } from 'next';
 
 interface DynamicPageProps {
   params: {
-    slug: string[];
+    slug?: string[];
   };
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
+  if (!params.slug) {
+    return {
+      title: 'Page Not Found | Disaster Recovery',
+      description: 'The requested page could not be found.',
+      openGraph: {
+        title: 'Page Not Found | Disaster Recovery',
+        description: 'The requested page could not be found.',
+        type: 'website',
+      },
+    };
+  }
+
   const slugPath = params.slug.join('/');
-  
+
   // Simple title generation based on slug
   const title = params.slug
     .map(part => part.split('-').map(word => 
@@ -27,7 +39,9 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
     openGraph: {
       title: `${title} | Disaster Recovery`,
       description,
-      type: 'website' } };
+      type: 'website',
+    },
+  };
 }
 
 // Generate static params for known routes (optional, for better performance)
