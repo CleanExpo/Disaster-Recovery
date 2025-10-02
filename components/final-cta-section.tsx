@@ -27,10 +27,10 @@ export default function FinalCtaSection() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div>
-            <h2 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
+            <h2 className="font-poppins text-4xl md:text-6xl text-balance mb-6 font-medium">
               Join the new standard in <span className="text-[#00BFA6]">restoration services</span>
             </h2>
-            <p className="text-xl md:text-2xl text-[#9CA3AF] font-inter leading-relaxed mb-12 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-[#9CA3AF] font-inter leading-relaxed mb-12 max-w-3xl mx-auto">
               Whether you're a client seeking transparent restoration services or a contractor looking to grow your
               business, we're here to transform your experience.
             </p>
@@ -42,8 +42,8 @@ export default function FinalCtaSection() {
               <div className="w-16 h-16 bg-[#2196F3] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-poppins font-semibold text-2xl text-[#2196F3] mb-4">For Clients</h3>
-              <p className="text-[#9CA3AF] font-inter mb-6 leading-relaxed">
+              <h3 className="font-poppins text-xl text-[#2196F3] mb-4 font-semibold">For Clients</h3>
+              <p className="text-[#9CA3AF] font-inter mb-6 leading-relaxed text-sm">
                 Get transparent pricing, real-time updates, and expert insurance advocacy for your restoration needs.
               </p>
               <Button
@@ -60,8 +60,8 @@ export default function FinalCtaSection() {
               <div className="w-16 h-16 bg-[#7C4DFF] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Briefcase className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-poppins font-semibold text-2xl text-[#7C4DFF] mb-4">For Contractors</h3>
-              <p className="text-[#9CA3AF] font-inter mb-6 leading-relaxed">
+              <h3 className="font-poppins text-xl text-[#7C4DFF] mb-4 font-semibold">For Contractors</h3>
+              <p className="text-[#9CA3AF] font-inter mb-6 leading-relaxed text-sm">
                 Access qualified leads, streamlined workflows, and guaranteed payments to grow your business.
               </p>
               <Button
@@ -77,7 +77,7 @@ export default function FinalCtaSection() {
 
           {/* Bottom message */}
           <div className="mt-16">
-            <p className="text-lg text-[#9CA3AF] font-inter">
+            <p className="text-sm text-[#9CA3AF] font-inter">
               Ready to experience restoration services done right?{" "}
               <span className="text-[#00BFA6] font-semibold">Join thousands who already have.</span>
             </p>

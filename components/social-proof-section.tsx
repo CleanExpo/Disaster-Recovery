@@ -67,10 +67,10 @@ export default function SocialProofSection() {
     <section className="py-24 relative">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
+          <h2 className="font-poppins text-4xl md:text-5xl text-balance mb-6 font-medium">
             Trusted by <span className="text-[#00BFA6]">Thousands</span>
           </h2>
-          <p className="text-xl text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
             Real stories from clients and contractors who've experienced the difference
           </p>
         </div>

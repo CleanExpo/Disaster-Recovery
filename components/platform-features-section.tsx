@@ -21,10 +21,10 @@ export default function PlatformFeaturesSection() {
           <div className="inline-flex items-center px-4 py-2 bg-[#7C4DFF]/10 border border-[#7C4DFF]/30 rounded-full text-[#7C4DFF] text-sm font-medium mb-6">
             🏗️ Built for Scale & Growth
           </div>
-          <h2 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
+          <h2 className="font-poppins text-4xl md:text-5xl text-balance mb-6 font-medium">
             <span className="text-[#00BFA6]">Platform Features</span> That Power Success
           </h2>
-          <p className="text-xl text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
             Our marketplace-as-a-service platform provides everything needed to run a successful restoration business network
           </p>
         </div>
@@ -35,8 +35,8 @@ export default function PlatformFeaturesSection() {
             <div className="w-16 h-16 bg-[#00BFA6] rounded-2xl flex items-center justify-center mb-6">
               <Zap className="h-8 w-8 text-[#0F1115]" />
             </div>
-            <h3 className="font-poppins font-semibold text-xl text-white mb-4">Smart Matching Engine</h3>
-            <p className="text-[#9CA3AF] mb-4">AI-powered algorithm matches clients with the most qualified contractors based on location, expertise, and availability.</p>
+            <h3 className="font-poppins text-lg text-white mb-4 font-semibold">Smart Matching Engine</h3>
+            <p className="text-[#9CA3AF] mb-4 text-sm">AI-powered algorithm matches clients with the most qualified contractors based on location, expertise, and availability.</p>
             <ul className="text-[#9CA3AF] text-sm space-y-2">
               <li>• Location-based matching</li>
               <li>• Skill assessment</li>
@@ -49,8 +49,8 @@ export default function PlatformFeaturesSection() {
             <div className="w-16 h-16 bg-[#2196F3] rounded-2xl flex items-center justify-center mb-6">
               <Settings className="h-8 w-8 text-white" />
             </div>
-            <h3 className="font-poppins font-semibold text-xl text-white mb-4">Automated Workflows</h3>
-            <p className="text-[#9CA3AF] mb-4">Streamlined processes from lead generation to project completion with minimal manual intervention.</p>
+            <h3 className="font-poppins text-lg text-white mb-4 font-semibold">Automated Workflows</h3>
+            <p className="text-[#9CA3AF] mb-4 text-sm">Streamlined processes from lead generation to project completion with minimal manual intervention.</p>
             <ul className="text-[#9CA3AF] text-sm space-y-2">
               <li>• Lead qualification</li>
               <li>• Quote generation</li>
@@ -63,8 +63,8 @@ export default function PlatformFeaturesSection() {
             <div className="w-16 h-16 bg-[#7C4DFF] rounded-2xl flex items-center justify-center mb-6">
               <BarChart3 className="h-8 w-8 text-white" />
             </div>
-            <h3 className="font-poppins font-semibold text-xl text-white mb-4">Analytics Dashboard</h3>
-            <p className="text-[#9CA3AF] mb-4">Comprehensive insights into performance, revenue, and growth opportunities for both clients and contractors.</p>
+            <h3 className="font-poppins text-lg text-white mb-4 font-semibold">Analytics Dashboard</h3>
+            <p className="text-[#9CA3AF] mb-4 text-sm">Comprehensive insights into performance, revenue, and growth opportunities for both clients and contractors.</p>
             <ul className="text-[#9CA3AF] text-sm space-y-2">
               <li>• Real-time metrics</li>
               <li>• Revenue tracking</li>
@@ -162,10 +162,10 @@ export default function PlatformFeaturesSection() {
 
         {/* CTA Section */}
         <div className="text-center">
-          <h3 className="font-poppins font-bold text-3xl text-white mb-6">
+          <h3 className="font-poppins text-2xl text-white mb-6 font-semibold">
             Ready to Transform Your Restoration Business?
           </h3>
-          <p className="text-xl text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
             Join Australia's leading restoration marketplace platform and start growing your business today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

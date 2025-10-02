@@ -3,7 +3,12 @@ import type { Metadata } from "next"
 import { Poppins, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import { AuthProvider } from "@/contexts/AuthContext"
+import { TenantProvider } from "@/contexts/TenantContext"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
+import "../styles/modal-fixes.css"
+import "../styles/landing-animations.css"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -39,8 +44,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`font-sans ${poppins.variable} ${inter.variable} antialiased`}>
-        <Suspense fallback={null}>{children}</Suspense>
-        <Analytics />
+        <TenantProvider>
+          <AuthProvider>
+            <Suspense fallback={null}>{children}</Suspense>
+            <Toaster />
+            <Analytics />
+          </AuthProvider>
+        </TenantProvider>
       </body>
     </html>
   )

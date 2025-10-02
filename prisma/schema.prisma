@@ -1,0 +1,288 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Tenant {
+  id                 String                @id @default(cuid())
+  name               String
+  domain             String?               @unique
+  subdomain          String?               @unique
+  logo               String?
+  primaryColor       String?
+  secondaryColor     String?
+  customCss          String?
+  industry           String?
+  isActive           Boolean               @default(true)
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  contractorProfiles ContractorProfile[]
+  messages           Message[]
+  serviceRequests    ServiceRequest[]
+  configurations     TenantConfiguration[]
+  users              User[]
+
+  @@map("tenants")
+}
+
+model TenantConfiguration {
+  id        String   @id @default(cuid())
+  tenantId  String
+  key       String
+  value     String
+  type      String   @default("string")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, key])
+  @@map("tenant_configurations")
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  email                 String                 @unique
+  name                  String?
+  password              String?
+  userType              UserType               @default(CLIENT)
+  googleId              String?                @unique
+  avatar                String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  tenantId              String?
+  contractorPreferences ContractorPreferences?
+  contractorProfile     ContractorProfile?
+  receivedMessages      Message[]              @relation("MessageReceiver")
+  sentMessages          Message[]              @relation("MessageSender")
+  serviceRequests       ServiceRequest[]
+  preferences           UserPreferences?
+  tenant                Tenant?                @relation(fields: [tenantId], references: [id])
+
+  @@map("users")
+}
+
+model UserPreferences {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  interests            String[]
+  serviceTypes         String[]
+  budgetRange          String?
+  urgencyLevel         String?
+  communicationStyle   String?
+  notificationSettings Json?
+  dashboardLayout      Json?
+  themePreferences     Json?
+  isOnboardingComplete Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  brandingColor        String?
+  selectedTheme        String?
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model AdminServiceCategory {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  description String?
+  icon        String?
+  theme       String
+  isActive    Boolean        @default(true)
+  sortOrder   Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  services    AdminService[]
+
+  @@map("admin_service_categories")
+}
+
+model AdminService {
+  id          String               @id @default(cuid())
+  categoryId  String
+  name        String
+  description String?
+  icon        String?
+  theme       String
+  isActive    Boolean              @default(true)
+  sortOrder   Int                  @default(0)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  category    AdminServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, name])
+  @@map("admin_services")
+}
+
+model AdminTheme {
+  id              String   @id @default(cuid())
+  name            String
+  identifier      String   @unique
+  primaryColor    String
+  secondaryColor  String
+  accentColor     String
+  backgroundColor String
+  textColor       String
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("admin_themes")
+}
+
+model ServiceRequest {
+  id              String            @id @default(cuid())
+  userId          String
+  serviceCategory String
+  urgency         String
+  serviceTitle    String
+  description     String
+  location        String
+  budget          String?
+  phone           String?
+  preferredTime   String?
+  insurance       Boolean           @default(false)
+  urgentResponse  Boolean           @default(false)
+  status          ServiceStatus     @default(PENDING)
+  leadScore       Float?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  tenantId        String?
+  matches         ContractorMatch[]
+  tenant          Tenant?           @relation(fields: [tenantId], references: [id])
+  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("service_requests")
+}
+
+model ContractorProfile {
+  id                String             @id @default(cuid())
+  userId            String             @unique
+  businessName      String?
+  phone             String?
+  address           String?
+  city              String?
+  state             String?
+  zipCode           String?
+  licenseNumber     String?
+  insuranceProvider String?
+  insuranceExpiry   DateTime?
+  services          String[]
+  serviceAreas      String[]
+  hourlyRate        Float?
+  experience        Int                @default(0)
+  rating            Float              @default(0.0)
+  totalJobs         Int                @default(0)
+  bio               String?
+  availability      AvailabilityStatus @default(AVAILABLE)
+  isVerified        Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  tenantId          String?
+  matches           ContractorMatch[]
+  tenant            Tenant?            @relation(fields: [tenantId], references: [id])
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_profiles")
+}
+
+model ContractorMatch {
+  id                String            @id @default(cuid())
+  contractorId      String
+  serviceRequestId  String
+  matchScore        Float
+  status            MatchStatus       @default(PENDING)
+  contractorMessage String?
+  clientMessage     String?
+  budget            String?
+  timeline          String?
+  startDate         String?
+  estimatedHours    String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  contractor        ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  serviceRequest    ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_matches")
+}
+
+model Message {
+  id          String      @id @default(cuid())
+  senderId    String
+  receiverId  String
+  requestId   String?
+  subject     String?
+  content     String
+  messageType MessageType @default(GENERAL)
+  isRead      Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  tenantId    String?
+  receiver    User        @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  sender      User        @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  tenant      Tenant?     @relation(fields: [tenantId], references: [id])
+
+  @@map("messages")
+}
+
+model ContractorPreferences {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  serviceCategories    String[]
+  locations            String[]
+  experience           String?
+  expertise            String[]
+  background           String?
+  hourlyRate           String?
+  availability         String?
+  maxDistance          String?
+  selectedTheme        String?
+  brandingColor        String?
+  isOnboardingComplete Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_preferences")
+}
+
+enum UserType {
+  CONTRACTOR
+  CLIENT
+  ADMIN
+}
+
+enum ServiceStatus {
+  PENDING
+  MATCHED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum AvailabilityStatus {
+  AVAILABLE
+  BUSY
+  UNAVAILABLE
+}
+
+enum MatchStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum MessageType {
+  GENERAL
+  MATCH_NOTIFICATION
+  PROJECT_UPDATE
+  PAYMENT_REMINDER
+  SYSTEM_NOTIFICATION
+  INITIATE_CHAT
+  BID_ACCEPTED
+  BID_REJECTED
+}

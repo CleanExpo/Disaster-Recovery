@@ -1,0 +1,348 @@
+'use client';
+
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { 
+  Star, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Clock, 
+  DollarSign, 
+  Shield, 
+  Award,
+  CheckCircle,
+  ArrowLeft,
+  MessageSquare,
+  Calendar
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
+interface ContractorProfile {
+  id: string;
+  businessName: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  licenseNumber: string;
+  insuranceProvider: string;
+  insuranceExpiry: string;
+  services: string[];
+  serviceAreas: string[];
+  hourlyRate: number;
+  experience: number;
+  rating: number;
+  totalJobs: number;
+  bio: string;
+  availability: string;
+  isVerified: boolean;
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    avatar: string;
+  };
+}
+
+export default function ContractorProfilePage() {
+  const params = useParams();
+  const router = useRouter();
+  const [contractor, setContractor] = useState<ContractorProfile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchContractor = async () => {
+      try {
+        const response = await fetch(`/api/contractor/${params.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setContractor(data.contractor);
+        } else {
+          setError('Contractor not found');
+        }
+      } catch (err) {
+        setError('Error loading contractor profile');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (params.id) {
+      fetchContractor();
+    }
+  }, [params.id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00BFA6] mx-auto mb-4"></div>
+          <p>Loading contractor profile...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !contractor) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Contractor Not Found</h1>
+          <p className="text-gray-400 mb-6">The contractor you're looking for doesn't exist.</p>
+          <Button 
+            onClick={() => router.back()}
+            className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Go Back
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  const getAvailabilityColor = (availability: string) => {
+    switch (availability) {
+      case 'AVAILABLE':
+        return 'bg-green-900/30 text-green-400 border-green-500';
+      case 'BUSY':
+        return 'bg-yellow-900/30 text-yellow-400 border-yellow-500';
+      case 'UNAVAILABLE':
+        return 'bg-red-900/30 text-red-400 border-red-500';
+      default:
+        return 'bg-gray-900/30 text-gray-400 border-gray-500';
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Header */}
+      <header className="w-full bg-gray-800/95 backdrop-blur-md shadow-lg border-b border-gray-700/50 sticky top-0 z-50">
+        <div className="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-gray-300 hover:text-white mr-4"
+              onClick={() => router.back()}
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back
+            </Button>
+            <span className="text-2xl font-bold text-[#00BFA6]">Contractor Profile</span>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-6xl mx-auto p-8">
+        {/* Profile Header */}
+        <Card className="bg-gray-800 border-gray-700 mb-8">
+          <CardContent className="p-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
+              <Avatar className="h-24 w-24">
+                <AvatarImage src={contractor.user.avatar || ''} />
+                <AvatarFallback className="text-2xl bg-[#00BFA6] text-white">
+                  {contractor.user.name?.charAt(0) || 'C'}
+                </AvatarFallback>
+              </Avatar>
+              
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-2">
+                  <h1 className="text-3xl font-bold text-white">{contractor.businessName}</h1>
+                  {contractor.isVerified && (
+                    <Badge className="bg-green-900/30 text-green-400 border-green-500">
+                      <CheckCircle className="h-3 w-3 mr-1" />
+                      Verified
+                    </Badge>
+                  )}
+                  <Badge className={getAvailabilityColor(contractor.availability)}>
+                    {contractor.availability}
+                  </Badge>
+                </div>
+                
+                <p className="text-gray-400 text-lg mb-4">{contractor.user.name}</p>
+                
+                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-300">
+                  <div className="flex items-center">
+                    <MapPin className="h-4 w-4 mr-1" />
+                    {contractor.city}, {contractor.state}
+                  </div>
+                  <div className="flex items-center">
+                    <Star className="h-4 w-4 mr-1 text-yellow-500" />
+                    {contractor.rating.toFixed(1)} ({contractor.totalJobs} jobs)
+                  </div>
+                  <div className="flex items-center">
+                    <Award className="h-4 w-4 mr-1" />
+                    {contractor.experience} years experience
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col space-y-3">
+                <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-white">
+                  <MessageSquare className="h-4 w-4 mr-2" />
+                  Contact
+                </Button>
+                <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  Book Consultation
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* About */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">About</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 leading-relaxed">
+                  {contractor.bio || 'No bio available.'}
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Services */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Services Offered</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Professional services this contractor provides
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {contractor.services.map((service, index) => (
+                    <Badge key={index} className="bg-[#00BFA6] text-white">
+                      {service}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Service Areas */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Service Areas</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Areas where this contractor provides services
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {contractor.serviceAreas.map((area, index) => (
+                    <Badge key={index} variant="outline" className="border-gray-600 text-gray-300">
+                      {area}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Contact Information */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Contact Information</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Phone className="h-5 w-5 text-[#00BFA6]" />
+                  <span className="text-gray-300">{contractor.phone}</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Mail className="h-5 w-5 text-[#00BFA6]" />
+                  <span className="text-gray-300">{contractor.user.email}</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-5 w-5 text-[#00BFA6] mt-1" />
+                  <div className="text-gray-300">
+                    <p>{contractor.address}</p>
+                    <p>{contractor.city}, {contractor.state} {contractor.zipCode}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Pricing */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Pricing</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center space-x-3">
+                  <DollarSign className="h-5 w-5 text-[#00BFA6]" />
+                  <span className="text-2xl font-bold text-white">${contractor.hourlyRate}/hour</span>
+                </div>
+                <p className="text-gray-400 text-sm mt-2">Hourly rate</p>
+              </CardContent>
+            </Card>
+
+            {/* Credentials */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Credentials</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {contractor.licenseNumber && (
+                  <div className="flex items-center space-x-3">
+                    <Award className="h-5 w-5 text-[#00BFA6]" />
+                    <div>
+                      <p className="text-gray-300 font-medium">License</p>
+                      <p className="text-gray-400 text-sm">{contractor.licenseNumber}</p>
+                    </div>
+                  </div>
+                )}
+                
+                {contractor.insuranceProvider && (
+                  <div className="flex items-center space-x-3">
+                    <Shield className="h-5 w-5 text-[#00BFA6]" />
+                    <div>
+                      <p className="text-gray-300 font-medium">Insurance</p>
+                      <p className="text-gray-400 text-sm">{contractor.insuranceProvider}</p>
+                      {contractor.insuranceExpiry && (
+                        <p className="text-gray-400 text-xs">
+                          Expires: {new Date(contractor.insuranceExpiry).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Availability */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Availability</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center space-x-3">
+                  <Clock className="h-5 w-5 text-[#00BFA6]" />
+                  <Badge className={getAvailabilityColor(contractor.availability)}>
+                    {contractor.availability}
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -40,10 +40,10 @@ export default function HowItWorksSection() {
     <section className="py-24 relative">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
+          <h2 className="font-poppins text-4xl md:text-5xl text-balance mb-6 font-medium">
             How It <span className="text-[#00BFA6]">Works</span>
           </h2>
-          <p className="text-xl text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
             Four simple steps to connect clients with contractors seamlessly
           </p>
         </div>
@@ -81,10 +81,10 @@ export default function HowItWorksSection() {
                   {/* Step content */}
                   <div className="flex-1">
                     <div className={`bg-gradient-to-br ${step.bgColor} rounded-2xl p-6 border ${step.borderColor}`}>
-                      <h3 className="font-poppins font-semibold text-2xl mb-3" style={{ color: step.color }}>
+                      <h3 className="font-poppins text-lg mb-3 font-semibold" style={{ color: step.color }}>
                         {step.title}
                       </h3>
-                      <p className="text-[#9CA3AF] font-inter leading-relaxed text-lg">{step.description}</p>
+                      <p className="text-[#9CA3AF] font-inter leading-relaxed text-sm">{step.description}</p>
                     </div>
                   </div>
                 </div>
@@ -96,10 +96,10 @@ export default function HowItWorksSection() {
         {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-[#00BFA6]/10 to-[#7C4DFF]/10 rounded-2xl p-8 border border-[#00BFA6]/20">
-            <h3 className="font-poppins font-semibold text-2xl text-[#00BFA6] mb-4">
+            <h3 className="font-poppins text-xl text-[#00BFA6] mb-4 font-semibold">
               Ready to Experience the Difference?
             </h3>
-            <p className="text-[#9CA3AF] font-inter text-lg">
+            <p className="text-[#9CA3AF] font-inter text-sm">
               Join thousands of satisfied clients and contractors who trust our platform
             </p>
           </div>

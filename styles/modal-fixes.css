@@ -1,0 +1,48 @@
+/* Force modal width and styling */
+.dialog-content-custom {
+  width: 70vw !important;
+  max-width: 70vw !important;
+  height: 95vh !important;
+  max-height: 95vh !important;
+}
+
+/* Force font sizes */
+.dialog-title-custom {
+  font-size: 1.25rem !important; /* text-xl */
+  font-weight: 600 !important; /* font-semibold */
+}
+
+.service-title-custom {
+  font-size: 1.5rem !important; /* text-2xl */
+  font-weight: 600 !important; /* font-semibold */
+}
+
+.service-description-custom {
+  font-size: 1rem !important; /* text-base */
+}
+
+.card-title-custom {
+  font-size: 1.125rem !important; /* text-lg */
+  font-weight: 600 !important; /* font-semibold */
+}
+
+/* Force grid layouts */
+.grid-custom {
+  display: grid !important;
+}
+
+.grid-cols-1-custom {
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
+.grid-cols-4-custom {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.col-span-3-custom {
+  grid-column: span 3 / span 3 !important;
+}
+
+.gap-8-custom {
+  gap: 2rem !important; /* gap-8 */
+}

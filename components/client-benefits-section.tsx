@@ -35,10 +35,10 @@ export default function ClientBenefitsSection() {
           {/* Left side - Benefits grid */}
           <div>
             <div className="mb-12">
-              <h2 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
+              <h2 className="font-poppins text-4xl md:text-5xl text-balance mb-6 font-medium">
                 Client <span className="text-[#00BFA6]">Benefits</span>
               </h2>
-              <p className="text-xl text-[#9CA3AF] font-inter leading-relaxed">
+              <p className="text-lg text-[#9CA3AF] font-inter leading-relaxed">
                 Experience restoration services the way they should be - transparent, reliable, and stress-free.
               </p>
             </div>
@@ -57,10 +57,10 @@ export default function ClientBenefitsSection() {
                     >
                       <Icon className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="font-poppins font-semibold text-lg mb-3" style={{ color: benefit.color }}>
+                    <h3 className="font-poppins text-base mb-3 font-semibold" style={{ color: benefit.color }}>
                       {benefit.title}
                     </h3>
-                    <p className="text-[#9CA3AF] font-inter leading-relaxed">{benefit.description}</p>
+                    <p className="text-[#9CA3AF] font-inter leading-relaxed text-sm">{benefit.description}</p>
                   </div>
                 )
               })}
@@ -71,7 +71,7 @@ export default function ClientBenefitsSection() {
           <div>
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] shadow-2xl">
               <div className="mb-6">
-                <h3 className="font-poppins font-semibold text-xl text-[#00BFA6] mb-2">Client Dashboard</h3>
+                <h3 className="font-poppins text-lg text-[#00BFA6] mb-2 font-semibold">Client Dashboard</h3>
                 <p className="text-[#9CA3AF] text-sm">Track your restoration project in real-time</p>
               </div>
 

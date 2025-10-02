@@ -1,0 +1,312 @@
+/* Enhanced Landing Page Animations */
+
+/* Custom Animation Delays */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gradient Text Animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 191, 166, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 191, 166, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Slide In Animation */
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.8s ease-out;
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.8s ease-out;
+}
+
+/* Stagger Animation */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+/* Hover Scale Animation */
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Gradient Border Animation */
+@keyframes gradient-border {
+  0% {
+    border-color: rgba(0, 191, 166, 0.3);
+  }
+  50% {
+    border-color: rgba(59, 130, 246, 0.6);
+  }
+  100% {
+    border-color: rgba(0, 191, 166, 0.3);
+  }
+}
+
+.animate-gradient-border {
+  animation: gradient-border 3s ease-in-out infinite;
+}
+
+/* Particle Animation */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.animate-particle {
+  animation: particle-float 4s ease-in-out infinite;
+}
+
+/* Background Pattern Animation */
+@keyframes pattern-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 20px;
+  }
+}
+
+.animate-pattern {
+  animation: pattern-move 20s linear infinite;
+}
+
+/* Glow Effect */
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00BFA6, #3B82F6, #8B5CF6, #00BFA6);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::before {
+  opacity: 1;
+}
+
+/* Text Reveal Animation */
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-text-reveal {
+  animation: text-reveal 0.8s ease-out;
+}
+
+/* Button Hover Effects */
+.btn-hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-hover-glow:hover::before {
+  left: 100%;
+}
+
+/* Card Hover Effects */
+.card-hover-lift {
+  transition: all 0.3s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Rotation Animation */
+@keyframes icon-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-icon-rotate {
+  animation: icon-rotate 2s linear infinite;
+}
+
+/* Fade In Animation */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+/* Scale In Animation */
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out;
+}
+
+/* Responsive Animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-gradient,
+  .animate-pulse-glow,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-slide-in-up,
+  .animate-gradient-border,
+  .animate-particle,
+  .animate-pattern,
+  .animate-text-reveal,
+  .animate-icon-rotate,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none;
+  }
+}
