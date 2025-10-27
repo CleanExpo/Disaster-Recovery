@@ -17,8 +17,8 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="h-8 w-8 animate-spin" />
+      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+        <Loader2 className="h-4 w-4 animate-spin text-[#00BFA6]" />
       </div>
     );
   }
