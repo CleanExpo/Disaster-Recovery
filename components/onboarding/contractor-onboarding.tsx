@@ -30,6 +30,7 @@ import {
   Flame,
   CloudRain
 } from 'lucide-react';
+import { THEMES, useTheme } from "@/contexts/ThemeContext";
 
 interface ContractorOnboardingProps {
   onComplete: (preferences: ContractorPreferences) => void;
@@ -45,6 +46,7 @@ interface ContractorPreferences {
   hourlyRate: string;
   availability: string;
   maxDistance: string;
+  selectedTheme: string;
   isOnboardingComplete: boolean;
 }
 
@@ -93,6 +95,7 @@ const DISTANCE_OPTIONS = [
 
 
 export default function ContractorOnboarding({ onComplete, onSkip }: ContractorOnboardingProps) {
+  const { setTheme } = useTheme();
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [preferences, setPreferences] = useState<ContractorPreferences>({
@@ -104,10 +107,11 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
     hourlyRate: '',
     availability: '',
     maxDistance: '',
+    selectedTheme: '',
     isOnboardingComplete: false
   });
 
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   const handleNext = () => {
     if (currentStep < totalSteps) {
@@ -124,6 +128,11 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
   const handleComplete = async () => {
     setIsLoading(true);
     try {
+      // Apply the selected theme immediately
+      if (preferences.selectedTheme) {
+        setTheme(preferences.selectedTheme);
+      }
+      
       const completedPreferences = {
         ...preferences,
         isOnboardingComplete: true
@@ -151,6 +160,13 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
       expertise: prev.expertise.includes(expertiseId)
         ? prev.expertise.filter(id => id !== expertiseId)
         : [...prev.expertise, expertiseId]
+    }));
+  };
+
+  const toggleTheme = (themeId: string) => {
+    setPreferences(prev => ({
+      ...prev,
+      selectedTheme: prev.selectedTheme === themeId ? '' : themeId
     }));
   };
 
@@ -380,6 +396,61 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
           </div>
         );
 
+
+      case 5:
+        return (
+          <div className="space-y-8">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-white mb-4">Choose Your Theme</h2>
+              <p className="text-gray-400 text-lg">Select a theme that matches your style and preferences</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {THEMES.map((theme) => (
+                <Card
+                  key={theme.id}
+                  className={`cursor-pointer transition-all duration-200 ${
+                    preferences.selectedTheme === theme.id
+                      ? 'border-2 border-white'
+                      : 'border-gray-700 hover:border-gray-600'
+                  }`}
+                  style={{
+                    backgroundColor: preferences.selectedTheme === theme.id 
+                      ? theme.primaryColor 
+                      : '#1F2937'
+                  }}
+                  onClick={() => toggleTheme(theme.id)}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-4">
+                      <div className="flex space-x-1">
+                        <div 
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: theme.primaryColor }}
+                        ></div>
+                        <div 
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: theme.secondaryColor }}
+                        ></div>
+                        <div 
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: theme.accentColor }}
+                        ></div>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1 text-white">{theme.name}</h3>
+                        <p className="text-sm opacity-80 text-gray-300">{theme.description}</p>
+                      </div>
+                      {preferences.selectedTheme === theme.id && (
+                        <CheckCircle className="h-5 w-5 text-white ml-auto" />
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        );
 
       default:
         return null;

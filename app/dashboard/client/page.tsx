@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   Award,
   BarChart3,
@@ -45,6 +46,7 @@ import { useEffect, useState } from 'react';
 
 export default function ClientDashboard() {
   const { user, logout, loading } = useAuth();
+  const { currentTheme, getThemeColors } = useTheme();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -56,7 +58,6 @@ export default function ClientDashboard() {
     serviceTitle: '',
     description: '',
     location: '',
-    budget: '',
     phone: '',
     preferredTime: '',
     insurance: false,
@@ -781,7 +782,6 @@ export default function ClientDashboard() {
         serviceTitle: '',
         description: '',
         location: '',
-        budget: '',
         phone: '',
         preferredTime: '',
         insurance: false,
@@ -1928,7 +1928,7 @@ export default function ClientDashboard() {
                               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 pt-2">
                                 <div className="flex items-center">
                                   <span className="font-medium mr-2">Budget:</span>
-                                  <span className="text-white">{request.budget || 'Not specified'}</span>
+                                  <span className="text-white">To be discussed</span>
                                 </div>
                                 <div className="flex items-center">
                                   <span className="font-medium mr-2">Submitted:</span>
@@ -2186,7 +2186,7 @@ export default function ClientDashboard() {
                             <div className="bg-gray-700 p-3 rounded-lg">
                               <p className="text-xs text-gray-400 mb-1">Bid Amount</p>
                               <p className="text-lg font-semibold text-[#00BFA6]">
-                                ${offer.budget || 'Not specified'}
+                                To be discussed
                               </p>
                             </div>
                             <div className="bg-gray-700 p-3 rounded-lg">
@@ -2278,7 +2278,7 @@ export default function ClientDashboard() {
                                 size="sm"
                                 variant="outline"
                                 onClick={() => {
-                                  setSelectedRequestId(offer.serviceRequest.id);
+                                  setSelectedRequest(offer.serviceRequest);
                                   setShowDetailsModal(true);
                                 }}
                                 className="border-gray-600 text-gray-300 hover:bg-gray-700"
@@ -2378,7 +2378,7 @@ export default function ClientDashboard() {
                             <div className="bg-gray-700 p-3 rounded-lg">
                               <p className="text-xs text-gray-400 mb-1">Project Value</p>
                               <p className="text-lg font-semibold text-[#00BFA6]">
-                                ${project.budget || 'Not specified'}
+                                To be discussed
                               </p>
                             </div>
                             <div className="bg-gray-700 p-3 rounded-lg">
@@ -3399,26 +3399,6 @@ export default function ClientDashboard() {
                       className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6]"
                     />
                   </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="budget" className="text-sm font-semibold text-gray-700">Budget Range</Label>
-                    <Select 
-                      value={formData.budget} 
-                      onValueChange={(value) => setFormData(prev => ({ ...prev, budget: value }))}
-                    >
-                      <SelectTrigger className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6]">
-                        <SelectValue placeholder="Select your budget range" />
-                      </SelectTrigger>
-                      <SelectContent className="z-[99999] bg-white border border-gray-200 shadow-lg rounded-md">
-                        <SelectItem value="under-1k" className="hover:bg-gray-50">Under $1,000</SelectItem>
-                        <SelectItem value="1k-5k" className="hover:bg-gray-50">$1,000 - $5,000</SelectItem>
-                        <SelectItem value="5k-15k" className="hover:bg-gray-50">$5,000 - $15,000</SelectItem>
-                        <SelectItem value="15k-50k" className="hover:bg-gray-50">$15,000 - $50,000</SelectItem>
-                        <SelectItem value="over-50k" className="hover:bg-gray-50">Over $50,000</SelectItem>
-                        <SelectItem value="discuss" className="hover:bg-gray-50">Prefer to discuss</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
                 </div>
 
                 {/* Contact Preferences */}
@@ -3899,7 +3879,7 @@ export default function ClientDashboard() {
                     </div>
                     <div>
                       <span className="text-gray-400 text-sm">Budget:</span>
-                      <p className="text-white font-medium">{selectedRequest.budget || 'Not specified'}</p>
+                      <p className="text-white font-medium">To be discussed</p>
                     </div>
                     {selectedRequest.leadScore && (
                       <div>

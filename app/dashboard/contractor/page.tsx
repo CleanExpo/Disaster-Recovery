@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTheme } from '@/contexts/ThemeContext';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -36,6 +37,7 @@ import {
 
 export default function ContractorDashboardPage() {
   const { user, logout, loading } = useAuth();
+  const { currentTheme, getThemeColors } = useTheme();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('overview');
   const [profile, setProfile] = useState<any>(null);

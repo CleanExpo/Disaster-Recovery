@@ -28,6 +28,13 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
+  
+  /* Dynamic Theme Variables */
+  --theme-primary: #00BFA6;
+  --theme-secondary: #7C4DFF;
+  --theme-accent: #3B82F6;
+  --theme-background: #0F1115;
+  --theme-text: #F9FAFB;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);

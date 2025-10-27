@@ -34,6 +34,7 @@ import {
   FileText,
   User
 } from 'lucide-react';
+import { THEMES, useTheme } from "@/contexts/ThemeContext";
 
 interface ClientOnboardingProps {
   onComplete: (preferences: ClientPreferences) => void;
@@ -77,14 +78,10 @@ const URGENCY_LEVELS = [
   { value: 'low', label: 'Low Priority', description: 'Flexible timeline' }
 ];
 
-const THEME_OPTIONS = [
-  { id: 'modern', name: 'Modern', color: 'bg-blue-500', description: 'Clean, contemporary design' },
-  { id: 'classic', name: 'Classic', color: 'bg-gray-600', description: 'Traditional, professional look' },
-  { id: 'warm', name: 'Warm', color: 'bg-orange-500', description: 'Cozy, inviting atmosphere' },
-  { id: 'cool', name: 'Cool', color: 'bg-cyan-500', description: 'Calm, soothing colors' }
-];
+const THEME_OPTIONS = THEMES;
 
 export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardingProps) {
+  const { setTheme } = useTheme();
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [preferences, setPreferences] = useState<ClientPreferences>({
@@ -115,6 +112,11 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
   const handleComplete = async () => {
     setIsLoading(true);
     try {
+      // Apply the selected theme immediately
+      if (preferences.selectedTheme) {
+        setTheme(preferences.selectedTheme);
+      }
+      
       const completedPreferences = {
         serviceTypes: preferences.selectedCategories, // Use serviceTypes as per schema
         budgetRange: preferences.budgetRange,
@@ -324,19 +326,35 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
                   key={theme.id}
                   className={`cursor-pointer transition-all duration-200 ${
                     preferences.selectedTheme === theme.id
-                      ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
-                      : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
+                      ? 'border-2 border-white'
+                      : 'border-gray-700 hover:border-gray-600'
                   }`}
+                  style={{
+                    backgroundColor: preferences.selectedTheme === theme.id 
+                      ? theme.primaryColor 
+                      : '#1F2937'
+                  }}
                   onClick={() => toggleTheme(theme.id)}
                 >
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 rounded-lg ${theme.color} flex items-center justify-center`}>
-                        <div className="w-6 h-6 bg-white rounded"></div>
+                      <div className="flex space-x-1">
+                        <div 
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: theme.primaryColor }}
+                        ></div>
+                        <div 
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: theme.secondaryColor }}
+                        ></div>
+                        <div 
+                          className="w-4 h-4 rounded-full"
+                          style={{ backgroundColor: theme.accentColor }}
+                        ></div>
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">{theme.name}</h3>
-                        <p className="text-sm opacity-80">{theme.description}</p>
+                        <h3 className="font-semibold mb-1 text-white">{theme.name}</h3>
+                        <p className="text-sm opacity-80 text-gray-300">{theme.description}</p>
                       </div>
                       {preferences.selectedTheme === theme.id && (
                         <CheckCircle className="h-5 w-5 text-white ml-auto" />

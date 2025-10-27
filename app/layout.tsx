@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { AuthProvider } from "@/contexts/AuthContext"
 import { TenantProvider } from "@/contexts/TenantContext"
+import { ThemeProvider } from "@/contexts/ThemeContext"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css"
 import "../styles/modal-fixes.css"
@@ -44,13 +45,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`font-sans ${poppins.variable} ${inter.variable} antialiased`}>
-        <TenantProvider>
-          <AuthProvider>
-            <Suspense fallback={null}>{children}</Suspense>
-            <Toaster />
-            <Analytics />
-          </AuthProvider>
-        </TenantProvider>
+        <ThemeProvider>
+          <TenantProvider>
+            <AuthProvider>
+              <Suspense fallback={null}>{children}</Suspense>
+              <Toaster />
+              <Analytics />
+            </AuthProvider>
+          </TenantProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

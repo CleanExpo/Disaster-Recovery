@@ -31,7 +31,6 @@ export default function ServiceRequestForm({
     serviceTitle: '',
     description: '',
     location: '',
-    budget: '',
     phone: '',
     preferredTime: '',
     insurance: false,
@@ -135,28 +134,15 @@ export default function ServiceRequestForm({
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
-              <Input
-                id="location"
-                value={formData.location}
-                onChange={(e) => handleInputChange('location', e.target.value)}
-                placeholder="City, State or Address"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="budget">Budget ({defaultCurrency})</Label>
-              <Input
-                id="budget"
-                type="number"
-                value={formData.budget}
-                onChange={(e) => handleInputChange('budget', e.target.value)}
-                placeholder="Your budget range"
-              />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="location">Location</Label>
+            <Input
+              id="location"
+              value={formData.location}
+              onChange={(e) => handleInputChange('location', e.target.value)}
+              placeholder="City, State or Address"
+              required
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
