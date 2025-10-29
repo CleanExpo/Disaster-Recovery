@@ -3,6 +3,7 @@
 import ClientOnboarding from '@/components/client-onboarding';
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import ActiveProjectDetailsModal from '@/components/configurable/active-project-details-modal';
+import ClientLayout from '@/components/dashboard/client-layout';
 import PersonalizedDashboard from '@/components/personalized/personalized-dashboard';
 import UserPreferencesDisplay from '@/components/profile/user-preferences-display';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -927,8 +928,11 @@ export default function ClientDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#00BFA6]"></div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+          <p className="text-gray-400 text-sm">Loading...</p>
+        </div>
       </div>
     );
   }
@@ -1924,15 +1928,15 @@ export default function ClientDashboard() {
             {/* Enterprise-Level Filter System */}
             <div className="space-y-4">
               {/* Search Bar */}
-              <div className="relative">
+                  <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <Input 
+                    <Input 
                   placeholder="Search by title, description, or location..." 
                   value={filters.search}
                   onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
                   className="pl-12 h-14 bg-gray-800 border-gray-700 text-white placeholder-gray-400 text-lg focus:border-[#00BFA6] focus:ring-2 focus:ring-[#00BFA6]/20"
-                />
-              </div>
+                    />
+                  </div>
 
               {/* Filter Pills - Stripe Style */}
               <div className="flex flex-wrap items-center gap-3">
@@ -1948,7 +1952,7 @@ export default function ClientDashboard() {
                         getStatusDisplay(filters.status)
                       )}
                     </SelectValue>
-                  </SelectTrigger>
+                    </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-700 text-white z-[100]">
                     <SelectItem value="all" className="hover:bg-gray-700 cursor-pointer">All Status</SelectItem>
                     <SelectItem value="PENDING" className="hover:bg-gray-700">Pending</SelectItem>
@@ -1956,15 +1960,15 @@ export default function ClientDashboard() {
                     <SelectItem value="IN_PROGRESS" className="hover:bg-gray-700">In Progress</SelectItem>
                     <SelectItem value="COMPLETED" className="hover:bg-gray-700">Completed</SelectItem>
                     <SelectItem value="CANCELLED" className="hover:bg-gray-700">Cancelled</SelectItem>
-                  </SelectContent>
-                </Select>
+                    </SelectContent>
+                  </Select>
 
                 <Select value={filters.category} onValueChange={(value) => setFilters(prev => ({ ...prev, category: value }))}>
                   <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
                     <SelectValue>
                       {filters.category === 'all' ? 'All Categories' : getCategoryDisplayName(filters.category)}
                     </SelectValue>
-                  </SelectTrigger>
+                    </SelectTrigger>
                   <SelectContent className="bg-gray-800 border-gray-700 text-white z-[100]">
                     <SelectItem value="all" className="hover:bg-gray-700">All Categories</SelectItem>
                     {serviceCategories.map((category) => (
@@ -1975,8 +1979,8 @@ export default function ClientDashboard() {
                         </span>
                       </SelectItem>
                     ))}
-                  </SelectContent>
-                </Select>
+                    </SelectContent>
+                  </Select>
 
                 <Select value={filters.urgency} onValueChange={(value) => setFilters(prev => ({ ...prev, urgency: value }))}>
                   <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
@@ -2055,7 +2059,7 @@ export default function ClientDashboard() {
                       className="h-auto px-2 py-0 text-white hover:bg-white/20"
                     >
                       <X className="h-3 w-3" />
-                    </Button>
+                </Button>
                   </Badge>
                 )}
 
@@ -2111,13 +2115,13 @@ export default function ClientDashboard() {
                   }
                 </p>
                 {serviceRequests.length === 0 ? (
-                  <Button 
-                    className="bg-[#00BFA6] hover:bg-[#00A693] text-white px-8 py-3 text-lg"
-                    onClick={() => setShowServiceModal(true)}
-                  >
-                    <Plus className="h-5 w-5 mr-2" />
-                    Submit Your First Request
-                  </Button>
+                <Button 
+                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white px-8 py-3 text-lg"
+                  onClick={() => setShowServiceModal(true)}
+                >
+                  <Plus className="h-5 w-5 mr-2" />
+                  Submit Your First Request
+                </Button>
                 ) : (
                   <Button 
                     variant="outline"
@@ -3133,346 +3137,16 @@ export default function ClientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <div className="flex">
-        {/* Sidebar */}
-        <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0">
-          <div className="flex flex-col flex-grow bg-gray-800 border-r border-gray-700">
-            <div className="flex items-center p-4 border-b border-gray-700">
-              <User className="h-6 w-6 mr-2 text-white" />
-              <h1 className="text-xl font-bold text-white">Client</h1>
-            </div>
-            
-            <nav className="flex-1 p-4 space-y-2">
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'overview' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('overview')}
-              >
-                <Home className="h-5 w-5 mr-3" />
-                Overview
-              </Button>
-              
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'services' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('services')}
-              >
-                <Search className="h-5 w-5 mr-3" />
-                Browse Services
-              </Button>
-              
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'requests' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('requests')}
-              >
-                <Plus className="h-5 w-5 mr-3" />
-                My Requests
-                {serviceRequests.length > 0 && (
-                  <span className="ml-auto px-2 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                    {serviceRequests.length}
-                  </span>
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'offers' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('offers')}
-              >
-                <Award className="h-5 w-5 mr-3" />
-                Offers
-                {offers && offers.length > 0 && (
-                  <span className="ml-auto px-2 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                    {offers.length}
-                  </span>
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'active-projects' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('active-projects')}
-              >
-                <CheckCircle className="h-5 w-5 mr-3" />
-                Active Projects
-                {activeProjects && activeProjects.length > 0 && (
-                  <span className="ml-auto px-2 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                    {activeProjects.length}
-                  </span>
-                )}
-              </Button>
-              
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'analytics' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('analytics')}
-              >
-                <BarChart3 className="h-5 w-5 mr-3" />
-                Analytics
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'profile' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => setActiveTab('profile')}
-              >
-                <User className="h-5 w-5 mr-3" />
-                Profile
-              </Button>
-            </nav>
-            
-            {/* Sidebar Footer */}
-            <div className="p-4 border-t border-gray-700">
-              <div className="flex items-center space-x-3 mb-3">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={user.avatar || ''} />
-                  <AvatarFallback className="bg-primary text-white text-sm">
-                    {user.name?.charAt(0) || user.email.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">{user.name || 'Client'}</p>
-                  <p className="text-xs text-gray-400 truncate">{user.email}</p>
-                </div>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-full justify-start text-gray-300 hover:text-white hover:bg-gray-700"
-                onClick={() => {
-                  localStorage.removeItem('token');
-                  window.location.href = '/login';
-                }}
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="flex-1 lg:ml-64">
-          {/* Top Bar */}
-          <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="lg:hidden mr-2 text-gray-300 hover:text-white hover:bg-gray-700"
-                  onClick={() => setSidebarOpen(true)}
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-                <h1 className="text-xl font-bold text-white">Client Dashboard</h1>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <Button 
-                  className="bg-primary hover:bg-primary/90 text-white"
-                  onClick={() => setShowServiceModal(true)}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Submit Request
-                </Button>
-                
-                <Button variant="ghost" size="sm" className="relative text-gray-300 hover:text-white hover:bg-gray-700">
-                  <Bell className="h-5 w-5" />
-                  {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full text-xs flex items-center justify-center text-white">
-                      {unreadCount > 9 ? '9+' : unreadCount}
-                    </span>
-                  )}
-                </Button>
-              </div>
-            </div>
-          </header>
-
-          {/* Content */}
-          <div className="p-6">
-            {renderContent()}
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setSidebarOpen(false)} />
-          <div className="fixed top-0 left-0 h-full w-64 bg-gray-800 border-r border-gray-700">
-            <div className="flex items-center justify-between p-4 border-b border-gray-700">
-              <h2 className="text-lg font-semibold text-white">Client Dashboard</h2>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-gray-300 hover:text-white hover:bg-gray-700"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </div>
-            <nav className="p-4 space-y-2">
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'overview' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('overview');
-                  setSidebarOpen(false);
-                }}
-              >
-                <Home className="h-5 w-5 mr-3" />
-                Overview
-              </Button>
-              
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'services' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('services');
-                  setSidebarOpen(false);
-                }}
-              >
-                <Search className="h-5 w-5 mr-3" />
-                Browse Services
-              </Button>
-              
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'requests' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('requests');
-                  setSidebarOpen(false);
-                }}
-              >
-                <Plus className="h-5 w-5 mr-3" />
-                My Requests
-                {serviceRequests.length > 0 && (
-                  <span className="ml-auto px-2 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                    {serviceRequests.length}
-                  </span>
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'offers' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('offers');
-                  setSidebarOpen(false);
-                }}
-              >
-                <Award className="h-5 w-5 mr-3" />
-                Offers
-                {offers && offers.length > 0 && (
-                  <span className="ml-auto px-2 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                    {offers.length}
-                  </span>
-                )}
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'active-projects' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('active-projects');
-                  setSidebarOpen(false);
-                }}
-              >
-                <CheckCircle className="h-5 w-5 mr-3" />
-                Active Projects
-                {activeProjects && activeProjects.length > 0 && (
-                  <span className="ml-auto px-2 py-1 rounded-full text-xs font-medium bg-primary text-white">
-                    {activeProjects.length}
-                  </span>
-                )}
-              </Button>
-              
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'analytics' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('analytics');
-                  setSidebarOpen(false);
-                }}
-              >
-                <BarChart3 className="h-5 w-5 mr-3" />
-                Analytics
-              </Button>
-
-              <Button
-                variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 ${
-                  activeTab === 'profile' 
-                    ? 'bg-primary text-white shadow-md hover:bg-primary/90' 
-                    : 'hover:bg-gray-700 hover:text-white text-gray-300'
-                }`}
-                onClick={() => {
-                  setActiveTab('profile');
-                  setSidebarOpen(false);
-                }}
-              >
-                <User className="h-5 w-5 mr-3" />
-                Profile
-              </Button>
-            </nav>
-          </div>
-        </div>
-      )}
+    <>
+      <ClientLayout
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        showServiceModal={showServiceModal}
+        setShowServiceModal={setShowServiceModal}
+        unreadCount={unreadCount}
+      >
+        {renderContent()}
+      </ClientLayout>
 
       {/* Service Request Modal */}
       {showServiceModal && (
@@ -3538,220 +3212,220 @@ export default function ClientDashboard() {
                 <div className='flex gap-6'>
                   {/* Left Column - Main Form */}
                   <div className="flex-1 space-y-6">
-                    {/* Service Category & Urgency */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Service Category & Urgency */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-3">
-                        <Label htmlFor="service-category" className="text-sm font-semibold text-gray-700 flex items-center">
+                    <Label htmlFor="service-category" className="text-sm font-semibold text-gray-700 flex items-center">
                           <span className="text-red-500 mr-2">*</span>
-                          Service Category
-                        </Label>
-                        <Select 
-                          value={formData.serviceCategory} 
-                          onValueChange={(value) => setFormData(prev => ({ ...prev, serviceCategory: value }))}
-                        >
+                      Service Category
+                    </Label>
+                    <Select 
+                      value={formData.serviceCategory} 
+                      onValueChange={(value) => setFormData(prev => ({ ...prev, serviceCategory: value }))}
+                    >
                           <SelectTrigger className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm">
-                            <SelectValue placeholder="Choose a service category">
-                              {formData.serviceCategory ? getCategoryDisplayName(formData.serviceCategory) : "Choose a service category"}
-                            </SelectValue>
-                          </SelectTrigger>
+                        <SelectValue placeholder="Choose a service category">
+                          {formData.serviceCategory ? getCategoryDisplayName(formData.serviceCategory) : "Choose a service category"}
+                        </SelectValue>
+                      </SelectTrigger>
                           <SelectContent className="z-[99999] bg-white border border-gray-200 shadow-xl rounded-lg">
-                            {serviceCategories.map((category) => (
+                        {serviceCategories.map((category) => (
                               <SelectItem key={category.id} value={category.id} className="py-4 hover:bg-gray-50 cursor-pointer">
-                                <div className="flex items-center">
+                            <div className="flex items-center">
                                   <span className="text-xl mr-4">{category.icon}</span>
-                                  <div>
+                              <div>
                                     <div className="font-semibold text-gray-900">{category.name}</div>
                                     <div className="text-sm text-gray-500">{category.description}</div>
-                                  </div>
-                                </div>
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      
+                              </div>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
                       <div className="space-y-3">
-                        <Label htmlFor="urgency" className="text-sm font-semibold text-gray-700 flex items-center">
+                    <Label htmlFor="urgency" className="text-sm font-semibold text-gray-700 flex items-center">
                           <span className="text-red-500 mr-2">*</span>
-                          Urgency Level
-                        </Label>
-                        <Select 
-                          value={formData.urgency} 
-                          onValueChange={(value) => setFormData(prev => ({ ...prev, urgency: value }))}
-                        >
+                      Urgency Level
+                    </Label>
+                    <Select 
+                      value={formData.urgency} 
+                      onValueChange={(value) => setFormData(prev => ({ ...prev, urgency: value }))}
+                    >
                           <SelectTrigger className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm">
-                            <SelectValue placeholder="Select urgency level">
-                              {formData.urgency ? getUrgencyDisplayName(formData.urgency) : "Select urgency level"}
-                            </SelectValue>
-                          </SelectTrigger>
+                        <SelectValue placeholder="Select urgency level">
+                          {formData.urgency ? getUrgencyDisplayName(formData.urgency) : "Select urgency level"}
+                        </SelectValue>
+                      </SelectTrigger>
                           <SelectContent className="z-[99999] bg-white border border-gray-200 shadow-xl rounded-lg">
                             <SelectItem value="emergency" className="py-4 hover:bg-red-50 cursor-pointer">
-                              <div className="flex items-center">
+                          <div className="flex items-center">
                                 <span className="text-2xl mr-4">🚨</span>
-                                <div>
+                            <div>
                                   <div className="font-semibold text-gray-900">Emergency</div>
                                   <div className="text-sm text-gray-500">24 hours or less</div>
-                                </div>
-                              </div>
-                            </SelectItem>
+                            </div>
+                          </div>
+                        </SelectItem>
                             <SelectItem value="urgent" className="py-4 hover:bg-orange-50 cursor-pointer">
-                              <div className="flex items-center">
+                          <div className="flex items-center">
                                 <span className="text-2xl mr-4">⚡</span>
-                                <div>
+                            <div>
                                   <div className="font-semibold text-gray-900">Urgent</div>
                                   <div className="text-sm text-gray-500">2-3 days</div>
-                                </div>
-                              </div>
-                            </SelectItem>
+                            </div>
+                          </div>
+                        </SelectItem>
                             <SelectItem value="normal" className="py-4 hover:bg-blue-50 cursor-pointer">
-                              <div className="flex items-center">
+                          <div className="flex items-center">
                                 <span className="text-2xl mr-4">📅</span>
-                                <div>
+                            <div>
                                   <div className="font-semibold text-gray-900">Normal</div>
                                   <div className="text-sm text-gray-500">1-2 weeks</div>
-                                </div>
-                              </div>
-                            </SelectItem>
+                            </div>
+                          </div>
+                        </SelectItem>
                             <SelectItem value="flexible" className="py-4 hover:bg-green-50 cursor-pointer">
-                              <div className="flex items-center">
+                          <div className="flex items-center">
                                 <span className="text-2xl mr-4">🔄</span>
-                                <div>
+                            <div>
                                   <div className="font-semibold text-gray-900">Flexible</div>
                                   <div className="text-sm text-gray-500">1+ month</div>
-                                </div>
-                              </div>
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
+                            </div>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
 
-                    {/* Service Title */}
+                {/* Service Title */}
                     <div className="space-y-3">
-                      <Label htmlFor="service-title" className="text-sm font-semibold text-gray-700 flex items-center">
+                  <Label htmlFor="service-title" className="text-sm font-semibold text-gray-700 flex items-center">
                         <span className="text-red-500 mr-2">*</span>
-                        Service Title
-                      </Label>
-                      <Input
-                        id="service-title"
-                        placeholder="e.g., Emergency Water Damage Restoration"
-                        value={formData.serviceTitle}
-                        onChange={(e) => setFormData(prev => ({ ...prev, serviceTitle: e.target.value }))}
+                    Service Title
+                  </Label>
+                  <Input
+                    id="service-title"
+                    placeholder="e.g., Emergency Water Damage Restoration"
+                    value={formData.serviceTitle}
+                    onChange={(e) => setFormData(prev => ({ ...prev, serviceTitle: e.target.value }))}
                         className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm text-lg"
-                      />
-                    </div>
+                  />
+                </div>
 
-                    {/* Description */}
+                {/* Description */}
                     <div className="space-y-3">
-                      <Label htmlFor="description" className="text-sm font-semibold text-gray-700 flex items-center">
+                  <Label htmlFor="description" className="text-sm font-semibold text-gray-700 flex items-center">
                         <span className="text-red-500 mr-2">*</span>
-                        Description
-                      </Label>
-                      <textarea
-                        id="description"
-                        placeholder="Please describe your service needs in detail. Include any specific requirements, damage details, or special instructions..."
-                        value={formData.description}
-                        onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                    Description
+                  </Label>
+                  <textarea
+                    id="description"
+                    placeholder="Please describe your service needs in detail. Include any specific requirements, damage details, or special instructions..."
+                    value={formData.description}
+                    onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                         className="w-full p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] min-h-[140px] bg-white shadow-sm text-gray-900"
-                        rows={5}
-                      />
+                    rows={5}
+                  />
                       <p className="text-sm text-gray-500 flex items-center">
                         <span className="mr-1">💡</span>
                         Be as detailed as possible to help contractors understand your needs
                       </p>
-                    </div>
+                </div>
 
                     {/* Location */}
                     <div className="space-y-3">
-                      <Label htmlFor="location" className="text-sm font-semibold text-gray-700 flex items-center">
+                    <Label htmlFor="location" className="text-sm font-semibold text-gray-700 flex items-center">
                         <span className="text-red-500 mr-2">*</span>
-                        Location
-                      </Label>
-                      <Input
-                        id="location"
-                        placeholder="e.g., Sydney, NSW 2000"
-                        value={formData.location}
-                        onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
+                      Location
+                    </Label>
+                    <Input
+                      id="location"
+                      placeholder="e.g., Sydney, NSW 2000"
+                      value={formData.location}
+                      onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
                         className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm text-lg"
-                      />
-                    </div>
+                    />
                   </div>
+                </div>
 
                   {/* Right Column - Contact & Options */}
                   <div className="w-80 space-y-6">
-                    {/* Contact Preferences */}
+                {/* Contact Preferences */}
                     <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                         <span className="mr-2">📞</span>
                         Contact Preferences
                       </h3>
-                      <div className="space-y-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number</Label>
-                          <Input
-                            id="phone"
-                            placeholder="+61 4XX XXX XXX"
-                            value={formData.phone}
-                            onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+                <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number</Label>
+                      <Input
+                        id="phone"
+                        placeholder="+61 4XX XXX XXX"
+                        value={formData.phone}
+                        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                             className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="preferred-time" className="text-sm font-semibold text-gray-700">Preferred Contact Time</Label>
-                          <Select 
-                            value={formData.preferredTime} 
-                            onValueChange={(value) => setFormData(prev => ({ ...prev, preferredTime: value }))}
-                          >
-                            <SelectTrigger className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white">
-                              <SelectValue placeholder="When can we contact you?" />
-                            </SelectTrigger>
-                            <SelectContent className="z-[99999] bg-white border border-gray-200 shadow-lg rounded-lg">
-                              <SelectItem value="anytime" className="hover:bg-gray-50">Anytime</SelectItem>
-                              <SelectItem value="business-hours" className="hover:bg-gray-50">Business Hours (9 AM - 5 PM)</SelectItem>
-                              <SelectItem value="evenings" className="hover:bg-gray-50">Evenings (5 PM - 8 PM)</SelectItem>
-                              <SelectItem value="weekends" className="hover:bg-gray-50">Weekends Only</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
+                      />
                     </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="preferred-time" className="text-sm font-semibold text-gray-700">Preferred Contact Time</Label>
+                      <Select 
+                        value={formData.preferredTime} 
+                        onValueChange={(value) => setFormData(prev => ({ ...prev, preferredTime: value }))}
+                      >
+                            <SelectTrigger className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white">
+                          <SelectValue placeholder="When can we contact you?" />
+                        </SelectTrigger>
+                            <SelectContent className="z-[99999] bg-white border border-gray-200 shadow-lg rounded-lg">
+                          <SelectItem value="anytime" className="hover:bg-gray-50">Anytime</SelectItem>
+                          <SelectItem value="business-hours" className="hover:bg-gray-50">Business Hours (9 AM - 5 PM)</SelectItem>
+                          <SelectItem value="evenings" className="hover:bg-gray-50">Evenings (5 PM - 8 PM)</SelectItem>
+                          <SelectItem value="weekends" className="hover:bg-gray-50">Weekends Only</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </div>
 
-                    {/* Additional Options */}
+                {/* Additional Options */}
                     <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
                       <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
                         <span className="mr-2">ℹ️</span>
                         Additional Information
                       </h3>
-                      <div className="space-y-4">
-                        <div className="flex items-start space-x-3">
-                          <input 
-                            type="checkbox" 
-                            id="insurance" 
-                            checked={formData.insurance}
-                            onChange={(e) => setFormData(prev => ({ ...prev, insurance: e.target.checked }))}
+                <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <input 
+                        type="checkbox" 
+                        id="insurance" 
+                        checked={formData.insurance}
+                        onChange={(e) => setFormData(prev => ({ ...prev, insurance: e.target.checked }))}
                             className="mt-1 rounded border-gray-300 text-[#00BFA6] focus:ring-[#00BFA6] h-5 w-5" 
-                          />
-                          <div>
-                            <Label htmlFor="insurance" className="text-sm font-medium text-gray-700 cursor-pointer">
-                              This is an insurance claim
-                            </Label>
-                            <p className="text-xs text-gray-500 mt-1">Check if this service is covered by insurance</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start space-x-3">
-                          <input 
-                            type="checkbox" 
-                            id="urgent-response" 
-                            checked={formData.urgentResponse}
-                            onChange={(e) => setFormData(prev => ({ ...prev, urgentResponse: e.target.checked }))}
+                      />
+                      <div>
+                        <Label htmlFor="insurance" className="text-sm font-medium text-gray-700 cursor-pointer">
+                          This is an insurance claim
+                        </Label>
+                        <p className="text-xs text-gray-500 mt-1">Check if this service is covered by insurance</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-3">
+                      <input 
+                        type="checkbox" 
+                        id="urgent-response" 
+                        checked={formData.urgentResponse}
+                        onChange={(e) => setFormData(prev => ({ ...prev, urgentResponse: e.target.checked }))}
                             className="mt-1 rounded border-gray-300 text-[#00BFA6] focus:ring-[#00BFA6] h-5 w-5" 
-                          />
-                          <div>
-                            <Label htmlFor="urgent-response" className="text-sm font-medium text-gray-700 cursor-pointer">
-                              Request urgent response
-                            </Label>
-                            <p className="text-xs text-gray-500 mt-1">Get priority matching with contractors</p>
+                      />
+                      <div>
+                        <Label htmlFor="urgent-response" className="text-sm font-medium text-gray-700 cursor-pointer">
+                          Request urgent response
+                        </Label>
+                        <p className="text-xs text-gray-500 mt-1">Get priority matching with contractors</p>
                           </div>
                         </div>
                       </div>
@@ -4107,7 +3781,7 @@ export default function ClientDashboard() {
                 <div>
                   <h2 className="text-2xl font-bold">Request Details</h2>
                   <p className="text-white/90 mt-1">
-                    Complete information about your service request
+              Complete information about your service request
                   </p>
                 </div>
                 <Button
@@ -4125,12 +3799,12 @@ export default function ClientDashboard() {
             <div className="p-8 bg-white space-y-8">
               {/* Request Header */}
               <div className="space-y-6">
-                <div>
+                  <div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">{selectedRequest.serviceTitle}</h3>
                   <div className="flex items-center gap-4">
                     <Badge className={`${getStatusColor(selectedRequest.status)} text-sm px-4 py-2 font-semibold`}>
-                      {getStatusDisplay(selectedRequest.status)}
-                    </Badge>
+                        {getStatusDisplay(selectedRequest.status)}
+                      </Badge>
                     <div className="flex items-center text-gray-600">
                       <Calendar className="h-4 w-4 mr-2" />
                       <span className="text-sm font-medium">
@@ -4157,30 +3831,30 @@ export default function ClientDashboard() {
                   <p className="text-lg font-semibold text-gray-900">{getCategoryDisplayName(selectedRequest.serviceCategory)}</p>
                   
                   <Label className="text-sm font-semibold text-gray-700">Urgency Level</Label>
-                  <Badge 
-                    variant="outline" 
+                      <Badge 
+                        variant="outline" 
                     className={`text-sm px-4 py-2 font-semibold ${
                       selectedRequest.urgency === 'emergency' ? 'border-red-500 text-red-600 bg-red-50' :
                       selectedRequest.urgency === 'urgent' ? 'border-orange-500 text-orange-600 bg-orange-50' :
                       'border-gray-300 text-gray-600 bg-gray-50'
-                    }`}
-                  >
-                    {getUrgencyDisplayName(selectedRequest.urgency)}
-                  </Badge>
-                </div>
+                        }`}
+                      >
+                        {getUrgencyDisplayName(selectedRequest.urgency)}
+                      </Badge>
+                    </div>
 
                 <div className="space-y-4">
                   <Label className="text-sm font-semibold text-gray-700">Location</Label>
                   <p className="text-lg font-semibold text-gray-900">{selectedRequest.location}</p>
                   
-                  {selectedRequest.phone && (
+                    {selectedRequest.phone && (
                     <>
                       <Label className="text-sm font-semibold text-gray-700">Phone</Label>
                       <p className="text-lg font-semibold text-gray-900">{selectedRequest.phone}</p>
                     </>
                   )}
                   
-                  {selectedRequest.preferredTime && (
+                    {selectedRequest.preferredTime && (
                     <>
                       <Label className="text-sm font-semibold text-gray-700">Preferred Time</Label>
                       <p className="text-lg font-semibold text-gray-900">{selectedRequest.preferredTime}</p>
@@ -4194,17 +3868,17 @@ export default function ClientDashboard() {
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <h4 className="text-base font-semibold text-gray-900 mb-4">Special Requirements</h4>
                   <div className="flex flex-wrap gap-3">
-                    {selectedRequest.insurance && (
+                      {selectedRequest.insurance && (
                       <Badge className="bg-blue-100 text-blue-700 border-blue-300 px-4 py-2 text-sm font-semibold">
-                        Insurance Claim
-                      </Badge>
-                    )}
-                    {selectedRequest.urgentResponse && (
+                          Insurance Claim
+                        </Badge>
+                      )}
+                      {selectedRequest.urgentResponse && (
                       <Badge className="bg-orange-100 text-orange-700 border-orange-300 px-4 py-2 text-sm font-semibold">
-                        Urgent Response Required
-                      </Badge>
-                    )}
-                  </div>
+                          Urgent Response Required
+                        </Badge>
+                      )}
+                    </div>
                 </div>
               )}
 
@@ -4212,73 +3886,73 @@ export default function ClientDashboard() {
               {contractorMatches[selectedRequest.id] && contractorMatches[selectedRequest.id].length > 0 && (
                 <div className="space-y-4">
                   <h4 className="text-xl font-bold text-gray-900">
-                    Matched Contractors ({contractorMatches[selectedRequest.id].length})
+                      Matched Contractors ({contractorMatches[selectedRequest.id].length})
                   </h4>
                   <div className="space-y-4">
-                    {contractorMatches[selectedRequest.id].map((match: any) => (
+                      {contractorMatches[selectedRequest.id].map((match: any) => (
                       <div key={match.id} className="flex items-center justify-between p-6 bg-gray-50 border border-gray-200 rounded-xl hover:border-gray-300 transition-colors">
                         <div className="flex items-center space-x-4">
                           <div className="w-16 h-16 bg-[#00BFA6] rounded-full flex items-center justify-center">
                             <span className="text-white font-bold text-xl">
-                              {match.contractor.businessName?.charAt(0) || match.contractor.user.name?.charAt(0) || 'C'}
-                            </span>
-                          </div>
+                                {match.contractor.businessName?.charAt(0) || match.contractor.user.name?.charAt(0) || 'C'}
+                              </span>
+                            </div>
                           <div className="flex-1">
                             <h6 className="font-semibold text-gray-900 text-lg mb-1">
-                              {match.contractor.businessName || match.contractor.user.name}
-                            </h6>
+                                {match.contractor.businessName || match.contractor.user.name}
+                              </h6>
                             <p className="text-sm text-gray-600 mb-2">
                               {match.contractor.city}, {match.contractor.state} • {match.contractor.experience} years experience
-                            </p>
+                              </p>
                             <div className="flex items-center space-x-4">
-                              <div className="flex items-center">
+                                <div className="flex items-center">
                                 <Star className="h-4 w-4 text-yellow-400 mr-1" />
                                 <span className="text-gray-900 text-sm font-medium">{match.contractor.rating.toFixed(1)}</span>
                                 <span className="text-gray-500 text-sm ml-1">({match.contractor.totalJobs} jobs)</span>
-                              </div>
-                              <Badge 
+                                </div>
+                                <Badge 
                                 className={`text-sm px-3 py-1 font-semibold ${
                                   match.matchScore >= 80 ? 'bg-green-50 text-green-700 border-green-300' :
                                   match.matchScore >= 60 ? 'bg-yellow-50 text-yellow-700 border-yellow-300' :
                                   'bg-red-50 text-red-700 border-red-300'
-                                }`}
-                              >
-                                {match.matchScore}% match
-                              </Badge>
+                                  }`}
+                                >
+                                  {match.matchScore}% match
+                                </Badge>
+                              </div>
                             </div>
                           </div>
-                        </div>
                         <div className="flex items-center space-x-3">
-                          <Button
-                            size="sm"
-                            variant="outline"
+                            <Button
+                              size="sm"
+                              variant="outline"
                             className="text-sm border-gray-300 text-gray-700 hover:bg-gray-100"
-                            onClick={() => handleViewContractor(match.contractor.id, match.contractor.services?.[0])}
-                          >
+                              onClick={() => handleViewContractor(match.contractor.id, match.contractor.services?.[0])}
+                            >
                             <Eye className="h-4 w-4 mr-2" />
-                            View Profile
-                          </Button>
-                          <Button
-                            size="sm"
+                              View Profile
+                            </Button>
+                            <Button
+                              size="sm"
                             className="bg-[#00BFA6] hover:bg-[#00A693] text-white text-sm"
-                            onClick={async () => {
-                              setSelectedContractor(match.contractor);
-                              await handleContactContractor();
-                            }}
-                          >
+                              onClick={async () => {
+                                setSelectedContractor(match.contractor);
+                                await handleContactContractor();
+                              }}
+                            >
                             <MessageCircle className="h-4 w-4 mr-2" />
-                            Contact
-                          </Button>
+                              Contact
+                            </Button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
                 </div>
               )}
             </div>
           </div>
-        </div>
-      )}
+            </div>
+          )}
 
       {/* Client Onboarding Modal */}
       {showOnboarding && (
@@ -4472,6 +4146,6 @@ export default function ClientDashboard() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

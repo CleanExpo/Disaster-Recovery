@@ -374,7 +374,7 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-gray-900 rounded-xl max-w-7xl w-full max-h-[95vh] overflow-y-auto">
         <div className="p-6">
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
