@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+export const dynamic = 'force-dynamic';
 import { verifyToken } from '@/lib/auth';
 import { EnhancedMatchingServiceV2 } from '@/lib/enhanced-matching-service-v2';
 
