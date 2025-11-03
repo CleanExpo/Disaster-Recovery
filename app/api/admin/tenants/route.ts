@@ -1,21 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
+
+const tenantActionSchema = z.object({
+  action: z.enum(['create_tenant', 'update_tenant', 'suspend_tenant', 'delete_tenant']),
+  tenantId: z.string().optional(),
+  data: z.any().optional()
+});
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    // Mock tenant data - in a real app, this would come from a tenants table
+    // Mock tenant data
     const tenants = [
       {
         id: 'tenant-1',
@@ -113,7 +120,6 @@ export async function GET(request: NextRequest) {
       }
     ];
 
-    // Get tenant statistics
     const tenantStats = {
       totalTenants: tenants.length,
       activeTenants: tenants.filter(t => t.status === 'active').length,
@@ -132,33 +138,28 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error getting tenants:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const body = await request.json();
-    const { action, tenantId, data } = body;
+    const { action, data } = tenantActionSchema.parse(body);
 
     switch (action) {
       case 'create_tenant':
-        // In a real app, create a new tenant
         return NextResponse.json({
           success: true,
           message: 'Tenant created successfully',
@@ -171,37 +172,28 @@ export async function POST(request: NextRequest) {
         });
 
       case 'update_tenant':
-        // In a real app, update tenant settings
         return NextResponse.json({
           success: true,
           message: 'Tenant updated successfully'
         });
 
       case 'suspend_tenant':
-        // In a real app, suspend tenant access
         return NextResponse.json({
           success: true,
           message: 'Tenant suspended successfully'
         });
 
       case 'delete_tenant':
-        // In a real app, delete tenant and all associated data
         return NextResponse.json({
           success: true,
           message: 'Tenant deleted successfully'
         });
-
-      default:
-        return NextResponse.json({
-          error: 'Invalid action'
-        }, { status: 400 });
     }
 
   } catch (error) {
-    console.error('Error managing tenant:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

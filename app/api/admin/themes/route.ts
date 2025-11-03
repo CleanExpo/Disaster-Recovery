@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
-import { z } from 'zod';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const themeSchema = z.object({
   name: z.string().min(1),
@@ -15,15 +16,15 @@ const themeSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const themes = await prisma.adminTheme.findMany({
@@ -37,25 +38,21 @@ export async function GET(request: NextRequest) {
       data: themes
     });
   } catch (error) {
-    console.error('Get themes error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch themes' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const body = await request.json();
@@ -70,10 +67,9 @@ export async function POST(request: NextRequest) {
       data: theme
     });
   } catch (error) {
-    console.error('Create theme error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create theme' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
