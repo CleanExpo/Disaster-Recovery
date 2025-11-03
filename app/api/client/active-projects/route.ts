@@ -1,28 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
 
+export const dynamic = 'force-dynamic';
+
+/**
+ * GET /api/client/active-projects
+ * Retrieves all active projects for authenticated client
+ */
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+    const { user } = authResult.context;
+
+    // Validate user is client
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CLIENT') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Get all accepted contractor matches for this client's service requests
+    // Fetch active projects (accepted contractor matches)
     const activeProjects = await prisma.contractorMatch.findMany({
       where: {
         serviceRequest: {
-          userId: payload.userId,
+          userId: user.id,
         },
-        status: 'ACCEPTED', // Only accepted offers become active projects
+        status: 'ACCEPTED',
       },
       include: {
         contractor: {
@@ -55,7 +62,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Transform the data to include project details
+    // Transform data for response
     const transformedProjects = activeProjects.map(project => ({
       id: project.id,
       contractor: project.contractor,
@@ -72,13 +79,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      projects: transformedProjects,
+      data: transformedProjects,
     });
   } catch (error) {
-    console.error('Get active projects error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch active projects' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

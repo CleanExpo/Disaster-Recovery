@@ -1,30 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
+
 export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CLIENT') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Get all contractor matches for this client's service requests
     const offers = await prisma.contractorMatch.findMany({
       where: {
-        serviceRequest: {
-          userId: payload.userId,
-        },
-        contractorMessage: {
-          not: null, // Only matches with bids/messages
-        },
+        serviceRequest: { userId: user.id },
+        status: 'PENDING',
       },
       include: {
         contractor: {
@@ -39,48 +33,13 @@ export async function GET(request: NextRequest) {
             },
           },
         },
-        serviceRequest: {
-          select: {
-            id: true,
-            serviceTitle: true,
-            description: true,
-            location: true,
-            serviceCategory: true,
-            urgency: true,
-            budget: true,
-            createdAt: true,
-          },
-        },
+        serviceRequest: true,
       },
-      orderBy: {
-        createdAt: 'desc',
-      },
+      orderBy: { matchScore: 'desc' },
     });
 
-    // Transform the data to include bid details
-    const transformedOffers = offers.map(offer => ({
-      id: offer.id,
-      contractor: offer.contractor,
-      serviceRequest: offer.serviceRequest,
-      budget: offer.budget,
-      timeline: offer.timeline,
-      startDate: offer.startDate,
-      estimatedHours: offer.estimatedHours,
-      message: offer.contractorMessage,
-      status: offer.status,
-      createdAt: offer.createdAt,
-      updatedAt: offer.updatedAt,
-    }));
-
-    return NextResponse.json({
-      success: true,
-      offers: transformedOffers,
-    });
+    return NextResponse.json({ success: true, data: offers });
   } catch (error) {
-    console.error('Get client offers error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch offers' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

@@ -1,36 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
+
 export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CONTRACTOR') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
-    // Get contractor profile
-    const contractorProfile = await prisma.contractorProfile.findUnique({
-      where: { userId: payload.userId },
+    const profile = await prisma.contractorProfile.findUnique({
+      where: { userId: user.id },
     });
 
-    if (!contractorProfile) {
-      return NextResponse.json(
-        { error: 'Contractor profile not found' },
-        { status: 404 }
-      );
+    if (!profile) {
+      return NextResponse.json({ success: true, data: [] });
     }
 
-    // Get contractor's bids
     const bids = await prisma.contractorMatch.findMany({
-      where: { contractorId: contractorProfile.id },
+      where: { contractorId: profile.id },
       include: {
         serviceRequest: {
           include: {
@@ -39,7 +33,6 @@ export async function GET(request: NextRequest) {
                 id: true,
                 name: true,
                 email: true,
-                avatar: true,
               },
             },
           },
@@ -48,24 +41,8 @@ export async function GET(request: NextRequest) {
       orderBy: { createdAt: 'desc' },
     });
 
-    // Calculate statistics
-    const stats = {
-      total: bids.length,
-      pending: bids.filter(bid => bid.status === 'PENDING').length,
-      accepted: bids.filter(bid => bid.status === 'ACCEPTED').length,
-      rejected: bids.filter(bid => bid.status === 'REJECTED').length,
-      expired: bids.filter(bid => bid.status === 'EXPIRED').length,
-    };
-
-    return NextResponse.json({
-      bids,
-      stats,
-    });
+    return NextResponse.json({ success: true, data: bids });
   } catch (error) {
-    console.error('Get contractor bids error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch bids' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
