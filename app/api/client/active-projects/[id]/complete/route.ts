@@ -55,10 +55,10 @@ export async function POST(
       );
     }
 
-    // Update the project status to COMPLETED
+    // Update the project status to ACCEPTED (MatchStatus enum doesn't have COMPLETED)
     await prisma.contractorMatch.update({
       where: { id: params.id },
-      data: { status: 'COMPLETED' },
+      data: { status: 'ACCEPTED' },
     });
 
     // Update the service request status to COMPLETED
