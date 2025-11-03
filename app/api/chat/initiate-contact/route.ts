@@ -1,29 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { z } from 'zod';
+
+const initiateContactSchema = z.object({
+  contractorId: z.string().min(1, 'Contractor ID is required'),
+});
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CLIENT') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Authorize: CLIENT role only
+    if (!requireRole(user, ['CLIENT'])) {
+      return unauthorizedRoleResponse(['CLIENT']);
     }
 
+    // Validate request body
     const body = await request.json();
-    const { contractorId } = body;
+    const validation = initiateContactSchema.safeParse(body);
 
-    if (!contractorId) {
-      return NextResponse.json(
-        { error: 'Contractor ID is required' },
-        { status: 400 }
-      );
+    if (!validation.success) {
+      return handleValidationError(validation.error);
     }
+
+    const { contractorId } = validation.data;
 
     // Check if contractor exists and is verified
     const contractor = await prisma.contractorProfile.findFirst({
@@ -43,9 +51,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (!contractor) {
-      return NextResponse.json(
-        { error: 'Contractor not found or not verified' },
-        { status: 404 }
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Contractor not found or not verified',
+        404
       );
     }
 
@@ -54,7 +63,7 @@ export async function POST(request: NextRequest) {
       where: {
         contractorId: contractor.id,
         serviceRequest: {
-          userId: payload.userId,
+          userId: user.id,
         },
       },
     });
@@ -70,7 +79,7 @@ export async function POST(request: NextRequest) {
     // Create a direct contact request
     const contactRequest = await prisma.message.create({
       data: {
-        senderId: payload.userId,
+        senderId: user.id,
         receiverId: contractorId,
         content: 'I would like to discuss a potential project with you.',
         messageType: 'GENERAL',
@@ -84,10 +93,6 @@ export async function POST(request: NextRequest) {
       contactRequest,
     });
   } catch (error) {
-    console.error('Initiate contact error:', error);
-    return NextResponse.json(
-      { error: 'Failed to initiate contact' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

@@ -1,41 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { z } from 'zod';
 
 const initiateMessageSchema = z.object({
-  receiverId: z.string().min(1),
-  serviceRequestId: z.string().min(1),
-  message: z.string().min(1).max(1000),
+  receiverId: z.string().min(1, 'Receiver ID is required'),
+  serviceRequestId: z.string().min(1, 'Service request ID is required'),
+  message: z.string().min(1, 'Message cannot be empty').max(1000, 'Message too long (max 1000 characters)'),
 });
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
+    const { user } = authResult.context;
 
+    // Validate request body
     const body = await request.json();
-    const { receiverId, serviceRequestId, message } = initiateMessageSchema.parse(body);
+    const validation = initiateMessageSchema.safeParse(body);
 
-    // Check if users exist
-    const sender = await prisma.user.findUnique({
-      where: { id: payload.userId },
-    });
+    if (!validation.success) {
+      return handleValidationError(validation.error);
+    }
 
+    const { receiverId, serviceRequestId, message } = validation.data;
+
+    // Check if receiver exists
     const receiver = await prisma.user.findUnique({
       where: { id: receiverId },
     });
 
-    if (!sender || !receiver) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    if (!receiver) {
+      return createErrorResponse(
+        ErrorCode.USER_NOT_FOUND,
+        'Receiver not found',
+        404
+      );
     }
 
     // Check if service request exists
@@ -44,7 +49,11 @@ export async function POST(request: NextRequest) {
     });
 
     if (!serviceRequest) {
-      return NextResponse.json({ error: 'Service request not found' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found',
+        404
+      );
     }
 
     // Check if chat already exists for this service request
@@ -53,12 +62,12 @@ export async function POST(request: NextRequest) {
         requestId: serviceRequestId,
         OR: [
           {
-            senderId: payload.userId,
+            senderId: user.id,
             receiverId: receiverId,
           },
           {
             senderId: receiverId,
-            receiverId: payload.userId,
+            receiverId: user.id,
           },
         ],
       },
@@ -76,7 +85,7 @@ export async function POST(request: NextRequest) {
     // Create the message
     const newMessage = await prisma.message.create({
       data: {
-        senderId: payload.userId,
+        senderId: user.id,
         receiverId: receiverId,
         content: message,
         messageType: 'INITIATE_CHAT',
@@ -115,10 +124,6 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error initiating chat:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

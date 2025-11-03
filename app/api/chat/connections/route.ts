@@ -1,26 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
+
 export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CLIENT') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Authorize: CLIENT role only
+    if (!requireRole(user, ['CLIENT'])) {
+      return unauthorizedRoleResponse(['CLIENT']);
     }
 
     // Get all contractors the user has connections with
     const connections = await prisma.contractorMatch.findMany({
       where: {
         serviceRequest: {
-          userId: payload.userId
+          userId: user.id
         }
       },
       include: {
@@ -56,7 +60,7 @@ export async function GET(request: NextRequest) {
         const unreadCount = await prisma.message.count({
           where: {
             senderId: connection.contractor.userId,
-            receiverId: payload.userId,
+            receiverId: user.id,
             isRead: false,
           },
         });
@@ -65,8 +69,8 @@ export async function GET(request: NextRequest) {
         const lastMessage = await prisma.message.findFirst({
           where: {
             OR: [
-              { senderId: payload.userId, receiverId: connection.contractor.userId },
-              { senderId: connection.contractor.userId, receiverId: payload.userId },
+              { senderId: user.id, receiverId: connection.contractor.userId },
+              { senderId: connection.contractor.userId, receiverId: user.id },
             ],
           },
           orderBy: { createdAt: 'desc' },
@@ -90,7 +94,7 @@ export async function GET(request: NextRequest) {
           lastMessage: lastMessage ? {
             content: lastMessage.content,
             timestamp: lastMessage.createdAt.toISOString(),
-            isFromUser: lastMessage.senderId === payload.userId,
+            isFromUser: lastMessage.senderId === user.id,
           } : null,
           unreadCount,
           canChat: true,
@@ -103,10 +107,6 @@ export async function GET(request: NextRequest) {
       connections: connectionsWithMessages,
     });
   } catch (error) {
-    console.error('Get chat connections error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch connections' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
