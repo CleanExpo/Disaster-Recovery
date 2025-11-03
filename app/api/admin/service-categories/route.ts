@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
-import { z } from 'zod';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const categorySchema = z.object({
   name: z.string().min(1),
@@ -13,15 +14,15 @@ const categorySchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const categories = await prisma.adminServiceCategory.findMany({
@@ -38,25 +39,21 @@ export async function GET(request: NextRequest) {
       data: categories
     });
   } catch (error) {
-    console.error('Get service categories error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch service categories' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const body = await request.json();
@@ -74,10 +71,9 @@ export async function POST(request: NextRequest) {
       data: category
     });
   } catch (error) {
-    console.error('Create service category error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create service category' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

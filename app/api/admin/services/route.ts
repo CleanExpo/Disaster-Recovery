@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
-import { z } from 'zod';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const serviceSchema = z.object({
   categoryId: z.string().min(1),
@@ -14,15 +15,15 @@ const serviceSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const services = await prisma.adminService.findMany({
@@ -39,25 +40,21 @@ export async function GET(request: NextRequest) {
       data: services
     });
   } catch (error) {
-    console.error('Get services error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch services' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const body = await request.json();
@@ -75,10 +72,9 @@ export async function POST(request: NextRequest) {
       data: service
     });
   } catch (error) {
-    console.error('Create service error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create service' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
