@@ -1,56 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import { verifyToken } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { contractorProfileCreateSchema, contractorProfileUpdateSchema } from '@/lib/validation-schemas';
+import { handleValidationError, handleUnexpectedError, handleDatabaseError } from '@/lib/api-errors';
+import { ZodError } from 'zod';
 
-const prisma = new PrismaClient();
-
+/**
+ * GET /api/contractor/profile
+ * Retrieves contractor profile for authenticated user
+ */
 export async function GET(request: NextRequest) {
   try {
-    console.log('Contractor profile API called');
-    
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
-
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
-    console.log('User ID:', decoded.userId);
-
-    // Check if prisma is available
-    if (!prisma) {
-      console.error('Prisma client is not available');
-      return NextResponse.json({ error: 'Database connection error' }, { status: 500 });
-    }
+    const { user } = authResult.context;
 
     // Get contractor profile
     const profile = await prisma.contractorProfile.findUnique({
-      where: { userId: decoded.userId },
+      where: { userId: user.id },
       include: {
         user: {
           select: {
             id: true,
             name: true,
             email: true,
-            avatar: true
-          }
-        }
-      }
+            avatar: true,
+          },
+        },
+      },
     });
 
     if (!profile) {
-      return NextResponse.json({ 
-        success: true, 
+      return NextResponse.json({
+        success: true,
         profile: null,
-        isProfileComplete: false 
+        isProfileComplete: false,
       });
     }
 
-    // Check if profile is complete
+    // Check profile completeness
     const isProfileComplete = !!(
       profile.businessName &&
       profile.phone &&
@@ -69,113 +60,59 @@ export async function GET(request: NextRequest) {
       success: true,
       profile: {
         ...profile,
-        isProfileComplete
-      }
-    });
-
-  } catch (error) {
-    console.error('Error fetching contractor profile:', error);
-    console.error('Error details:', {
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-      prismaAvailable: !!prisma
-    });
-    return NextResponse.json(
-      { 
-        error: 'Internal server error',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        isProfileComplete,
       },
-      { status: 500 }
-    );
+    });
+  } catch (error) {
+    return handleDatabaseError(error);
   }
 }
 
+/**
+ * POST /api/contractor/profile
+ * Creates contractor profile for authenticated user
+ */
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+    const { user } = authResult.context;
+
+    // Validate user is contractor
+    if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
+    // Parse and validate request body
     const body = await request.json();
-    const {
-      businessName,
-      phone,
-      address,
-      city,
-      state,
-      zipCode,
-      licenseNumber,
-      insuranceProvider,
-      insuranceExpiry,
-      services,
-      serviceAreas,
-      hourlyRate,
-      experience,
-      bio,
-      availability
-    } = body;
+    const validatedData = contractorProfileCreateSchema.parse(body);
 
-    // Validate required fields
-    if (!businessName || !phone || !address || !city || !state || !zipCode || 
-        !services || services.length === 0 || !serviceAreas || serviceAreas.length === 0 ||
-        !hourlyRate || !experience) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
-
-    // Create or update contractor profile
+    // Create or update profile
     const profile = await prisma.contractorProfile.upsert({
-      where: { userId: decoded.userId },
+      where: { userId: user.id },
       update: {
-        businessName,
-        phone,
-        address,
-        city,
-        state,
-        zipCode,
-        licenseNumber: licenseNumber || null,
-        insuranceProvider: insuranceProvider || null,
-        insuranceExpiry: insuranceExpiry ? new Date(insuranceExpiry) : null,
-        services,
-        serviceAreas,
-        hourlyRate: parseFloat(hourlyRate),
-        experience: parseInt(experience),
-        bio: bio || null,
-        availability: availability || 'AVAILABLE',
-        isVerified: false, // Will be verified by admin
-        updatedAt: new Date()
+        ...validatedData,
+        insuranceExpiry: validatedData.insuranceExpiry
+          ? new Date(validatedData.insuranceExpiry)
+          : null,
+        availability: validatedData.availability || 'AVAILABLE',
+        updatedAt: new Date(),
       },
       create: {
-        userId: decoded.userId,
-        businessName,
-        phone,
-        address,
-        city,
-        state,
-        zipCode,
-        licenseNumber: licenseNumber || null,
-        insuranceProvider: insuranceProvider || null,
-        insuranceExpiry: insuranceExpiry ? new Date(insuranceExpiry) : null,
-        services,
-        serviceAreas,
-        hourlyRate: parseFloat(hourlyRate),
-        experience: parseInt(experience),
-        bio: bio || null,
-        availability: availability || 'AVAILABLE',
-        isVerified: false
-      }
+        userId: user.id,
+        ...validatedData,
+        insuranceExpiry: validatedData.insuranceExpiry
+          ? new Date(validatedData.insuranceExpiry)
+          : null,
+        availability: validatedData.availability || 'AVAILABLE',
+        isVerified: false,
+      },
     });
 
-    // Check if profile is complete
+    // Check completeness
     const isProfileComplete = !!(
       profile.businessName &&
       profile.phone &&
@@ -190,78 +127,58 @@ export async function POST(request: NextRequest) {
       profile.bio
     );
 
-    return NextResponse.json({
-      success: true,
-      profile,
-      isProfileComplete,
-      message: 'Contractor profile created successfully'
-    });
-
-  } catch (error) {
-    console.error('Error creating contractor profile:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      {
+        success: true,
+        profile,
+        isProfileComplete,
+        message: 'Contractor profile created successfully',
+      },
+      { status: 201 }
     );
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
 
+/**
+ * PUT /api/contractor/profile
+ * Updates contractor profile for authenticated user
+ */
 export async function PUT(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+    const { user } = authResult.context;
+
+    // Validate user is contractor
+    if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
+    // Parse and validate request body
     const body = await request.json();
-    const {
-      businessName,
-      phone,
-      address,
-      city,
-      state,
-      zipCode,
-      licenseNumber,
-      insuranceProvider,
-      insuranceExpiry,
-      services,
-      serviceAreas,
-      hourlyRate,
-      experience,
-      bio,
-      availability
-    } = body;
+    const validatedData = contractorProfileUpdateSchema.parse(body);
 
-    // Update contractor profile
+    // Update profile
     const profile = await prisma.contractorProfile.update({
-      where: { userId: decoded.userId },
+      where: { userId: user.id },
       data: {
-        businessName,
-        phone,
-        address,
-        city,
-        state,
-        zipCode,
-        licenseNumber: licenseNumber || null,
-        insuranceProvider: insuranceProvider || null,
-        insuranceExpiry: insuranceExpiry ? new Date(insuranceExpiry) : null,
-        services,
-        serviceAreas,
-        hourlyRate: hourlyRate ? parseFloat(hourlyRate) : undefined,
-        experience: experience ? parseInt(experience) : undefined,
-        bio: bio || null,
-        availability: availability || 'AVAILABLE',
-        updatedAt: new Date()
-      }
+        ...validatedData,
+        insuranceExpiry: validatedData.insuranceExpiry
+          ? new Date(validatedData.insuranceExpiry)
+          : undefined,
+        updatedAt: new Date(),
+      },
     });
 
-    // Check if profile is complete
+    // Check completeness
     const isProfileComplete = !!(
       profile.businessName &&
       profile.phone &&
@@ -280,14 +197,12 @@ export async function PUT(request: NextRequest) {
       success: true,
       profile,
       isProfileComplete,
-      message: 'Contractor profile updated successfully'
+      message: 'Contractor profile updated successfully',
     });
-
   } catch (error) {
-    console.error('Error updating contractor profile:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

@@ -1,104 +1,77 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { serviceRequestSchema } from '@/lib/validation-schemas';
+import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { LeadScoringService } from '@/lib/lead-scoring-service';
-import { MatchingService } from '@/lib/matching-service';
 import { EnhancedMatchingServiceV2 } from '@/lib/enhanced-matching-service-v2';
 import { MessagingService } from '@/lib/messaging-service';
+import { ZodError } from 'zod';
 
+/**
+ * POST /api/service-requests
+ * Creates a new service request with automated matching
+ */
 export async function POST(request: NextRequest) {
   try {
-    // Get the authorization header
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+    const { user } = authResult.context;
 
-    // Verify the token
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
-    // Get the user from the database
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId }
-    });
-
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
-    }
-
-    // Parse the request body
+    // Parse and validate request body
     const body = await request.json();
-    const {
-      serviceCategory,
-      urgency,
-      serviceTitle,
-      description,
-      location,
-      budget,
-      phone,
-      preferredTime,
-      insurance,
-      urgentResponse
-    } = body;
-
-    // Validate required fields
-    if (!serviceCategory || !urgency || !serviceTitle || !description || !location) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
+    const validatedData = serviceRequestSchema.parse(body);
 
     // Calculate lead score
     const leadScore = LeadScoringService.calculateLeadScore({
-      serviceCategory,
-      urgency,
-      budget: budget || undefined,
-      description,
-      location,
-      phone: phone || undefined,
-      insurance: insurance || false,
-      urgentResponse: urgentResponse || false,
-      preferredTime: preferredTime || undefined
+      serviceCategory: validatedData.serviceCategory,
+      urgency: validatedData.urgency,
+      budget: validatedData.budget,
+      description: validatedData.description,
+      location: validatedData.location,
+      phone: validatedData.phone,
+      insurance: validatedData.insurance || false,
+      urgentResponse: validatedData.urgentResponse || false,
+      preferredTime: validatedData.preferredTime,
     });
 
-    // Create the service request
+    // Create service request
     const serviceRequest = await prisma.serviceRequest.create({
       data: {
         userId: user.id,
-        serviceCategory,
-        urgency,
-        serviceTitle,
-        description,
-        location,
-        budget: budget || null,
-        phone: phone || null,
-        preferredTime: preferredTime || null,
-        insurance: insurance || false,
-        urgentResponse: urgentResponse || false,
+        serviceCategory: validatedData.serviceCategory,
+        urgency: validatedData.urgency,
+        serviceTitle: validatedData.serviceTitle,
+        description: validatedData.description,
+        location: validatedData.location,
+        budget: validatedData.budget || null,
+        phone: validatedData.phone || null,
+        preferredTime: validatedData.preferredTime || null,
+        insurance: validatedData.insurance || false,
+        urgentResponse: validatedData.urgentResponse || false,
         status: 'PENDING',
-        leadScore
-      }
+        leadScore,
+      },
     });
 
-    // Find matching contractors using enhanced matching
+    // Find matching contractors (non-blocking)
     try {
-      const matches = await EnhancedMatchingServiceV2.findMatchingContractorsForClient(serviceRequest.id, {
-        serviceCategory,
-        location,
-        urgency,
-        budget: budget ? parseFloat(budget) : undefined,
-        leadScore: leadScore,
-        tenantId: user.tenantId
-      });
+      const matches = await EnhancedMatchingServiceV2.findMatchingContractorsForClient(
+        serviceRequest.id,
+        {
+          serviceCategory: validatedData.serviceCategory,
+          location: validatedData.location,
+          urgency: validatedData.urgency,
+          budget: validatedData.budget ? parseFloat(validatedData.budget) : undefined,
+          leadScore,
+          tenantId: user.tenantId,
+        }
+      );
 
       if (matches.length > 0) {
-        // Matches are already stored in database by the enhanced matching service
-
         // Send notifications to matched contractors
         for (const match of matches) {
           try {
@@ -109,79 +82,64 @@ export async function POST(request: NextRequest) {
               match.matchScore
             );
           } catch (error) {
-            console.error('Error sending match notification:', error);
+            console.error('[SERVICE_REQUEST] Match notification failed:', error);
           }
         }
 
-        // Send notification to client
+        // Notify client
         await MessagingService.sendSystemNotification(
           user.id,
           'Contractors Found',
-          `We found ${matches.length} qualified contractors for your request. They will be in touch soon!`,
+          `We found ${matches.length} qualified contractors for your request.`,
           serviceRequest.id
         );
       }
     } catch (error) {
-      console.error('Error in matching process:', error);
-      // Don't fail the request creation if matching fails
+      console.error('[SERVICE_REQUEST] Matching process failed:', error);
+      // Don't fail request creation if matching fails
     }
 
-    return NextResponse.json({
-      success: true,
-      data: serviceRequest,
-      leadScore,
-      message: 'Service request created successfully. We are finding the best contractors for you.'
-    }, { status: 201 });
-
-  } catch (error) {
-    console.error('Error creating service request:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      {
+        success: true,
+        data: serviceRequest,
+        leadScore,
+        message: 'Service request created successfully.',
+      },
+      { status: 201 }
     );
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
 
+/**
+ * GET /api/service-requests
+ * Retrieves service requests for authenticated user
+ */
 export async function GET(request: NextRequest) {
   try {
-    // Get the authorization header
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+    const { user } = authResult.context;
 
-    // Verify the token
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
-    // Get the user from the database
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId }
-    });
-
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
-    }
-
-    // Get service requests for the user
+    // Fetch user's service requests
     const serviceRequests = await prisma.serviceRequest.findMany({
       where: { userId: user.id },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: 'desc' },
     });
 
     return NextResponse.json({
       success: true,
-      data: serviceRequests
+      data: serviceRequests,
     });
-
   } catch (error) {
-    console.error('Error fetching service requests:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
