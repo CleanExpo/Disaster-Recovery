@@ -1,24 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
 export const dynamic = 'force-dynamic';
 import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
+    const { user } = authResult.context;
 
     // Get service requests as projects
     const serviceRequests = await prisma.serviceRequest.findMany({
-      where: { userId: decoded.userId },
+      where: { userId: user.id },
       orderBy: { createdAt: 'desc' },
       include: {
         matches: {
@@ -44,7 +42,7 @@ export async function GET(request: NextRequest) {
       budget: request.budget,
       status: request.status,
       leadScore: request.leadScore,
-      progress: request.status === 'COMPLETED' ? 100 : 
+      progress: request.status === 'COMPLETED' ? 100 :
                 request.status === 'IN_PROGRESS' ? 75 :
                 request.status === 'MATCHED' ? 50 : 25,
       contractor: request.matches[0]?.contractor || null,
@@ -61,10 +59,6 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

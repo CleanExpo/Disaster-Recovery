@@ -1,21 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || (payload.userType !== 'CLIENT' && payload.userType !== 'CONTRACTOR')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check authorization - only CLIENT and CONTRACTOR can access
+    if (!requireRole(user, ['CLIENT', 'CONTRACTOR'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'CONTRACTOR']);
     }
 
     // Get the active project (ContractorMatch with ACCEPTED status)
@@ -50,27 +53,30 @@ export async function GET(
     });
 
     if (!project) {
-      return NextResponse.json(
-        { error: 'Project not found' },
-        { status: 404 }
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Project not found',
+        404
       );
     }
 
     // Check if user has access to this project
-    if (payload.userType === 'CLIENT') {
+    if (user.userType === 'CLIENT') {
       // Client can only view projects for their own service requests
-      if (project.serviceRequest.userId !== payload.userId) {
-        return NextResponse.json(
-          { error: 'Unauthorized to view this project' },
-          { status: 403 }
+      if (project.serviceRequest.userId !== user.id) {
+        return createErrorResponse(
+          ErrorCode.FORBIDDEN,
+          'Unauthorized to view this project',
+          403
         );
       }
-    } else if (payload.userType === 'CONTRACTOR') {
+    } else if (user.userType === 'CONTRACTOR') {
       // Contractor can only view their own projects
-      if (project.contractor.userId !== payload.userId) {
-        return NextResponse.json(
-          { error: 'Unauthorized to view this project' },
-          { status: 403 }
+      if (project.contractor.userId !== user.id) {
+        return createErrorResponse(
+          ErrorCode.FORBIDDEN,
+          'Unauthorized to view this project',
+          403
         );
       }
     }
@@ -107,10 +113,6 @@ export async function GET(
       project: transformedProject,
     });
   } catch (error) {
-    console.error('Get active project details error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch project details' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
