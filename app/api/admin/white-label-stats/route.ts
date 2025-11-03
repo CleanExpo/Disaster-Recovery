@@ -1,61 +1,69 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
 export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
-
-const prisma = new PrismaClient();
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
+import { prisma } from '@/lib/prisma';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const user = verifyToken(token);
+    const { user } = authResult.context;
 
-    if (!user || user.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Admin access required' }, { status: 403 });
+    // Authorize admin role
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    // Get all clients
-    const totalClients = await prisma.user.count({
-      where: { userType: 'CLIENT' }
-    });
-
-    // Get active clients (those with recent activity)
+    // Calculate date threshold for active clients
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    
-    const activeClients = await prisma.user.count({
-      where: {
-        userType: 'CLIENT',
-        serviceRequests: {
-          some: {
-            createdAt: {
-              gte: thirtyDaysAgo
+
+    // Run all database queries in parallel
+    const [
+      totalClients,
+      activeClients,
+      totalServices,
+      completedServices,
+      revenueResult
+    ] = await Promise.all([
+      // Get all clients
+      prisma.user.count({
+        where: { userType: 'CLIENT' }
+      }),
+      // Get active clients (those with recent activity)
+      prisma.user.count({
+        where: {
+          userType: 'CLIENT',
+          serviceRequests: {
+            some: {
+              createdAt: {
+                gte: thirtyDaysAgo
+              }
             }
           }
         }
-      }
-    });
-
-    // Get service statistics
-    const totalServices = await prisma.serviceRequest.count();
-    const completedServices = await prisma.serviceRequest.count({
-      where: { status: 'COMPLETED' }
-    });
-
-    // Get revenue statistics
-    const revenueResult = await prisma.serviceRequest.aggregate({
-      _sum: {
-        budget: true
-      },
-      where: {
-        status: 'COMPLETED'
-      }
-    });
+      }),
+      // Get total service requests
+      prisma.serviceRequest.count(),
+      // Get completed service requests
+      prisma.serviceRequest.count({
+        where: { status: 'COMPLETED' }
+      }),
+      // Get revenue statistics
+      prisma.serviceRequest.aggregate({
+        _sum: {
+          budget: true
+        },
+        where: {
+          status: 'COMPLETED'
+        }
+      })
+    ]);
 
     const totalRevenue = revenueResult._sum.budget || 0;
     const averageServiceValue = completedServices > 0 ? totalRevenue / completedServices : 0;
@@ -75,10 +83,6 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error fetching white label stats:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
