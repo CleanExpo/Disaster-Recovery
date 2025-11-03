@@ -1,24 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import { verifyToken } from '@/lib/auth';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    // Verify authentication
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
-    
-    const token = authHeader.substring(7);
-    const user = verifyToken(token);
-    if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+    const { user } = authResult.context;
+
+    // Require CLIENT role
+    if (!requireRole(user, ['CLIENT'])) {
+      return unauthorizedRoleResponse(['CLIENT']);
     }
 
     const requestId = params.id;
@@ -27,12 +27,16 @@ export async function GET(
     const serviceRequest = await prisma.serviceRequest.findFirst({
       where: {
         id: requestId,
-        userId: user.userId
+        userId: user.id
       }
     });
 
     if (!serviceRequest) {
-      return NextResponse.json({ error: 'Service request not found' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found',
+        404
+      );
     }
 
     // Get matched contractors for this request
@@ -87,10 +91,6 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error('Error getting contractor matches:', error);
-    return NextResponse.json(
-      { error: 'Failed to get contractor matches' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

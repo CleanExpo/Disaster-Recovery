@@ -1,22 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
+    const { user, decoded: payload } = authResult.context;
 
     const requestId = params.id;
 
@@ -58,7 +56,11 @@ export async function GET(
     });
 
     if (!serviceRequest) {
-      return NextResponse.json({ error: 'Service request not found' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found',
+        404
+      );
     }
 
     // Calculate match score for the current contractor
@@ -94,7 +96,7 @@ export async function GET(
           serviceRequest.location.toLowerCase().includes(area.toLowerCase()) ||
           area.toLowerCase().includes(serviceRequest.location.toLowerCase())
         );
-        
+
         if (locationMatch) {
           matchScore += 30;
           matchReasons.push('Location match');
@@ -179,10 +181,6 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error('Error fetching service request:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

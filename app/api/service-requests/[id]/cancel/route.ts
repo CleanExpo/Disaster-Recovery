@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import jwt from 'jsonwebtoken';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 export async function PATCH(
   request: NextRequest,
@@ -8,31 +9,29 @@ export async function PATCH(
 ) {
   try {
     const { id } = params;
-    
-    console.log('Cancel request - ID:', id);
-    
+
+    console.log('[CANCEL_REQUEST] ID:', id);
+
     if (!id) {
-      return NextResponse.json({ error: 'Request ID is required' }, { status: 400 });
+      return createErrorResponse(
+        ErrorCode.MISSING_FIELDS,
+        'Request ID is required',
+        400
+      );
     }
 
-    // Get the authorization header
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const JWT_SECRET = process.env.JWT_SECRET;
-    
-    if (!JWT_SECRET) {
-      return NextResponse.json({ error: 'JWT secret not configured' }, { status: 500 });
-    }
+    const { user } = authResult.context;
 
-    // Verify the token
-    const payload = jwt.verify(token, JWT_SECRET) as any;
-    const userId = payload.userId;
-    
-    console.log('Cancel request - User ID:', userId);
+    // Require CLIENT role
+    if (!requireRole(user, ['CLIENT'])) {
+      return unauthorizedRoleResponse(['CLIENT']);
+    }
 
     // Find the service request
     const serviceRequest = await prisma.serviceRequest.findUnique({
@@ -41,29 +40,39 @@ export async function PATCH(
         user: true
       }
     });
-    
-    console.log('Cancel request - Found service request:', serviceRequest ? 'Yes' : 'No');
+
+    console.log('[CANCEL_REQUEST] Found service request:', serviceRequest ? 'Yes' : 'No');
 
     if (!serviceRequest) {
-      return NextResponse.json({ error: 'Service request not found' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found',
+        404
+      );
     }
 
     // Check if the user owns this request
-    if (serviceRequest.userId !== userId) {
-      return NextResponse.json({ error: 'Unauthorized to cancel this request' }, { status: 403 });
+    if (serviceRequest.userId !== user.id) {
+      return createErrorResponse(
+        ErrorCode.FORBIDDEN,
+        'Unauthorized to cancel this request',
+        403
+      );
     }
 
     // Check if the request can be cancelled (only PENDING requests can be cancelled)
-    console.log('Cancel request - Current status:', serviceRequest.status);
+    console.log('[CANCEL_REQUEST] Current status:', serviceRequest.status);
     if (serviceRequest.status !== 'PENDING') {
-      return NextResponse.json({ 
-        error: 'Only pending requests can be cancelled',
-        currentStatus: serviceRequest.status
-      }, { status: 400 });
+      return createErrorResponse(
+        ErrorCode.INVALID_INPUT,
+        'Only pending requests can be cancelled',
+        400,
+        { currentStatus: serviceRequest.status }
+      );
     }
 
     // Update the request status to CANCELLED
-    console.log('Cancel request - Updating status to CANCELLED');
+    console.log('[CANCEL_REQUEST] Updating status to CANCELLED');
     const updatedRequest = await prisma.serviceRequest.update({
       where: { id },
       data: {
@@ -74,8 +83,8 @@ export async function PATCH(
         user: true
       }
     });
-    
-    console.log('Cancel request - Update successful');
+
+    console.log('[CANCEL_REQUEST] Update successful');
 
     return NextResponse.json({
       success: true,
@@ -84,20 +93,6 @@ export async function PATCH(
     });
 
   } catch (error) {
-    console.error('Error cancelling service request:', error);
-    console.error('Error details:', {
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined,
-      name: error instanceof Error ? error.name : undefined
-    });
-    
-    if (error instanceof jwt.JsonWebTokenError) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-    
-    return NextResponse.json({ 
-      error: 'Failed to cancel service request',
-      details: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    return handleUnexpectedError(error);
   }
 }
