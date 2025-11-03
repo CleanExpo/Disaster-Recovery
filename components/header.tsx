@@ -49,7 +49,7 @@ export default function Header() {
             </div>
             <div className="flex flex-col">
               <span className="font-poppins font-bold text-xl text-[#F9FAFB] group-hover:text-[#00BFA6] transition-colors duration-300">NRPG</span>
-              <span className="font-inter text-xs text-[#9CA3AF] -mt-1 group-hover:text-[#00BFA6]/70 transition-colors duration-300">National Restoration Professionals</span>
+              <span className="font-inter text-xs text-[#9CA3AF] -mt-1 group-hover:text-[#00BFA6]/70 transition-colors duration-300">National Restoration Professionals Group</span>
             </div>
           </Link>
 
