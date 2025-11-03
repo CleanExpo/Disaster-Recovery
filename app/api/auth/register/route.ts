@@ -2,63 +2,76 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { generateToken } from '@/lib/auth';
-import { z } from 'zod';
+import { registerSchema } from '@/lib/validation-schemas';
+import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { ZodError } from 'zod';
 
-const registerSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-  name: z.string().min(2),
-  userType: z.enum(['CONTRACTOR', 'CLIENT']),
-});
-
+/**
+ * POST /api/auth/register
+ * Registers a new user account
+ *
+ * @implements Anthropic best practices:
+ * - Centralized Zod validation
+ * - Secure password hashing (bcrypt rounds=12)
+ * - Duplicate email check
+ * - Structured error responses
+ */
 export async function POST(request: NextRequest) {
   try {
+    // Parse and validate request body
     const body = await request.json();
-    const { email, password, name, userType } = registerSchema.parse(body);
+    const validatedData = registerSchema.parse(body);
 
-    // Check if user already exists
+    // Check for existing user
     const existingUser = await prisma.user.findUnique({
-      where: { email },
+      where: { email: validatedData.email },
     });
 
     if (existingUser) {
-      return NextResponse.json(
-        { error: 'User already exists' },
-        { status: 400 }
+      return createErrorResponse(
+        ErrorCode.INVALID_INPUT,
+        'An account with this email already exists',
+        400
       );
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 12);
+    // Hash password with bcrypt (12 rounds for security)
+    const hashedPassword = await bcrypt.hash(validatedData.password, 12);
 
-    // Create user
+    // Create user account
     const user = await prisma.user.create({
       data: {
-        email,
+        email: validatedData.email,
         password: hashedPassword,
-        name,
-        userType,
+        name: validatedData.name,
+        userType: validatedData.userType,
       },
     });
 
-    // Generate token
+    // Generate JWT token
     const token = generateToken(user);
 
-    return NextResponse.json({
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        userType: user.userType,
-        avatar: user.avatar,
-      },
-      token,
-    });
-  } catch (error) {
-    console.error('Registration error:', error);
+    // Return success with user data (excluding password)
     return NextResponse.json(
-      { error: 'Registration failed' },
-      { status: 500 }
+      {
+        success: true,
+        data: {
+          user: {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            userType: user.userType,
+            avatar: user.avatar,
+          },
+          token,
+        },
+      },
+      { status: 201 }
     );
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
