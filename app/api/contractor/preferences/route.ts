@@ -6,8 +6,8 @@ import { z, ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
 
-function mapAvailabilityStatus(availability: string) {
-  const mapping: Record<string, string> = {
+function mapAvailabilityStatus(availability: string): 'AVAILABLE' | 'BUSY' | 'UNAVAILABLE' {
+  const mapping: Record<string, 'AVAILABLE' | 'BUSY' | 'UNAVAILABLE'> = {
     'business-hours': 'AVAILABLE',
     'available': 'AVAILABLE',
     'busy': 'BUSY',
