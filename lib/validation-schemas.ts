@@ -73,7 +73,7 @@ export const bidSchema = z.object({
 // ============ MESSAGE SCHEMAS ============
 
 export const messageSchema = z.object({
-  recipientId: z.string().uuid('Invalid recipient ID'),
+  receiverId: z.string().uuid('Invalid receiver ID'),
   content: z.string().min(1, 'Message content is required').max(2000, 'Message too long'),
 });
 

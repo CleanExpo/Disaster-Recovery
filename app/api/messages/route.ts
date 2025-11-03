@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       where: {
         OR: [
           { senderId: user.id },
-          { recipientId: user.id },
+          { receiverId: user.id },
         ],
       },
       orderBy: { createdAt: 'desc' },
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     const message = await prisma.message.create({
       data: {
         senderId: user.id,
-        recipientId: validatedData.recipientId,
+        receiverId: validatedData.receiverId,
         content: validatedData.content,
       },
     });
