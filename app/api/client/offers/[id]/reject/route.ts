@@ -1,21 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 
 export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CLIENT') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
     // Get the offer/match
@@ -36,17 +39,19 @@ export async function POST(
     });
 
     if (!offer) {
-      return NextResponse.json(
-        { error: 'Offer not found' },
-        { status: 404 }
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Offer not found',
+        404
       );
     }
 
-    // Check if the client owns this service request
-    if (offer.serviceRequest.userId !== payload.userId) {
-      return NextResponse.json(
-        { error: 'Unauthorized to reject this offer' },
-        { status: 403 }
+    // Check if the client owns this service request (unless ADMIN)
+    if (user.userType !== 'ADMIN' && offer.serviceRequest.userId !== user.id) {
+      return createErrorResponse(
+        ErrorCode.FORBIDDEN,
+        'Unauthorized to reject this offer',
+        403
       );
     }
 
@@ -59,7 +64,7 @@ export async function POST(
     // Send notification message to contractor
     await prisma.message.create({
       data: {
-        senderId: payload.userId,
+        senderId: user.id,
         receiverId: offer.contractor.userId,
         content: `Thank you for your interest in "${offer.serviceRequest.serviceTitle}". Unfortunately, we've decided to go with another contractor for this project. We'll keep your information for future opportunities.`,
         messageType: 'BID_REJECTED',
@@ -72,10 +77,6 @@ export async function POST(
       message: 'Offer rejected successfully',
     });
   } catch (error) {
-    console.error('Reject offer error:', error);
-    return NextResponse.json(
-      { error: 'Failed to reject offer' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

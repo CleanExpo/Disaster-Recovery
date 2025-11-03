@@ -1,22 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 import { prisma } from '@/lib/prisma';
+import { z, ZodError } from 'zod';
+
+const updatePreferencesSchema = z.object({
+  name: z.string().optional(),
+  avatar: z.string().optional(),
+  preferences: z.any().optional(),
+});
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
+    const userDetails = await prisma.user.findUnique({
+      where: { id: user.id },
       select: {
         id: true,
         name: true,
@@ -26,8 +36,12 @@ export async function GET(request: NextRequest) {
       }
     });
 
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    if (!userDetails) {
+      return createErrorResponse(
+        ErrorCode.USER_NOT_FOUND,
+        'User not found',
+        404
+      );
     }
 
     // Default preferences
@@ -61,34 +75,32 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      user,
+      user: userDetails,
       preferences
     });
 
   } catch (error) {
-    console.error('Error getting client preferences:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function PUT(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
     const body = await request.json();
-    const { name, avatar, preferences } = body;
+    const { name, avatar, preferences } = updatePreferencesSchema.parse(body);
 
     // Update user profile
     const updateData: any = {};
@@ -97,7 +109,7 @@ export async function PUT(request: NextRequest) {
 
     if (Object.keys(updateData).length > 0) {
       await prisma.user.update({
-        where: { id: decoded.userId },
+        where: { id: user.id },
         data: updateData
       });
     }
@@ -111,10 +123,9 @@ export async function PUT(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error updating client preferences:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

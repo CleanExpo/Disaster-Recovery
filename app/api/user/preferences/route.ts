@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
-import { z } from 'zod';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const preferencesSchema = z.object({
   interests: z.array(z.string()).optional(),
@@ -21,43 +22,33 @@ const preferencesSchema = z.object({
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { user } = authResult.context;
 
     const preferences = await prisma.userPreferences.findUnique({
-      where: { userId: payload.userId },
+      where: { userId: user.id },
     });
 
     return NextResponse.json(preferences || null);
   } catch (error) {
-    console.error('Get user preferences error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch preferences' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const { user } = authResult.context;
 
     const body = await request.json();
     const preferences = preferencesSchema.parse(body);
@@ -67,13 +58,13 @@ export async function POST(request: NextRequest) {
 
     // Upsert user preferences
     const userPreferences = await prisma.userPreferences.upsert({
-      where: { userId: payload.userId },
+      where: { userId: user.id },
       update: {
         ...preferencesData,
         isOnboardingComplete: isOnboardingComplete ?? true,
       },
       create: {
-        userId: payload.userId,
+        userId: user.id,
         ...preferencesData,
         isOnboardingComplete: isOnboardingComplete ?? true,
       },
@@ -84,10 +75,9 @@ export async function POST(request: NextRequest) {
       preferences: userPreferences,
     });
   } catch (error) {
-    console.error('Save user preferences error:', error);
-    return NextResponse.json(
-      { error: 'Failed to save preferences' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

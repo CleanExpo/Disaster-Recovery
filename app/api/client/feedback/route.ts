@@ -1,38 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 import { prisma } from '@/lib/prisma';
+import { z, ZodError } from 'zod';
+
+const feedbackSchema = z.object({
+  requestId: z.string(),
+  rating: z.number().min(1).max(5),
+  review: z.string().optional(),
+  contractorId: z.string(),
+});
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
     const body = await request.json();
-    const { requestId, rating, review, contractorId } = body;
-
-    if (!requestId || !rating || !contractorId) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
+    const { requestId, rating, review, contractorId } = feedbackSchema.parse(body);
 
     // Verify the request belongs to the user
     const serviceRequest = await prisma.serviceRequest.findFirst({
       where: {
         id: requestId,
-        userId: decoded.userId,
+        userId: user.id,
         status: 'COMPLETED'
       }
     });
 
     if (!serviceRequest) {
-      return NextResponse.json({ error: 'Service request not found or not completed' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found or not completed',
+        404
+      );
     }
 
     // In a real app, you would create a feedback/rating table
@@ -61,32 +72,37 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error submitting feedback:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
     const { searchParams } = new URL(request.url);
     const requestId = searchParams.get('requestId');
 
     if (!requestId) {
-      return NextResponse.json({ error: 'Request ID is required' }, { status: 400 });
+      return createErrorResponse(
+        ErrorCode.MISSING_FIELDS,
+        'Request ID is required',
+        400
+      );
     }
 
     // Get feedback for a specific request
@@ -104,10 +120,6 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error getting feedback:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

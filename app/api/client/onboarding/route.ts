@@ -1,22 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 import { prisma } from '@/lib/prisma';
+import { z, ZodError } from 'zod';
+
+const onboardingStepSchema = z.object({
+  step: z.enum(['profile', 'preferences', 'complete']),
+  data: z.any().optional(),
+});
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
+    const userWithRequests = await prisma.user.findUnique({
+      where: { id: user.id },
       include: {
         serviceRequests: {
           take: 1,
@@ -25,12 +34,16 @@ export async function GET(request: NextRequest) {
       }
     });
 
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    if (!userWithRequests) {
+      return createErrorResponse(
+        ErrorCode.USER_NOT_FOUND,
+        'User not found',
+        404
+      );
     }
 
     // Check onboarding status
-    const hasSubmittedRequest = user.serviceRequests.length > 0;
+    const hasSubmittedRequest = userWithRequests.serviceRequests.length > 0;
     const isOnboarded = hasSubmittedRequest;
 
     const onboardingSteps = [
@@ -45,7 +58,7 @@ export async function GET(request: NextRequest) {
         id: 'profile',
         title: 'Complete Your Profile',
         description: 'Add your contact information and preferences',
-        completed: !!user.name,
+        completed: !!userWithRequests.name,
         icon: '👤'
       },
       {
@@ -81,35 +94,33 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error getting onboarding status:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
     const body = await request.json();
-    const { step, data } = body;
+    const { step, data } = onboardingStepSchema.parse(body);
 
     // Handle different onboarding steps
     switch (step) {
       case 'profile':
         await prisma.user.update({
-          where: { id: decoded.userId },
+          where: { id: user.id },
           data: {
             name: data.name,
             avatar: data.avatar
@@ -132,10 +143,9 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error updating onboarding:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

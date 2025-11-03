@@ -1,20 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 import { EnhancedMatchingServiceV2 } from '@/lib/enhanced-matching-service-v2';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CLIENT') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role authorization
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
     const { searchParams } = new URL(request.url);
@@ -26,25 +29,33 @@ export async function GET(request: NextRequest) {
     const skip = (page - 1) * limit;
 
     if (!requestId) {
-      return NextResponse.json({ error: 'Request ID is required' }, { status: 400 });
+      return createErrorResponse(
+        ErrorCode.MISSING_FIELDS,
+        'Request ID is required',
+        400
+      );
     }
 
     // Get the service request to verify ownership
     const serviceRequest = await prisma.serviceRequest.findFirst({
       where: {
         id: requestId,
-        userId: payload.userId
+        userId: user.id
       }
     });
 
     if (!serviceRequest) {
-      return NextResponse.json({ error: 'Service request not found' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found',
+        404
+      );
     }
 
     // Use enhanced matching service to get relevant contractors
     const matchingContractors = await EnhancedMatchingServiceV2.getContractorsForClientRequest(
       requestId,
-      payload.userId
+      user.id
     );
 
     // Get full contractor details for matched contractors
@@ -125,10 +136,6 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Get contractors for client error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch contractors' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
