@@ -1,50 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-export const dynamic = 'force-dynamic';
-import { verifyToken } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
+    const { user } = authResult.context;
 
-    const token = authHeader.substring(7);
-    const user = verifyToken(token);
-
-    if (!user || user.userType !== 'ADMIN') {
-      return NextResponse.json({ error: 'Admin access required' }, { status: 403 });
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
 
     const clients = await prisma.user.findMany({
-      where: {
-        userType: 'CLIENT'
-      },
+      where: { userType: 'CLIENT' },
       select: {
         id: true,
         name: true,
         email: true,
         avatar: true,
-        createdAt: true
+        createdAt: true,
+        _count: {
+          select: {
+            serviceRequests: true,
+          },
+        },
       },
-      orderBy: {
-        createdAt: 'desc'
-      }
+      orderBy: { createdAt: 'desc' },
     });
 
-    return NextResponse.json({
-      success: true,
-      clients
-    });
-
+    return NextResponse.json({ success: true, data: clients });
   } catch (error) {
-    console.error('Error fetching clients:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

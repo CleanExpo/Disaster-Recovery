@@ -1,59 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
-export const dynamic = 'force-dynamic';
 import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
+    const { user } = authResult.context;
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
-    // Mock notifications for now - in a real app, these would come from a notifications table
-    const notifications = [
-      {
-        id: '1',
-        title: 'New Contractor Match',
-        message: 'We found 3 qualified contractors for your water damage restoration request',
-        type: 'match',
-        isRead: false,
-        createdAt: new Date().toISOString(),
-      },
-      {
-        id: '2',
-        title: 'Request Status Update',
-        message: 'Your plumbing repair request has been accepted by Elite Plumbing Services',
-        type: 'status',
-        isRead: false,
-        createdAt: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
-      },
-      {
-        id: '3',
-        title: 'Payment Reminder',
-        message: 'Please complete payment for your completed electrical work project',
-        type: 'payment',
-        isRead: true,
-        createdAt: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
-      },
-    ];
-
-    return NextResponse.json({
-      success: true,
-      notifications,
+    const notifications = await prisma.notification.findMany({
+      where: { userId: user.id },
+      orderBy: { createdAt: 'desc' },
+      take: 50,
     });
 
+    return NextResponse.json({ success: true, data: notifications });
   } catch (error) {
-    console.error('Error fetching notifications:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
+    const { user } = authResult.context;
+
+    await prisma.notification.updateMany({
+      where: {
+        userId: user.id,
+        read: false,
+      },
+      data: { read: true },
+    });
+
+    return NextResponse.json({ success: true, message: 'All notifications marked as read' });
+  } catch (error) {
+    return handleUnexpectedError(error);
   }
 }
