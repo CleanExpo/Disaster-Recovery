@@ -1,22 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
 export const dynamic = 'force-dynamic';
 import { LeadScoringService } from '@/lib/lead-scoring-service';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request using Anthropic pattern
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
-
-    // Check if user is admin (you can implement proper admin check)
+    // TODO: Check if user is admin (you can implement proper admin check)
     // For now, we'll allow all authenticated users to see analytics
 
     const analytics = await LeadScoringService.getLeadScoringAnalytics();
@@ -29,10 +25,6 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error getting lead analytics:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

@@ -1,27 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError } from '@/lib/api-errors';
 export const dynamic = 'force-dynamic';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request using Anthropic pattern
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
-    if (!decoded) {
-      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
-    }
+    const { user } = authResult.context;
 
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId }
-    });
-
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    // Authorize: Only clients can view their own analytics
+    if (!requireRole(user, ['CLIENT'])) {
+      return unauthorizedRoleResponse(['CLIENT']);
     }
 
     // Get client analytics
@@ -41,42 +36,42 @@ export async function GET(request: NextRequest) {
       prisma.serviceRequest.count({
         where: { userId: user.id }
       }),
-      
+
       // Pending requests
       prisma.serviceRequest.count({
         where: { userId: user.id, status: 'PENDING' }
       }),
-      
+
       // In progress requests
       prisma.serviceRequest.count({
         where: { userId: user.id, status: 'IN_PROGRESS' }
       }),
-      
+
       // Completed requests
       prisma.serviceRequest.count({
         where: { userId: user.id, status: 'COMPLETED' }
       }),
-      
+
       // Cancelled requests
       prisma.serviceRequest.count({
         where: { userId: user.id, status: 'CANCELLED' }
       }),
-      
+
       // Average lead score
       prisma.serviceRequest.aggregate({
         where: { userId: user.id },
         _avg: { leadScore: true }
       }),
-      
+
       // Total spent (mock data for now)
       prisma.serviceRequest.aggregate({
-        where: { 
+        where: {
           userId: user.id,
           status: 'COMPLETED'
         },
         _count: { id: true }
       }),
-      
+
       // Recent activity
       prisma.serviceRequest.findMany({
         where: { userId: user.id },
@@ -94,7 +89,7 @@ export async function GET(request: NextRequest) {
           }
         }
       }),
-      
+
       // Top categories
       prisma.serviceRequest.groupBy({
         by: ['serviceCategory'],
@@ -103,11 +98,11 @@ export async function GET(request: NextRequest) {
         orderBy: { _count: { serviceCategory: 'desc' } },
         take: 5
       }),
-      
+
       // Monthly trends (last 6 months)
       prisma.serviceRequest.groupBy({
         by: ['createdAt'],
-        where: { 
+        where: {
           userId: user.id,
           createdAt: {
             gte: new Date(new Date().setMonth(new Date().getMonth() - 6))
@@ -169,10 +164,6 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Error getting client analytics:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
