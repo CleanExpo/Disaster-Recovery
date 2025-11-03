@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { verifyToken } from '@/lib/auth';
-import { z } from 'zod';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const bidSchema = z.object({
   budget: z.string().min(1),
@@ -16,15 +17,17 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const token = authHeader.substring(7);
-    const payload = verifyToken(token);
-    if (!payload || payload.userType !== 'CONTRACTOR') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const { user } = authResult.context;
+
+    // Check role
+    if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
     const body = await request.json();
@@ -32,13 +35,14 @@ export async function POST(
 
     // Get contractor profile
     const contractorProfile = await prisma.contractorProfile.findUnique({
-      where: { userId: payload.userId },
+      where: { userId: user.id },
     });
 
     if (!contractorProfile) {
-      return NextResponse.json(
-        { error: 'Contractor profile not found' },
-        { status: 404 }
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Contractor profile not found',
+        404
       );
     }
 
@@ -68,16 +72,18 @@ export async function POST(
     });
 
     if (!serviceRequest) {
-      return NextResponse.json(
-        { error: 'Service request not found' },
-        { status: 404 }
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Service request not found',
+        404
       );
     }
 
     if (serviceRequest.status !== 'PENDING') {
-      return NextResponse.json(
-        { error: 'This request is no longer accepting bids' },
-        { status: 400 }
+      return createErrorResponse(
+        ErrorCode.INVALID_INPUT,
+        'This request is no longer accepting bids',
+        400
       );
     }
 
@@ -102,10 +108,9 @@ export async function POST(
       message: 'Bid submitted successfully',
     });
   } catch (error) {
-    console.error('Submit bid error:', error);
-    return NextResponse.json(
-      { error: 'Failed to submit bid' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }

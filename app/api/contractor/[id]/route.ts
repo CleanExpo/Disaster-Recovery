@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '@/lib/prisma';
+import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 export async function GET(
   request: NextRequest,
@@ -26,7 +25,11 @@ export async function GET(
     });
 
     if (!contractor) {
-      return NextResponse.json({ error: 'Contractor not found' }, { status: 404 });
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        'Contractor not found',
+        404
+      );
     }
 
     return NextResponse.json({
@@ -35,10 +38,6 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error('Error fetching contractor profile:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
