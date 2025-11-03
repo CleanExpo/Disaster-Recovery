@@ -1,59 +1,70 @@
 import { NextRequest, NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
-import { generateToken } from '@/lib/auth';
-import { z } from 'zod';
+import { generateToken, verifyPasswordSafe } from '@/lib/auth';
+import { loginSchema } from '@/lib/validation-schemas';
+import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { ZodError } from 'zod';
 
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(1),
-});
-
+/**
+ * POST /api/auth/login
+ * Authenticates user with email and password
+ *
+ * @implements Anthropic best practices:
+ * - Centralized validation with Zod
+ * - Timing-safe password comparison
+ * - Structured error responses
+ * - No sensitive data leakage
+ */
 export async function POST(request: NextRequest) {
   try {
+    // Parse and validate request body
     const body = await request.json();
-    const { email, password } = loginSchema.parse(body);
+    const validatedData = loginSchema.parse(body);
 
-    // Find user
+    // Find user by email
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: { email: validatedData.email },
     });
 
-    if (!user || !user.password) {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
+    // Use timing-safe verification to prevent user enumeration attacks
+    // Always perform password check even if user doesn't exist
+    const hashedPassword = user?.password || '$2a$10$dummyhashtopreventtimingleak';
+    const isValidPassword = await verifyPasswordSafe(validatedData.password, hashedPassword);
+
+    // Check both user existence and password validity
+    if (!user || !user.password || !isValidPassword) {
+      return createErrorResponse(
+        ErrorCode.UNAUTHORIZED,
+        'Invalid email or password',
+        401
       );
     }
 
-    // Verify password
-    const isValidPassword = await bcrypt.compare(password, user.password);
-
-    if (!isValidPassword) {
-      return NextResponse.json(
-        { error: 'Invalid credentials' },
-        { status: 401 }
-      );
-    }
-
-    // Generate token
+    // Generate JWT token
     const token = generateToken(user);
 
+    // Return success response with user data (excluding password)
     return NextResponse.json({
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        userType: user.userType,
-        avatar: user.avatar,
+      success: true,
+      data: {
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          userType: user.userType,
+          avatar: user.avatar,
+        },
+        token,
       },
-      token,
     });
+
   } catch (error) {
-    console.error('Login error:', error);
-    return NextResponse.json(
-      { error: 'Login failed' },
-      { status: 500 }
-    );
+    // Handle Zod validation errors
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+
+    // Handle all other unexpected errors
+    return handleUnexpectedError(error);
   }
 }

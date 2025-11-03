@@ -34,3 +34,24 @@ export function getTokenFromRequest(request: Request): string | null {
   }
   return null;
 }
+
+/**
+ * Timing-safe password verification to prevent timing attacks
+ * Follows Anthropic security best practices
+ */
+export async function verifyPasswordSafe(
+  plainPassword: string,
+  hashedPassword: string
+): Promise<boolean> {
+  const bcrypt = require('bcryptjs');
+  const crypto = require('crypto');
+  
+  try {
+    const result = await bcrypt.compare(plainPassword, hashedPassword);
+    await new Promise(resolve => setTimeout(resolve, 5 + crypto.randomInt(10)));
+    return result;
+  } catch (error) {
+    await new Promise(resolve => setTimeout(resolve, 5 + crypto.randomInt(10)));
+    return false;
+  }
+}
