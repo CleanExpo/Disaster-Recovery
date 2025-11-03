@@ -234,7 +234,7 @@ export default function PrivacyPage() {
                       <p className="text-[#9CA3AF] text-sm">
                         Privacy Officer
                         <br />
-                        NRP - Unite Group Australia
+                        NRPG - Unite Group Australia
                         <br />
                         Level 10, 123 Collins Street
                         <br />

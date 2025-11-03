@@ -44,7 +44,7 @@ export default function PropertyOwnersPage() {
               className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] px-8 py-3 text-lg bg-transparent"
             >
               <Phone className="mr-2 h-5 w-5" />
-              Call 1800 NRP AUS
+              Call 1800 NRPG AUS
             </Button>
           </div>
         </section>

@@ -24,13 +24,13 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "NRP Restoration Marketplace Platform - Australia's Leading Restoration SaaS",
+  title: "NRPG Restoration Marketplace Platform - Australia's Leading Restoration SaaS",
   description: "Australia's leading restoration marketplace platform connecting property owners with verified contractors through transparent pricing, automated workflows, and real-time project tracking. Built for scale and growth.",
   keywords: "restoration marketplace, restoration platform, property restoration, contractor network, restoration SaaS, Australia restoration, water damage, fire damage, storm damage",
   generator: "Next.js",
-  authors: [{ name: "NRP Unite Group Australia" }],
+  authors: [{ name: "NRPG Unite Group Australia" }],
   openGraph: {
-    title: "NRP Restoration Marketplace Platform",
+    title: "NRPG Restoration Marketplace Platform",
     description: "Australia's leading restoration marketplace platform connecting property owners with verified contractors",
     type: "website",
     locale: "en_AU",

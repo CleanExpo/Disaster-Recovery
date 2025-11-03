@@ -10,7 +10,7 @@ export default function ContactPage() {
       name: "Platform Support",
       description: "General platform questions, user onboarding, and platform feature assistance",
       email: "support@nrp.com.au",
-      phone: "1800 NRP AUS",
+      phone: "1800 NRPG AUS",
       icon: Headphones,
       color: "text-[#00BFA6]",
     },
@@ -18,7 +18,7 @@ export default function ContactPage() {
       name: "Technical Support",
       description: "Platform technical issues, API integration, and system troubleshooting",
       email: "tech@nrp.com.au",
-      phone: "1800 NRP TECH",
+      phone: "1800 NRPG TECH",
       icon: Shield,
       color: "text-[#2196F3]",
     },
@@ -26,7 +26,7 @@ export default function ContactPage() {
       name: "Partnership & Licensing",
       description: "White-label licensing, contractor partnerships, and business collaborations",
       email: "partners@nrp.com.au",
-      phone: "1800 NRP PART",
+      phone: "1800 NRPG PART",
       icon: Users,
       color: "text-[#7C4DFF]",
     },
@@ -34,7 +34,7 @@ export default function ContactPage() {
       name: "Enterprise Sales",
       description: "Enterprise platform solutions, custom integrations, and large-scale deployments",
       email: "enterprise@nrp.com.au",
-      phone: "1800 NRP ENTER",
+      phone: "1800 NRPG ENTER",
       icon: Globe,
       color: "text-[#FF9800]",
     },
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   <h3 className="font-poppins font-semibold text-xl text-white">Phone</h3>
                 </div>
                 <p className="text-[#9CA3AF] mb-2">General Inquiries</p>
-                <p className="text-[#00BFA6] font-semibold text-lg">1800 NRP AUS</p>
+                <p className="text-[#00BFA6] font-semibold text-lg">1800 NRPG AUS</p>
                 <p className="text-[#9CA3AF] text-sm">Mon-Fri 8AM-6PM AEST</p>
               </div>
 
@@ -223,7 +223,7 @@ export default function ContactPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold">
                 <Phone className="h-4 w-4 mr-2" />
-                1800 NRP SUPPORT
+                1800 NRPG SUPPORT
               </Button>
               <Button variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] bg-transparent">
                 <MessageSquare className="h-4 w-4 mr-2" />

@@ -48,7 +48,7 @@ export default function SolutionSection() {
         <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#00BFA6]/10 to-[#7C4DFF]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 mr-2 animate-pulse" />
-            The NRP Solution
+            The NRPG Solution
           </div>
           <h2 className="font-poppins text-5xl md:text-6xl text-balance mb-6 font-medium">
             The <span className="text-[#00BFA6] bg-gradient-to-r from-[#00BFA6] to-[#7C4DFF] bg-clip-text text-transparent">Smart Bridge</span> That Fixes Everything

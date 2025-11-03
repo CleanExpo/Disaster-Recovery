@@ -33,7 +33,7 @@ export default function Footer() {
                 Get the Latest Restoration Insights
               </h3>
               <p className="text-[#9CA3AF] font-inter max-w-2xl mx-auto">
-                Join thousands of property owners and contractors who trust NRP for transparent, reliable restoration services.
+                Join thousands of property owners and contractors who trust NRPG for transparent, reliable restoration services.
               </p>
             </div>
             
@@ -62,7 +62,7 @@ export default function Footer() {
                 <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#7C4DFF] rounded-full animate-pulse"></div>
               </div>
               <div className="flex flex-col">
-                <span className="font-poppins font-bold text-xl text-[#F9FAFB] group-hover:text-[#00BFA6] transition-colors duration-300">NRP</span>
+                <span className="font-poppins font-bold text-xl text-[#F9FAFB] group-hover:text-[#00BFA6] transition-colors duration-300">NRPG</span>
                 <span className="font-inter text-xs text-[#9CA3AF] -mt-1 group-hover:text-[#00BFA6]/70 transition-colors duration-300">Unite Group Australia</span>
               </div>
             </Link>
@@ -188,7 +188,7 @@ export default function Footer() {
                 <div className="w-10 h-10 bg-gradient-to-br from-[#00BFA6]/20 to-[#00A693]/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Phone className="h-5 w-5 text-[#00BFA6]" />
                 </div>
-                <span className="font-inter text-[#9CA3AF] text-sm group-hover:text-[#F9FAFB] transition-colors duration-300">1800 NRP AUS</span>
+                <span className="font-inter text-[#9CA3AF] text-sm group-hover:text-[#F9FAFB] transition-colors duration-300">1800 NRPG AUS</span>
               </div>
               <div className="flex items-center space-x-3 group">
                 <div className="w-10 h-10 bg-gradient-to-br from-[#7C4DFF]/20 to-[#6A1B9A]/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -215,7 +215,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
               <p className="font-inter text-[#9CA3AF] text-sm">
-                © 2024 NRP - Unite Group Australia. All rights reserved.
+                © 2024 NRPG - Unite Group Australia. All rights reserved.
               </p>
               <div className="flex items-center space-x-2">
                 <Shield className="h-4 w-4 text-[#00BFA6]" />

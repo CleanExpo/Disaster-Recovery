@@ -30,7 +30,7 @@ export default function TermsPage() {
                 <div>
                   <h3 className="font-poppins font-semibold text-xl text-white mb-4">Acceptance of Terms</h3>
                   <p className="text-[#9CA3AF] mb-4 leading-relaxed">
-                    By accessing and using NRP's platform, you accept and agree to be bound by these terms and
+                    By accessing and using NRPG's platform, you accept and agree to be bound by these terms and
                     conditions. If you do not agree to these terms, please do not use our services.
                   </p>
                   <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
@@ -47,7 +47,7 @@ export default function TermsPage() {
                 <div>
                   <h3 className="font-poppins font-semibold text-xl text-white mb-4">Service Description</h3>
                   <p className="text-[#9CA3AF] mb-4 leading-relaxed">
-                    NRP provides a digital platform connecting property owners with verified restoration contractors,
+                    NRPG provides a digital platform connecting property owners with verified restoration contractors,
                     facilitating transparent pricing, project management, and quality assurance.
                   </p>
                   <div className="space-y-2">
@@ -138,7 +138,7 @@ export default function TermsPage() {
                         <h4 className="font-semibold text-white text-sm">Platform Role</h4>
                       </div>
                       <p className="text-[#9CA3AF] text-sm">
-                        NRP acts as a facilitator between clients and contractors. We do not perform restoration work
+                        NRPG acts as a facilitator between clients and contractors. We do not perform restoration work
                         directly.
                       </p>
                     </div>
@@ -219,7 +219,7 @@ export default function TermsPage() {
                     <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
                       <h4 className="font-semibold text-white mb-2">Limitation of Liability</h4>
                       <p className="text-[#9CA3AF] text-sm">
-                        NRP's liability is limited to the maximum extent permitted by law. We are not liable for
+                        NRPG's liability is limited to the maximum extent permitted by law. We are not liable for
                         indirect or consequential damages.
                       </p>
                     </div>
@@ -253,7 +253,7 @@ export default function TermsPage() {
                       <p className="text-[#9CA3AF] text-sm">
                         Legal Department
                         <br />
-                        NRP - Unite Group Australia
+                        NRPG - Unite Group Australia
                         <br />
                         Level 10, 123 Collins Street
                         <br />

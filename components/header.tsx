@@ -40,14 +40,16 @@ export default function Header() {
           {/* Enhanced Logo */}
           <Link href="/" className="flex items-center space-x-4 group">
             <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#00BFA6] to-[#2196F3] rounded-2xl flex items-center justify-center shadow-lg shadow-[#00BFA6]/25 group-hover:shadow-[#00BFA6]/40 transition-all duration-300 group-hover:scale-105">
-                <span className="text-white font-bold text-lg">N</span>
-              </div>
+              <img
+                src="/images/brand/nrpg-logo-full.png"
+                alt="NRPG - National Restoration Professionals Group"
+                className="w-12 h-12 object-contain group-hover:scale-105 transition-all duration-300"
+              />
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#7C4DFF] rounded-full animate-pulse"></div>
             </div>
             <div className="flex flex-col">
-              <span className="font-poppins font-bold text-xl text-[#F9FAFB] group-hover:text-[#00BFA6] transition-colors duration-300">NRP</span>
-              <span className="font-inter text-xs text-[#9CA3AF] -mt-1 group-hover:text-[#00BFA6]/70 transition-colors duration-300">Unite Group Australia</span>
+              <span className="font-poppins font-bold text-xl text-[#F9FAFB] group-hover:text-[#00BFA6] transition-colors duration-300">NRPG</span>
+              <span className="font-inter text-xs text-[#9CA3AF] -mt-1 group-hover:text-[#00BFA6]/70 transition-colors duration-300">National Restoration Professionals</span>
             </div>
           </Link>
 

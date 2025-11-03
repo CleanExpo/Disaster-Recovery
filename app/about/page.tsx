@@ -13,7 +13,7 @@ export default function AboutPage() {
               🚀 Australia's Leading Restoration Marketplace Platform
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-8">
-              About <span className="text-[#00BFA6]">NRP Marketplace Platform</span>
+              About <span className="text-[#00BFA6]">NRPG Marketplace Platform</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] max-w-4xl mx-auto mb-8">
               We're building Australia's most advanced restoration marketplace platform - a comprehensive SaaS solution that connects property owners with verified contractors through transparent pricing, automated workflows, and real-time project tracking. Our white-label platform is designed for scale and growth.
@@ -81,7 +81,7 @@ export default function AboutPage() {
                 <h3 className="font-poppins font-semibold text-xl text-white mb-2">Phil McGurk</h3>
                 <p className="text-[#00BFA6] font-medium mb-4">Chief Executive Officer</p>
                 <p className="text-[#9CA3AF] text-sm leading-relaxed">
-                  Phil leads NRP's strategic vision and growth initiatives, bringing over 15 years of experience in marketplace technology and business development to drive platform expansion across Australia.
+                  Phil leads NRPG's strategic vision and growth initiatives, bringing over 15 years of experience in marketplace technology and business development to drive platform expansion across Australia.
                 </p>
               </div>
 
@@ -276,7 +276,7 @@ export default function AboutPage() {
           </section>
 
           <section className="mb-16">
-            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Why Choose NRP?</h2>
+            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Why Choose NRPG?</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -382,7 +382,7 @@ export default function AboutPage() {
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-12 border border-[#374151]">
               <h2 className="font-poppins font-semibold text-3xl text-white mb-6">Powered by Unite Group Australia</h2>
               <p className="text-[#9CA3AF] leading-relaxed max-w-3xl mx-auto mb-8">
-                NRP is proudly developed and operated by Unite Group Australia, a leading technology company specializing in marketplace platforms and SaaS solutions. With over a decade of experience in digital innovation, Unite Group brings enterprise-level technology and scalable infrastructure to power our restoration marketplace platform.
+                NRPG is proudly developed and operated by Unite Group Australia, a leading technology company specializing in marketplace platforms and SaaS solutions. With over a decade of experience in digital innovation, Unite Group brings enterprise-level technology and scalable infrastructure to power our restoration marketplace platform.
               </p>
               <div className="grid md:grid-cols-4 gap-6 max-w-3xl mx-auto">
                 <div className="text-center">
