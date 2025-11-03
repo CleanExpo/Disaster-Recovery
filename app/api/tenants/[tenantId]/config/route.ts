@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { TenantService } from '@/lib/tenant-service';
-import { z } from 'zod';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const updateConfigSchema = z.object({
   key: z.string(),
@@ -13,6 +15,17 @@ export async function PUT(
   { params }: { params: { tenantId: string } }
 ) {
   try {
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    // Require ADMIN role for config updates
+    if (!requireRole(authResult.context.user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
     const body = await request.json();
     const { key, value, type = 'string' } = updateConfigSchema.parse(body);
 
@@ -20,11 +33,10 @@ export async function PUT(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Update tenant config error:', error);
-    return NextResponse.json(
-      { error: 'Failed to update configuration' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
 
@@ -33,6 +45,17 @@ export async function GET(
   { params }: { params: { tenantId: string } }
 ) {
   try {
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    // Require ADMIN role for viewing configs
+    if (!requireRole(authResult.context.user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
     const { searchParams } = new URL(request.url);
     const key = searchParams.get('key');
 
@@ -44,10 +67,6 @@ export async function GET(
     const configs = await TenantService.getAllTenantConfigs(params.tenantId);
     return NextResponse.json(configs);
   } catch (error) {
-    console.error('Get tenant config error:', error);
-    return NextResponse.json(
-      { error: 'Failed to get configuration' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

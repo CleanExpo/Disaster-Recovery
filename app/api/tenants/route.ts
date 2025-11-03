@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { TenantService } from '@/lib/tenant-service';
-import { z } from 'zod';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 const createTenantSchema = z.object({
   name: z.string().min(1),
@@ -20,13 +22,33 @@ const createTenantSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    // Require ADMIN role for tenant creation
+    if (!requireRole(authResult.context.user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
     const body = await request.json();
     const data = createTenantSchema.parse(body);
 
     // Add default configurations based on industry
     const industry = data.industry || 'restoration';
     const defaultConfigs = TenantService.getDefaultIndustryConfigs(industry);
-    const allConfigs = [...(data.configurations || []), ...defaultConfigs];
+
+    // Merge configs with proper type assertion to fix TypeScript error
+    const allConfigs = [
+      ...(data.configurations || []).map(c => ({
+        key: c.key,
+        value: c.value ?? null,
+        type: c.type
+      })),
+      ...defaultConfigs
+    ];
 
     const tenant = await TenantService.createTenant({
       ...data,
@@ -35,11 +57,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(tenant);
   } catch (error) {
-    console.error('Create tenant error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create tenant' },
-      { status: 500 }
-    );
+    if (error instanceof ZodError) {
+      return handleValidationError(error);
+    }
+    return handleUnexpectedError(error);
   }
 }
 
@@ -52,9 +73,10 @@ export async function GET(request: NextRequest) {
     if (domain) {
       const tenant = await TenantService.getTenantByDomain(domain);
       if (!tenant) {
-        return NextResponse.json(
-          { error: 'Tenant not found' },
-          { status: 404 }
+        return createErrorResponse(
+          ErrorCode.RESOURCE_NOT_FOUND,
+          'Tenant not found',
+          404
         );
       }
       return NextResponse.json(tenant);
@@ -63,23 +85,21 @@ export async function GET(request: NextRequest) {
     if (subdomain) {
       const tenant = await TenantService.getTenantByDomain(subdomain);
       if (!tenant) {
-        return NextResponse.json(
-          { error: 'Tenant not found' },
-          { status: 404 }
+        return createErrorResponse(
+          ErrorCode.RESOURCE_NOT_FOUND,
+          'Tenant not found',
+          404
         );
       }
       return NextResponse.json(tenant);
     }
 
-    return NextResponse.json(
-      { error: 'Domain or subdomain parameter required' },
-      { status: 400 }
+    return createErrorResponse(
+      ErrorCode.MISSING_FIELDS,
+      'Domain or subdomain parameter required',
+      400
     );
   } catch (error) {
-    console.error('Get tenant error:', error);
-    return NextResponse.json(
-      { error: 'Failed to get tenant' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }

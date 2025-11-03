@@ -1,9 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { TenantService } from '@/lib/tenant-service';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 // Example endpoint to demonstrate creating different industry tenants
 export async function POST(request: NextRequest) {
   try {
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    // Require ADMIN role for creating example tenants
+    if (!requireRole(authResult.context.user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
     const { industry } = await request.json();
 
     const examples = {
@@ -22,7 +35,7 @@ export async function POST(request: NextRequest) {
       },
       legal: {
         name: "LegalMatch",
-        domain: "legalmatch.example.com", 
+        domain: "legalmatch.example.com",
         subdomain: "legalmatch",
         logo: "https://example.com/legal-logo.png",
         primaryColor: "#3B82F6",
@@ -36,7 +49,7 @@ export async function POST(request: NextRequest) {
       insurance: {
         name: "InsurancePro",
         domain: "insurancepro.example.com",
-        subdomain: "insurancepro", 
+        subdomain: "insurancepro",
         logo: "https://example.com/insurance-logo.png",
         primaryColor: "#10B981",
         secondaryColor: "#059669",
@@ -50,24 +63,21 @@ export async function POST(request: NextRequest) {
 
     const tenantData = examples[industry as keyof typeof examples];
     if (!tenantData) {
-      return NextResponse.json(
-        { error: 'Invalid industry. Use: healthcare, legal, or insurance' },
-        { status: 400 }
+      return createErrorResponse(
+        ErrorCode.INVALID_INPUT,
+        'Invalid industry. Use: healthcare, legal, or insurance',
+        400
       );
     }
 
     const tenant = await TenantService.createTenant(tenantData);
-    
+
     return NextResponse.json({
       message: `${industry} tenant created successfully`,
       tenant,
       demoUrl: `https://${tenantData.subdomain}.platform.com`
     });
   } catch (error) {
-    console.error('Create example tenant error:', error);
-    return NextResponse.json(
-      { error: 'Failed to create example tenant' },
-      { status: 500 }
-    );
+    return handleUnexpectedError(error);
   }
 }
