@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(node:*)",
+      "Bash(cat:*)",
+      "Bash(npm pkg set:*)",
+      "Bash(npm install:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm run)",
+      "Bash(find:*)",
+      "Bash(ls -la \"d:\\Disaster Recovery - NRP\\prisma\"\" 2>/dev/null || echo \"prisma directory not found \")",
+      "Bash(git clone:*)",
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm run db:generate:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
