@@ -1,0 +1,241 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: disaster-recovery
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: disaster-recovery
+data:
+  NODE_ENV: "production"
+  LOG_LEVEL: "info"
+  ENABLE_METRICS: "true"
+  ENABLE_TRACING: "true"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+  namespace: disaster-recovery
+type: Opaque
+stringData:
+  DATABASE_URL: "postgresql://user:password@postgres:5432/disaster_recovery"
+  REDIS_URL: "redis://redis:6379"
+  NEXTAUTH_SECRET: "your-secret-key"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: disaster-recovery-app
+  namespace: disaster-recovery
+  labels:
+    app: disaster-recovery
+    version: v1
+spec:
+  replicas: 3
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: disaster-recovery
+  template:
+    metadata:
+      labels:
+        app: disaster-recovery
+    spec:
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 1001
+
+      containers:
+      - name: app
+        image: disaster-recovery:latest
+        imagePullPolicy: IfNotPresent
+
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        - name: metrics
+          containerPort: 9090
+          protocol: TCP
+
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: app-secrets
+
+        env:
+        - name: NEXTAUTH_URL
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: NEXTAUTH_URL
+              optional: true
+
+        # Liveness probe - check if app is alive
+        livenessProbe:
+          httpGet:
+            path: /api/health/live
+            port: http
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+
+        # Readiness probe - check if app is ready for traffic
+        readinessProbe:
+          httpGet:
+            path: /api/health/ready
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 2
+
+        # Startup probe - check if app has started
+        startupProbe:
+          httpGet:
+            path: /api/health
+            port: http
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 30
+
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: nextjs-cache
+          mountPath: /app/.next/cache
+
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: nextjs-cache
+        emptyDir: {}
+
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - disaster-recovery
+              topologyKey: kubernetes.io/hostname
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: disaster-recovery-service
+  namespace: disaster-recovery
+  labels:
+    app: disaster-recovery
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
+  - name: metrics
+    port: 9090
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    app: disaster-recovery
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: disaster-recovery-hpa
+  namespace: disaster-recovery
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: disaster-recovery-app
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 50
+        periodSeconds: 60
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 30
+      - type: Pods
+        value: 2
+        periodSeconds: 60
+      selectPolicy: Max
+
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: disaster-recovery-pdb
+  namespace: disaster-recovery
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: disaster-recovery
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: disaster-recovery
+  namespace: disaster-recovery
