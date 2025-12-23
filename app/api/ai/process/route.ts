@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getWorkerService } from '@/lib/services/autonomousWorker.service';
 import { prisma } from '@/lib/prisma';
-import pino from 'pino';
+// import pino from 'pino';
 
-const logger = pino();
+// const logger = pino();
 
 interface ProcessRequest {
     taskType: 'summarization' | 'qa' | 'generation' | 'extraction';
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
 
       const workerService = getWorkerService();
           const jobId = await workerService.enqueueTask(
-                  userId,
+                  // userId,
                   taskType,
             {
                       taskType,
