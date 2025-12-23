@@ -42,6 +42,8 @@ export enum ErrorCode {
   FORBIDDEN = 'FORBIDDEN',
   BAD_REQUEST = 'BAD_REQUEST',
   INTERNAL_ERROR = 'INTERNAL_ERROR',
+  INVALID_INPUT = 'INVALID_INPUT',
+  MISSING_FIELDS = 'MISSING_FIELDS',
 }
 
 export function handleAPIError(error: unknown) {
@@ -73,7 +75,18 @@ export function createErrorResponse(message: string, statusCode: number, code?: 
   );
 }
 
-export function handleValidationError(message: string) {
+export function handleValidationError(error: any) {
+  // Handle ZodError
+  if (error?.issues) {
+    const message = error.issues.map((issue: any) => `${issue.path.join('.')}: ${issue.message}`).join(', ');
+    return NextResponse.json(
+      { error: message, code: ErrorCode.VALIDATION_ERROR, issues: error.issues },
+      { status: 400 }
+    );
+  }
+
+  // Handle string message
+  const message = typeof error === 'string' ? error : 'Validation error';
   return NextResponse.json(
     { error: message, code: ErrorCode.VALIDATION_ERROR },
     { status: 400 }
