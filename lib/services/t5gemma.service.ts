@@ -1,8 +1,8 @@
-import { pipeline, env } from 'transformers';
-import NodeCache from 'node-cache';
-import pino from 'pino';
+// import { pipeline, env } from 'transformers';
+// import NodeCache from 'node-cache';
+// import pino from 'pino';
 
-const logger = pino();
+// const logger = pino();
 
 interface T5GemmaConfig {
     modelSize: string;
