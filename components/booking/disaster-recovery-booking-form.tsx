@@ -69,8 +69,8 @@ const AUSTRALIAN_STATES: Record<string, { name: string; postcodeRange: [number, 
   WA: { name: 'Western Australia', postcodeRange: [6000, 6999] },
   SA: { name: 'South Australia', postcodeRange: [5000, 5999] },
   TAS: { name: 'Tasmania', postcodeRange: [7000, 7999] },
-  ACT: { name: 'Australian Capital Territory', postcodeRange: [0200, 0999] },
-  NT: { name: 'Northern Territory', postcodeRange: [0800, 0899] },
+  ACT: { name: 'Australian Capital Territory', postcodeRange: [200, 999] },
+  NT: { name: 'Northern Territory', postcodeRange: [800, 899] },
 };
 
 // Validation schema
