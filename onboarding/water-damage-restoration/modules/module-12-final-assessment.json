@@ -1,0 +1,50 @@
+{
+  "moduleId": "WRT-M12",
+  "courseId": "WRT-001",
+  "title": "Final Assessment & Certification",
+  "duration": "90 min",
+  "durationMinutes": 90,
+  "sequence": 12,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Demonstrate comprehensive understanding of water damage restoration",
+    "Apply learned skills in realistic case study scenarios",
+    "Successfully complete IICRC certification requirements",
+    "Meet professional competency standards for WRT certification"
+  ],
+  "lessons": [
+    "Review of key concepts",
+    "Case studies",
+    "Final examination",
+    "Certification requirements"
+  ],
+  "keyTopics": [
+    "Comprehensive review",
+    "Practical application",
+    "IICRC certification",
+    "Professional competency",
+    "Industry standards"
+  ],
+  "prerequisites": "Module 11: Customer Communication",
+  "assessmentType": "Comprehensive written exam, practical demonstration, and case study analysis",
+  "passingScore": 85,
+  "resources": [
+    "IICRC S500 Complete Reference",
+    "Certification Study Guide",
+    "Case Study Library",
+    "Practical Assessment Checklist"
+  ],
+  "practicalComponents": [
+    "Comprehensive practical assessment",
+    "Case study analysis",
+    "Final examination",
+    "Skills demonstration"
+  ],
+  "isFinalAssessment": true,
+  "certificationEligible": true,
+  "iicrcStandard": "S500",
+  "certificationBody": "IICRC",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

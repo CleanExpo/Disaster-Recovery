@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M06",
+  "courseId": "CSE-001",
+  "title": "Quality Assurance & Follow-up",
+  "duration": "45 min",
+  "durationMinutes": 45,
+  "sequence": 6,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Master final walkthrough protocols for customer satisfaction",
+    "Learn systematic approaches to ensuring quality completion",
+    "Develop effective post-restoration follow-up strategies",
+    "Generate positive customer reviews and testimonials"
+  ],
+  "lessons": [
+    "Final walkthrough protocols",
+    "Ensuring customer satisfaction",
+    "Post-restoration follow-up",
+    "Generating positive reviews"
+  ],
+  "keyTopics": [
+    "Quality control",
+    "Customer satisfaction",
+    "Follow-up procedures",
+    "Review generation"
+  ],
+  "prerequisites": "Module 5: Insurance Communication",
+  "assessmentType": "Quality checklist completion and follow-up simulation",
+  "passingScore": 80,
+  "resources": [
+    "Final Walkthrough Checklist",
+    "Quality Assurance Standards",
+    "Follow-up Templates"
+  ],
+  "practicalComponents": [
+    "Final walkthrough practice",
+    "Quality inspection exercises",
+    "Follow-up call simulations"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

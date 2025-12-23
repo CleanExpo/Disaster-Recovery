@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M03",
+  "courseId": "WRT-001",
+  "title": "Inspection and Moisture Detection",
+  "duration": "90 min",
+  "durationMinutes": 90,
+  "sequence": 3,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Conduct comprehensive initial inspection procedures",
+    "Master moisture meter operation and interpretation",
+    "Apply thermal imaging techniques for moisture detection",
+    "Meet professional documentation requirements"
+  ],
+  "lessons": [
+    "Initial inspection procedures",
+    "Moisture meter usage",
+    "Thermal imaging techniques",
+    "Documentation requirements"
+  ],
+  "keyTopics": [
+    "Inspection protocols",
+    "Moisture detection equipment",
+    "Thermal imaging interpretation",
+    "Moisture mapping",
+    "Documentation standards"
+  ],
+  "prerequisites": "Module 2: Psychrometry and Drying Science",
+  "assessmentType": "Practical inspection demonstration and documentation review",
+  "passingScore": 80,
+  "resources": [
+    "Inspection Checklist",
+    "Moisture Meter Guide",
+    "Thermal Imaging Manual"
+  ],
+  "practicalComponents": [
+    "Hands-on moisture meter training",
+    "Thermal imaging practice",
+    "Documentation exercises"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

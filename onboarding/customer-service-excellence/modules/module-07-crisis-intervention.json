@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M07",
+  "courseId": "CSE-001",
+  "title": "Crisis Intervention",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 7,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Recognize trauma responses in disaster-affected customers",
+    "Know when to involve mental health professionals",
+    "Learn techniques for supporting vulnerable customers",
+    "Maintain appropriate professional boundaries"
+  ],
+  "lessons": [
+    "Recognizing trauma responses",
+    "When to involve professionals",
+    "Supporting vulnerable customers",
+    "Maintaining professional boundaries"
+  ],
+  "keyTopics": [
+    "Trauma recognition",
+    "Professional referrals",
+    "Vulnerable customer support",
+    "Professional boundaries"
+  ],
+  "prerequisites": "Module 6: Quality Assurance & Follow-up",
+  "assessmentType": "Crisis scenario assessment and boundary setting exercises",
+  "passingScore": 80,
+  "resources": [
+    "Trauma Recognition Guide",
+    "Professional Referral Directory",
+    "Boundary Setting Guidelines"
+  ],
+  "practicalComponents": [
+    "Crisis scenario simulations",
+    "Referral practice exercises",
+    "Boundary setting role-plays"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

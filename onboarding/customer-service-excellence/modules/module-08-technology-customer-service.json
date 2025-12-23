@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M08",
+  "courseId": "CSE-001",
+  "title": "Technology & Customer Service",
+  "duration": "45 min",
+  "durationMinutes": 45,
+  "sequence": 8,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Master the use of customer portal for effective communication",
+    "Learn best practices for photo documentation communication",
+    "Understand digital updates and reporting systems",
+    "Develop skills for professional video call interactions"
+  ],
+  "lessons": [
+    "Using the customer portal effectively",
+    "Photo documentation communication",
+    "Digital updates and reporting",
+    "Video call best practices"
+  ],
+  "keyTopics": [
+    "Customer portal usage",
+    "Digital documentation",
+    "Electronic reporting",
+    "Virtual communication"
+  ],
+  "prerequisites": "Module 7: Crisis Intervention",
+  "assessmentType": "Technology demonstration and digital communication practice",
+  "passingScore": 80,
+  "resources": [
+    "Customer Portal User Guide",
+    "Photo Documentation Standards",
+    "Video Call Etiquette Guide"
+  ],
+  "practicalComponents": [
+    "Portal navigation exercises",
+    "Digital documentation practice",
+    "Video call simulations"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

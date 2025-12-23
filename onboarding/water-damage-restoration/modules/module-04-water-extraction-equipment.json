@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M04",
+  "courseId": "WRT-001",
+  "title": "Water Extraction Equipment",
+  "duration": "75 min",
+  "durationMinutes": 75,
+  "sequence": 4,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Master operation of portable water extractors",
+    "Understand truck-mount extraction systems",
+    "Learn proper use of extraction tools and accessories",
+    "Follow maintenance and safety protocols"
+  ],
+  "lessons": [
+    "Portable extractors",
+    "Truck-mount systems",
+    "Extraction tools and accessories",
+    "Maintenance and safety"
+  ],
+  "keyTopics": [
+    "Extractor types and capabilities",
+    "Vacuum systems",
+    "Water recovery",
+    "Equipment maintenance",
+    "Safety procedures"
+  ],
+  "prerequisites": "Module 3: Inspection and Moisture Detection",
+  "assessmentType": "Equipment operation demonstration and safety assessment",
+  "passingScore": 80,
+  "resources": [
+    "Equipment Operation Manuals",
+    "Maintenance Schedules",
+    "Safety Protocols"
+  ],
+  "practicalComponents": [
+    "Hands-on extractor operation",
+    "Maintenance procedures practice",
+    "Safety protocol demonstrations"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}
