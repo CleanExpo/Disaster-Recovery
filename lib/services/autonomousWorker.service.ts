@@ -1,9 +1,9 @@
-import Bull, { Queue } from 'bull';
+// import Bull, { Queue } from 'bull';
 import { getT5GemmaService } from './t5gemma.service';
 import { prisma } from '@/lib/prisma';
-import pino from 'pino';
+// import pino from 'pino';
 
-const logger = pino();
+// const logger = pino();
 
 interface WorkerTask {
     id: string;
