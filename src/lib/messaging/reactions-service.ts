@@ -43,6 +43,10 @@ class ReactionsService {
     // Stub implementation
     return [];
   }
+
+  async listReactions(messageId: string): Promise<Reaction[]> {
+    return this.getReactionsByMessage(messageId);
+  }
 }
 
 export const reactionsService = new ReactionsService();

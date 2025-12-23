@@ -44,6 +44,11 @@ class AnalyticsService {
     // Stub implementation
     return {};
   }
+
+  async getEvents(options: { userId?: string; limit?: number }): Promise<AnalyticsEvent[]> {
+    // Stub implementation
+    return [];
+  }
 }
 
 export const analyticsService = new AnalyticsService();

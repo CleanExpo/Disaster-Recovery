@@ -38,6 +38,7 @@ export class BadRequestError extends APIError {
 export enum ErrorCode {
   VALIDATION_ERROR = 'VALIDATION_ERROR',
   NOT_FOUND = 'NOT_FOUND',
+  RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND',
   UNAUTHORIZED = 'UNAUTHORIZED',
   FORBIDDEN = 'FORBIDDEN',
   BAD_REQUEST = 'BAD_REQUEST',
@@ -68,9 +69,9 @@ export function handleAPIError(error: unknown) {
   );
 }
 
-export function createErrorResponse(message: string, statusCode: number, code?: string) {
+export function createErrorResponse(code: ErrorCode | string, message: string, statusCode: number) {
   return NextResponse.json(
-    { error: message, code: code || ErrorCode.INTERNAL_ERROR },
+    { error: message, code: code },
     { status: statusCode }
   );
 }

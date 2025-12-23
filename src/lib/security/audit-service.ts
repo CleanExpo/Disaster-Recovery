@@ -47,6 +47,10 @@ class AuditService {
     // Stub implementation
     return [];
   }
+
+  async logEvent(options: LogAuditOptions): Promise<AuditLog> {
+    return this.logAudit(options);
+  }
 }
 
 export const auditService = new AuditService();
