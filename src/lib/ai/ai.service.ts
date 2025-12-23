@@ -1,5 +1,5 @@
 import { HfInference } from '@huggingface/inference';
-import LRUCache from 'lru-cache';
+import { LRUCache } from 'lru-cache';
 import { logger } from '../logger';
 
 /**
