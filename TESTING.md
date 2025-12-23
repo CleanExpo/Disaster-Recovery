@@ -1,6 +1,6 @@
 # Testing & Quality Assurance Guide
 
-This document outlines the comprehensive testing strategy for the Disaster Recovery - NRP platform.
+This document outlines the comprehensive testing strategy for the Disaster Recovery - NRPG platform.
 
 ## Test Structure
 

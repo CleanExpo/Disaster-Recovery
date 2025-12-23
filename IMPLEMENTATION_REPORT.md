@@ -239,7 +239,7 @@ Your Disaster Recovery NRP SaaS platform has been systematically enhanced from a
 ## Current Project Structure
 
 ```
-d:/Disaster Recovery - NRP/
+d:/Disaster Recovery - NRPG/
 ├── .gitignore (CRITICAL - prevents secret exposure) ✅
 ├── .env.example (template for developers) ✅
 ├── SECURITY.md (270 lines) ✅

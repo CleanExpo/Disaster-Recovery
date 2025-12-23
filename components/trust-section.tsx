@@ -1,115 +1,66 @@
-"use client"
-
-import { Shield, Zap, Calculator, BarChart3 } from "lucide-react"
-import { useState, useEffect } from "react"
+import React from 'react'
 
 export default function TrustSection() {
-  const [hoveredIntegration, setHoveredIntegration] = useState<number | null>(null)
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-
-  const integrations = [
-    {
-      name: "CRM",
-      description: "Seamless claim management",
-      icon: Shield,
-      color: "#00BFA6",
-    },
-    {
-      name: "Clean Claims",
-      description: "Automated claim processing",
-      icon: Zap,
-      color: "#2196F3",
-    },
-    {
-      name: "Xero",
-      description: "Automated invoicing",
-      icon: Calculator,
-      color: "#7C4DFF",
-    },
-    {
-      name: "QuickBooks",
-      description: "Financial management",
-      icon: BarChart3,
-      color: "#00BFA6",
-    },
-  ]
-
   return (
-    <section className="py-24 relative">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-20 bg-gradient-to-b from-transparent to-[#1a1d29]/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-poppins text-4xl md:text-5xl text-balance mb-6 font-medium">
-            Trust & <span className="text-[#00BFA6]">Integrations</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F9FAFB] mb-4">
+            Trusted by <span className="gradient-text-teal-purple">Thousands</span>
           </h2>
-          <p className="text-lg text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
-            Built on industry-leading platforms with seamless integrations for complete transparency
+          <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto">
+            Join the growing community of satisfied clients and contractors
           </p>
         </div>
-
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {integrations.map((integration, index) => {
-              const Icon = integration.icon
-              return (
-                <div
-                  key={index}
-                  className="relative"
-                  onMouseEnter={isClient ? () => setHoveredIntegration(index) : undefined}
-                  onMouseLeave={isClient ? () => setHoveredIntegration(null) : undefined}
-                >
-                  <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] hover:border-[#00BFA6] transition-colors duration-200 cursor-pointer">
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                      style={{ backgroundColor: integration.color }}
-                    >
-                      <Icon className="h-8 w-8 text-white" />
-                    </div>
-                    <h3 className="font-poppins font-semibold text-lg text-center" style={{ color: integration.color }}>
-                      {integration.name}
-                    </h3>
-
-                    {/* Tooltip */}
-                    {isClient && hoveredIntegration === index && (
-                      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-[#0F1115] border border-[#00BFA6] rounded-lg px-3 py-2 text-sm text-[#F9FAFB] whitespace-nowrap z-10">
-                        {integration.description}
-                        <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#00BFA6]"></div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )
-            })}
+        
+        <div className="grid md:grid-cols-4 gap-8 mb-16">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-[#00BFA6] mb-2">10,000+</div>
+            <div className="text-[#9CA3AF]">Happy Clients</div>
           </div>
-
-          {/* Trust indicators */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#00BFA6] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-[#00BFA6] mb-2">Insurance Grade Security</h3>
-              <p className="text-[#9CA3AF] font-inter">Bank-level encryption and compliance standards</p>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-[#7C4DFF] mb-2">5,000+</div>
+            <div className="text-[#9CA3AF]">Verified Contractors</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-[#3B82F6] mb-2">98%</div>
+            <div className="text-[#9CA3AF]">Success Rate</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-[#F59E0B] mb-2">24/7</div>
+            <div className="text-[#9CA3AF]">Support Available</div>
+          </div>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-all duration-300 card-hover-lift glow-effect">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] rounded-xl mb-6 flex items-center justify-center">
+              <span className="text-white text-2xl">🔒</span>
             </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#2196F3] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-[#2196F3] mb-2">Real-time Processing</h3>
-              <p className="text-[#9CA3AF] font-inter">Instant updates and automated workflows</p>
+            <h3 className="text-xl font-bold text-[#F9FAFB] mb-4">Secure Platform</h3>
+            <p className="text-[#9CA3AF]">
+              Your data is protected with bank-level encryption. We never share your information without permission.
+            </p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-all duration-300 card-hover-lift glow-effect">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] rounded-xl mb-6 flex items-center justify-center">
+              <span className="text-white text-2xl">⭐</span>
             </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#7C4DFF] rounded-full flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-[#7C4DFF] mb-2">Complete Transparency</h3>
-              <p className="text-[#9CA3AF] font-inter">Full visibility into all processes and costs</p>
+            <h3 className="text-xl font-bold text-[#F9FAFB] mb-4">Quality Verified</h3>
+            <p className="text-[#9CA3AF]">
+              Every contractor is thoroughly vetted, insured, and background checked. Quality you can trust.
+            </p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-all duration-300 card-hover-lift glow-effect">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#3B82F6] to-[#00BFA6] rounded-xl mb-6 flex items-center justify-center">
+              <span className="text-white text-2xl">⚡</span>
             </div>
+            <h3 className="text-xl font-bold text-[#F9FAFB] mb-4">Fast Response</h3>
+            <p className="text-[#9CA3AF]">
+              Average response time under 60 seconds. We're here when you need us most.
+            </p>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Disaster Recovery - NRP platform includes a comprehensive video and voice calling system with real-time communication, advanced features, and performance optimization. This documentation covers the complete calling infrastructure.
+The Disaster Recovery - NRPG platform includes a comprehensive video and voice calling system with real-time communication, advanced features, and performance optimization. This documentation covers the complete calling infrastructure.
 
 ## Architecture
 

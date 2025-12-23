@@ -16,7 +16,7 @@ Your Disaster Recovery NRP SaaS platform has been comprehensively enhanced with 
 
 ### Step 1: Install Dependencies
 ```bash
-cd "d:\Disaster Recovery - NRP"
+cd "d:\Disaster Recovery - NRPG"
 npm install
 npm run db:generate  # Generate Prisma client
 ```
@@ -158,7 +158,7 @@ npm run security:fix    # Auto-fix known issues
 ## Project Structure
 
 ```
-d:\Disaster Recovery - NRP\
+d:\Disaster Recovery - NRPG\
 ├── .env.example              # Template (commit this)
 ├── .env.local                # Local secrets (don't commit!)
 ├── .gitignore                # Prevents .env accidental commits

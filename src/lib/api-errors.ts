@@ -1,0 +1,58 @@
+import { NextResponse } from 'next/server';
+
+export class APIError extends Error {
+  constructor(
+    message: string,
+    public statusCode: number = 500,
+    public code?: string
+  ) {
+    super(message);
+    this.name = 'APIError';
+  }
+}
+
+export class NotFoundError extends APIError {
+  constructor(message: string = 'Resource not found') {
+    super(message, 404, 'NOT_FOUND');
+  }
+}
+
+export class UnauthorizedError extends APIError {
+  constructor(message: string = 'Unauthorized') {
+    super(message, 401, 'UNAUTHORIZED');
+  }
+}
+
+export class ForbiddenError extends APIError {
+  constructor(message: string = 'Forbidden') {
+    super(message, 403, 'FORBIDDEN');
+  }
+}
+
+export class BadRequestError extends APIError {
+  constructor(message: string = 'Bad request') {
+    super(message, 400, 'BAD_REQUEST');
+  }
+}
+
+export function handleAPIError(error: unknown) {
+  console.error('API Error:', error);
+
+  if (error instanceof APIError) {
+    return NextResponse.json(
+      {
+        error: error.message,
+        code: error.code,
+      },
+      { status: error.statusCode }
+    );
+  }
+
+  return NextResponse.json(
+    {
+      error: 'Internal server error',
+      code: 'INTERNAL_ERROR',
+    },
+    { status: 500 }
+  );
+}

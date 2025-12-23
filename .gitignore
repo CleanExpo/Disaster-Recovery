@@ -85,3 +85,6 @@ _archive/
 # System files
 .env.*.backup*
 ~$*
+
+.vercel
+.env*.local

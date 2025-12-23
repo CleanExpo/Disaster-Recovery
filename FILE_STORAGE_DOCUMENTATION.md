@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Disaster Recovery - NRP platform includes a comprehensive file storage and media management system with support for multiple providers, automatic media processing, and a full-featured UI for file management.
+The Disaster Recovery - NRPG platform includes a comprehensive file storage and media management system with support for multiple providers, automatic media processing, and a full-featured UI for file management.
 
 ## Architecture
 

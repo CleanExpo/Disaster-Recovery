@@ -1,4 +1,8 @@
 import { prisma } from '@/lib/prisma';
+import { redisHealthCheck } from '@/lib/config/redis.config';
+import { aiHealthCheck, getAIStats } from '@/lib/ai/ai.service';
+import { workerHealthCheck, getWorkerStats } from '@/lib/ai/autonomous-worker.service';
+import { queueManager } from '@/lib/config/queue.config';
 
 /**
  * Health Checks Service
@@ -6,8 +10,10 @@ import { prisma } from '@/lib/prisma';
  * Comprehensive health check endpoints for monitoring
  * - Database connectivity
  * - Redis connectivity
- * - Socket.io server
+ * - AI service
+ * - Worker service
  * - Message queue
+ * - Socket.io server
  * - File storage
  * - Email service
  */
@@ -64,12 +70,12 @@ export class HealthCheckService {
     const startTime = Date.now();
 
     try {
-      // In production, check actual Redis connection
-      // For now, assume it's working
+      const isHealthy = await redisHealthCheck();
+
       return {
         name: 'redis',
-        status: 'healthy',
-        message: 'Redis connected',
+        status: isHealthy ? 'healthy' : 'unhealthy',
+        message: isHealthy ? 'Redis connected' : 'Redis connection failed',
         responseTime: Date.now() - startTime,
         timestamp: new Date(),
       };
@@ -78,6 +84,92 @@ export class HealthCheckService {
         name: 'redis',
         status: 'unhealthy',
         message: `Redis error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        responseTime: Date.now() - startTime,
+        timestamp: new Date(),
+      };
+    }
+  }
+
+  /**
+   * Check AI service
+   */
+  static async checkAI(): Promise<HealthCheckResult> {
+    const startTime = Date.now();
+
+    try {
+      const isHealthy = await aiHealthCheck();
+
+      return {
+        name: 'ai-service',
+        status: isHealthy ? 'healthy' : 'unhealthy',
+        message: isHealthy ? 'AI service operational' : 'AI service unavailable',
+        responseTime: Date.now() - startTime,
+        timestamp: new Date(),
+      };
+    } catch (error) {
+      return {
+        name: 'ai-service',
+        status: 'unhealthy',
+        message: `AI service error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        responseTime: Date.now() - startTime,
+        timestamp: new Date(),
+      };
+    }
+  }
+
+  /**
+   * Check AI worker
+   */
+  static async checkWorker(): Promise<HealthCheckResult> {
+    const startTime = Date.now();
+
+    try {
+      const isHealthy = await workerHealthCheck();
+
+      return {
+        name: 'ai-worker',
+        status: isHealthy ? 'healthy' : 'degraded',
+        message: isHealthy ? 'AI worker running' : 'AI worker not running',
+        responseTime: Date.now() - startTime,
+        timestamp: new Date(),
+      };
+    } catch (error) {
+      return {
+        name: 'ai-worker',
+        status: 'unhealthy',
+        message: `AI worker error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        responseTime: Date.now() - startTime,
+        timestamp: new Date(),
+      };
+    }
+  }
+
+  /**
+   * Check AI queue
+   */
+  static async checkAIQueue(): Promise<HealthCheckResult> {
+    const startTime = Date.now();
+
+    try {
+      const isHealthy = await queueManager.healthCheck();
+      const stats = await queueManager.getQueueStats('ai-processing');
+
+      const hasStalled = stats.active > 10 || stats.failed > 5;
+
+      return {
+        name: 'ai-queue',
+        status: !isHealthy ? 'unhealthy' : hasStalled ? 'degraded' : 'healthy',
+        message: isHealthy
+          ? `Queue operational (${stats.waiting} waiting, ${stats.active} active)`
+          : 'Queue connection failed',
+        responseTime: Date.now() - startTime,
+        timestamp: new Date(),
+      };
+    } catch (error) {
+      return {
+        name: 'ai-queue',
+        status: 'unhealthy',
+        message: `AI queue error: ${error instanceof Error ? error.message : 'Unknown error'}`,
         responseTime: Date.now() - startTime,
         timestamp: new Date(),
       };
@@ -198,6 +290,9 @@ export class HealthCheckService {
     const checks = await Promise.all([
       this.checkDatabase(),
       this.checkRedis(),
+      this.checkAI(),
+      this.checkWorker(),
+      this.checkAIQueue(),
       this.checkSocketIO(),
       this.checkMessageQueue(),
       this.checkFileStorage(),
@@ -279,17 +374,21 @@ export class HealthCheckService {
    */
   static async getDetailedInfo() {
     try {
-      const [health, dbStats] = await Promise.all([
+      const [health, dbStats, aiStats, workerStats] = await Promise.all([
         this.getFullHealth(),
         this.getDatabaseStats(),
+        getAIStats().catch(() => null),
+        getWorkerStats().catch(() => null),
       ]);
 
       return {
-        service: 'Disaster Recovery - NRP',
+        service: 'Disaster Recovery - NRPG',
         version: process.env.APP_VERSION || '1.0.0',
         environment: process.env.NODE_ENV || 'development',
         health,
         database: dbStats,
+        ai: aiStats,
+        worker: workerStats,
         memory: {
           heapUsed: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
           heapTotal: Math.round(process.memoryUsage().heapTotal / 1024 / 1024),

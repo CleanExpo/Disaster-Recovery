@@ -489,7 +489,7 @@ Request: {
 
 ### Setup
 ```bash
-cd "d:/Disaster Recovery - NRP"
+cd "d:/Disaster Recovery - NRPG"
 npm install
 npm run db:generate
 npm run db:seed

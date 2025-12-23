@@ -25,7 +25,7 @@ type: Opaque
 stringData:
   DATABASE_URL: "postgresql://user:password@postgres:5432/disaster_recovery"
   REDIS_URL: "redis://redis:6379"
-  NEXTAUTH_SECRET: "your-secret-key"
+  NEXTAUTH_SECRET: "your-secret-key-change-me"
 
 ---
 apiVersion: apps/v1
@@ -46,11 +46,11 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: disaster-recovery
+      app: disaster-recovery-app
   template:
     metadata:
       labels:
-        app: disaster-recovery
+        app: disaster-recovery-app
     spec:
       terminationGracePeriodSeconds: 30
       securityContext:
@@ -59,8 +59,8 @@ spec:
         fsGroup: 1001
 
       containers:
-      - name: app
-        image: disaster-recovery:latest
+      - name: api
+        image: registry.digitalocean.com/disaster-recovery-nrpg/disaster-recovery-api:latest
         imagePullPolicy: IfNotPresent
 
         ports:
@@ -71,13 +71,24 @@ spec:
           containerPort: 9090
           protocol: TCP
 
-        envFrom:
-        - configMapRef:
-            name: app-config
-        - secretRef:
-            name: app-secrets
-
         env:
+        - name: NODE_ENV
+          value: "production"
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: DATABASE_URL
+        - name: REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: REDIS_URL
+        - name: NEXTAUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: app-secrets
+              key: NEXTAUTH_SECRET
         - name: NEXTAUTH_URL
           valueFrom:
             configMapKeyRef:
@@ -88,9 +99,9 @@ spec:
         # Liveness probe - check if app is alive
         livenessProbe:
           httpGet:
-            path: /api/health/live
+            path: /api/health
             port: http
-          initialDelaySeconds: 20
+          initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
           failureThreshold: 3
@@ -98,9 +109,9 @@ spec:
         # Readiness probe - check if app is ready for traffic
         readinessProbe:
           httpGet:
-            path: /api/health/ready
+            path: /api/health
             port: http
-          initialDelaySeconds: 10
+          initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 5
           failureThreshold: 2
@@ -117,11 +128,11 @@ spec:
 
         resources:
           requests:
-            cpu: 100m
-            memory: 256Mi
+            memory: "256Mi"
+            cpu: "250m"
           limits:
-            cpu: 500m
-            memory: 512Mi
+            memory: "512Mi"
+            cpu: "500m"
 
         securityContext:
           allowPrivilegeEscalation: false
@@ -152,7 +163,7 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - disaster-recovery
+                  - disaster-recovery-app
               topologyKey: kubernetes.io/hostname
 
 ---
@@ -164,18 +175,18 @@ metadata:
   labels:
     app: disaster-recovery
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
   - name: http
+    protocol: TCP
     port: 80
     targetPort: http
-    protocol: TCP
   - name: metrics
     port: 9090
     targetPort: metrics
     protocol: TCP
   selector:
-    app: disaster-recovery
+    app: disaster-recovery-app
 
 ---
 apiVersion: autoscaling/v2
@@ -231,7 +242,7 @@ spec:
   minAvailable: 1
   selector:
     matchLabels:
-      app: disaster-recovery
+      app: disaster-recovery-app
 
 ---
 apiVersion: v1

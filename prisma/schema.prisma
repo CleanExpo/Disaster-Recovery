@@ -951,3 +951,100 @@ model DisasterAlert {
   @@index([isActive])
   @@index([startDate])
 }
+
+// ============================================================================
+// CONTRACTOR ONBOARDING SYSTEM - Phase 24
+// ============================================================================
+
+enum OnboardingStatus {
+  PENDING_START
+  IN_PROGRESS
+  PAUSED
+  COMPLETED
+  EXPIRED
+}
+
+enum ModuleStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum CertificationLevel {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+}
+
+model ContractorOnboarding {
+  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  contractorId          String   @unique @db.Uuid
+  specialization        String   @db.VarChar(50)
+  assessmentScore       Int?
+  recommendedModules    Json?    @db.JsonB
+  startDate             DateTime?
+  targetCompletionDate  DateTime?
+  actualCompletionDate  DateTime?
+  status                OnboardingStatus @default(PENDING_START)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  moduleProgress        ContractorModuleProgress[]
+  assessments           ContractorAssessment[]
+
+  @@index([status], name: "idx_contractor_status")
+  @@index([specialization], name: "idx_contractor_specialization")
+  @@index([contractorId], name: "idx_contractor_id_onboarding")
+  @@map("contractor_onboarding")
+}
+
+model ContractorModuleProgress {
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  onboardingId String      @db.Uuid
+  moduleId    String       @db.VarChar(100)
+  courseName  String?      @db.VarChar(255)
+  startedAt   DateTime?
+  completedAt DateTime?
+  completed   Boolean      @default(false)
+  status      ModuleStatus @default(NOT_STARTED)
+  progress    Int          @default(0)
+  createdAt   DateTime     @default(now())
+
+  onboarding  ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  @@index([onboardingId, status], name: "idx_module_progress")
+  @@map("contractor_module_progress")
+}
+
+model ContractorAssessment {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  onboardingId   String   @db.Uuid
+  moduleId       String   @db.VarChar(100)
+  assessmentType String?  @db.VarChar(50)
+  score          Int?
+  maxScore       Int      @default(100)
+  completedAt    DateTime?
+  feedback       String?  @db.Text
+  createdAt      DateTime @default(now())
+
+  onboarding     ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_assessments")
+}
+
+model ContractorCertification {
+  id                 String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  contractorId       String              @db.Uuid
+  certificationName  String              @db.VarChar(255)
+  certificationLevel Int?
+  issueDate          DateTime?
+  expiryDate         DateTime?
+  specializations    String[]
+  verified           Boolean             @default(false)
+  createdAt          DateTime            @default(now())
+
+  @@index([contractorId], name: "idx_contractor_id_cert")
+  @@map("contractor_certifications")
+}

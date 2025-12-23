@@ -1,62 +1,53 @@
-# Build stage
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
-RUN npm ci
+COPY prisma ./prisma/
+
+# Set dummy environment variables for build
+ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+ENV DIRECT_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+
+RUN npm ci --legacy-peer-deps
 
 # Copy source code
 COPY . .
 
-# Generate Prisma client
-RUN npx prisma generate
+# Generate Prisma client and build Next.js (skip migrations)
+RUN npx prisma generate && npm run build:next
 
-# Build Next.js application
-RUN npm run build
-
-# Production stage
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Set environment to production
-ENV NODE_ENV=production
-
-# Install dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nextjs -u 1001
 
-# Copy built application from builder
+# Copy built application
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/prisma ./prisma
 
-# Copy initialization scripts
-COPY ./docker/entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Copy entrypoint script
+COPY docker/entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
-# Change ownership
-RUN chown -R nextjs:nodejs /app
+# Set environment
+ENV NODE_ENV production
+ENV PORT 3001
 
-# Switch to non-root user
 USER nextjs
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD node -e "require('http').get('http://localhost:3000/api/health/live', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
+EXPOSE 3001
 
-# Expose port
-EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3001/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
 
-# Use dumb-init to handle signals properly
 ENTRYPOINT ["/sbin/dumb-init", "--"]
-
-# Start application
-CMD ["npm", "start"]
+CMD ["./entrypoint.sh"]

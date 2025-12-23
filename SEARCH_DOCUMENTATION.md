@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Disaster Recovery - NRP platform includes a comprehensive full-text search system with advanced indexing, filtering, and analytics capabilities. This documentation covers the search infrastructure, API usage, and best practices.
+The Disaster Recovery - NRPG platform includes a comprehensive full-text search system with advanced indexing, filtering, and analytics capabilities. This documentation covers the search infrastructure, API usage, and best practices.
 
 ## Architecture
 
