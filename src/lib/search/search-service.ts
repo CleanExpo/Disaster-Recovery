@@ -37,6 +37,15 @@ class SearchService {
   async updateDocument(type: string, id: string, document: Record<string, any>): Promise<void> {
     // Stub implementation
   }
+
+  async searchMessages(options: {
+    query: string;
+    filters?: Record<string, any>;
+    limit?: number;
+  }): Promise<SearchResult[]> {
+    // Stub implementation
+    return [];
+  }
 }
 
 export const searchService = new SearchService();

@@ -35,6 +35,24 @@ class AccessControlService {
     // Stub implementation
     return [];
   }
+
+  async checkPermission(options: {
+    userId: string;
+    resource: string;
+    action: string;
+    context?: Record<string, any>;
+  }): Promise<boolean> {
+    // Stub implementation - allow all for testing
+    return true;
+  }
+
+  async assignRole(options: { userId: string; roleId: string }): Promise<void> {
+    // Stub implementation
+  }
+
+  async revokeRole(options: { userId: string; roleId: string }): Promise<void> {
+    // Stub implementation
+  }
 }
 
 export const accessControlService = new AccessControlService();
