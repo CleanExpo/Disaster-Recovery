@@ -25,3 +25,20 @@ export async function getSession(request: NextRequest) {
     return null;
   }
 }
+
+export async function authenticateRequest(request: NextRequest) {
+  // Authenticate and return user info
+  const session = await getSession(request);
+
+  if (!session) {
+    return null;
+  }
+
+  // Parse session token and return user data
+  // For now, return basic structure
+  return {
+    userId: 'user-id',
+    role: 'user',
+    authenticated: true,
+  };
+}

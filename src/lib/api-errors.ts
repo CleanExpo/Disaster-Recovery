@@ -35,6 +35,15 @@ export class BadRequestError extends APIError {
   }
 }
 
+export enum ErrorCode {
+  VALIDATION_ERROR = 'VALIDATION_ERROR',
+  NOT_FOUND = 'NOT_FOUND',
+  UNAUTHORIZED = 'UNAUTHORIZED',
+  FORBIDDEN = 'FORBIDDEN',
+  BAD_REQUEST = 'BAD_REQUEST',
+  INTERNAL_ERROR = 'INTERNAL_ERROR',
+}
+
 export function handleAPIError(error: unknown) {
   console.error('API Error:', error);
 
@@ -52,6 +61,31 @@ export function handleAPIError(error: unknown) {
     {
       error: 'Internal server error',
       code: 'INTERNAL_ERROR',
+    },
+    { status: 500 }
+  );
+}
+
+export function createErrorResponse(message: string, statusCode: number, code?: string) {
+  return NextResponse.json(
+    { error: message, code: code || ErrorCode.INTERNAL_ERROR },
+    { status: statusCode }
+  );
+}
+
+export function handleValidationError(message: string) {
+  return NextResponse.json(
+    { error: message, code: ErrorCode.VALIDATION_ERROR },
+    { status: 400 }
+  );
+}
+
+export function handleUnexpectedError(error: unknown) {
+  console.error('Unexpected error:', error);
+  return NextResponse.json(
+    {
+      error: error instanceof Error ? error.message : 'An unexpected error occurred',
+      code: ErrorCode.INTERNAL_ERROR,
     },
     { status: 500 }
   );
