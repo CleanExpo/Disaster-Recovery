@@ -66,6 +66,17 @@ class CallService {
     // Stub implementation
     return null;
   }
+
+  async initiateCall(options: { initiatorId: string; recipientId: string; callType: 'audio' | 'video' }): Promise<Call> {
+    return {
+      id: `call_${Date.now()}`,
+      roomId: `room_${options.initiatorId}_${options.recipientId}`,
+      participants: [options.initiatorId, options.recipientId],
+      type: options.callType,
+      status: 'pending',
+      startedAt: new Date(),
+    };
+  }
 }
 
 export const callService = new CallService();

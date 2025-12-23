@@ -50,6 +50,18 @@ class MediaManagerService {
     // Stub implementation
     return [];
   }
+
+  async uploadFile(options: { name: string; size: number; mimeType: string; userId?: string }): Promise<MediaFile> {
+    return {
+      id: `media_${Date.now()}`,
+      userId: options.userId || 'system',
+      filename: options.name,
+      mimeType: options.mimeType,
+      size: options.size,
+      url: `https://example.com/media/${options.name}`,
+      createdAt: new Date(),
+    };
+  }
 }
 
 export const mediaManagerService = new MediaManagerService();

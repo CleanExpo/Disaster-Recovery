@@ -65,6 +65,10 @@ class MessagingService {
     // Stub implementation
     return [];
   }
+
+  async listRoomMessages(roomId: string, limit = 50): Promise<Message[]> {
+    return this.getMessagesByRoom(roomId, limit);
+  }
 }
 
 export const messagingService = new MessagingService();
