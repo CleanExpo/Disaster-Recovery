@@ -1,9 +1,7 @@
 import { getT5GemmaService } from './t5gemma.service';
 import { getWorkerService } from './autonomousWorker.service';
 import { prisma } from '@/lib/prisma';
-import pino from 'pino';
 
-const logger = pino();
 
 interface DisasterScenario {
     type: string;
