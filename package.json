@@ -46,8 +46,7 @@
     "worker:dev": "ts-node --watch src/lib/ai/init-worker.ts",
     "ai:health": "curl http://localhost:3000/api/ai/health?detailed=true",
     "ai:stats": "curl http://localhost:3000/api/ai/stats",
-    "postinstall": "prisma generate"
-  },
+    "postinstall": "prisma generate",`r`n    "migrate": "node migrate.js"`r`n  },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
     "@hookform/resolvers": "^3.10.0",
@@ -164,3 +163,4 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
+
