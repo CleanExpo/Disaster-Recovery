@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+// Force dynamic rendering for this route (uses request.headers)
+export const dynamic = 'force-dynamic';
+
 import { TenantService } from '@/lib/tenant-service';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';

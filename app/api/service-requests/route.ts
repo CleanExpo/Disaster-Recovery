@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+// Force dynamic rendering for this route (uses request.headers)
+export const dynamic = 'force-dynamic';
+
 import { prisma } from '@/lib/prisma';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { serviceRequestSchema } from '@/lib/validation-schemas';
