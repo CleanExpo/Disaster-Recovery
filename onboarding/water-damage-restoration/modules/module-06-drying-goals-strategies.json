@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M06",
+  "courseId": "WRT-001",
+  "title": "Drying Goals and Strategies",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 6,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Learn to establish appropriate drying goals",
+    "Understand open versus closed drying systems",
+    "Master specialty drying situations",
+    "Apply hardwood floor drying techniques"
+  ],
+  "lessons": [
+    "Setting drying goals",
+    "Open vs closed drying systems",
+    "Specialty drying situations",
+    "Hardwood floor drying"
+  ],
+  "keyTopics": [
+    "Drying goal establishment",
+    "System design principles",
+    "Specialty applications",
+    "Hardwood restoration",
+    "Drying timeframes"
+  ],
+  "prerequisites": "Module 5: Structural Drying Equipment",
+  "assessmentType": "Drying strategy development and system design",
+  "passingScore": 80,
+  "resources": [
+    "Drying Goals Worksheet",
+    "System Design Guide",
+    "Hardwood Drying Manual"
+  ],
+  "practicalComponents": [
+    "Drying goal calculations",
+    "System design exercises",
+    "Hardwood drying simulations"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

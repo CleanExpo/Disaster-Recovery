@@ -1,24 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import HeroSection from "@/components/hero-section"
-import ProblemSection from "@/components/problem-section"
-import SolutionSection from "@/components/solution-section"
-import PlatformFeaturesSection from "@/components/platform-features-section"
-import HowItWorksSection from "@/components/how-it-works-section"
-import ClientBenefitsSection from "@/components/client-benefits-section"
-import ContractorBenefitsSection from "@/components/contractor-benefits-section"
-import TrustSection from "@/components/trust-section"
-import PricingSection from "@/components/pricing-section"
-import SocialProofSection from "@/components/social-proof-section"
-import FinalCtaSection from "@/components/final-cta-section"
-import StatsVisual from "@/components/stats-visual"
-import ProcessVisual from "@/components/process-visual"
-import FloatingActionButton from "@/components/floating-action-button"
-import ParticleSystem from "@/components/particle-system"
-import ScrollProgress from "@/components/scroll-progress"
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,176 +11,137 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB] relative overflow-hidden">
-      {/* Enhanced Animated Background Elements */}
+      {/* Gradient Background */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
-        {/* Large Gradient Orbs - More Visible */}
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-96 h-96 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-[#8B5CF6] to-[#00BFA6] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-        
-        {/* Enhanced Geometric Shapes */}
-        <div className="absolute top-20 right-10 w-40 h-40 border-2 border-[#00BFA6]/30 rotate-45 animate-pulse rounded-lg"></div>
-        <div className="absolute bottom-20 left-10 w-32 h-32 bg-gradient-to-r from-[#00BFA6] to-[#3B82F6] rounded-full opacity-20 animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-2 border-[#7C4DFF]/30 rotate-12 animate-pulse rounded-full"></div>
-        
-        {/* Enhanced Floating Particles */}
-        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-[#00BFA6] rounded-full animate-ping shadow-lg shadow-[#00BFA6]/50"></div>
-        <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-[#3B82F6] rounded-full animate-ping animation-delay-1000 shadow-lg shadow-[#3B82F6]/50"></div>
-        <div className="absolute top-1/2 left-3/4 w-2.5 h-2.5 bg-[#8B5CF6] rounded-full animate-ping animation-delay-2000 shadow-lg shadow-[#8B5CF6]/50"></div>
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-[#00BFA6] rounded-full animate-ping animation-delay-3000 shadow-lg shadow-[#00BFA6]/50"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-[#7C4DFF] rounded-full animate-ping animation-delay-4000 shadow-lg shadow-[#7C4DFF]/50"></div>
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-[#8B5CF6] to-[#00BFA6] rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
       </div>
 
-      {/* Gradient Overlay */}
-      <div className="fixed inset-0 bg-gradient-to-br from-[#0F1115] via-[#0F1115] to-[#1a1d29] -z-5"></div>
-      
-      {/* Animated Grid Pattern */}
-      <div className="fixed inset-0 opacity-5 -z-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0, 191, 166, 0.3) 1px, transparent 0)`,
-          backgroundSize: '20px 20px',
-          animation: 'grid-move 20s linear infinite'
-        }}></div>
-      </div>
-
-      <ScrollProgress />
-      <Header />
-      <main className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="relative">
-          <HeroSection />
-          <ProblemSection />
-          <SolutionSection />
-          <PlatformFeaturesSection />
-          <ProcessVisual />
-          <HowItWorksSection />
-          <ClientBenefitsSection />
-          <ContractorBenefitsSection />
-          <TrustSection />
-          <PricingSection />
-          <SocialProofSection />
-          {/* <FinalCtaSection /> */}
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-gradient-to-br from-[#0F1115] to-[#1a1d29] border-b border-[#374151]/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-lg">DR</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-[#00BFA6] to-[#7C4DFF] bg-clip-text text-transparent">
+                  Disaster Recovery
+                </h1>
+                <p className="text-xs text-[#9CA3AF]">NRPG Platform</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button className="px-6 py-2 text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium border border-[#374151] rounded-lg hover:border-[#00BFA6]">
+                Sign In
+              </button>
+              <button className="px-6 py-2 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-all">
+                Get Started
+              </button>
+            </div>
+          </div>
         </div>
+      </header>
+
+      {/* Main Content */}
+      <main className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Hero Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-[#00BFA6] to-[#7C4DFF] bg-clip-text text-transparent">
+                Disaster Recovery
+              </span>
+              <br />
+              <span className="text-[#F9FAFB]">Made Simple</span>
+            </h1>
+            <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto mb-8">
+              Connect with verified contractors instantly. Get your property restored fast.
+            </p>
+            <div className="flex gap-4 justify-center">
+              <button className="px-8 py-4 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg shadow-[#00BFA6]/20">
+                Get Started
+              </button>
+              <button className="px-8 py-4 border border-[#374151] text-[#F9FAFB] rounded-lg font-semibold hover:border-[#00BFA6] transition-all">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Problem Section */}
+        <section className="py-20 bg-gradient-to-b from-transparent to-[#1a1d29]/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-[#F9FAFB] mb-4">The Problem</h2>
+              <p className="text-xl text-[#9CA3AF]">When disaster strikes, finding help should not be another disaster.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-[#0F1115] p-8 rounded-2xl border border-[#374151]/50">
+                <div className="text-4xl mb-4">⏰</div>
+                <h3 className="text-xl font-bold text-[#F9FAFB] mb-2">Time Wasted</h3>
+                <p className="text-[#9CA3AF]">Hours spent searching for available contractors during emergencies.</p>
+              </div>
+              <div className="bg-[#0F1115] p-8 rounded-2xl border border-[#374151]/50">
+                <div className="text-4xl mb-4">❓</div>
+                <h3 className="text-xl font-bold text-[#F9FAFB] mb-2">Unknown Quality</h3>
+                <p className="text-[#9CA3AF]">No way to verify contractor credentials or past work quality.</p>
+              </div>
+              <div className="bg-[#0F1115] p-8 rounded-2xl border border-[#374151]/50">
+                <div className="text-4xl mb-4">💸</div>
+                <h3 className="text-xl font-bold text-[#F9FAFB] mb-2">Price Gouging</h3>
+                <p className="text-[#9CA3AF]">Emergency situations often lead to inflated prices and hidden fees.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Solution Section */}
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-[#F9FAFB] mb-4">The Solution</h2>
+              <p className="text-xl text-[#9CA3AF]">Our platform connects you with verified contractors in minutes.</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-all">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] rounded-2xl flex items-center justify-center mb-6">
+                  <span className="text-2xl">🤖</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#F9FAFB] mb-2">AI-Powered Matching</h3>
+                <p className="text-[#9CA3AF]">Our AI matches you with the best contractor for your specific needs.</p>
+              </div>
+              <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-all">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] rounded-2xl flex items-center justify-center mb-6">
+                  <span className="text-2xl">⚡</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#F9FAFB] mb-2">Fast Response</h3>
+                <p className="text-[#9CA3AF]">Get connected with available contractors within minutes, not hours.</p>
+              </div>
+              <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-all">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#00BFA6] rounded-2xl flex items-center justify-center mb-6">
+                  <span className="text-2xl">✅</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#F9FAFB] mb-2">Verified Network</h3>
+                <p className="text-[#9CA3AF]">All contractors are vetted, licensed, and insured for your peace of mind.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
-      <Footer />
-      {/* <FloatingActionButton /> */}
-      <ParticleSystem />
-      
-      {/* Enhanced Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-        
-        @keyframes grid-move {
-          0% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(20px, 20px);
-          }
-        }
-        
-        @keyframes gradient-shift {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        
-        @keyframes glow {
-          0%, 100% {
-            box-shadow: 0 0 20px rgba(0, 191, 166, 0.3);
-          }
-          50% {
-            box-shadow: 0 0 40px rgba(0, 191, 166, 0.6);
-          }
-        }
-        
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient-shift 3s ease infinite;
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-glow {
-          animation: glow 2s ease-in-out infinite;
-        }
-        
-        .animation-delay-1000 {
-          animation-delay: 1s;
-        }
-        
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        
-        .animation-delay-3000 {
-          animation-delay: 3s;
-        }
-        
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-        
-        .card-hover-lift {
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover-lift:hover {
-          transform: translateY(-8px);
-        }
-        
-        .glow-effect {
-          position: relative;
-        }
-        
-        .glow-effect::before {
-          content: '';
-          position: absolute;
-          top: -2px;
-          left: -2px;
-          right: -2px;
-          bottom: -2px;
-          background: linear-gradient(45deg, #00BFA6, #7C4DFF, #3B82F6, #00BFA6);
-          border-radius: inherit;
-          z-index: -1;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        
-        .glow-effect:hover::before {
-          opacity: 1;
-        }
-      `}</style>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-t from-[#0F1115] to-transparent py-16 border-t border-[#374151]/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-[#9CA3AF] text-sm">
+              © 2025 Disaster Recovery NRPG Platform. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
-  )
+  );
 }

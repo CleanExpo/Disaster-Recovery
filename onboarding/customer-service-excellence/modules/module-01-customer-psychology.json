@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M01",
+  "courseId": "CSE-001",
+  "title": "Understanding Customer Psychology in Crisis",
+  "duration": "45 min",
+  "durationMinutes": 45,
+  "sequence": 1,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Understand emotional states during disasters",
+    "Recognize stress responses and their impact on decision making",
+    "Learn techniques for building trust in crisis situations",
+    "Develop cultural sensitivity awareness"
+  ],
+  "lessons": [
+    "Emotional states during disasters",
+    "Stress response and decision making", 
+    "Building trust in crisis situations",
+    "Cultural sensitivity considerations"
+  ],
+  "keyTopics": [
+    "Crisis psychology",
+    "Emotional intelligence",
+    "Trust building",
+    "Cultural awareness"
+  ],
+  "prerequisites": "None",
+  "assessmentType": "Knowledge check and scenario analysis",
+  "passingScore": 80,
+  "resources": [
+    "Crisis Psychology Handbook",
+    "Cultural Sensitivity Guide",
+    "Case Study Examples"
+  ],
+  "practicalComponents": [
+    "Role-playing exercises",
+    "Crisis scenario simulations",
+    "Cultural sensitivity scenarios"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

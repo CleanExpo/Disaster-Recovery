@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M11",
+  "courseId": "WRT-001",
+  "title": "Customer Communication",
+  "duration": "30 min",
+  "durationMinutes": 30,
+  "sequence": 11,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Learn to set realistic customer expectations",
+    "Master explaining technical restoration processes",
+    "Develop skills for handling customer concerns",
+    "Conduct professional final walkthroughs"
+  ],
+  "lessons": [
+    "Setting expectations",
+    "Explaining the process",
+    "Handling concerns",
+    "Final walkthrough"
+  ],
+  "keyTopics": [
+    "Customer expectations",
+    "Technical communication",
+    "Concern resolution",
+    "Project completion",
+    "Customer satisfaction"
+  ],
+  "prerequisites": "Module 10: Documentation & Xactimate",
+  "assessmentType": "Customer communication scenarios and walkthrough simulation",
+  "passingScore": 80,
+  "resources": [
+    "Customer Communication Scripts",
+    "Technical Explanation Templates",
+    "Final Walkthrough Checklist"
+  ],
+  "practicalComponents": [
+    "Customer explanation practice",
+    "Concern handling scenarios",
+    "Final walkthrough demonstrations"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

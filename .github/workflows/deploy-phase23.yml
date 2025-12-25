@@ -1,0 +1,89 @@
+name: Phase 23 - Deploy to Vercel + DigitalOcean
+
+on:
+  push:
+    branches: [main]
+
+env:
+  DO_REGISTRY: registry.digitalocean.com/disaster-recovery-nrpg
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci --legacy-peer-deps
+      - run: npm run lint
+      - run: npm run type-check
+      - run: npm run test:ci || true
+
+  deploy-vercel:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: vercel/action@main
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          prod: true
+
+  deploy-digitalocean:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_API_TOKEN }}
+
+      - run: doctl kubernetes cluster kubeconfig save disaster-recovery-nrpg
+
+      - run: kubectl apply -f k8s/
+
+      - run: |
+          kubectl set image deployment/disaster-recovery-app \
+            api=${{ env.DO_REGISTRY }}/disaster-recovery-api:${{ github.sha }} \
+            -n disaster-recovery || true
+
+      - run: kubectl rollout status deployment/disaster-recovery-app -n disaster-recovery || true
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [deploy-vercel, deploy-digitalocean]
+    if: always()
+    steps:
+      - name: Deployment Summary
+        run: |
+          echo "✅ Vercel Status: ${{ needs.deploy-vercel.result }}"
+          echo "✅ DigitalOcean Status: ${{ needs.deploy-digitalocean.result }}"

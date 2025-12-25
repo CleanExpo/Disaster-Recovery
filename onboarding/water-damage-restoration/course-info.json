@@ -1,0 +1,36 @@
+{
+  "courseId": "WRT-001",
+  "courseName": "Water Damage Restoration Technician (WRT)",
+  "description": "IICRC Certification Course - Australian Edition",
+  "focus": "Technical water damage restoration, IICRC certification preparation",
+  "duration": {
+    "total": "24 hours (3 days)",
+    "totalMinutes": 1440
+  },
+  "modules": 12,
+  "certification": {
+    "name": "IICRC WRT Certificate",
+    "type": "Professional Certification",
+    "issuer": "Institute of Inspection, Cleaning and Restoration Certification",
+    "recognizedBy": "Australian Standards"
+  },
+  "keySkills": [
+    "Water damage assessment",
+    "Psychrometry and drying science",
+    "Equipment operation and maintenance",
+    "Australian standards compliance",
+    "Documentation and reporting",
+    "Customer communication"
+  ],
+  "resources": [
+    "Course Manual (PDF)",
+    "Quick Reference Guide",
+    "Psychrometric Chart",
+    "Australian Standards"
+  ],
+  "prerequisites": "Basic understanding of construction and safety protocols",
+  "targetAudience": "Water damage restoration technicians seeking IICRC certification",
+  "completionCriteria": "Pass all 12 modules, practical assessments, and final examination",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

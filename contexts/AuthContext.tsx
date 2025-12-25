@@ -1,132 +1,108 @@
-'use client';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-
-export interface User {
-  id: string;
-  email: string;
-  name: string | null;
-  userType: 'ADMIN' | 'CONTRACTOR' | 'CLIENT';
-  avatar: string | null;
+interface User {
+  id: string
+  email: string
+  name: string
+  role: 'customer' | 'contractor' | 'admin'
 }
 
 interface AuthContextType {
-  user: User | null;
-  token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string, name: string, userType: 'CONTRACTOR' | 'CLIENT') => Promise<void>;
-  logout: () => void;
-  loading: boolean;
+  user: User | null
+  isAuthenticated: boolean
+  login: (email: string, password: string) => Promise<void>
+  logout: () => void
+  register: (userData: RegisterData) => Promise<void>
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+interface RegisterData {
+  name: string
+  email: string
+  password: string
+  role: 'customer' | 'contractor'
+}
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
+
+export const useAuth = () => {
+  const context = useContext(AuthContext)
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider')
+  }
+  return context
+}
+
+interface AuthProviderProps {
+  children: ReactNode
+}
+
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    // Check for stored token on mount
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
-      fetchUser(storedToken);
-    } else {
-      setLoading(false);
+    // Check if user is logged in on mount
+    const token = localStorage.getItem('auth_token')
+    if (token) {
+      // In a real app, you'd verify the token and fetch user data
+      // For now, we'll simulate a logged-in state
+      setUser({
+        id: '1',
+        email: 'user@example.com',
+        name: 'John Doe',
+        role: 'customer'
+      })
+      setIsAuthenticated(true)
     }
-  }, []);
-
-  const fetchUser = async (authToken: string) => {
-    try {
-      const response = await fetch('/api/auth/me', {
-        headers: {
-          'Authorization': `Bearer ${authToken}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-      } else {
-        // Token is invalid, remove it
-        localStorage.removeItem('token');
-        setToken(null);
-      }
-    } catch (error) {
-      console.error('Failed to fetch user:', error);
-      localStorage.removeItem('token');
-      setToken(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [])
 
   const login = async (email: string, password: string) => {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || 'Login failed');
-    }
-
-    setUser(data.user);
-    setToken(data.token);
-    localStorage.setItem('token', data.token);
-  };
-
-  const register = async (email: string, password: string, name: string, userType: 'CONTRACTOR' | 'CLIENT') => {
-    const response = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, name, userType }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || 'Registration failed');
-    }
-
-    setUser(data.user);
-    setToken(data.token);
-    localStorage.setItem('token', data.token);
-  };
-
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    // In a real app, you'd make an API call here
+    setUser({
+      id: '1',
+      email,
+      name: 'John Doe',
+      role: 'customer'
+    })
+    setIsAuthenticated(true)
+    localStorage.setItem('auth_token', 'fake-token')
+  }
 
   const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem('token');
-  };
+    setUser(null)
+    setIsAuthenticated(false)
+    localStorage.removeItem('auth_token')
+  }
+
+  const register = async (userData: RegisterData) => {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    // In a real app, you'd make an API call here
+    setUser({
+      id: '1',
+      email: userData.email,
+      name: userData.name,
+      role: userData.role
+    })
+    setIsAuthenticated(true)
+    localStorage.setItem('auth_token', 'fake-token')
+  }
+
+  const value = {
+    user,
+    isAuthenticated,
+    login,
+    logout,
+    register
+  }
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      token,
-      login,
-      register,
-      logout,
-      loading,
-    }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
-  );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+  )
 }
