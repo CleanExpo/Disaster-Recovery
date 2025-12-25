@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -109,9 +109,9 @@ export default function ActiveProjectDetailsModal({
     if (isOpen && projectId) {
       fetchProjectDetails();
     }
-  }, [isOpen, projectId]);
+  }, [isOpen, projectId, fetchProjectDetails]);
 
-  const fetchProjectDetails = async () => {
+  const fetchProjectDetails = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -134,7 +134,7 @@ export default function ActiveProjectDetailsModal({
     } finally {
       setLoading(false);
     }
-  };
+  }, [projectId, token]);
 
   if (!isOpen) return null;
 

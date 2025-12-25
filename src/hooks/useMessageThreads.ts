@@ -66,7 +66,7 @@ export function useMessageThreads(messageId: string, roomId: string) {
   // Load initial thread
   useEffect(() => {
     fetchReplies(0);
-  }, [messageId]);
+  }, [messageId, fetchReplies]);
 
   // Add reply
   const addReply = useCallback(

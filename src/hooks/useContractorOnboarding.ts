@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export interface OnboardingProgress {
   contractorId: string;
@@ -14,13 +14,7 @@ export function useContractorOnboarding(contractorId: string | null) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (contractorId) {
-      fetchProgress();
-    }
-  }, [contractorId]);
-
-  const fetchProgress = async () => {
+  const fetchProgress = useCallback(async () => {
     if (!contractorId) return;
 
     try {
@@ -41,7 +35,13 @@ export function useContractorOnboarding(contractorId: string | null) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [contractorId]);
+
+  useEffect(() => {
+    if (contractorId) {
+      fetchProgress();
+    }
+  }, [contractorId, fetchProgress]);
 
   const startOnboarding = async (data: {
     contractorId: string;

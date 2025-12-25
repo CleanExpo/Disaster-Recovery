@@ -3,6 +3,9 @@
 import { AdminOnboardingOverview } from '@/components/onboarding/admin-onboarding-overview';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 import { BookOpen, BarChart3, Settings } from 'lucide-react';
 
 export default function AdminOnboardingPage() {

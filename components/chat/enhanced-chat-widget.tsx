@@ -1,22 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { 
-  MessageSquare, 
-  X, 
-  Send, 
-  Phone, 
-  Mail, 
-  Clock, 
+import {
+  MessageSquare,
+  X,
+  Send,
+  Phone,
+  Mail,
+  Clock,
   CheckCircle,
   AlertCircle,
   User,
-  Lock
+  Lock,
+  Star,
+  ArrowLeft
 } from 'lucide-react';
 
 interface EnhancedChatWidgetProps {
@@ -68,19 +70,7 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
   const [sendingMessage, setSendingMessage] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchConnections();
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (selectedConnection) {
-      fetchMessages(selectedConnection.id);
-    }
-  }, [selectedConnection]);
-
-  const fetchConnections = async () => {
+  const fetchConnections = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/chat/connections', {
@@ -98,9 +88,9 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
-  const fetchMessages = async (connectionId: string) => {
+  const fetchMessages = useCallback(async (connectionId: string) => {
     try {
       const response = await fetch(`/api/chat/connections/${connectionId}/messages`, {
         headers: {
@@ -115,7 +105,19 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
     } catch (error) {
       console.error('Failed to fetch messages:', error);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchConnections();
+    }
+  }, [isOpen, fetchConnections]);
+
+  useEffect(() => {
+    if (selectedConnection) {
+      fetchMessages(selectedConnection.id);
+    }
+  }, [selectedConnection, fetchMessages]);
 
   const sendMessage = async () => {
     if (!newMessage.trim() || !selectedConnection || sendingMessage) return;

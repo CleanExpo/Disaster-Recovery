@@ -309,8 +309,8 @@ export class NativeModuleRegistry extends EventEmitter {
    * Check if module is available
    */
   isModuleAvailable(moduleName: string): boolean {
-    const module = this.modules.get(moduleName);
-    return !!module && module.initialized;
+    const nativeModule = this.modules.get(moduleName);
+    return !!nativeModule && nativeModule.initialized;
   }
 
   /**

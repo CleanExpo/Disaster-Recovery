@@ -92,7 +92,7 @@ export default function FloatingChatWidget({
   }, [messages.length]);
 
   // Fetch all conversations
-  const fetchConversations = async () => {
+  const fetchConversations = useCallback(async () => {
     try {
       setLoadingConversations(true);
       if (typeof window === 'undefined') return;
@@ -163,7 +163,7 @@ export default function FloatingChatWidget({
     } finally {
       setLoadingConversations(false);
     }
-  };
+  }, [currentUserId]);
 
   // Fetch messages for a specific conversation
   const fetchMessages = async (participantId: string) => {
@@ -278,14 +278,14 @@ export default function FloatingChatWidget({
         clearInterval(refreshIntervalRef.current);
       }
     };
-  }, [isOpen, selectedConversation, currentUserId]);
+  }, [isOpen, selectedConversation, currentUserId, fetchConversations]);
 
   // Initial load
   useEffect(() => {
     if (isOpen) {
       fetchConversations();
     }
-  }, [isOpen, currentUserId]);
+  }, [isOpen, currentUserId, fetchConversations]);
 
   const getRoleIcon = (userType: string) => {
     switch (userType) {

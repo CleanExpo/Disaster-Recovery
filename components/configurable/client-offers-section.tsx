@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -73,9 +73,9 @@ export default function ClientOffersSection({ token }: ClientOffersSectionProps)
 
   useEffect(() => {
     fetchOffers();
-  }, []);
+  }, [fetchOffers]);
 
-  const fetchOffers = async () => {
+  const fetchOffers = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/client/offers', {
@@ -100,7 +100,7 @@ export default function ClientOffersSection({ token }: ClientOffersSectionProps)
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   const handleAcceptOffer = async (offerId: string) => {
     try {

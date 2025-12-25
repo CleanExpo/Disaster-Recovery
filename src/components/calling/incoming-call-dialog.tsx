@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useCall } from '@/hooks/useCall';
 
 interface IncomingCallDialogProps {
@@ -84,10 +85,14 @@ export function IncomingCallDialog({
             {/* Avatar */}
             <div className="flex justify-center mb-4">
               {callerAvatar ? (
-                <img
+                <Image
                   src={callerAvatar}
                   alt={callerName}
-                  className="w-20 h-20 rounded-full border-4 border-white object-cover"
+                  width={80}
+                  height={80}
+                  className="rounded-full border-4 border-white object-cover"
+                  priority
+                  unoptimized={callerAvatar.startsWith('http')}
                 />
               ) : (
                 <div className="w-20 h-20 rounded-full border-4 border-white bg-blue-500 flex items-center justify-center">

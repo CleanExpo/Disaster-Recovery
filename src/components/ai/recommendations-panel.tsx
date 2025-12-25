@@ -19,7 +19,7 @@ export function RecommendationsPanel({ userId, maxItems = 5 }: RecommendationsPa
 
   useEffect(() => {
     fetchRecommendations('all');
-  }, [userId]);
+  }, [userId, fetchRecommendations]);
 
   if (isLoading) {
     return (

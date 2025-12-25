@@ -15,6 +15,15 @@ export default function Dashboard() {
     }
   }, [user, loading, router]);
 
+  // Redirect to appropriate dashboard based on user type
+  useEffect(() => {
+    if (user && user.userType === 'CONTRACTOR') {
+      router.push('/dashboard/contractor');
+    } else if (user && user.userType !== 'CONTRACTOR') {
+      router.push('/dashboard/client');
+    }
+  }, [user, router]);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-900">
@@ -26,15 +35,6 @@ export default function Dashboard() {
   if (!user) {
     return null;
   }
-
-  // Redirect to appropriate dashboard based on user type
-  useEffect(() => {
-    if (user.userType === 'CONTRACTOR') {
-      router.push('/dashboard/contractor');
-    } else {
-      router.push('/dashboard/client');
-    }
-  }, [user.userType, router]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">

@@ -23,6 +23,41 @@ export function useTypingIndicators(roomId: string) {
   const DEBOUNCE_MS = 300;
   const TYPING_TIMEOUT_MS = 3000;
 
+  // Stop typing - defined first to avoid circular dependency
+  const stopTyping = useCallback(async (): Promise<boolean> => {
+    if (!session?.user?.id) return false;
+
+    try {
+      setIsTyping(false);
+
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+        typingTimeoutRef.current = null;
+      }
+
+      const response = await fetch(
+        `/api/rooms/${roomId}/typing`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            isTyping: false,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        return false;
+      }
+
+      lastTypingSentRef.current = 0;
+      return true;
+    } catch (error) {
+      console.error('Failed to stop typing:', error);
+      return false;
+    }
+  }, [session?.user?.id, roomId]);
+
   // Set user as typing with debouncing
   const setTyping = useCallback(async (): Promise<boolean> => {
     if (!session?.user?.id) return false;
@@ -67,42 +102,7 @@ export function useTypingIndicators(roomId: string) {
       console.error('Failed to set typing:', error);
       return false;
     }
-  }, [session?.user?.id, session?.user?.name, roomId]);
-
-  // Stop typing
-  const stopTyping = useCallback(async (): Promise<boolean> => {
-    if (!session?.user?.id) return false;
-
-    try {
-      setIsTyping(false);
-
-      if (typingTimeoutRef.current) {
-        clearTimeout(typingTimeoutRef.current);
-        typingTimeoutRef.current = null;
-      }
-
-      const response = await fetch(
-        `/api/rooms/${roomId}/typing`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            isTyping: false,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        return false;
-      }
-
-      lastTypingSentRef.current = 0;
-      return true;
-    } catch (error) {
-      console.error('Failed to stop typing:', error);
-      return false;
-    }
-  }, [session?.user?.id, roomId]);
+  }, [session?.user?.id, session?.user?.name, roomId, stopTyping]);
 
   // Get current typing users
   const getTypingUsers = useCallback(async (): Promise<TypingUser[]> => {
