@@ -1,0 +1,46 @@
+{
+  "moduleId": "WRT-M09",
+  "courseId": "WRT-001",
+  "title": "Australian Standards & Regulations",
+  "duration": "45 min",
+  "durationMinutes": 45,
+  "sequence": 9,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Understand AS/NZS 3500 Plumbing standards requirements",
+    "Apply Building Code of Australia provisions",
+    "Meet WorkSafe compliance requirements",
+    "Follow insurance industry guidelines"
+  ],
+  "lessons": [
+    "AS/NZS 3500 Plumbing standards",
+    "Building Code of Australia",
+    "WorkSafe requirements",
+    "Insurance guidelines"
+  ],
+  "keyTopics": [
+    "Australian plumbing standards",
+    "Building code compliance",
+    "Workplace safety regulations",
+    "Insurance requirements",
+    "Legal obligations"
+  ],
+  "prerequisites": "Module 8: Contents Processing",
+  "assessmentType": "Standards compliance assessment and regulatory knowledge test",
+  "passingScore": 80,
+  "resources": [
+    "AS/NZS 3500 Standards Guide",
+    "Building Code Reference",
+    "WorkSafe Compliance Manual"
+  ],
+  "practicalComponents": [
+    "Standards application exercises",
+    "Compliance checklist completion",
+    "Regulatory scenario analysis"
+  ],
+  "iicrcStandard": "S500",
+  "australianContext": true,
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M09",
+  "courseId": "CSE-001",
+  "title": "Building Long-term Relationships",
+  "duration": "30 min",
+  "durationMinutes": 30,
+  "sequence": 9,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Learn strategies for creating customer advocates",
+    "Develop referral generation techniques",
+    "Understand community engagement principles",
+    "Build brand ambassadors from satisfied customers"
+  ],
+  "lessons": [
+    "Creating customer advocates",
+    "Referral generation strategies",
+    "Community engagement",
+    "Brand ambassador development"
+  ],
+  "keyTopics": [
+    "Customer advocacy",
+    "Referral systems",
+    "Community relations",
+    "Brand building"
+  ],
+  "prerequisites": "Module 8: Technology & Customer Service",
+  "assessmentType": "Relationship building strategy presentation",
+  "passingScore": 80,
+  "resources": [
+    "Customer Advocacy Playbook",
+    "Referral Program Guide",
+    "Community Engagement Strategies"
+  ],
+  "practicalComponents": [
+    "Advocacy strategy development",
+    "Referral conversation practice",
+    "Community engagement planning"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

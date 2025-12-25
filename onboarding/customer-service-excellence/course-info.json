@@ -1,0 +1,32 @@
+{
+  "courseId": "CSE-001",
+  "courseName": "Customer Service Excellence",
+  "description": "Master the art of customer communication during disaster recovery",
+  "focus": "Customer relations, communication, crisis management",
+  "duration": {
+    "total": "10 hours",
+    "totalMinutes": 600
+  },
+  "modules": 10,
+  "certification": {
+    "name": "NRP Excellence Badge",
+    "type": "Professional Development",
+    "issuer": "National Restoration Projects"
+  },
+  "keySkills": [
+    "Effective Communication",
+    "Empathy & Support", 
+    "Crisis Management",
+    "Relationship Building"
+  ],
+  "resources": [
+    "Course Handbook",
+    "Communication Templates",
+    "Crisis Scenarios Guide"
+  ],
+  "prerequisites": "None",
+  "targetAudience": "Disaster recovery contractors and customer-facing staff",
+  "completionCriteria": "Pass all 10 modules and final assessment",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

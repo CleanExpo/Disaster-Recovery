@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M05",
+  "courseId": "WRT-001",
+  "title": "Structural Drying Equipment",
+  "duration": "90 min",
+  "durationMinutes": 90,
+  "sequence": 5,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Master air mover operation and strategic placement",
+    "Understand dehumidifier types and proper sizing",
+    "Learn HEPA air scrubber applications",
+    "Operate monitoring equipment effectively"
+  ],
+  "lessons": [
+    "Air movers and placement",
+    "Dehumidifier types and sizing",
+    "HEPA air scrubbers",
+    "Monitoring equipment"
+  ],
+  "keyTopics": [
+    "Air movement principles",
+    "Dehumidification strategies",
+    "Air quality control",
+    "Environmental monitoring",
+    "Equipment placement"
+  ],
+  "prerequisites": "Module 4: Water Extraction Equipment",
+  "assessmentType": "Equipment setup demonstration and monitoring assessment",
+  "passingScore": 80,
+  "resources": [
+    "Equipment Placement Guide",
+    "Dehumidifier Sizing Charts",
+    "Monitoring Protocols"
+  ],
+  "practicalComponents": [
+    "Air mover placement exercises",
+    "Dehumidifier sizing practice",
+    "Monitoring system setup"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

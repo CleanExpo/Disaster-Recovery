@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M04",
+  "courseId": "CSE-001",
+  "title": "Difficult Conversations",
+  "duration": "90 min",
+  "durationMinutes": 90,
+  "sequence": 4,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Master techniques for delivering bad news professionally",
+    "Learn de-escalation strategies for tense situations",
+    "Develop skills for handling angry customers",
+    "Manage unrealistic customer expectations effectively"
+  ],
+  "lessons": [
+    "Delivering bad news professionally",
+    "De-escalation techniques",
+    "Handling angry customers",
+    "Managing unrealistic expectations"
+  ],
+  "keyTopics": [
+    "Conflict resolution",
+    "De-escalation strategies",
+    "Emotional regulation",
+    "Professional boundaries"
+  ],
+  "prerequisites": "Module 3: Communication During Restoration",
+  "assessmentType": "Role-play scenarios and conflict resolution exercises",
+  "passingScore": 80,
+  "resources": [
+    "Difficult Conversation Scripts",
+    "De-escalation Techniques Guide",
+    "Conflict Resolution Toolkit"
+  ],
+  "practicalComponents": [
+    "Difficult conversation role-plays",
+    "De-escalation practice sessions",
+    "Angry customer simulations"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

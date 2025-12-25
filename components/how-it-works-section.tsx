@@ -1,107 +1,65 @@
-import { FileText, UserCheck, Wrench, CreditCard } from "lucide-react"
+import React from 'react'
 
 export default function HowItWorksSection() {
-  const steps = [
-    {
-      icon: FileText,
-      title: "Client Submits Request",
-      description: "Client provides details about their restoration needs through our simple, guided form process.",
-      color: "#2196F3",
-      bgColor: "from-[#2196F3]/20 to-[#1976D2]/10",
-      borderColor: "border-[#2196F3]/30",
-    },
-    {
-      icon: UserCheck,
-      title: "CRM Matches Contractor",
-      description: "Our intelligent system matches the request with qualified, verified contractors in the area.",
-      color: "#00BFA6",
-      bgColor: "from-[#00BFA6]/20 to-[#00A693]/10",
-      borderColor: "border-[#00BFA6]/30",
-    },
-    {
-      icon: Wrench,
-      title: "Job Managed Via Platform",
-      description: "All communication, updates, and project management happens transparently through our platform.",
-      color: "#7C4DFF",
-      bgColor: "from-[#7C4DFF]/20 to-[#6A1B9A]/10",
-      borderColor: "border-[#7C4DFF]/30",
-    },
-    {
-      icon: CreditCard,
-      title: "Payment & Advocacy Handled",
-      description: "Secure payments are processed automatically, with insurance advocacy support throughout.",
-      color: "#00BFA6",
-      bgColor: "from-[#00BFA6]/20 to-[#00A693]/10",
-      borderColor: "border-[#00BFA6]/30",
-    },
-  ]
-
   return (
-    <section className="py-24 relative">
-      <div className="container mx-auto px-6 relative z-10">
+    <section className="py-20 bg-gradient-to-b from-[#1a1d29]/50 to-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-poppins text-4xl md:text-5xl text-balance mb-6 font-medium">
-            How It <span className="text-[#00BFA6]">Works</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#F9FAFB] mb-4">
+            How It <span className="gradient-text-teal-purple">Works</span>
           </h2>
-          <p className="text-lg text-[#9CA3AF] font-inter max-w-3xl mx-auto leading-relaxed">
-            Four simple steps to connect clients with contractors seamlessly
+          <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto">
+            Simple, fast, and reliable. Get your disaster recovery needs handled in 3 easy steps.
           </p>
         </div>
-
-        <div className="max-w-4xl mx-auto">
-          {steps.map((step, index) => {
-            const Icon = step.icon
-            const isLast = index === steps.length - 1
-
-            return (
-              <div key={index} className="relative">
-                {/* Timeline connector line */}
-                {!isLast && (
-                  <div className="absolute left-8 top-20 w-0.5 h-24 bg-gradient-to-b from-[#00BFA6] to-[#7C4DFF] opacity-30" />
-                )}
-
-                <div className="flex items-start space-x-6 mb-12">
-                  {/* Step number and icon */}
-                  <div className="flex-shrink-0">
-                    <div
-                      className="w-16 h-16 rounded-full flex items-center justify-center relative"
-                      style={{ backgroundColor: step.color }}
-                    >
-                      <Icon className="h-8 w-8 text-white" />
-                      {/* Step number */}
-                      <div
-                        className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                        style={{ backgroundColor: step.color }}
-                      >
-                        {index + 1}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Step content */}
-                  <div className="flex-1">
-                    <div className={`bg-gradient-to-br ${step.bgColor} rounded-2xl p-6 border ${step.borderColor}`}>
-                      <h3 className="font-poppins text-lg mb-3 font-semibold" style={{ color: step.color }}>
-                        {step.title}
-                      </h3>
-                      <p className="text-[#9CA3AF] font-inter leading-relaxed text-sm">{step.description}</p>
-                    </div>
-                  </div>
-                </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          <div className="relative">
+            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-all duration-300 card-hover-lift glow-effect">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] rounded-2xl mb-6 flex items-center justify-center text-2xl font-bold text-white">
+                1
               </div>
-            )
-          })}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-[#00BFA6]/10 to-[#7C4DFF]/10 rounded-2xl p-8 border border-[#00BFA6]/20">
-            <h3 className="font-poppins text-xl text-[#00BFA6] mb-4 font-semibold">
-              Ready to Experience the Difference?
-            </h3>
-            <p className="text-[#9CA3AF] font-inter text-sm">
-              Join thousands of satisfied clients and contractors who trust our platform
-            </p>
+              <h3 className="text-2xl font-bold text-[#F9FAFB] mb-4">Report Your Emergency</h3>
+              <p className="text-[#9CA3AF] leading-relaxed mb-6">
+                Tell us about your disaster situation. Our AI analyzes the details and finds the best contractors for you.
+              </p>
+              <div className="flex items-center gap-3 text-[#00BFA6] font-semibold">
+                <span className="w-2 h-2 bg-[#00BFA6] rounded-full animate-pulse"></span>
+                Instant Response
+              </div>
+            </div>
+          </div>
+          
+          <div className="relative">
+            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-all duration-300 card-hover-lift glow-effect">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] rounded-2xl mb-6 flex items-center justify-center text-2xl font-bold text-white">
+                2
+              </div>
+              <h3 className="text-2xl font-bold text-[#F9FAFB] mb-4">Get Matched Instantly</h3>
+              <p className="text-[#9CA3AF] leading-relaxed mb-6">
+                Our intelligent matching system finds the perfect contractors based on your needs and location.
+              </p>
+              <div className="flex items-center gap-3 text-[#7C4DFF] font-semibold">
+                <span className="w-2 h-2 bg-[#7C4DFF] rounded-full animate-pulse"></span>
+                60 Seconds Max
+              </div>
+            </div>
+          </div>
+          
+          <div className="relative">
+            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-all duration-300 card-hover-lift glow-effect">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#00BFA6] rounded-2xl mb-6 flex items-center justify-center text-2xl font-bold text-white">
+                3
+              </div>
+              <h3 className="text-2xl font-bold text-[#F9FAFB] mb-4">Get Help Fast</h3>
+              <p className="text-[#9CA3AF] leading-relaxed mb-6">
+                Qualified contractors arrive quickly to assess and begin restoration work.
+              </p>
+              <div className="flex items-center gap-3 text-[#3B82F6] font-semibold">
+                <span className="w-2 h-2 bg-[#3B82F6] rounded-full animate-pulse"></span>
+                Quality Guaranteed
+              </div>
+            </div>
           </div>
         </div>
       </div>
