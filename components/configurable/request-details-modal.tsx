@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import '../../styles/modal-fixes.css';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -117,9 +117,9 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId, token 
     if (isOpen && requestId) {
       fetchRequestDetails();
     }
-  }, [isOpen, requestId]);
+  }, [isOpen, requestId, fetchRequestDetails]);
 
-  const fetchRequestDetails = async () => {
+  const fetchRequestDetails = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -164,7 +164,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId, token 
     } finally {
       setLoading(false);
     }
-  };
+  }, [requestId, token, toast]);
 
   const handleBidOnRequest = async () => {
     if (!request) return;

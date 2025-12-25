@@ -47,7 +47,7 @@ import {
   MessageCircle
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export default function ClientDashboard() {
   const { user, logout, loading } = useAuth();
@@ -237,7 +237,7 @@ export default function ClientDashboard() {
     if (serviceRequests.length > 0) {
       calculateAnalytics();
     }
-  }, [serviceRequests]);
+  }, [serviceRequests, calculateAnalytics]);
 
   // Fetch contractor matches for each service request
   useEffect(() => {
@@ -501,7 +501,7 @@ export default function ClientDashboard() {
   };
 
   // Filter and sort logic
-  const applyFilters = (requests: any[]) => {
+  const applyFilters = useCallback((requests: any[]) => {
     let filtered = [...requests];
 
     // Search filter
@@ -594,12 +594,12 @@ export default function ClientDashboard() {
     });
 
     return filtered;
-  };
+  }, [filters]);
 
   // Update filtered requests when filters or service requests change
   useEffect(() => {
     setFilteredRequests(applyFilters(serviceRequests));
-  }, [serviceRequests, filters]);
+  }, [serviceRequests, filters, applyFilters]);
 
   const fetchServiceRequests = async () => {
     try {
@@ -698,7 +698,7 @@ export default function ClientDashboard() {
     }
   };
 
-  const calculateAnalytics = () => {
+  const calculateAnalytics = useCallback(() => {
     const totalRequests = serviceRequests.length;
     const pendingRequests = serviceRequests.filter(req => req.status === 'PENDING').length;
     const inProgressRequests = serviceRequests.filter(req => req.status === 'IN_PROGRESS').length;
@@ -773,7 +773,7 @@ export default function ClientDashboard() {
     };
     
     setAnalytics(analytics);
-  };
+  }, [serviceRequests]);
 
 
   const fetchNotifications = async () => {

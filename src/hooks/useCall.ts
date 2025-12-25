@@ -41,6 +41,33 @@ export function useCall() {
   const [connectionQuality, setConnectionQuality] = useState<'excellent' | 'good' | 'fair' | 'poor'>('excellent');
   const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Polling for call updates
+  const startPolling = useCallback((callId: string) => {
+    if (pollIntervalRef.current) {
+      clearInterval(pollIntervalRef.current);
+    }
+
+    pollIntervalRef.current = setInterval(async () => {
+      try {
+        const response = await fetch(`/api/calls/${callId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setCall(data.call);
+          setParticipants(data.participants || []);
+        }
+      } catch (err) {
+        console.error('Failed to get call details:', err);
+      }
+    }, 1000);
+  }, []);
+
+  const stopPolling = useCallback(() => {
+    if (pollIntervalRef.current) {
+      clearInterval(pollIntervalRef.current);
+      pollIntervalRef.current = null;
+    }
+  }, []);
+
   // Initiate a call
   const initiateCall = useCallback(
     async (recipientId: string, type: 'voice' | 'video' = 'voice', roomId?: string) => {
@@ -72,7 +99,7 @@ export function useCall() {
         setIsLoading(false);
       }
     },
-    [session?.user?.id]
+    [session?.user?.id, startPolling]
   );
 
   // Accept a call
@@ -101,7 +128,7 @@ export function useCall() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [startPolling]);
 
   // Reject a call
   const rejectCall = useCallback(async (callId: string) => {
@@ -126,7 +153,7 @@ export function useCall() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [stopPolling]);
 
   // End call
   const endCall = useCallback(async (callId: string) => {
@@ -152,7 +179,7 @@ export function useCall() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [stopPolling]);
 
   // Toggle audio
   const toggleAudio = useCallback(async (callId: string, enabled: boolean) => {
@@ -188,39 +215,6 @@ export function useCall() {
     }
   }, []);
 
-  // Get call details
-  const getCallDetails = useCallback(async (callId: string) => {
-    try {
-      const response = await fetch(`/api/calls/${callId}`);
-
-      if (response.ok) {
-        const data = await response.json();
-        setCall(data.call);
-        setParticipants(data.participants || []);
-      }
-    } catch (err) {
-      console.error('Failed to get call details:', err);
-    }
-  }, []);
-
-  // Polling for call updates
-  const startPolling = useCallback((callId: string) => {
-    if (pollIntervalRef.current) {
-      clearInterval(pollIntervalRef.current);
-    }
-
-    pollIntervalRef.current = setInterval(() => {
-      getCallDetails(callId);
-    }, 1000);
-  }, [getCallDetails]);
-
-  const stopPolling = useCallback(() => {
-    if (pollIntervalRef.current) {
-      clearInterval(pollIntervalRef.current);
-      pollIntervalRef.current = null;
-    }
-  }, []);
-
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -242,7 +236,6 @@ export function useCall() {
     endCall,
     toggleAudio,
     toggleVideo,
-    getCallDetails,
     stopPolling,
   };
 }

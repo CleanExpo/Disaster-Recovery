@@ -70,7 +70,7 @@ export class NativeBridge extends EventEmitter {
    * Register a native module
    */
   private registerModule(name: string): void {
-    const module: NativeModule = {
+    const nativeModule: NativeModule = {
       name,
       version: this.config.version,
       methods: new Map(),
@@ -78,16 +78,16 @@ export class NativeBridge extends EventEmitter {
     };
 
     // Register platform-specific methods based on module name
-    this.registerModuleMethods(module);
+    this.registerModuleMethods(nativeModule);
 
-    this.modules.set(name, module);
+    this.modules.set(name, nativeModule);
     this.logger.debug(`Registered native module: ${name}`);
   }
 
   /**
    * Register methods for a specific module
    */
-  private registerModuleMethods(module: NativeModule): void {
+  private registerModuleMethods(nativeModule: NativeModule): void {
     const methodRegistry: Record<string, NativeMethod> = {
       // Camera module
       'Camera::takePicture': {
@@ -205,10 +205,10 @@ export class NativeBridge extends EventEmitter {
       }
     };
 
-    const modulePrefix = `${module.name}::`;
+    const modulePrefix = `${nativeModule.name}::`;
     for (const [key, method] of Object.entries(methodRegistry)) {
       if (key.startsWith(modulePrefix)) {
-        module.methods.set(method.name, method);
+        nativeModule.methods.set(method.name, method);
       }
     }
   }
@@ -221,12 +221,12 @@ export class NativeBridge extends EventEmitter {
     const requestId = this.generateRequestId();
 
     try {
-      const module = this.modules.get(moduleName);
-      if (!module) {
+      const nativeModule = this.modules.get(moduleName);
+      if (!nativeModule) {
         throw new Error(`Native module not found: ${moduleName}`);
       }
 
-      const method = module.methods.get(methodName);
+      const method = nativeModule.methods.get(methodName);
       if (!method) {
         throw new Error(`Native method not found: ${moduleName}.${methodName}`);
       }
@@ -290,15 +290,15 @@ export class NativeBridge extends EventEmitter {
    * Subscribe to native module events
    */
   onNativeEvent(moduleName: string, eventName: string, callback: (data: any) => void): () => void {
-    const module = this.modules.get(moduleName);
-    if (!module) {
+    const nativeModule = this.modules.get(moduleName);
+    if (!nativeModule) {
       throw new Error(`Native module not found: ${moduleName}`);
     }
 
-    let eventEmitter = module.events.get(eventName);
+    let eventEmitter = nativeModule.events.get(eventName);
     if (!eventEmitter) {
       eventEmitter = new EventEmitter();
-      module.events.set(eventName, eventEmitter);
+      nativeModule.events.set(eventName, eventEmitter);
     }
 
     eventEmitter.on('data', callback);
@@ -313,10 +313,10 @@ export class NativeBridge extends EventEmitter {
    * Emit native event to listeners
    */
   emitNativeEvent(moduleName: string, eventName: string, data: any): void {
-    const module = this.modules.get(moduleName);
-    if (!module) return;
+    const nativeModule = this.modules.get(moduleName);
+    if (!nativeModule) return;
 
-    const eventEmitter = module.events.get(eventName);
+    const eventEmitter = nativeModule.events.get(eventName);
     if (eventEmitter) {
       eventEmitter.emit('data', data);
     }

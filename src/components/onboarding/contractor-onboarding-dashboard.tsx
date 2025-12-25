@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -39,9 +39,9 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
 
   useEffect(() => {
     fetchProgress();
-  }, [contractorId]);
+  }, [contractorId, fetchProgress]);
 
-  const fetchProgress = async () => {
+  const fetchProgress = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/onboarding/progress/${contractorId}`);
@@ -55,7 +55,7 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
     } finally {
       setLoading(false);
     }
-  };
+  }, [contractorId]);
 
   const handleStartQuiz = (moduleId: string) => {
     setActiveQuiz(moduleId);

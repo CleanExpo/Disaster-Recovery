@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 interface ReportExecution {
   id: string;
@@ -40,7 +40,7 @@ export function ReportExecutionTracker({
   const [filter, setFilter] = useState<'all' | 'pending' | 'in_progress' | 'completed' | 'failed'>('all');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const fetchExecutions = async () => {
+  const fetchExecutions = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -62,7 +62,7 @@ export function ReportExecutionTracker({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [dashboardId, scheduleId]);
 
   useEffect(() => {
     fetchExecutions();
@@ -71,7 +71,7 @@ export function ReportExecutionTracker({
       const interval = setInterval(fetchExecutions, refreshInterval);
       return () => clearInterval(interval);
     }
-  }, [dashboardId, scheduleId, autoRefresh, refreshInterval]);
+  }, [dashboardId, scheduleId, autoRefresh, refreshInterval, fetchExecutions]);
 
   const filteredExecutions =
     filter === 'all' ? executions : executions.filter((e) => e.status === filter);

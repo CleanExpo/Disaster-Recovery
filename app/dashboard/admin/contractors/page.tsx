@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -76,13 +76,7 @@ export default function AdminContractorsPage() {
     }
   }, [user, loading, router]);
 
-  useEffect(() => {
-    if (user) {
-      fetchContractors();
-    }
-  }, [user, currentPage, statusFilter, searchTerm]);
-
-  const fetchContractors = async () => {
+  const fetchContractors = useCallback(async () => {
     try {
       setLoadingContractors(true);
       const token = localStorage.getItem('token');
@@ -114,7 +108,13 @@ export default function AdminContractorsPage() {
     } finally {
       setLoadingContractors(false);
     }
-  };
+  }, [currentPage, statusFilter, searchTerm]);
+
+  useEffect(() => {
+    if (user) {
+      fetchContractors();
+    }
+  }, [user, fetchContractors]);
 
   const handleVerification = async (contractorId: string, action: 'verify' | 'reject') => {
     try {

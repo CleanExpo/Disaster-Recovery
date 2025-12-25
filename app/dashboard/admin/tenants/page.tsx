@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -362,7 +363,7 @@ export default function TenantsPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     {tenant.logo && (
-                      <img src={tenant.logo} alt={tenant.name} className="h-8 w-8 rounded" />
+                      <Image src={tenant.logo} alt={tenant.name} width={32} height={32} className="rounded" unoptimized={tenant.logo?.startsWith('http')} />
                     )}
                     <div>
                       <CardTitle className="text-lg">{tenant.name}</CardTitle>

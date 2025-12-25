@@ -37,7 +37,7 @@ export function DashboardEditor({
 
   useEffect(() => {
     onWidgetsChange?.(widgets);
-  }, [widgets]);
+  }, [widgets, onWidgetsChange]);
 
   const handleAddWidget = (type: string, title: string) => {
     const newWidget: Widget = {

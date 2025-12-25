@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -479,12 +480,14 @@ export default function ClaimSubmissionForm({
                               {uploadedPhotos.map((photo, index) => (
                                 <div
                                   key={index}
-                                  className="relative group rounded-lg overflow-hidden bg-gray-700"
+                                  className="relative group rounded-lg overflow-hidden bg-gray-700 h-32"
                                 >
-                                  <img
+                                  <Image
                                     src={photo}
                                     alt={`Damage photo ${index + 1}`}
-                                    className="w-full h-32 object-cover"
+                                    fill
+                                    className="object-cover"
+                                    unoptimized
                                   />
                                   <button
                                     type="button"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useCall } from '@/hooks/useCall';
 
 interface CallRecord {
@@ -245,10 +246,13 @@ function CallHistoryItem({
       <div className="flex items-center gap-3">
         {/* Avatar */}
         {call.participantAvatar ? (
-          <img
+          <Image
             src={call.participantAvatar}
             alt={call.participantName}
-            className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+            width={40}
+            height={40}
+            className="rounded-full object-cover flex-shrink-0"
+            unoptimized={call.participantAvatar.startsWith('http')}
           />
         ) : (
           <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">

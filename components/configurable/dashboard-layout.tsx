@@ -1,19 +1,20 @@
 'use client';
 
 import { ReactNode, useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useTenant, useIndustryConfig } from '@/contexts/TenantContext';
-import { 
-  Bell, 
-  Menu, 
-  LogOut, 
-  Settings, 
-  Home, 
-  Users, 
-  FileText, 
+import {
+  Bell,
+  Menu,
+  LogOut,
+  Settings,
+  Home,
+  Users,
+  FileText,
   MessageSquare,
   BarChart3,
   Plus
@@ -120,7 +121,14 @@ export default function DashboardLayout({
           <div className="flex items-center justify-between p-4 border-b">
             <div className="flex items-center space-x-2">
               {tenant?.logo && (
-                <img src={tenant.logo} alt={tenant.name} className="h-8 w-8" />
+                <Image
+                  src={tenant.logo}
+                  alt={tenant.name}
+                  width={32}
+                  height={32}
+                  className="h-8 w-8"
+                  unoptimized={tenant.logo.startsWith('http')}
+                />
               )}
               <span className="font-semibold text-lg">{tenant?.name || 'Platform'}</span>
             </div>
@@ -161,7 +169,14 @@ export default function DashboardLayout({
           <div className="flex flex-col flex-grow bg-white border-r border-gray-200">
             <div className="flex items-center p-4 border-b">
               {tenant?.logo && (
-                <img src={tenant.logo} alt={tenant.name} className="h-8 w-8 mr-2" />
+                <Image
+                  src={tenant.logo}
+                  alt={tenant.name}
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 mr-2"
+                  unoptimized={tenant.logo.startsWith('http')}
+                />
               )}
               <span className="font-semibold text-lg">{tenant?.name || 'Platform'}</span>
             </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -57,9 +57,9 @@ export default function MyBidsSection({ token }: MyBidsSectionProps) {
 
   useEffect(() => {
     fetchMyBids();
-  }, []);
+  }, [fetchMyBids]);
 
-  const fetchMyBids = async () => {
+  const fetchMyBids = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/contractor/my-bids', {
@@ -78,7 +78,7 @@ export default function MyBidsSection({ token }: MyBidsSectionProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
 
   const getStatusColor = (status: string) => {
     switch (status) {

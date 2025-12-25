@@ -39,7 +39,7 @@ export function RealtimeMetricsDashboard({
   const [timeRange, setTimeRange] = useState<'realtime' | '1h' | '24h'>('realtime');
 
   // Fetch metrics
-  const fetchMetrics = async () => {
+  const fetchMetrics = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = await fetch(`/api/analytics/metrics?timeRange=${timeRange}`);
@@ -56,7 +56,7 @@ export function RealtimeMetricsDashboard({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [timeRange]);
 
   // Setup auto-refresh
   useEffect(() => {
@@ -66,7 +66,7 @@ export function RealtimeMetricsDashboard({
 
     const interval = setInterval(fetchMetrics, refreshInterval);
     return () => clearInterval(interval);
-  }, [autoRefresh, refreshInterval, timeRange]);
+  }, [autoRefresh, refreshInterval, timeRange, fetchMetrics]);
 
   if (!metrics) {
     return (

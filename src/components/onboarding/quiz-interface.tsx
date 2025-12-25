@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -41,21 +41,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
   const [score, setScore] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1800); // 30 minutes
 
-  useEffect(() => {
-    fetchQuiz();
-  }, []);
-
-  useEffect(() => {
-    if (!submitted && timeRemaining > 0) {
-      const timer = setInterval(() => {
-        setTimeRemaining(prev => Math.max(0, prev - 1));
-      }, 1000);
-
-      return () => clearInterval(timer);
-    }
-  }, [submitted, timeRemaining]);
-
-  const fetchQuiz = async () => {
+  const fetchQuiz = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/onboarding/quiz', {
@@ -75,7 +61,21 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
     } finally {
       setLoading(false);
     }
-  };
+  }, [moduleId, contractorId]);
+
+  useEffect(() => {
+    fetchQuiz();
+  }, [fetchQuiz]);
+
+  useEffect(() => {
+    if (!submitted && timeRemaining > 0) {
+      const timer = setInterval(() => {
+        setTimeRemaining(prev => Math.max(0, prev - 1));
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [submitted, timeRemaining]);
 
   const handleAnswerSelect = (answer: string) => {
     setAnswers({ ...answers, [currentQuestion]: answer });

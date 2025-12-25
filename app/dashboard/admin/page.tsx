@@ -33,7 +33,7 @@ import {
   XCircle
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 interface AdminStats {
   totalUsers: number;
@@ -157,7 +157,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const fetchContractors = async () => {
+  const fetchContractors = useCallback(async () => {
     try {
       setLoadingContractors(true);
       if (typeof window === 'undefined') return;
@@ -195,7 +195,7 @@ export default function AdminDashboard() {
     } finally {
       setLoadingContractors(false);
     }
-  };
+  }, [contractorStatusFilter, contractorSearchTerm]);
 
   const handleContractorVerification = async (contractorId: string, action: 'verify' | 'reject') => {
     try {
@@ -346,9 +346,9 @@ export default function AdminDashboard() {
     } else if (user && user.userType === 'ADMIN') {
       fetchAdminData();
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, fetchAdminData]);
 
-  const fetchAdminData = async () => {
+  const fetchAdminData = useCallback(async () => {
     try {
       if (typeof window === 'undefined') return;
       const token = localStorage.getItem('token');
@@ -383,7 +383,7 @@ export default function AdminDashboard() {
     
     // Fetch admin KPIs
     fetchAdminKpis();
-  };
+  }, []);
 
   const fetchClients = async () => {
     try {
@@ -461,7 +461,7 @@ export default function AdminDashboard() {
       fetchClientServices();
       fetchWhiteLabelStats();
     }
-  }, [user, contractorStatusFilter, contractorSearchTerm]);
+  }, [user, contractorStatusFilter, contractorSearchTerm, fetchContractors]);
 
   const handleLogout = () => {
     logout();
