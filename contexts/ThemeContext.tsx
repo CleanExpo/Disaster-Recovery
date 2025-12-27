@@ -4,6 +4,12 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 type Theme = 'light' | 'dark'
 
+// Theme options for selection
+export const THEMES = [
+  { value: 'light', label: 'Light', description: 'Light theme' },
+  { value: 'dark', label: 'Dark', description: 'Dark theme' }
+];
+
 interface ThemeContextType {
   theme: Theme
   toggleTheme: () => void
