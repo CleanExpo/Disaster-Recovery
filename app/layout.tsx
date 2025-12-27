@@ -23,16 +23,90 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "NRPG Restoration Marketplace Platform - Australia's Leading Restoration SaaS",
-  description: "Australia's leading restoration marketplace platform connecting property owners with verified contractors through transparent pricing, automated workflows, and real-time project tracking. Built for scale and growth.",
-  keywords: "restoration marketplace, restoration platform, property restoration, contractor network, restoration SaaS, Australia restoration, water damage, fire damage, storm damage",
-  generator: "Next.js",
-  authors: [{ name: "NRPG Unite Group Australia" }],
+  metadataBase: new URL('https://disasterrecoverynrpg.com.au'),
+  title: {
+    default: "NRPG | 1300 309 361 | National Restoration Professionals Group Australia",
+    template: "%s | NRPG Disaster Recovery Australia",
+  },
+  description: "24/7 emergency disaster recovery across Australia. Connect with 100% vetted restoration contractors for flood, fire, storm & water damage. Forensic restoration standards. Call 1300 309 361.",
+  keywords: [
+    // Primary Australian keywords
+    "disaster recovery australia",
+    "emergency restoration australia",
+    "flood restoration sydney",
+    "fire damage restoration melbourne",
+    "water damage restoration brisbane",
+    "storm damage repair perth",
+    "mold remediation adelaide",
+
+    // Service-specific
+    "24/7 emergency restoration",
+    "verified restoration contractors",
+    "IICRC certified restorers",
+    "forensic restoration",
+    "water damage cleanup",
+    "fire damage repair",
+    "trauma cleanup australia",
+    "biohazard restoration",
+
+    // Local modifiers
+    "same day restoration services",
+    "emergency water extraction",
+    "insurance approved contractors",
+    "property disaster recovery",
+
+    // Brand
+    "NRPG",
+    "National Restoration Professionals Group",
+    "1300 309 361",
+  ],
+  authors: [
+    { name: "NRPG Unite Group Australia", url: "https://disasterrecoverynrpg.com.au" }
+  ],
+  creator: "NRPG Australia",
+  publisher: "National Restoration Professionals Group",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: "NRPG Restoration Marketplace Platform",
-    description: "Australia's leading restoration marketplace platform connecting property owners with verified contractors",
     type: "website",
     locale: "en_AU",
+    url: "https://disasterrecoverynrpg.com.au",
+    siteName: "NRPG - National Restoration Professionals Group",
+    title: "NRPG | 1300 309 361 | Australia's Emergency Restoration Network",
+    description: "24/7 disaster recovery. 100% vetted contractors. Flood, fire, storm & water damage restoration across Australia. Forensic standards. Call 1300 309 361.",
+    images: [
+      {
+        url: "/images/og-nrpg-main.jpg",
+        width: 1200,
+        height: 630,
+        alt: "NRPG - National Emergency Restoration Network Australia",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NRPG | Emergency Restoration Australia | 1300 309 361",
+    description: "24/7 disaster recovery. Verified contractors. Flood, fire, storm damage restoration nationwide. Call 1300 309 361.",
+    images: ["/images/twitter-nrpg.jpg"],
+    creator: "@NRPGAustralia",
+  },
+  alternates: {
+    canonical: "https://disasterrecoverynrpg.com.au",
+  },
+  verification: {
+    google: "google-site-verification-code-here",
+    other: {
+      "msvalidate.01": "bing-verification-code-here",
+    },
   },
 }
 

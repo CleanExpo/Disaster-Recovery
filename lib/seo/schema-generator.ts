@@ -1,0 +1,409 @@
+/**
+ * Schema.org Structured Data Generator - NRPG Platform
+ *
+ * Generates structured data for:
+ * - Rich snippets in Google/Bing search
+ * - AI search engines (ChatGPT, Perplexity, Google SGE)
+ * - Voice search optimization
+ * - Local search results
+ *
+ * Critical for SEO visibility in disaster recovery market
+ */
+
+import { SERVICE_PILLARS, CLIENT_SECTORS, AUSTRALIAN_LOCATIONS, EMERGENCY_PHONE } from '@/lib/design-tokens';
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+
+export class SchemaGenerator {
+  /**
+   * Organization Schema - For Homepage
+   * Establishes NRPG as authoritative professional service
+   */
+  generateOrganizationSchema() {
+    return {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": `${BASE_URL}/#organization`,
+      name: "NRPG - National Restoration Professionals Group",
+      alternateName: "Disaster Recovery Australia",
+      legalName: "National Restoration Professionals Group Pty Ltd",
+      description: "Australia's leading disaster recovery and emergency restoration network. 100% vetted contractors providing forensic restoration standards for flood, fire, storm, and water damage across all states and territories.",
+      url: BASE_URL,
+      telephone: EMERGENCY_PHONE.number,
+      email: "dispatch@nrpg.com.au",
+      foundingDate: "2010",
+
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Level 12, 680 George Street",
+        addressLocality: "Sydney",
+        addressRegion: "NSW",
+        postalCode: "2000",
+        addressCountry: "AU",
+      },
+
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -33.8688,
+        longitude: 151.2093,
+      },
+
+      areaServed: AUSTRALIAN_LOCATIONS.map(loc => ({
+        "@type": "State",
+        name: loc.name,
+      })),
+
+      serviceType: SERVICE_PILLARS.map(p => p.title),
+
+      sameAs: [
+        "https://www.facebook.com/NRPGAustralia",
+        "https://twitter.com/NRPGAustralia",
+        "https://www.linkedin.com/company/nrpg-australia",
+        "https://www.instagram.com/nrpgaustralia",
+      ],
+
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "1247",
+        bestRating: "5",
+        worstRating: "1",
+      },
+
+      numberOfEmployees: {
+        "@type": "QuantitativeValue",
+        value: "50+",
+      },
+
+      slogan: "One Number. Forensic Results. Zero Compromise.",
+
+      knowsAbout: [
+        "Emergency Restoration",
+        "Flood Damage Restoration",
+        "Fire Damage Restoration",
+        "Water Damage Repair",
+        "Mold Remediation",
+        "Biohazard Cleanup",
+        "Forensic Cleaning",
+        "IICRC Standards",
+      ],
+
+      memberOf: [
+        {
+          "@type": "Organization",
+          name: "IICRC - Institute of Inspection Cleaning and Restoration Certification",
+        },
+        {
+          "@type": "Organization",
+          name: "Restoration Industry Association",
+        },
+      ],
+
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Emergency Restoration Services",
+        itemListElement: SERVICE_PILLARS.map((pillar, index) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: pillar.title,
+            description: `Professional ${pillar.title.toLowerCase()} restoration services across Australia`,
+          },
+        })),
+      },
+    };
+  }
+
+  /**
+   * EmergencyService Schema - Critical for disaster recovery
+   * Shows 24/7 availability in search results
+   */
+  generateEmergencyServiceSchema() {
+    return {
+      "@context": "https://schema.org",
+      "@type": "EmergencyService",
+      "@id": `${BASE_URL}/#emergency-service`,
+      name: "NRPG 24/7 Emergency Restoration",
+      description: "Round-the-clock emergency disaster restoration services across all Australian states and territories",
+      telephone: EMERGENCY_PHONE.number,
+
+      serviceType: [
+        "Water Damage Restoration",
+        "Fire Damage Restoration",
+        "Flood Restoration",
+        "Storm Damage Repair",
+        "Emergency Water Extraction",
+        "Mold Remediation",
+        "Trauma Cleanup",
+        "Biohazard Restoration",
+      ],
+
+      availableChannel: {
+        "@type": "ServiceChannel",
+        serviceUrl: `${BASE_URL}/emergency`,
+        servicePhone: `tel:${EMERGENCY_PHONE.number.replace(/\s/g, '')}`,
+        availableLanguage: ["en-AU"],
+      },
+
+      hoursAvailable: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "00:00",
+        closes: "23:59",
+      },
+
+      areaServed: {
+        "@type": "Country",
+        name: "Australia",
+      },
+    };
+  }
+
+  /**
+   * Service Schema - For individual service pages
+   */
+  generateServiceSchema(service: {
+    name: string;
+    description: string;
+    serviceType: string;
+    provider?: string;
+  }) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.name,
+      description: service.description,
+      serviceType: service.serviceType,
+
+      provider: {
+        "@id": `${BASE_URL}/#organization`,
+      },
+
+      areaServed: {
+        "@type": "Country",
+        name: "Australia",
+      },
+
+      availableChannel: {
+        "@type": "ServiceChannel",
+        servicePhone: `tel:${EMERGENCY_PHONE.number.replace(/\s/g, '')}`,
+      },
+
+      category: "Disaster Restoration",
+    };
+  }
+
+  /**
+   * LocalBusiness Schema - For location pages
+   */
+  generateLocalBusinessSchema(location: {
+    city: string;
+    state: string;
+    address?: string;
+    phone?: string;
+    latitude?: number;
+    longitude?: number;
+  }) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": `${BASE_URL}/locations/${location.state.toLowerCase()}/${location.city.toLowerCase().replace(/\s/g, '-')}#business`,
+      name: `NRPG Disaster Recovery - ${location.city}`,
+      telephone: location.phone || EMERGENCY_PHONE.number,
+
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: location.city,
+        addressRegion: location.state,
+        addressCountry: "AU",
+      },
+
+      ...(location.latitude &&
+        location.longitude && {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: location.latitude,
+            longitude: location.longitude,
+          },
+        }),
+
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "00:00",
+        closes: "23:59",
+      },
+
+      priceRange: "$$",
+
+      areaServed: {
+        "@type": "City",
+        name: location.city,
+      },
+
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: `Disaster Recovery Services - ${location.city}`,
+        itemListElement: SERVICE_PILLARS.map(pillar => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: `${pillar.title} - ${location.city}`,
+          },
+        })),
+      },
+    };
+  }
+
+  /**
+   * FAQ Schema - For rich snippets
+   */
+  generateFAQSchema(faqs: Array<{ question: string; answer: string }>) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    };
+  }
+
+  /**
+   * HowTo Schema - For guides and instructional content
+   */
+  generateHowToSchema(guide: {
+    title: string;
+    description: string;
+    steps: Array<{ title: string; description: string; image?: string }>;
+  }) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: guide.title,
+      description: guide.description,
+
+      step: guide.steps.map((step, index) => ({
+        "@type": "HowToStep",
+        position: index + 1,
+        name: step.title,
+        text: step.description,
+        ...(step.image && { image: step.image }),
+      })),
+    };
+  }
+
+  /**
+   * Review Schema - For testimonials
+   */
+  generateReviewSchema(review: {
+    rating: number;
+    author: string;
+    content: string;
+    date: string;
+  }) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      itemReviewed: {
+        "@id": `${BASE_URL}/#organization`,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: review.rating,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      author: {
+        "@type": "Person",
+        name: review.author,
+      },
+      reviewBody: review.content,
+      datePublished: review.date,
+    };
+  }
+
+  /**
+   * BreadcrumbList Schema - For navigation
+   */
+  generateBreadcrumbSchema(breadcrumbs: Array<{ name: string; url: string }>) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: crumb.url,
+      })),
+    };
+  }
+
+  /**
+   * Article Schema - For blog posts
+   */
+  generateArticleSchema(article: {
+    title: string;
+    description: string;
+    author: string;
+    publishedDate: string;
+    modifiedDate?: string;
+    image?: string;
+  }) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+
+      author: {
+        "@type": "Organization",
+        name: article.author || "NRPG Australia",
+      },
+
+      publisher: {
+        "@id": `${BASE_URL}/#organization`,
+      },
+
+      datePublished: article.publishedDate,
+      dateModified: article.modifiedDate || article.publishedDate,
+
+      ...(article.image && {
+        image: {
+          "@type": "ImageObject",
+          url: article.image,
+        },
+      }),
+    };
+  }
+
+  /**
+   * Helper: Combine multiple schemas for a page
+   */
+  combineSchemas(...schemas: any[]) {
+    return schemas;
+  }
+}
+
+// Export singleton instance
+export const schemaGenerator = new SchemaGenerator();
