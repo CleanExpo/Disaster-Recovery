@@ -1048,3 +1048,205 @@ model ContractorCertification {
   @@index([contractorId], name: "idx_contractor_id_cert")
   @@map("contractor_certifications")
 }
+
+// ============================================================================
+// COMPETITOR ANALYSIS & SEO INTELLIGENCE
+// Added for Phase 1 - Designer-Ranking-Branch
+// ============================================================================
+
+enum CompetitorCategory {
+  RESTORATION_COMPANY      // Direct competitors (ServiceMaster, BELFOR, etc.)
+  INSURANCE_NETWORK        // Insurance company networks (NRMA, Suncorp, etc.)
+  CONTRACTOR_MARKETPLACE   // Marketplaces (hipages, ServiceSeeking, etc.)
+  INDUSTRY_ASSOCIATION     // Industry bodies (IICRC, AREMA, etc.)
+}
+
+model Competitor {
+  id               String              @id @default(cuid())
+  domain           String              @unique
+  name             String
+  category         CompetitorCategory
+  priority         Int                 @default(5) // 1-10 scale
+  isActive         Boolean             @default(true)
+  
+  // Business info
+  businessModel    String?             // "Direct", "Aggregator", "Association"
+  targetMarket     String?             // "Residential", "Commercial", "Both"
+  geographicFocus  String[]            // States/regions covered
+  
+  // Metadata
+  contactInfo      Json?
+  socialProfiles   Json?
+  notes            String?              @db.Text
+  
+  // Relationships
+  analyses         CompetitorAnalysis[]
+  keywords         CompetitorKeyword[]
+  backlinks        Backlink[]
+  swotAnalyses     SWOTAnalysis[]
+  
+  discoveredAt     DateTime            @default(now())
+  lastAnalyzedAt   DateTime?
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  
+  @@index([category])
+  @@index([isActive])
+  @@index([lastAnalyzedAt])
+  @@map("competitors")
+}
+
+model CompetitorAnalysis {
+  id               String              @id @default(cuid())
+  competitorId     String
+  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  
+  // Traffic Metrics
+  organicTraffic   Int?                // Monthly organic visits
+  paidTraffic      Int?
+  totalKeywords    Int?
+  organicKeywords  Int?
+  paidKeywords     Int?
+  
+  // Authority Metrics
+  domainRating     Float?              // Domain authority score
+  trustFlow        Float?
+  citationFlow     Float?
+  
+  // Backlink Metrics
+  totalBacklinks   Int?
+  referringDomains Int?
+  
+  // Technical SEO
+  pageSpeed        Float?              // Google PageSpeed score
+  mobileScore      Float?
+  coreWebVitals    Json?               // LCP, FID, CLS
+  
+  // Content
+  totalPages       Int?
+  blogPosts        Int?
+  servicePages     Int?
+  
+  // Raw Data
+  analysisDate     DateTime            @default(now())
+  dataSource       String              // "SEMRUSH", "DataForSEO", "Combined"
+  rawData          Json?               @db.JsonB
+  
+  createdAt        DateTime            @default(now())
+  
+  @@index([competitorId])
+  @@index([analysisDate])
+  @@map("competitor_analyses")
+}
+
+model CompetitorKeyword {
+  id               String              @id @default(cuid())
+  competitorId     String
+  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  
+  keyword          String
+  searchVolume     Int?                // Monthly searches (Australia)
+  difficulty       Float?              // 0-100 scale
+  cpc              Float?              // Cost per click (AUD)
+  
+  // Rankings
+  position         Int?                // Current SERP position
+  previousPosition Int?
+  url              String?              // Ranking URL
+  
+  // Classification
+  intent           String?              // "informational", "commercial", "transactional"
+  category         String?              // "water damage", "fire restoration", etc.
+  
+  // Opportunity Analysis
+  opportunityScore Float?              // Custom calculated score
+  difficultyTier   String?              // "easy", "medium", "hard"
+  
+  lastChecked      DateTime            @default(now())
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  
+  @@unique([competitorId, keyword])
+  @@index([competitorId])
+  @@index([difficultyTier])
+  @@index([opportunityScore])
+  @@map("competitor_keywords")
+}
+
+model Backlink {
+  id               String              @id @default(cuid())
+  competitorId     String
+  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  
+  sourceUrl        String              @db.Text
+  targetUrl        String              @db.Text
+  sourceDomain     String
+  
+  anchorText       String?              @db.Text
+  linkType         String?              // "dofollow", "nofollow"
+  domainRating     Float?
+  traffic          Int?
+  
+  firstSeen        DateTime?
+  lastSeen         DateTime            @default(now())
+  isActive         Boolean             @default(true)
+  
+  createdAt        DateTime            @default(now())
+  
+  @@index([competitorId])
+  @@index([sourceDomain])
+  @@index([isActive])
+  @@map("backlinks")
+}
+
+model SWOTAnalysis {
+  id               String              @id @default(cuid())
+  competitorId     String
+  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  
+  strengths        Json                @db.JsonB  // Array of strength items
+  weaknesses       Json                @db.JsonB  // Array of weakness items
+  opportunities    Json                @db.JsonB  // Array of opportunity items
+  threats          Json                @db.JsonB  // Array of threat items
+  
+  // AI-generated insights
+  summary          String?              @db.Text
+  recommendations  Json?                @db.JsonB  // Actionable recommendations
+  competitiveAdvantages Json?           @db.JsonB  // What competitor does better
+  
+  generatedAt      DateTime            @default(now())
+  generatedBy      String?              // "AI", "Manual", "Hybrid"
+  
+  @@index([competitorId])
+  @@index([generatedAt])
+  @@map("swot_analyses")
+}
+
+model KeywordOpportunity {
+  id               String              @id @default(cuid())
+  keyword          String              @unique
+  
+  searchVolume     Int
+  difficulty       Float
+  cpc              Float?
+  
+  // Opportunity metrics
+  competitorCount  Int                 // How many competitors rank
+  averagePosition  Float               // Average competitor position
+  gapScore         Float               // Opportunity gap score
+  difficultyTier   String              // "easy", "medium", "hard"
+  
+  // Classification
+  category         String?
+  intent           String?
+  competitors      Json                @db.JsonB  // Array of ranking competitors
+  
+  identifiedAt     DateTime            @default(now())
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  
+  @@index([difficultyTier])
+  @@index([gapScore])
+  @@index([category])
+  @@map("keyword_opportunities")
+}
