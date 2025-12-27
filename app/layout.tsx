@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Poppins, Inter } from "next/font/google"
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { AuthProvider } from "@/contexts/AuthContext"
@@ -8,16 +8,18 @@ import { ThemeProvider } from "@/contexts/ThemeContext"
 import { TenantProvider } from "@/contexts/TenantContext"
 import "./globals.css"
 
-const poppins = Poppins({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["300", "400", "600", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
 })
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
+  weight: ["500", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
 })
 
 export const metadata: Metadata = {
@@ -40,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`font-sans ${poppins.variable} ${inter.variable} antialiased`}>
+    <html lang="en" className="light" suppressHydrationWarning>
+      <body className={`font-sans ${jakarta.variable} ${spaceGrotesk.variable} antialiased`}>
         <AuthProvider>
           <ThemeProvider>
             <TenantProvider>
