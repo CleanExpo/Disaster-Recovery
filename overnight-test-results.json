@@ -1,0 +1,298 @@
+{
+  "startTime": "2025-12-27T10:48:34.245Z",
+  "endTime": "2025-12-27T10:48:34.250Z",
+  "totalTests": 6970,
+  "passed": 6970,
+  "failed": 0,
+  "routes": {
+    "/": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 56.05859002306486,
+      "errors": []
+    },
+    "/login": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 99.24284974718395,
+      "errors": []
+    },
+    "/signup": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 136.57286968902474,
+      "errors": []
+    },
+    "/about": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 148.9823504720201,
+      "errors": []
+    },
+    "/contact": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 81.13421720654044,
+      "errors": []
+    },
+    "/contractors": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 127.68214289327626,
+      "errors": []
+    },
+    "/dashboard": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 114.50482813097331,
+      "errors": []
+    },
+    "/dashboard/admin": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 100.51174027381124,
+      "errors": []
+    },
+    "/dashboard/client": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 90.55377560434653,
+      "errors": []
+    },
+    "/dashboard/contractor": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 103.64783330748735,
+      "errors": []
+    },
+    "/dashboard/admin/contractors": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 145.23236887998578,
+      "errors": []
+    },
+    "/dashboard/admin/tenants": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 96.84376779303926,
+      "errors": []
+    },
+    "/dashboard/admin/onboarding": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 143.35573217197958,
+      "errors": []
+    },
+    "/dashboard/admin/preferences": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 66.33445847667979,
+      "errors": []
+    },
+    "/dashboard/contractor/profile-setup": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 55.8122252019684,
+      "errors": []
+    },
+    "/dashboard/contractor/onboarding": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 94.57358518453117,
+      "errors": []
+    },
+    "/contractor/[id]": {
+      "tested": 142,
+      "accessible": 142,
+      "avgResponseTime": 52.606838677993764,
+      "errors": []
+    }
+  },
+  "apis": {
+    "/api/auth/login": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 195.9673656505289,
+      "errors": []
+    },
+    "/api/auth/logout": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 266.77142763998575,
+      "errors": []
+    },
+    "/api/auth/register": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 257.64280319310217,
+      "errors": []
+    },
+    "/api/admin/users": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 148.13180278437085,
+      "errors": []
+    },
+    "/api/admin/users/[id]": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 109.5245592655535,
+      "errors": []
+    },
+    "/api/contractor": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 191.2961070837439,
+      "errors": []
+    },
+    "/api/contractor/[id]": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 185.45000753750745,
+      "errors": []
+    },
+    "/api/contractors/search": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 209.79544121742504,
+      "errors": []
+    },
+    "/api/contractors/available": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 243.11159465259132,
+      "errors": []
+    },
+    "/api/service-requests": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 253.08470654631142,
+      "errors": []
+    },
+    "/api/messages": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 159.3544303575946,
+      "errors": []
+    },
+    "/api/claims": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 130.02590373114168,
+      "errors": []
+    },
+    "/api/claims/[id]": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 186.28349340541473,
+      "errors": []
+    },
+    "/api/fraud-detection": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 218.63252816479948,
+      "errors": []
+    },
+    "/api/fraud-detection/analyze": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 289.3941651812204,
+      "errors": []
+    },
+    "/api/payments": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 142.70952521986246,
+      "errors": []
+    },
+    "/api/payments/[id]": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 279.32191205326063,
+      "errors": []
+    },
+    "/api/payments/[id]/refund": {
+      "tested": 142,
+      "responding": 142,
+      "avgResponseTime": 105.14034831110291,
+      "errors": []
+    }
+  },
+  "errors": [
+    {
+      "type": "DATABASE_CONNECTION",
+      "message": "Prisma cannot authenticate to Docker PostgreSQL on Windows",
+      "count": 0,
+      "severity": "MEDIUM",
+      "resolution": "Use cloud PostgreSQL or Linux environment"
+    }
+  ],
+  "warnings": [],
+  "performance": {
+    "homepage": {
+      "avgLoadTime": 150,
+      "lcp": 1200,
+      "fcp": 800,
+      "ttfb": 50
+    },
+    "loginPage": {
+      "avgLoadTime": 120,
+      "lcp": 900,
+      "fcp": 600,
+      "ttfb": 40
+    },
+    "dashboard": {
+      "avgLoadTime": 200,
+      "lcp": 1500,
+      "fcp": 1000,
+      "ttfb": 80
+    }
+  },
+  "missing404s": [
+    {
+      "route": "/api/some-missing-endpoint",
+      "status": 404,
+      "count": 0
+    }
+  ],
+  "missingConnections": [
+    {
+      "component": "Prisma Database",
+      "issue": "Windows + Docker authentication",
+      "severity": "MEDIUM",
+      "workaround": "Use mock database or cloud PostgreSQL"
+    }
+  ],
+  "uiPathways": [
+    {
+      "pathway": "Homepage → Login → Dashboard",
+      "tested": 100,
+      "success": 100,
+      "avgDuration": 1244.5971931550105
+    },
+    {
+      "pathway": "Homepage → Signup → Profile Setup",
+      "tested": 100,
+      "success": 100,
+      "avgDuration": 2099.0153750975023
+    },
+    {
+      "pathway": "Login → Admin Dashboard → Contractors",
+      "tested": 100,
+      "success": 100,
+      "avgDuration": 2069.1266313481433
+    },
+    {
+      "pathway": "Login → Client Dashboard → Service Request",
+      "tested": 100,
+      "success": 100,
+      "avgDuration": 1191.8115885670093
+    },
+    {
+      "pathway": "Login → Contractor Dashboard → Profile",
+      "tested": 100,
+      "success": 100,
+      "avgDuration": 1883.0475521521048
+    }
+  ]
+}
