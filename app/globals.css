@@ -3,90 +3,141 @@
 @tailwind utilities;
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  
-  /* Dynamic Theme Variables */
-  --theme-primary: #00BFA6;
-  --theme-secondary: #7C4DFF;
-  --theme-accent: #3B82F6;
-  --theme-background: #0F1115;
-  --theme-text: #F9FAFB;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Light Mode (Default) - NRPG Brand Colors */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --surface: #f8fafc;
+  --surface-elevated: #ffffff;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  /* NRPG National Blue - Primary Brand Color */
+  --primary: #0047ff;
+  --primary-foreground: #ffffff;
+  --primary-hover: #0039cc;
+
+  /* Slate Gray - Secondary */
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  /* NRPG Emergency Red - Accent/CTA */
+  --accent: #e11d48;
+  --accent-foreground: #ffffff;
+  --accent-hover: #be123c;
+
+  /* Muted - Subtle backgrounds and text */
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+
+  /* Destructive - Errors */
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  /* Borders - Subtle */
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --input: #e2e8f0;
+
+  /* Focus Ring - National Blue */
+  --ring: #0047ff;
+
+  /* Chart Colors */
+  --chart-1: #0047ff;
+  --chart-2: #e11d48;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #8b5cf6;
+
+  /* Border Radius - Larger, more distinctive */
+  --radius: 1rem;
+
+  /* NRPG Specific Brand Variables */
+  --nrpg-blue: #0047ff;
+  --nrpg-red: #e11d48;
+  --nrpg-dark: #020617;
+  --nrpg-slate: #0f172a;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0047ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f8fafc;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #0047ff;
 }
 
 .dark {
-  /* Updated dark mode colors to match design brief */
-  --background: #0f1115;
-  --foreground: #f9fafb;
-  --card: #0f1115;
-  --card-foreground: #f9fafb;
-  --popover: #0f1115;
-  --popover-foreground: #f9fafb;
-  --primary: #00bfa6;
-  --primary-foreground: #0f1115;
-  --secondary: #2196f3;
-  --secondary-foreground: #f9fafb;
-  --muted: #1f2937;
-  --muted-foreground: #9ca3af;
-  --accent: #7c4dff;
-  --accent-foreground: #f9fafb;
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: #374151;
-  --input: #374151;
-  --ring: #00bfa6;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Dark Mode - NRPG Deep Dark Theme */
+  --background: #020617;
+  --foreground: #f8fafc;
+  --surface: #0f172a;
+  --surface-elevated: #1e293b;
+
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+
+  /* NRPG National Blue */
+  --primary: #0047ff;
+  --primary-foreground: #ffffff;
+  --primary-hover: #0039cc;
+
+  /* Dark Secondary */
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+
+  /* NRPG Emergency Red */
+  --accent: #e11d48;
+  --accent-foreground: #ffffff;
+  --accent-hover: #be123c;
+
+  /* Muted - Dark */
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  /* Destructive */
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  /* Borders - Dark */
+  --border: #1e293b;
+  --border-strong: #334155;
+  --input: #1e293b;
+
+  /* Focus Ring - Blue */
+  --ring: #0047ff;
+
+  /* Chart Colors - Same as light */
+  --chart-1: #0047ff;
+  --chart-2: #e11d48;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #8b5cf6;
+
+  /* Sidebar - Dark */
+  --sidebar: #020617;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #0047ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0f172a;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #0047ff;
 }
 
 @theme inline {
-  /* Added custom font variables for Poppins and Inter */
-  --font-poppins: var(--font-poppins);
-  --font-inter: var(--font-inter);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
+  /* NRPG Font Variables - Plus Jakarta Sans + Space Grotesk */
+  --font-jakarta: var(--font-jakarta);
+  --font-space-grotesk: var(--font-space-grotesk);
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: 'monospace';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -134,41 +185,90 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    scroll-behavior: smooth;
   }
 
-  /* Added custom typography classes for design brief */
-  .font-poppins {
-    font-family: var(--font-poppins);
+  /* NRPG Typography Classes */
+  .font-jakarta {
+    font-family: var(--font-jakarta);
   }
 
-  .font-inter {
-    font-family: var(--font-inter);
+  .font-space-grotesk {
+    font-family: var(--font-space-grotesk);
+  }
+
+  .font-display {
+    font-family: var(--font-space-grotesk);
   }
 }
 
-/* Added custom gradient and animation classes */
+/* NRPG Custom Utilities */
 @layer utilities {
-  .gradient-teal-purple {
-    background: linear-gradient(135deg, #00bfa6 0%, #7c4dff 100%);
+  /* Shimmer Loading Effect */
+  .shimmer {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer-load 1.5s infinite;
   }
 
-  .gradient-text-teal-purple {
-    background: linear-gradient(135deg, #00bfa6 0%, #7c4dff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    /* Fallback for browsers that don't support background-clip: text */
-    @supports not (-webkit-background-clip: text) {
-      color: #00bfa6;
-    }
+  @keyframes shimmer-load {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 
-  .gradient-cyan-blue {
-    background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  /* Scanning Beam Effect (Technical/Forensic Aesthetic) */
+  .scanning-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--nrpg-blue);
+    box-shadow: 0 0 15px var(--nrpg-blue);
+    animation: scan 4s linear infinite;
+    z-index: 15;
   }
 
+  @keyframes scan {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* Small Label Typography (Uppercase, Wide Tracking) */
+  .label-small {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  /* Gradient Overlays for Images */
+  .gradient-overlay-dark {
+    background: linear-gradient(to top, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.5) 40%, transparent 100%);
+  }
+
+  .gradient-overlay-subtle {
+    background: linear-gradient(to top, rgba(2, 6, 23, 0.7), transparent);
+  }
+
+  /* Text Balance */
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Heading Hero Style */
+  .heading-hero {
+    font-family: var(--font-space-grotesk);
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+  }
+
+  /* Backdrop Blur for Nav */
+  .nav-blur {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
   }
 }
