@@ -4,12 +4,14 @@
  */
 
 // Mock users data
+// Password for all users: Password123!
+// Bcrypt hash: $2b$10$vj.69aoumomIsfI1AgeUL.dasrChboZzyDd6sxmIHw7ojxJ.WkOKa
 const mockUsers = [
   {
     id: 'admin-001',
     email: 'admin@disasterrecovery.com',
     name: 'Admin User',
-    password: '$2a$10$rKzMgJW.vYW0YhFG.jQs0uO5wJ3O0lX0x7U6wLa8qGzVz6M4qWKGy', // Password123!
+    password: '$2b$10$vj.69aoumomIsfI1AgeUL.dasrChboZzyDd6sxmIHw7ojxJ.WkOKa', // Password123!
     userType: 'ADMIN',
     isActive: true,
     isEmailVerified: true,
@@ -23,7 +25,7 @@ const mockUsers = [
     id: 'client-001',
     email: 'client@example.com',
     name: 'John Client',
-    password: '$2a$10$rKzMgJW.vYW0YhFG.jQs0uO5wJ3O0lX0x7U6wLa8qGzVz6M4qWKGy',
+    password: '$2b$10$vj.69aoumomIsfI1AgeUL.dasrChboZzyDd6sxmIHw7ojxJ.WkOKa', // Password123!
     userType: 'CLIENT',
     isActive: true,
     isEmailVerified: true,
@@ -37,7 +39,7 @@ const mockUsers = [
     id: 'contractor-001',
     email: 'contractor@example.com',
     name: 'Mike Contractor',
-    password: '$2a$10$rKzMgJW.vYW0YhFG.jQs0uO5wJ3O0lX0x7U6wLa8qGzVz6M4qWKGy',
+    password: '$2b$10$vj.69aoumomIsfI1AgeUL.dasrChboZzyDd6sxmIHw7ojxJ.WkOKa', // Password123!
     userType: 'CONTRACTOR',
     isActive: true,
     isEmailVerified: true,
