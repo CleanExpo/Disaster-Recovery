@@ -237,7 +237,8 @@ export default function ClientDashboard() {
     if (serviceRequests.length > 0) {
       calculateAnalytics();
     }
-  }, [serviceRequests, calculateAnalytics]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceRequests]);
 
   // Fetch contractor matches for each service request
   useEffect(() => {
