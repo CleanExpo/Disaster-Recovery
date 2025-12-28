@@ -1,0 +1,429 @@
+{
+  "cities": [
+    {
+      "city": "Sydney",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "sydney",
+      "population": 5312000,
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Sydney disaster recovery", "Sydney water damage", "Sydney fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 12,
+        "avgAnnualStorms": 45,
+        "avgAnnualFires": 8,
+        "avgHumidity": 65
+      }
+    },
+    {
+      "city": "Melbourne",
+      "state": "VIC",
+      "stateCode": "VIC",
+      "slug": "melbourne",
+      "population": 5078000,
+      "latitude": -37.8136,
+      "longitude": 144.9631,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Melbourne disaster recovery", "Melbourne water damage", "Melbourne fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 8,
+        "avgAnnualStorms": 38,
+        "avgAnnualFires": 15,
+        "avgHumidity": 60
+      }
+    },
+    {
+      "city": "Brisbane",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "brisbane",
+      "population": 2560000,
+      "latitude": -27.4698,
+      "longitude": 153.0251,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Brisbane disaster recovery", "Brisbane flood restoration", "Brisbane storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 18,
+        "avgAnnualStorms": 55,
+        "avgAnnualFires": 5,
+        "avgHumidity": 70
+      }
+    },
+    {
+      "city": "Perth",
+      "state": "WA",
+      "stateCode": "WA",
+      "slug": "perth",
+      "population": 2125000,
+      "latitude": -31.9505,
+      "longitude": 115.8605,
+      "timezone": "Australia/Perth",
+      "keywords": ["Perth disaster recovery", "Perth water damage", "Perth fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 4,
+        "avgAnnualStorms": 25,
+        "avgAnnualFires": 22,
+        "avgHumidity": 55
+      }
+    },
+    {
+      "city": "Adelaide",
+      "state": "SA",
+      "stateCode": "SA",
+      "slug": "adelaide",
+      "population": 1376000,
+      "latitude": -34.9285,
+      "longitude": 138.6007,
+      "timezone": "Australia/Adelaide",
+      "keywords": ["Adelaide disaster recovery", "Adelaide water damage", "Adelaide mould remediation"],
+      "localStats": {
+        "avgAnnualFloods": 6,
+        "avgAnnualStorms": 30,
+        "avgAnnualFires": 18,
+        "avgHumidity": 58
+      }
+    },
+    {
+      "city": "Canberra",
+      "state": "ACT",
+      "stateCode": "ACT",
+      "slug": "canberra",
+      "population": 453000,
+      "latitude": -35.2809,
+      "longitude": 149.1300,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Canberra disaster recovery", "Canberra water damage", "Canberra fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 5,
+        "avgAnnualStorms": 28,
+        "avgAnnualFires": 12,
+        "avgHumidity": 52
+      }
+    },
+    {
+      "city": "Hobart",
+      "state": "TAS",
+      "stateCode": "TAS",
+      "slug": "hobart",
+      "population": 247000,
+      "latitude": -42.8821,
+      "longitude": 147.3272,
+      "timezone": "Australia/Hobart",
+      "keywords": ["Hobart disaster recovery", "Hobart water damage", "Hobart storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 7,
+        "avgAnnualStorms": 42,
+        "avgAnnualFires": 8,
+        "avgHumidity": 62
+      }
+    },
+    {
+      "city": "Darwin",
+      "state": "NT",
+      "stateCode": "NT",
+      "slug": "darwin",
+      "population": 148000,
+      "latitude": -12.4634,
+      "longitude": 130.8456,
+      "timezone": "Australia/Darwin",
+      "keywords": ["Darwin disaster recovery", "Darwin cyclone damage", "Darwin flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 25,
+        "avgAnnualStorms": 68,
+        "avgAnnualFires": 3,
+        "avgHumidity": 75
+      }
+    },
+    {
+      "city": "Gold Coast",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "gold-coast",
+      "population": 679000,
+      "latitude": -28.0167,
+      "longitude": 153.4000,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Gold Coast disaster recovery", "Gold Coast water damage", "Gold Coast storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 15,
+        "avgAnnualStorms": 50,
+        "avgAnnualFires": 4,
+        "avgHumidity": 72
+      }
+    },
+    {
+      "city": "Newcastle",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "newcastle",
+      "population": 322000,
+      "latitude": -32.9283,
+      "longitude": 151.7817,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Newcastle disaster recovery", "Newcastle water damage", "Newcastle flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 10,
+        "avgAnnualStorms": 40,
+        "avgAnnualFires": 7,
+        "avgHumidity": 67
+      }
+    },
+    {
+      "city": "Wollongong",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "wollongong",
+      "population": 302000,
+      "latitude": -34.4278,
+      "longitude": 150.8931,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Wollongong disaster recovery", "Wollongong water damage", "Wollongong storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 11,
+        "avgAnnualStorms": 43,
+        "avgAnnualFires": 6,
+        "avgHumidity": 66
+      }
+    },
+    {
+      "city": "Sunshine Coast",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "sunshine-coast",
+      "population": 333000,
+      "latitude": -26.6500,
+      "longitude": 153.0667,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Sunshine Coast disaster recovery", "Sunshine Coast water damage", "Sunshine Coast flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 16,
+        "avgAnnualStorms": 52,
+        "avgAnnualFires": 5,
+        "avgHumidity": 71
+      }
+    },
+    {
+      "city": "Geelong",
+      "state": "VIC",
+      "stateCode": "VIC",
+      "slug": "geelong",
+      "population": 268000,
+      "latitude": -38.1499,
+      "longitude": 144.3617,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Geelong disaster recovery", "Geelong water damage", "Geelong fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 7,
+        "avgAnnualStorms": 35,
+        "avgAnnualFires": 14,
+        "avgHumidity": 61
+      }
+    },
+    {
+      "city": "Townsville",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "townsville",
+      "population": 180000,
+      "latitude": -19.2590,
+      "longitude": 146.8169,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Townsville disaster recovery", "Townsville flood restoration", "Townsville cyclone damage"],
+      "localStats": {
+        "avgAnnualFloods": 22,
+        "avgAnnualStorms": 60,
+        "avgAnnualFires": 4,
+        "avgHumidity": 73
+      }
+    },
+    {
+      "city": "Cairns",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "cairns",
+      "population": 153000,
+      "latitude": -16.9186,
+      "longitude": 145.7781,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Cairns disaster recovery", "Cairns cyclone damage", "Cairns flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 28,
+        "avgAnnualStorms": 65,
+        "avgAnnualFires": 3,
+        "avgHumidity": 76
+      }
+    },
+    {
+      "city": "Toowoomba",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "toowoomba",
+      "population": 136000,
+      "latitude": -27.5598,
+      "longitude": 151.9507,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Toowoomba disaster recovery", "Toowoomba flood restoration", "Toowoomba storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 14,
+        "avgAnnualStorms": 48,
+        "avgAnnualFires": 6,
+        "avgHumidity": 68
+      }
+    },
+    {
+      "city": "Ballarat",
+      "state": "VIC",
+      "stateCode": "VIC",
+      "slug": "ballarat",
+      "population": 109000,
+      "latitude": -37.5622,
+      "longitude": 143.8503,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Ballarat disaster recovery", "Ballarat water damage", "Ballarat fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 6,
+        "avgAnnualStorms": 32,
+        "avgAnnualFires": 16,
+        "avgHumidity": 59
+      }
+    },
+    {
+      "city": "Bendigo",
+      "state": "VIC",
+      "stateCode": "VIC",
+      "slug": "bendigo",
+      "population": 103000,
+      "latitude": -36.7570,
+      "longitude": 144.2794,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Bendigo disaster recovery", "Bendigo water damage", "Bendigo fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 5,
+        "avgAnnualStorms": 30,
+        "avgAnnualFires": 17,
+        "avgHumidity": 57
+      }
+    },
+    {
+      "city": "Albury",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "albury",
+      "population": 53000,
+      "latitude": -36.0737,
+      "longitude": 146.9135,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Albury disaster recovery", "Albury water damage", "Albury flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 8,
+        "avgAnnualStorms": 33,
+        "avgAnnualFires": 13,
+        "avgHumidity": 60
+      }
+    },
+    {
+      "city": "Launceston",
+      "state": "TAS",
+      "stateCode": "TAS",
+      "slug": "launceston",
+      "population": 87000,
+      "latitude": -41.4332,
+      "longitude": 147.1441,
+      "timezone": "Australia/Hobart",
+      "keywords": ["Launceston disaster recovery", "Launceston water damage", "Launceston flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 9,
+        "avgAnnualStorms": 44,
+        "avgAnnualFires": 9,
+        "avgHumidity": 63
+      }
+    },
+    {
+      "city": "Mackay",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "mackay",
+      "population": 80000,
+      "latitude": -21.1417,
+      "longitude": 149.1869,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Mackay disaster recovery", "Mackay cyclone damage", "Mackay flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 20,
+        "avgAnnualStorms": 58,
+        "avgAnnualFires": 4,
+        "avgHumidity": 74
+      }
+    },
+    {
+      "city": "Rockhampton",
+      "state": "QLD",
+      "stateCode": "QLD",
+      "slug": "rockhampton",
+      "population": 79000,
+      "latitude": -23.3781,
+      "longitude": 150.5136,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Rockhampton disaster recovery", "Rockhampton flood restoration", "Rockhampton cyclone damage"],
+      "localStats": {
+        "avgAnnualFloods": 19,
+        "avgAnnualStorms": 56,
+        "avgAnnualFires": 5,
+        "avgHumidity": 72
+      }
+    },
+    {
+      "city": "Bunbury",
+      "state": "WA",
+      "stateCode": "WA",
+      "slug": "bunbury",
+      "population": 75000,
+      "latitude": -33.3267,
+      "longitude": 115.6372,
+      "timezone": "Australia/Perth",
+      "keywords": ["Bunbury disaster recovery", "Bunbury water damage", "Bunbury fire restoration"],
+      "localStats": {
+        "avgAnnualFloods": 5,
+        "avgAnnualStorms": 26,
+        "avgAnnualFires": 20,
+        "avgHumidity": 56
+      }
+    },
+    {
+      "city": "Maitland",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "maitland",
+      "population": 85000,
+      "latitude": -32.7314,
+      "longitude": 151.5583,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Maitland disaster recovery", "Maitland flood restoration", "Maitland water damage"],
+      "localStats": {
+        "avgAnnualFloods": 12,
+        "avgAnnualStorms": 41,
+        "avgAnnualFires": 8,
+        "avgHumidity": 68
+      }
+    },
+    {
+      "city": "Wagga Wagga",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "wagga-wagga",
+      "population": 56000,
+      "latitude": -35.1082,
+      "longitude": 147.3598,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Wagga Wagga disaster recovery", "Wagga Wagga water damage", "Wagga Wagga flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 7,
+        "avgAnnualStorms": 31,
+        "avgAnnualFires": 14,
+        "avgHumidity": 58
+      }
+    }
+  ]
+}
