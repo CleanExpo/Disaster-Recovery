@@ -1,0 +1,364 @@
+{
+  "services": [
+    {
+      "id": "water-damage-restoration",
+      "slug": "water-damage-restoration",
+      "title": "Water Damage Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Professional water damage restoration using IICRC S500 protocols. 24/7 emergency response for burst pipes, flooding, and water extraction.",
+      "keywords": ["water damage", "flood restoration", "water extraction", "structural drying", "water damage repair"],
+      "metaDescription": "Expert water damage restoration services across Australia. IICRC certified technicians, 24/7 emergency response. Call 1300 309 361 for immediate assistance.",
+      "faqs": [
+        {
+          "question": "How quickly can you respond to water damage emergencies?",
+          "answer": "We provide 24/7 emergency response with technicians dispatched within 60 minutes of your call. Rapid response is critical to prevent secondary damage like mould growth and structural deterioration."
+        },
+        {
+          "question": "What equipment do you use for water extraction?",
+          "answer": "We use industrial-grade extraction equipment including truck-mounted extractors, high-velocity air movers, commercial dehumidifiers, and thermal imaging cameras to detect hidden moisture."
+        },
+        {
+          "question": "Will my insurance cover water damage restoration?",
+          "answer": "Most comprehensive home insurance policies cover sudden and accidental water damage. We work directly with all major Australian insurers and provide detailed documentation to support your claim."
+        },
+        {
+          "question": "How long does the water damage restoration process take?",
+          "answer": "Typical restoration takes 3-7 days depending on the extent of damage. We use moisture meters to ensure complete drying before reconstruction begins."
+        },
+        {
+          "question": "Can you prevent mould growth after water damage?",
+          "answer": "Yes. Our IICRC S500 protocols include antimicrobial treatments and complete structural drying within 24-48 hours to prevent mould colonization."
+        }
+      ]
+    },
+    {
+      "id": "flood-restoration",
+      "slug": "flood-restoration",
+      "title": "Flood Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Complete flood restoration services for Category 1-3 water damage. Expert flood cleanup, structural drying, and contamination control.",
+      "keywords": ["flood restoration", "flood damage", "flood cleanup", "flood recovery", "storm damage"],
+      "metaDescription": "Professional flood restoration services. IICRC certified flood damage specialists. 24/7 emergency response across Australia. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "What categories of flood water can you handle?",
+          "answer": "We handle all categories: Category 1 (clean water), Category 2 (grey water), and Category 3 (black water). Each requires specific protocols and safety equipment."
+        },
+        {
+          "question": "Do you remove contaminated materials after flooding?",
+          "answer": "Yes. Category 3 flood water requires removal of porous materials like carpets, drywall, and insulation that cannot be safely cleaned."
+        },
+        {
+          "question": "How do you sanitize after flood damage?",
+          "answer": "We use EPA-registered antimicrobial treatments, HEPA air scrubbers, and ozone generators to eliminate bacteria, viruses, and odours from flood water."
+        }
+      ]
+    },
+    {
+      "id": "burst-pipe-repair",
+      "slug": "burst-pipe-repair",
+      "title": "Burst Pipe Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Emergency burst pipe restoration and water damage repair. Rapid water extraction, structural drying, and restoration services.",
+      "keywords": ["burst pipe", "pipe leak", "plumbing emergency", "water leak repair", "pipe damage"],
+      "metaDescription": "Emergency burst pipe restoration services. 24/7 response, rapid water extraction, complete restoration. Call 1300 309 361 now.",
+      "faqs": [
+        {
+          "question": "What should I do immediately after a pipe bursts?",
+          "answer": "Turn off the main water supply, turn off electricity in affected areas, move valuables to safety, and call us immediately at 1300 309 361 for emergency response."
+        },
+        {
+          "question": "Can you detect hidden water damage from burst pipes?",
+          "answer": "Yes. We use thermal imaging cameras, moisture meters, and hygrometers to detect water in walls, ceilings, and subfloors."
+        }
+      ]
+    },
+    {
+      "id": "structural-drying",
+      "slug": "structural-drying",
+      "title": "Structural Drying Services",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Advanced structural drying using thermal imaging and moisture monitoring. Complete drying of walls, floors, and building cavities.",
+      "keywords": ["structural drying", "building drying", "moisture removal", "dehumidification", "water damage drying"],
+      "metaDescription": "Professional structural drying services using IICRC S500 protocols. Advanced moisture detection and complete building drying. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "How do you ensure complete structural drying?",
+          "answer": "We use moisture meters, thermo-hygrometers, and thermal imaging to monitor moisture levels daily. Drying continues until all materials reach acceptable moisture content levels per IICRC standards."
+        },
+        {
+          "question": "What is the difference between surface drying and structural drying?",
+          "answer": "Surface drying only removes visible water. Structural drying targets moisture trapped in walls, subfloors, and building cavities using specialized equipment and scientific drying protocols."
+        }
+      ]
+    },
+    {
+      "id": "fire-damage-restoration",
+      "slug": "fire-damage-restoration",
+      "title": "Fire Damage Restoration",
+      "category": "fire",
+      "protocol": "S520",
+      "description": "Complete fire damage restoration using IICRC S520 protocols. Soot removal, smoke odour elimination, and structural restoration.",
+      "keywords": ["fire damage", "fire restoration", "smoke damage", "soot removal", "fire cleanup"],
+      "metaDescription": "Expert fire damage restoration services. IICRC S520 certified technicians. Smoke odour removal and complete restoration. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Can you remove smoke odour completely?",
+          "answer": "Yes. We use thermal fogging, ozone treatments, hydroxyl generators, and HEPA air scrubbers to eliminate smoke odours from all surfaces and materials."
+        },
+        {
+          "question": "How do you clean soot from walls and ceilings?",
+          "answer": "We use dry sponges, HEPA vacuums, and specialized cleaning solutions based on soot type (dry, wet, protein, or fuel oil). Each requires different cleaning techniques per IICRC S520 standards."
+        },
+        {
+          "question": "Will insurance cover fire damage restoration?",
+          "answer": "Yes. Fire damage is typically covered under standard home and business insurance policies. We work directly with insurers and provide comprehensive documentation."
+        },
+        {
+          "question": "How long does fire damage restoration take?",
+          "answer": "Minor fire damage takes 1-2 weeks. Major fires requiring structural work can take 2-6 months depending on the extent of damage and reconstruction needed."
+        }
+      ]
+    },
+    {
+      "id": "smoke-damage-restoration",
+      "slug": "smoke-damage-restoration",
+      "title": "Smoke Damage Restoration",
+      "category": "fire",
+      "protocol": "S520",
+      "description": "Professional smoke damage cleanup and odour elimination. HEPA filtration, thermal fogging, and complete smoke residue removal.",
+      "keywords": ["smoke damage", "smoke cleanup", "smoke odour removal", "soot cleaning", "smoke restoration"],
+      "metaDescription": "Professional smoke damage restoration. Complete odour elimination and soot removal. IICRC certified technicians. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Can smoke damage affect my health?",
+          "answer": "Yes. Smoke residue contains carcinogens, acids, and toxic particles. Professional cleanup using HEPA filtration and proper PPE is essential for safety."
+        },
+        {
+          "question": "What items can be saved after smoke damage?",
+          "answer": "Most hard surfaces, electronics, and sealed items can be cleaned. Porous materials like upholstery may require specialized ozone or thermal treatment."
+        }
+      ]
+    },
+    {
+      "id": "mould-remediation",
+      "slug": "mould-remediation",
+      "title": "Mould Remediation",
+      "category": "mould",
+      "protocol": "IICRC S520",
+      "description": "Professional mould remediation and removal. Containment, HEPA filtration, spore removal, and prevention protocols.",
+      "keywords": ["mould remediation", "mold removal", "mould cleanup", "black mould", "mould testing"],
+      "metaDescription": "Expert mould remediation services. IICRC certified technicians, complete mould removal, air quality testing. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Is black mould dangerous?",
+          "answer": "Stachybotrys (black mould) can produce mycotoxins that cause respiratory issues, allergies, and other health problems. Professional remediation is essential for safe removal."
+        },
+        {
+          "question": "How do you prevent mould from returning?",
+          "answer": "We identify and fix moisture sources, apply antimicrobial treatments, and recommend ventilation improvements and dehumidification to maintain humidity below 60%."
+        },
+        {
+          "question": "Do you provide mould testing?",
+          "answer": "Yes. We offer air quality testing, surface sampling, and moisture mapping to identify mould species and extent of contamination."
+        },
+        {
+          "question": "Can I stay in my home during mould remediation?",
+          "answer": "For minor mould (less than 10 square feet), yes. Large-scale remediation requires containment and negative air pressure, making the area uninhabitable during work."
+        }
+      ]
+    },
+    {
+      "id": "black-mould-removal",
+      "slug": "black-mould-removal",
+      "title": "Black Mould Removal",
+      "category": "mould",
+      "protocol": "IICRC S520",
+      "description": "Safe black mould (Stachybotrys) removal using containment, HEPA filtration, and certified protocols. Protect your family's health.",
+      "keywords": ["black mould", "toxic mould", "stachybotrys", "mould removal", "dangerous mould"],
+      "metaDescription": "Professional black mould removal. IICRC certified specialists, complete containment, air quality testing. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "What makes black mould more dangerous than other mould?",
+          "answer": "Black mould (Stachybotrys chartarum) produces mycotoxins that can cause severe respiratory issues, chronic fatigue, and neurological symptoms in sensitive individuals."
+        },
+        {
+          "question": "How do you safely remove black mould?",
+          "answer": "We use full containment with plastic barriers, negative air machines with HEPA filters, PPE equipment, and HEPA vacuuming to prevent spore spread during removal."
+        }
+      ]
+    },
+    {
+      "id": "biohazard-cleanup",
+      "slug": "biohazard-cleanup",
+      "title": "Biohazard Cleanup",
+      "category": "bio",
+      "protocol": "Forensic",
+      "description": "Professional biohazard and trauma cleanup. Blood, bodily fluids, and pathogen elimination with ATP verification.",
+      "keywords": ["biohazard cleanup", "trauma cleanup", "blood cleanup", "crime scene cleanup", "pathogen removal"],
+      "metaDescription": "Certified biohazard cleanup services. Trauma scene restoration, pathogen elimination, discreet service. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "What biohazards do you clean up?",
+          "answer": "We clean blood, bodily fluids, tissue, pathogenic bacteria, viruses, drug residue, sharps, and contaminated materials requiring specialized handling and disposal."
+        },
+        {
+          "question": "Are biohazard cleanup services confidential?",
+          "answer": "Yes. We provide discreet, unmarked vehicles and maintain complete confidentiality for all trauma, crime scene, and biohazard cleanup services."
+        },
+        {
+          "question": "What certifications do your technicians have?",
+          "answer": "Our technicians are certified in bloodborne pathogen handling, OSHA safety standards, and hold specialized biohazard remediation certifications."
+        }
+      ]
+    },
+    {
+      "id": "meth-lab-decontamination",
+      "slug": "meth-lab-decontamination",
+      "title": "Meth Lab Decontamination",
+      "category": "bio",
+      "protocol": "Forensic",
+      "description": "Certified methamphetamine lab decontamination. Chemical residue removal, air quality testing, and property clearance certification.",
+      "keywords": ["meth lab cleanup", "drug lab decontamination", "methamphetamine removal", "clandestine lab cleanup"],
+      "metaDescription": "Professional meth lab decontamination services. Certified cleanup, clearance testing, property restoration. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "How do you test for meth contamination?",
+          "answer": "We use surface wipe sampling analyzed by NATA-accredited laboratories to measure methamphetamine levels against state-specific guidelines (typically 0.5 μg/100cm² in Australia)."
+        },
+        {
+          "question": "Can a property be restored after meth lab contamination?",
+          "answer": "Yes. Professional decontamination can restore most properties. The process includes removal of contaminated materials, chemical cleaning, and verification testing to meet clearance levels."
+        },
+        {
+          "question": "Is meth contamination dangerous?",
+          "answer": "Yes. Meth residue contains toxic chemicals that can cause respiratory issues, skin irritation, neurological problems, and developmental issues in children even at low levels."
+        }
+      ]
+    },
+    {
+      "id": "storm-damage-restoration",
+      "slug": "storm-damage-restoration",
+      "title": "Storm Damage Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Emergency storm damage restoration. Roof tarping, water extraction, structural repairs, and complete property restoration.",
+      "keywords": ["storm damage", "storm restoration", "wind damage", "roof damage", "hail damage"],
+      "metaDescription": "24/7 storm damage restoration services. Emergency roof repairs, water extraction, complete restoration. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Do you provide emergency tarping services?",
+          "answer": "Yes. We provide 24/7 emergency roof tarping and board-up services to prevent further water damage and secure your property after storm damage."
+        },
+        {
+          "question": "How quickly can you respond to storm damage?",
+          "answer": "We prioritize storm emergencies with response times under 60 minutes. Our teams are mobilized during severe weather events for rapid deployment."
+        }
+      ]
+    },
+    {
+      "id": "sewage-cleanup",
+      "slug": "sewage-cleanup",
+      "title": "Sewage Cleanup & Restoration",
+      "category": "water",
+      "protocol": "S500 Category 3",
+      "description": "Professional sewage cleanup and Category 3 water restoration. Complete sanitization, pathogen elimination, and odour removal.",
+      "keywords": ["sewage cleanup", "sewage backup", "black water cleanup", "sewage restoration", "waste water removal"],
+      "metaDescription": "Emergency sewage cleanup services. Category 3 water specialists, complete sanitization, odour removal. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Is sewage backup covered by insurance?",
+          "answer": "It depends on your policy. Some policies require specific sewer backup endorsements. We work with insurers to document Category 3 water damage and support claims."
+        },
+        {
+          "question": "What safety precautions do you take for sewage cleanup?",
+          "answer": "Our technicians use full PPE including respirators, contamination suits, and gloves. We establish containment zones and use EPA-registered disinfectants for pathogen elimination."
+        }
+      ]
+    },
+    {
+      "id": "ceiling-water-damage",
+      "slug": "ceiling-water-damage-repair",
+      "title": "Ceiling Water Damage Repair",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Expert ceiling water damage repair and restoration. Leak detection, structural drying, and complete ceiling restoration.",
+      "keywords": ["ceiling water damage", "ceiling leak", "water stains ceiling", "ceiling repair", "roof leak repair"],
+      "metaDescription": "Professional ceiling water damage repair. Leak detection, complete drying, restoration services. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Should I replace water-damaged ceiling drywall?",
+          "answer": "It depends on severity. Minor staining can be cleaned and repainted. Sagging, crumbling, or mould-contaminated drywall must be replaced for safety and structural integrity."
+        },
+        {
+          "question": "How do you find the source of ceiling leaks?",
+          "answer": "We use thermal imaging cameras, moisture meters, and pressure testing to trace water intrusion from roofs, HVAC systems, or upper-floor plumbing."
+        }
+      ]
+    },
+    {
+      "id": "carpet-water-damage",
+      "slug": "carpet-water-damage-restoration",
+      "title": "Carpet Water Damage Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Professional carpet water damage restoration. Extraction, cleaning, drying, and sanitization to save your carpets.",
+      "keywords": ["carpet water damage", "wet carpet", "carpet drying", "carpet flood damage", "carpet restoration"],
+      "metaDescription": "Expert carpet water damage restoration. Professional extraction, drying, sanitization. Save your carpets. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "Can water-damaged carpet be saved?",
+          "answer": "Category 1 clean water damage can often be saved if dried within 24-48 hours. Category 3 contaminated water requires carpet replacement per IICRC guidelines."
+        },
+        {
+          "question": "How do you dry wet carpet?",
+          "answer": "We use truck-mounted extractors, high-velocity air movers, and dehumidifiers. Carpet is lifted for subfloor drying, and moisture levels are monitored daily."
+        }
+      ]
+    },
+    {
+      "id": "commercial-water-damage",
+      "slug": "commercial-water-damage-restoration",
+      "title": "Commercial Water Damage Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Large-scale commercial water damage restoration. Minimize downtime, rapid response, complete business continuity services.",
+      "keywords": ["commercial water damage", "business water damage", "office flooding", "warehouse water damage", "commercial restoration"],
+      "metaDescription": "Commercial water damage restoration specialists. 24/7 response, minimize downtime, business continuity. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "How do you minimize business downtime during restoration?",
+          "answer": "We deploy large crews, work extended hours, use commercial-grade equipment, and coordinate with your operations team to restore critical areas first."
+        },
+        {
+          "question": "Can you work outside business hours?",
+          "answer": "Yes. We schedule work during nights, weekends, and holidays to minimize disruption to your business operations."
+        }
+      ]
+    },
+    {
+      "id": "basement-flooding",
+      "slug": "basement-flooding-restoration",
+      "title": "Basement Flooding Restoration",
+      "category": "water",
+      "protocol": "S500",
+      "description": "Complete basement flooding restoration. Water extraction, structural drying, mould prevention, and waterproofing solutions.",
+      "keywords": ["basement flooding", "flooded basement", "basement water damage", "basement drying", "sump pump failure"],
+      "metaDescription": "Emergency basement flooding restoration. Rapid water removal, complete drying, mould prevention. Call 1300 309 361.",
+      "faqs": [
+        {
+          "question": "What causes basement flooding?",
+          "answer": "Common causes include sump pump failure, foundation cracks, blocked gutters, poor drainage, sewer backups, and heavy rainfall overwhelming drainage systems."
+        },
+        {
+          "question": "How do you prevent mould in flooded basements?",
+          "answer": "We extract water within hours, use industrial dehumidifiers to maintain low humidity, apply antimicrobial treatments, and ensure complete drying within 48-72 hours."
+        }
+      ]
+    }
+  ]
+}

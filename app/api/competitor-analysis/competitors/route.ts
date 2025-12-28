@@ -38,7 +38,7 @@ const updateCompetitorSchema = z.object({
 });
 
 /**
- * GET - List competitors with filters
+ * GET - List competitors with filters (for dashboard)
  */
 export async function GET(request: NextRequest) {
   try {
@@ -58,41 +58,50 @@ export async function GET(request: NextRequest) {
 
     if (isActive !== null) {
       where.isActive = isActive === 'true';
+    } else {
+      where.isActive = true; // Default to active only
     }
 
     if (priority) {
       where.priority = { gte: parseInt(priority) };
     }
 
-    const [competitors, total] = await Promise.all([
-      prisma.competitor.findMany({
-        where,
-        include: {
-          _count: {
-            select: {
-              analyses: true,
-              keywords: true,
-              backlinks: true,
-            },
-          },
+    // Get all competitors with their latest analysis
+    const competitors = await prisma.competitor.findMany({
+      where,
+      include: {
+        analyses: {
+          orderBy: { analysisDate: 'desc' },
+          take: 1,
         },
-        orderBy: { priority: 'desc' },
-        take: limit,
-        skip: offset,
-      }),
-      prisma.competitor.count({ where }),
-    ]);
-
-    return NextResponse.json({
-      success: true,
-      data: competitors,
-      meta: {
-        total,
-        limit,
-        offset,
-        hasMore: offset + limit < total,
+        _count: {
+          select: { keywords: true },
+        },
       },
+      orderBy: { priority: 'desc' },
+      take: limit,
+      skip: offset,
     });
+
+    // Transform to table row format
+    const tableRows = competitors.map((competitor) => {
+      const latestAnalysis = competitor.analyses[0];
+
+      return {
+        id: competitor.id,
+        name: competitor.name,
+        domain: competitor.domain,
+        category: competitor.category,
+        priority: competitor.priority,
+        lastAnalyzed: competitor.lastAnalyzedAt,
+        traffic: latestAnalysis?.organicTraffic || 0,
+        keywords: competitor._count.keywords,
+        domainRating: latestAnalysis?.domainRating || 0,
+        isActive: competitor.isActive,
+      };
+    });
+
+    return NextResponse.json(tableRows);
   } catch (error: any) {
     console.error('[API] Error fetching competitors:', error);
 

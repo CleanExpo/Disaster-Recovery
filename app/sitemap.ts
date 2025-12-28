@@ -1,125 +1,84 @@
-import { MetadataRoute } from 'next';
-import { SERVICE_PILLARS, CLIENT_SECTORS, AUSTRALIAN_LOCATIONS } from '@/lib/design-tokens';
-
 /**
- * Dynamic Sitemap Generation - NRPG Platform
+ * Sitemap Generator - NRPG SEO
  *
- * Generates comprehensive sitemap for:
- * - Static pages (home, about, contact)
- * - Service pages (60+ pages)
- * - Location pages (150+ pages)
- * - Service + Location combinations (600+ pages)
- * - Blog posts (dynamic)
- * - Sector pages
+ * Generates XML sitemap for all 800+ pages:
+ * - Service pages (60+)
+ * - Location pages (150+)
+ * - Service + Location pages (600+)
  *
- * Total: 800+ URLs for complete site coverage
+ * Critical for SEO crawlability and indexation
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+import { MetadataRoute } from 'next';
+import { internalLinking } from '@/lib/seo/internal-linking';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
   const currentDate = new Date();
 
-  // Static Pages
+  const sitemapStructure = internalLinking.generateSitemapStructure();
+
   const staticPages: MetadataRoute.Sitemap = [
     {
-      url: BASE_URL,
+      url: baseUrl,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/about`,
+      url: `${baseUrl}/about`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/contact`,
+      url: `${baseUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: 0.7,
+      priority: 0.9,
     },
     {
-      url: `${BASE_URL}/contractors`,
+      url: `${baseUrl}/services`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/locations`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/contractors`,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 0.9,
     },
-    {
-      url: `${BASE_URL}/services`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
   ];
 
-  // Service Pillar Pages
-  const servicePillarPages: MetadataRoute.Sitemap = SERVICE_PILLARS.map((pillar) => ({
-    url: `${BASE_URL}/services/${pillar.slug}`,
+  const servicePages: MetadataRoute.Sitemap = sitemapStructure.services.map((page) => ({
+    url: `${baseUrl}${page.url}`,
     lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.9,
+    changeFrequency: page.changefreq as 'weekly',
+    priority: page.priority,
   }));
 
-  // Client Sector Pages
-  const sectorPages: MetadataRoute.Sitemap = CLIENT_SECTORS.map((sector) => ({
-    url: `${BASE_URL}/sectors/${sector.slug}`,
+  const locationPages: MetadataRoute.Sitemap = sitemapStructure.locations.map((page) => ({
+    url: `${baseUrl}${page.url}`,
     lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.8,
+    changeFrequency: page.changefreq as 'monthly',
+    priority: page.priority,
   }));
 
-  // Location Pages (State level)
-  const statePages: MetadataRoute.Sitemap = AUSTRALIAN_LOCATIONS.map((location) => ({
-    url: `${BASE_URL}/locations/${location.code.toLowerCase()}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.85,
-  }));
-
-  // Location Pages (City level)
-  const cityPages: MetadataRoute.Sitemap = AUSTRALIAN_LOCATIONS.map((location) => ({
-    url: `${BASE_URL}/locations/${location.code.toLowerCase()}/${location.capital.toLowerCase().replace(/\s+/g, '-')}`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.85,
-  }));
-
-  // Service + Location Combinations (High-value local SEO pages)
-  const serviceLocationPages: MetadataRoute.Sitemap = SERVICE_PILLARS.flatMap((pillar) =>
-    AUSTRALIAN_LOCATIONS.map((location) => ({
-      url: `${BASE_URL}/services/${pillar.slug}/${location.capital.toLowerCase().replace(/\s+/g, '-')}`,
+  const serviceLocationPages: MetadataRoute.Sitemap = sitemapStructure.serviceLocations.map(
+    (page) => ({
+      url: `${baseUrl}${page.url}`,
       lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    }))
+      changeFrequency: page.changefreq as 'monthly',
+      priority: page.priority,
+    })
   );
 
-  // Emergency Services Pages
-  const emergencyPages: MetadataRoute.Sitemap = [
-    {
-      url: `${BASE_URL}/emergency`,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/emergency/24-7`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-  ];
-
-  // Combine all pages
-  return [
-    ...staticPages,
-    ...servicePillarPages,
-    ...sectorPages,
-    ...statePages,
-    ...cityPages,
-    ...serviceLocationPages,
-    ...emergencyPages,
-  ];
+  return [...staticPages, ...servicePages, ...locationPages, ...serviceLocationPages];
 }
