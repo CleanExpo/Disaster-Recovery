@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRPG Inspection Report - {{reportNumber}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cover Page */
+        .cover-page {
+            page-break-after: always;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cover-logo {
+            max-width: 300px;
+            margin-bottom: 40px;
+        }
+
+        .cover-title {
+            font-size: 32pt;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 20px;
+        }
+
+        .cover-subtitle {
+            font-size: 18pt;
+            color: #4a5568;
+            margin-bottom: 40px;
+        }
+
+        .cover-details {
+            font-size: 14pt;
+            color: #2d3748;
+            line-height: 2;
+        }
+
+        /* Section Headers */
+        .section {
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a365d;
+            border-bottom: 3px solid #3182ce;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .subsection-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2d3748;
+            margin: 20px 0 10px 0;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            padding: 10px;
+            background: #f7fafc;
+            border-left: 4px solid #3182ce;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #4a5568;
+            font-size: 10pt;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #2d3748;
+            font-size: 11pt;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+
+        th {
+            background: #2d3748;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 10pt;
+        }
+
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .photo-item {
+            page-break-inside: avoid;
+        }
+
+        .photo-img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+        }
+
+        .photo-caption {
+            font-size: 9pt;
+            color: #4a5568;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Damage Assessment */
+        .severity-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 10pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .severity-low { background: #c6f6d5; color: #22543d; }
+        .severity-medium { background: #feebc8; color: #7c2d12; }
+        .severity-high { background: #fed7d7; color: #742a2a; }
+        .severity-severe { background: #feb2b2; color: #63171b; }
+
+        /* Cost Breakdown */
+        .cost-summary {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 11pt;
+        }
+
+        .cost-total {
+            font-size: 16pt;
+            font-weight: bold;
+            color: #1a365d;
+            border-top: 3px solid #3182ce;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* Compliance */
+        .compliance-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-left: 4px solid #cbd5e0;
+            background: #f7fafc;
+        }
+
+        .compliance-compliant {
+            border-left-color: #48bb78;
+        }
+
+        .compliance-non-compliant {
+            border-left-color: #f56565;
+        }
+
+        .compliance-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 9pt;
+            font-weight: bold;
+        }
+
+        .status-compliant {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-non-compliant {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        /* Recommendations */
+        .recommendation {
+            margin: 15px 0;
+            padding: 15px;
+            border-left: 4px solid #cbd5e0;
+            background: #fffaf0;
+        }
+
+        .priority-high {
+            border-left-color: #f56565;
+        }
+
+        .priority-medium {
+            border-left-color: #ed8936;
+        }
+
+        .priority-low {
+            border-left-color: #48bb78;
+        }
+
+        /* Signatures */
+        .signature-section {
+            margin: 40px 0;
+            page-break-inside: avoid;
+        }
+
+        .signature-box {
+            border: 1px solid #cbd5e0;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        .signature-img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .signature-line {
+            border-top: 2px solid #2d3748;
+            margin: 30px 0 10px 0;
+            width: 300px;
+        }
+
+        /* Footer */
+        .report-footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            font-size: 9pt;
+            color: #718096;
+            text-align: center;
+        }
+
+        /* Watermark */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 72pt;
+            color: rgba(0, 0, 0, 0.05);
+            font-weight: bold;
+            z-index: -1;
+        }
+
+        /* Page Breaks */
+        .page-break {
+            page-break-after: always;
+        }
+
+        @media print {
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    {{#if watermark}}
+    <div class="watermark">{{watermark}}</div>
+    {{/if}}
+
+    <div class="container">
+        <!-- COVER PAGE -->
+        <div class="cover-page">
+            {{#if branding.logo}}
+            <img src="{{branding.logo}}" alt="NRPG Logo" class="cover-logo">
+            {{else}}
+            <h1 style="font-size: 48pt; color: #1a365d;">NRPG</h1>
+            {{/if}}
+
+            <div class="cover-title">
+                Inspection Report
+            </div>
+
+            <div class="cover-subtitle">
+                Professional Disaster Recovery Assessment
+            </div>
+
+            <div class="cover-details">
+                <strong>Report Number:</strong> {{reportNumber}}<br>
+                <strong>Date:</strong> {{formatDate reportDate}}<br>
+                <strong>Property:</strong> {{property.address}}<br>
+                <strong>Inspector:</strong> {{inspectorName}}
+            </div>
+        </div>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="section">
+            <h2 class="section-title">Executive Summary</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Report Number</div>
+                    <div class="info-value">{{reportNumber}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Report Date</div>
+                    <div class="info-value">{{formatDate reportDate}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Inspection Date</div>
+                    <div class="info-value">{{formatDate inspectionDate}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Inspector</div>
+                    <div class="info-value">{{inspectorName}}</div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Inspector Certifications</h3>
+            <ul>
+                {{#each inspectorCertifications}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <!-- PROPERTY INFORMATION -->
+        <div class="section">
+            <h2 class="section-title">Property Information</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Address</div>
+                    <div class="info-value">{{property.address}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">City</div>
+                    <div class="info-value">{{property.city}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">State</div>
+                    <div class="info-value">{{property.state}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Postcode</div>
+                    <div class="info-value">{{property.postcode}}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Property Type</div>
+                    <div class="info-value">{{property.propertyType}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLIENT INFORMATION -->
+        <div class="section">
+            <h2 class="section-title">Client Information</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Name</div>
+                    <div class="info-value">{{client.name}}</div>
+                </div>
+                {{#if client.email}}
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">{{client.email}}</div>
+                </div>
+                {{/if}}
+                {{#if client.phone}}
+                <div class="info-item">
+                    <div class="info-label">Phone</div>
+                    <div class="info-value">{{client.phone}}</div>
+                </div>
+                {{/if}}
+                {{#if client.insuranceProvider}}
+                <div class="info-item">
+                    <div class="info-label">Insurance Provider</div>
+                    <div class="info-value">{{client.insuranceProvider}}</div>
+                </div>
+                {{/if}}
+                {{#if client.claimNumber}}
+                <div class="info-item">
+                    <div class="info-label">Claim Number</div>
+                    <div class="info-value">{{client.claimNumber}}</div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <!-- DAMAGE ASSESSMENT -->
+        <div class="section page-break">
+            <h2 class="section-title">Damage Assessment</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Damage Type</div>
+                    <div class="info-value">{{uppercase damage.type}}</div>
+                </div>
+                {{#if damage.category}}
+                <div class="info-item">
+                    <div class="info-label">Category</div>
+                    <div class="info-value">{{damage.category}}</div>
+                </div>
+                {{/if}}
+                <div class="info-item">
+                    <div class="info-label">Severity</div>
+                    <div class="info-value">
+                        <span class="severity-badge severity-{{lowercase damage.severity}}">
+                            {{damage.severity}}
+                        </span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Affected Area</div>
+                    <div class="info-value">{{formatNumber damage.affectedArea}} m²</div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Description</h3>
+            <p>{{damage.description}}</p>
+        </div>
+
+        <!-- DAMAGE AREAS (ROOM BY ROOM) -->
+        {{#if damageAreas}}
+        <div class="section">
+            <h2 class="section-title">Damage Areas (Room by Room)</h2>
+
+            {{#each damageAreas}}
+            <div class="subsection" style="margin: 20px 0; padding: 15px; background: #f7fafc; border-left: 4px solid #3182ce;">
+                <h3 class="subsection-title">{{roomName}}</h3>
+                <p><strong>Damage Type:</strong> {{damageType}}</p>
+                <p><strong>Severity:</strong> <span class="severity-badge severity-{{lowercase severity}}">{{severity}}</span></p>
+                <p><strong>Affected Area:</strong> {{formatNumber affectedArea}} m²</p>
+
+                {{#if moistureReadings}}
+                <h4 style="margin-top: 15px;">Moisture Readings</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Reading (%)</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each moistureReadings}}
+                        <tr>
+                            <td>{{location}}</td>
+                            <td>{{formatNumber reading 1}}%</td>
+                            <td>{{formatDateTime timestamp}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{/if}}
+
+                {{#if notes}}
+                <p style="margin-top: 10px;"><strong>Notes:</strong> {{notes}}</p>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        <!-- PHOTOS -->
+        {{#if includePhotos}}
+        {{#if photos}}
+        <div class="section page-break">
+            <h2 class="section-title">Photographic Evidence</h2>
+
+            <div class="photo-grid">
+                {{#each photos}}
+                <div class="photo-item">
+                    <img src="{{url}}" alt="{{caption}}" class="photo-img">
+                    <p class="photo-caption">
+                        <strong>{{caption}}</strong><br>
+                        {{#if location}}Location: {{location}}<br>{{/if}}
+                        {{#if timestamp}}{{formatDateTime timestamp}}{{/if}}
+                    </p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+        {{/if}}
+
+        <!-- COST BREAKDOWN -->
+        {{#if includeCostBreakdown}}
+        {{#if costEstimate}}
+        <div class="section page-break">
+            <h2 class="section-title">Cost Estimate</h2>
+
+            <h3 class="subsection-title">Labor</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Level</th>
+                        <th>Hours</th>
+                        <th>Rate</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each costEstimate.laborLineItems}}
+                    <tr>
+                        <td>{{description}}</td>
+                        <td>{{iicrcLevel}}</td>
+                        <td>{{formatNumber hours 1}}</td>
+                        <td>{{formatCurrency hourlyRate}}</td>
+                        <td>{{formatCurrency subtotal}}</td>
+                    </tr>
+                    {{/each}}
+                    <tr style="background: #edf2f7; font-weight: bold;">
+                        <td colspan="4">Labor Subtotal</td>
+                        <td>{{formatCurrency costEstimate.totals.laborSubtotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title">Materials</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Unit</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each costEstimate.materialLineItems}}
+                    <tr>
+                        <td>{{description}}</td>
+                        <td>{{unit}}</td>
+                        <td>{{formatNumber quantity 1}}</td>
+                        <td>{{formatCurrency unitPrice}}</td>
+                        <td>{{formatCurrency subtotal}}</td>
+                    </tr>
+                    {{/each}}
+                    <tr style="background: #edf2f7; font-weight: bold;">
+                        <td colspan="4">Materials Subtotal</td>
+                        <td>{{formatCurrency costEstimate.totals.materialSubtotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title">Equipment Rental</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Days</th>
+                        <th>Daily Rate</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each costEstimate.equipmentLineItems}}
+                    <tr>
+                        <td>{{description}}</td>
+                        <td>{{daysRented}}</td>
+                        <td>{{formatCurrency dailyRate}}</td>
+                        <td>{{formatCurrency subtotal}}</td>
+                    </tr>
+                    {{/each}}
+                    <tr style="background: #edf2f7; font-weight: bold;">
+                        <td colspan="3">Equipment Subtotal</td>
+                        <td>{{formatCurrency costEstimate.totals.equipmentSubtotal}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cost-summary">
+                <div class="cost-row">
+                    <span>Subtotal (ex GST):</span>
+                    <strong>{{formatCurrency costEstimate.totals.subtotal}}</strong>
+                </div>
+                <div class="cost-row">
+                    <span>GST (10%):</span>
+                    <strong>{{formatCurrency costEstimate.totals.gst}}</strong>
+                </div>
+                <div class="cost-row cost-total">
+                    <span>TOTAL (inc GST):</span>
+                    <span>{{formatCurrency costEstimate.totals.totalIncludingGST}}</span>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/if}}
+
+        <!-- COMPLIANCE -->
+        {{#if includeCompliance}}
+        {{#if compliance}}
+        <div class="section page-break">
+            <h2 class="section-title">Compliance & Standards</h2>
+
+            <h3 class="subsection-title">Jurisdiction Rules</h3>
+            {{#each compliance.jurisdictionRules}}
+            <div class="compliance-item compliance-{{lowercase status}}">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong>{{description}}</strong>
+                    <span class="compliance-status status-{{lowercase status}}">{{status}}</span>
+                </div>
+                {{#if notes}}
+                <p style="margin-top: 10px; font-size: 10pt;">{{notes}}</p>
+                {{/if}}
+            </div>
+            {{/each}}
+
+            <h3 class="subsection-title">IICRC Standards Applied</h3>
+            {{#each compliance.iicrcStandards}}
+            {{#if applicable}}
+            <div style="margin: 15px 0; padding: 15px; background: #f0fff4; border-left: 4px solid #48bb78;">
+                <strong>{{standardId}}</strong> - {{title}}
+                {{#if sections}}
+                <p style="margin-top: 10px; font-size: 10pt;">
+                    <strong>Sections:</strong> {{#each sections}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+                </p>
+                {{/if}}
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+        {{/if}}
+        {{/if}}
+
+        <!-- RECOMMENDATIONS -->
+        {{#if recommendations}}
+        <div class="section page-break">
+            <h2 class="section-title">Recommendations</h2>
+
+            {{#each recommendations}}
+            <div class="recommendation priority-{{lowercase priority}}">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="background: #{{#eq priority 'HIGH'}}f56565{{/eq}}{{#eq priority 'MEDIUM'}}ed8936{{/eq}}{{#eq priority 'LOW'}}48bb78{{/eq}}; color: white; padding: 5px 15px; border-radius: 12px; font-size: 9pt; font-weight: bold;">
+                        {{priority}} PRIORITY
+                    </span>
+                    {{#if estimatedCost}}
+                    <strong>Estimated: {{formatCurrency estimatedCost}}</strong>
+                    {{/if}}
+                </div>
+                <p>{{description}}</p>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        <!-- SIGNATURES -->
+        {{#if includeSignature}}
+        {{#if signatures}}
+        <div class="section page-break">
+            <h2 class="section-title">Signatures</h2>
+
+            {{#if signatures.inspector}}
+            <div class="signature-section">
+                <h3 class="subsection-title">Inspector</h3>
+                <div class="signature-box">
+                    {{#if signatures.inspector.signature}}
+                    <img src="{{signatures.inspector.signature}}" alt="Inspector Signature" class="signature-img">
+                    {{else}}
+                    <div class="signature-line"></div>
+                    {{/if}}
+                    <p><strong>Name:</strong> {{signatures.inspector.name}}</p>
+                    <p><strong>Date:</strong> {{formatDate signatures.inspector.date}}</p>
+                </div>
+            </div>
+            {{/if}}
+
+            {{#if signatures.client}}
+            <div class="signature-section">
+                <h3 class="subsection-title">Client Acknowledgment</h3>
+                <div class="signature-box">
+                    {{#if signatures.client.signature}}
+                    <img src="{{signatures.client.signature}}" alt="Client Signature" class="signature-img">
+                    {{else}}
+                    <div class="signature-line"></div>
+                    {{/if}}
+                    <p><strong>Name:</strong> {{signatures.client.name}}</p>
+                    {{#if signatures.client.date}}
+                    <p><strong>Date:</strong> {{formatDate signatures.client.date}}</p>
+                    {{/if}}
+                </div>
+            </div>
+            {{/if}}
+        </div>
+        {{/if}}
+        {{/if}}
+
+        <!-- FOOTER -->
+        <div class="report-footer">
+            <p>
+                <strong>{{#if branding.companyName}}{{branding.companyName}}{{else}}National Restoration Property Group{{/if}}</strong><br>
+                {{#if branding.contactInfo}}{{branding.contactInfo}}<br>{{/if}}
+                {{#if branding.website}}{{branding.website}}<br>{{/if}}
+                Generated: {{formatDateTime generatedAt}}
+            </p>
+            <p style="margin-top: 20px; font-size: 8pt; color: #a0aec0;">
+                This report is confidential and intended solely for the use of the named client and their authorized representatives.
+                Unauthorized reproduction or distribution is strictly prohibited.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
