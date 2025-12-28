@@ -15,6 +15,20 @@
         "avgAnnualStorms": 45,
         "avgAnnualFires": 8,
         "avgHumidity": 65
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["sydneybusiness.com.au", "sydneylocal.com.au", "nsw-business-directory.com.au"],
+        "mediaOutlets": ["smh.com.au", "dailytelegraph.com.au", "9news.com.au/sydney"],
+        "chamberOfCommerce": "nswbc.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "high",
+        "searchVolume": {
+          "water damage sydney": 1900,
+          "flood restoration sydney": 720,
+          "fire damage restoration sydney": 480,
+          "mould removal sydney": 1300
+        }
       }
     },
     {
@@ -32,6 +46,20 @@
         "avgAnnualStorms": 38,
         "avgAnnualFires": 15,
         "avgHumidity": 60
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["melbournebusiness.com.au", "victoriandirectory.com.au"],
+        "mediaOutlets": ["theage.com.au", "heraldsun.com.au", "9news.com.au/melbourne"],
+        "chamberOfCommerce": "victorianchamber.com.au",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "high",
+        "searchVolume": {
+          "water damage melbourne": 1600,
+          "fire restoration melbourne": 590,
+          "mould removal melbourne": 1100,
+          "flood damage melbourne": 480
+        }
       }
     },
     {
@@ -49,6 +77,20 @@
         "avgAnnualStorms": 55,
         "avgAnnualFires": 5,
         "avgHumidity": 70
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["brisbanedirectory.com.au", "qldbusiness.com.au"],
+        "mediaOutlets": ["brisbanetimes.com.au", "couriermail.com.au", "7news.com.au/brisbane"],
+        "chamberOfCommerce": "cciq.com.au",
+        "primaryServices": ["flood-restoration", "water-damage-restoration", "storm-damage-restoration"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "flood restoration brisbane": 880,
+          "water damage brisbane": 1200,
+          "storm damage brisbane": 390,
+          "mould removal brisbane": 720
+        }
       }
     },
     {
@@ -66,6 +108,20 @@
         "avgAnnualStorms": 25,
         "avgAnnualFires": 22,
         "avgHumidity": 55
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["perthbusiness.com.au", "wadirectory.com.au"],
+        "mediaOutlets": ["perthnow.com.au", "watoday.com.au", "7news.com.au/perth"],
+        "chamberOfCommerce": "cciwa.com",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "biohazard-cleanup"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "fire restoration perth": 480,
+          "water damage perth": 880,
+          "bushfire damage restoration perth": 320,
+          "mould removal perth": 590
+        }
       }
     },
     {
@@ -83,6 +139,20 @@
         "avgAnnualStorms": 30,
         "avgAnnualFires": 18,
         "avgHumidity": 58
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["adelaidebusiness.com.au", "sabusiness.com.au"],
+        "mediaOutlets": ["adelaidenow.com.au", "indaily.com.au"],
+        "chamberOfCommerce": "business-sa.com",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage adelaide": 590,
+          "fire restoration adelaide": 320,
+          "mould removal adelaide": 480,
+          "flood damage adelaide": 260
+        }
       }
     },
     {
@@ -100,6 +170,20 @@
         "avgAnnualStorms": 28,
         "avgAnnualFires": 12,
         "avgHumidity": 52
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["canberradirectory.com.au", "actbusiness.com.au"],
+        "mediaOutlets": ["canberratimes.com.au", "riotact.com"],
+        "chamberOfCommerce": "canberrabusiness.com",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage canberra": 320,
+          "fire restoration canberra": 210,
+          "bushfire damage canberra": 170,
+          "mould removal canberra": 260
+        }
       }
     },
     {
@@ -117,6 +201,20 @@
         "avgAnnualStorms": 42,
         "avgAnnualFires": 8,
         "avgHumidity": 62
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["hobartdirectory.com.au", "tasmaniadirectory.com.au"],
+        "mediaOutlets": ["themercury.com.au", "abc.net.au/hobart"],
+        "chamberOfCommerce": "tcci.com.au",
+        "primaryServices": ["water-damage-restoration", "storm-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage hobart": 170,
+          "storm damage hobart": 140,
+          "mould removal hobart": 210,
+          "flood restoration hobart": 110
+        }
       }
     },
     {
@@ -134,6 +232,20 @@
         "avgAnnualStorms": 68,
         "avgAnnualFires": 3,
         "avgHumidity": 75
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["darwindirectory.com.au", "ntbusiness.com.au"],
+        "mediaOutlets": ["ntnews.com.au", "abc.net.au/darwin"],
+        "chamberOfCommerce": "chambernt.com.au",
+        "primaryServices": ["flood-restoration", "storm-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "cyclone damage darwin": 260,
+          "flood restoration darwin": 210,
+          "water damage darwin": 170,
+          "mould removal darwin": 140
+        }
       }
     },
     {
@@ -151,6 +263,20 @@
         "avgAnnualStorms": 50,
         "avgAnnualFires": 4,
         "avgHumidity": 72
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["goldcoastdirectory.com.au", "goldcoastbusiness.com.au"],
+        "mediaOutlets": ["goldcoastbulletin.com.au", "9news.com.au/gold-coast"],
+        "chamberOfCommerce": "goldcoast.com.au",
+        "primaryServices": ["flood-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage gold coast": 480,
+          "flood restoration gold coast": 320,
+          "storm damage gold coast": 210,
+          "mould removal gold coast": 390
+        }
       }
     },
     {
@@ -168,6 +294,20 @@
         "avgAnnualStorms": 40,
         "avgAnnualFires": 7,
         "avgHumidity": 67
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["newcastledirectory.com.au", "huntervalleybusiness.com.au"],
+        "mediaOutlets": ["newcastleherald.com.au", "nbnnews.com.au"],
+        "chamberOfCommerce": "huntervalleybusinesschamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "storm-damage-restoration"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage newcastle": 390,
+          "flood restoration newcastle": 260,
+          "mould removal newcastle": 320,
+          "storm damage newcastle": 170
+        }
       }
     },
     {
@@ -185,6 +325,20 @@
         "avgAnnualStorms": 43,
         "avgAnnualFires": 6,
         "avgHumidity": 66
+      },
+      "localSeo": {
+        "serviceRadius": 35,
+        "localDirectories": ["wollongongdirectory.com.au", "illawarra.com.au"],
+        "mediaOutlets": ["illawarramercury.com.au"],
+        "chamberOfCommerce": "illawarrabusinesschamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage wollongong": 210,
+          "flood restoration wollongong": 140,
+          "mould removal wollongong": 170,
+          "storm damage wollongong": 110
+        }
       }
     },
     {
@@ -202,6 +356,20 @@
         "avgAnnualStorms": 52,
         "avgAnnualFires": 5,
         "avgHumidity": 71
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["sunshinecoastdirectory.com.au", "sunshinecoast.qld.gov.au"],
+        "mediaOutlets": ["sunshinecoastdaily.com.au"],
+        "chamberOfCommerce": "sunshinecoastchamber.com.au",
+        "primaryServices": ["flood-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage sunshine coast": 260,
+          "flood restoration sunshine coast": 170,
+          "mould removal sunshine coast": 210,
+          "storm damage sunshine coast": 140
+        }
       }
     },
     {
@@ -219,6 +387,20 @@
         "avgAnnualStorms": 35,
         "avgAnnualFires": 14,
         "avgHumidity": 61
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["geelongdirectory.com.au", "geelongbusiness.com.au"],
+        "mediaOutlets": ["geelongadvertiser.com.au"],
+        "chamberOfCommerce": "geelongchamber.com.au",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage geelong": 210,
+          "fire restoration geelong": 140,
+          "mould removal geelong": 170,
+          "flood damage geelong": 110
+        }
       }
     },
     {
@@ -236,6 +418,20 @@
         "avgAnnualStorms": 60,
         "avgAnnualFires": 4,
         "avgHumidity": 73
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["townsvilledirectory.com.au", "nqbusiness.com.au"],
+        "mediaOutlets": ["townsvillebulletin.com.au"],
+        "chamberOfCommerce": "townsvillechamber.com.au",
+        "primaryServices": ["flood-restoration", "cyclone-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "flood restoration townsville": 210,
+          "cyclone damage townsville": 170,
+          "water damage townsville": 140,
+          "mould removal townsville": 110
+        }
       }
     },
     {
@@ -253,6 +449,20 @@
         "avgAnnualStorms": 65,
         "avgAnnualFires": 3,
         "avgHumidity": 76
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["cairnsdirectory.com.au", "fnqbusiness.com.au"],
+        "mediaOutlets": ["cairnspost.com.au"],
+        "chamberOfCommerce": "cairnschamber.com.au",
+        "primaryServices": ["cyclone-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "cyclone damage cairns": 260,
+          "flood restoration cairns": 210,
+          "water damage cairns": 170,
+          "mould removal cairns": 140
+        }
       }
     },
     {
@@ -270,6 +480,20 @@
         "avgAnnualStorms": 48,
         "avgAnnualFires": 6,
         "avgHumidity": 68
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["toowoombadirectory.com.au", "darlingdownsbusiness.com.au"],
+        "mediaOutlets": ["thechronicle.com.au"],
+        "chamberOfCommerce": "toowoombachamber.com.au",
+        "primaryServices": ["flood-restoration", "storm-damage-restoration", "water-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "flood restoration toowoomba": 110,
+          "water damage toowoomba": 90,
+          "storm damage toowoomba": 70,
+          "mould removal toowoomba": 90
+        }
       }
     },
     {
@@ -287,6 +511,20 @@
         "avgAnnualStorms": 32,
         "avgAnnualFires": 16,
         "avgHumidity": 59
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["ballaratdirectory.com.au"],
+        "mediaOutlets": ["thecourier.com.au"],
+        "chamberOfCommerce": "ballaratbusiness.com.au",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage ballarat": 90,
+          "fire restoration ballarat": 70,
+          "mould removal ballarat": 70,
+          "flood damage ballarat": 50
+        }
       }
     },
     {
@@ -304,6 +542,20 @@
         "avgAnnualStorms": 30,
         "avgAnnualFires": 17,
         "avgHumidity": 57
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["bendigodirectory.com.au"],
+        "mediaOutlets": ["bendigoadvertiser.com.au"],
+        "chamberOfCommerce": "bendigobusiness.com.au",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage bendigo": 70,
+          "fire restoration bendigo": 50,
+          "mould removal bendigo": 50,
+          "bushfire damage bendigo": 40
+        }
       }
     },
     {
@@ -321,6 +573,20 @@
         "avgAnnualStorms": 33,
         "avgAnnualFires": 13,
         "avgHumidity": 60
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["alburydirectory.com.au", "bordermailbusiness.com.au"],
+        "mediaOutlets": ["bordermail.com.au"],
+        "chamberOfCommerce": "alburywodongabusiness.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "fire-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage albury": 50,
+          "flood restoration albury": 40,
+          "fire damage albury": 30,
+          "mould removal albury": 40
+        }
       }
     },
     {
@@ -338,6 +604,20 @@
         "avgAnnualStorms": 44,
         "avgAnnualFires": 9,
         "avgHumidity": 63
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["launcestondirectory.com.au"],
+        "mediaOutlets": ["examiner.com.au"],
+        "chamberOfCommerce": "launcestonchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage launceston": 50,
+          "flood restoration launceston": 30,
+          "mould removal launceston": 40,
+          "storm damage launceston": 30
+        }
       }
     },
     {
@@ -355,6 +635,20 @@
         "avgAnnualStorms": 58,
         "avgAnnualFires": 4,
         "avgHumidity": 74
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["mackaydirectory.com.au"],
+        "mediaOutlets": ["dailymercury.com.au"],
+        "chamberOfCommerce": "mackaychamber.com.au",
+        "primaryServices": ["cyclone-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "cyclone damage mackay": 90,
+          "flood restoration mackay": 70,
+          "water damage mackay": 50,
+          "mould removal mackay": 50
+        }
       }
     },
     {
@@ -372,6 +666,20 @@
         "avgAnnualStorms": 56,
         "avgAnnualFires": 5,
         "avgHumidity": 72
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["rockhamptondirectory.com.au"],
+        "mediaOutlets": ["themorningbulletin.com.au"],
+        "chamberOfCommerce": "rockhamptonregion.com.au",
+        "primaryServices": ["flood-restoration", "cyclone-damage-restoration", "water-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "flood restoration rockhampton": 70,
+          "water damage rockhampton": 50,
+          "cyclone damage rockhampton": 50,
+          "mould removal rockhampton": 40
+        }
       }
     },
     {
@@ -389,6 +697,20 @@
         "avgAnnualStorms": 26,
         "avgAnnualFires": 20,
         "avgHumidity": 56
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["bunburydirectory.com.au", "southwestbusiness.com.au"],
+        "mediaOutlets": ["bunburymail.com.au"],
+        "chamberOfCommerce": "swcci.org.au",
+        "primaryServices": ["fire-damage-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "fire restoration bunbury": 40,
+          "water damage bunbury": 30,
+          "bushfire damage bunbury": 30,
+          "mould removal bunbury": 30
+        }
       }
     },
     {
@@ -406,6 +728,20 @@
         "avgAnnualStorms": 41,
         "avgAnnualFires": 8,
         "avgHumidity": 68
+      },
+      "localSeo": {
+        "serviceRadius": 35,
+        "localDirectories": ["maitlanddirectory.com.au"],
+        "mediaOutlets": ["maitlandmercury.com.au"],
+        "chamberOfCommerce": "maitlandchamber.com.au",
+        "primaryServices": ["flood-restoration", "water-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "flood restoration maitland": 50,
+          "water damage maitland": 40,
+          "mould removal maitland": 30,
+          "storm damage maitland": 30
+        }
       }
     },
     {
@@ -423,6 +759,20 @@
         "avgAnnualStorms": 31,
         "avgAnnualFires": 14,
         "avgHumidity": 58
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["waggadirectory.com.au", "riverinabusiness.com.au"],
+        "mediaOutlets": ["dailyadvertiser.com.au"],
+        "chamberOfCommerce": "waggachamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "fire-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage wagga": 30,
+          "flood restoration wagga": 30,
+          "fire damage wagga": 20,
+          "mould removal wagga": 20
+        }
       }
     }
   ]

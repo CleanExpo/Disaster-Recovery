@@ -203,6 +203,7 @@ export class SchemaGenerator {
 
   /**
    * LocalBusiness Schema - For location pages
+   * Enhanced with GeoCircle service area, reviews, and detailed local SEO attributes
    */
   generateLocalBusinessSchema(location: {
     city: string;
@@ -211,29 +212,40 @@ export class SchemaGenerator {
     phone?: string;
     latitude?: number;
     longitude?: number;
+    serviceRadius?: number;
+    reviewCount?: number;
+    averageRating?: number;
   }) {
+    const citySlug = location.city.toLowerCase().replace(/\s/g, '-');
+    const stateSlug = location.state.toLowerCase();
+    const serviceRadiusMeters = (location.serviceRadius || 50) * 1000;
+
     return {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": `${BASE_URL}/locations/${location.state.toLowerCase()}/${location.city.toLowerCase().replace(/\s/g, '-')}#business`,
+      "@type": ["LocalBusiness", "EmergencyService", "ProfessionalService"],
+      "@id": `${BASE_URL}/locations/${stateSlug}/${citySlug}#business`,
       name: `NRPG Disaster Recovery - ${location.city}`,
+      alternateName: `Disaster Recovery ${location.city}`,
+      description: `24/7 emergency disaster recovery in ${location.city}, ${location.state}. IICRC-certified water damage, fire damage, mould remediation. 60-minute response. All insurers accepted.`,
       telephone: location.phone || EMERGENCY_PHONE.number,
+      url: `${BASE_URL}/locations/${stateSlug}/${citySlug}`,
+      email: "dispatch@nrpg.com.au",
 
       address: {
         "@type": "PostalAddress",
+        streetAddress: location.address || "",
         addressLocality: location.city,
         addressRegion: location.state,
         addressCountry: "AU",
       },
 
-      ...(location.latitude &&
-        location.longitude && {
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: location.latitude,
-            longitude: location.longitude,
-          },
-        }),
+      ...(location.latitude && location.longitude && {
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: location.latitude,
+          longitude: location.longitude,
+        },
+      }),
 
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
@@ -250,24 +262,167 @@ export class SchemaGenerator {
         closes: "23:59",
       },
 
-      priceRange: "$$",
+      // GeoCircle service area for local pack optimization
+      ...(location.latitude && location.longitude && {
+        areaServed: {
+          "@type": "GeoCircle",
+          geoMidpoint: {
+            "@type": "GeoCoordinates",
+            latitude: location.latitude,
+            longitude: location.longitude,
+          },
+          geoRadius: serviceRadiusMeters.toString(),
+        },
+      }),
 
-      areaServed: {
-        "@type": "City",
-        name: location.city,
-      },
+      priceRange: "$$",
+      paymentAccepted: "Cash, Credit Card, Insurance Direct Billing",
+      currenciesAccepted: "AUD",
+
+      // Aggregate rating for star display
+      ...(location.reviewCount && location.averageRating && {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: location.averageRating.toString(),
+          reviewCount: location.reviewCount.toString(),
+          bestRating: "5",
+          worstRating: "1",
+        },
+      }),
 
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: `Disaster Recovery Services - ${location.city}`,
-        itemListElement: SERVICE_PILLARS.map(pillar => ({
+        itemListElement: SERVICE_PILLARS.map((pillar, index) => ({
           "@type": "Offer",
+          position: index + 1,
           itemOffered: {
             "@type": "Service",
             name: `${pillar.title} - ${location.city}`,
+            description: `Professional ${pillar.title.toLowerCase()} services in ${location.city}`,
+            provider: { "@id": `${BASE_URL}/#organization` },
           },
         })),
       },
+
+      // Business attributes for local search signals
+      additionalProperty: [
+        { "@type": "PropertyValue", name: "Emergency Service", value: "Yes" },
+        { "@type": "PropertyValue", name: "24/7 Availability", value: "Yes" },
+        { "@type": "PropertyValue", name: "IICRC Certified", value: "Yes" },
+        { "@type": "PropertyValue", name: "Insurance Work Accepted", value: "Yes" },
+        { "@type": "PropertyValue", name: "Response Time", value: "60 minutes" },
+      ],
+
+      parentOrganization: { "@id": `${BASE_URL}/#organization` },
+      image: `${BASE_URL}/images/locations/${citySlug}-disaster-recovery.jpg`,
+      sameAs: [
+        "https://www.facebook.com/NRPGAustralia",
+        "https://www.linkedin.com/company/nrpg-australia",
+      ],
+    };
+  }
+
+  /**
+   * Enhanced LocalBusiness Schema with full GeoCircle service area
+   * For Google Local Pack optimization with population and local stats
+   */
+  generateEnhancedLocalBusinessSchema(location: {
+    city: string;
+    state: string;
+    stateCode: string;
+    latitude: number;
+    longitude: number;
+    serviceRadius?: number;
+    population?: number;
+    localStats?: {
+      avgAnnualFloods: number;
+      avgAnnualStorms: number;
+      avgAnnualFires: number;
+      avgHumidity: number;
+    };
+  }) {
+    const citySlug = location.city.toLowerCase().replace(/\s/g, '-');
+    const stateSlug = location.stateCode.toLowerCase();
+    const serviceRadiusMeters = (location.serviceRadius || 50) * 1000;
+
+    // Determine primary service based on local disaster stats
+    let primaryService = "Water Damage Restoration";
+    if (location.localStats) {
+      if (location.localStats.avgAnnualFires > location.localStats.avgAnnualFloods) {
+        primaryService = "Fire Damage Restoration";
+      } else if (location.localStats.avgHumidity > 70) {
+        primaryService = "Mould Remediation";
+      }
+    }
+
+    return {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "EmergencyService"],
+      "@id": `${BASE_URL}/locations/${stateSlug}/${citySlug}#enhanced-business`,
+      name: `NRPG Disaster Recovery - ${location.city}`,
+      image: [
+        `${BASE_URL}/images/locations/${citySlug}-team.jpg`,
+        `${BASE_URL}/images/locations/${citySlug}-equipment.jpg`,
+      ],
+      telephone: EMERGENCY_PHONE.number,
+      url: `${BASE_URL}/locations/${stateSlug}/${citySlug}`,
+
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: location.city,
+        addressRegion: location.state,
+        addressCountry: "AU",
+      },
+
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: location.latitude,
+        longitude: location.longitude,
+      },
+
+      areaServed: {
+        "@type": "GeoCircle",
+        geoMidpoint: {
+          "@type": "GeoCoordinates",
+          latitude: location.latitude,
+          longitude: location.longitude,
+        },
+        geoRadius: serviceRadiusMeters.toString(),
+      },
+
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "00:00",
+        closes: "23:59",
+      },
+
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: primaryService,
+            description: `Emergency ${primaryService.toLowerCase()} for ${location.city} residents`,
+          },
+        },
+        ...SERVICE_PILLARS.map(pillar => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: pillar.title },
+        })),
+      ],
+
+      ...(location.population && {
+        additionalProperty: {
+          "@type": "PropertyValue",
+          name: "Population Served",
+          value: location.population,
+        },
+      }),
+
+      priceRange: "$$",
+      paymentAccepted: "Cash, Credit Card, Bank Transfer, Insurance Direct Billing",
     };
   }
 
