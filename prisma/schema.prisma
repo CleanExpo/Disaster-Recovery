@@ -7,8 +7,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -24,14 +24,14 @@ enum UserType {
 }
 
 enum AustralianState {
-  NSW  // New South Wales
-  VIC  // Victoria
-  QLD  // Queensland
-  WA   // Western Australia
-  SA   // South Australia
-  TAS  // Tasmania
-  ACT  // Australian Capital Territory
-  NT   // Northern Territory
+  NSW // New South Wales
+  VIC // Victoria
+  QLD // Queensland
+  WA // Western Australia
+  SA // South Australia
+  TAS // Tasmania
+  ACT // Australian Capital Territory
+  NT // Northern Territory
 }
 
 enum IICRCCertificationLevel {
@@ -67,9 +67,9 @@ enum AustralianServiceType {
 }
 
 enum EmergencyResponseLevel {
-  URGENT    // < 2 hours
-  HIGH      // Same day
-  STANDARD  // Next business day
+  URGENT // < 2 hours
+  HIGH // Same day
+  STANDARD // Next business day
   SCHEDULED // Pre-arranged appointment
 }
 
@@ -149,18 +149,18 @@ enum MessageType {
 // ============================================================================
 
 model Tenant {
-  id                 String                @id @default(cuid())
-  name               String
-  domain             String?               @unique
-  subdomain          String?               @unique
-  logo               String?
-  primaryColor       String?
-  secondaryColor     String?
-  customCss          String?
-  industry           String?
-  isActive           Boolean               @default(true)
-  createdAt          DateTime              @default(now())
-  updatedAt          DateTime              @updatedAt
+  id             String   @id @default(cuid())
+  name           String
+  domain         String?  @unique
+  subdomain      String?  @unique
+  logo           String?
+  primaryColor   String?
+  secondaryColor String?
+  customCss      String?
+  industry       String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   // Relations
   contractorProfiles ContractorProfile[]
@@ -181,7 +181,7 @@ model TenantConfiguration {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  tenant    Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 
   @@unique([tenantId, key])
   @@map("tenant_configurations")
@@ -192,13 +192,13 @@ model TenantConfiguration {
 // ============================================================================
 
 model User {
-  id                    String                 @id @default(cuid())
-  email                 String                 @unique
-  name                  String?
-  password              String?
-  userType              UserType               @default(CLIENT)
-  googleId              String?                @unique
-  avatar                String?
+  id       String   @id @default(cuid())
+  email    String   @unique
+  name     String?
+  password String?
+  userType UserType @default(CLIENT)
+  googleId String?  @unique
+  avatar   String?
 
   // Australian Contact Info
   australianPhoneNumber String?
@@ -208,16 +208,16 @@ model User {
   streetAddress         String?
 
   // Account Status
-  isEmailVerified       Boolean                @default(false)
-  emailVerificationToken String?
+  isEmailVerified              Boolean   @default(false)
+  emailVerificationToken       String?
   emailVerificationTokenExpiry DateTime?
-  isActive              Boolean                @default(true)
-  isBlocked             Boolean                @default(false)
-  lastLoginAt           DateTime?
+  isActive                     Boolean   @default(true)
+  isBlocked                    Boolean   @default(false)
+  lastLoginAt                  DateTime?
 
-  tenantId              String?
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
+  tenantId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   tenant                Tenant?                @relation(fields: [tenantId], references: [id])
@@ -260,20 +260,20 @@ model UserPreferences {
   brandingColor        String?
   selectedTheme        String?
 
-  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("user_preferences")
 }
 
 model LoginAttempt {
-  id         String   @id @default(cuid())
-  userId     String
-  ipAddress  String
-  userAgent  String
-  success    Boolean
+  id          String   @id @default(cuid())
+  userId      String
+  ipAddress   String
+  userAgent   String
+  success     Boolean
   attemptedAt DateTime @default(now())
 
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([ipAddress])
@@ -281,15 +281,15 @@ model LoginAttempt {
 }
 
 model VerificationToken {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   userId    String
-  token     String   @unique
-  type      String   // "EMAIL_VERIFICATION", "PASSWORD_RESET", "2FA"
+  token     String    @unique
+  type      String // "EMAIL_VERIFICATION", "PASSWORD_RESET", "2FA"
   expiresAt DateTime
   usedAt    DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([token])
@@ -307,30 +307,30 @@ model Contractor {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Business Information
-  businessName                String
-  abnNumber                   String?   @unique // Australian Business Number
-  acnNumber                   String?   @unique // Australian Company Number
-  businessRegistrationDate    DateTime?
+  businessName             String
+  abnNumber                String?   @unique // Australian Business Number
+  acnNumber                String?   @unique // Australian Company Number
+  businessRegistrationDate DateTime?
 
   // Location Information
-  primaryPostcode             String?
-  primaryState                AustralianState?
-  operatingStates             AustralianState[]
+  primaryPostcode String?
+  primaryState    AustralianState?
+  operatingStates AustralianState[]
 
   // IICRC Certifications
-  iicrcCertifications         IICRCCertification[] @relation("ContractorCertifications")
+  iicrcCertifications IICRCCertification[] @relation("ContractorCertifications")
 
   // Service Areas
-  serviceAreas                ContractorServiceArea[] @relation("ServiceAreas")
+  serviceAreas ContractorServiceArea[] @relation("ServiceAreas")
 
   // NRPG Membership
-  nrpgMemberId                String?   @unique // National Restoration Professionals Group
-  nrpgVerifiedAt              DateTime?
-  nrpgVerificationLevel       String?   // "VERIFIED", "PENDING", "SUSPENDED", "REJECTED"
+  nrpgMemberId          String?   @unique // National Restoration Professionals Group
+  nrpgVerifiedAt        DateTime?
+  nrpgVerificationLevel String? // "VERIFIED", "PENDING", "SUSPENDED", "REJECTED"
 
   // Australian Service Specialties
-  australianSpecialties       AustralianServiceType[]
-  supportedEmergencyLevels    EmergencyResponseLevel[]
+  australianSpecialties    AustralianServiceType[]
+  supportedEmergencyLevels EmergencyResponseLevel[]
 
   // Insurance Details
   publicLiabilityPolicyNumber String?
@@ -339,30 +339,30 @@ model Contractor {
   workCoverExpiryDate         DateTime?
 
   // Performance Metrics
-  completedJobs               Int       @default(0)
-  averageRating               Decimal   @default(0.00) // 0-5 stars
-  averageResponseTimeMinutes  Int       @default(0)
-  isVerified                  Boolean   @default(false)
-  verificationDate            DateTime?
+  completedJobs              Int       @default(0)
+  averageRating              Decimal   @default(0.00) // 0-5 stars
+  averageResponseTimeMinutes Int       @default(0)
+  isVerified                 Boolean   @default(false)
+  verificationDate           DateTime?
 
   // Background Check
-  lastBackgroundCheckDate     DateTime?
-  backgroundCheckStatus       String?   // "PASS", "FAIL", "PENDING"
+  lastBackgroundCheckDate DateTime?
+  backgroundCheckStatus   String? // "PASS", "FAIL", "PENDING"
 
   // Status
-  isActive                    Boolean   @default(true)
-  isSuspended                 Boolean   @default(false)
-  suspensionReason            String?
+  isActive         Boolean @default(true)
+  isSuspended      Boolean @default(false)
+  suspensionReason String?
 
   // Audit
-  createdAt                   DateTime  @default(now())
-  updatedAt                   DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
-  bookings                    Booking[] @relation("ContractorBookings")
-  payments                    Payment[] @relation("ContractorPayments")
-  auInvoices                  InvoiceAU[] @relation("ContractorInvoices")
-  ratings                     Rating[]
+  bookings   Booking[]   @relation("ContractorBookings")
+  payments   Payment[]   @relation("ContractorPayments")
+  auInvoices InvoiceAU[] @relation("ContractorInvoices")
+  ratings    Rating[]
 
   @@index([businessName])
   @@index([primaryState])
@@ -380,28 +380,28 @@ model IICRCCertification {
 
   // Certification Details
   certificationLevel IICRCCertificationLevel
-  certificationCode  String @unique
+  certificationCode  String                  @unique
   certificationDate  DateTime
   expiryDate         DateTime
   verificationDate   DateTime?
 
   // Status
-  isActive           Boolean @default(true)
-  verifiedBy         String?
+  isActive   Boolean @default(true)
+  verifiedBy String?
 
   // Documentation
-  certificatePdfUrl  String?
+  certificatePdfUrl   String?
   certificateFileName String?
 
   // Audit
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  @@unique([contractorId, certificationLevel, certificationCode])
   @@index([contractorId])
   @@index([certificationCode])
   @@index([expiryDate])
   @@index([isActive])
-  @@unique([contractorId, certificationLevel, certificationCode])
 }
 
 model ContractorServiceArea {
@@ -411,16 +411,16 @@ model ContractorServiceArea {
   contractor   Contractor @relation("ServiceAreas", fields: [contractorId], references: [id], onDelete: Cascade)
 
   // Postcode Information (4 digits in Australia)
-  postcode             String // e.g., "2000", "3141"
-  state                AustralianState
+  postcode String // e.g., "2000", "3141"
+  state    AustralianState
 
   // Service Details
-  isActive             Boolean @default(true)
-  responseTimeMinutes  Int
+  isActive            Boolean @default(true)
+  responseTimeMinutes Int
 
   // Audit
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([contractorId, postcode])
   @@index([postcode])
@@ -433,34 +433,34 @@ model ContractorServiceArea {
 // ============================================================================
 
 model AdminServiceCategory {
-  id          String         @id @default(cuid())
-  name        String         @unique
+  id          String   @id @default(cuid())
+  name        String   @unique
   description String?
   icon        String?
   theme       String
-  isActive    Boolean        @default(true)
-  sortOrder   Int            @default(0)
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  services    AdminService[]
+  services AdminService[]
 
   @@map("admin_service_categories")
 }
 
 model AdminService {
-  id          String               @id @default(cuid())
+  id          String   @id @default(cuid())
   categoryId  String
   name        String
   description String?
   icon        String?
   theme       String
-  isActive    Boolean              @default(true)
-  sortOrder   Int                  @default(0)
-  createdAt   DateTime             @default(now())
-  updatedAt   DateTime             @updatedAt
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  category    AdminServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category AdminServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@unique([categoryId, name])
   @@map("admin_services")
@@ -487,7 +487,7 @@ model AdminTheme {
 // ============================================================================
 
 model ServiceRequest {
-  id              String            @id @default(cuid())
+  id              String        @id @default(cuid())
   userId          String
   serviceCategory String
   urgency         String
@@ -497,17 +497,17 @@ model ServiceRequest {
   budget          String?
   phone           String?
   preferredTime   String?
-  insurance       Boolean           @default(false)
-  urgentResponse  Boolean           @default(false)
-  status          ServiceStatus     @default(PENDING)
+  insurance       Boolean       @default(false)
+  urgentResponse  Boolean       @default(false)
+  status          ServiceStatus @default(PENDING)
   leadScore       Float?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
   tenantId        String?
 
-  user            User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tenant          Tenant?           @relation(fields: [tenantId], references: [id])
-  matches         ContractorMatch[]
+  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant  Tenant?           @relation(fields: [tenantId], references: [id])
+  matches ContractorMatch[]
 
   @@map("service_requests")
 }
@@ -537,30 +537,30 @@ model ContractorProfile {
   updatedAt         DateTime           @updatedAt
   tenantId          String?
 
-  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tenant            Tenant?            @relation(fields: [tenantId], references: [id])
-  matches           ContractorMatch[]
+  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant  Tenant?           @relation(fields: [tenantId], references: [id])
+  matches ContractorMatch[]
 
   @@map("contractor_profiles")
 }
 
 model ContractorMatch {
-  id                String            @id @default(cuid())
+  id                String      @id @default(cuid())
   contractorId      String
   serviceRequestId  String
   matchScore        Float
-  status            MatchStatus       @default(PENDING)
+  status            MatchStatus @default(PENDING)
   contractorMessage String?
   clientMessage     String?
   budget            String?
   timeline          String?
   startDate         String?
   estimatedHours    String?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
 
-  contractor        ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-  serviceRequest    ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  contractor     ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  serviceRequest ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
 
   @@map("contractor_matches")
 }
@@ -582,7 +582,7 @@ model ContractorPreferences {
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
 
-  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("contractor_preferences")
 }
@@ -601,45 +601,45 @@ model Booking {
   contractor   Contractor? @relation("ContractorBookings", fields: [contractorId], references: [id], onDelete: SetNull)
 
   // Service Information
-  australianServiceType AustralianServiceType
-  description           String
-  estimatedDamagePhotosCount Int @default(0)
+  australianServiceType      AustralianServiceType
+  description                String
+  estimatedDamagePhotosCount Int                   @default(0)
 
   // Location (Australian-specific)
-  servicePostcode       String
-  serviceState          AustralianState
-  serviceSuburb         String
-  streetAddress         String
+  servicePostcode String
+  serviceState    AustralianState
+  serviceSuburb   String
+  streetAddress   String
 
   // Status & Timeline
-  status                BookingStatus @default(PENDING)
+  status                 BookingStatus          @default(PENDING)
   emergencyResponseLevel EmergencyResponseLevel @default(STANDARD)
-  scheduledDate         DateTime?
-  startedAt             DateTime?
-  completedAt           DateTime?
+  scheduledDate          DateTime?
+  startedAt              DateTime?
+  completedAt            DateTime?
 
   // Financial
-  estimatedCostAUD      Decimal
-  finalCostAUD          Decimal?
+  estimatedCostAUD Decimal
+  finalCostAUD     Decimal?
 
   // Notes
-  notes                 String?
-  internalNotes         String?
-  clientNotes           String?
+  notes         String?
+  internalNotes String?
+  clientNotes   String?
 
   // Media
-  damagePhotos          String[] // Array of image URLs
+  damagePhotos String[] // Array of image URLs
 
   // Insurance Claim Integration
-  auClaims              InsuranceClaimAU[] @relation("BookingClaims")
+  auClaims InsuranceClaimAU[] @relation("BookingClaims")
 
   // Relations
-  payments              Payment[] @relation("BookingPayments")
-  ratings               Rating[]
+  payments Payment[] @relation("BookingPayments")
+  ratings  Rating[]
 
   // Audit
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([clientId])
   @@index([contractorId])
@@ -660,38 +660,38 @@ model Payment {
   booking   Booking @relation("BookingPayments", fields: [bookingId], references: [id], onDelete: Cascade)
 
   clientId String
-  client   User    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  client   User   @relation(fields: [clientId], references: [id], onDelete: Cascade)
 
   contractorId String?
   contractor   Contractor? @relation("ContractorPayments", fields: [contractorId], references: [id], onDelete: SetNull)
 
   // Payment Details (AUD)
-  amountAUD               Decimal // Total amount
-  platformFeeAUD          Decimal
-  platformFeePercentage   Decimal @default(15.00)
-  gstAUD                  Decimal // 10% GST
-  netAmountAUD            Decimal // Amount to contractor after fees
+  amountAUD             Decimal // Total amount
+  platformFeeAUD        Decimal
+  platformFeePercentage Decimal @default(15.00)
+  gstAUD                Decimal // 10% GST
+  netAmountAUD          Decimal // Amount to contractor after fees
 
   // Payment Method
-  paymentMethod           String // "CREDIT_CARD", "BANK_TRANSFER", "CASH", "CHECK", "INSURANCE"
-  stripePaymentIntentId   String?
-  transactionId           String? @unique
+  paymentMethod         String // "CREDIT_CARD", "BANK_TRANSFER", "CASH", "CHECK", "INSURANCE"
+  stripePaymentIntentId String?
+  transactionId         String? @unique
 
   // Status
-  status                  PaymentStatus @default(PENDING)
-  processedAt             DateTime?
-  failureReason           String?
+  status        PaymentStatus @default(PENDING)
+  processedAt   DateTime?
+  failureReason String?
 
   // Receipt/Invoice
-  receiptUrl              String?
-  invoiceNumber           String? @unique
+  receiptUrl    String?
+  invoiceNumber String? @unique
 
   // Audit
-  createdAt               DateTime @default(now())
-  updatedAt               DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
-  auInvoice               InvoiceAU?
+  auInvoice InvoiceAU?
 
   @@index([bookingId])
   @@index([clientId])
@@ -703,35 +703,35 @@ model Payment {
 model InvoiceAU {
   id String @id @default(cuid())
 
-  paymentId String @unique
+  paymentId String  @unique
   payment   Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
 
   contractorId String
   contractor   Contractor @relation("ContractorInvoices", fields: [contractorId], references: [id], onDelete: Cascade)
 
   clientId String
-  client   User    @relation("ClientInvoices", fields: [clientId], references: [id], onDelete: Cascade)
+  client   User   @relation("ClientInvoices", fields: [clientId], references: [id], onDelete: Cascade)
 
   // Invoice Details
-  invoiceNumber String @unique
+  invoiceNumber String   @unique
   dateIssued    DateTime @default(now())
   dateDue       DateTime
 
   // Amounts (AUD)
-  subtotalAUD   Decimal
-  gstAUD        Decimal // 10% GST
-  totalAUD      Decimal
+  subtotalAUD Decimal
+  gstAUD      Decimal // 10% GST
+  totalAUD    Decimal
 
   // Status
-  isPaid        Boolean @default(false)
-  paidDate      DateTime?
+  isPaid   Boolean   @default(false)
+  paidDate DateTime?
 
   // Description
-  description   String
+  description String
 
   // Audit
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([invoiceNumber])
   @@index([contractorId])
@@ -747,33 +747,33 @@ model InsuranceProvider {
   id String @id @default(cuid())
 
   // Provider Information
-  name           String // "NRMA", "Suncorp", etc.
-  providerType   InsuranceProviderType
-  code           String @unique
+  name         String // "NRMA", "Suncorp", etc.
+  providerType InsuranceProviderType
+  code         String                @unique
 
   // Contact
-  contactEmail   String
-  contactPhone   String
+  contactEmail String
+  contactPhone String
 
   // API Configuration
-  apiEndpoint    String?
-  apiKey         String? // Encrypted via environment
-  webhookUrl     String?
+  apiEndpoint String?
+  apiKey      String? // Encrypted via environment
+  webhookUrl  String?
 
   // Coverage
   supportedStates AustralianState[]
 
   // Status
-  isActive       Boolean @default(true)
-  isVerified     Boolean @default(false)
+  isActive          Boolean @default(true)
+  isVerified        Boolean @default(false)
   verificationNotes String?
 
   // Relations
-  claims         InsuranceClaimAU[]
+  claims InsuranceClaimAU[]
 
   // Audit
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([code])
   @@index([isActive])
@@ -788,7 +788,7 @@ model InsuranceClaimAU {
   booking   Booking @relation("BookingClaims", fields: [bookingId], references: [id], onDelete: Cascade)
 
   clientId String
-  client   User    @relation("ClientClaims", fields: [clientId], references: [id], onDelete: Cascade)
+  client   User   @relation("ClientClaims", fields: [clientId], references: [id], onDelete: Cascade)
 
   insuranceProviderId String
   insuranceProvider   InsuranceProvider @relation(fields: [insuranceProviderId], references: [id])
@@ -803,7 +803,7 @@ model InsuranceClaimAU {
   paymentAmountAUD    Decimal?
 
   // Claim Status
-  status              InsuranceClaimStatus @default(DRAFT)
+  status InsuranceClaimStatus @default(DRAFT)
 
   // Documentation
   damageDescription   String
@@ -813,18 +813,18 @@ model InsuranceClaimAU {
   additionalDocuments String[]
 
   // Submission Timeline
-  submittedAt         DateTime?
-  reviewedAt          DateTime?
-  approvedAt          DateTime?
-  paidAt              DateTime?
+  submittedAt DateTime?
+  reviewedAt  DateTime?
+  approvedAt  DateTime?
+  paidAt      DateTime?
 
   // Rejection Details
-  denialReason        String?
-  deniedAt            DateTime?
+  denialReason String?
+  deniedAt     DateTime?
 
   // Audit
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([bookingId])
   @@index([clientId])
@@ -848,16 +848,16 @@ model Rating {
   contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
 
   clientId String
-  client   User    @relation(fields: [clientId], references: [id])
+  client   User   @relation(fields: [clientId], references: [id])
 
   // Rating Details
-  rating         Int     // 1-5 stars
+  rating         Int // 1-5 stars
   comment        String?
   wouldRecommend Boolean @default(true)
 
   // Audit
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([bookingId, contractorId])
   @@index([contractorId])
@@ -881,9 +881,9 @@ model Message {
   createdAt   DateTime    @default(now())
   tenantId    String?
 
-  sender      User        @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
-  receiver    User        @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
-  tenant      Tenant?     @relation(fields: [tenantId], references: [id])
+  sender   User    @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User    @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  tenant   Tenant? @relation(fields: [tenantId], references: [id])
 
   @@map("messages")
 }
@@ -894,10 +894,10 @@ model Message {
 
 model AuditLog {
   id          String   @id @default(cuid())
-  action      String   // "CREATE", "UPDATE", "DELETE", "APPROVE", "REJECT"
-  entityType  String   // "Booking", "Payment", "Contractor", etc.
+  action      String // "CREATE", "UPDATE", "DELETE", "APPROVE", "REJECT"
+  entityType  String // "Booking", "Payment", "Contractor", etc.
   entityId    String
-  performedBy String?  // User ID
+  performedBy String? // User ID
   oldValues   Json?
   newValues   Json?
   ipAddress   String?
@@ -915,13 +915,13 @@ model AuditLog {
 // ============================================================================
 
 model RiskAssessment {
-  id              String   @id @default(cuid())
-  bookingId       String   @unique
-  riskScore       Decimal  // 0-100
-  riskFactors     String[]
-  recommendation  String   // "APPROVE", "REVIEW", "REJECT"
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id             String   @id @default(cuid())
+  bookingId      String   @unique
+  riskScore      Decimal // 0-100
+  riskFactors    String[]
+  recommendation String // "APPROVE", "REVIEW", "REJECT"
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   @@index([bookingId])
   @@index([riskScore])
@@ -930,8 +930,8 @@ model RiskAssessment {
 model DisasterAlert {
   id                String            @id @default(cuid())
   // Disaster Information
-  disasterType      String            // "FLOOD", "FIRE", "STORM", "CYCLONE"
-  severity          String            // "LOW", "MEDIUM", "HIGH", "CRITICAL"
+  disasterType      String // "FLOOD", "FIRE", "STORM", "CYCLONE"
+  severity          String // "LOW", "MEDIUM", "HIGH", "CRITICAL"
   affectedPostcodes String[]
   affectedStates    AustralianState[]
   description       String
@@ -979,20 +979,20 @@ enum CertificationLevel {
 }
 
 model ContractorOnboarding {
-  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  contractorId          String   @unique @db.Uuid
-  specialization        String   @db.VarChar(50)
-  assessmentScore       Int?
-  recommendedModules    Json?    @db.JsonB
-  startDate             DateTime?
-  targetCompletionDate  DateTime?
-  actualCompletionDate  DateTime?
-  status                OnboardingStatus @default(PENDING_START)
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  id                   String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  contractorId         String           @unique @db.Uuid
+  specialization       String           @db.VarChar(50)
+  assessmentScore      Int?
+  recommendedModules   Json?            @db.JsonB
+  startDate            DateTime?
+  targetCompletionDate DateTime?
+  actualCompletionDate DateTime?
+  status               OnboardingStatus @default(PENDING_START)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
 
-  moduleProgress        ContractorModuleProgress[]
-  assessments           ContractorAssessment[]
+  moduleProgress ContractorModuleProgress[]
+  assessments    ContractorAssessment[]
 
   @@index([status], name: "idx_contractor_status")
   @@index([specialization], name: "idx_contractor_specialization")
@@ -1001,49 +1001,49 @@ model ContractorOnboarding {
 }
 
 model ContractorModuleProgress {
-  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  onboardingId String      @db.Uuid
-  moduleId    String       @db.VarChar(100)
-  courseName  String?      @db.VarChar(255)
-  startedAt   DateTime?
-  completedAt DateTime?
-  completed   Boolean      @default(false)
-  status      ModuleStatus @default(NOT_STARTED)
-  progress    Int          @default(0)
-  createdAt   DateTime     @default(now())
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  onboardingId String       @db.Uuid
+  moduleId     String       @db.VarChar(100)
+  courseName   String?      @db.VarChar(255)
+  startedAt    DateTime?
+  completedAt  DateTime?
+  completed    Boolean      @default(false)
+  status       ModuleStatus @default(NOT_STARTED)
+  progress     Int          @default(0)
+  createdAt    DateTime     @default(now())
 
-  onboarding  ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+  onboarding ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
 
   @@index([onboardingId, status], name: "idx_module_progress")
   @@map("contractor_module_progress")
 }
 
 model ContractorAssessment {
-  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  onboardingId   String   @db.Uuid
-  moduleId       String   @db.VarChar(100)
-  assessmentType String?  @db.VarChar(50)
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  onboardingId   String    @db.Uuid
+  moduleId       String    @db.VarChar(100)
+  assessmentType String?   @db.VarChar(50)
   score          Int?
-  maxScore       Int      @default(100)
+  maxScore       Int       @default(100)
   completedAt    DateTime?
-  feedback       String?  @db.Text
-  createdAt      DateTime @default(now())
+  feedback       String?   @db.Text
+  createdAt      DateTime  @default(now())
 
-  onboarding     ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+  onboarding ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
 
   @@map("contractor_assessments")
 }
 
 model ContractorCertification {
-  id                 String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  contractorId       String              @db.Uuid
-  certificationName  String              @db.VarChar(255)
+  id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  contractorId       String    @db.Uuid
+  certificationName  String    @db.VarChar(255)
   certificationLevel Int?
   issueDate          DateTime?
   expiryDate         DateTime?
   specializations    String[]
-  verified           Boolean             @default(false)
-  createdAt          DateTime            @default(now())
+  verified           Boolean   @default(false)
+  createdAt          DateTime  @default(now())
 
   @@index([contractorId], name: "idx_contractor_id_cert")
   @@map("contractor_certifications")
@@ -1055,41 +1055,41 @@ model ContractorCertification {
 // ============================================================================
 
 enum CompetitorCategory {
-  RESTORATION_COMPANY      // Direct competitors (ServiceMaster, BELFOR, etc.)
-  INSURANCE_NETWORK        // Insurance company networks (NRMA, Suncorp, etc.)
-  CONTRACTOR_MARKETPLACE   // Marketplaces (hipages, ServiceSeeking, etc.)
-  INDUSTRY_ASSOCIATION     // Industry bodies (IICRC, AREMA, etc.)
+  RESTORATION_COMPANY // Direct competitors (ServiceMaster, BELFOR, etc.)
+  INSURANCE_NETWORK // Insurance company networks (NRMA, Suncorp, etc.)
+  CONTRACTOR_MARKETPLACE // Marketplaces (hipages, ServiceSeeking, etc.)
+  INDUSTRY_ASSOCIATION // Industry bodies (IICRC, AREMA, etc.)
 }
 
 model Competitor {
-  id               String              @id @default(cuid())
-  domain           String              @unique
-  name             String
-  category         CompetitorCategory
-  priority         Int                 @default(5) // 1-10 scale
-  isActive         Boolean             @default(true)
-  
+  id       String             @id @default(cuid())
+  domain   String             @unique
+  name     String
+  category CompetitorCategory
+  priority Int                @default(5) // 1-10 scale
+  isActive Boolean            @default(true)
+
   // Business info
-  businessModel    String?             // "Direct", "Aggregator", "Association"
-  targetMarket     String?             // "Residential", "Commercial", "Both"
-  geographicFocus  String[]            // States/regions covered
-  
+  businessModel   String? // "Direct", "Aggregator", "Association"
+  targetMarket    String? // "Residential", "Commercial", "Both"
+  geographicFocus String[] // States/regions covered
+
   // Metadata
-  contactInfo      Json?
-  socialProfiles   Json?
-  notes            String?              @db.Text
-  
+  contactInfo    Json?
+  socialProfiles Json?
+  notes          String? @db.Text
+
   // Relationships
-  analyses         CompetitorAnalysis[]
-  keywords         CompetitorKeyword[]
-  backlinks        Backlink[]
-  swotAnalyses     SWOTAnalysis[]
-  
-  discoveredAt     DateTime            @default(now())
-  lastAnalyzedAt   DateTime?
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
-  
+  analyses     CompetitorAnalysis[]
+  keywords     CompetitorKeyword[]
+  backlinks    Backlink[]
+  swotAnalyses SWOTAnalysis[]
+
+  discoveredAt   DateTime  @default(now())
+  lastAnalyzedAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
   @@index([category])
   @@index([isActive])
   @@index([lastAnalyzedAt])
@@ -1097,75 +1097,75 @@ model Competitor {
 }
 
 model CompetitorAnalysis {
-  id               String              @id @default(cuid())
-  competitorId     String
-  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
-  
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
   // Traffic Metrics
-  organicTraffic   Int?                // Monthly organic visits
-  paidTraffic      Int?
-  totalKeywords    Int?
-  organicKeywords  Int?
-  paidKeywords     Int?
-  
+  organicTraffic  Int? // Monthly organic visits
+  paidTraffic     Int?
+  totalKeywords   Int?
+  organicKeywords Int?
+  paidKeywords    Int?
+
   // Authority Metrics
-  domainRating     Float?              // Domain authority score
-  trustFlow        Float?
-  citationFlow     Float?
-  
+  domainRating Float? // Domain authority score
+  trustFlow    Float?
+  citationFlow Float?
+
   // Backlink Metrics
   totalBacklinks   Int?
   referringDomains Int?
-  
+
   // Technical SEO
-  pageSpeed        Float?              // Google PageSpeed score
-  mobileScore      Float?
-  coreWebVitals    Json?               // LCP, FID, CLS
-  
+  pageSpeed     Float? // Google PageSpeed score
+  mobileScore   Float?
+  coreWebVitals Json? // LCP, FID, CLS
+
   // Content
-  totalPages       Int?
-  blogPosts        Int?
-  servicePages     Int?
-  
+  totalPages   Int?
+  blogPosts    Int?
+  servicePages Int?
+
   // Raw Data
-  analysisDate     DateTime            @default(now())
-  dataSource       String              // "SEMRUSH", "DataForSEO", "Combined"
-  rawData          Json?               @db.JsonB
-  
-  createdAt        DateTime            @default(now())
-  
+  analysisDate DateTime @default(now())
+  dataSource   String // "SEMRUSH", "DataForSEO", "Combined"
+  rawData      Json?    @db.JsonB
+
+  createdAt DateTime @default(now())
+
   @@index([competitorId])
   @@index([analysisDate])
   @@map("competitor_analyses")
 }
 
 model CompetitorKeyword {
-  id               String              @id @default(cuid())
-  competitorId     String
-  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
-  
-  keyword          String
-  searchVolume     Int?                // Monthly searches (Australia)
-  difficulty       Float?              // 0-100 scale
-  cpc              Float?              // Cost per click (AUD)
-  
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  keyword      String
+  searchVolume Int? // Monthly searches (Australia)
+  difficulty   Float? // 0-100 scale
+  cpc          Float? // Cost per click (AUD)
+
   // Rankings
-  position         Int?                // Current SERP position
+  position         Int? // Current SERP position
   previousPosition Int?
-  url              String?              // Ranking URL
-  
+  url              String? // Ranking URL
+
   // Classification
-  intent           String?              // "informational", "commercial", "transactional"
-  category         String?              // "water damage", "fire restoration", etc.
-  
+  intent   String? // "informational", "commercial", "transactional"
+  category String? // "water damage", "fire restoration", etc.
+
   // Opportunity Analysis
-  opportunityScore Float?              // Custom calculated score
-  difficultyTier   String?              // "easy", "medium", "hard"
-  
-  lastChecked      DateTime            @default(now())
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
-  
+  opportunityScore Float? // Custom calculated score
+  difficultyTier   String? // "easy", "medium", "hard"
+
+  lastChecked DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   @@unique([competitorId, keyword])
   @@index([competitorId])
   @@index([difficultyTier])
@@ -1174,25 +1174,25 @@ model CompetitorKeyword {
 }
 
 model Backlink {
-  id               String              @id @default(cuid())
-  competitorId     String
-  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
-  
-  sourceUrl        String              @db.Text
-  targetUrl        String              @db.Text
-  sourceDomain     String
-  
-  anchorText       String?              @db.Text
-  linkType         String?              // "dofollow", "nofollow"
-  domainRating     Float?
-  traffic          Int?
-  
-  firstSeen        DateTime?
-  lastSeen         DateTime            @default(now())
-  isActive         Boolean             @default(true)
-  
-  createdAt        DateTime            @default(now())
-  
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  sourceUrl    String @db.Text
+  targetUrl    String @db.Text
+  sourceDomain String
+
+  anchorText   String? @db.Text
+  linkType     String? // "dofollow", "nofollow"
+  domainRating Float?
+  traffic      Int?
+
+  firstSeen DateTime?
+  lastSeen  DateTime  @default(now())
+  isActive  Boolean   @default(true)
+
+  createdAt DateTime @default(now())
+
   @@index([competitorId])
   @@index([sourceDomain])
   @@index([isActive])
@@ -1200,53 +1200,216 @@ model Backlink {
 }
 
 model SWOTAnalysis {
-  id               String              @id @default(cuid())
-  competitorId     String
-  competitor       Competitor          @relation(fields: [competitorId], references: [id], onDelete: Cascade)
-  
-  strengths        Json                @db.JsonB  // Array of strength items
-  weaknesses       Json                @db.JsonB  // Array of weakness items
-  opportunities    Json                @db.JsonB  // Array of opportunity items
-  threats          Json                @db.JsonB  // Array of threat items
-  
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  strengths     Json @db.JsonB // Array of strength items
+  weaknesses    Json @db.JsonB // Array of weakness items
+  opportunities Json @db.JsonB // Array of opportunity items
+  threats       Json @db.JsonB // Array of threat items
+
   // AI-generated insights
-  summary          String?              @db.Text
-  recommendations  Json?                @db.JsonB  // Actionable recommendations
-  competitiveAdvantages Json?           @db.JsonB  // What competitor does better
-  
-  generatedAt      DateTime            @default(now())
-  generatedBy      String?              // "AI", "Manual", "Hybrid"
-  
+  summary               String? @db.Text
+  recommendations       Json?   @db.JsonB // Actionable recommendations
+  competitiveAdvantages Json?   @db.JsonB // What competitor does better
+
+  generatedAt DateTime @default(now())
+  generatedBy String? // "AI", "Manual", "Hybrid"
+
   @@index([competitorId])
   @@index([generatedAt])
   @@map("swot_analyses")
 }
 
 model KeywordOpportunity {
-  id               String              @id @default(cuid())
-  keyword          String              @unique
-  
-  searchVolume     Int
-  difficulty       Float
-  cpc              Float?
-  
+  id      String @id @default(cuid())
+  keyword String @unique
+
+  searchVolume Int
+  difficulty   Float
+  cpc          Float?
+
   // Opportunity metrics
-  competitorCount  Int                 // How many competitors rank
-  averagePosition  Float               // Average competitor position
-  gapScore         Float               // Opportunity gap score
-  difficultyTier   String              // "easy", "medium", "hard"
-  
+  competitorCount Int // How many competitors rank
+  averagePosition Float // Average competitor position
+  gapScore        Float // Opportunity gap score
+  difficultyTier  String // "easy", "medium", "hard"
+
   // Classification
-  category         String?
-  intent           String?
-  competitors      Json                @db.JsonB  // Array of ranking competitors
-  
-  identifiedAt     DateTime            @default(now())
-  createdAt        DateTime            @default(now())
-  updatedAt        DateTime            @updatedAt
-  
+  category    String?
+  intent      String?
+  competitors Json    @db.JsonB // Array of ranking competitors
+
+  identifiedAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
   @@index([difficultyTier])
   @@index([gapScore])
   @@index([category])
   @@map("keyword_opportunities")
+}
+
+// ============================================================================
+// CONTENT MARKETING & SEO - BLOG, FAQ, CASE STUDIES
+// ============================================================================
+
+enum BlogCategory {
+  EMERGENCY_GUIDE // "What to do after flood"
+  INSURANCE_CLAIM // "How to file claim"
+  PREVENTION // "Prevent mold growth"
+  INDUSTRY_INSIGHT // "Contractor empowerment"
+  CASE_STUDY // Customer success stories
+  RESOURCE // Tools and calculators
+}
+
+enum PostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum FAQCategory {
+  EMERGENCY_RESPONSE
+  PRICING_QUOTES
+  INSURANCE_CLAIMS
+  SERVICE_SPECIFIC
+  CONTRACTOR_NETWORK
+  PLATFORM_USAGE
+  PREVENTION_TIPS
+  SAFETY_HEALTH
+}
+
+model BlogPost {
+  id       String       @id @default(cuid())
+  title    String
+  slug     String       @unique
+  excerpt  String       @db.Text
+  content  String       @db.Text
+  category BlogCategory
+  tags     String[]
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  keywords        String[]
+
+  // Author
+  authorId   String
+  authorName String
+  authorBio  String?
+
+  // Publishing
+  status       PostStatus @default(DRAFT)
+  publishedAt  DateTime?
+  scheduledFor DateTime?
+
+  // Engagement
+  viewCount  Int @default(0)
+  shareCount Int @default(0)
+
+  // Featured
+  isFeatured    Boolean @default(false)
+  featuredImage String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  faqs BlogFAQ[]
+
+  @@index([slug])
+  @@index([category])
+  @@index([status])
+  @@index([publishedAt])
+  @@map("blog_posts")
+}
+
+model BlogFAQ {
+  id         String   @id @default(cuid())
+  blogPostId String
+  blogPost   BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+  question   String   @db.Text
+  answer     String   @db.Text
+  order      Int
+
+  @@index([blogPostId])
+  @@map("blog_faqs")
+}
+
+model FAQ {
+  id          String      @id @default(cuid())
+  question    String      @db.Text
+  answer      String      @db.Text
+  category    FAQCategory
+  tags        String[]
+  serviceType String? // "water damage", "fire damage", etc.
+  location    String? // "Sydney", "Melbourne", etc.
+
+  // SEO
+  keywords     String[]
+  searchVolume Int?
+
+  // Engagement
+  viewCount  Int @default(0)
+  helpful    Int @default(0)
+  notHelpful Int @default(0)
+
+  order       Int     @default(0)
+  isPublished Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([serviceType])
+  @@index([location])
+  @@map("faqs")
+}
+
+model CaseStudy {
+  id           String @id @default(cuid())
+  title        String
+  slug         String @unique
+  customerName String
+  customerType String // "Homeowner", "Strata Manager", etc.
+
+  // Incident
+  serviceType  String // "Water Damage", "Fire", etc.
+  location     String // "Sydney, NSW"
+  incidentDate DateTime
+
+  // Story
+  challenge   String  @db.Text
+  solution    String  @db.Text
+  results     String  @db.Text
+  testimonial String? @db.Text
+
+  // Media
+  beforeImages String[]
+  afterImages  String[]
+  videoUrl     String?
+
+  // Metrics
+  projectCost    Float?
+  responseTime   Int? // minutes
+  completionTime Int? // days
+  customerRating Float?
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([serviceType])
+  @@index([location])
+  @@map("case_studies")
 }
