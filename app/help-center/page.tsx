@@ -30,7 +30,7 @@ export default function HelpCenterPage() {
     {
       question: "What types of restoration services are available?",
       answer:
-        "We cover water damage, fire damage, mold remediation, storm damage, and emergency restoration services across Australia.",
+        "We cover water damage, fire damage, mould remediation, storm damage, and emergency restoration services across Australia.",
     },
     {
       question: "How does pricing work?",
@@ -60,7 +60,7 @@ export default function HelpCenterPage() {
       title: "Water Damage",
       icon: AlertTriangle,
       description: "Burst pipes, flooding, leaks",
-      services: ["Water extraction", "Structural drying", "Mold prevention", "Damage assessment"],
+      services: ["Water extraction", "Structural drying", "Mould prevention", "Damage assessment"],
     },
     {
       title: "Fire Damage",
@@ -75,10 +75,10 @@ export default function HelpCenterPage() {
       services: ["Roof repair", "Window replacement", "Debris removal", "Structural assessment"],
     },
     {
-      title: "Mold Remediation",
+      title: "Mould Remediation",
       icon: Users,
-      description: "Mold inspection and removal",
-      services: ["Mold testing", "Safe removal", "Air purification", "Prevention strategies"],
+      description: "Mould inspection and removal",
+      services: ["Mould testing", "Safe removal", "Air purification", "Prevention strategies"],
     },
   ]
 

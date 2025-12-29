@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "fire damage restoration melbourne",
     "water damage restoration brisbane",
     "storm damage repair perth",
-    "mold remediation adelaide",
+    "mould remediation adelaide",
 
     // Service-specific
     "24/7 emergency restoration",

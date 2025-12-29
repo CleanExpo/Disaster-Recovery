@@ -81,7 +81,7 @@ export default function ServicesPage() {
               <ul className="text-[#9CA3AF] text-xs space-y-1">
                 <li>• Emergency water extraction</li>
                 <li>• Structural drying</li>
-                <li>• Mold prevention</li>
+                <li>• Mould prevention</li>
                 <li>• Insurance claims support</li>
               </ul>
             </div>
@@ -129,10 +129,10 @@ export default function ServicesPage() {
           <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Specialized Services</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
-              <h3 className="font-poppins font-semibold text-xl text-white mb-4">Mold Remediation</h3>
-              <p className="text-[#9CA3AF] mb-4">Professional mold testing, removal, and prevention services</p>
+              <h3 className="font-poppins font-semibold text-xl text-white mb-4">Mould Remediation</h3>
+              <p className="text-[#9CA3AF] mb-4">Professional mould testing, removal, and prevention services</p>
               <ul className="text-[#9CA3AF] text-sm space-y-2">
-                <li>• Comprehensive mold inspection</li>
+                <li>• Comprehensive mould inspection</li>
                 <li>• Safe removal procedures</li>
                 <li>• Air quality testing</li>
                 <li>• Prevention strategies</li>
