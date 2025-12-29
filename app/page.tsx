@@ -393,16 +393,16 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                {/* 309 - IICRC Checkpoints */}
+                {/* 6+ IICRC Standards */}
                 <div className="text-center space-y-4">
                   <div className="font-display text-7xl md:text-8xl font-black text-blue-600 dark:text-blue-500">
-                    309
+                    6+
                   </div>
                   <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    Forensic Checkpoints
+                    IICRC Standards
                   </h3>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Every job verified against 309 IICRC restoration standards. Insurance-grade
+                    Every job verified against applicable IICRC standards (S500, S520, FSRT, S540, S800, WRT). Insurance-grade
                     documentation on every project.
                   </p>
                 </div>
