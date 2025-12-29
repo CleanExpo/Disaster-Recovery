@@ -28,7 +28,7 @@ export default function AboutPage() {
                 <div className="text-[#9CA3AF]">Development Started</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-[#FFD700]">End of Sept</div>
+                <div className="text-3xl font-bold text-[#FFD700]">April 2026</div>
                 <div className="text-[#9CA3AF]">Expected Launch</div>
               </div>
               <div>
@@ -134,7 +134,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-poppins font-semibold text-xl text-white mb-2">End of September 2025 - MVP Launch</h3>
+                    <h3 className="font-poppins font-semibold text-xl text-white mb-2">April 2026 - MVP Launch</h3>
                     <p className="text-[#9CA3AF]">
                       Launching our MVP marketplace platform with smart contractor matching, automated workflows, and real-time project tracking. Initial focus on connecting property owners with verified restoration contractors across Australia.
                     </p>
