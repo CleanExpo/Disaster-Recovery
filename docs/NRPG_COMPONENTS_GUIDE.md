@@ -281,9 +281,9 @@ interface PillarCardData {
 | Color | Use Case | Services |
 |-------|----------|----------|
 | `blue` | Water/Flood | Protocol S500 |
-| `orange` | Fire/Smoke | Protocol S520 |
-| `green` | Mould | Remediation |
-| `red` | Bio/Forensic | Forensic Cleaning |
+| `orange` | Fire/Smoke | FSRT |
+| `green` | Mould | Protocol S520 |
+| `red` | Bio/Forensic | S540/S800 |
 | `purple` | Custom | Custom services |
 | `yellow` | Warning | Hazard response |
 

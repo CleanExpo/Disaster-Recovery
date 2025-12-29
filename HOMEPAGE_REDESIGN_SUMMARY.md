@@ -147,7 +147,7 @@ From `@/lib/seo/schema-generator.ts`:
 - **Dark Backgrounds**: #020617 (nrpg-dark), #0F172A (slate-950)
 - **Protocol Colors**:
   - Blue: #60A5FA (S500 Water)
-  - Orange: #FB923C (S520 Fire)
+  - Orange: #FB923C (FSRT Fire & Smoke)
   - Green: #4ADE80 (Mould)
   - Red: #F87171 (Bio/Forensic)
 

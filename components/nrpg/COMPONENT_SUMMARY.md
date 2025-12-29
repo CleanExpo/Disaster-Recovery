@@ -177,9 +177,9 @@ All components integrate with the existing design system:
 - **Emergency Red** (`#E11D48`): CTAs
 - **Protocol Colors**:
   - Blue (`#60A5FA`): Water/Flood - S500
-  - Orange (`#FB923C`): Fire/Smoke - S520
-  - Green (`#4ADE80`): Mould Remediation
-  - Red (`#F87171`): Bio/Forensic
+  - Orange (`#FB923C`): Fire/Smoke - FSRT
+  - Green (`#4ADE80`): Mould Remediation - S520
+  - Red (`#F87171`): Bio/Forensic - S540/S800
 
 ### Custom CSS Utilities (from globals.css)
 - `.label-small`: 10px uppercase labels

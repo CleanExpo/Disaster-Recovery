@@ -290,7 +290,7 @@ White:          #FFFFFF  ███████  (Main background)
 ### Protocol Colors
 ```css
 S500 Water:     #60A5FA  ███████  (Blue - Flood/Water)
-S520 Fire:      #FB923C  ███████  (Orange - Fire/Smoke)
+FSRT Fire & Smoke:      #FB923C  ███████  (Orange - Fire/Smoke)
 Mould:          #4ADE80  ███████  (Green - Mould Growth)
 Bio/Forensic:   #F87171  ███████  (Red - Bio/Forensic)
 ```

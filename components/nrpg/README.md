@@ -157,9 +157,9 @@ function ServicesSection() {
 
 **Protocol Colors:**
 - `blue` - Water/Flood (Protocol S500)
-- `orange` - Fire/Smoke (Protocol S520)
-- `green` - Mould Remediation
-- `red` - Bio/Forensic Cleaning
+- `orange` - Fire/Smoke (FSRT)
+- `green` - Mould Remediation (Protocol S520)
+- `red` - Bio/Forensic Cleaning (S540/S800)
 - `purple` - Custom services
 - `yellow` - Warning/Hazard
 
