@@ -39,12 +39,11 @@ import {
 
 // Australian insurance providers
 const INSURANCE_PROVIDERS = [
-  { code: 'NRMA', name: 'NRMA', contact: 'claims@nrma.com.au', phone: '1300 136 111' },
-  { code: 'SUNCORP', name: 'Suncorp', contact: 'claims@suncorp.com.au', phone: '13 11 10' },
-  { code: 'ALLIANZ', name: 'Allianz', contact: 'claims@allianz.com.au', phone: '1300 134 142' },
-  { code: 'QBE', name: 'QBE', contact: 'claims@qbe.com.au', phone: '1300 720 336' },
-  { code: 'IAG', name: 'IAG', contact: 'claims@iag.com.au', phone: '1300 650 411' },
-  { code: 'CGU', name: 'CGU', contact: 'claims@cgu.com.au', phone: '1300 130 649' },
+  { code: 'NRMA', name: 'NRMA', contact: 'claims@nrma.com.au', phone: '131 123' },
+  { code: 'SUNCORP', name: 'Suncorp', contact: 'claims@suncorp.com.au', phone: '13 11 55' },
+  { code: 'ALLIANZ', name: 'Allianz', contact: 'claims@allianz.com.au', phone: '13 10 13' },
+  { code: 'QBE', name: 'QBE', contact: 'claims@qbe.com.au', phone: '133 723' },
+  { code: 'CGU', name: 'CGU', contact: 'claims@cgu.com.au', phone: '131 123' },
   { code: 'MEDIBANK', name: 'Medibank', contact: 'claims@medibank.com.au', phone: '132 331' },
 ];
 

@@ -324,7 +324,7 @@ export default function HomePage() {
                   </h1>
 
                   <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl">
-                    Australia's only 100% vetted contractor network for{' '}
+                    Australia's IICRC-certified contractor network for{' '}
                     <strong className="text-slate-900 dark:text-white">residential advocacy</strong>,{' '}
                     <strong className="text-slate-900 dark:text-white">commercial continuity</strong>,{' '}
                     and{' '}
@@ -560,7 +560,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-slate-500 leading-relaxed max-w-md">
-                  Australia's only 100% vetted disaster recovery network. Forensic standards.
+                  Australia's IICRC-certified disaster recovery network. Forensic standards.
                   Nationwide coverage. IICRC certified contractors.
                 </p>
                 <div className="pt-4">
