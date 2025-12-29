@@ -24,10 +24,10 @@ export class GeminiImageService {
   private model;
 
   constructor() {
-    // Nano Banana Pro = Gemini 3 Pro Image Preview (Official model name)
-    // Released November 2025 - supports 2K/4K generation, advanced control
+    // Gemini 2.5 Flash Image (Latest recommended model - December 2025)
+    // Higher quota limits, supports image generation with advanced control
     this.model = genAI.getGenerativeModel({
-      model: 'gemini-3-pro-image-preview', // Latest Nano Banana Pro model
+      model: 'gemini-2.5-flash-image', // Latest recommended model with higher quota
     });
   }
 
