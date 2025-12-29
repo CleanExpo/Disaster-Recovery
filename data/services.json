@@ -101,10 +101,10 @@
       "slug": "fire-damage-restoration",
       "title": "Fire Damage Restoration",
       "category": "fire",
-      "protocol": "S520",
-      "description": "Complete fire damage restoration using IICRC S520 protocols. Soot removal, smoke odour elimination, and structural restoration.",
+      "protocol": "FSRT",
+      "description": "Complete fire damage restoration using IICRC FSRT protocols. Soot removal, smoke odour elimination, and structural restoration.",
       "keywords": ["fire damage", "fire restoration", "smoke damage", "soot removal", "fire cleanup"],
-      "metaDescription": "Expert fire damage restoration services. IICRC S520 certified technicians. Smoke odour removal and complete restoration. Call 1300 309 361.",
+      "metaDescription": "Expert fire damage restoration services. IICRC FSRT certified technicians. Smoke odour removal and complete restoration. Call 1300 309 361.",
       "faqs": [
         {
           "question": "Can you remove smoke odour completely?",
@@ -112,7 +112,7 @@
         },
         {
           "question": "How do you clean soot from walls and ceilings?",
-          "answer": "We use dry sponges, HEPA vacuums, and specialized cleaning solutions based on soot type (dry, wet, protein, or fuel oil). Each requires different cleaning techniques per IICRC S520 standards."
+          "answer": "We use dry sponges, HEPA vacuums, and specialized cleaning solutions based on soot type (dry, wet, protein, or fuel oil). Each requires different cleaning techniques per IICRC FSRT standards."
         },
         {
           "question": "Will insurance cover fire damage restoration?",
@@ -129,10 +129,10 @@
       "slug": "smoke-damage-restoration",
       "title": "Smoke Damage Restoration",
       "category": "fire",
-      "protocol": "S520",
+      "protocol": "FSRT",
       "description": "Professional smoke damage cleanup and odour elimination. HEPA filtration, thermal fogging, and complete smoke residue removal.",
       "keywords": ["smoke damage", "smoke cleanup", "smoke odour removal", "soot cleaning", "smoke restoration"],
-      "metaDescription": "Professional smoke damage restoration. Complete odour elimination and soot removal. IICRC certified technicians. Call 1300 309 361.",
+      "metaDescription": "Professional smoke damage restoration. Complete odour elimination and soot removal. IICRC FSRT certified technicians. Call 1300 309 361.",
       "faqs": [
         {
           "question": "Can smoke damage affect my health?",

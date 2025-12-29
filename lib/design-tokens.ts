@@ -41,10 +41,10 @@ export const designTokens = {
     slate950: '#020617',
 
     // Service Protocol Colors (from Phil's design)
-    protocolBlue: '#60A5FA',   // S500 Water
-    protocolOrange: '#FB923C',  // S520 Fire
-    protocolGreen: '#4ADE80',   // Mould
-    protocolRed: '#F87171',     // Bio/Forensic
+    protocolBlue: '#60A5FA',   // S500 Water Damage Restoration
+    protocolOrange: '#FB923C',  // FSRT Fire & Smoke Restoration
+    protocolGreen: '#4ADE80',   // S520 Mold Remediation
+    protocolRed: '#F87171',     // S540/S800 Bio/Forensic
 
     // Semantic
     success: '#10B981',
