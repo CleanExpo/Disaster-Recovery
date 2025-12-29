@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
 
@@ -69,7 +70,27 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    // TODO: Add authentication check
+    // Authentication check - admin only
+    const session = await getServerSession();
+    if (!session || !session.user?.email) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    // Check if user is admin
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+    });
+
+    if (!user || (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN')) {
+      return NextResponse.json(
+        { error: 'Forbidden - Admin access required' },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
     const validatedData = caseStudySchema.parse(body);
 
