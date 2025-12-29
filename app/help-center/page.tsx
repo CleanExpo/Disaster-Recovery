@@ -96,7 +96,7 @@ export default function HelpCenterPage() {
     {
       title: "Quality Assurance",
       description:
-        "Every project includes quality checkpoints, customer feedback integration, and satisfaction guarantees to ensure excellent results.",
+        "Every project includes quality checkpoints, customer feedback integration, and our commitment to helping ensure quality results.",
     },
     {
       title: "Insurance Support",

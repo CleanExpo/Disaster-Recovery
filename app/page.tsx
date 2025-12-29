@@ -52,7 +52,7 @@ const HERO_SCENARIOS = [
     sector: 'Commercial',
     hazard: 'Fire Damage',
     status: 'Vetting Complete',
-    title: 'Business Continuity. Guaranteed.',
+    title: 'Business Continuity. Prioritized.',
     description: 'Minimize downtime. Maximize recovery. Every minute counts.',
     image: '/images/scenarios/commercial-fire.jpg',
     cta: {

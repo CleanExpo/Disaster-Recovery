@@ -281,7 +281,7 @@ export default function ServicesPage() {
                 <li>• Comprehensive assessment</li>
                 <li>• Full restoration service</li>
                 <li>• Project management</li>
-                <li>• Quality guarantee</li>
+                <li>• Quality assurance</li>
               </ul>
               <button className="w-full bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold py-3 rounded-lg">
                 Start Project
@@ -322,8 +322,8 @@ export default function ServicesPage() {
 
             <div className="flex flex-col items-center text-center">
               <CheckCircle className="h-12 w-12 text-[#00BFA6] mb-4" />
-              <h3 className="font-semibold text-white mb-2">Quality Guarantee</h3>
-              <p className="text-[#9CA3AF] text-sm">Work backed by our quality assurance</p>
+              <h3 className="font-semibold text-white mb-2">Quality Assurance</h3>
+              <p className="text-[#9CA3AF] text-sm">Work monitored through quality checks</p>
             </div>
 
             <div className="flex flex-col items-center text-center">
