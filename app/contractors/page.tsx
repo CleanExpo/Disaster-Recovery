@@ -11,7 +11,7 @@ export default function ContractorsPage() {
         {/* Hero Section */}
         <section className="container mx-auto px-6 text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 bg-[#7C4DFF]/10 border border-[#7C4DFF]/30 rounded-full text-[#7C4DFF] text-sm font-medium mb-6">
-            🚀 Join Australia's Leading Restoration Marketplace Platform
+            🚀 Join Australia's Advanced Restoration Marketplace Platform
           </div>
           <h1 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
             Scale Your <span className="text-[#00BFA6]">Restoration Business</span> with Our Platform
@@ -19,23 +19,9 @@ export default function ContractorsPage() {
           <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto mb-8">
             Join our marketplace platform and access automated workflows, smart lead matching, business analytics, and growth tools designed specifically for restoration contractors.
           </p>
-          <div className="flex flex-wrap justify-center gap-8 text-center mb-8">
-            <div>
-              <div className="text-3xl font-bold text-[#00BFA6]">2,500+</div>
-              <div className="text-[#9CA3AF]">Active Contractors</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-[#2196F3]">$50M+</div>
-              <div className="text-[#9CA3AF]">Platform Revenue</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-[#FFD700]">4.8/5</div>
-              <div className="text-[#9CA3AF]">Platform Rating</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-[#7C4DFF]">40%</div>
-              <div className="text-[#9CA3AF]">Avg. Revenue Growth</div>
-            </div>
+          <div className="inline-flex items-center px-6 py-3 bg-[#7C4DFF]/10 border border-[#7C4DFF]/30 rounded-lg text-[#F9FAFB] text-lg font-medium mb-8">
+            <Zap className="mr-2 h-5 w-5 text-[#00BFA6]" />
+            Platform Launching Soon - Early Access Available
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">

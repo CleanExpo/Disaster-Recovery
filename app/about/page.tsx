@@ -348,31 +348,14 @@ export default function AboutPage() {
 
           <section className="mb-16">
             <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">
-              Our Presence Across Australia
+              Get In Touch
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                <MapPin className="h-8 w-8 text-[#00BFA6] mb-4" />
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Sydney Office</h3>
-                <p className="text-[#9CA3AF] text-sm mb-2">Level 15, 1 Bligh Street</p>
-                <p className="text-[#9CA3AF] text-sm mb-2">Sydney NSW 2000</p>
-                <p className="text-[#9CA3AF] text-sm">Phone: (02) 9000 1234</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                <MapPin className="h-8 w-8 text-[#2196F3] mb-4" />
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Melbourne Office</h3>
-                <p className="text-[#9CA3AF] text-sm mb-2">Level 20, 101 Collins Street</p>
-                <p className="text-[#9CA3AF] text-sm mb-2">Melbourne VIC 3000</p>
-                <p className="text-[#9CA3AF] text-sm">Phone: (03) 9000 1234</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                <MapPin className="h-8 w-8 text-[#FFD700] mb-4" />
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Brisbane Office</h3>
-                <p className="text-[#9CA3AF] text-sm mb-2">Level 10, 123 Eagle Street</p>
-                <p className="text-[#9CA3AF] text-sm mb-2">Brisbane QLD 4000</p>
-                <p className="text-[#9CA3AF] text-sm">Phone: (07) 3000 1234</p>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] text-center">
+                <MapPin className="h-12 w-12 text-[#00BFA6] mb-6 mx-auto" />
+                <h3 className="font-poppins font-semibold text-2xl text-white mb-4">National Emergency Line</h3>
+                <p className="text-3xl font-bold text-[#00BFA6] mb-4">1300 309 361</p>
+                <p className="text-[#9CA3AF] text-sm">Available 24/7 for emergency restoration services across Australia</p>
               </div>
             </div>
           </section>
@@ -381,27 +364,9 @@ export default function AboutPage() {
           <section className="text-center">
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-12 border border-[#374151]">
               <h2 className="font-poppins font-semibold text-3xl text-white mb-6">Powered by Unite Group Australia</h2>
-              <p className="text-[#9CA3AF] leading-relaxed max-w-3xl mx-auto mb-8">
-                NRPG is proudly developed and operated by Unite Group Australia, a leading technology company specializing in marketplace platforms and SaaS solutions. With over a decade of experience in digital innovation, Unite Group brings enterprise-level technology and scalable infrastructure to power our restoration marketplace platform.
+              <p className="text-[#9CA3AF] leading-relaxed max-w-3xl mx-auto">
+                NRPG is proudly developed and operated by Unite Group Australia, a technology company specializing in marketplace platforms and SaaS solutions. Unite Group brings enterprise-level technology and scalable infrastructure to power our restoration marketplace platform.
               </p>
-              <div className="grid md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#00BFA6] mb-2">10+</div>
-                  <div className="text-[#9CA3AF] text-sm">Years Platform Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#2196F3] mb-2">50+</div>
-                  <div className="text-[#9CA3AF] text-sm">Platform Engineers</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#FFD700] mb-2">100K+</div>
-                  <div className="text-[#9CA3AF] text-sm">Platform Users</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#7C4DFF] mb-2">99.9%</div>
-                  <div className="text-[#9CA3AF] text-sm">Platform Uptime</div>
-                </div>
-              </div>
             </div>
           </section>
         </div>
