@@ -49,7 +49,7 @@ export default function NRPGDemoPage() {
       hazard: 'Fire Damage',
       status: 'Vetting Complete',
       image: '/images/scenarios/fire-restoration.jpg',
-      description: 'Comprehensive IICRC S520 restoration following fire incidents',
+      description: 'Comprehensive IICRC FSRT restoration following fire incidents',
       cta: {
         label: 'Learn More',
         href: '/services/fire',
