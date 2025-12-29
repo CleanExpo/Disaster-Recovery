@@ -40,7 +40,7 @@ export default function HelpCenterPage() {
     {
       question: "Is there emergency support available?",
       answer:
-        "Yes, we offer 24/7 emergency support for urgent restoration needs. Call 1800 NRPG URGENT for immediate assistance.",
+        "Yes, we offer 24/7 emergency support for urgent restoration needs. Call 1300 309 361 for immediate assistance.",
     },
   ]
 
