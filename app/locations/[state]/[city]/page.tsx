@@ -313,12 +313,12 @@ export default function LocationPage({ params }: LocationPageProps) {
                 {[
                   {
                     title: 'Local Contractor Network',
-                    description: `Our ${pageData.city}-based contractors know the area, understand local building codes, and can respond within 60 minutes.`,
+                    description: `Our ${pageData.city}-based contractors know the area, understand local building codes, and aim for rapid response typically within 60 minutes in metro areas.`,
                     icon: '🏘️',
                   },
                   {
-                    title: 'All Insurers Accepted',
-                    description: `We work with all major insurers serving ${pageData.city} including NRMA, Suncorp, RACV, Allianz, and QBE.`,
+                    title: 'Most Insurers Accepted',
+                    description: `We work with most major insurers serving ${pageData.city} including NRMA, Suncorp, RACV, Allianz, and QBE.`,
                     icon: '🤝',
                   },
                   {
@@ -379,7 +379,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Our local {pageData.city} contractors are standing by 24/7 to respond to your
-              emergency. Average response time: under 60 minutes.
+              emergency. We aim for rapid response, typically under 60 minutes in metro areas.
             </p>
             <a
               href={EMERGENCY_PHONE.href}

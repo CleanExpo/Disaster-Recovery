@@ -203,11 +203,11 @@ export class PageGenerator {
     const locationFAQs = [
       {
         question: `How quickly can you respond to ${service.title.toLowerCase()} emergencies in ${city.city}?`,
-        answer: `Our ${city.city} contractor network provides 24/7 emergency response with technicians dispatched within 60 minutes. We maintain local equipment and crews specifically for rapid deployment across all ${city.city} suburbs.`,
+        answer: `Our ${city.city} contractor network provides 24/7 emergency response with rapid dispatch - we aim to connect you with technicians as quickly as possible, typically within 60 minutes in metro areas. We maintain local equipment and crews specifically for rapid deployment across ${city.city} suburbs.`,
       },
       {
         question: `Do you work with insurance companies in ${city.city}?`,
-        answer: `Yes. We work directly with all major insurance providers servicing ${city.city} including NRMA, Suncorp, RACV, Allianz, and QBE. We provide detailed documentation and communicate directly with adjusters to streamline your claim.`,
+        answer: `Yes. We work with most major insurance providers servicing ${city.city} including NRMA, Suncorp, RACV, Allianz, and QBE. We provide detailed documentation and can communicate with adjusters to help streamline your claim.`,
       },
     ];
 

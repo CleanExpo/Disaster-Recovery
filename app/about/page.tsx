@@ -10,13 +10,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <section className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
-              🚀 Australia's Leading Restoration Marketplace Platform
+              🚀 Advanced Restoration Marketplace Platform
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-8">
               About <span className="text-[#00BFA6]">NRPG Marketplace Platform</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] max-w-4xl mx-auto mb-8">
-              We're building Australia's most advanced restoration marketplace platform - a comprehensive SaaS solution that connects property owners with verified contractors through transparent pricing, automated workflows, and real-time project tracking. Our white-label platform is designed for scale and growth.
+              We're building an advanced restoration marketplace platform - a comprehensive SaaS solution that connects property owners with verified contractors through transparent pricing, automated workflows, and real-time project tracking. Our white-label platform is designed for scale and growth.
             </p>
             <div className="flex flex-wrap justify-center gap-8 text-center">
               <div>
@@ -355,7 +355,7 @@ export default function AboutPage() {
                 <MapPin className="h-12 w-12 text-[#00BFA6] mb-6 mx-auto" />
                 <h3 className="font-poppins font-semibold text-2xl text-white mb-4">National Emergency Line</h3>
                 <p className="text-3xl font-bold text-[#00BFA6] mb-4">1300 309 361</p>
-                <p className="text-[#9CA3AF] text-sm">Available 24/7 for emergency restoration services across Australia</p>
+                <p className="text-[#9CA3AF] text-sm">Available 24/7 for emergency restoration services in major Australian cities</p>
               </div>
             </div>
           </section>
