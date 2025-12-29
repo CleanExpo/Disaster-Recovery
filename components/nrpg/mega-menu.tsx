@@ -106,8 +106,8 @@ export function MegaMenu({
     <div
       ref={menuRef}
       className={`
-        absolute top-full left-0 w-full bg-white dark:bg-slate-900
-        shadow-2xl border-t border-slate-200 dark:border-slate-800
+        absolute top-full left-0 w-full bg-gradient-to-br from-[#0F1115] to-[#1a1d29]
+        shadow-2xl border-t border-[#374151]/50
         transition-all duration-300 ease-out
         ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'}
         ${className}
@@ -151,7 +151,7 @@ function MegaMenuItemCard({ item, basePath, onClose }: MegaMenuItemCardProps) {
       onClick={onClose}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative block rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 transition-all duration-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="group relative block rounded-2xl overflow-hidden bg-[#1a1d29] transition-all duration-300 hover:shadow-xl hover:shadow-[#00BFA6]/20 focus:outline-none focus:ring-2 focus:ring-[#00BFA6] focus:ring-offset-2 focus:ring-offset-[#0F1115]"
       role="menuitem"
     >
       {/* Image Container - 16:10 Aspect Ratio */}
