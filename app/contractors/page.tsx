@@ -42,7 +42,7 @@ export default function ContractorsPage() {
               <Zap className="h-12 w-12 text-[#00BFA6] mb-4" />
               <h3 className="font-poppins font-semibold text-xl text-white mb-3">Smart Lead Matching</h3>
               <p className="text-[#9CA3AF] mb-4">
-                AI-powered algorithm matches you with the most relevant projects based on your location, expertise, and availability.
+                Smart matching algorithm connects you with relevant projects based on your location, expertise, and availability.
               </p>
               <ul className="text-[#9CA3AF] text-sm space-y-1">
                 <li>• Location-based matching</li>
@@ -132,10 +132,10 @@ export default function ContractorsPage() {
               <TrendingUp className="h-12 w-12 text-[#00BFA6] mb-4" />
               <h3 className="font-poppins font-semibold text-xl text-white mb-3">Scale Your Business</h3>
               <p className="text-[#9CA3AF] mb-4">
-                Access our platform's automated systems to grow your business by up to 40% with minimal effort
+                Access our platform's automated systems to help grow your business with streamlined workflows
               </p>
               <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• AI-powered lead matching</li>
+                <li>• Smart lead matching</li>
                 <li>• Automated project management</li>
                 <li>• Business growth analytics</li>
                 <li>• Scalable workflow systems</li>
@@ -306,7 +306,7 @@ export default function ContractorsPage() {
                   <Zap className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-white mb-1">Smart Lead Matching</h4>
-                    <p className="text-[#9CA3AF] text-sm">AI-powered matching increases project relevance by 80%</p>
+                    <p className="text-[#9CA3AF] text-sm">Smart matching helps connect you with relevant projects in your service area</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">

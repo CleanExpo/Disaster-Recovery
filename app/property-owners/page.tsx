@@ -43,7 +43,7 @@ export default function PropertyOwnersPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] hover:border-[#00BFA6] transition-colors">
               <Zap className="h-12 w-12 text-[#00BFA6] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">AI-Powered Matching</h3>
+              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Smart Contractor Matching</h3>
               <p className="text-[#9CA3AF]">Our smart algorithm matches you with the most suitable contractors based on your specific needs and location.</p>
             </div>
 

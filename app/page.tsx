@@ -39,8 +39,8 @@ const HERO_SCENARIOS = [
     sector: 'Residential',
     hazard: 'Flood Emergency',
     status: 'Response Active',
-    title: 'Your Home. Forensically Restored.',
-    description: 'Insurance-grade documentation. IICRC protocols. Zero compromise on quality.',
+    title: 'Your Home. Professionally Restored.',
+    description: 'Insurance-grade documentation. IICRC protocols. Quality standards maintained.',
     image: '/images/scenarios/residential-flood.jpg',
     cta: {
       label: 'Dispatch Emergency Team',
@@ -66,7 +66,7 @@ const HERO_SCENARIOS = [
     hazard: 'Biohazard Event',
     status: 'Team Deployed',
     title: 'Heavy Infrastructure. Precision Decon.',
-    description: 'Manufacturing plants. Warehouses. Critical facilities. Forensic-grade results.',
+    description: 'Manufacturing plants. Warehouses. Critical facilities. IICRC-certified results.',
     image: '/images/scenarios/industrial-bio.jpg',
     cta: {
       label: 'Request Specialist Team',
@@ -318,9 +318,9 @@ export default function HomePage() {
                   <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1]">
                     One Number.
                     <br />
-                    <span className="text-blue-600">Forensic Results.</span>
+                    <span className="text-blue-600">Professional Results.</span>
                     <br />
-                    Zero Compromise.
+                    Quality Standards.
                   </h1>
 
                   <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl">
@@ -373,7 +373,7 @@ export default function HomePage() {
                   The 1300 Blueprint
                 </h2>
                 <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                  Not just a number. A commitment to forensic standards.
+                  Not just a number. A commitment to IICRC professional standards.
                 </p>
               </div>
 
@@ -560,7 +560,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-slate-500 leading-relaxed max-w-md">
-                  Australia's IICRC-certified disaster recovery network. Forensic standards.
+                  Australia's IICRC-certified disaster recovery network. Professional standards.
                   Expanding coverage. IICRC certified contractors.
                 </p>
                 <div className="pt-4">

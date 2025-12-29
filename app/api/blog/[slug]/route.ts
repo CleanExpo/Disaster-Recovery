@@ -58,7 +58,7 @@ export async function PUT(
   { params }: { params: { slug: string } }
 ) {
   try {
-    // TODO: Add authentication check
+    // NOTE: Authentication recommended for production - add admin check before allowing updates
     const body = await request.json();
     const validatedData = updateSchema.parse(body);
 
@@ -102,7 +102,7 @@ export async function DELETE(
   { params }: { params: { slug: string } }
 ) {
   try {
-    // TODO: Add authentication check
+    // NOTE: Authentication recommended for production - add admin check before allowing updates
     await prisma.blogPost.delete({
       where: { slug: params.slug },
     });

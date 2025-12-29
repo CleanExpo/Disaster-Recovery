@@ -103,7 +103,7 @@ export default function AboutPage() {
                 <h3 className="font-poppins font-semibold text-xl text-white mb-2">Rana Muzamil</h3>
                 <p className="text-[#7C4DFF] font-medium mb-4">Chief Technology Officer</p>
                 <p className="text-[#9CA3AF] text-sm leading-relaxed">
-                  Rana architects our marketplace platform technology, leading the development of our white-label SaaS solution, AI-powered matching algorithms, and scalable infrastructure.
+                  Rana architects our marketplace platform technology, leading the development of our white-label SaaS solution, smart matching algorithms, and scalable infrastructure.
                 </p>
               </div>
             </div>
@@ -136,7 +136,7 @@ export default function AboutPage() {
                   <div>
                     <h3 className="font-poppins font-semibold text-xl text-white mb-2">End of September 2025 - MVP Launch</h3>
                     <p className="text-[#9CA3AF]">
-                      Launching our MVP marketplace platform with AI-powered matching, automated workflows, and real-time project tracking. Initial focus on connecting property owners with verified restoration contractors across Australia.
+                      Launching our MVP marketplace platform with smart contractor matching, automated workflows, and real-time project tracking. Initial focus on connecting property owners with verified restoration contractors across Australia.
                     </p>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] text-center">
                 <Zap className="h-12 w-12 text-[#00BFA6] mx-auto mb-4" />
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">AI-Powered Matching</h3>
+                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Smart Contractor Matching</h3>
                 <p className="text-[#9CA3AF] text-sm">
                   Advanced algorithms match clients with the most qualified contractors based on location, expertise, and availability
                 </p>
