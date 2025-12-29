@@ -239,7 +239,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                     {
                       step: 2,
                       title: 'Rapid Assessment',
-                      description: 'Technicians arrive within 60 minutes to assess damage and begin emergency mitigation.',
+                      description: 'We aim for rapid response with technicians arriving as quickly as possible to assess damage and begin emergency mitigation.',
                     },
                     {
                       step: 3,

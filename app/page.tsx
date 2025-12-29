@@ -340,7 +340,7 @@ export default function HomePage() {
                   <EmergencyButton size="xl" showPulse className="shadow-2xl" />
                   <div className="text-sm text-slate-600 dark:text-slate-400">
                     <div className="font-black uppercase tracking-wider">24/7 Dispatch Ready</div>
-                    <div>All States & Territories</div>
+                    <div>Major Cities Coverage</div>
                   </div>
                 </div>
 
@@ -388,8 +388,8 @@ export default function HomePage() {
                     National Defense Line
                   </h3>
                   <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    One emergency number covering every state and territory. Instant dispatch to
-                    your nearest vetted contractor.
+                    One emergency number for restoration services across Australia. Rapid dispatch to
+                    connect you with qualified contractors.
                   </p>
                 </div>
 
@@ -527,14 +527,14 @@ export default function HomePage() {
                 Neither Do We.
               </h2>
               <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-                24/7 emergency dispatch. Nationwide coverage. IICRC protocols.
+                24/7 emergency dispatch. Expanding coverage. IICRC protocols.
               </p>
               <EmergencyButton
                 size="xl"
                 className="bg-nrpg-red hover:bg-nrpg-red/90 shadow-2xl shadow-red-900/50"
               />
               <p className="mt-6 text-sm text-blue-200">
-                Available now across all states and territories
+                Expanding coverage across Australia's major cities
               </p>
             </div>
           </section>
@@ -561,7 +561,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-slate-500 leading-relaxed max-w-md">
                   Australia's IICRC-certified disaster recovery network. Forensic standards.
-                  Nationwide coverage. IICRC certified contractors.
+                  Expanding coverage. IICRC certified contractors.
                 </p>
                 <div className="pt-4">
                   <EmergencyButtonLabeled size="lg" />
