@@ -10,7 +10,7 @@ export default function ContactPage() {
       name: "Platform Support",
       description: "General platform questions, user onboarding, and platform feature assistance",
       email: "support@nrp.com.au",
-      phone: "1800 NRPG AUS",
+      phone: "1300 309 361",
       icon: Headphones,
       color: "text-[#00BFA6]",
     },
@@ -18,7 +18,7 @@ export default function ContactPage() {
       name: "Technical Support",
       description: "Platform technical issues, API integration, and system troubleshooting",
       email: "tech@nrp.com.au",
-      phone: "1800 NRPG TECH",
+      phone: "1300 309 361",
       icon: Shield,
       color: "text-[#2196F3]",
     },
@@ -26,7 +26,7 @@ export default function ContactPage() {
       name: "Partnership & Licensing",
       description: "White-label licensing, contractor partnerships, and business collaborations",
       email: "partners@nrp.com.au",
-      phone: "1800 NRPG PART",
+      phone: "1300 309 361",
       icon: Users,
       color: "text-[#7C4DFF]",
     },
@@ -34,7 +34,7 @@ export default function ContactPage() {
       name: "Enterprise Sales",
       description: "Enterprise platform solutions, custom integrations, and large-scale deployments",
       email: "enterprise@nrp.com.au",
-      phone: "1800 NRPG ENTER",
+      phone: "1300 309 361",
       icon: Globe,
       color: "text-[#FF9800]",
     },
@@ -48,7 +48,7 @@ export default function ContactPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/20 text-[#00BFA6] text-sm font-medium mb-6">
               <Globe className="w-4 h-4 mr-2" />
-              Australia's Leading Restoration Marketplace Platform
+              Australia's Advanced Restoration Marketplace Platform
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
               Contact Our <span className="gradient-text-teal-purple">Platform Team</span>
@@ -133,8 +133,8 @@ export default function ContactPage() {
                   <h3 className="font-poppins font-semibold text-xl text-white">Phone</h3>
                 </div>
                 <p className="text-[#9CA3AF] mb-2">General Inquiries</p>
-                <p className="text-[#00BFA6] font-semibold text-lg">1800 NRPG AUS</p>
-                <p className="text-[#9CA3AF] text-sm">Mon-Fri 8AM-6PM AEST</p>
+                <p className="text-[#00BFA6] font-semibold text-lg">1300 309 361</p>
+                <p className="text-[#9CA3AF] text-sm">Available 24/7</p>
               </div>
 
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
@@ -223,7 +223,7 @@ export default function ContactPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold">
                 <Phone className="h-4 w-4 mr-2" />
-                1800 NRPG SUPPORT
+                Call 1300 309 361
               </Button>
               <Button variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] bg-transparent">
                 <MessageSquare className="h-4 w-4 mr-2" />

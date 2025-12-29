@@ -12,28 +12,14 @@ export default function PropertyOwnersPage() {
         <section className="container mx-auto px-6 text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/20 text-[#00BFA6] text-sm font-medium mb-6">
             <Globe className="w-4 h-4 mr-2" />
-            Australia's Leading Restoration Marketplace Platform
+            Australia's Advanced Restoration Marketplace Platform
           </div>
           <h1 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
             Smart Restoration <span className="gradient-text-teal-purple">Marketplace Platform</span>
           </h1>
           <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto mb-8">
-            Experience the future of property restoration with our AI-powered marketplace platform. Get matched with verified contractors, track projects in real-time, and enjoy transparent pricing across Australia.
+            Connect with IICRC-certified restoration contractors through our marketplace platform. Get matched with verified professionals, receive transparent quotes, and access restoration services across Australia.
           </p>
-          <div className="flex items-center justify-center space-x-8 mb-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#00BFA6]">2,847+</div>
-              <div className="text-sm text-[#9CA3AF]">Happy Clients</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#2196F3]">24hrs</div>
-              <div className="text-sm text-[#9CA3AF]">Avg. Response</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[#7C4DFF]">38%</div>
-              <div className="text-sm text-[#9CA3AF]">Cost Savings</div>
-            </div>
-          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
               Start Your Project
@@ -44,7 +30,7 @@ export default function PropertyOwnersPage() {
               className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] px-8 py-3 text-lg bg-transparent"
             >
               <Phone className="mr-2 h-5 w-5" />
-              Call 1800 NRPG AUS
+              Call 1300 309 361
             </Button>
           </div>
         </section>
