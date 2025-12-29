@@ -223,7 +223,7 @@ export default function PrivacyPage() {
                         <Mail className="h-5 w-5 text-[#00BFA6] mr-2" />
                         <span className="text-white font-medium">Email</span>
                       </div>
-                      <p className="text-[#00BFA6]">privacy@nrp.com.au</p>
+                      <p className="text-[#00BFA6]">nrpg.team@gmail.com</p>
                     </div>
 
                     <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">

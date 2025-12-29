@@ -241,7 +241,7 @@ export default function TermsPage() {
                         <Mail className="h-5 w-5 text-[#00BFA6] mr-2" />
                         <span className="text-white font-medium">Legal Inquiries</span>
                       </div>
-                      <p className="text-[#00BFA6]">legal@nrp.com.au</p>
+                      <p className="text-[#00BFA6]">nrpg.team@gmail.com</p>
                       <p className="text-[#9CA3AF] text-sm mt-1">For questions about these terms or legal matters</p>
                     </div>
 

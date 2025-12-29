@@ -9,7 +9,7 @@ export default function ContactPage() {
     {
       name: "Platform Support",
       description: "General platform questions, user onboarding, and platform feature assistance",
-      email: "support@nrp.com.au",
+      email: "nrpg.team@gmail.com",
       phone: "1300 309 361",
       icon: Headphones,
       color: "text-[#00BFA6]",
@@ -17,7 +17,7 @@ export default function ContactPage() {
     {
       name: "Technical Support",
       description: "Platform technical issues, API integration, and system troubleshooting",
-      email: "tech@nrp.com.au",
+      email: "nrpg.team@gmail.com",
       phone: "1300 309 361",
       icon: Shield,
       color: "text-[#2196F3]",
@@ -25,7 +25,7 @@ export default function ContactPage() {
     {
       name: "Partnership & Licensing",
       description: "White-label licensing, contractor partnerships, and business collaborations",
-      email: "partners@nrp.com.au",
+      email: "nrpg.team@gmail.com",
       phone: "1300 309 361",
       icon: Users,
       color: "text-[#7C4DFF]",
@@ -33,7 +33,7 @@ export default function ContactPage() {
     {
       name: "Enterprise Sales",
       description: "Enterprise platform solutions, custom integrations, and large-scale deployments",
-      email: "enterprise@nrp.com.au",
+      email: "nrpg.team@gmail.com",
       phone: "1300 309 361",
       icon: Globe,
       color: "text-[#FF9800]",
@@ -143,7 +143,7 @@ export default function ContactPage() {
                   <h3 className="font-poppins font-semibold text-xl text-white">Email</h3>
                 </div>
                 <p className="text-[#9CA3AF] mb-2">General Inquiries</p>
-                <p className="text-[#2196F3] font-semibold">hello@nrp.com.au</p>
+                <p className="text-[#2196F3] font-semibold">nrpg.team@gmail.com</p>
                 <p className="text-[#9CA3AF] text-sm">Response within 24 hours</p>
               </div>
 
