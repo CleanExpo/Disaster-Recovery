@@ -49,6 +49,8 @@
     "seo:test": "ts-node scripts/test-page-generation.ts",
     "seo:stats": "ts-node scripts/test-page-generation.ts",
     "gemini:generate": "node scripts/generate-gemini-assets.js",
+    "gemini:all": "node scripts/generate-all-gemini-assets.js",
+    "gemini:videos": "node scripts/generate-gemini-videos.js",
     "gemini:test": "ts-node -e \"require('./lib/services/gemini-image.service').geminiImageService.testConnection()\"",
     "postinstall": "prisma generate"
   },
