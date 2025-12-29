@@ -531,7 +531,7 @@ export default function ContractorsPage() {
           <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-12 border border-[#374151]">
             <h2 className="font-poppins font-semibold text-3xl text-white mb-4">Ready to Scale Your Business with Our Platform?</h2>
             <p className="text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
-              Join our marketplace platform and access automated workflows, smart lead matching, business analytics, and growth tools. Join over 2,500 successful contractors already scaling their business with our platform.
+              Join our marketplace platform and access automated workflows, smart lead matching, business analytics, and growth tools designed specifically for restoration contractors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
