@@ -48,10 +48,13 @@
     "ai:stats": "curl http://localhost:3000/api/ai/stats",
     "seo:test": "ts-node scripts/test-page-generation.ts",
     "seo:stats": "ts-node scripts/test-page-generation.ts",
+    "gemini:generate": "node scripts/generate-gemini-assets.js",
+    "gemini:test": "ts-node -e \"require('./lib/services/gemini-image.service').geminiImageService.testConnection()\"",
     "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
+    "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^3.10.0",
     "@huggingface/inference": "^4.13.5",
     "@langchain/openai": "^1.2.0",
