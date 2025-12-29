@@ -88,7 +88,7 @@ export default function PropertyOwnersPage() {
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] text-center">
               <Shield className="h-12 w-12 text-[#00BFA6] mx-auto mb-4" />
               <h3 className="font-poppins font-semibold text-xl text-white mb-3">Quality Assurance</h3>
-              <p className="text-[#9CA3AF] text-sm">All work is monitored and backed by our comprehensive quality guarantee</p>
+              <p className="text-[#9CA3AF] text-sm">All work is monitored through our platform quality assurance process</p>
             </div>
 
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] text-center">
@@ -156,13 +156,13 @@ export default function PropertyOwnersPage() {
             <div className="text-center">
               <CheckCircle className="h-12 w-12 text-[#00BFA6] mx-auto mb-4" />
               <h3 className="font-semibold text-xl text-white mb-3">Quality Assurance</h3>
-              <p className="text-[#9CA3AF]">All work is backed by our platform's quality guarantee and monitored through our system</p>
+              <p className="text-[#9CA3AF]">All work is monitored through our platform's quality assurance process and tracked in our system</p>
             </div>
 
             <div className="text-center">
               <Star className="h-12 w-12 text-[#FFD700] mx-auto mb-4" />
-              <h3 className="font-semibold text-xl text-white mb-3">Satisfaction Guarantee</h3>
-              <p className="text-[#9CA3AF]">We ensure you're completely satisfied with your restoration project or we'll make it right</p>
+              <h3 className="font-semibold text-xl text-white mb-3">Customer Focus</h3>
+              <p className="text-[#9CA3AF]">We work to connect you with contractors committed to delivering quality restoration services</p>
             </div>
 
             <div className="text-center">
