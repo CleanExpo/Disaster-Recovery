@@ -165,9 +165,9 @@ export const EMERGENCY_PHONE = {
 
   // Number storytelling
   parts: {
-    national: '1300',      // National Defense Line
-    protocols: '309',      // 309 IICRC forensic checkpoints
-    care: '361',          // 361 degrees of care (beyond 360)
+    national: '1300',      // National toll-free prefix
+    protocols: '309',      // Second segment of 1300 number
+    care: '361',          // Third segment of 1300 number
   },
 
   // Copy variations
