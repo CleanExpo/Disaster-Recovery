@@ -199,8 +199,8 @@ export const SERVICE_PILLARS = [
   {
     id: 'fire',
     title: 'Fire & Smoke',
-    subtitle: 'Remediation',
-    protocol: 'Protocol S520',
+    subtitle: 'Restoration',
+    protocol: 'FSRT',
     protocolColor: 'text-orange-400',
     services: [
       'Soot Mitigation',
@@ -209,7 +209,7 @@ export const SERVICE_PILLARS = [
       'Content Restoration',
       'HEPA Filtration',
     ],
-    slug: 'fire-smoke-remediation',
+    slug: 'fire-smoke-restoration',
   },
   {
     id: 'mould',
