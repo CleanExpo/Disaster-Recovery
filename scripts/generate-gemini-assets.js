@@ -29,7 +29,7 @@ async function generateImage(prompt, outputPath, resolution = '2K') {
   console.log(`📝 Prompt: ${prompt.substring(0, 80)}...`);
 
   const model = genAI.getGenerativeModel({
-    model: 'gemini-3-pro-image-preview', // Nano Banana Pro
+    model: 'gemini-2.5-flash-image', // Latest recommended model (December 2025) with higher quota
   });
 
   try {
