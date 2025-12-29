@@ -182,7 +182,7 @@ export default function ServicesPage() {
                 <span className="text-white font-bold text-xl">2</span>
               </div>
               <h3 className="font-poppins font-semibold text-xl text-white mb-3">Smart Matching</h3>
-              <p className="text-[#9CA3AF]">Our AI-powered algorithm matches you with the most qualified contractors based on location, expertise, and availability</p>
+              <p className="text-[#9CA3AF]">Our smart matching algorithm connects you with qualified contractors based on location, expertise, and availability</p>
             </div>
 
             <div className="text-center">

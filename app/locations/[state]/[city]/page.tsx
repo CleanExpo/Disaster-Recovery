@@ -324,7 +324,7 @@ export default function LocationPage({ params }: LocationPageProps) {
                   {
                     title: 'IICRC Certified Technicians',
                     description:
-                      'Every contractor in our network is IICRC certified and vetted to meet our forensic restoration standards.',
+                      'Every contractor in our network is IICRC certified and vetted to meet our professional restoration standards.',
                     icon: '✅',
                   },
                   {
