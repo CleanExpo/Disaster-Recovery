@@ -22,6 +22,7 @@ import { HeroCarousel } from '@/components/nrpg/hero-carousel';
 import { PillarCard, PillarCardGrid } from '@/components/nrpg/pillar-card';
 import { EmergencyButton, EmergencyButtonLabeled } from '@/components/nrpg/emergency-button';
 import { ProtocolBadge } from '@/components/nrpg/protocol-badge';
+import { MobileMenu, HamburgerButton } from '@/components/nrpg/MobileMenu';
 import {
   SERVICE_PILLARS,
   CLIENT_SECTORS,
@@ -79,6 +80,9 @@ export default function HomePage() {
   const servicesMenu = useMegaMenu();
   const sectorsMenu = useMegaMenu();
   const locationsMenu = useMegaMenu();
+
+  // Mobile Menu State
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Transform data for MegaMenu
   const servicePillarsForMenu = SERVICE_PILLARS.map((p) => ({
@@ -294,24 +298,10 @@ export default function HomePage() {
                 <EmergencyButton size="default" className="shadow-xl" />
 
                 {/* Mobile Menu Toggle */}
-                <button
-                  className="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
-                  aria-label="Toggle menu"
-                >
-                  <svg
-                    className="w-6 h-6 text-slate-900 dark:text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                </button>
+                <HamburgerButton
+                  isOpen={isMobileMenuOpen}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                />
               </div>
             </div>
           </nav>
@@ -730,6 +720,12 @@ export default function HomePage() {
           }
         }
       `}</style>
+
+      {/* Mobile Menu */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
     </>
   );
 }
