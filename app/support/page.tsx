@@ -36,7 +36,7 @@ export default function SupportPage() {
                 <h3 className="font-poppins font-semibold text-xl text-white">Email Support</h3>
               </div>
               <p className="text-[#9CA3AF] mb-4">Send us a detailed message</p>
-              <p className="text-[#2196F3] font-semibold text-lg">support@nrp.com.au</p>
+              <p className="text-[#2196F3] font-semibold text-lg">nrpg.team@gmail.com</p>
               <p className="text-[#9CA3AF] text-sm">Response within 24 hours</p>
             </div>
 
