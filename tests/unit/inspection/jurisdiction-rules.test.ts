@@ -285,8 +285,8 @@ describe('JurisdictionRulesEngine', () => {
         );
         expect(photoCheck).toBeDefined();
         expect(photoCheck?.passed).toBe(false);
-        expect(photoCheck?.requiredActions).toContain(
-          expect.stringContaining('Add 7 more photos')
+        expect(photoCheck?.requiredActions).toEqual(
+          expect.arrayContaining([expect.stringContaining('Add 7 more photos')])
         );
       });
 

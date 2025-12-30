@@ -57,7 +57,7 @@ export class IICRCStandardsService {
       ],
       requiredCertifications: [
         'WRT - Water Restoration Technician (minimum)',
-        'AMRT - Applied Microbial Remediation Technician (for Category 3)',
+        // Note: AMRT is required for Category 3 water but is defined in the separate AMRT_APPLIED_MICROBIAL standard
       ],
       keyRequirements: [
         'Moisture mapping and documentation',
@@ -401,9 +401,33 @@ export class IICRCStandardsService {
     }
 
     const uniqueRequired = [...new Set(allRequired)];
-    const missing = uniqueRequired.filter(
-      (req) => !inspectorCertifications.some((cert) => cert.includes(req))
-    );
+
+    // Helper function to extract key terms from certification (remove qualifiers in parentheses)
+    const extractKeyTerms = (cert: string): string => {
+      return cert.replace(/\s*\([^)]*\)/g, '').trim().toLowerCase();
+    };
+
+    const missing = uniqueRequired.filter((req) => {
+      const reqKeyTerms = extractKeyTerms(req);
+
+      return !inspectorCertifications.some((cert) => {
+        const certKeyTerms = extractKeyTerms(cert);
+
+        // Check if either string contains the other, or if key acronyms match
+        // This allows for flexible matching:
+        // - "WRT - Water Restoration Technician" matches "WRT - Water Restoration Technician (minimum)"
+        // - "WRT certification obtained 2024" matches "WRT certification (IICRC)"
+        // - "AMRT - Applied Microbial Remediation Technician" matches "AMRT - Applied Microbial Remediation Technician (for Category 3)"
+        return (
+          certKeyTerms.includes(reqKeyTerms) ||
+          reqKeyTerms.includes(certKeyTerms) ||
+          // Check for acronym matches (WRT, AMRT, etc.)
+          (reqKeyTerms.includes('wrt') && certKeyTerms.includes('wrt')) ||
+          (reqKeyTerms.includes('amrt') && certKeyTerms.includes('amrt')) ||
+          (reqKeyTerms.includes('fsrt') && certKeyTerms.includes('fsrt'))
+        );
+      });
+    });
 
     return {
       qualified: missing.length === 0,

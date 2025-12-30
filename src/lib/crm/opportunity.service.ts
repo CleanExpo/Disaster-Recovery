@@ -352,6 +352,7 @@ export class OpportunityService {
       ),
       totalValue: Number(totalValue._sum.estimatedValueAUD || 0),
       weightedValue: weighted,
+      weightedPipelineValue: weighted, // Alias for compatibility with tests
       averageDealSize: Number(avgDealSize._avg.estimatedValueAUD || 0),
       conversionRate,
       wonDeals: wonCount,
