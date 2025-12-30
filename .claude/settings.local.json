@@ -53,7 +53,8 @@
       "Bash(docker-compose down:*)",
       "Bash(docker volume rm:*)",
       "Bash(DATABASE_URL=\"postgresql://admin:password@localhost:5432/disaster_recovery\" npx prisma db push:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git pull:*)"
     ]
   }
 }
