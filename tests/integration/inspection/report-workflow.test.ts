@@ -17,11 +17,14 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach } from '@jest/globals';
-import { PrismaClient, InspectionStatus, DamageCategory, IICRCStandard, Prisma } from '@prisma/client';
+import { InspectionStatus, DamageCategory, IICRCStandard, Prisma } from '@prisma/client';
+import prisma from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+// Skip database integration tests if DB_INTEGRATION_TESTS environment variable is not set
+// These tests require a properly configured PostgreSQL database
+const describeIfDatabase = process.env.DB_INTEGRATION_TESTS === 'true' ? describe : describe.skip;
 
-describe('Inspection Report Workflow Integration', () => {
+describeIfDatabase('Inspection Report Workflow Integration', () => {
   const testInspectorId = `inspector-${Date.now()}`;
   const testCustomerId = `customer-${Date.now()}`;
   const testBookingId = `booking-${Date.now()}`;
