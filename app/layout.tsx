@@ -115,8 +115,44 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Organization Schema with Social Media Profiles
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "National Restoration Professionals Group",
+    "alternateName": "NRPG",
+    "url": "https://disasterrecoverynrpg.com.au",
+    "logo": "https://disasterrecoverynrpg.com.au/images/nrpg-logo.png",
+    "description": "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage.",
+    "telephone": "1300-309-361",
+    "email": "nrpg.team@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "AU"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/phill-mcgurk-drq/",
+      "https://www.facebook.com/disasterrecoveryau",
+      "https://www.youtube.com/channel/UCc9RuDsvlEXr8ymzIbQqRCQ",
+      "https://creators.spotify.com/pod/show/2PtpuuiYKKlKa7fWI0IvaV/home"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "1300-309-361",
+      "contactType": "Emergency Service",
+      "areaServed": "AU",
+      "availableLanguage": "English"
+    }
+  };
+
   return (
     <html lang="en" className="light" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className={`font-sans ${jakarta.variable} ${spaceGrotesk.variable} antialiased`}>
         <AuthProvider>
           <ThemeProvider>
