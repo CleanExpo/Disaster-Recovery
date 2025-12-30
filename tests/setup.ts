@@ -1,8 +1,24 @@
 // Jest Test Setup File
 // Global configuration and setup for all tests
+import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
+import { PrismaClient } from '@prisma/client';
 
 process.env.NODE_ENV = 'test';
 jest.setTimeout(10000);
+
+// Mock Prisma Client for all tests
+export const prismaMock = mockDeep<PrismaClient>();
+
+jest.mock('@/lib/prisma', () => ({
+  __esModule: true,
+  default: prismaMock,
+}));
+
+// Reset Prisma mock and clear all mocks before each test
+beforeEach(() => {
+  mockReset(prismaMock);
+  jest.clearAllMocks();
+});
 
 afterEach(() => {
   jest.clearAllTimers();
@@ -20,10 +36,6 @@ global.fetch = jest.fn(() =>
     status: 200
   })
 ) as jest.Mock;
-
-beforeEach(() => {
-  jest.clearAllMocks();
-});
 
 const testDataFactory = {
   createMessage: (overrides = {}) => ({

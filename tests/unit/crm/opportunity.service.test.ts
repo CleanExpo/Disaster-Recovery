@@ -208,16 +208,16 @@ describe('OpportunityService', () => {
     });
 
     it('should set correct probability for each stage', async () => {
-      const stages: Array<[OpportunityStage, number]> = [
+      const stages: Array<[OpportunityStage, number, string?]> = [
         ['DISCOVERY', 10],
         ['ASSESSMENT', 30],
         ['PROPOSAL', 50],
         ['NEGOTIATION', 70],
         ['CLOSED_WON', 100],
-        ['CLOSED_LOST', 0],
+        ['CLOSED_LOST', 0, 'Customer chose competitor'], // Reason required for CLOSED_LOST
       ];
 
-      for (const [stage, expectedProb] of stages) {
+      for (const [stage, expectedProb, reason] of stages) {
         prismaMock.opportunity.findUnique.mockResolvedValue({
           id: 'opp-1',
           stage: 'DISCOVERY',
@@ -230,7 +230,7 @@ describe('OpportunityService', () => {
           probabilityPercent: expectedProb,
         } as any);
 
-        const result = await service.updateStage('opp-1', stage);
+        const result = await service.updateStage('opp-1', stage, reason);
 
         expect(prismaMock.opportunity.update).toHaveBeenCalledWith(
           expect.objectContaining({
