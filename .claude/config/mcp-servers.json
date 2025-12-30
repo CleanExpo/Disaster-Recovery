@@ -1,0 +1,56 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-playwright"],
+      "description": "Browser automation for testing and screenshots",
+      "enabled": true
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-filesystem"],
+      "description": "File system operations (read/write)",
+      "enabled": true
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-github"],
+      "description": "GitHub API integration (issues, PRs, repos)",
+      "enabled": true,
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-slack"],
+      "description": "Slack notifications and messaging",
+      "enabled": false,
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_WEBHOOK_URL": "${SLACK_WEBHOOK_URL}"
+      }
+    },
+    "prometheus": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-prometheus"],
+      "description": "Prometheus metrics and alerting",
+      "enabled": false,
+      "env": {
+        "PROMETHEUS_URL": "${PROMETHEUS_URL}"
+      }
+    }
+  },
+  "settings": {
+    "progressiveDisclosure": true,
+    "maxToolsPerContext": 50,
+    "enableCodeExecution": true
+  },
+  "notes": {
+    "description": "MCP (Model Context Protocol) configuration for agent tool access",
+    "documentation": "https://modelcontextprotocol.io",
+    "usage": "Agents discover and use tools via MCP without hardcoding each tool",
+    "progressiveDisclosure": "Only load tools when needed to avoid context bloat",
+    "lastUpdated": "2025-12-30"
+  }
+}
