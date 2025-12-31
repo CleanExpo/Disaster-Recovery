@@ -97,13 +97,9 @@ export default function SignupPage() {
 
   const handleOnboardingComplete = async (preferences: any) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/user/preferences', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -137,15 +133,11 @@ export default function SignupPage() {
 
   const handleContractorOnboardingComplete = async (preferences: any) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       // Save contractor preferences
       const preferencesResponse = await fetch('/api/contractor/preferences', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(preferences)
       });
@@ -174,8 +166,7 @@ export default function SignupPage() {
       const profileResponse = await fetch('/api/contractor/profile', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(profileData)
       });
@@ -206,23 +197,19 @@ export default function SignupPage() {
   const handleClientOnboardingComplete = async (preferences: any) => {
     try {
       // Save preferences to database
-      const token = localStorage.getItem('token');
-      if (token) {
-        const response = await fetch('/api/user/preferences', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(preferences)
-        });
+      const response = await fetch('/api/user/preferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(preferences)
+      });
 
-        if (response.ok) {
-          const savedPreferences = await response.json();
-          setClientPreferences(savedPreferences);
-        } else {
-          console.error('Failed to save client preferences');
-        }
+      if (response.ok) {
+        const savedPreferences = await response.json();
+        setClientPreferences(savedPreferences);
+      } else {
+        console.error('Failed to save client preferences');
       }
       
       setShowClientOnboarding(false);

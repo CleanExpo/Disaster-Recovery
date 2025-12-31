@@ -68,13 +68,8 @@ export default function ContractorDashboardPage() {
   const checkOnboardingStatus = async () => {
     try {
       setLoadingPreferences(true);
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/contractor/preferences', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -101,14 +96,10 @@ export default function ContractorDashboardPage() {
   const handleOnboardingComplete = async (preferences: any) => {
     try {
       setLoadingPreferences(true);
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/contractor/preferences', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(preferences)
       });
@@ -136,13 +127,8 @@ export default function ContractorDashboardPage() {
   const fetchProfile = async () => {
     try {
       setLoadingProfile(true);
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/contractor/profile', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -159,13 +145,8 @@ export default function ContractorDashboardPage() {
   const fetchActiveProjects = async () => {
     try {
       setLoadingActiveProjects(true);
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/contractor/active-projects', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -185,8 +166,7 @@ export default function ContractorDashboardPage() {
   };
 
   const renderContent = () => {
-    const token = localStorage.getItem('token');
-    if (!token) return null;
+    if (!user) return null;
 
     switch (activeTab) {
       case 'overview':
@@ -371,10 +351,10 @@ export default function ContractorDashboardPage() {
         );
 
       case 'available-requests':
-        return <AvailableRequestsSection token={token} />;
+        return <AvailableRequestsSection />;
 
       case 'my-bids':
-        return <MyBidsSection token={token} />;
+        return <MyBidsSection />;
 
       case 'active-projects':
         return (
@@ -995,7 +975,6 @@ export default function ContractorDashboardPage() {
           projectId={selectedProjectId}
           isOpen={showDetailsModal}
           userType="CONTRACTOR"
-          token={localStorage.getItem('token') || ''}
           onClose={() => {
             setShowDetailsModal(false);
             setSelectedProjectId(null);

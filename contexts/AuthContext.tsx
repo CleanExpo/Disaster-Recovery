@@ -1,6 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
+import React, { createContext, useCallback, useContext, useMemo, type ReactNode } from 'react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 interface User {
   id: string
@@ -46,132 +47,95 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { data: session, status } = useSession()
 
-  useEffect(() => {
-    // Check if user is logged in on mount
-    const token = localStorage.getItem('token') || localStorage.getItem('auth_token')
-    if (!token) {
-      setLoading(false)
-      return
+  const user = useMemo<User | null>(() => {
+    if (!session?.user) return null
+
+    const sessionUser = session.user as unknown as {
+      id?: string
+      email?: string | null
+      name?: string | null
+      userType?: User['userType']
+      avatar?: string | null
     }
 
-    // Verify token and fetch user data
-    fetch('/api/auth/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    if (!sessionUser.id || !sessionUser.email || !sessionUser.userType) return null
+
+    return {
+      id: sessionUser.id,
+      email: sessionUser.email,
+      name: sessionUser.name || '',
+      userType: sessionUser.userType,
+      avatar: sessionUser.avatar ?? null,
+    }
+  }, [session])
+
+  const loading = status === 'loading'
+
+  const login = useCallback(async (email: string, password: string): Promise<void> => {
+    const result = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.success && data?.data?.user) {
-          const apiUser = data.data.user as User
-          setUser({
-            id: apiUser.id,
-            email: apiUser.email,
-            name: apiUser.name,
-            userType: apiUser.userType,
-            avatar: apiUser.avatar ?? null,
-          })
-          // Keep both keys for backward compatibility across the codebase.
-          localStorage.setItem('token', token)
-          localStorage.setItem('auth_token', token)
-        } else {
-          localStorage.removeItem('token')
-          localStorage.removeItem('auth_token')
-        }
-      })
-      .catch(() => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('auth_token')
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+
+    if (!result || result.error) {
+      throw new Error('Invalid email or password')
+    }
   }, [])
 
-  const login = async (email: string, password: string) => {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    })
+  const logout = useCallback((): void => {
+    void signOut({ redirect: false })
+  }, [])
 
-    const data = await response.json()
+  const register = useCallback(
+    async (
+      email: string,
+      password: string,
+      name: string,
+      userType: 'CLIENT' | 'CONTRACTOR'
+    ): Promise<User> => {
+      const userData: RegisterData = { email, password, name, userType }
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      })
 
-    if (!response.ok) {
-      throw new Error(data?.message || data?.error || 'Login failed')
-    }
+      const data = await response.json()
 
-    if (!data?.success || !data?.data?.user || !data?.data?.token) {
-      throw new Error('Invalid response from server')
-    }
+      if (!response.ok) {
+        throw new Error(data?.message || data?.error || 'Registration failed')
+      }
 
-    const apiUser = data.data.user as User
-    const token = data.data.token as string
+      if (!data?.success || !data?.data?.user) {
+        throw new Error('Invalid response from server')
+      }
 
-    setUser({
-      id: apiUser.id,
-      email: apiUser.email,
-      name: apiUser.name,
-      userType: apiUser.userType,
-      avatar: apiUser.avatar ?? null,
-    })
+      const signInResult = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      })
 
-    localStorage.setItem('token', token)
-    localStorage.setItem('auth_token', token)
-  }
+      if (!signInResult || signInResult.error) {
+        throw new Error('Account created but sign-in failed')
+      }
 
-  const logout = () => {
-    setUser(null)
-    localStorage.removeItem('token')
-    localStorage.removeItem('auth_token')
-  }
-
-  const register = async (
-    email: string,
-    password: string,
-    name: string,
-    userType: 'CLIENT' | 'CONTRACTOR'
-  ): Promise<User> => {
-    const userData: RegisterData = { email, password, name, userType }
-    const response = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    })
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      throw new Error(data?.message || data?.error || 'Registration failed')
-    }
-
-    if (!data?.success || !data?.data?.user || !data?.data?.token) {
-      throw new Error('Invalid response from server')
-    }
-
-    const apiUser = data.data.user as User
-    const token = data.data.token as string
-
-    setUser({
-      id: apiUser.id,
-      email: apiUser.email,
-      name: apiUser.name,
-      userType: apiUser.userType,
-      avatar: apiUser.avatar ?? null,
-    })
-
-    localStorage.setItem('token', token)
-    localStorage.setItem('auth_token', token)
-
-    return apiUser
-  }
+      const apiUser = data.data.user as User
+      return {
+        id: apiUser.id,
+        email: apiUser.email,
+        name: apiUser.name,
+        userType: apiUser.userType,
+        avatar: apiUser.avatar ?? null,
+      }
+    },
+    []
+  )
 
   const isAuthenticated = useMemo(() => Boolean(user), [user])
 

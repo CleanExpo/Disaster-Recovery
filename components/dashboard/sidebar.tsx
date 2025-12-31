@@ -29,7 +29,7 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ activeTab, setActiveTab, sidebarOpen, setSidebarOpen }: SidebarProps) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const router = useRouter();
 
   const menuItems = [
@@ -107,8 +107,8 @@ export default function Sidebar({ activeTab, setActiveTab, sidebarOpen, setSideb
           variant="ghost"
           className="w-full justify-center text-gray-300 hover:text-white hover:bg-gray-800"
           onClick={() => {
-            localStorage.removeItem('token');
-            window.location.href = '/login';
+            logout();
+            router.push('/login');
           }}
         >
           <LogOut className="h-4 w-4 mr-2" />

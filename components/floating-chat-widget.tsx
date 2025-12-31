@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -70,9 +70,6 @@ export default function FloatingChatWidget({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const refreshIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Debug logging
-  console.log('FloatingChatWidget rendered with:', { currentUserId, currentUserType });
-
   // Auto-scroll to bottom of messages
   const scrollToBottom = () => {
     setTimeout(() => {
@@ -96,13 +93,9 @@ export default function FloatingChatWidget({
     try {
       setLoadingConversations(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
       const response = await fetch('/api/messages', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -170,14 +163,8 @@ export default function FloatingChatWidget({
     try {
       setLoadingMessages(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch(`/api/messages?contractorId=${participantId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/messages?contractorId=${participantId}`, { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -194,14 +181,10 @@ export default function FloatingChatWidget({
   const markAsRead = async (conversationId: string) => {
     try {
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       await fetch('/api/messages', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           conversationId: conversationId
@@ -219,14 +202,11 @@ export default function FloatingChatWidget({
     try {
       setSendingMessage(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
       const response = await fetch('/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           receiverId: selectedConversation.participant.id,

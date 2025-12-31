@@ -101,16 +101,9 @@ export default function AdminPreferencesPage() {
   const fetchData = async () => {
     try {
       setLoadingData(true);
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const [categoriesRes, themesRes] = await Promise.all([
-        fetch('/api/admin/service-categories', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/admin/themes', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        })
+        fetch('/api/admin/service-categories', { cache: 'no-store' }),
+        fetch('/api/admin/themes', { cache: 'no-store' })
       ]);
 
       if (categoriesRes.ok) {
@@ -131,13 +124,9 @@ export default function AdminPreferencesPage() {
 
   const handleCreateCategory = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/admin/service-categories', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(categoryForm)
@@ -155,13 +144,9 @@ export default function AdminPreferencesPage() {
 
   const handleCreateService = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/admin/services', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(serviceForm)
@@ -179,13 +164,9 @@ export default function AdminPreferencesPage() {
 
   const handleCreateTheme = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/admin/themes', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(themeForm)

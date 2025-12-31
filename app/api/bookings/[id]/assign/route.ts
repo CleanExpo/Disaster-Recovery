@@ -7,10 +7,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
+import { authOptions } from '@/lib/auth';
 import { BookingStatus } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 // ============================================================================
 // POST /api/bookings/[id]/assign - Assign contractor to booking
@@ -21,7 +20,7 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -168,7 +167,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(

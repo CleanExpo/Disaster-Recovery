@@ -129,11 +129,7 @@ export default function ContractorSearchInterface({
         ...(minRating && { minRating: minRating.toString() }),
       });
 
-      const response = await fetch(`/api/contractors/search?${searchParams}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const response = await fetch(`/api/contractors/search?${searchParams}`, { cache: 'no-store' });
 
       if (!response.ok) {
         throw new Error('Failed to search contractors');

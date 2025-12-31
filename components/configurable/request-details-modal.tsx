@@ -67,7 +67,6 @@ interface RequestDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
   requestId: string | null;
-  token: string;
 }
 
 interface RequestDetails {
@@ -98,7 +97,7 @@ interface RequestDetails {
   canBid: boolean;
 }
 
-export default function RequestDetailsModal({ isOpen, onClose, requestId, token }: RequestDetailsModalProps) {
+export default function RequestDetailsModal({ isOpen, onClose, requestId }: RequestDetailsModalProps) {
   const { toast } = useToast();
   const [request, setRequest] = useState<RequestDetails | null>(null);
   const [loading, setLoading] = useState(false);
@@ -124,11 +123,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId, token 
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`/api/service-requests/${requestId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/service-requests/${requestId}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -164,7 +159,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId, token 
     } finally {
       setLoading(false);
     }
-  }, [requestId, token, toast]);
+  }, [requestId, toast]);
 
   const handleBidOnRequest = async () => {
     if (!request) return;
@@ -174,7 +169,6 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId, token 
       const response = await fetch(`/api/contractor/requests/${request.id}/bid`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -229,7 +223,6 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId, token 
       const response = await fetch('/api/messages/initiate', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({

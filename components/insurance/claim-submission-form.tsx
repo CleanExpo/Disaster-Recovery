@@ -118,11 +118,7 @@ export default function ClaimSubmissionForm({
   const fetchBookings = async () => {
     try {
       setLoadingBookings(true);
-      const response = await fetch('/api/bookings', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const response = await fetch('/api/bookings', { cache: 'no-store' });
 
       if (!response.ok) throw new Error('Failed to fetch bookings');
 
@@ -193,7 +189,6 @@ export default function ClaimSubmissionForm({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(payload),
       });

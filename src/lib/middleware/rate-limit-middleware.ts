@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { AdvancedRateLimiter } from '@/lib/security/advanced-rate-limiting';
 import { EnhancedAuditLogger, AUDIT_ACTIONS_EXPORT } from '@/lib/security/enhanced-audit-logging';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth/auth-options';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 /**
  * Rate Limiting Middleware

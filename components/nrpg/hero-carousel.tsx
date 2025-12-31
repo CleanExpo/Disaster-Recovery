@@ -90,24 +90,6 @@ export function HeroCarousel({
 
   const currentScenario = scenarios[currentIndex];
 
-  // Auto-rotation
-  useEffect(() => {
-    if (isPaused || scenarios.length <= 1) return;
-
-    const timer = setInterval(() => {
-      goToNext();
-    }, interval);
-
-    return () => clearInterval(timer);
-  }, [currentIndex, isPaused, scenarios.length, interval]);
-
-  // Slide change callback
-  useEffect(() => {
-    if (onSlideChange && currentScenario) {
-      onSlideChange(currentIndex, currentScenario);
-    }
-  }, [currentIndex, currentScenario, onSlideChange]);
-
   const goToNext = useCallback(() => {
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev + 1) % scenarios.length);
@@ -126,6 +108,24 @@ export function HeroCarousel({
     setCurrentIndex(index);
     setTimeout(() => setIsTransitioning(false), 300);
   }, [currentIndex]);
+
+  // Auto-rotation
+  useEffect(() => {
+    if (isPaused || scenarios.length <= 1) return;
+
+    const timer = setInterval(() => {
+      goToNext();
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [goToNext, isPaused, scenarios.length, interval]);
+
+  // Slide change callback
+  useEffect(() => {
+    if (onSlideChange && currentScenario) {
+      onSlideChange(currentIndex, currentScenario);
+    }
+  }, [currentIndex, currentScenario, onSlideChange]);
 
   // Keyboard navigation
   useEffect(() => {

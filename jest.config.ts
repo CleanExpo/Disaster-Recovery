@@ -78,8 +78,7 @@ const config: Config = {
           allowSyntheticDefaultImports: true,
           strict: true,
           skipLibCheck: true
-        },
-        isolatedModules: true
+        }
       }
     ]
   },
@@ -175,13 +174,6 @@ const config: Config = {
   // Environment options
   testEnvironmentOptions: {
     NODE_ENV: 'test'
-  },
-
-  // Globals
-  globals: {
-    'ts-jest': {
-      isolatedModules: true
-    }
   }
 };
 

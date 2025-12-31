@@ -76,7 +76,7 @@ const IICRC_LEVEL_LABELS: Record<string, string> = {
 };
 
 export default function ContractorVerificationDashboard({
-  adminToken,
+  adminToken: _adminToken,
 }: ContractorVerificationDashboardProps) {
   const [pendingContractors, setPendingContractors] = useState<PendingContractor[]>([]);
   const [loading, setLoading] = useState(true);
@@ -86,22 +86,14 @@ export default function ContractorVerificationDashboard({
   const [verifying, setVerifying] = useState(false);
   const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'reviewed'>('pending');
 
-  useEffect(() => {
-    fetchPendingContractors();
-  }, [fetchPendingContractors]);
-
   const fetchPendingContractors = useCallback(async () => {
     try {
       setLoading(true);
       const url = selectedState
-        ? `/api/contractors/register/pending?state=${selectedState}`
-        : '/api/contractors/register/pending';
+        ? `/api/contractors/register?state=${selectedState}`
+        : '/api/contractors/register';
 
-      const response = await fetch(url, {
-        headers: {
-          'Authorization': `Bearer ${adminToken || localStorage.getItem('token')}`,
-        },
-      });
+      const response = await fetch(url, { cache: 'no-store' });
 
       if (!response.ok) throw new Error('Failed to fetch pending contractors');
 
@@ -113,7 +105,11 @@ export default function ContractorVerificationDashboard({
     } finally {
       setLoading(false);
     }
-  }, [selectedState, adminToken]);
+  }, [selectedState]);
+
+  useEffect(() => {
+    fetchPendingContractors();
+  }, [fetchPendingContractors]);
 
   const handleVerify = async (
     contractorId: string,
@@ -126,7 +122,6 @@ export default function ContractorVerificationDashboard({
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminToken || localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
           verificationLevel,

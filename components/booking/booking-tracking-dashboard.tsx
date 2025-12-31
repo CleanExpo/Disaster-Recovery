@@ -136,11 +136,13 @@ export default function BookingTrackingDashboard({ userId }: BookingTrackingDash
   const fetchBookings = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/bookings', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      const response = await fetch('/api/bookings', { cache: 'no-store' });
+
+      if (response.status === 401) {
+        setBookings([]);
+        toast.error('Please sign in to view bookings');
+        return;
+      }
 
       if (!response.ok) throw new Error('Failed to fetch bookings');
 

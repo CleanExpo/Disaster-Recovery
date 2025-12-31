@@ -79,7 +79,6 @@ export default function AdminContractorsPage() {
   const fetchContractors = useCallback(async () => {
     try {
       setLoadingContractors(true);
-      const token = localStorage.getItem('token');
       const params = new URLSearchParams({
         page: currentPage.toString(),
         limit: '10',
@@ -87,11 +86,7 @@ export default function AdminContractorsPage() {
         ...(searchTerm && { search: searchTerm })
       });
 
-      const response = await fetch(`/api/admin/contractors?${params}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/admin/contractors?${params}`, { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -119,13 +114,11 @@ export default function AdminContractorsPage() {
   const handleVerification = async (contractorId: string, action: 'verify' | 'reject') => {
     try {
       setActionLoading(contractorId);
-      const token = localStorage.getItem('token');
       
       const response = await fetch('/api/admin/contractors', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           contractorId,

@@ -30,10 +30,6 @@ import {
 import { useIndustryConfig } from '@/contexts/TenantContext';
 import RequestDetailsModal from './request-details-modal';
 
-interface AvailableRequestsSectionProps {
-  token: string;
-}
-
 interface AvailableRequest {
   id: string;
   serviceTitle: string;
@@ -56,7 +52,7 @@ interface AvailableRequest {
   canBid: boolean;
 }
 
-export default function AvailableRequestsSection({ token }: AvailableRequestsSectionProps) {
+export default function AvailableRequestsSection() {
   const { serviceCategories, urgencyLevels } = useIndustryConfig();
   
   // Default service categories if not provided by context
@@ -133,9 +129,7 @@ export default function AvailableRequestsSection({ token }: AvailableRequestsSec
       params.append('limit', filters.limit.toString());
 
       const response = await fetch(`/api/contractor/available-requests?${params}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -162,7 +156,7 @@ export default function AvailableRequestsSection({ token }: AvailableRequestsSec
     } finally {
       setLoading(false);
     }
-  }, [filters, token]);
+  }, [filters]);
 
 
   const handleViewDetails = (requestId: string) => {
@@ -201,7 +195,6 @@ export default function AvailableRequestsSection({ token }: AvailableRequestsSec
       const response = await fetch(`/api/contractor/requests/${selectedRequestForBid.id}/bid`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -668,7 +661,6 @@ export default function AvailableRequestsSection({ token }: AvailableRequestsSec
         isOpen={showDetailsModal}
         onClose={handleCloseModal}
         requestId={selectedRequestId}
-        token={token}
       />
     </div>
   );

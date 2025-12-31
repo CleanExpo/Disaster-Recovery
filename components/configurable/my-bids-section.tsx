@@ -17,10 +17,6 @@ import {
   Star
 } from 'lucide-react';
 
-interface MyBidsSectionProps {
-  token: string;
-}
-
 interface Bid {
   id: string;
   status: 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'EXPIRED';
@@ -44,7 +40,7 @@ interface Bid {
   };
 }
 
-export default function MyBidsSection({ token }: MyBidsSectionProps) {
+export default function MyBidsSection() {
   const [bids, setBids] = useState<Bid[]>([]);
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState({
@@ -63,9 +59,7 @@ export default function MyBidsSection({ token }: MyBidsSectionProps) {
     try {
       setLoading(true);
       const response = await fetch('/api/contractor/my-bids', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -78,7 +72,7 @@ export default function MyBidsSection({ token }: MyBidsSectionProps) {
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status) {

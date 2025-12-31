@@ -223,10 +223,13 @@ export default function DisasterRecoveryBookingForm({
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(payload),
       });
+
+      if (response.status === 401) {
+        throw new Error('Please sign in to create a booking');
+      }
 
       if (!response.ok) {
         const error = await response.json();

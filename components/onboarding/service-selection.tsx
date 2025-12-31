@@ -13,6 +13,7 @@ import {
   Settings
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
 interface ServiceSelectionProps {
   onComplete: (selections: ServiceSelections) => void;
@@ -81,17 +82,15 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const token = localStorage.getItem('token');
-        if (!token) return;
-
         const [categoriesRes, themesRes] = await Promise.all([
-          fetch('/api/admin/service-categories', {
-            headers: { 'Authorization': `Bearer ${token}` }
-          }),
-          fetch('/api/admin/themes', {
-            headers: { 'Authorization': `Bearer ${token}` }
-          })
+          fetch('/api/admin/service-categories', { cache: 'no-store' }),
+          fetch('/api/admin/themes', { cache: 'no-store' })
         ]);
+
+        if (categoriesRes.status === 401 || themesRes.status === 401) {
+          toast.error('Please sign in to continue');
+          return;
+        }
 
         if (categoriesRes.ok) {
           const categoriesData = await categoriesRes.json();
@@ -104,6 +103,7 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
         }
       } catch (error) {
         console.error('Error fetching data:', error);
+        toast.error('Failed to load onboarding data');
       } finally {
         setIsLoading(false);
       }

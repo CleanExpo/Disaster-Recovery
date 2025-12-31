@@ -137,14 +137,8 @@ export default function AdminDashboard() {
     try {
       setLoadingKpis(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/admin/kpis', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/admin/kpis', { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -161,8 +155,6 @@ export default function AdminDashboard() {
     try {
       setLoadingContractors(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
       const params = new URLSearchParams({
         page: '1',
@@ -171,11 +163,7 @@ export default function AdminDashboard() {
         ...(contractorSearchTerm && { search: contractorSearchTerm })
       });
 
-      const response = await fetch(`/api/admin/contractors?${params}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/admin/contractors?${params}`, { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -201,13 +189,11 @@ export default function AdminDashboard() {
     try {
       setActionLoading(contractorId);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
       
       const response = await fetch('/api/admin/contractors', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           contractorId,
@@ -351,14 +337,10 @@ export default function AdminDashboard() {
   const fetchAdminData = useCallback(async () => {
     try {
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
       // Fetch analytics
       const analyticsResponse = await fetch('/api/analytics/leads', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (analyticsResponse.ok) {
@@ -389,14 +371,8 @@ export default function AdminDashboard() {
     try {
       setLoadingClients(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/admin/clients', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/admin/clients', { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -413,14 +389,8 @@ export default function AdminDashboard() {
     try {
       setLoadingClientServices(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/admin/client-services', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/admin/client-services', { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -436,14 +406,8 @@ export default function AdminDashboard() {
   const fetchWhiteLabelStats = async () => {
     try {
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/admin/white-label-stats', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/admin/white-label-stats', { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();

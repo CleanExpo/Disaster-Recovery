@@ -6,10 +6,9 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
+import { authOptions } from '@/lib/auth';
 import { getClaimStatus, updateClaimStatus } from '@/lib/services/insurance.service';
-
-const prisma = new PrismaClient();
 
 // ============================================================================
 // GET /api/claims/[id] - Get claim details
@@ -20,7 +19,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -114,7 +113,7 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(

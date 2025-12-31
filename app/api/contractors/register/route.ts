@@ -2,19 +2,18 @@
  * Contractor Registration API Route
  * Handles NRPG contractor registration and onboarding
  * POST   /api/contractors/register - Register new contractor
- * GET    /api/contractors/register/pending - Get pending verifications (admin only)
+ * GET    /api/contractors/register - Get pending verifications (admin only)
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
+import { authOptions } from '@/lib/auth';
 import {
   registerContractor as nrpgRegisterContractor,
   getPendingVerifications,
 } from '@/lib/services/nrpg.service';
 import { AustralianState, AustralianServiceType, IICRCCertificationLevel } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 // ============================================================================
 // POST /api/contractors/register - Register new contractor
@@ -22,7 +21,7 @@ const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -126,12 +125,12 @@ export async function POST(request: NextRequest) {
 }
 
 // ============================================================================
-// GET /api/contractors/register/pending - Get pending verifications (admin)
+// GET /api/contractors/register - Get pending verifications (admin)
 // ============================================================================
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(

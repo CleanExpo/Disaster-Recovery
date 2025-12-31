@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
-import { generateToken } from '@/lib/auth';
 import { registerSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { ZodError } from 'zod';
@@ -48,9 +47,6 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Generate JWT token
-    const token = generateToken(user);
-
     // Return success with user data (excluding password)
     return NextResponse.json(
       {
@@ -63,7 +59,6 @@ export async function POST(request: NextRequest) {
             userType: user.userType,
             avatar: user.avatar,
           },
-          token,
         },
       },
       { status: 201 }

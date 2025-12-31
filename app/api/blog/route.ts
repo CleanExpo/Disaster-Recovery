@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/db';
+import { authOptions } from '@/lib/auth';
 import { BlogCategory, PostStatus } from '@prisma/client';
 import { z } from 'zod';
 
@@ -101,7 +102,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Authentication check - admin only
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session || !session.user?.email) {
       return NextResponse.json(
         { error: 'Unauthorized' },

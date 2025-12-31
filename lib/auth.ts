@@ -1,8 +1,20 @@
 import jwt from 'jsonwebtoken';
 import { User } from '@prisma/client';
 import type { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { prisma } from '@/lib/prisma';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET =
+  process.env.JWT_SECRET ||
+  process.env.NEXTAUTH_SECRET ||
+  (process.env.NODE_ENV === 'test' ? 'test-only-jwt-secret' : undefined);
+
+function requireJwtSecret(): string {
+  if (!JWT_SECRET) {
+    throw new Error('Missing JWT_SECRET (or NEXTAUTH_SECRET fallback)');
+  }
+  return JWT_SECRET;
+}
 
 export interface JWTPayload {
   userId: string;
@@ -21,27 +33,96 @@ export function generateToken(user: User): string {
     type: 'auth',
   };
 
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
+  return jwt.sign(payload, requireJwtSecret(), { expiresIn: '7d' });
 }
 
 export function verifyToken(token: string): JWTPayload | null {
   try {
-    return jwt.verify(token, JWT_SECRET) as JWTPayload;
+    return jwt.verify(token, requireJwtSecret()) as JWTPayload;
   } catch (error) {
     return null;
   }
 }
 
 /**
- * Minimal NextAuth options export.
+ * NextAuth options export.
  *
- * Some API routes use `getServerSession(authOptions)` but this codebase primarily uses JWT auth.
- * Keeping this export prevents build-time import errors; if you want NextAuth sessions,
- * implement `app/api/auth/[...nextauth]/route.ts` with a real provider setup.
+ * This enables cookie-based sessions (`getServerSession(authOptions)`) across App Router API routes.
  */
 export const authOptions: NextAuthOptions = {
-  providers: [],
+  providers: [
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials) {
+        const email = credentials?.email?.toLowerCase().trim();
+        const password = credentials?.password ?? '';
+
+        if (!email || !password) {
+          return null;
+        }
+
+        const user = await prisma.user.findUnique({
+          where: { email },
+        });
+
+        const hashedPassword = user?.password || '$2a$10$dummyhashtopreventtimingleak';
+        const isValidPassword = await verifyPasswordSafe(password, hashedPassword);
+
+        if (!user || !user.password || !isValidPassword) {
+          return null;
+        }
+
+        if (!user.isActive || user.isBlocked) {
+          return null;
+        }
+
+        await prisma.user.update({
+          where: { id: user.id },
+          data: { lastLoginAt: new Date() },
+        });
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          userType: user.userType,
+          avatar: user.avatar,
+        } as any;
+      },
+    }),
+  ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  pages: {
+    signIn: '/login',
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = (user as any).id;
+        token.userType = (user as any).userType;
+        token.role = (user as any).userType;
+        token.avatar = (user as any).avatar ?? null;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        (session.user as any).id = token.id;
+        (session.user as any).userType = (token as any).userType;
+        (session.user as any).role = (token as any).userType;
+        (session.user as any).avatar = (token as any).avatar ?? null;
+      }
+      return session;
+    },
+  },
 };
 
 export function getTokenFromRequest(request: Request): string | null {
@@ -79,13 +160,13 @@ export async function hashPassword(password: string): Promise<string> {
 }
 
 export function generateResetToken(userId: string): string {
-  return jwt.sign({ userId, type: 'password-reset' } satisfies Partial<JWTPayload>, JWT_SECRET, {
+  return jwt.sign({ userId, type: 'password-reset' } satisfies Partial<JWTPayload>, requireJwtSecret(), {
     expiresIn: '1h',
   });
 }
 
 export function generateVerificationToken(userId: string): string {
-  return jwt.sign({ userId, type: 'email-verification' } satisfies Partial<JWTPayload>, JWT_SECRET, {
+  return jwt.sign({ userId, type: 'email-verification' } satisfies Partial<JWTPayload>, requireJwtSecret(), {
     expiresIn: '24h',
   });
 }

@@ -12,7 +12,7 @@ const USE_MOCK = process.env.USE_MOCK_DB === 'true' || false;
 let prismaInstance: any;
 
 if (USE_MOCK) {
-  console.log('🔧 Using mock Prisma client (database connection issue)');
+  console.log('Using mock Prisma client (database connection issue)');
   prismaInstance = mockPrisma;
 } else {
   prismaInstance = globalForPrisma.prisma ?? new PrismaClient({

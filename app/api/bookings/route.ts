@@ -7,7 +7,8 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
+import { authOptions } from '@/lib/auth';
 import {
   BookingStatus,
   AustralianServiceType,
@@ -19,15 +20,13 @@ import {
   australianBookingSchema,
 } from '@/lib/validation/australia';
 
-const prisma = new PrismaClient();
-
 // ============================================================================
 // GET /api/bookings - List bookings
 // ============================================================================
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -116,7 +115,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
       return NextResponse.json(

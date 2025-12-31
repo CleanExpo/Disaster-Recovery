@@ -7,20 +7,14 @@
  * - IICRC certification validation
  */
 
-import { PrismaClient } from '@prisma/client';
-import {
-  IICRCCertificationLevel,
-  AustralianState,
-  AustralianServiceType,
-} from '@/types/australia';
+import { AustralianServiceType, AustralianState, IICRCCertificationLevel } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import {
   australianABNSchema,
   australianACNSchema,
   australianPhoneSchema,
   validateABNChecksum,
 } from '@/lib/validation/australia';
-
-const prisma = new PrismaClient();
 
 // ============================================================================
 // TYPES
@@ -405,9 +399,15 @@ export async function getPendingVerifications(
     id: string;
     businessName: string;
     abnNumber: string;
-    nrpgMemberId: string;
+    nrpgMemberId?: string;
     operatingStates: AustralianState[];
-    iicrcLevels: IICRCCertificationLevel[];
+    email?: string;
+    phone?: string;
+    certifications: Array<{
+      level: IICRCCertificationLevel;
+      certificationCode: string;
+      expiryDate: Date;
+    }>;
     createdAt: Date;
   }>
 > {
@@ -418,6 +418,12 @@ export async function getPendingVerifications(
         ...(state && { operatingStates: { has: state } }),
       },
       include: {
+        user: {
+          select: {
+            email: true,
+            australianPhoneNumber: true,
+          },
+        },
         iicrcCertifications: {
           where: { isActive: true },
         },
@@ -429,9 +435,15 @@ export async function getPendingVerifications(
       id: c.id,
       businessName: c.businessName,
       abnNumber: c.abnNumber || '',
-      nrpgMemberId: c.nrpgMemberId || '',
+      nrpgMemberId: c.nrpgMemberId || undefined,
       operatingStates: c.operatingStates,
-      iicrcLevels: c.iicrcCertifications.map((cert) => cert.certificationLevel),
+      email: c.user.email,
+      phone: c.user.australianPhoneNumber || undefined,
+      certifications: c.iicrcCertifications.map((cert) => ({
+        level: cert.certificationLevel,
+        certificationCode: cert.certificationCode,
+        expiryDate: cert.expiryDate,
+      })),
       createdAt: c.createdAt,
     }));
   } catch (error) {

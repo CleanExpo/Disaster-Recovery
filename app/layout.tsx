@@ -3,9 +3,7 @@ import type { Metadata } from "next"
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
-import { AuthProvider } from "@/contexts/AuthContext"
-import { ThemeProvider } from "@/contexts/ThemeContext"
-import { TenantProvider } from "@/contexts/TenantContext"
+import { AppProviders } from "@/components/providers/AppProviders"
 import "./globals.css"
 
 const jakarta = Plus_Jakarta_Sans({
@@ -154,14 +152,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans ${jakarta.variable} ${spaceGrotesk.variable} antialiased`}>
-        <AuthProvider>
-          <ThemeProvider>
-            <TenantProvider>
-              <Suspense fallback={null}>{children}</Suspense>
-              <Analytics />
-            </TenantProvider>
-          </ThemeProvider>
-        </AuthProvider>
+        <AppProviders>
+          <Suspense fallback={null}>{children}</Suspense>
+          <Analytics />
+        </AppProviders>
       </body>
     </html>
   )

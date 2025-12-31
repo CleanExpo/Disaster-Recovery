@@ -65,21 +65,19 @@ describe('E2E: User Authentication and Onboarding', () => {
     const loginResponse = {
       status: 200,
       body: {
-        token: 'jwt-token-xyz',
         user: {
           id: 'user-1',
           email: credentials.email,
           name: 'Test User'
         }
+      },
+      cookies: {
+        'next-auth.session-token': 'session-cookie-value'
       }
     };
 
     expect(loginResponse.status).toBe(200);
-    expect(loginResponse.body.token).toBeDefined();
-
-    // Step 4: Token should be stored
-    const storedToken = loginResponse.body.token;
-    expect(storedToken).toBeDefined();
+    expect(loginResponse.cookies['next-auth.session-token']).toBeDefined();
 
     // Step 5: User redirected to dashboard
     const currentPage = '/dashboard';

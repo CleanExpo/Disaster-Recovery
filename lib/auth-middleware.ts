@@ -1,12 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 import { verifyToken, JWTPayload } from '@/lib/auth';
+import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { User } from '@prisma/client';
-import { ApiError, ErrorCode } from '@/lib/api-errors';
+import { ErrorCode } from '@/lib/api-errors';
 
 export interface AuthContext {
   user: User;
   decoded: JWTPayload;
+}
+
+export interface AuthenticateRequestOptions {
+  /**
+   * Legacy fallback for non-browser clients that still send `Authorization: Bearer ...`.
+   *
+   * Default: `false` (cookie-based NextAuth session only).
+   */
+  allowBearerToken?: boolean;
 }
 
 /**
@@ -14,8 +25,54 @@ export interface AuthContext {
  * Extracts and verifies JWT token, fetches user from database
  */
 export async function authenticateRequest(
-  request: NextRequest
+  request: NextRequest,
+  options: AuthenticateRequestOptions = {}
 ): Promise<{ success: true; context: AuthContext } | { success: false; response: NextResponse }> {
+  // Prefer NextAuth cookie-based sessions when available.
+  try {
+    const session = await getServerSession(authOptions);
+    const sessionUser = session?.user as unknown as { id?: string; email?: string | null } | undefined;
+
+    const sessionUserId = sessionUser?.id;
+    const sessionUserEmail = sessionUser?.email?.toLowerCase().trim();
+
+    if (sessionUserId || sessionUserEmail) {
+      const user = await prisma.user.findUnique({
+        where: sessionUserId ? { id: sessionUserId } : { email: sessionUserEmail! },
+      });
+
+      if (user) {
+        return {
+          success: true,
+          context: {
+            user,
+            decoded: {
+              userId: user.id,
+              email: user.email,
+              userType: user.userType,
+              type: 'auth',
+            },
+          },
+        };
+      }
+    }
+  } catch {
+    // Ignore session errors and fall back to Bearer token auth when enabled.
+  }
+
+  if (!options.allowBearerToken) {
+    return {
+      success: false,
+      response: NextResponse.json(
+        {
+          error: ErrorCode.UNAUTHORIZED,
+          message: 'Authentication required',
+        },
+        { status: 401 }
+      ),
+    };
+  }
+
   // Extract token
   const authHeader = request.headers.get('authorization');
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -91,7 +148,7 @@ export async function authenticateRequest(
  */
 export function requireRole(
   user: User,
-  allowedRoles: Array<'ADMIN' | 'CONTRACTOR' | 'CLIENT'>
+  allowedRoles: Array<'ADMIN' | 'CONTRACTOR' | 'CLIENT' | 'SUPER_ADMIN'>
 ): boolean {
   return allowedRoles.includes(user.userType);
 }

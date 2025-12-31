@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -22,13 +23,12 @@ import {
 } from 'lucide-react';
 
 interface EnhancedChatWidgetProps {
-  user: {
+  user?: {
     id: string;
-    name: string;
-    email: string;
+    name?: string;
+    email?: string;
     avatar?: string;
   };
-  token: string;
 }
 
 interface ChatConnection {
@@ -61,7 +61,9 @@ interface Message {
   messageType: string;
 }
 
-export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetProps) {
+export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
+  const { data: session } = useSession();
+  const userId = user?.id ?? session?.user?.id ?? null;
   const [isOpen, setIsOpen] = useState(false);
   const [connections, setConnections] = useState<ChatConnection[]>([]);
   const [selectedConnection, setSelectedConnection] = useState<ChatConnection | null>(null);
@@ -73,11 +75,7 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
   const fetchConnections = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/chat/connections', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/chat/connections', { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -88,15 +86,11 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   const fetchMessages = useCallback(async (connectionId: string) => {
     try {
-      const response = await fetch(`/api/chat/connections/${connectionId}/messages`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/chat/connections/${connectionId}/messages`, { cache: 'no-store' });
 
       if (response.ok) {
         const data = await response.json();
@@ -105,7 +99,7 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
     } catch (error) {
       console.error('Failed to fetch messages:', error);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -127,7 +121,6 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
       const response = await fetch(`/api/chat/connections/${selectedConnection.id}/messages`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -151,7 +144,6 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
       const response = await fetch('/api/chat/initiate-contact', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -173,7 +165,13 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
     <>
       {/* Chat Toggle Button */}
       <Button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (!userId) {
+            void signIn();
+            return;
+          }
+          setIsOpen(!isOpen);
+        }}
         className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-[#00BFA6] hover:bg-[#00A693] shadow-lg z-40"
       >
         <MessageSquare className="h-6 w-6" />
@@ -348,11 +346,11 @@ export default function EnhancedChatWidget({ user, token }: EnhancedChatWidgetPr
                     messages.map((message) => (
                       <div
                         key={message.id}
-                        className={`flex ${message.senderId === user.id ? 'justify-end' : 'justify-start'}`}
+                        className={`flex ${userId && message.senderId === userId ? 'justify-end' : 'justify-start'}`}
                       >
                         <div
                           className={`max-w-xs px-4 py-2 rounded-lg ${
-                            message.senderId === user.id
+                            userId && message.senderId === userId
                               ? 'bg-[#00BFA6] text-white'
                               : 'bg-gray-200 text-gray-900'
                           }`}

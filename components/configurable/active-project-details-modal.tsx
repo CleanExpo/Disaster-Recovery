@@ -44,7 +44,6 @@ interface ActiveProjectDetailsModalProps {
   onClose: () => void;
   projectId: string;
   userType: 'CLIENT' | 'CONTRACTOR';
-  token: string;
 }
 
 interface ProjectDetails {
@@ -98,8 +97,7 @@ export default function ActiveProjectDetailsModal({
   isOpen, 
   onClose, 
   projectId, 
-  userType,
-  token 
+  userType
 }: ActiveProjectDetailsModalProps) {
   const [project, setProject] = useState<ProjectDetails | null>(null);
   const [loading, setLoading] = useState(false);
@@ -116,11 +114,7 @@ export default function ActiveProjectDetailsModal({
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`/api/active-projects/${projectId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/active-projects/${projectId}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -134,7 +128,7 @@ export default function ActiveProjectDetailsModal({
     } finally {
       setLoading(false);
     }
-  }, [projectId, token]);
+  }, [projectId]);
 
   if (!isOpen) return null;
 

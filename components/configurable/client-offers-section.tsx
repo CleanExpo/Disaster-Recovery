@@ -28,10 +28,6 @@ import {
   Zap
 } from 'lucide-react';
 
-interface ClientOffersSectionProps {
-  token: string;
-}
-
 interface BidOffer {
   id: string;
   budget: string;
@@ -64,7 +60,7 @@ interface BidOffer {
   };
 }
 
-export default function ClientOffersSection({ token }: ClientOffersSectionProps) {
+export default function ClientOffersSection() {
   const [offers, setOffers] = useState<BidOffer[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -79,9 +75,7 @@ export default function ClientOffersSection({ token }: ClientOffersSectionProps)
     try {
       setLoading(true);
       const response = await fetch('/api/client/offers', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -100,14 +94,13 @@ export default function ClientOffersSection({ token }: ClientOffersSectionProps)
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  }, []);
 
   const handleAcceptOffer = async (offerId: string) => {
     try {
       const response = await fetch(`/api/client/offers/${offerId}/accept`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
@@ -126,7 +119,6 @@ export default function ClientOffersSection({ token }: ClientOffersSectionProps)
       const response = await fetch(`/api/client/offers/${offerId}/reject`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });

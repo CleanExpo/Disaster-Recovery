@@ -120,13 +120,8 @@ export default function ClientDashboard() {
   // Fetch user preferences
   const fetchUserPreferences = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/user/preferences', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+        cache: 'no-store',
       });
 
       if (response.ok) {
@@ -150,14 +145,10 @@ export default function ClientDashboard() {
   const handleCancelRequest = async (requestId: string) => {
     try {
       setCancellingRequest(true);
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch(`/api/service-requests/${requestId}/cancel`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         }
       });
 
@@ -179,14 +170,10 @@ export default function ClientDashboard() {
   // Handle onboarding completion
   const handleOnboardingComplete = async (preferences: any) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch('/api/user/preferences', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(preferences)
       });
@@ -265,13 +252,9 @@ export default function ClientDashboard() {
 
   const handleAcceptOffer = async (offerId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch(`/api/client/offers/${offerId}/accept`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
@@ -291,13 +274,9 @@ export default function ClientDashboard() {
 
   const handleRejectOffer = async (offerId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch(`/api/client/offers/${offerId}/reject`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
@@ -316,13 +295,9 @@ export default function ClientDashboard() {
 
   const handleCompleteProject = async (projectId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const response = await fetch(`/api/client/active-projects/${projectId}/complete`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
@@ -348,14 +323,8 @@ export default function ClientDashboard() {
   const handleViewContractor = async (contractorId: string, serviceCategory?: string) => {
     try {
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch(`/api/contractor/${contractorId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/contractor/${contractorId}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -391,8 +360,6 @@ export default function ClientDashboard() {
     
     try {
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
       const messageData = {
         receiverId: receiverId,
@@ -408,7 +375,6 @@ export default function ClientDashboard() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(messageData)
       });
@@ -431,14 +397,8 @@ export default function ClientDashboard() {
     try {
       setLoadingMessages(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch(`/api/messages?contractorId=${contractorId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/messages?contractorId=${contractorId}`);
 
       if (response.ok) {
         const data = await response.json();
@@ -457,14 +417,11 @@ export default function ClientDashboard() {
     try {
       setSendingMessage(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
       const response = await fetch('/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           receiverId: selectedContractor.userId,
@@ -606,14 +563,8 @@ export default function ClientDashboard() {
     try {
       setLoadingRequests(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/service-requests', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/service-requests', { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -630,14 +581,8 @@ export default function ClientDashboard() {
     try {
       setLoadingMessages(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/messages', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/messages', { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -655,14 +600,8 @@ export default function ClientDashboard() {
     try {
       setLoadingOffers(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/client/offers', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/client/offers', { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -679,14 +618,8 @@ export default function ClientDashboard() {
     try {
       setLoadingActiveProjects(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/client/active-projects', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/client/active-projects', { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -781,14 +714,8 @@ export default function ClientDashboard() {
     try {
       setLoadingNotifications(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch('/api/notifications', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch('/api/notifications', { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -805,14 +732,8 @@ export default function ClientDashboard() {
     try {
       setLoadingMatches(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch(`/api/service-requests/${requestId}/matches`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/service-requests/${requestId}/matches`, { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -832,14 +753,8 @@ export default function ClientDashboard() {
     try {
       setLoadingContractors(true);
       if (typeof window === 'undefined') return;
-      const token = localStorage.getItem('token');
-      if (!token) return;
 
-      const response = await fetch(`/api/contractors/available?category=${category}&limit=20`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await fetch(`/api/contractors/available?category=${category}&limit=20`, { cache: 'no-store' });
 
       if (response.ok) {
         const result = await response.json();
@@ -872,19 +787,12 @@ export default function ClientDashboard() {
         setIsSubmitting(false);
         return;
       }
-      const token = localStorage.getItem('token');
-      if (!token) {
-        setSubmitError('Authentication required. Please log in again.');
-        setIsSubmitting(false);
-        return;
-      }
 
       // Submit the request
       const response = await fetch('/api/service-requests', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(formData)
       });
@@ -3975,7 +3883,6 @@ export default function ClientDashboard() {
           projectId={selectedProjectId}
           isOpen={showDetailsModal}
           userType="CLIENT"
-          token={localStorage.getItem('token') || ''}
           onClose={() => {
             setShowDetailsModal(false);
             setSelectedProjectId(null);

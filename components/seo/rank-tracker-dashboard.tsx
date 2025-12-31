@@ -6,7 +6,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Card,
   CardContent,
@@ -83,12 +83,7 @@ export function RankTrackerDashboard() {
   const [selectedLocation, setSelectedLocation] = useState<string>('all');
   const [dateRange, setDateRange] = useState<'7d' | '30d' | '90d'>('30d');
 
-  useEffect(() => {
-    fetchRankings();
-    fetchOpportunities();
-  }, [selectedDevice, selectedLocation, dateRange]);
-
-  const fetchRankings = async () => {
+  const fetchRankings = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/monitoring/rankings?device=${selectedDevice}&location=${selectedLocation}&range=${dateRange}`);
@@ -99,9 +94,9 @@ export function RankTrackerDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedDevice, selectedLocation, dateRange]);
 
-  const fetchOpportunities = async () => {
+  const fetchOpportunities = useCallback(async () => {
     try {
       const response = await fetch('/api/monitoring/rankings/opportunities');
       const data = await response.json();
@@ -109,7 +104,12 @@ export function RankTrackerDashboard() {
     } catch (error) {
       console.error('Error fetching opportunities:', error);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    void fetchRankings();
+    void fetchOpportunities();
+  }, [fetchRankings, fetchOpportunities]);
 
   const getRankingChange = (ranking: KeywordRanking) => {
     if (!ranking.previousPosition || !ranking.position) return null;
