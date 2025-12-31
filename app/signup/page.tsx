@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,7 @@ import ContractorOnboarding from '@/components/onboarding/contractor-onboarding'
 import ClientOnboarding from '@/components/client-onboarding';
 
 export default function SignupPage() {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,6 +41,13 @@ export default function SignupPage() {
   
   const { register } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    const typeParam = searchParams?.get('type')?.toLowerCase();
+    if (typeParam === 'contractor') {
+      setFormData(prev => ({ ...prev, userType: 'CONTRACTOR' }));
+    }
+  }, [searchParams]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));

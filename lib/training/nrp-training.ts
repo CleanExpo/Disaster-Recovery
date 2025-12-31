@@ -82,8 +82,8 @@ export async function loadNrpgQuizBank(): Promise<NrpgQuizBank> {
 
 export async function getNrpgQuizModule(moduleNumber: number): Promise<NrpgQuizModule | null> {
   const bank = await loadNrpgQuizBank();
-  const module = bank.quizData[String(moduleNumber)];
-  return module ?? null;
+  const quizModule = bank.quizData[String(moduleNumber)];
+  return quizModule ?? null;
 }
 
 export function parseNrpgModuleNumber(moduleId: string): number | null {
@@ -124,3 +124,22 @@ export async function verifyTrainingSourcesPresent(): Promise<void> {
   }
 }
 
+export async function getVerifiedTrainingSourceHtml(
+  relativePath: string
+): Promise<{ html: string; sha256: string; bytes: number }> {
+  const index = await loadNrpgTrainingIndex();
+  const entry = index.sources.find((s) => s.path === relativePath);
+  if (!entry) {
+    throw new Error(`Training source not found in index: ${relativePath}`);
+  }
+
+  const absolutePath = path.join(process.cwd(), relativePath);
+  const buffer = await fs.readFile(absolutePath);
+  const sha = sha256Hex(buffer);
+
+  if (sha !== entry.sha256) {
+    throw new Error(`Training source hash mismatch for ${relativePath}`);
+  }
+
+  return { html: buffer.toString('utf8'), sha256: sha, bytes: buffer.byteLength };
+}

@@ -20,8 +20,8 @@ export async function POST(request: NextRequest) {
     }
 
     const origin = new URL(request.url).origin;
-    const returnUrl = `${origin}/dashboard/contractor?stripe=return`;
-    const refreshUrl = `${origin}/dashboard/contractor?stripe=refresh`;
+    const returnUrl = `${origin}/dashboard/contractor/onboarding/payouts?stripe=return`;
+    const refreshUrl = `${origin}/dashboard/contractor/onboarding/payouts?stripe=refresh`;
 
     const dbUser = await prisma.user.findUnique({
       where: { id: user.id },
@@ -73,4 +73,3 @@ export async function POST(request: NextRequest) {
     return handleUnexpectedError(error);
   }
 }
-

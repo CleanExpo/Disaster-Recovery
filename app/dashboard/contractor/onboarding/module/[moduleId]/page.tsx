@@ -21,7 +21,8 @@ interface TrainingModuleResponse {
 
 export default function ContractorTrainingModulePage({ params }: { params: { moduleId: string } }) {
   const router = useRouter();
-  const { status } = useSession();
+  const { status, data: session } = useSession();
+  const contractorId = useMemo(() => (session?.user as any)?.id as string | undefined, [session]);
   const moduleId = useMemo(() => params.moduleId?.toUpperCase?.() ?? params.moduleId, [params.moduleId]);
 
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,12 @@ export default function ContractorTrainingModulePage({ params }: { params: { mod
     const load = async () => {
       try {
         setLoading(true);
+        await fetch('/api/onboarding/module/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ moduleId }),
+        }).catch(() => null);
+
         const res = await fetch(`/api/training/nrp/module/${moduleId}`, { cache: 'no-store' });
         const data = (await res.json()) as TrainingModuleResponse;
         setPayload(data);
@@ -39,10 +46,10 @@ export default function ContractorTrainingModulePage({ params }: { params: { mod
       }
     };
 
-    if (status === 'authenticated') {
+    if (status === 'authenticated' && contractorId) {
       void load();
     }
-  }, [moduleId, status]);
+  }, [contractorId, moduleId, status]);
 
   if (status === 'loading') {
     return (
@@ -150,4 +157,3 @@ export default function ContractorTrainingModulePage({ params }: { params: { mod
     </div>
   );
 }
-

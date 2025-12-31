@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -140,9 +141,17 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="outline" onClick={startPayoutSetup} disabled={startingPayoutSetup}>
-            {startingPayoutSetup ? 'Starting payout setup...' : 'Set Up Payouts'}
+          <Button asChild variant="outline">
+            <Link href="/dashboard/contractor/onboarding/checklist">Checklist</Link>
           </Button>
+          <Button variant="outline" onClick={startPayoutSetup} disabled={startingPayoutSetup}>
+            {startingPayoutSetup ? 'Starting payout setup...' : 'Set up payouts'}
+          </Button>
+          {progress.completionPercentage >= 100 && (
+            <Button asChild variant="outline">
+              <Link href="/dashboard/contractor/onboarding/certificate">View certificate</Link>
+            </Button>
+          )}
           <CertificationBadge
             certificationType={progress.certificationType}
             completionPercentage={progress.completionPercentage}

@@ -19,9 +19,9 @@ export async function GET(_request: NextRequest, context: { params: { moduleNumb
     }
 
     const moduleNumber = parseInt(validation.data.moduleNumber, 10);
-    const module = await getNrpgQuizModule(moduleNumber);
+    const quizModule = await getNrpgQuizModule(moduleNumber);
 
-    if (!module) {
+    if (!quizModule) {
       return createErrorResponse(ErrorCode.RESOURCE_NOT_FOUND, 'Quiz module not found', 404);
     }
 
@@ -29,15 +29,14 @@ export async function GET(_request: NextRequest, context: { params: { moduleNumb
       success: true,
       quiz: {
         moduleNumber,
-        name: module.name,
-        description: module.description,
+        name: quizModule.name,
+        description: quizModule.description,
         timeLimitMinutes: 30,
         passingScore: 70,
-        questions: module.questions,
+        questions: quizModule.questions,
       },
     });
   } catch (error) {
     return handleUnexpectedError(error);
   }
 }
-

@@ -19,15 +19,15 @@ export async function GET(_request: NextRequest, context: { params: { moduleId: 
     }
 
     const moduleId = validation.data.moduleId.toUpperCase();
-    const module = await getTrainingModuleHtmlById(moduleId);
+    const trainingModule = await getTrainingModuleHtmlById(moduleId);
 
     return NextResponse.json({
       success: true,
       module: {
         moduleId,
-        sourcePath: module.sourcePath,
-        sha256: module.sha256,
-        html: module.html,
+        sourcePath: trainingModule.sourcePath,
+        sha256: trainingModule.sha256,
+        html: trainingModule.html,
       },
     });
   } catch (error) {
@@ -38,4 +38,3 @@ export async function GET(_request: NextRequest, context: { params: { moduleId: 
     return handleUnexpectedError(error);
   }
 }
-

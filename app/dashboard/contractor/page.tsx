@@ -318,7 +318,7 @@ export default function ContractorDashboardPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <Button 
                     onClick={() => setActiveTab('available-requests')}
                     className="bg-primary hover:bg-primary/90 text-white h-12"
@@ -333,6 +333,14 @@ export default function ContractorDashboardPage() {
                   >
                     <TrendingUp className="mr-2 h-5 w-5" />
                     My Bids
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => router.push('/dashboard/contractor/onboarding/checklist')}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700 h-12"
+                  >
+                    <Award className="mr-2 h-5 w-5" />
+                    Onboarding Checklist
                   </Button>
                   <Button 
                     variant="outline" 
