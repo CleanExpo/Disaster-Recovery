@@ -33,15 +33,8 @@ export async function GET(request: NextRequest) {
       },
       include: {
         contractor: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true,
-                avatar: true,
-              },
-            },
+          select: {
+            id: true,
           },
         },
         serviceRequest: {
@@ -65,7 +58,7 @@ export async function GET(request: NextRequest) {
     // Transform data for response
     const transformedProjects = activeProjects.map(project => ({
       id: project.id,
-      contractor: project.contractor,
+      contractor: project.contractor ? { id: project.contractor.id } : null,
       serviceRequest: project.serviceRequest,
       budget: project.budget,
       timeline: project.timeline,

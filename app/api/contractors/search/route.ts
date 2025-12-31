@@ -5,11 +5,13 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-import { AustralianState, AustralianServiceType, EmergencyResponseLevel } from '@prisma/client';
+import { getServerSession } from 'next-auth';
+import { AustralianServiceType, EmergencyResponseLevel } from '@prisma/client';
 import { australianPostcodeSchema } from '@/lib/validation/australia';
+import { authOptions, isAdmin } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+export const dynamic = 'force-dynamic';
 
 // ============================================================================
 // GET /api/contractors/search - Search for contractors
@@ -17,6 +19,14 @@ const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+    const sessionUser = session?.user as unknown as { userType?: string } | undefined;
+
+    // Contractors are private; this endpoint is admin-only.
+    if (!sessionUser || !isAdmin(sessionUser.userType || '')) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+
     const searchParams = request.nextUrl.searchParams;
     const postcode = searchParams.get('postcode');
     const serviceType = searchParams.get('serviceType');

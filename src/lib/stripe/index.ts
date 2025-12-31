@@ -151,11 +151,12 @@ export async function createLoginLink(accountId: string) {
 export async function createTransfer(
   amount: number,
   destination: string,
-  transferGroup?: string
+  transferGroup?: string,
+  currency: string = 'aud'
 ) {
   return stripe.transfers.create({
     amount: Math.round(amount * 100),
-    currency: 'usd',
+    currency,
     destination,
     transfer_group: transferGroup,
   });

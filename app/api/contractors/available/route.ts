@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { authenticateRequest } from '@/lib/auth-middleware';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
 export const dynamic = 'force-dynamic';
@@ -11,6 +11,13 @@ export async function GET(request: NextRequest) {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
       return authResult.response;
+    }
+
+    const { user } = authResult.context;
+
+    // Contractors are private; only admins can query the contractor pool.
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     const { searchParams } = new URL(request.url);

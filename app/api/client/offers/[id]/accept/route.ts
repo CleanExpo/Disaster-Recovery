@@ -21,8 +21,8 @@ export async function POST(
     const { user } = authResult.context;
 
     // Check role authorization
-    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
-      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     // Get the offer/match
@@ -50,14 +50,8 @@ export async function POST(
       );
     }
 
-    // Check if the client owns this service request (unless ADMIN)
-    if (user.userType !== 'ADMIN' && offer.serviceRequest.userId !== user.id) {
-      return createErrorResponse(
-        ErrorCode.FORBIDDEN,
-        'Unauthorized to accept this offer',
-        403
-      );
-    }
+    // Auto-dispatch: client acceptance is not supported. Admin-only override.
+    // (Ownership checks are not required for admin actions.)
 
     // Update the offer status to ACCEPTED
     await prisma.contractorMatch.update({

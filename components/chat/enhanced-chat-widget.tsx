@@ -64,6 +64,8 @@ interface Message {
 export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
   const { data: session } = useSession();
   const userId = user?.id ?? session?.user?.id ?? null;
+  const userType = (session?.user as any)?.userType ?? (session?.user as any)?.role ?? null;
+  const isClientUser = userType === 'CLIENT';
   const [isOpen, setIsOpen] = useState(false);
   const [connections, setConnections] = useState<ChatConnection[]>([]);
   const [selectedConnection, setSelectedConnection] = useState<ChatConnection | null>(null);
@@ -75,6 +77,10 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
   const fetchConnections = useCallback(async () => {
     try {
       setLoading(true);
+      if (isClientUser) {
+        setConnections([]);
+        return;
+      }
       const response = await fetch('/api/chat/connections', { cache: 'no-store' });
 
       if (response.ok) {
@@ -86,7 +92,7 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [isClientUser]);
 
   const fetchMessages = useCallback(async (connectionId: string) => {
     try {
@@ -141,6 +147,10 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
 
   const initiateContact = async (contractorId: string) => {
     try {
+      if (isClientUser) {
+        console.warn('[CHAT] Direct client messaging is disabled.');
+        return;
+      }
       const response = await fetch('/api/chat/initiate-contact', {
         method: 'POST',
         headers: {
@@ -212,7 +222,9 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
               <div className="w-full">
                 <div className="p-4 border-b">
                   <h4 className="font-medium text-gray-900">Your Connections</h4>
-                  <p className="text-sm text-gray-500">Contractors you can chat with</p>
+                  <p className="text-sm text-gray-500">
+                    {isClientUser ? 'Messaging is handled by NRPG' : 'Contractors you can chat with'}
+                  </p>
                 </div>
                 
                 <div className="flex-1 overflow-y-auto">

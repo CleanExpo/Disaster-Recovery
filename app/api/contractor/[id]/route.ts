@@ -1,12 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { getServerSession } from 'next-auth';
+import { authOptions, isAdmin } from '@/lib/auth';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const session = await getServerSession(authOptions);
+    const sessionUser = session?.user as unknown as { id?: string; userType?: string } | undefined;
+
+    if (!sessionUser?.id) {
+      return createErrorResponse(
+        ErrorCode.UNAUTHORIZED,
+        'Authentication required',
+        401
+      );
+    }
+
     const contractorId = params.id;
 
     // Get contractor profile by ID
@@ -32,6 +45,18 @@ export async function GET(
       );
     }
 
+    const isAdminUser = isAdmin(sessionUser.userType || '');
+    const isOwner = contractor.userId === sessionUser.id;
+
+    // Contractor identities are private; only admins and the contractor themselves can view.
+    if (!isAdminUser && !isOwner) {
+      return createErrorResponse(
+        ErrorCode.FORBIDDEN,
+        'Forbidden',
+        403
+      );
+    }
+
     return NextResponse.json({
       success: true,
       contractor
@@ -47,6 +72,17 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
+    const session = await getServerSession(authOptions);
+    const sessionUser = session?.user as unknown as { id?: string; userType?: string } | undefined;
+
+    if (!sessionUser?.id) {
+      return createErrorResponse(
+        ErrorCode.UNAUTHORIZED,
+        'Authentication required',
+        401
+      );
+    }
+
     const contractorId = params.id;
     const body = await request.json();
 
@@ -63,10 +99,45 @@ export async function PATCH(
       );
     }
 
+    const isAdminUser = isAdmin(sessionUser.userType || '');
+    const isOwner = contractor.userId === sessionUser.id;
+
+    if (!isAdminUser && !isOwner) {
+      return createErrorResponse(
+        ErrorCode.FORBIDDEN,
+        'Forbidden',
+        403
+      );
+    }
+
+    const allowedFields = new Set<string>([
+      'businessName',
+      'phone',
+      'address',
+      'city',
+      'state',
+      'zipCode',
+      'licenseNumber',
+      'insuranceProvider',
+      'insuranceExpiry',
+      'services',
+      'serviceAreas',
+      'hourlyRate',
+      'experience',
+      'bio',
+      'availability',
+      ...(isAdminUser ? ['isVerified', 'rating', 'totalJobs'] : []),
+    ]);
+
+    const updateData: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(body as Record<string, unknown>)) {
+      if (allowedFields.has(key)) updateData[key] = value;
+    }
+
     // Update contractor profile
     const updatedContractor = await prisma.contractorProfile.update({
       where: { id: contractorId },
-      data: body,
+      data: updateData,
       include: {
         user: {
           select: {

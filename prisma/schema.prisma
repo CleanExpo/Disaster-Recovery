@@ -1017,7 +1017,7 @@ enum CertificationLevel {
 
 model ContractorOnboarding {
   id                   String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  contractorId         String           @unique @db.Uuid
+  contractorId         String           @unique
   specialization       String           @db.VarChar(50)
   assessmentScore      Int?
   recommendedModules   Json?            @db.JsonB
@@ -1073,7 +1073,7 @@ model ContractorAssessment {
 
 model ContractorCertification {
   id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  contractorId       String    @db.Uuid
+  contractorId       String
   certificationName  String    @db.VarChar(255)
   certificationLevel Int?
   issueDate          DateTime?

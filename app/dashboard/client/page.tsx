@@ -252,21 +252,7 @@ export default function ClientDashboard() {
 
   const handleAcceptOffer = async (offerId: string) => {
     try {
-      const response = await fetch(`/api/client/offers/${offerId}/accept`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        // Refresh offers and requests
-        await fetchOffers();
-        await fetchServiceRequests();
-        console.log('Offer accepted successfully');
-      } else {
-        console.error('Failed to accept offer');
-      }
+      console.warn('Client offer acceptance is disabled (auto-dispatch).', { offerId });
     } catch (error) {
       console.error('Error accepting offer:', error);
     }
@@ -274,20 +260,7 @@ export default function ClientDashboard() {
 
   const handleRejectOffer = async (offerId: string) => {
     try {
-      const response = await fetch(`/api/client/offers/${offerId}/reject`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        // Refresh offers
-        await fetchOffers();
-        console.log('Offer rejected successfully');
-      } else {
-        console.error('Failed to reject offer');
-      }
+      console.warn('Client offer rejection is disabled (auto-dispatch).', { offerId });
     } catch (error) {
       console.error('Error rejecting offer:', error);
     }
@@ -323,71 +296,16 @@ export default function ClientDashboard() {
   const handleViewContractor = async (contractorId: string, serviceCategory?: string) => {
     try {
       if (typeof window === 'undefined') return;
-
-      const response = await fetch(`/api/contractor/${contractorId}`);
-
-      if (response.ok) {
-        const data = await response.json();
-        const contractorData = {
-          ...data.contractor,
-          selectedServiceCategory: serviceCategory
-        };
-        setSelectedContractor(contractorData);
-        setShowContractorModal(true);
-      }
+      console.warn('Contractor details are not available to clients.', { contractorId, serviceCategory });
     } catch (error) {
       console.error('Error fetching contractor details:', error);
     }
   };
 
   const handleContactContractor = async () => {
-    if (!selectedContractor) {
-      console.log('No selected contractor');
-      return;
-    }
-    
-    console.log('Starting conversation with contractor:', selectedContractor);
-    console.log('Contractor userId:', selectedContractor.userId);
-    console.log('Contractor user:', selectedContractor.user);
-    
-    // Get the correct receiver ID
-    const receiverId = selectedContractor.userId || selectedContractor.user?.id;
-    
-    if (!receiverId) {
-      console.error('No receiver ID found for contractor');
-      return;
-    }
-    
     try {
       if (typeof window === 'undefined') return;
-
-      const messageData = {
-        receiverId: receiverId,
-        subject: `Chat with ${selectedContractor.businessName || selectedContractor.user?.name}`,
-        content: `Hello! I'm interested in your services. Let's discuss the details.`,
-        messageType: 'GENERAL'
-      };
-      
-      console.log('Sending message data:', messageData);
-
-      // Create a new conversation or get existing one
-      const response = await fetch('/api/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(messageData)
-      });
-
-      if (response.ok) {
-        console.log('Message sent successfully');
-        // Close contractor modal - the floating chat widget will handle the rest
-        setShowContractorModal(false);
-        // The floating chat widget will auto-refresh and show the new conversation
-      } else {
-        const errorData = await response.json();
-        console.error('Failed to send message:', response.status, errorData);
-      }
+      console.warn('Direct contractor contact is not available to clients.');
     } catch (error) {
       console.error('Error starting conversation:', error);
     }
@@ -601,12 +519,8 @@ export default function ClientDashboard() {
       setLoadingOffers(true);
       if (typeof window === 'undefined') return;
 
-      const response = await fetch('/api/client/offers', { cache: 'no-store' });
-
-      if (response.ok) {
-        const result = await response.json();
-        setOffers(result.offers || []);
-      }
+      // NRPG uses private, automatic claim dispatch. Clients do not receive/accept contractor offers.
+      setOffers([]);
     } catch (error) {
       console.error('Error fetching offers:', error);
     } finally {
@@ -648,7 +562,7 @@ export default function ClientDashboard() {
       : 0;
     
     // Calculate total spent (mock calculation)
-    const totalSpent = completedRequests * 2500; // $2500 average project value
+    const totalSpent = completedRequests * 2750;
     
     // Calculate category distribution
     const categoryCounts = serviceRequests.reduce((acc, req) => {
@@ -733,15 +647,12 @@ export default function ClientDashboard() {
       setLoadingMatches(true);
       if (typeof window === 'undefined') return;
 
-      const response = await fetch(`/api/service-requests/${requestId}/matches`, { cache: 'no-store' });
-
-      if (response.ok) {
-        const result = await response.json();
-        setContractorMatches(prev => ({
-          ...prev,
-          [requestId]: result.data || []
-        }));
-      }
+      // Contractor identities are private; clients do not receive a contractor list.
+      setContractorMatches(prev => ({
+        ...prev,
+        [requestId]: []
+      }));
+      return;
     } catch (error) {
       console.error('Error fetching contractor matches:', error);
     } finally {
@@ -754,12 +665,9 @@ export default function ClientDashboard() {
       setLoadingContractors(true);
       if (typeof window === 'undefined') return;
 
-      const response = await fetch(`/api/contractors/available?category=${category}&limit=20`, { cache: 'no-store' });
-
-      if (response.ok) {
-        const result = await response.json();
-        setAvailableContractors(result.data || []);
-      }
+      // Contractor identities are private; clients do not have visibility of the contractor network.
+      setAvailableContractors([]);
+      return;
     } catch (error) {
       console.error('Error fetching available contractors:', error);
     } finally {
@@ -1621,8 +1529,7 @@ export default function ClientDashboard() {
             
             <div className="mb-4">
               <p className="text-sm text-gray-400">
-                Showing {availableContractors.length} available contractors
-                {selectedCategory !== 'all' && ` in ${selectedCategory}`}
+                NRPG assigns a vetted contractor automatically. Contractor identities are not shown in the client portal.
               </p>
             </div>
             
@@ -1631,11 +1538,11 @@ export default function ClientDashboard() {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
                 <span className="ml-2 text-gray-400">Loading contractors...</span>
               </div>
-            ) : availableContractors.length === 0 ? (
+            ) : availableContractors.length >= 0 ? (
               <div className="text-center py-12">
                 <Users className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-                <h3 className="text-lg font-medium text-gray-400 mb-2">No contractors found</h3>
-                <p className="text-gray-500">Try selecting a different category or check back later.</p>
+                <h3 className="text-lg font-medium text-gray-400 mb-2">Contractor network is private</h3>
+                <p className="text-gray-500">Submit a request and NRPG will dispatch a vetted, insured, qualified contractor for the role.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1738,10 +1645,7 @@ export default function ClientDashboard() {
                       </Button>
                       <Button 
                         className="flex-1 bg-blue-600 hover:bg-blue-700 group-hover:shadow-md transition-all duration-200"
-                        onClick={async () => {
-                          setSelectedContractor(contractor);
-                          await handleContactContractor();
-                        }}
+                        onClick={handleContactContractor}
                       >
                         <MessageSquare className="h-4 w-4 mr-2" />
                         Contact
@@ -2171,11 +2075,11 @@ export default function ClientDashboard() {
                           </div>
 
                           {/* Contractor Matches Section */}
-                          {(request.status === 'MATCHED' || request.status === 'IN_PROGRESS') && contractorMatches[request.id] && (
+                          {false && (request.status === 'MATCHED' || request.status === 'IN_PROGRESS') && contractorMatches[request.id] && (
                             <div className="mt-4 p-4 bg-gray-700/50 rounded-lg border border-gray-600">
                               <h5 className="font-semibold text-white mb-3 flex items-center">
                                 <Users className="h-4 w-4 mr-2 text-[#00BFA6]" />
-                                Matched Contractors ({contractorMatches[request.id].length})
+                                Dispatch Status
                               </h5>
                               <div className="space-y-3">
                                 {contractorMatches[request.id].slice(0, 3).map((match: any) => (
@@ -2224,10 +2128,7 @@ export default function ClientDashboard() {
                                       <Button
                                         size="sm"
                                         className="bg-[#00BFA6] hover:bg-[#00A693] text-white text-xs"
-                                        onClick={async () => {
-                                          setSelectedContractor(match.contractor);
-                                          await handleContactContractor();
-                                        }}
+                                        onClick={handleContactContractor}
                                       >
                                         <MessageSquare className="h-3 w-3 mr-1" />
                                         Contact
@@ -2296,9 +2197,9 @@ export default function ClientDashboard() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-white">Offers & Bids</h2>
+                <h2 className="text-2xl font-bold text-white">Dispatch</h2>
                 <p className="text-gray-400 mt-1">
-                  Review and manage bids from contractors on your service requests
+                  NRPG assigns vetted contractors automatically. Contractor identities are not shown in the client portal.
                 </p>
               </div>
               <Button
@@ -2319,19 +2220,19 @@ export default function ClientDashboard() {
               <div className="flex items-center justify-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
               </div>
-            ) : offers.length === 0 ? (
+            ) : offers.length >= 0 ? (
               <div className="text-center py-12">
                 <Award className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">No Offers Yet</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">Dispatch In Progress</h3>
                 <p className="text-gray-400 mb-6">
-                  You haven't received any bids from contractors yet. Create a service request to start receiving offers.
+                  When you submit a request, NRPG will dispatch a vetted, insured, qualified contractor automatically and keep you updated here.
                 </p>
                 <Button
                   onClick={() => setActiveTab('requests')}
                   className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Request
+                  View Requests
                 </Button>
               </div>
             ) : (
@@ -2889,10 +2790,10 @@ export default function ClientDashboard() {
       case 'contractors':
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-white">Find Contractors</h3>
+            <h3 className="text-xl font-bold text-white">Private Contractor Network</h3>
             <div className="text-center py-12">
               <Users className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-400">Contractor directory coming soon</p>
+              <p className="text-gray-400">Contractor identities are not shown to clients. NRPG dispatches vetted contractors automatically.</p>
             </div>
           </div>
         );
@@ -3792,7 +3693,7 @@ export default function ClientDashboard() {
               )}
 
               {/* Contractor Matches */}
-              {contractorMatches[selectedRequest.id] && contractorMatches[selectedRequest.id].length > 0 && (
+              {false && contractorMatches[selectedRequest.id] && contractorMatches[selectedRequest.id].length > 0 && (
                 <div className="space-y-4">
                   <h4 className="text-xl font-bold text-gray-900">
                       Matched Contractors ({contractorMatches[selectedRequest.id].length})
@@ -3844,10 +3745,7 @@ export default function ClientDashboard() {
                             <Button
                               size="sm"
                             className="bg-[#00BFA6] hover:bg-[#00A693] text-white text-sm"
-                              onClick={async () => {
-                                setSelectedContractor(match.contractor);
-                                await handleContactContractor();
-                              }}
+                              onClick={handleContactContractor}
                             >
                             <MessageCircle className="h-4 w-4 mr-2" />
                               Contact

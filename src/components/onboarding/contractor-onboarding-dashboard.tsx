@@ -37,10 +37,6 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
   const [loading, setLoading] = useState(true);
   const [activeQuiz, setActiveQuiz] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchProgress();
-  }, [contractorId, fetchProgress]);
-
   const fetchProgress = useCallback(async () => {
     try {
       setLoading(true);
@@ -56,6 +52,10 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
       setLoading(false);
     }
   }, [contractorId]);
+
+  useEffect(() => {
+    fetchProgress();
+  }, [fetchProgress]);
 
   const handleStartQuiz = (moduleId: string) => {
     setActiveQuiz(moduleId);
@@ -108,6 +108,8 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
     progress.completionPercentage >= 50 ? 'text-blue-600' :
     'text-yellow-600';
 
+  const passedAssessments = progress.assessmentScores.filter((s: any) => (s.score ?? 0) >= 70);
+
   return (
     <div className="container mx-auto py-8 space-y-6">
       {/* Header Section */}
@@ -152,7 +154,7 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
                 <div className="flex items-center gap-3">
                   <BookOpen className="h-8 w-8 text-blue-500" />
                   <div>
-                    <p className="text-2xl font-bold">{progress.assessmentScores.length}</p>
+                    <p className="text-2xl font-bold">{passedAssessments.length}</p>
                     <p className="text-sm text-muted-foreground">Modules Completed</p>
                   </div>
                 </div>

@@ -40,6 +40,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1800); // 30 minutes
+  const [submittingResult, setSubmittingResult] = useState(false);
 
   const fetchQuiz = useCallback(async () => {
     try {
@@ -106,6 +107,26 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
     setScore(percentage);
     setSubmitted(true);
   };
+
+  const submitResult = useCallback(async () => {
+    if (!quiz) return;
+    try {
+      setSubmittingResult(true);
+      await fetch('/api/onboarding/assessment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contractorId,
+          moduleId,
+          score,
+        }),
+      });
+    } catch (error) {
+      console.error('Failed to submit assessment result:', error);
+    } finally {
+      setSubmittingResult(false);
+    }
+  }, [contractorId, moduleId, quiz, score]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -263,7 +284,14 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                 Retake Quiz
               </Button>
             )}
-            <Button onClick={onComplete} className="flex-1">
+            <Button
+              onClick={async () => {
+                await submitResult();
+                onComplete();
+              }}
+              className="flex-1"
+              disabled={submittingResult}
+            >
               {passed ? 'Continue to Next Module' : 'Return to Dashboard'}
             </Button>
           </CardFooter>

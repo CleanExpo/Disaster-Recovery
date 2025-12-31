@@ -2,7 +2,7 @@
 
 CREATE TABLE IF NOT EXISTS contractor_onboarding (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  contractorId UUID NOT NULL UNIQUE,
+  contractorId TEXT NOT NULL UNIQUE,
   specialization VARCHAR(50) NOT NULL,
   assessmentScore INT,
   recommendedModules JSONB,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS contractor_assessments (
 
 CREATE TABLE IF NOT EXISTS contractor_certifications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  contractorId UUID NOT NULL,
+  contractorId TEXT NOT NULL,
   certificationName VARCHAR(255) NOT NULL,
   certificationLevel INT,
   issueDate TIMESTAMP,

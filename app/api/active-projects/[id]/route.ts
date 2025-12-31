@@ -86,6 +86,10 @@ export async function GET(
     }
 
     // Transform the data based on user type
+    const contractorSummary = user.userType === 'CLIENT'
+      ? { id: project.contractorId }
+      : project.contractor;
+
     const transformedProject = {
       id: project.id,
       budget: project.budget,
@@ -96,7 +100,7 @@ export async function GET(
       status: project.status,
       createdAt: project.createdAt,
       updatedAt: project.updatedAt,
-      contractor: project.contractor,
+      contractor: contractorSummary,
       client: {
         user: project.serviceRequest.user,
       },

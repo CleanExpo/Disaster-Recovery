@@ -11,34 +11,16 @@ export async function GET(request: NextRequest) {
     if (!authResult.success) return authResult.response;
     const { user } = authResult.context;
 
-    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
-      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
+    if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN', 'SUPER_ADMIN']);
     }
 
-    const offers = await prisma.contractorMatch.findMany({
-      where: {
-        serviceRequest: { userId: user.id },
-        status: 'PENDING',
-      },
-      include: {
-        contractor: {
-          include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                email: true,
-                avatar: true,
-              },
-            },
-          },
-        },
-        serviceRequest: true,
-      },
-      orderBy: { matchScore: 'desc' },
+    // NRPG uses private, automatic claim dispatch. Clients do not browse or accept contractor offers.
+    return NextResponse.json({
+      success: true,
+      dispatchMode: 'AUTO',
+      offers: [],
     });
-
-    return NextResponse.json({ success: true, data: offers });
   } catch (error) {
     return handleUnexpectedError(error);
   }

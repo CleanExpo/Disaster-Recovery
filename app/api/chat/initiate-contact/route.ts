@@ -22,9 +22,10 @@ export async function POST(request: NextRequest) {
 
     const { user } = authResult.context;
 
-    // Authorize: CLIENT role only
-    if (!requireRole(user, ['CLIENT'])) {
-      return unauthorizedRoleResponse(['CLIENT']);
+    // NRPG keeps contractor identities private to clients; direct client → contractor contact is disabled.
+    // Admin-only support action (if required).
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     // Validate request body
