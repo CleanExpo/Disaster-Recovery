@@ -711,6 +711,8 @@ export default function ClientDashboard() {
         throw new Error(result.error || 'Failed to submit request');
       }
 
+      const createdRequestId: string | undefined = result?.data?.id;
+
       // Success
       setSubmitSuccess(true);
       setFormData({
@@ -733,6 +735,9 @@ export default function ClientDashboard() {
         setShowServiceModal(false);
         setSubmitSuccess(false);
         setActiveTab('requests'); // Switch to requests tab
+        if (createdRequestId) {
+          router.push(`/dashboard/client/callout/${createdRequestId}`);
+        }
       }, 2000);
 
     } catch (error) {

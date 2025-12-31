@@ -96,3 +96,6 @@ _archive/
 
 .vercel
 .env*.local
+
+# Auto Claude data directory
+.auto-claude/

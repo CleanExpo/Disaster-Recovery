@@ -9,7 +9,6 @@ import { serviceRequestSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { LeadScoringService } from '@/lib/lead-scoring-service';
 import { EnhancedMatchingServiceV2 } from '@/lib/enhanced-matching-service-v2';
-import { MessagingService } from '@/lib/messaging-service';
 import { ZodError } from 'zod';
 
 /**
@@ -75,29 +74,7 @@ export async function POST(request: NextRequest) {
         }
       );
 
-      if (matches.length > 0) {
-        // Send notifications to matched contractors
-        for (const match of matches) {
-          try {
-            await MessagingService.sendMatchNotification(
-              match.contractorId,
-              user.id,
-              serviceRequest.id,
-              match.matchScore
-            );
-          } catch (error) {
-            console.error('[SERVICE_REQUEST] Match notification failed:', error);
-          }
-        }
-
-        // Notify client
-        await MessagingService.sendSystemNotification(
-          user.id,
-          'Contractors Found',
-          `We found ${matches.length} qualified contractors for your request.`,
-          serviceRequest.id
-        );
-      }
+      // NRPG uses private, automatic dispatch. Notifications are handled by operations workflows.
     } catch (error) {
       console.error('[SERVICE_REQUEST] Matching process failed:', error);
       // Don't fail request creation if matching fails

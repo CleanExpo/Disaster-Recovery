@@ -36,6 +36,7 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
   const [progress, setProgress] = useState<ProgressData | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeQuiz, setActiveQuiz] = useState<string | null>(null);
+  const [startingPayoutSetup, setStartingPayoutSetup] = useState(false);
 
   const fetchProgress = useCallback(async () => {
     try {
@@ -64,6 +65,24 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
   const handleQuizComplete = () => {
     setActiveQuiz(null);
     fetchProgress(); // Refresh progress after quiz completion
+  };
+
+  const startPayoutSetup = async () => {
+    try {
+      setStartingPayoutSetup(true);
+      const response = await fetch('/api/contractor/stripe/connect/onboard', { method: 'POST' });
+      const data = await response.json();
+      if (response.ok && data?.url) {
+        window.location.href = data.url as string;
+        return;
+      }
+      throw new Error(data?.error || 'Failed to start payout setup');
+    } catch (error) {
+      console.error('Failed to start payout setup:', error);
+      alert(error instanceof Error ? error.message : 'Failed to start payout setup');
+    } finally {
+      setStartingPayoutSetup(false);
+    }
   };
 
   if (loading) {
@@ -120,10 +139,15 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
             Track your progress and complete your certification
           </p>
         </div>
-        <CertificationBadge
-          certificationType={progress.certificationType}
-          completionPercentage={progress.completionPercentage}
-        />
+        <div className="flex items-center gap-3">
+          <Button variant="outline" onClick={startPayoutSetup} disabled={startingPayoutSetup}>
+            {startingPayoutSetup ? 'Starting payout setup...' : 'Set Up Payouts'}
+          </Button>
+          <CertificationBadge
+            certificationType={progress.certificationType}
+            completionPercentage={progress.completionPercentage}
+          />
+        </div>
       </div>
 
       {/* Progress Overview */}

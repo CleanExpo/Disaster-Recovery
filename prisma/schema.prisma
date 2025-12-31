@@ -529,11 +529,58 @@ model ServiceRequest {
   user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
   tenant  Tenant?           @relation(fields: [tenantId], references: [id])
   matches ContractorMatch[]
+  calloutPayment ServiceRequestCalloutPayment?
 
   // CRM Relations
   opportunity Opportunity? @relation("OpportunityServiceRequest")
 
   @@map("service_requests")
+}
+
+enum CalloutPaymentStatus {
+  CREATED
+  CHECKOUT_CREATED
+  PAID
+  RELEASED
+  REFUNDED
+  CANCELLED
+}
+
+model ServiceRequestCalloutPayment {
+  id               String             @id @default(cuid())
+  serviceRequestId String             @unique
+  clientId         String
+  contractorProfileId String?
+
+  // Pricing (AUD)
+  totalAUD                    Decimal
+  totalExGstAUD               Decimal
+  gstAUD                      Decimal
+  platformFeeAUD              Decimal
+  platformFeeExGstAUD         Decimal
+  platformFeeGstAUD           Decimal
+  contractorEntitlementAUD    Decimal
+  contractorEntitlementExGstAUD Decimal
+  contractorEntitlementGstAUD Decimal
+  gstInclusive                Boolean            @default(true)
+
+  status CalloutPaymentStatus @default(CREATED)
+
+  stripeCheckoutSessionId String? @unique
+  stripePaymentIntentId   String? @unique
+  stripeTransferId        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  serviceRequest    ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  client            User              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  contractorProfile ContractorProfile? @relation(fields: [contractorProfileId], references: [id], onDelete: SetNull)
+
+  @@index([clientId])
+  @@index([contractorProfileId])
+  @@index([status])
+  @@map("service_request_callout_payments")
 }
 
 model ContractorProfile {
@@ -557,6 +604,7 @@ model ContractorProfile {
   bio               String?
   availability      AvailabilityStatus @default(AVAILABLE)
   isVerified        Boolean            @default(false)
+  stripeConnectAccountId String?       @unique
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
   tenantId          String?
