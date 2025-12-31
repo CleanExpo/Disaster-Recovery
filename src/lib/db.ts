@@ -1,3 +1,7 @@
-// Re-export prisma for backward compatibility with tests
-export { prisma } from './prisma';
-export { default } from './prisma';
+// Single entrypoint for DB helpers + Prisma.
+// Prefer importing from `@/lib/db` throughout the codebase.
+//
+// Note: this file is `src/lib/db.ts`, so avoid `./db` which would self-resolve.
+export { prisma } from './db/index';
+export { default } from './db/index';
+export * from './db/index';

@@ -1,16 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-};
-
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-  });
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+export { prisma };
 
 // Helper functions for common database operations
 export async function findUserByEmail(email: string) {
@@ -137,7 +127,7 @@ export async function updatePaymentStatus(id: string, status: string, additional
 
 // Transaction helper
 export async function runTransaction<T>(
-  fn: (tx: PrismaClient) => Promise<T>
+  fn: (tx: typeof prisma) => Promise<T>
 ): Promise<T> {
   return prisma.$transaction(fn as any);
 }

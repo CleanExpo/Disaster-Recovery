@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "@anthropic-ai/claude-agent-sdk": ["./src/shims/claude-agent-sdk"],
       "@/*": ["./*", "./src/*"],
       "@tests/*": ["./tests/*"]
     },

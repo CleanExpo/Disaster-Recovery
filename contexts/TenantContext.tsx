@@ -31,6 +31,24 @@ export const useTenant = () => {
   return context
 }
 
+interface IndustryConfig {
+  serviceCategories: string[]
+  urgencyLevels: string[]
+}
+
+/**
+ * Lightweight industry configuration hook used by onboarding + contractor UIs.
+ *
+ * For now this returns empty arrays so consuming components can fall back to their
+ * built-in defaults. In a future iteration this can be tenant-driven.
+ */
+export const useIndustryConfig = (): IndustryConfig => {
+  return {
+    serviceCategories: [],
+    urgencyLevels: []
+  }
+}
+
 interface TenantProviderProps {
   children: ReactNode
 }

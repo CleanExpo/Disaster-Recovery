@@ -25,3 +25,5 @@ if (USE_MOCK) {
 }
 
 export const prisma = prismaInstance;
+
+export default prisma;

@@ -10,10 +10,19 @@ export const THEMES = [
   { value: 'dark', label: 'Dark', description: 'Dark theme' }
 ];
 
+export interface ThemeColors {
+  primary: string
+  secondary: string
+  background: string
+  text: string
+}
+
 interface ThemeContextType {
   theme: Theme
+  currentTheme: Theme
   toggleTheme: () => void
   setTheme: (theme: Theme) => void
+  getThemeColors: () => ThemeColors
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -60,10 +69,30 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     setThemeState(newTheme)
   }
 
+  const getThemeColors = (): ThemeColors => {
+    if (theme === 'light') {
+      return {
+        primary: '#00BFA6',
+        secondary: '#2196F3',
+        background: '#ffffff',
+        text: '#0f172a',
+      }
+    }
+
+    return {
+      primary: '#00BFA6',
+      secondary: '#2196F3',
+      background: '#0b1220',
+      text: '#ffffff',
+    }
+  }
+
   const value = {
     theme,
+    currentTheme: theme,
     toggleTheme,
-    setTheme
+    setTheme,
+    getThemeColors,
   }
 
   return (

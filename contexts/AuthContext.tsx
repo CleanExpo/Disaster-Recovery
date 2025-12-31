@@ -1,27 +1,34 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 
 interface User {
   id: string
   email: string
   name: string
-  role: 'customer' | 'contractor' | 'admin'
+  userType: 'CLIENT' | 'CONTRACTOR' | 'ADMIN' | 'SUPER_ADMIN'
+  avatar?: string | null
 }
 
 interface AuthContextType {
   user: User | null
   isAuthenticated: boolean
+  loading: boolean
   login: (email: string, password: string) => Promise<void>
   logout: () => void
-  register: (userData: RegisterData) => Promise<void>
+  register: (
+    email: string,
+    password: string,
+    name: string,
+    userType: 'CLIENT' | 'CONTRACTOR'
+  ) => Promise<User>
 }
 
 interface RegisterData {
   name: string
   email: string
   password: string
-  role: 'customer' | 'contractor'
+  userType: 'CLIENT' | 'CONTRACTOR'
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -40,108 +47,144 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // Check if user is logged in on mount
-    const token = localStorage.getItem('auth_token')
-    if (token) {
-      // Verify token and fetch user data
-      fetch('/api/auth/me', {
-        headers: {
-          'Authorization': `Bearer ${token}`
+    const token = localStorage.getItem('token') || localStorage.getItem('auth_token')
+    if (!token) {
+      setLoading(false)
+      return
+    }
+
+    // Verify token and fetch user data
+    fetch('/api/auth/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.success && data?.data?.user) {
+          const apiUser = data.data.user as User
+          setUser({
+            id: apiUser.id,
+            email: apiUser.email,
+            name: apiUser.name,
+            userType: apiUser.userType,
+            avatar: apiUser.avatar ?? null,
+          })
+          // Keep both keys for backward compatibility across the codebase.
+          localStorage.setItem('token', token)
+          localStorage.setItem('auth_token', token)
+        } else {
+          localStorage.removeItem('token')
+          localStorage.removeItem('auth_token')
         }
       })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success && data.user) {
-            setUser({
-              id: data.user.id,
-              email: data.user.email,
-              name: data.user.name,
-              role: data.user.userType?.toLowerCase() || 'customer'
-            });
-            setIsAuthenticated(true);
-          } else {
-            // Invalid token, clear it
-            localStorage.removeItem('auth_token');
-          }
-        })
-        .catch(() => {
-          // Error verifying token, clear it
-          localStorage.removeItem('auth_token');
-        });
-    }
+      .catch(() => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('auth_token')
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
   const login = async (email: string, password: string) => {
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
 
-      const data = await response.json();
+    const data = await response.json()
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
-      }
-
-      if (data.success && data.data) {
-        // Set user from API response
-        const userData = data.data.user;
-        setUser({
-          id: userData.id,
-          email: userData.email,
-          name: userData.name,
-          role: userData.userType?.toLowerCase() || 'customer'
-        });
-        setIsAuthenticated(true);
-
-        // Store token
-        if (data.data.token) {
-          localStorage.setItem('auth_token', data.data.token);
-        }
-      } else {
-        throw new Error('Invalid response from server');
-      }
-    } catch (error) {
-      // Re-throw error for the login page to handle
-      throw error;
+    if (!response.ok) {
+      throw new Error(data?.message || data?.error || 'Login failed')
     }
+
+    if (!data?.success || !data?.data?.user || !data?.data?.token) {
+      throw new Error('Invalid response from server')
+    }
+
+    const apiUser = data.data.user as User
+    const token = data.data.token as string
+
+    setUser({
+      id: apiUser.id,
+      email: apiUser.email,
+      name: apiUser.name,
+      userType: apiUser.userType,
+      avatar: apiUser.avatar ?? null,
+    })
+
+    localStorage.setItem('token', token)
+    localStorage.setItem('auth_token', token)
   }
 
   const logout = () => {
     setUser(null)
-    setIsAuthenticated(false)
+    localStorage.removeItem('token')
     localStorage.removeItem('auth_token')
   }
 
-  const register = async (userData: RegisterData) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // In a real app, you'd make an API call here
-    setUser({
-      id: '1',
-      email: userData.email,
-      name: userData.name,
-      role: userData.role
+  const register = async (
+    email: string,
+    password: string,
+    name: string,
+    userType: 'CLIENT' | 'CONTRACTOR'
+  ): Promise<User> => {
+    const userData: RegisterData = { email, password, name, userType }
+    const response = await fetch('/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
     })
-    setIsAuthenticated(true)
-    localStorage.setItem('auth_token', 'fake-token')
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      throw new Error(data?.message || data?.error || 'Registration failed')
+    }
+
+    if (!data?.success || !data?.data?.user || !data?.data?.token) {
+      throw new Error('Invalid response from server')
+    }
+
+    const apiUser = data.data.user as User
+    const token = data.data.token as string
+
+    setUser({
+      id: apiUser.id,
+      email: apiUser.email,
+      name: apiUser.name,
+      userType: apiUser.userType,
+      avatar: apiUser.avatar ?? null,
+    })
+
+    localStorage.setItem('token', token)
+    localStorage.setItem('auth_token', token)
+
+    return apiUser
   }
 
-  const value = {
-    user,
-    isAuthenticated,
-    login,
-    logout,
-    register
-  }
+  const isAuthenticated = useMemo(() => Boolean(user), [user])
+
+  const value = useMemo<AuthContextType>(() => {
+    return {
+      user,
+      isAuthenticated,
+      loading,
+      login,
+      logout,
+      register,
+    }
+  }, [user, isAuthenticated, loading])
 
   return (
     <AuthContext.Provider value={value}>

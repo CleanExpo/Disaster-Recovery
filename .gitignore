@@ -18,6 +18,10 @@ out/
 build/
 dist/
 
+# TypeScript incremental build info
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
 # Production
 .vercel
 .netlify
@@ -68,6 +72,10 @@ tmp/
 temp/
 *.tmp
 *.temp
+
+# Local agent/dev tooling
+.claude/settings.local.json
+pr-body.txt
 
 # Database
 *.db
