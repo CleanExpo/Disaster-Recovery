@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-010: Biohazard & Trauma Cleanup - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #dc3545;
+        }
+        .section h2 {
+            color: #dc3545;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+        .biohazard-icon {
+            width: 60px;
+            height: 60px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #dc3545;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .ppe-list {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .ppe-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .ppe-icon {
+            width: 40px;
+            height: 40px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #dc3545;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #c82333; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #dc3545;
+        }
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .checklist h3 {
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+        .checklist-item label {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #dc3545;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #c82333; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-010: Biohazard & Trauma Cleanup</h1>
+            <p>Professional Training Module - Australian Standards & Compliance</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>This module covers specialised biohazard and trauma cleanup procedures following Australian workplace health and safety standards. You will learn proper protocols, safety equipment requirements, and decontamination procedures for handling biological hazards and trauma scenes.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="biohazard-icon">☣</div>
+                    <h3>Biohazard Categories</h3>
+                    <ul>
+                        <li>Blood and bodily fluids</li>
+                        <li>Infectious diseases</li>
+                        <li>Sharps and medical waste</li>
+                        <li>Animal remains</li>
+                        <li>Sewage and black water</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="biohazard-icon">⚠</div>
+                    <h3>Trauma Scene Types</h3>
+                    <ul>
+                        <li>Unattended death</li>
+                        <li>Suicide cleanup</li>
+                        <li>Homicide scenes</li>
+                        <li>Industrial accidents</li>
+                        <li>Vehicle accidents</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="biohazard-icon">🛡</div>
+                    <h3>Regulatory Compliance</h3>
+                    <ul>
+                        <li>AS/NZS 4261:1994</li>
+                        <li>WHS Regulations 2011</li>
+                        <li>EPA Guidelines</li>
+                        <li>Department of Health</li>
+                        <li>Police requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Australian Regulatory Framework</h2>
+            <table>
+                <tr>
+                    <th>Regulation</th>
+                    <th>Requirement</th>
+                    <th>Compliance</th>
+                    <th>Penalty (2024)</th>
+                </tr>
+                <tr>
+                    <td>WHS Act 2011</td>
+                    <td>Safe work procedures</td>
+                    <td>Mandatory training</td>
+                    <td>Up to $3,000,000</td>
+                </tr>
+                <tr>
+                    <td>AS/NZS 4261:1994</td>
+                    <td>Occupational protective clothing</td>
+                    <td>PPE standards</td>
+                    <td>$50,000</td>
+                </tr>
+                <tr>
+                    <td>EPA Act 1997</td>
+                    <td>Waste disposal</td>
+                    <td>Licensed disposal</td>
+                    <td>$250,000</td>
+                </tr>
+                <tr>
+                    <td>Public Health Act 2010</td>
+                    <td>Disease prevention</td>
+                    <td>Notification required</td>
+                    <td>$110,000</td>
+                </tr>
+                <tr>
+                    <td>Poisons & Therapeutic Goods</td>
+                    <td>Chemical use</td>
+                    <td>Licensed operators</td>
+                    <td>$27,500</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Personal Protective Equipment (PPE)</h2>
+            <div class="warning-box">
+                <h4>⚠ Critical Safety Requirements</h4>
+                <p>All PPE must meet Australian Standards. Failure to use appropriate PPE in biohazard situations can result in serious illness, death, and legal liability.</p>
+            </div>
+
+            <div class="ppe-list">
+                <div class="ppe-item">
+                    <div class="ppe-icon">👤</div>
+                    <div>
+                        <strong>Full Face Respirator</strong> - P3/HEPA filters (AS/NZS 1716:2012)
+                        <br>Cost: $450-$650 | Replacement filters: $85/pair
+                    </div>
+                </div>
+                <div class="ppe-item">
+                    <div class="ppe-icon">🥼</div>
+                    <div>
+                        <strong>Chemical Suit</strong> - Type 3/4 protection (AS/NZS 4501.1:2008)
+                        <br>Cost: $125-$185 per suit | Single use only
+                    </div>
+                </div>
+                <div class="ppe-item">
+                    <div class="ppe-icon">🧤</div>
+                    <div>
+                        <strong>Nitrile Gloves</strong> - Double layer, extended cuff
+                        <br>Cost: $45/box (50 pairs) | Change every 2 hours
+                    </div>
+                </div>
+                <div class="ppe-item">
+                    <div class="ppe-icon">👢</div>
+                    <div>
+                        <strong>Safety Boots</strong> - Chemical resistant, steel cap
+                        <br>Cost: $185-$245 | Disposable covers: $8/pair
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Biohazard Cleanup Procedures</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Scene Assessment</h3>
+                    <ul>
+                        <li>Police clearance obtained</li>
+                        <li>Hazard identification</li>
+                        <li>Photography documentation</li>
+                        <li>Establish containment zones</li>
+                        <li>Air quality testing</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>2. Containment Setup</h3>
+                    <ul>
+                        <li>Red zone establishment</li>
+                        <li>Negative air pressure</li>
+                        <li>Decontamination chamber</li>
+                        <li>Waste staging area</li>
+                        <li>Warning signage</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>3. Removal Process</h3>
+                    <ul>
+                        <li>Gross contamination removal</li>
+                        <li>Surface cleaning</li>
+                        <li>Disinfection application</li>
+                        <li>ATP testing verification</li>
+                        <li>Odour neutralisation</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>4. Waste Disposal</h3>
+                    <ul>
+                        <li>UN3291 certified containers</li>
+                        <li>Manifest documentation</li>
+                        <li>Licensed transporter</li>
+                        <li>Incineration facility</li>
+                        <li>Chain of custody</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Chemical Disinfectants & Application</h2>
+            <table>
+                <tr>
+                    <th>Disinfectant</th>
+                    <th>Application</th>
+                    <th>Contact Time</th>
+                    <th>Cost/Litre</th>
+                    <th>PPE Required</th>
+                </tr>
+                <tr>
+                    <td>Sporicidin</td>
+                    <td>Blood pathogens</td>
+                    <td>10 minutes</td>
+                    <td>$32</td>
+                    <td>Full suit + respirator</td>
+                </tr>
+                <tr>
+                    <td>Virkon S</td>
+                    <td>Viral contamination</td>
+                    <td>5 minutes</td>
+                    <td>$28</td>
+                    <td>Full suit + respirator</td>
+                </tr>
+                <tr>
+                    <td>Hydrogen Peroxide (8%)</td>
+                    <td>General disinfection</td>
+                    <td>10 minutes</td>
+                    <td>$18</td>
+                    <td>Gloves + goggles</td>
+                </tr>
+                <tr>
+                    <td>Quaternary Ammonium</td>
+                    <td>Surface sanitising</td>
+                    <td>2 minutes</td>
+                    <td>$12</td>
+                    <td>Gloves + mask</td>
+                </tr>
+                <tr>
+                    <td>Sodium Hypochlorite (10%)</td>
+                    <td>Heavy contamination</td>
+                    <td>15 minutes</td>
+                    <td>$8</td>
+                    <td>Full suit + respirator</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="calculator">
+            <h3>Biohazard Cleanup Cost Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Scene Type:</label>
+                    <select id="sceneType">
+                        <option value="unattended">Unattended Death</option>
+                        <option value="trauma">Trauma/Accident</option>
+                        <option value="sewage">Sewage Backup</option>
+                        <option value="infectious">Infectious Disease</option>
+                        <option value="sharps">Sharps/Medical Waste</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Area Size (m²):</label>
+                    <input type="number" id="areaSize" value="30" min="1">
+                </div>
+                <div>
+                    <label>Contamination Level:</label>
+                    <select id="contamLevel">
+                        <option value="light">Light (Surface only)</option>
+                        <option value="moderate">Moderate (Absorbed)</option>
+                        <option value="heavy">Heavy (Structural)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Location Type:</label>
+                    <select id="locationType">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="vehicle">Vehicle</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Response Time:</label>
+                    <select id="responseTime">
+                        <option value="standard">Standard (24-48hrs)</option>
+                        <option value="urgent">Urgent (4-8hrs)</option>
+                        <option value="emergency">Emergency (<2hrs)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Waste Volume (kg):</label>
+                    <input type="number" id="wasteVolume" value="50" min="1">
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateBiohazardCost()">Calculate Cleanup Cost</button>
+            <div id="biohazardResult"></div>
+        </div>
+
+        <div class="checklist">
+            <h3>Pre-Entry Safety Checklist</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">Police clearance obtained and documented</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">Site hazard assessment completed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">All team members health screened and vaccinated</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">PPE inspected and fit tested</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">Decontamination station established</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">Emergency evacuation plan briefed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check7">
+                <label for="check7">Waste disposal arrangements confirmed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check8">
+                <label for="check8">Client consent and insurance verified</label>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Psychological Support & Team Welfare</h2>
+            <div class="warning-box">
+                <h4>Mental Health Awareness</h4>
+                <p>Trauma cleanup can have significant psychological impacts. Australian companies must provide:</p>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Employee Assistance Programs (EAP)</li>
+                    <li>Critical incident debriefing within 24 hours</li>
+                    <li>Access to counselling services</li>
+                    <li>Rotation of duties to prevent burnout</li>
+                    <li>Regular mental health check-ins</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Support Services:</strong> Beyond Blue: 1300 22 4636 | Lifeline: 13 11 14</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Documentation & Compliance</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Required Documentation</h3>
+                    <ul>
+                        <li>Police incident number</li>
+                        <li>Chain of custody forms</li>
+                        <li>Waste transport certificates</li>
+                        <li>EPA disposal receipts</li>
+                        <li>Before/after photographs</li>
+                        <li>ATP test results</li>
+                        <li>Worker exposure records</li>
+                        <li>Client release forms</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Insurance Requirements</h3>
+                    <ul>
+                        <li>Public liability: $20M minimum</li>
+                        <li>Professional indemnity: $5M</li>
+                        <li>Pollution liability: $2M</li>
+                        <li>Workers compensation</li>
+                        <li>Infectious disease cover</li>
+                        <li>Mental health support</li>
+                        <li>Vehicle contamination</li>
+                        <li>Errors & omissions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the minimum level of respiratory protection required for biohazard cleanup under AS/NZS 1716:2012?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> N95 disposable mask</label>
+                        <label><input type="radio" name="q1" value="b"> P2 half-face respirator</label>
+                        <label><input type="radio" name="q1" value="c"> P3/HEPA full-face respirator</label>
+                        <label><input type="radio" name="q1" value="d"> Surgical mask with face shield</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. What is the required contact time for Sporicidin when treating blood pathogen contamination?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 2 minutes</label>
+                        <label><input type="radio" name="q2" value="b"> 5 minutes</label>
+                        <label><input type="radio" name="q2" value="c"> 10 minutes</label>
+                        <label><input type="radio" name="q2" value="d"> 30 minutes</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. Under Australian WHS regulations, what is the maximum penalty for non-compliance in biohazard handling?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> $50,000</label>
+                        <label><input type="radio" name="q3" value="b"> $250,000</label>
+                        <label><input type="radio" name="q3" value="c"> $1,000,000</label>
+                        <label><input type="radio" name="q3" value="d"> $3,000,000</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What certification is required for biohazard waste containers?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> ISO 9001</label>
+                        <label><input type="radio" name="q4" value="b"> UN3291</label>
+                        <label><input type="radio" name="q4" value="c"> AS4261</label>
+                        <label><input type="radio" name="q4" value="d"> EPA2010</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. What is the minimum public liability insurance required for biohazard cleanup contractors in Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> $5 million</label>
+                        <label><input type="radio" name="q5" value="b"> $10 million</label>
+                        <label><input type="radio" name="q5" value="c"> $20 million</label>
+                        <label><input type="radio" name="q5" value="d"> $50 million</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Biohazard & Trauma Cleanup training module.</p>
+            <p>Remember: Always prioritise safety and never work beyond your training level.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateBiohazardCost() {
+            const sceneType = document.getElementById('sceneType').value;
+            const areaSize = parseFloat(document.getElementById('areaSize').value);
+            const contamLevel = document.getElementById('contamLevel').value;
+            const locationType = document.getElementById('locationType').value;
+            const responseTime = document.getElementById('responseTime').value;
+            const wasteVolume = parseFloat(document.getElementById('wasteVolume').value);
+
+            // Base rates per m² by scene type (2024 Australian rates)
+            const baseRates = {
+                'unattended': 185,
+                'trauma': 165,
+                'sewage': 95,
+                'infectious': 145,
+                'sharps': 125
+            };
+
+            // Contamination multipliers
+            const contamMultipliers = {
+                'light': 1.0,
+                'moderate': 1.5,
+                'heavy': 2.2
+            };
+
+            // Location multipliers
+            const locationMultipliers = {
+                'residential': 1.0,
+                'commercial': 1.15,
+                'industrial': 1.25,
+                'vehicle': 1.4
+            };
+
+            // Response time multipliers
+            const responseMultipliers = {
+                'standard': 1.0,
+                'urgent': 1.5,
+                'emergency': 2.0
+            };
+
+            // Calculate base cleanup cost
+            let baseCost = areaSize * baseRates[sceneType];
+            baseCost *= contamMultipliers[contamLevel];
+            baseCost *= locationMultipliers[locationType];
+            baseCost *= responseMultipliers[responseTime];
+
+            // PPE costs (per technician, usually 2-3 technicians)
+            const ppeCost = 380 * 2.5; // Average 2.5 technicians
+
+            // Waste disposal cost ($12/kg for biohazard waste)
+            const wasteCost = wasteVolume * 12;
+
+            // Chemical and equipment costs
+            const chemicalCost = areaSize * 18; // Average $18/m² for chemicals
+
+            // Documentation and compliance
+            const complianceCost = 450;
+
+            // Insurance and liability premium (15% of base)
+            const insurancePremium = baseCost * 0.15;
+
+            // Calculate total
+            const totalCost = baseCost + ppeCost + wasteCost + chemicalCost + complianceCost + insurancePremium;
+
+            // Generate detailed breakdown
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Biohazard Cleanup Cost Estimate</h3>
+                    <table style="width: 100%; margin-top: 15px;">
+                        <tr><td><strong>Base Cleanup Cost:</strong></td><td style="text-align: right;">$${baseCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>PPE & Safety Equipment:</strong></td><td style="text-align: right;">$${ppeCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Waste Disposal (${wasteVolume}kg):</strong></td><td style="text-align: right;">$${wasteCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Chemicals & Disinfectants:</strong></td><td style="text-align: right;">$${chemicalCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Documentation & Compliance:</strong></td><td style="text-align: right;">$${complianceCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Insurance Premium (15%):</strong></td><td style="text-align: right;">$${insurancePremium.toFixed(2)}</td></tr>
+                        <tr style="border-top: 2px solid #dc3545; font-size: 1.2em; color: #dc3545;">
+                            <td><strong>TOTAL ESTIMATE:</strong></td>
+                            <td style="text-align: right;"><strong>$${totalCost.toFixed(2)}</strong></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 5px;">
+                        <p><strong>Estimate Includes:</strong></p>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li>All labour and technician costs</li>
+                            <li>Complete PPE for all staff</li>
+                            <li>EPA-compliant waste disposal</li>
+                            <li>ATP testing and verification</li>
+                            <li>Full documentation package</li>
+                            <li>24/7 emergency response available</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Timeline:</strong> ${responseTime === 'emergency' ? '2 hours' : responseTime === 'urgent' ? '4-8 hours' : '24-48 hours'} response,
+                        ${Math.ceil(areaSize/20)} days completion</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('biohazardResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'c',
+                q2: 'c',
+                q3: 'd',
+                q4: 'b',
+                q5: 'c'
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered biohazard cleanup procedures.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the materials and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> P3/HEPA full-face respirator - Required for all biohazard situations under AS/NZS 1716:2012</p>';
+            feedback += '<p><strong>Q2:</strong> 10 minutes - Sporicidin requires 10 minutes contact time for blood pathogen kill claims</p>';
+            feedback += '<p><strong>Q3:</strong> $3,000,000 - Maximum corporate penalty under WHS Act 2011 for Category 1 offences</p>';
+            feedback += '<p><strong>Q4:</strong> UN3291 - International standard for clinical waste containers</p>';
+            feedback += '<p><strong>Q5:</strong> $20 million - Industry standard minimum for biohazard contractors in Australia</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+
+        // Initialize checklist monitoring
+        document.querySelectorAll('.checklist-item input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = Array.from(document.querySelectorAll('.checklist-item input')).every(cb => cb.checked);
+                if (allChecked) {
+                    alert('✓ All safety checks complete - You may proceed with caution');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

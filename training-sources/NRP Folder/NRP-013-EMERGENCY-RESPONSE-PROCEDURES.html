@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-013: Emergency Response Procedures - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #d63031 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+        .section h2 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        .emergency-icon {
+            width: 60px;
+            height: 60px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #ff6b6b;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .alert-box {
+            background: #ffe0e0;
+            border: 2px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .alert-box h4 {
+            color: #d63031;
+            margin-bottom: 10px;
+        }
+        .response-timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+            border-left: 3px solid #ff6b6b;
+            padding-left: 30px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ff6b6b;
+        }
+        .timeline-time {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #d63031; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #ff6b6b;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .contact-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .contact-card h4 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        .priority-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .priority-item {
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            color: white;
+        }
+        .priority-high { background: #d63031; }
+        .priority-medium { background: #fdcb6e; color: #333; }
+        .priority-low { background: #00b894; }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b6b;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #d63031; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-013: Emergency Response Procedures</h1>
+            <p>24/7 Emergency Response Protocols - Australian Standards</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master emergency response procedures for restoration contractors in Australia. Learn rapid deployment protocols, triage systems, communication procedures, and coordination with emergency services following Australian emergency management standards.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="emergency-icon">🚨</div>
+                    <h3>Emergency Types</h3>
+                    <ul>
+                        <li>Flooding & storms</li>
+                        <li>Fire & smoke damage</li>
+                        <li>Sewage overflow</li>
+                        <li>Structural collapse</li>
+                        <li>Hazmat incidents</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="emergency-icon">⏱</div>
+                    <h3>Response Times</h3>
+                    <ul>
+                        <li>Priority 1: 30 minutes</li>
+                        <li>Priority 2: 2 hours</li>
+                        <li>Priority 3: 4 hours</li>
+                        <li>Priority 4: 24 hours</li>
+                        <li>CAT events: Immediate</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="emergency-icon">📋</div>
+                    <h3>Key Protocols</h3>
+                    <ul>
+                        <li>Initial assessment</li>
+                        <li>Safety procedures</li>
+                        <li>Resource deployment</li>
+                        <li>Documentation</li>
+                        <li>Insurance liaison</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Australian Emergency Response Framework</h2>
+            <table>
+                <tr>
+                    <th>Priority Level</th>
+                    <th>Scenario</th>
+                    <th>Response Time</th>
+                    <th>Resources</th>
+                    <th>Notification</th>
+                </tr>
+                <tr>
+                    <td>Priority 1 - Critical</td>
+                    <td>Active flooding, structural damage</td>
+                    <td>30 minutes</td>
+                    <td>Full crew + equipment</td>
+                    <td>Immediate to all parties</td>
+                </tr>
+                <tr>
+                    <td>Priority 2 - Urgent</td>
+                    <td>Significant water damage, smoke</td>
+                    <td>2 hours</td>
+                    <td>Standard crew</td>
+                    <td>Within 30 minutes</td>
+                </tr>
+                <tr>
+                    <td>Priority 3 - Standard</td>
+                    <td>Contained damage, stable</td>
+                    <td>4 hours</td>
+                    <td>Assessment team</td>
+                    <td>Within 1 hour</td>
+                </tr>
+                <tr>
+                    <td>Priority 4 - Scheduled</td>
+                    <td>Minor damage, preventive</td>
+                    <td>24 hours</td>
+                    <td>Single technician</td>
+                    <td>Business hours</td>
+                </tr>
+                <tr>
+                    <td>CAT Event</td>
+                    <td>Natural disaster, multiple sites</td>
+                    <td>Immediate</td>
+                    <td>All available</td>
+                    <td>Emergency broadcast</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Emergency Response Timeline</h2>
+            <div class="response-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">0-5 Minutes</div>
+                    <div>Receive call, gather initial information, dispatch confirmation</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">5-15 Minutes</div>
+                    <div>Mobilise crew, load equipment, depart for site</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">15-30 Minutes</div>
+                    <div>En route updates, prepare documentation, coordinate resources</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">30-45 Minutes</div>
+                    <div>Arrive on site, safety assessment, establish work zones</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">45-60 Minutes</div>
+                    <div>Begin mitigation, document damage, communicate with stakeholders</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">60+ Minutes</div>
+                    <div>Continue work, provide updates, adjust resources as needed</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Emergency Contact Database - Australia 2024</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4>Emergency Services</h4>
+                    <p><strong>Triple Zero:</strong> 000</p>
+                    <p><strong>SES:</strong> 132 500</p>
+                    <p><strong>Police (non-emergency):</strong> 131 444</p>
+                    <p><strong>Poisons Info:</strong> 13 11 26</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Utilities - NSW</h4>
+                    <p><strong>Ausgrid:</strong> 13 13 88</p>
+                    <p><strong>Sydney Water:</strong> 13 20 90</p>
+                    <p><strong>Jemena Gas:</strong> 131 909</p>
+                    <p><strong>NBN Faults:</strong> 1800 687 626</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Insurance Emergency Lines</h4>
+                    <p><strong>NRMA:</strong> 131 123</p>
+                    <p><strong>Allianz:</strong> 1300 360 529</p>
+                    <p><strong>Suncorp:</strong> 13 25 24</p>
+                    <p><strong>QBE:</strong> 133 723</p>
+                </div>
+                <div class="contact-card">
+                    <h4>Building Services</h4>
+                    <p><strong>Master Plumbers:</strong> 1300 668 207</p>
+                    <p><strong>Master Builders:</strong> 1300 137 198</p>
+                    <p><strong>Electrical Trades:</strong> 13 77 88</p>
+                    <p><strong>SafeWork NSW:</strong> 13 10 50</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Priority Assessment Matrix</h2>
+            <div class="priority-matrix">
+                <div class="priority-item priority-high">
+                    <h4>HIGH PRIORITY</h4>
+                    <p>Life safety risk</p>
+                    <p>Active water ingress</p>
+                    <p>Structural compromise</p>
+                </div>
+                <div class="priority-item priority-medium">
+                    <h4>MEDIUM PRIORITY</h4>
+                    <p>Property damage risk</p>
+                    <p>Contained water</p>
+                    <p>Business interruption</p>
+                </div>
+                <div class="priority-item priority-low">
+                    <h4>LOW PRIORITY</h4>
+                    <p>Cosmetic damage</p>
+                    <p>Preventive measures</p>
+                    <p>Documentation only</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h4>⚠ Critical Safety Protocol</h4>
+                <p><strong>STOP - LOOK - ASSESS - CONTROL</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>STOP: Do not enter until safe</li>
+                    <li>LOOK: Identify all hazards</li>
+                    <li>ASSESS: Evaluate risks and resources</li>
+                    <li>CONTROL: Implement safety measures before work</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h3>Emergency Response Cost Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Emergency Type:</label>
+                    <select id="emergencyType">
+                        <option value="flood">Flooding</option>
+                        <option value="fire">Fire Damage</option>
+                        <option value="storm">Storm Damage</option>
+                        <option value="sewage">Sewage Overflow</option>
+                        <option value="mould">Mould Outbreak</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Property Size (m²):</label>
+                    <input type="number" id="propertySize" value="200" min="1">
+                </div>
+                <div>
+                    <label>Response Priority:</label>
+                    <select id="priority">
+                        <option value="1">Priority 1 (30 min)</option>
+                        <option value="2">Priority 2 (2 hours)</option>
+                        <option value="3">Priority 3 (4 hours)</option>
+                        <option value="4">Priority 4 (24 hours)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Time of Call:</label>
+                    <select id="timeOfCall">
+                        <option value="business">Business Hours</option>
+                        <option value="afterhours">After Hours</option>
+                        <option value="weekend">Weekend</option>
+                        <option value="holiday">Public Holiday</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Crew Size Required:</label>
+                    <select id="crewSize">
+                        <option value="2">2 Technicians</option>
+                        <option value="4">4 Technicians</option>
+                        <option value="6">6 Technicians</option>
+                        <option value="10">10+ (CAT Event)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Equipment Needed:</label>
+                    <select id="equipment">
+                        <option value="basic">Basic Pack</option>
+                        <option value="standard">Standard Pack</option>
+                        <option value="advanced">Advanced Pack</option>
+                        <option value="full">Full Deployment</option>
+                    </select>
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateEmergencyResponse()">Calculate Response Cost</button>
+            <div id="responseResult"></div>
+        </div>
+
+        <div class="checklist">
+            <h3>Emergency Response Checklist</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">Customer contact details confirmed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">Site hazards identified and communicated</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">PPE and safety equipment loaded</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">Insurance company notified</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">Equipment inventory checked</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">Documentation kit prepared</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check7">
+                <label for="check7">Emergency services liaison established</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check8">
+                <label for="check8">Customer authorisation obtained</label>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>CAT Event Response Protocols</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Pre-Event Preparation</h3>
+                    <ul>
+                        <li>Monitor BOM warnings</li>
+                        <li>Pre-position equipment</li>
+                        <li>Staff rostering alerts</li>
+                        <li>Fuel vehicles and generators</li>
+                        <li>Stock emergency supplies</li>
+                        <li>Test communication systems</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>During Event</h3>
+                    <ul>
+                        <li>Activate command centre</li>
+                        <li>Deploy strike teams</li>
+                        <li>Coordinate with SES</li>
+                        <li>Triage incoming calls</li>
+                        <li>Resource allocation</li>
+                        <li>Media management</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Post-Event Recovery</h3>
+                    <ul>
+                        <li>Damage assessment sweeps</li>
+                        <li>Priority job scheduling</li>
+                        <li>Supply chain management</li>
+                        <li>Contractor coordination</li>
+                        <li>Insurance fast-tracking</li>
+                        <li>Community support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Documentation Requirements</h2>
+            <table>
+                <tr>
+                    <th>Document Type</th>
+                    <th>When Required</th>
+                    <th>Format</th>
+                    <th>Distribution</th>
+                    <th>Retention</th>
+                </tr>
+                <tr>
+                    <td>Initial Assessment</td>
+                    <td>Within 2 hours</td>
+                    <td>Digital + Photos</td>
+                    <td>Customer, Insurer</td>
+                    <td>7 years</td>
+                </tr>
+                <tr>
+                    <td>Scope of Works</td>
+                    <td>Within 24 hours</td>
+                    <td>Written quote</td>
+                    <td>All parties</td>
+                    <td>7 years</td>
+                </tr>
+                <tr>
+                    <td>Safety Report</td>
+                    <td>Immediate if hazards</td>
+                    <td>Digital form</td>
+                    <td>SafeWork, Customer</td>
+                    <td>7 years</td>
+                </tr>
+                <tr>
+                    <td>Progress Updates</td>
+                    <td>Daily</td>
+                    <td>Email/Portal</td>
+                    <td>Customer, PM</td>
+                    <td>3 years</td>
+                </tr>
+                <tr>
+                    <td>Completion Certificate</td>
+                    <td>End of works</td>
+                    <td>Signed document</td>
+                    <td>All parties</td>
+                    <td>10 years</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the required response time for a Priority 1 emergency in Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> 15 minutes</label>
+                        <label><input type="radio" name="q1" value="b"> 30 minutes</label>
+                        <label><input type="radio" name="q1" value="c"> 1 hour</label>
+                        <label><input type="radio" name="q1" value="d"> 2 hours</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. What is the emergency number for SES in Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 000</label>
+                        <label><input type="radio" name="q2" value="b"> 131 444</label>
+                        <label><input type="radio" name="q2" value="c"> 132 500</label>
+                        <label><input type="radio" name="q2" value="d"> 13 11 26</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. What does the STOP in the safety protocol stand for?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> Stop work immediately</label>
+                        <label><input type="radio" name="q3" value="b"> Do not enter until safe</label>
+                        <label><input type="radio" name="q3" value="c"> Stop and call supervisor</label>
+                        <label><input type="radio" name="q3" value="d"> Stop all equipment</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. How long must emergency response documentation be retained in Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> 1 year</label>
+                        <label><input type="radio" name="q4" value="b"> 3 years</label>
+                        <label><input type="radio" name="q4" value="c"> 5 years</label>
+                        <label><input type="radio" name="q4" value="d"> 7 years</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. When should the initial assessment be provided after an emergency response?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> Within 30 minutes</label>
+                        <label><input type="radio" name="q5" value="b"> Within 2 hours</label>
+                        <label><input type="radio" name="q5" value="c"> Within 24 hours</label>
+                        <label><input type="radio" name="q5" value="d"> Within 48 hours</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Emergency Response Procedures training module.</p>
+            <p>You are now prepared to handle emergency situations following Australian standards.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateEmergencyResponse() {
+            const emergencyType = document.getElementById('emergencyType').value;
+            const propertySize = parseFloat(document.getElementById('propertySize').value);
+            const priority = document.getElementById('priority').value;
+            const timeOfCall = document.getElementById('timeOfCall').value;
+            const crewSize = parseInt(document.getElementById('crewSize').value);
+            const equipment = document.getElementById('equipment').value;
+
+            // Base callout fees by priority (2024 rates)
+            const calloutFees = {
+                '1': 850,  // Priority 1 - 30 min
+                '2': 550,  // Priority 2 - 2 hours
+                '3': 350,  // Priority 3 - 4 hours
+                '4': 250   // Priority 4 - 24 hours
+            };
+
+            // Time multipliers
+            const timeMultipliers = {
+                'business': 1.0,
+                'afterhours': 1.5,
+                'weekend': 1.75,
+                'holiday': 2.0
+            };
+
+            // Equipment package costs
+            const equipmentCosts = {
+                'basic': 450,
+                'standard': 850,
+                'advanced': 1650,
+                'full': 3500
+            };
+
+            // Labour rate per technician per hour
+            const labourRate = 137.50;
+
+            // Estimate hours based on emergency type and size
+            const hoursRequired = {
+                'flood': Math.ceil(propertySize / 50) * 3,
+                'fire': Math.ceil(propertySize / 40) * 4,
+                'storm': Math.ceil(propertySize / 60) * 2.5,
+                'sewage': Math.ceil(propertySize / 45) * 3.5,
+                'mould': Math.ceil(propertySize / 35) * 2
+            };
+
+            const hours = hoursRequired[emergencyType];
+
+            // Calculate costs
+            const calloutFee = calloutFees[priority] * timeMultipliers[timeOfCall];
+            const labourCost = crewSize * labourRate * hours * timeMultipliers[timeOfCall];
+            const equipmentCost = equipmentCosts[equipment];
+
+            // Materials estimate (varies by emergency type)
+            const materialRates = {
+                'flood': 12.50,
+                'fire': 18.50,
+                'storm': 15.00,
+                'sewage': 22.00,
+                'mould': 16.50
+            };
+            const materialsCost = propertySize * materialRates[emergencyType];
+
+            // Emergency surcharge for priority 1
+            const emergencySurcharge = priority === '1' ? 500 : 0;
+
+            // Calculate totals
+            const subtotal = calloutFee + labourCost + equipmentCost + materialsCost + emergencySurcharge;
+            const gst = subtotal * 0.10;
+            const total = subtotal + gst;
+
+            // Generate response plan
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Emergency Response Quote</h3>
+                    <table style="width: 100%; margin-top: 15px;">
+                        <tr><td><strong>Callout Fee (Priority ${priority}):</strong></td><td style="text-align: right;">$${calloutFee.toFixed(2)}</td></tr>
+                        <tr><td><strong>Labour (${crewSize} techs × ${hours} hrs):</strong></td><td style="text-align: right;">$${labourCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Equipment Package:</strong></td><td style="text-align: right;">$${equipmentCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Materials & Supplies:</strong></td><td style="text-align: right;">$${materialsCost.toFixed(2)}</td></tr>
+                        ${emergencySurcharge > 0 ? `<tr><td><strong>Emergency Surcharge:</strong></td><td style="text-align: right;">$${emergencySurcharge.toFixed(2)}</td></tr>` : ''}
+                        <tr><td><strong>Subtotal:</strong></td><td style="text-align: right;">$${subtotal.toFixed(2)}</td></tr>
+                        <tr><td><strong>GST (10%):</strong></td><td style="text-align: right;">$${gst.toFixed(2)}</td></tr>
+                        <tr style="border-top: 2px solid #ff6b6b; font-size: 1.2em; color: #ff6b6b;">
+                            <td><strong>TOTAL EMERGENCY RESPONSE:</strong></td>
+                            <td style="text-align: right;"><strong>$${total.toFixed(2)}</strong></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top: 20px; padding: 15px; background: #ffe0e0; border-radius: 5px;">
+                        <h4>Response Plan:</h4>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Response Time:</strong> ${priority === '1' ? '30 minutes' : priority === '2' ? '2 hours' : priority === '3' ? '4 hours' : '24 hours'}</li>
+                            <li><strong>Crew Deployment:</strong> ${crewSize} certified technicians</li>
+                            <li><strong>Equipment:</strong> ${equipment === 'basic' ? 'Basic extraction' : equipment === 'standard' ? 'Standard restoration' : equipment === 'advanced' ? 'Advanced equipment' : 'Full CAT response'} package</li>
+                            <li><strong>Estimated Duration:</strong> ${hours} hours initial response</li>
+                            <li><strong>Coverage Area:</strong> ${propertySize}m² property</li>
+                            <li><strong>Time Factor:</strong> ${timeOfCall === 'business' ? 'Standard rates' : timeOfCall === 'afterhours' ? '1.5x after hours' : timeOfCall === 'weekend' ? '1.75x weekend' : '2x public holiday'} rates apply</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Insurance:</strong> Direct billing available for approved claims</p>
+                        <p><strong>Guarantee:</strong> 24/7 response commitment with real-time updates</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('responseResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'b', // 30 minutes for Priority 1
+                q2: 'c', // 132 500 for SES
+                q3: 'b', // Do not enter until safe
+                q4: 'd', // 7 years retention
+                q5: 'b'  // Within 2 hours for initial assessment
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered emergency response procedures.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> 30 minutes - Priority 1 critical response time requirement</p>';
+            feedback += '<p><strong>Q2:</strong> 132 500 - State Emergency Service (SES) number for floods and storms</p>';
+            feedback += '<p><strong>Q3:</strong> Do not enter until safe - First step in STOP-LOOK-ASSESS-CONTROL protocol</p>';
+            feedback += '<p><strong>Q4:</strong> 7 years - Australian regulatory requirement for document retention</p>';
+            feedback += '<p><strong>Q5:</strong> Within 2 hours - Initial assessment must be provided to customer and insurer</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+
+        // Emergency checklist completion tracker
+        document.querySelectorAll('.checklist-item input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = Array.from(document.querySelectorAll('.checklist-item input')).every(cb => cb.checked);
+                if (allChecked) {
+                    alert('✓ Emergency response checklist complete - Ready for deployment!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

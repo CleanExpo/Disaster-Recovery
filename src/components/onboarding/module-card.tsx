@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import Link from 'next/link';
 import { PlayCircle, CheckCircle2, Clock, FileText } from 'lucide-react';
 
 interface ModuleCardProps {
@@ -20,12 +21,15 @@ interface ModuleCardProps {
 }
 
 export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleCardProps) {
+  const isNrpgModule = /^NRP-\d{3}$/i.test(module.moduleId);
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'COMPLETED':
         return 'text-green-600';
       case 'IN_PROGRESS':
         return 'text-blue-600';
+      case 'FAILED':
+        return 'text-red-600';
       case 'NOT_STARTED':
         return 'text-gray-400';
       default:
@@ -39,6 +43,8 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
         return <CheckCircle2 className="h-5 w-5 text-green-600" />;
       case 'IN_PROGRESS':
         return <Clock className="h-5 w-5 text-blue-600" />;
+      case 'FAILED':
+        return <FileText className="h-5 w-5 text-red-600" />;
       case 'NOT_STARTED':
         return <PlayCircle className="h-5 w-5 text-gray-400" />;
       default:
@@ -52,6 +58,8 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
         return <Badge variant="default" className="bg-green-600">Completed</Badge>;
       case 'IN_PROGRESS':
         return <Badge variant="default">In Progress</Badge>;
+      case 'FAILED':
+        return <Badge variant="destructive">Needs Review</Badge>;
       case 'NOT_STARTED':
         return <Badge variant="secondary">Not Started</Badge>;
       default:
@@ -129,9 +137,36 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
               >
                 Continue Learning
               </Button>
-              <Button variant="outline" className="flex-1">
-                Review Materials
+              {isNrpgModule ? (
+                <Button asChild variant="outline" className="flex-1">
+                  <Link href={`/dashboard/contractor/onboarding/module/${module.moduleId}`}>Review Materials</Link>
+                </Button>
+              ) : (
+                <Button variant="outline" className="flex-1" disabled>
+                  Review Materials
+                </Button>
+              )}
+            </>
+          )}
+
+          {module.status === 'FAILED' && (
+            <>
+              <Button
+                onClick={() => onStartQuiz(module.moduleId)}
+                className="flex-1"
+                variant="default"
+              >
+                Retake Assessment
               </Button>
+              {isNrpgModule ? (
+                <Button asChild variant="outline" className="flex-1">
+                  <Link href={`/dashboard/contractor/onboarding/module/${module.moduleId}`}>Review Materials</Link>
+                </Button>
+              ) : (
+                <Button variant="outline" className="flex-1" disabled>
+                  Review Materials
+                </Button>
+              )}
             </>
           )}
 
@@ -144,9 +179,15 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
               >
                 Retake Assessment
               </Button>
-              <Button variant="outline" className="flex-1">
-                View Certificate
-              </Button>
+              {isNrpgModule ? (
+                <Button asChild variant="outline" className="flex-1">
+                  <Link href={`/dashboard/contractor/onboarding/module/${module.moduleId}`}>View Materials</Link>
+                </Button>
+              ) : (
+                <Button variant="outline" className="flex-1" disabled>
+                  View Certificate
+                </Button>
+              )}
             </>
           )}
         </div>

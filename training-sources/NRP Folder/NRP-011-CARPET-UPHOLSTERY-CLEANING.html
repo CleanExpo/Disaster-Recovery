@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-011: Carpet & Upholstery Cleaning - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #17a2b8;
+        }
+        .section h2 {
+            color: #17a2b8;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #17a2b8;
+            margin-bottom: 10px;
+        }
+        .carpet-icon {
+            width: 60px;
+            height: 60px;
+            background: #17a2b8;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #17a2b8;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .info-box {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .info-box h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+        .method-comparison {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .method-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+        }
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            background: #17a2b8;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #17a2b8;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #17a2b8;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #138496; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #17a2b8;
+        }
+        .fiber-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .fiber-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        .fiber-item h4 {
+            color: #17a2b8;
+            margin-bottom: 10px;
+        }
+        .ph-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #dc3545, #ffc107, #28a745, #007bff, #6610f2);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            margin: 20px 0;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #17a2b8;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #17a2b8;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #17a2b8;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #138496; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-011: Carpet & Upholstery Cleaning</h1>
+            <p>Professional Training Module - IICRC S100 Standards & Australian Practices</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master professional carpet and upholstery cleaning techniques following IICRC S100 standards and Australian industry best practices. Learn fibre identification, cleaning chemistry, stain removal, and equipment operation for both residential and commercial applications.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="carpet-icon">🏠</div>
+                    <h3>Cleaning Methods</h3>
+                    <ul>
+                        <li>Hot water extraction</li>
+                        <li>Low moisture cleaning</li>
+                        <li>Dry compound cleaning</li>
+                        <li>Bonnet cleaning</li>
+                        <li>Encapsulation</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="carpet-icon">🔬</div>
+                    <h3>Fibre Types</h3>
+                    <ul>
+                        <li>Nylon (60% market)</li>
+                        <li>Polyester (25%)</li>
+                        <li>Wool (8%)</li>
+                        <li>Polypropylene (5%)</li>
+                        <li>Triexta (2%)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="carpet-icon">📊</div>
+                    <h3>Australian Market</h3>
+                    <ul>
+                        <li>$2.8B industry value</li>
+                        <li>12,500+ businesses</li>
+                        <li>45,000 employees</li>
+                        <li>4.2% annual growth</li>
+                        <li>AS/NZS 3733:2018</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Fibre Identification & Characteristics</h2>
+            <div class="fiber-chart">
+                <div class="fiber-item">
+                    <h4>Nylon</h4>
+                    <p><strong>Heat:</strong> 150°C</p>
+                    <p><strong>pH:</strong> 4-10</p>
+                    <p><strong>Stain:</strong> Good</p>
+                    <p><strong>Wear:</strong> Excellent</p>
+                </div>
+                <div class="fiber-item">
+                    <h4>Polyester</h4>
+                    <p><strong>Heat:</strong> 140°C</p>
+                    <p><strong>pH:</strong> 5-9</p>
+                    <p><strong>Stain:</strong> Excellent</p>
+                    <p><strong>Wear:</strong> Good</p>
+                </div>
+                <div class="fiber-item">
+                    <h4>Wool</h4>
+                    <p><strong>Heat:</strong> 60°C</p>
+                    <p><strong>pH:</strong> 5-8.5</p>
+                    <p><strong>Stain:</strong> Poor</p>
+                    <p><strong>Wear:</strong> Good</p>
+                </div>
+                <div class="fiber-item">
+                    <h4>Polypropylene</h4>
+                    <p><strong>Heat:</strong> 110°C</p>
+                    <p><strong>pH:</strong> 3-12</p>
+                    <p><strong>Stain:</strong> Excellent</p>
+                    <p><strong>Wear:</strong> Fair</p>
+                </div>
+                <div class="fiber-item">
+                    <h4>Triexta</h4>
+                    <p><strong>Heat:</strong> 130°C</p>
+                    <p><strong>pH:</strong> 4-10</p>
+                    <p><strong>Stain:</strong> Excellent</p>
+                    <p><strong>Wear:</strong> Excellent</p>
+                </div>
+                <div class="fiber-item">
+                    <h4>Viscose</h4>
+                    <p><strong>Heat:</strong> 50°C</p>
+                    <p><strong>pH:</strong> 5.5-7.5</p>
+                    <p><strong>Stain:</strong> Poor</p>
+                    <p><strong>Wear:</strong> Poor</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>⚠ Fibre Testing Methods</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Burn Test:</strong> Different fibres burn distinctively (perform in safe area)</li>
+                    <li><strong>Water Test:</strong> Wool absorbs slowly, synthetics repel</li>
+                    <li><strong>Bleach Test:</strong> 10% bleach dissolves wool/silk in 3 minutes</li>
+                    <li><strong>Touch Test:</strong> Wool feels warm, synthetics feel cool</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cleaning Methods Comparison</h2>
+            <div class="method-comparison">
+                <div class="method-item">
+                    <div class="method-icon">💧</div>
+                    <div>
+                        <h4>Hot Water Extraction (HWE)</h4>
+                        <p><strong>Dry Time:</strong> 4-8 hours | <strong>Cost:</strong> $0.35-0.55/m² | <strong>Effectiveness:</strong> 95%</p>
+                        <p>IICRC preferred method. Deep cleaning with truckmount or portable units. 80-100°C water, 100-500 PSI.</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">🔄</div>
+                    <div>
+                        <h4>Encapsulation</h4>
+                        <p><strong>Dry Time:</strong> 30-60 minutes | <strong>Cost:</strong> $0.15-0.25/m² | <strong>Effectiveness:</strong> 75%</p>
+                        <p>Low moisture, crystallising polymers. Ideal for commercial maintenance. 15-20L per 100m².</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">🧹</div>
+                    <div>
+                        <h4>Dry Compound</h4>
+                        <p><strong>Dry Time:</strong> Immediate | <strong>Cost:</strong> $0.25-0.35/m² | <strong>Effectiveness:</strong> 65%</p>
+                        <p>Absorbent compound with solvents. No drying time. Good for water-sensitive carpets.</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon">🌀</div>
+                    <div>
+                        <h4>Bonnet Cleaning</h4>
+                        <p><strong>Dry Time:</strong> 1-2 hours | <strong>Cost:</strong> $0.10-0.20/m² | <strong>Effectiveness:</strong> 60%</p>
+                        <p>Surface cleaning with rotary machine. Quick interim maintenance for commercial carpets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Chemical pH Scale & Applications</h2>
+            <div class="ph-scale">
+                <span>0-3 Acid</span>
+                <span>4-6 Mild Acid</span>
+                <span>7 Neutral</span>
+                <span>8-10 Alkaline</span>
+                <span>11-14 Strong Alkaline</span>
+            </div>
+            <table>
+                <tr>
+                    <th>Product Type</th>
+                    <th>pH Range</th>
+                    <th>Application</th>
+                    <th>Cost/Litre</th>
+                    <th>Dilution</th>
+                </tr>
+                <tr>
+                    <td>Traffic Lane Cleaner</td>
+                    <td>11-12.5</td>
+                    <td>Heavy soil, grease</td>
+                    <td>$18-24</td>
+                    <td>1:10 to 1:20</td>
+                </tr>
+                <tr>
+                    <td>Wool Safe Detergent</td>
+                    <td>5-8.5</td>
+                    <td>Wool, silk carpets</td>
+                    <td>$22-28</td>
+                    <td>1:16 to 1:32</td>
+                </tr>
+                <tr>
+                    <td>Extraction Rinse</td>
+                    <td>4.5-6</td>
+                    <td>Neutralising rinse</td>
+                    <td>$15-20</td>
+                    <td>1:320 to 1:640</td>
+                </tr>
+                <tr>
+                    <td>Enzyme Prespray</td>
+                    <td>7-9</td>
+                    <td>Protein stains</td>
+                    <td>$35-45</td>
+                    <td>1:4 to 1:8</td>
+                </tr>
+                <tr>
+                    <td>Rust Remover</td>
+                    <td>1-2</td>
+                    <td>Iron oxide stains</td>
+                    <td>$65-85</td>
+                    <td>Ready to use</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Professional Equipment & Investment</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Truckmount Systems</h3>
+                    <ul>
+                        <li><strong>Prochem Everest:</strong> $45,000-55,000</li>
+                        <li><strong>Sapphire 570SS:</strong> $38,000-42,000</li>
+                        <li><strong>Butler TM5:</strong> $32,000-36,000</li>
+                        <li>Heat: 120°C, Vacuum: 500" lift</li>
+                        <li>Fuel: 15-20L/hour operation</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Portable Extractors</h3>
+                    <ul>
+                        <li><strong>Ninja 500:</strong> $6,500-7,500</li>
+                        <li><strong>Mytee HP60:</strong> $3,800-4,200</li>
+                        <li><strong>Bissell BG10:</strong> $2,200-2,600</li>
+                        <li>Heat: 60-80°C, 100-150 PSI</li>
+                        <li>Power: 15amp single phase</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Support Equipment</h3>
+                    <ul>
+                        <li><strong>Rotary Machine:</strong> $1,800-2,400</li>
+                        <li><strong>Air Movers (3):</strong> $1,500</li>
+                        <li><strong>Dehumidifier:</strong> $2,800</li>
+                        <li><strong>Upholstery Tool:</strong> $450</li>
+                        <li><strong>Wands & Hoses:</strong> $2,200</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h3>Carpet Cleaning Job Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Property Type:</label>
+                    <select id="propertyType">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="strata">Strata Common</option>
+                        <option value="endlease">End of Lease</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Total Area (m²):</label>
+                    <input type="number" id="totalArea" value="80" min="1">
+                </div>
+                <div>
+                    <label>Number of Rooms:</label>
+                    <input type="number" id="numRooms" value="4" min="1">
+                </div>
+                <div>
+                    <label>Cleaning Method:</label>
+                    <select id="cleanMethod">
+                        <option value="hwe">Hot Water Extraction</option>
+                        <option value="encap">Encapsulation</option>
+                        <option value="dry">Dry Compound</option>
+                        <option value="combo">HWE + Encap</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Soil Level:</label>
+                    <select id="soilLevel">
+                        <option value="light">Light</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="heavy">Heavy</option>
+                        <option value="extreme">Extreme</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Stairs Included:</label>
+                    <select id="stairs">
+                        <option value="0">None</option>
+                        <option value="15">15 stairs</option>
+                        <option value="30">30 stairs</option>
+                        <option value="45">45 stairs</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Upholstery Items:</label>
+                    <input type="number" id="upholstery" value="0" min="0">
+                </div>
+                <div>
+                    <label>Protection Treatment:</label>
+                    <select id="protection">
+                        <option value="none">None</option>
+                        <option value="basic">Basic Scotchgard</option>
+                        <option value="premium">Premium MaxPro</option>
+                    </select>
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateCleaningCost()">Calculate Quote</button>
+            <div id="cleaningResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Stain Removal Guide - Australian Standards</h2>
+            <table>
+                <tr>
+                    <th>Stain Type</th>
+                    <th>Treatment Method</th>
+                    <th>Product</th>
+                    <th>Success Rate</th>
+                    <th>Caution</th>
+                </tr>
+                <tr>
+                    <td>Red Wine</td>
+                    <td>Oxidising agent</td>
+                    <td>Hydrogen peroxide 6%</td>
+                    <td>90%</td>
+                    <td>Test for colour loss</td>
+                </tr>
+                <tr>
+                    <td>Coffee/Tea</td>
+                    <td>Tannin remover</td>
+                    <td>Citric acid solution</td>
+                    <td>85%</td>
+                    <td>Rinse thoroughly</td>
+                </tr>
+                <tr>
+                    <td>Pet Urine</td>
+                    <td>Enzyme digester</td>
+                    <td>Bio-enzymatic</td>
+                    <td>75%</td>
+                    <td>May need sub-surface treatment</td>
+                </tr>
+                <tr>
+                    <td>Blood</td>
+                    <td>Protein remover</td>
+                    <td>Ammonia 3%</td>
+                    <td>80%</td>
+                    <td>Cold water only</td>
+                </tr>
+                <tr>
+                    <td>Oil/Grease</td>
+                    <td>Solvent</td>
+                    <td>D-limonene</td>
+                    <td>70%</td>
+                    <td>Ventilation required</td>
+                </tr>
+                <tr>
+                    <td>Ink</td>
+                    <td>Solvent</td>
+                    <td>Isopropyl alcohol</td>
+                    <td>60%</td>
+                    <td>Blot, don't rub</td>
+                </tr>
+                <tr>
+                    <td>Rust</td>
+                    <td>Acid</td>
+                    <td>Oxalic acid</td>
+                    <td>85%</td>
+                    <td>Professional only</td>
+                </tr>
+                <tr>
+                    <td>Bleach Spots</td>
+                    <td>Dye repair</td>
+                    <td>Spot dye kit</td>
+                    <td>50%</td>
+                    <td>Colour matching critical</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Quality Standards & Inspection</h2>
+            <div class="info-box">
+                <h4>AS/NZS 3733:2018 Inspection Criteria</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Visual Inspection:</strong> No visible soil, spots, or residue from 2 metres standing</li>
+                    <li><strong>Texture:</strong> Carpet pile standing upright, no matting or distortion</li>
+                    <li><strong>Odour:</strong> No offensive odours, fresh clean scent</li>
+                    <li><strong>Moisture:</strong> Less than 15% moisture content within 4 hours</li>
+                    <li><strong>pH Level:</strong> Between 6.0 and 8.0 after cleaning</li>
+                    <li><strong>Re-soiling:</strong> No rapid re-soiling within 30 days</li>
+                </ul>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Pre-Inspection Checklist</h3>
+                    <ul>
+                        <li>Fibre identification test</li>
+                        <li>Colourfast testing</li>
+                        <li>Pre-existing damage documentation</li>
+                        <li>Stain identification</li>
+                        <li>Furniture moving agreement</li>
+                        <li>Customer expectations</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Post-Cleaning Protocol</h3>
+                    <ul>
+                        <li>Walk-through with customer</li>
+                        <li>Grooming/pile setting</li>
+                        <li>Speed drying setup</li>
+                        <li>Protection application</li>
+                        <li>Care instructions provided</li>
+                        <li>Warranty documentation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the maximum safe pH for cleaning wool carpets according to Australian standards?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> 7.5</label>
+                        <label><input type="radio" name="q1" value="b"> 8.5</label>
+                        <label><input type="radio" name="q1" value="c"> 9.5</label>
+                        <label><input type="radio" name="q1" value="d"> 10.5</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. What is the typical dry time for hot water extraction cleaning?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 30-60 minutes</label>
+                        <label><input type="radio" name="q2" value="b"> 1-2 hours</label>
+                        <label><input type="radio" name="q2" value="c"> 4-8 hours</label>
+                        <label><input type="radio" name="q2" value="d"> 12-24 hours</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. Which fibre type has the highest market share in Australian carpets?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> Wool</label>
+                        <label><input type="radio" name="q3" value="b"> Polyester</label>
+                        <label><input type="radio" name="q3" value="c"> Nylon</label>
+                        <label><input type="radio" name="q3" value="d"> Polypropylene</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What temperature water is safe for cleaning wool carpets?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> Up to 100°C</label>
+                        <label><input type="radio" name="q4" value="b"> Up to 80°C</label>
+                        <label><input type="radio" name="q4" value="c"> Up to 60°C</label>
+                        <label><input type="radio" name="q4" value="d"> Up to 40°C</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. According to AS/NZS 3733:2018, what is the maximum acceptable moisture content 4 hours after cleaning?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> 5%</label>
+                        <label><input type="radio" name="q5" value="b"> 10%</label>
+                        <label><input type="radio" name="q5" value="c"> 15%</label>
+                        <label><input type="radio" name="q5" value="d"> 20%</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Carpet & Upholstery Cleaning training module.</p>
+            <p>You're now equipped with professional knowledge of IICRC S100 standards and Australian best practices.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateCleaningCost() {
+            const propertyType = document.getElementById('propertyType').value;
+            const totalArea = parseFloat(document.getElementById('totalArea').value);
+            const numRooms = parseInt(document.getElementById('numRooms').value);
+            const cleanMethod = document.getElementById('cleanMethod').value;
+            const soilLevel = document.getElementById('soilLevel').value;
+            const stairs = parseInt(document.getElementById('stairs').value);
+            const upholstery = parseInt(document.getElementById('upholstery').value);
+            const protection = document.getElementById('protection').value;
+
+            // Base rates per m² (2024 Australian rates)
+            const baseRates = {
+                'residential': { 'hwe': 4.50, 'encap': 2.80, 'dry': 3.50, 'combo': 5.50 },
+                'commercial': { 'hwe': 3.20, 'encap': 1.80, 'dry': 2.50, 'combo': 4.00 },
+                'strata': { 'hwe': 3.80, 'encap': 2.20, 'dry': 3.00, 'combo': 4.50 },
+                'endlease': { 'hwe': 5.50, 'encap': 3.50, 'dry': 4.20, 'combo': 6.50 }
+            };
+
+            // Soil level multipliers
+            const soilMultipliers = {
+                'light': 0.9,
+                'moderate': 1.0,
+                'heavy': 1.3,
+                'extreme': 1.6
+            };
+
+            // Calculate base cleaning cost
+            let baseRate = baseRates[propertyType][cleanMethod];
+            let cleaningCost = totalArea * baseRate * soilMultipliers[soilLevel];
+
+            // Minimum charges
+            const minimumCharges = {
+                'residential': 165,
+                'commercial': 220,
+                'strata': 185,
+                'endlease': 245
+            };
+
+            if (cleaningCost < minimumCharges[propertyType]) {
+                cleaningCost = minimumCharges[propertyType];
+            }
+
+            // Stairs cost ($4.50 per stair)
+            const stairsCost = stairs * 4.50;
+
+            // Upholstery costs
+            const upholsteryCosts = {
+                'dining_chair': 25,
+                'armchair': 65,
+                '2_seater': 95,
+                '3_seater': 125,
+                'mattress': 85
+            };
+            const avgUpholsteryCost = 85; // Average cost per item
+            const upholsteryTotal = upholstery * avgUpholsteryCost;
+
+            // Protection treatment
+            const protectionCosts = {
+                'none': 0,
+                'basic': totalArea * 1.20,
+                'premium': totalArea * 2.40
+            };
+            const protectionCost = protectionCosts[protection];
+
+            // Travel/setup fee (distance based, using average)
+            const travelFee = 35;
+
+            // GST (10%)
+            const subtotal = cleaningCost + stairsCost + upholsteryTotal + protectionCost + travelFee;
+            const gst = subtotal * 0.10;
+            const totalCost = subtotal + gst;
+
+            // Estimate time required
+            const timePerRoom = cleanMethod === 'hwe' ? 25 : cleanMethod === 'encap' ? 15 : 20;
+            const totalMinutes = (numRooms * timePerRoom) + (stairs * 1.5) + (upholstery * 20);
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+
+            // Generate quote
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Professional Cleaning Quote</h3>
+                    <table style="width: 100%; margin-top: 15px;">
+                        <tr><td><strong>Carpet Cleaning (${totalArea}m²):</strong></td><td style="text-align: right;">$${cleaningCost.toFixed(2)}</td></tr>
+                        ${stairs > 0 ? `<tr><td><strong>Stairs (${stairs} steps):</strong></td><td style="text-align: right;">$${stairsCost.toFixed(2)}</td></tr>` : ''}
+                        ${upholstery > 0 ? `<tr><td><strong>Upholstery (${upholstery} items):</strong></td><td style="text-align: right;">$${upholsteryTotal.toFixed(2)}</td></tr>` : ''}
+                        ${protection !== 'none' ? `<tr><td><strong>Protection Treatment:</strong></td><td style="text-align: right;">$${protectionCost.toFixed(2)}</td></tr>` : ''}
+                        <tr><td><strong>Travel & Setup:</strong></td><td style="text-align: right;">$${travelFee.toFixed(2)}</td></tr>
+                        <tr><td><strong>Subtotal:</strong></td><td style="text-align: right;">$${subtotal.toFixed(2)}</td></tr>
+                        <tr><td><strong>GST (10%):</strong></td><td style="text-align: right;">$${gst.toFixed(2)}</td></tr>
+                        <tr style="border-top: 2px solid #17a2b8; font-size: 1.2em; color: #17a2b8;">
+                            <td><strong>TOTAL QUOTE:</strong></td>
+                            <td style="text-align: right;"><strong>$${totalCost.toFixed(2)}</strong></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top: 20px; padding: 15px; background: #d1ecf1; border-radius: 5px;">
+                        <p><strong>Service Details:</strong></p>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li>Method: ${cleanMethod === 'hwe' ? 'Hot Water Extraction' : cleanMethod === 'encap' ? 'Encapsulation' : cleanMethod === 'dry' ? 'Dry Compound' : 'HWE + Encapsulation'}</li>
+                            <li>Estimated Time: ${hours} hours ${minutes} minutes</li>
+                            <li>Includes: Pre-vacuum, pre-spray, agitation, extraction, grooming</li>
+                            <li>Dry Time: ${cleanMethod === 'hwe' ? '4-8 hours' : cleanMethod === 'encap' ? '30-60 minutes' : cleanMethod === 'dry' ? 'Immediate' : '2-4 hours'}</li>
+                            <li>Warranty: 30-day spot & spill warranty included</li>
+                            ${protection !== 'none' ? '<li>Protection: ' + (protection === 'basic' ? '3M Scotchgard' : 'MaxPro Premium') + ' treatment</li>' : ''}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('cleaningResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'b', // 8.5 pH max for wool
+                q2: 'c', // 4-8 hours for HWE
+                q3: 'c', // Nylon has 60% market share
+                q4: 'c', // 60°C max for wool
+                q5: 'c'  // 15% moisture after 4 hours
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered carpet and upholstery cleaning standards.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> 8.5 - Maximum safe pH for wool carpets per WoolSafe standards</p>';
+            feedback += '<p><strong>Q2:</strong> 4-8 hours - Standard dry time for hot water extraction</p>';
+            feedback += '<p><strong>Q3:</strong> Nylon - Holds 60% of the Australian carpet market</p>';
+            feedback += '<p><strong>Q4:</strong> 60°C - Maximum temperature to prevent wool shrinkage</p>';
+            feedback += '<p><strong>Q5:</strong> 15% - AS/NZS 3733:2018 moisture content limit after 4 hours</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+    </script>
+</body>
+</html>

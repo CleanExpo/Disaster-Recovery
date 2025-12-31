@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-014: Equipment Management & Maintenance - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #f39c12;
+        }
+        .section h2 {
+            color: #f39c12;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+        .equipment-icon {
+            width: 60px;
+            height: 60px;
+            background: #f39c12;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f39c12;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .info-box {
+            background: #fff3cd;
+            border: 2px solid #f39c12;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .info-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .maintenance-schedule {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+        .schedule-frequency {
+            background: #f39c12;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #f39c12;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #e67e22; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #f39c12;
+        }
+        .inventory-table {
+            overflow-x: auto;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-good { background: #28a745; }
+        .status-warning { background: #ffc107; }
+        .status-critical { background: #dc3545; }
+        .roi-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .roi-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #f39c12;
+        }
+        .roi-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #f39c12;
+        }
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #f39c12;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #e67e22; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-014: Equipment Management & Maintenance</h1>
+            <p>Professional Equipment Care, Maintenance & Asset Management</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master professional equipment management for restoration contractors. Learn preventive maintenance schedules, troubleshooting procedures, inventory control, and ROI optimization for restoration equipment following Australian standards and manufacturer specifications.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="equipment-icon">⚙️</div>
+                    <h3>Equipment Categories</h3>
+                    <ul>
+                        <li>Air movers & fans</li>
+                        <li>Dehumidifiers</li>
+                        <li>Extraction units</li>
+                        <li>HEPA filtration</li>
+                        <li>Monitoring devices</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="equipment-icon">🔧</div>
+                    <h3>Maintenance Types</h3>
+                    <ul>
+                        <li>Daily inspections</li>
+                        <li>Weekly cleaning</li>
+                        <li>Monthly calibration</li>
+                        <li>Annual overhaul</li>
+                        <li>Emergency repairs</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="equipment-icon">📊</div>
+                    <h3>Management Systems</h3>
+                    <ul>
+                        <li>Asset tracking</li>
+                        <li>Service scheduling</li>
+                        <li>Cost analysis</li>
+                        <li>Rental vs purchase</li>
+                        <li>Disposal planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Major Equipment Inventory & Costs (2024 Australian Market)</h2>
+            <div class="inventory-table">
+                <table>
+                    <tr>
+                        <th>Equipment Type</th>
+                        <th>Model Example</th>
+                        <th>Purchase Price</th>
+                        <th>Annual Service</th>
+                        <th>Lifespan</th>
+                        <th>Daily Rental</th>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-good"></span>Air Mover Axial</td>
+                        <td>Phoenix Focus</td>
+                        <td>$485</td>
+                        <td>$85</td>
+                        <td>5 years</td>
+                        <td>$45</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-good"></span>Air Mover Centrifugal</td>
+                        <td>Dri-Eaz Sahara Pro</td>
+                        <td>$645</td>
+                        <td>$95</td>
+                        <td>6 years</td>
+                        <td>$55</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-warning"></span>LGR Dehumidifier</td>
+                        <td>Phoenix 200 MAX</td>
+                        <td>$3,850</td>
+                        <td>$385</td>
+                        <td>7 years</td>
+                        <td>$125</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-good"></span>Desiccant Dehumidifier</td>
+                        <td>Dri-Eaz DD1200</td>
+                        <td>$8,500</td>
+                        <td>$650</td>
+                        <td>8 years</td>
+                        <td>$225</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-warning"></span>Portable Extractor</td>
+                        <td>Mytee Speedster 1001DX</td>
+                        <td>$3,250</td>
+                        <td>$425</td>
+                        <td>5 years</td>
+                        <td>$145</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-good"></span>Truckmount</td>
+                        <td>Sapphire Scientific 570SS</td>
+                        <td>$42,000</td>
+                        <td>$2,800</td>
+                        <td>10 years</td>
+                        <td>$550</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-critical"></span>HEPA Air Scrubber</td>
+                        <td>Dri-Eaz HEPA 700</td>
+                        <td>$2,450</td>
+                        <td>$285</td>
+                        <td>6 years</td>
+                        <td>$95</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-good"></span>Hydroxyl Generator</td>
+                        <td>Odorox Boss XL3</td>
+                        <td>$8,500</td>
+                        <td>$450</td>
+                        <td>5 years</td>
+                        <td>$185</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-good"></span>Moisture Meter</td>
+                        <td>Tramex MRH3</td>
+                        <td>$785</td>
+                        <td>$125</td>
+                        <td>3 years</td>
+                        <td>$35</td>
+                    </tr>
+                    <tr>
+                        <td><span class="status-indicator status-warning"></span>Thermal Camera</td>
+                        <td>FLIR E8-XT</td>
+                        <td>$4,250</td>
+                        <td>$185</td>
+                        <td>5 years</td>
+                        <td>$125</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Preventive Maintenance Schedule</h2>
+            <div class="maintenance-schedule">
+                <div class="schedule-item">
+                    <div>
+                        <h4>Daily Tasks (5 minutes per unit)</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Visual inspection for damage</li>
+                            <li>Check power cords and plugs</li>
+                            <li>Clean air intakes and filters</li>
+                            <li>Record hour meter readings</li>
+                        </ul>
+                    </div>
+                    <span class="schedule-frequency">DAILY</span>
+                </div>
+                <div class="schedule-item">
+                    <div>
+                        <h4>Weekly Tasks (15 minutes per unit)</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Deep clean all filters</li>
+                            <li>Check and tighten connections</li>
+                            <li>Test safety switches</li>
+                            <li>Lubricate moving parts</li>
+                        </ul>
+                    </div>
+                    <span class="schedule-frequency">WEEKLY</span>
+                </div>
+                <div class="schedule-item">
+                    <div>
+                        <h4>Monthly Tasks (30 minutes per unit)</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Calibrate moisture meters</li>
+                            <li>Check refrigerant levels</li>
+                            <li>Clean coils and heat exchangers</li>
+                            <li>Update service logs</li>
+                        </ul>
+                    </div>
+                    <span class="schedule-frequency">MONTHLY</span>
+                </div>
+                <div class="schedule-item">
+                    <div>
+                        <h4>Annual Tasks (2-4 hours per unit)</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Complete overhaul and service</li>
+                            <li>Replace wear items</li>
+                            <li>Electrical safety testing (AS/NZS 3760)</li>
+                            <li>Update asset register</li>
+                        </ul>
+                    </div>
+                    <span class="schedule-frequency">ANNUAL</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Common Faults & Troubleshooting</h2>
+            <table>
+                <tr>
+                    <th>Equipment</th>
+                    <th>Common Fault</th>
+                    <th>Likely Cause</th>
+                    <th>Solution</th>
+                    <th>Est. Cost</th>
+                </tr>
+                <tr>
+                    <td>LGR Dehumidifier</td>
+                    <td>Not collecting water</td>
+                    <td>Frozen coils</td>
+                    <td>Defrost, check filter</td>
+                    <td>$0-45</td>
+                </tr>
+                <tr>
+                    <td>Air Mover</td>
+                    <td>Reduced airflow</td>
+                    <td>Blocked intake</td>
+                    <td>Clean filters/grilles</td>
+                    <td>$0</td>
+                </tr>
+                <tr>
+                    <td>Extractor</td>
+                    <td>Low suction</td>
+                    <td>Worn vacuum motor</td>
+                    <td>Replace motor</td>
+                    <td>$385-550</td>
+                </tr>
+                <tr>
+                    <td>HEPA Scrubber</td>
+                    <td>Alarm sounding</td>
+                    <td>Filter needs replacing</td>
+                    <td>Replace HEPA filter</td>
+                    <td>$185-285</td>
+                </tr>
+                <tr>
+                    <td>Hydroxyl Generator</td>
+                    <td>No UV output</td>
+                    <td>Bulb failure</td>
+                    <td>Replace UV bulbs</td>
+                    <td>$225-350</td>
+                </tr>
+                <tr>
+                    <td>Moisture Meter</td>
+                    <td>Erratic readings</td>
+                    <td>Calibration drift</td>
+                    <td>Recalibrate</td>
+                    <td>$125</td>
+                </tr>
+                <tr>
+                    <td>Truckmount</td>
+                    <td>Overheating</td>
+                    <td>Radiator blockage</td>
+                    <td>Flush cooling system</td>
+                    <td>$285-485</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="calculator">
+            <h3>Equipment ROI Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Equipment Type:</label>
+                    <select id="equipmentType">
+                        <option value="airmover">Air Mover ($645)</option>
+                        <option value="lgr">LGR Dehumidifier ($3,850)</option>
+                        <option value="desiccant">Desiccant Dehu ($8,500)</option>
+                        <option value="extractor">Portable Extractor ($3,250)</option>
+                        <option value="hepa">HEPA Scrubber ($2,450)</option>
+                        <option value="hydroxyl">Hydroxyl Generator ($8,500)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Usage Days/Year:</label>
+                    <input type="number" id="usageDays" value="120" min="1" max="365">
+                </div>
+                <div>
+                    <label>Daily Rental Rate You Charge:</label>
+                    <input type="number" id="rentalRate" value="125" min="1">
+                </div>
+                <div>
+                    <label>Annual Service Cost:</label>
+                    <input type="number" id="serviceCost" value="385" min="0">
+                </div>
+                <div>
+                    <label>Expected Lifespan (Years):</label>
+                    <input type="number" id="lifespan" value="7" min="1" max="15">
+                </div>
+                <div>
+                    <label>Finance Method:</label>
+                    <select id="financeMethod">
+                        <option value="cash">Cash Purchase</option>
+                        <option value="lease">Lease (5.9% APR)</option>
+                        <option value="loan">Equipment Loan (7.5% APR)</option>
+                        <option value="rental">Long-term Rental</option>
+                    </select>
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateROI()">Calculate ROI</button>
+            <div id="roiResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Asset Management Best Practices</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Asset Tracking</h3>
+                    <ul>
+                        <li>Unique ID tags/barcodes</li>
+                        <li>GPS trackers on high-value items</li>
+                        <li>Digital asset register</li>
+                        <li>Photo documentation</li>
+                        <li>Chain of custody logs</li>
+                        <li>Insurance scheduling</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Rental vs Purchase Analysis</h3>
+                    <ul>
+                        <li>Break-even: 30-40 rental days</li>
+                        <li>Consider storage costs</li>
+                        <li>Maintenance responsibility</li>
+                        <li>Technology obsolescence</li>
+                        <li>Cash flow impact</li>
+                        <li>Tax implications</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Disposal & Replacement</h3>
+                    <ul>
+                        <li>Track repair frequency</li>
+                        <li>Monitor efficiency decline</li>
+                        <li>Calculate downtime costs</li>
+                        <li>Trade-in opportunities</li>
+                        <li>Environmental disposal</li>
+                        <li>Tax write-offs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="checklist">
+            <h3>Daily Equipment Inspection Checklist</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">Power cords inspected - no cuts, burns, or exposed wires</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">Plugs secure - no loose prongs or damage</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">Filters clean and properly installed</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">Hour meters recorded in log book</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">No unusual noises or vibrations</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">Safety switches and GFCIs tested</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check7">
+                <label for="check7">Equipment cleaned and ready for deployment</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check8">
+                <label for="check8">Service tags current (within 12 months)</label>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Australian Compliance Requirements</h2>
+            <div class="info-box">
+                <h4>⚠ Electrical Safety Standards</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>AS/NZS 3760:2022</strong> - In-service safety inspection and testing</li>
+                    <li><strong>Testing Frequency:</strong> 3 months for construction sites, 6 months for industrial</li>
+                    <li><strong>Test & Tag Colours 2024:</strong> Orange (Jan-Jun), Blue (Jul-Dec)</li>
+                    <li><strong>RCD Protection:</strong> Required for all portable equipment</li>
+                    <li><strong>Documentation:</strong> Test records retained for 7 years</li>
+                    <li><strong>Penalties:</strong> Up to $50,000 for non-compliance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. According to AS/NZS 3760:2022, how often must equipment be tested on construction sites?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> Monthly</label>
+                        <label><input type="radio" name="q1" value="b"> Every 3 months</label>
+                        <label><input type="radio" name="q1" value="c"> Every 6 months</label>
+                        <label><input type="radio" name="q1" value="d"> Annually</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. What is the typical lifespan of an LGR dehumidifier with proper maintenance?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 3 years</label>
+                        <label><input type="radio" name="q2" value="b"> 5 years</label>
+                        <label><input type="radio" name="q2" value="c"> 7 years</label>
+                        <label><input type="radio" name="q2" value="d"> 10 years</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. What is the most common cause of reduced airflow in air movers?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> Motor failure</label>
+                        <label><input type="radio" name="q3" value="b"> Blocked intake/filters</label>
+                        <label><input type="radio" name="q3" value="c"> Electrical fault</label>
+                        <label><input type="radio" name="q3" value="d"> Bearing wear</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What are the test & tag colours for January-June 2024?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> Red</label>
+                        <label><input type="radio" name="q4" value="b"> Blue</label>
+                        <label><input type="radio" name="q4" value="c"> Orange</label>
+                        <label><input type="radio" name="q4" value="d"> Green</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. How long must equipment test records be retained in Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> 1 year</label>
+                        <label><input type="radio" name="q5" value="b"> 3 years</label>
+                        <label><input type="radio" name="q5" value="c"> 5 years</label>
+                        <label><input type="radio" name="q5" value="d"> 7 years</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Equipment Management & Maintenance training module.</p>
+            <p>You now understand professional equipment care and asset management strategies.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateROI() {
+            const equipmentType = document.getElementById('equipmentType').value;
+            const usageDays = parseInt(document.getElementById('usageDays').value);
+            const rentalRate = parseFloat(document.getElementById('rentalRate').value);
+            const serviceCost = parseFloat(document.getElementById('serviceCost').value);
+            const lifespan = parseInt(document.getElementById('lifespan').value);
+            const financeMethod = document.getElementById('financeMethod').value;
+
+            // Equipment costs
+            const equipmentCosts = {
+                'airmover': 645,
+                'lgr': 3850,
+                'desiccant': 8500,
+                'extractor': 3250,
+                'hepa': 2450,
+                'hydroxyl': 8500
+            };
+
+            const purchasePrice = equipmentCosts[equipmentType];
+
+            // Calculate financing costs
+            let totalCost = purchasePrice;
+            if (financeMethod === 'lease') {
+                totalCost = purchasePrice * 1.18; // 5.9% APR over 3 years
+            } else if (financeMethod === 'loan') {
+                totalCost = purchasePrice * 1.24; // 7.5% APR over 3 years
+            } else if (financeMethod === 'rental') {
+                // Assume rental at 50% of customer rate
+                const annualRentalCost = usageDays * (rentalRate * 0.5);
+                totalCost = annualRentalCost * lifespan;
+            }
+
+            // Annual revenue
+            const annualRevenue = usageDays * rentalRate;
+
+            // Annual costs
+            const annualCosts = serviceCost + (totalCost / lifespan);
+
+            // Annual profit
+            const annualProfit = annualRevenue - annualCosts;
+
+            // Total profit over lifespan
+            const totalProfit = (annualProfit * lifespan) - totalCost;
+
+            // ROI percentage
+            const roi = ((totalProfit / totalCost) * 100).toFixed(1);
+
+            // Payback period
+            const paybackMonths = Math.ceil((totalCost / annualProfit) * 12);
+
+            // Generate ROI analysis
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Equipment ROI Analysis</h3>
+                    <div class="roi-chart">
+                        <div class="roi-item">
+                            <div class="roi-value">$${purchasePrice}</div>
+                            <div>Initial Cost</div>
+                        </div>
+                        <div class="roi-item">
+                            <div class="roi-value">$${annualRevenue.toFixed(0)}</div>
+                            <div>Annual Revenue</div>
+                        </div>
+                        <div class="roi-item">
+                            <div class="roi-value">${roi}%</div>
+                            <div>ROI</div>
+                        </div>
+                        <div class="roi-item">
+                            <div class="roi-value">${paybackMonths} mo</div>
+                            <div>Payback Period</div>
+                        </div>
+                    </div>
+                    <table style="width: 100%; margin-top: 20px;">
+                        <tr><td><strong>Equipment Type:</strong></td><td>${equipmentType.toUpperCase()}</td></tr>
+                        <tr><td><strong>Purchase Method:</strong></td><td>${financeMethod === 'cash' ? 'Cash' : financeMethod === 'lease' ? 'Lease (5.9%)' : financeMethod === 'loan' ? 'Loan (7.5%)' : 'Long-term Rental'}</td></tr>
+                        <tr><td><strong>Total Investment:</strong></td><td>$${totalCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Usage Days/Year:</strong></td><td>${usageDays} days</td></tr>
+                        <tr><td><strong>Daily Rental Income:</strong></td><td>$${rentalRate}</td></tr>
+                        <tr style="background: #f8f9fa;">
+                            <td><strong>Annual Revenue:</strong></td>
+                            <td><strong>$${annualRevenue.toFixed(2)}</strong></td>
+                        </tr>
+                        <tr><td><strong>Annual Service Cost:</strong></td><td>-$${serviceCost.toFixed(2)}</td></tr>
+                        <tr><td><strong>Annual Depreciation:</strong></td><td>-$${(totalCost/lifespan).toFixed(2)}</td></tr>
+                        <tr style="background: #f8f9fa;">
+                            <td><strong>Annual Net Profit:</strong></td>
+                            <td><strong>$${annualProfit.toFixed(2)}</strong></td>
+                        </tr>
+                        <tr style="border-top: 2px solid #f39c12; font-size: 1.1em;">
+                            <td><strong>${lifespan}-Year Total Profit:</strong></td>
+                            <td style="color: ${totalProfit > 0 ? 'green' : 'red'};"><strong>$${totalProfit.toFixed(2)}</strong></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 5px;">
+                        <h4>Recommendation:</h4>
+                        <p>${roi > 100 ? '✓ Excellent investment - Strong ROI justifies purchase' : roi > 50 ? '✓ Good investment - Positive ROI with reasonable payback' : roi > 0 ? '⚠ Marginal investment - Consider rental or increased utilization' : '✗ Poor investment - Rental recommended'}</p>
+                        <p style="margin-top: 10px;"><strong>Break-even:</strong> ${Math.ceil(totalCost / rentalRate)} rental days</p>
+                        <p><strong>Utilisation Rate:</strong> ${((usageDays/365)*100).toFixed(1)}% of available days</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('roiResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'b', // Every 3 months on construction sites
+                q2: 'c', // 7 years for LGR dehumidifier
+                q3: 'b', // Blocked intake/filters
+                q4: 'c', // Orange for Jan-Jun 2024
+                q5: 'd'  // 7 years retention
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered equipment management principles.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> Every 3 months - AS/NZS 3760:2022 requirement for construction sites</p>';
+            feedback += '<p><strong>Q2:</strong> 7 years - Typical lifespan of LGR dehumidifier with proper maintenance</p>';
+            feedback += '<p><strong>Q3:</strong> Blocked intake/filters - Most common and easily fixed cause</p>';
+            feedback += '<p><strong>Q4:</strong> Orange - Test & tag colour for January-June 2024</p>';
+            feedback += '<p><strong>Q5:</strong> 7 years - Australian regulatory requirement for test record retention</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+
+        // Checklist completion tracker
+        document.querySelectorAll('.checklist-item input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const allChecked = Array.from(document.querySelectorAll('.checklist-item input')).every(cb => cb.checked);
+                if (allChecked) {
+                    alert('✓ Daily inspection complete - Equipment ready for deployment!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

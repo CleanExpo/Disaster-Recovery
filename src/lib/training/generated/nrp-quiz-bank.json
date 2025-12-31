@@ -1,0 +1,1527 @@
+{
+  "generatedAt": "2025-12-31T17:52:15.727Z",
+  "sourcePath": "training-sources/NRP Folder/NRP-Complete-Quiz-System.html",
+  "sourceSha256": "aa08987bda788257b2647f86c2fc290553225547efa7358f2ec2e37239f07faf",
+  "quizData": {
+    "1": {
+      "name": "Module 1: Introduction to Water Damage Restoration",
+      "description": "Foundation concepts of water damage assessment and restoration",
+      "questions": [
+        {
+          "id": "m1q1",
+          "type": "Multiple Choice",
+          "question": "According to IICRC S500, what is Category 2 water?",
+          "options": [
+            "Clean water from a sanitary source",
+            "Grey water with some contamination",
+            "Black water with pathogenic agents",
+            "Salt water from coastal flooding"
+          ],
+          "correct": 1,
+          "explanation": "Category 2 (Grey Water) contains significant contamination and has the potential to cause discomfort or sickness if contacted or consumed. Examples include discharge from washing machines, overflows from toilet bowls with urine, and sump pump failures.",
+          "reference": "IICRC S500 Standard, Section 10.1.3"
+        },
+        {
+          "id": "m1q2",
+          "type": "Multiple Choice",
+          "question": "What is the recommended moisture content for structural wood in Australia?",
+          "options": [
+            "Below 8%",
+            "Below 12%",
+            "Below 16%",
+            "Below 20%"
+          ],
+          "correct": 2,
+          "explanation": "In Australia, structural wood should maintain a moisture content below 16% to prevent mould growth and structural damage. This is the equilibrium moisture content for most Australian climate zones.",
+          "reference": "AS 1684.2-2010 Residential timber-framed construction"
+        },
+        {
+          "id": "m1q3",
+          "type": "Multiple Choice",
+          "question": "How quickly should water extraction begin to minimise secondary damage?",
+          "options": [
+            "Within 12 hours",
+            "Within 24-48 hours",
+            "Within 72 hours",
+            "Within 1 week"
+          ],
+          "correct": 1,
+          "explanation": "Water extraction should begin within 24-48 hours to prevent mould growth and minimise secondary damage. Mould can begin growing within 24-48 hours under proper conditions.",
+          "reference": "IICRC S500 Emergency Response Guidelines"
+        },
+        {
+          "id": "m1q4",
+          "type": "Multiple Choice",
+          "question": "What is the primary purpose of establishing drying goals?",
+          "options": [
+            "To satisfy insurance requirements",
+            "To determine when materials are dry",
+            "To calculate equipment needs",
+            "To estimate project duration"
+          ],
+          "correct": 1,
+          "explanation": "Drying goals establish the target moisture content for materials, determining when the drying process is complete. This ensures materials return to pre-loss condition and prevents future issues.",
+          "reference": "IICRC S500 Section 12.2.2"
+        },
+        {
+          "id": "m1q5",
+          "type": "Multiple Choice",
+          "question": "Under Australian Consumer Law, restoration contractors must provide:",
+          "options": [
+            "Lowest possible price",
+            "Services with due care and skill",
+            "Lifetime warranty on all work",
+            "Free emergency callouts"
+          ],
+          "correct": 1,
+          "explanation": "Under Australian Consumer Law, service providers must supply services with due care and skill, ensuring work is completed to a professional standard and fit for purpose.",
+          "reference": "Competition and Consumer Act 2010, Schedule 2, Section 60"
+        }
+      ]
+    },
+    "2": {
+      "name": "Module 2: Environmental Assessment & Testing",
+      "description": "Professional testing procedures and environmental monitoring",
+      "questions": [
+        {
+          "id": "m2q1",
+          "type": "Multiple Choice",
+          "question": "What is the ideal relative humidity range for drying according to Australian standards?",
+          "options": [
+            "20-30%",
+            "30-40%",
+            "40-60%",
+            "60-70%"
+          ],
+          "correct": 1,
+          "explanation": "The ideal relative humidity for efficient drying is 30-40%. This range provides optimal vapour pressure differential for moisture evaporation while preventing over-drying of materials.",
+          "reference": "AS/NZS 3666.2:2011 Air-handling systems"
+        },
+        {
+          "id": "m2q2",
+          "type": "Multiple Choice",
+          "question": "When using a penetrating moisture meter on hardwood, what correction factor typically applies?",
+          "options": [
+            "No correction needed",
+            "Add 2-4%",
+            "Subtract 2-4%",
+            "Multiply by 1.5"
+          ],
+          "correct": 1,
+          "explanation": "Hardwood typically requires adding 2-4% to penetrating moisture meter readings due to wood density. Different species require specific corrections for accurate readings.",
+          "reference": "AS/NZS 1080.1:2012 Timber moisture content"
+        },
+        {
+          "id": "m2q3",
+          "type": "Multiple Choice",
+          "question": "What is grain depression (GPP) used to calculate?",
+          "options": [
+            "Wood moisture content",
+            "Drying goals for air",
+            "Equipment requirements",
+            "Structural integrity"
+          ],
+          "correct": 1,
+          "explanation": "Grains Per Pound (GPP) or grain depression calculates the difference between current and target humidity levels, determining drying goals for ambient air conditions.",
+          "reference": "IICRC S500 Psychrometry Application"
+        },
+        {
+          "id": "m2q4",
+          "type": "Multiple Choice",
+          "question": "How often should moisture readings be documented during active drying?",
+          "options": [
+            "Once at start",
+            "Daily",
+            "Every 3 days",
+            "Weekly"
+          ],
+          "correct": 1,
+          "explanation": "Daily moisture readings must be documented during active drying to track progress, adjust equipment, and provide evidence of proper drying for insurance claims.",
+          "reference": "IICRC S500 Documentation Requirements"
+        },
+        {
+          "id": "m2q5",
+          "type": "Multiple Choice",
+          "question": "What does thermal imaging primarily detect in water damage assessment?",
+          "options": [
+            "Moisture content percentage",
+            "Temperature differentials",
+            "Mould growth",
+            "Structural damage"
+          ],
+          "correct": 1,
+          "explanation": "Thermal imaging detects temperature differentials caused by evaporative cooling of wet materials. It indicates potential moisture but must be verified with moisture meters.",
+          "reference": "FLIR Building Diagnostics Guide"
+        }
+      ]
+    },
+    "3": {
+      "name": "Module 3: Mould Remediation Fundamentals",
+      "description": "Comprehensive mould identification and remediation procedures",
+      "questions": [
+        {
+          "id": "m3q1",
+          "type": "Multiple Choice",
+          "question": "According to AS/NZS standards, what size mould contamination requires professional remediation?",
+          "options": [
+            "Any visible mould",
+            "Greater than 1 square metre",
+            "Greater than 10 square metres",
+            "Only toxic black mould"
+          ],
+          "correct": 1,
+          "explanation": "Professional remediation is recommended for mould contamination greater than 1 square metre. Smaller areas can be cleaned by maintenance staff with proper PPE and procedures.",
+          "reference": "AS/NZS 4849.1:2003 Mould remediation"
+        },
+        {
+          "id": "m3q2",
+          "type": "Multiple Choice",
+          "question": "What is the minimum negative air pressure required for mould containment?",
+          "options": [
+            "-2.5 Pa",
+            "-5 Pa",
+            "-12.5 Pa",
+            "-25 Pa"
+          ],
+          "correct": 1,
+          "explanation": "Containment areas require minimum -5 Pa (Pascals) negative pressure to prevent mould spore migration to unaffected areas during remediation work.",
+          "reference": "IICRC S520 Mould Remediation Standard"
+        },
+        {
+          "id": "m3q3",
+          "type": "Multiple Choice",
+          "question": "What PPE is required for Level 2 mould remediation?",
+          "options": [
+            "N95 respirator minimum",
+            "P2/N95 respirator, gloves, goggles",
+            "Full-face respirator with P3 filters",
+            "Supplied air respirator"
+          ],
+          "correct": 1,
+          "explanation": "Level 2 remediation (1-10 square metres) requires P2/N95 respirator minimum, nitrile gloves, and goggles. Full body covering is recommended to prevent skin contact.",
+          "reference": "AS/NZS 1715:2009 Respiratory protective devices"
+        },
+        {
+          "id": "m3q4",
+          "type": "Multiple Choice",
+          "question": "What is the primary purpose of HEPA vacuuming before mould removal?",
+          "options": [
+            "To wet the surface",
+            "To remove loose spores",
+            "To apply antimicrobial",
+            "To test for mould type"
+          ],
+          "correct": 1,
+          "explanation": "HEPA vacuuming removes loose mould spores before disturbance, reducing airborne contamination during removal. This is a critical first step in the remediation process.",
+          "reference": "IICRC S520 Section 12.1.3"
+        },
+        {
+          "id": "m3q5",
+          "type": "Multiple Choice",
+          "question": "Post-remediation verification (PRV) should be conducted by:",
+          "options": [
+            "The remediation contractor",
+            "The property owner",
+            "An independent third party",
+            "The insurance adjuster"
+          ],
+          "correct": 2,
+          "explanation": "Post-remediation verification should be conducted by an independent third party (Indoor Environmental Professional) to ensure unbiased assessment of remediation effectiveness.",
+          "reference": "IICRC S520 Section 14.3"
+        }
+      ]
+    },
+    "4": {
+      "name": "Module 4: Fire & Smoke Damage Restoration",
+      "description": "Fire damage assessment and restoration techniques",
+      "questions": [
+        {
+          "id": "m4q1",
+          "type": "Multiple Choice",
+          "question": "What type of fire residue requires specialised cleaning due to its acidic nature?",
+          "options": [
+            "Protein fires",
+            "Natural material fires",
+            "Synthetic/plastic fires",
+            "Grease fires"
+          ],
+          "correct": 2,
+          "explanation": "Synthetic/plastic fires produce acidic soot that can cause rapid corrosion of metals and etching of glass. Immediate cleaning is required to prevent permanent damage.",
+          "reference": "IICRC Fire and Smoke Restoration"
+        },
+        {
+          "id": "m4q2",
+          "type": "Multiple Choice",
+          "question": "What is the first priority when arriving at a fire damage site?",
+          "options": [
+            "Document damage",
+            "Begin cleaning",
+            "Safety assessment",
+            "Contact insurance"
+          ],
+          "correct": 2,
+          "explanation": "Safety assessment is the first priority, checking for structural stability, electrical hazards, air quality, and other safety risks before any work begins.",
+          "reference": "WorkSafe Australia Fire Damage Guidelines"
+        },
+        {
+          "id": "m4q3",
+          "type": "Multiple Choice",
+          "question": "Which deodorisation method is most effective for protein fire odours?",
+          "options": [
+            "Masking agents",
+            "Thermal fogging",
+            "Ozone treatment",
+            "Hydroxyl generators"
+          ],
+          "correct": 2,
+          "explanation": "Ozone treatment is highly effective for protein fire odours as it oxidises odour molecules. However, it requires vacant premises and proper safety procedures.",
+          "reference": "IICRC Deodorisation Principles"
+        },
+        {
+          "id": "m4q4",
+          "type": "Multiple Choice",
+          "question": "What is the Australian standard for smoke detector replacement after fire?",
+          "options": [
+            "Clean and reinstall",
+            "Test and certify",
+            "Always replace",
+            "Replace if over 10 years old"
+          ],
+          "correct": 2,
+          "explanation": "Australian Standard AS 1670.1 requires smoke detectors to be replaced after fire exposure as smoke and heat can damage sensors, compromising future performance.",
+          "reference": "AS 1670.1-2018 Fire detection systems"
+        },
+        {
+          "id": "m4q5",
+          "type": "Multiple Choice",
+          "question": "When should HVAC systems be inspected after a fire?",
+          "options": [
+            "Only if directly damaged",
+            "Before restoration begins",
+            "After cleaning is complete",
+            "Not necessary"
+          ],
+          "correct": 1,
+          "explanation": "HVAC systems must be inspected before restoration begins to prevent spreading contaminants. The system should be shut down and professionally cleaned if contaminated.",
+          "reference": "AS/NZS 3666.2:2011 HVAC hygiene"
+        }
+      ]
+    },
+    "5": {
+      "name": "Module 5: Biohazard & Trauma Cleanup",
+      "description": "Specialised biohazard remediation and safety protocols",
+      "questions": [
+        {
+          "id": "m5q1",
+          "type": "Multiple Choice",
+          "question": "What vaccination is required for biohazard remediation workers in Australia?",
+          "options": [
+            "COVID-19 only",
+            "Hepatitis B",
+            "Tetanus only",
+            "All vaccinations"
+          ],
+          "correct": 1,
+          "explanation": "Hepatitis B vaccination is mandatory for workers potentially exposed to bloodborne pathogens. This is required under WHS regulations for biohazard work.",
+          "reference": "Safe Work Australia Biological Hazards"
+        },
+        {
+          "id": "m5q2",
+          "type": "Multiple Choice",
+          "question": "What is the proper disposal method for biohazard waste in Australia?",
+          "options": [
+            "Regular landfill",
+            "Onsite burial",
+            "Licensed medical waste facility",
+            "Standard skip bin"
+          ],
+          "correct": 2,
+          "explanation": "Biohazard waste must be disposed through licensed medical waste facilities with proper manifesting and tracking. This ensures compliance with EPA regulations.",
+          "reference": "EPA Clinical Waste Guidelines"
+        },
+        {
+          "id": "m5q3",
+          "type": "Multiple Choice",
+          "question": "What PPE is minimum for Category 3 water exposure?",
+          "options": [
+            "Gloves only",
+            "Gloves and eye protection",
+            "Full body protection, P2 respirator",
+            "Level A hazmat suit"
+          ],
+          "correct": 2,
+          "explanation": "Category 3 water requires full body protection, P2 respirator minimum, eye protection, and waterproof boots. This protects against pathogenic contamination.",
+          "reference": "IICRC S500 Category 3 Water"
+        },
+        {
+          "id": "m5q4",
+          "type": "Multiple Choice",
+          "question": "What disinfectant contact time is required for bloodborne pathogen decontamination?",
+          "options": [
+            "30 seconds",
+            "1 minute",
+            "10 minutes",
+            "30 minutes"
+          ],
+          "correct": 2,
+          "explanation": "Most hospital-grade disinfectants require 10 minutes contact time for effective kill of bloodborne pathogens including HIV, Hepatitis B, and Hepatitis C.",
+          "reference": "TGA Therapeutic Goods Administration"
+        },
+        {
+          "id": "m5q5",
+          "type": "Multiple Choice",
+          "question": "Who must be notified for unattended death cleanup in Australia?",
+          "options": [
+            "Local council only",
+            "Police and coroner",
+            "EPA only",
+            "Health department only"
+          ],
+          "correct": 1,
+          "explanation": "Police and coroner must clear the scene before any cleanup begins. They ensure proper investigation and documentation of the death circumstances.",
+          "reference": "Coroners Act 2008 (Vic)"
+        }
+      ]
+    },
+    "6": {
+      "name": "Module 6: Drying Equipment & Psychrometry",
+      "description": "Advanced understanding of drying science and equipment",
+      "questions": [
+        {
+          "id": "m6q1",
+          "type": "Multiple Choice",
+          "question": "What is the typical dehumidification capacity needed per 100m² of affected area?",
+          "options": [
+            "50 litres/day",
+            "100 litres/day",
+            "150 litres/day",
+            "200 litres/day"
+          ],
+          "correct": 1,
+          "explanation": "Typically 100 litres/day dehumidification capacity per 100m² is required for effective drying, though this varies with saturation level and ambient conditions.",
+          "reference": "IICRC Drying Guidelines"
+        },
+        {
+          "id": "m6q2",
+          "type": "Multiple Choice",
+          "question": "At what temperature does LGR dehumidification become ineffective?",
+          "options": [
+            "Below 5°C",
+            "Below 10°C",
+            "Below 15°C",
+            "Below 20°C"
+          ],
+          "correct": 1,
+          "explanation": "LGR (Low Grain Refrigerant) dehumidifiers become ineffective below 10°C as coils freeze. Desiccant dehumidifiers should be used in cold conditions.",
+          "reference": "Equipment Manufacturer Specifications"
+        },
+        {
+          "id": "m6q3",
+          "type": "Multiple Choice",
+          "question": "What is the recommended air changes per hour (ACH) for structural drying?",
+          "options": [
+            "1-2 ACH",
+            "4-6 ACH",
+            "8-10 ACH",
+            "15-20 ACH"
+          ],
+          "correct": 1,
+          "explanation": "4-6 air changes per hour is recommended for effective structural drying, providing adequate air movement for moisture evaporation without over-drying.",
+          "reference": "IICRC S500 Air Movement"
+        },
+        {
+          "id": "m6q4",
+          "type": "Multiple Choice",
+          "question": "What is vapour pressure differential?",
+          "options": [
+            "Pressure in pipes",
+            "Difference driving evaporation",
+            "Barometric pressure",
+            "Equipment pressure"
+          ],
+          "correct": 1,
+          "explanation": "Vapour pressure differential is the difference between vapour pressure at the material surface and ambient air, driving the evaporation process.",
+          "reference": "Psychrometric Principles"
+        },
+        {
+          "id": "m6q5",
+          "type": "Multiple Choice",
+          "question": "When should air movers be positioned for wall cavity drying?",
+          "options": [
+            "Perpendicular to wall",
+            "At 45-degree angle",
+            "Parallel at 15-degree angle",
+            "Directly against wall"
+          ],
+          "correct": 2,
+          "explanation": "Air movers should be positioned parallel to walls at a 15-degree angle to create vortex drying, maximising air circulation within wall cavities.",
+          "reference": "IICRC S500 Equipment Placement"
+        }
+      ]
+    },
+    "7": {
+      "name": "Module 7: Contents Restoration & Pack-Out",
+      "description": "Professional contents handling and restoration",
+      "questions": [
+        {
+          "id": "m7q1",
+          "type": "Multiple Choice",
+          "question": "What is the first step in contents pack-out procedures?",
+          "options": [
+            "Boxing items",
+            "Cleaning items",
+            "Photo inventory",
+            "Moving items"
+          ],
+          "correct": 2,
+          "explanation": "Photo inventory must be completed first to document pre-existing conditions, create a detailed inventory, and protect against liability claims.",
+          "reference": "Contents Restoration Best Practices"
+        },
+        {
+          "id": "m7q2",
+          "type": "Multiple Choice",
+          "question": "What cleaning method is appropriate for non-porous hard contents?",
+          "options": [
+            "Dry cleaning only",
+            "Wet cleaning with detergent",
+            "Immersion cleaning",
+            "Abrasive cleaning"
+          ],
+          "correct": 1,
+          "explanation": "Non-porous hard contents can be wet cleaned with appropriate detergent solutions. This effectively removes contamination without damage to the item.",
+          "reference": "IICRC Contents Cleaning"
+        },
+        {
+          "id": "m7q3",
+          "type": "Multiple Choice",
+          "question": "Under Australian Consumer Law, restored contents must be:",
+          "options": [
+            "Better than original",
+            "Returned to pre-loss condition",
+            "Replaced if damaged",
+            "Cleaned to any standard"
+          ],
+          "correct": 1,
+          "explanation": "Contents must be returned to pre-loss condition or replaced. This is a consumer guarantee under Australian Consumer Law for restoration services.",
+          "reference": "Australian Consumer Law"
+        },
+        {
+          "id": "m7q4",
+          "type": "Multiple Choice",
+          "question": "What is the maximum storage humidity for electronics?",
+          "options": [
+            "30-40%",
+            "40-50%",
+            "50-60%",
+            "60-70%"
+          ],
+          "correct": 1,
+          "explanation": "Electronics should be stored at 40-50% relative humidity to prevent corrosion while avoiding static electricity buildup from overly dry conditions.",
+          "reference": "Electronics Restoration Guidelines"
+        },
+        {
+          "id": "m7q5",
+          "type": "Multiple Choice",
+          "question": "What determines if contents should be restored vs replaced?",
+          "options": [
+            "Owner preference only",
+            "Restoration cost vs replacement value",
+            "Insurance decision only",
+            "Age of items"
+          ],
+          "correct": 1,
+          "explanation": "The decision is based on restoration cost versus replacement value. Items are typically replaced if restoration exceeds 70% of replacement cost.",
+          "reference": "Insurance Industry Guidelines"
+        }
+      ]
+    },
+    "8": {
+      "name": "Module 8: Structural Drying & Dehumidification",
+      "description": "Advanced structural drying techniques",
+      "questions": [
+        {
+          "id": "m8q1",
+          "type": "Multiple Choice",
+          "question": "What is the drying goal for concrete in Australia?",
+          "options": [
+            "Less than 3%",
+            "Less than 5.5%",
+            "Less than 7%",
+            "Less than 10%"
+          ],
+          "correct": 1,
+          "explanation": "Concrete should be dried to less than 5.5% moisture content (75% RH) before installing floor coverings to prevent adhesive failure and mould growth.",
+          "reference": "AS 1884-2012 Floor coverings"
+        },
+        {
+          "id": "m8q2",
+          "type": "Multiple Choice",
+          "question": "Which drying method is most effective for hardwood floors?",
+          "options": [
+            "Tenting with heat",
+            "Injectable floor drying",
+            "Surface drying only",
+            "Removal and replacement"
+          ],
+          "correct": 1,
+          "explanation": "Injectable floor drying systems (mat systems) are most effective for hardwood floors, drying from below while minimising cupping and crowning.",
+          "reference": "IICRC Hardwood Floor Drying"
+        },
+        {
+          "id": "m8q3",
+          "type": "Multiple Choice",
+          "question": "What causes secondary damage during improper drying?",
+          "options": [
+            "Too much air movement",
+            "Excessive humidity",
+            "Cold temperatures",
+            "Bright lighting"
+          ],
+          "correct": 1,
+          "explanation": "Excessive humidity during drying causes secondary damage including mould growth, material degradation, and odours. Proper dehumidification is critical.",
+          "reference": "IICRC S500 Secondary Damage"
+        },
+        {
+          "id": "m8q4",
+          "type": "Multiple Choice",
+          "question": "When should wall cavities be opened for drying?",
+          "options": [
+            "Always immediately",
+            "Never required",
+            "When moisture trapped inside",
+            "Only for insurance"
+          ],
+          "correct": 2,
+          "explanation": "Wall cavities should be opened when moisture is trapped inside and cannot be effectively dried from outside. This includes wet insulation or double-layer walls.",
+          "reference": "IICRC Wall Cavity Drying"
+        },
+        {
+          "id": "m8q5",
+          "type": "Multiple Choice",
+          "question": "What is balanced drying?",
+          "options": [
+            "Equal equipment on all walls",
+            "Matching evaporation to dehumidification",
+            "Drying all rooms equally",
+            "Using same brand equipment"
+          ],
+          "correct": 1,
+          "explanation": "Balanced drying matches the evaporation rate to dehumidification capacity, preventing secondary damage from excess humidity while maximising efficiency.",
+          "reference": "IICRC Balanced Drying Systems"
+        }
+      ]
+    },
+    "9": {
+      "name": "Module 9: Environmental Monitoring & Testing",
+      "description": "Professional monitoring and documentation",
+      "questions": [
+        {
+          "id": "m9q1",
+          "type": "Multiple Choice",
+          "question": "How often should data logging occur during critical drying?",
+          "options": [
+            "Once daily",
+            "Twice daily",
+            "Every 4 hours",
+            "Continuous monitoring"
+          ],
+          "correct": 3,
+          "explanation": "Continuous monitoring with data loggers provides comprehensive documentation for critical drying projects, capturing all environmental changes and equipment performance.",
+          "reference": "IICRC Documentation Standards"
+        },
+        {
+          "id": "m9q2",
+          "type": "Multiple Choice",
+          "question": "What is the acceptable variance for moisture meter calibration?",
+          "options": [
+            "±0.5%",
+            "±1%",
+            "±2%",
+            "±5%"
+          ],
+          "correct": 1,
+          "explanation": "Moisture meters should be calibrated to within ±1% accuracy. Regular calibration ensures reliable readings for documentation and drying decisions.",
+          "reference": "AS/NZS 1080.1 Calibration Standards"
+        },
+        {
+          "id": "m9q3",
+          "type": "Multiple Choice",
+          "question": "What atmospheric condition most affects drying in coastal Australia?",
+          "options": [
+            "Temperature",
+            "High humidity",
+            "Barometric pressure",
+            "Wind speed"
+          ],
+          "correct": 1,
+          "explanation": "High humidity in coastal areas significantly affects drying rates and equipment requirements. Dehumidification capacity must be increased to compensate.",
+          "reference": "Australian Climate Considerations"
+        },
+        {
+          "id": "m9q4",
+          "type": "Multiple Choice",
+          "question": "What documentation is legally required for insurance claims?",
+          "options": [
+            "Photos only",
+            "Moisture readings only",
+            "Comprehensive drying records",
+            "Final invoice only"
+          ],
+          "correct": 2,
+          "explanation": "Comprehensive drying records including daily moisture readings, equipment placement, atmospheric conditions, and progress photos are required for insurance claims.",
+          "reference": "Insurance Council of Australia"
+        },
+        {
+          "id": "m9q5",
+          "type": "Multiple Choice",
+          "question": "What indicates equilibrium moisture content has been reached?",
+          "options": [
+            "No visible moisture",
+            "Readings unchanged for 24 hours",
+            "Equipment stops collecting water",
+            "Customer satisfaction"
+          ],
+          "correct": 1,
+          "explanation": "Equilibrium moisture content is reached when readings remain unchanged for 24 hours under stable conditions, indicating materials have reached ambient moisture levels.",
+          "reference": "IICRC Drying Standards"
+        }
+      ]
+    },
+    "10": {
+      "name": "Module 10: Documentation & Reporting",
+      "description": "Professional documentation and insurance procedures",
+      "questions": [
+        {
+          "id": "m10q1",
+          "type": "Multiple Choice",
+          "question": "What must be included in initial loss documentation?",
+          "options": [
+            "Cause, date, affected areas",
+            "Equipment list only",
+            "Customer name only",
+            "Final costs"
+          ],
+          "correct": 0,
+          "explanation": "Initial documentation must include cause of loss, date/time discovered, all affected areas, and initial moisture readings to establish scope of work.",
+          "reference": "Insurance Documentation Requirements"
+        },
+        {
+          "id": "m10q2",
+          "type": "Multiple Choice",
+          "question": "How should photos be labeled for insurance claims?",
+          "options": [
+            "No labels needed",
+            "Date only",
+            "Date, location, and description",
+            "Customer name only"
+          ],
+          "correct": 2,
+          "explanation": "Photos must be labeled with date, specific location, and description of what is shown. This provides clear evidence for insurance claim processing.",
+          "reference": "Insurance Council Guidelines"
+        },
+        {
+          "id": "m10q3",
+          "type": "Multiple Choice",
+          "question": "What is the retention period for restoration documentation in Australia?",
+          "options": [
+            "1 year",
+            "3 years",
+            "7 years",
+            "10 years"
+          ],
+          "correct": 2,
+          "explanation": "Documentation should be retained for 7 years minimum for tax purposes and potential liability claims under Australian law.",
+          "reference": "Australian Taxation Office"
+        },
+        {
+          "id": "m10q4",
+          "type": "Multiple Choice",
+          "question": "What software is standard for insurance estimating in Australia?",
+          "options": [
+            "Excel spreadsheets",
+            "Xactimate",
+            "QuickBooks",
+            "Any accounting software"
+          ],
+          "correct": 1,
+          "explanation": "Xactimate is the industry standard for insurance restoration estimating in Australia, used by most insurers and large restoration companies.",
+          "reference": "Insurance Industry Standards"
+        },
+        {
+          "id": "m10q5",
+          "type": "Multiple Choice",
+          "question": "When must a certificate of completion be provided?",
+          "options": [
+            "Never required",
+            "Only for commercial",
+            "Upon project completion",
+            "Only if requested"
+          ],
+          "correct": 2,
+          "explanation": "A certificate of completion must be provided upon project completion, confirming work meets industry standards and drying goals have been achieved.",
+          "reference": "IICRC Certification Requirements"
+        }
+      ]
+    },
+    "11": {
+      "name": "Module 11: Insurance Relations & Claims",
+      "description": "Insurance processes and adjuster relations",
+      "questions": [
+        {
+          "id": "m11q1",
+          "type": "Multiple Choice",
+          "question": "What is 'scope creep' in insurance claims?",
+          "options": [
+            "Expanding work beyond approved scope",
+            "Slow project progress",
+            "Equipment malfunction",
+            "Customer complaints"
+          ],
+          "correct": 0,
+          "explanation": "Scope creep refers to work expanding beyond the approved scope without proper authorisation, leading to payment disputes with insurance companies.",
+          "reference": "Insurance Claim Management"
+        },
+        {
+          "id": "m11q2",
+          "type": "Multiple Choice",
+          "question": "What is typically excluded from home insurance water damage coverage?",
+          "options": [
+            "Burst pipes",
+            "Storm damage",
+            "Gradual leaks",
+            "Washing machine overflow"
+          ],
+          "correct": 2,
+          "explanation": "Gradual leaks and lack of maintenance are typically excluded from coverage. Insurance covers sudden and accidental water damage, not ongoing issues.",
+          "reference": "Standard Insurance Policies"
+        },
+        {
+          "id": "m11q3",
+          "type": "Multiple Choice",
+          "question": "What is an insurance excess/deductible?",
+          "options": [
+            "Extra coverage",
+            "Amount customer pays",
+            "Contractor fee",
+            "Government tax"
+          ],
+          "correct": 1,
+          "explanation": "The excess (deductible) is the amount the policyholder must pay before insurance coverage begins. This typically ranges from $500-$2000 in Australia.",
+          "reference": "Insurance Terms and Conditions"
+        },
+        {
+          "id": "m11q4",
+          "type": "Multiple Choice",
+          "question": "When should an adjuster be contacted for scope changes?",
+          "options": [
+            "After work is complete",
+            "Before any additional work",
+            "Never needed",
+            "Only for major changes"
+          ],
+          "correct": 1,
+          "explanation": "Adjusters must be contacted before any additional work outside the approved scope to ensure coverage and avoid payment disputes.",
+          "reference": "Insurance Protocol"
+        },
+        {
+          "id": "m11q5",
+          "type": "Multiple Choice",
+          "question": "What is a preferred vendor program?",
+          "options": [
+            "Customer choice program",
+            "Contractor network with insurers",
+            "Equipment rental program",
+            "Training certification"
+          ],
+          "correct": 1,
+          "explanation": "Preferred vendor programs are contractor networks maintained by insurance companies, offering steady work in exchange for agreed pricing and standards.",
+          "reference": "Insurance Industry Programs"
+        }
+      ]
+    },
+    "12": {
+      "name": "Module 12: Health & Safety Protocols",
+      "description": "WHS compliance and safety management",
+      "questions": [
+        {
+          "id": "m12q1",
+          "type": "Multiple Choice",
+          "question": "What is the hierarchy of hazard control?",
+          "options": [
+            "PPE, elimination, engineering",
+            "Elimination, substitution, engineering, admin, PPE",
+            "Engineering, PPE, elimination",
+            "Admin controls only"
+          ],
+          "correct": 1,
+          "explanation": "The hierarchy is: Elimination, Substitution, Engineering controls, Administrative controls, and PPE (least effective). This prioritises most effective controls.",
+          "reference": "Safe Work Australia"
+        },
+        {
+          "id": "m12q2",
+          "type": "Multiple Choice",
+          "question": "When must a Safe Work Method Statement (SWMS) be prepared?",
+          "options": [
+            "For all work",
+            "For high-risk construction work",
+            "Never required",
+            "Only for government jobs"
+          ],
+          "correct": 1,
+          "explanation": "SWMS is mandatory for high-risk construction work including work at heights, confined spaces, and asbestos removal under WHS regulations.",
+          "reference": "WHS Regulation 2011"
+        },
+        {
+          "id": "m12q3",
+          "type": "Multiple Choice",
+          "question": "What is the maximum safe ladder working height without fall protection?",
+          "options": [
+            "2 metres",
+            "3 metres",
+            "4 metres",
+            "6 metres"
+          ],
+          "correct": 0,
+          "explanation": "Work above 2 metres requires fall protection under Australian WHS regulations. This includes harnesses, scaffolding, or elevated work platforms.",
+          "reference": "WHS Falls Prevention"
+        },
+        {
+          "id": "m12q4",
+          "type": "Multiple Choice",
+          "question": "What is required for confined space entry?",
+          "options": [
+            "Permission only",
+            "Permit, training, standby person",
+            "Good ventilation",
+            "Two workers"
+          ],
+          "correct": 1,
+          "explanation": "Confined space entry requires written permit, specific training, atmospheric testing, and a standby person outside for emergency response.",
+          "reference": "AS 2865 Confined Spaces"
+        },
+        {
+          "id": "m12q5",
+          "type": "Multiple Choice",
+          "question": "How often must electrical equipment be tested and tagged?",
+          "options": [
+            "Every 3 months",
+            "Every 6 months",
+            "Annually",
+            "Every 5 years"
+          ],
+          "correct": 0,
+          "explanation": "Construction site electrical equipment must be tested and tagged every 3 months. This includes all portable electrical equipment and RCDs.",
+          "reference": "AS/NZS 3760:2010"
+        }
+      ]
+    },
+    "13": {
+      "name": "Module 13: Emergency Response Procedures",
+      "description": "24/7 response protocols and crisis management",
+      "questions": [
+        {
+          "id": "m13q1",
+          "type": "Multiple Choice",
+          "question": "What is the target response time for emergency water damage?",
+          "options": [
+            "Within 1 hour",
+            "Within 4 hours",
+            "Within 24 hours",
+            "Within 48 hours"
+          ],
+          "correct": 1,
+          "explanation": "Industry standard is 4-hour response time for emergency water damage to minimise secondary damage and meet insurance requirements.",
+          "reference": "Emergency Response Standards"
+        },
+        {
+          "id": "m13q2",
+          "type": "Multiple Choice",
+          "question": "What is the first action at an emergency water loss?",
+          "options": [
+            "Extract water",
+            "Stop the source",
+            "Call insurance",
+            "Set up equipment"
+          ],
+          "correct": 1,
+          "explanation": "Stopping the water source is the first priority to prevent further damage. This may require shutting off mains water or arranging emergency plumbing.",
+          "reference": "Emergency Response Protocol"
+        },
+        {
+          "id": "m13q3",
+          "type": "Multiple Choice",
+          "question": "What information must be collected during initial emergency call?",
+          "options": [
+            "Name only",
+            "Insurance details",
+            "Address, contact, loss type, safety hazards",
+            "Credit card number"
+          ],
+          "correct": 2,
+          "explanation": "Essential information includes address, contact details, type of loss, and any safety hazards. This ensures proper response preparation and safety.",
+          "reference": "Emergency Call Procedures"
+        },
+        {
+          "id": "m13q4",
+          "type": "Multiple Choice",
+          "question": "When should authorities be notified during emergency response?",
+          "options": [
+            "Never needed",
+            "Major incidents affecting public safety",
+            "All water damage",
+            "Only fires"
+          ],
+          "correct": 1,
+          "explanation": "Authorities must be notified for major incidents affecting public safety, including structural collapse risks, sewage overflows, or hazardous materials.",
+          "reference": "Emergency Services Protocol"
+        },
+        {
+          "id": "m13q5",
+          "type": "Multiple Choice",
+          "question": "What is triage in emergency restoration?",
+          "options": [
+            "Equipment setup",
+            "Prioritising multiple losses",
+            "Customer service",
+            "Insurance approval"
+          ],
+          "correct": 1,
+          "explanation": "Triage involves prioritising multiple emergency losses based on severity, safety risks, and potential for secondary damage to allocate resources effectively.",
+          "reference": "Emergency Management"
+        }
+      ]
+    },
+    "14": {
+      "name": "Module 14: Customer Communication Excellence",
+      "description": "Professional communication and customer service",
+      "questions": [
+        {
+          "id": "m14q1",
+          "type": "Multiple Choice",
+          "question": "What is the most important aspect of customer communication during disasters?",
+          "options": [
+            "Technical details",
+            "Empathy and reassurance",
+            "Cost estimates",
+            "Equipment explanation"
+          ],
+          "correct": 1,
+          "explanation": "Empathy and reassurance are crucial when customers are stressed and emotional after property damage. Technical details come after emotional support.",
+          "reference": "Customer Service Excellence"
+        },
+        {
+          "id": "m14q2",
+          "type": "Multiple Choice",
+          "question": "How often should customers be updated during restoration?",
+          "options": [
+            "Only when asked",
+            "Daily minimum",
+            "Weekly",
+            "At completion"
+          ],
+          "correct": 1,
+          "explanation": "Daily updates minimum keep customers informed of progress, maintain trust, and reduce anxiety about the restoration process.",
+          "reference": "Communication Standards"
+        },
+        {
+          "id": "m14q3",
+          "type": "Multiple Choice",
+          "question": "How should bad news be delivered to customers?",
+          "options": [
+            "By email only",
+            "Wait until end",
+            "Promptly, honestly, with solutions",
+            "Let insurance handle it"
+          ],
+          "correct": 2,
+          "explanation": "Bad news should be delivered promptly and honestly, with proposed solutions. This maintains trust and allows quick decision-making.",
+          "reference": "Professional Communication"
+        },
+        {
+          "id": "m14q4",
+          "type": "Multiple Choice",
+          "question": "What is active listening in customer service?",
+          "options": [
+            "Talking clearly",
+            "Full attention, understanding, responding",
+            "Taking notes",
+            "Agreeing with everything"
+          ],
+          "correct": 1,
+          "explanation": "Active listening involves giving full attention, understanding the message, and responding appropriately. This ensures customer concerns are properly addressed.",
+          "reference": "Communication Skills"
+        },
+        {
+          "id": "m14q5",
+          "type": "Multiple Choice",
+          "question": "How should complaints be handled?",
+          "options": [
+            "Defend your position",
+            "Listen, acknowledge, resolve",
+            "Refer to management",
+            "Ignore if unreasonable"
+          ],
+          "correct": 1,
+          "explanation": "Complaints should be handled by listening, acknowledging concerns, and working toward resolution. This preserves relationships and prevents escalation.",
+          "reference": "Complaint Resolution"
+        }
+      ]
+    },
+    "15": {
+      "name": "Module 15: Equipment Maintenance & Care",
+      "description": "Equipment management and maintenance procedures",
+      "questions": [
+        {
+          "id": "m15q1",
+          "type": "Multiple Choice",
+          "question": "How often should dehumidifier filters be cleaned?",
+          "options": [
+            "Daily during use",
+            "Weekly",
+            "Monthly",
+            "Annually"
+          ],
+          "correct": 0,
+          "explanation": "Dehumidifier filters should be cleaned daily during use to maintain efficiency and prevent overheating. Clogged filters reduce performance significantly.",
+          "reference": "Equipment Maintenance Manual"
+        },
+        {
+          "id": "m15q2",
+          "type": "Multiple Choice",
+          "question": "What indicates air mover motor bearing failure?",
+          "options": [
+            "No air flow",
+            "Unusual noise or vibration",
+            "Overheating",
+            "Circuit breaker trips"
+          ],
+          "correct": 1,
+          "explanation": "Unusual noise or vibration indicates bearing failure. This requires immediate service to prevent motor damage and potential safety hazards.",
+          "reference": "Equipment Troubleshooting"
+        },
+        {
+          "id": "m15q3",
+          "type": "Multiple Choice",
+          "question": "What is the service interval for moisture meters?",
+          "options": [
+            "Never required",
+            "Annual calibration",
+            "Every 5 years",
+            "When damaged"
+          ],
+          "correct": 1,
+          "explanation": "Moisture meters require annual calibration to maintain accuracy. More frequent calibration may be needed with heavy use or after impacts.",
+          "reference": "Calibration Standards"
+        },
+        {
+          "id": "m15q4",
+          "type": "Multiple Choice",
+          "question": "How should equipment be stored?",
+          "options": [
+            "Anywhere dry",
+            "Clean, dry, organised",
+            "Outside under cover",
+            "In vehicles"
+          ],
+          "correct": 1,
+          "explanation": "Equipment should be stored clean, dry, and organised to prevent damage, ensure readiness, and extend equipment life. This includes proper cord management.",
+          "reference": "Equipment Storage Guidelines"
+        },
+        {
+          "id": "m15q5",
+          "type": "Multiple Choice",
+          "question": "What maintenance prevents GFCI/RCD failure?",
+          "options": [
+            "Monthly testing",
+            "Annual replacement",
+            "Keeping dry only",
+            "No maintenance needed"
+          ],
+          "correct": 0,
+          "explanation": "Monthly testing of GFCI/RCD devices ensures proper function. Press test and reset buttons to verify protection against electrical hazards.",
+          "reference": "Electrical Safety Standards"
+        }
+      ]
+    },
+    "16": {
+      "name": "Module 16: Project Management & Scheduling",
+      "description": "Multi-project coordination and resource management",
+      "questions": [
+        {
+          "id": "m16q1",
+          "type": "Multiple Choice",
+          "question": "What is the critical path in project management?",
+          "options": [
+            "Shortest task sequence",
+            "Longest task sequence determining duration",
+            "Most expensive tasks",
+            "Customer priorities"
+          ],
+          "correct": 1,
+          "explanation": "The critical path is the longest sequence of dependent tasks determining minimum project duration. Delays in critical path tasks delay the entire project.",
+          "reference": "Project Management Principles"
+        },
+        {
+          "id": "m16q2",
+          "type": "Multiple Choice",
+          "question": "What is resource leveling in restoration projects?",
+          "options": [
+            "Equal pay for workers",
+            "Balancing equipment use across projects",
+            "Keeping floors level",
+            "Standard pricing"
+          ],
+          "correct": 1,
+          "explanation": "Resource leveling balances equipment and labour allocation across multiple projects to maximise efficiency and avoid bottlenecks.",
+          "reference": "Resource Management"
+        },
+        {
+          "id": "m16q3",
+          "type": "Multiple Choice",
+          "question": "What percentage of project time should be allocated for contingencies?",
+          "options": [
+            "5%",
+            "10-20%",
+            "30%",
+            "50%"
+          ],
+          "correct": 1,
+          "explanation": "10-20% contingency time should be allocated for unexpected issues, weather delays, or scope changes in restoration projects.",
+          "reference": "Project Planning Standards"
+        },
+        {
+          "id": "m16q4",
+          "type": "Multiple Choice",
+          "question": "What is a Gantt chart used for?",
+          "options": [
+            "Cost tracking",
+            "Visual project timeline",
+            "Customer invoices",
+            "Equipment inventory"
+          ],
+          "correct": 1,
+          "explanation": "Gantt charts provide visual project timelines showing task sequences, durations, and overlaps. This helps coordinate multiple trades and resources.",
+          "reference": "Project Management Tools"
+        },
+        {
+          "id": "m16q5",
+          "type": "Multiple Choice",
+          "question": "When should subcontractors be scheduled?",
+          "options": [
+            "After drying complete",
+            "During initial planning",
+            "When needed",
+            "Customer decides"
+          ],
+          "correct": 1,
+          "explanation": "Subcontractors should be scheduled during initial planning to ensure availability and coordinate with project timeline, avoiding delays.",
+          "reference": "Subcontractor Management"
+        }
+      ]
+    },
+    "17": {
+      "name": "Module 17: Cost Estimation & Pricing",
+      "description": "Accurate job costing and pricing strategies",
+      "questions": [
+        {
+          "id": "m17q1",
+          "type": "Multiple Choice",
+          "question": "What is included in Xactimate unit pricing?",
+          "options": [
+            "Materials only",
+            "Labour only",
+            "Materials, labour, overhead, profit",
+            "Equipment rental"
+          ],
+          "correct": 2,
+          "explanation": "Xactimate unit pricing includes materials, labour, overhead (10%), and profit (10%). This provides complete pricing for insurance estimates.",
+          "reference": "Xactimate Pricing Guidelines"
+        },
+        {
+          "id": "m17q2",
+          "type": "Multiple Choice",
+          "question": "What is the typical gross profit margin for restoration companies?",
+          "options": [
+            "10-15%",
+            "25-35%",
+            "50-60%",
+            "70-80%"
+          ],
+          "correct": 1,
+          "explanation": "Typical gross profit margins are 25-35% for restoration companies after direct costs. This covers overhead and provides net profit.",
+          "reference": "Industry Benchmarks"
+        },
+        {
+          "id": "m17q3",
+          "type": "Multiple Choice",
+          "question": "When can emergency service charges be applied?",
+          "options": [
+            "Always",
+            "After-hours and weekends",
+            "Never",
+            "Large jobs only"
+          ],
+          "correct": 1,
+          "explanation": "Emergency service charges can be applied for after-hours and weekend responses. Standard rates are typically 1.5x normal for evenings, 2x for weekends/holidays.",
+          "reference": "Industry Pricing Standards"
+        },
+        {
+          "id": "m17q4",
+          "type": "Multiple Choice",
+          "question": "What is 'overhead' in restoration pricing?",
+          "options": [
+            "Equipment costs",
+            "Office, insurance, administration",
+            "Labour costs",
+            "Materials markup"
+          ],
+          "correct": 1,
+          "explanation": "Overhead includes office expenses, insurance, administration, vehicles, and other indirect costs not directly attributable to specific jobs.",
+          "reference": "Business Cost Structure"
+        },
+        {
+          "id": "m17q5",
+          "type": "Multiple Choice",
+          "question": "How should change orders be priced?",
+          "options": [
+            "Same as original scope",
+            "Time and materials",
+            "Documented separately with approval",
+            "No charge"
+          ],
+          "correct": 2,
+          "explanation": "Change orders should be documented separately with written approval before work proceeds. This prevents payment disputes and ensures proper compensation.",
+          "reference": "Change Order Management"
+        }
+      ]
+    },
+    "18": {
+      "name": "Module 18: Quality Assurance & Control",
+      "description": "Quality management systems and procedures",
+      "questions": [
+        {
+          "id": "m18q1",
+          "type": "Multiple Choice",
+          "question": "What is the purpose of quality control checkpoints?",
+          "options": [
+            "Slow down work",
+            "Verify standards before proceeding",
+            "Increase costs",
+            "Impress customers"
+          ],
+          "correct": 1,
+          "explanation": "Quality control checkpoints verify work meets standards before proceeding to next phase, preventing rework and ensuring customer satisfaction.",
+          "reference": "Quality Management Systems"
+        },
+        {
+          "id": "m18q2",
+          "type": "Multiple Choice",
+          "question": "What percentage of jobs should be audited for quality?",
+          "options": [
+            "5%",
+            "10-20%",
+            "50%",
+            "100%"
+          ],
+          "correct": 1,
+          "explanation": "10-20% of jobs should be randomly audited for quality assurance. Higher percentages for new technicians or after complaints.",
+          "reference": "Quality Audit Standards"
+        },
+        {
+          "id": "m18q3",
+          "type": "Multiple Choice",
+          "question": "What is a root cause analysis?",
+          "options": [
+            "Finding water source",
+            "Identifying fundamental problem cause",
+            "Tree root damage",
+            "Customer complaint"
+          ],
+          "correct": 1,
+          "explanation": "Root cause analysis identifies the fundamental cause of problems to prevent recurrence, not just addressing symptoms.",
+          "reference": "Problem Solving Methods"
+        },
+        {
+          "id": "m18q4",
+          "type": "Multiple Choice",
+          "question": "When should customer satisfaction be measured?",
+          "options": [
+            "Never",
+            "Annually",
+            "After each job",
+            "Only after complaints"
+          ],
+          "correct": 2,
+          "explanation": "Customer satisfaction should be measured after each job to identify issues quickly and maintain service quality.",
+          "reference": "Customer Feedback Systems"
+        },
+        {
+          "id": "m18q5",
+          "type": "Multiple Choice",
+          "question": "What drives continuous improvement in restoration?",
+          "options": [
+            "Customer complaints only",
+            "Regular review and refinement",
+            "Government requirements",
+            "Competition"
+          ],
+          "correct": 1,
+          "explanation": "Continuous improvement requires regular review and refinement of processes, training, and standards based on feedback and industry developments.",
+          "reference": "Continuous Improvement"
+        }
+      ]
+    },
+    "19": {
+      "name": "Module 19: Business Development & Marketing",
+      "description": "Strategic growth and relationship building",
+      "questions": [
+        {
+          "id": "m19q1",
+          "type": "Multiple Choice",
+          "question": "What is the most effective marketing for restoration companies?",
+          "options": [
+            "TV advertising",
+            "Referral relationships",
+            "Yellow Pages",
+            "Cold calling"
+          ],
+          "correct": 1,
+          "explanation": "Referral relationships with insurance agents, adjusters, and property managers provide the most effective and consistent lead generation.",
+          "reference": "Marketing Strategies"
+        },
+        {
+          "id": "m19q2",
+          "type": "Multiple Choice",
+          "question": "What is customer lifetime value (CLV)?",
+          "options": [
+            "One job profit",
+            "Total revenue from customer over time",
+            "Insurance payout",
+            "Equipment value"
+          ],
+          "correct": 1,
+          "explanation": "Customer lifetime value is the total revenue expected from a customer over the entire relationship, including repeat business and referrals.",
+          "reference": "Business Metrics"
+        },
+        {
+          "id": "m19q3",
+          "type": "Multiple Choice",
+          "question": "What percentage of revenue should be allocated to marketing?",
+          "options": [
+            "1-2%",
+            "5-10%",
+            "20-25%",
+            "30-40%"
+          ],
+          "correct": 1,
+          "explanation": "Restoration companies typically allocate 5-10% of revenue to marketing, including relationship building, digital presence, and promotional materials.",
+          "reference": "Marketing Budget Guidelines"
+        },
+        {
+          "id": "m19q4",
+          "type": "Multiple Choice",
+          "question": "What is the best way to maintain insurance adjuster relationships?",
+          "options": [
+            "Low pricing only",
+            "Consistent quality and communication",
+            "Entertainment and gifts",
+            "Volume discounts"
+          ],
+          "correct": 1,
+          "explanation": "Consistent quality work and professional communication maintain adjuster relationships. Reliability and professionalism trump low pricing.",
+          "reference": "Relationship Management"
+        },
+        {
+          "id": "m19q5",
+          "type": "Multiple Choice",
+          "question": "How should online reviews be managed?",
+          "options": [
+            "Ignore negative reviews",
+            "Respond to all reviews professionally",
+            "Delete bad reviews",
+            "Only focus on positive"
+          ],
+          "correct": 1,
+          "explanation": "All reviews should receive professional responses. Thank positive reviewers and address negative reviews constructively to show commitment to service.",
+          "reference": "Online Reputation Management"
+        }
+      ]
+    },
+    "20": {
+      "name": "Module 20: Advanced Restoration Technologies",
+      "description": "Emerging technologies and industry innovation",
+      "questions": [
+        {
+          "id": "m20q1",
+          "type": "Multiple Choice",
+          "question": "What is the primary benefit of drone technology in restoration?",
+          "options": [
+            "Entertainment value",
+            "Roof and hazard assessment",
+            "Customer impressions",
+            "Equipment transport"
+          ],
+          "correct": 1,
+          "explanation": "Drones provide safe roof and hazard assessment, particularly after storms or fires, eliminating ladder risks and providing comprehensive documentation.",
+          "reference": "Drone Technology Applications"
+        },
+        {
+          "id": "m20q2",
+          "type": "Multiple Choice",
+          "question": "How does AI improve restoration estimating?",
+          "options": [
+            "Replaces estimators",
+            "Pattern recognition and accuracy",
+            "Reduces prices",
+            "Eliminates documentation"
+          ],
+          "correct": 1,
+          "explanation": "AI improves estimating through pattern recognition, identifying commonly missed items, and improving accuracy based on historical data analysis.",
+          "reference": "AI in Restoration"
+        },
+        {
+          "id": "m20q3",
+          "type": "Multiple Choice",
+          "question": "What is IoT monitoring in water damage restoration?",
+          "options": [
+            "Internet advertising",
+            "Remote sensor monitoring",
+            "Social media",
+            "Video streaming"
+          ],
+          "correct": 1,
+          "explanation": "IoT (Internet of Things) enables remote monitoring of moisture, temperature, and humidity through connected sensors, providing real-time data and alerts.",
+          "reference": "IoT Technology"
+        },
+        {
+          "id": "m20q4",
+          "type": "Multiple Choice",
+          "question": "What is 3D scanning used for in restoration?",
+          "options": [
+            "Entertainment",
+            "Precise documentation and measuring",
+            "Finding moisture",
+            "Cleaning surfaces"
+          ],
+          "correct": 1,
+          "explanation": "3D scanning provides precise documentation and measuring of damaged areas, creating accurate digital models for estimation and reconstruction.",
+          "reference": "3D Scanning Technology"
+        },
+        {
+          "id": "m20q5",
+          "type": "Multiple Choice",
+          "question": "What is the ROI timeframe for new restoration technology?",
+          "options": [
+            "Immediate",
+            "6-18 months typically",
+            "5 years",
+            "Never profitable"
+          ],
+          "correct": 1,
+          "explanation": "Most restoration technology investments show ROI within 6-18 months through improved efficiency, accuracy, and customer satisfaction.",
+          "reference": "Technology Investment Analysis"
+        }
+      ]
+    }
+  }
+}

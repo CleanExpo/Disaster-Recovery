@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { loadNrpgTrainingIndex, parseNrpgModuleNumber } from '@/lib/training/nrp-training';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,25 +20,47 @@ interface ModuleDefinition {
   courseName: string;
 }
 
-function getRecommendedModules(specialization: string): ModuleDefinition[] {
-  const base: ModuleDefinition[] = [
-    { moduleId: 'NRPG_STANDARDS_101', courseName: 'NRPG Standards & Operations' },
-    { moduleId: 'CUSTOMER_SERVICE_101', courseName: 'Client Communication & Customer Service' },
-    { moduleId: 'AU_COMPLIANCE_101', courseName: 'Australian Compliance & Safety' },
+async function getRecommendedModules(specialization: string): Promise<ModuleDefinition[]> {
+  const index = await loadNrpgTrainingIndex();
+  const byId = new Map(index.modules.map((m) => [m.moduleId.toUpperCase(), m]));
+
+  const coreModuleIds: string[] = [
+    'NRP-001',
+    'NRP-002',
+    'NRP-004',
+    'NRP-005',
+    'NRP-013',
+    'NRP-016',
+    'NRP-018',
   ];
 
-  const specialisationModules: Record<string, ModuleDefinition[]> = {
-    water: [{ moduleId: 'WATER_DAMAGE_101', courseName: 'Water Damage Restoration' }],
-    fire: [{ moduleId: 'FIRE_RESTORATION_101', courseName: 'Fire & Smoke Restoration' }],
-    mould: [{ moduleId: 'MOULD_REMEDIATION_101', courseName: 'Mould Remediation' }],
-    combined: [
-      { moduleId: 'WATER_DAMAGE_101', courseName: 'Water Damage Restoration' },
-      { moduleId: 'FIRE_RESTORATION_101', courseName: 'Fire & Smoke Restoration' },
-      { moduleId: 'MOULD_REMEDIATION_101', courseName: 'Mould Remediation' },
-    ],
+  const specializationModuleIds: Record<string, string[]> = {
+    water: ['NRP-002', 'NRP-006', 'NRP-009', 'NRP-012', 'NRP-014'],
+    fire: ['NRP-002', 'NRP-008', 'NRP-009', 'NRP-014', 'NRP-012'],
+    mould: ['NRP-002', 'NRP-007', 'NRP-006', 'NRP-012'],
+    combined: ['NRP-002', 'NRP-006', 'NRP-007', 'NRP-008', 'NRP-009', 'NRP-012', 'NRP-014'],
   };
 
-  return [...base, ...(specialisationModules[specialization] ?? [])];
+  const desired = [...new Set([...coreModuleIds, ...(specializationModuleIds[specialization] ?? [])])];
+
+  const modules: ModuleDefinition[] = [];
+  for (const moduleId of desired) {
+    const entry = byId.get(moduleId.toUpperCase());
+    if (!entry) continue;
+    modules.push({
+      moduleId: entry.moduleId,
+      courseName: entry.title,
+    });
+  }
+
+  // Ensure stable ordering by module number when possible.
+  modules.sort((a, b) => {
+    const aNum = parseNrpgModuleNumber(a.moduleId) ?? Number.MAX_SAFE_INTEGER;
+    const bNum = parseNrpgModuleNumber(b.moduleId) ?? Number.MAX_SAFE_INTEGER;
+    return aNum - bNum;
+  });
+
+  return modules;
 }
 
 export async function POST(request: NextRequest) {
@@ -74,7 +97,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true, onboarding: existing });
     }
 
-    const recommendedModules = getRecommendedModules(input.specialization);
+    const recommendedModules = await getRecommendedModules(input.specialization);
+    if (recommendedModules.length === 0) {
+      return createErrorResponse(ErrorCode.INTERNAL_ERROR, 'No training modules available', 500);
+    }
 
     const onboarding = await prisma.$transaction(async (tx) => {
       const created = await tx.contractorOnboarding.create({
@@ -108,4 +134,3 @@ export async function POST(request: NextRequest) {
     return handleUnexpectedError(error);
   }
 }
-

@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-018: Quality Assurance & Control - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #8e44ad;
+        }
+        .section h2 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #8e44ad;
+            margin-bottom: 10px;
+        }
+        .quality-icon {
+            width: 60px;
+            height: 60px;
+            background: #8e44ad;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #8e44ad;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .info-box {
+            background: #f4ecf7;
+            border: 2px solid #8e44ad;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .info-box h4 {
+            color: #6c3483;
+            margin-bottom: 10px;
+        }
+        .quality-checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .checklist-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-left: 3px solid #8e44ad;
+            background: white;
+            border-radius: 4px;
+        }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+        }
+        .quality-score {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .score-item {
+            text-align: center;
+        }
+        .score-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #8e44ad;
+        }
+        .score-label {
+            margin-top: 5px;
+            color: #666;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #8e44ad;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #7d3c98; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #8e44ad;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .kpi-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        .kpi-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .kpi-warning { color: #f39c12; }
+        .kpi-danger { color: #e74c3c; }
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .process-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #8e44ad;
+        }
+        .process-step:last-child::after {
+            display: none;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #8e44ad;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #8e44ad;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #7d3c98; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-018: Quality Assurance & Control</h1>
+            <p>Excellence Standards & Continuous Improvement</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master quality assurance and control systems for restoration services. Learn inspection protocols, documentation standards, compliance requirements, and continuous improvement methodologies aligned with Australian quality standards and ISO 9001 principles.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="quality-icon">✓</div>
+                    <h3>Quality Systems</h3>
+                    <ul>
+                        <li>ISO 9001 principles</li>
+                        <li>Standard procedures</li>
+                        <li>Documentation control</li>
+                        <li>Audit protocols</li>
+                        <li>Corrective actions</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="quality-icon">📏</div>
+                    <h3>Standards Compliance</h3>
+                    <ul>
+                        <li>Australian Standards</li>
+                        <li>IICRC standards</li>
+                        <li>Building codes</li>
+                        <li>WHS requirements</li>
+                        <li>Environmental regs</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="quality-icon">📊</div>
+                    <h3>Performance Metrics</h3>
+                    <ul>
+                        <li>Quality indicators</li>
+                        <li>Customer satisfaction</li>
+                        <li>Defect rates</li>
+                        <li>Rework tracking</li>
+                        <li>Compliance scores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Quality Control Process Flow</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="quality-icon">📋</div>
+                    <h4>Plan</h4>
+                    <p>Define standards & requirements</p>
+                </div>
+                <div class="process-step">
+                    <div class="quality-icon">🔨</div>
+                    <h4>Do</h4>
+                    <p>Execute work procedures</p>
+                </div>
+                <div class="process-step">
+                    <div class="quality-icon">🔍</div>
+                    <h4>Check</h4>
+                    <p>Inspect & verify quality</p>
+                </div>
+                <div class="process-step">
+                    <div class="quality-icon">🔄</div>
+                    <h4>Act</h4>
+                    <p>Improve & standardise</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Australian Standards Compliance Matrix</h2>
+            <table>
+                <tr>
+                    <th>Standard</th>
+                    <th>Application</th>
+                    <th>Key Requirements</th>
+                    <th>Verification Method</th>
+                    <th>Frequency</th>
+                </tr>
+                <tr>
+                    <td>AS/NZS ISO 9001:2016</td>
+                    <td>Quality Management</td>
+                    <td>Documented procedures, audits</td>
+                    <td>Internal & external audit</td>
+                    <td>Annual</td>
+                </tr>
+                <tr>
+                    <td>AS 4254.1:2021</td>
+                    <td>Ductwork Cleaning</td>
+                    <td>NADCA standards, testing</td>
+                    <td>Post-cleaning verification</td>
+                    <td>Each job</td>
+                </tr>
+                <tr>
+                    <td>AS 3959:2018</td>
+                    <td>Bushfire Construction</td>
+                    <td>BAL ratings, materials</td>
+                    <td>Compliance certificate</td>
+                    <td>Per project</td>
+                </tr>
+                <tr>
+                    <td>AS 1668.2:2012</td>
+                    <td>Ventilation Systems</td>
+                    <td>Air quality, flow rates</td>
+                    <td>Commissioning test</td>
+                    <td>Quarterly</td>
+                </tr>
+                <tr>
+                    <td>AS 4849.1:2023</td>
+                    <td>Mould Inspection</td>
+                    <td>Assessment protocols</td>
+                    <td>Clearance testing</td>
+                    <td>Each job</td>
+                </tr>
+                <tr>
+                    <td>AS/NZS 4360:2004</td>
+                    <td>Risk Management</td>
+                    <td>Risk assessment matrix</td>
+                    <td>Risk register review</td>
+                    <td>Monthly</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="quality-checklist">
+            <h3>Master Quality Inspection Checklist</h3>
+
+            <div class="checklist-section">
+                <h4>Pre-Work Quality Checks</h4>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre1">
+                    <label for="pre1">Scope of work documented and approved</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre2">
+                    <label for="pre2">Site hazards identified and controlled</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre3">
+                    <label for="pre3">Equipment calibrated and tested</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre4">
+                    <label for="pre4">Staff qualifications verified</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="pre5">
+                    <label for="pre5">Customer expectations documented</label>
+                </div>
+            </div>
+
+            <div class="checklist-section">
+                <h4>During Work Quality Controls</h4>
+                <div class="checklist-item">
+                    <input type="checkbox" id="dur1">
+                    <label for="dur1">Daily progress photos taken</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="dur2">
+                    <label for="dur2">Moisture readings logged (3x daily)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="dur3">
+                    <label for="dur3">Work procedures followed</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="dur4">
+                    <label for="dur4">Change orders documented</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="dur5">
+                    <label for="dur5">Safety compliance maintained</label>
+                </div>
+            </div>
+
+            <div class="checklist-section">
+                <h4>Post-Work Quality Verification</h4>
+                <div class="checklist-item">
+                    <input type="checkbox" id="post1">
+                    <label for="post1">Moisture goals achieved (<15%)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="post2">
+                    <label for="post2">Visual inspection passed</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="post3">
+                    <label for="post3">ATP testing completed (if required)</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="post4">
+                    <label for="post4">Customer walk-through completed</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="post5">
+                    <label for="post5">Warranty documentation provided</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Key Performance Indicators (KPIs)</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-value">98.5%</div>
+                    <div class="score-label">First-Time Quality</div>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Target: >95%</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value kpi-warning">2.3%</div>
+                    <div class="score-label">Rework Rate</div>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Target: <2%</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">4.7/5.0</div>
+                    <div class="score-label">Customer Score</div>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Target: >4.5</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0.8</div>
+                    <div class="score-label">Defects per Job</div>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Target: <1.0</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">92%</div>
+                    <div class="score-label">On-Time Delivery</div>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Target: >90%</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value kpi-danger">18</div>
+                    <div class="score-label">Days Since Incident</div>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Target: >30</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h3>Quality Score Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Jobs Completed This Month:</label>
+                    <input type="number" id="jobsCompleted" value="42" min="1">
+                </div>
+                <div>
+                    <label>Jobs Requiring Rework:</label>
+                    <input type="number" id="reworkJobs" value="1" min="0">
+                </div>
+                <div>
+                    <label>Customer Complaints:</label>
+                    <input type="number" id="complaints" value="2" min="0">
+                </div>
+                <div>
+                    <label>Positive Reviews:</label>
+                    <input type="number" id="positiveReviews" value="38" min="0">
+                </div>
+                <div>
+                    <label>Safety Incidents:</label>
+                    <input type="number" id="safetyIncidents" value="0" min="0">
+                </div>
+                <div>
+                    <label>Compliance Violations:</label>
+                    <input type="number" id="violations" value="0" min="0">
+                </div>
+                <div>
+                    <label>Average Completion Days:</label>
+                    <input type="number" id="avgDays" value="8.5" step="0.1" min="0">
+                </div>
+                <div>
+                    <label>Target Completion Days:</label>
+                    <input type="number" id="targetDays" value="10" step="0.1" min="1">
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateQualityScore()">Calculate Quality Score</button>
+            <div id="qualityResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Common Quality Issues & Prevention</h2>
+            <table>
+                <tr>
+                    <th>Issue</th>
+                    <th>Frequency</th>
+                    <th>Root Cause</th>
+                    <th>Prevention Method</th>
+                    <th>Cost Impact</th>
+                </tr>
+                <tr>
+                    <td>Incomplete Drying</td>
+                    <td>12%</td>
+                    <td>Rushed timeline</td>
+                    <td>Mandatory moisture mapping</td>
+                    <td>$2,500 avg</td>
+                </tr>
+                <tr>
+                    <td>Secondary Damage</td>
+                    <td>8%</td>
+                    <td>Missed inspection areas</td>
+                    <td>Thermal imaging standard</td>
+                    <td>$4,200 avg</td>
+                </tr>
+                <tr>
+                    <td>Poor Communication</td>
+                    <td>15%</td>
+                    <td>No update schedule</td>
+                    <td>Daily progress reports</td>
+                    <td>$850 avg</td>
+                </tr>
+                <tr>
+                    <td>Scope Creep</td>
+                    <td>22%</td>
+                    <td>Verbal changes</td>
+                    <td>Written change orders only</td>
+                    <td>$1,800 avg</td>
+                </tr>
+                <tr>
+                    <td>Equipment Failure</td>
+                    <td>5%</td>
+                    <td>Poor maintenance</td>
+                    <td>Preventive maintenance program</td>
+                    <td>$1,200 avg</td>
+                </tr>
+                <tr>
+                    <td>Documentation Gaps</td>
+                    <td>18%</td>
+                    <td>Manual processes</td>
+                    <td>Digital documentation system</td>
+                    <td>$650 avg</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Quality Assurance Documentation</h2>
+            <div class="info-box">
+                <h4>📁 Required Quality Records (7-Year Retention)</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Job Files:</strong> Scope, photos, moisture logs, certificates</li>
+                    <li><strong>Inspection Reports:</strong> Pre/during/post inspections, sign-offs</li>
+                    <li><strong>Test Results:</strong> Moisture, ATP, air quality, clearance tests</li>
+                    <li><strong>Calibration Records:</strong> Equipment calibration certificates</li>
+                    <li><strong>Training Records:</strong> Staff qualifications, certifications</li>
+                    <li><strong>Audit Reports:</strong> Internal/external audits, corrective actions</li>
+                    <li><strong>Customer Feedback:</strong> Surveys, complaints, testimonials</li>
+                    <li><strong>Incident Reports:</strong> Quality failures, root cause analysis</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Continuous Improvement Framework</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Six Sigma DMAIC</h3>
+                    <ul>
+                        <li><strong>D</strong>efine the problem</li>
+                        <li><strong>M</strong>easure current performance</li>
+                        <li><strong>A</strong>nalyse root causes</li>
+                        <li><strong>I</strong>mprove processes</li>
+                        <li><strong>C</strong>ontrol future performance</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Kaizen Principles</h3>
+                    <ul>
+                        <li>Continuous small improvements</li>
+                        <li>Employee suggestions program</li>
+                        <li>Waste elimination (7 wastes)</li>
+                        <li>Standardised work procedures</li>
+                        <li>5S workplace organisation</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Root Cause Analysis</h3>
+                    <ul>
+                        <li>5 Whys technique</li>
+                        <li>Fishbone diagrams</li>
+                        <li>Pareto analysis (80/20)</li>
+                        <li>Failure mode analysis</li>
+                        <li>Corrective action tracking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the target first-time quality rate for restoration work?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> >85%</label>
+                        <label><input type="radio" name="q1" value="b"> >90%</label>
+                        <label><input type="radio" name="q1" value="c"> >95%</label>
+                        <label><input type="radio" name="q1" value="d"> >99%</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. How long must quality records be retained in Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 1 year</label>
+                        <label><input type="radio" name="q2" value="b"> 3 years</label>
+                        <label><input type="radio" name="q2" value="c"> 5 years</label>
+                        <label><input type="radio" name="q2" value="d"> 7 years</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. What does DMAIC stand for in Six Sigma?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> Define, Manage, Analyse, Improve, Control</label>
+                        <label><input type="radio" name="q3" value="b"> Define, Measure, Analyse, Improve, Control</label>
+                        <label><input type="radio" name="q3" value="c"> Design, Measure, Adjust, Implement, Check</label>
+                        <label><input type="radio" name="q3" value="d"> Define, Monitor, Analyse, Inspect, Control</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What is the maximum acceptable moisture content for dried structures?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> <10%</label>
+                        <label><input type="radio" name="q4" value="b"> <15%</label>
+                        <label><input type="radio" name="q4" value="c"> <20%</label>
+                        <label><input type="radio" name="q4" value="d"> <25%</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. Which Australian Standard covers quality management systems?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> AS/NZS 4360:2004</label>
+                        <label><input type="radio" name="q5" value="b"> AS 4254.1:2021</label>
+                        <label><input type="radio" name="q5" value="c"> AS/NZS ISO 9001:2016</label>
+                        <label><input type="radio" name="q5" value="d"> AS 3959:2018</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Quality Assurance & Control training module.</p>
+            <p>You now have the knowledge to implement and maintain quality systems in restoration services.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateQualityScore() {
+            const jobsCompleted = parseInt(document.getElementById('jobsCompleted').value);
+            const reworkJobs = parseInt(document.getElementById('reworkJobs').value);
+            const complaints = parseInt(document.getElementById('complaints').value);
+            const positiveReviews = parseInt(document.getElementById('positiveReviews').value);
+            const safetyIncidents = parseInt(document.getElementById('safetyIncidents').value);
+            const violations = parseInt(document.getElementById('violations').value);
+            const avgDays = parseFloat(document.getElementById('avgDays').value);
+            const targetDays = parseFloat(document.getElementById('targetDays').value);
+
+            // Calculate individual metrics
+            const firstTimeQuality = ((jobsCompleted - reworkJobs) / jobsCompleted * 100);
+            const reworkRate = (reworkJobs / jobsCompleted * 100);
+            const customerSatisfaction = (positiveReviews / jobsCompleted * 100);
+            const complaintRate = (complaints / jobsCompleted * 100);
+            const safetyScore = safetyIncidents === 0 ? 100 : Math.max(0, 100 - (safetyIncidents * 25));
+            const complianceScore = violations === 0 ? 100 : Math.max(0, 100 - (violations * 20));
+            const timePerformance = Math.min(100, (targetDays / avgDays * 100));
+
+            // Weight the scores
+            const weights = {
+                quality: 0.25,
+                customer: 0.20,
+                safety: 0.20,
+                compliance: 0.15,
+                time: 0.10,
+                rework: 0.10
+            };
+
+            // Calculate overall quality score
+            const overallScore = (
+                firstTimeQuality * weights.quality +
+                customerSatisfaction * weights.customer +
+                safetyScore * weights.safety +
+                complianceScore * weights.compliance +
+                timePerformance * weights.time +
+                (100 - reworkRate * 10) * weights.rework
+            );
+
+            // Determine rating
+            let rating, ratingColor, recommendation;
+            if (overallScore >= 95) {
+                rating = "Excellence";
+                ratingColor = "#27ae60";
+                recommendation = "Maintain current standards. Consider documenting best practices for training.";
+            } else if (overallScore >= 85) {
+                rating = "Good";
+                ratingColor = "#3498db";
+                recommendation = "Strong performance. Focus on reducing rework and improving customer satisfaction.";
+            } else if (overallScore >= 75) {
+                rating = "Satisfactory";
+                ratingColor = "#f39c12";
+                recommendation = "Room for improvement. Implement quality controls and staff training.";
+            } else {
+                rating = "Needs Improvement";
+                ratingColor = "#e74c3c";
+                recommendation = "Urgent action required. Review all processes and implement corrective actions.";
+            }
+
+            // Financial impact calculation
+            const reworkCost = reworkJobs * 2500; // Average rework cost
+            const complaintCost = complaints * 850; // Average complaint resolution
+            const potentialLoss = (reworkCost + complaintCost);
+            const qualityROI = ((jobsCompleted * 4500) - potentialLoss) / (jobsCompleted * 4500) * 100;
+
+            // Generate comprehensive report
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Quality Performance Report</h3>
+
+                    <div class="quality-score" style="margin-top: 20px;">
+                        <div class="score-item">
+                            <div class="score-value" style="color: ${ratingColor};">${overallScore.toFixed(1)}%</div>
+                            <div class="score-label">Overall Quality Score</div>
+                        </div>
+                        <div class="score-item">
+                            <div style="font-size: 28px; font-weight: bold; color: ${ratingColor};">${rating}</div>
+                            <div class="score-label">Quality Rating</div>
+                        </div>
+                    </div>
+
+                    <table style="width: 100%; margin-top: 20px;">
+                        <tr><th>Metric</th><th>Score</th><th>Target</th><th>Status</th></tr>
+                        <tr>
+                            <td>First-Time Quality</td>
+                            <td>${firstTimeQuality.toFixed(1)}%</td>
+                            <td>>95%</td>
+                            <td style="color: ${firstTimeQuality >= 95 ? 'green' : 'orange'};">
+                                ${firstTimeQuality >= 95 ? '✓ Met' : '⚠ Below'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rework Rate</td>
+                            <td>${reworkRate.toFixed(1)}%</td>
+                            <td><2%</td>
+                            <td style="color: ${reworkRate <= 2 ? 'green' : 'red'};">
+                                ${reworkRate <= 2 ? '✓ Met' : '✗ Exceeded'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Customer Satisfaction</td>
+                            <td>${customerSatisfaction.toFixed(1)}%</td>
+                            <td>>90%</td>
+                            <td style="color: ${customerSatisfaction >= 90 ? 'green' : 'orange'};">
+                                ${customerSatisfaction >= 90 ? '✓ Met' : '⚠ Below'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Safety Score</td>
+                            <td>${safetyScore.toFixed(0)}%</td>
+                            <td>100%</td>
+                            <td style="color: ${safetyScore === 100 ? 'green' : 'red'};">
+                                ${safetyScore === 100 ? '✓ Perfect' : '✗ Incidents'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Compliance Score</td>
+                            <td>${complianceScore.toFixed(0)}%</td>
+                            <td>100%</td>
+                            <td style="color: ${complianceScore === 100 ? 'green' : 'red'};">
+                                ${complianceScore === 100 ? '✓ Compliant' : '✗ Violations'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Time Performance</td>
+                            <td>${timePerformance.toFixed(1)}%</td>
+                            <td>>90%</td>
+                            <td style="color: ${timePerformance >= 90 ? 'green' : 'orange'};">
+                                ${timePerformance >= 90 ? '✓ Met' : '⚠ Below'}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="margin-top: 20px; padding: 15px; background: #f4ecf7; border-radius: 5px;">
+                        <h4>Financial Impact:</h4>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Rework Costs:</strong> $${reworkCost.toFixed(2)}</li>
+                            <li><strong>Complaint Resolution:</strong> $${complaintCost.toFixed(2)}</li>
+                            <li><strong>Total Quality Costs:</strong> $${potentialLoss.toFixed(2)}</li>
+                            <li><strong>Quality ROI:</strong> ${qualityROI.toFixed(1)}%</li>
+                            <li><strong>Cost per Job:</strong> $${(potentialLoss/jobsCompleted).toFixed(2)}</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+                        <h4>Recommendations:</h4>
+                        <p>${recommendation}</p>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            ${reworkRate > 2 ? '<li>Implement additional quality checkpoints during work</li>' : ''}
+                            ${customerSatisfaction < 90 ? '<li>Enhance customer communication protocols</li>' : ''}
+                            ${safetyIncidents > 0 ? '<li>Conduct safety refresher training immediately</li>' : ''}
+                            ${violations > 0 ? '<li>Review compliance procedures and retrain staff</li>' : ''}
+                            ${timePerformance < 90 ? '<li>Analyse workflow bottlenecks and resource allocation</li>' : ''}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('qualityResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'c', // >95% first-time quality
+                q2: 'd', // 7 years retention
+                q3: 'b', // Define, Measure, Analyse, Improve, Control
+                q4: 'b', // <15% moisture
+                q5: 'c'  // AS/NZS ISO 9001:2016
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered quality assurance principles.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> >95% - Target first-time quality rate for restoration work</p>';
+            feedback += '<p><strong>Q2:</strong> 7 years - Required retention period for quality records in Australia</p>';
+            feedback += '<p><strong>Q3:</strong> Define, Measure, Analyse, Improve, Control - Six Sigma DMAIC methodology</p>';
+            feedback += '<p><strong>Q4:</strong> <15% - Maximum acceptable moisture content for dried structures</p>';
+            feedback += '<p><strong>Q5:</strong> AS/NZS ISO 9001:2016 - Australian Standard for quality management systems</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+
+        // Track checklist completion
+        document.querySelectorAll('.checklist-item input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const section = this.closest('.checklist-section');
+                const sectionChecks = section.querySelectorAll('input[type="checkbox"]');
+                const sectionComplete = Array.from(sectionChecks).every(cb => cb.checked);
+
+                if (sectionComplete) {
+                    section.style.background = '#d5f4e6';
+                }
+
+                const allChecks = document.querySelectorAll('.checklist-item input');
+                const allComplete = Array.from(allChecks).every(cb => cb.checked);
+
+                if (allComplete) {
+                    alert('✓ Quality inspection checklist complete - Ready for sign-off!');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

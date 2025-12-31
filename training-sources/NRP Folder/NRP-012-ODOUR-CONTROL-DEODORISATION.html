@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-012: Odour Control & Deodorisation - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #6a11cb;
+        }
+        .section h2 {
+            color: #6a11cb;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+        .odour-icon {
+            width: 60px;
+            height: 60px;
+            background: #6a11cb;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #6a11cb;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .info-box {
+            background: #e0cffc;
+            border: 2px solid #6a11cb;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .info-box h4 {
+            color: #4a0e4e;
+            margin-bottom: 10px;
+        }
+        .odour-scale {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .scale-item {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+        .scale-item.active {
+            background: #6a11cb;
+            color: white;
+            transform: scale(1.1);
+        }
+        .scale-number {
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .treatment-matrix {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .matrix-row {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #6a11cb;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #6a11cb;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #6a11cb;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #5a0faa; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #6a11cb;
+        }
+        .equipment-spec {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .spec-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+        .spec-card h4 {
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+        .molecule-diagram {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6a11cb;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #6a11cb;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #5a0faa; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-012: Odour Control & Deodorisation</h1>
+            <p>Professional Training Module - Advanced Odour Elimination Techniques</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master the science of odour control and deodorisation in restoration environments. Learn molecular odour theory, advanced treatment technologies, and systematic approaches to eliminating persistent odours from fire, water damage, biological sources, and chemical contamination.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="odour-icon">👃</div>
+                    <h3>Odour Sources</h3>
+                    <ul>
+                        <li>Smoke & fire damage</li>
+                        <li>Mould & mildew</li>
+                        <li>Pet & biological</li>
+                        <li>Sewage & bacteria</li>
+                        <li>Chemical & VOCs</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="odour-icon">⚗️</div>
+                    <h3>Treatment Methods</h3>
+                    <ul>
+                        <li>Hydroxyl generators</li>
+                        <li>Ozone treatment</li>
+                        <li>Thermal fogging</li>
+                        <li>Vapour modification</li>
+                        <li>Enzyme digestion</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="odour-icon">🔬</div>
+                    <h3>Scientific Principles</h3>
+                    <ul>
+                        <li>Molecular bonding</li>
+                        <li>Oxidation reactions</li>
+                        <li>Absorption theory</li>
+                        <li>Vapour pressure</li>
+                        <li>Olfactory fatigue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Odour Intensity Scale (Australian Standard)</h2>
+            <div class="odour-scale">
+                <div class="scale-item">
+                    <span class="scale-number">0</span>
+                    <span>No Odour</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-number">1</span>
+                    <span>Threshold</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-number">2</span>
+                    <span>Moderate</span>
+                </div>
+                <div class="scale-item active">
+                    <span class="scale-number">3</span>
+                    <span>Strong</span>
+                </div>
+                <div class="scale-item">
+                    <span class="scale-number">4</span>
+                    <span>Extreme</span>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 10px;"><em>Based on AS 4323.3:2001 - Stationary source emissions</em></p>
+        </div>
+
+        <div class="section">
+            <h2>Odour Treatment Technologies & Applications</h2>
+            <table>
+                <tr>
+                    <th>Technology</th>
+                    <th>Mechanism</th>
+                    <th>Best For</th>
+                    <th>Treatment Time</th>
+                    <th>Cost/Day</th>
+                </tr>
+                <tr>
+                    <td>Hydroxyl Generators</td>
+                    <td>OH radical oxidation</td>
+                    <td>Occupied spaces, all odours</td>
+                    <td>24-72 hours</td>
+                    <td>$185</td>
+                </tr>
+                <tr>
+                    <td>Ozone Generators</td>
+                    <td>O3 oxidation</td>
+                    <td>Smoke, strong biological</td>
+                    <td>8-24 hours</td>
+                    <td>$145</td>
+                </tr>
+                <tr>
+                    <td>Thermal Fogging</td>
+                    <td>Particle penetration</td>
+                    <td>Smoke, large areas</td>
+                    <td>2-4 hours</td>
+                    <td>$450</td>
+                </tr>
+                <tr>
+                    <td>ULV Fogging</td>
+                    <td>Micro-droplet suspension</td>
+                    <td>Surface odours</td>
+                    <td>1-2 hours</td>
+                    <td>$350</td>
+                </tr>
+                <tr>
+                    <td>Vapour Modification</td>
+                    <td>Molecular pairing</td>
+                    <td>Persistent odours</td>
+                    <td>Continuous</td>
+                    <td>$95</td>
+                </tr>
+                <tr>
+                    <td>Enzyme Treatment</td>
+                    <td>Biological digestion</td>
+                    <td>Organic matter</td>
+                    <td>24-48 hours</td>
+                    <td>$85</td>
+                </tr>
+                <tr>
+                    <td>Carbon Filtration</td>
+                    <td>Adsorption</td>
+                    <td>VOCs, chemicals</td>
+                    <td>Continuous</td>
+                    <td>$125</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Advanced Hydroxyl Technology</h2>
+            <div class="molecule-diagram">
+                <h3>Hydroxyl Radical (OH•) Formation</h3>
+                <p style="margin: 15px 0;">UV-C (185nm) + H₂O → OH• + H•</p>
+                <p>The hydroxyl radical is 33% stronger than ozone and safe for occupied spaces</p>
+            </div>
+
+            <div class="equipment-spec">
+                <div class="spec-card">
+                    <h4>Boss XL3 Hydroxyl</h4>
+                    <ul>
+                        <li>Coverage: 550m²</li>
+                        <li>UV Bulbs: 6 x 185nm</li>
+                        <li>Airflow: 750 CFM</li>
+                        <li>Power: 3.2 amps</li>
+                        <li>Rental: $185/day</li>
+                        <li>Purchase: $8,500</li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h4>Titan 4000 Hydroxyl</h4>
+                    <ul>
+                        <li>Coverage: 370m²</li>
+                        <li>UV Bulbs: 4 x 185nm</li>
+                        <li>Airflow: 500 CFM</li>
+                        <li>Power: 2.1 amps</li>
+                        <li>Rental: $145/day</li>
+                        <li>Purchase: $5,800</li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h4>OdoroxAir MDU/Rx</h4>
+                    <ul>
+                        <li>Coverage: 280m²</li>
+                        <li>UV Bulbs: 2 x 185nm</li>
+                        <li>Airflow: 300 CFM</li>
+                        <li>Power: 1.5 amps</li>
+                        <li>Rental: $95/day</li>
+                        <li>Purchase: $3,200</li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h4>Newaire HO3-2500</h4>
+                    <ul>
+                        <li>Coverage: 230m²</li>
+                        <li>UV Bulbs: 2 x 254nm</li>
+                        <li>Airflow: 250 CFM</li>
+                        <li>Power: 1.2 amps</li>
+                        <li>Rental: $85/day</li>
+                        <li>Purchase: $2,800</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Chemical Deodorants & Application Rates</h2>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Type</th>
+                    <th>Dilution</th>
+                    <th>Coverage</th>
+                    <th>Cost/Litre</th>
+                    <th>Application</th>
+                </tr>
+                <tr>
+                    <td>Fresh Wave IAQ</td>
+                    <td>Natural oils</td>
+                    <td>RTU</td>
+                    <td>50m²/L</td>
+                    <td>$32</td>
+                    <td>ULV fog/spray</td>
+                </tr>
+                <tr>
+                    <td>OdorX Thermo-55</td>
+                    <td>Solvent-based</td>
+                    <td>1:3-1:9</td>
+                    <td>100m²/L</td>
+                    <td>$45</td>
+                    <td>Thermal fog only</td>
+                </tr>
+                <tr>
+                    <td>Microban X-590</td>
+                    <td>Antimicrobial</td>
+                    <td>1:10</td>
+                    <td>80m²/L</td>
+                    <td>$38</td>
+                    <td>Spray/fog</td>
+                </tr>
+                <tr>
+                    <td>Bio-Fresh CD</td>
+                    <td>Enzyme</td>
+                    <td>1:4-1:10</td>
+                    <td>40m²/L</td>
+                    <td>$28</td>
+                    <td>Injection/spray</td>
+                </tr>
+                <tr>
+                    <td>Chemspec C-DT</td>
+                    <td>Counteractant</td>
+                    <td>1:20-1:40</td>
+                    <td>150m²/L</td>
+                    <td>$52</td>
+                    <td>Any method</td>
+                </tr>
+                <tr>
+                    <td>Nilodor 128</td>
+                    <td>Water-based</td>
+                    <td>1:64-1:128</td>
+                    <td>200m²/L</td>
+                    <td>$24</td>
+                    <td>Spray/mop</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="calculator">
+            <h3>Odour Treatment Cost Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Odour Source:</label>
+                    <select id="odourSource">
+                        <option value="smoke">Fire/Smoke Damage</option>
+                        <option value="mould">Mould/Mildew</option>
+                        <option value="pet">Pet/Urine</option>
+                        <option value="death">Death/Decomposition</option>
+                        <option value="sewage">Sewage Backup</option>
+                        <option value="chemical">Chemical Spill</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Area Size (m²):</label>
+                    <input type="number" id="areaSize" value="100" min="1">
+                </div>
+                <div>
+                    <label>Odour Intensity (1-4):</label>
+                    <select id="intensity">
+                        <option value="1">1 - Threshold</option>
+                        <option value="2">2 - Moderate</option>
+                        <option value="3">3 - Strong</option>
+                        <option value="4">4 - Extreme</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Building Type:</label>
+                    <select id="buildingType">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="healthcare">Healthcare</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Treatment Method:</label>
+                    <select id="treatment">
+                        <option value="hydroxyl">Hydroxyl Generator</option>
+                        <option value="ozone">Ozone Treatment</option>
+                        <option value="thermal">Thermal Fogging</option>
+                        <option value="combined">Combined Methods</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Urgency:</label>
+                    <select id="urgency">
+                        <option value="standard">Standard (3-5 days)</option>
+                        <option value="priority">Priority (1-2 days)</option>
+                        <option value="emergency">Emergency (Same day)</option>
+                    </select>
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateOdourTreatment()">Calculate Treatment Cost</button>
+            <div id="treatmentResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Treatment Protocol Matrix</h2>
+            <div class="treatment-matrix">
+                <div class="matrix-row">
+                    <div style="flex: 1;">
+                        <h4>Fire/Smoke Odour Protocol</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>HEPA vacuum all surfaces</li>
+                            <li>Wash with alkaline detergent</li>
+                            <li>Seal porous surfaces (Kilz/BIN)</li>
+                            <li>Thermal fog with OdorX Thermo-55</li>
+                            <li>Run hydroxyl generators 48-72 hours</li>
+                            <li>Final verification with photoionization detector</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div style="flex: 1;">
+                        <h4>Pet/Urine Odour Protocol</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>UV black light inspection</li>
+                            <li>Sub-surface extraction if needed</li>
+                            <li>Enzyme treatment injection</li>
+                            <li>Allow 24-hour dwell time</li>
+                            <li>Extract and rinse</li>
+                            <li>Apply oxidising agent if required</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div style="flex: 1;">
+                        <h4>Mould Odour Protocol</h4>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li>Complete mould remediation first</li>
+                            <li>HEPA vacuum all surfaces</li>
+                            <li>Apply antimicrobial (Microban)</li>
+                            <li>Hydroxyl treatment 24-48 hours</li>
+                            <li>Install carbon filtration if needed</li>
+                            <li>Post-remediation verification testing</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Safety & Compliance</h2>
+            <div class="info-box">
+                <h4>⚠ Australian Safety Requirements</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Ozone Safety:</strong> Maximum 0.1 ppm exposure (SafeWork Australia)</li>
+                    <li><strong>Re-entry Time:</strong> Minimum 2 hours after ozone treatment</li>
+                    <li><strong>PPE Required:</strong> P2 respirator, safety glasses, gloves during fogging</li>
+                    <li><strong>Ventilation:</strong> Minimum 4 air changes per hour during treatment</li>
+                    <li><strong>Monitoring:</strong> Use PID or ozone meter before re-entry</li>
+                    <li><strong>Documentation:</strong> Treatment log, safety data sheets, customer advisory</li>
+                </ul>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Equipment Maintenance</h3>
+                    <ul>
+                        <li>UV bulb replacement: 8,000 hours</li>
+                        <li>Filter cleaning: Weekly</li>
+                        <li>Calibration check: Monthly</li>
+                        <li>Electrical safety test: Annual</li>
+                        <li>Service log maintenance</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Customer Communication</h3>
+                    <ul>
+                        <li>Odour source identification</li>
+                        <li>Treatment plan explanation</li>
+                        <li>Timeline expectations</li>
+                        <li>Re-occupancy guidelines</li>
+                        <li>Warranty limitations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the maximum safe ozone exposure level according to SafeWork Australia?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> 0.05 ppm</label>
+                        <label><input type="radio" name="q1" value="b"> 0.1 ppm</label>
+                        <label><input type="radio" name="q1" value="c"> 0.5 ppm</label>
+                        <label><input type="radio" name="q1" value="d"> 1.0 ppm</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. Which wavelength of UV light creates hydroxyl radicals?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 254nm</label>
+                        <label><input type="radio" name="q2" value="b"> 185nm</label>
+                        <label><input type="radio" name="q2" value="c"> 365nm</label>
+                        <label><input type="radio" name="q2" value="d"> 450nm</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. What is the primary advantage of hydroxyl generators over ozone?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> Lower cost</label>
+                        <label><input type="radio" name="q3" value="b"> Faster treatment</label>
+                        <label><input type="radio" name="q3" value="c"> Safe for occupied spaces</label>
+                        <label><input type="radio" name="q3" value="d"> Better for smoke odours</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What is the typical treatment time for enzyme-based odour elimination?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> 1-2 hours</label>
+                        <label><input type="radio" name="q4" value="b"> 8-12 hours</label>
+                        <label><input type="radio" name="q4" value="c"> 24-48 hours</label>
+                        <label><input type="radio" name="q4" value="d"> 72-96 hours</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. According to AS 4323.3:2001, how many levels are on the odour intensity scale?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> 3 levels</label>
+                        <label><input type="radio" name="q5" value="b"> 5 levels</label>
+                        <label><input type="radio" name="q5" value="c"> 7 levels</label>
+                        <label><input type="radio" name="q5" value="d"> 10 levels</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Odour Control & Deodorisation training module.</p>
+            <p>You now understand advanced odour elimination technologies and protocols.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateOdourTreatment() {
+            const odourSource = document.getElementById('odourSource').value;
+            const areaSize = parseFloat(document.getElementById('areaSize').value);
+            const intensity = parseInt(document.getElementById('intensity').value);
+            const buildingType = document.getElementById('buildingType').value;
+            const treatment = document.getElementById('treatment').value;
+            const urgency = document.getElementById('urgency').value;
+
+            // Base treatment days by source and intensity
+            const treatmentDays = {
+                'smoke': [1, 2, 3, 5],
+                'mould': [1, 2, 3, 4],
+                'pet': [1, 2, 3, 4],
+                'death': [2, 3, 5, 7],
+                'sewage': [1, 2, 3, 4],
+                'chemical': [1, 2, 4, 5]
+            };
+
+            const days = treatmentDays[odourSource][intensity - 1];
+
+            // Equipment rental costs per day
+            const equipmentCosts = {
+                'hydroxyl': 185,
+                'ozone': 145,
+                'thermal': 450,
+                'combined': 380
+            };
+
+            // Calculate equipment needed based on area
+            const unitsNeeded = Math.ceil(areaSize / 280); // One unit per 280m²
+
+            // Equipment cost
+            let equipmentCost = equipmentCosts[treatment] * unitsNeeded * days;
+
+            // Chemical costs based on treatment type and area
+            let chemicalCost = 0;
+            if (treatment === 'thermal' || treatment === 'combined') {
+                chemicalCost = areaSize * 2.80; // $2.80/m² for fogging chemicals
+            }
+            if (odourSource === 'pet' || odourSource === 'sewage') {
+                chemicalCost += areaSize * 1.50; // Additional enzyme treatment
+            }
+
+            // Labour costs (2 technicians for setup, 1 for monitoring)
+            const setupLabour = 550; // 2 techs x 2 hours x $137.50/hour
+            const monitoringLabour = days * 275; // Daily monitoring visits
+
+            // Building type multiplier
+            const buildingMultipliers = {
+                'residential': 1.0,
+                'commercial': 1.15,
+                'industrial': 1.25,
+                'healthcare': 1.40
+            };
+
+            // Urgency multiplier
+            const urgencyMultipliers = {
+                'standard': 1.0,
+                'priority': 1.35,
+                'emergency': 1.75
+            };
+
+            // Calculate subtotal
+            let subtotal = (equipmentCost + chemicalCost + setupLabour + monitoringLabour) *
+                          buildingMultipliers[buildingType] *
+                          urgencyMultipliers[urgency];
+
+            // Add verification testing
+            const testingCost = 185; // PID testing and clearance certificate
+
+            // GST
+            const finalSubtotal = subtotal + testingCost;
+            const gst = finalSubtotal * 0.10;
+            const totalCost = finalSubtotal + gst;
+
+            // Generate treatment plan
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Odour Treatment Quote</h3>
+                    <table style="width: 100%; margin-top: 15px;">
+                        <tr><td><strong>Equipment Rental (${unitsNeeded} units × ${days} days):</strong></td><td style="text-align: right;">$${equipmentCost.toFixed(2)}</td></tr>
+                        ${chemicalCost > 0 ? `<tr><td><strong>Chemical Products:</strong></td><td style="text-align: right;">$${chemicalCost.toFixed(2)}</td></tr>` : ''}
+                        <tr><td><strong>Setup & Installation:</strong></td><td style="text-align: right;">$${setupLabour.toFixed(2)}</td></tr>
+                        <tr><td><strong>Daily Monitoring (${days} days):</strong></td><td style="text-align: right;">$${monitoringLabour.toFixed(2)}</td></tr>
+                        <tr><td><strong>Verification Testing:</strong></td><td style="text-align: right;">$${testingCost.toFixed(2)}</td></tr>
+                        ${urgency !== 'standard' ? `<tr><td><strong>Priority Service:</strong></td><td style="text-align: right;">Included</td></tr>` : ''}
+                        <tr><td><strong>Subtotal:</strong></td><td style="text-align: right;">$${finalSubtotal.toFixed(2)}</td></tr>
+                        <tr><td><strong>GST (10%):</strong></td><td style="text-align: right;">$${gst.toFixed(2)}</td></tr>
+                        <tr style="border-top: 2px solid #6a11cb; font-size: 1.2em; color: #6a11cb;">
+                            <td><strong>TOTAL QUOTE:</strong></td>
+                            <td style="text-align: right;"><strong>$${totalCost.toFixed(2)}</strong></td>
+                        </tr>
+                    </table>
+                    <div style="margin-top: 20px; padding: 15px; background: #e0cffc; border-radius: 5px;">
+                        <h4>Treatment Plan:</h4>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Method:</strong> ${treatment === 'hydroxyl' ? 'Hydroxyl Generator' : treatment === 'ozone' ? 'Ozone Treatment' : treatment === 'thermal' ? 'Thermal Fogging' : 'Combined Methods'}</li>
+                            <li><strong>Duration:</strong> ${days} days treatment</li>
+                            <li><strong>Coverage:</strong> ${areaSize}m² with ${unitsNeeded} unit(s)</li>
+                            <li><strong>Intensity Level:</strong> ${intensity} (${intensity === 1 ? 'Threshold' : intensity === 2 ? 'Moderate' : intensity === 3 ? 'Strong' : 'Extreme'})</li>
+                            <li><strong>Response Time:</strong> ${urgency === 'emergency' ? 'Same day' : urgency === 'priority' ? '24 hours' : '48-72 hours'}</li>
+                        </ul>
+                        <p style="margin-top: 15px;"><strong>Success Rate:</strong> ${intensity <= 2 ? '95-98%' : intensity === 3 ? '85-95%' : '75-85%'} odour elimination expected</p>
+                        <p><strong>Warranty:</strong> 30-day odour-free guarantee included</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('treatmentResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'b', // 0.1 ppm ozone exposure
+                q2: 'b', // 185nm UV creates hydroxyls
+                q3: 'c', // Safe for occupied spaces
+                q4: 'c', // 24-48 hours for enzymes
+                q5: 'b'  // 5 levels on scale (0-4)
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered odour control principles.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> 0.1 ppm - SafeWork Australia maximum ozone exposure limit</p>';
+            feedback += '<p><strong>Q2:</strong> 185nm - UV wavelength that splits water molecules to create hydroxyl radicals</p>';
+            feedback += '<p><strong>Q3:</strong> Safe for occupied spaces - Hydroxyl radicals are safe for humans and pets</p>';
+            feedback += '<p><strong>Q4:</strong> 24-48 hours - Enzymes need time to digest organic matter</p>';
+            feedback += '<p><strong>Q5:</strong> 5 levels - Scale runs from 0 (no odour) to 4 (extreme)</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+    </script>
+</body>
+</html>

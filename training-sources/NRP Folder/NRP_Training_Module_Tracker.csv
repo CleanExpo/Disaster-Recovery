@@ -1,0 +1,27 @@
+Module ID,Module Title,Category,Duration (mins),Quiz Questions,Training Content,Quiz Status,Content Review,Student Completed,Date Completed,Score (%),Notes
+NRP-001,NRP Membership Registration,Foundation,30,10,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-002,Business Documentation & Verification,Documentation,45,10,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-003,Documentation Standards & Procedures,Documentation,75,20,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-004,Procedure Development & Implementation,Operations,60,15,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-005,Asbestos & Lead Paint Awareness,Safety,90,25,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-006,Working at Heights & Confined Spaces,Safety,90,25,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-007,Biohazards, Sewage & Bacterial Contamination,Safety,75,20,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-008,Australian Compliance, WHS & Consumer Law,Legal,90,25,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-009,Building Codes & Construction Standards,Technical,90,20,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-010,Electrical Codes & Safety Standards,Technical,75,20,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-011,Insurance Claim Management,Business,90,20,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-012,Water Damage Restoration Mastery,Restoration,90,20,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-013,Mold Remediation Protocols,Restoration,75,15,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-014,Fire & Smoke Damage Restoration,Restoration,60,15,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-015,Emergency Response Management,Operations,45,10,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-016,Quality Assurance & Customer Service,Business,45,10,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-017,Financial Management & Job Costing,Business,60,15,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-018,CRM System & Technology,Technology,60,10,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-019,Marketing & Business Development,Business,30,5,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+NRP-020,Advanced Restoration & Specialty Services,Restoration,75,15,✅ Generated,✅ Ready,⏳ Pending,❌ No,,,Ready for review
+,,,,,,,,,,,
+SUMMARY,NRP Training Program Summary,,,,,,,,,,
+Total Modules,20,,1315,315,20/20 ✅,20/20 ✅,0/20 ⏳,0/20 ❌,,,All content ready for deployment
+Categories,Foundation(1), Documentation(2), Operations(2),,,,,,,,,,
+,Safety(3), Legal(1), Technical(2), Business(4),,,,,,,,,,
+,Restoration(4), Technology(1),,,,,,,,,,

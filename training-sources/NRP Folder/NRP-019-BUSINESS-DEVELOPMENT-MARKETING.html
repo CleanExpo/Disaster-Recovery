@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-019: Business Development & Marketing - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+        .section h2 {
+            color: #c0392b;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #c0392b;
+            margin-bottom: 10px;
+        }
+        .marketing-icon {
+            width: 60px;
+            height: 60px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #c0392b;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .info-box {
+            background: #fadbd8;
+            border: 2px solid #e74c3c;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .info-box h4 {
+            color: #922b21;
+            margin-bottom: 10px;
+        }
+        .roi-calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .roi-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .roi-card {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .roi-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #c0392b; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #e74c3c;
+        }
+        .marketing-funnel {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .funnel-stage {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+        }
+        .funnel-awareness { background: #3498db; }
+        .funnel-interest { background: #2ecc71; }
+        .funnel-consideration { background: #f39c12; }
+        .funnel-purchase { background: #e74c3c; }
+        .funnel-retention { background: #9b59b6; }
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .social-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #c0392b;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #e74c3c;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #c0392b; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-019: Business Development & Marketing</h1>
+            <p>Growing Your Restoration Business in Australia</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master business development and marketing strategies for the Australian restoration industry. Learn lead generation, digital marketing, insurance relationships, referral programs, and brand building to grow your restoration business sustainably.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="marketing-icon">📈</div>
+                    <h3>Growth Strategies</h3>
+                    <ul>
+                        <li>Market analysis</li>
+                        <li>Competitive positioning</li>
+                        <li>Service expansion</li>
+                        <li>Geographic growth</li>
+                        <li>Partnership development</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="marketing-icon">💻</div>
+                    <h3>Digital Marketing</h3>
+                    <ul>
+                        <li>SEO optimisation</li>
+                        <li>Google Ads campaigns</li>
+                        <li>Social media marketing</li>
+                        <li>Email automation</li>
+                        <li>Content marketing</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="marketing-icon">🤝</div>
+                    <h3>Relationship Building</h3>
+                    <ul>
+                        <li>Insurance partnerships</li>
+                        <li>Property managers</li>
+                        <li>Plumber networks</li>
+                        <li>Real estate agents</li>
+                        <li>Strata managers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Australian Restoration Market Analysis 2024</h2>
+            <table>
+                <tr>
+                    <th>Market Segment</th>
+                    <th>Market Size</th>
+                    <th>Growth Rate</th>
+                    <th>Competition</th>
+                    <th>Opportunity</th>
+                </tr>
+                <tr>
+                    <td>Water Damage</td>
+                    <td>$1.2B</td>
+                    <td>8.5%</td>
+                    <td>High</td>
+                    <td>24/7 response</td>
+                </tr>
+                <tr>
+                    <td>Fire Restoration</td>
+                    <td>$650M</td>
+                    <td>6.2%</td>
+                    <td>Medium</td>
+                    <td>Specialisation</td>
+                </tr>
+                <tr>
+                    <td>Mould Remediation</td>
+                    <td>$380M</td>
+                    <td>12.5%</td>
+                    <td>Low</td>
+                    <td>Health focus</td>
+                </tr>
+                <tr>
+                    <td>Storm Damage</td>
+                    <td>$520M</td>
+                    <td>15.8%</td>
+                    <td>Seasonal</td>
+                    <td>CAT response</td>
+                </tr>
+                <tr>
+                    <td>Biohazard</td>
+                    <td>$180M</td>
+                    <td>9.3%</td>
+                    <td>Very Low</td>
+                    <td>High margins</td>
+                </tr>
+                <tr>
+                    <td>Commercial</td>
+                    <td>$890M</td>
+                    <td>7.8%</td>
+                    <td>Medium</td>
+                    <td>Contracts</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Customer Acquisition Funnel</h2>
+            <div class="marketing-funnel">
+                <div class="funnel-stage funnel-awareness">
+                    <h4>AWARENESS (10,000 prospects)</h4>
+                    <p>SEO, Google Ads, Social Media, Radio - Cost: $2.50/prospect</p>
+                </div>
+                <div class="funnel-stage funnel-interest">
+                    <h4>INTEREST (2,000 enquiries - 20%)</h4>
+                    <p>Website visits, phone calls, quote requests - Cost: $12.50/enquiry</p>
+                </div>
+                <div class="funnel-stage funnel-consideration">
+                    <h4>CONSIDERATION (500 quotes - 25%)</h4>
+                    <p>Site visits, detailed proposals - Cost: $100/quote</p>
+                </div>
+                <div class="funnel-stage funnel-purchase">
+                    <h4>PURCHASE (125 customers - 25%)</h4>
+                    <p>Won jobs, signed contracts - Acquisition Cost: $400/customer</p>
+                </div>
+                <div class="funnel-stage funnel-retention">
+                    <h4>RETENTION (100 repeat - 80%)</h4>
+                    <p>Repeat business, referrals - Lifetime Value: $18,500</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Digital Marketing Channels & ROI</h2>
+            <div class="social-grid">
+                <div class="social-card">
+                    <h4>Google Ads</h4>
+                    <p><strong>Budget:</strong> $3,000/mo</p>
+                    <p><strong>Leads:</strong> 45/mo</p>
+                    <p><strong>Cost/Lead:</strong> $67</p>
+                    <p><strong>ROI:</strong> 420%</p>
+                </div>
+                <div class="social-card">
+                    <h4>SEO/Organic</h4>
+                    <p><strong>Budget:</strong> $1,500/mo</p>
+                    <p><strong>Leads:</strong> 60/mo</p>
+                    <p><strong>Cost/Lead:</strong> $25</p>
+                    <p><strong>ROI:</strong> 850%</p>
+                </div>
+                <div class="social-card">
+                    <h4>Facebook</h4>
+                    <p><strong>Budget:</strong> $800/mo</p>
+                    <p><strong>Leads:</strong> 20/mo</p>
+                    <p><strong>Cost/Lead:</strong> $40</p>
+                    <p><strong>ROI:</strong> 320%</p>
+                </div>
+                <div class="social-card">
+                    <h4>Instagram</h4>
+                    <p><strong>Budget:</strong> $500/mo</p>
+                    <p><strong>Leads:</strong> 15/mo</p>
+                    <p><strong>Cost/Lead:</strong> $33</p>
+                    <p><strong>ROI:</strong> 280%</p>
+                </div>
+                <div class="social-card">
+                    <h4>LinkedIn</h4>
+                    <p><strong>Budget:</strong> $600/mo</p>
+                    <p><strong>Leads:</strong> 8/mo</p>
+                    <p><strong>Cost/Lead:</strong> $75</p>
+                    <p><strong>ROI:</strong> 450%</p>
+                </div>
+                <div class="social-card">
+                    <h4>Email</h4>
+                    <p><strong>Budget:</strong> $200/mo</p>
+                    <p><strong>Leads:</strong> 25/mo</p>
+                    <p><strong>Cost/Lead:</strong> $8</p>
+                    <p><strong>ROI:</strong> 1,200%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h3>Marketing ROI Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Marketing Channel:</label>
+                    <select id="channel">
+                        <option value="google">Google Ads</option>
+                        <option value="seo">SEO/Organic</option>
+                        <option value="social">Social Media</option>
+                        <option value="referral">Referral Program</option>
+                        <option value="insurance">Insurance Partners</option>
+                        <option value="traditional">Traditional (Radio/Print)</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Monthly Budget ($):</label>
+                    <input type="number" id="budget" value="2500" min="100">
+                </div>
+                <div>
+                    <label>Expected Leads/Month:</label>
+                    <input type="number" id="leads" value="35" min="1">
+                </div>
+                <div>
+                    <label>Lead-to-Customer Rate (%):</label>
+                    <input type="number" id="conversionRate" value="25" min="1" max="100">
+                </div>
+                <div>
+                    <label>Average Job Value ($):</label>
+                    <input type="number" id="jobValue" value="3500" min="100">
+                </div>
+                <div>
+                    <label>Gross Margin (%):</label>
+                    <input type="number" id="margin" value="35" min="5" max="80">
+                </div>
+                <div>
+                    <label>Customer Lifetime (Years):</label>
+                    <input type="number" id="lifetime" value="5" min="1" max="20">
+                </div>
+                <div>
+                    <label>Referrals per Customer:</label>
+                    <input type="number" id="referrals" value="2.5" step="0.1" min="0">
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateMarketingROI()">Calculate Marketing ROI</button>
+            <div id="marketingResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Insurance Partner Development</h2>
+            <table>
+                <tr>
+                    <th>Insurer</th>
+                    <th>Market Share</th>
+                    <th>Requirements</th>
+                    <th>Benefits</th>
+                    <th>Challenges</th>
+                </tr>
+                <tr>
+                    <td>IAG (NRMA, CGU)</td>
+                    <td>28%</td>
+                    <td>ISO 9001, $20M insurance</td>
+                    <td>Volume, regular work</td>
+                    <td>Low margins, 60-day payment</td>
+                </tr>
+                <tr>
+                    <td>Suncorp</td>
+                    <td>26%</td>
+                    <td>Xactimate, 24/7 response</td>
+                    <td>Technology support</td>
+                    <td>Strict KPIs</td>
+                </tr>
+                <tr>
+                    <td>Allianz</td>
+                    <td>15%</td>
+                    <td>5 years experience</td>
+                    <td>Premium work</td>
+                    <td>Limited volume</td>
+                </tr>
+                <tr>
+                    <td>QBE</td>
+                    <td>12%</td>
+                    <td>National coverage</td>
+                    <td>Commercial focus</td>
+                    <td>Complex claims</td>
+                </tr>
+                <tr>
+                    <td>RACQ/RACV</td>
+                    <td>8%</td>
+                    <td>State-based</td>
+                    <td>Member loyalty</td>
+                    <td>Regional only</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Referral Network Development</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Plumber Network</h3>
+                    <p><strong>Potential:</strong> 40% of water jobs</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Commission: 10-15%</li>
+                        <li>Response time: < 1 hour</li>
+                        <li>Co-marketing opportunities</li>
+                        <li>Joint service packages</li>
+                        <li>Average value: $4,200</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Property Managers</h3>
+                    <p><strong>Potential:</strong> 25% of jobs</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Portfolio: 50-200 properties</li>
+                        <li>Regular maintenance</li>
+                        <li>Emergency response</li>
+                        <li>Preferred vendor status</li>
+                        <li>Average value: $2,800</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Strata Managers</h3>
+                    <p><strong>Potential:</strong> 30% commercial</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Building portfolios</li>
+                        <li>Annual contracts</li>
+                        <li>Committee approval needed</li>
+                        <li>Insurance coordination</li>
+                        <li>Average value: $8,500</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Digital Marketing Best Practices</h2>
+            <div class="info-box">
+                <h4>🎯 Google Ads Strategy for Restoration</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Keywords:</strong> "water damage [suburb]", "emergency plumber leak", "flood restoration near me"</li>
+                    <li><strong>Budget:</strong> $100-150/day minimum for metro areas</li>
+                    <li><strong>Ad Extensions:</strong> Call, location, sitelinks, callouts</li>
+                    <li><strong>Landing Pages:</strong> Service-specific with forms</li>
+                    <li><strong>Quality Score:</strong> Aim for 7+ (reduces cost by 30%)</li>
+                    <li><strong>Conversion Tracking:</strong> Calls, forms, chat</li>
+                    <li><strong>Negative Keywords:</strong> DIY, hire, equipment, jobs</li>
+                </ul>
+            </div>
+
+            <div class="grid" style="margin-top: 20px;">
+                <div class="card">
+                    <h3>SEO Essentials</h3>
+                    <ul>
+                        <li>Google My Business optimisation</li>
+                        <li>Local citations (50+ directories)</li>
+                        <li>Service area pages</li>
+                        <li>Before/after galleries</li>
+                        <li>Customer reviews (4.5+ stars)</li>
+                        <li>Mobile responsive design</li>
+                        <li>Page speed < 3 seconds</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Content Marketing</h3>
+                    <ul>
+                        <li>Weekly blog posts</li>
+                        <li>Emergency guides</li>
+                        <li>Video testimonials</li>
+                        <li>Case studies</li>
+                        <li>Seasonal tips</li>
+                        <li>Insurance guides</li>
+                        <li>FAQ sections</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Customer Retention Strategies</h2>
+            <table>
+                <tr>
+                    <th>Strategy</th>
+                    <th>Implementation</th>
+                    <th>Cost</th>
+                    <th>Impact</th>
+                    <th>ROI</th>
+                </tr>
+                <tr>
+                    <td>Annual Maintenance Plans</td>
+                    <td>$299/year inspection program</td>
+                    <td>$50/customer</td>
+                    <td>80% retention</td>
+                    <td>600%</td>
+                </tr>
+                <tr>
+                    <td>Referral Rewards</td>
+                    <td>$100 credit per referral</td>
+                    <td>$100/referral</td>
+                    <td>2.5 referrals avg</td>
+                    <td>450%</td>
+                </tr>
+                <tr>
+                    <td>Email Nurturing</td>
+                    <td>Monthly newsletters</td>
+                    <td>$8/customer/year</td>
+                    <td>25% repeat rate</td>
+                    <td>1,200%</td>
+                </tr>
+                <tr>
+                    <td>VIP Program</td>
+                    <td>Priority service, 10% discount</td>
+                    <td>$200/customer</td>
+                    <td>95% retention</td>
+                    <td>850%</td>
+                </tr>
+                <tr>
+                    <td>Review Incentives</td>
+                    <td>$50 voucher for reviews</td>
+                    <td>$50/review</td>
+                    <td>4.7 star average</td>
+                    <td>380%</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the average customer acquisition cost for restoration services?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> $100-200</label>
+                        <label><input type="radio" name="q1" value="b"> $200-300</label>
+                        <label><input type="radio" name="q1" value="c"> $300-500</label>
+                        <label><input type="radio" name="q1" value="d"> $500-700</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. Which digital marketing channel typically has the highest ROI?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> Google Ads</label>
+                        <label><input type="radio" name="q2" value="b"> Facebook</label>
+                        <label><input type="radio" name="q2" value="c"> Email Marketing</label>
+                        <label><input type="radio" name="q2" value="d"> Instagram</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. What percentage of restoration work typically comes from insurance partners?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> 20-30%</label>
+                        <label><input type="radio" name="q3" value="b"> 40-50%</label>
+                        <label><input type="radio" name="q3" value="c"> 60-70%</label>
+                        <label><input type="radio" name="q3" value="d"> 80-90%</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What is the recommended Google Ads budget for metro areas?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> $50-75/day</label>
+                        <label><input type="radio" name="q4" value="b"> $75-100/day</label>
+                        <label><input type="radio" name="q4" value="c"> $100-150/day</label>
+                        <label><input type="radio" name="q4" value="d"> $200-250/day</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. What is the fastest growing restoration market segment in 2024?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> Water Damage</label>
+                        <label><input type="radio" name="q5" value="b"> Fire Restoration</label>
+                        <label><input type="radio" name="q5" value="c"> Mould Remediation</label>
+                        <label><input type="radio" name="q5" value="d"> Storm Damage</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Business Development & Marketing training module.</p>
+            <p>You now have the strategies to grow your restoration business effectively.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateMarketingROI() {
+            const channel = document.getElementById('channel').value;
+            const budget = parseFloat(document.getElementById('budget').value);
+            const leads = parseInt(document.getElementById('leads').value);
+            const conversionRate = parseFloat(document.getElementById('conversionRate').value) / 100;
+            const jobValue = parseFloat(document.getElementById('jobValue').value);
+            const margin = parseFloat(document.getElementById('margin').value) / 100;
+            const lifetime = parseInt(document.getElementById('lifetime').value);
+            const referrals = parseFloat(document.getElementById('referrals').value);
+
+            // Channel-specific adjustments
+            const channelMultipliers = {
+                'google': 1.0,
+                'seo': 1.3,
+                'social': 0.8,
+                'referral': 1.5,
+                'insurance': 1.2,
+                'traditional': 0.6
+            };
+
+            // Calculate metrics
+            const costPerLead = budget / leads;
+            const customersPerMonth = leads * conversionRate;
+            const costPerCustomer = budget / customersPerMonth;
+
+            // Monthly revenue
+            const monthlyRevenue = customersPerMonth * jobValue;
+            const monthlyProfit = monthlyRevenue * margin;
+            const monthlyNetProfit = monthlyProfit - budget;
+
+            // Lifetime calculations
+            const lifetimeValue = jobValue * lifetime * 1.5; // 1.5x for repeat business
+            const referralValue = referrals * jobValue * margin * 0.6; // 60% conversion on referrals
+            const totalLifetimeValue = (lifetimeValue + referralValue) * channelMultipliers[channel];
+
+            // ROI calculations
+            const monthlyROI = ((monthlyNetProfit / budget) * 100);
+            const annualROI = ((monthlyNetProfit * 12) / (budget * 12) * 100);
+            const lifetimeROI = ((totalLifetimeValue * margin - costPerCustomer) / costPerCustomer * 100);
+
+            // Payback period
+            const paybackMonths = costPerCustomer / (jobValue * margin);
+
+            // Market share potential
+            const marketShare = (customersPerMonth * 12 / 5000) * 100; // Assume 5000 total market jobs
+
+            // Generate comprehensive report
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Marketing ROI Analysis - ${channel.charAt(0).toUpperCase() + channel.slice(1)}</h3>
+
+                    <div class="roi-display">
+                        <div class="roi-card">
+                            <div class="roi-value">${monthlyROI.toFixed(0)}%</div>
+                            <div>Monthly ROI</div>
+                        </div>
+                        <div class="roi-card">
+                            <div class="roi-value">$${costPerLead.toFixed(0)}</div>
+                            <div>Cost/Lead</div>
+                        </div>
+                        <div class="roi-card">
+                            <div class="roi-value">$${costPerCustomer.toFixed(0)}</div>
+                            <div>Cost/Customer</div>
+                        </div>
+                        <div class="roi-card">
+                            <div class="roi-value">${paybackMonths.toFixed(1)}mo</div>
+                            <div>Payback</div>
+                        </div>
+                    </div>
+
+                    <table style="width: 100%; margin-top: 20px;">
+                        <tr><th colspan="2" style="background: #e74c3c;">Monthly Performance</th></tr>
+                        <tr><td>Marketing Spend:</td><td style="text-align: right;">$${budget.toFixed(2)}</td></tr>
+                        <tr><td>Leads Generated:</td><td style="text-align: right;">${leads}</td></tr>
+                        <tr><td>New Customers:</td><td style="text-align: right;">${customersPerMonth.toFixed(1)}</td></tr>
+                        <tr><td>Revenue Generated:</td><td style="text-align: right;">$${monthlyRevenue.toFixed(2)}</td></tr>
+                        <tr><td>Gross Profit:</td><td style="text-align: right;">$${monthlyProfit.toFixed(2)}</td></tr>
+                        <tr style="font-weight: bold; background: #f8f9fa;">
+                            <td>Net Profit:</td>
+                            <td style="text-align: right; color: ${monthlyNetProfit > 0 ? 'green' : 'red'};">$${monthlyNetProfit.toFixed(2)}</td>
+                        </tr>
+                    </table>
+
+                    <table style="width: 100%; margin-top: 20px;">
+                        <tr><th colspan="2" style="background: #e74c3c;">Annual Projections</th></tr>
+                        <tr><td>Annual Customers:</td><td style="text-align: right;">${(customersPerMonth * 12).toFixed(0)}</td></tr>
+                        <tr><td>Annual Revenue:</td><td style="text-align: right;">$${(monthlyRevenue * 12).toFixed(2)}</td></tr>
+                        <tr><td>Annual Net Profit:</td><td style="text-align: right;">$${(monthlyNetProfit * 12).toFixed(2)}</td></tr>
+                        <tr><td>Annual ROI:</td><td style="text-align: right;">${annualROI.toFixed(0)}%</td></tr>
+                        <tr><td>Market Share:</td><td style="text-align: right;">${marketShare.toFixed(2)}%</td></tr>
+                    </table>
+
+                    <div style="margin-top: 20px; padding: 15px; background: #fadbd8; border-radius: 5px;">
+                        <h4>Lifetime Value Analysis:</h4>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            <li><strong>Direct Lifetime Value:</strong> $${lifetimeValue.toFixed(2)}</li>
+                            <li><strong>Referral Value:</strong> $${referralValue.toFixed(2)}</li>
+                            <li><strong>Total Customer Value:</strong> $${totalLifetimeValue.toFixed(2)}</li>
+                            <li><strong>Lifetime ROI:</strong> ${lifetimeROI.toFixed(0)}%</li>
+                            <li><strong>Value to CAC Ratio:</strong> ${(totalLifetimeValue/costPerCustomer).toFixed(1)}:1</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 15px; padding: 15px; background: #d5f4e6; border-radius: 5px;">
+                        <h4>Recommendations:</h4>
+                        <ul style="margin-top: 10px; margin-left: 20px;">
+                            ${monthlyROI > 200 ? '<li>✓ Excellent ROI - Consider increasing budget</li>' : ''}
+                            ${monthlyROI < 100 ? '<li>⚠ Low ROI - Optimise conversion rate or reduce costs</li>' : ''}
+                            ${costPerLead > 100 ? '<li>⚠ High cost per lead - Review targeting and ad quality</li>' : ''}
+                            ${conversionRate < 0.2 ? '<li>⚠ Low conversion - Improve follow-up process</li>' : ''}
+                            ${paybackMonths > 3 ? '<li>⚠ Long payback - Focus on higher-value services</li>' : ''}
+                            <li>${channel === 'seo' ? 'SEO takes 3-6 months for full results' : channel === 'referral' ? 'Referral programs compound over time' : 'Monitor and optimise weekly'}</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('marketingResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'c', // $300-500 customer acquisition
+                q2: 'c', // Email marketing highest ROI
+                q3: 'c', // 60-70% from insurance
+                q4: 'c', // $100-150/day Google Ads
+                q5: 'd'  // Storm damage fastest growing
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered business development strategies.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> $300-500 - Average customer acquisition cost for restoration</p>';
+            feedback += '<p><strong>Q2:</strong> Email Marketing - Typically has 1,200% ROI due to low costs</p>';
+            feedback += '<p><strong>Q3:</strong> 60-70% - Majority of restoration work comes from insurance</p>';
+            feedback += '<p><strong>Q4:</strong> $100-150/day - Recommended Google Ads budget for metro areas</p>';
+            feedback += '<p><strong>Q5:</strong> Storm Damage - Growing at 15.8% due to climate change</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+    </script>
+</body>
+</html>

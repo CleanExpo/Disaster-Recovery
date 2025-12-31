@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-006: Structural Drying & Dehumidification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .module-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #00b4d8;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #0077b6;
+            padding-bottom: 10px;
+        }
+
+        .psychrometric-calculator {
+            background: #f0f8ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .calculator-title {
+            color: #0077b6;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .input-field input,
+        .input-field select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus {
+            border-color: #00b4d8;
+            outline: none;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #48cae4, #00b4d8);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .results {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 5px solid #48cae4;
+            margin-top: 20px;
+        }
+
+        .results h4 {
+            color: #00b4d8;
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .equipment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .equipment-table th,
+        .equipment-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .equipment-table th {
+            background-color: #00b4d8;
+            color: white;
+            font-weight: bold;
+        }
+
+        .equipment-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .equipment-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #00b4d8;
+        }
+
+        .equipment-card h4 {
+            color: #0077b6;
+            margin-bottom: 10px;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .alert-box.danger {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert-box.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .drying-class {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #2196f3;
+        }
+
+        .assessment-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00b4d8;
+        }
+
+        .question h4 {
+            color: #0077b6;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .options li {
+            margin: 8px 0;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+            }
+
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-006: Structural Drying & Dehumidification</h1>
+            <p>IICRC S500 Standards & Psychrometric Calculations</p>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">1. Water Damage Classes & Categories</h2>
+
+            <div class="subsection">
+                <h3>IICRC S500 Water Categories</h3>
+
+                <div class="drying-class">
+                    <h4>Category 1 - Clean Water</h4>
+                    <p><strong>Source:</strong> Broken supply lines, melting ice/snow, rainwater</p>
+                    <p><strong>Health Risk:</strong> Minimal - no substantial risk</p>
+                    <p><strong>Response Time:</strong> Becomes Category 2 after 48 hours</p>
+                    <p><strong>PPE Required:</strong> Standard work gloves, safety glasses</p>
+                </div>
+
+                <div class="drying-class">
+                    <h4>Category 2 - Grey Water</h4>
+                    <p><strong>Source:</strong> Washing machine overflow, toilet overflow with urine, dishwasher discharge</p>
+                    <p><strong>Health Risk:</strong> Moderate - contains significant contamination</p>
+                    <p><strong>Response Time:</strong> Becomes Category 3 after 48 hours</p>
+                    <p><strong>PPE Required:</strong> N95 mask, gloves, protective clothing</p>
+                </div>
+
+                <div class="drying-class" style="border-left-color: #dc3545;">
+                    <h4>Category 3 - Black Water</h4>
+                    <p><strong>Source:</strong> Sewage, flooding from rivers/streams, stagnant water</p>
+                    <p><strong>Health Risk:</strong> High - contains pathogenic agents</p>
+                    <p><strong>Response Time:</strong> Immediate containment required</p>
+                    <p><strong>PPE Required:</strong> Full PPE including respirator, protective suit, gloves, eye protection</p>
+                </div>
+            </div>
+
+            <table class="equipment-table">
+                <thead>
+                    <tr>
+                        <th>Water Class</th>
+                        <th>Evaporation Rate</th>
+                        <th>Water Intrusion</th>
+                        <th>Drying Time</th>
+                        <th>Equipment Needed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Class 1</td>
+                        <td>Slow Rate</td>
+                        <td>&lt;5% of area, minimal absorption</td>
+                        <td>3-5 days</td>
+                        <td>1 dehu per 1000-1500 sq ft</td>
+                    </tr>
+                    <tr>
+                        <td>Class 2</td>
+                        <td>Fast Rate</td>
+                        <td>5-40% of area, absorption into materials</td>
+                        <td>5-7 days</td>
+                        <td>1 dehu per 500-750 sq ft</td>
+                    </tr>
+                    <tr>
+                        <td>Class 3</td>
+                        <td>Fastest Rate</td>
+                        <td>&gt;40% of area, ceiling affected</td>
+                        <td>7-10 days</td>
+                        <td>1 dehu per 200-300 sq ft</td>
+                    </tr>
+                    <tr>
+                        <td>Class 4</td>
+                        <td>Specialty Drying</td>
+                        <td>Deep saturation, bound water</td>
+                        <td>10+ days</td>
+                        <td>Specialty equipment required</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box danger">
+                <strong>Australian Standard AS/NZS 3500.2:2021:</strong> All water damage restoration must comply with plumbing and drainage standards. Category 3 water requires licensed plumbers for sewage-related issues.
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">2. Psychrometric Calculator</h2>
+
+            <div class="psychrometric-calculator">
+                <div class="calculator-title">IICRC-Compliant Drying Equipment Calculator</div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="roomLength">Room Length (meters)</label>
+                        <input type="number" id="roomLength" min="1" value="10" step="0.1">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="roomWidth">Room Width (meters)</label>
+                        <input type="number" id="roomWidth" min="1" value="8" step="0.1">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="roomHeight">Room Height (meters)</label>
+                        <input type="number" id="roomHeight" min="2" value="2.7" step="0.1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="currentTemp">Current Temperature (°C)</label>
+                        <input type="number" id="currentTemp" min="0" max="50" value="22" step="0.5">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="currentRH">Current Relative Humidity (%)</label>
+                        <input type="number" id="currentRH" min="0" max="100" value="75" step="1">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="targetRH">Target Relative Humidity (%)</label>
+                        <input type="number" id="targetRH" min="20" max="60" value="40" step="1">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="waterClass">Water Damage Class</label>
+                        <select id="waterClass">
+                            <option value="1">Class 1 - Minimal Water</option>
+                            <option value="2" selected>Class 2 - Significant Water</option>
+                            <option value="3">Class 3 - Greatest Water</option>
+                            <option value="4">Class 4 - Specialty Drying</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="waterCategory">Water Category</label>
+                        <select id="waterCategory">
+                            <option value="1">Category 1 - Clean Water</option>
+                            <option value="2" selected>Category 2 - Grey Water</option>
+                            <option value="3">Category 3 - Black Water</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="location">Australian Location</label>
+                        <select id="location">
+                            <option value="sydney">Sydney/Melbourne</option>
+                            <option value="brisbane">Brisbane/Gold Coast</option>
+                            <option value="perth">Perth/Adelaide</option>
+                            <option value="tropical">Darwin/Cairns (Tropical)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateDryingRequirements()">Calculate Equipment Requirements</button>
+
+                <div id="dryingResults" class="results" style="display: none;">
+                    <h4>Psychrometric Analysis & Equipment Requirements</h4>
+                    <div id="dryingBreakdown"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">3. Professional Drying Equipment (2024 Australian Market)</h2>
+
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <h4>Phoenix 200 MAX LGR Dehumidifier</h4>
+                    <p><strong>Extraction Rate:</strong> 113L/day at AHAM</p>
+                    <p><strong>Coverage:</strong> 650m² (Class 2)</p>
+                    <p><strong>Power:</strong> 7.5 amps, 240V</p>
+                    <p><strong>Rental Cost:</strong> $165/day + GST</p>
+                    <p><strong>Purchase Price:</strong> $4,850 + GST</p>
+                </div>
+
+                <div class="equipment-card">
+                    <h4>Dri-Eaz LGR 7000XLi</h4>
+                    <p><strong>Extraction Rate:</strong> 130L/day at AHAM</p>
+                    <p><strong>Coverage:</strong> 780m² (Class 2)</p>
+                    <p><strong>Power:</strong> 6.8 amps, 240V</p>
+                    <p><strong>Rental Cost:</strong> $185/day + GST</p>
+                    <p><strong>Purchase Price:</strong> $5,200 + GST</p>
+                </div>
+
+                <div class="equipment-card">
+                    <h4>XPOWER XD-125 Commercial Dehumidifier</h4>
+                    <p><strong>Extraction Rate:</strong> 76L/day at AHAM</p>
+                    <p><strong>Coverage:</strong> 450m² (Class 2)</p>
+                    <p><strong>Power:</strong> 5.5 amps, 240V</p>
+                    <p><strong>Rental Cost:</strong> $120/day + GST</p>
+                    <p><strong>Purchase Price:</strong> $3,200 + GST</p>
+                </div>
+
+                <div class="equipment-card">
+                    <h4>Dri-Eaz Vortex Axial Fan</h4>
+                    <p><strong>Airflow:</strong> 3,500 CFM</p>
+                    <p><strong>Coverage:</strong> 250m² air movement</p>
+                    <p><strong>Power:</strong> 2.9 amps, 240V</p>
+                    <p><strong>Rental Cost:</strong> $45/day + GST</p>
+                    <p><strong>Purchase Price:</strong> $750 + GST</p>
+                </div>
+
+                <div class="equipment-card">
+                    <h4>Dri-Eaz Sahara Pro X3 TurboDryer</h4>
+                    <p><strong>Airflow:</strong> 3,000 CFM</p>
+                    <p><strong>Coverage:</strong> 200m² air movement</p>
+                    <p><strong>Power:</strong> 2.4 amps, 240V</p>
+                    <p><strong>Rental Cost:</strong> $55/day + GST</p>
+                    <p><strong>Purchase Price:</strong> $850 + GST</p>
+                </div>
+
+                <div class="equipment-card">
+                    <h4>FLIR MR160 Moisture Meter</h4>
+                    <p><strong>Technology:</strong> IGM™ with thermal imaging</p>
+                    <p><strong>Measurement:</strong> 0-100 reference scale</p>
+                    <p><strong>Features:</strong> Bluetooth, data logging</p>
+                    <p><strong>Rental Cost:</strong> $85/day + GST</p>
+                    <p><strong>Purchase Price:</strong> $1,100 + GST</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">4. Psychrometric Principles</h2>
+
+            <div class="subsection">
+                <h3>Key Psychrometric Relationships</h3>
+
+                <table class="equipment-table">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Formula/Relationship</th>
+                            <th>Drying Significance</th>
+                            <th>Target Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Specific Humidity</td>
+                            <td>Grains/lb (GPP)</td>
+                            <td>Actual moisture in air</td>
+                            <td>30-60 GPP optimal</td>
+                        </tr>
+                        <tr>
+                            <td>Vapor Pressure</td>
+                            <td>kPa = RH × Saturation VP</td>
+                            <td>Drying potential</td>
+                            <td>&gt;0.5 kPa deficit</td>
+                        </tr>
+                        <tr>
+                            <td>Dew Point</td>
+                            <td>Temperature at 100% RH</td>
+                            <td>Condensation risk</td>
+                            <td>&gt;10°C surface temp</td>
+                        </tr>
+                        <tr>
+                            <td>Enthalpy</td>
+                            <td>Total heat content</td>
+                            <td>Energy for evaporation</td>
+                            <td>45-55 kJ/kg</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert-box success">
+                    <strong>Drying Goal Formula:</strong> Target GPP = Current GPP - (Current GPP × 0.4). This creates the vapor pressure deficit needed for effective drying per IICRC S500 standards.
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment-section">
+            <h2 class="section-title">Module Assessment</h2>
+
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>Question 1: According to IICRC S500, what is the recommended dehumidifier coverage for Class 2 water damage?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q1" value="a"> 1 dehumidifier per 1000-1500 sq ft</li>
+                        <li><input type="radio" name="q1" value="b"> 1 dehumidifier per 500-750 sq ft</li>
+                        <li><input type="radio" name="q1" value="c"> 1 dehumidifier per 200-300 sq ft</li>
+                        <li><input type="radio" name="q1" value="d"> 1 dehumidifier per 100 sq ft</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 2: Category 2 water becomes Category 3 after how many hours?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q2" value="a"> 24 hours</li>
+                        <li><input type="radio" name="q2" value="b"> 36 hours</li>
+                        <li><input type="radio" name="q2" value="c"> 48 hours</li>
+                        <li><input type="radio" name="q2" value="d"> 72 hours</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 3: What is the optimal grain depression (GPP difference) for effective drying?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q3" value="a"> 10-20 GPP</li>
+                        <li><input type="radio" name="q3" value="b"> 30-60 GPP</li>
+                        <li><input type="radio" name="q3" value="c"> 70-100 GPP</li>
+                        <li><input type="radio" name="q3" value="d"> Over 100 GPP</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 4: Which water damage class requires specialty drying equipment?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q4" value="a"> Class 1</li>
+                        <li><input type="radio" name="q4" value="b"> Class 2</li>
+                        <li><input type="radio" name="q4" value="c"> Class 3</li>
+                        <li><input type="radio" name="q4" value="d"> Class 4</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 5: What PPE is required for Category 3 (black water) restoration?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q5" value="a"> Standard gloves only</li>
+                        <li><input type="radio" name="q5" value="b"> N95 mask and gloves</li>
+                        <li><input type="radio" name="q5" value="c"> Full PPE including respirator, protective suit, gloves, eye protection</li>
+                        <li><input type="radio" name="q5" value="d"> Safety glasses and boots</li>
+                    </ul>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+            </form>
+
+            <div id="scoreDisplay" class="score-display">
+                <h3>Assessment Results</h3>
+                <p id="scoreText"></p>
+                <p id="passStatus"></p>
+            </div>
+
+            <div id="detailedResults" style="display: none; margin-top: 20px;">
+                <h3>Detailed Answer Explanations</h3>
+                <div id="answerExplanations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateDryingRequirements() {
+            // Get input values
+            const length = parseFloat(document.getElementById('roomLength').value);
+            const width = parseFloat(document.getElementById('roomWidth').value);
+            const height = parseFloat(document.getElementById('roomHeight').value);
+            const currentTemp = parseFloat(document.getElementById('currentTemp').value);
+            const currentRH = parseFloat(document.getElementById('currentRH').value);
+            const targetRH = parseFloat(document.getElementById('targetRH').value);
+            const waterClass = parseInt(document.getElementById('waterClass').value);
+            const waterCategory = document.getElementById('waterCategory').value;
+            const location = document.getElementById('location').value;
+
+            // Calculate room metrics
+            const floorArea = length * width;
+            const cubicMeters = length * width * height;
+            const cubicFeet = cubicMeters * 35.315;
+            const squareFeet = floorArea * 10.764;
+
+            // Psychrometric calculations
+            const saturationVP = 0.61121 * Math.exp((18.678 - currentTemp / 234.5) * (currentTemp / (257.14 + currentTemp)));
+            const actualVP = (currentRH / 100) * saturationVP;
+            const dewPoint = (237.3 * Math.log(actualVP / 0.61121)) / (17.27 - Math.log(actualVP / 0.61121));
+
+            // Grains per pound calculation
+            const currentGPP = 7000 * 0.622 * actualVP / (101.325 - actualVP);
+            const targetGPP = currentGPP * (targetRH / currentRH);
+            const grainDepression = currentGPP - targetGPP;
+
+            // Equipment requirements based on water class
+            const dehuCoverage = {
+                1: 1500, // sq ft per dehumidifier
+                2: 600,
+                3: 250,
+                4: 150
+            };
+
+            const airMoverRatio = {
+                1: 1, // air movers per 10 linear feet
+                2: 1,
+                3: 2,
+                4: 2
+            };
+
+            const numDehumidifiers = Math.ceil(squareFeet / dehuCoverage[waterClass]);
+            const perimeterFeet = 2 * (length + width) * 3.281;
+            const numAirMovers = Math.ceil(perimeterFeet / 10 * airMoverRatio[waterClass]);
+
+            // Australian location adjustments
+            const locationMultiplier = {
+                'sydney': 1.0,
+                'brisbane': 1.2,
+                'perth': 0.9,
+                'tropical': 1.5
+            };
+
+            const adjustedDehu = Math.ceil(numDehumidifiers * locationMultiplier[location]);
+
+            // Daily moisture removal calculation
+            const dailyMoisture = adjustedDehu * 110; // Litres per day average
+
+            // Cost calculations (2024 Australian rates)
+            const dehuRentalDaily = adjustedDehu * 165;
+            const airMoverRentalDaily = numAirMovers * 50;
+            const totalDailyRental = dehuRentalDaily + airMoverRentalDaily;
+
+            // Estimated drying time
+            let dryingDays = 3 + (waterClass * 2);
+            if (waterCategory === '3') dryingDays += 3;
+
+            // Display results
+            const resultsDiv = document.getElementById('dryingResults');
+            const breakdownDiv = document.getElementById('dryingBreakdown');
+
+            let breakdownHTML = `
+                <div class="result-item"><span><strong>Room Metrics</strong></span><span></span></div>
+                <div class="result-item"><span>Floor Area</span><span>${floorArea.toFixed(1)} m² (${squareFeet.toFixed(0)} ft²)</span></div>
+                <div class="result-item"><span>Volume</span><span>${cubicMeters.toFixed(1)} m³ (${cubicFeet.toFixed(0)} ft³)</span></div>
+
+                <div class="result-item" style="margin-top: 15px;"><span><strong>Psychrometric Analysis</strong></span><span></span></div>
+                <div class="result-item"><span>Current Specific Humidity</span><span>${currentGPP.toFixed(1)} GPP</span></div>
+                <div class="result-item"><span>Target Specific Humidity</span><span>${targetGPP.toFixed(1)} GPP</span></div>
+                <div class="result-item"><span>Grain Depression</span><span>${grainDepression.toFixed(1)} GPP</span></div>
+                <div class="result-item"><span>Dew Point</span><span>${dewPoint.toFixed(1)}°C</span></div>
+
+                <div class="result-item" style="margin-top: 15px;"><span><strong>Equipment Requirements</strong></span><span></span></div>
+                <div class="result-item"><span>LGR Dehumidifiers Required</span><span>${adjustedDehu} units</span></div>
+                <div class="result-item"><span>Air Movers Required</span><span>${numAirMovers} units</span></div>
+                <div class="result-item"><span>Daily Moisture Removal Capacity</span><span>${dailyMoisture}L/day</span></div>
+
+                <div class="result-item" style="margin-top: 15px;"><span><strong>Cost Analysis</strong></span><span></span></div>
+                <div class="result-item"><span>Dehumidifier Rental</span><span>$${dehuRentalDaily}/day</span></div>
+                <div class="result-item"><span>Air Mover Rental</span><span>$${airMoverRentalDaily}/day</span></div>
+                <div class="result-item"><span>Total Daily Equipment Cost</span><span>$${totalDailyRental}/day</span></div>
+                <div class="result-item"><span>Estimated Drying Time</span><span>${dryingDays} days</span></div>
+                <div class="result-item" style="border-top: 2px solid #00b4d8; font-weight: bold;"><span>Total Project Equipment Cost</span><span>$${(totalDailyRental * dryingDays).toFixed(2)} + GST</span></div>
+            `;
+
+            if (grainDepression < 20) {
+                breakdownHTML += `<div style="margin-top: 15px; padding: 10px; background: #f8d7da; border-radius: 5px;"><strong>Warning:</strong> Grain depression is too low. Consider adding heat or more dehumidification capacity for effective drying.</div>`;
+            }
+
+            if (waterCategory === '3') {
+                breakdownHTML += `<div style="margin-top: 15px; padding: 10px; background: #f8d7da; border-radius: 5px;"><strong>Category 3 Water:</strong> Additional antimicrobial treatment required. Full PPE mandatory. Consider adding HEPA air scrubbers.</div>`;
+            }
+
+            breakdownDiv.innerHTML = breakdownHTML;
+            resultsDiv.style.display = 'block';
+        }
+
+        function submitAssessment() {
+            const answers = {
+                q1: 'b', // 1 dehumidifier per 500-750 sq ft
+                q2: 'c', // 48 hours
+                q3: 'b', // 30-60 GPP
+                q4: 'd', // Class 4
+                q5: 'c'  // Full PPE including respirator
+            };
+
+            const explanations = {
+                q1: "For Class 2 water damage, IICRC S500 recommends 1 dehumidifier per 500-750 square feet to achieve proper moisture removal rates and maintain appropriate grain depression.",
+                q2: "Category 2 (grey water) becomes Category 3 (black water) after 48 hours due to microbial growth and increased contamination levels as per IICRC S500 standards.",
+                q3: "The optimal grain depression for effective drying is 30-60 GPP (grains per pound), which creates sufficient vapor pressure deficit to promote evaporation without over-drying materials.",
+                q4: "Class 4 water damage involves specialty drying situations with deep saturation into low-permeance materials requiring longer drying times and specialized equipment like injection systems or heat drying systems.",
+                q5: "Category 3 (black water) restoration requires full PPE including respirator, protective suit, gloves, and eye protection due to the presence of pathogenic agents and serious health risks."
+            };
+
+            let score = 0;
+            let totalQuestions = 5;
+            let detailedHTML = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                const questionDiv = document.querySelector(`input[name="q${i}"]`).closest('.question');
+
+                if (userAnswer && userAnswer.value === answers[`q${i}`]) {
+                    score++;
+                    questionDiv.style.borderLeftColor = '#27ae60';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #d4edda; border-left: 4px solid #27ae60; border-radius: 5px;">
+                        <strong>Question ${i}: Correct ✓</strong><br>
+                        ${explanations[`q${i}`]}
+                    </div>`;
+                } else {
+                    questionDiv.style.borderLeftColor = '#e74c3c';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #f8d7da; border-left: 4px solid #e74c3c; border-radius: 5px;">
+                        <strong>Question ${i}: Incorrect ✗</strong><br>
+                        <strong>Correct Answer:</strong> ${answers[`q${i}`].toUpperCase()}<br>
+                        <strong>Explanation:</strong> ${explanations[`q${i}`]}
+                    </div>`;
+                }
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            const passed = percentage >= 80;
+
+            document.getElementById('scoreText').textContent = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(1)}%)`;
+            document.getElementById('passStatus').textContent = passed ? 'PASSED - You meet the professional competency requirements' : 'FAILED - Please review the material and retake the assessment (80% required)';
+            document.getElementById('passStatus').style.color = passed ? '#27ae60' : '#e74c3c';
+
+            document.getElementById('scoreDisplay').style.display = 'block';
+            document.getElementById('detailedResults').style.display = 'block';
+            document.getElementById('answerExplanations').innerHTML = detailedHTML;
+
+            // Scroll to results
+            document.getElementById('scoreDisplay').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

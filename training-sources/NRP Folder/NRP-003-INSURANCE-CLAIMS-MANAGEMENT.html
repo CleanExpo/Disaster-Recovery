@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-003: Insurance & Claims Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .module-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #8e44ad;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 10px;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+        }
+
+        .subsection h3 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .insurer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .insurer-table th,
+        .insurer-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .insurer-table th {
+            background-color: #9b59b6;
+            color: white;
+            font-weight: bold;
+        }
+
+        .insurer-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .calculator-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .calculator-title {
+            color: #8e44ad;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .input-field input,
+        .input-field select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus {
+            border-color: #9b59b6;
+            outline: none;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .results {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 5px solid #e67e22;
+            margin-top: 20px;
+        }
+
+        .results h4 {
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .insurer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .insurer-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #9b59b6;
+        }
+
+        .insurer-card h4 {
+            color: #8e44ad;
+            margin-bottom: 10px;
+        }
+
+        .process-steps {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .step {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .alert-box.danger {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert-box.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .assessment-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .question h4 {
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .options li {
+            margin: 8px 0;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+            }
+
+            .insurer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-003: Insurance & Claims Management</h1>
+            <p>Professional Claims Processing & Australian Insurance Standards</p>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">1. Australian Insurance Market Overview</h2>
+
+            <div class="subsection">
+                <h3>Major Insurance Companies (2024 Market Data)</h3>
+                <p>Understanding the Australian insurance landscape is crucial for effective claims management and contractor payments.</p>
+            </div>
+
+            <div class="insurer-grid">
+                <div class="insurer-card">
+                    <h4>IAG (Insurance Australia Group)</h4>
+                    <p><strong>Brands:</strong> NRMA, CGU, SGIO, SGIC</p>
+                    <p><strong>Market Share:</strong> 28.3% (2024)</p>
+                    <p><strong>Claims Portal:</strong> myClaims portal</p>
+                    <p><strong>Average Processing:</strong> 7-14 days</p>
+                    <p><strong>Contractor Requirements:</strong> ABN, Public Liability $20M, WorkCover</p>
+                </div>
+
+                <div class="insurer-card">
+                    <h4>Suncorp Group</h4>
+                    <p><strong>Brands:</strong> AAMI, GIO, Shannons, Bingle</p>
+                    <p><strong>Market Share:</strong> 23.8% (2024)</p>
+                    <p><strong>Claims Portal:</strong> Suncorp Claims Hub</p>
+                    <p><strong>Average Processing:</strong> 5-10 days</p>
+                    <p><strong>Contractor Requirements:</strong> Trade certification, Insurance, Police check</p>
+                </div>
+
+                <div class="insurer-card">
+                    <h4>Allianz Australia</h4>
+                    <p><strong>Brands:</strong> Allianz, Hunter Premium</p>
+                    <p><strong>Market Share:</strong> 14.2% (2024)</p>
+                    <p><strong>Claims Portal:</strong> AllianzClaims</p>
+                    <p><strong>Average Processing:</strong> 10-21 days</p>
+                    <p><strong>Contractor Requirements:</strong> ACRS registration, Comprehensive insurance</p>
+                </div>
+
+                <div class="insurer-card">
+                    <h4>QBE Insurance</h4>
+                    <p><strong>Brands:</strong> QBE, Quota Share</p>
+                    <p><strong>Market Share:</strong> 11.7% (2024)</p>
+                    <p><strong>Claims Portal:</strong> QBE Claims Gateway</p>
+                    <p><strong>Average Processing:</strong> 14-28 days</p>
+                    <p><strong>Contractor Requirements:</strong> Trade license, $10M liability, Financial capacity</p>
+                </div>
+
+                <div class="insurer-card">
+                    <h4>Zurich Australia</h4>
+                    <p><strong>Brands:</strong> Zurich, Cover-More</p>
+                    <p><strong>Market Share:</strong> 8.4% (2024)</p>
+                    <p><strong>Claims Portal:</strong> Zurich Connect</p>
+                    <p><strong>Average Processing:</strong> 7-14 days</p>
+                    <p><strong>Contractor Requirements:</strong> Professional certification, Cyber insurance</p>
+                </div>
+
+                <div class="insurer-card">
+                    <h4>Youi</h4>
+                    <p><strong>Brands:</strong> Youi, Budget Direct</p>
+                    <p><strong>Market Share:</strong> 6.8% (2024)</p>
+                    <p><strong>Claims Portal:</strong> Youi Claims Center</p>
+                    <p><strong>Average Processing:</strong> 3-7 days</p>
+                    <p><strong>Contractor Requirements:</strong> Digital documentation, Real-time reporting</p>
+                </div>
+            </div>
+
+            <table class="insurer-table">
+                <thead>
+                    <tr>
+                        <th>Insurer</th>
+                        <th>Claims System</th>
+                        <th>API Integration</th>
+                        <th>Payment Terms</th>
+                        <th>Documentation Required</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>IAG Group</td>
+                        <td>Guidewire ClaimCenter</td>
+                        <td>RESTful API available</td>
+                        <td>NET 30 days</td>
+                        <td>Xactimate estimates, Photos, Certificates</td>
+                    </tr>
+                    <tr>
+                        <td>Suncorp</td>
+                        <td>Custom Claims Platform</td>
+                        <td>Limited API access</td>
+                        <td>NET 21 days</td>
+                        <td>Detailed scope, Progress photos, Invoices</td>
+                    </tr>
+                    <tr>
+                        <td>Allianz</td>
+                        <td>Allianz Claims System</td>
+                        <td>Partner API only</td>
+                        <td>NET 45 days</td>
+                        <td>Comprehensive reports, Compliance certificates</td>
+                    </tr>
+                    <tr>
+                        <td>QBE</td>
+                        <td>QBE Claims Portal</td>
+                        <td>No public API</td>
+                        <td>NET 30 days</td>
+                        <td>Standard documentation, Quality assessments</td>
+                    </tr>
+                    <tr>
+                        <td>Zurich</td>
+                        <td>Zurich Digital Claims</td>
+                        <td>RESTful API available</td>
+                        <td>NET 14 days</td>
+                        <td>Digital workflow, Real-time updates</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box success">
+                <strong>Industry Insight:</strong> Zurich and Youi offer the fastest payment processing (14 days or less), while maintaining high documentation standards. IAG and Suncorp dominate market share but have longer processing times.
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">2. Claims Processing Workflow</h2>
+
+            <div class="process-steps">
+                <h3>Standard Australian Insurance Claims Process</h3>
+
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <strong>Initial Assessment & Notification</strong>
+                    <p>Customer reports claim through insurer portal or phone. Claim number assigned within 24 hours. Initial assessment determines complexity and priority level.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <strong>Loss Adjuster Assignment</strong>
+                    <p>Independent loss adjuster appointed for claims over $10,000. Site inspection scheduled within 48-72 hours. Preliminary damage assessment conducted.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <strong>Contractor Selection & Scope</strong>
+                    <p>Preferred contractor network accessed. Multiple quotes obtained for transparency. Detailed scope of works prepared using Xactimate or similar.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <strong>Authorization & Work Commencement</strong>
+                    <p>Formal work authorization issued. Certificate of currency verified. Work commences with regular progress reporting requirements.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <strong>Quality Control & Completion</strong>
+                    <p>Progress inspections conducted. Quality standards verified against scope. Final inspection and customer satisfaction confirmed.</p>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <strong>Invoice Processing & Payment</strong>
+                    <p>Tax invoice submitted with supporting documentation. Payment processed according to terms (typically NET 14-45 days depending on insurer).</p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <strong>Processing Times by Claim Value (2024 Australian Average):</strong><br>
+                • Under $5,000: 3-7 business days<br>
+                • $5,000-$25,000: 7-14 business days<br>
+                • $25,000-$100,000: 14-28 business days<br>
+                • Over $100,000: 28-60 business days
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">3. Claims Value Calculator</h2>
+
+            <div class="calculator-section">
+                <div class="calculator-title">Insurance Claims Processing Cost & Timeline Estimator</div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="claimValue">Total Claim Value (AUD)</label>
+                        <input type="number" id="claimValue" min="1" value="25000" step="100">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="insurer">Insurance Company</label>
+                        <select id="insurer">
+                            <option value="iag">IAG Group (NRMA, CGU)</option>
+                            <option value="suncorp">Suncorp (AAMI, GIO)</option>
+                            <option value="allianz">Allianz Australia</option>
+                            <option value="qbe">QBE Insurance</option>
+                            <option value="zurich">Zurich Australia</option>
+                            <option value="youi">Youi</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="claimType">Claim Type</label>
+                        <select id="claimType">
+                            <option value="water">Water Damage</option>
+                            <option value="fire">Fire Damage</option>
+                            <option value="storm">Storm Damage</option>
+                            <option value="impact">Impact Damage</option>
+                            <option value="theft">Theft/Break-in</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency">
+                            <option value="standard">Standard</option>
+                            <option value="urgent">Urgent (safety risk)</option>
+                            <option value="emergency">Emergency (make safe)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="location">Location</label>
+                        <select id="location">
+                            <option value="metro">Metropolitan</option>
+                            <option value="regional">Regional</option>
+                            <option value="remote">Remote/Rural</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="complexity">Work Complexity</label>
+                        <select id="complexity">
+                            <option value="simple">Simple (cosmetic)</option>
+                            <option value="moderate">Moderate (structural)</option>
+                            <option value="complex">Complex (heritage/specialty)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateClaims()">Calculate Processing Details</button>
+
+                <div id="claimsResults" class="results" style="display: none;">
+                    <h4>Claims Processing Analysis</h4>
+                    <div id="claimsBreakdown"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">4. Documentation Requirements</h2>
+
+            <div class="subsection">
+                <h3>Mandatory Documentation for All Claims</h3>
+                <table class="insurer-table">
+                    <thead>
+                        <tr>
+                            <th>Document Type</th>
+                            <th>When Required</th>
+                            <th>Format/Standard</th>
+                            <th>Retention Period</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Certificate of Currency</td>
+                            <td>Before work commencement</td>
+                            <td>PDF from insurer</td>
+                            <td>Duration of work + 7 years</td>
+                        </tr>
+                        <tr>
+                            <td>Trade License/Certification</td>
+                            <td>Contractor verification</td>
+                            <td>Government issued</td>
+                            <td>Current + 7 years</td>
+                        </tr>
+                        <tr>
+                            <td>Scope of Works</td>
+                            <td>Before authorization</td>
+                            <td>Xactimate or equivalent</td>
+                            <td>Permanent</td>
+                        </tr>
+                        <tr>
+                            <td>Progress Photos</td>
+                            <td>Each milestone</td>
+                            <td>High resolution, dated</td>
+                            <td>7 years</td>
+                        </tr>
+                        <tr>
+                            <td>Tax Invoice</td>
+                            <td>Work completion</td>
+                            <td>ATO compliant format</td>
+                            <td>7 years (tax law)</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty Certificate</td>
+                            <td>Final handover</td>
+                            <td>Manufacturer/contractor</td>
+                            <td>Warranty period + 7 years</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert-box danger">
+                <strong>Critical Requirement:</strong> All contractors must maintain current Professional Indemnity insurance minimum $5M and Public Liability minimum $20M as per Australian insurance industry standards. Failure to maintain coverage voids all agreements.
+            </div>
+        </div>
+
+        <div class="assessment-section">
+            <h2 class="section-title">Module Assessment</h2>
+
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>Question 1: Which Australian insurer has the largest market share in 2024?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q1" value="a"> Suncorp Group (23.8%)</li>
+                        <li><input type="radio" name="q1" value="b"> IAG Group (28.3%)</li>
+                        <li><input type="radio" name="q1" value="c"> Allianz Australia (14.2%)</li>
+                        <li><input type="radio" name="q1" value="d"> QBE Insurance (11.7%)</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 2: What is the minimum Public Liability insurance required by most Australian insurers for contractors?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q2" value="a"> $5 million</li>
+                        <li><input type="radio" name="q2" value="b"> $10 million</li>
+                        <li><input type="radio" name="q2" value="c"> $20 million</li>
+                        <li><input type="radio" name="q2" value="d"> $50 million</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 3: Which insurer typically offers the fastest payment processing terms?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q3" value="a"> Allianz (NET 45 days)</li>
+                        <li><input type="radio" name="q3" value="b"> QBE (NET 30 days)</li>
+                        <li><input type="radio" name="q3" value="c"> Zurich (NET 14 days)</li>
+                        <li><input type="radio" name="q3" value="d"> Suncorp (NET 21 days)</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 4: For claims over $10,000, what typically happens within 48-72 hours?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q4" value="a"> Payment is processed</li>
+                        <li><input type="radio" name="q4" value="b"> Loss adjuster site inspection</li>
+                        <li><input type="radio" name="q4" value="c"> Work authorization issued</li>
+                        <li><input type="radio" name="q4" value="d"> Final inspection completed</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 5: How long must contractors retain tax invoices for insurance claims under Australian law?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q5" value="a"> 3 years</li>
+                        <li><input type="radio" name="q5" value="b"> 5 years</li>
+                        <li><input type="radio" name="q5" value="c"> 7 years</li>
+                        <li><input type="radio" name="q5" value="d"> 10 years</li>
+                    </ul>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+            </form>
+
+            <div id="scoreDisplay" class="score-display">
+                <h3>Assessment Results</h3>
+                <p id="scoreText"></p>
+                <p id="passStatus"></p>
+            </div>
+
+            <div id="detailedResults" style="display: none; margin-top: 20px;">
+                <h3>Detailed Answer Explanations</h3>
+                <div id="answerExplanations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateClaims() {
+            const claimValue = parseFloat(document.getElementById('claimValue').value) || 0;
+            const insurer = document.getElementById('insurer').value;
+            const claimType = document.getElementById('claimType').value;
+            const urgency = document.getElementById('urgency').value;
+            const location = document.getElementById('location').value;
+            const complexity = document.getElementById('complexity').value;
+
+            // 2024 Australian insurance processing data
+            const insurerData = {
+                iag: { name: 'IAG Group', baseProcessing: 14, paymentTerms: 30, adminFee: 0.02 },
+                suncorp: { name: 'Suncorp', baseProcessing: 10, paymentTerms: 21, adminFee: 0.015 },
+                allianz: { name: 'Allianz', baseProcessing: 21, paymentTerms: 45, adminFee: 0.025 },
+                qbe: { name: 'QBE', baseProcessing: 28, paymentTerms: 30, adminFee: 0.02 },
+                zurich: { name: 'Zurich', baseProcessing: 14, paymentTerms: 14, adminFee: 0.01 },
+                youi: { name: 'Youi', baseProcessing: 7, paymentTerms: 14, adminFee: 0.01 }
+            };
+
+            const selectedInsurer = insurerData[insurer];
+            let processingDays = selectedInsurer.baseProcessing;
+
+            // Adjust processing time based on factors
+            if (claimValue < 5000) processingDays *= 0.5;
+            else if (claimValue > 100000) processingDays *= 2;
+
+            const urgencyMultiplier = {
+                'standard': 1.0,
+                'urgent': 0.6,
+                'emergency': 0.3
+            };
+
+            const locationMultiplier = {
+                'metro': 1.0,
+                'regional': 1.3,
+                'remote': 1.8
+            };
+
+            const complexityMultiplier = {
+                'simple': 0.8,
+                'moderate': 1.0,
+                'complex': 1.5
+            };
+
+            processingDays *= urgencyMultiplier[urgency];
+            processingDays *= locationMultiplier[location];
+            processingDays *= complexityMultiplier[complexity];
+
+            // Calculate costs
+            const adminFee = claimValue * selectedInsurer.adminFee;
+            const estimatedContractorPayment = claimValue * 0.75; // Typical contractor portion
+            const insurerRetention = claimValue * 0.25; // Insurer admin and profit
+
+            // Determine approval requirements
+            let approvalRequired = 'Standard';
+            if (claimValue > 50000) approvalRequired = 'Senior Management';
+            if (claimValue > 100000) approvalRequired = 'Executive Committee';
+
+            // Display results
+            const resultsDiv = document.getElementById('claimsResults');
+            const breakdownDiv = document.getElementById('claimsBreakdown');
+
+            let breakdownHTML = `
+                <div class="result-item"><span>Processing Insurer</span><span>${selectedInsurer.name}</span></div>
+                <div class="result-item"><span>Estimated Processing Time</span><span>${Math.round(processingDays)} business days</span></div>
+                <div class="result-item"><span>Payment Terms</span><span>NET ${selectedInsurer.paymentTerms} days</span></div>
+                <div class="result-item"><span>Total From Approval to Payment</span><span>${Math.round(processingDays + selectedInsurer.paymentTerms)} days</span></div>
+                <div class="result-item"><span>Approval Level Required</span><span>${approvalRequired}</span></div>
+                <div class="result-item"><span>Administrative Fee</span><span>$${adminFee.toFixed(2)}</span></div>
+                <div class="result-item"><span>Estimated Contractor Payment</span><span>$${estimatedContractorPayment.toFixed(2)}</span></div>
+                <div class="result-item" style="border-top: 2px solid #e67e22; font-weight: bold;"><span>Insurer Retention</span><span>$${insurerRetention.toFixed(2)}</span></div>
+            `;
+
+            // Add recommendations
+            if (urgency === 'emergency') {
+                breakdownHTML += `<div style="margin-top: 15px; padding: 10px; background: #f8d7da; border-radius: 5px;"><strong>Emergency Processing:</strong> Make-safe works can be authorized immediately. Full scope approval will follow standard timeline.</div>`;
+            }
+
+            if (claimValue > 100000) {
+                breakdownHTML += `<div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px;"><strong>Large Claim Notice:</strong> Claims over $100K require additional documentation including engineer reports and detailed progress reporting.</div>`;
+            }
+
+            if (selectedInsurer.adminFee > 0.02) {
+                breakdownHTML += `<div style="margin-top: 15px; padding: 10px; background: #d1ecf1; border-radius: 5px;"><strong>Cost Optimization:</strong> ${selectedInsurer.name} has higher admin fees. Consider negotiating bulk rates for multiple claims.</div>`;
+            }
+
+            breakdownDiv.innerHTML = breakdownHTML;
+            resultsDiv.style.display = 'block';
+        }
+
+        function submitAssessment() {
+            const answers = {
+                q1: 'b', // IAG Group (28.3%)
+                q2: 'c', // $20 million
+                q3: 'c', // Zurich (NET 14 days)
+                q4: 'b', // Loss adjuster site inspection
+                q5: 'c'  // 7 years
+            };
+
+            const explanations = {
+                q1: "IAG Group (Insurance Australia Group) holds the largest market share at 28.3% in 2024, operating brands including NRMA, CGU, SGIO, and SGIC across Australia.",
+                q2: "Most Australian insurers require contractors to maintain minimum $20 million Public Liability insurance. This covers potential damages to third parties during restoration work.",
+                q3: "Zurich Australia offers NET 14 day payment terms, making them one of the fastest-paying insurers in the Australian market for contractor invoices.",
+                q4: "For claims over $10,000, an independent loss adjuster is typically appointed and conducts a site inspection within 48-72 hours to assess damage and determine repair scope.",
+                q5: "Under Australian tax law, contractors must retain tax invoices and related documentation for 7 years. This applies to all business records including insurance claim invoices."
+            };
+
+            let score = 0;
+            let totalQuestions = 5;
+            let detailedHTML = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                const questionDiv = document.querySelector(`input[name="q${i}"]`).closest('.question');
+
+                if (userAnswer && userAnswer.value === answers[`q${i}`]) {
+                    score++;
+                    questionDiv.style.borderLeftColor = '#27ae60';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #d4edda; border-left: 4px solid #27ae60; border-radius: 5px;">
+                        <strong>Question ${i}: Correct ✓</strong><br>
+                        ${explanations[`q${i}`]}
+                    </div>`;
+                } else {
+                    questionDiv.style.borderLeftColor = '#e74c3c';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #f8d7da; border-left: 4px solid #e74c3c; border-radius: 5px;">
+                        <strong>Question ${i}: Incorrect ✗</strong><br>
+                        <strong>Correct Answer:</strong> ${answers[`q${i}`].toUpperCase()}<br>
+                        <strong>Explanation:</strong> ${explanations[`q${i}`]}
+                    </div>`;
+                }
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            const passed = percentage >= 80;
+
+            document.getElementById('scoreText').textContent = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(1)}%)`;
+            document.getElementById('passStatus').textContent = passed ? 'PASSED - You meet the professional competency requirements' : 'FAILED - Please review the material and retake the assessment (80% required)';
+            document.getElementById('passStatus').style.color = passed ? '#27ae60' : '#e74c3c';
+
+            document.getElementById('scoreDisplay').style.display = 'block';
+            document.getElementById('detailedResults').style.display = 'block';
+            document.getElementById('answerExplanations').innerHTML = detailedHTML;
+
+            // Scroll to results
+            document.getElementById('scoreDisplay').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

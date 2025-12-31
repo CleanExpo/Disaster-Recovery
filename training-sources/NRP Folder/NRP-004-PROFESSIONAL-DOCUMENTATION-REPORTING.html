@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-004: Professional Documentation & Reporting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .module-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #e74c3c;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 10px;
+        }
+
+        .form-template {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .form-header {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 6px 6px 0 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .form-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #e74c3c;
+            background: white;
+        }
+
+        .form-field {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-field label {
+            min-width: 180px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-field textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .report-generator {
+            background: #ecf0f1;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .generator-title {
+            color: #e74c3c;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .input-field input,
+        .input-field select,
+        .input-field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus,
+        .input-field textarea:focus {
+            border-color: #e74c3c;
+            outline: none;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .generated-report {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid #27ae60;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .report-header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+
+        .standards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .standards-table th,
+        .standards-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .standards-table th {
+            background-color: #e74c3c;
+            color: white;
+            font-weight: bold;
+        }
+
+        .standards-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .template-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #e74c3c;
+        }
+
+        .template-card h4 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .alert-box.danger {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert-box.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .assessment-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .question h4 {
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .options li {
+            margin: 8px 0;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .download-btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 14px;
+        }
+
+        .download-btn:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+            }
+
+            .template-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-field {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-field label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-004: Professional Documentation & Reporting</h1>
+            <p>Industry-Standard Forms, Templates & Compliance Reporting</p>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">1. Documentation Standards & Requirements</h2>
+
+            <div class="alert-box danger">
+                <strong>Legal Requirement:</strong> All restoration work must be documented according to Australian Standards AS/NZS 3666:2011 and insurance company requirements. Inadequate documentation can void insurance claims and result in legal liability.
+            </div>
+
+            <table class="standards-table">
+                <thead>
+                    <tr>
+                        <th>Document Type</th>
+                        <th>Standard/Requirement</th>
+                        <th>Completion Timeline</th>
+                        <th>Retention Period</th>
+                        <th>Legal Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Initial Assessment Report</td>
+                        <td>IICRC S500/S520 standards</td>
+                        <td>Within 24 hours</td>
+                        <td>7 years</td>
+                        <td>Legally required</td>
+                    </tr>
+                    <tr>
+                        <td>Scope of Works</td>
+                        <td>Xactimate industry standard</td>
+                        <td>Before work commencement</td>
+                        <td>Project completion + 7 years</td>
+                        <td>Contract requirement</td>
+                    </tr>
+                    <tr>
+                        <td>Daily Progress Reports</td>
+                        <td>Insurer specific templates</td>
+                        <td>End of each work day</td>
+                        <td>Project completion + 2 years</td>
+                        <td>Contract requirement</td>
+                    </tr>
+                    <tr>
+                        <td>Completion Certificate</td>
+                        <td>AS/NZS 3666:2011</td>
+                        <td>Project handover</td>
+                        <td>Warranty period + 7 years</td>
+                        <td>Legally required</td>
+                    </tr>
+                    <tr>
+                        <td>Warranty Documentation</td>
+                        <td>Australian Consumer Law</td>
+                        <td>Project handover</td>
+                        <td>Warranty period + 7 years</td>
+                        <td>Legally required</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="template-grid">
+                <div class="template-card">
+                    <h4>Initial Assessment Template</h4>
+                    <p><strong>Purpose:</strong> First on-site evaluation and damage documentation</p>
+                    <p><strong>Sections:</strong> Property details, damage extent, cause identification, safety concerns, preliminary scope</p>
+                    <p><strong>Completion Time:</strong> 30-45 minutes on-site</p>
+                    <button class="download-btn" onclick="generateTemplate('assessment')">Generate Template</button>
+                </div>
+
+                <div class="template-card">
+                    <h4>Scope of Works Template</h4>
+                    <p><strong>Purpose:</strong> Detailed work plan and cost estimation</p>
+                    <p><strong>Sections:</strong> Materials list, labor requirements, timeline, equipment needs, compliance requirements</p>
+                    <p><strong>Completion Time:</strong> 2-4 hours preparation</p>
+                    <button class="download-btn" onclick="generateTemplate('scope')">Generate Template</button>
+                </div>
+
+                <div class="template-card">
+                    <h4>Progress Report Template</h4>
+                    <p><strong>Purpose:</strong> Daily work documentation and milestone tracking</p>
+                    <p><strong>Sections:</strong> Work completed, challenges encountered, next day plans, photo documentation</p>
+                    <p><strong>Completion Time:</strong> 10-15 minutes daily</p>
+                    <button class="download-btn" onclick="generateTemplate('progress')">Generate Template</button>
+                </div>
+
+                <div class="template-card">
+                    <h4>Completion Certificate</h4>
+                    <p><strong>Purpose:</strong> Final handover and compliance verification</p>
+                    <p><strong>Sections:</strong> Work summary, standards compliance, quality verification, warranty terms</p>
+                    <p><strong>Completion Time:</strong> 30 minutes final inspection</p>
+                    <button class="download-btn" onclick="generateTemplate('completion')">Generate Template</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">2. Professional Report Generator</h2>
+
+            <div class="report-generator">
+                <div class="generator-title">Custom Professional Report Builder</div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="reportType">Report Type</label>
+                        <select id="reportType">
+                            <option value="initial">Initial Assessment Report</option>
+                            <option value="progress">Progress Report</option>
+                            <option value="completion">Completion Report</option>
+                            <option value="incident">Incident Report</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="clientName">Client Name</label>
+                        <input type="text" id="clientName" value="Smith Property Holdings Pty Ltd">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="propertyAddress">Property Address</label>
+                        <input type="text" id="propertyAddress" value="123 Collins Street, Melbourne VIC 3000">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="claimNumber">Insurance Claim Number</label>
+                        <input type="text" id="claimNumber" value="IAG-2024-WD-789456">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="inspectorName">Inspector/Technician Name</label>
+                        <input type="text" id="inspectorName" value="John Mitchell">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="inspectionDate">Inspection Date</label>
+                        <input type="date" id="inspectionDate">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="damageType">Damage Type</label>
+                        <select id="damageType">
+                            <option value="water">Water Damage</option>
+                            <option value="fire">Fire Damage</option>
+                            <option value="storm">Storm Damage</option>
+                            <option value="impact">Impact Damage</option>
+                            <option value="mold">Mold Contamination</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="severity">Damage Severity</label>
+                        <select id="severity">
+                            <option value="minor">Minor (cosmetic only)</option>
+                            <option value="moderate">Moderate (structural concern)</option>
+                            <option value="major">Major (extensive damage)</option>
+                            <option value="catastrophic">Catastrophic (rebuild required)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency">
+                            <option value="routine">Routine</option>
+                            <option value="urgent">Urgent (safety concern)</option>
+                            <option value="emergency">Emergency (immediate action)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="findings">Key Findings</label>
+                        <textarea id="findings" rows="4">Significant water damage observed in kitchen and adjacent living areas. Laminate flooring compromised, wall cavities showing moisture penetration. No structural damage identified. Recommend immediate drying and restoration.</textarea>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="recommendations">Recommendations</label>
+                        <textarea id="recommendations" rows="4">1. Immediate water extraction and drying 2. Remove and replace affected flooring 3. Dry wall cavities using professional equipment 4. Monitor for secondary damage 5. Apply antimicrobial treatment</textarea>
+                    </div>
+                </div>
+
+                <button class="generate-btn" onclick="generateReport()">Generate Professional Report</button>
+
+                <div id="generatedReport" class="generated-report" style="display: none;">
+                    <div id="reportContent"></div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button class="download-btn" onclick="downloadReport()">Download PDF</button>
+                        <button class="download-btn" onclick="emailReport()">Email Report</button>
+                        <button class="download-btn" onclick="printReport()">Print Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">3. Professional Form Templates</h2>
+
+            <div class="form-template">
+                <div class="form-header">INITIAL ASSESSMENT REPORT TEMPLATE</div>
+
+                <div class="form-section">
+                    <h4>Property Information</h4>
+                    <div class="form-field">
+                        <label>Property Owner:</label>
+                        <input type="text" placeholder="Full name and contact details">
+                    </div>
+                    <div class="form-field">
+                        <label>Property Address:</label>
+                        <input type="text" placeholder="Complete street address">
+                    </div>
+                    <div class="form-field">
+                        <label>Property Type:</label>
+                        <select>
+                            <option>Residential - House</option>
+                            <option>Residential - Unit/Apartment</option>
+                            <option>Commercial - Office</option>
+                            <option>Commercial - Retail</option>
+                            <option>Industrial</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Year Built:</label>
+                        <input type="number" min="1800" max="2024" placeholder="Year of construction">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>Incident Details</h4>
+                    <div class="form-field">
+                        <label>Date of Loss:</label>
+                        <input type="date">
+                    </div>
+                    <div class="form-field">
+                        <label>Time of Discovery:</label>
+                        <input type="time">
+                    </div>
+                    <div class="form-field">
+                        <label>Cause of Damage:</label>
+                        <select>
+                            <option>Burst pipe</option>
+                            <option>Roof leak</option>
+                            <option>Storm damage</option>
+                            <option>Appliance failure</option>
+                            <option>Sewage backup</option>
+                            <option>Other (specify)</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Weather Conditions:</label>
+                        <input type="text" placeholder="Weather at time of incident">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>Damage Assessment</h4>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="structure">
+                            <label for="structure">Structural Elements</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="flooring">
+                            <label for="flooring">Flooring Materials</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="walls">
+                            <label for="walls">Wall Systems</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ceiling">
+                            <label for="ceiling">Ceiling Materials</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="electrical">
+                            <label for="electrical">Electrical Systems</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="plumbing">
+                            <label for="plumbing">Plumbing Systems</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hvac">
+                            <label for="hvac">HVAC Systems</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="contents">
+                            <label for="contents">Contents/Furniture</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h4>Environmental Readings</h4>
+                    <div class="form-field">
+                        <label>Temperature (°C):</label>
+                        <input type="number" step="0.1" placeholder="Indoor temperature">
+                    </div>
+                    <div class="form-field">
+                        <label>Relative Humidity (%):</label>
+                        <input type="number" min="0" max="100" placeholder="RH percentage">
+                    </div>
+                    <div class="form-field">
+                        <label>Moisture Content (%):</label>
+                        <input type="number" step="0.1" placeholder="Material moisture content">
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box success">
+                <strong>Professional Tip:</strong> Use standardized forms to ensure consistency across all projects. Digital forms with automatic calculations reduce errors and improve efficiency.
+            </div>
+        </div>
+
+        <div class="assessment-section">
+            <h2 class="section-title">Module Assessment</h2>
+
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>Question 1: What is the legal retention period for initial assessment reports in Australia?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q1" value="a"> 3 years</li>
+                        <li><input type="radio" name="q1" value="b"> 5 years</li>
+                        <li><input type="radio" name="q1" value="c"> 7 years</li>
+                        <li><input type="radio" name="q1" value="d"> 10 years</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 2: Which standard governs documentation requirements for restoration work in Australia?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q2" value="a"> AS 1668.2:2012</li>
+                        <li><input type="radio" name="q2" value="b"> AS/NZS 3666:2011</li>
+                        <li><input type="radio" name="q2" value="c"> AS 4964:2004</li>
+                        <li><input type="radio" name="q2" value="d"> AS/NZS 4361.2:2017</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 3: When must the initial assessment report be completed?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q3" value="a"> Within 12 hours</li>
+                        <li><input type="radio" name="q3" value="b"> Within 24 hours</li>
+                        <li><input type="radio" name="q3" value="c"> Within 48 hours</li>
+                        <li><input type="radio" name="q3" value="d"> Within 72 hours</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 4: What industry standard is commonly used for scope of works documentation?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q4" value="a"> IICRC S500</li>
+                        <li><input type="radio" name="q4" value="b"> Xactimate</li>
+                        <li><input type="radio" name="q4" value="c"> AS/NZS 3666</li>
+                        <li><input type="radio" name="q4" value="d"> Australian Consumer Law</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 5: What are the consequences of inadequate documentation?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q5" value="a"> Delayed payments only</li>
+                        <li><input type="radio" name="q5" value="b"> Insurance claim rejection</li>
+                        <li><input type="radio" name="q5" value="c"> Voided insurance claims and legal liability</li>
+                        <li><input type="radio" name="q5" value="d"> Administrative warnings</li>
+                    </ul>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+            </form>
+
+            <div id="scoreDisplay" class="score-display">
+                <h3>Assessment Results</h3>
+                <p id="scoreText"></p>
+                <p id="passStatus"></p>
+            </div>
+
+            <div id="detailedResults" style="display: none; margin-top: 20px;">
+                <h3>Detailed Answer Explanations</h3>
+                <div id="answerExplanations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date as default
+        document.getElementById('inspectionDate').value = new Date().toISOString().split('T')[0];
+
+        function generateTemplate(type) {
+            alert(`Generating ${type} template... This would normally download a professional ${type} template in PDF format.`);
+        }
+
+        function generateReport() {
+            const reportType = document.getElementById('reportType').value;
+            const clientName = document.getElementById('clientName').value;
+            const propertyAddress = document.getElementById('propertyAddress').value;
+            const claimNumber = document.getElementById('claimNumber').value;
+            const inspectorName = document.getElementById('inspectorName').value;
+            const inspectionDate = document.getElementById('inspectionDate').value;
+            const damageType = document.getElementById('damageType').value;
+            const severity = document.getElementById('severity').value;
+            const urgency = document.getElementById('urgency').value;
+            const findings = document.getElementById('findings').value;
+            const recommendations = document.getElementById('recommendations').value;
+
+            const reportTypeNames = {
+                'initial': 'INITIAL ASSESSMENT REPORT',
+                'progress': 'PROGRESS REPORT',
+                'completion': 'COMPLETION REPORT',
+                'incident': 'INCIDENT REPORT'
+            };
+
+            const reportHTML = `
+                <div class="report-header">
+                    ${reportTypeNames[reportType]}<br>
+                    NRP CONTRACTOR SERVICES PTY LTD<br>
+                    ABN: 12 345 678 901
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>REPORT DETAILS</strong><br>
+                    Report Number: NRP-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}<br>
+                    Date of Report: ${new Date().toLocaleDateString('en-AU')}<br>
+                    Inspector: ${inspectorName}<br>
+                    Inspection Date: ${new Date(inspectionDate).toLocaleDateString('en-AU')}
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>CLIENT INFORMATION</strong><br>
+                    Client Name: ${clientName}<br>
+                    Property Address: ${propertyAddress}<br>
+                    Insurance Claim: ${claimNumber}
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>DAMAGE ASSESSMENT</strong><br>
+                    Damage Type: ${damageType.charAt(0).toUpperCase() + damageType.slice(1)} Damage<br>
+                    Severity Level: ${severity.charAt(0).toUpperCase() + severity.slice(1)}<br>
+                    Urgency Classification: ${urgency.charAt(0).toUpperCase() + urgency.slice(1)}
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>FINDINGS</strong><br>
+                    ${findings.split('\n').map(line => line.trim()).filter(line => line).join('<br>')}
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>RECOMMENDATIONS</strong><br>
+                    ${recommendations.split('\n').map(line => line.trim()).filter(line => line).join('<br>')}
+                </div>
+
+                <div style="margin: 30px 0;">
+                    <strong>COMPLIANCE CERTIFICATION</strong><br>
+                    This report has been prepared in accordance with:<br>
+                    • AS/NZS 3666:2011 - Air handling and water systems<br>
+                    • IICRC S500 - Water damage restoration standards<br>
+                    • Australian Consumer Law requirements<br>
+                    • Insurance industry best practices
+                </div>
+
+                <div style="margin: 30px 0; border-top: 2px solid #000; padding-top: 20px;">
+                    <strong>INSPECTOR CERTIFICATION</strong><br>
+                    Inspector: ${inspectorName}<br>
+                    Certification: IICRC Water Damage Restoration Technician<br>
+                    License Number: WRT-${Math.floor(Math.random() * 100000)}<br>
+                    Signature: ________________________<br>
+                    Date: ${new Date().toLocaleDateString('en-AU')}
+                </div>
+
+                <div style="margin: 20px 0; font-size: 10px; text-align: center; color: #666;">
+                    This report is confidential and prepared solely for the addressee. Unauthorized reproduction or distribution is prohibited.<br>
+                    NRP Contractor Services Pty Ltd | Professional Restoration Services<br>
+                    Phone: 1300 NRP HELP | Email: reports@nrpcontractor.com.au
+                </div>
+            `;
+
+            document.getElementById('reportContent').innerHTML = reportHTML;
+            document.getElementById('generatedReport').style.display = 'block';
+
+            // Scroll to report
+            document.getElementById('generatedReport').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function downloadReport() {
+            alert('Report download initiated... This would normally generate a professional PDF report for download.');
+        }
+
+        function emailReport() {
+            alert('Email function activated... This would normally open an email client with the report attached.');
+        }
+
+        function printReport() {
+            window.print();
+        }
+
+        function submitAssessment() {
+            const answers = {
+                q1: 'c', // 7 years
+                q2: 'b', // AS/NZS 3666:2011
+                q3: 'b', // Within 24 hours
+                q4: 'b', // Xactimate
+                q5: 'c'  // Voided insurance claims and legal liability
+            };
+
+            const explanations = {
+                q1: "Initial assessment reports must be retained for 7 years under Australian business record-keeping requirements. This ensures compliance with tax law and insurance claim auditing requirements.",
+                q2: "AS/NZS 3666:2011 is the Australian/New Zealand Standard for air handling and water systems in buildings, which governs documentation requirements for restoration work and environmental control.",
+                q3: "Initial assessment reports must be completed within 24 hours of the initial site inspection to meet insurance company requirements and ensure timely claims processing.",
+                q4: "Xactimate is the industry-standard software for scope of works documentation, cost estimation, and project management used by most major insurance companies and restoration contractors.",
+                q5: "Inadequate documentation can result in voided insurance claims and potential legal liability. Proper documentation is essential for claims approval, compliance verification, and legal protection."
+            };
+
+            let score = 0;
+            let totalQuestions = 5;
+            let detailedHTML = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                const questionDiv = document.querySelector(`input[name="q${i}"]`).closest('.question');
+
+                if (userAnswer && userAnswer.value === answers[`q${i}`]) {
+                    score++;
+                    questionDiv.style.borderLeftColor = '#27ae60';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #d4edda; border-left: 4px solid #27ae60; border-radius: 5px;">
+                        <strong>Question ${i}: Correct ✓</strong><br>
+                        ${explanations[`q${i}`]}
+                    </div>`;
+                } else {
+                    questionDiv.style.borderLeftColor = '#e74c3c';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #f8d7da; border-left: 4px solid #e74c3c; border-radius: 5px;">
+                        <strong>Question ${i}: Incorrect ✗</strong><br>
+                        <strong>Correct Answer:</strong> ${answers[`q${i}`].toUpperCase()}<br>
+                        <strong>Explanation:</strong> ${explanations[`q${i}`]}
+                    </div>`;
+                }
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            const passed = percentage >= 80;
+
+            document.getElementById('scoreText').textContent = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(1)}%)`;
+            document.getElementById('passStatus').textContent = passed ? 'PASSED - You meet the professional competency requirements' : 'FAILED - Please review the material and retake the assessment (80% required)';
+            document.getElementById('passStatus').style.color = passed ? '#27ae60' : '#e74c3c';
+
+            document.getElementById('scoreDisplay').style.display = 'block';
+            document.getElementById('detailedResults').style.display = 'block';
+            document.getElementById('answerExplanations').innerHTML = detailedHTML;
+
+            // Scroll to results
+            document.getElementById('scoreDisplay').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

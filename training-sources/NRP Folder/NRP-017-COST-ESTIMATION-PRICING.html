@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-017: Cost Estimation & Pricing - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+            color: #333;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        .section h2 {
+            color: #d4a017;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 {
+            color: #d4a017;
+            margin-bottom: 10px;
+        }
+        .pricing-icon {
+            width: 60px;
+            height: 60px;
+            background: #ffd700;
+            color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #d4a017;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .info-box {
+            background: #fff9e6;
+            border: 2px solid #ffd700;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .info-box h4 {
+            color: #b8860b;
+            margin-bottom: 10px;
+        }
+        .pricing-structure {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .pricing-tier {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+        }
+        .calculator {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .calculator h3 {
+            color: #d4a017;
+            margin-bottom: 15px;
+        }
+        .calc-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .calc-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        .calc-input input, .calc-input select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .calc-button {
+            background: #ffd700;
+            color: #333;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .calc-button:hover { background: #ffcc00; }
+        .result-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #ffd700;
+        }
+        .profit-analysis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .profit-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        .profit-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .loss-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .markup-table {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .assessment {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .assessment h2 {
+            color: #d4a017;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+        }
+        .question h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .answers label:hover {
+            background: #f0f0f0;
+        }
+        .answers input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-button {
+            background: #ffd700;
+            color: #333;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin: 20px auto;
+        }
+        .submit-button:hover { background: #ffcc00; }
+        .completion-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-017: Cost Estimation & Pricing</h1>
+            <p>Accurate Estimating & Profitable Pricing Strategies</p>
+        </div>
+
+        <div class="section">
+            <h2>Module Overview</h2>
+            <p>Master cost estimation and pricing strategies for restoration projects. Learn accurate estimating techniques, markup calculations, insurance billing, and profit maximisation while maintaining competitiveness in the Australian market.</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="pricing-icon">💰</div>
+                    <h3>Cost Components</h3>
+                    <ul>
+                        <li>Direct labour costs</li>
+                        <li>Materials & supplies</li>
+                        <li>Equipment & rental</li>
+                        <li>Subcontractor costs</li>
+                        <li>Overhead allocation</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="pricing-icon">📈</div>
+                    <h3>Pricing Methods</h3>
+                    <ul>
+                        <li>Time & materials</li>
+                        <li>Fixed price quotes</li>
+                        <li>Unit pricing</li>
+                        <li>Insurance billing</li>
+                        <li>Emergency rates</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="pricing-icon">🎯</div>
+                    <h3>Profit Strategies</h3>
+                    <ul>
+                        <li>Markup calculations</li>
+                        <li>Margin analysis</li>
+                        <li>Value pricing</li>
+                        <li>Scope management</li>
+                        <li>Change orders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2024 Australian Restoration Pricing Guide</h2>
+            <table>
+                <tr>
+                    <th>Service Category</th>
+                    <th>Unit</th>
+                    <th>Low Range</th>
+                    <th>Average</th>
+                    <th>High Range</th>
+                    <th>Emergency Rate</th>
+                </tr>
+                <tr>
+                    <td>Water Extraction</td>
+                    <td>per m²</td>
+                    <td>$35</td>
+                    <td>$45</td>
+                    <td>$65</td>
+                    <td>+75%</td>
+                </tr>
+                <tr>
+                    <td>Structural Drying</td>
+                    <td>per m²/day</td>
+                    <td>$8</td>
+                    <td>$12</td>
+                    <td>$18</td>
+                    <td>+50%</td>
+                </tr>
+                <tr>
+                    <td>Carpet Cleaning</td>
+                    <td>per m²</td>
+                    <td>$3.50</td>
+                    <td>$4.50</td>
+                    <td>$6.50</td>
+                    <td>+50%</td>
+                </tr>
+                <tr>
+                    <td>Mould Remediation</td>
+                    <td>per m²</td>
+                    <td>$85</td>
+                    <td>$125</td>
+                    <td>$185</td>
+                    <td>+100%</td>
+                </tr>
+                <tr>
+                    <td>Fire Damage Clean</td>
+                    <td>per m²</td>
+                    <td>$95</td>
+                    <td>$145</td>
+                    <td>$225</td>
+                    <td>+75%</td>
+                </tr>
+                <tr>
+                    <td>Biohazard Cleanup</td>
+                    <td>per hour</td>
+                    <td>$285</td>
+                    <td>$385</td>
+                    <td>$550</td>
+                    <td>+100%</td>
+                </tr>
+                <tr>
+                    <td>Contents Pack-Out</td>
+                    <td>per room</td>
+                    <td>$850</td>
+                    <td>$1,250</td>
+                    <td>$1,850</td>
+                    <td>+60%</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Labour Cost Breakdown</h2>
+            <div class="pricing-structure">
+                <div class="pricing-tier">
+                    <div>
+                        <h4>Technician Level 1 (Entry)</h4>
+                        <p>Base Rate: $32-38/hour | Charge Rate: $95-110/hour</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Markup: 3.0x</strong>
+                    </div>
+                </div>
+                <div class="pricing-tier">
+                    <div>
+                        <h4>Technician Level 2 (Experienced)</h4>
+                        <p>Base Rate: $38-45/hour | Charge Rate: $125-145/hour</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Markup: 3.3x</strong>
+                    </div>
+                </div>
+                <div class="pricing-tier">
+                    <div>
+                        <h4>Senior Technician/Supervisor</h4>
+                        <p>Base Rate: $45-55/hour | Charge Rate: $165-185/hour</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Markup: 3.5x</strong>
+                    </div>
+                </div>
+                <div class="pricing-tier">
+                    <div>
+                        <h4>Project Manager</h4>
+                        <p>Base Rate: $55-70/hour | Charge Rate: $195-245/hour</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Markup: 3.5x</strong>
+                    </div>
+                </div>
+                <div class="pricing-tier">
+                    <div>
+                        <h4>Specialist (Mould/Biohazard)</h4>
+                        <p>Base Rate: $65-85/hour | Charge Rate: $285-385/hour</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Markup: 4.5x</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Overhead Cost Allocation</h2>
+            <table>
+                <tr>
+                    <th>Overhead Category</th>
+                    <th>% of Revenue</th>
+                    <th>Monthly Cost</th>
+                    <th>Allocation Method</th>
+                </tr>
+                <tr>
+                    <td>Office Rent & Utilities</td>
+                    <td>4-6%</td>
+                    <td>$8,500</td>
+                    <td>Per labour hour</td>
+                </tr>
+                <tr>
+                    <td>Insurance (All types)</td>
+                    <td>8-10%</td>
+                    <td>$18,000</td>
+                    <td>Per job value</td>
+                </tr>
+                <tr>
+                    <td>Vehicle Fleet</td>
+                    <td>5-7%</td>
+                    <td>$12,500</td>
+                    <td>Per kilometre</td>
+                </tr>
+                <tr>
+                    <td>Equipment Maintenance</td>
+                    <td>3-4%</td>
+                    <td>$6,800</td>
+                    <td>Per equipment hour</td>
+                </tr>
+                <tr>
+                    <td>Administration Staff</td>
+                    <td>6-8%</td>
+                    <td>$15,000</td>
+                    <td>Per labour hour</td>
+                </tr>
+                <tr>
+                    <td>Marketing & Sales</td>
+                    <td>3-5%</td>
+                    <td>$7,500</td>
+                    <td>Per new job</td>
+                </tr>
+                <tr>
+                    <td>Professional Services</td>
+                    <td>2-3%</td>
+                    <td>$4,200</td>
+                    <td>Per job</td>
+                </tr>
+                <tr style="font-weight: bold; background: #f8f9fa;">
+                    <td>Total Overhead</td>
+                    <td>31-43%</td>
+                    <td>$72,500</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="calculator">
+            <h3>Comprehensive Job Cost Calculator</h3>
+            <div class="calc-input">
+                <div>
+                    <label>Job Type:</label>
+                    <select id="jobType">
+                        <option value="water">Water Damage</option>
+                        <option value="fire">Fire Damage</option>
+                        <option value="mould">Mould Remediation</option>
+                        <option value="biohazard">Biohazard</option>
+                        <option value="storm">Storm Damage</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Area (m²):</label>
+                    <input type="number" id="area" value="150" min="1">
+                </div>
+                <div>
+                    <label>Labour Hours:</label>
+                    <input type="number" id="labourHours" value="40" min="1">
+                </div>
+                <div>
+                    <label>Number of Technicians:</label>
+                    <input type="number" id="techCount" value="2" min="1">
+                </div>
+                <div>
+                    <label>Materials Cost:</label>
+                    <input type="number" id="materialsCost" value="1200" min="0">
+                </div>
+                <div>
+                    <label>Equipment Days:</label>
+                    <input type="number" id="equipmentDays" value="5" min="0">
+                </div>
+                <div>
+                    <label>Subcontractor Costs:</label>
+                    <input type="number" id="subCosts" value="0" min="0">
+                </div>
+                <div>
+                    <label>Customer Type:</label>
+                    <select id="customerType">
+                        <option value="insurance">Insurance Claim</option>
+                        <option value="commercial">Commercial Direct</option>
+                        <option value="residential">Residential Direct</option>
+                        <option value="government">Government</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Service Level:</label>
+                    <select id="serviceLevel">
+                        <option value="standard">Standard Hours</option>
+                        <option value="afterhours">After Hours</option>
+                        <option value="emergency">Emergency</option>
+                        <option value="cat">CAT Event</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Desired Profit Margin:</label>
+                    <input type="number" id="profitMargin" value="25" min="5" max="50">%
+                </div>
+            </div>
+            <button class="calc-button" onclick="calculateJobCost()">Calculate Complete Pricing</button>
+            <div id="pricingResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Markup vs Margin Quick Reference</h2>
+            <div class="markup-table">
+                <table>
+                    <tr>
+                        <th>Gross Margin %</th>
+                        <th>Markup %</th>
+                        <th>Multiplier</th>
+                        <th>Example: $1,000 Cost</th>
+                    </tr>
+                    <tr>
+                        <td>10%</td>
+                        <td>11.1%</td>
+                        <td>1.11</td>
+                        <td>Sell: $1,111</td>
+                    </tr>
+                    <tr>
+                        <td>15%</td>
+                        <td>17.6%</td>
+                        <td>1.18</td>
+                        <td>Sell: $1,176</td>
+                    </tr>
+                    <tr>
+                        <td>20%</td>
+                        <td>25.0%</td>
+                        <td>1.25</td>
+                        <td>Sell: $1,250</td>
+                    </tr>
+                    <tr style="background: #fff9e6;">
+                        <td><strong>25%</strong></td>
+                        <td><strong>33.3%</strong></td>
+                        <td><strong>1.33</strong></td>
+                        <td><strong>Sell: $1,333</strong></td>
+                    </tr>
+                    <tr>
+                        <td>30%</td>
+                        <td>42.9%</td>
+                        <td>1.43</td>
+                        <td>Sell: $1,429</td>
+                    </tr>
+                    <tr>
+                        <td>35%</td>
+                        <td>53.8%</td>
+                        <td>1.54</td>
+                        <td>Sell: $1,538</td>
+                    </tr>
+                    <tr>
+                        <td>40%</td>
+                        <td>66.7%</td>
+                        <td>1.67</td>
+                        <td>Sell: $1,667</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Insurance Billing Guidelines</h2>
+            <div class="info-box">
+                <h4>💼 Australian Insurance Industry Standards</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Preferred Contractor Rates:</strong> Usually 10-15% below retail</li>
+                    <li><strong>Payment Terms:</strong> 30-60 days typical, 90 days maximum</li>
+                    <li><strong>Documentation Required:</strong> Photos, moisture logs, detailed scope</li>
+                    <li><strong>Code Compliance:</strong> Must reference Australian Standards</li>
+                    <li><strong>Make Safe Limit:</strong> Usually $3,000-5,000 without approval</li>
+                    <li><strong>Variation Process:</strong> Written approval for scope changes >10%</li>
+                    <li><strong>Depreciation:</strong> Applied to contents, not structure</li>
+                </ul>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Major Insurers & Terms</h3>
+                    <ul>
+                        <li><strong>IAG:</strong> 45 days, -12% rates</li>
+                        <li><strong>Suncorp:</strong> 30 days, -10% rates</li>
+                        <li><strong>Allianz:</strong> 60 days, -15% rates</li>
+                        <li><strong>QBE:</strong> 45 days, -10% rates</li>
+                        <li><strong>RACQ:</strong> 30 days, -8% rates</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Pricing Software</h3>
+                    <ul>
+                        <li><strong>Xactimate:</strong> Industry standard</li>
+                        <li><strong>Symbility:</strong> Mobile claims</li>
+                        <li><strong>CoreLogic:</strong> Property data</li>
+                        <li><strong>Scope:</strong> Australian focused</li>
+                        <li><strong>RapidSketch:</strong> Floor plans</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment">
+            <h2>Module Assessment</h2>
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>1. What is the typical markup multiplier for specialist technicians (mould/biohazard)?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q1" value="a"> 2.5x</label>
+                        <label><input type="radio" name="q1" value="b"> 3.0x</label>
+                        <label><input type="radio" name="q1" value="c"> 3.5x</label>
+                        <label><input type="radio" name="q1" value="d"> 4.5x</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>2. If your gross margin target is 25%, what markup percentage should you apply?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q2" value="a"> 25.0%</label>
+                        <label><input type="radio" name="q2" value="b"> 30.0%</label>
+                        <label><input type="radio" name="q2" value="c"> 33.3%</label>
+                        <label><input type="radio" name="q2" value="d"> 40.0%</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>3. What is the typical total overhead percentage range for restoration companies?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q3" value="a"> 15-25%</label>
+                        <label><input type="radio" name="q3" value="b"> 25-30%</label>
+                        <label><input type="radio" name="q3" value="c"> 31-43%</label>
+                        <label><input type="radio" name="q3" value="d"> 45-55%</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>4. What is the typical emergency rate increase for water extraction services?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q4" value="a"> +25%</label>
+                        <label><input type="radio" name="q4" value="b"> +50%</label>
+                        <label><input type="radio" name="q4" value="c"> +75%</label>
+                        <label><input type="radio" name="q4" value="d"> +100%</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>5. What is the industry standard software for insurance pricing in restoration?</h4>
+                    <div class="answers">
+                        <label><input type="radio" name="q5" value="a"> Symbility</label>
+                        <label><input type="radio" name="q5" value="b"> Xactimate</label>
+                        <label><input type="radio" name="q5" value="c"> CoreLogic</label>
+                        <label><input type="radio" name="q5" value="d"> RapidSketch</label>
+                    </div>
+                </div>
+            </form>
+            <button class="submit-button" onclick="checkAnswers()">Submit Assessment</button>
+            <div id="assessmentResult"></div>
+        </div>
+
+        <div class="completion-message" style="display: none;">
+            <h2>🎉 Module Completed!</h2>
+            <p>You have successfully completed the Cost Estimation & Pricing training module.</p>
+            <p>You now have the skills to accurately estimate costs and price restoration projects profitably.</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateJobCost() {
+            const jobType = document.getElementById('jobType').value;
+            const area = parseFloat(document.getElementById('area').value);
+            const labourHours = parseFloat(document.getElementById('labourHours').value);
+            const techCount = parseInt(document.getElementById('techCount').value);
+            const materialsCost = parseFloat(document.getElementById('materialsCost').value);
+            const equipmentDays = parseFloat(document.getElementById('equipmentDays').value);
+            const subCosts = parseFloat(document.getElementById('subCosts').value);
+            const customerType = document.getElementById('customerType').value;
+            const serviceLevel = document.getElementById('serviceLevel').value;
+            const profitMargin = parseFloat(document.getElementById('profitMargin').value);
+
+            // Base labour rates
+            const labourRate = 137.50; // Average charge rate
+
+            // Service level multipliers
+            const serviceMultipliers = {
+                'standard': 1.0,
+                'afterhours': 1.5,
+                'emergency': 1.75,
+                'cat': 2.0
+            };
+
+            // Customer type adjustments
+            const customerAdjustments = {
+                'insurance': 0.88,  // 12% discount
+                'commercial': 0.95, // 5% discount
+                'residential': 1.0,  // Full rate
+                'government': 0.92  // 8% discount
+            };
+
+            // Equipment daily rates
+            const equipmentRate = 385; // Average for standard package
+
+            // Calculate direct costs
+            const labourCost = labourHours * techCount * labourRate * serviceMultipliers[serviceLevel];
+            const equipmentCost = equipmentDays * equipmentRate;
+            const directCosts = labourCost + materialsCost + equipmentCost + subCosts;
+
+            // Calculate overhead (35% average)
+            const overheadCost = directCosts * 0.35;
+
+            // Total cost
+            const totalCost = directCosts + overheadCost;
+
+            // Apply markup for desired margin
+            // Margin = (Price - Cost) / Price
+            // Therefore: Price = Cost / (1 - Margin)
+            const markup = 1 / (1 - profitMargin/100);
+            const basePrice = totalCost * markup;
+
+            // Apply customer adjustment
+            const finalPrice = basePrice * customerAdjustments[customerType];
+
+            // Calculate actual margin after customer adjustment
+            const actualProfit = finalPrice - totalCost;
+            const actualMargin = (actualProfit / finalPrice) * 100;
+
+            // Break-even analysis
+            const breakEven = totalCost;
+            const minPrice = totalCost * 1.1; // 10% minimum margin
+
+            // Generate comprehensive pricing report
+            const resultHTML = `
+                <div class="result-box">
+                    <h3>Complete Pricing Analysis</h3>
+
+                    <h4 style="margin-top: 20px; color: #d4a017;">Direct Costs Breakdown:</h4>
+                    <table style="width: 100%; margin-top: 10px;">
+                        <tr><td>Labour (${labourHours}hrs × ${techCount} techs):</td><td style="text-align: right;">$${labourCost.toFixed(2)}</td></tr>
+                        <tr><td>Materials & Supplies:</td><td style="text-align: right;">$${materialsCost.toFixed(2)}</td></tr>
+                        <tr><td>Equipment Rental (${equipmentDays} days):</td><td style="text-align: right;">$${equipmentCost.toFixed(2)}</td></tr>
+                        <tr><td>Subcontractor Costs:</td><td style="text-align: right;">$${subCosts.toFixed(2)}</td></tr>
+                        <tr style="border-top: 1px solid #ddd; font-weight: bold;">
+                            <td>Total Direct Costs:</td>
+                            <td style="text-align: right;">$${directCosts.toFixed(2)}</td>
+                        </tr>
+                    </table>
+
+                    <h4 style="margin-top: 20px; color: #d4a017;">Overhead Allocation (35%):</h4>
+                    <table style="width: 100%; margin-top: 10px;">
+                        <tr><td>Administrative:</td><td style="text-align: right;">$${(overheadCost * 0.25).toFixed(2)}</td></tr>
+                        <tr><td>Insurance & Compliance:</td><td style="text-align: right;">$${(overheadCost * 0.30).toFixed(2)}</td></tr>
+                        <tr><td>Vehicles & Equipment:</td><td style="text-align: right;">$${(overheadCost * 0.25).toFixed(2)}</td></tr>
+                        <tr><td>Facilities & Other:</td><td style="text-align: right;">$${(overheadCost * 0.20).toFixed(2)}</td></tr>
+                        <tr style="border-top: 1px solid #ddd; font-weight: bold;">
+                            <td>Total Overhead:</td>
+                            <td style="text-align: right;">$${overheadCost.toFixed(2)}</td>
+                        </tr>
+                    </table>
+
+                    <div style="margin-top: 20px; padding: 15px; background: #fff9e6; border-radius: 5px;">
+                        <h4>Pricing Calculation:</h4>
+                        <table style="width: 100%; margin-top: 10px;">
+                            <tr><td>Total Cost (Direct + Overhead):</td><td style="text-align: right;">$${totalCost.toFixed(2)}</td></tr>
+                            <tr><td>Target Margin (${profitMargin}%):</td><td style="text-align: right;">×${markup.toFixed(2)}</td></tr>
+                            <tr><td>Base Selling Price:</td><td style="text-align: right;">$${basePrice.toFixed(2)}</td></tr>
+                            <tr><td>${customerType} Adjustment:</td><td style="text-align: right;">${((customerAdjustments[customerType]-1)*100).toFixed(0)}%</td></tr>
+                            <tr style="border-top: 2px solid #ffd700; font-size: 1.2em; color: #d4a017;">
+                                <td><strong>FINAL QUOTE PRICE:</strong></td>
+                                <td style="text-align: right;"><strong>$${finalPrice.toFixed(2)}</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="profit-analysis">
+                        <div class="profit-card">
+                            <div class="${actualProfit > 0 ? 'profit-value' : 'loss-value'}">$${actualProfit.toFixed(0)}</div>
+                            <div>Net Profit</div>
+                        </div>
+                        <div class="profit-card">
+                            <div class="${actualMargin > 15 ? 'profit-value' : 'loss-value'}">${actualMargin.toFixed(1)}%</div>
+                            <div>Actual Margin</div>
+                        </div>
+                        <div class="profit-card">
+                            <div style="color: #3498db; font-size: 28px; font-weight: bold;">$${(finalPrice/area).toFixed(2)}</div>
+                            <div>Price per m²</div>
+                        </div>
+                        <div class="profit-card">
+                            <div style="color: #9b59b6; font-size: 28px; font-weight: bold;">$${(finalPrice/(labourHours*techCount)).toFixed(2)}</div>
+                            <div>Per Labour Hour</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 5px;">
+                        <h4>Pricing Recommendations:</h4>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Break-even Price:</strong> $${breakEven.toFixed(2)}</li>
+                            <li><strong>Minimum Viable Price (10% margin):</strong> $${minPrice.toFixed(2)}</li>
+                            <li><strong>Market Competitive Range:</strong> $${(finalPrice*0.9).toFixed(2)} - $${(finalPrice*1.1).toFixed(2)}</li>
+                            <li><strong>Service Level:</strong> ${serviceLevel === 'emergency' ? 'Emergency rates applied (+75%)' : serviceLevel === 'afterhours' ? 'After hours rates (+50%)' : 'Standard rates'}</li>
+                            <li><strong>Payment Terms:</strong> ${customerType === 'insurance' ? '45-60 days' : customerType === 'government' ? '30 days' : 'Net 14 days'}</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('pricingResult').innerHTML = resultHTML;
+        }
+
+        function checkAnswers() {
+            const answers = {
+                q1: 'd', // 4.5x for specialists
+                q2: 'c', // 33.3% markup for 25% margin
+                q3: 'c', // 31-43% overhead
+                q4: 'c', // +75% emergency water extraction
+                q5: 'b'  // Xactimate industry standard
+            };
+
+            let score = 0;
+            let feedback = '<div class="result-box"><h3>Assessment Results</h3>';
+
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                    feedback += `<p style="color: green;">✓ Question ${i}: Correct</p>`;
+                } else {
+                    feedback += `<p style="color: red;">✗ Question ${i}: Incorrect</p>`;
+                }
+            }
+
+            feedback += `<h4 style="margin-top: 20px;">Score: ${score}/5 (${score*20}%)</h4>`;
+
+            if (score === 5) {
+                feedback += '<p style="color: green; font-weight: bold;">Excellent! You have mastered cost estimation and pricing strategies.</p>';
+                document.querySelector('.completion-message').style.display = 'block';
+            } else if (score >= 3) {
+                feedback += '<p style="color: orange; font-weight: bold;">Good effort! Review the incorrect answers and try again.</p>';
+            } else {
+                feedback += '<p style="color: red; font-weight: bold;">Please review the module content before attempting again.</p>';
+            }
+
+            // Add correct answers explanation
+            feedback += '<div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">';
+            feedback += '<h4>Correct Answers:</h4>';
+            feedback += '<p><strong>Q1:</strong> 4.5x - Specialist technicians have the highest markup multiplier</p>';
+            feedback += '<p><strong>Q2:</strong> 33.3% - To achieve 25% gross margin, apply 33.3% markup</p>';
+            feedback += '<p><strong>Q3:</strong> 31-43% - Typical total overhead range for restoration companies</p>';
+            feedback += '<p><strong>Q4:</strong> +75% - Emergency rate increase for water extraction services</p>';
+            feedback += '<p><strong>Q5:</strong> Xactimate - Industry standard software for insurance pricing</p>';
+            feedback += '</div>';
+
+            feedback += '</div>';
+
+            document.getElementById('assessmentResult').innerHTML = feedback;
+        }
+    </script>
+</body>
+</html>

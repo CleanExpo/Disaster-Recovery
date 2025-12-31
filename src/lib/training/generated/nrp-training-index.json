@@ -1,0 +1,430 @@
+{
+  "generatedAt": "2025-12-31T17:52:15.727Z",
+  "sources": [
+    {
+      "path": "training-sources/NRP Folder/NRP_Complete_Training_Summary.md",
+      "sha256": "d43b92aa853ea95575108b92ae482495acee4ff4483b51b12129194960bce13f",
+      "bytes": 8154
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP_Training_Module_Tracker.csv",
+      "sha256": "c1f1b4616eb9a21db1b282c8fc2fbab19c4454be8a6a8e3131e3cb64fdcd8a55",
+      "bytes": 2923
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-001-COMPLETE-REAL-MODULE.html",
+      "sha256": "3e50a14463ef81d87e33bc87457454aa60b0e6b14084983f656d42cb7ffb9453",
+      "bytes": 27215
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-002-ENVIRONMENTAL-ASSESSMENT-TESTING.html",
+      "sha256": "662b11d799d41af4d719181b52e5f889357caf482eafb758ee4265caa9b5bcd5",
+      "bytes": 30050
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-003-INSURANCE-CLAIMS-MANAGEMENT.html",
+      "sha256": "598482a0d2b3ade2187d51ee3e43fad5273bf41e3e1c573709a08efd4191a83d",
+      "bytes": 36409
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-004-PROFESSIONAL-DOCUMENTATION-REPORTING.html",
+      "sha256": "1f854d1d63a7cc9c5f4e62bfe8da66dcdfb61a3f5bbc7c741c9b3c583b842ef6",
+      "bytes": 39493
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-005-HEALTH-SAFETY-COMPLIANCE.html",
+      "sha256": "606595e7c1f8ac8179ea468daf41a6970314af801bd9378858d14cc93376e60c",
+      "bytes": 36702
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-006-STRUCTURAL-DRYING-DEHUMIDIFICATION.html",
+      "sha256": "6352495878104b7e1cf36f075e5ce0f4ba9e6ddae23418fad28875f51b84fff0",
+      "bytes": 35007
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-007-MOLD-REMEDIATION-PROTOCOLS.html",
+      "sha256": "0c3f72382ab309c663a3f3537a272d7894e3d957e17e6af7b1bde8fe45933040",
+      "bytes": 35534
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-008-FIRE-SMOKE-DAMAGE-RESTORATION.html",
+      "sha256": "4f8651e9e6a677fe58a15607c6ecb5a56492a75828e283e082b379b402af82af",
+      "bytes": 35326
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-009-CONTENTS-RESTORATION-PACK-OUT.html",
+      "sha256": "99dd5cc5dfdfd2e2f4621f09ffc3ed20499808cf040b53d3f621bee3e629aeef",
+      "bytes": 37794
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-010-BIOHAZARD-TRAUMA-CLEANUP.html",
+      "sha256": "d9d460881f762b810124549f852254916658b76edb45f26a16051dffce1b634e",
+      "bytes": 35271
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-011-CARPET-UPHOLSTERY-CLEANING.html",
+      "sha256": "bf88b3c0835219b731390f1669ebc640173fab768129db78a062290cd3f31557",
+      "bytes": 38657
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-012-ODOUR-CONTROL-DEODORISATION.html",
+      "sha256": "fcd6d15845d23f579317977cd598ed24594616c7501b6c1e728d6a73e72bfdc5",
+      "bytes": 37800
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-012-WATER-DAMAGE-COMPLETE.html",
+      "sha256": "5d1df2f6d4e2b4d778c5cdba91d71f70eba2cf4eb3fbaedfc6f720ea2415c34c",
+      "bytes": 35696
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-013-EMERGENCY-RESPONSE-PROCEDURES.html",
+      "sha256": "3baf3fae5d25527418dd19edb0e2bec8fd0d9e78bb6e2863db1cf1ac5ddb7853",
+      "bytes": 38003
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-014-EQUIPMENT-MANAGEMENT-MAINTENANCE.html",
+      "sha256": "7f8cc3ef1431ef3056dbbb8e685eb3aae94e42a17700f98cd23a57fe3dfdfd29",
+      "bytes": 38832
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-015-CUSTOMER-SERVICE-EXCELLENCE.html",
+      "sha256": "73a233468c70e3296a2f6316bc42729abab2337d8e5daacfdcc12a9573d1a35e",
+      "bytes": 35798
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-016-PROJECT-MANAGEMENT-SCHEDULING.html",
+      "sha256": "7a7375eae7cc613715c4ed1437dcc1dd2b796e1429142b2b63d117f3a47fbe2f",
+      "bytes": 39853
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-017-COST-ESTIMATION-PRICING.html",
+      "sha256": "66c5b31ce4743501434bc712eb3dfa0a08d85626b19afb5ad757373f34caf07d",
+      "bytes": 38438
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-018-QUALITY-ASSURANCE-CONTROL.html",
+      "sha256": "767b731450766129af46ff60dce264989b61a343d36cc377e315afeb110378d6",
+      "bytes": 42408
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-019-BUSINESS-DEVELOPMENT-MARKETING.html",
+      "sha256": "36a1aeef9726ed7e84181bd47052065d9262edcc6fa7cb03e6c5aa8490851c39",
+      "bytes": 38843
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-020-ADVANCED-RESTORATION-TECHNOLOGIES.html",
+      "sha256": "f7f616a7106a7db4167b14bfc187e1215d35dbd155b3e0ec799c0b9e447d05fb",
+      "bytes": 42649
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-Certificate-Template.html",
+      "sha256": "81052abffbab4297504c25d7e0cba9f532fdeb3deebdcfe64e974a1b31690485",
+      "bytes": 16378
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-Complete-Quiz-System.html",
+      "sha256": "aa08987bda788257b2647f86c2fc290553225547efa7358f2ec2e37239f07faf",
+      "bytes": 98678
+    },
+    {
+      "path": "training-sources/NRP Folder/NRP-TEST-CONNECTION-${Date.now()}.txt",
+      "sha256": "6680b684287af4c0759a63a04deb8787b227951c4264d361260ce8cff7e35b15",
+      "bytes": 772
+    }
+  ],
+  "modules": [
+    {
+      "moduleId": "NRP-001",
+      "moduleNumber": 1,
+      "title": "NRP-001: Membership Registration - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-001-COMPLETE-REAL-MODULE.html",
+      "sourceSha256": "3e50a14463ef81d87e33bc87457454aa60b0e6b14084983f656d42cb7ffb9453"
+    },
+    {
+      "moduleId": "NRP-002",
+      "moduleNumber": 2,
+      "title": "NRP-002: Environmental Assessment & Testing",
+      "sourcePath": "training-sources/NRP Folder/NRP-002-ENVIRONMENTAL-ASSESSMENT-TESTING.html",
+      "sourceSha256": "662b11d799d41af4d719181b52e5f889357caf482eafb758ee4265caa9b5bcd5"
+    },
+    {
+      "moduleId": "NRP-003",
+      "moduleNumber": 3,
+      "title": "NRP-003: Insurance & Claims Management",
+      "sourcePath": "training-sources/NRP Folder/NRP-003-INSURANCE-CLAIMS-MANAGEMENT.html",
+      "sourceSha256": "598482a0d2b3ade2187d51ee3e43fad5273bf41e3e1c573709a08efd4191a83d"
+    },
+    {
+      "moduleId": "NRP-004",
+      "moduleNumber": 4,
+      "title": "NRP-004: Professional Documentation & Reporting",
+      "sourcePath": "training-sources/NRP Folder/NRP-004-PROFESSIONAL-DOCUMENTATION-REPORTING.html",
+      "sourceSha256": "1f854d1d63a7cc9c5f4e62bfe8da66dcdfb61a3f5bbc7c741c9b3c583b842ef6"
+    },
+    {
+      "moduleId": "NRP-005",
+      "moduleNumber": 5,
+      "title": "NRP-005: Health & Safety Compliance",
+      "sourcePath": "training-sources/NRP Folder/NRP-005-HEALTH-SAFETY-COMPLIANCE.html",
+      "sourceSha256": "606595e7c1f8ac8179ea468daf41a6970314af801bd9378858d14cc93376e60c"
+    },
+    {
+      "moduleId": "NRP-006",
+      "moduleNumber": 6,
+      "title": "NRP-006: Structural Drying & Dehumidification",
+      "sourcePath": "training-sources/NRP Folder/NRP-006-STRUCTURAL-DRYING-DEHUMIDIFICATION.html",
+      "sourceSha256": "6352495878104b7e1cf36f075e5ce0f4ba9e6ddae23418fad28875f51b84fff0"
+    },
+    {
+      "moduleId": "NRP-007",
+      "moduleNumber": 7,
+      "title": "NRP-007: Mould Remediation Protocols",
+      "sourcePath": "training-sources/NRP Folder/NRP-007-MOLD-REMEDIATION-PROTOCOLS.html",
+      "sourceSha256": "0c3f72382ab309c663a3f3537a272d7894e3d957e17e6af7b1bde8fe45933040"
+    },
+    {
+      "moduleId": "NRP-008",
+      "moduleNumber": 8,
+      "title": "NRP-008: Fire & Smoke Damage Restoration",
+      "sourcePath": "training-sources/NRP Folder/NRP-008-FIRE-SMOKE-DAMAGE-RESTORATION.html",
+      "sourceSha256": "4f8651e9e6a677fe58a15607c6ecb5a56492a75828e283e082b379b402af82af"
+    },
+    {
+      "moduleId": "NRP-009",
+      "moduleNumber": 9,
+      "title": "NRP-009: Contents Restoration & Pack-Out",
+      "sourcePath": "training-sources/NRP Folder/NRP-009-CONTENTS-RESTORATION-PACK-OUT.html",
+      "sourceSha256": "99dd5cc5dfdfd2e2f4621f09ffc3ed20499808cf040b53d3f621bee3e629aeef"
+    },
+    {
+      "moduleId": "NRP-010",
+      "moduleNumber": 10,
+      "title": "NRP-010: Biohazard & Trauma Cleanup - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-010-BIOHAZARD-TRAUMA-CLEANUP.html",
+      "sourceSha256": "d9d460881f762b810124549f852254916658b76edb45f26a16051dffce1b634e"
+    },
+    {
+      "moduleId": "NRP-011",
+      "moduleNumber": 11,
+      "title": "NRP-011: Carpet & Upholstery Cleaning - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-011-CARPET-UPHOLSTERY-CLEANING.html",
+      "sourceSha256": "bf88b3c0835219b731390f1669ebc640173fab768129db78a062290cd3f31557"
+    },
+    {
+      "moduleId": "NRP-012",
+      "moduleNumber": 12,
+      "title": "NRP-012: Odour Control & Deodorisation - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-012-ODOUR-CONTROL-DEODORISATION.html",
+      "sourceSha256": "fcd6d15845d23f579317977cd598ed24594616c7501b6c1e728d6a73e72bfdc5"
+    },
+    {
+      "moduleId": "NRP-012",
+      "moduleNumber": 12,
+      "title": "NRP-012: Water Damage Restoration Mastery - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-012-WATER-DAMAGE-COMPLETE.html",
+      "sourceSha256": "5d1df2f6d4e2b4d778c5cdba91d71f70eba2cf4eb3fbaedfc6f720ea2415c34c"
+    },
+    {
+      "moduleId": "NRP-013",
+      "moduleNumber": 13,
+      "title": "NRP-013: Emergency Response Procedures - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-013-EMERGENCY-RESPONSE-PROCEDURES.html",
+      "sourceSha256": "3baf3fae5d25527418dd19edb0e2bec8fd0d9e78bb6e2863db1cf1ac5ddb7853"
+    },
+    {
+      "moduleId": "NRP-014",
+      "moduleNumber": 14,
+      "title": "NRP-014: Equipment Management & Maintenance - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-014-EQUIPMENT-MANAGEMENT-MAINTENANCE.html",
+      "sourceSha256": "7f8cc3ef1431ef3056dbbb8e685eb3aae94e42a17700f98cd23a57fe3dfdfd29"
+    },
+    {
+      "moduleId": "NRP-015",
+      "moduleNumber": 15,
+      "title": "NRP-015: Customer Service Excellence - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-015-CUSTOMER-SERVICE-EXCELLENCE.html",
+      "sourceSha256": "73a233468c70e3296a2f6316bc42729abab2337d8e5daacfdcc12a9573d1a35e"
+    },
+    {
+      "moduleId": "NRP-016",
+      "moduleNumber": 16,
+      "title": "NRP-016: Project Management & Scheduling - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-016-PROJECT-MANAGEMENT-SCHEDULING.html",
+      "sourceSha256": "7a7375eae7cc613715c4ed1437dcc1dd2b796e1429142b2b63d117f3a47fbe2f"
+    },
+    {
+      "moduleId": "NRP-017",
+      "moduleNumber": 17,
+      "title": "NRP-017: Cost Estimation & Pricing - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-017-COST-ESTIMATION-PRICING.html",
+      "sourceSha256": "66c5b31ce4743501434bc712eb3dfa0a08d85626b19afb5ad757373f34caf07d"
+    },
+    {
+      "moduleId": "NRP-018",
+      "moduleNumber": 18,
+      "title": "NRP-018: Quality Assurance & Control - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-018-QUALITY-ASSURANCE-CONTROL.html",
+      "sourceSha256": "767b731450766129af46ff60dce264989b61a343d36cc377e315afeb110378d6"
+    },
+    {
+      "moduleId": "NRP-019",
+      "moduleNumber": 19,
+      "title": "NRP-019: Business Development & Marketing - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-019-BUSINESS-DEVELOPMENT-MARKETING.html",
+      "sourceSha256": "36a1aeef9726ed7e84181bd47052065d9262edcc6fa7cb03e6c5aa8490851c39"
+    },
+    {
+      "moduleId": "NRP-020",
+      "moduleNumber": 20,
+      "title": "NRP-020: Advanced Restoration Technologies - Complete Training Module",
+      "sourcePath": "training-sources/NRP Folder/NRP-020-ADVANCED-RESTORATION-TECHNOLOGIES.html",
+      "sourceSha256": "f7f616a7106a7db4167b14bfc187e1215d35dbd155b3e0ec799c0b9e447d05fb"
+    }
+  ],
+  "quiz": {
+    "sourcePath": "training-sources/NRP Folder/NRP-Complete-Quiz-System.html",
+    "sourceSha256": "aa08987bda788257b2647f86c2fc290553225547efa7358f2ec2e37239f07faf",
+    "modules": [
+      {
+        "moduleId": "NRP-001",
+        "moduleNumber": 1,
+        "name": "Module 1: Introduction to Water Damage Restoration",
+        "description": "Foundation concepts of water damage assessment and restoration",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-002",
+        "moduleNumber": 2,
+        "name": "Module 2: Environmental Assessment & Testing",
+        "description": "Professional testing procedures and environmental monitoring",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-003",
+        "moduleNumber": 3,
+        "name": "Module 3: Mould Remediation Fundamentals",
+        "description": "Comprehensive mould identification and remediation procedures",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-004",
+        "moduleNumber": 4,
+        "name": "Module 4: Fire & Smoke Damage Restoration",
+        "description": "Fire damage assessment and restoration techniques",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-005",
+        "moduleNumber": 5,
+        "name": "Module 5: Biohazard & Trauma Cleanup",
+        "description": "Specialised biohazard remediation and safety protocols",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-006",
+        "moduleNumber": 6,
+        "name": "Module 6: Drying Equipment & Psychrometry",
+        "description": "Advanced understanding of drying science and equipment",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-007",
+        "moduleNumber": 7,
+        "name": "Module 7: Contents Restoration & Pack-Out",
+        "description": "Professional contents handling and restoration",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-008",
+        "moduleNumber": 8,
+        "name": "Module 8: Structural Drying & Dehumidification",
+        "description": "Advanced structural drying techniques",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-009",
+        "moduleNumber": 9,
+        "name": "Module 9: Environmental Monitoring & Testing",
+        "description": "Professional monitoring and documentation",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-010",
+        "moduleNumber": 10,
+        "name": "Module 10: Documentation & Reporting",
+        "description": "Professional documentation and insurance procedures",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-011",
+        "moduleNumber": 11,
+        "name": "Module 11: Insurance Relations & Claims",
+        "description": "Insurance processes and adjuster relations",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-012",
+        "moduleNumber": 12,
+        "name": "Module 12: Health & Safety Protocols",
+        "description": "WHS compliance and safety management",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-013",
+        "moduleNumber": 13,
+        "name": "Module 13: Emergency Response Procedures",
+        "description": "24/7 response protocols and crisis management",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-014",
+        "moduleNumber": 14,
+        "name": "Module 14: Customer Communication Excellence",
+        "description": "Professional communication and customer service",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-015",
+        "moduleNumber": 15,
+        "name": "Module 15: Equipment Maintenance & Care",
+        "description": "Equipment management and maintenance procedures",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-016",
+        "moduleNumber": 16,
+        "name": "Module 16: Project Management & Scheduling",
+        "description": "Multi-project coordination and resource management",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-017",
+        "moduleNumber": 17,
+        "name": "Module 17: Cost Estimation & Pricing",
+        "description": "Accurate job costing and pricing strategies",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-018",
+        "moduleNumber": 18,
+        "name": "Module 18: Quality Assurance & Control",
+        "description": "Quality management systems and procedures",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-019",
+        "moduleNumber": 19,
+        "name": "Module 19: Business Development & Marketing",
+        "description": "Strategic growth and relationship building",
+        "questionCount": 5
+      },
+      {
+        "moduleId": "NRP-020",
+        "moduleNumber": 20,
+        "name": "Module 20: Advanced Restoration Technologies",
+        "description": "Emerging technologies and industry innovation",
+        "questionCount": 5
+      }
+    ]
+  }
+}

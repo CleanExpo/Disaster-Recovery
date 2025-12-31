@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP Professional Restoration Certificate</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .certificate-container {
+            width: 297mm;
+            height: 210mm;
+            background: white;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .certificate-border {
+            position: absolute;
+            inset: 20px;
+            border: 3px solid #1e3a8a;
+            background: white;
+        }
+
+        .certificate-inner-border {
+            position: absolute;
+            inset: 30px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .certificate-content {
+            position: relative;
+            padding: 60px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(248,250,252,0.5));
+        }
+
+        .certificate-header {
+            margin-bottom: 2rem;
+        }
+
+        .certificate-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #1e3a8a, #3730a3);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
+        }
+
+        .organisation-name {
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-title {
+            font-size: 3rem;
+            color: #1e293b;
+            margin: 1rem 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .certificate-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .recipient-section {
+            margin: 2rem 0;
+        }
+
+        .presented-to {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .recipient-name {
+            font-size: 3rem;
+            color: #1e3a8a;
+            font-weight: bold;
+            border-bottom: 2px solid #1e3a8a;
+            display: inline-block;
+            padding: 0 2rem 0.5rem;
+            margin: 1rem 0;
+            min-width: 400px;
+        }
+
+        .completion-text {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 1.5rem auto;
+        }
+
+        .course-details {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .course-name {
+            font-size: 1.25rem;
+            color: #1e293b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .signatures-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            padding: 0 4rem;
+        }
+
+        .signature-block {
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 2px solid #cbd5e1;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.75rem;
+            color: #1e3a8a;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .signature-name {
+            font-size: 1rem;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .signature-title {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .certificate-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            right: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .certificate-id {
+            font-family: 'Courier New', monospace;
+        }
+
+        .certification-date {
+            font-weight: 600;
+        }
+
+        .validation-qr {
+            width: 60px;
+            height: 60px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 10rem;
+            color: rgba(30, 58, 138, 0.05);
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .certificate-seal {
+            position: absolute;
+            bottom: 100px;
+            right: 100px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
+            transform: rotate(-15deg);
+        }
+
+        .seal-inner {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #f59e0b;
+        }
+
+        .seal-text {
+            font-size: 0.75rem;
+            color: #92400e;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 40px;
+            right: -40px;
+            background: #dc2626;
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .certificate-container {
+                box-shadow: none;
+            }
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: #1e3a8a;
+            color: white;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .certificate-container {
+                transform: scale(0.7);
+                transform-origin: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="control-btn" onclick="printCertificate()">Print Certificate</button>
+        <button class="control-btn" onclick="downloadPDF()">Download PDF</button>
+        <button class="control-btn" onclick="editDetails()">Edit Details</button>
+    </div>
+
+    <div class="certificate-container">
+        <div class="certificate-border"></div>
+        <div class="certificate-inner-border"></div>
+        <div class="watermark">CERTIFIED</div>
+        <div class="ribbon">OFFICIAL</div>
+
+        <div class="certificate-content">
+            <div class="certificate-header">
+                <div class="certificate-logo">NRP</div>
+                <div class="organisation-name">National Restoration Professionals</div>
+            </div>
+
+            <h1 class="certificate-title">Certificate of Completion</h1>
+            <p class="certificate-subtitle">Professional Restoration Training Programme</p>
+
+            <div class="recipient-section">
+                <p class="presented-to">This certificate is presented to</p>
+                <h2 class="recipient-name" id="recipientName">John Alexander Doe</h2>
+            </div>
+
+            <p class="completion-text">
+                For successfully completing the comprehensive 20-module
+                National Restoration Professionals training programme,
+                demonstrating proficiency in water damage restoration,
+                mould remediation, fire restoration, and advanced restoration technologies
+                in accordance with IICRC standards and Australian regulations.
+            </p>
+
+            <div class="course-details">
+                <div class="course-name">NRP Contractor Certification Programme</div>
+                <div class="course-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">20</div>
+                        <div class="stat-label">Modules</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">22</div>
+                        <div class="stat-label">Hours</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="finalScore">95%</div>
+                        <div class="stat-label">Final Score</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="signatures-section">
+                <div class="signature-block">
+                    <div class="signature-line">
+                        <span class="signature">Michael Thompson</span>
+                    </div>
+                    <div class="signature-name">Michael Thompson</div>
+                    <div class="signature-title">Director of Training</div>
+                </div>
+                <div class="signature-block">
+                    <div class="signature-line">
+                        <span class="signature">Sarah Mitchell</span>
+                    </div>
+                    <div class="signature-name">Sarah Mitchell</div>
+                    <div class="signature-title">Chief Executive Officer</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="certificate-seal">
+            <div class="seal-inner">
+                <div class="seal-text">
+                    CERTIFIED<br>
+                    2024<br>
+                    AUSTRALIA
+                </div>
+            </div>
+        </div>
+
+        <div class="certificate-footer">
+            <div class="certificate-id">Certificate ID: NRP-2024-<span id="certId">001234</span></div>
+            <div class="certification-date">Date Issued: <span id="issueDate">20 September 2024</span></div>
+            <div class="validation-qr">[QR Code]</div>
+        </div>
+    </div>
+
+    <script>
+        // Generate unique certificate ID
+        function generateCertificateId() {
+            const id = Math.floor(Math.random() * 900000) + 100000;
+            document.getElementById('certId').textContent = id;
+        }
+
+        // Set current date
+        function setCurrentDate() {
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('issueDate').textContent = date.toLocaleDateString('en-AU', options);
+        }
+
+        // Load recipient data from localStorage
+        function loadRecipientData() {
+            const studentName = localStorage.getItem('studentName');
+            const finalScore = localStorage.getItem('nrpFinalScore');
+
+            if (studentName) {
+                document.getElementById('recipientName').textContent = studentName;
+            }
+
+            if (finalScore) {
+                document.getElementById('finalScore').textContent = finalScore + '%';
+            }
+        }
+
+        // Print certificate
+        function printCertificate() {
+            window.print();
+        }
+
+        // Download as PDF (placeholder - would need server-side or library)
+        function downloadPDF() {
+            alert('PDF download requires server-side generation or a PDF library. For now, use Print → Save as PDF.');
+        }
+
+        // Edit certificate details
+        function editDetails() {
+            const name = prompt('Enter recipient name:', document.getElementById('recipientName').textContent);
+            if (name) {
+                document.getElementById('recipientName').textContent = name;
+                localStorage.setItem('studentName', name);
+            }
+
+            const score = prompt('Enter final score (0-100):', document.getElementById('finalScore').textContent.replace('%', ''));
+            if (score && !isNaN(score) && score >= 0 && score <= 100) {
+                document.getElementById('finalScore').textContent = score + '%';
+                localStorage.setItem('nrpFinalScore', score);
+            }
+        }
+
+        // URL parameters for dynamic certificate generation
+        function loadFromURL() {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.has('name')) {
+                document.getElementById('recipientName').textContent = params.get('name');
+            }
+
+            if (params.has('score')) {
+                document.getElementById('finalScore').textContent = params.get('score') + '%';
+            }
+
+            if (params.has('date')) {
+                document.getElementById('issueDate').textContent = params.get('date');
+            }
+
+            if (params.has('id')) {
+                document.getElementById('certId').textContent = params.get('id');
+            }
+        }
+
+        // Initialize certificate
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCertificateId();
+            setCurrentDate();
+            loadRecipientData();
+            loadFromURL();
+        });
+    </script>
+</body>
+</html>

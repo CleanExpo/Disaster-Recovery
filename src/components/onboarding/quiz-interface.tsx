@@ -21,8 +21,9 @@ import {
 interface Question {
   question: string;
   options: string[];
-  correct: string;
+  correct: number;
   explanation: string;
+  reference?: string;
 }
 
 interface QuizInterfaceProps {
@@ -36,7 +37,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
   const [quiz, setQuiz] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(1800); // 30 minutes
@@ -78,8 +79,10 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
     }
   }, [submitted, timeRemaining]);
 
-  const handleAnswerSelect = (answer: string) => {
-    setAnswers({ ...answers, [currentQuestion]: answer });
+  const handleAnswerSelect = (answerIndex: string) => {
+    const parsed = Number.parseInt(answerIndex, 10);
+    if (!Number.isFinite(parsed)) return;
+    setAnswers({ ...answers, [currentQuestion]: parsed });
   };
 
   const handleNext = () => {
@@ -240,6 +243,9 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
               {quiz.questions.map((q: Question, index: number) => {
                 const userAnswer = answers[index];
                 const isCorrect = userAnswer === q.correct;
+                const userAnswerText =
+                  typeof userAnswer === 'number' ? (q.options[userAnswer] ?? '') : '';
+                const correctAnswerText = q.options[q.correct] ?? '';
 
                 return (
                   <Card key={index} className={isCorrect ? 'border-green-500' : 'border-red-500'}>
@@ -257,14 +263,17 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                           <p className="text-sm">
                             <span className="text-muted-foreground">Your answer: </span>
                             <span className={isCorrect ? 'text-green-600' : 'text-red-600'}>
-                              {userAnswer || 'Not answered'}
+                              {userAnswerText || 'Not answered'}
                             </span>
                           </p>
                           {!isCorrect && (
                             <p className="text-sm mt-1">
                               <span className="text-muted-foreground">Correct answer: </span>
-                              <span className="text-green-600">{q.correct}</span>
+                              <span className="text-green-600">{correctAnswerText}</span>
                             </p>
+                          )}
+                          {q.reference && (
+                            <p className="text-xs text-muted-foreground mt-1">Reference: {q.reference}</p>
                           )}
                           <p className="text-sm text-muted-foreground mt-2 italic">
                             {q.explanation}
@@ -333,7 +342,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
             <h3 className="text-lg font-semibold mb-4">{question.question}</h3>
 
             <RadioGroup
-              value={answers[currentQuestion] || ''}
+              value={typeof answers[currentQuestion] === 'number' ? String(answers[currentQuestion]) : ''}
               onValueChange={handleAnswerSelect}
               className="space-y-3"
             >
@@ -341,12 +350,12 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                 <div
                   key={index}
                   className={`flex items-center space-x-2 rounded-lg border p-4 cursor-pointer transition-colors ${
-                    answers[currentQuestion] === option
+                    answers[currentQuestion] === index
                       ? 'border-primary bg-primary/5'
                       : 'hover:bg-muted/50'
                   }`}
                 >
-                  <RadioGroupItem value={option} id={`option-${index}`} />
+                  <RadioGroupItem value={String(index)} id={`option-${index}`} />
                   <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
                     {option}
                   </Label>
@@ -366,7 +375,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                   className={`h-2 w-8 rounded-full ${
                     index === currentQuestion
                       ? 'bg-primary'
-                      : answers[index]
+                      : typeof answers[index] === 'number'
                       ? 'bg-green-500'
                       : 'bg-gray-200'
                   }`}

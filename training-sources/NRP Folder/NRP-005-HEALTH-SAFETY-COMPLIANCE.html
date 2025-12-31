@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-005: Health & Safety Compliance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .module-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #ff6b35;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #f7931e;
+            padding-bottom: 10px;
+        }
+
+        .whs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .whs-table th,
+        .whs-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .whs-table th {
+            background-color: #ff6b35;
+            color: white;
+            font-weight: bold;
+        }
+
+        .whs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .risk-calculator {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .calculator-title {
+            color: #ff6b35;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        .input-field input,
+        .input-field select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus {
+            border-color: #ff6b35;
+            outline: none;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .risk-results {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .risk-level {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .risk-low {
+            background: #d4edda;
+            color: #155724;
+            border-left: 5px solid #28a745;
+        }
+
+        .risk-medium {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 5px solid #ffc107;
+        }
+
+        .risk-high {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 5px solid #dc3545;
+        }
+
+        .risk-extreme {
+            background: #f5c6cb;
+            color: #721c24;
+            border-left: 5px solid #6f42c1;
+        }
+
+        .ppe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .ppe-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #ff6b35;
+        }
+
+        .ppe-card h4 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .compliance-checklist {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .alert-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .alert-box.danger {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert-box.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .assessment-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .question h4 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .options li {
+            margin: 8px 0;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .penalty-box {
+            background: #6f42c1;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+            }
+
+            .ppe-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NRP-005: Health & Safety Compliance</h1>
+            <p>Australian WHS Requirements & Safety Management Systems</p>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">1. Australian Work Health & Safety Overview</h2>
+
+            <div class="alert-box danger">
+                <strong>Legal Requirement:</strong> Under the Work Health and Safety Act 2011, all businesses have a legal duty of care to ensure workplace safety. Penalties for breaches can reach $3.3 million for corporations and $660,000 for individuals, plus potential jail time for serious breaches.
+            </div>
+
+            <table class="whs-table">
+                <thead>
+                    <tr>
+                        <th>WHS Requirement</th>
+                        <th>Legal Framework</th>
+                        <th>Maximum Penalty (Corp)</th>
+                        <th>Maximum Penalty (Individual)</th>
+                        <th>Enforcement Agency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Duty of Care (Primary)</td>
+                        <td>WHS Act 2011 - Section 19</td>
+                        <td>$3,300,000</td>
+                        <td>$660,000 + 5 years jail</td>
+                        <td>SafeWork Australia</td>
+                    </tr>
+                    <tr>
+                        <td>PPE Provision</td>
+                        <td>WHS Regulation 2011 - Part 3.1</td>
+                        <td>$660,000</td>
+                        <td>$132,000</td>
+                        <td>State/Territory WHS</td>
+                    </tr>
+                    <tr>
+                        <td>Hazardous Substances</td>
+                        <td>WHS Regulation 2011 - Chapter 7</td>
+                        <td>$1,650,000</td>
+                        <td>$330,000 + 2 years jail</td>
+                        <td>State/Territory WHS</td>
+                    </tr>
+                    <tr>
+                        <td>Training & Supervision</td>
+                        <td>WHS Act 2011 - Section 19(3)</td>
+                        <td>$660,000</td>
+                        <td>$132,000</td>
+                        <td>State/Territory WHS</td>
+                    </tr>
+                    <tr>
+                        <td>Incident Reporting</td>
+                        <td>WHS Act 2011 - Section 38</td>
+                        <td>$132,000</td>
+                        <td>$26,400</td>
+                        <td>State/Territory WHS</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="penalty-box">
+                2024 Penalty Rates: Category 1: $3.3M/$660K | Category 2: $1.65M/$330K | Category 3: $660K/$132K | Category 4: $132K/$26.4K
+            </div>
+
+            <h3>State-Specific WHS Agencies (2024)</h3>
+            <div class="ppe-grid">
+                <div class="ppe-card">
+                    <h4>SafeWork NSW</h4>
+                    <p><strong>Website:</strong> safework.nsw.gov.au</p>
+                    <p><strong>Phone:</strong> 13 10 50</p>
+                    <p><strong>Jurisdiction:</strong> New South Wales</p>
+                    <p><strong>Key Focus:</strong> Construction, manufacturing, high-risk work</p>
+                </div>
+
+                <div class="ppe-card">
+                    <h4>WorkSafe Victoria</h4>
+                    <p><strong>Website:</strong> worksafe.vic.gov.au</p>
+                    <p><strong>Phone:</strong> 1800 136 089</p>
+                    <p><strong>Jurisdiction:</strong> Victoria</p>
+                    <p><strong>Key Focus:</strong> Mental health, dangerous goods, OHS</p>
+                </div>
+
+                <div class="ppe-card">
+                    <h4>Workplace Health & Safety QLD</h4>
+                    <p><strong>Website:</strong> worksafe.qld.gov.au</p>
+                    <p><strong>Phone:</strong> 1300 362 128</p>
+                    <p><strong>Jurisdiction:</strong> Queensland</p>
+                    <p><strong>Key Focus:</strong> High-risk construction work licensing</p>
+                </div>
+
+                <div class="ppe-card">
+                    <h4>SafeWork SA</h4>
+                    <p><strong>Website:</strong> safework.sa.gov.au</p>
+                    <p><strong>Phone:</strong> 1300 365 255</p>
+                    <p><strong>Jurisdiction:</strong> South Australia</p>
+                    <p><strong>Key Focus:</strong> Hazardous chemicals, plant safety</p>
+                </div>
+
+                <div class="ppe-card">
+                    <h4>WorkSafe WA</h4>
+                    <p><strong>Website:</strong> worksafe.wa.gov.au</p>
+                    <p><strong>Phone:</strong> 1300 307 877</p>
+                    <p><strong>Jurisdiction:</strong> Western Australia</p>
+                    <p><strong>Key Focus:</strong> Mining safety, electrical safety</p>
+                </div>
+
+                <div class="ppe-card">
+                    <h4>WorkSafe Tasmania</h4>
+                    <p><strong>Website:</strong> worksafe.tas.gov.au</p>
+                    <p><strong>Phone:</strong> 1300 366 322</p>
+                    <p><strong>Jurisdiction:</strong> Tasmania</p>
+                    <p><strong>Key Focus:</strong> Agriculture, forestry safety</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">2. Risk Assessment Calculator</h2>
+
+            <div class="risk-calculator">
+                <div class="calculator-title">Australian Standard Risk Assessment Tool (AS/NZS ISO 31000:2018)</div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="hazardType">Hazard Type</label>
+                        <select id="hazardType">
+                            <option value="chemical">Chemical Exposure</option>
+                            <option value="physical">Physical Hazard</option>
+                            <option value="biological">Biological Agent</option>
+                            <option value="ergonomic">Ergonomic Risk</option>
+                            <option value="psychosocial">Psychosocial Risk</option>
+                            <option value="electrical">Electrical Hazard</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="likelihood">Likelihood of Occurrence</label>
+                        <select id="likelihood">
+                            <option value="1">1 - Rare (less than 1 in 1000)</option>
+                            <option value="2">2 - Unlikely (1 in 100 to 1 in 1000)</option>
+                            <option value="3">3 - Possible (1 in 10 to 1 in 100)</option>
+                            <option value="4">4 - Likely (1 in 10 to greater)</option>
+                            <option value="5">5 - Almost Certain (expected)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="consequence">Consequence Severity</label>
+                        <select id="consequence">
+                            <option value="1">1 - Insignificant (no injury)</option>
+                            <option value="2">2 - Minor (first aid only)</option>
+                            <option value="3">3 - Moderate (medical treatment)</option>
+                            <option value="4">4 - Major (serious injury/illness)</option>
+                            <option value="5">5 - Catastrophic (death/permanent disability)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="exposure">Exposure Frequency</label>
+                        <select id="exposure">
+                            <option value="1">Rarely (less than monthly)</option>
+                            <option value="2">Occasionally (monthly)</option>
+                            <option value="3">Sometimes (weekly)</option>
+                            <option value="4">Frequently (daily)</option>
+                            <option value="5">Continuously (hourly)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="peopleAtRisk">Number of People at Risk</label>
+                        <select id="peopleAtRisk">
+                            <option value="1">1 person</option>
+                            <option value="2">2-5 people</option>
+                            <option value="3">6-15 people</option>
+                            <option value="4">16-50 people</option>
+                            <option value="5">More than 50 people</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="controlMeasures">Existing Control Measures</label>
+                        <select id="controlMeasures">
+                            <option value="5">None in place</option>
+                            <option value="4">Minimal controls</option>
+                            <option value="3">Some controls</option>
+                            <option value="2">Good controls</option>
+                            <option value="1">Excellent controls</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateRisk()">Calculate Risk Level</button>
+
+                <div id="riskResults" class="risk-results" style="display: none;">
+                    <h4>Risk Assessment Results</h4>
+                    <div id="riskLevel"></div>
+                    <div id="riskRecommendations"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">3. Personal Protective Equipment (PPE) Requirements</h2>
+
+            <table class="whs-table">
+                <thead>
+                    <tr>
+                        <th>Work Activity</th>
+                        <th>Required PPE</th>
+                        <th>Australian Standard</th>
+                        <th>Replacement Schedule</th>
+                        <th>Average Cost (AUD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Water Damage Restoration</td>
+                        <td>P2 mask, waterproof gloves, safety boots, coveralls</td>
+                        <td>AS/NZS 1716:2012, AS/NZS 2161.10.15:2005</td>
+                        <td>Mask: daily, Gloves: per job, Boots: 6 months</td>
+                        <td>$45-80 per set</td>
+                    </tr>
+                    <tr>
+                        <td>Asbestos Removal (Class B)</td>
+                        <td>Full-face P3 respirator, disposable coveralls, gloves</td>
+                        <td>AS/NZS 1716:2012, AS/NZS 4123:2014</td>
+                        <td>Single use (except respirator)</td>
+                        <td>$120-200 per set</td>
+                    </tr>
+                    <tr>
+                        <td>Chemical Handling</td>
+                        <td>Chemical resistant gloves, apron, safety glasses</td>
+                        <td>AS/NZS 2161.10.1-10.15:2005</td>
+                        <td>Per chemical compatibility</td>
+                        <td>$35-65 per set</td>
+                    </tr>
+                    <tr>
+                        <td>Electrical Work</td>
+                        <td>Insulated gloves, arc flash suit, safety helmet</td>
+                        <td>AS/NZS 2381:2000, AS/NZS 1801:1997</td>
+                        <td>Gloves: 6 months, Suit: annual test</td>
+                        <td>$180-350 per set</td>
+                    </tr>
+                    <tr>
+                        <td>General Construction</td>
+                        <td>Hard hat, safety boots, high-vis vest, safety glasses</td>
+                        <td>AS/NZS 1801:1997, AS/NZS 4602.1:2011</td>
+                        <td>Hard hat: 5 years, Boots: 12 months</td>
+                        <td>$75-120 per set</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box success">
+                <strong>PPE Selection Hierarchy:</strong> AS/NZS 4801:2001 requires selection based on hazard assessment. Always choose PPE with current Australian Standards certification and ensure proper fit testing for respiratory protection.
+            </div>
+        </div>
+
+        <div class="module-content">
+            <h2 class="section-title">4. WHS Compliance Checklist</h2>
+
+            <div class="compliance-checklist">
+                <h3>Daily Safety Requirements</h3>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="toolbox1">
+                    <label for="toolbox1">Toolbox talk conducted and documented</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="ppe1">
+                    <label for="ppe1">PPE inspected and worn correctly by all workers</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="hazard1">
+                    <label for="hazard1">Site hazard identification completed</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="emergency1">
+                    <label for="emergency1">Emergency procedures reviewed and accessible</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="incident1">
+                    <label for="incident1">Incident reporting system active and accessible</label>
+                </div>
+
+                <h3>Weekly Safety Requirements</h3>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="inspection1">
+                    <label for="inspection1">Safety equipment inspection and maintenance</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="training1">
+                    <label for="training1">Worker competency verification</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="swms1">
+                    <label for="swms1">Safe Work Method Statements (SWMS) reviewed</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="consultation1">
+                    <label for="consultation1">Worker consultation on safety matters</label>
+                </div>
+
+                <h3>Monthly Safety Requirements</h3>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="audit1">
+                    <label for="audit1">Internal safety audit conducted</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="stats1">
+                    <label for="stats1">Safety statistics reviewed and reported</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="improvement1">
+                    <label for="improvement1">Safety improvement actions implemented</label>
+                </div>
+
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="calculate-btn" onclick="checkCompliance()">Check Compliance Status</button>
+                </div>
+
+                <div id="complianceResults" style="display: none; margin-top: 20px;"></div>
+            </div>
+        </div>
+
+        <div class="assessment-section">
+            <h2 class="section-title">Module Assessment</h2>
+
+            <form id="assessmentForm">
+                <div class="question">
+                    <h4>Question 1: What is the maximum penalty for a corporation under Category 1 WHS breaches in Australia (2024)?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q1" value="a"> $1,650,000</li>
+                        <li><input type="radio" name="q1" value="b"> $3,300,000</li>
+                        <li><input type="radio" name="q1" value="c"> $660,000</li>
+                        <li><input type="radio" name="q1" value="d"> $132,000</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 2: Which Australian Standard governs risk management principles?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q2" value="a"> AS/NZS 4801:2001</li>
+                        <li><input type="radio" name="q2" value="b"> AS/NZS ISO 31000:2018</li>
+                        <li><input type="radio" name="q2" value="c"> AS/NZS 1716:2012</li>
+                        <li><input type="radio" name="q2" value="d"> AS/NZS 4602.1:2011</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 3: What type of respirator is required for Class B asbestos removal work?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q3" value="a"> P1 dust mask</li>
+                        <li><input type="radio" name="q3" value="b"> P2 respirator</li>
+                        <li><input type="radio" name="q3" value="c"> Full-face P3 respirator</li>
+                        <li><input type="radio" name="q3" value="d"> Air-supplied respirator</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 4: Under the WHS Act 2011, who has the primary duty of care?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q4" value="a"> Workers only</li>
+                        <li><input type="radio" name="q4" value="b"> SafeWork Australia</li>
+                        <li><input type="radio" name="q4" value="c"> Person conducting a business or undertaking (PCBU)</li>
+                        <li><input type="radio" name="q4" value="d"> Safety representatives</li>
+                    </ul>
+                </div>
+
+                <div class="question">
+                    <h4>Question 5: How often must hard hats be replaced according to Australian Standards?</h4>
+                    <ul class="options">
+                        <li><input type="radio" name="q5" value="a"> Every 2 years</li>
+                        <li><input type="radio" name="q5" value="b"> Every 5 years</li>
+                        <li><input type="radio" name="q5" value="c"> Every 10 years</li>
+                        <li><input type="radio" name="q5" value="d"> When damaged only</li>
+                    </ul>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="submitAssessment()">Submit Assessment</button>
+            </form>
+
+            <div id="scoreDisplay" class="score-display">
+                <h3>Assessment Results</h3>
+                <p id="scoreText"></p>
+                <p id="passStatus"></p>
+            </div>
+
+            <div id="detailedResults" style="display: none; margin-top: 20px;">
+                <h3>Detailed Answer Explanations</h3>
+                <div id="answerExplanations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateRisk() {
+            const hazardType = document.getElementById('hazardType').value;
+            const likelihood = parseInt(document.getElementById('likelihood').value);
+            const consequence = parseInt(document.getElementById('consequence').value);
+            const exposure = parseInt(document.getElementById('exposure').value);
+            const people = parseInt(document.getElementById('peopleAtRisk').value);
+            const controls = parseInt(document.getElementById('controlMeasures').value);
+
+            // AS/NZS ISO 31000:2018 risk calculation
+            const baseRisk = likelihood * consequence;
+            const adjustedRisk = baseRisk * (exposure / 3) * (people / 3) * (controls / 3);
+
+            let riskLevel, riskClass, recommendations;
+
+            if (adjustedRisk <= 4) {
+                riskLevel = "LOW RISK";
+                riskClass = "risk-low";
+                recommendations = "• Continue current controls<br>• Monitor effectiveness<br>• Review annually<br>• Document risk assessment";
+            } else if (adjustedRisk <= 9) {
+                riskLevel = "MEDIUM RISK";
+                riskClass = "risk-medium";
+                recommendations = "• Implement additional controls<br>• Increase monitoring frequency<br>• Provide additional training<br>• Review controls every 6 months";
+            } else if (adjustedRisk <= 16) {
+                riskLevel = "HIGH RISK";
+                riskClass = "risk-high";
+                recommendations = "• Implement immediate controls<br>• Stop work if necessary<br>• Management approval required<br>• Weekly monitoring required<br>• Specialist consultation recommended";
+            } else {
+                riskLevel = "EXTREME RISK";
+                riskClass = "risk-extreme";
+                recommendations = "• STOP WORK IMMEDIATELY<br>• Senior management notification<br>• Specialist risk assessment required<br>• Engineering controls mandatory<br>• Daily safety briefings<br>• Consider alternative methods";
+            }
+
+            document.getElementById('riskLevel').innerHTML = `<div class="risk-level ${riskClass}">Risk Score: ${adjustedRisk.toFixed(1)} - ${riskLevel}</div>`;
+            document.getElementById('riskRecommendations').innerHTML = `<h5>Required Actions:</h5>${recommendations}`;
+            document.getElementById('riskResults').style.display = 'block';
+        }
+
+        function checkCompliance() {
+            const checkboxes = document.querySelectorAll('.compliance-checklist input[type="checkbox"]');
+            const total = checkboxes.length;
+            let checked = 0;
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) checked++;
+            });
+
+            const percentage = (checked / total) * 100;
+            let status, statusClass, message;
+
+            if (percentage >= 95) {
+                status = "EXCELLENT COMPLIANCE";
+                statusClass = "risk-low";
+                message = "Outstanding safety performance. Continue current practices.";
+            } else if (percentage >= 80) {
+                status = "GOOD COMPLIANCE";
+                statusClass = "risk-medium";
+                message = "Good safety standards. Address remaining items for full compliance.";
+            } else if (percentage >= 60) {
+                status = "POOR COMPLIANCE";
+                statusClass = "risk-high";
+                message = "Significant compliance gaps. Immediate action required.";
+            } else {
+                status = "CRITICAL NON-COMPLIANCE";
+                statusClass = "risk-extreme";
+                message = "Serious safety violations. Work must stop until compliance achieved.";
+            }
+
+            document.getElementById('complianceResults').innerHTML = `
+                <div class="risk-level ${statusClass}">
+                    Compliance Score: ${checked}/${total} (${percentage.toFixed(1)}%)<br>
+                    ${status}
+                </div>
+                <p style="margin-top: 15px; font-weight: bold;">${message}</p>
+            `;
+            document.getElementById('complianceResults').style.display = 'block';
+        }
+
+        function submitAssessment() {
+            const answers = {
+                q1: 'b', // $3,300,000
+                q2: 'b', // AS/NZS ISO 31000:2018
+                q3: 'c', // Full-face P3 respirator
+                q4: 'c', // Person conducting a business or undertaking (PCBU)
+                q5: 'b'  // Every 5 years
+            };
+
+            const explanations = {
+                q1: "The maximum penalty for Category 1 WHS breaches is $3,300,000 for corporations under the 2024 penalty rates. These apply to the most serious breaches that result in death or serious injury.",
+                q2: "AS/NZS ISO 31000:2018 is the Australian/New Zealand Standard for risk management principles and guidelines. It provides the framework for systematic risk assessment and management.",
+                q3: "Class B asbestos removal work requires a full-face P3 respirator as per AS/NZS 1716:2012. This provides the highest level of respiratory protection against asbestos fibers.",
+                q4: "Under Section 19 of the WHS Act 2011, the Person Conducting a Business or Undertaking (PCBU) has the primary duty of care to ensure workplace health and safety.",
+                q5: "AS/NZS 1801:1997 specifies that hard hats must be replaced every 5 years from the date of manufacture, or sooner if damaged, to maintain protection standards."
+            };
+
+            let score = 0;
+            let totalQuestions = 5;
+            let detailedHTML = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                const questionDiv = document.querySelector(`input[name="q${i}"]`).closest('.question');
+
+                if (userAnswer && userAnswer.value === answers[`q${i}`]) {
+                    score++;
+                    questionDiv.style.borderLeftColor = '#27ae60';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #d4edda; border-left: 4px solid #27ae60; border-radius: 5px;">
+                        <strong>Question ${i}: Correct ✓</strong><br>
+                        ${explanations[`q${i}`]}
+                    </div>`;
+                } else {
+                    questionDiv.style.borderLeftColor = '#e74c3c';
+                    detailedHTML += `<div style="margin-bottom: 20px; padding: 15px; background: #f8d7da; border-left: 4px solid #e74c3c; border-radius: 5px;">
+                        <strong>Question ${i}: Incorrect ✗</strong><br>
+                        <strong>Correct Answer:</strong> ${answers[`q${i}`].toUpperCase()}<br>
+                        <strong>Explanation:</strong> ${explanations[`q${i}`]}
+                    </div>`;
+                }
+            }
+
+            const percentage = (score / totalQuestions) * 100;
+            const passed = percentage >= 80;
+
+            document.getElementById('scoreText').textContent = `You scored ${score} out of ${totalQuestions} (${percentage.toFixed(1)}%)`;
+            document.getElementById('passStatus').textContent = passed ? 'PASSED - You meet the professional competency requirements' : 'FAILED - Please review the material and retake the assessment (80% required)';
+            document.getElementById('passStatus').style.color = passed ? '#27ae60' : '#e74c3c';
+
+            document.getElementById('scoreDisplay').style.display = 'block';
+            document.getElementById('detailedResults').style.display = 'block';
+            document.getElementById('answerExplanations').innerHTML = detailedHTML;
+
+            // Scroll to results
+            document.getElementById('scoreDisplay').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

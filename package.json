@@ -52,6 +52,7 @@
     "gemini:all": "node scripts/generate-all-gemini-assets.js",
     "gemini:remaining": "node scripts/generate-remaining-assets.js",
     "gemini:videos": "node scripts/generate-gemini-videos.js",
+    "training:build:nrp": "node scripts/training/build-nrp-training.js",
     "seo:pillars": "node scripts/generate-pillar-pages.js",
     "gemini:test": "ts-node -e \"require('./lib/services/gemini-image.service').geminiImageService.testConnection()\"",
     "postinstall": "prisma generate"
