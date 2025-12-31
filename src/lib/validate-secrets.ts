@@ -16,6 +16,7 @@ export function validateSecrets(): void {
     'ANTHROPIC_API_KEY',
     'OPENAI_API_KEY',
     'STRIPE_SECRET_KEY',
+    'STRIPE_WEBHOOK_SECRET',
     'STRIPE_PUBLISHABLE_KEY',
     'EXA_API_KEY',
     'TWILIO_ACCOUNT_SID',
