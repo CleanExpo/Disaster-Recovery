@@ -150,11 +150,14 @@ export function SearchBar() {
                   key={idx}
                   id={`search-suggestion-${idx}`}
                   role="option"
+                  aria-selected={idx === highlightedIndex}
                   onClick={() => {
                     handleQueryChange(suggestion.text);
                     setShowSuggestions(false);
                   }}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 text-sm"
+                  className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 text-sm ${
+                    idx === highlightedIndex ? 'bg-gray-100' : ''
+                  }`}
                 >
                   {suggestion.type === 'recent' && (
                     <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
