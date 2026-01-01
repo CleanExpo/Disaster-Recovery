@@ -140,23 +140,30 @@ export function SearchBar() {
         aria-atomic="true"
         className="sr-only"
       >
-        {showSuggestions && suggestions.length > 0
-          ? `${suggestions.length} suggestion${suggestions.length === 1 ? '' : 's'} available`
-          : ''
+        {showSuggestions && isLoadingSuggestions
+          ? 'Loading suggestions'
+          : showSuggestions && suggestions.length > 0
+            ? `${suggestions.length} suggestion${suggestions.length === 1 ? '' : 's'} available`
+            : ''
         }
       </div>
 
       {/* Suggestions Dropdown */}
-      {showSuggestions && suggestions.length > 0 && (
+      {showSuggestions && (isLoadingSuggestions || suggestions.length > 0) && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
-          {isLoadingSuggestions && (
+          {isLoadingSuggestions && suggestions.length === 0 && (
             <div className="p-4 text-center text-gray-500 text-sm">
               Loading suggestions...
             </div>
           )}
 
-          {!isLoadingSuggestions && suggestions.length > 0 && (
-            <ul className="py-2" role="listbox" id="search-suggestions-listbox">
+          {suggestions.length > 0 && (
+            <ul
+              className="py-2"
+              role="listbox"
+              id="search-suggestions-listbox"
+              aria-busy={isLoadingSuggestions}
+            >
               {suggestions.map((suggestion, idx) => (
                 <li
                   key={idx}
