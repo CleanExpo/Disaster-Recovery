@@ -65,6 +65,7 @@ export function SearchBar() {
               setShowSuggestions(false);
             }}
             className="text-gray-400 hover:text-gray-600"
+            aria-label="Clear search"
           >
             ✕
           </button>
