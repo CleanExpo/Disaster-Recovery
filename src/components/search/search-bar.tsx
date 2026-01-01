@@ -55,6 +55,7 @@ export function SearchBar() {
           aria-expanded={showSuggestions && suggestions.length > 0}
           aria-haspopup="listbox"
           aria-autocomplete="list"
+          aria-controls="search-suggestions-listbox"
         />
 
         {query && (
