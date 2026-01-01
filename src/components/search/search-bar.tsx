@@ -31,6 +31,28 @@ export function SearchBar() {
     setHighlightedIndex(-1);
   }, [showSuggestions, suggestions]);
 
+  // Handle keyboard navigation for suggestions
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showSuggestions || suggestions.length === 0) {
+      return;
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : 0
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev > 0 ? prev - 1 : suggestions.length - 1
+        );
+        break;
+    }
+  };
+
   return (
     <div className="relative w-full">
       {/* Search Input */}
@@ -53,6 +75,7 @@ export function SearchBar() {
             setShowSuggestions(true);
           }}
           onFocus={() => setShowSuggestions(true)}
+          onKeyDown={handleKeyDown}
           placeholder="Search messages, users, rooms..."
           className="flex-1 outline-none text-sm"
           autoComplete="off"
@@ -62,6 +85,7 @@ export function SearchBar() {
           aria-haspopup="listbox"
           aria-autocomplete="list"
           aria-controls="search-suggestions-listbox"
+          aria-activedescendant={highlightedIndex >= 0 ? `search-suggestion-${highlightedIndex}` : undefined}
         />
 
         {query && (
