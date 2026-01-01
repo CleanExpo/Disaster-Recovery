@@ -45,6 +45,26 @@ export function SearchBar() {
       return;
     }
 
+    // Handle Escape key to close dropdown and reset highlight
+    if (e.key === 'Escape') {
+      if (showSuggestions) {
+        e.preventDefault();
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+      }
+      return;
+    }
+
+    // Handle Tab key to close dropdown (allow natural tab behavior)
+    if (e.key === 'Tab') {
+      if (showSuggestions) {
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+      }
+      // Don't prevent default - allow natural tab navigation
+      return;
+    }
+
     if (!showSuggestions || suggestions.length === 0) {
       return;
     }
