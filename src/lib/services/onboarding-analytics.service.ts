@@ -36,7 +36,7 @@ export interface FunnelMetrics {
   totalStarted: number;
   totalCompleted: number;
   overallConversionRate: number;
-  avgTimeToCompleteOnboarding Hours: number;
+  avgTimeToCompleteOnboardingHours: number;
   steps: StepMetrics[];
   bottleneck: OnboardingStep | null;
 }
