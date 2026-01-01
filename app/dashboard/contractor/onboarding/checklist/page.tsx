@@ -118,8 +118,8 @@ export default function ContractorOnboardingChecklistPage() {
       title: 'Set your preferences',
       description: 'Service categories, locations, availability, and theme.',
       complete: checklist.preferencesComplete,
-      href: '/dashboard/contractor',
-      action: 'Open dashboard',
+      href: '/dashboard/contractor/preferences',
+      action: checklist.preferencesComplete ? 'Update preferences' : 'Set preferences',
     },
     {
       key: 'profile',
