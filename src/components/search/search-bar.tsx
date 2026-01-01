@@ -50,6 +50,11 @@ export function SearchBar() {
           placeholder="Search messages, users, rooms..."
           className="flex-1 outline-none text-sm"
           autoComplete="off"
+          role="combobox"
+          aria-label="Search messages, users, and rooms"
+          aria-expanded={showSuggestions && suggestions.length > 0}
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
         />
 
         {query && (
