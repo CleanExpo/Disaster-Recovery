@@ -344,7 +344,7 @@ model Contractor {
   // NRPG Membership
   nrpgMemberId          String?   @unique // National Restoration Professionals Group
   nrpgVerifiedAt        DateTime?
-  nrpgVerificationLevel String? // "VERIFIED", "PENDING", "SUSPENDED", "REJECTED"
+  nrpgVerificationLevel String? // "VERIFIED", "PENDING", "PENDING_INFO", "SUSPENDED", "REJECTED"
 
   // Australian Service Specialties
   australianSpecialties    AustralianServiceType[]
