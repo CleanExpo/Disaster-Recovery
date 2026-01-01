@@ -11,6 +11,7 @@ import { useSearch } from '@/hooks/useSearch';
 export function SearchBar() {
   const { query, suggestions, isLoadingSuggestions, handleQueryChange, clearResults } = useSearch();
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Close suggestions when clicking outside
@@ -24,6 +25,11 @@ export function SearchBar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Reset highlighted index when dropdown opens or suggestions change
+  useEffect(() => {
+    setHighlightedIndex(-1);
+  }, [showSuggestions, suggestions]);
 
   return (
     <div className="relative w-full">
