@@ -76,6 +76,7 @@ export async function POST(request: NextRequest) {
         iicrcCertificationDate: new Date(body.iicrcCertificationDate),
         iicrcExpiryDate: new Date(body.iicrcExpiryDate),
         iicrcCertificateFile: body.iicrcCertificateFile,
+        insuranceCertificateFile: body.insuranceCertificateFile,
         operatingStates: body.operatingStates as AustralianState[],
         servicePostcodes: body.servicePostcodes as string[],
         specialties: body.specialties as AustralianServiceType[],

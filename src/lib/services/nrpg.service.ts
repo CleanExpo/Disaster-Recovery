@@ -47,6 +47,7 @@ export interface ContractorRegistrationInput {
   iicrcCertificationDate: Date;
   iicrcExpiryDate: Date;
   iicrcCertificateFile: string;
+  insuranceCertificateFile?: string;
   operatingStates: AustralianState[];
   servicePostcodes: string[];
   specialties: AustralianServiceType[];
@@ -208,6 +209,7 @@ export async function registerContractor(
         nrpgVerificationLevel: 'PENDING',
         publicLiabilityPolicyNumber: input.publicLiabilityPolicyNumber,
         publicLiabilityExpiryDate: input.publicLiabilityExpiryDate,
+        publicLiabilityCertificateUrl: input.insuranceCertificateFile,
       },
     });
 
