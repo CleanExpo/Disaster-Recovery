@@ -80,10 +80,12 @@ export function SearchBar() {
           )}
 
           {!isLoadingSuggestions && suggestions.length > 0 && (
-            <ul className="py-2">
+            <ul className="py-2" role="listbox" id="search-suggestions-listbox">
               {suggestions.map((suggestion, idx) => (
                 <li
                   key={idx}
+                  id={`search-suggestion-${idx}`}
+                  role="option"
                   onClick={() => {
                     handleQueryChange(suggestion.text);
                     setShowSuggestions(false);
