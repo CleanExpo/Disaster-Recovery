@@ -15,6 +15,10 @@ interface ChecklistStatus {
   trainingInProgress: boolean;
   trainingComplete: boolean;
   payoutsConfigured: boolean;
+  currentModuleId?: string;
+  completionPercentage?: number;
+  stripeAccountId?: string;
+  nrpgStatus?: 'pending' | 'approved' | 'rejected';
 }
 
 export default function ContractorOnboardingChecklistPage() {
@@ -51,6 +55,11 @@ export default function ContractorOnboardingChecklistPage() {
         const trainingComplete = onboardingRes.ok && completionPercentage >= 100;
         const payoutsConfigured = Boolean(stripePayload?.success && stripePayload?.payoutsConfigured);
 
+        // Extract detailed data for deep linking
+        const currentModuleId = onboardingPayload?.progress?.currentModule?.moduleId;
+        const stripeAccountId = stripePayload?.stripeConnectAccountId;
+        const nrpgStatus = nrpgPayload?.contractor?.verificationStatus?.toLowerCase();
+
         setChecklist({
           preferencesComplete,
           profileComplete,
@@ -58,6 +67,10 @@ export default function ContractorOnboardingChecklistPage() {
           trainingInProgress,
           trainingComplete,
           payoutsConfigured,
+          currentModuleId,
+          completionPercentage,
+          stripeAccountId,
+          nrpgStatus,
         });
       } finally {
         setLoading(false);
@@ -112,6 +125,44 @@ export default function ContractorOnboardingChecklistPage() {
     );
   }
 
+  // Generate smart deep links based on current state
+  const getTrainingHref = () => {
+    if (checklist.currentModuleId) {
+      return `/dashboard/contractor/onboarding/module/${checklist.currentModuleId}`;
+    }
+    return '/dashboard/contractor/onboarding';
+  };
+
+  const getTrainingAction = () => {
+    if (checklist.trainingComplete) {
+      return 'Review training';
+    }
+    if (checklist.trainingInProgress && checklist.currentModuleId) {
+      return `Continue: ${checklist.currentModuleId}`;
+    }
+    if (checklist.trainingInProgress) {
+      return `Resume training (${Math.round(checklist.completionPercentage || 0)}%)`;
+    }
+    return 'Start training';
+  };
+
+  const getNRPGAction = () => {
+    if (checklist.nrpgRegistrationComplete) {
+      return checklist.nrpgStatus === 'pending' ? 'View status (pending)' : 'View registration';
+    }
+    return 'Submit registration';
+  };
+
+  const getPayoutsAction = () => {
+    if (checklist.payoutsConfigured) {
+      return 'Manage payouts';
+    }
+    if (checklist.stripeAccountId) {
+      return 'Complete Stripe setup';
+    }
+    return 'Set up payouts';
+  };
+
   const steps = [
     {
       key: 'preferences',
@@ -127,7 +178,7 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Business details, services, service areas, insurance and bio.',
       complete: checklist.profileComplete,
       href: '/dashboard/contractor/profile-setup',
-      action: 'Complete profile',
+      action: checklist.profileComplete ? 'Update profile' : 'Complete profile',
     },
     {
       key: 'nrpg',
@@ -135,7 +186,8 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Submit ABN/IICRC/insurance details for NRPG verification.',
       complete: checklist.nrpgRegistrationComplete,
       href: '/dashboard/contractor/onboarding/nrpg-registration',
-      action: 'Submit registration',
+      action: getNRPGAction(),
+      statusBadge: checklist.nrpgStatus === 'pending' ? 'Under review' : undefined,
     },
     {
       key: 'training',
@@ -143,8 +195,11 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Finish required modules and pass assessments (70%+).',
       complete: checklist.trainingComplete,
       inProgress: checklist.trainingInProgress,
-      href: '/dashboard/contractor/onboarding',
-      action: 'Open training',
+      href: getTrainingHref(),
+      action: getTrainingAction(),
+      progressText: checklist.trainingInProgress && checklist.completionPercentage
+        ? `${Math.round(checklist.completionPercentage)}% complete`
+        : undefined,
     },
     {
       key: 'payouts',
@@ -152,7 +207,8 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Connect your Stripe account to receive payments.',
       complete: checklist.payoutsConfigured,
       href: '/dashboard/contractor/onboarding/payouts',
-      action: checklist.payoutsConfigured ? 'View payouts' : 'Set up payouts',
+      action: getPayoutsAction(),
+      statusBadge: checklist.stripeAccountId && !checklist.payoutsConfigured ? 'Setup incomplete' : undefined,
     },
   ] as const;
 
@@ -175,24 +231,33 @@ export default function ContractorOnboardingChecklistPage() {
         <CardContent className="space-y-3">
           {steps.map((step) => (
             <div key={step.key} className="flex items-start justify-between gap-3 rounded-lg border p-4">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 flex-1">
                 {step.complete ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                 ) : (
-                  <Circle className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <Circle className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 )}
-                <div>
-                  <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <p className="font-medium">{step.title}</p>
-                    {!step.complete && 'inProgress' in step && step.inProgress && <Badge variant="outline">In progress</Badge>}
-                    {!step.complete && 'pending' in (step as any) && (step as any).pending && (
-                      <Badge variant="outline">Needs UI</Badge>
+                    {!step.complete && 'inProgress' in step && step.inProgress && (
+                      <Badge variant="outline" className="text-blue-600 border-blue-600">
+                        In progress
+                      </Badge>
+                    )}
+                    {'statusBadge' in step && step.statusBadge && (
+                      <Badge variant="outline" className="text-amber-600 border-amber-600">
+                        {step.statusBadge}
+                      </Badge>
                     )}
                   </div>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{step.description}</p>
+                  {'progressText' in step && step.progressText && (
+                    <p className="text-xs text-blue-600 mt-1 font-medium">{step.progressText}</p>
+                  )}
                 </div>
               </div>
-              <Button asChild variant={step.complete ? 'outline' : 'default'}>
+              <Button asChild variant={step.complete ? 'outline' : 'default'} className="flex-shrink-0">
                 <Link href={step.href}>
                   {step.action}
                   <ArrowRight className="h-4 w-4 ml-2" />
