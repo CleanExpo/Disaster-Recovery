@@ -14,6 +14,7 @@ import ContractorOnboarding from '@/components/onboarding/contractor-onboarding'
 import ContractorDashboard from '@/components/personalized/contractor-dashboard';
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import ActiveProjectDetailsModal from '@/components/configurable/active-project-details-modal';
+import { EligibilityBanner } from '@/components/contractor/eligibility-banner';
 import { 
   Home, 
   FileText, 
@@ -172,9 +173,12 @@ export default function ContractorDashboardPage() {
       case 'overview':
         return (
           <div className="space-y-6">
+            {/* Eligibility Banner - Shows "what's left" or "ready for dispatch" */}
+            <EligibilityBanner />
+
             {/* Show Personalized Dashboard if contractor has preferences, otherwise show original dashboard */}
             {contractorPreferences ? (
-              <ContractorDashboard 
+              <ContractorDashboard
                 preferences={contractorPreferences}
                 onRequestSelect={(requestId) => {
                   console.log('Request selected:', requestId);
