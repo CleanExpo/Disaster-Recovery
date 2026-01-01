@@ -253,6 +253,7 @@ model User {
   createdReports               InspectionReport[]             @relation("CreatedReports")
   reportRevisions              ReportRevision[]               @relation("ReportRevisions")
   ServiceRequestCalloutPayment ServiceRequestCalloutPayment[]
+  ClientProfile                ClientProfile?
 
   @@index([email])
   @@index([userType])
@@ -660,6 +661,256 @@ model ContractorPreferences {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("contractor_preferences")
+}
+
+// ============================================================================
+// CLIENT ONBOARDING & PROFILES
+// ============================================================================
+
+model ClientProfile {
+  id                      String  @id @default(cuid())
+  userId                  String  @unique
+  displayName             String?
+  phoneNumber             String?
+  phoneNumberVerified     Boolean @default(false)
+  preferredContactMethod  String  @default("email")
+  timezone                String  @default("Australia/Sydney")
+  language                String  @default("en-AU")
+  propertyOwnershipStatus String?
+  propertyCount           Int     @default(1)
+  isProfileComplete       Boolean @default(false)
+
+  // High-value client tier
+  tier                 String  @default("standard") // standard, property_manager, verified_insurance, repeat, high_value
+  vipAssignedManagerId String?
+
+  // Risk assessment
+  riskZone                String? // flood_zone, bushfire_zone, cyclone_zone
+  riskAssessmentOffered   Boolean @default(false)
+  riskAssessmentCompleted Boolean @default(false)
+
+  // Data integrity flags
+  flaggedForReview Boolean @default(false)
+  flagReason       String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user              User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  properties        ClientProperty[]
+  insurance         ClientInsurance?
+  payment           ClientPayment?
+  emergencyContacts ClientEmergencyContact[]
+  onboarding        ClientOnboarding?
+
+  @@index([tier])
+  @@index([riskZone])
+  @@index([flaggedForReview])
+  @@map("client_profiles")
+}
+
+model ClientProperty {
+  id              String          @id @default(cuid())
+  clientProfileId String
+  streetAddress   String
+  suburb          String
+  postcode        String
+  state           AustralianState
+  country         String          @default("AU")
+  propertyType    String // residential_house, residential_unit, townhouse, commercial_office, commercial_retail, industrial
+  propertySize    String?
+  buildingAge     String?
+
+  // Encrypted access instructions (client-specific encryption key)
+  accessInstructions String?   @db.Text
+  accessKeyId        String? // AWS KMS key ID for decryption
+  accessDecryptedAt  DateTime? // Last time access instructions were revealed
+  accessDecryptedBy  String? // Contractor ID who viewed it
+
+  parkingAvailable Boolean @default(true)
+  securityAccess   Boolean @default(false)
+  petOnPremises    Boolean @default(false)
+  petDetails       String? // "2 small dogs - friendly"
+
+  // Preventive service recommendations (auto-populated based on risk zone)
+  recommendedServices String[]
+
+  isPrimary Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clientProfile ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+
+  @@index([clientProfileId])
+  @@index([postcode])
+  @@index([state])
+  @@map("client_properties")
+}
+
+model ClientInsurance {
+  id                 String    @id @default(cuid())
+  clientProfileId    String    @unique
+  hasInsurance       Boolean   @default(false)
+  insuranceProvider  String? // NRMA, Suncorp, Allianz, QBE, IAG, CGU, Medibank, Other
+  policyNumber       String?
+  policyExpiryDate   DateTime?
+  policyDocumentUrls String[] // S3/Cloudinary URLs
+
+  // Verification status
+  policyVerified Boolean   @default(false)
+  verifiedAt     DateTime?
+  verifiedBy     String? // Admin user ID
+
+  // Claims history
+  hasPreviousClaims Boolean   @default(false)
+  claimCount        Int       @default(0)
+  lastClaimDate     DateTime?
+
+  // Contractor preferences
+  preferredContractors  String[] // Contractor IDs
+  restrictedContractors String[] // Contractor IDs to exclude
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clientProfile ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+
+  @@index([policyExpiryDate])
+  @@index([policyVerified])
+  @@map("client_insurance")
+}
+
+model ClientPayment {
+  id                    String  @id @default(cuid())
+  clientProfileId       String  @unique
+  stripeCustomerId      String? @unique
+  stripePaymentMethodId String?
+
+  // Payment method metadata (for expiry tracking)
+  cardBrand       String? // visa, mastercard, amex
+  cardLast4       String?
+  cardExpiryMonth Int?
+  cardExpiryYear  Int?
+
+  // Billing address
+  billingAddressSameAs Boolean          @default(true)
+  billingStreet        String?
+  billingSuburb        String?
+  billingPostcode      String?
+  billingState         AustralianState?
+
+  // Preferences
+  autoPayEnabled        Boolean @default(false)
+  invoiceDeliveryMethod String  @default("email") // email, postal, both
+  taxInvoiceRecipient   String?
+  abnNumber             String? // If business client
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clientProfile ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+
+  @@index([stripeCustomerId])
+  @@index([cardExpiryMonth, cardExpiryYear]) // For expiry reminders
+  @@map("client_payments")
+}
+
+model ClientEmergencyContact {
+  id                     String   @id @default(cuid())
+  clientProfileId        String
+  name                   String
+  relationship           String
+  phone                  String
+  email                  String?
+  allowContractorContact Boolean  @default(false)
+  isPrimary              Boolean  @default(true)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  clientProfile ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+
+  @@index([clientProfileId])
+  @@index([isPrimary])
+  @@map("client_emergency_contacts")
+}
+
+model ClientOnboarding {
+  id       String @id @default(cuid())
+  clientId String @unique
+
+  // Timeline
+  startDate            DateTime?
+  targetCompletionDate DateTime? // 7 days from start
+  actualCompletionDate DateTime?
+
+  // Progress
+  status          OnboardingStatus @default(PENDING_START) // PENDING_START, IN_PROGRESS, COMPLETED
+  currentPhase    String? // profile, services, property, insurance, payment, communication, education
+  completedPhases String[] // Array of completed phase names
+
+  // Flow variant (for A/B testing)
+  flowVariant  String? // standard, fast_track, vip
+  experimentId String? // A/B test experiment ID
+
+  // Completion
+  certificateIssued   Boolean @default(false)
+  certificateUrl      String?
+  tourCompleted       Boolean @default(false)
+  firstRequestCreated Boolean @default(false)
+  badgeAwarded        Boolean @default(false)
+
+  // Analytics
+  totalTimeSpentSeconds Int     @default(0)
+  deviceType            String? // mobile, desktop, tablet
+  browserLanguage       String? // For localization analytics
+
+  // Abandonment tracking
+  lastActivityAt DateTime?
+  abandonedAt    DateTime?
+  abandonedPhase String?
+  reminderSentAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clientProfile  ClientProfile          @relation(fields: [clientId], references: [userId], onDelete: Cascade)
+  moduleProgress ClientModuleProgress[]
+
+  @@index([status])
+  @@index([currentPhase])
+  @@index([flowVariant])
+  @@index([lastActivityAt]) // For abandonment detection
+  @@map("client_onboarding")
+}
+
+model ClientModuleProgress {
+  id           String       @id @default(cuid())
+  onboardingId String
+  moduleId     String // MODULE-001, MODULE-002, etc.
+  moduleName   String?
+  startedAt    DateTime?
+  completedAt  DateTime?
+  completed    Boolean      @default(false)
+  status       ModuleStatus @default(NOT_STARTED)
+  progress     Int          @default(0) // 0-100%
+
+  // Optional quiz (education verification)
+  quizScore    Int? // 0-100%
+  quizAttempts Int     @default(0)
+  quizPassed   Boolean @default(false) // 70%+ to pass
+
+  // Analytics
+  timeSpentSeconds Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  onboarding ClientOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  @@index([onboardingId])
+  @@index([status])
+  @@index([completed])
+  @@map("client_module_progress")
 }
 
 // ============================================================================
