@@ -164,12 +164,28 @@ export function SearchBar() {
               id="search-suggestions-listbox"
               aria-busy={isLoadingSuggestions}
             >
-              {suggestions.map((suggestion, idx) => (
+              {suggestions.map((suggestion, idx) => {
+                // Generate accessible name with type context
+                const getAccessibleName = () => {
+                  switch (suggestion.type) {
+                    case 'recent':
+                      return `Recent search: ${suggestion.text}`;
+                    case 'user':
+                      return `User: ${suggestion.text}`;
+                    case 'room':
+                      return `Room: ${suggestion.text}`;
+                    default:
+                      return suggestion.text;
+                  }
+                };
+
+                return (
                 <li
                   key={idx}
                   id={`search-suggestion-${idx}`}
                   role="option"
                   aria-selected={idx === highlightedIndex}
+                  aria-label={getAccessibleName()}
                   onClick={() => {
                     handleQueryChange(suggestion.text);
                     setShowSuggestions(false);
@@ -195,7 +211,8 @@ export function SearchBar() {
                   )}
                   <span>{suggestion.text}</span>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
         </div>
