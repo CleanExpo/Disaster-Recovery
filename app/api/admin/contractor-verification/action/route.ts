@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import {
+  sendVerificationApprovedEmail,
+  sendVerificationRejectedEmail,
+  sendRequestMoreInfoEmail,
+} from '@/lib/services/email.service';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -82,12 +87,15 @@ export async function POST(request: NextRequest) {
           console.log('Audit trail skipped - table not created');
         });
 
-        // TODO: Send approval email notification
-        // await sendEmail({
-        //   to: contractor.user.email,
-        //   template: 'contractor-approved',
-        //   data: { businessName: contractor.businessName }
-        // });
+        // Send approval email notification
+        await sendVerificationApprovedEmail({
+          businessName: contractor.businessName,
+          contractorEmail: contractor.user.email,
+          nrpgMemberId: contractor.nrpgMemberId || undefined,
+          reason,
+        }).catch((err) => {
+          console.error('Failed to send approval email:', err);
+        });
 
         return NextResponse.json({
           success: true,
@@ -122,12 +130,15 @@ export async function POST(request: NextRequest) {
           console.log('Audit trail skipped - table not created');
         });
 
-        // TODO: Send rejection email notification
-        // await sendEmail({
-        //   to: contractor.user.email,
-        //   template: 'contractor-rejected',
-        //   data: { businessName: contractor.businessName, reason }
-        // });
+        // Send rejection email notification
+        await sendVerificationRejectedEmail({
+          businessName: contractor.businessName,
+          contractorEmail: contractor.user.email,
+          nrpgMemberId: contractor.nrpgMemberId || undefined,
+          reason,
+        }).catch((err) => {
+          console.error('Failed to send rejection email:', err);
+        });
 
         return NextResponse.json({
           success: true,
@@ -161,12 +172,15 @@ export async function POST(request: NextRequest) {
           console.log('Audit trail skipped - table not created');
         });
 
-        // TODO: Send info request email notification
-        // await sendEmail({
-        //   to: contractor.user.email,
-        //   template: 'contractor-info-requested',
-        //   data: { businessName: contractor.businessName, infoNeeded: reason }
-        // });
+        // Send info request email notification
+        await sendRequestMoreInfoEmail({
+          businessName: contractor.businessName,
+          contractorEmail: contractor.user.email,
+          nrpgMemberId: contractor.nrpgMemberId || undefined,
+          infoNeeded: reason,
+        }).catch((err) => {
+          console.error('Failed to send info request email:', err);
+        });
 
         return NextResponse.json({
           success: true,
