@@ -6,7 +6,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, CheckCircle2, Circle, ArrowRight } from 'lucide-react';
+import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText } from 'lucide-react';
 
 interface ChecklistStatus {
   preferencesComplete: boolean;
@@ -15,6 +15,10 @@ interface ChecklistStatus {
   trainingInProgress: boolean;
   trainingComplete: boolean;
   payoutsConfigured: boolean;
+  currentModuleId?: string;
+  completionPercentage?: number;
+  stripeAccountId?: string;
+  nrpgStatus?: 'pending' | 'approved' | 'rejected';
 }
 
 export default function ContractorOnboardingChecklistPage() {
@@ -51,6 +55,11 @@ export default function ContractorOnboardingChecklistPage() {
         const trainingComplete = onboardingRes.ok && completionPercentage >= 100;
         const payoutsConfigured = Boolean(stripePayload?.success && stripePayload?.payoutsConfigured);
 
+        // Extract detailed data for deep linking
+        const currentModuleId = onboardingPayload?.progress?.currentModule?.moduleId;
+        const stripeAccountId = stripePayload?.stripeConnectAccountId;
+        const nrpgStatus = nrpgPayload?.contractor?.verificationStatus?.toLowerCase();
+
         setChecklist({
           preferencesComplete,
           profileComplete,
@@ -58,6 +67,10 @@ export default function ContractorOnboardingChecklistPage() {
           trainingInProgress,
           trainingComplete,
           payoutsConfigured,
+          currentModuleId,
+          completionPercentage,
+          stripeAccountId,
+          nrpgStatus,
         });
       } finally {
         setLoading(false);
@@ -112,14 +125,52 @@ export default function ContractorOnboardingChecklistPage() {
     );
   }
 
+  // Generate smart deep links based on current state
+  const getTrainingHref = () => {
+    if (checklist.currentModuleId) {
+      return `/dashboard/contractor/onboarding/module/${checklist.currentModuleId}`;
+    }
+    return '/dashboard/contractor/onboarding';
+  };
+
+  const getTrainingAction = () => {
+    if (checklist.trainingComplete) {
+      return 'Review training';
+    }
+    if (checklist.trainingInProgress && checklist.currentModuleId) {
+      return `Continue: ${checklist.currentModuleId}`;
+    }
+    if (checklist.trainingInProgress) {
+      return `Resume training (${Math.round(checklist.completionPercentage || 0)}%)`;
+    }
+    return 'Start training';
+  };
+
+  const getNRPGAction = () => {
+    if (checklist.nrpgRegistrationComplete) {
+      return checklist.nrpgStatus === 'pending' ? 'View status (pending)' : 'View registration';
+    }
+    return 'Submit registration';
+  };
+
+  const getPayoutsAction = () => {
+    if (checklist.payoutsConfigured) {
+      return 'Manage payouts';
+    }
+    if (checklist.stripeAccountId) {
+      return 'Complete Stripe setup';
+    }
+    return 'Set up payouts';
+  };
+
   const steps = [
     {
       key: 'preferences',
       title: 'Set your preferences',
       description: 'Service categories, locations, availability, and theme.',
       complete: checklist.preferencesComplete,
-      href: '/dashboard/contractor',
-      action: 'Open dashboard',
+      href: '/dashboard/contractor/preferences',
+      action: checklist.preferencesComplete ? 'Update preferences' : 'Set preferences',
     },
     {
       key: 'profile',
@@ -127,7 +178,7 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Business details, services, service areas, insurance and bio.',
       complete: checklist.profileComplete,
       href: '/dashboard/contractor/profile-setup',
-      action: 'Complete profile',
+      action: checklist.profileComplete ? 'Update profile' : 'Complete profile',
     },
     {
       key: 'nrpg',
@@ -135,7 +186,8 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Submit ABN/IICRC/insurance details for NRPG verification.',
       complete: checklist.nrpgRegistrationComplete,
       href: '/dashboard/contractor/onboarding/nrpg-registration',
-      action: 'Submit registration',
+      action: getNRPGAction(),
+      statusBadge: checklist.nrpgStatus === 'pending' ? 'Under review' : undefined,
     },
     {
       key: 'training',
@@ -143,8 +195,11 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Finish required modules and pass assessments (70%+).',
       complete: checklist.trainingComplete,
       inProgress: checklist.trainingInProgress,
-      href: '/dashboard/contractor/onboarding',
-      action: 'Open training',
+      href: getTrainingHref(),
+      action: getTrainingAction(),
+      progressText: checklist.trainingInProgress && checklist.completionPercentage
+        ? `${Math.round(checklist.completionPercentage)}% complete`
+        : undefined,
     },
     {
       key: 'payouts',
@@ -152,7 +207,8 @@ export default function ContractorOnboardingChecklistPage() {
       description: 'Connect your Stripe account to receive payments.',
       complete: checklist.payoutsConfigured,
       href: '/dashboard/contractor/onboarding/payouts',
-      action: checklist.payoutsConfigured ? 'View payouts' : 'Set up payouts',
+      action: getPayoutsAction(),
+      statusBadge: checklist.stripeAccountId && !checklist.payoutsConfigured ? 'Setup incomplete' : undefined,
     },
   ] as const;
 
@@ -175,24 +231,33 @@ export default function ContractorOnboardingChecklistPage() {
         <CardContent className="space-y-3">
           {steps.map((step) => (
             <div key={step.key} className="flex items-start justify-between gap-3 rounded-lg border p-4">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 flex-1">
                 {step.complete ? (
-                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5" />
+                  <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                 ) : (
-                  <Circle className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <Circle className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 )}
-                <div>
-                  <div className="flex items-center gap-2">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <p className="font-medium">{step.title}</p>
-                    {!step.complete && 'inProgress' in step && step.inProgress && <Badge variant="outline">In progress</Badge>}
-                    {!step.complete && 'pending' in (step as any) && (step as any).pending && (
-                      <Badge variant="outline">Needs UI</Badge>
+                    {!step.complete && 'inProgress' in step && step.inProgress && (
+                      <Badge variant="outline" className="text-blue-600 border-blue-600">
+                        In progress
+                      </Badge>
+                    )}
+                    {'statusBadge' in step && step.statusBadge && (
+                      <Badge variant="outline" className="text-amber-600 border-amber-600">
+                        {step.statusBadge}
+                      </Badge>
                     )}
                   </div>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">{step.description}</p>
+                  {'progressText' in step && step.progressText && (
+                    <p className="text-xs text-blue-600 mt-1 font-medium">{step.progressText}</p>
+                  )}
                 </div>
               </div>
-              <Button asChild variant={step.complete ? 'outline' : 'default'}>
+              <Button asChild variant={step.complete ? 'outline' : 'default'} className="flex-shrink-0">
                 <Link href={step.href}>
                   {step.action}
                   <ArrowRight className="h-4 w-4 ml-2" />
@@ -202,6 +267,43 @@ export default function ContractorOnboardingChecklistPage() {
           ))}
         </CardContent>
       </Card>
+
+      {/* Certificate Card - Shows when training is complete */}
+      {checklist.trainingComplete && (
+        <Card className="border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                  <Award className="h-7 w-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-green-900 dark:text-green-100">
+                    Your NRP Training Certificate is Ready!
+                  </h3>
+                  <p className="text-sm text-green-700 dark:text-green-300 mt-1">
+                    You've completed all required modules. View and download your official NRPG certificate.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-2 flex-shrink-0">
+                <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50">
+                  <Link href="/dashboard/contractor/onboarding/certificate">
+                    <FileText className="h-4 w-4 mr-2" />
+                    View
+                  </Link>
+                </Button>
+                <Button asChild className="bg-green-600 hover:bg-green-700">
+                  <Link href="/dashboard/contractor/onboarding/certificate?action=download">
+                    <Award className="h-4 w-4 mr-2" />
+                    Download
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

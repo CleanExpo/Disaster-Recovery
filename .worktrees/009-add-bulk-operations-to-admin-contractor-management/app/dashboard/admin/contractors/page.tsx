@@ -72,6 +72,8 @@ interface Contractor {
   };
 }
 
+type BulkStatusAction = 'verify' | 'unverify' | 'suspend' | null;
+
 export default function AdminContractorsPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -90,6 +92,11 @@ export default function AdminContractorsPage() {
   // Bulk delete dialog state
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+
+  // Bulk status update dialog state
+  const [isStatusDialogOpen, setIsStatusDialogOpen] = useState(false);
+  const [isStatusLoading, setIsStatusLoading] = useState(false);
+  const [pendingStatusAction, setPendingStatusAction] = useState<BulkStatusAction>(null);
 
   // Derived state: check if all visible contractors are selected
   const isAllSelected = contractors.length > 0 && contractors.every(c => selectedContractorIds.has(c.id));
@@ -184,6 +191,55 @@ export default function AdminContractorsPage() {
     return selectedContractorIds.has(contractorId);
   }, [selectedContractorIds]);
 
+  // Open status update dialog
+  const openStatusDialog = useCallback((action: BulkStatusAction) => {
+    setPendingStatusAction(action);
+    setIsStatusDialogOpen(true);
+  }, []);
+
+  // Handle bulk status update confirmation
+  const handleBulkStatusConfirm = async () => {
+    if (!pendingStatusAction) return;
+
+    setIsStatusLoading(true);
+    try {
+      const response = await fetch('/api/admin/contractors/bulk', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contractorIds: Array.from(selectedContractorIds),
+          action: pendingStatusAction
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const actionLabel = pendingStatusAction === 'verify' ? 'verified' :
+                           pendingStatusAction === 'unverify' ? 'unverified' : 'suspended';
+        toast.success(`Successfully ${actionLabel} ${data.updatedCount} contractor${data.updatedCount !== 1 ? 's' : ''}`, {
+          description: `The selected contractors have been ${actionLabel}.`
+        });
+        clearSelection();
+        await fetchContractors();
+      } else {
+        const error = await response.json();
+        toast.error('Failed to update contractors', {
+          description: error.error || 'Please try again.'
+        });
+      }
+    } catch (error) {
+      toast.error('Failed to update contractors', {
+        description: 'An unexpected error occurred. Please try again.'
+      });
+    } finally {
+      setIsStatusLoading(false);
+      setIsStatusDialogOpen(false);
+      setPendingStatusAction(null);
+    }
+  };
+
   // Handle bulk delete confirmation
   const handleBulkDeleteConfirm = async () => {
     setIsDeleteLoading(true);
@@ -267,6 +323,44 @@ export default function AdminContractorsPage() {
     }
   };
 
+  // Get dialog content based on pending action
+  const getStatusDialogContent = () => {
+    switch (pendingStatusAction) {
+      case 'verify':
+        return {
+          title: `Verify ${selectedCount} Contractor${selectedCount !== 1 ? 's' : ''}?`,
+          description: `You are about to verify ${selectedCount} contractor${selectedCount !== 1 ? 's' : ''}. They will be able to receive job matches and appear in search results.`,
+          actionLabel: 'Verify',
+          icon: CheckCircle,
+          iconBgClass: 'bg-green-900/30',
+          iconColorClass: 'text-green-400',
+          actionClass: 'bg-green-600 hover:bg-green-700 text-white border-0'
+        };
+      case 'unverify':
+        return {
+          title: `Reject ${selectedCount} Contractor${selectedCount !== 1 ? 's' : ''}?`,
+          description: `You are about to reject ${selectedCount} contractor${selectedCount !== 1 ? 's' : ''}. They will no longer be verified and won't receive new job matches.`,
+          actionLabel: 'Reject',
+          icon: XCircle,
+          iconBgClass: 'bg-yellow-900/30',
+          iconColorClass: 'text-yellow-400',
+          actionClass: 'bg-yellow-600 hover:bg-yellow-700 text-white border-0'
+        };
+      case 'suspend':
+        return {
+          title: `Suspend ${selectedCount} Contractor${selectedCount !== 1 ? 's' : ''}?`,
+          description: `You are about to suspend ${selectedCount} contractor${selectedCount !== 1 ? 's' : ''}. They will be temporarily blocked from the platform.`,
+          actionLabel: 'Suspend',
+          icon: Shield,
+          iconBgClass: 'bg-orange-900/30',
+          iconColorClass: 'text-orange-400',
+          actionClass: 'bg-orange-600 hover:bg-orange-700 text-white border-0'
+        };
+      default:
+        return null;
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
@@ -281,6 +375,8 @@ export default function AdminContractorsPage() {
   if (!user || user.userType !== 'ADMIN') {
     return null;
   }
+
+  const statusDialogContent = getStatusDialogContent();
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -732,10 +828,7 @@ export default function AdminContractorsPage() {
                 <Button
                   size="sm"
                   className="bg-green-600 hover:bg-green-700 text-white"
-                  onClick={() => {
-                    // Will be implemented in subtask 4.1
-                    toast.info('Bulk verify will be implemented in the next phase');
-                  }}
+                  onClick={() => openStatusDialog('verify')}
                 >
                   <CheckCircle className="h-4 w-4 mr-2" />
                   Verify All
@@ -744,10 +837,7 @@ export default function AdminContractorsPage() {
                   size="sm"
                   variant="outline"
                   className="border-yellow-600 text-yellow-400 hover:bg-yellow-600 hover:text-white"
-                  onClick={() => {
-                    // Will be implemented in subtask 4.1
-                    toast.info('Bulk reject will be implemented in the next phase');
-                  }}
+                  onClick={() => openStatusDialog('unverify')}
                 >
                   <XCircle className="h-4 w-4 mr-2" />
                   Reject All
@@ -816,6 +906,60 @@ export default function AdminContractorsPage() {
               )}
             </AlertDialogAction>
           </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Bulk Status Update Confirmation Dialog */}
+      <AlertDialog open={isStatusDialogOpen} onOpenChange={(open) => {
+        setIsStatusDialogOpen(open);
+        if (!open) setPendingStatusAction(null);
+      }}>
+        <AlertDialogContent className="bg-gray-800 border-gray-700 text-white">
+          {statusDialogContent && (
+            <>
+              <AlertDialogHeader>
+                <div className="flex items-center space-x-3">
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-full ${statusDialogContent.iconBgClass} flex items-center justify-center`}>
+                    <statusDialogContent.icon className={`h-5 w-5 ${statusDialogContent.iconColorClass}`} />
+                  </div>
+                  <AlertDialogTitle className="text-white text-lg">
+                    {statusDialogContent.title}
+                  </AlertDialogTitle>
+                </div>
+                <AlertDialogDescription className="text-gray-400 pt-2">
+                  {statusDialogContent.description}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter className="mt-4">
+                <AlertDialogCancel
+                  className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
+                  disabled={isStatusLoading}
+                >
+                  Cancel
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  className={statusDialogContent.actionClass}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleBulkStatusConfirm();
+                  }}
+                  disabled={isStatusLoading}
+                >
+                  {isStatusLoading ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <statusDialogContent.icon className="h-4 w-4 mr-2" />
+                      {statusDialogContent.actionLabel} {selectedCount} Contractor{selectedCount !== 1 ? 's' : ''}
+                    </>
+                  )}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </>
+          )}
         </AlertDialogContent>
       </AlertDialog>
     </div>

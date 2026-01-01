@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { FileUpload } from '@/components/ui/file-upload';
 import { Loader2, ArrowLeft, CheckCircle2 } from 'lucide-react';
 
 type IicrcLevel = 'TECHNICIAN' | 'SPECIALIST' | 'MASTER' | 'INSTRUCTOR';
@@ -54,6 +55,7 @@ export default function NrpgRegistrationPage() {
     iicrcCertificationDate: '',
     iicrcExpiryDate: '',
     iicrcCertificateFile: '',
+    insuranceCertificateFile: '',
     operatingStates: [] as AustralianState[],
     servicePostcodesText: '',
     specialties: [] as AustralianServiceType[],
@@ -129,6 +131,7 @@ export default function NrpgRegistrationPage() {
     if (!form.iicrcCertificationCode.trim()) return 'IICRC certification code is required';
     if (!form.iicrcCertificationDate) return 'IICRC certification date is required';
     if (!form.iicrcExpiryDate) return 'IICRC expiry date is required';
+    if (!form.iicrcCertificateFile.trim()) return 'IICRC certificate document is required';
 
     if (form.operatingStates.length < 1) return 'Select at least one operating state/territory';
     if (form.specialties.length < 1) return 'Select at least one specialty';
@@ -138,6 +141,7 @@ export default function NrpgRegistrationPage() {
 
     if (!form.publicLiabilityPolicyNumber.trim()) return 'Public liability policy number is required';
     if (!form.publicLiabilityExpiryDate) return 'Public liability expiry date is required';
+    if (!form.insuranceCertificateFile.trim()) return 'Insurance Certificate of Currency is required';
 
     const certDate = new Date(form.iicrcCertificationDate);
     const certExpiry = new Date(form.iicrcExpiryDate);
@@ -174,6 +178,7 @@ export default function NrpgRegistrationPage() {
           iicrcCertificationDate: form.iicrcCertificationDate,
           iicrcExpiryDate: form.iicrcExpiryDate,
           iicrcCertificateFile: form.iicrcCertificateFile,
+          insuranceCertificateFile: form.insuranceCertificateFile,
           operatingStates: form.operatingStates,
           servicePostcodes: parsePostcodes(form.servicePostcodesText),
           specialties: form.specialties,
@@ -339,15 +344,15 @@ export default function NrpgRegistrationPage() {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="iicrcCertificateFile">IICRC certificate URL</Label>
-            <Input
-              id="iicrcCertificateFile"
-              value={form.iicrcCertificateFile}
-              onChange={(e) => setForm((p) => ({ ...p, iicrcCertificateFile: e.target.value }))}
-              placeholder="https://..."
-            />
-          </div>
+          <FileUpload
+            label="IICRC Certificate"
+            description="Upload your IICRC certification document (PDF, JPG, or PNG)"
+            accept=".pdf,.jpg,.jpeg,.png"
+            maxSize={5 * 1024 * 1024}
+            value={form.iicrcCertificateFile || null}
+            onChange={(url) => setForm((p) => ({ ...p, iicrcCertificateFile: url || '' }))}
+            required
+          />
 
           <div className="space-y-2">
             <Label>Operating states</Label>
@@ -412,6 +417,16 @@ export default function NrpgRegistrationPage() {
               />
             </div>
           </div>
+
+          <FileUpload
+            label="Insurance Certificate of Currency (COI)"
+            description="Upload your current public liability insurance certificate (PDF, JPG, or PNG)"
+            accept=".pdf,.jpg,.jpeg,.png"
+            maxSize={5 * 1024 * 1024}
+            value={form.insuranceCertificateFile || null}
+            onChange={(url) => setForm((p) => ({ ...p, insuranceCertificateFile: url || '' }))}
+            required
+          />
 
           <div className="space-y-2">
             <Label htmlFor="notes">Notes (optional)</Label>

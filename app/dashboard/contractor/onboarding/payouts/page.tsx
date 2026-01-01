@@ -7,12 +7,31 @@ import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2, ArrowLeft, ExternalLink, CheckCircle2, AlertTriangle, Clock, XCircle, Info } from 'lucide-react';
 
 interface StripeConnectStatusResponse {
   success?: boolean;
   payoutsConfigured?: boolean;
   stripeConnectAccountId?: string | null;
+  status?: string;
+  message?: string;
+  actionRequired?: string | null;
+  capabilities?: {
+    chargesEnabled: boolean;
+    payoutsEnabled: boolean;
+    detailsSubmitted: boolean;
+  };
+  requirements?: {
+    currentlyDue: string[];
+    eventuallyDue: string[];
+    pendingVerification: string[];
+    errors: Array<{
+      code: string;
+      reason: string;
+      requirement: string;
+    }>;
+  };
 }
 
 export default function ContractorPayoutSetupPage() {
@@ -22,8 +41,7 @@ export default function ContractorPayoutSetupPage() {
 
   const [loadingStatus, setLoadingStatus] = useState(true);
   const [starting, setStarting] = useState(false);
-  const [payoutsConfigured, setPayoutsConfigured] = useState(false);
-  const [connectAccountId, setConnectAccountId] = useState<string | null>(null);
+  const [statusData, setStatusData] = useState<StripeConnectStatusResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const loadStatus = async () => {
@@ -32,14 +50,16 @@ export default function ContractorPayoutSetupPage() {
     try {
       const response = await fetch('/api/contractor/stripe/connect/status', { cache: 'no-store' });
       const data = (await response.json().catch(() => null)) as StripeConnectStatusResponse | null;
-      setPayoutsConfigured(Boolean(data?.success && data?.payoutsConfigured));
-      setConnectAccountId(typeof data?.stripeConnectAccountId === 'string' ? data.stripeConnectAccountId : null);
+      setStatusData(data || null);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load payout status');
     } finally {
       setLoadingStatus(false);
     }
   };
+
+  const payoutsConfigured = statusData?.payoutsConfigured || false;
+  const connectAccountId = statusData?.stripeConnectAccountId;
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -136,11 +156,131 @@ export default function ContractorPayoutSetupPage() {
             </div>
           ) : (
             <>
+              {/* Account ID */}
               {connectAccountId && (
-                <p className="text-sm text-muted-foreground">Connect account: {connectAccountId}</p>
+                <div className="text-xs text-muted-foreground bg-muted/50 px-3 py-2 rounded">
+                  Account ID: {connectAccountId}
+                </div>
               )}
 
-              {error && <p className="text-sm text-red-600">{error}</p>}
+              {/* Status Alert */}
+              {statusData?.status && statusData.status !== 'not_started' && (
+                <Alert
+                  className={
+                    statusData.status === 'active'
+                      ? 'border-green-500 bg-green-50 dark:bg-green-950/20'
+                      : statusData.status === 'restricted' || statusData.status === 'error'
+                      ? 'border-red-500 bg-red-50 dark:bg-red-950/20'
+                      : statusData.status === 'pending_verification'
+                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-950/20'
+                      : 'border-amber-500 bg-amber-50 dark:bg-amber-950/20'
+                  }
+                >
+                  {statusData.status === 'active' && <CheckCircle2 className="h-4 w-4 text-green-600" />}
+                  {statusData.status === 'restricted' && <XCircle className="h-4 w-4 text-red-600" />}
+                  {statusData.status === 'error' && <XCircle className="h-4 w-4 text-red-600" />}
+                  {statusData.status === 'pending_verification' && <Clock className="h-4 w-4 text-blue-600" />}
+                  {(statusData.status === 'incomplete' || statusData.status === 'requirements_due' || statusData.status === 'pending') && (
+                    <AlertTriangle className="h-4 w-4 text-amber-600" />
+                  )}
+                  <AlertDescription>
+                    <p className="font-semibold mb-1">{statusData.message}</p>
+                    {statusData.actionRequired && (
+                      <p className="text-sm mt-2">
+                        <strong>Action needed:</strong> {statusData.actionRequired}
+                      </p>
+                    )}
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {/* Capabilities */}
+              {statusData?.capabilities && (
+                <div className="space-y-2">
+                  <p className="text-sm font-medium">Account Capabilities</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="flex items-center gap-2 text-sm">
+                      {statusData.capabilities.chargesEnabled ? (
+                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <XCircle className="h-4 w-4 text-red-600" />
+                      )}
+                      <span>Charges</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      {statusData.capabilities.payoutsEnabled ? (
+                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <XCircle className="h-4 w-4 text-red-600" />
+                      )}
+                      <span>Payouts</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      {statusData.capabilities.detailsSubmitted ? (
+                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                      ) : (
+                        <XCircle className="h-4 w-4 text-red-600" />
+                      )}
+                      <span>Details</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Requirements */}
+              {statusData?.requirements && statusData.requirements.currentlyDue.length > 0 && (
+                <Alert className="border-amber-500">
+                  <AlertTriangle className="h-4 w-4 text-amber-600" />
+                  <AlertDescription>
+                    <p className="font-semibold mb-2">Information Required</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                      {statusData.requirements.currentlyDue.map((req) => (
+                        <li key={req}>{req.replace(/_/g, ' ')}</li>
+                      ))}
+                    </ul>
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {/* Pending Verification */}
+              {statusData?.requirements && statusData.requirements.pendingVerification.length > 0 && (
+                <Alert className="border-blue-500">
+                  <Clock className="h-4 w-4 text-blue-600" />
+                  <AlertDescription>
+                    <p className="font-semibold mb-2">Verification in Progress</p>
+                    <p className="text-sm">Stripe is currently verifying:</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm mt-1">
+                      {statusData.requirements.pendingVerification.map((req) => (
+                        <li key={req}>{req.replace(/_/g, ' ')}</li>
+                      ))}
+                    </ul>
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {/* Errors */}
+              {statusData?.requirements && statusData.requirements.errors.length > 0 && (
+                <Alert className="border-red-500">
+                  <XCircle className="h-4 w-4 text-red-600" />
+                  <AlertDescription>
+                    <p className="font-semibold mb-2">Verification Errors</p>
+                    <ul className="space-y-2 text-sm">
+                      {statusData.requirements.errors.map((err, idx) => (
+                        <li key={idx}>
+                          <strong>{err.requirement.replace(/_/g, ' ')}:</strong> {err.reason}
+                        </li>
+                      ))}
+                    </ul>
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {error && (
+                <Alert className="border-red-500">
+                  <XCircle className="h-4 w-4 text-red-600" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
 
               <Button
                 onClick={startStripeOnboarding}

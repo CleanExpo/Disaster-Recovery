@@ -5,10 +5,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 import { ZodError } from 'zod';
-import { authenticateRequest } from '@/lib/auth-middleware';
-import { isAdmin } from '@/lib/auth';
-import { ServiceRequestSearchService } from '@/lib/service-request-search-service';
+import { authOptions, isAdmin } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
 import { serviceRequestSearchSchema } from '@/lib/validation-schemas';
 import {
   handleValidationError,
@@ -23,12 +23,38 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    // Authenticate user
-    const authResult = await authenticateRequest(request);
-    if (!authResult.success) {
-      return authResult.response;
+    // Authenticate user via session
+    const session = await getServerSession(authOptions);
+    const sessionUser = session?.user as unknown as {
+      id?: string;
+      email?: string;
+      userType?: string;
+    } | undefined;
+
+    if (!sessionUser?.id && !sessionUser?.email) {
+      return NextResponse.json(
+        {
+          error: 'UNAUTHORIZED',
+          message: 'Authentication required',
+        },
+        { status: 401 }
+      );
     }
-    const { user } = authResult.context;
+
+    // Fetch full user from database
+    const user = await prisma.user.findUnique({
+      where: sessionUser.id ? { id: sessionUser.id } : { email: sessionUser.email! },
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          error: 'USER_NOT_FOUND',
+          message: 'User not found',
+        },
+        { status: 401 }
+      );
+    }
 
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
@@ -51,35 +77,91 @@ export async function GET(request: NextRequest) {
     // Validate parameters using Zod schema
     const validatedParams = serviceRequestSearchSchema.parse(cleanParams);
 
-    // Build search filters from validated params
-    const filters = {
-      query: validatedParams.query,
-      serviceCategory: validatedParams.serviceCategory,
-      status: validatedParams.status,
-      location: validatedParams.location,
-      createdAfter: validatedParams.createdAfter,
-      createdBefore: validatedParams.createdBefore,
-    };
+    // Build search where clause
+    const whereClause: any = {};
 
-    const pagination = {
-      limit: validatedParams.limit,
-      offset: validatedParams.offset,
-    };
+    // Text search across multiple fields using OR
+    if (validatedParams.query && validatedParams.query.trim().length > 0) {
+      const searchTerm = validatedParams.query.trim();
+      whereClause.OR = [
+        { description: { contains: searchTerm, mode: 'insensitive' } },
+        { serviceTitle: { contains: searchTerm, mode: 'insensitive' } },
+        { location: { contains: searchTerm, mode: 'insensitive' } },
+      ];
+    }
 
-    // Execute search based on user role
-    // Clients see only their own requests, admins see all
+    // Exact match filters
+    if (validatedParams.serviceCategory) {
+      whereClause.serviceCategory = validatedParams.serviceCategory;
+    }
+
+    if (validatedParams.status) {
+      whereClause.status = validatedParams.status;
+    }
+
+    // Location text match
+    if (validatedParams.location && !validatedParams.query) {
+      whereClause.location = { contains: validatedParams.location, mode: 'insensitive' };
+    }
+
+    // Date range filters
+    if (validatedParams.createdAfter || validatedParams.createdBefore) {
+      whereClause.createdAt = {};
+      if (validatedParams.createdAfter) {
+        whereClause.createdAt.gte = validatedParams.createdAfter;
+      }
+      if (validatedParams.createdBefore) {
+        whereClause.createdAt.lte = validatedParams.createdBefore;
+      }
+    }
+
+    // Determine user scope
     const isUserAdmin = isAdmin(user.userType);
 
-    const results = isUserAdmin
-      ? await ServiceRequestSearchService.searchAll(filters, pagination)
-      : await ServiceRequestSearchService.searchForUser(user.id, filters, pagination);
+    // Clients see only their own requests
+    if (!isUserAdmin) {
+      whereClause.userId = user.id;
+    }
+
+    // Execute count and findMany queries in parallel
+    const [total, data] = await Promise.all([
+      prisma.serviceRequest.count({ where: whereClause }),
+      prisma.serviceRequest.findMany({
+        where: whereClause,
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          },
+          matches: {
+            select: {
+              id: true,
+              matchScore: true,
+              status: true,
+            },
+          },
+        },
+        orderBy: [{ createdAt: 'desc' }],
+        take: validatedParams.limit,
+        skip: validatedParams.offset,
+      }),
+    ]);
+
+    const hasMore = validatedParams.offset + data.length < total;
 
     return NextResponse.json({
       success: true,
-      data: results.data,
-      total: results.total,
-      count: results.count,
-      pagination: results.pagination,
+      data,
+      total,
+      count: data.length,
+      pagination: {
+        limit: validatedParams.limit,
+        offset: validatedParams.offset,
+        hasMore,
+      },
       searchCriteria: {
         query: validatedParams.query || null,
         serviceCategory: validatedParams.serviceCategory || null,

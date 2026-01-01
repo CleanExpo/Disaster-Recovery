@@ -103,7 +103,22 @@ export const australianABNSchema = z
  */
 export const australianACNSchema = z
   .string()
-  .regex(/^\d{9}$/, 'Australian Company Number must be exactly 9 digits');
+  .regex(/^\d{9}$/, 'Australian Company Number must be exactly 9 digits')
+  .refine((acn) => {
+    // ACN checksum validation using modulus 10 algorithm
+    const weights = [8, 7, 6, 5, 4, 3, 2, 1];
+    const digits = acn.split('').map(Number);
+    let checksum = 0;
+
+    for (let i = 0; i < 8; i++) {
+      checksum += digits[i] * weights[i];
+    }
+
+    const remainder = checksum % 10;
+    const checkDigit = remainder === 0 ? 0 : 10 - remainder;
+
+    return checkDigit === digits[8];
+  }, 'Invalid ACN checksum');
 
 // ============================================================================
 // IICRC CERTIFICATION VALIDATION
@@ -337,4 +352,24 @@ export function validateABNChecksum(abn: string): boolean {
   }
 
   return (checksum % 89) === 0;
+}
+
+/**
+ * Validate ACN checksum
+ */
+export function validateACNChecksum(acn: string): boolean {
+  if (!/^\d{9}$/.test(acn)) return false;
+
+  const weights = [8, 7, 6, 5, 4, 3, 2, 1];
+  const digits = acn.split('').map(Number);
+  let checksum = 0;
+
+  for (let i = 0; i < 8; i++) {
+    checksum += digits[i] * weights[i];
+  }
+
+  const remainder = checksum % 10;
+  const checkDigit = remainder === 0 ? 0 : 10 - remainder;
+
+  return checkDigit === digits[8];
 }

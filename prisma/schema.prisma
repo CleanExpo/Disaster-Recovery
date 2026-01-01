@@ -238,20 +238,21 @@ model User {
   ratings               Rating[]
 
   // CRM Relations
-  lifecycle             CustomerLifecycle?  @relation("CustomerLifecycle")
-  activitiesPerformed   Activity[]          @relation("ActivityPerformer")
-  activitiesAsCustomer  Activity[]          @relation("ActivityCustomer")
-  tasksAssigned         Task[]              @relation("TaskAssignee")
-  tasksCreated          Task[]              @relation("TaskCreator")
-  businessRules         BusinessRule[]      @relation("BusinessRuleOwner")
+  lifecycle            CustomerLifecycle? @relation("CustomerLifecycle")
+  activitiesPerformed  Activity[]         @relation("ActivityPerformer")
+  activitiesAsCustomer Activity[]         @relation("ActivityCustomer")
+  tasksAssigned        Task[]             @relation("TaskAssignee")
+  tasksCreated         Task[]             @relation("TaskCreator")
+  businessRules        BusinessRule[]     @relation("BusinessRuleOwner")
 
   // NRPG Inspection Relations
-  inspectionReports         InspectionReport[] @relation("InspectorReports")
-  technicalReviews          InspectionReport[] @relation("TechnicalReviews")
-  managerReviews            InspectionReport[] @relation("ManagerReviews")
-  finalApprovals            InspectionReport[] @relation("FinalApprovals")
-  createdReports            InspectionReport[] @relation("CreatedReports")
-  reportRevisions           ReportRevision[]   @relation("ReportRevisions")
+  inspectionReports            InspectionReport[]             @relation("InspectorReports")
+  technicalReviews             InspectionReport[]             @relation("TechnicalReviews")
+  managerReviews               InspectionReport[]             @relation("ManagerReviews")
+  finalApprovals               InspectionReport[]             @relation("FinalApprovals")
+  createdReports               InspectionReport[]             @relation("CreatedReports")
+  reportRevisions              ReportRevision[]               @relation("ReportRevisions")
+  ServiceRequestCalloutPayment ServiceRequestCalloutPayment[]
 
   @@index([email])
   @@index([userType])
@@ -343,17 +344,18 @@ model Contractor {
   // NRPG Membership
   nrpgMemberId          String?   @unique // National Restoration Professionals Group
   nrpgVerifiedAt        DateTime?
-  nrpgVerificationLevel String? // "VERIFIED", "PENDING", "SUSPENDED", "REJECTED"
+  nrpgVerificationLevel String? // "VERIFIED", "PENDING", "PENDING_INFO", "SUSPENDED", "REJECTED"
 
   // Australian Service Specialties
   australianSpecialties    AustralianServiceType[]
   supportedEmergencyLevels EmergencyResponseLevel[]
 
   // Insurance Details
-  publicLiabilityPolicyNumber String?
-  publicLiabilityExpiryDate   DateTime?
-  workCoverNumber             String?
-  workCoverExpiryDate         DateTime?
+  publicLiabilityPolicyNumber   String?
+  publicLiabilityExpiryDate     DateTime?
+  publicLiabilityCertificateUrl String? // Insurance Certificate of Currency (COI)
+  workCoverNumber               String?
+  workCoverExpiryDate           DateTime?
 
   // Performance Metrics
   completedJobs              Int       @default(0)
@@ -526,9 +528,9 @@ model ServiceRequest {
   updatedAt       DateTime      @updatedAt
   tenantId        String?
 
-  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tenant  Tenant?           @relation(fields: [tenantId], references: [id])
-  matches ContractorMatch[]
+  user           User                          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant         Tenant?                       @relation(fields: [tenantId], references: [id])
+  matches        ContractorMatch[]
   calloutPayment ServiceRequestCalloutPayment?
 
   // CRM Relations
@@ -547,22 +549,22 @@ enum CalloutPaymentStatus {
 }
 
 model ServiceRequestCalloutPayment {
-  id               String             @id @default(cuid())
-  serviceRequestId String             @unique
-  clientId         String
+  id                  String  @id @default(cuid())
+  serviceRequestId    String  @unique
+  clientId            String
   contractorProfileId String?
 
   // Pricing (AUD)
-  totalAUD                    Decimal
-  totalExGstAUD               Decimal
-  gstAUD                      Decimal
-  platformFeeAUD              Decimal
-  platformFeeExGstAUD         Decimal
-  platformFeeGstAUD           Decimal
-  contractorEntitlementAUD    Decimal
+  totalAUD                      Decimal
+  totalExGstAUD                 Decimal
+  gstAUD                        Decimal
+  platformFeeAUD                Decimal
+  platformFeeExGstAUD           Decimal
+  platformFeeGstAUD             Decimal
+  contractorEntitlementAUD      Decimal
   contractorEntitlementExGstAUD Decimal
-  contractorEntitlementGstAUD Decimal
-  gstInclusive                Boolean            @default(true)
+  contractorEntitlementGstAUD   Decimal
+  gstInclusive                  Boolean @default(true)
 
   status CalloutPaymentStatus @default(CREATED)
 
@@ -573,8 +575,8 @@ model ServiceRequestCalloutPayment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  serviceRequest    ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
-  client            User              @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  serviceRequest    ServiceRequest     @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  client            User               @relation(fields: [clientId], references: [id], onDelete: Cascade)
   contractorProfile ContractorProfile? @relation(fields: [contractorProfileId], references: [id], onDelete: SetNull)
 
   @@index([clientId])
@@ -584,34 +586,35 @@ model ServiceRequestCalloutPayment {
 }
 
 model ContractorProfile {
-  id                String             @id @default(cuid())
-  userId            String             @unique
-  businessName      String?
-  phone             String?
-  address           String?
-  city              String?
-  state             String?
-  zipCode           String?
-  licenseNumber     String?
-  insuranceProvider String?
-  insuranceExpiry   DateTime?
-  services          String[]
-  serviceAreas      String[]
-  hourlyRate        Float?
-  experience        Int                @default(0)
-  rating            Float              @default(0.0)
-  totalJobs         Int                @default(0)
-  bio               String?
-  availability      AvailabilityStatus @default(AVAILABLE)
-  isVerified        Boolean            @default(false)
-  stripeConnectAccountId String?       @unique
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  tenantId          String?
+  id                     String             @id @default(cuid())
+  userId                 String             @unique
+  businessName           String?
+  phone                  String?
+  address                String?
+  city                   String?
+  state                  String?
+  zipCode                String?
+  licenseNumber          String?
+  insuranceProvider      String?
+  insuranceExpiry        DateTime?
+  services               String[]
+  serviceAreas           String[]
+  hourlyRate             Float?
+  experience             Int                @default(0)
+  rating                 Float              @default(0.0)
+  totalJobs              Int                @default(0)
+  bio                    String?
+  availability           AvailabilityStatus @default(AVAILABLE)
+  isVerified             Boolean            @default(false)
+  stripeConnectAccountId String?            @unique
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+  tenantId               String?
 
-  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tenant  Tenant?           @relation(fields: [tenantId], references: [id])
-  matches ContractorMatch[]
+  user                         User                           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant                       Tenant?                        @relation(fields: [tenantId], references: [id])
+  matches                      ContractorMatch[]
+  ServiceRequestCalloutPayment ServiceRequestCalloutPayment[]
 
   @@map("contractor_profiles")
 }
@@ -1505,39 +1508,39 @@ model CaseStudy {
 // ============================================================================
 
 enum CustomerLifecycleStage {
-  LEAD              // Initial inquiry
-  QUALIFIED_LEAD    // Passed lead scoring
-  OPPORTUNITY       // Active sales discussion
-  CUSTOMER          // Won deal, active customer
-  AT_RISK           // Low engagement signals
-  CHURNED           // Lost customer
-  ADVOCATE          // Promoter, referral source
+  LEAD // Initial inquiry
+  QUALIFIED_LEAD // Passed lead scoring
+  OPPORTUNITY // Active sales discussion
+  CUSTOMER // Won deal, active customer
+  AT_RISK // Low engagement signals
+  CHURNED // Lost customer
+  ADVOCATE // Promoter, referral source
 }
 
 enum OpportunityStage {
-  DISCOVERY         // Initial conversation
-  ASSESSMENT        // NRPG inspection scheduled
-  PROPOSAL          // Quote/estimate sent
-  NEGOTIATION       // Discussing terms
-  CLOSED_WON        // Deal won
-  CLOSED_LOST       // Deal lost
+  DISCOVERY // Initial conversation
+  ASSESSMENT // NRPG inspection scheduled
+  PROPOSAL // Quote/estimate sent
+  NEGOTIATION // Discussing terms
+  CLOSED_WON // Deal won
+  CLOSED_LOST // Deal lost
 }
 
 enum ActivityType {
-  EMAIL             // Email communication
-  CALL              // Phone call
-  MEETING           // In-person/virtual meeting
-  NOTE              // Internal note
-  INSPECTION        // NRPG site inspection
-  QUOTE_SENT        // Quote/proposal sent
-  CONTRACT_SIGNED   // Contract executed
-  BOOKING_CREATED   // Service booking initiated
-  PAYMENT_RECEIVED  // Payment processed
-  CLAIM_SUBMITTED   // Insurance claim filed
-  CLAIM_APPROVED    // Insurance claim approved
-  FOLLOW_UP         // Follow-up action
-  COMPLAINT         // Customer complaint
-  REVIEW_RECEIVED   // Customer review/rating
+  EMAIL // Email communication
+  CALL // Phone call
+  MEETING // In-person/virtual meeting
+  NOTE // Internal note
+  INSPECTION // NRPG site inspection
+  QUOTE_SENT // Quote/proposal sent
+  CONTRACT_SIGNED // Contract executed
+  BOOKING_CREATED // Service booking initiated
+  PAYMENT_RECEIVED // Payment processed
+  CLAIM_SUBMITTED // Insurance claim filed
+  CLAIM_APPROVED // Insurance claim approved
+  FOLLOW_UP // Follow-up action
+  COMPLAINT // Customer complaint
+  REVIEW_RECEIVED // Customer review/rating
 }
 
 enum TaskPriority {
@@ -1620,14 +1623,14 @@ model CustomerLifecycle {
   user   User   @relation("CustomerLifecycle", fields: [userId], references: [id], onDelete: Cascade)
 
   // Lifecycle Stage
-  currentStage      CustomerLifecycleStage @default(LEAD)
-  previousStage     CustomerLifecycleStage?
-  stageChangedAt    DateTime               @default(now())
+  currentStage   CustomerLifecycleStage  @default(LEAD)
+  previousStage  CustomerLifecycleStage?
+  stageChangedAt DateTime                @default(now())
 
   // Engagement Metrics
-  totalInteractions    Int      @default(0)
+  totalInteractions    Int       @default(0)
   lastInteractionDate  DateTime?
-  daysSinceLastContact Int      @default(0)
+  daysSinceLastContact Int       @default(0)
 
   // Value Metrics
   lifetimeValueAUD   Decimal @default(0) @db.Decimal(10, 2)
@@ -1738,14 +1741,14 @@ model Activity {
   booking   Booking? @relation("ActivityBooking", fields: [bookingId], references: [id])
 
   // Claim Reference
-  claimId         String?
-  insuranceClaim  InsuranceClaimAU? @relation("ActivityClaim", fields: [claimId], references: [id])
+  claimId        String?
+  insuranceClaim InsuranceClaimAU? @relation("ActivityClaim", fields: [claimId], references: [id])
 
   // Activity Details
   type        ActivityType
   subject     String // "Follow-up call with John"
-  description String? @db.Text
-  outcome     String? @db.Text // Result of the activity
+  description String?      @db.Text
+  outcome     String?      @db.Text // Result of the activity
 
   // Participants
   performedById String // User who performed activity
@@ -1759,14 +1762,14 @@ model Activity {
 
   // Timing
   activityDate    DateTime @default(now())
-  durationMinutes Int?     // For calls/meetings
+  durationMinutes Int? // For calls/meetings
 
   // Attachments
   attachments String[] // URLs to documents, recordings, etc.
 
   // Sentiment Analysis
   sentiment      String? // "positive", "neutral", "negative"
-  sentimentScore Float?  // -1.0 to 1.0
+  sentimentScore Float? // -1.0 to 1.0
 
   // Follow-up
   requiresFollowUp Boolean   @default(false)
@@ -1818,7 +1821,7 @@ model Task {
 
   // Reminders
   reminderDate DateTime?
-  isOverdue    Boolean  @default(false)
+  isOverdue    Boolean   @default(false)
 
   // Linked Entity
   relatedEntityType String? // "Booking", "Claim", "Opportunity"
@@ -1843,10 +1846,10 @@ model BusinessRule {
   description String @db.Text
 
   // Rule Definition
-  ruleType   String     // "RESPONSE_TIME", "CONVERSION_THRESHOLD", "CHURN_PREVENTION"
+  ruleType   String // "RESPONSE_TIME", "CONVERSION_THRESHOLD", "CHURN_PREVENTION"
   metric     MetricType
   threshold  Decimal    @db.Decimal(10, 2)
-  comparison String     // "greater_than", "less_than", "equals"
+  comparison String // "greater_than", "less_than", "equals"
 
   // Actions
   actionOnViolation String[] // ["send_alert", "create_task", "notify_manager"]
@@ -1880,8 +1883,8 @@ model BusinessRuleViolation {
   entityType String // "Opportunity", "CustomerLifecycle", "Booking"
   entityId   String
 
-  actualValue   Decimal @db.Decimal(10, 2)
-  expectedValue Decimal @db.Decimal(10, 2)
+  actualValue   Decimal       @db.Decimal(10, 2)
+  expectedValue Decimal       @db.Decimal(10, 2)
   severity      AlertSeverity
 
   // Resolution
@@ -1911,7 +1914,7 @@ model InspectionReport {
 
   // Linkages
   bookingId        String
-  booking          Booking          @relation("InspectionReportBooking", fields: [bookingId], references: [id])
+  booking          Booking           @relation("InspectionReportBooking", fields: [bookingId], references: [id])
   insuranceClaimId String?
   insuranceClaim   InsuranceClaimAU? @relation("InspectionReportClaim", fields: [insuranceClaimId], references: [id])
 
@@ -1921,28 +1924,28 @@ model InspectionReport {
   inspector      User     @relation("InspectorReports", fields: [inspectorId], references: [id])
 
   // Jurisdiction & Standards
-  jurisdiction      AustralianState
-  applicableCodes   String[] // ["NCC 2022", "QLD Building Code"]
-  iicrcStandards    IICRCStandard[]
+  jurisdiction    AustralianState
+  applicableCodes String[] // ["NCC 2022", "QLD Building Code"]
+  iicrcStandards  IICRCStandard[]
 
   // Status & Workflow
-  status    InspectionStatus @default(SCHEDULED)
-  version   Int              @default(1)
-  isDraft   Boolean          @default(true)
+  status  InspectionStatus @default(SCHEDULED)
+  version Int              @default(1)
+  isDraft Boolean          @default(true)
 
   // Approval Chain
   technicalReviewerId  String?
-  technicalReviewer    User?    @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
+  technicalReviewer    User?     @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
   technicalReviewDate  DateTime?
-  technicalReviewNotes String?  @db.Text
+  technicalReviewNotes String?   @db.Text
 
   managerReviewerId  String?
-  managerReviewer    User?    @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
+  managerReviewer    User?     @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
   managerReviewDate  DateTime?
-  managerReviewNotes String?  @db.Text
+  managerReviewNotes String?   @db.Text
 
   finalApproverId   String?
-  finalApprover     User?    @relation("FinalApprovals", fields: [finalApproverId], references: [id])
+  finalApprover     User?     @relation("FinalApprovals", fields: [finalApproverId], references: [id])
   finalApprovalDate DateTime?
 
   // Report Content
@@ -1963,17 +1966,17 @@ model InspectionReport {
   // PDF Generation
   pdfUrl         String?
   pdfGeneratedAt DateTime?
-  pdfVersion     Int      @default(0)
+  pdfVersion     Int       @default(0)
 
   // Compliance Validation
   complianceChecks ComplianceCheck[]
   complianceStatus String? // "COMPLIANT", "NON_COMPLIANT", "REQUIRES_REVIEW"
 
   // Audit Trail
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
   createdBy String
-  creator   User            @relation("CreatedReports", fields: [createdBy], references: [id])
+  creator   User             @relation("CreatedReports", fields: [createdBy], references: [id])
   revisions ReportRevision[]
 
   @@index([bookingId])
@@ -1996,7 +1999,7 @@ model DamageArea {
 
   // Damage Assessment
   damageCategory    DamageCategory
-  affectedArea      Float          // Square meters
+  affectedArea      Float // Square meters
   affectedMaterials String[] // ["Carpet", "Drywall", "Timber flooring"]
 
   // Moisture Content
@@ -2034,7 +2037,7 @@ model MoistureReading {
   material    String // "Drywall", "Concrete slab", "Timber"
 
   // Measurements
-  moistureContent    Float  // % moisture content
+  moistureContent    Float // % moisture content
   ambientTemperature Float? // Celsius
   ambientHumidity    Float? // % relative humidity
 
@@ -2068,7 +2071,7 @@ model InspectionPhoto {
   photoUrl     String // S3/CloudFlare URL
   thumbnailUrl String?
   filename     String
-  fileSize     Int    // Bytes
+  fileSize     Int // Bytes
   mimeType     String // "image/jpeg"
 
   // Categorization
@@ -2077,7 +2080,7 @@ model InspectionPhoto {
   description String?
 
   // EXIF Data
-  capturedAt  DateTime
+  capturedAt   DateTime
   gpsLatitude  Float?
   gpsLongitude Float?
   deviceModel  String?
@@ -2225,12 +2228,12 @@ model ComplianceCheck {
   report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
 
   // Check Details
-  checkName    String          // "QLD Building Code 2022 - Water Damage"
-  checkCode    String          // "QLD-BC-2022-WD"
+  checkName    String // "QLD Building Code 2022 - Water Damage"
+  checkCode    String // "QLD-BC-2022-WD"
   jurisdiction AustralianState
 
   // Compliance Result
-  status   String  // "PASS", "FAIL", "NOT_APPLICABLE", "REQUIRES_REVIEW"
+  status   String // "PASS", "FAIL", "NOT_APPLICABLE", "REQUIRES_REVIEW"
   required Boolean @default(true)
 
   // Evidence

@@ -13,6 +13,7 @@ import {
   registerContractor as nrpgRegisterContractor,
   getPendingVerifications,
 } from '@/lib/services/nrpg.service';
+import { sendRegistrationReceivedEmail } from '@/lib/services/email.service';
 import { AustralianState, AustralianServiceType, IICRCCertificationLevel } from '@prisma/client';
 
 // ============================================================================
@@ -76,6 +77,7 @@ export async function POST(request: NextRequest) {
         iicrcCertificationDate: new Date(body.iicrcCertificationDate),
         iicrcExpiryDate: new Date(body.iicrcExpiryDate),
         iicrcCertificateFile: body.iicrcCertificateFile,
+        insuranceCertificateFile: body.insuranceCertificateFile,
         operatingStates: body.operatingStates as AustralianState[],
         servicePostcodes: body.servicePostcodes as string[],
         specialties: body.specialties as AustralianServiceType[],
@@ -100,6 +102,18 @@ export async function POST(request: NextRequest) {
       await prisma.user.update({
         where: { id: user.id },
         data: { userType: 'CONTRACTOR' },
+      });
+    }
+
+    // Send registration confirmation email
+    if (result.success && result.nrpgMemberId) {
+      await sendRegistrationReceivedEmail({
+        businessName: body.businessName,
+        contractorEmail: body.email || user.email,
+        nrpgMemberId: result.nrpgMemberId,
+      }).catch((err) => {
+        console.error('Failed to send registration email:', err);
+        // Don't fail the registration if email fails
       });
     }
 

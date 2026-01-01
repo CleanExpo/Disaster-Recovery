@@ -11,6 +11,7 @@ import { useSearch } from '@/hooks/useSearch';
 export function SearchBar() {
   const { query, suggestions, isLoadingSuggestions, handleQueryChange, clearResults } = useSearch();
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Close suggestions when clicking outside
@@ -24,6 +25,67 @@ export function SearchBar() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Reset highlighted index when dropdown opens or suggestions change
+  useEffect(() => {
+    setHighlightedIndex(-1);
+  }, [showSuggestions, suggestions]);
+
+  // Handle keyboard navigation for suggestions
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Handle Enter key regardless of suggestions visibility
+    if (e.key === 'Enter') {
+      if (showSuggestions && highlightedIndex >= 0 && suggestions[highlightedIndex]) {
+        e.preventDefault();
+        handleQueryChange(suggestions[highlightedIndex].text);
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+        // Ensure focus remains on input after selection
+        inputRef.current?.focus();
+      }
+      // If no highlight, allow default behavior (form submission)
+      return;
+    }
+
+    // Handle Escape key to close dropdown and reset highlight
+    if (e.key === 'Escape') {
+      if (showSuggestions) {
+        e.preventDefault();
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+      }
+      return;
+    }
+
+    // Handle Tab key to close dropdown (allow natural tab behavior)
+    if (e.key === 'Tab') {
+      if (showSuggestions) {
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+      }
+      // Don't prevent default - allow natural tab navigation
+      return;
+    }
+
+    if (!showSuggestions || suggestions.length === 0) {
+      return;
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : 0
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setHighlightedIndex((prev) =>
+          prev > 0 ? prev - 1 : suggestions.length - 1
+        );
+        break;
+    }
+  };
 
   return (
     <div className="relative w-full">
@@ -47,9 +109,17 @@ export function SearchBar() {
             setShowSuggestions(true);
           }}
           onFocus={() => setShowSuggestions(true)}
+          onKeyDown={handleKeyDown}
           placeholder="Search messages, users, rooms..."
           className="flex-1 outline-none text-sm"
           autoComplete="off"
+          role="combobox"
+          aria-label="Search messages, users, and rooms"
+          aria-expanded={showSuggestions && suggestions.length > 0}
+          aria-haspopup="listbox"
+          aria-autocomplete="list"
+          aria-controls="search-suggestions-listbox"
+          aria-activedescendant={highlightedIndex >= 0 ? `search-suggestion-${highlightedIndex}` : undefined}
         />
 
         {query && (
@@ -59,31 +129,74 @@ export function SearchBar() {
               setShowSuggestions(false);
             }}
             className="text-gray-400 hover:text-gray-600"
+            aria-label="Clear search"
           >
             ✕
           </button>
         )}
       </div>
 
+      {/* Visually hidden live region for screen reader announcements */}
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {showSuggestions && isLoadingSuggestions
+          ? 'Loading suggestions'
+          : showSuggestions && suggestions.length > 0
+            ? `${suggestions.length} suggestion${suggestions.length === 1 ? '' : 's'} available`
+            : ''
+        }
+      </div>
+
       {/* Suggestions Dropdown */}
-      {showSuggestions && suggestions.length > 0 && (
+      {showSuggestions && (isLoadingSuggestions || suggestions.length > 0) && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
-          {isLoadingSuggestions && (
+          {isLoadingSuggestions && suggestions.length === 0 && (
             <div className="p-4 text-center text-gray-500 text-sm">
               Loading suggestions...
             </div>
           )}
 
-          {!isLoadingSuggestions && suggestions.length > 0 && (
-            <ul className="py-2">
-              {suggestions.map((suggestion, idx) => (
+          {suggestions.length > 0 && (
+            <ul
+              className="py-2"
+              role="listbox"
+              id="search-suggestions-listbox"
+              aria-busy={isLoadingSuggestions}
+            >
+              {suggestions.map((suggestion, idx) => {
+                // Generate accessible name with type context
+                const getAccessibleName = () => {
+                  switch (suggestion.type) {
+                    case 'recent':
+                      return `Recent search: ${suggestion.text}`;
+                    case 'user':
+                      return `User: ${suggestion.text}`;
+                    case 'room':
+                      return `Room: ${suggestion.text}`;
+                    default:
+                      return suggestion.text;
+                  }
+                };
+
+                return (
                 <li
                   key={idx}
+                  id={`search-suggestion-${idx}`}
+                  role="option"
+                  aria-selected={idx === highlightedIndex}
+                  aria-label={getAccessibleName()}
                   onClick={() => {
                     handleQueryChange(suggestion.text);
                     setShowSuggestions(false);
+                    // Return focus to input after mouse selection for consistent keyboard navigation
+                    inputRef.current?.focus();
                   }}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 text-sm"
+                  className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 text-sm ${
+                    idx === highlightedIndex ? 'bg-gray-100' : ''
+                  }`}
                 >
                   {suggestion.type === 'recent' && (
                     <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -102,7 +215,8 @@ export function SearchBar() {
                   )}
                   <span>{suggestion.text}</span>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
         </div>

@@ -151,6 +151,39 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchAdminData = useCallback(async () => {
+    try {
+      if (typeof window === 'undefined') return;
+
+      // Fetch analytics
+      const analyticsResponse = await fetch('/api/analytics/leads', {
+        cache: 'no-store',
+      });
+
+      if (analyticsResponse.ok) {
+        const analyticsData = await analyticsResponse.json();
+        setStats({
+          totalUsers: analyticsData.analytics.totalLeads || 0,
+          totalRequests: analyticsData.analytics.totalLeads || 0,
+          totalMessages: 0, // You can implement this
+          totalRevenue: 0, // You can implement this
+          pendingRequests: analyticsData.analytics.lowValueLeads || 0,
+          completedRequests: analyticsData.analytics.highValueLeads || 0,
+          averageLeadScore: analyticsData.analytics.averageScore || 0,
+          conversionRate: analyticsData.analytics.conversionRate || 0
+        });
+        setHighValueLeads(analyticsData.highValueLeads || []);
+      }
+    } catch (error) {
+      console.error('Error fetching admin data:', error);
+    } finally {
+      setLoading(false);
+    }
+
+    // Fetch admin KPIs
+    fetchAdminKpis();
+  }, []);
+
   const fetchContractors = useCallback(async () => {
     try {
       setLoadingContractors(true);
@@ -333,39 +366,6 @@ export default function AdminDashboard() {
       fetchAdminData();
     }
   }, [user, loading, router, fetchAdminData]);
-
-  const fetchAdminData = useCallback(async () => {
-    try {
-      if (typeof window === 'undefined') return;
-
-      // Fetch analytics
-      const analyticsResponse = await fetch('/api/analytics/leads', {
-        cache: 'no-store',
-      });
-
-      if (analyticsResponse.ok) {
-        const analyticsData = await analyticsResponse.json();
-        setStats({
-          totalUsers: analyticsData.analytics.totalLeads || 0,
-          totalRequests: analyticsData.analytics.totalLeads || 0,
-          totalMessages: 0, // You can implement this
-          totalRevenue: 0, // You can implement this
-          pendingRequests: analyticsData.analytics.lowValueLeads || 0,
-          completedRequests: analyticsData.analytics.highValueLeads || 0,
-          averageLeadScore: analyticsData.analytics.averageScore || 0,
-          conversionRate: analyticsData.analytics.conversionRate || 0
-        });
-        setHighValueLeads(analyticsData.highValueLeads || []);
-      }
-    } catch (error) {
-      console.error('Error fetching admin data:', error);
-    } finally {
-      setLoading(false);
-    }
-    
-    // Fetch admin KPIs
-    fetchAdminKpis();
-  }, []);
 
   const fetchClients = async () => {
     try {
