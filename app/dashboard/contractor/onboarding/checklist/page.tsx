@@ -6,7 +6,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, CheckCircle2, Circle, ArrowRight } from 'lucide-react';
+import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText } from 'lucide-react';
 
 interface ChecklistStatus {
   preferencesComplete: boolean;
@@ -267,6 +267,43 @@ export default function ContractorOnboardingChecklistPage() {
           ))}
         </CardContent>
       </Card>
+
+      {/* Certificate Card - Shows when training is complete */}
+      {checklist.trainingComplete && (
+        <Card className="border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                  <Award className="h-7 w-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-green-900 dark:text-green-100">
+                    Your NRP Training Certificate is Ready!
+                  </h3>
+                  <p className="text-sm text-green-700 dark:text-green-300 mt-1">
+                    You've completed all required modules. View and download your official NRPG certificate.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-2 flex-shrink-0">
+                <Button asChild variant="outline" className="border-green-600 text-green-700 hover:bg-green-50">
+                  <Link href="/dashboard/contractor/onboarding/certificate">
+                    <FileText className="h-4 w-4 mr-2" />
+                    View
+                  </Link>
+                </Button>
+                <Button asChild className="bg-green-600 hover:bg-green-700">
+                  <Link href="/dashboard/contractor/onboarding/certificate?action=download">
+                    <Award className="h-4 w-4 mr-2" />
+                    Download
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }

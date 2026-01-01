@@ -148,8 +148,11 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
             {startingPayoutSetup ? 'Starting payout setup...' : 'Set up payouts'}
           </Button>
           {progress.completionPercentage >= 100 && (
-            <Button asChild variant="outline">
-              <Link href="/dashboard/contractor/onboarding/certificate">View certificate</Link>
+            <Button asChild className="bg-green-600 hover:bg-green-700">
+              <Link href="/dashboard/contractor/onboarding/certificate">
+                <Award className="h-4 w-4 mr-2" />
+                View Certificate
+              </Link>
             </Button>
           )}
           <CertificationBadge
@@ -229,6 +232,43 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
           </div>
         </CardContent>
       </Card>
+
+      {/* Certificate Completion Card */}
+      {progress.completionPercentage >= 100 && (
+        <Card className="border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-green-600 flex items-center justify-center">
+                  <Award className="h-8 w-8 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-green-900 dark:text-green-100">
+                    Training Complete!
+                  </h3>
+                  <p className="text-sm text-green-700 dark:text-green-300 mt-1">
+                    You've successfully completed all required modules. Download your certificate now.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Button asChild variant="outline">
+                  <Link href="/dashboard/contractor/onboarding/certificate">
+                    <FileText className="h-4 w-4 mr-2" />
+                    View Certificate
+                  </Link>
+                </Button>
+                <Button asChild className="bg-green-600 hover:bg-green-700">
+                  <Link href="/dashboard/contractor/onboarding/certificate?action=download">
+                    <Award className="h-4 w-4 mr-2" />
+                    Download PDF
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Current Module */}
       {progress.currentModule && (

@@ -4,8 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import Link from 'next/link';
-import { PlayCircle, CheckCircle2, Clock, FileText } from 'lucide-react';
+import { PlayCircle, CheckCircle2, Clock, FileText, Lock, AlertCircle } from 'lucide-react';
 
 interface ModuleCardProps {
   module: {
@@ -18,9 +19,19 @@ interface ModuleCardProps {
   };
   onStartQuiz: (moduleId: string) => void;
   highlighted?: boolean;
+  isLocked?: boolean;
+  prerequisiteModules?: string[];
+  incompletePrerequisites?: string[];
 }
 
-export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleCardProps) {
+export function ModuleCard({
+  module,
+  onStartQuiz,
+  highlighted = false,
+  isLocked = false,
+  prerequisiteModules = [],
+  incompletePrerequisites = [],
+}: ModuleCardProps) {
   const isNrpgModule = /^NRP-\d{3}$/i.test(module.moduleId);
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -68,24 +79,60 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
   };
 
   return (
-    <Card className={highlighted ? 'border-2 border-primary shadow-lg' : ''}>
+    <Card className={highlighted ? 'border-2 border-primary shadow-lg' : isLocked ? 'opacity-60 border-muted' : ''}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
-            {getStatusIcon(module.status)}
+            {isLocked ? (
+              <Lock className="h-5 w-5 text-muted-foreground" />
+            ) : (
+              getStatusIcon(module.status)
+            )}
             <div>
-              <CardTitle className="text-lg">
+              <CardTitle className="text-lg flex items-center gap-2">
                 {module.courseName || module.moduleId}
+                {isLocked && <Badge variant="secondary" className="text-xs">Locked</Badge>}
               </CardTitle>
               <CardDescription className="mt-1">
                 {module.moduleId}
               </CardDescription>
             </div>
           </div>
-          {getStatusBadge(module.status)}
+          {!isLocked && getStatusBadge(module.status)}
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Locked Module Alert */}
+        {isLocked && (
+          <Alert className="border-amber-500 bg-amber-50 dark:bg-amber-950/20">
+            <Lock className="h-4 w-4 text-amber-600" />
+            <AlertDescription className="text-sm">
+              <p className="font-semibold text-amber-900 dark:text-amber-100 mb-2">
+                This module is locked
+              </p>
+              {incompletePrerequisites.length > 0 ? (
+                <>
+                  <p className="text-amber-800 dark:text-amber-200 mb-2">
+                    Complete these required modules first:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 text-amber-700 dark:text-amber-300">
+                    {incompletePrerequisites.map((prereq) => (
+                      <li key={prereq}>{prereq}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : prerequisiteModules.length > 0 ? (
+                <p className="text-amber-800 dark:text-amber-200">
+                  Prerequisites: {prerequisiteModules.join(', ')}
+                </p>
+              ) : (
+                <p className="text-amber-800 dark:text-amber-200">
+                  Complete earlier modules to unlock this training
+                </p>
+              )}
+            </AlertDescription>
+          </Alert>
+        )}
         {/* Progress Bar */}
         {module.status !== 'NOT_STARTED' && (
           <div className="space-y-2">
@@ -122,9 +169,19 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
               onClick={() => onStartQuiz(module.moduleId)}
               className="w-full"
               variant="default"
+              disabled={isLocked}
             >
-              <PlayCircle className="h-4 w-4 mr-2" />
-              Start Module
+              {isLocked ? (
+                <>
+                  <Lock className="h-4 w-4 mr-2" />
+                  Module Locked
+                </>
+              ) : (
+                <>
+                  <PlayCircle className="h-4 w-4 mr-2" />
+                  Start Module
+                </>
+              )}
             </Button>
           )}
 
@@ -134,11 +191,12 @@ export function ModuleCard({ module, onStartQuiz, highlighted = false }: ModuleC
                 onClick={() => onStartQuiz(module.moduleId)}
                 className="flex-1"
                 variant="default"
+                disabled={isLocked}
               >
                 Continue Learning
               </Button>
               {isNrpgModule ? (
-                <Button asChild variant="outline" className="flex-1">
+                <Button asChild variant="outline" className="flex-1" disabled={isLocked}>
                   <Link href={`/dashboard/contractor/onboarding/module/${module.moduleId}`}>Review Materials</Link>
                 </Button>
               ) : (
