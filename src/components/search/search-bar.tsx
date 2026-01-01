@@ -33,6 +33,18 @@ export function SearchBar() {
 
   // Handle keyboard navigation for suggestions
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Handle Enter key regardless of suggestions visibility
+    if (e.key === 'Enter') {
+      if (showSuggestions && highlightedIndex >= 0 && suggestions[highlightedIndex]) {
+        e.preventDefault();
+        handleQueryChange(suggestions[highlightedIndex].text);
+        setShowSuggestions(false);
+        setHighlightedIndex(-1);
+      }
+      // If no highlight, allow default behavior (form submission)
+      return;
+    }
+
     if (!showSuggestions || suggestions.length === 0) {
       return;
     }
