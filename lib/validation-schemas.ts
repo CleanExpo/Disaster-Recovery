@@ -102,6 +102,68 @@ export const whiteLabelConfigSchema = z.object({
   config: z.record(z.unknown()),
 });
 
+// ============ SERVICE REQUEST SEARCH SCHEMAS ============
+
+/**
+ * Enum values for ServiceStatus matching Prisma schema
+ */
+export const serviceStatusEnum = z.enum([
+  'PENDING',
+  'MATCHED',
+  'IN_PROGRESS',
+  'COMPLETED',
+  'CANCELLED',
+]);
+
+/**
+ * Schema for service request search query parameters
+ * Used by the /api/service-requests/search endpoint
+ */
+export const serviceRequestSearchSchema = z.object({
+  /** Text query to search across description, serviceTitle, and location */
+  query: z.string().min(1, 'Search query must be at least 1 character').optional(),
+  /** Filter by service category (exact match) */
+  serviceCategory: z.string().min(1, 'Service category cannot be empty').optional(),
+  /** Filter by status (exact match, must be valid ServiceStatus enum value) */
+  status: serviceStatusEnum.optional(),
+  /** Filter by location (text match) */
+  location: z.string().min(1, 'Location cannot be empty').optional(),
+  /** Maximum number of results to return (1-100, default: 20) */
+  limit: z.union([z.string(), z.number()])
+    .transform(val => typeof val === 'string' ? parseInt(val, 10) : val)
+    .pipe(z.number().int().min(1, 'Limit must be at least 1').max(100, 'Limit cannot exceed 100'))
+    .optional()
+    .default(20),
+  /** Number of results to skip (default: 0) */
+  offset: z.union([z.string(), z.number()])
+    .transform(val => typeof val === 'string' ? parseInt(val, 10) : val)
+    .pipe(z.number().int().min(0, 'Offset cannot be negative'))
+    .optional()
+    .default(0),
+  /** Filter by date range - start date (ISO 8601 format) */
+  createdAfter: z.string()
+    .datetime({ message: 'createdAfter must be a valid ISO 8601 date' })
+    .transform(val => new Date(val))
+    .optional(),
+  /** Filter by date range - end date (ISO 8601 format) */
+  createdBefore: z.string()
+    .datetime({ message: 'createdBefore must be a valid ISO 8601 date' })
+    .transform(val => new Date(val))
+    .optional(),
+}).refine(
+  (data) => {
+    // Ensure createdAfter is before createdBefore if both are provided
+    if (data.createdAfter && data.createdBefore) {
+      return data.createdAfter <= data.createdBefore;
+    }
+    return true;
+  },
+  {
+    message: 'createdAfter must be before or equal to createdBefore',
+    path: ['createdAfter'],
+  }
+);
+
 // ============ TYPE EXPORTS ============
 
 export type LoginInput = z.infer<typeof loginSchema>;
@@ -114,3 +176,5 @@ export type MessageInput = z.infer<typeof messageSchema>;
 export type FeedbackInput = z.infer<typeof feedbackSchema>;
 export type TrainingActionInput = z.infer<typeof trainingActionSchema>;
 export type WhiteLabelConfigInput = z.infer<typeof whiteLabelConfigSchema>;
+export type ServiceStatusType = z.infer<typeof serviceStatusEnum>;
+export type ServiceRequestSearchInput = z.infer<typeof serviceRequestSearchSchema>;
