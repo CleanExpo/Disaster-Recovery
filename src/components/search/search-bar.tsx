@@ -134,6 +134,18 @@ export function SearchBar() {
         )}
       </div>
 
+      {/* Visually hidden live region for screen reader announcements */}
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {showSuggestions && suggestions.length > 0
+          ? `${suggestions.length} suggestion${suggestions.length === 1 ? '' : 's'} available`
+          : ''
+        }
+      </div>
+
       {/* Suggestions Dropdown */}
       {showSuggestions && suggestions.length > 0 && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
