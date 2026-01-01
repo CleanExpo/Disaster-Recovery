@@ -40,6 +40,8 @@ export function SearchBar() {
         handleQueryChange(suggestions[highlightedIndex].text);
         setShowSuggestions(false);
         setHighlightedIndex(-1);
+        // Ensure focus remains on input after selection
+        inputRef.current?.focus();
       }
       // If no highlight, allow default behavior (form submission)
       return;
@@ -189,6 +191,8 @@ export function SearchBar() {
                   onClick={() => {
                     handleQueryChange(suggestion.text);
                     setShowSuggestions(false);
+                    // Return focus to input after mouse selection for consistent keyboard navigation
+                    inputRef.current?.focus();
                   }}
                   className={`px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 text-sm ${
                     idx === highlightedIndex ? 'bg-gray-100' : ''
