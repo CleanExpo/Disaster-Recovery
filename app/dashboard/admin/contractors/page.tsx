@@ -8,14 +8,25 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { 
-  Search, 
-  Filter, 
-  CheckCircle, 
-  XCircle, 
-  Eye, 
-  Mail, 
-  Phone, 
+import { Checkbox } from '@/components/ui/checkbox';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import {
+  Search,
+  Filter,
+  CheckCircle,
+  XCircle,
+  Eye,
+  Mail,
+  Phone,
   MapPin,
   Star,
   Clock,
@@ -24,7 +35,10 @@ import {
   Award,
   Loader2,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Trash2,
+  X,
+  AlertTriangle
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -70,6 +84,18 @@ export default function AdminContractorsPage() {
   const [selectedContractor, setSelectedContractor] = useState<Contractor | null>(null);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
+  // Bulk selection state
+  const [selectedContractorIds, setSelectedContractorIds] = useState<Set<string>>(new Set());
+
+  // Bulk delete dialog state
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+
+  // Derived state: check if all visible contractors are selected
+  const isAllSelected = contractors.length > 0 && contractors.every(c => selectedContractorIds.has(c.id));
+  const isPartiallySelected = contractors.some(c => selectedContractorIds.has(c.id)) && !isAllSelected;
+  const selectedCount = selectedContractorIds.size;
+
   useEffect(() => {
     if (!loading && (!user || user.userType !== 'ADMIN')) {
       router.push('/');
@@ -99,7 +125,7 @@ export default function AdminContractorsPage() {
         });
       }
     } catch (error) {
-      console.error('Error fetching contractors:', error);
+      // Error handled by toast above
     } finally {
       setLoadingContractors(false);
     }
@@ -111,10 +137,95 @@ export default function AdminContractorsPage() {
     }
   }, [user, fetchContractors]);
 
+  // Clear selection when page, filter, or search changes
+  useEffect(() => {
+    setSelectedContractorIds(new Set());
+  }, [currentPage, statusFilter, searchTerm]);
+
+  // Toggle individual contractor selection
+  const toggleContractorSelection = useCallback((contractorId: string) => {
+    setSelectedContractorIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(contractorId)) {
+        newSet.delete(contractorId);
+      } else {
+        newSet.add(contractorId);
+      }
+      return newSet;
+    });
+  }, []);
+
+  // Toggle select all visible contractors
+  const toggleSelectAll = useCallback(() => {
+    if (isAllSelected) {
+      // Deselect all visible contractors
+      setSelectedContractorIds(prev => {
+        const newSet = new Set(prev);
+        contractors.forEach(c => newSet.delete(c.id));
+        return newSet;
+      });
+    } else {
+      // Select all visible contractors
+      setSelectedContractorIds(prev => {
+        const newSet = new Set(prev);
+        contractors.forEach(c => newSet.add(c.id));
+        return newSet;
+      });
+    }
+  }, [contractors, isAllSelected]);
+
+  // Clear all selection
+  const clearSelection = useCallback(() => {
+    setSelectedContractorIds(new Set());
+  }, []);
+
+  // Check if a contractor is selected
+  const isContractorSelected = useCallback((contractorId: string) => {
+    return selectedContractorIds.has(contractorId);
+  }, [selectedContractorIds]);
+
+  // Handle bulk delete confirmation
+  const handleBulkDeleteConfirm = async () => {
+    setIsDeleteLoading(true);
+    try {
+      const response = await fetch('/api/admin/contractors/bulk', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contractorIds: Array.from(selectedContractorIds),
+          confirm: true
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        toast.success(`Successfully deleted ${data.deletedCount} contractor${data.deletedCount !== 1 ? 's' : ''}`, {
+          description: 'The selected contractors have been permanently removed.'
+        });
+        clearSelection();
+        await fetchContractors();
+      } else {
+        const error = await response.json();
+        toast.error('Failed to delete contractors', {
+          description: error.error || 'Please try again.'
+        });
+      }
+    } catch (error) {
+      toast.error('Failed to delete contractors', {
+        description: 'An unexpected error occurred. Please try again.'
+      });
+    } finally {
+      setIsDeleteLoading(false);
+      setIsDeleteDialogOpen(false);
+    }
+  };
+
   const handleVerification = async (contractorId: string, action: 'verify' | 'reject') => {
     try {
       setActionLoading(contractorId);
-      
+
       const response = await fetch('/api/admin/contractors', {
         method: 'PATCH',
         headers: {
@@ -131,14 +242,14 @@ export default function AdminContractorsPage() {
         // Refresh the contractors list
         await fetchContractors();
         setSelectedContractor(null);
-        
+
         // Show success toast
         toast.success(
-          action === 'verify' 
-            ? 'Contractor verified successfully!' 
+          action === 'verify'
+            ? 'Contractor verified successfully!'
             : 'Contractor rejected successfully!',
           {
-            description: action === 'verify' 
+            description: action === 'verify'
               ? 'The contractor can now receive job matches.'
               : 'The contractor has been notified of the rejection.'
           }
@@ -150,7 +261,7 @@ export default function AdminContractorsPage() {
         });
       }
     } catch (error) {
-      console.error('Error updating verification:', error);
+      // Error handled by toast above
     } finally {
       setActionLoading(null);
     }
@@ -208,6 +319,41 @@ export default function AdminContractorsPage() {
               </SelectContent>
             </Select>
           </div>
+
+          {/* Select All & Selection Count */}
+          {contractors.length > 0 && (
+            <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-700">
+              <div className="flex items-center space-x-3">
+                <Checkbox
+                  checked={isAllSelected ? true : isPartiallySelected ? 'indeterminate' : false}
+                  onCheckedChange={toggleSelectAll}
+                  className="h-5 w-5 border-gray-500 data-[state=checked]:bg-[#00BFA6] data-[state=checked]:border-[#00BFA6] data-[state=indeterminate]:bg-[#00BFA6] data-[state=indeterminate]:border-[#00BFA6]"
+                  aria-label="Select all contractors"
+                />
+                <label
+                  className="text-sm text-gray-300 cursor-pointer select-none"
+                  onClick={toggleSelectAll}
+                >
+                  Select all
+                </label>
+              </div>
+              {selectedCount > 0 && (
+                <div className="flex items-center space-x-2">
+                  <span className="text-sm text-[#00BFA6] font-medium">
+                    {selectedCount} contractor{selectedCount !== 1 ? 's' : ''} selected
+                  </span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={clearSelection}
+                    className="text-gray-400 hover:text-white text-xs h-auto py-1 px-2"
+                  >
+                    Clear
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Contractors List */}
@@ -220,11 +366,30 @@ export default function AdminContractorsPage() {
           </div>
         ) : (
           <div className="space-y-6">
-            {contractors.map((contractor) => (
-              <Card key={contractor.id} className="bg-gray-800 border-gray-700">
+            {contractors.map((contractor) => {
+              const isSelected = isContractorSelected(contractor.id);
+              return (
+              <Card
+                key={contractor.id}
+                className={`bg-gray-800 transition-all duration-200 ${
+                  isSelected
+                    ? 'border-[#00BFA6] ring-1 ring-[#00BFA6]/50 bg-gray-800/80'
+                    : 'border-gray-700 hover:border-gray-600'
+                }`}
+              >
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
-                    <div className="flex-1">
+                    <div className="flex items-start space-x-4 flex-1">
+                      {/* Selection Checkbox */}
+                      <div className="pt-1">
+                        <Checkbox
+                          checked={isSelected}
+                          onCheckedChange={() => toggleContractorSelection(contractor.id)}
+                          className="h-5 w-5 border-gray-500 data-[state=checked]:bg-[#00BFA6] data-[state=checked]:border-[#00BFA6]"
+                          aria-label={`Select ${contractor.businessName}`}
+                        />
+                      </div>
+                      <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-4">
                         <div className="w-12 h-12 bg-[#00BFA6] rounded-full flex items-center justify-center">
                           <span className="text-white font-bold text-lg">
@@ -236,8 +401,8 @@ export default function AdminContractorsPage() {
                           <p className="text-gray-400">{contractor.user.name} • {contractor.user.email}</p>
                           <div className="flex items-center space-x-2 mt-1">
                             <Badge className={`${
-                              contractor.isVerified 
-                                ? 'bg-green-900/30 text-green-400 border-green-500' 
+                              contractor.isVerified
+                                ? 'bg-green-900/30 text-green-400 border-green-500'
                                 : 'bg-yellow-900/30 text-yellow-400 border-yellow-500'
                             }`}>
                               {contractor.isVerified ? 'Verified' : 'Pending Verification'}
@@ -295,6 +460,7 @@ export default function AdminContractorsPage() {
                         </div>
                       </div>
                     </div>
+                    </div>
 
                     <div className="flex flex-col space-y-2 ml-6">
                       <Button
@@ -306,7 +472,7 @@ export default function AdminContractorsPage() {
                         <Eye className="h-4 w-4 mr-2" />
                         View Details
                       </Button>
-                      
+
                       {!contractor.isVerified && (
                         <div className="flex space-x-2">
                           <Button
@@ -338,7 +504,8 @@ export default function AdminContractorsPage() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+              );
+            })}
 
             {contractors.length === 0 && (
               <div className="text-center py-12">
@@ -363,11 +530,11 @@ export default function AdminContractorsPage() {
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            
+
             <span className="text-gray-400 px-4">
               Page {currentPage} of {totalPages}
             </span>
-            
+
             <Button
               variant="outline"
               size="sm"
@@ -532,6 +699,125 @@ export default function AdminContractorsPage() {
           </Card>
         </div>
       )}
+
+      {/* Bulk Action Toolbar */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 transform transition-all duration-300 ease-out ${
+          selectedCount > 0
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-full opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="bg-gray-800/95 backdrop-blur-md border-t border-gray-700 shadow-2xl shadow-black/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex items-center justify-between">
+              {/* Selection Count */}
+              <div className="flex items-center space-x-4">
+                <span className="text-sm font-medium text-white">
+                  <span className="text-[#00BFA6]">{selectedCount}</span> contractor{selectedCount !== 1 ? 's' : ''} selected
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={clearSelection}
+                  className="text-gray-400 hover:text-white hover:bg-gray-700"
+                >
+                  <X className="h-4 w-4 mr-1" />
+                  Clear
+                </Button>
+              </div>
+
+              {/* Bulk Action Buttons */}
+              <div className="flex items-center space-x-3">
+                <Button
+                  size="sm"
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                  onClick={() => {
+                    // Will be implemented in subtask 4.1
+                    toast.info('Bulk verify will be implemented in the next phase');
+                  }}
+                >
+                  <CheckCircle className="h-4 w-4 mr-2" />
+                  Verify All
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-yellow-600 text-yellow-400 hover:bg-yellow-600 hover:text-white"
+                  onClick={() => {
+                    // Will be implemented in subtask 4.1
+                    toast.info('Bulk reject will be implemented in the next phase');
+                  }}
+                >
+                  <XCircle className="h-4 w-4 mr-2" />
+                  Reject All
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
+                  onClick={() => setIsDeleteDialogOpen(true)}
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete Selected
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bulk Delete Confirmation Dialog */}
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent className="bg-gray-800 border-gray-700 text-white">
+          <AlertDialogHeader>
+            <div className="flex items-center space-x-3">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-red-900/30 flex items-center justify-center">
+                <AlertTriangle className="h-5 w-5 text-red-400" />
+              </div>
+              <AlertDialogTitle className="text-white text-lg">
+                Delete {selectedCount} Contractor{selectedCount !== 1 ? 's' : ''}?
+              </AlertDialogTitle>
+            </div>
+            <AlertDialogDescription className="text-gray-400 pt-2">
+              <span className="block mb-2">
+                You are about to permanently delete <span className="text-red-400 font-medium">{selectedCount}</span> contractor{selectedCount !== 1 ? 's' : ''} from the system.
+              </span>
+              <span className="block text-red-400 font-medium">
+                This action cannot be undone. All associated data including matches, reviews, and job history will be permanently removed.
+              </span>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="mt-4">
+            <AlertDialogCancel
+              className="bg-transparent border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
+              disabled={isDeleteLoading}
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-red-600 hover:bg-red-700 text-white border-0"
+              onClick={(e) => {
+                e.preventDefault();
+                handleBulkDeleteConfirm();
+              }}
+              disabled={isDeleteLoading}
+            >
+              {isDeleteLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Deleting...
+                </>
+              ) : (
+                <>
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete {selectedCount} Contractor{selectedCount !== 1 ? 's' : ''}
+                </>
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
