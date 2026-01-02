@@ -310,7 +310,7 @@ export default function HowItWorksPage() {
               },
               {
                 q: 'Can I choose which leads to accept?',
-                a: 'Yes! You receive a notification with full lead details. You can accept or decline based on your current capacity, the job type, or any other factor. Declining a lead doesn't affect your rotation position.',
+                a: "Yes! You receive a notification with full lead details. You can accept or decline based on your current capacity, the job type, or any other factor. Declining a lead doesn't affect your rotation position.",
               },
               {
                 q: 'What if I exceed my monthly lead limit?',
@@ -318,7 +318,7 @@ export default function HowItWorksPage() {
               },
               {
                 q: 'How quickly do I get paid?',
-                a: 'NRPG doesn't handle payment for jobs. You invoice the client directly and keep 100% of your earnings. We only charge the monthly subscription fee for platform access.',
+                a: "NRPG doesn't handle payment for jobs. You invoice the client directly and keep 100% of your earnings. We only charge the monthly subscription fee for platform access.",
               },
               {
                 q: 'What certifications do I need?',

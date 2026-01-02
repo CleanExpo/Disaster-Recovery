@@ -1,0 +1,85 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "New South Wales", "abbr": "NSW" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [141, -28], [141, -37], [154, -37], [154, -28], [141, -28]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Victoria", "abbr": "VIC" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [141, -37], [141, -39], [150, -39], [150, -37], [141, -37]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Queensland", "abbr": "QLD" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [138, -10], [138, -28], [154, -28], [154, -10], [138, -10]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "South Australia", "abbr": "SA" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [129, -26], [129, -37], [141, -37], [141, -26], [129, -26]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Western Australia", "abbr": "WA" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [113, -13], [113, -35], [129, -35], [129, -13], [113, -13]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Tasmania", "abbr": "TAS" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [144, -40], [144, -44], [148, -44], [148, -40], [144, -40]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Northern Territory", "abbr": "NT" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [129, -10], [129, -26], [138, -26], [138, -10], [129, -10]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "Australian Capital Territory", "abbr": "ACT" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [148.7, -35.1], [148.7, -35.9], [149.4, -35.9], [149.4, -35.1], [148.7, -35.1]
+        ]]
+      }
+    }
+  ]
+}
