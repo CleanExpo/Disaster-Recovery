@@ -1,0 +1,184 @@
+{
+  "modules": [
+    {
+      "id": "MODULE-001",
+      "title": "What to Do After Water Damage",
+      "description": "Immediate actions to take when water damage occurs, safety considerations, and emergency response procedures",
+      "duration": "10 minutes",
+      "required": true,
+      "order": 1,
+      "category": "emergency-response",
+      "topics": [
+        "Emergency safety procedures",
+        "Stopping water source",
+        "Documentation requirements",
+        "Insurance notification timeline",
+        "Professional restoration process",
+        "Cost considerations",
+        "Prevention strategies"
+      ],
+      "learningObjectives": [
+        "Identify when to evacuate vs when it's safe to respond",
+        "Know how to stop common water sources",
+        "Understand insurance documentation requirements",
+        "Recognize the critical 24-48 hour window for action"
+      ]
+    },
+    {
+      "id": "MODULE-002",
+      "title": "Understanding Your Insurance Claim",
+      "description": "Navigate the insurance claims process with confidence, understand coverage types, and work effectively with NRPG",
+      "duration": "12 minutes",
+      "required": true,
+      "order": 2,
+      "category": "insurance",
+      "topics": [
+        "Building vs contents insurance",
+        "Claims process timeline",
+        "Required documentation",
+        "Excess (deductibles)",
+        "Common claim denials",
+        "NRPG insurance liaison",
+        "Dispute resolution (AFCA)",
+        "Payment process"
+      ],
+      "learningObjectives": [
+        "Understand different types of insurance coverage",
+        "Know what documentation is required for claims",
+        "Learn how NRPG works with insurers on your behalf",
+        "Understand excess payment and claim settlement process"
+      ]
+    },
+    {
+      "id": "MODULE-003",
+      "title": "Choosing the Right Contractor",
+      "description": "Learn how to verify contractor credentials, recognize red flags, and understand what makes NRPG contractors uniquely qualified",
+      "duration": "10 minutes",
+      "required": true,
+      "order": 3,
+      "category": "contractor-selection",
+      "topics": [
+        "IICRC certification importance",
+        "Credential verification (ABN, insurance)",
+        "Red flags to avoid",
+        "Getting multiple quotes",
+        "Contract essentials",
+        "Payment schedule best practices",
+        "NRPG vetting process"
+      ],
+      "learningObjectives": [
+        "Understand why IICRC certification matters",
+        "Know how to verify contractor credentials",
+        "Recognize warning signs of unreliable contractors",
+        "Understand what makes NRPG contractors pre-vetted and trustworthy"
+      ]
+    },
+    {
+      "id": "MODULE-004",
+      "title": "Fire Damage Recovery Process",
+      "description": "Understand fire and smoke damage restoration timelines, safety requirements, and living arrangements during recovery",
+      "duration": "15 minutes",
+      "required": false,
+      "order": 4,
+      "category": "fire-damage",
+      "topics": [
+        "Structural safety assessment",
+        "Smoke odor removal techniques",
+        "Restoration phase timeline",
+        "Content restoration vs replacement",
+        "Living arrangements during recovery",
+        "Insurance claim considerations"
+      ],
+      "learningObjectives": [
+        "Understand fire damage restoration phases",
+        "Know realistic timelines (2 weeks to 6 months)",
+        "Learn about smoke odor removal requirements",
+        "Understand when temporary relocation is necessary"
+      ]
+    },
+    {
+      "id": "MODULE-005",
+      "title": "Mold Remediation Explained",
+      "description": "Health risks of mold, when to call professionals, and the proper remediation process to prevent recurrence",
+      "duration": "12 minutes",
+      "required": false,
+      "order": 5,
+      "category": "mold",
+      "topics": [
+        "Health risks and symptoms",
+        "Common causes in Australian climate",
+        "When professional help is needed",
+        "Remediation process steps",
+        "Containment and air filtration",
+        "Prevention strategies",
+        "Humidity control"
+      ],
+      "learningObjectives": [
+        "Recognize mold health risks and symptoms",
+        "Know when DIY is unsafe (>1 sqm, HVAC, health issues)",
+        "Understand professional remediation process",
+        "Learn prevention strategies for Australian climate"
+      ]
+    },
+    {
+      "id": "MODULE-006",
+      "title": "Your Rights as a Property Owner",
+      "description": "Australian Consumer Law protections, warranty requirements, and dispute resolution options for restoration work",
+      "duration": "10 minutes",
+      "required": false,
+      "order": 6,
+      "category": "legal",
+      "topics": [
+        "Australian Consumer Law (ACL)",
+        "Warranty periods and requirements",
+        "Dispute resolution options",
+        "Fair Trading contacts by state",
+        "AFCA for insurance disputes",
+        "State tribunals",
+        "Your responsibilities"
+      ],
+      "learningObjectives": [
+        "Understand your rights under Australian Consumer Law",
+        "Know warranty requirements (minimum 12 months)",
+        "Learn dispute resolution pathways",
+        "Know when and how to contact Fair Trading or AFCA"
+      ]
+    },
+    {
+      "id": "MODULE-007",
+      "title": "Emergency Preparedness & Prevention",
+      "description": "Protect your property before disaster strikes with emergency kits, maintenance schedules, and prevention strategies",
+      "duration": "15 minutes",
+      "required": false,
+      "order": 7,
+      "category": "prevention",
+      "topics": [
+        "Emergency kit essentials (Australian climate)",
+        "Important documents to safeguard",
+        "Annual maintenance calendar",
+        "Emergency contact list",
+        "Risk mitigation by disaster type",
+        "Evacuation planning",
+        "Prevention strategies"
+      ],
+      "learningObjectives": [
+        "Prepare a comprehensive emergency kit",
+        "Create annual property maintenance schedule",
+        "Know essential emergency contacts",
+        "Implement disaster prevention strategies",
+        "Plan evacuation routes and procedures"
+      ]
+    }
+  ],
+  "metadata": {
+    "totalModules": 7,
+    "totalDuration": "74 minutes",
+    "requiredModules": 3,
+    "optionalModules": 4,
+    "categories": ["emergency-response", "insurance", "contractor-selection", "fire-damage", "mold", "legal", "prevention"],
+    "passingScore": 70,
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-02",
+    "language": "en-AU"
+  }
+}

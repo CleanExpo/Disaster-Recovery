@@ -36,13 +36,24 @@ export default function ClientModuleViewerPage({ params }: { params: { moduleId:
         body: JSON.stringify({ moduleId }),
       });
 
-      // Load module content (in production, fetch from public/client-education/)
-      // For now, show placeholder
-      setModuleData({
-        id: moduleId,
-        title: getModuleTitle(moduleId),
-        content: getPlaceholderContent(moduleId),
-      });
+      // Load actual module content from public/client-education/
+      const response = await fetch(`/client-education/${moduleId}.html`);
+
+      if (response.ok) {
+        const htmlContent = await response.text();
+        setModuleData({
+          id: moduleId,
+          title: getModuleTitle(moduleId),
+          content: htmlContent,
+        });
+      } else {
+        // Fallback to placeholder if file not found
+        setModuleData({
+          id: moduleId,
+          title: getModuleTitle(moduleId),
+          content: getPlaceholderContent(moduleId),
+        });
+      }
     } catch (err) {
       console.error('Failed to load module:', err);
       setError('Failed to load education module');
