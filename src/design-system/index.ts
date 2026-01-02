@@ -32,3 +32,11 @@ export { BeforeAfterComparison, type BeforeAfterComparisonProps } from './compon
 export { IncidentTable, type IncidentTableProps, type Incident, type IncidentPriority, type IncidentStatus } from './components/CRM/IncidentTable';
 export { SuccessState, type SuccessStateProps, type NextStep } from './components/SuccessState/SuccessState';
 export { Toast, type ToastProps, type ToastVariant } from './components/Toast/Toast';
+
+// Page Templates
+export { EmergencyIntakePageTemplate } from './templates/EmergencyIntakePage';
+export { EducationalArticlePageTemplate } from './templates/EducationalArticlePage';
+export { NRPGDashboardPageTemplate } from './templates/NRPGDashboardPage';
+
+// Utilities
+export * from './utils/animations';
