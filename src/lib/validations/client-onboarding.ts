@@ -6,7 +6,7 @@
  */
 
 import { z } from 'zod';
-import { australianPhoneSchema, australianPostcodeSchema, australianABNSchema } from './australia';
+import { australianPhoneSchema, australianPostcodeSchema, australianABNSchema } from '../validation/australia';
 
 // ============================================================================
 // PHASE 1: WELCOME & PROFILE SETUP
