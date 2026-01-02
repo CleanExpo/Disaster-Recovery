@@ -22,3 +22,5 @@ export { LoadingProgress, LoadingOverlay, type LoadingProgressProps } from './co
 export { Header, type HeaderProps } from './components/Navigation/Header';
 export { ErrorState, type ErrorStateProps, type AlternativeAction } from './components/ErrorState/ErrorState';
 export { IICRCBadge, IICRCBadgeGroup, type IICRCBadgeProps, type IICRCCode } from './components/Badge/IICRCBadge';
+export { DecisionTree, type DecisionTreeProps, type DisasterType } from './components/DecisionTree/DecisionTree';
+export { Timeline, type TimelineProps, type TimelineStep } from './components/Timeline/Timeline';
