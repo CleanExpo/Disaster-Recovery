@@ -255,6 +255,12 @@ model User {
   ServiceRequestCalloutPayment ServiceRequestCalloutPayment[]
   ClientProfile                ClientProfile?
 
+  // SaaS Workspace Relations
+  ownedWorkspaces     Workspace[]       @relation("WorkspaceOwner")
+  workspaceMemberships WorkspaceMember[]
+  invitedMembers      WorkspaceMember[] @relation("MemberInviter")
+  auditLogs           AuditLog[]
+
   @@index([email])
   @@index([userType])
   @@index([australianState])
@@ -911,6 +917,161 @@ model ClientModuleProgress {
   @@index([status])
   @@index([completed])
   @@map("client_module_progress")
+}
+
+// ============================================================================
+// SAAS WORKSPACE & SUBSCRIPTION SYSTEM
+// ============================================================================
+
+enum SubscriptionTier {
+  BASIC       // $99/month, 1 seat, 10 jobs
+  PRO         // $299/month, 5 seats, 50 jobs
+  ENTERPRISE  // $799/month, unlimited seats/jobs
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIAL
+  PAST_DUE
+  SUSPENDED
+  CANCELLED
+}
+
+enum WorkspaceMemberRole {
+  OWNER           // Full control, billing admin
+  MANAGER         // Can accept jobs, manage team
+  TECHNICIAN      // Can update status, view assigned jobs
+  ADMIN_STAFF     // View jobs, handle invoices
+}
+
+model Workspace {
+  id                   String             @id @default(cuid())
+  businessName         String
+  abnNumber            String?            @unique
+  acnNumber            String?
+
+  // Subscription
+  subscriptionTier     SubscriptionTier   @default(BASIC)
+  subscriptionStatus   SubscriptionStatus @default(TRIAL)
+  stripeCustomerId     String?            @unique
+  stripeSubscriptionId String?            @unique
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+
+  // Tier Limits
+  seatLimit            Int                @default(1)  // 1, 5, unlimited
+  monthlyJobLimit      Int                @default(10) // 10, 50, unlimited
+  serviceRadiusKm      Int                @default(25) // Geographic coverage
+
+  // Usage Tracking
+  currentMonthJobs     Int                @default(0)  // Resets monthly
+  totalJobsCompleted   Int                @default(0)  // All-time
+  totalOverageFees     Decimal            @default(0)  // Track overage charges
+
+  // CRM Integration
+  crmType              String?            // 'nrpg_basic', 'servicem8', 'fergus', 'tradify', 'custom'
+  crmApiKey            String?            // Hashed API key for external CRM
+  crmWebhookSecret     String?            // For signature verification
+
+  // Performance Metrics (for leaderboard)
+  completionRate       Decimal            @default(0)   // Job completion %
+  averageRating        Decimal            @default(0)   // From private client feedback
+  averageResponseTime  Int                @default(0)   // Minutes
+  totalDeclines        Int                @default(0)
+
+  // Status
+  isActive             Boolean            @default(true)
+  suspendedAt          DateTime?
+  cancelledAt          DateTime?
+
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  // Relations
+  ownerId              String
+  owner                User               @relation("WorkspaceOwner", fields: [ownerId], references: [id])
+  members              WorkspaceMember[]
+  rotationQueue        ContractorRotation[]
+  auditLogs            AuditLog[]
+
+  @@index([subscriptionStatus])
+  @@index([subscriptionTier])
+  @@index([abnNumber])
+  @@map("workspaces")
+}
+
+model WorkspaceMember {
+  id          String               @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        WorkspaceMemberRole  @default(TECHNICIAN)
+
+  // Invitation tracking
+  invitedBy   String?
+  invitedAt   DateTime?
+  joinedAt    DateTime?
+
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  workspace   Workspace            @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user        User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  inviter     User?                @relation("MemberInviter", fields: [invitedBy], references: [id])
+
+  @@unique([workspaceId, userId])
+  @@index([userId])
+  @@index([workspaceId])
+  @@map("workspace_members")
+}
+
+model ContractorRotation {
+  id                  String    @id @default(cuid())
+  workspaceId         String
+  postcode            String    // Service area postcode
+
+  // Rotation tracking
+  lastJobReceivedAt   DateTime?
+  totalJobsReceived   Int       @default(0)
+  totalJobsDeclined   Int       @default(0)
+  declineRate         Decimal   @default(0)
+
+  // Availability
+  availabilityStatus  String    @default("available") // available, busy, offline
+
+  // Radius
+  serviceRadiusKm     Int       @default(25)
+
+  updatedAt           DateTime  @updatedAt
+
+  workspace           Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, postcode])
+  @@index([postcode])
+  @@index([lastJobReceivedAt])
+  @@index([availabilityStatus])
+  @@map("contractor_rotation")
+}
+
+model AuditLog {
+  id          String    @id @default(cuid())
+  workspaceId String?
+  userId      String?
+  action      String    // 'job_viewed', 'job_accepted', 'job_declined', 'payment_processed', etc.
+  entityType  String?   // 'incident', 'workspace', 'subscription', 'training'
+  entityId    String?
+  metadata    Json?     // Action-specific details
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime  @default(now())
+
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+  user        User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([workspaceId, createdAt])
+  @@index([action, createdAt])
+  @@index([createdAt])
+  @@map("audit_logs")
 }
 
 // ============================================================================
