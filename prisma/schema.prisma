@@ -259,7 +259,7 @@ model User {
   ownedWorkspaces     Workspace[]       @relation("WorkspaceOwner")
   workspaceMemberships WorkspaceMember[]
   invitedMembers      WorkspaceMember[] @relation("MemberInviter")
-  auditLogs           AuditLog[]
+  workspaceAuditLogs  WorkspaceAuditLog[] @relation("WorkspaceAuditLogs")
 
   @@index([email])
   @@index([userType])
@@ -992,7 +992,7 @@ model Workspace {
   owner                User               @relation("WorkspaceOwner", fields: [ownerId], references: [id])
   members              WorkspaceMember[]
   rotationQueue        ContractorRotation[]
-  auditLogs            AuditLog[]
+  auditLogs            WorkspaceAuditLog[]
 
   @@index([subscriptionStatus])
   @@index([subscriptionTier])
@@ -1052,7 +1052,7 @@ model ContractorRotation {
   @@map("contractor_rotation")
 }
 
-model AuditLog {
+model WorkspaceAuditLog {
   id          String    @id @default(cuid())
   workspaceId String?
   userId      String?
@@ -1065,13 +1065,13 @@ model AuditLog {
   createdAt   DateTime  @default(now())
 
   workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
-  user        User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user        User?      @relation("WorkspaceAuditLogs", fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([userId, createdAt])
   @@index([workspaceId, createdAt])
   @@index([action, createdAt])
   @@index([createdAt])
-  @@map("audit_logs")
+  @@map("workspace_audit_logs")
 }
 
 // ============================================================================
