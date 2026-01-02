@@ -153,3 +153,81 @@ export {
   getPageGenerationStatus,
   cancelPageGenerationJob,
 } from './page-generation-trigger';
+
+// ============================================
+// SEO/GEO Page Templates
+// ============================================
+export {
+  // Types
+  type BaseSEOPage,
+  type Breadcrumb,
+  type RelatedPage,
+  type LandingPageTemplate,
+  type PillarPageTemplate,
+  type SuburbLink,
+  type ServicePageTemplate,
+  type CityLink,
+  type RelatedService,
+  type CostGuide,
+  type RegionPageTemplate,
+  type DisasterRisk,
+  type ServiceAvailability,
+  type SuburbDirectory,
+  type ProcessStep,
+  type FAQ,
+  type Testimonial,
+  type CTAButton,
+  type SchemaMarkup,
+  type SchemaEntity,
+  type LocalBusinessSchema,
+  type ServiceSchema,
+  type FAQSchema,
+  type BreadcrumbSchema,
+  type OrganisationSchema,
+  type OpenGraphData,
+  type TemplateConfig,
+  type PageType,
+  type SEOPageTemplate,
+  type LandingPageInput,
+  type CityData,
+  type PillarPageInput,
+  type ServicePageInput,
+  type RegionData,
+  type RegionPageInput,
+
+  // Constants
+  DEFAULT_TEMPLATE_CONFIG,
+  SERVICE_DISPLAY_NAMES,
+  SERVICE_SLUGS,
+  SERVICE_ICONS,
+  SERVICE_CONFIG,
+  MAJOR_CITIES,
+  REGIONS,
+  STATE_REGIONS,
+
+  // Landing Page Generator
+  generateLandingPage,
+  generateAllLandingPagesForSuburb,
+  generateFAQSchema,
+  generateBreadcrumbSchema,
+
+  // Pillar Page Generator
+  generatePillarPage,
+  generateAllPillarPagesForCity,
+  getCityBySlug,
+  getAllCitySlugs,
+
+  // Service Page Generator
+  generateServicePage,
+  generateAllServicePages,
+  getServiceContent,
+  getAllServiceTypes,
+  getServiceBySlug,
+
+  // Region Page Generator
+  generateRegionPage,
+  generateAllRegionPages,
+  getRegionById,
+  getAllRegionIds,
+  getStateRegion,
+} from './templates';
