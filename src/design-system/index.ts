@@ -26,3 +26,5 @@ export { DecisionTree, type DecisionTreeProps, type DisasterType } from './compo
 export { Timeline, type TimelineProps, type TimelineStep } from './components/Timeline/Timeline';
 export { StatCard, type StatCardProps, type TrendDirection } from './components/StatCard/StatCard';
 export { BeforeAfterComparison, type BeforeAfterComparisonProps } from './components/BeforeAfter/BeforeAfterComparison';
+export { IncidentTable, type IncidentTableProps, type Incident, type IncidentPriority, type IncidentStatus } from './components/CRM/IncidentTable';
+export { SuccessState, type SuccessStateProps, type NextStep } from './components/SuccessState/SuccessState';
