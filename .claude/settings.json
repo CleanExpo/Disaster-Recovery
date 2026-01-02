@@ -1,0 +1,29 @@
+{
+  "projectName": "Disaster Recovery NRPG",
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-03",
+  "systemsComplete": 17,
+  "systemsTotal": 17,
+  "techStack": {
+    "framework": "Next.js 14",
+    "database": "PostgreSQL",
+    "search": "PostgreSQL Full-Text",
+    "cms": "Sanity",
+    "payments": "Stripe",
+    "auth": "NextAuth"
+  },
+  "businessRules": {
+    "phoneNumbers": false,
+    "contactEmail": "support@disasterrecovery.com.au",
+    "australianEnglish": true,
+    "dynamicSeoGeneration": true
+  },
+  "tierPricing": {
+    "rural": { "maxPopulation": 50000, "price": 395 },
+    "semiRural": { "maxPopulation": 200000, "price": 595 },
+    "tier1": { "maxPopulation": 400000, "price": 795 },
+    "tier2": { "maxPopulation": 1000000, "price": 995 },
+    "tier3": { "maxPopulation": null, "price": 1095 }
+  },
+  "bufferPercentage": 10
+}
