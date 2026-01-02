@@ -106,10 +106,10 @@ export function MegaMenu({
     <div
       ref={menuRef}
       className={`
-        absolute top-full left-0 w-full bg-gradient-to-br from-[#0F1115] to-[#1a1d29]
+        fixed top-20 left-0 right-0 bg-gradient-to-br from-[#0F1115] to-[#1a1d29]
         shadow-2xl border-t border-[#374151]/50
         transition-all duration-300 ease-out
-        ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4'}
+        ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}
         ${className}
       `}
       role="menu"
