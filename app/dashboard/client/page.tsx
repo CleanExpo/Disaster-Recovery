@@ -6,6 +6,7 @@ import ActiveProjectDetailsModal from '@/components/configurable/active-project-
 import ClientLayout from '@/components/dashboard/client-layout';
 import PersonalizedDashboard from '@/components/personalized/personalized-dashboard';
 import UserPreferencesDisplay from '@/components/profile/user-preferences-display';
+import { ClientEligibilityBanner } from '@/components/client/eligibility-banner';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -1328,6 +1329,9 @@ export default function ClientDashboard() {
       case 'overview':
         return (
           <div className="space-y-8">
+            {/* Eligibility Banner - Shows onboarding progress */}
+            <ClientEligibilityBanner />
+
             {/* Welcome Section */}
             <div className="bg-gradient-to-r from-[#00BFA6] to-[#00A693] rounded-lg p-6">
               <div className="flex items-center justify-between">
