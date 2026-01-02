@@ -69,7 +69,7 @@ export default function ClientOnboardingWizard() {
   const handleSubmit = async () => {
     setIsSubmitting(true)
     try {
-      const response = await fetch('/api/service-requests', {
+      const response = await fetch('/api/public/service-requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
