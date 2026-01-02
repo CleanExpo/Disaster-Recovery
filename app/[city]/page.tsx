@@ -17,6 +17,20 @@ import { getCityBySlug } from '@/lib/content/page-generator';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 import { EMERGENCY_PHONE } from '@/lib/design-tokens';
 import servicesData from '@/data/services.json';
+import citiesData from '@/data/australian-cities.json';
+
+// Generate static params for all cities at build time
+export async function generateStaticParams() {
+  return citiesData.cities.map((city: { slug: string }) => ({
+    city: city.slug,
+  }));
+}
+
+// Enable ISR - revalidate every 24 hours or on-demand
+export const revalidate = 86400;
+
+// Allow dynamic params for new cities added via contractor signup
+export const dynamicParams = true;
 
 interface CityPageProps {
   params: {
