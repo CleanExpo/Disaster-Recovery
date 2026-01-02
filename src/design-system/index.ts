@@ -18,6 +18,9 @@ export { Button, buttonVariants, type ButtonProps } from './components/Button/Bu
 export { PriorityCard, priorityCardVariants, type PriorityCardProps } from './components/Card/PriorityCard';
 export { EmergencyCTA, StickyEmergencyCTA, type EmergencyCTAProps } from './components/EmergencyCTA/EmergencyCTA';
 export { FormInput, type FormInputProps } from './components/Form/FormInput';
+export { FormSelect, type FormSelectProps, type FormSelectOption } from './components/Form/FormSelect';
+export { FormTextarea, type FormTextareaProps } from './components/Form/FormTextarea';
+export { FormCheckbox, type FormCheckboxProps } from './components/Form/FormCheckbox';
 export { LoadingProgress, LoadingOverlay, type LoadingProgressProps } from './components/LoadingProgress/LoadingProgress';
 export { Header, type HeaderProps } from './components/Navigation/Header';
 export { ErrorState, type ErrorStateProps, type AlternativeAction } from './components/ErrorState/ErrorState';
@@ -28,3 +31,4 @@ export { StatCard, type StatCardProps, type TrendDirection } from './components/
 export { BeforeAfterComparison, type BeforeAfterComparisonProps } from './components/BeforeAfter/BeforeAfterComparison';
 export { IncidentTable, type IncidentTableProps, type Incident, type IncidentPriority, type IncidentStatus } from './components/CRM/IncidentTable';
 export { SuccessState, type SuccessStateProps, type NextStep } from './components/SuccessState/SuccessState';
+export { Toast, type ToastProps, type ToastVariant } from './components/Toast/Toast';
