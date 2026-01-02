@@ -231,3 +231,50 @@ export {
   getAllRegionIds,
   getStateRegion,
 } from './templates';
+
+// ============================================
+// Sitemap Generation & Submission
+// ============================================
+export {
+  // Types
+  type SitemapUrl,
+  type SitemapConfig,
+  type SitemapIndex,
+  type SitemapFile,
+  type SearchEngineSubmission,
+  type SubmissionResult,
+  type GoogleSearchConsoleConfig,
+  type BingWebmasterConfig,
+  type SitemapStorageConfig,
+  type SitemapStatus,
+
+  // Sitemap Generation
+  generateSitemapXml,
+  generateSitemapIndexXml,
+  buildSitemapUrl,
+
+  // URL Builders
+  buildLandingPageUrls,
+  buildPillarPageUrls,
+  buildServicePageUrls,
+  buildRegionPageUrls,
+  buildStaticPageUrls,
+
+  // Configuration
+  DEFAULT_SITEMAP_CONFIG,
+  SITEMAP_PRIORITIES,
+  CHANGE_FREQUENCIES,
+
+  // Search Engine Submission
+  submitToGoogleSearchConsole,
+  submitToBingWebmaster,
+  submitToSearchEngines,
+  pingSearchEngines,
+
+  // Sitemap Storage
+  saveSitemapToStorage,
+  loadSitemapFromStorage,
+  updateSitemapWithNewPages,
+  getSitemapStatus,
+  cleanupOldSitemaps,
+} from './sitemap';
