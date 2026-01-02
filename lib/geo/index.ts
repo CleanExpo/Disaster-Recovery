@@ -278,3 +278,28 @@ export {
   getSitemapStatus,
   cleanupOldSitemaps,
 } from './sitemap';
+
+// ============================================
+// Demo & Proof of Concept
+// ============================================
+export {
+  // Demo Runner
+  runDemo,
+  runAllDemos,
+  formatDemoOutput,
+
+  // Demo Scenarios
+  DemoScenario,
+  DEMO_SCENARIOS,
+
+  // Demo Types
+  type DemoResult,
+  type DemoContractor,
+  type DemoOutput,
+
+  // Mock Data
+  MOCK_SUBURBS,
+  MOCK_REGIONS,
+  generateMockContractor,
+  generateMockSuburbs,
+} from './demo';
