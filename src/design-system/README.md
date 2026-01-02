@@ -103,10 +103,45 @@ function NRPGDashboard() {
 
 ## Components
 
-### 1. Button
+### Complete Component Library (18 Components)
 
-Context-aware button with multiple variants.
+**Core UI:**
+1. Button - Context-aware variants
+2. PriorityCard - 4-indicator CRM signaling
+3. EmergencyCTA - Dual-path (Call + Online)
 
+**Forms (Complete):**
+4. FormInput - Smart hybrid validation
+5. FormSelect - Dropdown with validation
+6. FormTextarea - Character count
+7. FormCheckbox - Integrated label
+
+**Feedback:**
+8. LoadingProgress - Detailed steps
+9. ErrorState - Transparent explanations
+10. SuccessState - Subtle professional
+11. Toast - Notifications
+
+**Navigation:**
+12. Header - Responsive, 768px hamburger
+
+**Data Display:**
+13. IICRCBadge - Official logos, tooltips
+14. StatCard - Contractor metrics
+15. BeforeAfterComparison - Expandable evidence
+
+**Interactive:**
+16. DecisionTree - "Who First?" flow
+17. Timeline - Animated or checklist
+
+**CRM:**
+18. IncidentTable - High-density table
+
+---
+
+### Component Examples
+
+#### Button
 ```tsx
 <Button variant="emergency-primary" size="crisis-full">
   🚨 Emergency
@@ -115,15 +150,61 @@ Context-aware button with multiple variants.
 <Button variant="education-primary" size="lg">
   Learn More
 </Button>
-
-<Button variant="nrpg-primary" size="default">
-  View Dashboard
-</Button>
 ```
 
-**Variants:** emergency-primary, emergency-secondary, education-primary, education-secondary, nrpg-primary, nrpg-secondary, nrpg-outline
+#### Forms (Complete)
+```tsx
+<FormInput
+  label="Phone Number"
+  type="tel"
+  required
+  context="emergency"
+  validationType="instant"
+  error={errors.phone}
+/>
 
-**Sizes:** crisis, crisis-full, call, xl, lg, default, sm, icon
+<FormSelect
+  label="State"
+  options={[
+    { value: 'NSW', label: 'New South Wales' },
+    { value: 'VIC', label: 'Victoria' }
+  ]}
+  required
+  context="emergency"
+/>
+
+<FormTextarea
+  label="Description"
+  maxLength={500}
+  showCharCount
+  helpText="Describe the damage"
+/>
+
+<FormCheckbox
+  label="I agree to terms"
+  helpText="Read our terms and conditions"
+/>
+```
+
+#### Toast Notifications
+```tsx
+<Toast
+  variant="success"
+  title="Payment processed"
+  message="Subscription activated"
+  duration={5000}
+/>
+
+// CRM auto-refresh (30-second polling)
+<Toast
+  variant="info"
+  title="2 new incidents"
+  action={{
+    label: 'View Now',
+    onClick: () => router.push('/crm')
+  }}
+/>
+```
 
 ### 2. PriorityCard
 
@@ -412,18 +493,23 @@ All components meet WCAG 2.1 AAA:
 
 ## Status
 
-**Complete (40%):**
+**Complete (85%):**
 - ✅ Design tokens (colors, typography, spacing)
 - ✅ Theme hooks (context, brand)
 - ✅ Tailwind integration
-- ✅ 10 core components
+- ✅ 18 production-ready components
+- ✅ Complete form library (Input, Select, Textarea, Checkbox)
+- ✅ Feedback components (Loading, Error, Success, Toast)
+- ✅ Navigation (Header)
+- ✅ CRM components (IncidentTable, PriorityCard)
+- ✅ Interactive components (DecisionTree, Timeline)
+- ✅ Data display (StatCard, IICRCBadge, BeforeAfterComparison)
 
-**In Progress (60%):**
-- ⏳ More form components
-- ⏳ CRM table component
-- ⏳ Page templates
+**Remaining (15%):**
+- ⏳ Page templates (Emergency intake, Educational article, NRPG dashboard)
 - ⏳ Storybook documentation
 - ⏳ Figma design files
+- ⏳ Additional specialized components
 
 ---
 
