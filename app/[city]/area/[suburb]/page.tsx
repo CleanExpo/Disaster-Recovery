@@ -1,7 +1,7 @@
 /**
  * Suburb Landing Page
- * Route: /[city]/[suburb]
- * e.g., /sydney/parramatta, /brisbane/ipswich
+ * Route: /[city]/area/[suburb]
+ * e.g., /sydney/area/parramatta, /brisbane/area/ipswich
  *
  * Generated on-demand when contractors sign up in an area.
  * Uses ISR for caching + on-demand revalidation.
@@ -111,13 +111,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `${BRAND_CONFIG.baseUrl}/${params.city}/${params.suburb}`,
+      url: `${BRAND_CONFIG.baseUrl}/${params.city}/area/${params.suburb}`,
       siteName: BRAND_CONFIG.name,
       locale: 'en_AU',
       type: 'website',
     },
     alternates: {
-      canonical: `${BRAND_CONFIG.baseUrl}/${params.city}/${params.suburb}`,
+      canonical: `${BRAND_CONFIG.baseUrl}/${params.city}/area/${params.suburb}`,
     },
   };
 }
@@ -141,7 +141,7 @@ export default async function SuburbPage({ params }: Props) {
     '@type': 'LocalBusiness',
     name: `${BRAND_CONFIG.name} - ${suburb.name}`,
     description: `Emergency disaster recovery services in ${suburb.name}, ${city.state}`,
-    url: `${BRAND_CONFIG.baseUrl}/${params.city}/${params.suburb}`,
+    url: `${BRAND_CONFIG.baseUrl}/${params.city}/area/${params.suburb}`,
     email: BRAND_CONFIG.email,
     address: {
       '@type': 'PostalAddress',
@@ -176,13 +176,11 @@ export default async function SuburbPage({ params }: Props) {
         <div className="container mx-auto px-4 max-w-5xl text-center">
           <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 rounded-full px-4 py-2 mb-6">
             <span className="text-emerald-300 font-semibold text-sm uppercase tracking-wide">
-              📍 {suburb.name}, {city.state}
+              {suburb.name}, {city.state}
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Disaster Recovery in {suburb.name}
-          </h1>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Disaster Recovery in {suburb.name}</h1>
 
           <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
             24/7 emergency restoration services in {suburb.name} and surrounding areas. IICRC-certified contractors
@@ -195,13 +193,13 @@ export default async function SuburbPage({ params }: Props) {
               href={`/report-claim?location=${suburb.slug}`}
               className="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors"
             >
-              🚨 Report Emergency Online
+              Report Emergency Online
             </Link>
             <Link
               href={`/contractors?location=${suburb.slug}`}
               className="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition-colors border border-white/20"
             >
-              👷 Find Local Contractors
+              Find Local Contractors
             </Link>
           </div>
         </div>
@@ -210,20 +208,16 @@ export default async function SuburbPage({ params }: Props) {
       {/* Services Grid */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
-            Services Available in {suburb.name}
-          </h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">Services Available in {suburb.name}</h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {services.map((service) => (
               <Link
                 key={service.slug}
-                href={`/${params.city}/${params.suburb}/${service.slug}`}
+                href={`/${params.city}/area/${params.suburb}/${service.slug}`}
                 className="bg-slate-50 hover:bg-white hover:shadow-xl border border-slate-200 hover:border-emerald-300 rounded-lg p-6 transition-all group"
               >
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 mb-2">
-                  {service.title}
-                </h3>
+                <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 mb-2">{service.title}</h3>
                 <p className="text-sm text-slate-600 mb-3">{service.description?.slice(0, 100)}...</p>
                 <span className="text-emerald-600 font-medium text-sm">
                   View {service.title} in {suburb.name} →
@@ -241,14 +235,13 @@ export default async function SuburbPage({ params }: Props) {
 
           <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {[
-              { step: 1, icon: '📝', title: 'Report Online', desc: 'Fill out our quick emergency form' },
-              { step: 2, icon: '🎯', title: 'Get Matched', desc: 'Instantly matched with local contractors' },
-              { step: 3, icon: '📞', title: 'Contractor Calls', desc: 'They contact you directly' },
-              { step: 4, icon: '✅', title: 'Job Complete', desc: 'Rapid restoration by IICRC pros' },
+              { step: 1, title: 'Report Online', desc: 'Fill out our quick emergency form' },
+              { step: 2, title: 'Get Matched', desc: 'Instantly matched with local contractors' },
+              { step: 3, title: 'Contractor Calls', desc: 'They contact you directly' },
+              { step: 4, title: 'Job Complete', desc: 'Rapid restoration by IICRC pros' },
             ].map((item) => (
               <div key={item.step} className="text-center">
-                <div className="text-4xl mb-3">{item.icon}</div>
-                <div className="bg-emerald-500 text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-2">
+                <div className="bg-emerald-500 text-white text-lg font-bold rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
                   {item.step}
                 </div>
                 <h3 className="font-bold text-slate-900 mb-1">{item.title}</h3>
@@ -270,7 +263,7 @@ export default async function SuburbPage({ params }: Props) {
             href={`/report-claim?location=${suburb.slug}&urgent=true`}
             className="inline-block bg-white text-emerald-700 font-bold text-lg px-10 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all hover:bg-emerald-50"
           >
-            🚨 Report Emergency Now
+            Report Emergency Now
           </Link>
         </div>
       </section>

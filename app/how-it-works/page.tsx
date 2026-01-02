@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * NRPG Contractor Acquisition Funnel - Page 2: Education
  *
