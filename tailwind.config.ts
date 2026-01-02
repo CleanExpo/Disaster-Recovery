@@ -22,6 +22,10 @@ const config: Config = {
         sans: ['var(--font-jakarta)', 'system-ui', 'sans-serif'],
         display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
         mono: ['monospace'],
+        // DesignOS: Serif for authority headlines
+        serif: ['"Playfair Display"', '"Merriweather"', 'Georgia', 'serif'],
+        // DesignOS: Sans for body text
+        'sans-modern': ['"Inter"', '"Archivo"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Display - Hero sections (Space Grotesk)
@@ -47,7 +51,69 @@ const config: Config = {
         'label-xs': ['10px', { lineHeight: '1.4', letterSpacing: '0.3em', fontWeight: '900' }],
       },
       colors: {
-        // NRPG Brand Colors
+        // DesignOS: Disaster Recovery (Client Brand) - Context-Aware
+        'dr-emergency': {
+          DEFAULT: '#DC2626',
+          hover: '#B91C1C',
+          bg: '#FEF2F2',
+          border: '#FCA5A5',
+          text: '#991B1B',
+        },
+        'dr-education': {
+          DEFAULT: '#00BFA6',
+          hover: '#0891B2',
+          secondary: '#0891B2',
+          bg: '#F0FDFA',
+          border: '#5EEAD4',
+          text: '#134E4A',
+        },
+        'dr-authority': {
+          DEFAULT: '#1E3A8A',
+          hover: '#1E40AF',
+          accent: '#D97706',
+          bg: '#FFFFFF',
+          text: '#111827',
+        },
+
+        // DesignOS: NRPG (Contractor Brand) - Professional Network
+        'nrpg': {
+          primary: '#1E3A8A',
+          'primary-hover': '#1E40AF',
+          secondary: '#F59E0B',
+          'secondary-hover': '#D97706',
+          success: '#10B981',
+          bg: '#F9FAFB',
+          surface: '#FFFFFF',
+          border: '#E5E7EB',
+          text: '#1F2937',
+          'text-secondary': '#6B7280',
+          'text-muted': '#9CA3AF',
+          heading: '#111827',
+        },
+
+        // DesignOS: Priority Levels (CRM)
+        'priority-critical': {
+          DEFAULT: '#DC2626',
+          bg: '#FEE2E2',
+          text: '#991B1B',
+        },
+        'priority-high': {
+          DEFAULT: '#F59E0B',
+          bg: '#FEF3C7',
+          text: '#92400E',
+        },
+        'priority-medium': {
+          DEFAULT: '#FBBF24',
+          bg: '#FEFCE8',
+          text: '#854D0E',
+        },
+        'priority-low': {
+          DEFAULT: '#10B981',
+          bg: '#D1FAE5',
+          text: '#065F46',
+        },
+
+        // NRPG Brand Colors (Legacy - keeping for compatibility)
         'nrpg-blue': '#0047FF',
         'nrpg-red': '#E11D48',
         'nrpg-dark': '#020617',
