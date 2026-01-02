@@ -432,3 +432,117 @@ export async function getCategoryBySlug(slug: string, preview = false) {
   const client = getClient(preview)
   return await client.fetch(categoryBySlugQuery, { slug })
 }
+
+/**
+ * Location Content Queries
+ */
+
+export const locationContentByCityQuery = groq`
+  *[_type == "locationContent" && citySlug.current == $citySlug && locationType == "city"][0] {
+    _id,
+    city,
+    citySlug,
+    state,
+    locationType,
+    headline,
+    localDescription,
+    localExpertise,
+    localStats,
+    faqs,
+    testimonials,
+    metaTitle,
+    metaDescription,
+    keywords,
+    heroImage{
+      asset->,
+      alt,
+      caption
+    },
+    gallery
+  }
+`
+
+export const locationContentBySuburbQuery = groq`
+  *[_type == "locationContent" && citySlug.current == $citySlug && suburbSlug.current == $suburbSlug && locationType == "suburb"][0] {
+    _id,
+    city,
+    citySlug,
+    suburb,
+    suburbSlug,
+    state,
+    locationType,
+    service,
+    headline,
+    localDescription,
+    localExpertise,
+    localStats,
+    faqs,
+    testimonials,
+    metaTitle,
+    metaDescription,
+    keywords,
+    heroImage{
+      asset->,
+      alt,
+      caption
+    },
+    gallery
+  }
+`
+
+export const locationContentBySuburbAndServiceQuery = groq`
+  *[_type == "locationContent" && citySlug.current == $citySlug && suburbSlug.current == $suburbSlug && service == $service][0] {
+    _id,
+    city,
+    citySlug,
+    suburb,
+    suburbSlug,
+    state,
+    locationType,
+    service,
+    headline,
+    localDescription,
+    localExpertise,
+    localStats,
+    faqs,
+    testimonials,
+    metaTitle,
+    metaDescription,
+    keywords,
+    heroImage{
+      asset->,
+      alt,
+      caption
+    },
+    gallery
+  }
+`
+
+// Location Content Fetch Functions
+export async function getLocationContentByCity(citySlug: string, preview = false) {
+  const client = getClient(preview)
+  return await client.fetch(locationContentByCityQuery, { citySlug })
+}
+
+export async function getLocationContentBySuburb(
+  citySlug: string,
+  suburbSlug: string,
+  preview = false
+) {
+  const client = getClient(preview)
+  return await client.fetch(locationContentBySuburbQuery, { citySlug, suburbSlug })
+}
+
+export async function getLocationContentBySuburbAndService(
+  citySlug: string,
+  suburbSlug: string,
+  service: string,
+  preview = false
+) {
+  const client = getClient(preview)
+  return await client.fetch(locationContentBySuburbAndServiceQuery, {
+    citySlug,
+    suburbSlug,
+    service,
+  })
+}
