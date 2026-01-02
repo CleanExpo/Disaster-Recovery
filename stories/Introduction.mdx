@@ -1,0 +1,109 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="DesignOS/Introduction" />
+
+# DesignOS - Dual-Brand Design System
+
+Welcome to the **DesignOS Component Library** for the Disaster Recovery NRPG Platform.
+
+## Overview
+
+DesignOS is a comprehensive design system powering the dual-sided SaaS platform with distinct brand expressions:
+
+1. **Disaster Recovery** (Client-Facing) - Calm authority for crisis situations
+2. **NRPG** (Contractor-Facing) - Professional network for restoration experts
+
+## Core Philosophy
+
+**Design Principles:**
+
+1. **Context-Aware Adaptation** - Emergency pages = minimal, calm. Education pages = enhanced, engaging.
+2. **Authority Through Clarity** - Institutional trust via typography, clinical precision in content.
+3. **Crisis-Optimized UX** - Zero friction for 2am panic users with shaking hands.
+4. **Progressive Education** - Stop panic → Build understanding → Enable action.
+5. **Shared Foundation, Distinct Expression** - Same component library, different brand skins.
+
+## Component Categories
+
+### Foundation Components
+- **Button** - Primary, secondary, destructive variants with loading states
+- **Form Components** - Input, Textarea, Checkbox, Select with validation
+- **Toast** - Notification system with severity levels
+
+### Marketing Components
+- **Hero** - Full-width hero sections with multiple variants
+- **TestimonialCard** - Customer proof with ratings and photos
+- **PricingCard** - Pricing tiers with feature comparisons
+
+### Emergency Components
+- **EmergencyCTA** - Crisis-optimized call-to-action
+- **DecisionTree** - Interactive damage assessment
+- **LoadingProgress** - Step-by-step progress indicators
+
+### Data Display
+- **StatCard** - Key metrics with trend indicators
+- **BeforeAfterComparison** - Before/after photo comparisons
+- **Timeline** - Process visualization
+
+### CRM Components
+- **IncidentTable** - Sortable, filterable incident dashboard
+- **PriorityCard** - Color-coded priority indicators
+
+### Success Components
+- **SuccessState** - Confirmation screens
+- **ErrorState** - Error handling with recovery options
+
+## Using the Library
+
+### Brand Switching
+
+Use the **Brand** toolbar to switch between Disaster Recovery and NRPG themes:
+- **Disaster Recovery**: Blue/teal calm palette
+- **NRPG**: Navy/gold professional palette
+
+### Context Switching
+
+Use the **Context** toolbar to switch between emergency and educational modes:
+- **Emergency**: Minimal animations, high contrast, urgent colors
+- **Educational**: Enhanced visuals, subtle animations, calm colors
+
+## Accessibility
+
+All components meet **WCAG 2.1 AA** standards:
+- 4.5:1 color contrast minimum (text)
+- 3:1 color contrast (UI components)
+- Keyboard navigation support
+- Screen reader compatible (ARIA labels)
+- Focus indicators (2px solid ring)
+
+## Getting Started
+
+Browse the component categories in the sidebar to explore:
+- **Component previews** - Live interactive examples
+- **Props documentation** - TypeScript types and default values
+- **Usage examples** - Code snippets for implementation
+- **Accessibility notes** - WCAG compliance details
+
+## Installation
+
+```bash
+# In your project
+import { Button, EmergencyCTA, Hero } from '@/design-system';
+
+# Use components
+<Button variant="primary" size="lg">
+  Report Emergency
+</Button>
+```
+
+## Resources
+
+- [DesignOS Specification](../DESIGNOS_SPEC.md)
+- [Content Style Guide](../docs/CONTENT_STYLE_GUIDE.md)
+- [Implementation Guide](../IMPLEMENTATION_GUIDE.md)
+
+---
+
+**Version:** 1.0.0
+**Last Updated:** 2026-01-02
+**Status:** Production Ready

@@ -38,5 +38,30 @@ export { EmergencyIntakePageTemplate } from './templates/EmergencyIntakePage';
 export { EducationalArticlePageTemplate } from './templates/EducationalArticlePage';
 export { NRPGDashboardPageTemplate } from './templates/NRPGDashboardPage';
 
+// Marketing Components - Hero Variants
+export { Hero, type HeroProps } from './components/Marketing/Hero';
+export { HeroFullWidth, type HeroFullWidthProps } from './components/Marketing/HeroFullWidth';
+export { HeroVideo, type HeroVideoProps } from './components/Marketing/HeroVideo';
+export { HeroSplitScreen, type HeroSplitScreenProps } from './components/Marketing/HeroSplitScreen';
+
+// Marketing Components - Testimonials
+export { TestimonialCard, type TestimonialCardProps } from './components/Marketing/TestimonialCard';
+export { ClientTestimonialCard, type ClientTestimonialCardProps } from './components/Marketing/ClientTestimonialCard';
+export { TestimonialCarousel, type TestimonialCarouselProps, type TestimonialItem } from './components/Marketing/TestimonialCarousel';
+export { VideoTestimonial, type VideoTestimonialProps } from './components/Marketing/VideoTestimonial';
+
+// Marketing Components - Interactive Tools
+export { DamageCostCalculator, type DamageCostCalculatorProps, type CalculatorStep, type CalculatorResult } from './components/Marketing/DamageCostCalculator';
+export { RiskAssessmentQuiz, type RiskAssessmentQuizProps, type QuizQuestion, type QuizResult } from './components/Marketing/RiskAssessmentQuiz';
+export { TriageTool, type TriageToolProps, type TriageNode, type TriageResult } from './components/Marketing/TriageTool';
+
+// Marketing Components - Location
+export { AustraliaMap, type AustraliaMapProps, type StateData } from './components/Marketing/AustraliaMap';
+export { ServiceAreaVisualization, type ServiceAreaVisualizationProps, type RegionData } from './components/Marketing/ServiceAreaVisualization';
+export { LocalContractorCounter, type LocalContractorCounterProps } from './components/Marketing/LocalContractorCounter';
+
+// Marketing Components - Other
+export { PricingCard, type PricingCardProps, type PricingFeature } from './components/Marketing/PricingCard';
+
 // Utilities
 export * from './utils/animations';

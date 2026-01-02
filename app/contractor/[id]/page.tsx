@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useGA4ContractorTracking, useGA4CTATracking } from '@/hooks/useGA4';
 import { 
   Star, 
   MapPin, 
@@ -57,6 +58,10 @@ export default function ContractorProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // GA4 tracking hooks
+  const { trackContractorProfileViewed, trackContractorContacted } = useGA4ContractorTracking();
+  const { trackCTA } = useGA4CTATracking();
+
   useEffect(() => {
     const fetchContractor = async () => {
       try {
@@ -64,6 +69,13 @@ export default function ContractorProfilePage() {
         if (response.ok) {
           const data = await response.json();
           setContractor(data.contractor);
+
+          // Track profile view
+          trackContractorProfileViewed({
+            contractor_id: params.id as string,
+            contractor_name: data.contractor.businessName,
+            location: `${data.contractor.city}, ${data.contractor.state}`,
+          });
         } else {
           setError('Contractor not found');
         }
@@ -77,7 +89,7 @@ export default function ContractorProfilePage() {
     if (params.id) {
       fetchContractor();
     }
-  }, [params.id]);
+  }, [params.id, trackContractorProfileViewed]);
 
   if (loading) {
     return (
@@ -186,11 +198,27 @@ export default function ContractorProfilePage() {
               </div>
 
               <div className="flex flex-col space-y-3">
-                <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-white">
+                <Button
+                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  onClick={() => {
+                    trackContractorContacted({
+                      contractor_id: contractor.id,
+                      contractor_name: contractor.businessName,
+                      location: `${contractor.city}, ${contractor.state}`,
+                    });
+                    trackCTA('Contact Contractor', 'Profile Header');
+                  }}
+                >
                   <MessageSquare className="h-4 w-4 mr-2" />
                   Contact
                 </Button>
-                <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+                <Button
+                  variant="outline"
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  onClick={() => {
+                    trackCTA('Book Consultation', 'Profile Header');
+                  }}
+                >
                   <Calendar className="h-4 w-4 mr-2" />
                   Book Consultation
                 </Button>

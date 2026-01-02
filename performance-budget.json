@@ -1,0 +1,100 @@
+{
+  "budget": [
+    {
+      "resourceSizes": [
+        {
+          "resourceType": "script",
+          "budget": 300
+        },
+        {
+          "resourceType": "total",
+          "budget": 2000
+        },
+        {
+          "resourceType": "image",
+          "budget": 500
+        },
+        {
+          "resourceType": "stylesheet",
+          "budget": 100
+        },
+        {
+          "resourceType": "font",
+          "budget": 100
+        },
+        {
+          "resourceType": "document",
+          "budget": 50
+        },
+        {
+          "resourceType": "other",
+          "budget": 200
+        },
+        {
+          "resourceType": "media",
+          "budget": 300
+        },
+        {
+          "resourceType": "third-party",
+          "budget": 500
+        }
+      ],
+      "resourceCounts": [
+        {
+          "resourceType": "script",
+          "budget": 20
+        },
+        {
+          "resourceType": "stylesheet",
+          "budget": 5
+        },
+        {
+          "resourceType": "image",
+          "budget": 30
+        },
+        {
+          "resourceType": "font",
+          "budget": 4
+        },
+        {
+          "resourceType": "third-party",
+          "budget": 10
+        }
+      ],
+      "timings": [
+        {
+          "metric": "first-contentful-paint",
+          "budget": 1800
+        },
+        {
+          "metric": "largest-contentful-paint",
+          "budget": 1500
+        },
+        {
+          "metric": "cumulative-layout-shift",
+          "budget": 0.05
+        },
+        {
+          "metric": "total-blocking-time",
+          "budget": 200
+        },
+        {
+          "metric": "speed-index",
+          "budget": 2000
+        },
+        {
+          "metric": "interactive",
+          "budget": 2500
+        },
+        {
+          "metric": "first-meaningful-paint",
+          "budget": 2000
+        },
+        {
+          "metric": "max-potential-fid",
+          "budget": 130
+        }
+      ]
+    }
+  ]
+}

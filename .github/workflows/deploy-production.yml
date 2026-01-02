@@ -1,0 +1,230 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  deploy-production:
+    name: Deploy to Vercel Production
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://disaster-recovery-nrpg.vercel.app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel Production
+        id: deploy
+        run: |
+          PRODUCTION_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          echo "production-url=$PRODUCTION_URL" >> $GITHUB_OUTPUT
+          echo "Deployed to: $PRODUCTION_URL"
+
+      - name: Create deployment summary
+        run: |
+          echo "## Production Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ✅ Deployed Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** ${{ steps.deploy.outputs.production-url }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployed by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+
+  smoke-tests:
+    name: Production Smoke Tests
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Wait for deployment to stabilize
+        run: sleep 60
+
+      - name: Run smoke tests
+        run: |
+          PRODUCTION_URL="https://disaster-recovery-nrpg.vercel.app"
+
+          echo "Testing $PRODUCTION_URL..."
+
+          # Test homepage
+          HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" $PRODUCTION_URL)
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ Homepage test failed with code: $HTTP_CODE"
+            exit 1
+          fi
+          echo "✅ Homepage: $HTTP_CODE"
+
+          # Test API health endpoint
+          HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" $PRODUCTION_URL/api/health)
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ Health endpoint test failed with code: $HTTP_CODE"
+            exit 1
+          fi
+          echo "✅ Health endpoint: $HTTP_CODE"
+
+          # Test critical pages
+          for page in "/about" "/pricing" "/contact"; do
+            HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" "$PRODUCTION_URL$page" || echo "failed")
+            echo "Page $page: $HTTP_CODE"
+          done
+
+          echo "✅ All smoke tests passed!"
+
+  performance-check:
+    name: Performance Validation
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.13.x
+
+      - name: Wait for deployment
+        run: sleep 60
+
+      - name: Run Lighthouse on production
+        run: |
+          lhci autorun --collect.url=https://disaster-recovery-nrpg.vercel.app
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-production-results
+          path: .lighthouseci
+          retention-days: 90
+
+  notify-deployment:
+    name: Notify Team
+    runs-on: ubuntu-latest
+    needs: [deploy-production, smoke-tests, performance-check]
+    if: always()
+    steps:
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "Production Deployment ${{ needs.deploy-production.result == 'success' && 'Successful' || 'Failed' }}",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "${{ needs.deploy-production.result == 'success' && '✅' || '❌' }} Production Deployment"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Status:*\n${{ needs.deploy-production.result }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Commit:*\n${{ github.sha }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Branch:*\n${{ github.ref_name }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Deployed by:*\n${{ github.actor }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Smoke Tests:*\n${{ needs.smoke-tests.result }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Performance:*\n${{ needs.performance-check.result }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Deployment"
+                      },
+                      "url": "https://disaster-recovery-nrpg.vercel.app"
+                    },
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Workflow"
+                      },
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        continue-on-error: true
+
+      - name: Send Discord notification
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "Production Deployment ${{ needs.deploy-production.result == 'success' && 'Successful' || 'Failed' }}"
+          description: |
+            **Status:** ${{ needs.deploy-production.result }}
+            **Commit:** ${{ github.sha }}
+            **Branch:** ${{ github.ref_name }}
+            **Deployed by:** ${{ github.actor }}
+          color: ${{ needs.deploy-production.result == 'success' && '0x00ff00' || '0xff0000' }}
+        continue-on-error: true

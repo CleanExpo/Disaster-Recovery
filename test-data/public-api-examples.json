@@ -1,0 +1,342 @@
+{
+  "lead-capture": {
+    "valid": {
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john.smith@example.com",
+      "phone": "0412345678",
+      "propertyAddress": "123 Main Street",
+      "suburb": "Sydney",
+      "state": "NSW",
+      "postcode": "2000",
+      "damageType": "WATER_DAMAGE",
+      "damageDescription": "Burst pipe in the kitchen has caused significant water damage to the floor and lower cabinets. Water has been shut off but damage is extensive.",
+      "hasInsurance": true,
+      "insuranceProvider": "NRMA",
+      "claimNumber": "CLM-2025-12345",
+      "urgency": "URGENT",
+      "preferredContactMethod": "PHONE",
+      "marketingConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": "",
+      "source": "google_ads",
+      "referrer": "https://google.com/search?q=water+damage+sydney"
+    },
+    "urgent": {
+      "firstName": "Sarah",
+      "lastName": "Johnson",
+      "email": "sarah.j@example.com",
+      "phone": "0298765432",
+      "propertyAddress": "456 Park Avenue",
+      "suburb": "Melbourne",
+      "state": "VIC",
+      "postcode": "3000",
+      "damageType": "FIRE_DAMAGE",
+      "damageDescription": "Kitchen fire from electrical fault. Fire department has cleared the scene but there is extensive smoke and fire damage throughout the ground floor.",
+      "hasInsurance": true,
+      "insuranceProvider": "SUNCORP",
+      "urgency": "URGENT",
+      "preferredContactMethod": "EMAIL",
+      "marketingConsent": false,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    },
+    "no-insurance": {
+      "firstName": "Michael",
+      "lastName": "Chen",
+      "email": "m.chen@example.com",
+      "phone": "0733334444",
+      "propertyAddress": "789 River Road",
+      "suburb": "Brisbane",
+      "state": "QLD",
+      "postcode": "4000",
+      "damageType": "MOULD_REMEDIATION",
+      "damageDescription": "Discovered extensive mould growth in bathroom and adjacent bedroom after recent flooding. Concerned about health impacts.",
+      "hasInsurance": false,
+      "urgency": "HIGH",
+      "preferredContactMethod": "SMS",
+      "marketingConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    }
+  },
+
+  "triage": {
+    "water-damage-urgent": {
+      "email": "urgent@example.com",
+      "phone": "0412345678",
+      "postcode": "2000",
+      "state": "NSW",
+      "responses": [
+        {
+          "questionId": "water_standing",
+          "answer": true
+        },
+        {
+          "questionId": "water_source",
+          "answer": "pipe"
+        },
+        {
+          "questionId": "affected_area",
+          "answer": "entire floor"
+        },
+        {
+          "questionId": "mould_visible",
+          "answer": true
+        },
+        {
+          "questionId": "structural_damage",
+          "answer": false
+        },
+        {
+          "questionId": "when_occurred",
+          "answer": "today"
+        },
+        {
+          "questionId": "insurance_coverage",
+          "answer": true
+        }
+      ],
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    },
+    "fire-damage-severe": {
+      "email": "fire@example.com",
+      "postcode": "3000",
+      "state": "VIC",
+      "responses": [
+        {
+          "questionId": "fire_smoke",
+          "answer": true
+        },
+        {
+          "questionId": "affected_area",
+          "answer": "multiple rooms"
+        },
+        {
+          "questionId": "structural_damage",
+          "answer": true
+        },
+        {
+          "questionId": "when_occurred",
+          "answer": "yesterday"
+        },
+        {
+          "questionId": "insurance_coverage",
+          "answer": true
+        }
+      ],
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    },
+    "minor-damage": {
+      "responses": [
+        {
+          "questionId": "water_standing",
+          "answer": false
+        },
+        {
+          "questionId": "affected_area",
+          "answer": "small area"
+        },
+        {
+          "questionId": "when_occurred",
+          "answer": "last week"
+        },
+        {
+          "questionId": "insurance_coverage",
+          "answer": false
+        }
+      ],
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    }
+  },
+
+  "newsletter": {
+    "full-details": {
+      "email": "newsletter@example.com",
+      "firstName": "Emma",
+      "lastName": "Wilson",
+      "interests": [
+        "WATER_DAMAGE",
+        "MOULD_PREVENTION",
+        "STORM_PREPAREDNESS",
+        "INSURANCE_TIPS"
+      ],
+      "state": "NSW",
+      "postcode": "2000",
+      "marketingConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": "",
+      "source": "blog_post",
+      "referrer": "https://example.com/blog/water-damage-prevention"
+    },
+    "minimal": {
+      "email": "minimal@example.com",
+      "marketingConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    },
+    "with-interests": {
+      "email": "interests@example.com",
+      "firstName": "David",
+      "interests": [
+        "FIRE_DAMAGE",
+        "RESTORATION_NEWS"
+      ],
+      "state": "VIC",
+      "marketingConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    }
+  },
+
+  "contractor-inquiry": {
+    "high-score": {
+      "businessName": "Premium Restoration Services Pty Ltd",
+      "abn": "53004085616",
+      "businessType": "COMPANY",
+      "contactFirstName": "Robert",
+      "contactLastName": "Thompson",
+      "contactEmail": "robert@premiumrestoration.com.au",
+      "contactPhone": "0412345678",
+      "businessAddress": "123 Industrial Drive",
+      "suburb": "Parramatta",
+      "state": "NSW",
+      "postcode": "2150",
+      "servicesOffered": [
+        "WATER_DAMAGE",
+        "FIRE_DAMAGE",
+        "SMOKE_DAMAGE",
+        "MOULD_REMEDIATION",
+        "ODOUR_REMEDIATION",
+        "COMMERCIAL_WATER_DAMAGE",
+        "COMMERCIAL_FIRE_DAMAGE"
+      ],
+      "serviceAreas": [
+        "NSW",
+        "ACT",
+        "VIC"
+      ],
+      "certifications": [
+        {
+          "type": "IICRC",
+          "name": "IICRC Water Damage Restoration Technician",
+          "number": "WRT-12345",
+          "expiryDate": "2026-12-31"
+        },
+        {
+          "type": "INSURANCE_APPROVED",
+          "name": "Approved Repairer - Major Insurers",
+          "number": "AR-67890"
+        }
+      ],
+      "hasPublicLiability": true,
+      "publicLiabilityAmount": 20000000,
+      "hasWorkersCompensation": true,
+      "yearsInBusiness": 15,
+      "numberOfEmployees": 25,
+      "additionalInfo": "We are a family-owned business with over 15 years of experience in disaster restoration. Our team is available 24/7 for emergency response.",
+      "website": "https://premiumrestoration.com.au",
+      "availability24x7": true,
+      "emergencyResponseTime": "UNDER_2_HOURS",
+      "termsAccepted": true,
+      "backgroundCheckConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    },
+    "medium-score": {
+      "businessName": "Local Restoration Services",
+      "abn": "51824753556",
+      "businessType": "SOLE_TRADER",
+      "contactFirstName": "James",
+      "contactLastName": "Brown",
+      "contactEmail": "james@localrestoration.com.au",
+      "contactPhone": "0423456789",
+      "businessAddress": "45 Smith Street",
+      "suburb": "Richmond",
+      "state": "VIC",
+      "postcode": "3121",
+      "servicesOffered": [
+        "WATER_DAMAGE",
+        "CARPET_CLEANING",
+        "MOULD_REMEDIATION"
+      ],
+      "serviceAreas": [
+        "VIC"
+      ],
+      "certifications": [
+        {
+          "type": "TRADE_LICENSE",
+          "name": "Plumbing License",
+          "number": "PL-12345"
+        }
+      ],
+      "hasPublicLiability": true,
+      "publicLiabilityAmount": 5000000,
+      "hasWorkersCompensation": false,
+      "yearsInBusiness": 3,
+      "numberOfEmployees": 2,
+      "website": "https://localrestoration.com.au",
+      "availability24x7": false,
+      "emergencyResponseTime": "SAME_DAY",
+      "termsAccepted": true,
+      "backgroundCheckConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    },
+    "low-score": {
+      "businessName": "New Start Restoration",
+      "abn": "33102417032",
+      "businessType": "SOLE_TRADER",
+      "contactFirstName": "Lisa",
+      "contactLastName": "Anderson",
+      "contactEmail": "lisa@newstart.com.au",
+      "contactPhone": "0434567890",
+      "businessAddress": "12 Oak Avenue",
+      "suburb": "Perth",
+      "state": "WA",
+      "postcode": "6000",
+      "servicesOffered": [
+        "CARPET_CLEANING"
+      ],
+      "serviceAreas": [
+        "WA"
+      ],
+      "hasPublicLiability": true,
+      "publicLiabilityAmount": 1000000,
+      "hasWorkersCompensation": false,
+      "yearsInBusiness": 1,
+      "numberOfEmployees": 0,
+      "availability24x7": false,
+      "termsAccepted": true,
+      "backgroundCheckConsent": true,
+      "captchaToken": "test_captcha_token_here",
+      "honeypot": ""
+    }
+  },
+
+  "invalid-examples": {
+    "invalid-email": {
+      "email": "not-an-email",
+      "firstName": "Test"
+    },
+    "invalid-phone": {
+      "phone": "123456"
+    },
+    "invalid-postcode": {
+      "postcode": "12345"
+    },
+    "invalid-state": {
+      "state": "INVALID"
+    },
+    "invalid-abn": {
+      "abn": "12345678901"
+    },
+    "honeypot-triggered": {
+      "email": "test@example.com",
+      "honeypot": "spam_bot_value"
+    }
+  }
+}

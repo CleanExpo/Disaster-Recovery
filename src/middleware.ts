@@ -1,80 +1,233 @@
 /**
- * Global Middleware for Next.js
+ * Enhanced Security Middleware
  *
- * Applies security headers and other global middleware to all requests
+ * This middleware implements comprehensive security measures:
+ * - Rate limiting on sensitive endpoints
+ * - Security headers
+ * - Request logging
+ * - Suspicious activity detection
  */
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import {
+  applyRateLimit,
+  leadCaptureRateLimiter,
+  contractorInquiryRateLimiter,
+  authRateLimiter,
+  generalApiRateLimiter,
+  isRateLimitingEnabled,
+} from '@/lib/security/rate-limit';
+
+/**
+ * Public routes that don't require authentication
+ */
+const PUBLIC_ROUTES = [
+  '/',
+  '/about',
+  '/contact',
+  '/services',
+  '/contractors',
+  '/property-owners',
+  '/help-center',
+  '/support',
+  '/privacy',
+  '/terms',
+  '/login',
+  '/signup',
+  '/forgot-password',
+  '/reset-password',
+];
+
+/**
+ * Rate limited endpoints configuration
+ */
+const RATE_LIMITED_ROUTES: Record<string, any> = {
+  '/api/public/lead-capture': leadCaptureRateLimiter,
+  '/api/public/contractor-inquiry': contractorInquiryRateLimiter,
+  '/api/auth/signin': authRateLimiter,
+  '/api/auth/signup': authRateLimiter,
+  '/api/auth/forgot-password': authRateLimiter,
+  '/api/auth/reset-password': authRateLimiter,
+};
+
+/**
+ * Apply rate limiting if enabled
+ */
+async function handleRateLimiting(
+  request: NextRequest,
+  pathname: string
+): Promise<NextResponse | null> {
+  if (!isRateLimitingEnabled()) {
+    // Skip rate limiting if not configured (development)
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Rate limiting not configured - skipping in development');
+    }
+    return null;
+  }
+
+  // Check if route requires rate limiting
+  const rateLimiter = RATE_LIMITED_ROUTES[pathname];
+  if (rateLimiter) {
+    const result = await applyRateLimit(request, rateLimiter);
+    if (!result.success && result.response) {
+      return result.response;
+    }
+  }
+
+  // Apply general API rate limiting
+  if (pathname.startsWith('/api/') && !pathname.startsWith('/api/auth/')) {
+    const result = await applyRateLimit(request, generalApiRateLimiter);
+    if (!result.success && result.response) {
+      return result.response;
+    }
+  }
+
+  return null;
+}
 
 /**
  * Add security headers to response
  */
 function addSecurityHeaders(response: NextResponse): NextResponse {
-  // Prevent MIME type sniffing
-  response.headers.set('X-Content-Type-Options', 'nosniff');
+  // Remove server information
+  response.headers.delete('Server');
+  response.headers.delete('X-Powered-By');
 
-  // Prevent clickjacking attacks
-  response.headers.set('X-Frame-Options', 'DENY');
+  // Add additional security headers not in next.config.mjs
+  response.headers.set('X-DNS-Prefetch-Control', 'on');
+  response.headers.set('X-Download-Options', 'noopen');
+  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
 
-  // Enable XSS protection
-  response.headers.set('X-XSS-Protection', '1; mode=block');
+  return response;
+}
 
-  // Strict Transport Security (HTTPS only in production)
+/**
+ * Log security event for monitoring
+ */
+function logSecurityEvent(
+  request: NextRequest,
+  event: string,
+  details?: Record<string, any>
+): void {
   if (process.env.NODE_ENV === 'production') {
-    response.headers.set(
-      'Strict-Transport-Security',
-      'max-age=31536000; includeSubDomains; preload'
+    // In production, send to logging service
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      event,
+      path: request.nextUrl.pathname,
+      method: request.method,
+      ip: request.headers.get('x-forwarded-for') || 'unknown',
+      userAgent: request.headers.get('user-agent'),
+      ...details,
+    }));
+  }
+}
+
+/**
+ * Check for suspicious patterns in request
+ */
+function detectSuspiciousActivity(request: NextRequest): boolean {
+  const pathname = request.nextUrl.pathname;
+  const userAgent = request.headers.get('user-agent') || '';
+
+  // Detect common attack patterns
+  const suspiciousPatterns = [
+    /\.\.\//, // Directory traversal
+    /<script/i, // XSS attempts
+    /union.*select/i, // SQL injection
+    /eval\s*\(/i, // Code injection
+    /base64_decode/i, // Obfuscation
+    /%00/, // Null byte injection
+    /\.\.\\/i, // Path traversal
+  ];
+
+  const fullUrl = request.nextUrl.toString();
+
+  for (const pattern of suspiciousPatterns) {
+    if (pattern.test(pathname) || pattern.test(fullUrl)) {
+      logSecurityEvent(request, 'suspicious_pattern_detected', {
+        pattern: pattern.toString(),
+        url: fullUrl,
+      });
+      return true;
+    }
+  }
+
+  // Detect suspicious user agents
+  const suspiciousAgents = [
+    /sqlmap/i,
+    /nikto/i,
+    /nmap/i,
+    /masscan/i,
+    /acunetix/i,
+  ];
+
+  for (const agent of suspiciousAgents) {
+    if (agent.test(userAgent)) {
+      logSecurityEvent(request, 'suspicious_user_agent', {
+        userAgent,
+      });
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Main middleware function
+ */
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Detect and block suspicious activity
+  if (detectSuspiciousActivity(request)) {
+    return NextResponse.json(
+      { error: 'Forbidden' },
+      { status: 403 }
     );
   }
 
-  // Content Security Policy
-  const csp = [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdn.vercel-analytics.com",
-    "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-    "img-src 'self' data: https:",
-    "font-src 'self' data: https:",
-    "connect-src 'self' https://api.stripe.com https://vitals.vercel-analytics.com",
-    "frame-ancestors 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-  ].join('; ');
+  // Apply rate limiting
+  const rateLimitResponse = await handleRateLimiting(request, pathname);
+  if (rateLimitResponse) {
+    return addSecurityHeaders(rateLimitResponse);
+  }
 
-  response.headers.set('Content-Security-Policy', csp);
+  // Check if the current path is a public route
+  if (PUBLIC_ROUTES.includes(pathname)) {
+    const response = NextResponse.next();
+    return addSecurityHeaders(response);
+  }
 
-  // Referrer Policy
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  // Check if the current path is an auth route
+  if (pathname.startsWith('/api/auth/')) {
+    const response = NextResponse.next();
+    return addSecurityHeaders(response);
+  }
 
-  // Permissions Policy (formerly Feature Policy)
-  response.headers.set(
-    'Permissions-Policy',
-    'geolocation=(), microphone=(), camera=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()'
-  );
+  // Check if the current path is a public API route
+  if (pathname.startsWith('/api/public/')) {
+    const response = NextResponse.next();
+    return addSecurityHeaders(response);
+  }
 
-  // Additional security headers
-  response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
-  response.headers.set('X-DNS-Prefetch-Control', 'off');
+  // Check if the current path is a dashboard route
+  if (pathname.startsWith('/dashboard')) {
+    // For dashboard routes, we'll let the client-side handle authentication
+    // The AuthContext will redirect unauthenticated users
+    const response = NextResponse.next();
+    return addSecurityHeaders(response);
+  }
 
-  return response;
+  // For all other routes, allow access with security headers
+  const response = NextResponse.next();
+  return addSecurityHeaders(response);
 }
 
 /**
- * Global middleware for all requests
- */
-export function middleware(request: NextRequest) {
-  // Create response
-  let response = NextResponse.next();
-
-  // Add security headers
-  response = addSecurityHeaders(response);
-
-  return response;
-}
-
-/**
- * Configure which routes to apply middleware to
- * Excludes static files and image optimization
+ * Middleware configuration
  */
 export const config = {
   matcher: [
@@ -83,8 +236,8 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public/* (public directory)
+     * - public files (public folder)
      */
-    '/((?!_next/static|_next/image|favicon.ico|public).*)',
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 };

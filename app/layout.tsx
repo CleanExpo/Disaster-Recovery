@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { AppProviders } from "@/components/providers/AppProviders"
+import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider"
 import "./globals.css"
 
 const jakarta = Plus_Jakarta_Sans({
@@ -152,10 +153,16 @@ export default function RootLayout({
         />
       </head>
       <body className={`font-sans ${jakarta.variable} ${spaceGrotesk.variable} antialiased`}>
-        <AppProviders>
-          <Suspense fallback={null}>{children}</Suspense>
-          <Analytics />
-        </AppProviders>
+        <AnalyticsProvider
+          measurementId={process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || ''}
+          gtmId={process.env.NEXT_PUBLIC_GTM_ID}
+          debug={process.env.NODE_ENV === 'development'}
+        >
+          <AppProviders>
+            <Suspense fallback={null}>{children}</Suspense>
+            <Analytics />
+          </AppProviders>
+        </AnalyticsProvider>
       </body>
     </html>
   )

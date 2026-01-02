@@ -100,3 +100,4 @@ _archive/
 # Auto Claude data directory
 .auto-claude/
 .worktrees/
+nul

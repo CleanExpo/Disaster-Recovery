@@ -1,0 +1,197 @@
+/**
+ * Public API: Lead Capture Endpoint
+ * Handles claim form submissions from the marketing site
+ *
+ * Route: POST /api/public/lead-capture
+ * Rate Limit: 5 requests per 15 minutes per IP
+ * Security: CAPTCHA required, honeypot validation, CSP headers
+ */
+
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
+import { strictRateLimit } from '@/lib/api/rate-limit';
+import {
+  verifyRecaptcha,
+  addSecurityHeaders,
+  isHoneypotTriggered,
+  isProbablyBot,
+} from '@/lib/api/security';
+import {
+  leadCaptureSchema,
+  validateRequestBody,
+} from '@/lib/api/validation-schemas';
+import {
+  withErrorHandler,
+  successResponse,
+  Logger,
+  ValidationError,
+  APIError,
+} from '@/lib/api/error-handler';
+
+const prisma = new PrismaClient();
+
+/**
+ * POST /api/public/lead-capture
+ * Create a new lead from claim form submission
+ */
+async function handleLeadCapture(req: NextRequest) {
+  const logger = new Logger({
+    endpoint: '/api/public/lead-capture',
+    method: 'POST',
+  });
+
+  // 1. Rate limiting
+  const rateLimitResult = await strictRateLimit(req);
+  if (rateLimitResult) {
+    logger.warn('Rate limit exceeded');
+    return rateLimitResult;
+  }
+
+  // 2. Bot detection
+  if (isProbablyBot(req)) {
+    logger.warn('Bot detected via User-Agent');
+    throw new ValidationError('Invalid request');
+  }
+
+  // 3. Parse request body
+  const body = await req.json();
+
+  // 4. Honeypot validation
+  if (isHoneypotTriggered(body.honeypot)) {
+    logger.warn('Honeypot triggered - likely spam bot');
+    // Return success to avoid revealing honeypot
+    return successResponse(
+      { message: 'Your claim has been submitted successfully' },
+      { statusCode: 200 }
+    );
+  }
+
+  // 5. Validate request body
+  const validation = await validateRequestBody(leadCaptureSchema, body);
+  if (!validation.success) {
+    logger.warn('Validation failed', { errors: validation.errors });
+    throw validation.errors;
+  }
+
+  const data = validation.data;
+
+  // 6. CAPTCHA verification
+  if (data.captchaToken) {
+    const captchaResult = await verifyRecaptcha(data.captchaToken);
+    if (!captchaResult.success) {
+      logger.warn('CAPTCHA verification failed', {
+        errorCodes: captchaResult.errorCodes,
+      });
+      throw new ValidationError('CAPTCHA verification failed', {
+        errorCodes: captchaResult.errorCodes,
+      });
+    }
+
+    // Check reCAPTCHA v3 score
+    if (captchaResult.score !== undefined && captchaResult.score < 0.5) {
+      logger.warn('CAPTCHA score too low', { score: captchaResult.score });
+      throw new ValidationError('CAPTCHA verification failed - suspicious activity detected');
+    }
+
+    logger.info('CAPTCHA verified', { score: captchaResult.score });
+  }
+
+  // 7. Create lead in database
+  try {
+    const lead = await prisma.leadCapture.create({
+      data: {
+        // Personal Information
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+
+        // Property Information
+        propertyAddress: data.propertyAddress,
+        suburb: data.suburb,
+        state: data.state,
+        postcode: data.postcode,
+
+        // Damage Information
+        damageType: data.damageType,
+        damageDescription: data.damageDescription,
+
+        // Insurance Information
+        hasInsurance: data.hasInsurance,
+        insuranceProvider: data.insuranceProvider,
+        claimNumber: data.claimNumber,
+
+        // Urgency
+        urgency: data.urgency,
+
+        // Marketing
+        preferredContactMethod: data.preferredContactMethod,
+        marketingConsent: data.marketingConsent,
+
+        // Metadata
+        source: data.source || 'website',
+        referrer: data.referrer,
+        submittedAt: new Date(),
+        ipAddress: req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip'),
+        userAgent: req.headers.get('user-agent'),
+      },
+    });
+
+    logger.info('Lead created successfully', { leadId: lead.id });
+
+    // 8. TODO: Send notification emails
+    // - Send confirmation email to customer
+    // - Send notification to sales team
+    // - Create task in CRM
+
+    // 9. TODO: Trigger automation workflows
+    // - Add to email marketing list (if consent given)
+    // - Create follow-up tasks
+    // - Send SMS confirmation (if urgent)
+
+    // 10. Return success response
+    const response = successResponse(
+      {
+        message: 'Your claim has been submitted successfully',
+        leadId: lead.id,
+        estimatedResponseTime:
+          data.urgency === 'URGENT'
+            ? 'within 2 hours'
+            : data.urgency === 'HIGH'
+              ? 'within 24 hours'
+              : 'within 48 hours',
+      },
+      { statusCode: 201 }
+    );
+
+    // Add security headers
+    return addSecurityHeaders(response, { csp: 'strict', cors: true });
+  } catch (error) {
+    logger.error('Failed to create lead', error);
+
+    // Check for duplicate submission
+    if (
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      error.code === 'P2002'
+    ) {
+      throw new APIError(
+        'A claim with this information has already been submitted',
+        409,
+        'DUPLICATE_SUBMISSION'
+      );
+    }
+
+    throw error;
+  }
+}
+
+// OPTIONS endpoint for CORS preflight
+export async function OPTIONS(req: NextRequest) {
+  const response = new NextResponse(null, { status: 204 });
+  return addSecurityHeaders(response, { csp: 'none', cors: true });
+}
+
+// POST endpoint wrapped with error handler
+export const POST = withErrorHandler(handleLeadCapture);

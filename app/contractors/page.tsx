@@ -1,554 +1,353 @@
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { TrendingUp, Users, Shield, DollarSign, Clock, Star, CheckCircle, ArrowRight, Zap, BarChart3, Building2, Smartphone, Globe, Settings, Target, Award, FileText, Calendar, CreditCard } from "lucide-react"
+/**
+ * NRPG Contractor Acquisition Funnel - Page 1: Awareness
+ *
+ * Path: /contractors
+ * Purpose: Build trust and showcase value proposition
+ * Next: /how-it-works
+ */
+
+import React from 'react';
+import Link from 'next/link';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
+import {
+  Hero,
+  TestimonialCard,
+  StatCard,
+  IICRCBadgeGroup,
+} from '@/design-system';
+import {
+  TrendingUp,
+  Shield,
+  DollarSign,
+  Users,
+  Clock,
+  Target,
+  CheckCircle,
+  ArrowRight,
+  Zap,
+  Award,
+  BarChart3,
+} from 'lucide-react';
 
 export default function ContractorsPage() {
   return (
-    <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+    <div className="min-h-screen bg-gray-900 text-white">
       <Header />
-      <main className="py-24">
+
+      <main>
         {/* Hero Section */}
-        <section className="container mx-auto px-6 text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-[#7C4DFF]/10 border border-[#7C4DFF]/30 rounded-full text-[#7C4DFF] text-sm font-medium mb-6">
-            🚀 Join Australia's Advanced Restoration Marketplace Platform
-          </div>
-          <h1 className="font-poppins font-bold text-4xl md:text-5xl text-balance mb-6">
-            Scale Your <span className="text-[#00BFA6]">Restoration Business</span> with Our Platform
-          </h1>
-          <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto mb-8">
-            Join our marketplace platform and access automated workflows, smart lead matching, business analytics, and growth tools designed specifically for restoration contractors.
+        <Hero
+          variant="centered"
+          badge={{
+            text: "Join Australia's #1 Disaster Recovery Network",
+            icon: <Award className="h-4 w-4" />,
+          }}
+          title="Scale Your Restoration Business with"
+          titleHighlight="Pre-Qualified Leads"
+          description="Access verified, insured leads through our fair rotation system. No favoritism, no hidden fees. Just quality leads that help you grow your business."
+          primaryCTA={{
+            text: 'See How It Works',
+            href: '/how-it-works',
+          }}
+          secondaryCTA={{
+            text: 'Watch Platform Demo',
+          }}
+          stats={[
+            { value: '500+', label: 'Active Contractors' },
+            { value: '10,000+', label: 'Jobs Completed' },
+            { value: '$45M+', label: 'Paid to Contractors' },
+          ]}
+          className="pt-32 pb-20"
+        />
+
+        {/* Value Propositions */}
+        <section className="container mx-auto px-6 py-20">
+          <h2 className="font-sans-modern font-bold text-4xl text-center mb-4">
+            Why Join <span className="text-nrpg-primary">NRPG</span>?
+          </h2>
+          <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+            We're not just another lead marketplace. We're a complete business growth platform built specifically for restoration contractors.
           </p>
-          <div className="inline-flex items-center px-6 py-3 bg-[#7C4DFF]/10 border border-[#7C4DFF]/30 rounded-lg text-[#F9FAFB] text-lg font-medium mb-8">
-            <Zap className="mr-2 h-5 w-5 text-[#00BFA6]" />
-            Platform Launching Soon - Early Access Available
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
-              Join Platform Now
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button variant="outline" className="border-[#2196F3] text-[#2196F3] hover:bg-[#2196F3] hover:text-white px-8 py-3 text-lg bg-transparent">
-              View Platform Demo
-            </Button>
-          </div>
-        </section>
 
-        {/* Platform Features Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Platform Features for Contractors</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Zap className="h-12 w-12 text-[#00BFA6] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Smart Lead Matching</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Smart matching algorithm connects you with relevant projects based on your location, expertise, and availability.
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Location-based matching</li>
-                <li>• Skill assessment scoring</li>
-                <li>• Availability optimization</li>
-                <li>• Project preference learning</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <BarChart3 className="h-12 w-12 text-[#2196F3] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Business Analytics</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Comprehensive dashboard with real-time insights into your performance, revenue, and growth opportunities.
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Revenue tracking & forecasting</li>
-                <li>• Performance metrics</li>
-                <li>• Customer satisfaction scores</li>
-                <li>• Market trend analysis</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Settings className="h-12 w-12 text-[#7C4DFF] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Automated Workflows</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Streamlined processes from lead acceptance to project completion with minimal manual intervention.
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Automated quote generation</li>
-                <li>• Project timeline tracking</li>
-                <li>• Client communication templates</li>
-                <li>• Invoice automation</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Smartphone className="h-12 w-12 text-[#FF6B35] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Mobile Platform</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Full-featured mobile app for managing projects, communicating with clients, and tracking progress on-the-go.
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Real-time project updates</li>
-                <li>• Photo documentation</li>
-                <li>• GPS location tracking</li>
-                <li>• Push notifications</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <CreditCard className="h-12 w-12 text-[#FFD700] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Payment Processing</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Integrated payment system with automated invoicing, secure transactions, and timely payments.
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Automated invoicing</li>
-                <li>• Secure payment processing</li>
-                <li>• Payment tracking</li>
-                <li>• Financial reporting</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Building2 className="h-12 w-12 text-[#00BFA6] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Business Growth Tools</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Marketing tools, training modules, and business development resources to help you scale.
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Marketing campaign tools</li>
-                <li>• Training & certification</li>
-                <li>• Business coaching</li>
-                <li>• Industry networking</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Why Join Our Platform?</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <TrendingUp className="h-12 w-12 text-[#00BFA6] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Scale Your Business</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Access our platform's automated systems to help grow your business with streamlined workflows
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Smart lead matching</li>
-                <li>• Automated project management</li>
-                <li>• Business growth analytics</li>
-                <li>• Scalable workflow systems</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Target className="h-12 w-12 text-[#2196F3] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Smart Lead Generation</h3>
-              <p className="text-[#9CA3AF] mb-4">Our platform's AI matches you with the most relevant, high-value projects</p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Pre-qualified project leads</li>
-                <li>• Location-based matching</li>
-                <li>• Skill-specific opportunities</li>
-                <li>• Insurance-verified projects</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Award className="h-12 w-12 text-[#00BFA6] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Professional Credibility</h3>
-              <p className="text-[#9CA3AF] mb-4">
-                Build trust and establish your reputation through our verified platform ecosystem
-              </p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Verified contractor badges</li>
-                <li>• Customer review system</li>
-                <li>• Portfolio showcase</li>
-                <li>• Industry recognition</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <DollarSign className="h-12 w-12 text-[#FFD700] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Transparent Pricing</h3>
-              <p className="text-[#9CA3AF] mb-4">Set competitive rates with our platform's standardized pricing system</p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Market-based pricing guidance</li>
-                <li>• No hidden platform fees</li>
-                <li>• Automated payment processing</li>
-                <li>• Financial reporting tools</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Clock className="h-12 w-12 text-[#2196F3] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Efficient Operations</h3>
-              <p className="text-[#9CA3AF] mb-4">Streamlined workflows and automated processes save you time and effort</p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Automated project scheduling</li>
-                <li>• Digital documentation system</li>
-                <li>• Mobile platform access</li>
-                <li>• Client communication tools</li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <Globe className="h-12 w-12 text-[#FFD700] mb-4" />
-              <h3 className="font-poppins font-semibold text-xl text-white mb-3">Market Expansion</h3>
-              <p className="text-[#9CA3AF] mb-4">Access new markets and opportunities through our platform's network</p>
-              <ul className="text-[#9CA3AF] text-sm space-y-1">
-                <li>• Multi-location project access</li>
-                <li>• Industry networking</li>
-                <li>• Market trend insights</li>
-                <li>• Growth opportunities</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Platform Tiers Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Platform Access Tiers</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
-              <h3 className="font-poppins font-semibold text-xl text-white mb-4">Starter Platform</h3>
-              <div className="text-[#00BFA6] text-3xl font-bold mb-4">
-                $99<span className="text-lg text-[#9CA3AF]">/month</span>
+            {/* Pre-Qualified Leads */}
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-gray-700 hover:border-nrpg-primary/50 transition-all">
+              <div className="w-16 h-16 bg-nrpg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                <Target className="h-8 w-8 text-nrpg-primary" />
               </div>
-              <ul className="text-[#9CA3AF] space-y-3 mb-6">
-                <li>• Up to 15 platform leads/month</li>
-                <li>• Basic platform profile</li>
-                <li>• Mobile app access</li>
-                <li>• Basic analytics dashboard</li>
-                <li>• Email support</li>
-                <li>• Automated invoicing</li>
-              </ul>
-              <button className="w-full bg-[#374151] hover:bg-[#4B5563] text-white font-semibold py-3 rounded-lg">
-                Start Platform Trial
-              </button>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#00BFA6] relative">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-[#00BFA6] text-[#0F1115] px-4 py-1 rounded-full text-sm font-semibold">
-                  Most Popular
-                </span>
-              </div>
-              <h3 className="font-poppins font-semibold text-xl text-white mb-4">Professional Platform</h3>
-              <div className="text-[#00BFA6] text-3xl font-bold mb-4">
-                $199<span className="text-lg text-[#9CA3AF]">/month</span>
-              </div>
-              <ul className="text-[#9CA3AF] space-y-3 mb-6">
-                <li>• Up to 40 platform leads/month</li>
-                <li>• Featured platform profile</li>
-                <li>• Advanced analytics & insights</li>
-                <li>• Priority platform support</li>
-                <li>• Marketing automation tools</li>
-                <li>• Business growth coaching</li>
-                <li>• API access</li>
-              </ul>
-              <button className="w-full bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold py-3 rounded-lg">
-                Choose Professional
-              </button>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
-              <h3 className="font-poppins font-semibold text-xl text-white mb-4">Enterprise Platform</h3>
-              <div className="text-[#00BFA6] text-3xl font-bold mb-4">
-                $399<span className="text-lg text-[#9CA3AF]">/month</span>
-              </div>
-              <ul className="text-[#9CA3AF] space-y-3 mb-6">
-                <li>• Unlimited platform leads</li>
-                <li>• Premium platform placement</li>
-                <li>• Dedicated platform manager</li>
-                <li>• Advanced business analytics</li>
-                <li>• Custom platform branding</li>
-                <li>• White-label opportunities</li>
-                <li>• Full API & integration access</li>
-              </ul>
-              <button className="w-full bg-[#374151] hover:bg-[#4B5563] text-white font-semibold py-3 rounded-lg">
-                Contact Platform Sales
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Business Growth Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">How Our Platform Drives Business Growth</h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
-              <h3 className="font-poppins font-semibold text-2xl text-white mb-6">Platform-Powered Growth Metrics</h3>
-              <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-[#9CA3AF]">Average Revenue Increase</span>
-                  <span className="text-[#00BFA6] font-bold text-xl">+40%</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#9CA3AF]">Lead Conversion Rate</span>
-                  <span className="text-[#2196F3] font-bold text-xl">+65%</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#9CA3AF]">Time Saved on Admin</span>
-                  <span className="text-[#7C4DFF] font-bold text-xl">-50%</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#9CA3AF]">Customer Satisfaction</span>
-                  <span className="text-[#FFD700] font-bold text-xl">4.8/5</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
-              <h3 className="font-poppins font-semibold text-2xl text-white mb-6">Platform Features That Drive Results</h3>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <Zap className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Smart Lead Matching</h4>
-                    <p className="text-[#9CA3AF] text-sm">Smart matching helps connect you with relevant projects in your service area</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <BarChart3 className="h-6 w-6 text-[#2196F3] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Business Analytics</h4>
-                    <p className="text-[#9CA3AF] text-sm">Data-driven insights help optimize pricing and operations</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Settings className="h-6 w-6 text-[#7C4DFF] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Automated Workflows</h4>
-                    <p className="text-[#9CA3AF] text-sm">Streamlined processes reduce admin time by 50%</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Building2 className="h-6 w-6 text-[#FFD700] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Growth Tools</h4>
-                    <p className="text-[#9CA3AF] text-sm">Marketing and training resources accelerate business growth</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Success Stories Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Platform Success Stories</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-[#00BFA6] rounded-full flex items-center justify-center mr-4">
-                  <span className="text-[#0F1115] font-bold">MR</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white">Mike's Restoration</h4>
-                  <p className="text-[#9CA3AF] text-sm">Sydney, NSW</p>
-                </div>
-              </div>
-              <p className="text-[#9CA3AF] mb-4">
-                "The platform's AI matching and automated workflows increased our efficiency by 60%. We're now handling 3x more projects with the same team."
+              <h3 className="font-sans-modern font-semibold text-2xl mb-4">
+                Pre-Qualified Leads
+              </h3>
+              <p className="text-gray-400 mb-6">
+                Every lead is contact-verified, insurance-validated, and geo-matched to your service area. No tire kickers.
               </p>
-              <div className="text-[#00BFA6] font-semibold">+60% Efficiency & Revenue</div>
+              <ul className="space-y-3">
+                {[
+                  'Contact information verified',
+                  'Insurance status validated',
+                  'Location within your service area',
+                  'Urgency level assessed',
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-[#2196F3] rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">AR</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white">Aussie Restore Co</h4>
-                  <p className="text-[#9CA3AF] text-sm">Melbourne, VIC</p>
-                </div>
+            {/* Fair Rotation System */}
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-gray-700 hover:border-nrpg-primary/50 transition-all">
+              <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
+                <Users className="h-8 w-8 text-blue-500" />
               </div>
-              <p className="text-[#9CA3AF] mb-4">
-                "The platform's analytics dashboard helped us optimize our pricing and operations. Our profit margins increased by 35% in just 6 months."
+              <h3 className="font-sans-modern font-semibold text-2xl mb-4">
+                Fair Rotation System
+              </h3>
+              <p className="text-gray-400 mb-6">
+                No favoritism. No bidding wars. Every contractor gets equal opportunity through our automated rotation algorithm.
               </p>
-              <div className="text-[#2196F3] font-semibold">+35% Profit Margins</div>
+              <ul className="space-y-3">
+                {[
+                  'Equal opportunity for all contractors',
+                  'Automated, unbiased distribution',
+                  'Skill-matched assignments',
+                  'Transparent dispatch history',
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-[#FFD700] rounded-full flex items-center justify-center mr-4">
-                  <span className="text-[#0F1115] font-bold">QR</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white">Queensland Repairs</h4>
-                  <p className="text-[#9CA3AF] text-sm">Brisbane, QLD</p>
-                </div>
+            {/* Transparent Pricing */}
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-8 border border-gray-700 hover:border-nrpg-primary/50 transition-all">
+              <div className="w-16 h-16 bg-nrpg-secondary/20 rounded-xl flex items-center justify-center mb-6">
+                <DollarSign className="h-8 w-8 text-nrpg-secondary" />
               </div>
-              <p className="text-[#9CA3AF] mb-4">
-                "The platform's business growth tools and automated lead generation helped us scale from 2 to 15 employees in 18 months."
+              <h3 className="font-sans-modern font-semibold text-2xl mb-4">
+                Transparent Pricing
+              </h3>
+              <p className="text-gray-400 mb-6">
+                Simple monthly subscription. No hidden fees, no commission cuts. Keep 100% of what you earn.
               </p>
-              <div className="text-[#FFD700] font-semibold">650% Team Growth</div>
+              <ul className="space-y-3">
+                {[
+                  'Fixed monthly subscription ($99-$799)',
+                  'No commission on jobs',
+                  'No hidden fees or charges',
+                  'Cancel anytime, no contracts',
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
 
-        {/* Requirements Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Contractor Requirements</h2>
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="space-y-4">
-                <h3 className="font-poppins font-semibold text-xl text-white mb-4">Legal Requirements</h3>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Valid Licensing</h4>
-                    <p className="text-[#9CA3AF] text-sm">Current trade licenses and certifications</p>
-                  </div>
-                </div>
+        {/* Social Proof - Testimonials */}
+        <section className="bg-gray-800/30 py-20">
+          <div className="container mx-auto px-6">
+            <h2 className="font-sans-modern font-bold text-4xl text-center mb-4">
+              Real Results from <span className="text-nrpg-primary">Real Contractors</span>
+            </h2>
+            <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+              Don't just take our word for it. Here's what contractors are saying about NRPG.
+            </p>
 
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Insurance Coverage</h4>
-                    <p className="text-[#9CA3AF] text-sm">Public liability ($20M) and professional indemnity ($5M)</p>
-                  </div>
-                </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Earnings Testimonial */}
+              <TestimonialCard
+                type="earnings"
+                name="Mike Robertson"
+                business="Sydney Water Restoration"
+                location="Sydney, NSW"
+                quote="I made $45,000 in my first 3 months on NRPG. The leads are pre-qualified and insured. It's been a game-changer for my business."
+                metric={{
+                  value: '$45k in 3 months',
+                  label: 'Revenue',
+                }}
+                rating={5}
+              />
 
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">ABN Registration</h4>
-                    <p className="text-[#9CA3AF] text-sm">Valid Australian Business Number</p>
-                  </div>
-                </div>
-              </div>
+              {/* Lead Quality Testimonial */}
+              <TestimonialCard
+                type="quality"
+                name="Sarah Chen"
+                business="Melbourne Fire & Smoke"
+                location="Melbourne, VIC"
+                quote="Best leads I've ever received. Every single one is verified and ready to go. My close rate has increased from 30% to 65% since joining."
+                metric={{
+                  value: '65% close rate',
+                  label: 'Conversion',
+                }}
+                rating={5}
+              />
 
-              <div className="space-y-4">
-                <h3 className="font-poppins font-semibold text-xl text-white mb-4">Experience & Skills</h3>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Industry Experience</h4>
-                    <p className="text-[#9CA3AF] text-sm">Minimum 2 years in restoration services</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Technical Certifications</h4>
-                    <p className="text-[#9CA3AF] text-sm">Relevant trade certifications and training</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Portfolio Evidence</h4>
-                    <p className="text-[#9CA3AF] text-sm">Before/after photos of completed projects</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="font-poppins font-semibold text-xl text-white mb-4">Quality Standards</h3>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Background Check</h4>
-                    <p className="text-[#9CA3AF] text-sm">Clean criminal background verification</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Client References</h4>
-                    <p className="text-[#9CA3AF] text-sm">Minimum 5 verifiable client references</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-6 w-6 text-[#00BFA6] mt-1 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">Quality Commitment</h4>
-                    <p className="text-[#9CA3AF] text-sm">Agreement to Australian building standards</p>
-                  </div>
-                </div>
-              </div>
+              {/* Business Growth Testimonial */}
+              <TestimonialCard
+                type="growth"
+                name="James Taylor"
+                business="Brisbane Mold Specialists"
+                location="Brisbane, QLD"
+                quote="Hired 2 new technicians in 6 months thanks to NRPG. The consistent lead flow allowed me to scale with confidence."
+                metric={{
+                  value: '2 new hires',
+                  label: 'Team Growth',
+                }}
+                rating={5}
+              />
             </div>
           </div>
         </section>
 
-        {/* Application Process Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Application Process</h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#00BFA6] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[#0F1115] font-bold text-xl">1</span>
-                </div>
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Submit Application</h3>
-                <p className="text-[#9CA3AF] text-sm">
-                  Complete our comprehensive application form with all required documentation
-                </p>
-              </div>
+        {/* Platform Stats */}
+        <section className="container mx-auto px-6 py-20">
+          <h2 className="font-sans-modern font-bold text-4xl text-center mb-16">
+            Platform Performance Metrics
+          </h2>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#2196F3] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-bold text-xl">2</span>
-                </div>
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Verification Process</h3>
-                <p className="text-[#9CA3AF] text-sm">
-                  We verify your licenses, insurance, and conduct background checks
-                </p>
-              </div>
+          <div className="grid md:grid-cols-4 gap-6">
+            <StatCard
+              title="Avg. Monthly Revenue"
+              value="$18,500"
+              trend={{
+                direction: 'up',
+                value: 42,
+                label: 'vs last year',
+              }}
+              icon={<TrendingUp className="h-6 w-6" />}
+              accentColor="nrpg"
+            />
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#FFD700] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[#0F1115] font-bold text-xl">3</span>
-                </div>
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Interview & Assessment</h3>
-                <p className="text-[#9CA3AF] text-sm">
-                  Phone interview and technical assessment to ensure quality standards
-                </p>
-              </div>
+            <StatCard
+              title="Lead Conversion Rate"
+              value="58%"
+              trend={{
+                direction: 'up',
+                value: 23,
+                label: 'vs industry avg',
+              }}
+              icon={<BarChart3 className="h-6 w-6" />}
+              accentColor="blue"
+            />
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#FF6B35] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white font-bold text-xl">4</span>
+            <StatCard
+              title="Avg. Response Time"
+              value="12 min"
+              trend={{
+                direction: 'down',
+                value: 35,
+                label: 'faster than market',
+              }}
+              icon={<Clock className="h-6 w-6" />}
+              accentColor="green"
+            />
+
+            <StatCard
+              title="Customer Satisfaction"
+              value="4.8/5"
+              trend={{
+                direction: 'up',
+                value: 15,
+                label: 'repeat customers',
+              }}
+              icon={<Award className="h-6 w-6" />}
+              accentColor="gold"
+            />
+          </div>
+
+          <div className="mt-12 bg-gradient-to-br from-nrpg-primary/10 to-blue-500/10 border border-nrpg-primary/30 rounded-2xl p-8 text-center">
+            <p className="text-xl text-gray-300 mb-4">
+              These are <span className="text-nrpg-primary font-semibold">real metrics</span> from our contractor network. Your results may vary based on your service area, specialization, and response time.
+            </p>
+            <p className="text-sm text-gray-400">
+              Data aggregated from 500+ active contractors across Australia (last 12 months)
+            </p>
+          </div>
+        </section>
+
+        {/* Trust Signals - IICRC Certifications */}
+        <section className="bg-gray-800/30 py-20">
+          <div className="container mx-auto px-6">
+            <h2 className="font-sans-modern font-bold text-4xl text-center mb-4">
+              Join Certified Professionals
+            </h2>
+            <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+              All NRPG contractors are IICRC-certified and continuously trained in industry best practices.
+            </p>
+
+            <div className="max-w-4xl mx-auto">
+              <IICRCBadgeGroup
+                certifications={['S500', 'S520', 'WRT', 'FSRT', 'ASD', 'AMRT']}
+                showTooltips
+                size="lg"
+                className="justify-center"
+              />
+
+              <div className="mt-12 grid md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <Shield className="h-12 w-12 text-nrpg-primary mx-auto mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">Fully Insured</h3>
+                  <p className="text-gray-400 text-sm">
+                    $20M public liability and $5M professional indemnity required
+                  </p>
                 </div>
-                <h3 className="font-poppins font-semibold text-lg text-white mb-3">Welcome & Onboarding</h3>
-                <p className="text-[#9CA3AF] text-sm">
-                  Complete onboarding process and start receiving qualified leads
-                </p>
+                <div className="text-center">
+                  <Award className="h-12 w-12 text-nrpg-primary mx-auto mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">IICRC Certified</h3>
+                  <p className="text-gray-400 text-sm">
+                    All contractors hold current IICRC certifications
+                  </p>
+                </div>
+                <div className="text-center">
+                  <Zap className="h-12 w-12 text-nrpg-primary mx-auto mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">Background Checked</h3>
+                  <p className="text-gray-400 text-sm">
+                    Clean criminal background verification for all technicians
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="container mx-auto px-6 text-center">
-          <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-12 border border-[#374151]">
-            <h2 className="font-poppins font-semibold text-3xl text-white mb-4">Ready to Scale Your Business with Our Platform?</h2>
-            <p className="text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
-              Join our marketplace platform and access automated workflows, smart lead matching, business analytics, and growth tools designed specifically for restoration contractors.
+        <section className="container mx-auto px-6 py-20">
+          <div className="bg-gradient-to-br from-nrpg-primary/20 to-blue-500/20 border-2 border-nrpg-primary/50 rounded-3xl p-12 text-center">
+            <h2 className="font-sans-modern font-bold text-4xl mb-6">
+              Ready to See How It Works?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Discover how NRPG's platform works, see our pricing tiers, and calculate your potential ROI.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
-                Join Platform Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                className="border-[#2196F3] text-[#2196F3] hover:bg-[#2196F3] hover:text-white px-8 py-3 text-lg bg-transparent"
+              <Link
+                href="/how-it-works"
+                className="inline-flex items-center justify-center px-8 py-4 bg-nrpg-primary hover:bg-nrpg-primary/90 text-gray-900 font-semibold rounded-lg transition-all text-lg"
               >
-                Schedule Platform Demo
-              </Button>
+                See How It Works
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+              <button className="inline-flex items-center justify-center px-8 py-4 border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white font-semibold rounded-lg transition-all text-lg">
+                Schedule a Demo Call
+              </button>
             </div>
+
+            <p className="text-sm text-gray-400 mt-6">
+              No credit card required • See pricing and ROI calculator • Join 500+ contractors
+            </p>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
-  )
+  );
 }

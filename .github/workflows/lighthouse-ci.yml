@@ -1,0 +1,172 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
+        env:
+          NODE_ENV: production
+          SKIP_ENV_VALIDATION: true
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.13.x
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci
+          retention-days: 30
+
+      - name: Comment PR with Lighthouse results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Read Lighthouse results
+            const resultsPath = '.lighthouseci';
+            if (!fs.existsSync(resultsPath)) {
+              console.log('No Lighthouse results found');
+              return;
+            }
+
+            // Find the manifest file
+            const manifestPath = path.join(resultsPath, 'manifest.json');
+            if (!fs.existsSync(manifestPath)) {
+              console.log('No manifest file found');
+              return;
+            }
+
+            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+            const reportFiles = manifest.map(entry => entry.jsonPath);
+
+            let comment = '## Lighthouse CI Results\n\n';
+
+            reportFiles.forEach((file, index) => {
+              const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+              const url = report.finalUrl || report.requestedUrl;
+              const categories = report.categories;
+
+              comment += `### Page ${index + 1}: ${url}\n\n`;
+              comment += '| Category | Score |\n';
+              comment += '|----------|-------|\n';
+
+              Object.entries(categories).forEach(([key, category]) => {
+                const score = Math.round(category.score * 100);
+                const emoji = score >= 90 ? '🟢' : score >= 50 ? '🟡' : '🔴';
+                comment += `| ${emoji} ${category.title} | ${score} |\n`;
+              });
+
+              // Core Web Vitals
+              const audits = report.audits;
+              comment += '\n**Core Web Vitals:**\n\n';
+              comment += '| Metric | Value | Target |\n';
+              comment += '|--------|-------|--------|\n';
+
+              const metrics = [
+                { key: 'largest-contentful-paint', title: 'LCP', target: '< 1.5s' },
+                { key: 'first-input-delay', title: 'FID', target: '< 50ms' },
+                { key: 'cumulative-layout-shift', title: 'CLS', target: '< 0.05' },
+                { key: 'total-blocking-time', title: 'TBT', target: '< 200ms' },
+                { key: 'speed-index', title: 'Speed Index', target: '< 2.0s' },
+              ];
+
+              metrics.forEach(({ key, title, target }) => {
+                if (audits[key]) {
+                  const value = audits[key].displayValue || 'N/A';
+                  const score = Math.round(audits[key].score * 100);
+                  const emoji = score >= 90 ? '✅' : score >= 50 ? '⚠️' : '❌';
+                  comment += `| ${emoji} ${title} | ${value} | ${target} |\n`;
+                }
+              });
+
+              comment += '\n---\n\n';
+            });
+
+            // Post comment
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  performance-budget:
+    runs-on: ubuntu-latest
+    needs: lighthouse
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Lighthouse results
+        uses: actions/download-artifact@v4
+        with:
+          name: lighthouse-results
+          path: .lighthouseci
+
+      - name: Check performance budgets
+        run: |
+          echo "Checking performance budgets..."
+
+          # Check if any page failed Core Web Vitals
+          failed=false
+
+          for file in .lighthouseci/*.json; do
+            if [ -f "$file" ]; then
+              # Extract scores using grep and basic text processing
+              perf_score=$(grep -o '"performance":{"score":[0-9.]*' "$file" | grep -o '[0-9.]*$' || echo "0")
+
+              # Convert to percentage (multiply by 100)
+              perf_pct=$(echo "$perf_score * 100" | bc 2>/dev/null || echo "0")
+
+              echo "Performance score: $perf_pct%"
+
+              # Check if score is below 90
+              if [ $(echo "$perf_pct < 90" | bc 2>/dev/null || echo "1") -eq 1 ]; then
+                echo "❌ Performance score below 90%"
+                failed=true
+              fi
+            fi
+          done
+
+          if [ "$failed" = true ]; then
+            echo "::error::Performance budget check failed. Core Web Vitals targets not met."
+            exit 1
+          else
+            echo "✅ Performance budget check passed!"
+          fi

@@ -1,87 +1,55 @@
 /**
  * NRPG Homepage - National Restoration Professionals Group
  *
- * Design Pattern: Phil McGurk's DisasterRecovery.com.au aesthetic
- * - Fixed navigation with mega menus
- * - Hero carousel with HUD overlay
- * - Number storytelling ("The 1300 Blueprint")
- * - Service pillars grid
- * - Emergency CTA throughout
+ * Complete Specification Implementation:
+ * 1. Emergency CTA (3 paths: Report Claim / Find Contractor / Join NRPG)
+ * 2. Quick Triage Tool (interactive disaster assessment)
+ * 3. Services Grid (visual grid of disaster types)
+ * 4. Resources Hub (featured content)
+ * 5. Join NRPG Section (contractor CTA)
  *
- * SEO Optimized: Schema.org markup for search engines
- * Accessibility: WCAG AA compliant
- * Performance: Optimized images, code splitting
+ * Design Standards:
+ * - Authority/Clinical aesthetic (navy, white, structured layouts)
+ * - Mobile-first responsive design
+ * - WCAG 2.1 AA compliance
+ * - Performance optimized (LCP <1.5s target)
+ * - DesignOS components throughout
+ *
+ * SEO: Schema.org markup, semantic HTML, optimized meta tags
  */
 
 'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+  Button,
+  EmergencyCTA,
+  PriorityCard,
+  IICRCBadge,
+  IICRCBadgeGroup,
+} from '@/src/design-system';
+import {
+  QuickTriageTool,
+  ServicesGrid,
+  ResourcesHub,
+  JoinNRPGSection,
+} from '@/components/marketing';
 import { MegaMenu, useMegaMenu } from '@/components/nrpg/mega-menu';
-import { HeroCarousel } from '@/components/nrpg/hero-carousel';
-import { PillarCard, PillarCardGrid } from '@/components/nrpg/pillar-card';
-import { EmergencyButton, EmergencyButtonLabeled } from '@/components/nrpg/emergency-button';
-import { ProtocolBadge } from '@/components/nrpg/protocol-badge';
 import { MobileMenu, HamburgerButton } from '@/components/nrpg/MobileMenu';
 import {
   SERVICE_PILLARS,
   CLIENT_SECTORS,
   AUSTRALIAN_LOCATIONS,
   EMERGENCY_PHONE,
-  designTokens,
 } from '@/lib/design-tokens';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 
-// Hero Scenarios for Carousel
-const HERO_SCENARIOS = [
-  {
-    id: 'residential-flood',
-    sector: 'Residential',
-    hazard: 'Flood Emergency',
-    status: 'Response Active',
-    title: 'Your Home. Professionally Restored.',
-    description: 'Insurance-grade documentation. IICRC protocols. Quality standards maintained.',
-    image: '/images/scenarios/residential-flood.jpg',
-    cta: {
-      label: 'Dispatch Emergency Team',
-      href: `tel:${EMERGENCY_PHONE.href}`,
-    },
-  },
-  {
-    id: 'commercial-fire',
-    sector: 'Commercial',
-    hazard: 'Fire Damage',
-    status: 'Vetting Complete',
-    title: 'Business Continuity. Prioritized.',
-    description: 'Minimize downtime. Maximize recovery. Every minute counts.',
-    image: '/images/scenarios/commercial-fire.jpg',
-    cta: {
-      label: 'Start Recovery Process',
-      href: '/services/fire-smoke-remediation',
-    },
-  },
-  {
-    id: 'industrial-bio',
-    sector: 'Industrial',
-    hazard: 'Biohazard Event',
-    status: 'Team Deployed',
-    title: 'Heavy Infrastructure. Precision Decon.',
-    description: 'Manufacturing plants. Warehouses. Critical facilities. IICRC-certified results.',
-    image: '/images/scenarios/industrial-bio.jpg',
-    cta: {
-      label: 'Request Specialist Team',
-      href: '/services/bio-forensic-cleaning',
-    },
-  },
-];
-
 export default function HomePage() {
-  // MegaMenu State Management
+  // Navigation state
   const servicesMenu = useMegaMenu();
   const sectorsMenu = useMegaMenu();
   const locationsMenu = useMegaMenu();
-
-  // Mobile Menu State
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Transform data for MegaMenu
@@ -118,11 +86,6 @@ export default function HomePage() {
     labelColor: 'text-green-400',
   }));
 
-  const pillarCardsData = SERVICE_PILLARS.map((p) => ({
-    ...p,
-    image: `/images/services/${p.id}-card.jpg`,
-  }));
-
   // Generate Schema.org markup
   const organizationSchema = schemaGenerator.generateOrganizationSchema();
   const emergencyServiceSchema = schemaGenerator.generateEmergencyServiceSchema();
@@ -145,7 +108,7 @@ export default function HomePage() {
 
       <div className="min-h-screen bg-white dark:bg-slate-950">
         {/* Fixed Header Navigation */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-sm">
           <nav className="container mx-auto px-6" aria-label="Main navigation">
             <div className="flex items-center justify-between h-20">
               {/* Logo */}
@@ -270,6 +233,14 @@ export default function HomePage() {
                   />
                 </div>
 
+                {/* Resources Link */}
+                <Link
+                  href="/resources"
+                  className="px-4 py-2 font-bold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  Resources
+                </Link>
+
                 {/* Contractor Portal Link */}
                 <Link
                   href="/contractor/portal"
@@ -295,7 +266,15 @@ export default function HomePage() {
                 </div>
 
                 {/* Emergency CTA Button */}
-                <EmergencyButton size="default" className="shadow-xl" />
+                <a
+                  href={EMERGENCY_PHONE.href}
+                  className="hidden md:inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl shadow-lg shadow-red-600/30 transition-all"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Emergency
+                </a>
 
                 {/* Mobile Menu Toggle */}
                 <HamburgerButton
@@ -309,234 +288,242 @@ export default function HomePage() {
 
         {/* Main Content - Add top padding for fixed header */}
         <main className="pt-20">
-          {/* Hero Section */}
-          <section className="container mx-auto px-6 py-16 md:py-24">
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
-              {/* Left: Text Content (6 cols) */}
-              <div className="lg:col-span-6 space-y-8">
-                <div className="space-y-4">
+          {/* 1. HERO SECTION - Emergency CTA with 3 Paths */}
+          <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950 py-16 md:py-24 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle, #3b82f6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+
+            <div className="container mx-auto px-6 relative z-10">
+              <div className="grid lg:grid-cols-12 gap-12 items-center">
+                {/* Left: Hero Content */}
+                <div className="lg:col-span-7 space-y-8">
+                  {/* Trust Badge */}
+                  <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
+                    <span className="text-sm font-black text-blue-900 dark:text-blue-400 uppercase tracking-wider">
+                      Australia's IICRC-Certified Network
+                    </span>
+                  </div>
+
+                  {/* Headline */}
                   <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1]">
-                    One Number.
+                    Professional Disaster Recovery.
                     <br />
-                    <span className="text-blue-600">Professional Results.</span>
-                    <br />
-                    Quality Standards.
+                    <span className="text-blue-600">One Call Away.</span>
                   </h1>
 
-                  <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl">
-                    Australia's IICRC-certified contractor network for{' '}
-                    <strong className="text-slate-900 dark:text-white">residential advocacy</strong>,{' '}
-                    <strong className="text-slate-900 dark:text-white">commercial continuity</strong>,{' '}
-                    and{' '}
-                    <strong className="text-slate-900 dark:text-white">
-                      industrial infrastructure
-                    </strong>
-                    .
+                  {/* Subheadline */}
+                  <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl">
+                    24/7 emergency response connecting you with IICRC-certified contractors for{' '}
+                    <strong className="text-slate-900 dark:text-white">water damage</strong>,{' '}
+                    <strong className="text-slate-900 dark:text-white">fire restoration</strong>,{' '}
+                    <strong className="text-slate-900 dark:text-white">mold remediation</strong>, and more.
                   </p>
-                </div>
 
-                {/* Emergency CTA */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <EmergencyButton size="xl" showPulse className="shadow-2xl" />
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
-                    <div className="font-black uppercase tracking-wider">24/7 Dispatch Ready</div>
-                    <div>Major Cities Coverage</div>
+                  {/* 3-Path Emergency CTA */}
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    <PriorityCard
+                      priority="critical"
+                      title="Report Emergency"
+                      onClick={() => window.location.href = EMERGENCY_PHONE.href}
+                      className="cursor-pointer hover:scale-105 transition-transform"
+                    >
+                      <div className="text-sm">
+                        24/7 immediate dispatch for active disasters
+                      </div>
+                    </PriorityCard>
+
+                    <PriorityCard
+                      priority="high"
+                      title="Find Contractor"
+                      onClick={() => window.location.href = '/intake'}
+                      className="cursor-pointer hover:scale-105 transition-transform"
+                    >
+                      <div className="text-sm">
+                        Schedule certified restoration services
+                      </div>
+                    </PriorityCard>
+
+                    <PriorityCard
+                      priority="medium"
+                      title="Join Network"
+                      onClick={() => window.location.href = '/contractor/join'}
+                      className="cursor-pointer hover:scale-105 transition-transform"
+                    >
+                      <div className="text-sm">
+                        IICRC contractors apply here
+                      </div>
+                    </PriorityCard>
+                  </div>
+
+                  {/* IICRC Badges */}
+                  <div className="pt-4">
+                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-3 uppercase tracking-wider">
+                      Certified to IICRC Standards
+                    </p>
+                    <IICRCBadgeGroup codes={['S500', 'S520', 'FSRT', 'S800']} size="sm" />
                   </div>
                 </div>
 
-                {/* Trust Badges */}
-                <div className="flex flex-wrap items-center gap-4 pt-4">
-                  <ProtocolBadge variant="blue">IICRC Certified</ProtocolBadge>
-                  <ProtocolBadge variant="green">ISO Compliant</ProtocolBadge>
-                  <ProtocolBadge variant="slate">24/7 Nationwide</ProtocolBadge>
-                </div>
-              </div>
-
-              {/* Right: Hero Carousel (6 cols) */}
-              <div className="lg:col-span-6">
-                <HeroCarousel
-                  scenarios={HERO_SCENARIOS}
-                  interval={5000}
-                  showHUD
-                  showScanningBeam
-                  pauseOnHover
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* The 1300 Blueprint Section - Number Storytelling */}
-          <section className="bg-white dark:bg-slate-900 py-24">
-            <div className="container mx-auto px-6">
-              <div className="text-center mb-16">
-                <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
-                  The 1300 Blueprint
-                </h2>
-                <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                  Not just a number. A commitment to IICRC professional standards.
-                </p>
-              </div>
-
-              {/* Three-Column Number Story */}
-              <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-                {/* 1300 - National Defense Line */}
-                <div className="text-center space-y-4">
-                  <div className="font-display text-7xl md:text-8xl font-black text-blue-600 dark:text-blue-500">
-                    1300
-                  </div>
-                  <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    National Defense Line
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    One emergency number for restoration services across Australia. Rapid dispatch to
-                    connect you with qualified contractors.
-                  </p>
-                </div>
-
-                {/* 6+ IICRC Standards */}
-                <div className="text-center space-y-4">
-                  <div className="font-display text-7xl md:text-8xl font-black text-blue-600 dark:text-blue-500">
-                    6+
-                  </div>
-                  <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    IICRC Standards
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Every job verified against applicable IICRC standards (S500, S520, FSRT, S540, S800, WRT). Insurance-grade
-                    documentation on every project.
-                  </p>
-                </div>
-
-                {/* 361 - Degrees of Care */}
-                <div className="text-center space-y-4">
-                  <div className="font-display text-7xl md:text-8xl font-black text-blue-600 dark:text-blue-500">
-                    361°
-                  </div>
-                  <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    Beyond 360
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                    We go one degree beyond. Pre-loss prevention. Post-restoration verification.
-                    Complete protection.
-                  </p>
-                </div>
-              </div>
-
-              {/* CTA Below Numbers */}
-              <div className="text-center mt-12">
-                <Link
-                  href="/about/our-standards"
-                  className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold hover:gap-3 transition-all"
-                >
-                  Learn About Our Standards
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {/* Service Pillars Grid */}
-          <section className="container mx-auto px-6 py-24">
-            <div className="text-center mb-16">
-              <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
-                Four Service Pillars
-              </h2>
-              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                Each pillar backed by international restoration protocols.
-              </p>
-            </div>
-
-            <PillarCardGrid columns={4}>
-              {pillarCardsData.map((pillar) => (
-                <PillarCard key={pillar.id} data={pillar} basePath="/services" />
-              ))}
-            </PillarCardGrid>
-          </section>
-
-          {/* Client Sectors Section */}
-          <section className="bg-slate-50 dark:bg-slate-900 py-24">
-            <div className="container mx-auto px-6">
-              <div className="text-center mb-16">
-                <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
-                  Who We Serve
-                </h2>
-                <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-                  Specialized restoration for every sector.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {CLIENT_SECTORS.map((sector) => (
-                  <Link
-                    key={sector.id}
-                    href={`/sectors/${sector.slug}`}
-                    className="group p-8 bg-white dark:bg-slate-800 rounded-3xl hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-2"
-                  >
-                    <div className="space-y-4">
-                      <ProtocolBadge variant="blue">{sector.badge}</ProtocolBadge>
-                      <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                        {sector.title}
-                      </h3>
-                      <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
-                        {sector.subtitle}
-                      </p>
-                      <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        {sector.description}
-                      </p>
-                      <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                        Learn More
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                {/* Right: Emergency Contact Card */}
+                <div className="lg:col-span-5">
+                  <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-8 border-2 border-slate-200 dark:border-slate-800">
+                    <div className="space-y-6">
+                      {/* Emergency Hotline */}
+                      <div className="text-center p-8 bg-red-50 dark:bg-red-900/20 rounded-2xl border-2 border-red-600">
+                        <div className="flex items-center justify-center gap-2 text-red-600 dark:text-red-400 font-black text-sm uppercase tracking-wider mb-4">
+                          <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
+                          24/7 Emergency Line
+                        </div>
+                        <a
+                          href={EMERGENCY_PHONE.href}
+                          className="block font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-2"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
+                          {EMERGENCY_PHONE.display}
+                        </a>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          Immediate dispatch available
+                        </p>
+                      </div>
+
+                      {/* Quick Stats */}
+                      <div className="grid grid-cols-3 gap-4 text-center">
+                        <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                          <div className="font-display text-3xl font-black text-blue-600 mb-1">&lt;60min</div>
+                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">Response Time</div>
+                        </div>
+                        <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                          <div className="font-display text-3xl font-black text-blue-600 mb-1">500+</div>
+                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">Contractors</div>
+                        </div>
+                        <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                          <div className="font-display text-3xl font-black text-blue-600 mb-1">100%</div>
+                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">IICRC Certified</div>
+                        </div>
+                      </div>
+
+                      {/* Secondary Actions */}
+                      <div className="space-y-3 pt-2">
+                        <Button
+                          variant="primary"
+                          size="lg"
+                          className="w-full"
+                          onClick={() => window.location.href = '/intake'}
+                        >
+                          Start Emergency Intake Form
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="lg"
+                          className="w-full"
+                          onClick={() => window.location.href = '/services'}
+                        >
+                          View All Services
+                        </Button>
                       </div>
                     </div>
-                  </Link>
-                ))}
+                  </div>
+                </div>
               </div>
             </div>
+          </section>
+
+          {/* 2. QUICK TRIAGE TOOL - Interactive Assessment */}
+          <section className="container mx-auto px-6 py-16 md:py-24">
+            <QuickTriageTool />
+          </section>
+
+          {/* 3. SERVICES GRID - Visual Disaster Types */}
+          <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24">
+            <div className="container mx-auto px-6">
+              <ServicesGrid
+                title="Complete Disaster Recovery Services"
+                subtitle="IICRC-certified restoration for every emergency scenario"
+                columns={4}
+                showIICRCBadges={true}
+              />
+            </div>
+          </section>
+
+          {/* 4. RESOURCES HUB - Featured Content */}
+          <section className="container mx-auto px-6 py-16 md:py-24">
+            <ResourcesHub
+              title="Knowledge Center"
+              subtitle="Expert guides and resources to help you navigate disaster recovery"
+              maxItems={6}
+            />
+          </section>
+
+          {/* Trust & Credibility Section */}
+          <section className="bg-gradient-to-br from-blue-600 to-blue-700 py-16 md:py-24">
+            <div className="container mx-auto px-6">
+              <div className="text-center mb-12">
+                <h2 className="font-display text-4xl md:text-5xl font-black text-white mb-4">
+                  Why Choose NRPG?
+                </h2>
+                <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+                  Professional standards. Nationwide coverage. 24/7 response.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-2xl backdrop-blur-sm mb-4">
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-white">
+                    IICRC Certified
+                  </h3>
+                  <p className="text-blue-100 leading-relaxed">
+                    Every contractor verified to IICRC industry standards for quality and safety
+                  </p>
+                </div>
+
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-2xl backdrop-blur-sm mb-4">
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-white">
+                    24/7 Emergency Response
+                  </h3>
+                  <p className="text-blue-100 leading-relaxed">
+                    Round-the-clock dispatch to connect you with the nearest qualified contractor
+                  </p>
+                </div>
+
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-2xl backdrop-blur-sm mb-4">
+                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-white">
+                    Insurance Approved
+                  </h3>
+                  <p className="text-blue-100 leading-relaxed">
+                    All work documented to insurance standards with guaranteed quality
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* 5. JOIN NRPG SECTION - Contractor Recruitment */}
+          <section className="container mx-auto px-6 py-16 md:py-24">
+            <JoinNRPGSection variant="default" />
           </section>
 
           {/* Final Emergency CTA */}
-          <section className="container mx-auto px-6 py-24">
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-[3rem] p-12 md:p-20 text-center text-white shadow-2xl">
-              <h2 className="font-display text-4xl md:text-6xl font-black mb-6">
-                Disaster Doesn't Wait.
-                <br />
-                Neither Do We.
-              </h2>
-              <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-                24/7 emergency dispatch. Expanding coverage. IICRC protocols.
-              </p>
-              <EmergencyButton
-                size="xl"
-                className="bg-nrpg-red hover:bg-nrpg-red/90 shadow-2xl shadow-red-900/50"
-              />
-              <p className="mt-6 text-sm text-blue-200">
-                Expanding coverage across Australia's major cities
-              </p>
-            </div>
+          <section className="container mx-auto px-6 py-16">
+            <EmergencyCTA
+              title="Disaster Doesn't Wait. Neither Do We."
+              description="24/7 emergency dispatch connecting you with IICRC-certified professionals"
+              variant="default"
+            />
           </section>
         </main>
 
@@ -560,11 +547,18 @@ export default function HomePage() {
                   </div>
                 </div>
                 <p className="text-slate-500 leading-relaxed max-w-md">
-                  Australia's IICRC-certified disaster recovery network. Professional standards.
-                  Expanding coverage. IICRC certified contractors.
+                  Australia's premier IICRC-certified disaster recovery network. Professional standards. Nationwide coverage. 24/7 emergency response.
                 </p>
                 <div className="pt-4">
-                  <EmergencyButtonLabeled size="lg" />
+                  <a
+                    href={EMERGENCY_PHONE.href}
+                    className="inline-flex items-center gap-3 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl transition-all"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    {EMERGENCY_PHONE.display}
+                  </a>
                 </div>
               </div>
 
@@ -618,13 +612,13 @@ export default function HomePage() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about/our-standards" className="hover:text-blue-400 transition-colors">
-                      Our Standards
+                    <Link href="/resources" className="hover:text-blue-400 transition-colors">
+                      Resources
                     </Link>
                   </li>
                   <li>
                     <Link href="/contractor/join" className="hover:text-blue-400 transition-colors">
-                      Become a Contractor
+                      Join Network
                     </Link>
                   </li>
                   <li>
@@ -644,8 +638,7 @@ export default function HomePage() {
             {/* Bottom Bar */}
             <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-slate-500">
-                © {new Date().getFullYear()} National Restoration Professionals Group. All rights
-                reserved.
+                © {new Date().getFullYear()} National Restoration Professionals Group. All rights reserved.
               </p>
               <div className="flex items-center gap-6 text-sm">
                 <Link href="/privacy" className="hover:text-blue-400 transition-colors">
@@ -662,64 +655,6 @@ export default function HomePage() {
           </div>
         </footer>
       </div>
-
-      {/* Global Styles for Scanning Beam Effect (if not in globals.css) */}
-      <style jsx global>{`
-        .scanning-beam {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            ${designTokens.colors.protocolBlue},
-            transparent
-          );
-          animation: scan 3s ease-in-out infinite;
-          z-index: 10;
-        }
-
-        @keyframes scan {
-          0%,
-          100% {
-            transform: translateY(0);
-            opacity: 0;
-          }
-          50% {
-            transform: translateY(400px);
-            opacity: 1;
-          }
-        }
-
-        .label-small {
-          font-size: 10px;
-          font-weight: 900;
-          letter-spacing: 0.3em;
-          text-transform: uppercase;
-        }
-
-        .shimmer {
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-          );
-          background-size: 200% 100%;
-          animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-          0% {
-            background-position: -200% 0;
-          }
-          100% {
-            background-position: 200% 0;
-          }
-        }
-      `}</style>
 
       {/* Mobile Menu */}
       <MobileMenu

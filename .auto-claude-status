@@ -1,25 +1,26 @@
-{
-  "active": true,
-  "spec": "014-improve-searchbar-accessibility-with-aria-labels-a",
-  "state": "building",
+Plan mode{
+  "active": false,
+  "spec": null,
+  "state": "idle",
   "subtasks": {
-    "completed": 9,
-    "total": 16,
-    "in_progress": 1,
+    "completed": 0,
+    "total": 0,
+    "in_progress": 0,
     "failed": 0
   },
   "phase": {
-    "current": "Live Regions and Dynamic Announcements",
+    "current": null,
     "id": null,
-    "total": 3
+    "total": 0
   },
   "workers": {
     "active": 0,
     "max": 1
   },
   "session": {
-    "number": 11,
-    "started_at": "2026-01-01T10:49:24.508933"
+    "number": 0,
+    "started_at": null
   },
-  "last_update": "2026-01-01T11:26:16.921138"
+  "last_update": "2026-01-03T04:24:50.000000",
+  "notes": "Reset after stuck loop on spec 014-improve-searchbar-accessibility-with-aria-labels-a"
 }
