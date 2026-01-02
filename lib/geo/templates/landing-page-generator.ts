@@ -497,7 +497,7 @@ export function generateLandingPage(input: LandingPageInput): LandingPageTemplat
 
   // Generate title and meta
   const title = `${config.displayName} ${suburb.suburb} ${suburb.state} | ${DEFAULT_TEMPLATE_CONFIG.siteName}`;
-  const metaDescription = `${config.shortDesc} in ${suburb.suburb}, ${suburb.state}. ${input.contractorCount} certified contractors. Average ${input.averageResponseMinutes} min response. Call ${DEFAULT_TEMPLATE_CONFIG.phone}.`;
+  const metaDescription = `${config.shortDesc} in ${suburb.suburb}, ${suburb.state}. ${input.contractorCount} certified contractors. Average ${input.averageResponseMinutes} min response. Get matched online.`;
   const h1 = config.heroTemplate.replace(/{suburb}/g, suburb.suburb);
 
   // Build breadcrumbs
@@ -555,8 +555,8 @@ export function generateLandingPage(input: LandingPageInput): LandingPageTemplat
       },
     },
     emergency: {
-      text: '24/7 Emergency Help',
-      href: `tel:${DEFAULT_TEMPLATE_CONFIG.phone.replace(/\s/g, '')}`,
+      text: 'Report Emergency Now',
+      href: `/report-claim?urgent=true&suburb=${suburb.postcode}&service=${input.serviceType}`,
       variant: 'emergency' as const,
       icon: '🚨',
       tracking: {
@@ -647,7 +647,7 @@ function buildLocalBusinessSchema(
     name: `${config.displayName} ${input.suburb.suburb}`,
     description: config.shortDesc,
     url: canonicalUrl,
-    telephone: DEFAULT_TEMPLATE_CONFIG.phone,
+    telephone: DEFAULT_TEMPLATE_CONFIG.email, // Email contact only (agency model)
     address: {
       '@type': 'PostalAddress',
       addressLocality: input.suburb.suburb,

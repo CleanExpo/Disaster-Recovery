@@ -593,7 +593,7 @@ export function generateServicePage(input: ServicePageInput): ServicePageTemplat
 
   // Generate title and meta
   const title = `${config.displayName} Australia | ${input.nationalStats.nationalContractors} Certified Contractors | ${DEFAULT_TEMPLATE_CONFIG.siteName}`;
-  const metaDescription = `Professional ${config.displayName.toLowerCase()} services across Australia. ${input.nationalStats.nationalContractors} certified contractors in ${input.nationalStats.citiesCovered} cities. 24/7 emergency response. Call ${DEFAULT_TEMPLATE_CONFIG.phone}.`;
+  const metaDescription = `Professional ${config.displayName.toLowerCase()} services across Australia. ${input.nationalStats.nationalContractors} certified contractors in ${input.nationalStats.citiesCovered} cities. 24/7 emergency response. Get matched online.`;
   const h1 = `${config.displayName} Australia`;
 
   // Build breadcrumbs
@@ -787,7 +787,7 @@ function buildOrganisationSchema(): OrganisationSchema {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: DEFAULT_TEMPLATE_CONFIG.phone,
+      telephone: DEFAULT_TEMPLATE_CONFIG.email, // Email contact only (agency model)
       contactType: 'customer service',
       areaServed: 'AU',
       availableLanguage: ['English'],

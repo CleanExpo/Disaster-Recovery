@@ -313,7 +313,7 @@ export function generatePillarPage(input: PillarPageInput): PillarPageTemplate {
 
   // Generate title and meta
   const title = `${config.displayName} ${city.name} ${city.state} | ${input.contractorData.totalCount} Contractors | ${DEFAULT_TEMPLATE_CONFIG.siteName}`;
-  const metaDescription = `Professional ${config.displayName.toLowerCase()} services across ${city.name} ${city.state}. ${input.contractorData.totalCount} certified contractors. Average ${input.stats.averageResponseMinutes} min response. Call ${DEFAULT_TEMPLATE_CONFIG.phone}.`;
+  const metaDescription = `Professional ${config.displayName.toLowerCase()} services across ${city.name} ${city.state}. ${input.contractorData.totalCount} certified contractors. Average ${input.stats.averageResponseMinutes} min response. Get matched online.`;
   const h1 = `${config.displayName} in ${city.name}`;
 
   // Build breadcrumbs
@@ -490,7 +490,7 @@ function buildPillarLocalBusinessSchema(
     name: `${config.displayName} ${input.city.name}`,
     description: config.shortDesc,
     url: canonicalUrl,
-    telephone: DEFAULT_TEMPLATE_CONFIG.phone,
+    telephone: DEFAULT_TEMPLATE_CONFIG.email, // Email contact only (agency model)
     address: {
       '@type': 'PostalAddress',
       addressLocality: input.city.name,

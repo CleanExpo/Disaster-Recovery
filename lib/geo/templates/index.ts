@@ -135,3 +135,26 @@ export {
 } from './region-page-generator';
 
 export type { RegionData, RegionPageInput } from './region-page-generator';
+
+// ============================================
+// Brand Configuration (Agency Model)
+// ============================================
+export {
+  // Brand Identity
+  BRAND_CONFIG,
+  CONTACT_MODEL,
+  CTA_CONFIG,
+  PAGE_MESSAGING,
+  SCHEMA_OVERRIDES,
+  TEMPLATE_CONFIG_OVERRIDES,
+
+  // Utility Functions
+  getCTA,
+  getEmergencyCTA,
+  getPageDisclaimer,
+  shouldShowPhone,
+  getSchemaContactInfo,
+  getAgencyDisclaimer,
+  getHowItWorksData,
+  getTrustSignals,
+} from './brand-config';

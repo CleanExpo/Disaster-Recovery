@@ -511,10 +511,12 @@ export interface OpenGraphData {
 export interface TemplateConfig {
   baseUrl: string;
   siteName: string;
-  phone: string;
+  phone: string | null; // IMPORTANT: null for agency model (no phone)
+  email: string;
   defaultImage: string;
   brandColour: string;
   emergencyMessage: string;
+  agencyDisclaimer: string;
   ctaText: {
     primary: string;
     secondary: string;
@@ -522,17 +524,28 @@ export interface TemplateConfig {
   };
 }
 
+/**
+ * Default Template Configuration
+ *
+ * IMPORTANT: Disaster Recovery is a MARKETING AGENCY, not a service provider.
+ * - NO phone number (email/online only)
+ * - Contractors are the direct point of contact
+ * - Clients contact contractors AFTER match is accepted
+ */
 export const DEFAULT_TEMPLATE_CONFIG: TemplateConfig = {
   baseUrl: 'https://disasterrecovery.com.au',
   siteName: 'Disaster Recovery Australia',
-  phone: '1300 309 361',
+  phone: null, // No phone - agency model uses online forms
+  email: 'support@disasterrecovery.com.au',
   defaultImage: '/images/og-default.jpg',
   brandColour: '#00BFA6',
-  emergencyMessage: '24/7 Emergency Response Available',
+  emergencyMessage: 'Report your emergency online - contractors notified instantly',
+  agencyDisclaimer:
+    'Disaster Recovery Australia is a marketing platform connecting clients with independent contractors. All services are provided directly by the contractor.',
   ctaText: {
-    primary: 'Get Free Quote',
+    primary: 'Get Matched Now',
     secondary: 'Find Local Contractors',
-    emergency: 'Emergency Help Now',
+    emergency: 'Report Emergency',
   },
 };
 

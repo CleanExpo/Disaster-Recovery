@@ -579,7 +579,7 @@ export function generateRegionPage(input: RegionPageInput): RegionPageTemplate {
 
   // Generate title and meta
   const title = `Disaster Recovery Services ${region.name} ${region.state} | ${input.contractorData.totalCount} Contractors | ${DEFAULT_TEMPLATE_CONFIG.siteName}`;
-  const metaDescription = `Professional disaster recovery services across ${region.name}, ${region.state}. ${input.contractorData.totalCount} certified contractors covering ${input.suburbsInRegion.length} suburbs. 24/7 emergency response. Call ${DEFAULT_TEMPLATE_CONFIG.phone}.`;
+  const metaDescription = `Professional disaster recovery services across ${region.name}, ${region.state}. ${input.contractorData.totalCount} certified contractors covering ${input.suburbsInRegion.length} suburbs. 24/7 emergency response. Get matched online.`;
   const h1 = `Disaster Recovery Services in ${region.name}`;
 
   // Build breadcrumbs
@@ -658,8 +658,8 @@ export function generateRegionPage(input: RegionPageInput): RegionPageTemplate {
       },
     },
     emergency: {
-      text: '24/7 Emergency Help',
-      href: `tel:${DEFAULT_TEMPLATE_CONFIG.phone.replace(/\s/g, '')}`,
+      text: 'Report Emergency Now',
+      href: `/report-claim?urgent=true&region=${region.id}`,
       variant: 'emergency' as const,
       icon: '🚨',
       tracking: {
@@ -753,7 +753,7 @@ function buildRegionLocalBusinessSchema(
     name: `Disaster Recovery ${input.region.name}`,
     description: `Professional disaster recovery services across ${input.region.name}`,
     url: canonicalUrl,
-    telephone: DEFAULT_TEMPLATE_CONFIG.phone,
+    telephone: DEFAULT_TEMPLATE_CONFIG.email, // Email contact only (agency model)
     address: {
       '@type': 'PostalAddress',
       addressLocality: input.region.name,
