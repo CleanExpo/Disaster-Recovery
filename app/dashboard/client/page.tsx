@@ -1332,6 +1332,51 @@ export default function ClientDashboard() {
             {/* Eligibility Banner - Shows onboarding progress */}
             <ClientEligibilityBanner />
 
+            {/* Dual-Path Buttons (Emergency vs Complete Setup) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card className="border-red-500 hover:border-red-600 transition-colors cursor-pointer"
+                    onClick={() => router.push('/dashboard/client/requests/new?emergency=true')}>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
+                      <Zap className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-red-600">🚨 EMERGENCY SERVICE</h3>
+                      <p className="text-sm text-muted-foreground">Get Help Now</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Fast-track: Name, Phone, Address only (3 min)
+                  </p>
+                  <Button className="w-full bg-red-600 hover:bg-red-700">
+                    Create Emergency Request →
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-green-500 hover:border-green-600 transition-colors cursor-pointer"
+                    onClick={() => router.push('/dashboard/client/onboarding')}>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-green-600">Complete Your Profile</h3>
+                      <p className="text-sm text-muted-foreground">Recommended</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Full setup: Better matching, priority support (15 min)
+                  </p>
+                  <Button variant="outline" className="w-full border-green-600 text-green-700 hover:bg-green-50">
+                    Start Full Setup →
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Welcome Section */}
             <div className="bg-gradient-to-r from-[#00BFA6] to-[#00A693] rounded-lg p-6">
               <div className="flex items-center justify-between">
