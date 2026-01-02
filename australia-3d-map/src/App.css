@@ -1,0 +1,77 @@
+/* Main App Container */
+.app-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* HUD Panels */
+.hud-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  z-index: 100;
+}
+
+.hud-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  z-index: 100;
+  max-width: 320px;
+}
+
+.hud-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 100;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+/* Stats Display */
+.stats-grid {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #3b82f6;
+  font-size: 12px;
+}
+
+.stat-line {
+  margin: 4px 0;
+}
+
+/* Contractor List */
+.contractor-list {
+  padding: 15px;
+  font-size: 11px;
+  max-height: 450px;
+}
+
+.contractor-list-content {
+  border-top: 1px solid #8b5cf6;
+  padding-top: 10px;
+}
+
+/* Incident List */
+.incident-list {
+  padding: 15px;
+  font-size: 11px;
+}
+
+.incident-list-content {
+  border-top: 1px solid #ef4444;
+  padding-top: 10px;
+}
+
+/* Text Colors */
+.text-primary { color: #60a5fa; }
+.text-secondary { color: #a78bfa; }
+.text-success { color: #22c55e; }
+.text-warning { color: #fbbf24; }
+.text-danger { color: #fca5a5; }
+.text-muted { color: #94a3b8; }
+

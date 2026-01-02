@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #0f172a 0%, #1a1a2e 100%);
+  overflow: hidden;
+}
+
+/* HUD Panels */
+.hud-panel {
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hud-panel-primary {
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.hud-panel-secondary {
+  border: 2px solid #8b5cf6;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.hud-panel-danger {
+  border: 2px solid #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* Title */
+.title-gradient {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+/* Emergency Button */
+.emergency-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  color: white;
+  border: 2px solid #dc2626;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+  margin-top: 15px;
+}
+
+.emergency-btn:hover {
+  box-shadow: 0 0 25px rgba(220, 38, 38, 0.8);
+  transform: scale(1.05);
+}
+
+/* Contractor Card */
+.contractor-card {
+  padding: 8px;
+  margin-bottom: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.contractor-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+/* Incident Card */
+.incident-card {
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.incident-active {
+  background: rgba(220, 38, 38, 0.15);
+  border-left: 3px solid #dc2626;
+}
+
+.incident-resolved {
+  background: rgba(34, 197, 94, 0.15);
+  border-left: 3px solid #22c55e;
+}
+
+.resolve-btn {
+  padding: 4px 10px;
+  font-size: 10px;
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.resolve-btn:hover {
+  background: #16a34a;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 3px;
+}
+
+/* Scanlines Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Allows you to still click the map */
+  z-index: 50; /* Sits above the map but below the HUD text */
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.1) 50%
+  ), 
+  linear-gradient(
+    90deg, 
+    rgba(255, 0, 0, 0.02), 
+    rgba(0, 255, 0, 0.01), 
+    rgba(0, 0, 255, 0.02)
+  );
+  background-size: 100% 4px, 3px 100%;
+  opacity: 0.15;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.15; }
+  50% { opacity: 0.18; }
+  100% { opacity: 0.15; }
+}
+
+.scanlines-active {
+  animation: flicker 0.1s infinite;
+}
