@@ -24,3 +24,5 @@ export { ErrorState, type ErrorStateProps, type AlternativeAction } from './comp
 export { IICRCBadge, IICRCBadgeGroup, type IICRCBadgeProps, type IICRCCode } from './components/Badge/IICRCBadge';
 export { DecisionTree, type DecisionTreeProps, type DisasterType } from './components/DecisionTree/DecisionTree';
 export { Timeline, type TimelineProps, type TimelineStep } from './components/Timeline/Timeline';
+export { StatCard, type StatCardProps, type TrendDirection } from './components/StatCard/StatCard';
+export { BeforeAfterComparison, type BeforeAfterComparisonProps } from './components/BeforeAfter/BeforeAfterComparison';
