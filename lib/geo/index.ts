@@ -125,3 +125,31 @@ export {
   isValidRadius,
   getBoundingBox,
 } from './radius-calculator';
+
+// ============================================
+// Page Generation Trigger
+// ============================================
+export {
+  // Types
+  type ContractorSignupEvent,
+  type PageGenerationResult,
+  type GeneratedPageManifest,
+  type SitemapUpdate,
+  type PageGenerationStatus,
+
+  // Main Trigger
+  triggerPageGeneration,
+
+  // Page Processing
+  processPageGeneration,
+
+  // Sitemap
+  updateSitemap,
+
+  // Webhook Handler
+  handleContractorSignupWebhook,
+
+  // Status & Monitoring
+  getPageGenerationStatus,
+  cancelPageGenerationJob,
+} from './page-generation-trigger';
