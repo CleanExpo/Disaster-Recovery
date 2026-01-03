@@ -60,6 +60,9 @@ export function useGA4TimeOnPage(intervalSeconds: number = 30) {
   const lastTracked = useRef<number>(0);
 
   useEffect(() => {
+    // Skip if disabled (intervalSeconds <= 0)
+    if (intervalSeconds <= 0) return;
+
     const interval = setInterval(() => {
       const timeSpent = Math.floor((Date.now() - startTime.current) / 1000);
 
@@ -293,6 +296,7 @@ export function useGA4FormTracking(formName: string) {
 
 /**
  * Comprehensive analytics hook for page-level tracking
+ * Note: All hooks are always called to comply with React's rules of hooks
  */
 export function useGA4PageAnalytics(options?: {
   enableScrollTracking?: boolean;
@@ -309,17 +313,9 @@ export function useGA4PageAnalytics(options?: {
     timeInterval = 30,
   } = options || {};
 
+  // Always call all hooks unconditionally (React rules of hooks)
   useGA4PageTracking();
-
-  if (enableScrollTracking) {
-    useGA4ScrollTracking(scrollThresholds);
-  }
-
-  if (enableTimeTracking) {
-    useGA4TimeOnPage(timeInterval);
-  }
-
-  if (enableOutboundTracking) {
-    useGA4OutboundLinkTracking();
-  }
+  useGA4ScrollTracking(enableScrollTracking ? scrollThresholds : []);
+  useGA4TimeOnPage(enableTimeTracking ? timeInterval : 0);
+  useGA4OutboundLinkTracking();
 }
