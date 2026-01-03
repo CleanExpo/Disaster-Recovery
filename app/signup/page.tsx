@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -18,6 +18,22 @@ import ContractorOnboarding from '@/components/onboarding/contractor-onboarding'
 import ClientOnboarding from '@/components/client-onboarding';
 
 export default function SignupPage() {
+  return (
+    <Suspense fallback={<SignupPageLoading />}>
+      <SignupPageContent />
+    </Suspense>
+  );
+}
+
+function SignupPageLoading() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+      <Loader2 className="h-8 w-8 animate-spin text-white" />
+    </div>
+  );
+}
+
+function SignupPageContent() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',

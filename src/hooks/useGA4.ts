@@ -7,27 +7,25 @@
 'use client';
 
 import { useEffect, useCallback, useRef } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import * as analytics from '@/lib/analytics';
 
 /**
  * Track page views automatically on route changes
+ * Note: Uses pathname only to avoid Suspense boundary requirements
  */
 export function useGA4PageTracking() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
-
       analytics.trackPageView({
         page_path: pathname,
         page_location: typeof window !== 'undefined' ? window.location.href : '',
         page_title: typeof document !== 'undefined' ? document.title : '',
       });
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 }
 
 /**

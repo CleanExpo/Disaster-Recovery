@@ -9,10 +9,28 @@
 'use client';
 
 import * as React from 'react';
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SuccessState } from '@/src/design-system/components/SuccessState/SuccessState';
+import { Loader2 } from 'lucide-react';
 
 export default function ClaimSuccessPage() {
+  return (
+    <Suspense fallback={<ClaimSuccessLoading />}>
+      <ClaimSuccessContent />
+    </Suspense>
+  );
+}
+
+function ClaimSuccessLoading() {
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
+    </div>
+  );
+}
+
+function ClaimSuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const claimId = searchParams.get('claimId');

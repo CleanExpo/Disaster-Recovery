@@ -10,8 +10,6 @@
  * - Payback period display
  */
 
-'use client';
-
 import React, { useState } from 'react';
 import { TrendingUp, DollarSign, Calendar } from 'lucide-react';
 

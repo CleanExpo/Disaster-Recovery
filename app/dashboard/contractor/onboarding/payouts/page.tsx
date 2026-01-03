@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
@@ -9,6 +9,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, ArrowLeft, ExternalLink, CheckCircle2, AlertTriangle, Clock, XCircle, Info } from 'lucide-react';
+
+export default function ContractorPayoutSetupPage() {
+  return (
+    <Suspense fallback={<PayoutPageLoading />}>
+      <PayoutPageContent />
+    </Suspense>
+  );
+}
+
+function PayoutPageLoading() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <Loader2 className="h-6 w-6 animate-spin" />
+    </div>
+  );
+}
 
 interface StripeConnectStatusResponse {
   success?: boolean;
@@ -34,7 +50,7 @@ interface StripeConnectStatusResponse {
   };
 }
 
-export default function ContractorPayoutSetupPage() {
+function PayoutPageContent() {
   const { status } = useSession();
   const searchParams = useSearchParams();
   const stripeResult = useMemo(() => searchParams.get('stripe'), [searchParams]);

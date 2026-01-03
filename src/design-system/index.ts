@@ -62,6 +62,8 @@ export { LocalContractorCounter, type LocalContractorCounterProps } from './comp
 
 // Marketing Components - Other
 export { PricingCard, type PricingCardProps, type PricingFeature } from './components/Marketing/PricingCard';
+export { LeadPreview, type LeadPreviewProps } from './components/Marketing/LeadPreview';
+export { ROICalculator, type ROICalculatorProps } from './components/Marketing/ROICalculator';
 
 // Utilities
 export * from './utils/animations';

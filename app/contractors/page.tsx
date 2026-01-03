@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * NRPG Contractor Acquisition Funnel - Page 1: Awareness
  *
@@ -215,51 +217,43 @@ export default function ContractorsPage() {
 
           <div className="grid md:grid-cols-4 gap-6">
             <StatCard
-              title="Avg. Monthly Revenue"
+              label="Avg. Monthly Revenue"
               value="$18,500"
-              trend={{
-                direction: 'up',
-                value: 42,
-                label: 'vs last year',
-              }}
-              icon={<TrendingUp className="h-6 w-6" />}
-              accentColor="nrpg"
+              trend="+42%"
+              trendDirection="up"
+              sublabel="vs last year"
+              icon={TrendingUp}
+              iconColor="emerald"
             />
 
             <StatCard
-              title="Lead Conversion Rate"
+              label="Lead Conversion Rate"
               value="58%"
-              trend={{
-                direction: 'up',
-                value: 23,
-                label: 'vs industry avg',
-              }}
-              icon={<BarChart3 className="h-6 w-6" />}
-              accentColor="blue"
+              trend="+23%"
+              trendDirection="up"
+              sublabel="vs industry avg"
+              icon={BarChart3}
+              iconColor="blue"
             />
 
             <StatCard
-              title="Avg. Response Time"
+              label="Avg. Response Time"
               value="12 min"
-              trend={{
-                direction: 'down',
-                value: 35,
-                label: 'faster than market',
-              }}
-              icon={<Clock className="h-6 w-6" />}
-              accentColor="green"
+              trend="-35%"
+              trendDirection="down"
+              sublabel="faster than market"
+              icon={Clock}
+              iconColor="amber"
             />
 
             <StatCard
-              title="Customer Satisfaction"
+              label="Customer Satisfaction"
               value="4.8/5"
-              trend={{
-                direction: 'up',
-                value: 15,
-                label: 'repeat customers',
-              }}
-              icon={<Award className="h-6 w-6" />}
-              accentColor="gold"
+              trend="+15%"
+              trendDirection="up"
+              sublabel="repeat customers"
+              icon={Award}
+              iconColor="purple"
             />
           </div>
 
@@ -285,9 +279,7 @@ export default function ContractorsPage() {
 
             <div className="max-w-4xl mx-auto">
               <IICRCBadgeGroup
-                certifications={['S500', 'S520', 'WRT', 'FSRT', 'ASD', 'AMRT']}
-                showTooltips
-                size="lg"
+                codes={['S500', 'S520', 'WRT', 'FSRT', 'ASD', 'AMRT']}
                 className="justify-center"
               />
 

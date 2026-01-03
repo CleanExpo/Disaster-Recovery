@@ -1,56 +1,56 @@
 /**
- * Algolia Client Initialization
+ * Algolia Client - DEPRECATED
  *
- * Provides configured Algolia search clients for both
- * frontend (search-only) and backend (admin) operations
+ * This project now uses PostgreSQL full-text search.
+ * See: lib/search/postgres-search.ts
+ *
+ * This file is kept for backwards compatibility but all methods
+ * throw deprecation errors. Use PostgreSQL search instead.
  */
 
-import algoliasearch, { SearchClient } from 'algoliasearch';
-import { ALGOLIA_CONFIG } from './config';
+// Stub type to prevent import errors
+type SearchClient = {
+  initIndex: (name: string) => SearchIndex;
+};
 
-// Search-only client (safe for frontend use)
-let searchClient: SearchClient | null = null;
+type SearchIndex = {
+  search: (query: string) => Promise<{ hits: never[] }>;
+};
 
+const DEPRECATION_MESSAGE =
+  'Algolia is deprecated. Use PostgreSQL search from lib/search/postgres-search.ts instead.';
+
+// Search-only client (deprecated)
 export function getAlgoliaSearchClient(): SearchClient {
-  if (!searchClient) {
-    if (!ALGOLIA_CONFIG.appId || !ALGOLIA_CONFIG.searchApiKey) {
-      throw new Error('Algolia app ID and search API key must be configured');
-    }
-
-    searchClient = algoliasearch(
-      ALGOLIA_CONFIG.appId,
-      ALGOLIA_CONFIG.searchApiKey
-    );
-  }
-
-  return searchClient;
+  console.warn(DEPRECATION_MESSAGE);
+  return {
+    initIndex: () => ({
+      search: async () => ({ hits: [] }),
+    }),
+  };
 }
 
-// Admin client (backend only - has write permissions)
-let adminClient: SearchClient | null = null;
-
+// Admin client (deprecated)
 export function getAlgoliaAdminClient(): SearchClient {
-  if (!adminClient) {
-    if (!ALGOLIA_CONFIG.appId || !ALGOLIA_CONFIG.adminApiKey) {
-      throw new Error('Algolia app ID and admin API key must be configured');
-    }
-
-    adminClient = algoliasearch(
-      ALGOLIA_CONFIG.appId,
-      ALGOLIA_CONFIG.adminApiKey
-    );
-  }
-
-  return adminClient;
+  console.warn(DEPRECATION_MESSAGE);
+  return {
+    initIndex: () => ({
+      search: async () => ({ hits: [] }),
+    }),
+  };
 }
 
-// Helper to get a specific index
-export function getSearchIndex(indexName: string) {
-  const client = getAlgoliaSearchClient();
-  return client.initIndex(indexName);
+// Helper to get a specific index (deprecated)
+export function getSearchIndex(indexName: string): SearchIndex {
+  console.warn(DEPRECATION_MESSAGE);
+  return {
+    search: async () => ({ hits: [] }),
+  };
 }
 
-export function getAdminIndex(indexName: string) {
-  const client = getAlgoliaAdminClient();
-  return client.initIndex(indexName);
+export function getAdminIndex(indexName: string): SearchIndex {
+  console.warn(DEPRECATION_MESSAGE);
+  return {
+    search: async () => ({ hits: [] }),
+  };
 }
