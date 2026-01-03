@@ -234,4 +234,4 @@ export function IICRCBadgeGroup({ codes, className }: { codes: IICRCCode[]; clas
                   ))}
           </div>div>
         );
-}</Tooltip>
+}
