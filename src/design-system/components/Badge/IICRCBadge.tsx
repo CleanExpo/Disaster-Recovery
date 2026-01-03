@@ -200,26 +200,26 @@ export function IICRCBadge({ code, size = 'md', showCode = true, className }: II
                                                                 aria-label={`IICRC ${code} Certified`}
                                                               >
                                                   {code}
-                                                </div>div>
+                                                </div>
                                       {showCode && (
-                                                                <span className="text-sm font-medium text-muted-foreground">IICRC {code}</span>span>
+                                                                <span className="text-sm font-medium text-muted-foreground">IICRC {code}</span>
                                                 )}
-                                    </div>div>
-                          </TooltipTrigger>TooltipTrigger>
+                                    </div>
+                          </TooltipTrigger>
                           <TooltipContent className="max-w-xs p-4">
                                     <h4 className="font-semibold mb-2">
                                                 IICRC {code}: {standard.name}
-                                    </h4>h4>
-                                    <p className="text-sm text-muted-foreground mb-3">{standard.description}</p>p>
+                                    </h4>
+                                    <p className="text-sm text-muted-foreground mb-3">{standard.description}</p>
                                     <Link
                                                   href={standard.learnMoreUrl}
                                                   className="text-xs text-primary hover:underline inline-flex items-center"
                                                 >
                                                 Learn more about {code} →
-                                    </Link>Link>
-                          </TooltipContent>TooltipContent>
-                  </Tooltip>Tooltip>
-          </TooltipProvider>TooltipProvider>
+                                    </Link>
+                          </TooltipContent>
+                  </Tooltip>
+          </TooltipProvider>
         );
 }
 
@@ -232,6 +232,6 @@ export function IICRCBadgeGroup({ codes, className }: { codes: IICRCCode[]; clas
             {codes.map((code) => (
                     <IICRCBadge key={code} code={code} size="sm" showCode={false} />
                   ))}
-          </div>div>
+          </div>
         );
 }
