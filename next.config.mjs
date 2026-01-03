@@ -143,9 +143,6 @@ const nextConfig = {
 
   // Enable experimental features for performance
   experimental: {
-    // Use edge runtime for API routes where possible
-    runtime: 'nodejs',
-
     // Optimize package imports
     optimizePackageImports: [
       'lucide-react',
