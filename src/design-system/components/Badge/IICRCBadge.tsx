@@ -88,6 +88,12 @@ export interface IICRCBadgeProps {
 export function IICRCBadge({ code, size = 'md', showCode = true, className }: IICRCBadgeProps) {
   const standard = iicrcStandards[code];
 
+    // Guard against invalid codes
+    if (!standard) {
+          console.warn(`IICRCBadge: Unknown code "${code}"`);
+          return null;
+    }
+
   const sizeClasses = {
     sm: 'h-8 w-8',
     md: 'h-10 w-10',
