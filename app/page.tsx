@@ -361,7 +361,7 @@ export default function HomePage() {
                     <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-3 uppercase tracking-wider">
                       Certified to IICRC Standards
                     </p>
-                    <IICRCBadgeGroup codes={['S500', 'S520', 'FSRT', 'S800']} size="sm" />
+                    <IICRCBadgeGroup codes={['S500', 'S520', 'FSRT', 'S800']} />
                   </div>
                 </div>
 
