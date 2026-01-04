@@ -6,7 +6,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText } from 'lucide-react';
+import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText, Shield, BookOpen, FileSignature } from 'lucide-react';
 
 interface ChecklistStatus {
   preferencesComplete: boolean;
@@ -19,6 +19,11 @@ interface ChecklistStatus {
   completionPercentage?: number;
   stripeAccountId?: string;
   nrpgStatus?: 'pending' | 'approved' | 'rejected';
+  // NRPG Certification status
+  nrpgBackgroundComplete: boolean;
+  nrpgCommitmentSigned: boolean;
+  nrpgCertificationPoints?: number;
+  nrpgPartnershipLevel?: string;
 }
 
 export default function ContractorOnboardingChecklistPage() {
@@ -33,12 +38,14 @@ export default function ContractorOnboardingChecklistPage() {
       if (!userId) return;
       setLoading(true);
       try {
-        const [preferencesRes, profileRes, nrpgRes, onboardingRes, stripeRes] = await Promise.all([
+        const [preferencesRes, profileRes, nrpgRes, onboardingRes, stripeRes, nrpgCertRes, nrpgPhasesRes] = await Promise.all([
           fetch('/api/contractor/preferences', { cache: 'no-store' }),
           fetch('/api/contractor/profile', { cache: 'no-store' }),
           fetch('/api/contractors/me', { cache: 'no-store' }),
           fetch(`/api/onboarding/progress/${userId}`, { cache: 'no-store' }),
           fetch('/api/contractor/stripe/connect/status', { cache: 'no-store' }),
+          fetch('/api/onboarding/nrpg/certification', { cache: 'no-store' }),
+          fetch('/api/onboarding/nrpg/phases', { cache: 'no-store' }),
         ]);
 
         const preferences = await preferencesRes.json().catch(() => null);
@@ -46,6 +53,8 @@ export default function ContractorOnboardingChecklistPage() {
         const nrpgPayload = await nrpgRes.json().catch(() => null);
         const onboardingPayload = await onboardingRes.json().catch(() => null);
         const stripePayload = await stripeRes.json().catch(() => null);
+        const nrpgCertPayload = await nrpgCertRes.json().catch(() => null);
+        const nrpgPhasesPayload = await nrpgPhasesRes.json().catch(() => null);
 
         const preferencesComplete = Boolean(preferences?.isOnboardingComplete);
         const profileComplete = Boolean(profilePayload?.profile?.isProfileComplete);
@@ -60,6 +69,12 @@ export default function ContractorOnboardingChecklistPage() {
         const stripeAccountId = stripePayload?.stripeConnectAccountId;
         const nrpgStatus = nrpgPayload?.contractor?.verificationStatus?.toLowerCase();
 
+        // NRPG Certification data
+        const nrpgBackgroundComplete = Boolean(nrpgPhasesPayload?.data?.summary?.backgroundChecks?.allPass);
+        const nrpgCommitmentSigned = Boolean(nrpgPhasesPayload?.data?.summary?.phase3?.checklist?.find((c: any) => c.key === 'commitmentSigned')?.complete);
+        const nrpgCertificationPoints = nrpgCertPayload?.data?.certification?.totalPoints || 0;
+        const nrpgPartnershipLevel = nrpgCertPayload?.data?.certification?.partnershipLevel || 'CANDIDATE';
+
         setChecklist({
           preferencesComplete,
           profileComplete,
@@ -71,6 +86,10 @@ export default function ContractorOnboardingChecklistPage() {
           completionPercentage,
           stripeAccountId,
           nrpgStatus,
+          nrpgBackgroundComplete,
+          nrpgCommitmentSigned,
+          nrpgCertificationPoints,
+          nrpgPartnershipLevel,
         });
       } finally {
         setLoading(false);
@@ -171,6 +190,7 @@ export default function ContractorOnboardingChecklistPage() {
       complete: checklist.preferencesComplete,
       href: '/dashboard/contractor/preferences',
       action: checklist.preferencesComplete ? 'Update preferences' : 'Set preferences',
+      icon: null,
     },
     {
       key: 'profile',
@@ -179,6 +199,7 @@ export default function ContractorOnboardingChecklistPage() {
       complete: checklist.profileComplete,
       href: '/dashboard/contractor/profile-setup',
       action: checklist.profileComplete ? 'Update profile' : 'Complete profile',
+      icon: null,
     },
     {
       key: 'nrpg',
@@ -188,6 +209,27 @@ export default function ContractorOnboardingChecklistPage() {
       href: '/dashboard/contractor/onboarding/nrpg-registration',
       action: getNRPGAction(),
       statusBadge: checklist.nrpgStatus === 'pending' ? 'Under review' : undefined,
+      icon: null,
+    },
+    {
+      key: 'nrpg-verification',
+      title: 'Background verification',
+      description: 'Complete criminal, financial, professional, and insurance checks.',
+      complete: checklist.nrpgBackgroundComplete,
+      href: '/dashboard/contractor/onboarding/nrpg/verification',
+      action: checklist.nrpgBackgroundComplete ? 'View verification' : 'Start verification',
+      icon: Shield,
+      iconColour: 'text-amber-500',
+    },
+    {
+      key: 'nrpg-commitment',
+      title: 'Sign commitment framework',
+      description: 'Review and sign the NRPG professional commitment.',
+      complete: checklist.nrpgCommitmentSigned,
+      href: '/dashboard/contractor/onboarding/nrpg/commitment',
+      action: checklist.nrpgCommitmentSigned ? 'View commitment' : 'Sign commitment',
+      icon: FileSignature,
+      iconColour: 'text-purple-500',
     },
     {
       key: 'training',
@@ -200,6 +242,8 @@ export default function ContractorOnboardingChecklistPage() {
       progressText: checklist.trainingInProgress && checklist.completionPercentage
         ? `${Math.round(checklist.completionPercentage)}% complete`
         : undefined,
+      icon: BookOpen,
+      iconColour: 'text-blue-500',
     },
     {
       key: 'payouts',
@@ -209,6 +253,7 @@ export default function ContractorOnboardingChecklistPage() {
       href: '/dashboard/contractor/onboarding/payouts',
       action: getPayoutsAction(),
       statusBadge: checklist.stripeAccountId && !checklist.payoutsConfigured ? 'Setup incomplete' : undefined,
+      icon: null,
     },
   ] as const;
 
@@ -229,11 +274,15 @@ export default function ContractorOnboardingChecklistPage() {
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
-          {steps.map((step) => (
+          {steps.map((step) => {
+            const StepIcon = step.icon;
+            return (
             <div key={step.key} className="flex items-start justify-between gap-3 rounded-lg border p-4">
               <div className="flex items-start gap-3 flex-1">
                 {step.complete ? (
                   <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                ) : StepIcon ? (
+                  <StepIcon className={`h-5 w-5 mt-0.5 flex-shrink-0 ${'iconColour' in step ? step.iconColour : 'text-muted-foreground'}`} />
                 ) : (
                   <Circle className="h-5 w-5 text-muted-foreground mt-0.5 flex-shrink-0" />
                 )}
@@ -264,7 +313,8 @@ export default function ContractorOnboardingChecklistPage() {
                 </Link>
               </Button>
             </div>
-          ))}
+          );
+          })}
         </CardContent>
       </Card>
 

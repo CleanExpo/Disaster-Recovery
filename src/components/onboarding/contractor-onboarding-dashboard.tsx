@@ -17,7 +17,9 @@ import {
   Award,
   BookOpen,
   TrendingUp,
-  AlertCircle
+  AlertCircle,
+  Shield,
+  ChevronRight,
 } from 'lucide-react';
 
 interface OnboardingDashboardProps {
@@ -296,6 +298,60 @@ export function ContractorOnboardingDashboard({ contractorId }: OnboardingDashbo
           </CardContent>
         </Card>
       )}
+
+      {/* NRPG Certification Section */}
+      <Card className="border-[#00BFA6]/30 bg-gradient-to-br from-gray-900 to-gray-800">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="flex items-center gap-2 text-white">
+                <Shield className="h-5 w-5 text-[#00BFA6]" />
+                NRPG Certification
+              </CardTitle>
+              <CardDescription className="text-gray-400">
+                100-Point Professional Certification System
+              </CardDescription>
+            </div>
+            <Badge className="bg-[#00BFA6]/10 text-[#00BFA6] border-[#00BFA6]/20">
+              Professional Network
+            </Badge>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/dashboard/contractor/onboarding/nrpg" className="group">
+              <div className="p-4 rounded-lg border border-gray-700 hover:border-[#00BFA6]/50 transition-colors bg-gray-800/50">
+                <div className="flex items-center justify-between mb-2">
+                  <Award className="h-5 w-5 text-[#00BFA6]" />
+                  <ChevronRight className="h-4 w-4 text-gray-500 group-hover:text-[#00BFA6] transition-colors" />
+                </div>
+                <h4 className="font-medium text-white">Certification Dashboard</h4>
+                <p className="text-xs text-gray-400 mt-1">Track your points and level progress</p>
+              </div>
+            </Link>
+            <Link href="/dashboard/contractor/onboarding/training" className="group">
+              <div className="p-4 rounded-lg border border-gray-700 hover:border-[#00BFA6]/50 transition-colors bg-gray-800/50">
+                <div className="flex items-center justify-between mb-2">
+                  <BookOpen className="h-5 w-5 text-purple-400" />
+                  <ChevronRight className="h-4 w-4 text-gray-500 group-hover:text-[#00BFA6] transition-colors" />
+                </div>
+                <h4 className="font-medium text-white">Training Courses</h4>
+                <p className="text-xs text-gray-400 mt-1">CSE & WRT professional modules</p>
+              </div>
+            </Link>
+            <Link href="/dashboard/contractor/onboarding/nrpg/verification" className="group">
+              <div className="p-4 rounded-lg border border-gray-700 hover:border-[#00BFA6]/50 transition-colors bg-gray-800/50">
+                <div className="flex items-center justify-between mb-2">
+                  <Shield className="h-5 w-5 text-amber-400" />
+                  <ChevronRight className="h-4 w-4 text-gray-500 group-hover:text-[#00BFA6] transition-colors" />
+                </div>
+                <h4 className="font-medium text-white">Background Verification</h4>
+                <p className="text-xs text-gray-400 mt-1">Complete required checks</p>
+              </div>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Assessment History */}
       <Card>
