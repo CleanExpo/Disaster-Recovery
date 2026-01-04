@@ -271,7 +271,7 @@ export default function RealtimePricingPage() {
                   { name: 'Live ETA tracking', basic: false, pro: true, enterprise: true },
                   { name: 'In-app messaging', basic: false, pro: true, enterprise: true },
                   { name: 'Priority notifications', basic: false, pro: true, enterprise: true },
-                  { name: 'GPS location tracking', basic: false, pro: false, enterprise: true },
+                  { name: 'GPS location tracking', basic: false, pro: true, enterprise: true },
                   { name: 'Video/voice calls', basic: false, pro: false, enterprise: true },
                   { name: 'Team coordination', basic: false, pro: false, enterprise: true },
                   { name: 'Advanced analytics', basic: false, pro: false, enterprise: true },

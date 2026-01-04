@@ -98,6 +98,7 @@ export function getTierInfo(tier: RealtimeTier | null): {
           'Everything in Basic',
           'Live ETA tracking',
           'In-app messaging',
+          'GPS location tracking',
           'Priority support',
         ],
         colour: 'text-teal-600',
@@ -108,8 +109,8 @@ export function getTierInfo(tier: RealtimeTier | null): {
         price: 199,
         features: [
           'Everything in Pro',
-          'Live GPS tracking',
           'Video/voice calls',
+          'Team coordination',
           'Custom integrations',
           'Dedicated support',
         ],
@@ -141,9 +142,8 @@ export function canAccessFeature(
   switch (feature) {
     case 'liveEta':
     case 'messaging':
-      return tierLevel >= 2 // PRO+
     case 'gpsTracking':
-      return tierLevel >= 3 // ENTERPRISE
+      return tierLevel >= 2 // PRO+ (GPS moved from ENTERPRISE in Phase 8)
     default:
       return false
   }
