@@ -159,7 +159,7 @@
     "react-instantsearch": "^7.22.1",
     "react-instantsearch-dom": "^6.40.4",
     "react-resizable-panels": "^2.1.7",
-    "recharts": "2.15.4",
+    "recharts": "^2.15.4",
     "sonner": "^1.7.4",
     "stripe": "^14.10.0",
     "swr": "^2.2.4",

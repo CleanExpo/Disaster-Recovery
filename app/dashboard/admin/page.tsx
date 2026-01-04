@@ -2228,8 +2228,8 @@ export default function AdminDashboard() {
               <Button
                 variant="ghost"
                 className={`w-full justify-start h-12 text-left transition-all duration-200 relative ${
-                  activeTab === 'overview' 
-                    ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]' 
+                  activeTab === 'overview'
+                    ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]'
                     : 'hover:bg-gray-700 hover:text-white text-gray-300'
                 }`}
                 onClick={() => setActiveTab('overview')}
@@ -2238,8 +2238,17 @@ export default function AdminDashboard() {
                 <span className="font-medium">Overview</span>
               </Button>
 
-
-
+              <Button
+                variant="ghost"
+                className="w-full justify-start h-12 text-left transition-all duration-200 relative hover:bg-gray-700 hover:text-white text-gray-300"
+                onClick={() => router.push('/dashboard/admin/jobs/live')}
+              >
+                <Activity className="h-5 w-5 mr-3" />
+                <span className="font-medium">Live Jobs</span>
+                <span className="ml-auto inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-500 text-white">
+                  Live
+                </span>
+              </Button>
 
 
               <Button
