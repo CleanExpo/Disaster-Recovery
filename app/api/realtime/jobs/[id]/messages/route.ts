@@ -2,13 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { MessageSentEvent, ChatMessage } from '@/lib/supabase/types'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+// Lazy initialization to avoid build-time errors
+let supabase: SupabaseClient | null = null
+
+function getSupabase(): SupabaseClient {
+  if (!supabase) {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (!url || !key) {
+      throw new Error('Supabase configuration missing')
+    }
+    supabase = createClient(url, key)
+  }
+  return supabase
+}
 
 interface RouteParams {
   params: Promise<{ id: string }>
@@ -231,7 +241,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     // Send to receiver's channel
     const channelName = receiverType === 'client' ? 'jobs:client' : 'jobs:contractor'
-    await supabase.channel(channelName).send({
+    await getSupabase().channel(channelName).send({
       type: 'broadcast',
       event: `${receiverType}:${receiverId}`,
       payload: messageEvent,
