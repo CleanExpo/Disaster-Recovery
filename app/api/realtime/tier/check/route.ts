@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
     })
 
     let tier: RealtimeTier | null = null
+    let isBetaAccess = false
 
     if (contractor) {
       // User is a contractor - check their own subscription
@@ -48,6 +49,30 @@ export async function GET(request: NextRequest) {
 
         if (isActive) {
           tier = subscription.tier as RealtimeTier
+        }
+      }
+
+      // Check for beta tier override (grants access even without subscription)
+      if (!tier) {
+        const betaEnrollment = await prisma.betaEnrollment.findFirst({
+          where: {
+            contractorId: contractor.id,
+            status: 'ACTIVE',
+            tierOverride: { not: null },
+            program: {
+              isActive: true,
+              startDate: { lte: new Date() },
+              endDate: { gte: new Date() },
+            },
+          },
+          select: {
+            tierOverride: true,
+          },
+        })
+
+        if (betaEnrollment?.tierOverride) {
+          tier = betaEnrollment.tierOverride as RealtimeTier
+          isBetaAccess = true
         }
       }
     } else {
@@ -118,6 +143,7 @@ export async function GET(request: NextRequest) {
       hasLiveEta: tierLevel >= 2, // PRO+
       hasMessaging: tierLevel >= 2, // PRO+
       hasGpsTracking: tierLevel >= 3, // ENTERPRISE only
+      isBetaAccess,
     }
 
     return NextResponse.json(access)

@@ -401,6 +401,11 @@ model Contractor {
   realtimeSubscription   RealtimeSubscription?   @relation("ContractorRealtimeSubscription")
   notificationPreference NotificationPreference? @relation("ContractorNotificationPreference")
 
+  // Beta Program
+  betaEnrollments BetaEnrollment[] @relation("ContractorBetaEnrollments")
+  betaFeedback    BetaFeedback[]   @relation("ContractorBetaFeedback")
+  betaNpsSurveys  BetaNPSSurvey[]  @relation("ContractorBetaNPSSurveys")
+
   @@index([businessName])
   @@index([primaryState])
   @@index([nrpgMemberId])
@@ -3054,4 +3059,150 @@ model JobMessage {
   @@index([jobId, createdAt])
   @@index([receiverId, isRead])
   @@map("job_messages")
+}
+
+// ============================================================================
+// PHASE 6: BETA PROGRAM INFRASTRUCTURE
+// Beta testing infrastructure for real-time job coordination feature
+// ============================================================================
+
+enum BetaEnrollmentStatus {
+  INVITED // Email sent, not yet accepted
+  ACTIVE // Participating in beta
+  COMPLETED // Beta period ended for this user
+  WITHDRAWN // User opted out
+}
+
+enum BetaFeedbackCategory {
+  BUG_REPORT
+  FEATURE_REQUEST
+  USABILITY_ISSUE
+  GENERAL_FEEDBACK
+}
+
+model BetaProgram {
+  id              String   @id @default(cuid())
+  name            String // e.g., "Real-time Job Coordination Beta"
+  description     String?  @db.Text
+  featureArea     String // "realtime_coordination"
+  startDate       DateTime
+  endDate         DateTime
+  isActive        Boolean  @default(true)
+  maxParticipants Int      @default(10)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  enrollments BetaEnrollment[]
+  feedback    BetaFeedback[]
+  npsSurveys  BetaNPSSurvey[]
+
+  @@index([isActive])
+  @@index([featureArea])
+  @@map("beta_programs")
+}
+
+model BetaEnrollment {
+  id           String               @id @default(cuid())
+  programId    String
+  contractorId String
+
+  status       BetaEnrollmentStatus @default(INVITED)
+
+  // Invitation tracking
+  invitedAt    DateTime             @default(now())
+  invitedBy    String // Admin user ID
+  acceptedAt   DateTime?
+
+  // Beta access override - grants this tier during beta
+  tierOverride RealtimeTier?
+
+  // Completion
+  completedAt    DateTime?
+  withdrawnAt    DateTime?
+  withdrawReason String?
+
+  // Notes
+  adminNotes String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  program    BetaProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+  contractor Contractor  @relation("ContractorBetaEnrollments", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@unique([programId, contractorId])
+  @@index([status])
+  @@index([contractorId])
+  @@map("beta_enrollments")
+}
+
+model BetaFeedback {
+  id           String               @id @default(cuid())
+  programId    String
+  contractorId String
+
+  category    BetaFeedbackCategory
+  title       String
+  description String               @db.Text
+
+  // Screenshot attachment (optional)
+  screenshotUrl String?
+  screenshotKey String? // S3/Cloudinary key
+
+  // Context
+  pageUrl    String?
+  userAgent  String?
+  deviceType String? // mobile, desktop, tablet
+
+  // Admin handling
+  isReviewed    Boolean   @default(false)
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  adminResponse String?   @db.Text
+
+  // Priority/Status
+  priority String? // low, medium, high, critical
+  status   String  @default("new") // new, in_review, resolved, wont_fix
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  program    BetaProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+  contractor Contractor  @relation("ContractorBetaFeedback", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([programId])
+  @@index([contractorId])
+  @@index([category])
+  @@index([status])
+  @@map("beta_feedback")
+}
+
+model BetaNPSSurvey {
+  id           String @id @default(cuid())
+  programId    String
+  contractorId String
+
+  // NPS Score (0-10): 0-6 Detractor, 7-8 Passive, 9-10 Promoter
+  score Int
+
+  // Follow-up question
+  followUpAnswer String? @db.Text
+
+  // Survey context
+  surveyTrigger  String? // "weekly", "feature_use", "end_of_beta", "manual"
+  featureContext String? // Which feature prompted survey
+
+  createdAt DateTime @default(now())
+
+  // Relations
+  program    BetaProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+  contractor Contractor  @relation("ContractorBetaNPSSurveys", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([programId])
+  @@index([contractorId])
+  @@index([score])
+  @@map("beta_nps_surveys")
 }

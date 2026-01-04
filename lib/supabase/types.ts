@@ -125,4 +125,5 @@ export interface TierAccess {
   hasLiveEta: boolean
   hasMessaging: boolean
   hasGpsTracking: boolean
+  isBetaAccess?: boolean
 }

@@ -23,6 +23,7 @@ export function useTierGating({
     hasLiveEta: false,
     hasMessaging: false,
     hasGpsTracking: false,
+    isBetaAccess: false,
   })
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -50,6 +51,7 @@ export function useTierGating({
         hasLiveEta: false,
         hasMessaging: false,
         hasGpsTracking: false,
+        isBetaAccess: false,
       })
     } finally {
       setIsLoading(false)

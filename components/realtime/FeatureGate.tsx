@@ -1,6 +1,7 @@
 'use client'
 
 import { useTierGating, getTierInfo } from '@/hooks/useTierGating'
+import { BetaBadge } from '@/components/beta'
 import type { RealtimeTier } from '@/lib/supabase/types'
 
 interface FeatureGateProps {
@@ -9,6 +10,7 @@ interface FeatureGateProps {
   feature: 'liveEta' | 'messaging' | 'gpsTracking'
   children: React.ReactNode
   fallback?: React.ReactNode
+  showBetaBadge?: boolean
 }
 
 const TIER_ORDER: Record<string, number> = {
@@ -23,8 +25,9 @@ export function FeatureGate({
   feature,
   children,
   fallback,
+  showBetaBadge = true,
 }: FeatureGateProps) {
-  const { tier, isLoading } = useTierGating({ jobId })
+  const { tier, isBetaAccess, isLoading } = useTierGating({ jobId })
 
   if (isLoading) {
     return (
@@ -39,6 +42,17 @@ export function FeatureGate({
   const hasAccess = currentLevel >= requiredLevel
 
   if (hasAccess) {
+    // Wrap children with beta badge if this is beta access
+    if (isBetaAccess && showBetaBadge) {
+      return (
+        <div className="relative">
+          <div className="absolute -top-2 -right-2 z-10">
+            <BetaBadge variant="small" />
+          </div>
+          {children}
+        </div>
+      )
+    }
     return <>{children}</>
   }
 

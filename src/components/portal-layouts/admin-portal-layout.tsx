@@ -17,6 +17,7 @@ import {
   LogOut,
   ChevronDown,
   AlertCircle,
+  Beaker,
 } from 'lucide-react';
 
 interface AdminPortalLayoutProps {
@@ -33,11 +34,12 @@ export default function AdminPortalLayout({ children }: AdminPortalLayoutProps) 
     { name: 'Verification Queue', href: '/admin/verification', icon: CheckSquare },
     { name: 'Claims Management', href: '/admin/claims', icon: FileText },
     { name: 'User Management', href: '/admin/users', icon: Users },
+    { name: 'Beta Programmes', href: '/dashboard/admin/beta', icon: Beaker },
     { name: 'Reports', href: '/admin/reports', icon: BarChart3 },
     { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/');
 
   return (
     <div className="flex h-screen bg-slate-50">
