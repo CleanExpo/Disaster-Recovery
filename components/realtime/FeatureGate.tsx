@@ -85,7 +85,7 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
           </p>
         </div>
         <button
-          onClick={() => window.open('/dashboard/settings/subscription', '_blank')}
+          onClick={() => window.open('/dashboard/contractor/realtime/pricing', '_blank')}
           className="px-3 py-1 text-xs font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-full transition-colors"
         >
           Upgrade
@@ -124,7 +124,7 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
         </div>
 
         <button
-          onClick={() => window.open('/dashboard/settings/subscription', '_blank')}
+          onClick={() => window.open('/dashboard/contractor/realtime/pricing', '_blank')}
           className="px-6 py-2 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
         >
           Upgrade to {tierInfo.name}
