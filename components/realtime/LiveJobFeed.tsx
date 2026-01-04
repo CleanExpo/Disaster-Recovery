@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ConnectionIndicator } from './ConnectionIndicator'
 import { StatusToggle } from './StatusToggle'
+import { ETADisplay } from './ETADisplay'
 import { useRealtimeConnection } from '@/hooks/useRealtimeConnection'
 import type { JobStatus, RealtimeJobEvent } from '@/lib/supabase/types'
 import { cn } from '@/lib/utils'
@@ -177,9 +178,17 @@ export function LiveJobFeed({
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-muted-foreground">
-                    {job.serviceType}
-                    {job.eta && <span className="ml-2">• ETA: {job.eta} mins</span>}
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm text-muted-foreground">
+                      {job.serviceType}
+                    </span>
+                    {job.eta && (job.status === 'en_route' || job.status === 'accepted') && (
+                      <ETADisplay
+                        etaMinutes={job.eta}
+                        lastUpdated={new Date(job.createdAt)}
+                        size="sm"
+                      />
+                    )}
                   </div>
                   {userType === 'contractor' && (
                     <StatusToggle

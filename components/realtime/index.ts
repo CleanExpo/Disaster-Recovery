@@ -1,3 +1,6 @@
 export { ConnectionIndicator } from './ConnectionIndicator'
 export { StatusToggle } from './StatusToggle'
 export { LiveJobFeed } from './LiveJobFeed'
+export { NotificationSettings } from './NotificationSettings'
+export { ETADisplay } from './ETADisplay'
+export { NotificationToast, ToastContainer } from './NotificationToast'
