@@ -3,13 +3,26 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { RealtimeChannel } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
-import type { ConnectionStatus, RealtimeJobEvent, JobStatus } from '@/lib/supabase/types'
+import type {
+  ConnectionStatus,
+  RealtimeJobEvent,
+  JobStatus,
+  LocationUpdateEvent,
+  ETAUpdateEvent,
+  MessageSentEvent,
+  MessageReadEvent,
+  ContractorLocation,
+} from '@/lib/supabase/types'
 
 interface UseRealtimeConnectionOptions {
   channelName: string
   userId?: string
   userType?: 'contractor' | 'client' | 'admin'
   onJobEvent?: (event: RealtimeJobEvent) => void
+  onLocationUpdate?: (event: LocationUpdateEvent) => void
+  onETAUpdate?: (event: ETAUpdateEvent) => void
+  onMessageSent?: (event: MessageSentEvent) => void
+  onMessageRead?: (event: MessageReadEvent) => void
   onConnectionChange?: (status: ConnectionStatus) => void
   autoReconnect?: boolean
   reconnectInterval?: number
@@ -28,10 +41,53 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     userId,
     userType,
     onJobEvent,
+    onLocationUpdate,
+    onETAUpdate,
+    onMessageSent,
+    onMessageRead,
     onConnectionChange,
     autoReconnect = true,
     reconnectInterval = 5000,
   } = options
+
+  // Refs to avoid stale closures
+  const callbacksRef = useRef({
+    onJobEvent,
+    onLocationUpdate,
+    onETAUpdate,
+    onMessageSent,
+    onMessageRead,
+  })
+  callbacksRef.current = {
+    onJobEvent,
+    onLocationUpdate,
+    onETAUpdate,
+    onMessageSent,
+    onMessageRead,
+  }
+
+  // Route event to appropriate callback based on type
+  const handleEvent = useCallback((event: RealtimeJobEvent) => {
+    const callbacks = callbacksRef.current
+
+    switch (event.type) {
+      case 'LOCATION_UPDATE':
+        callbacks.onLocationUpdate?.(event as LocationUpdateEvent)
+        break
+      case 'ETA_UPDATE':
+        callbacks.onETAUpdate?.(event as ETAUpdateEvent)
+        break
+      case 'MESSAGE_SENT':
+        callbacks.onMessageSent?.(event as MessageSentEvent)
+        break
+      case 'MESSAGE_READ':
+        callbacks.onMessageRead?.(event as MessageReadEvent)
+        break
+      default:
+        // For standard job events (NEW_JOB, STATUS_CHANGED, etc.)
+        callbacks.onJobEvent?.(event)
+    }
+  }, [])
 
   const [state, setState] = useState<RealtimeConnectionState>({
     status: 'disconnected',
@@ -68,14 +124,14 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     // Listen for job events
     channel.on('broadcast', { event: 'job_event' }, (payload) => {
       const event = payload.payload as RealtimeJobEvent
-      onJobEvent?.(event)
+      handleEvent(event)
     })
 
     // Listen for direct messages (contractor-specific)
     if (userId && userType === 'contractor') {
       channel.on('broadcast', { event: `contractor:${userId}` }, (payload) => {
         const event = payload.payload as RealtimeJobEvent
-        onJobEvent?.(event)
+        handleEvent(event)
       })
     }
 
@@ -83,7 +139,7 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     if (userId && userType === 'client') {
       channel.on('broadcast', { event: `client:${userId}` }, (payload) => {
         const event = payload.payload as RealtimeJobEvent
-        onJobEvent?.(event)
+        handleEvent(event)
       })
     }
 
@@ -121,7 +177,7 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
 
     channelRef.current = channel
     setState(prev => ({ ...prev, channel }))
-  }, [channelName, userId, userType, onJobEvent, autoReconnect, reconnectInterval, updateStatus])
+  }, [channelName, userId, userType, handleEvent, autoReconnect, reconnectInterval, updateStatus])
 
   // Disconnect from channel
   const disconnect = useCallback(() => {
@@ -192,6 +248,69 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     return result === 'ok'
   }, [])
 
+  // Send location update (for contractors)
+  const sendLocationUpdate = useCallback(async (
+    jobId: string,
+    clientId: string,
+    location: ContractorLocation
+  ) => {
+    if (!channelRef.current || userType !== 'contractor') {
+      console.error('Not connected or not a contractor')
+      return false
+    }
+
+    const event: LocationUpdateEvent = {
+      type: 'LOCATION_UPDATE',
+      jobId,
+      contractorId: userId,
+      clientId,
+      location,
+      timestamp: new Date().toISOString(),
+    }
+
+    // Send to client's direct channel
+    const result = await channelRef.current.send({
+      type: 'broadcast',
+      event: `client:${clientId}`,
+      payload: event,
+    })
+
+    return result === 'ok'
+  }, [userId, userType])
+
+  // Send ETA update
+  const sendETAUpdate = useCallback(async (
+    jobId: string,
+    clientId: string,
+    eta: number,
+    distanceKm: number,
+    trafficCondition?: 'clear' | 'moderate' | 'heavy'
+  ) => {
+    if (!channelRef.current) {
+      console.error('Not connected to realtime channel')
+      return false
+    }
+
+    const event: ETAUpdateEvent = {
+      type: 'ETA_UPDATE',
+      jobId,
+      contractorId: userType === 'contractor' ? userId : undefined,
+      clientId,
+      eta,
+      distanceKm,
+      trafficCondition,
+      timestamp: new Date().toISOString(),
+    }
+
+    const result = await channelRef.current.send({
+      type: 'broadcast',
+      event: `client:${clientId}`,
+      payload: event,
+    })
+
+    return result === 'ok'
+  }, [userId, userType])
+
   // Connect on mount
   useEffect(() => {
     connect()
@@ -207,6 +326,8 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     disconnect,
     sendStatusUpdate,
     sendDirectMessage,
+    sendLocationUpdate,
+    sendETAUpdate,
   }
 }
 

@@ -38,12 +38,22 @@ export interface Database {
 }
 
 // Real-time event types
+export type RealtimeJobEventType =
+  | 'NEW_JOB'
+  | 'STATUS_CHANGED'
+  | 'JOB_REASSIGNED'
+  | 'JOB_CANCELLED'
+  | 'LOCATION_UPDATE'
+  | 'ETA_UPDATE'
+  | 'MESSAGE_SENT'
+  | 'MESSAGE_READ'
+
 export type RealtimeJobEvent = {
-  type: 'NEW_JOB' | 'STATUS_CHANGED' | 'JOB_REASSIGNED' | 'JOB_CANCELLED'
+  type: RealtimeJobEventType
   jobId: string
   contractorId?: string
   clientId?: string
-  status: JobStatus
+  status?: JobStatus
   eta?: number
   message?: string
   timestamp: string
@@ -59,3 +69,60 @@ export type JobStatus =
   | 'cancelled'
 
 export type ConnectionStatus = 'connected' | 'connecting' | 'disconnected' | 'error'
+
+// Phase 3: Location tracking types
+export interface ContractorLocation {
+  latitude: number
+  longitude: number
+  accuracy?: number      // GPS accuracy in metres
+  heading?: number       // Direction of travel (0-360 degrees)
+  speed?: number         // Speed in km/h
+}
+
+export interface LocationUpdateEvent extends RealtimeJobEvent {
+  type: 'LOCATION_UPDATE'
+  location: ContractorLocation
+}
+
+export interface ETAUpdateEvent extends RealtimeJobEvent {
+  type: 'ETA_UPDATE'
+  eta: number              // Minutes until arrival
+  distanceKm: number       // Remaining distance
+  trafficCondition?: 'clear' | 'moderate' | 'heavy'
+  routePolyline?: string   // Encoded polyline for route display
+}
+
+// Phase 3: Messaging types
+export interface ChatMessage {
+  id: string
+  jobId: string
+  senderId: string
+  senderType: 'client' | 'contractor'
+  content: string
+  isRead: boolean
+  createdAt: string
+}
+
+export interface MessageSentEvent extends RealtimeJobEvent {
+  type: 'MESSAGE_SENT'
+  messageId: string
+  senderId: string
+  senderType: 'client' | 'contractor'
+  content: string
+}
+
+export interface MessageReadEvent extends RealtimeJobEvent {
+  type: 'MESSAGE_READ'
+  messageId: string
+  readBy: string
+}
+
+// Tier types
+export type RealtimeTier = 'BASIC' | 'PRO' | 'ENTERPRISE'
+
+export interface TierAccess {
+  tier: RealtimeTier | null
+  hasLiveEta: boolean
+  hasMessaging: boolean
+  hasGpsTracking: boolean
+}
