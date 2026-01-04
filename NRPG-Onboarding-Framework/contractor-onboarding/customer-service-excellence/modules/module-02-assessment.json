@@ -1,0 +1,188 @@
+{
+  "moduleId": "CSE-M02",
+  "assessmentTitle": "First Contact Excellence - Assessment",
+  "totalPoints": 100,
+  "passingScore": 80,
+  "timeLimit": "20 minutes",
+  "assessmentType": "Knowledge Check and Communication Practice",
+  
+  "knowledgeQuiz": {
+    "instructions": "Select the best answer for each question. Each question is worth 4 points.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "multiple_choice",
+        "question": "According to the SCOPE method, what does the 'O' stand for when gathering initial information?",
+        "options": [
+          "A) Occurred - when did the damage happen",
+          "B) Organized - how organized is the response",
+          "C) Owner - who owns the property",
+          "D) Options - what options are available"
+        ],
+        "correctAnswer": "A",
+        "explanation": "The SCOPE method uses 'O' for 'Occurred' to determine when the damage happened, which is critical for understanding urgency and potential causes."
+      },
+      {
+        "id": 2,
+        "type": "multiple_choice",
+        "question": "What is the standard response time for emergency situations?",
+        "options": [
+          "A) Within 1 hour",
+          "B) Within 2-4 hours",
+          "C) Within 24 hours",
+          "D) Within 8 hours"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Emergency response should be on-site within 2-4 hours to address immediate safety concerns and prevent further damage."
+      },
+      {
+        "id": 3,
+        "type": "multiple_choice",
+        "question": "When setting project timelines, what buffer percentage should you add?",
+        "options": [
+          "A) 10-15%",
+          "B) 20-30%",
+          "C) 40-50%",
+          "D) No buffer needed"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Adding a 20-30% buffer to estimates helps ensure realistic expectations and accounts for unexpected delays or complications."
+      },
+      {
+        "id": 4,
+        "type": "multiple_choice",
+        "question": "Which communication channel should be used for detailed plans and estimates?",
+        "options": [
+          "A) Phone calls",
+          "B) Text messages",
+          "C) Email",
+          "D) In-person meetings only"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Email is best for detailed plans and estimates as it provides documentation and allows customers to review complex information at their own pace."
+      },
+      {
+        "id": 5,
+        "type": "multiple_choice",
+        "question": "What should be the first priority when receiving an emergency call?",
+        "options": [
+          "A) Getting the customer's insurance information",
+          "B) Scheduling an appointment",
+          "C) Ensuring everyone's safety",
+          "D) Explaining your company's services"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Safety must always be the first priority. All other considerations come after ensuring no one is in immediate danger."
+      },
+      {
+        "id": 6,
+        "type": "multiple_choice",
+        "question": "Which word should you avoid when communicating with customers?",
+        "options": [
+          "A) Immediately",
+          "B) Comprehensive",
+          "C) Try",
+          "D) Experienced"
+        ],
+        "correctAnswer": "C",
+        "explanation": "The word 'try' suggests uncertainty and lack of commitment. Use definitive language instead (e.g., 'I will call your adjuster')."
+      },
+      {
+        "id": 7,
+        "type": "multiple_choice",
+        "question": "When should you provide cost estimates during the first contact?",
+        "options": [
+          "A) Immediately to show transparency",
+          "B) Only if the customer insists",
+          "C) After completing the assessment",
+          "D) Never discuss costs"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Avoid giving inaccurate estimates over the phone. Complete the assessment first to provide accurate, detailed pricing information."
+      },
+      {
+        "id": 8,
+        "type": "multiple_choice",
+        "question": "What is the recommended timeframe for providing a written summary after initial assessment?",
+        "options": [
+          "A) Within 1 hour",
+          "B) Within 4 hours",
+          "C) Within 24 hours",
+          "D) Within 1 week"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Customers should receive a written summary within 4 hours of the assessment to maintain momentum and demonstrate professionalism."
+      },
+      {
+        "id": 9,
+        "type": "multiple_choice",
+        "question": "In the three-phase communication framework, what happens in Phase 2?",
+        "options": [
+          "A) Initial damage assessment",
+          "B) Planning and insurance coordination",
+          "C) Beginning restoration work",
+          "D) Final project completion"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Phase 2 (Days 2-3) focuses on planning and working with insurance companies to finalize scope and get approval."
+      },
+      {
+        "id": 10,
+        "type": "multiple_choice",
+        "question": "What should be included in every first contact follow-up email?",
+        "options": [
+          "A) Detailed cost breakdown",
+          "B) Insurance policy details",
+          "C) Direct contact information and next steps",
+          "D) Complete project timeline"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Every follow-up email should include your direct contact information and clearly defined next steps to maintain clear communication."
+      },
+      {
+        "id": 11,
+        "type": "multiple_choice",
+        "question": "When a customer asks 'How long will I be out of my home?' the best response is:",
+        "options": [
+          "A) 'Usually about 2 weeks'",
+          "B) 'That depends on the extent of damage, which we'll determine in our assessment'",
+          "C) 'I have no idea until we start work'",
+          "D) 'Ask your insurance company'"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Acknowledge that timing depends on the assessment while providing a framework for when they'll get a definitive answer."
+      },
+      {
+        "id": 12,
+        "type": "multiple_choice",
+        "question": "Text messages should be used for:",
+        "options": [
+          "A) Complex technical explanations",
+          "B) Initial emergency contact",
+          "C) Appointment confirmations and brief updates",
+          "D) Insurance correspondence"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Text messages are appropriate for brief communications like appointment confirmations, ETA notifications, and simple status updates."
+      }
+    ]
+  },
+  
+  "practicalApplication": {
+    "title": "Emergency Call Handling Simulation",
+    "instructions": "You will receive a simulated emergency call scenario. Demonstrate proper first contact techniques using the frameworks learned in this module. Your response will be evaluated on the criteria below.",
+    "pointValue": 52,
+    "scenario": "You receive a call from Mrs. Chen at 2:30 PM on a Tuesday. She sounds distressed and says: 'Hello, I need help! I came home from work and there's water everywhere in my kitchen and dining room. It's coming from upstairs somewhere. My neighbor said I should call you. What do I do?' You can hear water running in the background.",
+    "assessmentCriteria": [
+      "Immediately addresses safety concerns (8 points)",
+      "Uses SCOPE method to gather essential information (10 points)",
+      "Maintains calm, professional tone throughout (6 points)",
+      "Provides immediate action steps to prevent further damage (8 points)",
+      "Sets realistic response time expectations (6 points)",
+      "Explains next steps clearly (6 points)",
+      "Captures customer contact information (4 points)",
+      "Confirms information and follows up appropriately (4 points)"
+    ],
+    "sampleResponse": "Mrs. Chen, I'm here to help you. First, I need to make sure you and your family are safe. Is anyone injured? Good. Now, is the electricity still on in the areas with water? If so, please stay out of those areas until we can assess the safety. Can you locate your main water shutoff valve and turn it off if it's safe to access? This will help stop any additional water from entering. Based on what you've described, I'm treating this as an emergency. I can have our response team on-site by 4:00 PM today. Let me get your address and contact information, and I'll walk you through what to expect when we arrive."
+  }
+}

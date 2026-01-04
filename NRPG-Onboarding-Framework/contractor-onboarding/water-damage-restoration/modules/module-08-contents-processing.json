@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M08",
+  "courseId": "WRT-001",
+  "title": "Contents Processing",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 8,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Master pack-out procedures for contents protection",
+    "Learn cleaning and restoration methods for various materials",
+    "Understand electronics restoration techniques",
+    "Apply document drying and recovery methods"
+  ],
+  "lessons": [
+    "Pack-out procedures",
+    "Cleaning and restoration methods",
+    "Electronics restoration",
+    "Document drying"
+  ],
+  "keyTopics": [
+    "Contents inventory",
+    "Cleaning techniques",
+    "Electronics recovery",
+    "Document restoration",
+    "Storage procedures"
+  ],
+  "prerequisites": "Module 7: Antimicrobial Application",
+  "assessmentType": "Contents processing demonstration and inventory assessment",
+  "passingScore": 80,
+  "resources": [
+    "Pack-out Procedures Guide",
+    "Cleaning Methods Manual",
+    "Electronics Recovery Protocols"
+  ],
+  "practicalComponents": [
+    "Pack-out practice exercises",
+    "Cleaning technique demonstrations",
+    "Document drying simulations"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

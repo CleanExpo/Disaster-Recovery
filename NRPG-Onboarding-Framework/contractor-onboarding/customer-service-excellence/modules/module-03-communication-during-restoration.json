@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M03",
+  "courseId": "CSE-001",
+  "title": "Communication During Restoration",
+  "duration": "75 min",
+  "durationMinutes": 75,
+  "sequence": 3,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Establish effective daily update protocols",
+    "Learn to explain technical processes in simple terms",
+    "Manage timeline expectations throughout the project",
+    "Handle schedule changes professionally"
+  ],
+  "lessons": [
+    "Daily update protocols",
+    "Explaining technical processes simply",
+    "Managing timeline expectations",
+    "Handling schedule changes"
+  ],
+  "keyTopics": [
+    "Progress communication",
+    "Technical translation",
+    "Timeline management",
+    "Change management"
+  ],
+  "prerequisites": "Module 2: First Contact Excellence",
+  "assessmentType": "Communication scenarios and written assessment",
+  "passingScore": 80,
+  "resources": [
+    "Daily Update Templates",
+    "Technical Translation Guide",
+    "Schedule Change Protocols"
+  ],
+  "practicalComponents": [
+    "Daily update practice",
+    "Technical explanation exercises",
+    "Schedule change simulations"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

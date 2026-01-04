@@ -1,0 +1,48 @@
+{
+  "moduleId": "WRT-M10",
+  "courseId": "WRT-001",
+  "title": "Documentation & Clean Claims Integration",
+  "duration": "120 min",
+  "durationMinutes": 120,
+  "sequence": 10,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Master professional photo documentation techniques",
+    "Create accurate moisture mapping diagrams",
+    "Maintain comprehensive daily drying logs",
+    "Apply contractor rates through Clean Claims system"
+  ],
+  "lessons": [
+    "Photo documentation",
+    "Moisture mapping",
+    "Daily drying logs",
+    "Clean Claims rate application"
+  ],
+  "keyTopics": [
+    "Documentation standards",
+    "Photographic evidence",
+    "Moisture tracking",
+    "Clean Claims integration",
+    "Contractor rate application",
+    "Insurance reporting"
+  ],
+  "prerequisites": "Module 9: Australian Standards & Regulations",
+  "assessmentType": "Documentation portfolio creation and Clean Claims system assessment",
+  "passingScore": 80,
+  "resources": [
+    "Documentation Standards Guide",
+    "Clean Claims Platform Guide",
+    "Photo Documentation Templates",
+    "Contractor Rate Application Manual"
+  ],
+  "practicalComponents": [
+    "Photo documentation exercises",
+    "Moisture mapping practice",
+    "Clean Claims system training",
+    "Contractor rate application practice"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

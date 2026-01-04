@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M01",
+  "courseId": "WRT-001",
+  "title": "Introduction to Water Damage Restoration",
+  "duration": "45 min",
+  "durationMinutes": 45,
+  "sequence": 1,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Understand the three categories of water damage",
+    "Classify water damage into appropriate classes",
+    "Identify health and safety considerations in water damage scenarios",
+    "Recognize proper Personal Protective Equipment (PPE) requirements"
+  ],
+  "lessons": [
+    "Understanding water damage categories",
+    "Classes of water damage",
+    "Health and safety considerations",
+    "PPE requirements"
+  ],
+  "keyTopics": [
+    "Water damage classification",
+    "Category 1, 2, and 3 water",
+    "Class A, B, C, and D damage",
+    "Health hazards",
+    "Safety protocols"
+  ],
+  "prerequisites": "None",
+  "assessmentType": "Water damage classification quiz and PPE identification",
+  "passingScore": 80,
+  "resources": [
+    "IICRC S500 Water Damage Guide",
+    "PPE Selection Chart",
+    "Water Category Classification Guide"
+  ],
+  "practicalComponents": [
+    "Water damage assessment scenarios",
+    "PPE selection exercises",
+    "Safety protocol demonstrations"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

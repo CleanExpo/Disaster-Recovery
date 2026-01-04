@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M02",
+  "courseId": "WRT-001",
+  "title": "Psychrometry and Drying Science",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 2,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Master the fundamentals of psychrometry",
+    "Understand temperature and humidity relationships",
+    "Calculate dew point and vapor pressure",
+    "Apply evaporation and dehumidification principles"
+  ],
+  "lessons": [
+    "Understanding psychrometry",
+    "Temperature and humidity relationships",
+    "Dew point and vapor pressure",
+    "Evaporation and dehumidification"
+  ],
+  "keyTopics": [
+    "Psychrometric chart usage",
+    "Relative humidity",
+    "Absolute humidity",
+    "Vapor pressure deficit",
+    "Drying principles"
+  ],
+  "prerequisites": "Module 1: Introduction to Water Damage Restoration",
+  "assessmentType": "Psychrometric calculations and chart interpretation",
+  "passingScore": 80,
+  "resources": [
+    "Psychrometric Chart",
+    "Drying Science Manual",
+    "Calculation Worksheets"
+  ],
+  "practicalComponents": [
+    "Psychrometric chart exercises",
+    "Environmental condition calculations",
+    "Drying rate assessments"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

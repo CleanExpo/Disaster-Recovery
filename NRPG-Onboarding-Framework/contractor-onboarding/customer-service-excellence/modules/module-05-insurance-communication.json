@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M05",
+  "courseId": "CSE-001",
+  "title": "Insurance Communication",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 5,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Effectively explain insurance coverage limitations to customers",
+    "Understand and communicate documentation requirements",
+    "Master three-way communication strategies with insurers",
+    "Learn to advocate for customers within policy boundaries"
+  ],
+  "lessons": [
+    "Explaining coverage limitations",
+    "Documentation requirements",
+    "Three-way communication strategies",
+    "Advocating for the customer"
+  ],
+  "keyTopics": [
+    "Insurance policies",
+    "Coverage limitations",
+    "Documentation standards",
+    "Customer advocacy"
+  ],
+  "prerequisites": "Module 4: Difficult Conversations",
+  "assessmentType": "Insurance scenario analysis and communication practice",
+  "passingScore": 80,
+  "resources": [
+    "Insurance Coverage Guide",
+    "Documentation Checklist",
+    "Three-way Communication Templates"
+  ],
+  "practicalComponents": [
+    "Insurance explanation practice",
+    "Three-way call simulations",
+    "Documentation exercises"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

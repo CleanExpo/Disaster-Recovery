@@ -1,0 +1,45 @@
+{
+  "moduleId": "WRT-M07",
+  "courseId": "WRT-001",
+  "title": "Antimicrobial Application",
+  "duration": "45 min",
+  "durationMinutes": 45,
+  "sequence": 7,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Determine when antimicrobial application is necessary",
+    "Understand different types of antimicrobials",
+    "Master proper application methods",
+    "Follow safety and regulatory requirements"
+  ],
+  "lessons": [
+    "When to apply antimicrobials",
+    "Types of antimicrobials",
+    "Application methods",
+    "Safety and regulations"
+  ],
+  "keyTopics": [
+    "Antimicrobial selection",
+    "Application timing",
+    "Safety protocols",
+    "Regulatory compliance",
+    "Health considerations"
+  ],
+  "prerequisites": "Module 6: Drying Goals and Strategies",
+  "assessmentType": "Antimicrobial selection quiz and application demonstration",
+  "passingScore": 80,
+  "resources": [
+    "Antimicrobial Selection Guide",
+    "Application Methods Manual",
+    "Safety Data Sheets"
+  ],
+  "practicalComponents": [
+    "Product selection exercises",
+    "Application technique practice",
+    "Safety protocol demonstrations"
+  ],
+  "iicrcStandard": "S500",
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

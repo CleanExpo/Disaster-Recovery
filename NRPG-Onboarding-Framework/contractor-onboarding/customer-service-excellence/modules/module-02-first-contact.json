@@ -1,0 +1,43 @@
+{
+  "moduleId": "CSE-M02",
+  "courseId": "CSE-001",
+  "title": "First Contact Excellence",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 2,
+  "locked": false,
+  "completed": false,
+  "learningObjectives": [
+    "Master the art of making powerful first impressions",
+    "Develop active listening skills for better customer understanding",
+    "Learn to show empathy without over-promising results",
+    "Set realistic expectations from initial contact"
+  ],
+  "lessons": [
+    "Making a powerful first impression",
+    "Active listening techniques",
+    "Empathy without over-promising",
+    "Setting realistic expectations"
+  ],
+  "keyTopics": [
+    "First impressions",
+    "Active listening",
+    "Professional empathy",
+    "Expectation management"
+  ],
+  "prerequisites": "Module 1: Understanding Customer Psychology in Crisis",
+  "assessmentType": "Practical demonstration and role-play",
+  "passingScore": 80,
+  "resources": [
+    "First Contact Checklist",
+    "Active Listening Guide",
+    "Expectation Setting Templates"
+  ],
+  "practicalComponents": [
+    "First contact simulations",
+    "Active listening exercises",
+    "Expectation setting practice"
+  ],
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}

@@ -1,0 +1,164 @@
+{
+  "summary": {
+    "totalModules": 22,
+    "totalCourses": 2,
+    "totalDuration": "34 hours",
+    "totalDurationMinutes": 2040,
+    "createdDate": "2024-01-01",
+    "version": "1.0"
+  },
+  "courses": [
+    {
+      "courseId": "CSE-001",
+      "courseName": "Customer Service Excellence",
+      "modules": 10,
+      "duration": "10 hours",
+      "durationMinutes": 600,
+      "certification": "NRP Excellence Badge",
+      "focus": "Customer relations, communication, crisis management"
+    },
+    {
+      "courseId": "WRT-001", 
+      "courseName": "Water Damage Restoration Technician (WRT)",
+      "modules": 12,
+      "duration": "24 hours",
+      "durationMinutes": 1440,
+      "certification": "IICRC WRT Certificate",
+      "focus": "Technical water damage restoration, IICRC certification preparation"
+    }
+  ],
+  "modulesList": [
+    {
+      "moduleId": "CSE-M01",
+      "title": "Understanding Customer Psychology in Crisis",
+      "duration": "45 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M02", 
+      "title": "First Contact Excellence",
+      "duration": "60 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M03",
+      "title": "Communication During Restoration",
+      "duration": "75 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M04",
+      "title": "Difficult Conversations",
+      "duration": "90 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M05",
+      "title": "Insurance Communication",
+      "duration": "60 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M06",
+      "title": "Quality Assurance & Follow-up",
+      "duration": "45 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M07",
+      "title": "Crisis Intervention",
+      "duration": "60 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M08",
+      "title": "Technology & Customer Service",
+      "duration": "45 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M09",
+      "title": "Building Long-term Relationships",
+      "duration": "30 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "CSE-M10",
+      "title": "Final Assessment",
+      "duration": "60 min",
+      "course": "Customer Service Excellence"
+    },
+    {
+      "moduleId": "WRT-M01",
+      "title": "Introduction to Water Damage Restoration",
+      "duration": "45 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M02",
+      "title": "Psychrometry and Drying Science",
+      "duration": "60 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M03",
+      "title": "Inspection and Moisture Detection",
+      "duration": "90 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M04",
+      "title": "Water Extraction Equipment",
+      "duration": "75 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M05",
+      "title": "Structural Drying Equipment",
+      "duration": "90 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M06",
+      "title": "Drying Goals and Strategies",
+      "duration": "60 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M07",
+      "title": "Antimicrobial Application",
+      "duration": "45 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M08",
+      "title": "Contents Processing",
+      "duration": "60 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M09",
+      "title": "Australian Standards & Regulations",
+      "duration": "45 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M10",
+      "title": "Documentation & Clean Claims Integration",
+      "duration": "120 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M11",
+      "title": "Customer Communication",
+      "duration": "30 min",
+      "course": "Water Damage Restoration"
+    },
+    {
+      "moduleId": "WRT-M12",
+      "title": "Final Assessment & Certification",
+      "duration": "90 min",
+      "course": "Water Damage Restoration"
+    }
+  ]
+}

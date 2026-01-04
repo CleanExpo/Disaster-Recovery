@@ -1,0 +1,199 @@
+{
+  "moduleId": "CSE-M01",
+  "assessmentTitle": "Understanding Customer Psychology in Crisis - Assessment",
+  "totalPoints": 100,
+  "passingScore": 80,
+  "timeLimit": "15 minutes",
+  "assessmentType": "Knowledge Check and Scenario Analysis",
+  
+  "knowledgeQuiz": {
+    "instructions": "Select the best answer for each question. Each question is worth 5 points.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "multiple_choice",
+        "question": "During which phase of the disaster response cycle are customers most likely to ask the same questions repeatedly?",
+        "options": [
+          "A) Acute Stress Response (24-72 hours)",
+          "B) Shock and Disbelief (0-24 hours)",
+          "C) Reality Setting In (3-7 days)",
+          "D) Adjustment Phase (1-4 weeks)"
+        ],
+        "correctAnswer": "B",
+        "explanation": "During the Shock and Disbelief phase, customers experience numbness and confusion, making it difficult to process new information, leading to repetitive questioning."
+      },
+      {
+        "id": 2,
+        "type": "multiple_choice",
+        "question": "When a customer displays 'flight response' behaviors, what is the most appropriate approach?",
+        "options": [
+          "A) Insist they make immediate decisions to prevent delays",
+          "B) Create safe spaces for discussion and follow up consistently",
+          "C) Increase pressure to get them to engage with the process",
+          "D) Refer them to a mental health professional immediately"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Flight response involves avoidance behaviors. Creating safe spaces and consistent follow-up helps customers feel secure enough to engage."
+      },
+      {
+        "id": 3,
+        "type": "multiple_choice",
+        "question": "According to the Trust Equation, what does 'Self-Orientation' refer to?",
+        "options": [
+          "A) The customer's focus on their own needs",
+          "B) The contractor's focus on their own interests rather than the customer's",
+          "C) The customer's cultural orientation",
+          "D) The contractor's professional orientation"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Self-Orientation in the Trust Equation refers to how much the service provider focuses on their own interests versus the customer's interests. Lower self-orientation increases trust."
+      },
+      {
+        "id": 4,
+        "type": "multiple_choice",
+        "question": "When working with customers from high-context cultures, communication should emphasize:",
+        "options": [
+          "A) Direct, explicit information only",
+          "B) Written documentation over verbal communication",
+          "C) Non-verbal cues and contextual meaning",
+          "D) Technical terminology to show expertise"
+        ],
+        "correctAnswer": "C",
+        "explanation": "High-context cultures derive meaning from context, non-verbal cues, and implicit communication rather than just explicit words."
+      },
+      {
+        "id": 5,
+        "type": "multiple_choice",
+        "question": "When stress impairs a customer's working memory, you should:",
+        "options": [
+          "A) Provide all information at once to save time",
+          "B) Speak louder to ensure they hear you",
+          "C) Present information in small, sequential chunks",
+          "D) Ask them to take notes on everything you say"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Stress reduces working memory capacity to 2-3 pieces of information. Breaking information into small chunks improves comprehension and retention."
+      },
+      {
+        "id": 6,
+        "type": "multiple_choice",
+        "question": "The most appropriate response to a customer's anger about their situation is to:",
+        "options": [
+          "A) Explain why they shouldn't be angry",
+          "B) Don't take it personally, acknowledge feelings, redirect to solutions",
+          "C) Match their emotional intensity to show empathy",
+          "D) Leave and return when they've calmed down"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Anger is a normal response to crisis. Professional empathy involves acknowledging emotions while maintaining boundaries and focusing on constructive solutions."
+      },
+      {
+        "id": 7,
+        "type": "multiple_choice",
+        "question": "Which of the following best demonstrates 'Professional Intimacy' in the Trust Equation?",
+        "options": [
+          "A) Sharing personal stories about your own home damage",
+          "B) Active listening and reflecting back what you've heard",
+          "C) Offering to help with non-restoration related tasks",
+          "D) Becoming friends with the customer on social media"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Professional intimacy involves building rapport through active listening, empathy, and demonstrating understanding while maintaining appropriate professional boundaries."
+      },
+      {
+        "id": 8,
+        "type": "multiple_choice",
+        "question": "If you make a cultural mistake with a customer, the best recovery approach is:",
+        "options": [
+          "A) Ignore it and hope they don't notice",
+          "B) Acknowledge, apologize simply, ask what works better, and adapt",
+          "C) Explain your cultural background to justify the mistake",
+          "D) Over-apologize and dwell on the mistake"
+        ],
+        "correctAnswer": "B",
+        "explanation": "Cultural mistake recovery involves acknowledging the error, offering a simple apology, asking for guidance, and immediately adapting behavior."
+      },
+      {
+        "id": 9,
+        "type": "multiple_choice",
+        "question": "During the 'Reality Setting In' phase (3-7 days), customers typically focus on:",
+        "options": [
+          "A) Denying that damage occurred",
+          "B) Questions about timeline, costs, and insurance coverage",
+          "C) Future planning and detailed explanations",
+          "D) Emotional numbness and confusion"
+        ],
+        "correctAnswer": "B",
+        "explanation": "During the Reality Setting In phase, customers begin processing the practical implications and ask concrete questions about restoration logistics."
+      },
+      {
+        "id": 10,
+        "type": "multiple_choice",
+        "question": "When dealing with customers who show 'freeze response' behaviors, you should:",
+        "options": [
+          "A) Make all decisions for them quickly",
+          "B) Give them unlimited options to choose from",
+          "C) Break decisions into smaller steps and provide gentle guidance",
+          "D) Insist they must make decisions immediately"
+        ],
+        "correctAnswer": "C",
+        "explanation": "Freeze response involves decision-making paralysis. Breaking decisions into manageable steps with gentle guidance helps customers regain control."
+      }
+    ]
+  },
+  
+  "scenarioAnalysis": {
+    "instructions": "Read each scenario and provide your response strategy. Each scenario is worth 25 points.",
+    "scenarios": [
+      {
+        "id": 1,
+        "title": "The Angry Customer",
+        "scenario": "You arrive at a flood-damaged home where the customer immediately starts yelling: 'This is the third contractor this week! Nobody knows what they're doing! My insurance company is useless, and now my whole house is ruined!' The customer appears agitated and is pacing around the room.",
+        "assessmentCriteria": [
+          "Recognizes anger as normal crisis response (5 points)",
+          "Avoids taking anger personally (5 points)", 
+          "Acknowledges customer's feelings appropriately (5 points)",
+          "Redirects to solutions without dismissing emotions (5 points)",
+          "Demonstrates understanding of stress impact on behavior (5 points)"
+        ],
+        "sampleResponse": "I can see this has been incredibly frustrating for you, and I understand why you're feeling overwhelmed. It's completely normal to feel angry when your home has been damaged and you're not getting the support you need. I'm here to listen to your concerns and work with you to create a clear plan for moving forward. Can we sit down so I can understand exactly what's happened and what your biggest concerns are right now?"
+      },
+      {
+        "id": 2,
+        "title": "Cultural Communication Challenge",
+        "scenario": "You're working with the Martinez family, where the grandmother primarily speaks Spanish and seems to be the family decision-maker. The adult son translates but appears frustrated that you keep directing questions to him instead of his grandmother. The family seems hesitant to make decisions and keeps saying they need to discuss things as a family.",
+        "assessmentCriteria": [
+          "Recognizes cultural communication dynamics (5 points)",
+          "Adapts approach to respect family hierarchy (5 points)",
+          "Shows patience with collective decision-making process (5 points)",
+          "Demonstrates cultural sensitivity without stereotyping (5 points)",
+          "Offers appropriate accommodations (language, timing, etc.) (5 points)"
+        ],
+        "sampleResponse": "I apologize if I haven't been directing my communication appropriately. I'd like to make sure I'm respectfully working with your family's decision-making process. Would it be helpful if I arrange for a Spanish-speaking team member to join us, or would you prefer to continue with translation? I'm happy to give you time to discuss things as a family and can schedule a follow-up meeting when everyone is ready to move forward together."
+      }
+    ]
+  },
+
+  "practicalApplication": {
+    "title": "Customer Communication Checklist Creation",
+    "instructions": "Based on the module content, create a personal checklist for first customer meetings that incorporates psychological and cultural sensitivity principles. Your checklist should include at least 8 items and demonstrate understanding of crisis psychology concepts.",
+    "pointValue": 25,
+    "assessmentCriteria": [
+      "Includes psychological assessment considerations (5 points)",
+      "Addresses trust-building elements (5 points)",
+      "Incorporates cultural sensitivity practices (5 points)",
+      "Shows understanding of stress impact on communication (5 points)",
+      "Demonstrates practical application of course concepts (5 points)"
+    ],
+    "sampleItems": [
+      "Assess customer's emotional state and adjust communication pace accordingly",
+      "Ask about family decision-making preferences and who should be included",
+      "Acknowledge the emotional impact of the situation on their family",
+      "Provide information in small, digestible chunks",
+      "Ask about communication preferences (phone, email, text, in-person)",
+      "Respect cultural and religious considerations for work scheduling",
+      "Establish clear, realistic timelines with buffer time",
+      "Document customer preferences and concerns in writing"
+    ]
+  }
+}

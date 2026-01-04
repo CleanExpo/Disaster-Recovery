@@ -1,0 +1,45 @@
+{
+  "moduleId": "CSE-M10",
+  "courseId": "CSE-001",
+  "title": "Final Assessment",
+  "duration": "60 min",
+  "durationMinutes": 60,
+  "sequence": 10,
+  "locked": true,
+  "completed": false,
+  "learningObjectives": [
+    "Demonstrate comprehensive understanding of customer service principles",
+    "Apply learned skills in realistic role-playing scenarios",
+    "Successfully complete written assessment covering all modules",
+    "Meet certification requirements for Customer Service Excellence"
+  ],
+  "lessons": [
+    "Review of key concepts",
+    "Role-playing scenarios",
+    "Written assessment",
+    "Certification requirements"
+  ],
+  "keyTopics": [
+    "Comprehensive review",
+    "Practical application",
+    "Assessment completion",
+    "Certification achievement"
+  ],
+  "prerequisites": "Module 9: Building Long-term Relationships",
+  "assessmentType": "Comprehensive written exam and practical demonstration",
+  "passingScore": 85,
+  "resources": [
+    "Course Summary Guide",
+    "Assessment Study Materials",
+    "Practical Scenario Library"
+  ],
+  "practicalComponents": [
+    "Comprehensive role-play assessment",
+    "Written examination",
+    "Practical skills demonstration"
+  ],
+  "isFinalAssessment": true,
+  "certificationEligible": true,
+  "createdDate": "2024-01-01",
+  "version": "1.0"
+}
