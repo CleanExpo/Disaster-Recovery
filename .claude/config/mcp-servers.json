@@ -1,5 +1,11 @@
 {
   "mcpServers": {
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=lccqasmurmsisnnjqqmr",
+      "description": "Supabase database and realtime operations",
+      "enabled": true
+    },
     "playwright": {
       "command": "npx",
       "args": ["-y", "@anthropic-ai/mcp-playwright"],
