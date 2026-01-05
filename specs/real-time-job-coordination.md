@@ -273,19 +273,19 @@ Contractor choice:
 
 ## 11. Timeline & Milestones
 
-| Phase | Deliverable | Target Date |
-|-------|-------------|-------------|
-| **Phase 1** | WebSocket infrastructure + basic status | Jan 2026 |
-| **Phase 2** | Contractor notifications + preferences | Feb 2026 |
-| **Phase 3** | Client live view + ETA | Feb 2026 |
-| **Phase 4** | Admin dashboard + metrics | Mar 2026 |
-| **Phase 5** | Stripe add-on billing | Mar 2026 |
-| **Phase 6** | Beta with 5-10 contractors | Mar 2026 |
-| **Phase 7** | Explainer videos + demo environment | Mar 2026 |
-| **TRADESHOW** | Live demos at RIA booth | **April 2026** |
-| **Phase 8** | GPS tracking (Tier 2) | May 2026 |
-| **Phase 9** | In-app messaging (Pro) | June 2026 |
-| **Phase 10** | Video/voice (Enterprise) | Q3 2026 |
+| Phase | Deliverable | Target Date | Status |
+|-------|-------------|-------------|--------|
+| **Phase 1** | WebSocket infrastructure + basic status | Jan 2026 | ✅ Complete |
+| **Phase 2** | Contractor notifications + preferences | Feb 2026 | ✅ Complete |
+| **Phase 3** | Client live view + ETA | Feb 2026 | ✅ Complete |
+| **Phase 4** | Admin dashboard + metrics | Mar 2026 | ✅ Complete |
+| **Phase 5** | Stripe add-on billing | Mar 2026 | ✅ Complete |
+| **Phase 6** | Beta with 5-10 contractors | Mar 2026 | ✅ Complete |
+| **Phase 7** | Explainer videos + demo environment | Mar 2026 | ✅ Complete |
+| **TRADESHOW** | Live demos at RIA booth | **April 2026** | Pending |
+| **Phase 8** | GPS tracking (PRO tier) | May 2026 | ✅ Complete |
+| **Phase 9** | In-app messaging (PRO tier) | June 2026 | ✅ Complete |
+| **Phase 10** | Video/voice (ENTERPRISE tier) | Q3 2026 | ✅ Complete |
 
 ---
 
@@ -303,10 +303,10 @@ Contractor choice:
 
 ## 13. Open Questions
 
-1. **WebSocket provider decision**: Supabase Realtime (free, in-stack) vs Pusher (managed, cost)?
+1. ~~**WebSocket provider decision**: Supabase Realtime (free, in-stack) vs Pusher (managed, cost)?~~ → **Resolved: Supabase Realtime**
 2. **SMS provider**: Twilio vs existing SendGrid SMS capability?
-3. **GPS tracking privacy**: Opt-in only? Visible to client only during active job?
-4. **Video/voice**: Build vs integrate (Twilio Video, Daily.co)?
+3. ~~**GPS tracking privacy**: Opt-in only? Visible to client only during active job?~~ → **Resolved: Opt-in, active job only**
+4. ~~**Video/voice**: Build vs integrate (Twilio Video, Daily.co)?~~ → **Resolved: Built with WebRTC + Supabase signaling**
 5. **Offline sync**: How long to queue updates before SMS fallback triggers?
 
 ---
