@@ -143,6 +143,7 @@ export async function GET(request: NextRequest) {
       hasLiveEta: tierLevel >= 2, // PRO+
       hasMessaging: tierLevel >= 2, // PRO+
       hasGpsTracking: tierLevel >= 2, // PRO+ (moved from ENTERPRISE in Phase 8)
+      hasVideoCalls: tierLevel >= 3, // ENTERPRISE only (Phase 10)
       isBetaAccess,
     }
 

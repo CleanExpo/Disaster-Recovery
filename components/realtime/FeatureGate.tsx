@@ -7,7 +7,7 @@ import type { RealtimeTier } from '@/lib/supabase/types'
 interface FeatureGateProps {
   jobId: string
   requiredTier: 'PRO' | 'ENTERPRISE'
-  feature: 'liveEta' | 'messaging' | 'gpsTracking'
+  feature: 'liveEta' | 'messaging' | 'gpsTracking' | 'videoCalls'
   children: React.ReactNode
   fallback?: React.ReactNode
   showBetaBadge?: boolean
@@ -61,7 +61,7 @@ export function FeatureGate({
 
 interface TierUpgradePromptProps {
   requiredTier: 'PRO' | 'ENTERPRISE'
-  feature: 'liveEta' | 'messaging' | 'gpsTracking'
+  feature: 'liveEta' | 'messaging' | 'gpsTracking' | 'videoCalls'
   compact?: boolean
 }
 
@@ -80,6 +80,10 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
     gpsTracking: {
       title: 'Live GPS Tracking',
       description: 'Watch your contractor\'s location in real-time on the map',
+    },
+    videoCalls: {
+      title: 'Video/Voice Calls',
+      description: 'Make video or voice calls directly with your contractor for urgent communication',
     },
   }
 

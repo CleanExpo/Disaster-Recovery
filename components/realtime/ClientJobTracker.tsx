@@ -9,10 +9,12 @@ import { ETADisplay } from './ETADisplay'
 import { MapPreview } from './MapPreview'
 import { FeatureGate, TierUpgradePrompt } from './FeatureGate'
 import { JobMessaging } from './JobMessaging'
+import { JobCallButton } from './JobCallButton'
 import { useRealtimeConnection } from '@/hooks/useRealtimeConnection'
 import { useContractorLocation } from '@/hooks/useContractorLocation'
 import { useETACalculation } from '@/hooks/useETACalculation'
 import { useTierGating } from '@/hooks/useTierGating'
+import { useJobCall } from '@/hooks/useJobCall'
 import type {
   JobStatus,
   RealtimeJobEvent,
@@ -23,6 +25,14 @@ import type {
   MessageSentEvent,
   TypingStartEvent,
   TypingStopEvent,
+  // Phase 10: Call events
+  CallInitiatedEvent,
+  CallAcceptedEvent,
+  CallRejectedEvent,
+  CallEndedEvent,
+  SDPOfferEvent,
+  SDPAnswerEvent,
+  ICECandidateEvent,
 } from '@/lib/supabase/types'
 import { cn } from '@/lib/utils'
 
@@ -91,9 +101,18 @@ export function ClientJobTracker({
   const [isContractorTyping, setIsContractorTyping] = useState(false)
 
   // Tier gating
-  const { tier, hasLiveEta, hasMessaging, hasGpsTracking, isLoading: tierLoading } = useTierGating({
+  const { tier, hasLiveEta, hasMessaging, hasGpsTracking, hasVideoCalls, isLoading: tierLoading } = useTierGating({
     jobId,
   })
+
+  // Phase 10: Job call functionality
+  const {
+    call: activeCall,
+    handleIncomingCall,
+    handleSDPOffer,
+    handleSDPAnswer,
+    handleICECandidate,
+  } = useJobCall({ jobId })
 
   // Live ETA calculation
   const { eta: etaData, refetch: refetchETA } = useETACalculation({
@@ -217,6 +236,11 @@ export function ClientJobTracker({
     onMessageSent: handleMessageSent,
     onTypingStart: handleTypingStart,
     onTypingStop: handleTypingStop,
+    // Phase 10: Call event handlers
+    onCallInitiated: handleIncomingCall,
+    onSDPOffer: handleSDPOffer,
+    onSDPAnswer: handleSDPAnswer,
+    onICECandidate: handleICECandidate,
     onConnectionChange: setConnectionStatus,
   })
 
@@ -493,6 +517,14 @@ export function ClientJobTracker({
                 </div>
               </div>
               <div className="flex flex-col gap-2">
+                {/* Phase 10: Video/Voice Call Button */}
+                {job.status !== 'pending' && job.status !== 'completed' && job.status !== 'cancelled' && (
+                  <JobCallButton
+                    jobId={jobId}
+                    recipientName={job.contractor.businessName}
+                    recipientAvatar={job.contractor.avatar}
+                  />
+                )}
                 {!hasMessaging && job.status !== 'pending' && (
                   <TierUpgradePrompt requiredTier="PRO" feature="messaging" compact />
                 )}

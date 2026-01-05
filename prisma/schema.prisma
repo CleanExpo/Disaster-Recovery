@@ -3061,6 +3061,36 @@ model JobMessage {
   @@map("job_messages")
 }
 
+// Phase 10: Video/Voice Call History
+model JobCall {
+  id            String    @id @default(cuid())
+  jobId         String // Links to ServiceRequest
+
+  // Participants
+  initiatorId   String
+  initiatorType String // 'client' | 'contractor'
+  receiverId    String
+  receiverType  String // 'client' | 'contractor'
+
+  // Call details
+  callType      String // 'video' | 'voice'
+  status        String    @default("initiated") // initiated, ringing, active, ended, missed, rejected
+
+  // Timing
+  startedAt     DateTime?
+  endedAt       DateTime?
+  duration      Int? // Duration in seconds
+
+  // Metadata
+  createdAt     DateTime  @default(now())
+
+  @@index([jobId])
+  @@index([initiatorId])
+  @@index([receiverId])
+  @@index([status])
+  @@map("job_calls")
+}
+
 // ============================================================================
 // PHASE 6: BETA PROGRAM INFRASTRUCTURE
 // Beta testing infrastructure for real-time job coordination feature

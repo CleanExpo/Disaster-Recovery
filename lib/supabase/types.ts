@@ -49,6 +49,16 @@ export type RealtimeJobEventType =
   | 'MESSAGE_READ'
   | 'TYPING_START'
   | 'TYPING_STOP'
+  // Phase 10: Video/Voice Call Events
+  | 'CALL_INITIATED'
+  | 'CALL_RINGING'
+  | 'CALL_ACCEPTED'
+  | 'CALL_REJECTED'
+  | 'CALL_ENDED'
+  | 'CALL_MISSED'
+  | 'ICE_CANDIDATE'
+  | 'SDP_OFFER'
+  | 'SDP_ANSWER'
 
 export type RealtimeJobEvent = {
   type: RealtimeJobEventType
@@ -132,6 +142,61 @@ export interface TypingStopEvent extends RealtimeJobEvent {
   senderType: 'client' | 'contractor'
 }
 
+// Phase 10: Video/Voice Call types
+export type CallType = 'video' | 'voice'
+export type CallStatus = 'initiated' | 'ringing' | 'active' | 'ended' | 'missed' | 'rejected'
+
+export interface CallEvent extends RealtimeJobEvent {
+  callId: string
+  callType: CallType
+  senderId: string
+  senderType: 'client' | 'contractor'
+}
+
+export interface CallInitiatedEvent extends CallEvent {
+  type: 'CALL_INITIATED'
+  receiverId: string
+  receiverType: 'client' | 'contractor'
+}
+
+export interface CallRingingEvent extends CallEvent {
+  type: 'CALL_RINGING'
+}
+
+export interface CallAcceptedEvent extends CallEvent {
+  type: 'CALL_ACCEPTED'
+}
+
+export interface CallRejectedEvent extends CallEvent {
+  type: 'CALL_REJECTED'
+  reason?: string
+}
+
+export interface CallEndedEvent extends CallEvent {
+  type: 'CALL_ENDED'
+  duration?: number // seconds
+  endedBy: string
+}
+
+export interface CallMissedEvent extends CallEvent {
+  type: 'CALL_MISSED'
+}
+
+export interface SDPOfferEvent extends CallEvent {
+  type: 'SDP_OFFER'
+  sdp: RTCSessionDescriptionInit
+}
+
+export interface SDPAnswerEvent extends CallEvent {
+  type: 'SDP_ANSWER'
+  sdp: RTCSessionDescriptionInit
+}
+
+export interface ICECandidateEvent extends CallEvent {
+  type: 'ICE_CANDIDATE'
+  candidate: RTCIceCandidateInit
+}
+
 // Tier types
 export type RealtimeTier = 'BASIC' | 'PRO' | 'ENTERPRISE'
 
@@ -140,5 +205,6 @@ export interface TierAccess {
   hasLiveEta: boolean
   hasMessaging: boolean
   hasGpsTracking: boolean
+  hasVideoCalls: boolean // Phase 10: ENTERPRISE only
   isBetaAccess?: boolean
 }

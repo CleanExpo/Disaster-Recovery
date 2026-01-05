@@ -23,6 +23,7 @@ export function useTierGating({
     hasLiveEta: false,
     hasMessaging: false,
     hasGpsTracking: false,
+    hasVideoCalls: false,
     isBetaAccess: false,
   })
   const [isLoading, setIsLoading] = useState(true)
@@ -51,6 +52,7 @@ export function useTierGating({
         hasLiveEta: false,
         hasMessaging: false,
         hasGpsTracking: false,
+        hasVideoCalls: false,
         isBetaAccess: false,
       })
     } finally {
@@ -129,7 +131,7 @@ export function getTierInfo(tier: RealtimeTier | null): {
 // Helper to check if user can access a feature
 export function canAccessFeature(
   tier: RealtimeTier | null,
-  feature: 'liveEta' | 'messaging' | 'gpsTracking'
+  feature: 'liveEta' | 'messaging' | 'gpsTracking' | 'videoCalls'
 ): boolean {
   const tierOrder: Record<string, number> = {
     BASIC: 1,
@@ -144,6 +146,8 @@ export function canAccessFeature(
     case 'messaging':
     case 'gpsTracking':
       return tierLevel >= 2 // PRO+ (GPS moved from ENTERPRISE in Phase 8)
+    case 'videoCalls':
+      return tierLevel >= 3 // ENTERPRISE only (Phase 10)
     default:
       return false
   }

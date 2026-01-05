@@ -14,6 +14,15 @@ import type {
   TypingStartEvent,
   TypingStopEvent,
   ContractorLocation,
+  // Phase 10: Call events
+  CallInitiatedEvent,
+  CallAcceptedEvent,
+  CallRejectedEvent,
+  CallEndedEvent,
+  CallMissedEvent,
+  SDPOfferEvent,
+  SDPAnswerEvent,
+  ICECandidateEvent,
 } from '@/lib/supabase/types'
 
 interface UseRealtimeConnectionOptions {
@@ -27,6 +36,15 @@ interface UseRealtimeConnectionOptions {
   onMessageRead?: (event: MessageReadEvent) => void
   onTypingStart?: (event: TypingStartEvent) => void
   onTypingStop?: (event: TypingStopEvent) => void
+  // Phase 10: Call event callbacks
+  onCallInitiated?: (event: CallInitiatedEvent) => void
+  onCallAccepted?: (event: CallAcceptedEvent) => void
+  onCallRejected?: (event: CallRejectedEvent) => void
+  onCallEnded?: (event: CallEndedEvent) => void
+  onCallMissed?: (event: CallMissedEvent) => void
+  onSDPOffer?: (event: SDPOfferEvent) => void
+  onSDPAnswer?: (event: SDPAnswerEvent) => void
+  onICECandidate?: (event: ICECandidateEvent) => void
   onConnectionChange?: (status: ConnectionStatus) => void
   autoReconnect?: boolean
   reconnectInterval?: number
@@ -51,6 +69,15 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     onMessageRead,
     onTypingStart,
     onTypingStop,
+    // Phase 10: Call callbacks
+    onCallInitiated,
+    onCallAccepted,
+    onCallRejected,
+    onCallEnded,
+    onCallMissed,
+    onSDPOffer,
+    onSDPAnswer,
+    onICECandidate,
     onConnectionChange,
     autoReconnect = true,
     reconnectInterval = 5000,
@@ -65,6 +92,15 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     onMessageRead,
     onTypingStart,
     onTypingStop,
+    // Phase 10: Call callbacks
+    onCallInitiated,
+    onCallAccepted,
+    onCallRejected,
+    onCallEnded,
+    onCallMissed,
+    onSDPOffer,
+    onSDPAnswer,
+    onICECandidate,
   })
   callbacksRef.current = {
     onJobEvent,
@@ -74,6 +110,15 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     onMessageRead,
     onTypingStart,
     onTypingStop,
+    // Phase 10: Call callbacks
+    onCallInitiated,
+    onCallAccepted,
+    onCallRejected,
+    onCallEnded,
+    onCallMissed,
+    onSDPOffer,
+    onSDPAnswer,
+    onICECandidate,
   }
 
   // Route event to appropriate callback based on type
@@ -98,6 +143,31 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
         break
       case 'TYPING_STOP':
         callbacks.onTypingStop?.(event as TypingStopEvent)
+        break
+      // Phase 10: Call events
+      case 'CALL_INITIATED':
+        callbacks.onCallInitiated?.(event as CallInitiatedEvent)
+        break
+      case 'CALL_ACCEPTED':
+        callbacks.onCallAccepted?.(event as CallAcceptedEvent)
+        break
+      case 'CALL_REJECTED':
+        callbacks.onCallRejected?.(event as CallRejectedEvent)
+        break
+      case 'CALL_ENDED':
+        callbacks.onCallEnded?.(event as CallEndedEvent)
+        break
+      case 'CALL_MISSED':
+        callbacks.onCallMissed?.(event as CallMissedEvent)
+        break
+      case 'SDP_OFFER':
+        callbacks.onSDPOffer?.(event as SDPOfferEvent)
+        break
+      case 'SDP_ANSWER':
+        callbacks.onSDPAnswer?.(event as SDPAnswerEvent)
+        break
+      case 'ICE_CANDIDATE':
+        callbacks.onICECandidate?.(event as ICECandidateEvent)
         break
       default:
         // For standard job events (NEW_JOB, STATUS_CHANGED, etc.)

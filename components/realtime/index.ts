@@ -15,6 +15,9 @@ export { JobMessaging, MessageBubble } from './JobMessaging'
 // Phase 9: Messaging Components
 export { UnreadBadge, MessageIconWithBadge } from './UnreadBadge'
 
+// Phase 10: Video/Voice Call Components
+export { JobCallButton } from './JobCallButton'
+
 // Phase 5: Billing Components
 export { PricingCard, TIER_FEATURES } from './PricingCard'
 export { SubscriptionManager } from './SubscriptionManager'
