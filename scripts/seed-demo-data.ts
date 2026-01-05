@@ -12,7 +12,8 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 // Demo credentials (use strong passwords in production)
-const DEMO_PASSWORD_HASH = '$2a$10$K7L1OJ45/4Y2nIvhRVpCe.FSmhDdWoXehVzJptJ/op0lSsvqNu/1u' // 'demo2026'
+// Hash generated with: bcrypt.hash('demo2026', 10)
+const DEMO_PASSWORD_HASH = '$2b$10$2JOG1iQ9zXvjCvxS0DpLCuXrmB7Snh1lzxESHeUvk8XCzfmh3KvC2' // 'demo2026'
 
 async function seedDemoData() {
   console.log('🎪 Starting RIA Tradeshow Demo Data Seeding...\n')
