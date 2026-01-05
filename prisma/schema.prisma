@@ -460,6 +460,13 @@ model ContractorServiceArea {
   isActive            Boolean @default(true)
   responseTimeMinutes Int
 
+  // Search Dominance: SEO Performance Tracking
+  seoActivated    Boolean  @default(false)
+  activatedAt     DateTime?
+  landingPageUrl  String?
+  currentRank     Int? // Average ranking position for this location
+  monthlySearches Int? // Estimated monthly searches for this location
+
   // Audit
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -468,6 +475,7 @@ model ContractorServiceArea {
   @@index([postcode])
   @@index([state])
   @@index([contractorId])
+  @@index([seoActivated]) // Search Dominance: Index for active SEO locations
 }
 
 // ============================================================================
@@ -1807,6 +1815,12 @@ model Competitor {
   keywords     CompetitorKeyword[]
   backlinks    Backlink[]
   swotAnalyses SWOTAnalysis[]
+  snapshots    CompetitorSnapshot[] // Search Dominance: Point-in-time tracking
+
+  // Search Dominance Tracking
+  lastSnapshotAt  DateTime?
+  contentVelocity Float    @default(0) // Articles/week
+  threatLevel     String   @default("LOW") // LOW, MEDIUM, HIGH
 
   discoveredAt   DateTime  @default(now())
   lastAnalyzedAt DateTime?
@@ -1972,6 +1986,251 @@ model KeywordOpportunity {
   @@index([gapScore])
   @@index([category])
   @@map("keyword_opportunities")
+}
+
+// ============================================================================
+// SEARCH DOMINANCE SYSTEM - REAL-TIME SEO INTELLIGENCE
+// ============================================================================
+
+// Time-series ranking data for keyword tracking
+model RankingRecord {
+  id               String   @id @default(cuid())
+  keyword          String
+  position         Int
+  previousPosition Int?
+  url              String
+  searchVolume     Int?
+  location         String   @default("Australia") // "Brisbane", "Queensland", "Australia"
+  device           String   @default("desktop") // desktop, mobile
+
+  // SERP Features
+  hasFeaturedSnippet Boolean @default(false)
+  hasLocalPack       Boolean @default(false)
+  hasAIOverview      Boolean @default(false) // Google AI Overview present
+  isInAIOverview     Boolean @default(false) // Are WE cited in AI Overview?
+  aiOverviewPosition Int? // Position within AI Overview if cited
+
+  // Competitor tracking (JSON for flexibility)
+  competitorPositions Json? @db.JsonB // { "competitor.com.au": 3, "rival.com.au": 5 }
+
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([keyword, timestamp])
+  @@index([location, timestamp])
+  @@index([position])
+  @@index([isInAIOverview]) // Filter for AI citations
+  @@map("ranking_records")
+}
+
+// Time-series traffic data from GSC + GA4
+model TrafficRecord {
+  id String @id @default(cuid())
+
+  // Core Metrics
+  organicSessions Int
+  impressions     Int
+  clicks          Int
+  ctr             Float // Click-through rate
+  conversions     Int   @default(0)
+  conversionRate  Float @default(0)
+
+  // Segmentation
+  location    String? // Geographic location
+  landingPage String? // Which page drove traffic
+  device      String? // desktop, mobile, tablet
+
+  // Attribution
+  source String @default("google-search-console") // gsc, ga4, combined
+
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([timestamp])
+  @@index([location, timestamp])
+  @@index([landingPage])
+  @@map("traffic_records")
+}
+
+// Point-in-time competitor snapshots for trend analysis
+model CompetitorSnapshot {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  // Metrics snapshot
+  organicKeywords  Int
+  organicTraffic   Int
+  domainAuthority  Int?
+  backlinks        Int?
+  rankingKeywords  Int // How many keywords they rank for
+  topTenKeywords   Int // How many in top 10
+
+  // Content metrics
+  publishedContent Int      @default(0) // Total published articles
+  contentVelocity  Float    @default(0) // Articles/week
+  newContent       String[] // URLs of new content detected
+
+  // Activity detection
+  majorUpdate Boolean @default(false) // Significant change detected
+
+  timestamp DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([competitorId, timestamp])
+  @@index([timestamp])
+  @@index([majorUpdate])
+  @@map("competitor_snapshots")
+}
+
+// Blue Ocean opportunities - untapped keyword/topic opportunities
+model BlueOceanOpportunity {
+  id String @id @default(cuid())
+
+  // Opportunity details
+  keyword  String? // Specific keyword
+  topic    String? // Broader topic/theme
+  category String // adjacent_problem, question_mining, emerging_trend, etc.
+
+  // Scoring inputs
+  searchVolume   Int
+  growthRate     Float // % monthly growth
+  competitionGap Float // 0-1 (lower = less competition, higher opportunity)
+  opportunityScore Int  // 0-100 calculated score
+
+  // Analysis
+  currentRank     Int? // Our current ranking (if any)
+  competitorCount Int // How many competitors rank
+  contentGap      String? @db.Text // What's missing from existing content
+  userIntent      String? // informational, commercial, transactional
+
+  // Status & workflow
+  status     String   @default("DETECTED") // DETECTED, ANALYZING, APPROVED, IN_PROGRESS, COMPLETED, REJECTED
+  priority   String   @default("MEDIUM") // LOW, MEDIUM, HIGH, CRITICAL
+  assignedTo String?
+
+  // Metadata
+  detectedAt     DateTime  @default(now())
+  lastAnalyzedAt DateTime  @default(now())
+  completedAt    DateTime?
+
+  // Related data
+  relatedKeywords String[] // Array of related keywords
+
+  @@index([opportunityScore])
+  @@index([status])
+  @@index([detectedAt])
+  @@index([priority])
+  @@map("blue_ocean_opportunities")
+}
+
+// Algorithm update tracking and response management
+model AlgorithmUpdate {
+  id String @id @default(cuid())
+
+  // Update details
+  name String // "March 2024 Core Update"
+  type String // core, helpful_content, spam, local, ai_overview
+
+  // Impact measurement
+  volatility     Float // 0-10 (SEMrush sensor scale)
+  impactScore    Int   // 0-100 (our calculated impact)
+  rankingChanges Int   @default(0) // Number of keywords affected
+  trafficImpact  Float @default(0) // % change in traffic
+
+  // Analysis
+  affectedKeywords String[] // Keywords that moved significantly
+  recommendations  Json     @db.JsonB // Structured recommendations
+
+  // Actions
+  actionsRequired  Json @default("[]") @db.JsonB // List of action items
+  actionsCompleted Json @default("[]") @db.JsonB // Completed actions
+
+  // Timeline
+  detectedAt DateTime  @default(now())
+  startDate  DateTime? // When Google started rolling out
+  endDate    DateTime? // When rollout completed
+
+  // Status
+  status String @default("MONITORING") // MONITORING, ANALYZING, RESPONDING, COMPLETED
+
+  @@index([detectedAt])
+  @@index([type])
+  @@index([status])
+  @@map("algorithm_updates")
+}
+
+// Daily dominance metrics aggregation (performance cache)
+model DominanceMetrics {
+  id String @id @default(cuid())
+
+  // Core score (0-100)
+  dominanceScore Int
+
+  // Ranking breakdown
+  position1Count     Int // Number of #1 rankings
+  position1to3Count  Int // Top 3 rankings
+  position1to10Count Int // Top 10 rankings
+  totalKeywords      Int // Total tracked keywords
+
+  // AI Overview performance
+  aiOverviewCitations Int   @default(0) // How many AI citations
+  aiOverviewRate      Float @default(0) // % of queries with AI citations
+
+  // Traffic
+  dailySessions    Int
+  dailyImpressions Int
+  dailyConversions Int
+
+  // Territory
+  activeLocations Int // Number of active contractor locations
+  totalCoverage   Float // % of target locations active
+
+  // Competitive position
+  competitorsTracked Int
+  competitiveThreat  String @default("LOW") // LOW, MEDIUM, HIGH
+
+  date      DateTime @unique // One record per day
+  createdAt DateTime @default(now())
+
+  @@index([date])
+  @@map("dominance_metrics")
+}
+
+// Real-time search alerts
+model SearchAlert {
+  id String @id @default(cuid())
+
+  // Alert classification
+  type     String // rank_drop, competitor_movement, opportunity, algorithm, traffic_spike
+  severity String @default("INFO") // INFO, WARNING, CRITICAL
+
+  // Message
+  title   String
+  message String @db.Text
+
+  // Context (optional)
+  keyword    String?
+  competitor String?
+  metric     String?
+  oldValue   String?
+  newValue   String?
+
+  // Action
+  actionRequired Boolean @default(false)
+  actionUrl      String?
+
+  // Status
+  acknowledged   Boolean  @default(false)
+  acknowledgedBy String?
+  acknowledgedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([severity, acknowledged])
+  @@index([type])
+  @@map("search_alerts")
 }
 
 // ============================================================================

@@ -115,3 +115,5 @@ _archive/
 .worktrees/
 nul
 australia-3d-map/
+
+.vercel

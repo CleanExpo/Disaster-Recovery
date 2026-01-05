@@ -37,5 +37,32 @@
     }
   ],
 
+  "crons": [
+    {
+      "path": "/api/search-dominance/cron/rank-tracking",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/traffic-sync",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/competitor-snapshot",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/dominance-aggregation",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/blue-ocean-scan",
+      "schedule": "0 1 * * 1"
+    },
+    {
+      "path": "/api/search-dominance/cron/algorithm-monitor",
+      "schedule": "0 */6 * * *"
+    }
+  ],
+
   "regions": ["syd1"]
 }

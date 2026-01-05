@@ -19,22 +19,19 @@ import {
   type QAResult,
   type OperationsResult
 } from "./index";
+import { logDebug, logError } from '@/lib/logger/helpers';
 
 /**
  * Complete NRPG report processing workflow
  */
 export async function processNRPGReport(jobId: string) {
-  console.log(`\n${"=".repeat(80)}`);
-  console.log(`NRPG REPORT PROCESSING WORKFLOW - Job ID: ${jobId}`);
-  console.log(`${"=".repeat(80)}\n`);
+  logDebug(`NRPG REPORT PROCESSING WORKFLOW - Job ID: ${jobId}`, { jobId });
 
   try {
     // ========================================================================
     // STEP 1: DATA INTAKE
     // ========================================================================
-    console.log("📥 STEP 1: DATA INTAKE");
-    console.log("-".repeat(80));
-    console.log("Collecting data from ServiceM8...\n");
+    logDebug("STEP 1: DATA INTAKE - Collecting data from ServiceM8", { jobId });
 
     const report = await executeDataIntakeAgent({
       jobId,
@@ -43,33 +40,29 @@ export async function processNRPGReport(jobId: string) {
       jurisdiction: "QLD"
     });
 
-    console.log("✅ Data intake complete");
-    console.log(`   Session ID: ${report.sessionId}`);
-    console.log(`   Report sections: ${report.sections?.length || 0}`);
-    console.log(`   Photos analyzed: ${report.photosAnalyzed || 0}\n`);
+    logDebug("Data intake complete", {
+      sessionId: report.sessionId,
+      sections: report.sections?.length || 0,
+      photosAnalyzed: report.photosAnalyzed || 0
+    });
 
     // ========================================================================
     // STEP 2: QUALITY ASSURANCE
     // ========================================================================
-    console.log("🔍 STEP 2: QUALITY ASSURANCE");
-    console.log("-".repeat(80));
-    console.log("Running multi-step QA process...\n");
+    logDebug("STEP 2: QUALITY ASSURANCE - Running multi-step QA process", { jobId });
 
     const qaResult: QAResult = await executeQualityAssuranceAgent(report);
 
     // Display QA summary
-    console.log(generateQASummary(qaResult));
-    console.log();
+    logDebug("QA Summary", { summary: generateQASummary(qaResult) });
 
     // Check if approved
     if (qaResult.status !== "APPROVED") {
-      console.log("❌ WORKFLOW TERMINATED: Report not approved");
-      console.log(`   Status: ${qaResult.status}`);
-      console.log(`   Compliance Score: ${qaResult.complianceScore}/100`);
-      console.log(`   Risk Flags: ${qaResult.riskFlags.length}`);
-      console.log("\n📋 Required Actions:");
-      qaResult.requiredActions.forEach((action, i) => {
-        console.log(`   ${i + 1}. ${action}`);
+      logDebug("WORKFLOW TERMINATED: Report not approved", {
+        status: qaResult.status,
+        complianceScore: qaResult.complianceScore,
+        riskFlags: qaResult.riskFlags.length,
+        requiredActions: qaResult.requiredActions
       });
       return {
         success: false,
@@ -80,43 +73,37 @@ export async function processNRPGReport(jobId: string) {
 
     // Check quality thresholds
     if (!meetsQualityThresholds(qaResult)) {
-      console.log("⚠️  WORKFLOW WARNING: Quality thresholds not met");
-      console.log(`   Compliance Score: ${qaResult.complianceScore}/100 (need ≥85)`);
-      console.log(`   Risk Flags: ${qaResult.riskFlags.length} (need 0)`);
-      console.log("\n   Proceeding with caution...\n");
+      logDebug("WORKFLOW WARNING: Quality thresholds not met - Proceeding with caution", {
+        complianceScore: qaResult.complianceScore,
+        required: 85,
+        riskFlags: qaResult.riskFlags.length
+      });
     }
 
-    console.log("✅ Quality assurance passed");
-    console.log(`   Compliance Score: ${qaResult.complianceScore}/100`);
-    console.log(`   Risk Flags: ${qaResult.riskFlags.length}`);
-    console.log(`   Session ID: ${qaResult.sessionId}\n`);
+    logDebug("Quality assurance passed", {
+      complianceScore: qaResult.complianceScore,
+      riskFlags: qaResult.riskFlags.length,
+      sessionId: qaResult.sessionId
+    });
 
     // ========================================================================
     // STEP 3: OPERATIONS (DELIVERY, BILLING, CRM)
     // ========================================================================
-    console.log("📤 STEP 3: OPERATIONS");
-    console.log("-".repeat(80));
-    console.log("Processing delivery, billing, and CRM updates...\n");
+    logDebug("STEP 3: OPERATIONS - Processing delivery, billing, and CRM updates", { jobId });
 
     const opsResult: OperationsResult = await executeOperationsAgent(report);
 
     // Display operations summary
-    console.log(generateOperationsSummary(opsResult));
-    console.log();
+    logDebug("Operations Summary", { summary: generateOperationsSummary(opsResult) });
 
     // Check if operations completed
     if (!isOperationComplete(opsResult)) {
-      console.log("❌ WORKFLOW WARNING: Operations incomplete");
-      console.log(`   Email Delivered: ${opsResult.emailDelivered ? "✅" : "❌"}`);
-      console.log(`   Invoice Created: ${opsResult.invoiceCreated ? "✅" : "❌"}`);
-      console.log(`   CRM Updated: ${opsResult.crmUpdated ? "✅" : "❌"}`);
-
-      if (opsResult.errors && opsResult.errors.length > 0) {
-        console.log("\n📋 Errors:");
-        opsResult.errors.forEach((error, i) => {
-          console.log(`   ${i + 1}. ${error}`);
-        });
-      }
+      logDebug("WORKFLOW WARNING: Operations incomplete", {
+        emailDelivered: opsResult.emailDelivered,
+        invoiceCreated: opsResult.invoiceCreated,
+        crmUpdated: opsResult.crmUpdated,
+        errors: opsResult.errors
+      });
 
       return {
         success: false,
@@ -126,33 +113,28 @@ export async function processNRPGReport(jobId: string) {
       };
     }
 
-    console.log("✅ Operations complete");
-    console.log(`   Email Delivered: ✅`);
-    console.log(`   Invoice Created: ✅ (${opsResult.invoiceNumber})`);
-    console.log(`   CRM Updated: ✅`);
-
-    if (opsResult.trackingIds && opsResult.trackingIds.length > 0) {
-      console.log(`   Tracking IDs: ${opsResult.trackingIds.join(", ")}`);
-    }
+    logDebug("Operations complete", {
+      emailDelivered: true,
+      invoiceNumber: opsResult.invoiceNumber,
+      crmUpdated: true,
+      trackingIds: opsResult.trackingIds
+    });
 
     // Display audit trail
     const auditLog = getAuditLog();
-    console.log(`\n📝 Audit Trail: ${auditLog.length} entries logged`);
+    logDebug("Audit Trail", { entries: auditLog.length });
 
     // ========================================================================
     // WORKFLOW COMPLETE
     // ========================================================================
-    console.log("\n" + "=".repeat(80));
-    console.log("✅ WORKFLOW COMPLETE - REPORT SUCCESSFULLY PROCESSED");
-    console.log("=".repeat(80));
-    console.log(`\n📊 Summary:`);
-    console.log(`   Job ID: ${jobId}`);
-    console.log(`   QA Status: ${qaResult.status}`);
-    console.log(`   Compliance Score: ${qaResult.complianceScore}/100`);
-    console.log(`   Invoice: ${opsResult.invoiceNumber}`);
-    console.log(`   Tracking IDs: ${opsResult.trackingIds?.length || 0}`);
-    console.log(`   Audit Entries: ${auditLog.length}`);
-    console.log();
+    logDebug("WORKFLOW COMPLETE - REPORT SUCCESSFULLY PROCESSED", {
+      jobId,
+      qaStatus: qaResult.status,
+      complianceScore: qaResult.complianceScore,
+      invoice: opsResult.invoiceNumber,
+      trackingIds: opsResult.trackingIds?.length || 0,
+      auditEntries: auditLog.length
+    });
 
     return {
       success: true,
