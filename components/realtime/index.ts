@@ -12,6 +12,9 @@ export { MapPreview, LiveTrackingMap } from './MapPreview'
 export { FeatureGate, TierUpgradePrompt } from './FeatureGate'
 export { JobMessaging, MessageBubble } from './JobMessaging'
 
+// Phase 9: Messaging Components
+export { UnreadBadge, MessageIconWithBadge } from './UnreadBadge'
+
 // Phase 5: Billing Components
 export { PricingCard, TIER_FEATURES } from './PricingCard'
 export { SubscriptionManager } from './SubscriptionManager'

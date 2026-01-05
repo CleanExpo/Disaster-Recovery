@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
-import type { MessageSentEvent, ChatMessage } from '@/lib/supabase/types'
+import type { MessageSentEvent, MessageReadEvent, ChatMessage } from '@/lib/supabase/types'
 
 // Lazy initialization to avoid build-time errors
 let supabase: SupabaseClient | null = null
@@ -83,15 +83,38 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     })
 
     // Mark messages as read if user is the receiver
-    const unreadMessageIds = messages
+    const unreadMessages = messages
       .filter((m: { isRead: boolean; receiverId: string }) => !m.isRead && m.receiverId === session.user.id)
-      .map((m: { id: string }) => m.id)
+    const unreadMessageIds = unreadMessages.map((m: { id: string }) => m.id)
 
     if (unreadMessageIds.length > 0) {
       await prisma.jobMessage.updateMany({
         where: { id: { in: unreadMessageIds } },
         data: { isRead: true, readAt: new Date() },
       })
+
+      // Broadcast MESSAGE_READ events to senders
+      const senderMap = new Map<string, string>()
+      unreadMessages.forEach((m: { senderId: string; senderType: string }) => {
+        senderMap.set(m.senderId, m.senderType)
+      })
+
+      for (const [senderId, senderType] of senderMap.entries()) {
+        const readEvent: MessageReadEvent = {
+          type: 'MESSAGE_READ',
+          jobId,
+          messageId: unreadMessageIds[0], // First message ID as reference
+          readBy: session.user.id,
+          timestamp: new Date().toISOString(),
+        }
+
+        const channelName = senderType === 'client' ? 'jobs:client' : 'jobs:contractor'
+        await getSupabase().channel(channelName).send({
+          type: 'broadcast',
+          event: `${senderType}:${senderId}`,
+          payload: readEvent,
+        })
+      }
     }
 
     const formattedMessages: ChatMessage[] = messages.map((m: {
@@ -324,6 +347,6 @@ async function checkTierAccess(userId: string, jobId: string) {
     tier,
     hasMessaging: tierLevel >= 2,
     hasLiveEta: tierLevel >= 2,
-    hasGpsTracking: tierLevel >= 3,
+    hasGpsTracking: tierLevel >= 2, // PRO+ (moved from ENTERPRISE in Phase 8)
   }
 }

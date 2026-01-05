@@ -47,6 +47,8 @@ export type RealtimeJobEventType =
   | 'ETA_UPDATE'
   | 'MESSAGE_SENT'
   | 'MESSAGE_READ'
+  | 'TYPING_START'
+  | 'TYPING_STOP'
 
 export type RealtimeJobEvent = {
   type: RealtimeJobEventType
@@ -115,6 +117,19 @@ export interface MessageReadEvent extends RealtimeJobEvent {
   type: 'MESSAGE_READ'
   messageId: string
   readBy: string
+}
+
+// Phase 9: Typing indicator events
+export interface TypingStartEvent extends RealtimeJobEvent {
+  type: 'TYPING_START'
+  senderId: string
+  senderType: 'client' | 'contractor'
+}
+
+export interface TypingStopEvent extends RealtimeJobEvent {
+  type: 'TYPING_STOP'
+  senderId: string
+  senderType: 'client' | 'contractor'
 }
 
 // Tier types

@@ -11,6 +11,8 @@ import type {
   ETAUpdateEvent,
   MessageSentEvent,
   MessageReadEvent,
+  TypingStartEvent,
+  TypingStopEvent,
   ContractorLocation,
 } from '@/lib/supabase/types'
 
@@ -23,6 +25,8 @@ interface UseRealtimeConnectionOptions {
   onETAUpdate?: (event: ETAUpdateEvent) => void
   onMessageSent?: (event: MessageSentEvent) => void
   onMessageRead?: (event: MessageReadEvent) => void
+  onTypingStart?: (event: TypingStartEvent) => void
+  onTypingStop?: (event: TypingStopEvent) => void
   onConnectionChange?: (status: ConnectionStatus) => void
   autoReconnect?: boolean
   reconnectInterval?: number
@@ -45,6 +49,8 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     onETAUpdate,
     onMessageSent,
     onMessageRead,
+    onTypingStart,
+    onTypingStop,
     onConnectionChange,
     autoReconnect = true,
     reconnectInterval = 5000,
@@ -57,6 +63,8 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     onETAUpdate,
     onMessageSent,
     onMessageRead,
+    onTypingStart,
+    onTypingStop,
   })
   callbacksRef.current = {
     onJobEvent,
@@ -64,6 +72,8 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
     onETAUpdate,
     onMessageSent,
     onMessageRead,
+    onTypingStart,
+    onTypingStop,
   }
 
   // Route event to appropriate callback based on type
@@ -82,6 +92,12 @@ export function useRealtimeConnection(options: UseRealtimeConnectionOptions) {
         break
       case 'MESSAGE_READ':
         callbacks.onMessageRead?.(event as MessageReadEvent)
+        break
+      case 'TYPING_START':
+        callbacks.onTypingStart?.(event as TypingStartEvent)
+        break
+      case 'TYPING_STOP':
+        callbacks.onTypingStop?.(event as TypingStopEvent)
         break
       default:
         // For standard job events (NEW_JOB, STATUS_CHANGED, etc.)

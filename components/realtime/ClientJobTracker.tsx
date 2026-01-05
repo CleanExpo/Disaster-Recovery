@@ -21,6 +21,8 @@ import type {
   LocationUpdateEvent,
   ETAUpdateEvent,
   MessageSentEvent,
+  TypingStartEvent,
+  TypingStopEvent,
 } from '@/lib/supabase/types'
 import { cn } from '@/lib/utils'
 
@@ -86,6 +88,7 @@ export function ClientJobTracker({
   const [contractorLocation, setContractorLocation] = useState<ContractorLocation | null>(null)
   const [showMessaging, setShowMessaging] = useState(false)
   const [unreadMessages, setUnreadMessages] = useState(0)
+  const [isContractorTyping, setIsContractorTyping] = useState(false)
 
   // Tier gating
   const { tier, hasLiveEta, hasMessaging, hasGpsTracking, isLoading: tierLoading } = useTierGating({
@@ -183,7 +186,28 @@ export function ClientJobTracker({
     [jobId, userId]
   )
 
-  const { isConnected } = useRealtimeConnection({
+  // Handle typing indicators
+  const handleTypingStart = useCallback(
+    (event: TypingStartEvent) => {
+      if (event.jobId !== jobId) return
+      if (event.senderType === 'contractor') {
+        setIsContractorTyping(true)
+      }
+    },
+    [jobId]
+  )
+
+  const handleTypingStop = useCallback(
+    (event: TypingStopEvent) => {
+      if (event.jobId !== jobId) return
+      if (event.senderType === 'contractor') {
+        setIsContractorTyping(false)
+      }
+    },
+    [jobId]
+  )
+
+  const { isConnected, sendDirectMessage } = useRealtimeConnection({
     channelName: 'jobs:client',
     userId,
     userType: 'client',
@@ -191,8 +215,25 @@ export function ClientJobTracker({
     onLocationUpdate: handleLocationUpdate,
     onETAUpdate: handleETAUpdate,
     onMessageSent: handleMessageSent,
+    onTypingStart: handleTypingStart,
+    onTypingStop: handleTypingStop,
     onConnectionChange: setConnectionStatus,
   })
+
+  // Send typing indicator to contractor
+  const handleTypingChange = useCallback(
+    (isTyping: boolean) => {
+      if (!job?.contractor?.id || !sendDirectMessage) return
+
+      sendDirectMessage(job.contractor.id, 'contractor', {
+        type: isTyping ? 'TYPING_START' : 'TYPING_STOP',
+        jobId,
+        senderId: userId,
+        senderType: 'client',
+      } as any)
+    },
+    [jobId, userId, job?.contractor?.id, sendDirectMessage]
+  )
 
   // Fetch job details on mount
   useEffect(() => {
@@ -265,7 +306,9 @@ export function ClientJobTracker({
           userType="client"
           otherPartyName={job.contractor.businessName}
           className="max-h-96"
+          isOtherTyping={isContractorTyping}
           onNewMessage={() => setUnreadMessages(0)}
+          onTypingChange={handleTypingChange}
         />
       )}
 
@@ -325,7 +368,7 @@ export function ClientJobTracker({
               className="rounded-lg overflow-hidden"
             />
           ) : (
-            <TierUpgradePrompt requiredTier="ENTERPRISE" feature="gpsTracking" compact />
+            <TierUpgradePrompt requiredTier="PRO" feature="gpsTracking" compact />
           )}
         </div>
       )}

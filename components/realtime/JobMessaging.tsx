@@ -10,8 +10,10 @@ interface JobMessagingProps {
   userType: 'client' | 'contractor'
   otherPartyName?: string
   className?: string
+  isOtherTyping?: boolean
   onMessageSent?: (message: ChatMessage) => void
   onNewMessage?: (message: ChatMessage) => void
+  onTypingChange?: (isTyping: boolean) => void
 }
 
 export function JobMessaging({
@@ -20,8 +22,10 @@ export function JobMessaging({
   userType,
   otherPartyName = 'Other Party',
   className,
+  isOtherTyping = false,
   onMessageSent,
   onNewMessage,
+  onTypingChange,
 }: JobMessagingProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -32,6 +36,8 @@ export function JobMessaging({
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isTypingRef = useRef(false)
 
   // Scroll to bottom when new messages arrive
   const scrollToBottom = useCallback(() => {
@@ -164,6 +170,46 @@ export function JobMessaging({
     }
   }
 
+  // Handle typing indicator
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setInputValue(value)
+
+    if (onTypingChange) {
+      // Start typing
+      if (value.length > 0 && !isTypingRef.current) {
+        isTypingRef.current = true
+        onTypingChange(true)
+      }
+
+      // Clear existing timeout
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+
+      // Stop typing after 2 seconds of inactivity
+      if (value.length > 0) {
+        typingTimeoutRef.current = setTimeout(() => {
+          isTypingRef.current = false
+          onTypingChange(false)
+        }, 2000)
+      } else {
+        // Immediately stop if input is empty
+        isTypingRef.current = false
+        onTypingChange(false)
+      }
+    }
+  }
+
+  // Cleanup typing timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current)
+      }
+    }
+  }, [])
+
   if (upgradeRequired) {
     return (
       <div className={cn('flex flex-col rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden', className)}>
@@ -220,6 +266,23 @@ export function JobMessaging({
             />
           ))
         )}
+        {/* Typing indicator */}
+        {isOtherTyping && (
+          <div className="flex justify-start">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-2 rounded-bl-none">
+              <div className="flex items-center gap-1">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {otherPartyName} is typing
+                </span>
+                <span className="flex gap-1">
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
@@ -240,7 +303,7 @@ export function JobMessaging({
             ref={inputRef}
             type="text"
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder="Type a message..."
             className="flex-1 px-3 py-2 text-sm bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
