@@ -166,6 +166,14 @@ const nextConfig = {
       '@anthropic-ai/claude-agent-sdk': path.resolve('./src/shims/claude-agent-sdk'),
     }
 
+    // Suppress webpack noise in development
+    if (dev) {
+      config.infrastructureLogging = {
+        level: 'error', // Only show errors, not info/warnings
+      }
+      config.stats = 'errors-warnings' // Minimal output
+    }
+
     // Production optimizations
     if (!dev && !isServer) {
       // Code splitting optimization

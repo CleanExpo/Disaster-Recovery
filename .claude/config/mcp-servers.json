@@ -4,19 +4,32 @@
       "type": "http",
       "url": "https://mcp.supabase.com/mcp?project_ref=lccqasmurmsisnnjqqmr",
       "description": "Supabase database and realtime operations",
-      "enabled": true
+      "enabled": true,
+      "env": {
+        "LOG_LEVEL": "error",
+        "SUPABASE_LOG": "false"
+      }
     },
     "playwright": {
       "command": "npx",
       "args": ["-y", "@anthropic-ai/mcp-playwright"],
       "description": "Browser automation for testing and screenshots",
-      "enabled": true
+      "enabled": true,
+      "env": {
+        "DEBUG": "",
+        "PLAYWRIGHT_BROWSERS_SKIP_DOWNLOAD_OUTPUT": "1",
+        "LOG_LEVEL": "error"
+      }
     },
     "filesystem": {
       "command": "npx",
       "args": ["-y", "@anthropic-ai/mcp-filesystem"],
       "description": "File system operations (read/write)",
-      "enabled": true
+      "enabled": true,
+      "env": {
+        "LOG_LEVEL": "error",
+        "VERBOSE": "false"
+      }
     },
     "github": {
       "command": "npx",
@@ -24,7 +37,9 @@
       "description": "GitHub API integration (issues, PRs, repos)",
       "enabled": true,
       "env": {
-        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}",
+        "LOG_LEVEL": "error",
+        "DEBUG": ""
       }
     },
     "slack": {

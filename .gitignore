@@ -54,6 +54,19 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# Debug scripts and outputs
+/debug/
+debug-*.js
+debug-*.png
+debug-*.log
+test-*.js
+fix-*.js
+live-*.png
+screenshot-*.js
+screenshot-*.png
+check-*.js
+open-*.js
+
 # OS
 .DS_Store
 Thumbs.db

@@ -301,6 +301,26 @@ export class AdvancedLogger {
   }
 
   /**
+   * Safe stringify that handles circular references and special types
+   */
+  private static safeStringify(obj: any): string {
+    const seen = new WeakSet();
+    return JSON.stringify(obj, (key, value) => {
+      if (typeof value === 'object' && value !== null) {
+        if (seen.has(value)) {
+          return '[Circular]';
+        }
+        seen.add(value);
+      }
+      // Handle BigInt
+      if (typeof value === 'bigint') {
+        return value.toString();
+      }
+      return value;
+    });
+  }
+
+  /**
    * Output log (to console, file, or external service)
    */
   private static outputLog(log: StructuredLog): void {
@@ -316,19 +336,28 @@ export class AdvancedLogger {
       error: log.error,
     };
 
-    // Console output (structured JSON)
-    const consoleMethod = {
-      debug: console.debug,
-      info: console.info,
-      warn: console.warn,
-      error: console.error,
-    }[log.level];
+    // Console output - only in development or for errors in production
+    const isDevelopment = process.env.NODE_ENV === 'development';
+    const isProduction = process.env.NODE_ENV === 'production';
 
-    consoleMethod(JSON.stringify(logOutput));
+    if (isDevelopment || (isProduction && log.level === 'error')) {
+      const consoleMethod = {
+        debug: console.debug,
+        info: console.info,
+        warn: console.warn,
+        error: console.error,
+      }[log.level];
+
+      // Pretty print in development, compact in production
+      if (isDevelopment) {
+        consoleMethod(this.safeStringify(logOutput));
+      } else {
+        consoleMethod(this.safeStringify(logOutput));
+      }
+    }
 
     // In production, send to logging service
-    // Example: Sent to Datadog, CloudWatch, Elasticsearch, etc.
-    if (process.env.NODE_ENV === 'production') {
+    if (isProduction) {
       this.sendToRemote(logOutput);
     }
   }

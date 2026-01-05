@@ -5,8 +5,8 @@ import winston from 'winston';
  * Using Winston for structured logging
  */
 
-const logLevel = process.env.LOG_LEVEL || 'info';
 const isProduction = process.env.NODE_ENV === 'production';
+const logLevel = process.env.LOG_LEVEL || (isProduction ? 'error' : 'debug');
 
 // Custom log format
 const logFormat = winston.format.combine(
@@ -58,6 +58,19 @@ if (isProduction) {
       filename: 'logs/combined.log',
       maxsize: 5242880, // 5MB
       maxFiles: 5,
+    })
+  );
+}
+
+// Add file transports in development for debugging
+if (!isProduction) {
+  logger.add(
+    new winston.transports.File({
+      filename: 'logs/dev.log',
+      level: 'debug',
+      maxsize: 10485760, // 10MB
+      maxFiles: 5,
+      format: winston.format.json(),
     })
   );
 }
