@@ -3,6 +3,8 @@ import { User } from '@prisma/client';
 import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/lib/prisma';
+import bcrypt from 'bcryptjs';
+import { randomInt } from 'crypto';
 
 const JWT_SECRET =
   process.env.JWT_SECRET ||
@@ -141,21 +143,17 @@ export async function verifyPasswordSafe(
   plainPassword: string,
   hashedPassword: string
 ): Promise<boolean> {
-  const bcrypt = require('bcryptjs');
-  const crypto = require('crypto');
-  
   try {
     const result = await bcrypt.compare(plainPassword, hashedPassword);
-    await new Promise(resolve => setTimeout(resolve, 5 + crypto.randomInt(10)));
+    await new Promise(resolve => setTimeout(resolve, 5 + randomInt(10)));
     return result;
   } catch (error) {
-    await new Promise(resolve => setTimeout(resolve, 5 + crypto.randomInt(10)));
+    await new Promise(resolve => setTimeout(resolve, 5 + randomInt(10)));
     return false;
   }
 }
 
 export async function hashPassword(password: string): Promise<string> {
-  const bcrypt = require('bcryptjs');
   return bcrypt.hash(password, 12);
 }
 

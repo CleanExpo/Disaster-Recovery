@@ -3,7 +3,8 @@ import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 
 // Demo credentials - password: demo2026
-const DEMO_PASSWORD_HASH = '$2b$10$2JOG1iQ9zXvjCvxS0DpLCuXrmB7Snh1lzxESHeUvk8XCzfmh3KvC2'
+// Hash generated and verified: bcrypt.compareSync('demo2026', hash) === true
+const DEMO_PASSWORD_HASH = '$2b$10$w6cxN1L12RYhmBtCKNK0t.C3A/GRvcBO8HUnbhJmDeZ1EreGZdlOm'
 
 export async function POST(request: Request) {
   try {
