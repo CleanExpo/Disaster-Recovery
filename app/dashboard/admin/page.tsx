@@ -457,7 +457,7 @@ export default function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium text-gray-400">Total Users</p>
                       <p className="text-2xl font-bold text-white">
-                        {loadingKpis ? '...' : adminKpis.activeTenants}
+                        {loadingKpis ? '...' : (adminKpis?.activeTenants ?? 0)}
                       </p>
                     </div>
                     <Users className="h-8 w-8 text-[#00BFA6]" />
@@ -471,7 +471,7 @@ export default function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium text-gray-400">Total Requests</p>
                       <p className="text-2xl font-bold text-white">
-                        {loadingKpis ? '...' : adminKpis.totalServiceRequests}
+                        {loadingKpis ? '...' : (adminKpis?.totalServiceRequests ?? 0)}
                       </p>
                     </div>
                     <FileText className="h-8 w-8 text-blue-500" />
@@ -497,7 +497,7 @@ export default function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium text-gray-400">Conversion Rate</p>
                       <p className="text-2xl font-bold text-white">
-                        {loadingKpis ? '...' : `${(adminKpis.conversionRate ?? 0).toFixed(1)}%`}
+                        {loadingKpis ? '...' : `${(adminKpis?.conversionRate ?? 0).toFixed(1)}%`}
                       </p>
                     </div>
                     <BarChart3 className="h-8 w-8 text-purple-500" />
