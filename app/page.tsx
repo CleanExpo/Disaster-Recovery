@@ -336,7 +336,7 @@ export default function HomePage() {
                     <PriorityCard
                       priority="high"
                       title="Find Contractor"
-                      onClick={() => window.location.href = '/intake'}
+                      onClick={() => window.location.href = '/claim/step-1'}
                       className="cursor-pointer hover:scale-105 transition-transform"
                     >
                       <div className="text-sm">
