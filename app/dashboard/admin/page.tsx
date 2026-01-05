@@ -497,7 +497,7 @@ export default function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium text-gray-400">Conversion Rate</p>
                       <p className="text-2xl font-bold text-white">
-                        {loadingKpis ? '...' : `${adminKpis.conversionRate.toFixed(1)}%`}
+                        {loadingKpis ? '...' : `${(adminKpis.conversionRate ?? 0).toFixed(1)}%`}
                       </p>
                     </div>
                     <BarChart3 className="h-8 w-8 text-purple-500" />
