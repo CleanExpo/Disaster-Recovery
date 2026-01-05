@@ -3,14 +3,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuth } from '@/contexts/AuthContext';
+import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Separator } from '@/components/ui/separator';
-import { Loader2, Eye, EyeOff, ArrowLeft, CheckCircle } from 'lucide-react';
+import { Loader2, Eye, EyeOff, CheckCircle } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,8 +18,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  
-  const { login } = useAuth();
+
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,10 +27,33 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      await login(email, password);
+      // Sign in with credentials
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (!result || result.error) {
+        throw new Error('Invalid email or password');
+      }
+
+      // Fetch user data to determine redirect
+      const userResponse = await fetch('/api/auth/me');
+      const userData = await userResponse.json();
+
       setSuccess(true);
+
+      // Redirect based on user type
       setTimeout(() => {
-        router.push('/dashboard');
+        const userType = userData?.data?.user?.userType || userData?.user?.userType || userData?.userType;
+        if (userType === 'ADMIN' || userType === 'SUPER_ADMIN') {
+          router.push('/dashboard/admin');
+        } else if (userType === 'CONTRACTOR') {
+          router.push('/dashboard/contractor');
+        } else {
+          router.push('/dashboard/client');
+        }
       }, 1500);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
