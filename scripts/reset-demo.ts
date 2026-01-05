@@ -11,21 +11,10 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-// Demo account identifiers
-const DEMO_EMAILS = [
-  'demo.client@disasterrecovery.com.au',
-  'demo.contractor@disasterrecovery.com.au',
-  'demo.admin@disasterrecovery.com.au',
-]
-
 const DEMO_JOB_IDS = [
   'demo-job-en-route',
   'demo-job-completed',
   'demo-job-pending',
-]
-
-const DEMO_BOOKING_IDS = [
-  'demo-booking-1',
 ]
 
 async function resetDemoData() {
@@ -72,31 +61,15 @@ async function resetDemoData() {
     console.log(`   Deleted ${deletedLocations.count} locations`)
 
     // ========================================
-    // 4. Reset Demo Bookings
-    // ========================================
-    console.log('📅 Resetting demo bookings...')
-
-    await prisma.booking.updateMany({
-      where: { id: { in: DEMO_BOOKING_IDS } },
-      data: {
-        status: 'IN_PROGRESS',
-        startedAt: new Date(Date.now() - 15 * 60 * 1000),
-        completedAt: null,
-      },
-    })
-
-    console.log(`   Reset ${DEMO_BOOKING_IDS.length} bookings`)
-
-    // ========================================
-    // 5. Reset Demo Jobs Status
+    // 4. Reset Demo Jobs Status
     // ========================================
     console.log('📋 Resetting demo jobs...')
 
-    // Reset en-route job
+    // Reset en-route job to IN_PROGRESS
     await prisma.serviceRequest.update({
       where: { id: 'demo-job-en-route' },
       data: {
-        status: 'CONFIRMED',
+        status: 'IN_PROGRESS',
         createdAt: new Date(Date.now() - 30 * 60 * 1000),
       },
     })
@@ -113,6 +86,40 @@ async function resetDemoData() {
     console.log(`   Reset job statuses`)
 
     // ========================================
+    // 5. Re-seed Demo Location History
+    // ========================================
+    console.log('📍 Re-seeding demo location history...')
+
+    const demoContractor = await prisma.contractor.findFirst({
+      where: {
+        user: { email: 'demo.contractor@disasterrecovery.com.au' },
+      },
+    })
+
+    if (demoContractor) {
+      const now = Date.now()
+      const locations = [
+        { lat: -37.8183, lng: 144.9987, minutesAgo: 15 },
+        { lat: -37.8170, lng: 144.9850, minutesAgo: 10 },
+        { lat: -37.8150, lng: 144.9700, minutesAgo: 5 },
+      ]
+
+      for (const loc of locations) {
+        await prisma.contractorLocationHistory.create({
+          data: {
+            jobId: 'demo-job-en-route',
+            contractorId: demoContractor.id,
+            latitude: loc.lat,
+            longitude: loc.lng,
+            timestamp: new Date(now - loc.minutesAgo * 60 * 1000),
+          },
+        })
+      }
+
+      console.log('   Created 3 fresh location points')
+    }
+
+    // ========================================
     // 6. Re-seed Demo Messages
     // ========================================
     console.log('💬 Re-seeding demo messages...')
@@ -121,11 +128,11 @@ async function resetDemoData() {
       where: { email: 'demo.client@disasterrecovery.com.au' },
     })
 
-    const demoContractor = await prisma.user.findFirst({
+    const demoContractorUser = await prisma.user.findUnique({
       where: { email: 'demo.contractor@disasterrecovery.com.au' },
     })
 
-    if (demoClient && demoContractor) {
+    if (demoClient && demoContractorUser) {
       await prisma.jobMessage.createMany({
         skipDuplicates: true,
         data: [
@@ -134,6 +141,8 @@ async function resetDemoData() {
             jobId: 'demo-job-en-route',
             senderId: demoClient.id,
             senderType: 'client',
+            receiverId: demoContractorUser.id,
+            receiverType: 'contractor',
             content: 'Hi, water is still coming in. How far away are you?',
             isRead: true,
             createdAt: new Date(Date.now() - 10 * 60 * 1000),
@@ -141,8 +150,10 @@ async function resetDemoData() {
           {
             id: 'demo-msg-2',
             jobId: 'demo-job-en-route',
-            senderId: demoContractor.id,
+            senderId: demoContractorUser.id,
             senderType: 'contractor',
+            receiverId: demoClient.id,
+            receiverType: 'client',
             content: "I'm about 12 minutes away. Please turn off the water main if you can access it safely.",
             isRead: true,
             createdAt: new Date(Date.now() - 8 * 60 * 1000),
@@ -152,6 +163,8 @@ async function resetDemoData() {
             jobId: 'demo-job-en-route',
             senderId: demoClient.id,
             senderType: 'client',
+            receiverId: demoContractorUser.id,
+            receiverType: 'contractor',
             content: 'Done! Water main is off now. Thank you for the quick response.',
             isRead: true,
             createdAt: new Date(Date.now() - 6 * 60 * 1000),
@@ -159,8 +172,10 @@ async function resetDemoData() {
           {
             id: 'demo-msg-4',
             jobId: 'demo-job-en-route',
-            senderId: demoContractor.id,
+            senderId: demoContractorUser.id,
             senderType: 'contractor',
+            receiverId: demoClient.id,
+            receiverType: 'client',
             content: "Great work! I'll be there shortly with all the extraction equipment.",
             isRead: false,
             createdAt: new Date(Date.now() - 4 * 60 * 1000),

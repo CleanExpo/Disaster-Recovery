@@ -7,7 +7,7 @@
  * Run: npx tsx scripts/seed-demo-data.ts
  */
 
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -75,12 +75,12 @@ async function seedDemoData() {
         abnNumber: '98765432101',
         primaryState: 'VIC',
         operatingStates: ['VIC', 'NSW', 'QLD'],
-        australianSpecialties: ['WATER_DAMAGE', 'FIRE_DAMAGE', 'MOULD_REMEDIATION', 'STORM_DAMAGE'],
+        australianSpecialties: ['WATER_DAMAGE', 'FIRE_DAMAGE', 'MOULD_REMEDIATION', 'SMOKE_DAMAGE'],
         supportedEmergencyLevels: ['URGENT', 'HIGH', 'STANDARD'],
         publicLiabilityPolicyNumber: 'PL-DEMO-2026',
         publicLiabilityExpiryDate: new Date('2027-12-31'),
         completedJobs: 342,
-        averageRating: new Prisma.Decimal(4.9),
+        averageRating: 4.9,
         averageResponseTimeMinutes: 28,
         isVerified: true,
         isActive: true,
@@ -99,11 +99,13 @@ async function seedDemoData() {
       update: {
         tier: 'ENTERPRISE',
         status: 'ACTIVE',
+        pricePerMonth: 199,
       },
       create: {
         contractorId: demoContractor.id,
         tier: 'ENTERPRISE',
         status: 'ACTIVE',
+        pricePerMonth: 199,
         startDate: new Date(),
       },
     })
@@ -130,54 +132,25 @@ async function seedDemoData() {
     console.log(`✅ Notifications configured\n`)
 
     // ========================================
-    // 5. Create Demo Jobs (Various Statuses)
+    // 5. Create Demo Service Requests
     // ========================================
-    console.log('📋 Creating demo jobs...')
+    console.log('📋 Creating demo service requests...')
 
-    // Job 1: En Route (for live tracking demo)
+    // Job 1: In Progress (for live tracking demo)
     const job1 = await prisma.serviceRequest.upsert({
       where: { id: 'demo-job-en-route' },
       update: {},
       create: {
         id: 'demo-job-en-route',
-        clientId: demoClient.id,
-        australianServiceType: 'WATER_DAMAGE',
-        title: 'Emergency Water Damage - Burst Pipe',
+        userId: demoClient.id,
+        serviceCategory: 'Water Damage',
+        serviceTitle: 'Emergency Water Damage - Burst Pipe',
         description: 'Burst pipe in kitchen causing flooding. Water spreading to living area. Need immediate response.',
-        servicePostcode: '3000',
-        serviceState: 'VIC',
-        serviceSuburb: 'Melbourne CBD',
-        streetAddress: '120 Collins Street',
-        latitude: -37.8136,
-        longitude: 144.9631,
-        emergencyResponseLevel: 'URGENT',
-        status: 'CONFIRMED',
-        estimatedCostAUD: new Prisma.Decimal(4500),
-        createdAt: new Date(Date.now() - 30 * 60 * 1000), // 30 mins ago
-      },
-    })
-
-    // Create booking for job 1
-    await prisma.booking.upsert({
-      where: { id: 'demo-booking-1' },
-      update: {},
-      create: {
-        id: 'demo-booking-1',
-        clientId: demoClient.id,
-        contractorId: demoContractor.id,
-        serviceRequestId: job1.id,
-        australianServiceType: 'WATER_DAMAGE',
-        description: job1.description || '',
-        servicePostcode: '3000',
-        serviceState: 'VIC',
-        serviceSuburb: 'Melbourne CBD',
-        streetAddress: '120 Collins Street',
+        location: '120 Collins Street, Melbourne CBD, VIC 3000',
+        urgency: 'urgent',
+        urgentResponse: true,
         status: 'IN_PROGRESS',
-        emergencyResponseLevel: 'URGENT',
-        scheduledDate: new Date(),
-        startedAt: new Date(Date.now() - 15 * 60 * 1000),
-        estimatedCostAUD: new Prisma.Decimal(4500),
-        damagePhotos: [],
+        createdAt: new Date(Date.now() - 30 * 60 * 1000), // 30 mins ago
       },
     })
 
@@ -187,19 +160,13 @@ async function seedDemoData() {
       update: {},
       create: {
         id: 'demo-job-completed',
-        clientId: demoClient.id,
-        australianServiceType: 'MOULD_REMEDIATION',
-        title: 'Mould Remediation - Bathroom',
+        userId: demoClient.id,
+        serviceCategory: 'Mould Remediation',
+        serviceTitle: 'Mould Remediation - Bathroom',
         description: 'Black mould discovered behind bathroom tiles. Requires professional remediation.',
-        servicePostcode: '3000',
-        serviceState: 'VIC',
-        serviceSuburb: 'Melbourne CBD',
-        streetAddress: '120 Collins Street',
-        latitude: -37.8136,
-        longitude: 144.9631,
-        emergencyResponseLevel: 'STANDARD',
+        location: '120 Collins Street, Melbourne CBD, VIC 3000',
+        urgency: 'standard',
         status: 'COMPLETED',
-        estimatedCostAUD: new Prisma.Decimal(2800),
         createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
       },
     })
@@ -210,27 +177,48 @@ async function seedDemoData() {
       update: {},
       create: {
         id: 'demo-job-pending',
-        clientId: demoClient.id,
-        australianServiceType: 'STORM_DAMAGE',
-        title: 'Storm Damage Assessment',
-        description: 'Roof damage from recent storm. Water ingress into ceiling cavity.',
-        servicePostcode: '3121',
-        serviceState: 'VIC',
-        serviceSuburb: 'Richmond',
-        streetAddress: '88 Bridge Road',
-        latitude: -37.8183,
-        longitude: 144.9987,
-        emergencyResponseLevel: 'HIGH',
+        userId: demoClient.id,
+        serviceCategory: 'Water Damage',
+        serviceTitle: 'Urgent Water Damage Assessment',
+        description: 'Roof leak causing water ingress into ceiling cavity. Needs assessment.',
+        location: '88 Bridge Road, Richmond, VIC 3121',
+        urgency: 'high',
         status: 'PENDING',
-        estimatedCostAUD: new Prisma.Decimal(6500),
         createdAt: new Date(),
       },
     })
 
-    console.log(`✅ Created 3 demo jobs\n`)
+    console.log(`✅ Created 3 demo service requests\n`)
 
     // ========================================
-    // 6. Create Demo Messages
+    // 6. Create Demo Location History (for tracking demo)
+    // ========================================
+    console.log('📍 Creating demo location history...')
+
+    // Simulate contractor en route from Richmond to Melbourne CBD
+    const now = Date.now()
+    const locations = [
+      { lat: -37.8183, lng: 144.9987, minutesAgo: 15 }, // Richmond
+      { lat: -37.8170, lng: 144.9850, minutesAgo: 10 }, // Approaching CBD
+      { lat: -37.8150, lng: 144.9700, minutesAgo: 5 },  // Near destination
+    ]
+
+    for (const loc of locations) {
+      await prisma.contractorLocationHistory.create({
+        data: {
+          jobId: job1.id,
+          contractorId: demoContractor.id,
+          latitude: loc.lat,
+          longitude: loc.lng,
+          timestamp: new Date(now - loc.minutesAgo * 60 * 1000),
+        },
+      })
+    }
+
+    console.log(`✅ Created location history for tracking demo\n`)
+
+    // ========================================
+    // 7. Create Demo Messages
     // ========================================
     console.log('💬 Creating demo messages...')
 
@@ -242,6 +230,8 @@ async function seedDemoData() {
           jobId: job1.id,
           senderId: demoClient.id,
           senderType: 'client',
+          receiverId: demoContractorUser.id,
+          receiverType: 'contractor',
           content: 'Hi, water is still coming in. How far away are you?',
           isRead: true,
           createdAt: new Date(Date.now() - 10 * 60 * 1000),
@@ -251,6 +241,8 @@ async function seedDemoData() {
           jobId: job1.id,
           senderId: demoContractorUser.id,
           senderType: 'contractor',
+          receiverId: demoClient.id,
+          receiverType: 'client',
           content: "I'm about 12 minutes away. Please turn off the water main if you can access it safely.",
           isRead: true,
           createdAt: new Date(Date.now() - 8 * 60 * 1000),
@@ -260,6 +252,8 @@ async function seedDemoData() {
           jobId: job1.id,
           senderId: demoClient.id,
           senderType: 'client',
+          receiverId: demoContractorUser.id,
+          receiverType: 'contractor',
           content: 'Done! Water main is off now. Thank you for the quick response.',
           isRead: true,
           createdAt: new Date(Date.now() - 6 * 60 * 1000),
@@ -269,6 +263,8 @@ async function seedDemoData() {
           jobId: job1.id,
           senderId: demoContractorUser.id,
           senderType: 'contractor',
+          receiverId: demoClient.id,
+          receiverType: 'client',
           content: "Great work! I'll be there shortly with all the extraction equipment.",
           isRead: false,
           createdAt: new Date(Date.now() - 4 * 60 * 1000),
@@ -279,7 +275,7 @@ async function seedDemoData() {
     console.log(`✅ Created demo messages\n`)
 
     // ========================================
-    // 7. Create Demo Admin
+    // 8. Create Demo Admin
     // ========================================
     console.log('👔 Creating demo admin...')
 
@@ -313,9 +309,9 @@ async function seedDemoData() {
     console.log('   Admin:      demo.admin@disasterrecovery.com.au')
     console.log('\n💎 Subscription: ENTERPRISE (all features unlocked)')
     console.log('\n📋 Demo Jobs:')
-    console.log('   • Water Damage (En Route) - for live tracking')
+    console.log('   • Water Damage (In Progress) - for live tracking')
     console.log('   • Mould Remediation (Completed) - for history')
-    console.log('   • Storm Damage (Pending) - for new job demo')
+    console.log('   • Water Damage Assessment (Pending) - for new job demo')
     console.log('\n🔗 Quick Links:')
     console.log('   Client View:     /dashboard/client/jobs')
     console.log('   Contractor View: /dashboard/contractor/jobs')
