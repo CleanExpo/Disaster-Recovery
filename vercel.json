@@ -4,7 +4,6 @@
   "installCommand": "npm ci --legacy-peer-deps",
   "devCommand": "npm run dev",
   "outputDirectory": ".next",
-  "nodeVersion": "20.x",
 
   "git": {
     "deploymentEnabled": true
