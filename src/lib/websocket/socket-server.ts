@@ -6,6 +6,7 @@ import { NotificationService } from '@/lib/notifications/notification-service';
 import { MessageService } from '@/lib/chat/message-service';
 import { BookingStatusHandler } from '@/lib/realtime/booking-status';
 import { ClaimStatusHandler } from '@/lib/realtime/claim-status';
+import { logInfo, logError, logWarn, logConnection } from '@/lib/logger/helpers';
 import {
   SocketEvent,
   SocketData,
@@ -59,10 +60,10 @@ export class SocketServer {
       // Setup connection handlers
       this.setupConnectionHandlers();
 
-      console.log('Socket.io server initialized');
+      logInfo('WebSocket server initialized', { transport: 'socket.io', cors: true });
       return this.instance;
     } catch (error) {
-      console.error('Failed to initialize Socket.io server:', error);
+      logError(error, { context: 'websocket_initialization' });
       throw error;
     }
   }
@@ -85,11 +86,11 @@ export class SocketServer {
       // Attach Redis adapter
       this.instance!.adapter(createAdapter(this.redisClient, this.redisSubscriber));
 
-      console.log('Redis adapter configured');
+      logInfo('Redis adapter configured for Socket.io', { url: redisUrl });
     } catch (error) {
-      console.error('Failed to setup Redis adapter:', error);
+      logError(error, { context: 'redis_adapter_setup' });
       // Fallback to in-memory adapter if Redis unavailable
-      console.warn('Using in-memory adapter - clustering not available');
+      logWarn('Using in-memory adapter - clustering not available', { reason: 'redis_connection_failed' });
     }
   }
 
@@ -122,7 +123,7 @@ export class SocketServer {
 
         next();
       } catch (error) {
-        console.error('Auth middleware error:', error);
+        logError(error, { context: 'websocket_auth_middleware' });
         next(new Error('Authentication error'));
       }
     });
@@ -134,7 +135,11 @@ export class SocketServer {
   private static setupConnectionHandlers(): void {
     this.instance!.on('connection', (socket: Socket<ClientToServerEvents, ServerToClientEvents>) => {
       const userData = socket.data as SocketData;
-      console.log(`User connected: ${userData.userId} (${socket.id})`);
+      logConnection('user_connected', {
+        userId: userData.userId,
+        socketId: socket.id,
+        userName: userData.userName
+      });
 
       // Broadcast user online status
       this.instance!.emit(SocketEvent.USER_ONLINE, {
@@ -156,7 +161,7 @@ export class SocketServer {
 
       // Handle disconnect
       socket.on('disconnect', () => {
-        console.log(`User disconnected: ${userData.userId}`);
+        logConnection('user_disconnected', { userId: userData.userId, socketId: socket.id });
         this.instance!.emit(SocketEvent.USER_OFFLINE, {
           userId: userData.userId,
           userName: userData.userName,
@@ -181,7 +186,7 @@ export class SocketServer {
         await NotificationService.markAsRead(notificationId, userData.userId);
         callback?.();
       } catch (error) {
-        console.error('Failed to mark notification as read:', error);
+        logError(error, { context: 'notification_mark_read', notificationId, userId: userData.userId });
         callback?.();
       }
     });
@@ -211,7 +216,7 @@ export class SocketServer {
 
           callback?.(null);
         } catch (error) {
-          console.error('Failed to send message:', error);
+          logError(error, { context: 'chat_message_send', roomId: payload.roomId, userId: userData.userId });
           callback?.(error as Error);
         }
       }
@@ -434,9 +439,9 @@ export class SocketServer {
       if (this.redisSubscriber) {
         await this.redisSubscriber.disconnect();
       }
-      console.log('Socket server shutdown complete');
+      logInfo('Socket server shutdown complete', { graceful: true });
     } catch (error) {
-      console.error('Error during socket server shutdown:', error);
+      logError(error, { context: 'socket_server_shutdown' });
     }
   }
 }

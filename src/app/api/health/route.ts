@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import Redis from 'ioredis';
+import { logError } from '@/lib/logger/helpers';
 
 const prisma = new PrismaClient();
 
@@ -22,7 +23,7 @@ export async function GET() {
   } catch (error) {
     health.services.database = 'disconnected';
     health.status = 'degraded';
-    console.error('Database health check failed:', error);
+    logError(error, { context: 'health_check_database' });
   }
 
   // Test Redis connection (if configured)
@@ -42,7 +43,7 @@ export async function GET() {
     } catch (error) {
       health.services.redis = 'disconnected';
       health.status = 'degraded';
-      console.error('Redis health check failed:', error);
+      logError(error, { context: 'health_check_redis' });
     }
   } else {
     health.services.redis = 'not_configured';

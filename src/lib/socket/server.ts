@@ -7,6 +7,7 @@
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import { initializeCallEventHandlers } from './call-events-handler';
+import { logInfo, logError, logWarn, logConnection, logDebug } from '@/lib/logger/helpers';
 
 interface SocketServerOptions {
   port?: number;
@@ -62,7 +63,7 @@ export function createSocketServer(options: SocketServerOptions = {}): Server {
   // Error handling middleware
   io.use((socket: Socket, next) => {
     socket.on('error', (error) => {
-      console.error(`Socket error for user ${socket.data.userId}:`, error);
+      logError(error, { context: 'socket_error', userId: socket.data.userId, socketId: socket.id });
     });
 
     next();
@@ -75,7 +76,7 @@ export function createSocketServer(options: SocketServerOptions = {}): Server {
   io.on('connection', (socket: Socket) => {
     const userId = socket.data.userId;
 
-    console.log(`User ${userId} connected with socket ${socket.id}`);
+    logConnection('user_connected', { userId, socketId: socket.id });
 
     // Send connection acknowledgment
     socket.emit('connected', {
@@ -86,13 +87,13 @@ export function createSocketServer(options: SocketServerOptions = {}): Server {
 
     // Handle test message
     socket.on('test', (data) => {
-      console.log(`Test message from ${userId}:`, data);
+      logDebug('Socket test message received', { userId, data });
       socket.emit('test:response', { success: true });
     });
 
     // Handle reconnection
     socket.on('reconnect_setup', (data) => {
-      console.log(`User ${userId} reconnected with data:`, data);
+      logConnection('user_reconnected', { userId, data });
       socket.emit('reconnect_ready', { timestamp: new Date().toISOString() });
     });
   });
@@ -120,7 +121,7 @@ export async function startSocketServer(port: number = 3001): Promise<Server> {
   return new Promise((resolve, reject) => {
     try {
       httpServer.listen(port, () => {
-        console.log(`Socket.io server listening on port ${port}`);
+        logInfo('Socket.io server started', { port, transport: 'socket.io' });
         resolve(io);
       });
     } catch (error) {
@@ -134,7 +135,7 @@ export async function startSocketServer(port: number = 3001): Promise<Server> {
  */
 export function broadcastToUser(userId: string, event: string, data: any): void {
   if (!ioInstance) {
-    console.warn('Socket.io server not initialized');
+    logWarn('Socket.io server not initialized for broadcast', { userId, event });
     return;
   }
 
@@ -146,7 +147,7 @@ export function broadcastToUser(userId: string, event: string, data: any): void 
  */
 export function broadcastToCall(callId: string, event: string, data: any): void {
   if (!ioInstance) {
-    console.warn('Socket.io server not initialized');
+    logWarn('Socket.io server not initialized for call broadcast', { callId, event });
     return;
   }
 
@@ -239,7 +240,7 @@ export async function shutdownSocketServer(): Promise<void> {
   return new Promise((resolve) => {
     if (ioInstance) {
       ioInstance.close(() => {
-        console.log('Socket.io server shut down');
+        logInfo('Socket.io server shut down', { graceful: true });
         ioInstance = null;
         resolve();
       });

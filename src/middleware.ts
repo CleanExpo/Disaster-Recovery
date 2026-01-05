@@ -18,6 +18,7 @@ import {
   generalApiRateLimiter,
   isRateLimitingEnabled,
 } from '@/lib/security/rate-limit';
+import { logWarn, logInfo } from '@/lib/logger/helpers';
 
 /**
  * Public routes that don't require authentication
@@ -61,7 +62,7 @@ async function handleRateLimiting(
   if (!isRateLimitingEnabled()) {
     // Skip rate limiting if not configured (development)
     if (process.env.NODE_ENV === 'development') {
-      console.warn('Rate limiting not configured - skipping in development');
+      logWarn('Rate limiting not configured - skipping in development', { pathname });
     }
     return null;
   }
@@ -111,16 +112,15 @@ function logSecurityEvent(
   details?: Record<string, any>
 ): void {
   if (process.env.NODE_ENV === 'production') {
-    // In production, send to logging service
-    console.log(JSON.stringify({
-      timestamp: new Date().toISOString(),
+    // In production, send to logging service via structured logger
+    logInfo('Security event', {
       event,
       path: request.nextUrl.pathname,
       method: request.method,
       ip: request.headers.get('x-forwarded-for') || 'unknown',
       userAgent: request.headers.get('user-agent'),
       ...details,
-    }));
+    });
   }
 }
 
