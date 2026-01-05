@@ -17,6 +17,7 @@ import { processRankTracking } from './rank-tracking-job';
 import { processTrafficSync } from './traffic-sync-job';
 import { processCompetitorSnapshot } from './competitor-snapshot-job';
 import { processDominanceAggregation } from './dominance-aggregation-job';
+import { processBlueOceanScan } from './blue-ocean-job';
 
 // Create Bull queue
 export const searchDominanceQueue = new Bull('search-dominance', {
@@ -380,18 +381,12 @@ searchDominanceQueue.process('dominance-aggregation', 1, async (job) => {
 searchDominanceQueue.process('blue-ocean-scan', 1, async (job) => {
   console.log(`[Search Dominance] Processing blue-ocean-scan job ${job.id}`);
 
-  // TODO: Implement Blue Ocean scanner (Phase 3)
-  job.log('Blue Ocean scanner not yet implemented');
+  const result = await processBlueOceanScan((current, total, status) => {
+    job.progress((current / total) * 100);
+    job.log(status);
+  });
 
-  return {
-    success: false,
-    recordsProcessed: 0,
-    recordsCreated: 0,
-    errors: ['Not yet implemented'],
-    warnings: [],
-    duration: 0,
-    completedAt: new Date(),
-  };
+  return result;
 });
 
 searchDominanceQueue.process('algorithm-monitor', 5, async (job) => {

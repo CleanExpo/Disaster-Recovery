@@ -19,6 +19,7 @@ import { processRankTracking } from '@/lib/search-dominance/jobs/rank-tracking-j
 import { processTrafficSync } from '@/lib/search-dominance/jobs/traffic-sync-job';
 import { processCompetitorSnapshot } from '@/lib/search-dominance/jobs/competitor-snapshot-job';
 import { processDominanceAggregation } from '@/lib/search-dominance/jobs/dominance-aggregation-job';
+import { processBlueOceanScan } from '@/lib/search-dominance/jobs/blue-ocean-job';
 
 export const maxDuration = 300; // 5 minutes max execution time
 
@@ -83,16 +84,7 @@ export async function GET(
         break;
 
       case 'blue-ocean-scan':
-        // TODO: Implement when Blue Ocean detector is complete
-        result = {
-          success: false,
-          recordsProcessed: 0,
-          recordsCreated: 0,
-          errors: ['Blue Ocean scanner not yet implemented'],
-          warnings: [],
-          duration: 0,
-          completedAt: new Date(),
-        };
+        result = await processBlueOceanScan();
         break;
 
       case 'algorithm-monitor':
