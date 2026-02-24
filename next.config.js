@@ -126,6 +126,60 @@ const nextConfig = {
           },
         ],
       },
+      // Group C soft 404s — noindex pages with generic/placeholder content
+      // Remove these headers when pages get real location-specific content
+      {
+        source: '/locations/brookwater',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/locations/eagle-farm',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/locations/indooroopilly',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/locations/melbourne',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/locations/perth',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/locations/adelaide',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/resources/disaster-prep-videos',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/resources/mold-prevention',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/resources/fire-safety',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/resources/water-damage-101',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/insurance/allianz',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/careers',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/logan-queensland',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
     ];
   },
 
@@ -373,6 +427,15 @@ const nextConfig = {
       { source: '/things-to-do-and-places-to-visit-in-brisbane-queensland/', destination: '/blog', permanent: true },
       { source: '/things-to-do-and-places-to-visit-in-logan-city-queensland', destination: '/blog', permanent: true },
       { source: '/things-to-do-and-places-to-visit-in-logan-city-queensland/', destination: '/blog', permanent: true },
+
+      // Group A soft 404s — "Service Not Found" pages (slug not recognised by [category] route)
+      { source: '/services/flood', destination: '/services/flood-damage-restoration', permanent: true },
+      { source: '/services/mould', destination: '/services/mould-remediation', permanent: true },
+      { source: '/services/emergency', destination: '/services/emergency-response', permanent: true },
+      { source: '/services/water-flood-restoration', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/services/mould-air-quality', destination: '/services/mould-remediation', permanent: true },
+      { source: '/services/bio-forensic-cleaning', destination: '/services/biohazard-cleaning', permanent: true },
+      { source: '/services/fire-smoke-remediation', destination: '/services/fire-damage-restoration', permanent: true },
     ];
   },
 
