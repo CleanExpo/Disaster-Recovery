@@ -428,6 +428,10 @@ const nextConfig = {
       { source: '/things-to-do-and-places-to-visit-in-logan-city-queensland', destination: '/blog', permanent: true },
       { source: '/things-to-do-and-places-to-visit-in-logan-city-queensland/', destination: '/blog', permanent: true },
 
+      // Page with redirect — trailing-slash strip lands on 404
+      { source: '/vandalism', destination: '/services', permanent: true },
+      { source: '/vandalism/', destination: '/services', permanent: true },
+
       // Group A soft 404s — "Service Not Found" pages (slug not recognised by [category] route)
       { source: '/services/flood', destination: '/services/flood-damage-restoration', permanent: true },
       { source: '/services/mould', destination: '/services/mould-remediation', permanent: true },
