@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     "question": "Can I remove mould myself?",
-    "answer": "Small areas under 1 square meter might be DIY with proper protection. Larger infestations require professional remediation due to health risks, proper containment needs, and risk of spreading spores."
+    "answer": "Small areas under 1 square metre might be DIY with proper protection. Larger infestations require professional remediation due to health risks, proper containment needs, and risk of spreading spores."
   },
   {
     "question": "How much does mould removal cost?",

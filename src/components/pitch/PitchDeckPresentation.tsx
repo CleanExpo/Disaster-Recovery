@@ -438,7 +438,7 @@ export default function PitchDeckPresentation() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl font-bold text-white mb-8"
           >
-            Join Us in Revolutionizing Disaster Recovery
+            Join Us in Revolutionising Disaster Recovery
           </motion.h2>
           
           <motion.p

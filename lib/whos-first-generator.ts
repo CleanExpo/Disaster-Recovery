@@ -230,7 +230,7 @@ export class WhosFirstGenerator {
       '1-6 Hours: Urgent - Begin mitigation, notify insurance, prevent secondary damage',
       '6-24 Hours: Important - Full assessment, drying begins, claim filed',
       '24-48 Hours: Monitoring - Moisture tracking, mould prevention, repair planning',
-      '48-72 Hours: Stabilization - Ensure drying targets met, coordinate repairs',
+      '48-72 Hours: Stabilisation - Ensure drying targets met, coordinate repairs',
       '3-7 Days: Restoration - Begin rebuild, maintain documentation, quality control',
     ];
   }

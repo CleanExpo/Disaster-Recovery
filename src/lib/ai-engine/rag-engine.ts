@@ -195,7 +195,7 @@ export class RAGEngineCore {
           2. Stop water source if possible
           3. Document damage with photos and notes
           4. Contact emergency restoration team within 1 hour
-          5. Begin water extraction immediately to prevent mold growth
+          5. Begin water extraction immediately to prevent mould growth
           6. Set up dehumidifiers and air movers for drying
           7. Monitor moisture levels daily
           Response time target: 15-30 minutes for emergency calls
@@ -213,7 +213,7 @@ export class RAGEngineCore {
           Fire damage requires specialised cleaning and restoration techniques.
           Soot and smoke damage can be more extensive than visible fire damage.
           Key steps: 1) Safety assessment, 2) Structural evaluation, 3) Soot removal,
-          4) Smoke odor elimination, 5) Content cleaning, 6) Reconstruction planning.
+          4) Smoke odour elimination, 5) Content cleaning, 6) Reconstruction planning.
           Professional equipment required: HEPA vacuums, ozone generators, thermal foggers.
           Timeline: Emergency response within 1 hour, full restoration 2-8 weeks.
         `,

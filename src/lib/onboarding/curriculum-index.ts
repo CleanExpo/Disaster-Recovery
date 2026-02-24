@@ -78,7 +78,7 @@ export const MASTER_CURRICULUM: Record<number, {
   },
   4: {
     title: "Fire and Smoke Damage Restoration",
-    focus: "Smoke types, cleaning methods, deodorization, content restoration",
+    focus: "Smoke types, cleaning methods, deodorisation, content restoration",
     duration: "8 hours",
     modules: 4,
     assessmentQuestions: 12,
@@ -233,7 +233,7 @@ export const COMPETENCY_FRAMEWORK = {
       "Handle biohazard scenes safely and compliantly",
       "Operate all standard restoration equipment",
       "Implement containment and engineering controls",
-      "Apply antimicrobials and deodorization techniques"
+      "Apply antimicrobials and deodorisation techniques"
     ],
     assessmentMethod: "Practical demonstration and written exam",
     requiredScore: 85

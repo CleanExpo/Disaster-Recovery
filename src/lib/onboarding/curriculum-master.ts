@@ -974,7 +974,7 @@ Disaster work takes emotional toll:
       term: "Mitigation",
       definition: "Actions taken to reduce the severity of damage after a disaster",
       context: "Primary focus in first 24-48 hours to prevent secondary damage",
-      relatedTerms: ["Stabilization", "Emergency services", "Temporary repairs"]
+      relatedTerms: ["Stabilisation", "Emergency services", "Temporary repairs"]
     },
     {
       term: "Scope of Work",
@@ -1206,7 +1206,7 @@ Source: Broken supply lines, tub overflows, appliance malfunctions, rainwater (w
 
 Characteristics:
 - No substantial risk to humans
-- Clear, odorless water
+- Clear, odourless water
 - pH between 6.5-8.5
 - Total dissolved solids < 500 ppm
 - No biological contamination
@@ -1503,14 +1503,14 @@ Professional water damage restoration isn't guesswork - it's applied science. Un
 
 1. **Liquid Water (Free Water)**
    - Visible standing water
-   - Water in materials above fiber saturation
+   - Water in materials above fibre saturation
    - Removed by: Extraction, pumping, mopping
    - Easiest and fastest to remove
    - 1 litre = 1kg = 1000ml
 
 2. **Bound Water (Absorbed)**
    - Water chemically bound in materials
-   - Below fiber saturation point
+   - Below fibre saturation point
    - Removed by: Evaporation only
    - Requires energy input (heat/airflow)
    - Determines drying time
@@ -1542,7 +1542,7 @@ Professional water damage restoration isn't guesswork - it's applied science. Un
 - Must keep surfaces above dew point
 - Determines when to heat vs dehumidify
 
-**Vapor Pressure:**
+**Vapour Pressure:**
 - Force driving evaporation
 - Greater differential = faster drying
 - Created by lowering RH or raising temperature
@@ -1551,7 +1551,7 @@ Professional water damage restoration isn't guesswork - it's applied science. Un
 **Temperature's Role:**
 - Every 10°C increase doubles air's moisture capacity
 - Warmer air accelerates evaporation
-- But can increase vapor pressure differential
+- But can increase vapour pressure differential
 - Balance with material heat tolerance
 
 **Psychrometric Chart Application:**
@@ -1595,7 +1595,7 @@ Priority: Maximum evaporation rate
 - Monitor surface temperatures
 - Prevent condensation
 
-Moisture Movement: Liquid to vapor
+Moisture Movement: Liquid to vapour
 Equipment Focus: Dehumidifiers, air movers
 Target: Reach 20% moisture content
 
@@ -1742,7 +1742,7 @@ Daily Monitoring Requirements:
    - Causes: Mould, structural damage, odours
    - Prevention: Thorough moisture mapping, invasive inspection
 
-3. **Ignoring Vapor Barriers**
+3. **Ignoring Vapour Barriers**
    - Causes: Trapped moisture, slow drying
    - Prevention: Create drying chambers, remove barriers
 
@@ -2575,7 +2575,7 @@ Recoverable after replacement: $1,500
       term: "Psychrometry",
       definition: "The study of air and its properties related to moisture content",
       context: "Used to calculate drying requirements and equipment needs",
-      relatedTerms: ["RH", "GPP", "Dew point", "Vapor pressure"]
+      relatedTerms: ["RH", "GPP", "Dew point", "Vapour pressure"]
     },
     {
       term: "Category 1/2/3 Water",
@@ -2593,7 +2593,7 @@ Recoverable after replacement: $1,500
       term: "Bound Water",
       definition: "Water chemically bound within material structure",
       context: "Requires evaporation for removal, determines drying time",
-      relatedTerms: ["Free water", "Vapor", "Fiber saturation point"]
+      relatedTerms: ["Free water", "Vapour", "Fibre saturation point"]
     },
     {
       term: "Grain Depression",
@@ -2602,7 +2602,7 @@ Recoverable after replacement: $1,500
       relatedTerms: ["GPP", "Specific humidity", "Dehumidification"]
     },
     {
-      term: "Vapor Pressure",
+      term: "Vapour Pressure",
       definition: "Force that drives evaporation from wet to dry",
       context: "Higher differential increases drying rate",
       relatedTerms: ["Evaporation", "RH differential", "Drying force"]

@@ -32,8 +32,8 @@ export const fireSmokeData: ServicePageData = {
     },
     {
       iconSvg: iconWind,
-      title: 'Odor Neutralization',
-      description: 'Smoke odors penetrate deeply into structural framing. We use thermal foggers and industrial ozone generators to pair with and permanently destroy odor-causing molecules at their chemical source.',
+      title: 'Odour Neutralisation',
+      description: 'Smoke odours penetrate deeply into structural framing. We use thermal foggers and industrial ozone generators to pair with and permanently destroy odour-causing molecules at their chemical source.',
     },
     {
       iconSvg: iconFlame,
@@ -52,12 +52,12 @@ export const fireSmokeData: ServicePageData = {
       description: ' Deployment of industrial HEPA 500 air scrubbers creating negative pressure environments to filter carcinogenic particulates from the breathing zone.',
     },
     {
-      title: 'Intensive Cleaning & Vaporization:',
+      title: 'Intensive Cleaning & Vaporisation:',
       description: ' A meticulous top-down cleaning of ceilings, walls, contents, and HVAC systems using EPA-approved restorative chemicals.',
     },
     {
-      title: 'Sealing & Odor Lock:',
-      description: ' Applying encapsulating primers and shellac-based sealants to wood framing to permanently lock in un-reachable smoke odors before reconstruction begins.',
+      title: 'Sealing & Odour Lock:',
+      description: ' Applying encapsulating primers and shellac-based sealants to wood framing to permanently lock in un-reachable smoke odours before reconstruction begins.',
     },
   ],
   sidebar: {

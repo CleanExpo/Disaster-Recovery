@@ -360,7 +360,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
           {
             phase: 1,
             name: 'Emergency Response & Mitigation',
-            description: 'Initial water extraction and stabilization',
+            description: 'Initial water extraction and stabilisation',
             tasks: [
               'Site assessment and documentation',
               'Water extraction',

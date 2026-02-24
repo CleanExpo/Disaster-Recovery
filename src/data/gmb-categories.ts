@@ -63,14 +63,14 @@ export const GMB_CATEGORIES: GMBCategory[] = [
       'soot removal',
       'fire damage repair',
       'bushfire restoration',
-      'odor removal',
+      'odour removal',
       'thermal fogging',
       'content cleaning'
     ],
     services: [
       'Emergency Board-Up',
       'Soot & Smoke Removal',
-      'Odor Elimination',
+      'Odour Elimination',
       'Structural Cleaning',
       'Content Restoration',
       'HVAC Cleaning',
@@ -115,26 +115,26 @@ export const GMB_CATEGORIES: GMBCategory[] = [
   // SECONDARY CATEGORIES
   {
     id: 'mold-remediation',
-    name: 'Mold Remediation Service',
+    name: 'Mould Remediation Service',
     slug: 'mold-remediation',
     primary: false,
-    description: 'Professional mold removal and remediation services with certified technicians',
+    description: 'Professional mould removal and remediation services with certified technicians',
     keywords: [
-      'mold remediation',
+      'mould remediation',
       'mould removal',
-      'black mold removal',
-      'mold inspection',
-      'mold testing',
+      'black mould removal',
+      'mould inspection',
+      'mould testing',
       'air quality testing',
       'fungal remediation',
       'moisture control'
     ],
     services: [
-      'Mold Inspection',
+      'Mould Inspection',
       'Air Quality Testing',
       'Containment Setup',
       'HEPA Filtration',
-      'Mold Removal',
+      'Mould Removal',
       'Antimicrobial Treatment',
       'Prevention Services'
     ],
@@ -164,7 +164,7 @@ export const GMB_CATEGORIES: GMBCategory[] = [
       'Infectious Disease Decontamination',
       'Chemical Spill Response',
       'Hoarding Cleanup',
-      'Odor Removal',
+      'Odour Removal',
       'Disinfection Services',
       'Waste Disposal'
     ],
@@ -196,7 +196,7 @@ export const GMB_CATEGORIES: GMBCategory[] = [
       'Debris Cleanup',
       'Roof Repairs',
       'Window Replacement',
-      'Structural Stabilization'
+      'Structural Stabilisation'
     ],
     schema: {
       '@type': 'ProfessionalService',
@@ -223,7 +223,7 @@ export const GMB_CATEGORIES: GMBCategory[] = [
       'Sewage Extraction',
       'Contamination Removal',
       'Sanitization',
-      'Deodorization',
+      'Deodorisation',
       'Structural Drying',
       'Content Disposal',
       'Health Safety Protocols'
@@ -246,14 +246,14 @@ export const GMB_CATEGORIES: GMBCategory[] = [
       'rug cleaning',
       'steam cleaning',
       'stain removal',
-      'pet odor removal',
+      'pet odour removal',
       'flood carpet drying'
     ],
     services: [
       'Hot Water Extraction',
       'Steam Cleaning',
       'Stain Treatment',
-      'Odor Elimination',
+      'Odour Elimination',
       'Carpet Drying',
       'Upholstery Cleaning',
       'Area Rug Cleaning'

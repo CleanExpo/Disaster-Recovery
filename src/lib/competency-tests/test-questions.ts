@@ -437,7 +437,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     id: 'tech_002',
     category: CompetencyCategory.TECHNICAL_KNOWLEDGE,
     subcategory: 'Moisture Measurement',
-    question: 'What is the fiber saturation point for most timber species?',
+    question: 'What is the fibre saturation point for most timber species?',
     questionType: 'MULTIPLE_CHOICE',
     options: [
       '15-20%',
@@ -446,7 +446,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
       '45-50%'
     ],
     correctAnswer: '25-30%',
-    explanation: 'The fiber saturation point is typically 25-30% moisture content. Below this, moisture is bound in cell walls; above it, free water exists in cell cavities.',
+    explanation: 'The fibre saturation point is typically 25-30% moisture content. Below this, moisture is bound in cell walls; above it, free water exists in cell cavities.',
     reference: 'AS/NZS 1080.1:2012 - Timber Standards',
     difficulty: 'INTERMEDIATE',
     points: 7,

@@ -221,7 +221,7 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
       <ul>
         <li><strong>Emergency Board-Up:</strong> Secure property against weather and unauthorized entry</li>
         <li><strong>Smoke & Soot Removal:</strong> Specialised cleaning techniques for different types of fire residue</li>
-        <li><strong>Odour Elimination:</strong> Advanced deodorization including ozone treatment and thermal fogging</li>
+        <li><strong>Odour Elimination:</strong> Advanced deodorisation including ozone treatment and thermal fogging</li>
         <li><strong>Structural Cleaning:</strong> Deep cleaning of affected building materials and surfaces</li>
         <li><strong>Content Restoration:</strong> Ultrasonic cleaning and restoration of salvageable items</li>
       </ul>

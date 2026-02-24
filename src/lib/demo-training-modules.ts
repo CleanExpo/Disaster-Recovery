@@ -81,7 +81,7 @@ export const TRAINING_MODULES = {
           Key Concepts:
           • Grains Per Pound (GPP)
           • Temperature/Humidity relationships
-          • Vapor pressure differentials
+          • Vapour pressure differentials
           • Specific humidity calculations
           
           Equipment Placement Formula:

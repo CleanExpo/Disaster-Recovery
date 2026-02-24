@@ -57,9 +57,9 @@ export const SCIENTIFIC_FACTS = {
       technical: "Fungal growth initiates when moisture content exceeds 16% in organic materials at temperatures between 5°C and 38°C",
       common: "Mould starts growing in just 1-2 days when things stay wet" },
     drying_time: {
-      fact: "Structural drying requires maintaining vapor pressure differential of at least 4.5 mmHg",
+      fact: "Structural drying requires maintaining vapour pressure differential of at least 4.5 mmHg",
       source: "IICRC S500 Water Damage Restoration Standard",
-      technical: "Evaporation rate = (Vapor Pressure Differential × Air Flow) / Material Resistance",
+      technical: "Evaporation rate = (Vapour Pressure Differential × Air Flow) / Material Resistance",
       common: "Proper drying needs the right temperature, air movement, and humidity control" },
     categories: {
       fact: "Water contamination is classified into 3 categories based on source and contamination level",
@@ -103,7 +103,7 @@ export const SCIENTIFIC_FACTS = {
     relative_humidity: {
       fact: "Optimal indoor RH is 30-50% for health and building preservation",
       source: "ASHRAE Standards",
-      technical: "RH = (Actual vapor pressure / Saturation vapor pressure) × 100%",
+      technical: "RH = (Actual vapour pressure / Saturation vapour pressure) × 100%",
       common: "Keep indoor humidity between 30-50% for comfort and to prevent mould" },
     dew_point: {
       fact: "Condensation occurs when surface temperature drops below dew point",
@@ -159,7 +159,7 @@ export function getCredibilityScore(sources: string[]): number {
 export function convertTechnicalToCommon(technical: string): string {
   const conversions: Record<string, string> = {
     'relative humidity': 'moisture in the air',
-    'vapor pressure': 'water evaporation force',
+    'vapour pressure': 'water evaporation force',
     'microbial growth': 'mould and bacteria growth',
     'remediation': 'cleanup and repair',
     'mitigation': 'preventing further damage',
@@ -169,7 +169,7 @@ export function convertTechnicalToCommon(technical: string): string {
     'HEPA': 'high-efficiency particle filter',
     'CFU': 'bacteria count',
     'mycotoxins': 'mould poisons',
-    'volatile organic compounds': 'harmful chemical vapors',
+    'volatile organic compounds': 'harmful chemical vapours',
     'substrate': 'surface or material',
     'moisture content': 'how wet something is',
     'equilibrium moisture content': 'normal moisture level' };

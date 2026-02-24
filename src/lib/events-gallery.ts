@@ -163,7 +163,7 @@ export const disasterEvents: DisasterEvent[] = [
     ],
     statistics: [
       { label: 'Units Restored', value: 12 },
-      { label: 'Square Meters Cleaned', value: '2,400' },
+      { label: 'Square Metres Cleaned', value: '2,400' },
       { label: 'Completion Time', value: '6 weeks' },
       { label: 'Items Restored', value: '450+' }
     ],

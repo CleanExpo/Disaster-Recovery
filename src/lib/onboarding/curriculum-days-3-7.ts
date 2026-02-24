@@ -23,7 +23,7 @@ export const CURRICULUM_DAYS_3_7: DayContent[] = [
       {
         id: "day3-obj2",
         title: "Structural Fire Damage Restoration",
-        description: "Master structural cleaning, deodorization, and restoration techniques",
+        description: "Master structural cleaning, deodorisation, and restoration techniques",
         measurableOutcome: "Can execute proper structural cleaning protocols and achieve complete odour elimination"
       },
       {
@@ -251,11 +251,11 @@ This scientific understanding of fire damage provides the foundation for making 
       },
       {
         id: "day3-mod2",
-        title: "Structural Cleaning and Deodorization",
+        title: "Structural Cleaning and Deodorisation",
         duration: 45,
         type: "video",
         content: `
-# Structural Fire Damage Cleaning and Deodorization
+# Structural Fire Damage Cleaning and Deodorisation
 
 ## Systematic Structural Cleaning Approach
 
@@ -362,10 +362,10 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 - **Applications**: Ideal for sensitive environments
 
 **Thermal Fogging:**
-- **Process**: Heat vaporizes deodorizing chemicals for deep penetration
+- **Process**: Heat vaporises deodorising chemicals for deep penetration
 - **Applications**: Effective for hard-to-reach areas
 - **Safety**: Requires evacuation during treatment
-- **Follow-up**: Usually combined with other deodorization methods
+- **Follow-up**: Usually combined with other deodorisation methods
 
 **Encapsulation:**
 - **Products**: Odour-blocking primers and sealers
@@ -419,7 +419,7 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 - **Hidden Sources**: Check for missed contamination sources
 - **Porous Materials**: May require more aggressive treatment or replacement
 - **HVAC Contamination**: Check for contaminated ductwork or components
-- **Re-treatment**: May require additional deodorization cycles
+- **Re-treatment**: May require additional deodorisation cycles
 
 **Cleaning Damage:**
 - **Over-Wetting**: Can cause water damage during cleaning
@@ -475,7 +475,7 @@ Fire-damaged contents restoration requires careful assessment, specialised clean
 **Potentially Restorable:**
 - **Electronics**: Depends on contamination level and replacement cost
 - **Furniture**: Solid wood and metal furniture often worth restoring
-- **Textiles**: Natural fiber clothing and linens may be restorable
+- **Textiles**: Natural fibre clothing and linens may be restorable
 - **Books/Documents**: Professional restoration may be cost-effective
 - **Artwork**: Often worth professional restoration attempts
 
@@ -506,7 +506,7 @@ Fire-damaged contents restoration requires careful assessment, specialised clean
 **Textile Restoration:**
 
 **Fabric Assessment:**
-- **Fiber Type**: Natural fibers generally more restorable than synthetics
+- **Fibre Type**: Natural fibres generally more restorable than synthetics
 - **Construction**: Quality construction may justify restoration costs
 - **Contamination Type**: Protein smoke more challenging than other types
 - **Colorfastness**: Test for colour bleeding during cleaning process
@@ -640,7 +640,7 @@ This comprehensive approach to contents restoration ensures that clients receive
     keyTerminology: [
       {
         term: "Thermal Fogging",
-        definition: "Deodorization technique using heat to vaporize chemicals for deep penetration into porous materials"
+        definition: "Deodorization technique using heat to vaporise chemicals for deep penetration into porous materials"
       },
       {
         term: "Protein Smoke",
@@ -683,7 +683,7 @@ This comprehensive approach to contents restoration ensures that clients receive
       "Master structural cleaning techniques for all surface types",
       "Develop contents restoration assessment skills",
       "Practice odour elimination method selection",
-      "Learn advanced deodorization techniques and safety protocols"
+      "Learn advanced deodorisation techniques and safety protocols"
     ],
     nextDayPreparation: "Tomorrow covers mould remediation and indoor air quality - a rapidly growing specialty requiring understanding of microbiology, containment procedures, and health effects. Review basic mould biology and moisture sources."
   },
@@ -877,7 +877,7 @@ Effective mould remediation requires understanding mould biology, growth require
 - **Insulation**: Proper insulation to prevent condensation
 
 **Building Design:**
-- **Vapor Barriers**: Proper vapor barrier installation
+- **Vapour Barriers**: Proper vapour barrier installation
 - **Air Sealing**: Prevent warm, moist air infiltration
 - **HVAC Design**: Properly sized and maintained systems
 - **Material Selection**: Mould-resistant materials in high-risk areas
@@ -1387,7 +1387,7 @@ Biohazard cleanup involves exposure to potentially infectious materials and toxi
 - **Documentation**: Chain of custody and waste tracking forms
 
 **Treatment and Disposal:**
-- **Autoclaving**: Steam sterilization for infectious waste
+- **Autoclaving**: Steam sterilisation for infectious waste
 - **Incineration**: High-temperature destruction of contaminated materials
 - **Chemical Treatment**: EPA-approved chemical treatment systems
 - **Licensed Facilities**: Only use properly licensed medical waste disposal facilities

@@ -54,7 +54,7 @@ export default function ClientPitch() {
               </span>
             </h1>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
-              When disaster strikes, every minute counts. Discover how we're revolutionizing 
+              When disaster strikes, every minute counts. Discover how we're revolutionising 
               disaster recovery with 2-hour response times and real-time tracking.
             </p>
           </motion.div>

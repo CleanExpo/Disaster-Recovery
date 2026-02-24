@@ -8,7 +8,7 @@ export const mouldRemediationData: ServicePageData = {
   slug: 'mould-remediation',
   breadcrumbLabel: 'Microbial Recovery',
   title: 'Mould & Microbial Remediation',
-  leadText: 'Scientific, containment-based removal of toxic mold colonies. We restore indoor air quality (IAQ) to healthy, pre-condition basements using strict IICRC S520 guidelines.',
+  leadText: 'Scientific, containment-based removal of toxic mould colonies. We restore indoor air quality (IAQ) to healthy, pre-condition basements using strict IICRC S520 guidelines.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #062817 0%, #115E39 100%)',
     headerRadial: 'radial-gradient(circle at top right, rgba(34, 197, 94, 0.1) 0%, transparent 60%)',

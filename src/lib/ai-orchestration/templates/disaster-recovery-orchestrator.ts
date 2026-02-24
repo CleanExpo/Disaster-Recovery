@@ -740,14 +740,14 @@ Please provide comprehensive disaster recovery guidance addressing all required 
         dependencies: []
       },
       {
-        name: 'Emergency Stabilization',
+        name: 'Emergency Stabilisation',
         expectedTime: new Date(Date.now() + 6 * 60 * 60 * 1000), // 6 hours
         dependencies: ['Safety Assessment Complete']
       },
       {
         name: 'Full Damage Assessment',
         expectedTime: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
-        dependencies: ['Emergency Stabilization']
+        dependencies: ['Emergency Stabilisation']
       },
       {
         name: 'Restoration Planning',

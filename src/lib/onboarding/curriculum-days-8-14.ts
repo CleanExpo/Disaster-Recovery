@@ -514,7 +514,7 @@ Sustainable business success requires understanding all aspects of business oper
 
 **Fire Damage Restoration:**
 - **Assessment Services**: Detailed damage assessment and scope development
-- **Cleaning Services**: Structural cleaning and deodorization
+- **Cleaning Services**: Structural cleaning and deodorisation
 - **Content Restoration**: Specialised cleaning of fire-damaged contents
 - **Reconstruction**: Rebuilding and refinishing of damaged structures
 
@@ -1105,7 +1105,7 @@ Quality control is what separates professional contractors from competitors and 
 - [ ] Paint and finishes match existing appearance
 - [ ] All systems tested and operational
 - [ ] Structural integrity verified where fire damage occurred
-- [ ] Final deodorization completed and verified
+- [ ] Final deodorisation completed and verified
 
 **Mould Remediation Quality Checklist:**
 
@@ -1333,7 +1333,7 @@ The disaster recovery industry continues to evolve with new technologies, method
 ### Fire and Smoke Restoration Innovations
 
 **Thermal Fogging Technology:**
-- **Process**: Heat vaporization of deodorizing agents for deep penetration
+- **Process**: Heat vaporisation of deodorising agents for deep penetration
 - **Applications**: Severe odour problems, inaccessible areas, vehicle interiors
 - **Equipment**: Professional thermal foggers with specialised chemicals
 - **Safety**: Requires evacuation during treatment and proper ventilation
@@ -1351,7 +1351,7 @@ The disaster recovery industry continues to evolve with new technologies, method
 - **Advantages**: Safe for occupied spaces, continuous operation, no residue
 - **Applications**: Ongoing odour control during restoration work
 - **Equipment**: Portable units suitable for residential and commercial use
-- **Integration**: Combines well with other deodorization methods
+- **Integration**: Combines well with other deodorisation methods
 
 **Ultrasonic Cleaning Systems:**
 - **Technology**: High-frequency sound waves for deep cleaning
@@ -1483,7 +1483,7 @@ This comprehensive understanding of advanced technologies and methods enables co
       },
       {
         term: "Thermal Fogging",
-        definition: "Heat vaporization of deodorizing chemicals for deep odour penetration"
+        definition: "Heat vaporisation of deodorising chemicals for deep odour penetration"
       },
       {
         term: "Hydroxyl Radicals",

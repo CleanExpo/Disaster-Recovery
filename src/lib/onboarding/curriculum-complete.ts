@@ -196,7 +196,7 @@ As an NRP contractor, you are part of a critical infrastructure network:
 **Emergency Response Chain:**
 1. **Disaster Occurs**: Natural or man-made event
 2. **Initial Assessment**: Insurance adjusters and emergency services
-3. **Contractor Deployment**: Immediate stabilization and mitigation
+3. **Contractor Deployment**: Immediate stabilisation and mitigation
 4. **Full Restoration**: Complete property restoration to pre-loss condition
 5. **Final Inspection**: Quality assurance and handover
 
@@ -543,7 +543,7 @@ The IICRC provides the scientific foundation for professional restoration work. 
 - Professional introduction and company representation
 - Empathetic acknowledgment of their situation
 - Clear explanation of assessment process
-- Emergency stabilization if required (tarping, water extraction)
+- Emergency stabilisation if required (tarping, water extraction)
 
 **Assessment Phase (Hours 1-4):**
 - Comprehensive property inspection using IICRC protocols
@@ -747,8 +747,8 @@ Water follows predictable paths through buildings:
 - **Gravity**: Water flows downward, seeking the lowest point
 - **Wicking**: Materials absorb water through capillary action
 - **Migration**: Water moves from wet areas to dry areas
-- **Evaporation**: Surface water becomes water vapor
-- **Condensation**: Water vapor returns to liquid form on cool surfaces
+- **Evaporation**: Surface water becomes water vapour
+- **Condensation**: Water vapour returns to liquid form on cool surfaces
 
 **Example**: A burst pipe on the second floor will create damage patterns:
 - Immediate flooding at the source
@@ -792,15 +792,15 @@ Water follows predictable paths through buildings:
 - Above 60% RH slows drying significantly
 - Below 20% RH can damage some materials
 
-**Specific Humidity**: Actual amount of water vapor in air
+**Specific Humidity**: Actual amount of water vapour in air
 - Measured in grains per pound of dry air
 - Doesn't change with temperature
 - Key measurement for drying progress
 
-**Vapor Pressure**: Force driving moisture movement
-- Water moves from high vapor pressure to low vapor pressure
-- Creating vapor pressure differentials accelerates drying
-- Equipment placement based on vapor pressure principles
+**Vapour Pressure**: Force driving moisture movement
+- Water moves from high vapour pressure to low vapour pressure
+- Creating vapour pressure differentials accelerates drying
+- Equipment placement based on vapour pressure principles
 
 **Dew Point**: Temperature at which air becomes saturated
 - Condensation occurs when surfaces reach dew point temperature
@@ -985,7 +985,7 @@ This scientific foundation in water damage restoration will guide every decision
           "Psychrometry is the scientific foundation for all water damage restoration",
           "Water categories (1-3) determine restoration approach and safety requirements",
           "Drying classes (1-4) determine equipment needs and timeline expectations",
-          "Vapor pressure differentials drive moisture movement and drying effectiveness",
+          "Vapour pressure differentials drive moisture movement and drying effectiveness",
           "Daily monitoring and documentation are essential for professional restoration",
           "Material porosity determines absorption rates and restoration strategies"
         ],
@@ -1018,7 +1018,7 @@ The first 24-48 hours after water damage occurs are critical. During this window
 
 ### Emergency Response Timeline
 
-**First 30 Minutes: Assessment and Stabilization**
+**First 30 Minutes: Assessment and Stabilisation**
 - **Safety First**: Ensure electrical safety, structural integrity, and personal safety
 - **Source Control**: Stop water source if possible and safe to do so
 - **Initial Assessment**: Rapid evaluation of damage extent and category
@@ -1039,7 +1039,7 @@ The first 24-48 hours after water damage occurs are critical. During this window
 ### Water Extraction Equipment and Techniques
 
 **Portable Extractors:**
-- **Capacity**: 25-75 liters typical for residential work
+- **Capacity**: 25-75 litres typical for residential work
 - **Use**: Small areas, spot extraction, detail work
 - **Advantages**: Maneuverable, quick setup, lower cost
 - **Limitations**: Limited capacity, frequent emptying required
@@ -1445,11 +1445,11 @@ This advanced understanding of drying systems enables you to handle complex wate
     keyTerminology: [
       {
         term: "Psychrometry",
-        definition: "The study of the properties of air and water vapor mixtures, fundamental to understanding drying processes"
+        definition: "The study of the properties of air and water vapour mixtures, fundamental to understanding drying processes"
       },
       {
-        term: "Vapor Pressure",
-        definition: "The pressure exerted by water vapor in air, driving force for moisture movement"
+        term: "Vapour Pressure",
+        definition: "The pressure exerted by water vapour in air, driving force for moisture movement"
       },
       {
         term: "Grain Depression",

@@ -44,7 +44,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     service: 'Fire Damage Restoration',
     quote: 'After our kitchen fire, they restored not just our home but our peace of mind. Insurance approved everything immediately.',
-    fullStory: 'A kitchen fire left our home with extensive smoke damage throughout. The restoration team was incredible - they secured the property, performed emergency board-up, and began smoke remediation within hours. They worked directly with Allianz and we never had to worry about claim disputes. The attention to detail in cleaning and deodorizing was remarkable. They even restored family photos we thought were lost.',
+    fullStory: 'A kitchen fire left our home with extensive smoke damage throughout. The restoration team was incredible - they secured the property, performed emergency board-up, and began smoke remediation within hours. They worked directly with Allianz and we never had to worry about claim disputes. The attention to detail in cleaning and deodorising was remarkable. They even restored family photos we thought were lost.',
     verified: true,
     insuranceCompany: 'Allianz',
     propertyType: 'Townhouse',

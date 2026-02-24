@@ -363,7 +363,7 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       'Fire and smoke odour removal',
       'Mould odour elimination',
       'Pet odour treatment',
-      'Chemical odour neutralization',
+      'Chemical odour neutralisation',
       'Viral decontamination'
     ],
     certifications: [
@@ -657,7 +657,7 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       'Severe odour removal',
       'Smoke damage treatment',
       'Mould odour elimination',
-      'Vehicle deodorization',
+      'Vehicle deodorisation',
       'Crime scene cleanup'
     ],
     certifications: [

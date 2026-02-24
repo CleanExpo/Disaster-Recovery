@@ -33,7 +33,7 @@ const cards: AssessmentCard[] = [
   {
     id: 'fire',
     title: 'Fire & Smoke',
-    description: 'Soot removal, thermal fogging, and odour neutralization.',
+    description: 'Soot removal, thermal fogging, and odour neutralisation.',
     icon: '/images/antigravity/logo_3d_fire.webp',
     iconAlt: 'Fire Emergency',
     href: '/services/fire-damage-restoration',

@@ -8,7 +8,7 @@ export const laserCleaningData: ServicePageData = {
   slug: 'laser-cleaning',
   breadcrumbLabel: 'Advanced Recovery',
   title: 'Precision Laser Cleaning Technology',
-  leadText: 'Next-generation, non-abrasive surface restoration. Our advanced ablation lasers vaporize soot, graffiti, and rust at the molecular level without damaging the underlying substrate.',
+  leadText: 'Next-generation, non-abrasive surface restoration. Our advanced ablation lasers vaporise soot, graffiti, and rust at the molecular level without damaging the underlying substrate.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #0A1B2C 0%, #1A4674 100%)',
     headerRadial: 'linear-gradient(rgba(26, 70, 116, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(26, 70, 116, 0.4) 1px, transparent 1px)',
@@ -53,10 +53,10 @@ export const laserCleaningData: ServicePageData = {
     },
     {
       title: 'Precision Ablation Phase:',
-      description: ' Methodical, line-by-line vaporization of the affected surface area, guided by an IICRC-certified laser technician.',
+      description: ' Methodical, line-by-line vaporisation of the affected surface area, guided by an IICRC-certified laser technician.',
     },
     {
-      title: 'HEPA Vapor Extraction:',
+      title: 'HEPA Vapour Extraction:',
       description: ' Simultaneous vacuum capture of off-gassing and micro-particulates, rendering the environment instantly clean.',
     },
   ],

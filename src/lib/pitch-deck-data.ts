@@ -178,7 +178,7 @@ export const pitchDeckData = {
       background: 'tech',
       animation: 'matrix',
       duration: 10000,
-      narration: 'Our technology platform leverages artificial intelligence for intelligent matching, automated triage, predictive forecasting, and real-time analytics. We\'re not just digitizing the industry - we\'re revolutionizing how disaster recovery operates.',
+      narration: 'Our technology platform leverages artificial intelligence for intelligent matching, automated triage, predictive forecasting, and real-time analytics. We\'re not just digitizing the industry - we\'re revolutionising how disaster recovery operates.',
       screenshots: ['ai-dashboard', 'analytics', 'mobile-app']
     },
     {

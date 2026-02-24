@@ -609,14 +609,14 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     alt: '3D emergency squalor cleanup - Professional hoarding and biohazard cleaning services'
   },
 
-  // Deodorization and Sanitization Equipment
+  // Deodorisation and Sanitisation Equipment
   {
     id: 'equipment-thermal-fogging-01',
     name: '3D Thermal Fogging Equipment',
     category: 'equipment-filters',
     description: '3D visualization of thermal fogging equipment for odour elimination and sanitization',
     originalPath: '3D Thermal Fogging.png',
-    tags: ['thermal fogging', 'deodorization', 'sanitization', 'odour removal', 'smoke damage', 'equipment', '3d', 'disinfection'],
+    tags: ['thermal fogging', 'deodorisation', 'sanitisation', 'odour removal', 'smoke damage', 'equipment', '3d', 'disinfection'],
     formats: {
       png: '/images/optimised/equipment/3D Thermal Fogging.png',
       webp: '/images/optimised/equipment/3D Thermal Fogging.webp',

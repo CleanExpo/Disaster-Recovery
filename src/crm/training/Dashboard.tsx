@@ -265,7 +265,7 @@ export default function DashboardModule() {
             <CardContent className="space-y-4">"
               <div className="prose prose-gray max-w-none">"
                 <div className="whitespace-pre-line text-gray-700 leading-relaxed">"
-                  Personalization Options:
+                  Personalisation Options:
 • Drag and drop widget arrangement
 • Custom date ranges for analytics
 • Territory-specific views

@@ -192,7 +192,7 @@ export class LocationServiceGenerator {
       category: 'fire',
       urgency: 'emergency',
       keywords: ['fire damage', 'smoke damage', 'soot removal', 'fire restoration'],
-      variations: ['emergency', 'smoke', 'soot', 'odor removal']
+      variations: ['emergency', 'smoke', 'soot', 'odour removal']
     },
     'mould-remediation': {
       type: 'Mould Remediation',
@@ -383,7 +383,7 @@ export class LocationServiceGenerator {
         type: 'water'
       },
       {
-        text: `After our kitchen fire, they not only cleaned up the damage but eliminated all smoke odor. You'd never know we had a fire. Incredible service!`,
+        text: `After our kitchen fire, they not only cleaned up the damage but eliminated all smoke odour. You'd never know we had a fire. Incredible service!`,
         author: 'John D.',
         type: 'fire'
       },

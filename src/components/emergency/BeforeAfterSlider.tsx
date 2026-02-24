@@ -40,7 +40,7 @@ export default function BeforeAfterSlider() {
       details: [
         'Emergency board-up same day',
         'Smoke and soot removal',
-        'Complete deodorization',
+        'Complete deodorisation',
         'Kitchen fully rebuilt'
       ]
     },
