@@ -454,6 +454,9 @@ const nextConfig = {
       { source: '/services/mould-air-quality', destination: '/services/mould-remediation', permanent: true },
       { source: '/services/bio-forensic-cleaning', destination: '/services/biohazard-cleaning', permanent: true },
       { source: '/services/fire-smoke-remediation', destination: '/services/fire-damage-restoration', permanent: true },
+
+      // Indexed page returning "Service Not Found" — active in Google index
+      { source: '/services/fire-smoke-damage', destination: '/services/fire-damage-restoration', permanent: true },
     ];
   },
 
