@@ -95,7 +95,7 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1 } },
   verification: {
-    google: '',
+    google: ['dDWcL2TyZJ3cNEkXAqLrpMk8Lc0Yqy0soQzmTUMubVI', 'CrxqogWzyQzp7XriWhZJT0bnxJVkilQawe-0lRQ6pqI'],
     yandex: '',
     yahoo: '',
     other: {} },
@@ -141,6 +141,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": "https://disasterrecovery.com.au/#organization",
               "name": "Disaster Recovery Australia",
               "alternateName": "NRPG - National Restoration Professionals Group",
               "url": "https://disasterrecovery.com.au",

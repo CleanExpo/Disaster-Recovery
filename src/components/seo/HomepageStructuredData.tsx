@@ -3,30 +3,6 @@
 import Script from 'next/script';
 
 export function HomepageStructuredData() {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://disasterrecovery.com.au/#organization",
-    "name": "Disaster Recovery",
-    "url": "https://disasterrecovery.com.au",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
-      "width": 600,
-      "height": 60
-    },
-    "description": "Premier network of IICRC certified disaster recovery contractors. 24/7 emergency response for water damage, fire restoration, and mould remediation.",
-    "email": "info@disasterrecovery.com.au",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Australia"
-    },
-    "sameAs": [
-      "https://www.facebook.com/DisasterRecoveryAU",
-      "https://www.instagram.com/disasterrecoveryau"
-    ]
-  };
-
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "EmergencyService",
@@ -218,11 +194,6 @@ export function HomepageStructuredData() {
 
   return (
     <>
-      <Script
-        id="organisation-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       <Script
         id="local-business-schema"
         type="application/ld+json"
