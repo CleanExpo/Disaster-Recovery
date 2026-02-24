@@ -368,11 +368,11 @@ export class ImageSEOAgent {
       "uploadDate": new Date().toISOString(),
       "acquireLicenseUrl": "https://disasterrecovery.com.au/contact",
       "copyrightHolder": {
-        "@type": "Organisation",
+        "@type": "Organization",
         "name": "Disaster Recovery"
       },
       "creator": {
-        "@type": "Organisation",
+        "@type": "Organization",
         "name": "Disaster Recovery"
       },
       "creditText": "Disaster Recovery - Professional Restoration Services",

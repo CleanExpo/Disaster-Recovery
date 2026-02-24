@@ -9,7 +9,7 @@ export const generateLocationServiceSchema = (location: string, postalCode: stri
   "description": `Professional disaster recovery and emergency restoration services in ${location}. IICRC-certified contractors available 24/7 for water damage, fire damage, mould remediation, and storm damage.`,
   "serviceType": "Damage Restoration Service",
   "provider": {
-    "@id": "https://disasterrecovery.com.au/#organisation"
+    "@id": "https://disasterrecovery.com.au/#organization"
   },
   "areaServed": {
     "@type": "GeoCircle",
@@ -75,7 +75,7 @@ export const generateEmergencyServiceSchema = () => ({
   "termsOfService": "https://disasterrecovery.com.au/terms",
   "provider": {
     "@type": "Organization",
-    "name": "National Restoration Platform (NRP)",
+    "name": "National Restoration Professionals Group (NRPG)",
     "url": "https://disasterrecovery.com.au"
   }
 });

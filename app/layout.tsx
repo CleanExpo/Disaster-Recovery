@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   keywords: 'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
   authors: [{ name: 'Disaster Recovery Australia' }],
   creator: 'Disaster Recovery Australia',
-  publisher: 'National Restoration Platform',
+  publisher: 'National Restoration Professionals Group (NRPG)',
   formatDetection: {
     email: false,
     address: false,
@@ -136,7 +136,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-colour" content="#0052CC" />
+        <meta name="theme-color" content="#0052CC" />
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -145,7 +145,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Disaster Recovery Australia",
-              "alternateName": "NRP - National Restoration Platform",
+              "alternateName": "NRPG - National Restoration Professionals Group",
               "url": "https://disasterrecovery.com.au",
               "logo": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
               "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",

@@ -5,8 +5,8 @@ import Script from 'next/script';
 export function HomepageStructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organisation",
-    "@id": "https://disasterrecovery.com.au/#organisation",
+    "@type": "Organization",
+    "@id": "https://disasterrecovery.com.au/#organization",
     "name": "Disaster Recovery",
     "url": "https://disasterrecovery.com.au",
     "logo": {
@@ -35,7 +35,6 @@ export function HomepageStructuredData() {
     "name": "Disaster Recovery",
     "image": "https://disasterrecovery.com.au/og-image.jpg",
     "url": "https://disasterrecovery.com.au",
-    "telephone": "",
     "priceRange": "$2200+",
     "address": {
       "@type": "PostalAddress",
@@ -138,7 +137,7 @@ export function HomepageStructuredData() {
     "name": "Disaster Recovery",
     "description": "24/7 Emergency Disaster Recovery Services nationwide",
     "publisher": {
-      "@id": "https://disasterrecovery.com.au/#organisation"
+      "@id": "https://disasterrecovery.com.au/#organization"
     },
     "potentialAction": {
       "@type": "SearchAction",

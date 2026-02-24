@@ -68,7 +68,7 @@ export interface BusinessLocationInfo {
 export const generateLocalBusinessSchema = (businessInfo: BusinessLocationInfo) => ({
   '@context': 'https://schema.org',
   '@type': 'DamageRestorationService',
-  '@id': 'https://disasterrecovery.com.au/#organisation',
+  '@id': 'https://disasterrecovery.com.au/#organization',
   name: 'Disaster Recovery',
   url: 'https://disasterrecovery.com.au',
   logo: {
@@ -78,7 +78,6 @@ export const generateLocalBusinessSchema = (businessInfo: BusinessLocationInfo) 
     height: 60 },
   image: 'https://disasterrecovery.com.au/hero-image.jpg',
   description: `${businessInfo.city}, ${businessInfo.stateFullName}'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.`,
-  telephone: "",
   email: 'info@disasterrecovery.com.au',
   address: {
     '@type': 'PostalAddress',

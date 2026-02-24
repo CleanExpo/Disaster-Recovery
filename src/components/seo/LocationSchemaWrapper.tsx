@@ -82,7 +82,7 @@ export function LocationSchemaWrapper({
     description: `Professional disaster recovery and emergency restoration services in ${city}, ${fullState}. IICRC-certified contractors available 24/7 for water damage, fire damage, mould remediation, and storm damage.`,
     serviceType: 'Damage Restoration Service',
     provider: {
-      '@id': `${BASE_URL}/#organisation`,
+      '@id': `${BASE_URL}/#organization`,
     },
     areaServed: {
       '@type': 'GeoCircle',
@@ -164,7 +164,6 @@ export function LocationSchemaWrapper({
     url: `${BASE_URL}/locations/${citySlug}`,
     description: `24/7 emergency disaster recovery and property restoration services in ${city}, ${fullState}. IICRC-certified contractor network for water damage, fire damage, mould, and storm restoration.`,
     image: `${BASE_URL}/og-image.png`,
-    telephone: '+61-1300-000-000',
     priceRange: '$$',
     areaServed: {
       '@type': 'City',
@@ -192,7 +191,7 @@ export function LocationSchemaWrapper({
       closes: '23:59',
     },
     parentOrganization: {
-      '@id': `${BASE_URL}/#organisation`,
+      '@id': `${BASE_URL}/#organization`,
     },
   };
 

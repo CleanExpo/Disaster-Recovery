@@ -45,7 +45,7 @@ export default function LegalFormLayout({ title, lastUpdated, version, sections 
           {/* Footer */}
           <div className="mt-12 pt-6 border-t border-white/20">
             <div className="text-center text-gray-700 text-sm">
-              <p>© 2024 National Restoration Platform. All rights reserved.</p>
+              <p>© 2026 National Restoration Professionals Group (NRPG). All rights reserved.</p>
               <p className="mt-2">This document is confidential and proprietary.</p>
             </div>
           </div>

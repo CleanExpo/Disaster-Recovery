@@ -170,8 +170,8 @@ export const lighthouseOptimizations = {
       requirement: 'App icons',
       implementation: 'Provide 192x192 and 512x512 icons' },
     themeColor: {
-      requirement: 'Theme colour meta tag',
-      implementation: '<meta name="theme-colour">' },
+      requirement: 'Theme color meta tag',
+      implementation: '<meta name="theme-color">' },
     viewport: {
       requirement: 'Viewport meta tag',
       implementation: '<meta name="viewport" content="width=device-width, initial-scale=1">' },

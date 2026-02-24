@@ -299,12 +299,12 @@ export class MetadataManager {
         "thumbnailUrl": "${metadata.source}",
         "uploadDate": "${metadata.date}",
         "copyrightHolder": {
-          "@type": "Organisation",
+          "@type": "Organization",
           "name": "National Restoration Platform"
         },
         "copyrightNotice": "${metadata.copyright}",
         "creator": {
-          "@type": "Organisation",
+          "@type": "Organization",
           "name": "${metadata.creator}"
         },
         "creditText": "NRP Disaster Recovery Services",
@@ -341,7 +341,7 @@ export class MetadataManager {
       "contentSize": "500KB",
       "encodingFormat": metadata.format,
       "copyrightHolder": {
-        "@type": "Organisation",
+        "@type": "Organization",
         "@id": "https://nrp.com.au",
         "name": "National Restoration Platform",
         "url": "https://nrp.com.au",
@@ -350,7 +350,7 @@ export class MetadataManager {
       "copyrightNotice": metadata.copyright,
       "copyrightYear": new Date().getFullYear(),
       "creator": {
-        "@type": "Organisation",
+        "@type": "Organization",
         "name": metadata.creator,
         "url": "https://nrp.com.au"
       },
@@ -367,7 +367,7 @@ export class MetadataManager {
         "@type": "Service",
         "name": metadata.service || "Disaster Recovery",
         "provider": {
-          "@type": "Organisation",
+          "@type": "Organization",
           "name": "NRP"
         }
       },
