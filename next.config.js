@@ -180,6 +180,15 @@ const nextConfig = {
         source: '/logan-queensland',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
       },
+      // Auth/utility pages — no SEO value, should not be indexed
+      {
+        source: '/login',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/signup',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
     ];
   },
 
@@ -431,6 +440,11 @@ const nextConfig = {
       // Page with redirect — trailing-slash strip lands on 404
       { source: '/vandalism', destination: '/services', permanent: true },
       { source: '/vandalism/', destination: '/services', permanent: true },
+
+      // Indexed pages returning 404 — critical fixes
+      { source: '/join', destination: '/signup', permanent: true },
+      { source: '/pricing', destination: '/cost', permanent: true },
+      { source: '/brisbane', destination: '/locations/brisbane', permanent: true },
 
       // Group A soft 404s — "Service Not Found" pages (slug not recognised by [category] route)
       { source: '/services/flood', destination: '/services/flood-damage-restoration', permanent: true },
