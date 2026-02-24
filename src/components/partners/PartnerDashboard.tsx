@@ -328,7 +328,7 @@ export default function PartnerDashboard() {
             <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
               <div className="text-center">
                 <BarChart3 className="w-12 h-12 text-gray-700 mx-auto mb-2" />
-                <p className="text-gray-700">Performance chart visualization</p>
+                <p className="text-gray-700">Performance chart visualisation</p>
               </div>
             </div>
           </div>

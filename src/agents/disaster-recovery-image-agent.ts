@@ -289,10 +289,10 @@ export function generateSEOMetadata(
   } - Professional 3D rendered ${imageType} image by Disaster Recovery Australia`.trim();
   
   // Generate title
-  const title = `${location || ''} ${service || ''} | Disaster Recovery 3D Visualization`.trim();
+  const title = `${location || ''} ${service || ''} | Disaster Recovery 3D Visualisation`.trim();
   
   // Generate description
-  const description = `Professional 3D rendered visualization of ${
+  const description = `Professional 3D rendered visualisation of ${
     service ? service.replace(/-/g, ' ') : 'disaster recovery'
   } services ${location ? `in ${location}, Australia` : ''}. 24/7 emergency response, insurance approved, certified technicians.`;
   
@@ -317,13 +317,13 @@ export function generateSEOMetadata(
     },
     license: 'https://disasterrecovery.com.au/terms',
     acquireLicensePage: 'https://disasterrecovery.com.au/contact',
-    creditText: 'Disaster Recovery Australia - Professional 3D Visualization',
+    creditText: 'Disaster Recovery Australia - Professional 3D Visualisation',
     copyrightNotice: '© 2025 Disaster Recovery Australia. All rights reserved.',
     keywords: [
       service?.replace(/-/g, ' '),
       location,
       'disaster recovery',
-      '3D visualization',
+      '3D visualisation',
       'emergency services',
       'Australia'
     ].filter(Boolean).join(', ')

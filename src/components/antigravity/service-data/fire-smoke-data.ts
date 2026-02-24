@@ -8,7 +8,7 @@ export const fireSmokeData: ServicePageData = {
   slug: 'fire-smoke',
   breadcrumbLabel: 'Fire & Smoke',
   title: 'Fire & Smoke Remediation',
-  leadText: 'Advanced recovery protocols for structural fire damage. We deploy intensive carbon filtration, thermal fogging, and specialised chemical sponges to permanently neutralize highly toxic smoke residues.',
+  leadText: 'Advanced recovery protocols for structural fire damage. We deploy intensive carbon filtration, thermal fogging, and specialised chemical sponges to permanently neutralise highly toxic smoke residues.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #2D0A0A 0%, #741A1A 100%)',
     headerRadial: 'radial-gradient(circle at bottom right, rgba(239, 68, 68, 0.2) 0%, transparent 70%)',
@@ -22,7 +22,7 @@ export const fireSmokeData: ServicePageData = {
   introHeading: 'The Corrosive Threat of Smoke WEBS',
   introParagraphs: [
     'Extinguishing a fire is only the initial phase of recovery. The dense, acidic soot and smoke webs left behind rapidly corrode electronics, tarnish metals, and permanently stain structural elements within days.',
-    'Our FSRT (Fire & Smoke Restoration Technician) certified teams act immediately to neutralize these acidic byproducts. NRPG employs commercial-grade ultrasonic cleaning tanks for contents recovery, alongside heavy-duty HEPA air scrubbers to completely filter airborne particulate matter from the environment.',
+    'Our FSRT (Fire & Smoke Restoration Technician) certified teams act immediately to neutralise these acidic byproducts. NRPG employs commercial-grade ultrasonic cleaning tanks for contents recovery, alongside heavy-duty HEPA air scrubbers to completely filter airborne particulate matter from the environment.',
   ],
   technicalCards: [
     {

@@ -203,7 +203,7 @@ const apiCategories: APICategory[] = [
   {
     id: 'jobs',
     name: 'Job Data Integration',
-    description: 'Clean Claims job management and synchronization',
+    description: 'Clean Claims job management and synchronisation',
     icon: 'briefcase',
     order: 4,
     endpoints: [

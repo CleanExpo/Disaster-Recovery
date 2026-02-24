@@ -57,7 +57,7 @@ export const waterDamageData: ServicePageData = {
     },
     {
       title: 'Final Antimicrobial Clearance:',
-      description: ' Application of botanical, EPA-registered disinfectants to neutralize remaining pathogens and guarantee a safe environment.',
+      description: ' Application of botanical, EPA-registered disinfectants to neutralise remaining pathogens and guarantee a safe environment.',
     },
   ],
   sidebar: {

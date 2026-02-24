@@ -47,12 +47,12 @@ export const methLabDecontaminationData: ServicePageData = {
       description: ' Deployment of specialised field technicians to conduct thorough site mapping and chemical sampling.',
     },
     {
-      title: 'Site Containment & Depressurization:',
+      title: 'Site Containment & Depressurisation:',
       description: ' Installation of critical zip-wall barriers and HEPA-filtered negative air machines to prevent particulate drift.',
     },
     {
       title: 'Chemical Neutralisation:',
-      description: ' Application of proprietary, industrial-grade neutralizing agents to break down methamphetamine residues at a molecular level.',
+      description: ' Application of proprietary, industrial-grade neutralising agents to break down methamphetamine residues at a molecular level.',
     },
     {
       title: 'Independent Clearance:',

@@ -209,7 +209,7 @@ export default function ReportingModule() {
 1. Select data sources (leads, jobs, revenue, territories)
 2. Choose metrics and dimensions
 3. Apply filters (date, territory, service type)
-4. Set visualization type (charts, maps, tables)
+4. Set visualisation type (charts, maps, tables)
 5. Schedule automated delivery
 6. Export formats (PDF, Excel, API)
                 </div>

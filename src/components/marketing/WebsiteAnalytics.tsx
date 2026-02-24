@@ -603,7 +603,7 @@ export default function WebsiteAnalytics() {
       {selectedView === 'territory' && <TerritoryPerformance />}
       {selectedView === 'flow' && (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <p className="text-gray-700">Visitor flow visualization would be implemented here</p>
+          <p className="text-gray-700">Visitor flow visualisation would be implemented here</p>
         </div>
       )}
     </div>

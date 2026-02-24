@@ -356,7 +356,7 @@ Structural fire damage cleaning requires a systematic approach that addresses bo
 - **Safety**: Toxic to humans and pets, requires complete evacuation
 
 **Hydroxyl Generation:**
-- **Process**: Hydroxyl radicals neutralize odour molecules
+- **Process**: Hydroxyl radicals neutralise odour molecules
 - **Advantages**: Safe for occupied spaces, no chemical residue
 - **Duration**: Continuous operation during cleaning and drying
 - **Applications**: Ideal for sensitive environments
@@ -1469,7 +1469,7 @@ This comprehensive approach to biohazard safety ensures worker protection, regul
       },
       {
         term: "Decontamination",
-        definition: "Process of removing or neutralizing contaminants to reduce infection risk"
+        definition: "Process of removing or neutralising contaminants to reduce infection risk"
       }
     ],
     realWorldScenarios: [

@@ -47,7 +47,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'mould-ceiling-01',
     name: '3D Mould on Ceiling',
     category: 'mould-damage',
-    description: '3D visualization of mould growth on ceiling surface',
+    description: '3D visualisation of mould growth on ceiling surface',
     tags: ['mould', 'ceiling', 'damage', 'indoor', 'remediation'],
     formats: {
       webp: '/images/damage/mould/ceiling-mould.webp',
@@ -87,7 +87,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'kitchen-fire-01',
     name: '3D Kitchen Fire',
     category: 'fire-damage',
-    description: '3D visualization of kitchen fire damage',
+    description: '3D visualisation of kitchen fire damage',
     tags: ['fire', 'kitchen', 'damage', 'smoke', 'restoration'],
     formats: {
       webp: '/images/damage/fire/kitchen-fire.webp',
@@ -108,7 +108,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'water-damage-home-01',
     name: '3D Water Damage to a Home',
     category: 'water-damage',
-    description: '3D visualization of residential water damage',
+    description: '3D visualisation of residential water damage',
     tags: ['water', 'flood', 'damage', 'residential', 'restoration'],
     formats: {
       webp: '/images/damage/water/home-water-damage.webp',
@@ -127,7 +127,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'water-mould-ceiling-01',
     name: '3D Water Damage Mould on ceiling',
     category: 'water-damage',
-    description: '3D visualization of water damage causing mould on ceiling',
+    description: '3D visualisation of water damage causing mould on ceiling',
     tags: ['water', 'mould', 'ceiling', 'secondary-damage', 'remediation'],
     formats: {
       webp: '/images/damage/water/water-mould-ceiling.webp',
@@ -146,7 +146,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'burst-pipe-01',
     name: '3D Burst Water Pipe',
     category: 'water-damage',
-    description: '3D visualization of burst water pipe',
+    description: '3D visualisation of burst water pipe',
     tags: ['pipe', 'burst', 'plumbing', 'emergency', 'water'],
     formats: {
       webp: '/images/damage/water/burst-pipe.webp',
@@ -167,7 +167,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'air-drying-carpet-01',
     name: '3D Air movement drying carpet',
     category: 'restoration-process',
-    description: '3D visualization of carpet drying process',
+    description: '3D visualisation of carpet drying process',
     tags: ['drying', 'carpet', 'air-movement', 'restoration', 'process'],
     formats: {
       webp: '/images/process/drying/carpet-drying.webp',
@@ -506,7 +506,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'equipment-moisture-reading-01',
     name: '3D Moisture Meter Reading',
     category: 'equipment-extractors',
-    description: '3D visualization of moisture meter taking readings on damaged surface',
+    description: '3D visualisation of moisture meter taking readings on damaged surface',
     originalPath: '3D Moisture Meter Reading.png',
     tags: ['equipment', 'moisture meter', 'reading', 'detection', 'assessment', '3d'],
     formats: {
@@ -533,7 +533,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'fire-damage-house-01',
     name: '3D House Fire Damage',
     category: 'fire-damage',
-    description: '3D visualization of residential house fire damage requiring restoration',
+    description: '3D visualisation of residential house fire damage requiring restoration',
     originalPath: '3D image of a house fire.png',
     tags: ['fire damage', 'house fire', 'residential', 'emergency', 'restoration', '3d'],
     formats: {
@@ -552,7 +552,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
       width: 1920,
       height: 1080
     },
-    alt: '3D house fire damage visualization - Emergency fire restoration services needed'
+    alt: '3D house fire damage visualisation - Emergency fire restoration services needed'
   },
 
   // Vehicle Damage Scenarios
@@ -560,7 +560,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'damage-vehicle-impact-01',
     name: '3D Vehicle Into Home Impact',
     category: 'damage-types',
-    description: '3D visualization of vehicle collision with residential structure requiring emergency restoration',
+    description: '3D visualisation of vehicle collision with residential structure requiring emergency restoration',
     originalPath: '3D Vehicle into Home.png',
     tags: ['vehicle damage', 'structural damage', 'collision', 'emergency', 'restoration', '3d', 'impact'],
     formats: {
@@ -587,9 +587,9 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'cleanup-squalor-emergency-01',
     name: '3D Emergency Squalor Cleanup',
     category: 'restoration-process',
-    description: '3D visualization of professional squalor and hoarding cleanup services',
+    description: '3D visualisation of professional squalor and hoarding cleanup services',
     originalPath: '3D Emergency Squalor Cleanup.png',
-    tags: ['squalor cleanup', 'hoarding cleanup', 'biohazard', 'deep cleaning', 'restoration', '3d', 'emergency cleanup', 'sanitization'],
+    tags: ['squalor cleanup', 'hoarding cleanup', 'biohazard', 'deep cleaning', 'restoration', '3d', 'emergency cleanup', 'sanitisation'],
     formats: {
       png: '/images/optimised/process/3D Emergency Squalor Cleanup.png',
       webp: '/images/optimised/process/3D Emergency Squalor Cleanup.webp',
@@ -614,7 +614,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'equipment-thermal-fogging-01',
     name: '3D Thermal Fogging Equipment',
     category: 'equipment-filters',
-    description: '3D visualization of thermal fogging equipment for odour elimination and sanitization',
+    description: '3D visualisation of thermal fogging equipment for odour elimination and sanitisation',
     originalPath: '3D Thermal Fogging.png',
     tags: ['thermal fogging', 'deodorisation', 'sanitisation', 'odour removal', 'smoke damage', 'equipment', '3d', 'disinfection'],
     formats: {
@@ -633,7 +633,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
       width: 1920,
       height: 1080
     },
-    alt: '3D thermal fogging equipment - Professional odour elimination and sanitization technology'
+    alt: '3D thermal fogging equipment - Professional odour elimination and sanitisation technology'
   },
 
   // Hazardous Material Cleanup
@@ -641,7 +641,7 @@ export const IMAGE_LIBRARY: ImageAsset[] = [
     id: 'cleanup-hazardous-01',
     name: '3D Hazardous Cleaning Services',
     category: 'restoration-process',
-    description: '3D visualization of hazardous material cleanup and biohazard remediation services',
+    description: '3D visualisation of hazardous material cleanup and biohazard remediation services',
     originalPath: '3D Hazardous Cleaning.png',
     tags: ['hazardous cleanup', 'biohazard', 'hazmat', 'chemical spill', 'contamination', 'safety equipment', '3d', 'industrial cleaning', 'environmental cleanup'],
     formats: {
