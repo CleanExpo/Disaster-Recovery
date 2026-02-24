@@ -89,7 +89,7 @@ export function getLocationSections({ city, state, suburbs }: LocationSectionPar
           </p>
           <ol>
             <li><strong>Immediate response (within 60 minutes)</strong> — Our nearest {city}-based team is dispatched. We secure the property, stop ongoing damage, and perform an initial assessment.</li>
-            <li><strong>Damage assessment and insurance liaison</strong> — We document all damage with photos and moisture readings, then contact your insurer directly to initiate your claim.</li>
+            <li><strong>Damage assessment and documentation</strong> — We document all damage with photos, moisture readings, and a detailed scope of works — everything you need to lodge your insurance claim.</li>
             <li><strong>Professional restoration</strong> — Using industrial-grade equipment including dehumidifiers, air scrubbers, and thermal imaging cameras, we restore your property to pre-loss condition.</li>
             <li><strong>Final inspection and sign-off</strong> — We conduct moisture mapping and air quality testing to confirm the restoration meets Australian Standards before handing back your property.</li>
           </ol>

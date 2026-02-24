@@ -13,9 +13,9 @@ export function getInsuranceSections({ insurerName, insurerSlug }: InsuranceSect
         <>
           <p>
             When disaster strikes and you need to make a claim with {insurerName}, we make the
-            process as smooth as possible. As an approved restoration provider, we work directly
-            with {insurerName} to manage your claim from start to finish — so you can focus on
-            getting your life back to normal.
+            process as smooth as possible. We understand {insurerName}&apos;s claims requirements,
+            documentation standards, and scope-of-works procedures — so we can provide you with
+            everything you need to submit a successful claim and get your life back to normal.
           </p>
           <p>
             Our relationship with {insurerName} means we understand their claims process, required
@@ -44,7 +44,7 @@ export function getInsuranceSections({ insurerName, insurerSlug }: InsuranceSect
           <ol>
             <li><strong>Contact us for emergency response</strong> — Call or submit an online form. We dispatch a local team immediately while simultaneously notifying {insurerName} of the incident.</li>
             <li><strong>On-site assessment and documentation</strong> — Our technician documents all damage with photos, moisture readings, and a detailed scope of works for {insurerName}&apos;s review.</li>
-            <li><strong>Scope approval from {insurerName}</strong> — We submit our scope and costings directly to {insurerName}. As an approved provider, our quotes are typically approved within 24–48 hours.</li>
+            <li><strong>Scope and costings documentation</strong> — We prepare a detailed scope of works and costings that meets {insurerName}&apos;s requirements, giving you everything you need for your reimbursement claim.</li>
             <li><strong>Professional restoration</strong> — Once approved, we begin restoration using certified technicians and industrial-grade equipment. We keep both you and {insurerName} updated throughout.</li>
             <li><strong>Completion and sign-off</strong> — We conduct a final inspection, provide completion documentation to {insurerName}, and hand your property back in pre-loss condition.</li>
           </ol>

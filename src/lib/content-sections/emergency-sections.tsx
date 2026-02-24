@@ -61,8 +61,8 @@ export function getEmergencySections({ emergencyType, context }: EmergencySectio
             <li><strong>Immediate triage (0–5 minutes)</strong> — We assess the situation over the phone, determine the type and urgency, and dispatch the nearest available team.</li>
             <li><strong>On-site arrival (within 60 minutes)</strong> — Our technician arrives with emergency equipment, secures the property, and stops any ongoing damage.</li>
             <li><strong>Emergency stabilisation</strong> — This may include water extraction, emergency board-up, tarping, power restoration, or containment of hazardous materials.</li>
-            <li><strong>Assessment and insurance notification</strong> — We document the damage, provide you with an initial assessment, and notify your insurer if applicable.</li>
-            <li><strong>Restoration plan</strong> — Within 24 hours, you receive a detailed restoration plan with timeline and costs. For insured events, we seek scope approval directly from your insurer.</li>
+            <li><strong>Assessment and documentation</strong> — We document the damage, provide you with an initial assessment, and prepare all documentation you need to lodge your insurance claim.</li>
+            <li><strong>Restoration plan</strong> — Within 24 hours, you receive a detailed restoration plan with timeline and costs. For insured events, we provide all documentation you need to submit your claim.</li>
           </ul>
         </>
       ),

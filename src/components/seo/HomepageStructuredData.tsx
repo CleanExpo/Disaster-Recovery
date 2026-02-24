@@ -197,7 +197,7 @@ export function HomepageStructuredData() {
         "name": "Is insurance coverage available?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, most disasters are insurance covered. Our contractors bill insurance directly so you only pay your excess. We handle all documentation and claims assistance."
+          "text": "Yes, most disasters are insurance covered. We bill you directly so work begins immediately, and provide full claims documentation to support your insurance reimbursement."
         }
       }
     ]

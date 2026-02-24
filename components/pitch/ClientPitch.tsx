@@ -94,9 +94,9 @@ export default function ClientPitch() {
 
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-cyan-500/20">
               <Shield className="w-10 h-10 text-cyan-600 mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-2">Insurance Direct</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">Claims Documentation</h3>
               <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                We work directly with your insurance company for faster approvals
+                We provide everything your insurer needs to process your reimbursement
               </p>
             </div>
 

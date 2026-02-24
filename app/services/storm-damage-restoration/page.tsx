@@ -410,8 +410,8 @@ export default function StormDamageRestorationPage() {
                     to support immediate reimbursement under your policy
                   </li>
                   <li>
-                    <strong>Direct insurer liaison</strong> — IICRC-certified contractors in our network communicate
-                    directly with loss adjusters and assessors to keep your claim moving
+                    <strong>Comprehensive claims documentation</strong> — IICRC-certified contractors in our network
+                    prepare detailed documentation, photos, and reports to support your insurance reimbursement claim
                   </li>
                   <li>
                     <strong>Progress reporting</strong> — regular updates with photographic evidence are provided

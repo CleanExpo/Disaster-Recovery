@@ -51,7 +51,7 @@ function getDefaultFAQs(city: string, state: string): { question: string; answer
     },
     {
       question: `Is insurance accepted for disaster recovery in ${city}?`,
-      answer: `Yes. Our vetted contractors work with all major Australian insurers and can bill your insurance directly, so you typically only pay your excess for covered events.`,
+      answer: `Yes. Our vetted contractors bill you directly so work begins immediately. We provide full claims documentation to support your reimbursement with any major Australian insurer. Payment plans are available.`,
     },
     {
       question: `Are contractors in ${city} certified?`,

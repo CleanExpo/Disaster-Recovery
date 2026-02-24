@@ -37,7 +37,7 @@ const CASES: BeforeAfterCase[] = [
     afterImage: '/images/optimised/damage/3D Vehicle into Home.png', // Would be replaced with actual after image
     beforeLabel: 'Flood Damaged',
     afterLabel: 'Fully Dried & Restored',
-    description: 'Emergency water extraction: Complete structural drying, mould prevention, and restoration with direct insurance billing.',
+    description: 'Emergency water extraction: Complete structural drying, mould prevention, and restoration with full insurance claims documentation.',
     duration: '3 days',
     serviceType: 'water'
   }

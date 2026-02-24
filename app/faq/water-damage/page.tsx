@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     "question": "Will my insurance cover water damage?",
-    "answer": "Most home insurance covers sudden water damage from burst pipes, storms, or appliance failures. Gradual damage from lack of maintenance usually isn't covered. Our contractors bill insurance directly."
+    "answer": "Most home insurance covers sudden water damage from burst pipes, storms, or appliance failures. Gradual damage from lack of maintenance usually isn't covered. We bill you directly and provide full documentation to support your insurance reimbursement claim."
   },
   {
     "question": "Can I stay in my home during restoration?",

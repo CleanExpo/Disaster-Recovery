@@ -147,7 +147,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 </Card>
                 <Card className="p-6">
                   <h3 className="text-lg font-bold mb-2">Is the service covered by insurance?</h3>
-                  <p className="text-gray-600">Most insurance policies cover sudden damage. We work directly with all major insurers and can manage your claim from start to finish.</p>
+                  <p className="text-gray-600">Most insurance policies cover sudden damage. We bill you directly and provide full claims documentation for all major insurers to support your reimbursement.</p>
                 </Card>
                 <Card className="p-6">
                   <h3 className="text-lg font-bold mb-2">What areas do you service?</h3>

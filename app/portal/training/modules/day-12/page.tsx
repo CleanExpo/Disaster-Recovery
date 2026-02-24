@@ -173,7 +173,7 @@ function Day12ModuleOriginal() {
                 <div className={styles.revenueCard}>
                   <h3>Insurance Work (80-90%)</h3>
                   <ul>
-                    <li>Direct insurer partnerships</li>
+                    <li>Insurance claims documentation support</li>
                     <li>Preferred supplier agreements</li>
                     <li>Builder/assessor referrals</li>
                     <li>Broker relationships</li>

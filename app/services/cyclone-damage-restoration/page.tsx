@@ -527,8 +527,8 @@ export default function CycloneDamageRestorationPage() {
                     for immediate reimbursement under your policy's emergency provisions
                   </li>
                   <li>
-                    <strong>Direct insurer liaison</strong> — IICRC-certified contractors communicate directly with
-                    loss adjusters and assessors, answering technical queries and keeping your claim moving
+                    <strong>Comprehensive claims documentation</strong> — IICRC-certified contractors prepare detailed
+                    documentation, photos, and reports — everything you need to support your insurance reimbursement claim
                   </li>
                   <li>
                     <strong>Progress reporting</strong> — photographic evidence at every milestone throughout the

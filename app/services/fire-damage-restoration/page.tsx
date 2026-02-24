@@ -50,7 +50,7 @@ const fireDamageFAQs = [
   },
   {
     question: "Will insurance cover fire damage restoration?",
-    answer: "Most homeowner and business insurance policies cover fire damage restoration. We work directly with all major insurance companies, document all damage, and help manage your claim to ensure maximum coverage."
+    answer: "Most homeowner and business insurance policies cover fire damage restoration. We bill you directly so work begins immediately, then provide full documentation — photos, scope of works, and reports — to support your insurance reimbursement claim."
   },
   {
     question: "Can smoke damage be completely removed?",

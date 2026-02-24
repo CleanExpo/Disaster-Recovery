@@ -52,7 +52,7 @@ const floodFAQs = [
   {
     question: 'Will my insurance cover flood damage restoration?',
     answer:
-      'Most Australian home and contents policies now include flood cover following regulatory changes after the 2022 floods, though some policies still exclude riverine flooding. We work directly with all major insurers — including Suncorp, NRMA, RACQ, Allianz, QBE and more — to document damage, manage your claim and help ensure maximum coverage. Start your claim online and our system will guide you through the process.',
+      'Most Australian home and contents policies now include flood cover following regulatory changes after the 2022 floods, though some policies still exclude riverine flooding. We bill you directly so work begins immediately, and provide comprehensive documentation to support your reimbursement claim with any insurer. Start your claim online and our system will guide you through the process.',
   },
   {
     question: 'How long does it take to dry out a property after flooding?',
@@ -405,8 +405,8 @@ export default function FloodDamageRestorationPage() {
                     },
                     {
                       icon: <CheckCircle style={{ width: '1.5rem', height: '1.5rem', color: '#0369A1' }} />,
-                      title: 'Direct Insurer Liaison',
-                      text: 'Our contractors work directly with all major Australian insurers including Suncorp, NRMA, RACQ, Allianz, QBE, CGU, Youi and more. We handle assessor meetings and claim queries.',
+                      title: 'Full Claims Documentation',
+                      text: 'We bill you directly and provide comprehensive documentation to support your reimbursement claim with any insurer. Payment plans available through Blue Fire Finance.',
                     },
                     {
                       icon: <Clock style={{ width: '1.5rem', height: '1.5rem', color: '#0369A1' }} />,

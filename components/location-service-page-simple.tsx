@@ -183,7 +183,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
                   <Shield className="w-6 h-6 text-blue-600" />
                   Insurance Partners
                 </h3>
-                <p className="mb-4">We work directly with all major insurance companies:</p>
+                <p className="mb-4">We provide claims documentation for all major insurance companies:</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {data.content.insurancePartners.map((partner, idx) => (
                     <div key={idx} className="bg-gray-50 p-3 rounded text-center font-medium">
