@@ -23,11 +23,11 @@ NEXTAUTH_URL=https://disasterrecovery.com.au
 ### **CRITICAL: National Distribution Model**
 - **Coverage**: AUSTRALIA-WIDE, not just Brisbane or major cities
 - **Role**: Claims distributor and SEO dominator, NOT service provider
-- **Client Interface**: 100% AI bot or contractor-direct (NO phone calls to NRP)
+- **Client Interface**: 100% AI bot or contractor-direct (NO phone calls to NRPG)
 - **Goal**: Dominate ALL disaster recovery categories across ALL of Australia
 
 ### **Strategic Positioning**
-1. **NRP is the middleman/distributor** - We connect insurance claims to contractors
+1. **NRPG is the middleman/distributor** - We connect insurance claims to contractors
 2. **Zero direct client service** - All client interaction through AI bots or contractors
 3. **SEO monopoly strategy** - Lock out ALL competitors nationwide
 4. **Population-agnostic** - Target EVERY location, regardless of size
@@ -444,3 +444,31 @@ ALL frontend visual assets MUST be generated using the Nano Banana Pro pipeline:
 3. Follow v3 Global Visual Framework for all brand theming
 4. Output format: .webp or .avif only
 5. Australian English in all text content
+
+## Development Environment Quirks
+
+### Project Path
+- Working directory is often `C:/Disaster Recovery/` but project root is `C:/Disaster Recovery/Disaster-Recovery/`
+- Always use full path for Glob/Grep or `cd` into `Disaster-Recovery/` first
+
+### Local Build
+- `npx next build` fails on Windows with `spawn UNKNOWN` (process forking limit) — this is NOT a code error
+- Vercel remote build is the authoritative build check — use `vercel --prod --yes` to deploy and verify
+
+### Deployment
+- Deploy: `vercel --prod --yes` from project root
+- Production alias: https://disasterrecovery.com.au
+- PR workflow: branch → commit → push → `gh pr create` → `gh pr merge` → cleanup branch
+
+## Branding: NRP → NRPG
+- Brand name is **NRPG** (National Restoration Professionals Group) — NOT "NRP"
+- Core user-facing files were updated Feb 2026, but ~300+ NRP instances remain in training docs, onboarding content, API docs, Stripe configs
+- `/logos/3D NRP Logo.png` — filename must stay as-is (references depend on it)
+- When grepping for stale branding, use `\bNRP\b(?!G)` to find "NRP" not followed by "G"
+
+## CSS & Contrast Patterns
+- `src/styles/contrast-fixes.css` — central file for contrast overrides and hover effects
+- `text-gray-200` (#e5e7eb) — correct on dark backgrounds, invisible on light backgrounds
+- CSS safety net exists: `.bg-white .text-gray-200` etc. auto-corrects to gray-600
+- Hover effect: orange glow border (`box-shadow`) on cards, NO underlines — never re-add `text-decoration: underline` to `a:hover`
+- Generated images go to `public/images/generated/disaster-recovery/` — use `next/image` with `fill` + `object-cover`
