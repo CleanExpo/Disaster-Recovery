@@ -163,7 +163,7 @@ export function LocationSchemaWrapper({
     name: `Disaster Recovery ${city}`,
     url: `${BASE_URL}/locations/${citySlug}`,
     description: `24/7 emergency disaster recovery and property restoration services in ${city}, ${fullState}. IICRC-certified contractor network for water damage, fire damage, mould, and storm restoration.`,
-    image: `${BASE_URL}/og-image.png`,
+    image: `${BASE_URL}/images/disaster-recovery-og.jpg`,
     priceRange: '$$',
     areaServed: {
       '@type': 'City',
@@ -201,7 +201,7 @@ export function LocationSchemaWrapper({
     name: `Disaster Recovery ${city} - 24/7 Emergency Restoration`,
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['.hero-heading', '.hero-description', '.ag-section-heading', '.ag-section-body p:first-child'],
+      cssSelector: ['.ag-hero-h1', '.ag-hero-national-tagline', '.ag-section-heading', '.ag-section-body p:first-child'],
     },
     url: `${BASE_URL}/locations/${citySlug}`,
   };

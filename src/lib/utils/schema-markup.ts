@@ -5,7 +5,7 @@
 
 export interface OrganizationSchema {
   '@context': 'https://schema.org';
-  '@type': 'Organisation';
+  '@type': 'Organization';
   name: string;
   url: string;
   logo: string;
@@ -17,8 +17,8 @@ export interface OrganizationSchema {
   };
   contactPoint: {
     '@type': 'ContactPoint';
-    telephone: "",
     contactType: string;
+    url?: string;
     areaServed: string;
     availableLanguage: string;
   };
@@ -31,7 +31,7 @@ export interface ArticleSchema {
   headline: string;
   description: string;
   author: {
-    '@type': 'Person' | 'Organisation';
+    '@type': 'Person' | 'Organization';
     name: string;
     url?: string;
   };
@@ -39,7 +39,7 @@ export interface ArticleSchema {
   dateModified: string;
   image?: string[];
   publisher: {
-    '@type': 'Organisation';
+    '@type': 'Organization';
     name: string;
     logo: {
       '@type': 'ImageObject';
@@ -59,7 +59,7 @@ export interface ServiceSchema {
   name: string;
   description: string;
   provider: {
-    '@type': 'Organisation';
+    '@type': 'Organization';
     name: string;
   };
   areaServed: {
@@ -105,7 +105,6 @@ export interface LocalBusinessSchema {
   name: string;
   image: string;
   url: string;
-  telephone: "",
   priceRange: string;
   address: {
     '@type': 'PostalAddress';
@@ -174,7 +173,7 @@ export interface ReviewSchema {
   '@context': 'https://schema.org';
   '@type': 'Review';
   itemReviewed: {
-    '@type': 'Service' | 'Organisation';
+    '@type': 'Service' | 'Organization';
     name: string;
   };
   reviewRating: {
@@ -196,11 +195,9 @@ export interface EmergencyServiceSchema {
   '@type': 'EmergencyService';
   name: string;
   description: string;
-  telephone: "",
   availableChannel: {
     '@type': 'ServiceChannel';
     serviceUrl: string;
-    servicePhone: string;
     availableLanguage: {
       '@type': 'Language';
       name: string;
@@ -219,10 +216,10 @@ export interface EmergencyServiceSchema {
 export function generateOrganizationSchema(): OrganizationSchema {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organisation',
+    '@type': 'Organization',
     name: 'National Restoration Professionals Group (NRPG)',
     url: 'https://disasterrecovery.com.au',
-    logo: 'https://disasterrecovery.com.au/logo.png',
+    logo: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
     description: 'Professional disaster recovery and emergency restoration services nationwide. IICRC certified, 24/7 emergency response.',
     address: {
       '@type': 'PostalAddress',
@@ -231,15 +228,14 @@ export function generateOrganizationSchema(): OrganizationSchema {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: "",
-      contactType: 'Emergency Services',
+      contactType: 'Online Claims',
+      url: 'https://disasterrecovery.com.au/claim',
       areaServed: 'AU',
       availableLanguage: 'English'
     },
     sameAs: [
-      'https://www.linkedin.com/company/national-restoration-professionals',
-      'https://www.facebook.com/NRPAustralia',
-      'https://twitter.com/NRPAustralia'
+      'https://www.facebook.com/DisasterRecoveryAU',
+      'https://www.instagram.com/disasterrecoveryau'
     ]
   };
 }
@@ -261,18 +257,18 @@ export function generateArticleSchema(
     headline,
     description,
     author: {
-      '@type': 'Organisation',
-      name: 'National Restoration Professionals',
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
       url: 'https://disasterrecovery.com.au'
     },
     datePublished,
     dateModified,
     publisher: {
-      '@type': 'Organisation',
-      name: 'National Restoration Professionals',
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://disasterrecovery.com.au/logo.png'
+        url: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png'
       }
     },
     mainEntityOfPage: {
@@ -297,8 +293,8 @@ export function generateServiceSchema(
     name: serviceName,
     description: serviceDescription,
     provider: {
-      '@type': 'Organisation',
-      name: 'National Restoration Professionals'
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia'
     },
     areaServed: {
       '@type': 'Country',
@@ -360,10 +356,8 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     '@type': 'EmergencyService',
     name: '24/7 Emergency Disaster Response',
     description: 'Immediate emergency response for water damage, fire damage, storm damage, and mould remediation nationwide',
-    telephone: "",
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: 'https://disasterrecovery.com.au/emergency',
       serviceUrl: 'https://disasterrecovery.com.au/claim',
       availableLanguage: {
         '@type': 'Language',

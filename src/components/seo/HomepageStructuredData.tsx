@@ -11,7 +11,7 @@ export function HomepageStructuredData() {
     "url": "https://disasterrecovery.com.au",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://disasterrecovery.com.au/logo.png",
+      "url": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
       "width": 600,
       "height": 60
     },
@@ -23,8 +23,7 @@ export function HomepageStructuredData() {
     },
     "sameAs": [
       "https://www.facebook.com/DisasterRecoveryAU",
-      "https://www.linkedin.com/company/disaster-recovery-australia",
-      "https://twitter.com/DisasterRecovAU"
+      "https://www.instagram.com/disasterrecoveryau"
     ]
   };
 
@@ -33,7 +32,7 @@ export function HomepageStructuredData() {
     "@type": "EmergencyService",
     "@id": "https://disasterrecovery.com.au/#business",
     "name": "Disaster Recovery",
-    "image": "https://disasterrecovery.com.au/og-image.jpg",
+    "image": "https://disasterrecovery.com.au/images/disaster-recovery-og.jpg",
     "url": "https://disasterrecovery.com.au",
     "priceRange": "$2200+",
     "address": {
@@ -209,9 +208,9 @@ export function HomepageStructuredData() {
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
-        ".hero-heading",
-        ".hero-description",
-        ".emergency-cta"
+        ".ag-hero-h1",
+        ".ag-hero-national-tagline",
+        ".ag-btn-emergency"
       ]
     },
     "url": "https://disasterrecovery.com.au"

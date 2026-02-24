@@ -68,7 +68,6 @@ export const generateEmergencyServiceSchema = () => ({
   },
   "availableChannel": {
     "@type": "ServiceChannel",
-    "serviceUrl": "https://disasterrecovery.com.au/emergency",
     "serviceUrl": "https://disasterrecovery.com.au/claim",
     "availableLanguage": ["English", "Mandarin", "Arabic", "Vietnamese", "Spanish"]
   },

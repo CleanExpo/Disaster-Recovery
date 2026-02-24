@@ -95,12 +95,10 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1 } },
   verification: {
-    google: 'google8f4d3e5a7b9c2d1e',
+    google: '',
     yandex: '',
     yahoo: '',
-    other: {
-      'msvalidate.01': 'B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1',
-      'facebook-domain-verification': 'abcdef123456789' } },
+    other: {} },
   alternates: {
     canonical: 'https://disasterrecovery.com.au',
     languages: {
@@ -129,7 +127,6 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
-        <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -164,9 +161,7 @@ export default function RootLayout({
               },
               "sameAs": [
                 "https://www.facebook.com/DisasterRecoveryAU",
-                "https://www.linkedin.com/company/disaster-recovery-au",
-                "https://www.instagram.com/disasterrecoveryau",
-                "https://www.youtube.com/@DisasterRecoveryAU"
+                "https://www.instagram.com/disasterrecoveryau"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",

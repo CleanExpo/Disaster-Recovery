@@ -30,7 +30,7 @@ export function generateSEO(config: SEOConfig): Metadata {
       siteName: 'Disaster Recovery',
       images: config.openGraph?.images || [
         {
-          url: `${baseUrl}/og-image.jpg`,
+          url: `${baseUrl}/images/disaster-recovery-og.jpg`,
           width: 1200,
           height: 630,
           alt: 'Disaster Recovery - 24/7 Online Emergency Response' },
@@ -41,7 +41,7 @@ export function generateSEO(config: SEOConfig): Metadata {
       card: 'summary_large_image',
       title: config.openGraph?.title || config.title,
       description: config.openGraph?.description || config.description,
-      images: config.openGraph?.images?.map(img => img.url) || [`${baseUrl}/og-image.jpg`] },
+      images: config.openGraph?.images?.map(img => img.url) || [`${baseUrl}/images/disaster-recovery-og.jpg`] },
     robots: {
       index: true,
       follow: true,
@@ -73,10 +73,10 @@ export const generateLocalBusinessSchema = (businessInfo: BusinessLocationInfo) 
   url: 'https://disasterrecovery.com.au',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://disasterrecovery.com.au/logo.png',
+    url: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
     width: 250,
     height: 60 },
-  image: 'https://disasterrecovery.com.au/hero-image.jpg',
+  image: 'https://disasterrecovery.com.au/images/disaster-recovery-og.jpg',
   description: `${businessInfo.city}, ${businessInfo.stateFullName}'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.`,
   email: 'info@disasterrecovery.com.au',
   address: {
@@ -141,8 +141,8 @@ export const generateServiceSchema = (service: {
   name: service.name,
   description: service.description,
   provider: service.provider || {
-    '@type': 'Organisation',
-    name: 'Disaster Recovery',
+    '@type': 'Organization',
+    name: 'Disaster Recovery Australia',
     url: 'https://disasterrecovery.com.au' },
   areaServed: service.areaServed || ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Hobart', 'Darwin', 'Newcastle'],
   availableChannel: service.availableChannel || {
@@ -190,11 +190,11 @@ export const generateArticleSchema = (article: {
     '@type': 'Person',
     name: article.author || 'Disaster Recovery Team' },
   publisher: {
-    '@type': 'Organisation',
-    name: 'Disaster Recovery',
+    '@type': 'Organization',
+    name: 'Disaster Recovery Australia',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://disasterrecovery.com.au/logo.png' } },
+      url: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png' } },
   datePublished: article.datePublished,
   dateModified: article.dateModified || article.datePublished,
   mainEntityOfPage: {
