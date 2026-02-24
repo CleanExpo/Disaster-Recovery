@@ -339,6 +339,40 @@ const nextConfig = {
       { source: '/redland-bay-australia/', destination: '/services', permanent: true },
       { source: '/parkwood-queensland', destination: '/services', permanent: true },
       { source: '/parkwood-queensland/', destination: '/services', permanent: true },
+
+      // Soft 404 fixes — actual 404s needing redirects
+      // Legal pages (old slugs → correct current paths)
+      { source: '/legal/contractor', destination: '/legal/contractor-network', permanent: true },
+      { source: '/legal/terms', destination: '/legal/forms/terms-of-service', permanent: true },
+      { source: '/legal/accessibility', destination: '/legal', permanent: true },
+      { source: '/legal/privacy', destination: '/legal/forms/privacy-policy', permanent: true },
+
+      // Utility pages (no longer exist)
+      { source: '/sign-in', destination: '/', permanent: true },
+      { source: '/help', destination: '/claim', permanent: true },
+      { source: '/find-contractor', destination: '/claim', permanent: true },
+      { source: '/claim/submit', destination: '/claim', permanent: true },
+
+      // Old WordPress blog posts (soft 404)
+      { source: '/allergen-containment-abilities-of-vacuum-cleaners', destination: '/blog', permanent: true },
+      { source: '/allergen-containment-abilities-of-vacuum-cleaners/', destination: '/blog', permanent: true },
+      { source: '/dealing-with-contaminated-water-damage', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/dealing-with-contaminated-water-damage/', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/be-prepared-for-fire-season', destination: '/blog', permanent: true },
+      { source: '/be-prepared-for-fire-season/', destination: '/blog', permanent: true },
+      { source: '/water-damage-restoration-services', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/water-damage-restoration-services/', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/blog/flood-damage-restoration-companies', destination: '/blog', permanent: true },
+      { source: '/blog/preventing-business-interruptions', destination: '/blog', permanent: true },
+      { source: '/blog/water-damage-restoration-services', destination: '/blog', permanent: true },
+
+      // UTM-tagged legacy WordPress posts (soft 404 — match without query string)
+      { source: '/biohazard-remediation-services', destination: '/services/biohazard-cleaning', permanent: true },
+      { source: '/biohazard-remediation-services/', destination: '/services/biohazard-cleaning', permanent: true },
+      { source: '/things-to-do-and-places-to-visit-in-brisbane-queensland', destination: '/blog', permanent: true },
+      { source: '/things-to-do-and-places-to-visit-in-brisbane-queensland/', destination: '/blog', permanent: true },
+      { source: '/things-to-do-and-places-to-visit-in-logan-city-queensland', destination: '/blog', permanent: true },
+      { source: '/things-to-do-and-places-to-visit-in-logan-city-queensland/', destination: '/blog', permanent: true },
     ];
   },
 
