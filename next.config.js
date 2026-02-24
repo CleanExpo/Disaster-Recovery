@@ -290,6 +290,55 @@ const nextConfig = {
       { source: '/ipswich', destination: '/services', permanent: true },
       { source: '/hamilton', destination: '/services', permanent: true },
       { source: '/hamilton/', destination: '/services', permanent: true },
+
+      // --- Crawled-not-indexed cleanup (remaining old blog posts & pages) ---
+
+      // Privacy/policy variants
+      { source: '/privacy-policy', destination: '/privacy', permanent: true },
+      { source: '/privacy/', destination: '/privacy', permanent: true },
+
+      // Old standalone blog posts → blog
+      { source: '/specialized-chemical-range', destination: '/blog', permanent: true },
+      { source: '/specialized-chemical-range/', destination: '/blog', permanent: true },
+      { source: '/what-to-expect-to-pay-for-water-damage-restoration', destination: '/cost', permanent: true },
+      { source: '/what-to-expect-to-pay-for-water-damage-restoration/', destination: '/cost', permanent: true },
+      { source: '/what-are-the-4-stages-of-drying', destination: '/blog', permanent: true },
+      { source: '/what-are-the-4-stages-of-drying/', destination: '/blog', permanent: true },
+      { source: '/business-continuity-planning', destination: '/blog', permanent: true },
+      { source: '/business-continuity-planning/', destination: '/blog', permanent: true },
+      { source: '/business-interruption-loss-assessment', destination: '/blog', permanent: true },
+      { source: '/business-interruption-loss-assessment/', destination: '/blog', permanent: true },
+      { source: '/the-rising-cost-of-claims-why-restoration-matters', destination: '/blog', permanent: true },
+      { source: '/the-rising-cost-of-claims-why-restoration-matters/', destination: '/blog', permanent: true },
+      { source: '/preventing-business-interruptions', destination: '/blog', permanent: true },
+      { source: '/preventing-business-interruptions/', destination: '/blog', permanent: true },
+      { source: '/why-carpet-cleaning-is-crucial-in-water-damage-restoration-efforts', destination: '/blog', permanent: true },
+      { source: '/why-carpet-cleaning-is-crucial-in-water-damage-restoration-efforts/', destination: '/blog', permanent: true },
+      { source: '/prepare-for-bushfires-with-firefighting-equipment', destination: '/blog', permanent: true },
+      { source: '/prepare-for-bushfires-with-firefighting-equipment/', destination: '/blog', permanent: true },
+      { source: '/what-is-a-contents-cleaner', destination: '/blog', permanent: true },
+      { source: '/what-is-a-contents-cleaner/', destination: '/blog', permanent: true },
+      { source: '/carpet-cleaning', destination: '/services', permanent: true },
+      { source: '/carpet-cleaning/', destination: '/services', permanent: true },
+      { source: '/discreet-cleaning-services', destination: '/services', permanent: true },
+      { source: '/discreet-cleaning-services/', destination: '/services', permanent: true },
+      { source: '/trauma-cleanup-services', destination: '/services/trauma-cleanup', permanent: true },
+      { source: '/trauma-cleanup-services/', destination: '/services/trauma-cleanup', permanent: true },
+      { source: '/mould-removal', destination: '/services/mould-remediation', permanent: true },
+      { source: '/mould-removal/', destination: '/services/mould-remediation', permanent: true },
+      { source: '/mold-remediation', destination: '/services/mould-remediation', permanent: true },
+      { source: '/mold-remediation/', destination: '/services/mould-remediation', permanent: true },
+      { source: '/can-you-remediate-mold-yourself', destination: '/services/mould-remediation', permanent: true },
+      { source: '/specialised-services', destination: '/services', permanent: true },
+      { source: '/specialised-services/', destination: '/services', permanent: true },
+
+      // Old Queensland suburb/region pages (crawled-not-indexed)
+      { source: '/logan-queensland', destination: '/services', permanent: true },
+      { source: '/palm-beach', destination: '/services', permanent: true },
+      { source: '/redland-bay-australia', destination: '/services', permanent: true },
+      { source: '/redland-bay-australia/', destination: '/services', permanent: true },
+      { source: '/parkwood-queensland', destination: '/services', permanent: true },
+      { source: '/parkwood-queensland/', destination: '/services', permanent: true },
     ];
   },
 
