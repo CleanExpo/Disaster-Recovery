@@ -350,7 +350,7 @@ const ContractorPriceUpload: React.FC = () => {
       case 'rejected': return 'text-red-600 bg-red-100';
       case 'flagged': return 'text-yellow-600 bg-yellow-100';
       case 'pending': return 'text-blue-600 bg-blue-100';
-      default: return 'text-gray-200 bg-gray-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
   };
 
@@ -398,7 +398,7 @@ const ContractorPriceUpload: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium">Processing rates...</p>
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-gray-600">
                   {uploadProgress.processed} of {uploadProgress.total}
                 </p>
               </div>
@@ -411,22 +411,22 @@ const ContractorPriceUpload: React.FC = () => {
               <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="bg-green-50 rounded-lg p-2">
                   <p className="text-2xl font-semibold text-green-600">{uploadProgress.approved}</p>
-                  <p className="text-xs text-gray-200">Approved</p>
+                  <p className="text-xs text-gray-600">Approved</p>
                 </div>
                 <div className="bg-yellow-50 rounded-lg p-2">
                   <p className="text-2xl font-semibold text-yellow-600">{uploadProgress.flagged}</p>
-                  <p className="text-xs text-gray-200">Flagged</p>
+                  <p className="text-xs text-gray-600">Flagged</p>
                 </div>
                 <div className="bg-red-50 rounded-lg p-2">
                   <p className="text-2xl font-semibold text-red-600">{uploadProgress.rejected}</p>
-                  <p className="text-xs text-gray-200">Rejected</p>
+                  <p className="text-xs text-gray-600">Rejected</p>
                 </div>
               </div>
             </div>
           ) : (
             <div className="text-center">
-              <Upload className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-              <p className="text-gray-200 mb-2">Drop your price list CSV here or click to browse</p>
+              <Upload className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <p className="text-gray-600 mb-2">Drop your price list CSV here or click to browse</p>
               <input
                 type="file"
                 accept=".csv"
@@ -478,7 +478,7 @@ const ContractorPriceUpload: React.FC = () => {
               </select>
             </div>
           </div>
-          <div className="text-sm text-gray-200">
+          <div className="text-sm text-gray-600">
             {filteredRates.length} items
           </div>
         </div>
@@ -556,7 +556,7 @@ const ContractorPriceUpload: React.FC = () => {
                               {rate.validationResult.flags.map((flag, index) => (
                                 <div key={index} className="flex items-center space-x-1">
                                   <AlertTriangle className="h-3 w-3 text-blue-600" />
-                                  <span className="text-xs text-gray-200">{flag.message}</span>
+                                  <span className="text-xs text-gray-600">{flag.message}</span>
                                 </div>
                               ))}
                             </div>
@@ -572,7 +572,7 @@ const ContractorPriceUpload: React.FC = () => {
                         >
                           <Eye className="h-4 w-4" />
                         </button>
-                        <button className="text-gray-200 hover:text-gray-800">
+                        <button className="text-gray-600 hover:text-gray-800">
                           <Edit className="h-4 w-4" />
                         </button>
                         <button className="text-red-600 hover:text-red-800">
@@ -591,14 +591,14 @@ const ContractorPriceUpload: React.FC = () => {
       {/* Upload History */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h3 className="font-semibold mb-4 flex items-center">
-          <FileSpreadsheet className="h-5 w-5 mr-2 text-gray-200" />
+          <FileSpreadsheet className="h-5 w-5 mr-2 text-gray-600" />
           Upload History
         </h3>
         <div className="space-y-3">
           {uploadHistory.map((upload) => (
             <div key={upload.id} className="flex items-center justify-between p-3 border rounded-lg">
               <div className="flex items-center space-x-3">
-                <FileSpreadsheet className="h-5 w-5 text-gray-200" />
+                <FileSpreadsheet className="h-5 w-5 text-gray-600" />
                 <div>
                   <p className="font-medium text-sm">{upload.filename}</p>
                   <p className="text-xs text-gray-300">

@@ -376,7 +376,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
       case 'high': return 'text-blue-700 bg-orange-100';
       case 'medium': return 'text-yellow-600 bg-yellow-100';
       case 'low': return 'text-blue-600 bg-blue-100';
-      default: return 'text-gray-200 bg-gray-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
   };
 
@@ -543,15 +543,15 @@ const LoadBalancingAuditSystem: React.FC = () => {
               <label className="text-sm font-medium">Weight Distribution</label>
               <div className="space-y-2 mt-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-200">Fairness</span>
+                  <span className="text-sm text-gray-600">Fairness</span>
                   <span className="text-sm font-medium">{Math.round(loadBalancingConfig.fairnessWeight * 100)}%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-200">Performance</span>
+                  <span className="text-sm text-gray-600">Performance</span>
                   <span className="text-sm font-medium">{Math.round(loadBalancingConfig.performanceWeight * 100)}%</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-200">Proximity</span>
+                  <span className="text-sm text-gray-600">Proximity</span>
                   <span className="text-sm font-medium">{Math.round(loadBalancingConfig.proximityWeight * 100)}%</span>
                 </div>
               </div>
@@ -596,7 +596,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
                     <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(metric.status)}`}>
                       {metric.status.replace('_', ' ')}
                     </span>
-                    <span className="text-sm text-gray-200">
+                    <span className="text-sm text-gray-600">
                       {metric.currentLoad}/{metric.maxCapacity} active jobs
                     </span>
                   </div>
@@ -707,12 +707,12 @@ const LoadBalancingAuditSystem: React.FC = () => {
       <div className="bg-white rounded-lg shadow-sm p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold flex items-center">
-            <FileText className="h-5 w-5 mr-2 text-gray-200" />
+            <FileText className="h-5 w-5 mr-2 text-gray-600" />
             Allocation Audit Trail
           </h3>
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-200" />
+              <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search logs..."
@@ -767,11 +767,11 @@ const LoadBalancingAuditSystem: React.FC = () => {
                     </td>
                     <td className="px-4 py-2 text-sm text-gray-900">{log.leadId}</td>
                     <td className="px-4 py-2 text-sm text-gray-900">{log.contractorName}</td>
-                    <td className="px-4 py-2 text-sm text-gray-200 capitalize">{log.method.replace('_', ' ')}</td>
+                    <td className="px-4 py-2 text-sm text-gray-600 capitalize">{log.method.replace('_', ' ')}</td>
                     <td className="px-4 py-2">
                       <span className="text-sm font-medium">{log.score || '-'}</span>
                     </td>
-                    <td className="px-4 py-2 text-sm text-gray-200">{log.duration}ms</td>
+                    <td className="px-4 py-2 text-sm text-gray-600">{log.duration}ms</td>
                     <td className="px-4 py-2">
                       <button
                         onClick={() => setSelectedLog(log)}
@@ -793,7 +793,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <h3 className="text-lg font-semibold mb-4">Confirm Load Rebalancing</h3>
-            <p className="text-gray-200 mb-6">
+            <p className="text-gray-600 mb-6">
               This will redistribute leads among contractors to achieve better fairness. 
               Current fairness score: {systemHealth?.fairnessScore}%
             </p>

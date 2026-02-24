@@ -23,7 +23,7 @@ export function ComprehensiveSEO({ location = 'Australia', service, pageType = '
         "description": "Revolutionary transparent disaster recovery connecting clients directly with vetted contractors",
         "provider": {
           "@type": "Organization",
-          "name": "National Restoration Professionals",
+          "name": "National Restoration Professionals Group",
           "url": "https://disaster-recovery-seven.vercel.app"
         },
         "areaServed": {

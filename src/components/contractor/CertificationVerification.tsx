@@ -264,7 +264,7 @@ export default function CertificationVerification({
       case 'EXPIRED': return 'text-red-600 bg-red-100';
       case 'INVALID': return 'text-red-600 bg-red-100';
       case 'PENDING': return 'text-yellow-600 bg-yellow-100';
-      default: return 'text-gray-200 bg-gray-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
   };
 
@@ -303,7 +303,7 @@ export default function CertificationVerification({
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Certification Verification
           </h2>
-          <p className="text-gray-200 mb-6">
+          <p className="text-gray-600 mb-6">
             Upload and verify your professional certifications, licenses, and training credentials. 
             All certifications are automatically verified against official databases where possible.
           </p>
@@ -350,11 +350,11 @@ export default function CertificationVerification({
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <Shield className={`w-6 h-6 ${isComplete ? 'text-green-600' : 'text-gray-200'}`} />
+                          <Shield className={`w-6 h-6 ${isComplete ? 'text-green-600' : 'text-gray-600'}`} />
                           <h4 className="text-lg font-semibold text-gray-900">{certType.name}</h4>
                           {isComplete && <CheckCircle className="w-5 h-5 text-green-600" />}
                         </div>
-                        <p className="text-gray-200 mb-3">{certType.description}</p>
+                        <p className="text-gray-600 mb-3">{certType.description}</p>
                         
                         {existingCert && (
                           <div className="space-y-2">
@@ -374,7 +374,7 @@ export default function CertificationVerification({
                             </div>
                             
                             {existingCert.certificationNumber && (
-                              <p className="text-sm text-gray-200">
+                              <p className="text-sm text-gray-600">
                                 <strong>Number:</strong> {existingCert.certificationNumber}
                               </p>
                             )}
@@ -383,7 +383,7 @@ export default function CertificationVerification({
                               <div className="flex items-center gap-1">
                                 <Calendar className="w-4 h-4 text-gray-300" />
                                 <span className={`text-sm ${
-                                  isExpiryWarning(existingCert) ? 'text-red-600 font-medium' : 'text-gray-200'
+                                  isExpiryWarning(existingCert) ? 'text-red-600 font-medium' : 'text-gray-600'
                                 }`}>
                                   Expires: {new Date(existingCert.expiryDate).toLocaleDateString('en-AU')}
                                 </span>
@@ -436,7 +436,7 @@ export default function CertificationVerification({
                           }}
                           className={`flex items-center gap-2 px-4 py-2 rounded-lg transition ${
                             existingCert
-                              ? 'bg-gray-100 text-gray-200 hover:bg-gray-200'
+                              ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                               : 'bg-blue-600 text-white hover:bg-blue-700'
                           }`}
                         >
@@ -473,7 +473,7 @@ export default function CertificationVerification({
         <div className="mb-8">
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Certifications</h3>
           <div className="bg-gray-50 rounded-lg p-4">
-            <p className="text-gray-200 mb-4">
+            <p className="text-gray-600 mb-4">
               Add additional certifications to increase your qualification score and access to specialised work types.
             </p>
             
@@ -488,7 +488,7 @@ export default function CertificationVerification({
                       <div className="flex items-center justify-between">
                         <div>
                           <h5 className="font-medium text-gray-900">{certType.name}</h5>
-                          <p className="text-sm text-gray-200">{certType.description}</p>
+                          <p className="text-sm text-gray-600">{certType.description}</p>
                           {existingCert && (
                             <span className={`
                               inline-flex px-2 py-1 text-xs font-medium rounded-full mt-2
@@ -519,7 +519,7 @@ export default function CertificationVerification({
         <div className="border-t pt-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-200">
+              <p className="text-sm text-gray-600">
                 Complete all required certifications to proceed with onboarding
               </p>
               <p className="text-xs text-gray-300 mt-1">
@@ -623,19 +623,19 @@ function AddCertificationModal({
             <h3 className="text-2xl font-bold text-gray-900">
               Add {certType?.name}
             </h3>
-            <button onClick={onClose} className="text-gray-200 hover:text-gray-200">
+            <button onClick={onClose} className="text-gray-600 hover:text-gray-600">
               <X className="w-6 h-6" />
             </button>
           </div>
           {certType?.description && (
-            <p className="text-gray-200 mt-2">{certType.description}</p>
+            <p className="text-gray-600 mt-2">{certType.description}</p>
           )}
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Certification/License Number
               </label>
               <input
@@ -648,7 +648,7 @@ function AddCertificationModal({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Issuing Authority *
               </label>
               <input
@@ -662,7 +662,7 @@ function AddCertificationModal({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Issue Date *
               </label>
               <input
@@ -676,7 +676,7 @@ function AddCertificationModal({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Expiry Date {certType?.renewalPeriod && `(Auto-calculated: ${certType.renewalPeriod} months)`}
               </label>
               <input

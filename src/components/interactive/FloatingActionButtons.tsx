@@ -432,7 +432,7 @@ function EmergencyResponseTimer() {
                   ease: "easeInOut" }}
               />
               <div className="flex-1">"
-                <div className="text-sm font-semibold text-gray-200">Response Timer</div>"
+                <div className="text-sm font-semibold text-gray-600">Response Timer</div>"
                 <div className="text-xs text-gray-300">Teams dispatching</div>"
               </div>
               <div className="text-right">"

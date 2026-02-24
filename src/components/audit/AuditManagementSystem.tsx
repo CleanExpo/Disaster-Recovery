@@ -270,7 +270,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
       case 'medium': return 'text-yellow-600 bg-yellow-50';
       case 'low': return 'text-green-600 bg-green-50';
       case 'minimal': return 'text-blue-600 bg-blue-50';
-      default: return 'text-gray-200 bg-gray-50';
+      default: return 'text-gray-600 bg-gray-50';
     }
   };
 
@@ -312,7 +312,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
           </div>
           <div>
             <h3 className="font-semibold text-gray-900">{audit.title}</h3>
-            <p className="text-sm text-gray-200">{audit.contractorName || 'All Contractors'}</p>
+            <p className="text-sm text-gray-600">{audit.contractorName || 'All Contractors'}</p>
           </div>
         </div>
         <div className="flex items-center space-x-2">
@@ -323,7 +323,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
         </div>
       </div>
 
-      <p className="text-sm text-gray-200 mb-4">{audit.description}</p>
+      <p className="text-sm text-gray-600 mb-4">{audit.description}</p>
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
@@ -392,7 +392,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
             Export
           </button>
         </div>
-        <button className="p-1.5 text-gray-200 hover:bg-gray-100 rounded">
+        <button className="p-1.5 text-gray-600 hover:bg-gray-100 rounded">
           <ChevronRight className="w-4 h-4" />
         </button>
       </div>
@@ -416,7 +416,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
         
         <div className="p-6 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Audit Title *
             </label>
             <input
@@ -427,7 +427,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Audit Type *
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -445,7 +445,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Scheduled Date *
               </label>
               <input
@@ -454,7 +454,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Due Date *
               </label>
               <input
@@ -465,7 +465,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Select Contractor(s)
             </label>
             <select
@@ -479,21 +479,21 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Audit Scope
             </label>
             <div className="space-y-2">
               {['Insurance', 'Certification', 'Training', 'Safety', 'Financial', 'Operational'].map((category) => (
                 <label key={category} className="flex items-center">
                   <input type="checkbox" className="mr-2" />
-                  <span className="text-sm text-gray-200">{category}</span>
+                  <span className="text-sm text-gray-600">{category}</span>
                 </label>
               ))}
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Risk Assessment
             </label>
             <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -541,7 +541,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Audit Management</h1>
-          <p className="text-gray-200 mt-1">Schedule and manage compliance audits</p>
+          <p className="text-gray-600 mt-1">Schedule and manage compliance audits</p>
         </div>
         <div className="flex items-center space-x-2">
           {(userRole === 'admin' || userRole === 'compliance_manager') && (
@@ -568,7 +568,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
       <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-200" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
             <input
               type="text"
               placeholder="Search audits..."
@@ -598,7 +598,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
               className={`px-4 py-2 rounded-lg capitalize transition-colours ${
                 activeTab === tab 
                   ? 'bg-white shadow-sm text-gray-900' 
-                  : 'text-gray-200 hover:text-gray-900'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
               {tab.replace('_', ' ')}
@@ -611,7 +611,7 @@ const AuditManagementSystem: React.FC<AuditManagementSystemProps> = ({
         <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
           <FileCheck className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No audits found</h3>
-          <p className="text-gray-200">
+          <p className="text-gray-600">
             {searchQuery || filterType !== 'all' 
               ? 'Try adjusting your search or filters' 
               : `No ${activeTab} audits`}

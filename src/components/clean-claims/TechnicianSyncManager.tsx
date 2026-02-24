@@ -309,7 +309,7 @@ const TechnicianSyncManager: React.FC = () => {
         {isSyncing && (
           <div className="mt-4">
             <div className="flex items-center justify-between text-sm mb-1">
-              <span className="text-gray-200">Syncing technicians...</span>
+              <span className="text-gray-600">Syncing technicians...</span>
               <span className="font-medium">{syncProgress}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
@@ -361,7 +361,7 @@ const TechnicianSyncManager: React.FC = () => {
                 className={`px-3 py-1 rounded-lg capitalize ${
                   filterStatus === status
                     ? 'bg-blue-100 text-blue-700'
-                    : 'text-gray-200 hover:bg-gray-100'
+                    : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
                 {status}
@@ -422,7 +422,7 @@ const TechnicianSyncManager: React.FC = () => {
                         </span>
                       ))}
                     </div>
-                    <div className="flex items-center space-x-4 mt-1 text-sm text-gray-200">
+                    <div className="flex items-center space-x-4 mt-1 text-sm text-gray-600">
                       <span>{technician.companyAffiliation.name}</span>
                       {technician.email && (
                         <span>{technician.email}</span>
@@ -473,9 +473,9 @@ const TechnicianSyncManager: React.FC = () => {
                     }}
                     className="p-2 hover:bg-gray-100 rounded-lg"
                   >
-                    <RefreshCw className="h-4 w-4 text-gray-200" />
+                    <RefreshCw className="h-4 w-4 text-gray-600" />
                   </button>
-                  <ChevronRight className="h-5 w-5 text-gray-200" />
+                  <ChevronRight className="h-5 w-5 text-gray-600" />
                 </div>
               </div>
 
@@ -504,7 +504,7 @@ const TechnicianSyncManager: React.FC = () => {
               <h3 className="text-lg font-semibold">Technician Profile</h3>
               <button
                 onClick={() => setSelectedTechnician(null)}
-                className="text-gray-200 hover:text-gray-200"
+                className="text-gray-600 hover:text-gray-600"
               >
                 ×
               </button>
@@ -525,12 +525,12 @@ const TechnicianSyncManager: React.FC = () => {
                   </div>
                 )}
                 <button className="absolute bottom-0 right-0 p-1 bg-white rounded-full shadow-lg hover:bg-gray-50">
-                  <Camera className="h-4 w-4 text-gray-200" />
+                  <Camera className="h-4 w-4 text-gray-600" />
                 </button>
               </div>
               <div className="flex-1">
                 <h4 className="text-xl font-semibold">{selectedTechnician.name}</h4>
-                <p className="text-gray-200">{selectedTechnician.companyAffiliation.name}</p>
+                <p className="text-gray-600">{selectedTechnician.companyAffiliation.name}</p>
                 <div className="flex items-center space-x-2 mt-2">
                   <span className={`px-2 py-1 text-xs rounded-full ${
                     getTechnicianStatusColor(selectedTechnician.status)
@@ -579,11 +579,11 @@ const TechnicianSyncManager: React.FC = () => {
                     <div key={cert.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div className="flex items-center space-x-3">
                         <Shield className={`h-5 w-5 ${
-                          cert.verificationStatus === 'verified' ? 'text-green-600' : 'text-gray-200'
+                          cert.verificationStatus === 'verified' ? 'text-green-600' : 'text-gray-600'
                         }`} />
                         <div>
                           <p className="font-medium">{cert.name}</p>
-                          <p className="text-sm text-gray-200">
+                          <p className="text-sm text-gray-600">
                             {cert.code} • {cert.issuingBody} • Expires {new Date(cert.expiryDate || '').toLocaleDateString()}
                           </p>
                         </div>
@@ -631,7 +631,7 @@ const TechnicianSyncManager: React.FC = () => {
                 {selectedTechnician.metadata.bio && (
                   <div className="mt-4">
                     <p className="text-xs text-gray-300 mb-1">Bio</p>
-                    <p className="text-sm text-gray-200">{selectedTechnician.metadata.bio}</p>
+                    <p className="text-sm text-gray-600">{selectedTechnician.metadata.bio}</p>
                   </div>
                 )}
               </div>
@@ -664,8 +664,8 @@ const TechnicianSyncManager: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">Import Technicians</h3>
             
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-200 mx-auto mb-4" />
-              <p className="text-gray-200 mb-2">Drop CSV file here or click to browse</p>
+              <Upload className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+              <p className="text-gray-600 mb-2">Drop CSV file here or click to browse</p>
               <input
                 type="file"
                 accept=".csv"
@@ -681,7 +681,7 @@ const TechnicianSyncManager: React.FC = () => {
             </div>
 
             <div className="mt-4">
-              <p className="text-sm text-gray-200">Expected format:</p>
+              <p className="text-sm text-gray-600">Expected format:</p>
               <ul className="text-xs text-gray-300 mt-2 space-y-1">
                 <li>• Name, Email, Phone, Company, Certifications</li>
                 <li>• CSV format with headers</li>

@@ -495,11 +495,11 @@ const ClientCommunicationWorkflow: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
                     <div className="p-2 bg-gray-100 rounded-lg">
-                      <TypeIcon className="h-5 w-5 text-gray-200" />
+                      <TypeIcon className="h-5 w-5 text-gray-600" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium">{comm.content.subject}</p>
-                      <div className="flex items-center space-x-4 mt-1 text-sm text-gray-200">
+                      <div className="flex items-center space-x-4 mt-1 text-sm text-gray-600">
                         <span>Job #{comm.jobId}</span>
                         <span>Client #{comm.clientId}</span>
                         <span className="capitalize">{comm.type.replace(/_/g, ' ')}</span>
@@ -512,11 +512,11 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     {comm.tracking && comm.status !== 'scheduled' && (
                       <div className="flex items-center space-x-3 text-sm">
                         <div className="flex items-center space-x-1">
-                          <Eye className="h-4 w-4 text-gray-200" />
+                          <Eye className="h-4 w-4 text-gray-600" />
                           <span>{comm.tracking.opens}</span>
                         </div>
                         <div className="flex items-center space-x-1">
-                          <Link className="h-4 w-4 text-gray-200" />
+                          <Link className="h-4 w-4 text-gray-600" />
                           <span>{comm.tracking.clicks}</span>
                         </div>
                       </div>
@@ -558,7 +558,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                         className="p-2 hover:bg-gray-100 rounded-lg"
                         title="Preview"
                       >
-                        <Eye className="h-4 w-4 text-gray-200" />
+                        <Eye className="h-4 w-4 text-gray-600" />
                       </button>
                       {comm.status === 'scheduled' && (
                         <button
@@ -605,7 +605,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                 {/* Attachments */}
                 {comm.attachments && comm.attachments.length > 0 && (
                   <div className="mt-3 flex items-center space-x-2">
-                    <Paperclip className="h-4 w-4 text-gray-200" />
+                    <Paperclip className="h-4 w-4 text-gray-600" />
                     <span className="text-xs text-gray-300">
                       {comm.attachments.length} attachment{comm.attachments.length > 1 ? 's' : ''}
                     </span>
@@ -625,7 +625,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
               <h3 className="text-lg font-semibold">Email Preview</h3>
               <button
                 onClick={() => setShowPreview(false)}
-                className="text-gray-200 hover:text-gray-200"
+                className="text-gray-600 hover:text-gray-600"
               >
                 ×
               </button>

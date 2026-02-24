@@ -23,11 +23,24 @@ select:focus-visible,
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
 }
 
-/* Links - Ensure contrast on hover */
+/* Base transition for all anchors */
+a { transition: box-shadow 0.2s ease, transform 0.15s ease, color 0.2s ease; }
+
+/* Links - NO underline on hover anywhere */
 a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  text-decoration-thickness: 2px;
+  text-decoration: none !important;
+}
+
+/* Interactive containers/cards - Orange glow border on hover */
+a:hover:where([class*="card"], [class*="ag-"], [class*="rounded"], [class*="block"], [class*="grid"]) {
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.5);
+  transform: scale(1.01);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Inline prose links - Color shift only */
+.ag-prose a:hover {
+  color: #ea580c !important;
 }
 
 /* Disabled states - Maintain readability */
@@ -192,4 +205,14 @@ a.icon-button {
   a:focus-visible {
     outline-color: #60a5fa !important; /* Blue-400 */
   }
+}
+
+/* ── Site-wide contrast safety net ──────────────────────── */
+/* Fix light text on light backgrounds */
+.bg-white .text-gray-200,
+.bg-gray-50 .text-gray-200,
+.bg-gray-100 .text-gray-200,
+[style*="background: white"] .text-gray-200,
+[style*="background-color: white"] .text-gray-200 {
+  color: #4b5563 !important; /* gray-600 */
 }

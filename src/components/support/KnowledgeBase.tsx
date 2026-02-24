@@ -87,7 +87,7 @@ const mockArticles: KnowledgeArticle[] = [
     category: mockCategories[0],
     content: `# Quick Start Guide for New Contractors
 
-Welcome to the National Restoration Professionals platform! This guide will help you get started quickly.
+Welcome to the National Restoration Professionals Group platform! This guide will help you get started quickly.
 
 ## Step 1: Complete Your Profile
 - Upload your company logo
@@ -108,9 +108,9 @@ Welcome to the National Restoration Professionals platform! This guide will help
 - Configure notification preferences
 - Set availability schedule
 - Accept your first job`,
-    excerpt: 'Get started with NRP in just 4 simple steps. This guide covers everything from profile setup to accepting your first job.',
+    excerpt: 'Get started with NRPG in just 4 simple steps. This guide covers everything from profile setup to accepting your first job.',
     tags: ['onboarding', 'getting-started', 'new-contractor'],
-    author: 'NRP Support Team',
+    author: 'NRPG Support Team',
     isPublished: true,
     isFeatured: true,
     helpfulCount: 145,
@@ -127,7 +127,7 @@ Welcome to the National Restoration Professionals platform! This guide will help
     subcategory: 'IICRC Requirements',
     content: `# IICRC Certification Requirements
 
-Learn about the required IICRC certifications for NRP contractors...`,
+Learn about the required IICRC certifications for NRPG contractors...`,
     excerpt: 'Complete guide to IICRC certifications required for water damage restoration contractors.',
     tags: ['compliance', 'iicrc', 'certification'],
     author: 'Compliance Team',
@@ -150,7 +150,7 @@ Learn about the required IICRC certifications for NRP contractors...`,
 Keep your compliance status active by renewing insurance on time...`,
     excerpt: 'Step-by-step instructions for updating and renewing your insurance documentation.',
     tags: ['insurance', 'compliance', 'renewal'],
-    author: 'NRP Support Team',
+    author: 'NRPG Support Team',
     isPublished: true,
     isFeatured: false,
     helpfulCount: 67,

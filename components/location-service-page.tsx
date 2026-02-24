@@ -152,7 +152,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">
                     {index + 1}
                   </div>
-                  <p className="text-gray-200">{step}</p>
+                  <p className="text-gray-600">{step}</p>
                 </motion.div>
               ))}
             </div>
@@ -184,7 +184,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   className="flex items-start gap-4"
                 >
                   <Star className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
-                  <p className="text-gray-200">{reason}</p>
+                  <p className="text-gray-600">{reason}</p>
                 </motion.div>
               ))}
             </div>
@@ -206,28 +206,28 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                 <Shield className="w-8 h-8 text-blue-600" />
                 Insurance Claims Assistance
               </h2>
-              <p className="text-lg text-gray-200 mb-6">{data.insuranceInfo}</p>
+              <p className="text-lg text-gray-600 mb-6">{data.insuranceInfo}</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FileText className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold mb-2">Documentation</h3>
-                  <p className="text-sm text-gray-200">Complete photo and video documentation for your claim</p>
+                  <p className="text-sm text-gray-600">Complete photo and video documentation for your claim</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold mb-2">Claims Support</h3>
-                  <p className="text-sm text-gray-200">Full documentation for your insurance claim</p>
+                  <p className="text-sm text-gray-600">Full documentation for your insurance claim</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
                     <Zap className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold mb-2">Fast Processing</h3>
-                  <p className="text-sm text-gray-200">Expedited claims with our insurance partnerships</p>
+                  <p className="text-sm text-gray-600">Expedited claims with our insurance partnerships</p>
                 </div>
               </div>
             </div>
@@ -251,7 +251,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
               <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
                 <Home className="w-12 h-12 text-blue-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Residential</h3>
-                <ul className="space-y-2 text-gray-200">
+                <ul className="space-y-2 text-gray-600">
                   <li>• Houses & Apartments</li>
                   <li>• Townhouses & Units</li>
                   <li>• Strata Properties</li>
@@ -261,7 +261,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
               <div className="bg-green-50 rounded-lg p-6 border border-green-200">
                 <Building className="w-12 h-12 text-green-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Commercial</h3>
-                <ul className="space-y-2 text-gray-200">
+                <ul className="space-y-2 text-gray-600">
                   <li>• Offices & Retail</li>
                   <li>• Restaurants & Cafes</li>
                   <li>• Hotels & Motels</li>
@@ -271,7 +271,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
               <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
                 <Factory className="w-12 h-12 text-purple-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Industrial</h3>
-                <ul className="space-y-2 text-gray-200">
+                <ul className="space-y-2 text-gray-600">
                   <li>• Warehouses</li>
                   <li>• Factories</li>
                   <li>• Storage Facilities</li>
@@ -306,7 +306,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   className="bg-white rounded-lg shadow-md p-6"
                 >
                   <h3 className="font-semibold text-lg mb-2">{faq.question}</h3>
-                  <p className="text-gray-200">{faq.answer}</p>
+                  <p className="text-gray-600">{faq.answer}</p>
                 </motion.div>
               ))}
             </div>

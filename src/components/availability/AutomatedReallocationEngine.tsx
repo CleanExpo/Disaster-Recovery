@@ -506,7 +506,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-200">Active Leads</span>
+                  <span className="text-gray-600">Active Leads</span>
                   <span className="font-medium">{contractor.activeLeads}/{contractor.capacity}</span>
                 </div>
                 
@@ -522,7 +522,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-200">Can Accept</span>
+                  <span className="text-gray-600">Can Accept</span>
                   <span className={`font-medium ${
                     contractor.canAcceptMore ? 'text-green-600' : 'text-red-600'
                   }`}>
@@ -531,7 +531,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                 </div>
 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-200">Est. Available</span>
+                  <span className="text-gray-600">Est. Available</span>
                   <span className="font-medium">{contractor.estimatedAvailability}</span>
                 </div>
               </div>
@@ -563,11 +563,11 @@ const AutomatedReallocationEngine: React.FC = () => {
                   </label>
                   <div>
                     <p className="font-medium">{rule.name}</p>
-                    <p className="text-sm text-gray-200">{rule.description}</p>
+                    <p className="text-sm text-gray-600">{rule.description}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="px-2 py-1 bg-gray-100 text-gray-200 text-xs rounded-full">
+                  <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
                     Priority: {rule.priority}
                   </span>
                   <button
@@ -660,7 +660,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                       </span>
                     </td>
                     <td className="px-4 py-2 text-sm">{event.averageResponseTime}s</td>
-                    <td className="px-4 py-2 text-sm text-gray-200">{event.ruleApplied || '-'}</td>
+                    <td className="px-4 py-2 text-sm text-gray-600">{event.ruleApplied || '-'}</td>
                   </tr>
                 );
               })}

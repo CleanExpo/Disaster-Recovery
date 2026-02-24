@@ -416,7 +416,7 @@ const AvailabilityCalendar: React.FC = () => {
               className={`px-3 py-1 rounded-lg capitalize ${
                 viewMode === mode
                   ? 'bg-blue-100 text-blue-700'
-                  : 'text-gray-200 hover:bg-gray-100'
+                  : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
               {mode}
@@ -463,7 +463,7 @@ const AvailabilityCalendar: React.FC = () => {
                     key={index}
                     onClick={() => handleDayClick(day)}
                     className={`bg-white p-2 min-h-[80px] cursor-pointer hover:bg-gray-50 ${
-                      !day.isCurrentMonth ? 'text-gray-200' : ''
+                      !day.isCurrentMonth ? 'text-gray-600' : ''
                     } ${day.isToday ? 'ring-2 ring-blue-500' : ''}`}
                   >
                     <div className="flex justify-between items-start">
@@ -485,7 +485,7 @@ const AvailabilityCalendar: React.FC = () => {
                           summary.status === 'vacation' ? 'bg-blue-100 text-blue-700' :
                           summary.status === 'training' ? 'bg-purple-700 text-white' :
                           summary.status === 'blackout' ? 'bg-red-100 text-red-700' :
-                          'bg-gray-100 text-gray-200'
+                          'bg-gray-100 text-gray-600'
                         }`}>
                           {summary.label}
                         </div>
@@ -553,7 +553,7 @@ const AvailabilityCalendar: React.FC = () => {
                         status === 'busy' ? 'text-yellow-600' :
                         status === 'vacation' ? 'text-blue-600' :
                         status === 'training' ? 'text-purple-600' :
-                        'text-gray-200'
+                        'text-gray-600'
                       }`} />
                       <span className="text-sm capitalize">{status}</span>
                       {windowAtTime && (
@@ -588,7 +588,7 @@ const AvailabilityCalendar: React.FC = () => {
                         {new Date(window.startDateTime).toLocaleDateString()} - 
                         {new Date(window.endDateTime).toLocaleDateString()}
                       </p>
-                      <p className="text-sm text-gray-200">{window.reason.description}</p>
+                      <p className="text-sm text-gray-600">{window.reason.description}</p>
                       {window.notes && (
                         <p className="text-xs text-gray-300 mt-1">{window.notes}</p>
                       )}

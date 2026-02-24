@@ -318,16 +318,16 @@ export default function SocialMediaInsights() {
                 <p className="text-sm text-gray-300">{platform.accountName}</p>
               </div>
             </div>
-            <ExternalLink className="w-5 h-5 text-gray-200" />
+            <ExternalLink className="w-5 h-5 text-gray-600" />
           </div>
 
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <p className="text-sm text-gray-200">Followers</p>
+              <p className="text-sm text-gray-600">Followers</p>
               <p className="text-2xl font-bold text-gray-900">{formatNumber(platform.followers)}</p>
             </div>
             <div>
-              <p className="text-sm text-gray-200">Engagement Rate</p>
+              <p className="text-sm text-gray-600">Engagement Rate</p>
               <p className="text-2xl font-bold text-green-600">
                 {formatPercentage(platform.engagement.engagementRate)}
               </p>
@@ -336,15 +336,15 @@ export default function SocialMediaInsights() {
 
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-200">Reach:</span>
+              <span className="text-gray-600">Reach:</span>
               <span className="font-medium">{formatNumber(platform.engagement.reach)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-200">Impressions:</span>
+              <span className="text-gray-600">Impressions:</span>
               <span className="font-medium">{formatNumber(platform.engagement.impressions)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-200">Clicks:</span>
+              <span className="text-gray-600">Clicks:</span>
               <span className="font-medium">{formatNumber(platform.engagement.clicks)}</span>
             </div>
           </div>
@@ -366,7 +366,7 @@ export default function SocialMediaInsights() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-200">Total Followers</p>
+            <p className="text-sm font-medium text-gray-600">Total Followers</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {formatNumber(mockSocialInsights.aggregatedMetrics.totalFollowers)}
             </p>
@@ -387,7 +387,7 @@ export default function SocialMediaInsights() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-200">Total Impressions</p>
+            <p className="text-sm font-medium text-gray-600">Total Impressions</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {formatNumber(mockSocialInsights.aggregatedMetrics.totalImpressions)}
             </p>
@@ -401,7 +401,7 @@ export default function SocialMediaInsights() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-200">Engagement Rate</p>
+            <p className="text-sm font-medium text-gray-600">Engagement Rate</p>
             <p className="text-3xl font-bold text-gray-900 mt-1">
               {formatPercentage(mockSocialInsights.aggregatedMetrics.averageEngagementRate)}
             </p>
@@ -415,7 +415,7 @@ export default function SocialMediaInsights() {
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-200">Best Platform</p>
+            <p className="text-sm font-medium text-gray-600">Best Platform</p>
             <p className="text-3xl font-bold text-gray-900 mt-1 capitalize">
               {mockSocialInsights.aggregatedMetrics.bestPlatform}
             </p>
@@ -436,8 +436,8 @@ export default function SocialMediaInsights() {
           <div key={content.id} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-lg">
             <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
               {content.type === 'video' || content.type === 'reel' ? 
-                <Video className="w-6 h-6 text-gray-200" /> : 
-                <Image className="w-6 h-6 text-gray-200" />
+                <Video className="w-6 h-6 text-gray-600" /> : 
+                <Image className="w-6 h-6 text-gray-600" />
               }
             </div>
             <div className="flex-1 min-w-0">
@@ -514,7 +514,7 @@ export default function SocialMediaInsights() {
               </div>
               <div className="flex items-center space-x-2 mt-2">
                 {post.platforms.map(platform => (
-                  <span key={platform} className="px-2 py-1 bg-gray-100 text-gray-200 text-xs rounded-full capitalize">
+                  <span key={platform} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full capitalize">
                     {platform}
                   </span>
                 ))}
@@ -529,7 +529,7 @@ export default function SocialMediaInsights() {
               <button className="text-blue-600 hover:text-blue-700">
                 <Edit className="w-4 h-4" />
               </button>
-              <button className="text-gray-200 hover:text-gray-200">
+              <button className="text-gray-600 hover:text-gray-600">
                 <Play className="w-4 h-4" />
               </button>
             </div>
@@ -560,7 +560,7 @@ export default function SocialMediaInsights() {
             <div className="grid grid-cols-3 gap-4 text-sm">
               {platform.insights.engagementTrends.map((trend, index) => (
                 <div key={index} className="text-center">
-                  <p className="text-gray-200">
+                  <p className="text-gray-600">
                     {trend.date.toLocaleDateString('en-AU', { month: 'short', day: 'numeric' })}
                   </p>
                   <p className="font-medium">{formatPercentage(trend.engagement)}</p>
@@ -601,7 +601,7 @@ export default function SocialMediaInsights() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Social Media Insights</h1>
-          <p className="text-gray-200 mt-2">
+          <p className="text-gray-600 mt-2">
             Track social media performance and manage content across all platforms
           </p>
         </div>
@@ -615,7 +615,7 @@ export default function SocialMediaInsights() {
             <option value="30d">Last 30 Days</option>
             <option value="90d">Last 90 Days</option>
           </select>
-          <button className="px-4 py-2 bg-gray-100 text-gray-200 rounded-lg hover:bg-gray-200 transition-colours">
+          <button className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colours">
             <RefreshCw className="w-4 h-4 mr-2 inline" />
             Refresh
           </button>

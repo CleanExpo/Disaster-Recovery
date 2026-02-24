@@ -117,7 +117,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
           <div className="prose prose-lg max-w-none">
             {/* Introduction */}
             {data.content?.intro && (
-              <p className="text-xl text-gray-200 mb-8">{data.content.intro}</p>
+              <p className="text-xl text-gray-600 mb-8">{data.content.intro}</p>
             )}
             
             {/* Key Features */}
@@ -214,7 +214,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
               {data.faqs.map((faq, idx) => (
                 <div key={idx} className="bg-gray-50 rounded-lg p-6">
                   <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                  <p className="text-gray-200">{faq.answer}</p>
+                  <p className="text-gray-600">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -232,28 +232,28 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
               className="bg-blue-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
             >
               <h3 className="font-bold mb-2">Water Damage Guide</h3>
-              <p className="text-gray-200 text-sm">Complete recovery information</p>
+              <p className="text-gray-600 text-sm">Complete recovery information</p>
             </Link>
             <Link
               href="/guides/fire-damage"
               className="bg-red-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
             >
               <h3 className="font-bold mb-2">Fire Damage Guide</h3>
-              <p className="text-gray-200 text-sm">Fire and smoke restoration</p>
+              <p className="text-gray-600 text-sm">Fire and smoke restoration</p>
             </Link>
             <Link
               href="/guides/storm-damage"
               className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
             >
               <h3 className="font-bold mb-2">Storm Damage Guide</h3>
-              <p className="text-gray-200 text-sm">Storm recovery information</p>
+              <p className="text-gray-600 text-sm">Storm recovery information</p>
             </Link>
             <Link
               href="/guides/mould"
               className="bg-green-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
             >
               <h3 className="font-bold mb-2">Mould Guide</h3>
-              <p className="text-gray-200 text-sm">Mould remediation help</p>
+              <p className="text-gray-600 text-sm">Mould remediation help</p>
             </Link>
           </div>
         </div>

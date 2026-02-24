@@ -264,7 +264,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold text-lg">Verification Progress</h3>
-              <p className="text-sm text-gray-200 mt-1">Complete all sections to proceed</p>
+              <p className="text-sm text-gray-600 mt-1">Complete all sections to proceed</p>
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-blue-600">{calculateCompletion()}%</div>
@@ -311,7 +311,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 <Label htmlFor="background-check" className="font-normal cursor-pointer">
                   I authorise third-party background screening <span className="text-red-500">*</span>
                 </Label>
-                <p className="text-xs text-gray-200">
+                <p className="text-xs text-gray-600">
                   I consent to comprehensive background checks including identity verification, 
                   professional history, and regulatory compliance checks.
                 </p>
@@ -331,7 +331,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 <Label htmlFor="credit-criminal" className="font-normal cursor-pointer">
                   I consent to credit and criminal history checks <span className="text-red-500">*</span>
                 </Label>
-                <p className="text-xs text-gray-200">
+                <p className="text-xs text-gray-600">
                   I authorise review of credit history and criminal records as permitted under 
                   Australian law for the purpose of contractor assessment.
                 </p>
@@ -351,7 +351,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 <Label htmlFor="data-privacy" className="font-normal cursor-pointer">
                   I acknowledge data privacy and protection terms <span className="text-red-500">*</span>
                 </Label>
-                <p className="text-xs text-gray-200">
+                <p className="text-xs text-gray-600">
                   I understand my information will be handled in accordance with the Privacy Act 1988 
                   and Australian Privacy Principles.
                 </p>
@@ -407,11 +407,11 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 htmlFor="director-id"
                 className="flex flex-col items-center cursor-pointer"
               >
-                <Upload className="h-8 w-8 text-gray-200 mb-2" />
-                <span className="text-sm text-gray-200">
+                <Upload className="h-8 w-8 text-gray-600 mb-2" />
+                <span className="text-sm text-gray-600">
                   Click to upload ID documents
                 </span>
-                <span className="text-xs text-gray-200 mt-1">
+                <span className="text-xs text-gray-600 mt-1">
                   PDF or image files (Driver's License, Passport, etc.)
                 </span>
               </label>
@@ -422,7 +422,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 {directorIdFiles.map((file, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex items-center gap-3">
-                      <FileText className="h-5 w-5 text-gray-200" />
+                      <FileText className="h-5 w-5 text-gray-600" />
                       <div>
                         <p className="text-sm font-medium">{file.name}</p>
                         <p className="text-xs text-gray-300">
@@ -531,7 +531,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                     Contact Phone <span className="text-red-500">*</span>
                   </Label>
                   <div className="flex items-center gap-2">
-                    <MessageSquare className="h-4 w-4 text-gray-200" />
+                    <MessageSquare className="h-4 w-4 text-gray-600" />
                     <Input
                       type="tel"
                       placeholder="Contact Form"
@@ -545,7 +545,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 <div className="space-y-2">
                   <Label>Contact Email</Label>
                   <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-gray-200" />
+                    <Mail className="h-4 w-4 text-gray-600" />
                     <Input
                       type="email"
                       placeholder="reference@company.com"
@@ -645,9 +645,9 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                   </>
                 ) : (
                   <>
-                    <Upload className="h-8 w-8 text-gray-200 mb-2" />
-                    <span className="text-sm text-gray-200">Click to upload project summary</span>
-                    <span className="text-xs text-gray-200 mt-1">PDF or document with project details</span>
+                    <Upload className="h-8 w-8 text-gray-600 mb-2" />
+                    <span className="text-sm text-gray-600">Click to upload project summary</span>
+                    <span className="text-xs text-gray-600 mt-1">PDF or document with project details</span>
                   </>
                 )}
               </label>
@@ -670,9 +670,9 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 htmlFor="project-photos"
                 className="flex flex-col items-center cursor-pointer"
               >
-                <Camera className="h-8 w-8 text-gray-200 mb-2" />
-                <span className="text-sm text-gray-200">Click to upload project photos</span>
-                <span className="text-xs text-gray-200 mt-1">Before/after images (max 10)</span>
+                <Camera className="h-8 w-8 text-gray-600 mb-2" />
+                <span className="text-sm text-gray-600">Click to upload project photos</span>
+                <span className="text-xs text-gray-600 mt-1">Before/after images (max 10)</span>
               </label>
             </div>
 
@@ -681,7 +681,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                 {projectPhotos.map((photo, index) => (
                   <div key={index} className="relative group">
                     <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                      <Camera className="h-6 w-6 text-gray-200" />
+                      <Camera className="h-6 w-6 text-gray-600" />
                     </div>
                     <div className="absolute inset-0 bg-black/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <Button

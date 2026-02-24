@@ -220,7 +220,7 @@ export function generateOrganizationSchema(): OrganizationSchema {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organisation',
-    name: 'National Restoration Professionals (NRP)',
+    name: 'National Restoration Professionals Group (NRPG)',
     url: 'https://disasterrecovery.com.au',
     logo: 'https://disasterrecovery.com.au/logo.png',
     description: 'Professional disaster recovery and emergency restoration services nationwide. IICRC certified, 24/7 emergency response.',

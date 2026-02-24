@@ -150,7 +150,7 @@ function DemoPageOriginal() {
                   {/* Features */}
                   <div className="space-y-2 mb-6">
                     {demo.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-200">
+                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-600">
                         <ChevronRight className="h-4 w-4 text-gray-300" />
                         <span>{feature}</span>
                       </div>
@@ -190,15 +190,15 @@ function DemoPageOriginal() {
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
                 <div className="text-3xl font-bold text-blue-600">10,000+</div>
-                <div className="text-sm text-gray-200">Contractors</div>
+                <div className="text-sm text-gray-600">Contractors</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-emerald-600">$2.8B</div>
-                <div className="text-sm text-gray-200">Market Size</div>
+                <div className="text-sm text-gray-600">Market Size</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-purple-600">24/7</div>
-                <div className="text-sm text-gray-200">Response Time</div>
+                <div className="text-sm text-gray-600">Response Time</div>
               </div>
             </div>
           </div>

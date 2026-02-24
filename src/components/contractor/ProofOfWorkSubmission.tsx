@@ -197,7 +197,7 @@ export default function ProofOfWorkSubmission({
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Proof of Work Submission
           </h2>
-          <p className="text-gray-200 mb-6">
+          <p className="text-gray-600 mb-6">
             You must provide evidence of at least 5 completed projects for each work type you wish to be certified for. 
             Each claim requires before/after photos, invoices, and project details.
           </p>
@@ -221,7 +221,7 @@ export default function ProofOfWorkSubmission({
           <div className="bg-gray-50 rounded-lg p-4 mb-8">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-gray-900">Progress Overview</h3>
-              <span className="text-sm text-gray-200">
+              <span className="text-sm text-gray-600">
                 {getCompletionCount()} of {requiredWorkTypes.length} work types completed
               </span>
             </div>
@@ -250,7 +250,7 @@ export default function ProofOfWorkSubmission({
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {workType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                     </h3>
-                    <p className="text-gray-200">
+                    <p className="text-gray-600">
                       {claim ? `${claim.evidence.length} evidence items uploaded` : 'No evidence submitted yet'}
                     </p>
                   </div>
@@ -273,15 +273,15 @@ export default function ProofOfWorkSubmission({
                 {claim && (
                   <div className="grid md:grid-cols-3 gap-4 text-sm">
                     <div>
-                      <p className="font-medium text-gray-200">Recent Project</p>
-                      <p className="text-gray-200">{claim.projectName || 'Not specified'}</p>
+                      <p className="font-medium text-gray-600">Recent Project</p>
+                      <p className="text-gray-600">{claim.projectName || 'Not specified'}</p>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-200">Evidence Items</p>
-                      <p className="text-gray-200">{claim.evidence.length} files</p>
+                      <p className="font-medium text-gray-600">Evidence Items</p>
+                      <p className="text-gray-600">{claim.evidence.length} files</p>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-200">Status</p>
+                      <p className="font-medium text-gray-600">Status</p>
                       <span className={`
                         inline-flex px-2 py-1 rounded-full text-xs font-medium
                         ${isComplete ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}
@@ -300,7 +300,7 @@ export default function ProofOfWorkSubmission({
         <div className="border-t pt-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-200">
+              <p className="text-sm text-gray-600">
                 Complete all {requiredWorkTypes.length} work types to proceed with certification
               </p>
             </div>
@@ -390,7 +390,7 @@ function ClaimFormModal({
             </h3>
             <button
               onClick={onClose}
-              className="text-gray-200 hover:text-gray-200"
+              className="text-gray-600 hover:text-gray-600"
             >
               <X className="w-6 h-6" />
             </button>
@@ -401,7 +401,7 @@ function ClaimFormModal({
             <button
               onClick={() => setActiveTab('details')}
               className={`px-4 py-2 rounded-lg font-medium ${
-                activeTab === 'details' ? 'bg-blue-100 text-blue-700' : 'text-gray-300 hover:text-gray-200'
+                activeTab === 'details' ? 'bg-blue-100 text-blue-700' : 'text-gray-300 hover:text-gray-600'
               }`}
             >
               Project Details
@@ -409,7 +409,7 @@ function ClaimFormModal({
             <button
               onClick={() => setActiveTab('evidence')}
               className={`px-4 py-2 rounded-lg font-medium ${
-                activeTab === 'evidence' ? 'bg-blue-100 text-blue-700' : 'text-gray-300 hover:text-gray-200'
+                activeTab === 'evidence' ? 'bg-blue-100 text-blue-700' : 'text-gray-300 hover:text-gray-600'
               }`}
             >
               Evidence ({formData.evidence.length})
@@ -460,7 +460,7 @@ function ProjectDetailsForm({
   return (
     <div className="grid md:grid-cols-2 gap-6">
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Project Name *
         </label>
         <input
@@ -473,7 +473,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Client Name *
         </label>
         <input
@@ -486,7 +486,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Client Contact *
         </label>
         <input
@@ -499,7 +499,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Project Address *
         </label>
         <input
@@ -512,7 +512,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Completion Date *
         </label>
         <input
@@ -525,7 +525,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Project Value (AUD) *
         </label>
         <input
@@ -539,7 +539,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Property Type *
         </label>
         <select
@@ -555,7 +555,7 @@ function ProjectDetailsForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Insurance Company
         </label>
         <input
@@ -568,7 +568,7 @@ function ProjectDetailsForm({
       </div>
 
       <div className="md:col-span-2">
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Damage Types
         </label>
         <div className="flex flex-wrap gap-2">
@@ -593,7 +593,7 @@ function ProjectDetailsForm({
       </div>
 
       <div className="md:col-span-2">
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Project Description *
         </label>
         <textarea
@@ -663,7 +663,7 @@ function EvidenceUploadSection({
   return (
     <div className="space-y-6">
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-2">
+        <label className="block text-sm font-medium text-gray-600 mb-2">
           Evidence Type
         </label>
         <select
@@ -700,7 +700,7 @@ function EvidenceUploadSection({
                     <p className="font-medium text-gray-900">
                       {EVIDENCE_TYPES.find(et => et.value === item.type)?.label}
                     </p>
-                    <p className="text-sm text-gray-200">{item.description}</p>
+                    <p className="text-sm text-gray-600">{item.description}</p>
                   </div>
                   <button
                     onClick={() => onRemoveEvidence(item.id)}
@@ -732,7 +732,7 @@ function EvidenceUploadSection({
                   {type.label} {type.required && '*'}
                 </span>
                 <div className="flex items-center gap-2">
-                  <span className="text-gray-200">{count} uploaded</span>
+                  <span className="text-gray-600">{count} uploaded</span>
                   {isComplete ? (
                     <CheckCircle className="w-4 h-4 text-green-600" />
                   ) : (

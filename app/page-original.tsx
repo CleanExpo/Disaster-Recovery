@@ -22,16 +22,16 @@ export default function ComingSoonPage() {
         <div className="relative">
           <div className="container mx-auto px-6 py-24">
             <div className="text-center max-w-5xl mx-auto">
-              {/* Logo/Brand - Using actual NRP logo */}
+              {/* Logo/Brand - Using actual NRPG logo */}
               <div className="flex items-center justify-center gap-3 mb-8">
-                <img 
-                  src="/logos/3D NRP Logo.png" 
-                  alt="NRP Logo" 
+                <img
+                  src="/logos/3D NRP Logo.png"
+                  alt="NRPG Logo" 
                   className="h-16 w-16"
                 />
                 <div className="text-left">
-                  <h1 className="text-4xl font-bold text-white">NRP</h1>
-                  <p className="text-blue-700 text-sm">National Restoration Professionals</p>
+                  <h1 className="text-4xl font-bold text-white">NRPG</h1>
+                  <p className="text-blue-700 text-sm">National Restoration Professionals Group</p>
                 </div>
               </div>
 
@@ -498,7 +498,7 @@ export default function ComingSoonPage() {
             <div className="flex items-center gap-3">
               <Shield className="h-6 w-6 text-blue-600" />
               <div>
-                <div className="text-white font-semibold">National Restoration Professionals</div>
+                <div className="text-white font-semibold">National Restoration Professionals Group</div>
                 <div className="text-slate-600 text-sm">Australia's Disaster Recovery Network</div>
               </div>
             </div>
@@ -508,7 +508,7 @@ export default function ComingSoonPage() {
                 Contractor Application
               </Link>
               <Link href="/about" className="text-blue-700 hover:text-blue-700 transition">
-                About NRP
+                About NRPG
               </Link>
               <Link href="/contact" className="text-blue-700 hover:text-blue-700 transition">
                 Contact
@@ -516,7 +516,7 @@ export default function ComingSoonPage() {
             </div>
             
             <div className="text-slate-600 text-sm">
-              © 2025 NRP. Launching Soon.
+              © 2026 NRPG. Launching Soon.
             </div>
           </div>
         </div>

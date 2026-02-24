@@ -94,7 +94,7 @@ function ContractorPortalLandingOriginal() {
                 </div>
                 
                 <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block">NRP Contractor</span>
+                  <span className="block">NRPG Contractor</span>
                   <span className="block text-blue-600">Management Portal</span>
                 </h1>
                 

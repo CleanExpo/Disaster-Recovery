@@ -82,7 +82,7 @@ export function FormProgressIndicator({ currentStep, totalSteps }: { currentStep
   
   return (
     <div className="w-full mb-6">
-      <div className="flex justify-between text-sm text-gray-200 mb-2">
+      <div className="flex justify-between text-sm text-gray-600 mb-2">
         <span>Step {currentStep} of {totalSteps}</span>
         <span>{Math.round(progress)}% Complete</span>
       </div>
@@ -151,7 +151,7 @@ export function LoadingWithProgress({ message = "Processing your request..." }: 
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="text-sm text-gray-200 mt-2">{Math.round(progress)}% Complete</p>
+          <p className="text-sm text-gray-600 mt-2">{Math.round(progress)}% Complete</p>
         </div>
       </div>
     </div>

@@ -230,7 +230,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
         
         <div className="p-6 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Document Title
             </label>
             <input
@@ -241,7 +241,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Description
             </label>
             <textarea
@@ -252,7 +252,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Due Date (Optional)
             </label>
             <input
@@ -262,7 +262,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Signers
             </label>
             <div className="space-y-3">
@@ -294,25 +294,25 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
             <div>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                <span className="text-sm text-gray-200">Sequential signing</span>
+                <span className="text-sm text-gray-600">Sequential signing</span>
               </label>
             </div>
             <div>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                <span className="text-sm text-gray-200">Require authentication</span>
+                <span className="text-sm text-gray-600">Require authentication</span>
               </label>
             </div>
             <div>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" defaultChecked />
-                <span className="text-sm text-gray-200">Enable reminders</span>
+                <span className="text-sm text-gray-600">Enable reminders</span>
               </label>
             </div>
             <div>
               <label className="flex items-center">
                 <input type="checkbox" className="mr-2" />
-                <span className="text-sm text-gray-200">Password protected</span>
+                <span className="text-sm text-gray-600">Password protected</span>
               </label>
             </div>
           </div>
@@ -346,13 +346,13 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">{selectedRequest.title}</h2>
-                <p className="text-gray-200 mt-1">{selectedRequest.description}</p>
+                <p className="text-gray-600 mt-1">{selectedRequest.description}</p>
               </div>
               <button 
                 onClick={() => setSelectedRequest(null)}
                 className="p-2 hover:bg-gray-100 rounded-lg"
               >
-                <XCircle className="w-5 h-5 text-gray-200" />
+                <XCircle className="w-5 h-5 text-gray-600" />
               </button>
             </div>
           </div>
@@ -366,27 +366,27 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                     {selectedRequest.status.replace('_', ' ').toUpperCase()}
                   </span>
                 </div>
-                <p className="text-sm text-gray-200">Status</p>
+                <p className="text-sm text-gray-600">Status</p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center mb-2">
-                  <Calendar className="w-4 h-4 text-gray-200" />
+                  <Calendar className="w-4 h-4 text-gray-600" />
                   <span className="ml-2 text-sm font-medium">
                     {new Date(selectedRequest.createdAt).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-sm text-gray-200">Created Date</p>
+                <p className="text-sm text-gray-600">Created Date</p>
               </div>
 
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="flex items-center mb-2">
-                  <Users className="w-4 h-4 text-gray-200" />
+                  <Users className="w-4 h-4 text-gray-600" />
                   <span className="ml-2 text-sm font-medium">
                     {selectedRequest.signers.length} signer{selectedRequest.signers.length !== 1 ? 's' : ''}
                   </span>
                 </div>
-                <p className="text-sm text-gray-200">Total Signers</p>
+                <p className="text-sm text-gray-600">Total Signers</p>
               </div>
             </div>
 
@@ -403,7 +403,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                       }`}>
                         {signer.status === 'signed' ? 
                           <CheckCircle className="w-4 h-4 text-green-600" /> :
-                          <span className="text-sm font-medium text-gray-200">{index + 1}</span>
+                          <span className="text-sm font-medium text-gray-600">{index + 1}</span>
                         }
                       </div>
                     </div>
@@ -412,7 +412,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="font-medium text-gray-900">{signer.name}</p>
-                          <p className="text-sm text-gray-200">{signer.email}</p>
+                          <p className="text-sm text-gray-600">{signer.email}</p>
                           <p className="text-xs text-gray-300">{signer.role}</p>
                         </div>
                         <div className="text-right">
@@ -447,13 +447,13 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                 {selectedRequest.auditTrail.map((entry) => (
                   <div key={entry.id} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
                     <div className="p-1 bg-white rounded">
-                      <Shield className="w-4 h-4 text-gray-200" />
+                      <Shield className="w-4 h-4 text-gray-600" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-900 capitalize">
                         {entry.action.replace('_', ' ')}
                       </p>
-                      <p className="text-sm text-gray-200">{entry.userEmail}</p>
+                      <p className="text-sm text-gray-600">{entry.userEmail}</p>
                       <p className="text-xs text-gray-300">
                         {new Date(entry.timestamp).toLocaleString()} • IP: {entry.ipAddress}
                       </p>
@@ -510,7 +510,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">eSignature Portal</h1>
-          <p className="text-gray-200 mt-1">Create, send, and track document signatures</p>
+          <p className="text-gray-600 mt-1">Create, send, and track document signatures</p>
         </div>
         <div className="flex items-center space-x-2">
           <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -535,7 +535,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
             className={`px-4 py-2 rounded-lg capitalize transition-colours ${
               activeTab === tab 
                 ? 'bg-white shadow-sm text-gray-900' 
-                : 'text-gray-200 hover:text-gray-900'
+                : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             {tab}
@@ -550,7 +550,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               No {activeTab} signature requests
             </h3>
-            <p className="text-gray-200 mb-4">
+            <p className="text-gray-600 mb-4">
               {activeTab === 'pending' ? 'All signature requests are complete' : 
                activeTab === 'drafts' ? 'Create your first signature request' :
                'No completed signature requests yet'}
@@ -581,7 +581,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                         <span className="ml-1">{request.status.replace('_', ' ').toUpperCase()}</span>
                       </span>
                     </div>
-                    <p className="text-gray-200 mb-3">{request.description}</p>
+                    <p className="text-gray-600 mb-3">{request.description}</p>
                     <div className="flex items-center space-x-6 text-sm text-gray-300">
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 mr-1" />
@@ -613,7 +613,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
                         ></div>
                       </div>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-gray-200" />
+                    <ArrowRight className="w-4 h-4 text-gray-600" />
                   </div>
                 </div>
               </div>

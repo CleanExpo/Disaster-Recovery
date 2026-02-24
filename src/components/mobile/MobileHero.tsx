@@ -50,7 +50,7 @@ export default function MobileHero() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
         >
           Disaster Recovery
-          <span className="block text-2xl sm:text-3xl md:text-4xl mt-2 text-gray-200 dark:text-gray-300">
+          <span className="block text-2xl sm:text-3xl md:text-4xl mt-2 text-gray-600 dark:text-gray-300">
             Australia
           </span>
         </motion.h1>
@@ -60,7 +60,7 @@ export default function MobileHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg text-center text-gray-200 dark:text-gray-200 mb-6"
+          className="text-base sm:text-lg text-center text-gray-600 dark:text-gray-200 mb-6"
         >
           Professional restoration services nationwide. 
           Insurance approved. Immediate response.
@@ -146,7 +146,7 @@ export default function MobileHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-6 flex items-center justify-center gap-2 text-xs text-gray-200 dark:text-gray-200"
+          className="mt-6 flex items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-200"
         >
           <CheckCircle className="h-4 w-4 text-green-600" />
           <span>Trusted by 10,000+ Australian homes & businesses</span>

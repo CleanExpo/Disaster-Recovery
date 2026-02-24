@@ -413,7 +413,7 @@ Customer Signature: _________________________ Date: _____________`,
       case 'report': return <FileText className="w-5 h-5 text-blue-700" />;
       case 'invoice': return <FileText className="w-5 h-5 text-red-600" />;
       case 'proposal': return <FileText className="w-5 h-5 text-indigo-600" />;
-      default: return <FileText className="w-5 h-5 text-gray-200" />;
+      default: return <FileText className="w-5 h-5 text-gray-600" />;
     }
   };
 
@@ -427,7 +427,7 @@ Customer Signature: _________________________ Date: _____________`,
               onClick={() => setShowCreateModal(false)}
               className="p-2 hover:bg-gray-100 rounded-lg"
             >
-              <X className="w-5 h-5 text-gray-200" />
+              <X className="w-5 h-5 text-gray-600" />
             </button>
           </div>
         </div>
@@ -435,7 +435,7 @@ Customer Signature: _________________________ Date: _____________`,
         <div className="p-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Template Name *
               </label>
               <input
@@ -449,7 +449,7 @@ Customer Signature: _________________________ Date: _____________`,
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Category *
               </label>
               <select
@@ -470,7 +470,7 @@ Customer Signature: _________________________ Date: _____________`,
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Description
             </label>
             <textarea
@@ -483,7 +483,7 @@ Customer Signature: _________________________ Date: _____________`,
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Template Content *
             </label>
             <textarea
@@ -501,7 +501,7 @@ Customer Signature: _________________________ Date: _____________`,
 
           <div>
             <div className="flex items-center justify-between mb-4">
-              <label className="block text-sm font-medium text-gray-200">
+              <label className="block text-sm font-medium text-gray-600">
                 Template Fields
               </label>
               <button
@@ -557,7 +557,7 @@ Customer Signature: _________________________ Date: _____________`,
                           onChange={(e) => updateTemplateField(index, { required: e.target.checked })}
                           className="mr-2"
                         />
-                        <span className="text-sm text-gray-200">Required</span>
+                        <span className="text-sm text-gray-600">Required</span>
                       </label>
                     </div>
                     
@@ -574,7 +574,7 @@ Customer Signature: _________________________ Date: _____________`,
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-3">
+            <label className="block text-sm font-medium text-gray-600 mb-3">
               Template Settings
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -588,7 +588,7 @@ Customer Signature: _________________________ Date: _____________`,
                   }))}
                   className="mr-2"
                 />
-                <span className="text-sm text-gray-200">Auto-merge data</span>
+                <span className="text-sm text-gray-600">Auto-merge data</span>
               </label>
               
               <label className="flex items-center">
@@ -601,7 +601,7 @@ Customer Signature: _________________________ Date: _____________`,
                   }))}
                   className="mr-2"
                 />
-                <span className="text-sm text-gray-200">Require signature</span>
+                <span className="text-sm text-gray-600">Require signature</span>
               </label>
               
               <label className="flex items-center">
@@ -614,7 +614,7 @@ Customer Signature: _________________________ Date: _____________`,
                   }))}
                   className="mr-2"
                 />
-                <span className="text-sm text-gray-200">Allow editing</span>
+                <span className="text-sm text-gray-600">Allow editing</span>
               </label>
               
               <label className="flex items-center">
@@ -627,7 +627,7 @@ Customer Signature: _________________________ Date: _____________`,
                   }))}
                   className="mr-2"
                 />
-                <span className="text-sm text-gray-200">Track usage</span>
+                <span className="text-sm text-gray-600">Track usage</span>
               </label>
             </div>
           </div>
@@ -665,7 +665,7 @@ Customer Signature: _________________________ Date: _____________`,
                 onClick={() => setShowPreviewModal(null)}
                 className="p-2 hover:bg-gray-100 rounded-lg"
               >
-                <X className="w-5 h-5 text-gray-200" />
+                <X className="w-5 h-5 text-gray-600" />
               </button>
             </div>
           </div>
@@ -684,8 +684,8 @@ Customer Signature: _________________________ Date: _____________`,
                   {showPreviewModal.fields.map((field) => (
                     <div key={field.id} className="border border-gray-200 rounded-lg p-3">
                       <p className="font-medium text-gray-900">{field.label}</p>
-                      <p className="text-sm text-gray-200">Field: {field.name}</p>
-                      <p className="text-sm text-gray-200">Type: {field.type}</p>
+                      <p className="text-sm text-gray-600">Field: {field.name}</p>
+                      <p className="text-sm text-gray-600">Type: {field.type}</p>
                       {field.required && (
                         <span className="inline-block mt-1 px-2 py-1 text-xs bg-red-100 text-red-800 rounded">
                           Required
@@ -734,7 +734,7 @@ Customer Signature: _________________________ Date: _____________`,
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Template Library</h1>
-          <p className="text-gray-200 mt-1">Create and manage document templates</p>
+          <p className="text-gray-600 mt-1">Create and manage document templates</p>
         </div>
         {userRole === 'admin' && (
           <button 
@@ -750,7 +750,7 @@ Customer Signature: _________________________ Date: _____________`,
       <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-200" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
             <input
               type="text"
               placeholder="Search templates..."
@@ -775,7 +775,7 @@ Customer Signature: _________________________ Date: _____________`,
           </select>
         </div>
 
-        <div className="text-sm text-gray-200">
+        <div className="text-sm text-gray-600">
           {filteredTemplates.length} template{filteredTemplates.length !== 1 ? 's' : ''}
         </div>
       </div>
@@ -786,7 +786,7 @@ Customer Signature: _________________________ Date: _____________`,
           <h3 className="text-lg font-medium text-gray-900 mb-2">
             {searchQuery || selectedCategory !== 'all' ? 'No templates found' : 'No templates yet'}
           </h3>
-          <p className="text-gray-200 mb-4">
+          <p className="text-gray-600 mb-4">
             {searchQuery || selectedCategory !== 'all' 
               ? 'Try adjusting your search or filters' 
               : 'Create your first template to get started'
@@ -811,7 +811,7 @@ Customer Signature: _________________________ Date: _____________`,
                     {getTemplateIcon(template.templateType)}
                     <div>
                       <h3 className="font-semibold text-gray-900">{template.name}</h3>
-                      <p className="text-sm text-gray-200 capitalize">{template.category}</p>
+                      <p className="text-sm text-gray-600 capitalize">{template.category}</p>
                     </div>
                   </div>
                   {template.settings.requireSignature && (
@@ -821,7 +821,7 @@ Customer Signature: _________________________ Date: _____________`,
                   )}
                 </div>
                 
-                <p className="text-sm text-gray-200 mb-4 line-clamp-2">
+                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
                   {template.description}
                 </p>
                 
@@ -848,7 +848,7 @@ Customer Signature: _________________________ Date: _____________`,
                   <div className="flex items-center space-x-2">
                     <button 
                       onClick={() => handleDuplicateTemplate(template)}
-                      className="p-2 text-gray-200 hover:bg-gray-100 rounded-lg"
+                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
                       title="Duplicate"
                     >
                       <Copy className="w-4 h-4" />
@@ -857,7 +857,7 @@ Customer Signature: _________________________ Date: _____________`,
                       <>
                         <button 
                           onClick={() => setShowEditModal(template)}
-                          className="p-2 text-gray-200 hover:bg-gray-100 rounded-lg"
+                          className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
                           title="Edit"
                         >
                           <Edit3 className="w-4 h-4" />

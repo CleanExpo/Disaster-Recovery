@@ -237,7 +237,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
               exit={{ opacity: 0, y: -20 }}
               className="space-y-4"
             >
-              <p className="text-sm text-gray-200">
+              <p className="text-sm text-gray-600">
                 Choose your preferred 2FA method:
               </p>
 
@@ -249,7 +249,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                   <CardContent className="p-6 text-center space-y-3">
                     <Smartphone className="w-12 h-12 mx-auto text-blue-600" />
                     <h3 className="font-semibold">Authenticator App</h3>
-                    <p className="text-sm text-gray-200">
+                    <p className="text-sm text-gray-600">
                       Use an app like Google Authenticator or Authy
                     </p>
                     <Badge variant="default">Most Secure</Badge>
@@ -263,7 +263,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                   <CardContent className="p-6 text-center space-y-3">
                     <Mail className="w-12 h-12 mx-auto text-green-600" />
                     <h3 className="font-semibold">SMS</h3>
-                    <p className="text-sm text-gray-200">
+                    <p className="text-sm text-gray-600">
                       Receive codes via text message
                     </p>
                     <Badge variant="secondary">Convenient</Badge>
@@ -277,7 +277,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                   <CardContent className="p-6 text-center space-y-3">
                     <Mail className="w-12 h-12 mx-auto text-purple-600" />
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-sm text-gray-200">
+                    <p className="text-sm text-gray-600">
                       Receive codes via email
                     </p>
                     <Badge variant="secondary">Easy Setup</Badge>
@@ -299,7 +299,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                 <>
                   <div className="space-y-4">
                     <h3 className="font-semibold">Scan QR Code</h3>
-                    <p className="text-sm text-gray-200">
+                    <p className="text-sm text-gray-600">
                       Scan this QR code with your authenticator app:
                     </p>
                     
@@ -310,7 +310,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                     </div>
 
                     <div className="space-y-2">
-                      <p className="text-sm text-gray-200">
+                      <p className="text-sm text-gray-600">
                         Or enter this code manually:
                       </p>
                       <div className="flex items-center gap-2">
@@ -476,7 +476,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
               <div className="space-y-4">
                 <div>
                   <h3 className="font-semibold mb-2">Backup Codes</h3>
-                  <p className="text-sm text-gray-200 mb-4">
+                  <p className="text-sm text-gray-600 mb-4">
                     Save these backup codes in a safe place. You can use them to access your account if you lose your 2FA device.
                   </p>
                 </div>

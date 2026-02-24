@@ -67,7 +67,7 @@ export default function DemoModeIndicator() {
                 <div key={service} className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-xs font-medium text-gray-200 dark:text-gray-300 capitalize">
+                    <span className="text-xs font-medium text-gray-600 dark:text-gray-300 capitalize">
                       {service.replace(/([A-Z])/g, ' $1').trim()}
                     </span>
                   </div>

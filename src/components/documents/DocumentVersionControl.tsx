@@ -228,12 +228,12 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
     switch (action) {
       case 'uploaded': return <Upload className="w-4 h-4 text-blue-600" />;
       case 'downloaded': return <Download className="w-4 h-4 text-green-600" />;
-      case 'viewed': return <Eye className="w-4 h-4 text-gray-200" />;
+      case 'viewed': return <Eye className="w-4 h-4 text-gray-600" />;
       case 'signed': return <CheckCircle className="w-4 h-4 text-purple-600" />;
       case 'approved': return <CheckCircle className="w-4 h-4 text-green-600" />;
       case 'rejected': return <AlertCircle className="w-4 h-4 text-red-600" />;
       case 'archived': return <Trash2 className="w-4 h-4 text-blue-700" />;
-      default: return <FileText className="w-4 h-4 text-gray-200" />;
+      default: return <FileText className="w-4 h-4 text-gray-600" />;
     }
   };
 
@@ -284,16 +284,16 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                 </div>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <p className="font-medium text-gray-200">File Size:</p>
-                    <p className="text-gray-200">{formatFileSize(version1.fileSize)}</p>
+                    <p className="font-medium text-gray-600">File Size:</p>
+                    <p className="text-gray-600">{formatFileSize(version1.fileSize)}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-200">Uploaded By:</p>
-                    <p className="text-gray-200">{version1.uploadedBy}</p>
+                    <p className="font-medium text-gray-600">Uploaded By:</p>
+                    <p className="text-gray-600">{version1.uploadedBy}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-200">Changes:</p>
-                    <p className="text-gray-200">{version1.changeLog}</p>
+                    <p className="font-medium text-gray-600">Changes:</p>
+                    <p className="text-gray-600">{version1.changeLog}</p>
                   </div>
                 </div>
               </div>
@@ -307,16 +307,16 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                 </div>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <p className="font-medium text-gray-200">File Size:</p>
-                    <p className="text-gray-200">{formatFileSize(version2.fileSize)}</p>
+                    <p className="font-medium text-gray-600">File Size:</p>
+                    <p className="text-gray-600">{formatFileSize(version2.fileSize)}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-200">Uploaded By:</p>
-                    <p className="text-gray-200">{version2.uploadedBy}</p>
+                    <p className="font-medium text-gray-600">Uploaded By:</p>
+                    <p className="text-gray-600">{version2.uploadedBy}</p>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-200">Changes:</p>
-                    <p className="text-gray-200">{version2.changeLog}</p>
+                    <p className="font-medium text-gray-600">Changes:</p>
+                    <p className="text-gray-600">{version2.changeLog}</p>
                   </div>
                 </div>
               </div>
@@ -365,13 +365,13 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
               </div>
               <div>
                 <p className="font-medium text-gray-900">Are you sure you want to restore this version?</p>
-                <p className="text-sm text-gray-200">This will create a new version based on the selected one.</p>
+                <p className="text-sm text-gray-600">This will create a new version based on the selected one.</p>
               </div>
             </div>
 
             <div className="bg-gray-50 rounded-lg p-4">
               <h4 className="font-medium text-gray-900">Version {showRestoreModal.version}</h4>
-              <p className="text-sm text-gray-200 mt-1">{showRestoreModal.changeLog}</p>
+              <p className="text-sm text-gray-600 mt-1">{showRestoreModal.changeLog}</p>
               <p className="text-xs text-gray-300 mt-2">
                 Created on {new Date(showRestoreModal.uploadedAt).toLocaleDateString()}
               </p>
@@ -418,7 +418,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Version Control</h1>
-          <p className="text-gray-200 mt-1">Track document changes and manage versions</p>
+          <p className="text-gray-600 mt-1">Track document changes and manage versions</p>
         </div>
         <div className="flex items-center space-x-2">
           {selectedVersions.length === 2 && (
@@ -438,7 +438,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-xl font-semibold text-gray-900">{document.title}</h2>
-              <p className="text-gray-200">{document.description}</p>
+              <p className="text-gray-600">{document.description}</p>
             </div>
             <div className="text-right">
               <p className="text-lg font-semibold text-blue-600">v{document.version}</p>
@@ -448,19 +448,19 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="bg-gray-50 rounded-lg p-3">
-              <p className="text-sm text-gray-200">File Size</p>
+              <p className="text-sm text-gray-600">File Size</p>
               <p className="font-medium">{formatFileSize(document.fileSize)}</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3">
-              <p className="text-sm text-gray-200">Last Modified</p>
+              <p className="text-sm text-gray-600">Last Modified</p>
               <p className="font-medium">{new Date(document.lastModifiedAt).toLocaleDateString()}</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3">
-              <p className="text-sm text-gray-200">Total Versions</p>
+              <p className="text-sm text-gray-600">Total Versions</p>
               <p className="font-medium">{versions.length}</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-3">
-              <p className="text-sm text-gray-200">Downloads</p>
+              <p className="text-sm text-gray-600">Downloads</p>
               <p className="font-medium">{document.downloadCount}</p>
             </div>
           </div>
@@ -475,7 +475,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
             className={`px-4 py-2 rounded-lg capitalize transition-colours ${
               activeTab === tab 
                 ? 'bg-white shadow-sm text-gray-900' 
-                : 'text-gray-200 hover:text-gray-900'
+                : 'text-gray-600 hover:text-gray-900'
             }`}
           >
             {tab}
@@ -489,7 +489,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900">Version History</h3>
               {selectedVersions.length > 0 && (
-                <div className="text-sm text-gray-200">
+                <div className="text-sm text-gray-600">
                   {selectedVersions.length} version{selectedVersions.length !== 1 ? 's' : ''} selected
                 </div>
               )}
@@ -529,7 +529,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                         </span>
                       </div>
                       
-                      <p className="text-gray-200 mb-3">{version.changeLog}</p>
+                      <p className="text-gray-600 mb-3">{version.changeLog}</p>
                       
                       <div className="flex items-center space-x-4 text-sm text-gray-300">
                         <div className="flex items-center">
@@ -596,13 +596,13 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
                       </span>
                     </div>
                     
-                    <p className="text-gray-200 mb-2">
+                    <p className="text-gray-600 mb-2">
                       User: {activity.userId}
                       {activity.details.version && ` • Version ${activity.details.version}`}
                     </p>
                     
                     {activity.details.changeLog && (
-                      <p className="text-sm text-gray-200 bg-gray-50 rounded-lg p-3">
+                      <p className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
                         {activity.details.changeLog}
                       </p>
                     )}

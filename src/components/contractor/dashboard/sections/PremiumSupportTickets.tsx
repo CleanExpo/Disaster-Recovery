@@ -256,7 +256,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                   <div className="text-3xl font-bold bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent">
                     {stat.value}
                   </div>
-                  <p className="text-sm text-gray-200 font-medium">{stat.label}</p>
+                  <p className="text-sm text-gray-600 font-medium">{stat.label}</p>
                 </div>
                 
                 {/* Progress Bar */}
@@ -293,7 +293,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
             {/* Premium Search and Actions */}
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600" />
                 <input
                   type="text"
                   placeholder="Search tickets..."
@@ -332,7 +332,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                   "px-6 py-4 font-medium text-sm transition-all duration-300 relative whitespace-nowrap",
                   selectedTab === tab.id
                     ? "text-blue-600 bg-white"
-                    : "text-gray-200 hover:text-gray-900 hover:bg-gray-50"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 )}
               >
                 <span className="flex items-center gap-2">
@@ -359,7 +359,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
           {filteredTickets.length === 0 ? (
             <div className="text-center py-12">
               <div className="w-20 h-20 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                <FileText className="w-10 h-10 text-gray-200" />
+                <FileText className="w-10 h-10 text-gray-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">No tickets found</h3>
               <p className="text-gray-300">Try adjusting your search or filter criteria</p>
@@ -403,11 +403,11 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                             <div>
                               <div className="flex items-center gap-3 mb-1">
                                 <span className="text-xs font-semibold text-gray-300">#{ticket.id}</span>
-                                <span className="text-xs text-gray-200">•</span>
+                                <span className="text-xs text-gray-600">•</span>
                                 <span className="text-xs text-gray-300">{ticket.category}</span>
                                 {ticket.assignee && (
                                   <>
-                                    <span className="text-xs text-gray-200">•</span>
+                                    <span className="text-xs text-gray-600">•</span>
                                     <span className="text-xs text-gray-300 flex items-center gap-1">
                                       <Users className="w-3 h-3" />
                                       {ticket.assignee}
@@ -422,7 +422,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                           </div>
                           
                           {/* Description */}
-                          <p className="text-sm text-gray-200 line-clamp-2">
+                          <p className="text-sm text-gray-600 line-clamp-2">
                             {ticket.description}
                           </p>
                           
@@ -478,7 +478,7 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
                         
                         {/* Action Button */}
                         <button className="p-2 rounded-lg bg-white/80 hover:bg-white shadow-md hover:shadow-lg transition-all duration-300 group">
-                          <ChevronRight className="w-4 h-4 text-gray-200 group-hover:text-blue-600 transform group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-blue-600 transform group-hover:translate-x-0.5 transition-all" />
                         </button>
                       </div>
                     </div>
@@ -521,9 +521,9 @@ export function PremiumSupportTickets({ tickets = [] }: SupportTicketsProps) {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-1">{action.label}</h3>
-                <p className="text-sm text-gray-200">{action.description}</p>
+                <p className="text-sm text-gray-600">{action.description}</p>
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-200 group-hover:text-gray-200 transform group-hover:translate-x-1 transition-all duration-300" />
+              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-600 transform group-hover:translate-x-1 transition-all duration-300" />
             </div>
           </button>
         ))}

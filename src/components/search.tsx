@@ -178,7 +178,7 @@ export function Search() {
                 
                 <form onSubmit={handleSearch}>
                   <div className="relative">
-                    <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-200" />
+                    <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
                     <Input
                       ref={inputRef}
                       type="search"
@@ -194,7 +194,7 @@ export function Search() {
                         onClick={() => {setQuery(''); setShowSuggestions(false);}}
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 hover:bg-gray-100 rounded-full"
                       >
-                        <X className="h-4 w-4 text-gray-200" />
+                        <X className="h-4 w-4 text-gray-600" />
                       </button>
                     )}
                   </div>
@@ -208,7 +208,7 @@ export function Search() {
                     {/* Quick Results */}
                     {quickResults.length > 0 && (
                       <div className="mb-6">
-                        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+                        <h3 className="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2">
                           <TrendingUp className="h-4 w-4" />
                           Quick Results
                         </h3>
@@ -222,7 +222,7 @@ export function Search() {
                               <div className="flex justify-between items-start">
                                 <div className="flex-1">
                                   <h4 className="font-medium text-gray-900 mb-1">{result.title}</h4>
-                                  <p className="text-sm text-gray-200 line-clamp-2">{result.description}</p>
+                                  <p className="text-sm text-gray-600 line-clamp-2">{result.description}</p>
                                   <span className="inline-block mt-1 text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full">
                                     {result.category}
                                   </span>
@@ -237,7 +237,7 @@ export function Search() {
                     {/* Suggestions */}
                     {suggestions.length > 0 && (
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-200 mb-3">Suggestions</h3>
+                        <h3 className="text-sm font-semibold text-gray-600 mb-3">Suggestions</h3>
                         <div className="space-y-1">
                           {suggestions.map((suggestion) => (
                             <button
@@ -246,7 +246,7 @@ export function Search() {
                               className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-center gap-3"
                             >
                               {suggestion.type === 'recent' ? (
-                                <Clock className="h-4 w-4 text-gray-200" />
+                                <Clock className="h-4 w-4 text-gray-600" />
                               ) : (
                                 <TrendingUp className="h-4 w-4 text-blue-500" />
                               )}
@@ -266,7 +266,7 @@ export function Search() {
                     {isLoading && (
                       <div className="flex items-center justify-center py-8">
                         <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                        <span className="ml-2 text-gray-200">Searching...</span>
+                        <span className="ml-2 text-gray-600">Searching...</span>
                       </div>
                     )}
                   </div>
@@ -275,7 +275,7 @@ export function Search() {
                   <div className="p-6">
                     {/* Popular Searches */}
                     <div className="mb-6">
-                      <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+                      <h3 className="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2">
                         <TrendingUp className="h-4 w-4" />
                         Popular Searches
                       </h3>

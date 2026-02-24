@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
@@ -95,6 +96,33 @@ function MouldRemediationGuidePageOriginal() {
       removalDifficulty: 'High',
       identificationTips: 'Cotton-like texture, musty odor'
     }
+  };
+
+  const mouldTypeImages: Record<string, { src: string; alt: string }> = {
+    aspergillus: {
+      src: '/images/generated/disaster-recovery/mould-type-aspergillus.webp',
+      alt: 'Close-up of green and yellow Aspergillus mould colony on damp plasterboard',
+    },
+    penicillium: {
+      src: '/images/generated/disaster-recovery/mould-type-penicillium.webp',
+      alt: 'Close-up of blue-green fuzzy Penicillium mould on timber framing',
+    },
+    stachybotrys: {
+      src: '/images/generated/disaster-recovery/mould-type-black-mould.webp',
+      alt: 'Close-up of toxic black mould (Stachybotrys chartarum) on wet plasterboard',
+    },
+    cladosporium: {
+      src: '/images/generated/disaster-recovery/mould-type-cladosporium.webp',
+      alt: 'Olive-green Cladosporium mould around aluminium window frames with condensation',
+    },
+    alternaria: {
+      src: '/images/generated/disaster-recovery/mould-type-alternaria.webp',
+      alt: 'Dark grey-brown Alternaria mould on bathroom grout lines and silicone sealant',
+    },
+    chaetomium: {
+      src: '/images/generated/disaster-recovery/mould-type-chaetomium.webp',
+      alt: 'White cotton-like Chaetomium mould on water-damaged building materials',
+    },
   };
 
   const healthSymptoms = [
@@ -452,7 +480,7 @@ function MouldRemediationGuidePageOriginal() {
                   className={`px-4 py-2 rounded-lg font-semibold transition-all text-sm ${
                     selectedMouldType === key
                       ? 'bg-teal-600 text-white shadow-lg'
-                      : 'bg-white text-gray-200 hover:bg-teal-50 border border-gray-200'
+                      : 'bg-white text-gray-600 hover:bg-teal-50 border border-gray-200'
                   }`}
                 >
                   {mouldTypes[key as keyof typeof mouldTypes].name}
@@ -467,7 +495,18 @@ function MouldRemediationGuidePageOriginal() {
               transition={{ duration: 0.4 }}
               className="bg-gradient-to-br from-teal-50 to-white rounded-xl shadow-xl p-8 border border-teal-100"
             >
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-3 gap-8">
+                {mouldTypeImages[selectedMouldType] && (
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md">
+                    <Image
+                      src={mouldTypeImages[selectedMouldType].src}
+                      alt={mouldTypeImages[selectedMouldType].alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                )}
                 <div>
                   <h3 className="text-2xl font-bold mb-4 text-teal-900">
                     {mouldTypes[selectedMouldType as keyof typeof mouldTypes].name}
@@ -475,19 +514,19 @@ function MouldRemediationGuidePageOriginal() {
                   <div className="space-y-3">
                     <div>
                       <span className="font-semibold">Appearance:</span>
-                      <p className="text-gray-200">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].color}</p>
+                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].color}</p>
                     </div>
                     <div>
                       <span className="font-semibold">Common Locations:</span>
-                      <p className="text-gray-200">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].commonLocations}</p>
+                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].commonLocations}</p>
                     </div>
                     <div>
                       <span className="font-semibold">Growth Conditions:</span>
-                      <p className="text-gray-200">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].growthConditions}</p>
+                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].growthConditions}</p>
                     </div>
                     <div>
                       <span className="font-semibold">Identification Tips:</span>
-                      <p className="text-gray-200">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].identificationTips}</p>
+                      <p className="text-gray-600">{mouldTypes[selectedMouldType as keyof typeof mouldTypes].identificationTips}</p>
                     </div>
                   </div>
                 </div>
@@ -537,8 +576,101 @@ function MouldRemediationGuidePageOriginal() {
         </div>
       </section>
 
+      {/* Efflorescence vs Mould */}
+      <section className="py-16 bg-gradient-to-br from-amber-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <AlertCircle className="w-8 h-8 text-amber-600" />
+              Efflorescence — Not Mould, But Often Confused
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div className="bg-white rounded-xl shadow-lg p-6 border border-amber-100">
+                <div className="mb-4 rounded-lg overflow-hidden">
+                  <img
+                    src="/images/generated/disaster-recovery/efflorescence-vs-mould.webp"
+                    alt="Side-by-side comparison of white crystalline efflorescence deposits on brick versus fuzzy organic mould growth"
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-amber-900">What Is Efflorescence?</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Efflorescence is a deposit of mineral salts left behind when water moves through masonry, concrete,
+                  or brick and evaporates on the surface. It appears as a white or crystalline powdery coating and is
+                  often mistaken for white mould.
+                </p>
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-amber-900 mb-2">Visual Difference</h4>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Efflorescence:</strong> White/crystalline powdery appearance, chalky texture, dissolves in water</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Mould:</strong> Fuzzy or slimy organic growth, does not dissolve in water, often has a musty odour</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="bg-white rounded-xl shadow-lg p-6 border border-amber-100">
+                  <h3 className="text-xl font-bold mb-3 text-amber-900">Why It Matters</h3>
+                  <p className="text-gray-600 text-sm">
+                    While efflorescence itself is not harmful, it indicates a moisture intrusion pathway through
+                    the masonry or concrete. If left unaddressed, the ongoing moisture problem can eventually
+                    lead to actual mould growth behind or around the affected surfaces.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-lg p-6 border border-amber-100">
+                  <h3 className="text-xl font-bold mb-3 text-amber-900">Removal Methods</h3>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Dry brushing with a stiff-bristle brush for light deposits</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Diluted white vinegar solution for moderate buildup</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Diluted muriatic acid for stubborn deposits (with proper PPE)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>Follow up with waterproofing treatment to prevent recurrence</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-red-900 mb-2 flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5" />
+                    When Professional Help Is Needed
+                  </h4>
+                  <p className="text-sm text-red-800">
+                    Persistent or recurring efflorescence indicates an ongoing water intrusion problem that
+                    requires investigation by a restoration professional. The underlying moisture source must
+                    be identified and resolved to prevent structural damage and potential mould growth.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Health Symptoms */}
-      <section className="py-16 bg-gradient-to-br from-red-50 to-orange-50">
+      <section id="health-effects" className="py-16 bg-gradient-to-br from-red-50 to-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
@@ -576,14 +708,14 @@ function MouldRemediationGuidePageOriginal() {
                   </div>
                   <ul className="space-y-2 mb-4">
                     {category.symptoms.map((symptom, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-gray-200">
+                      <li key={idx} className="flex items-center gap-2 text-gray-600">
                         <CheckCircle className="w-4 h-4 text-red-500" />
                         <span className="text-sm">{symptom}</span>
                       </li>
                     ))}
                   </ul>
                   <div className="pt-4 border-t border-gray-200">
-                    <p className="text-sm text-gray-200">
+                    <p className="text-sm text-gray-600">
                       <span className="font-semibold">At Risk:</span> {category.atRisk}
                     </p>
                   </div>
@@ -633,11 +765,11 @@ function MouldRemediationGuidePageOriginal() {
                 >
                   <h3 className="text-xl font-bold mb-2">{level.level}</h3>
                   <p className="text-2xl font-bold mb-2 text-gray-800">{level.area}</p>
-                  <p className="text-sm text-gray-200 mb-3">{level.description}</p>
+                  <p className="text-sm text-gray-600 mb-3">{level.description}</p>
                   <div className="space-y-2 text-sm">
                     <p><span className="font-semibold">Action:</span> {level.action}</p>
                     <p><span className="font-semibold">PPE:</span> {level.ppe}</p>
-                    <p className="text-gray-200 italic">{level.examples}</p>
+                    <p className="text-gray-600 italic">{level.examples}</p>
                   </div>
                 </motion.div>
               ))}
@@ -693,7 +825,7 @@ function MouldRemediationGuidePageOriginal() {
                         {stage.activities.map((activity, idx) => (
                           <div key={idx} className="flex items-center gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
-                            <span className="text-sm text-gray-200">{activity}</span>
+                            <span className="text-sm text-gray-600">{activity}</span>
                           </div>
                         ))}
                       </div>
@@ -707,7 +839,7 @@ function MouldRemediationGuidePageOriginal() {
       </section>
 
       {/* Prevention Strategies */}
-      <section className="py-16 bg-white">
+      <section id="prevention" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
@@ -739,7 +871,7 @@ function MouldRemediationGuidePageOriginal() {
                     {strategy.strategies.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-200">{item}</span>
+                        <span className="text-sm text-gray-600">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -792,7 +924,7 @@ function MouldRemediationGuidePageOriginal() {
                   }`}>
                     {aspect.coverage}
                   </span>
-                  <p className="text-gray-200 text-sm mb-3">{aspect.details}</p>
+                  <p className="text-gray-600 text-sm mb-3">{aspect.details}</p>
                   <div className="pt-3 border-t border-gray-200">
                     <p className="text-sm font-semibold text-blue-600">
                       💡 {aspect.tip}
@@ -837,7 +969,7 @@ function MouldRemediationGuidePageOriginal() {
               >
                 <Home className="w-12 h-12 text-blue-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Residential Properties</h3>
-                <ul className="space-y-2 text-gray-200 text-sm">
+                <ul className="space-y-2 text-gray-600 text-sm">
                   <li>• Bathroom and kitchen ventilation</li>
                   <li>• Basement moisture control</li>
                   <li>• Attic insulation and ventilation</li>
@@ -845,7 +977,7 @@ function MouldRemediationGuidePageOriginal() {
                   <li>• Regular HVAC maintenance</li>
                 </ul>
                 <Link
-                  href="/property/residential/mould-prevention"
+                  href="/property/residential"
                   className="mt-4 inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
                 >
                   Residential Mould Guide <ChevronRight className="w-4 h-4" />
@@ -861,7 +993,7 @@ function MouldRemediationGuidePageOriginal() {
               >
                 <Building className="w-12 h-12 text-green-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Commercial Properties</h3>
-                <ul className="space-y-2 text-gray-200 text-sm">
+                <ul className="space-y-2 text-gray-600 text-sm">
                   <li>• HVAC system monitoring</li>
                   <li>• Workplace health compliance</li>
                   <li>• Regular professional inspections</li>
@@ -885,7 +1017,7 @@ function MouldRemediationGuidePageOriginal() {
               >
                 <Factory className="w-12 h-12 text-purple-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Industrial Properties</h3>
-                <ul className="space-y-2 text-gray-200 text-sm">
+                <ul className="space-y-2 text-gray-600 text-sm">
                   <li>• Large-scale ventilation systems</li>
                   <li>• Process moisture management</li>
                   <li>• Safety compliance requirements</li>
@@ -939,7 +1071,7 @@ function MouldRemediationGuidePageOriginal() {
                     />
                   </button>
                   {expandedFAQ === index && (
-                    <div className="px-6 pb-4 text-gray-200 border-t border-gray-100">
+                    <div className="px-6 pb-4 text-gray-600 border-t border-gray-100">
                       <p className="pt-4">{faq.answer}</p>
                     </div>
                   )}
@@ -970,25 +1102,25 @@ function MouldRemediationGuidePageOriginal() {
               >
                 <Droplets className="w-10 h-10 text-blue-600 mb-3" />
                 <h3 className="font-bold mb-2">Water Damage Guide</h3>
-                <p className="text-gray-200 text-sm">Preventing mould through water damage control</p>
+                <p className="text-gray-600 text-sm">Preventing mould through water damage control</p>
               </Link>
               
               <Link
-                href="/emergency/diy/mould-prevention"
+                href="/guides/mould#prevention"
                 className="bg-gradient-to-br from-orange-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-orange-100"
               >
                 <AlertCircle className="w-10 h-10 text-orange-600 mb-3" />
                 <h3 className="font-bold mb-2">DIY Prevention</h3>
-                <p className="text-gray-200 text-sm">Steps you can take to prevent mould growth</p>
+                <p className="text-gray-600 text-sm">Steps you can take to prevent mould growth</p>
               </Link>
               
               <Link
-                href="/emergency/safety/mould-exposure"
+                href="/guides/mould#health-effects"
                 className="bg-gradient-to-br from-red-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-red-100"
               >
                 <Heart className="w-10 h-10 text-red-600 mb-3" />
                 <h3 className="font-bold mb-2">Health & Safety</h3>
-                <p className="text-gray-200 text-sm">Protecting yourself from mould exposure</p>
+                <p className="text-gray-600 text-sm">Protecting yourself from mould exposure</p>
               </Link>
               
               <Link
@@ -997,7 +1129,7 @@ function MouldRemediationGuidePageOriginal() {
               >
                 <MapPin className="w-10 h-10 text-green-600 mb-3" />
                 <h3 className="font-bold mb-2">Local Services</h3>
-                <p className="text-gray-200 text-sm">Find mould specialists in your area</p>
+                <p className="text-gray-600 text-sm">Find mould specialists in your area</p>
               </Link>
             </div>
           </motion.div>
@@ -1028,7 +1160,7 @@ function MouldRemediationGuidePageOriginal() {
                 Get Professional Help
               </Link>
               <Link
-                href="/emergency/checklists/mould-inspection"
+                href="/emergency/checklists/mould"
                 className="bg-teal-700 hover:bg-teal-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <FileText className="w-5 h-5" />

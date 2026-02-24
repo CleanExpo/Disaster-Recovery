@@ -50,7 +50,7 @@ function CRMPortalPageOriginal() {
 
   const fetchStats = async () => {
     try {
-      // In production, these would be API calls to our NRP CRM backend
+      // In production, these would be API calls to our NRPG CRM backend
       // For now, we'll use demo data that represents our database
       setStats({
         totalContractors: 247,
@@ -105,8 +105,8 @@ function CRMPortalPageOriginal() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">NRP CRM Portal</h1>
-            <p className="text-blue-700">National Restoration Professionals</p>
+            <h1 className="text-3xl font-bold text-white mb-2">NRPG CRM Portal</h1>
+            <p className="text-blue-700">National Restoration Professionals Group</p>
             <p className="text-sm text-blue-700 mt-2">Manage contractors, jobs, and leads across Australia</p>
           </div>
 
@@ -196,16 +196,16 @@ function CRMPortalPageOriginal() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-900">NRP CRM Portal</h1>
+              <h1 className="text-2xl font-bold text-gray-900">NRPG CRM Portal</h1>
               <div className="ml-4 px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">
                 Connected to Database
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-200">Welcome, Administrator</span>
+              <span className="text-sm text-gray-600">Welcome, Administrator</span>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-sm text-gray-200 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50"
               >
                 Sign Out
               </button>
@@ -221,7 +221,7 @@ function CRMPortalPageOriginal() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Total Contractors</p>
+                <p className="text-sm font-medium text-gray-600">Total Contractors</p>
                 <p className="text-3xl font-bold text-blue-600">{stats.totalContractors}</p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
@@ -235,7 +235,7 @@ function CRMPortalPageOriginal() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Active Jobs</p>
+                <p className="text-sm font-medium text-gray-600">Active Jobs</p>
                 <p className="text-3xl font-bold text-green-600">{stats.activeJobs}</p>
               </div>
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
@@ -249,7 +249,7 @@ function CRMPortalPageOriginal() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">New Leads</p>
+                <p className="text-sm font-medium text-gray-600">New Leads</p>
                 <p className="text-3xl font-bold text-orange-600">{stats.totalLeads}</p>
               </div>
               <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
@@ -263,7 +263,7 @@ function CRMPortalPageOriginal() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Completed Jobs</p>
+                <p className="text-sm font-medium text-gray-600">Completed Jobs</p>
                 <p className="text-3xl font-bold text-purple-600">{stats.completedJobs}</p>
               </div>
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
@@ -291,7 +291,7 @@ function CRMPortalPageOriginal() {
                   </svg>
                 </div>
                 <h3 className="font-medium text-gray-900">Add Contractor</h3>
-                <p className="text-sm text-gray-200">Register new contractors</p>
+                <p className="text-sm text-gray-600">Register new contractors</p>
               </Link>
 
               <Link 
@@ -304,7 +304,7 @@ function CRMPortalPageOriginal() {
                   </svg>
                 </div>
                 <h3 className="font-medium text-gray-900">Create Lead</h3>
-                <p className="text-sm text-gray-200">Add new customer enquiry</p>
+                <p className="text-sm text-gray-600">Add new customer enquiry</p>
               </Link>
 
               <Link 
@@ -317,7 +317,7 @@ function CRMPortalPageOriginal() {
                   </svg>
                 </div>
                 <h3 className="font-medium text-gray-900">Manage Jobs</h3>
-                <p className="text-sm text-gray-200">View and update job status</p>
+                <p className="text-sm text-gray-600">View and update job status</p>
               </Link>
 
               <Link 
@@ -330,7 +330,7 @@ function CRMPortalPageOriginal() {
                   </svg>
                 </div>
                 <h3 className="font-medium text-gray-900">View Reports</h3>
-                <p className="text-sm text-gray-200">Analytics and insights</p>
+                <p className="text-sm text-gray-600">Analytics and insights</p>
               </Link>
             </div>
           </div>
@@ -389,7 +389,7 @@ function CRMPortalPageOriginal() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-900">Contractors</h3>
-                <p className="text-sm text-gray-200">Manage contractor network</p>
+                <p className="text-sm text-gray-600">Manage contractor network</p>
               </div>
             </Link>
 
@@ -404,7 +404,7 @@ function CRMPortalPageOriginal() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-900">Leads & Claims</h3>
-                <p className="text-sm text-gray-200">Customer enquiries and insurance claims</p>
+                <p className="text-sm text-gray-600">Customer enquiries and insurance claims</p>
               </div>
             </Link>
 
@@ -419,7 +419,7 @@ function CRMPortalPageOriginal() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-900">Jobs & Projects</h3>
-                <p className="text-sm text-gray-200">Track work progress and completion</p>
+                <p className="text-sm text-gray-600">Track work progress and completion</p>
               </div>
             </Link>
 
@@ -434,7 +434,7 @@ function CRMPortalPageOriginal() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-900">Training Modules</h3>
-                <p className="text-sm text-gray-200">Contractor certification courses</p>
+                <p className="text-sm text-gray-600">Contractor certification courses</p>
               </div>
             </Link>
           </div>
@@ -445,7 +445,7 @@ function CRMPortalPageOriginal() {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-xl font-bold text-gray-900">Contractor Training Modules</h2>
-              <p className="text-gray-200 mt-1">14-Day Professional Certification Program</p>
+              <p className="text-gray-600 mt-1">14-Day Professional Certification Program</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-medium">
@@ -468,7 +468,7 @@ function CRMPortalPageOriginal() {
                 <span className="text-xs text-green-600 font-medium">Foundation</span>
               </div>
               <h4 className="font-medium text-gray-900 mb-2">Core Fundamentals</h4>
-              <ul className="text-xs text-gray-200 space-y-1">
+              <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Insurance Fundamentals</li>
                 <li>• Water Damage Categories</li>
                 <li>• Drying & Moisture Control</li>
@@ -492,7 +492,7 @@ function CRMPortalPageOriginal() {
                 <span className="text-xs text-blue-600 font-medium">Advanced</span>
               </div>
               <h4 className="font-medium text-gray-900 mb-2">Specialized Skills</h4>
-              <ul className="text-xs text-gray-200 space-y-1">
+              <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Fire & Smoke Damage</li>
                 <li>• Biohazard Safety</li>
                 <li>• Structural Drying</li>
@@ -516,7 +516,7 @@ function CRMPortalPageOriginal() {
                 <span className="text-xs text-orange-600 font-medium">Professional</span>
               </div>
               <h4 className="font-medium text-gray-900 mb-2">Business Excellence</h4>
-              <ul className="text-xs text-gray-200 space-y-1">
+              <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Health & Safety</li>
                 <li>• Customer Service</li>
                 <li>• Advanced Technology</li>
@@ -540,11 +540,11 @@ function CRMPortalPageOriginal() {
                 <span className="text-xs text-green-600 font-medium">Certification</span>
               </div>
               <h4 className="font-medium text-gray-900 mb-2">Final Assessment</h4>
-              <ul className="text-xs text-gray-200 space-y-1">
+              <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Emergency Response</li>
                 <li>• Certification Exam</li>
                 <li>• Practical Demonstration</li>
-                <li>• NRP Network Approval</li>
+                <li>• NRPG Network Approval</li>
               </ul>
               <Link 
                 href="/contractor-portal/training?module=certification"
@@ -564,37 +564,37 @@ function CRMPortalPageOriginal() {
             <div className="flex flex-wrap gap-2">
               <Link 
                 href="/contractor-portal/training?module=introduction"
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-200 rounded text-sm transition-colors"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-sm transition-colors"
               >
                 📚 Course Introduction
               </Link>
               <Link 
                 href="/contractor-portal/training?module=dashboard"
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-200 rounded text-sm transition-colors"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-sm transition-colors"
               >
                 📊 Training Dashboard
               </Link>
               <Link 
                 href="/contractor-portal/training?module=analytics"
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-200 rounded text-sm transition-colors"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-sm transition-colors"
               >
                 📈 Progress Analytics
               </Link>
               <Link 
                 href="/contractor-portal/training?module=communication"
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-200 rounded text-sm transition-colors"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-sm transition-colors"
               >
                 💬 Communication Tools
               </Link>
               <Link 
                 href="/contractor-portal/training?module=reporting"
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-200 rounded text-sm transition-colors"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-sm transition-colors"
               >
                 📋 Training Reports
               </Link>
               <Link 
                 href="/contractor-portal/training?module=automation"
-                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-200 rounded text-sm transition-colors"
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded text-sm transition-colors"
               >
                 🤖 Automation Features
               </Link>

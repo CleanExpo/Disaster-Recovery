@@ -116,7 +116,7 @@ export default function MouldRemediationPage() {
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Professional Mould Remediation & Removal in Brisbane
               </h1>
-              <p className="text-xl text-gray-200 mb-8">
+              <p className="text-xl text-gray-600 mb-8">
                 IICRC certified mould specialists providing safe, thorough mould inspection, 
                 testing, and complete remediation. Protect your property and health with 
                 Queensland's trusted mould experts.
@@ -146,12 +146,12 @@ export default function MouldRemediationPage() {
                         <div className="text-center">
                           <Microscope className="h-8 w-8 mx-auto mb-1 text-green-600" />
                           <p className="font-medium">Air Quality Testing</p>
-                          <p className="text-gray-200">Laboratory analysis</p>
+                          <p className="text-gray-600">Laboratory analysis</p>
                         </div>
                         <div className="text-center">
                           <FileCheck className="h-8 w-8 mx-auto mb-1 text-green-600" />
                           <p className="font-medium">Detailed Report</p>
-                          <p className="text-gray-200">With remediation plan</p>
+                          <p className="text-gray-600">With remediation plan</p>
                         </div>
                       </div>
                     </div>
@@ -208,7 +208,7 @@ export default function MouldRemediationPage() {
               <div className="grid md:grid-cols-2 gap-4 mt-4">
                 <div>
                   <p className="font-medium mb-2">Immediate Health Effects:</p>
-                  <ul className="text-sm text-gray-200 space-y-1">
+                  <ul className="text-sm text-gray-600 space-y-1">
                     <li>• Allergic reactions & skin irritation</li>
                     <li>• Respiratory problems & asthma attacks</li>
                     <li>• Eye, nose, and throat irritation</li>
@@ -217,7 +217,7 @@ export default function MouldRemediationPage() {
                 </div>
                 <div>
                   <p className="font-medium mb-2">Long-term Exposure Risks:</p>
-                  <ul className="text-sm text-gray-200 space-y-1">
+                  <ul className="text-sm text-gray-600 space-y-1">
                     <li>• Chronic respiratory conditions</li>
                     <li>• Immune system suppression</li>
                     <li>• Neurological symptoms</li>
@@ -348,22 +348,22 @@ export default function MouldRemediationPage() {
               <div className="text-center">
                 <div className="w-16 h-16 bg-gray-900 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">Black Mould</h4>
-                <p className="text-sm text-gray-200">Stachybotrys - Highly toxic</p>
+                <p className="text-sm text-gray-600">Stachybotrys - Highly toxic</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-700 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">Green Mould</h4>
-                <p className="text-sm text-gray-200">Aspergillus - Common allergen</p>
+                <p className="text-sm text-gray-600">Aspergillus - Common allergen</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-gray-100 border-2 border-gray-300 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">White Mould</h4>
-                <p className="text-sm text-gray-200">Penicillium - Fast spreading</p>
+                <p className="text-sm text-gray-600">Penicillium - Fast spreading</p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-yellow-600 rounded-full mx-auto mb-3"></div>
                 <h4 className="font-bold">Yellow Mould</h4>
-                <p className="text-sm text-gray-200">Serpula - Wood destroyer</p>
+                <p className="text-sm text-gray-600">Serpula - Wood destroyer</p>
               </div>
             </div>
           </div>
@@ -431,7 +431,7 @@ export default function MouldRemediationPage() {
                   </div>
                   <div className="flex-grow">
                     <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-gray-200 mb-2">{item.description}</p>
+                    <p className="text-gray-600 mb-2">{item.description}</p>
                     <span className="text-sm text-green-600 font-medium">{item.time}</span>
                   </div>
                 </div>
@@ -455,7 +455,7 @@ export default function MouldRemediationPage() {
                   <CardTitle className="text-lg">{faq.question}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-200">{faq.answer}</p>
+                  <p className="text-gray-600">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}

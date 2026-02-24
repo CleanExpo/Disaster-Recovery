@@ -417,7 +417,7 @@ function StormDamageGuidePageOriginal() {
                   className={`px-6 py-3 rounded-lg font-semibold transition-all ${
                     selectedStormType === key
                       ? 'bg-sky-600 text-white shadow-lg'
-                      : 'bg-white text-gray-200 hover:bg-sky-50 border border-gray-200'
+                      : 'bg-white text-gray-600 hover:bg-sky-50 border border-gray-200'
                   }`}
                 >
                   {stormTypes[key as keyof typeof stormTypes].title}
@@ -437,7 +437,7 @@ function StormDamageGuidePageOriginal() {
                   <h3 className="text-2xl font-bold mb-4 text-sky-900">
                     {stormTypes[selectedStormType as keyof typeof stormTypes].title}
                   </h3>
-                  <p className="text-gray-200 mb-6">
+                  <p className="text-gray-600 mb-6">
                     {stormTypes[selectedStormType as keyof typeof stormTypes].description}
                   </p>
                   <div className="space-y-3">
@@ -445,7 +445,7 @@ function StormDamageGuidePageOriginal() {
                       <Wind className="w-5 h-5 text-sky-600 mt-0.5" />
                       <div>
                         <span className="font-semibold">Wind Speed:</span>
-                        <span className="ml-2 text-gray-200">
+                        <span className="ml-2 text-gray-600">
                           {stormTypes[selectedStormType as keyof typeof stormTypes].windSpeed}
                         </span>
                       </div>
@@ -454,7 +454,7 @@ function StormDamageGuidePageOriginal() {
                       <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5" />
                       <div>
                         <span className="font-semibold">Primary Damage:</span>
-                        <span className="ml-2 text-gray-200">
+                        <span className="ml-2 text-gray-600">
                           {stormTypes[selectedStormType as keyof typeof stormTypes].primaryDamage}
                         </span>
                       </div>
@@ -463,7 +463,7 @@ function StormDamageGuidePageOriginal() {
                       <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" />
                       <div>
                         <span className="font-semibold">Secondary Damage:</span>
-                        <span className="ml-2 text-gray-200">
+                        <span className="ml-2 text-gray-600">
                           {stormTypes[selectedStormType as keyof typeof stormTypes].secondaryDamage}
                         </span>
                       </div>
@@ -476,7 +476,7 @@ function StormDamageGuidePageOriginal() {
                     <div className="space-y-3">
                       <div>
                         <span className="font-semibold text-sm">Season:</span>
-                        <p className="text-gray-200 mt-1">
+                        <p className="text-gray-600 mt-1">
                           {stormTypes[selectedStormType as keyof typeof stormTypes].seasonality}
                         </p>
                       </div>
@@ -529,7 +529,7 @@ function StormDamageGuidePageOriginal() {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold">{category.category}</h3>
-                        <p className="text-sm text-gray-200">{category.description}</p>
+                        <p className="text-sm text-gray-600">{category.description}</p>
                       </div>
                     </div>
                     <span className="text-2xl font-bold text-sky-600">{category.percentage}</span>
@@ -539,7 +539,7 @@ function StormDamageGuidePageOriginal() {
                     <h4 className="font-semibold mb-2 text-sm">Common Types:</h4>
                     <ul className="space-y-1">
                       {category.types.map((type, idx) => (
-                        <li key={idx} className="text-sm text-gray-200 flex items-start gap-2">
+                        <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
                           <span>{type}</span>
                         </li>
@@ -597,7 +597,7 @@ function StormDamageGuidePageOriginal() {
                         <CheckCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
                           phase.critical ? 'text-red-600' : 'text-green-600'
                         }`} />
-                        <span className="text-sm text-gray-200">{action}</span>
+                        <span className="text-sm text-gray-600">{action}</span>
                       </li>
                     ))}
                   </ul>
@@ -651,7 +651,7 @@ function StormDamageGuidePageOriginal() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {step.tasks.map((task, idx) => (
-                          <span key={idx} className="bg-gray-100 text-gray-200 px-3 py-1 rounded text-sm">
+                          <span key={idx} className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-sm">
                             {task}
                           </span>
                         ))}
@@ -704,7 +704,7 @@ function StormDamageGuidePageOriginal() {
                   }`}>
                     {item.important}
                   </span>
-                  <p className="text-gray-200 text-sm mb-3">{item.details}</p>
+                  <p className="text-gray-600 text-sm mb-3">{item.details}</p>
                   <div className="pt-3 border-t border-gray-200">
                     <p className="text-sm font-semibold text-blue-600">
                       Action: {item.action}
@@ -767,7 +767,7 @@ function StormDamageGuidePageOriginal() {
                           </div>
                         </div>
                         <p><span className="font-semibold">Peak Season:</span> {region.season}</p>
-                        <p className="text-gray-200">{region.preparation}</p>
+                        <p className="text-gray-600">{region.preparation}</p>
                       </div>
                     </div>
                   </div>
@@ -801,7 +801,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <Home className="w-12 h-12 text-blue-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Residential Properties</h3>
-                <ul className="space-y-2 text-gray-200 text-sm">
+                <ul className="space-y-2 text-gray-600 text-sm">
                   <li>• Roof and gutter maintenance critical</li>
                   <li>• Tree trimming near structures</li>
                   <li>• Secure outdoor furniture and items</li>
@@ -825,7 +825,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <Building className="w-12 h-12 text-green-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Commercial Properties</h3>
-                <ul className="space-y-2 text-gray-200 text-sm">
+                <ul className="space-y-2 text-gray-600 text-sm">
                   <li>• Business continuity planning</li>
                   <li>• Data backup and protection</li>
                   <li>• Inventory storm preparation</li>
@@ -849,7 +849,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <Factory className="w-12 h-12 text-purple-600 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Industrial Properties</h3>
-                <ul className="space-y-2 text-gray-200 text-sm">
+                <ul className="space-y-2 text-gray-600 text-sm">
                   <li>• Equipment protection protocols</li>
                   <li>• Hazardous material securing</li>
                   <li>• Large roof area vulnerability</li>
@@ -903,7 +903,7 @@ function StormDamageGuidePageOriginal() {
                     />
                   </button>
                   {expandedFAQ === index && (
-                    <div className="px-6 pb-4 text-gray-200 border-t border-gray-100">
+                    <div className="px-6 pb-4 text-gray-600 border-t border-gray-100">
                       <p className="pt-4">{faq.answer}</p>
                     </div>
                   )}
@@ -934,7 +934,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <Droplets className="w-10 h-10 text-blue-600 mb-3" />
                 <h3 className="font-bold mb-2">Water Damage Guide</h3>
-                <p className="text-gray-200 text-sm">Managing storm-related water intrusion</p>
+                <p className="text-gray-600 text-sm">Managing storm-related water intrusion</p>
               </Link>
               
               <Link
@@ -943,7 +943,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <FileText className="w-10 h-10 text-orange-600 mb-3" />
                 <h3 className="font-bold mb-2">Storm Checklist</h3>
-                <p className="text-gray-200 text-sm">Pre and post-storm action items</p>
+                <p className="text-gray-600 text-sm">Pre and post-storm action items</p>
               </Link>
               
               <Link
@@ -952,7 +952,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <Phone className="w-10 h-10 text-green-600 mb-3" />
                 <h3 className="font-bold mb-2">Emergency Contacts</h3>
-                <p className="text-gray-200 text-sm">Who to call for storm damage</p>
+                <p className="text-gray-600 text-sm">Who to call for storm damage</p>
               </Link>
               
               <Link
@@ -961,7 +961,7 @@ function StormDamageGuidePageOriginal() {
               >
                 <MapPin className="w-10 h-10 text-red-600 mb-3" />
                 <h3 className="font-bold mb-2">Local Services</h3>
-                <p className="text-gray-200 text-sm">Find storm repairs in your area</p>
+                <p className="text-gray-600 text-sm">Find storm repairs in your area</p>
               </Link>
             </div>
           </motion.div>

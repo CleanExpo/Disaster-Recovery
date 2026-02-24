@@ -262,7 +262,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
       case 'high': return 'text-blue-700 bg-orange-100';
       case 'medium': return 'text-yellow-600 bg-yellow-100';
       case 'low': return 'text-blue-600 bg-blue-100';
-      default: return 'text-gray-200 bg-gray-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
   };
 
@@ -293,7 +293,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
             <h3 className="text-lg font-semibold text-gray-900">
               Remediation Plan #{plan.id.slice(-4)}
             </h3>
-            <p className="text-sm text-gray-200 mt-1">Audit: {plan.auditId}</p>
+            <p className="text-sm text-gray-600 mt-1">Audit: {plan.auditId}</p>
           </div>
           <div className="flex items-center space-x-2">
             <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(plan.status)}`}>
@@ -309,30 +309,30 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <div>
-            <p className="text-xs text-gray-200">Assigned To</p>
+            <p className="text-xs text-gray-600">Assigned To</p>
             <p className="text-sm font-medium">{plan.assignedTo}</p>
           </div>
           <div>
-            <p className="text-xs text-gray-200">Start Date</p>
+            <p className="text-xs text-gray-600">Start Date</p>
             <p className="text-sm font-medium">
               {new Date(plan.timeline.startDate).toLocaleDateString()}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-200">Target Completion</p>
+            <p className="text-xs text-gray-600">Target Completion</p>
             <p className="text-sm font-medium">
               {new Date(plan.timeline.targetCompletionDate).toLocaleDateString()}
             </p>
           </div>
           <div>
-            <p className="text-xs text-gray-200">Progress</p>
+            <p className="text-xs text-gray-600">Progress</p>
             <p className="text-sm font-medium">{completedTasks}/{totalTasks} tasks</p>
           </div>
         </div>
 
         <div className="mb-6">
           <div className="flex items-center justify-between text-sm mb-2">
-            <span className="text-gray-200">Overall Progress</span>
+            <span className="text-gray-600">Overall Progress</span>
             <span className="font-medium">{progress.toFixed(0)}%</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
@@ -356,7 +356,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
                 </div>
                 <div>
                   <p className="font-medium text-gray-900">{task.title}</p>
-                  <div className="flex items-center space-x-3 mt-1 text-xs text-gray-200">
+                  <div className="flex items-center space-x-3 mt-1 text-xs text-gray-600">
                     <span className={`inline-flex items-center px-2 py-0.5 rounded ${getPriorityColor(task.priority)}`}>
                       {task.priority}
                     </span>
@@ -364,7 +364,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
                   </div>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-gray-200" />
+              <ChevronRight className="w-4 h-4 text-gray-600" />
             </div>
           ))}
         </div>
@@ -423,13 +423,13 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
           
           <div className="p-6 space-y-6">
             <div>
-              <h3 className="text-sm font-medium text-gray-200 mb-2">Description</h3>
+              <h3 className="text-sm font-medium text-gray-600 mb-2">Description</h3>
               <p className="text-gray-900">{selectedTask.description}</p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-sm text-gray-200">Status</p>
+                <p className="text-sm text-gray-600">Status</p>
                 <select
                   value={selectedTask.status}
                   onChange={(e) => {
@@ -447,17 +447,17 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
                 </select>
               </div>
               <div>
-                <p className="text-sm text-gray-200">Priority</p>
+                <p className="text-sm text-gray-600">Priority</p>
                 <span className={`inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium ${getPriorityColor(selectedTask.priority)}`}>
                   {selectedTask.priority}
                 </span>
               </div>
               <div>
-                <p className="text-sm text-gray-200">Due Date</p>
+                <p className="text-sm text-gray-600">Due Date</p>
                 <p className="font-medium">{new Date(selectedTask.dueDate).toLocaleDateString()}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-200">Assigned To</p>
+                <p className="text-sm text-gray-600">Assigned To</p>
                 <p className="font-medium">{selectedTask.assignedTo}</p>
               </div>
             </div>
@@ -465,12 +465,12 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
             {selectedTask.estimatedHours && (
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-200">Estimated Hours</p>
+                  <p className="text-sm text-gray-600">Estimated Hours</p>
                   <p className="font-medium">{selectedTask.estimatedHours}h</p>
                 </div>
                 {selectedTask.actualHours && (
                   <div>
-                    <p className="text-sm text-gray-200">Actual Hours</p>
+                    <p className="text-sm text-gray-600">Actual Hours</p>
                     <p className="font-medium">{selectedTask.actualHours}h</p>
                   </div>
                 )}
@@ -478,7 +478,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
             )}
 
             <div>
-              <h3 className="text-sm font-medium text-gray-200 mb-3">Comments & Updates</h3>
+              <h3 className="text-sm font-medium text-gray-600 mb-3">Comments & Updates</h3>
               <div className="space-y-3 mb-4">
                 {(selectedTask.comments || []).map((comment) => (
                   <div key={comment.id} className="bg-gray-50 rounded-lg p-3">
@@ -488,7 +488,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
                         {new Date(comment.timestamp).toLocaleString()}
                       </p>
                     </div>
-                    <p className="text-sm text-gray-200">{comment.comment}</p>
+                    <p className="text-sm text-gray-600">{comment.comment}</p>
                   </div>
                 ))}
               </div>
@@ -546,7 +546,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Remediation Management</h1>
-          <p className="text-gray-200 mt-1">Track and manage audit finding remediations</p>
+          <p className="text-gray-600 mt-1">Track and manage audit finding remediations</p>
         </div>
         <div className="flex items-center space-x-2">
           <button className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
@@ -568,7 +568,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
       <div className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200">
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-200" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600" />
             <input
               type="text"
               placeholder="Search remediation tasks..."
@@ -599,7 +599,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
               className={`px-4 py-2 rounded-lg capitalize transition-colours ${
                 activeTab === tab 
                   ? 'bg-white shadow-sm text-gray-900' 
-                  : 'text-gray-200 hover:text-gray-900'
+                  : 'text-gray-600 hover:text-gray-900'
               }`}
             >
               {tab}
@@ -612,7 +612,7 @@ const RemediationManagement: React.FC<RemediationManagementProps> = ({
         <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
           <AlertTriangle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No remediation plans found</h3>
-          <p className="text-gray-200">
+          <p className="text-gray-600">
             {searchQuery || filterPriority !== 'all' 
               ? 'Try adjusting your search or filters' 
               : `No ${activeTab} remediation plans`}

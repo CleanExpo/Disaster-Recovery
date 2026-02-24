@@ -73,7 +73,7 @@ export function AudioSystemSimple() {
       <button
         onClick={toggleSpeech}
         className={`p-2 rounded-full transition-colors ${
-          speechEnabled ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-200'
+          speechEnabled ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600'
         }`}
         aria-label="Toggle speech"
         title={speechEnabled ? 'Disable audio' : 'Enable audio'}
@@ -94,7 +94,7 @@ export function AudioSystemSimple() {
             window.speechSynthesis.cancel();
             setIsPlaying(false);
           }}
-          className="p-2 rounded-full bg-gray-200 text-gray-200"
+          className="p-2 rounded-full bg-gray-200 text-gray-600"
           aria-label="Stop"
           title="Stop audio"
         >
@@ -108,7 +108,7 @@ export function AudioSystemSimple() {
       {/* Mute/Unmute */}
       <button
         onClick={toggleMute}
-        className="p-2 rounded-full bg-gray-200 text-gray-200"
+        className="p-2 rounded-full bg-gray-200 text-gray-600"
         aria-label={isMuted ? "Unmute" : "Mute"}
         title={isMuted ? "Unmute" : "Mute"}
       >
@@ -139,7 +139,7 @@ export function AudioSystemSimple() {
       {/* Status indicator */}
       <div className="flex items-center gap-1">
         <div className={`w-2 h-2 rounded-full ${speechEnabled ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`} />
-        <span className="text-xs text-gray-200 dark:text-gray-200">
+        <span className="text-xs text-gray-600 dark:text-gray-600">
           {speechEnabled ? 'Audio ON' : 'Audio OFF'}
         </span>
       </div>

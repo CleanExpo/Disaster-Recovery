@@ -105,7 +105,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
               {editedData.companyLogo ? (
                 <img src={editedData.companyLogo} alt="Company Logo" className="w-full h-full object-cover" />
               ) : (
-                <Building2 className="h-10 w-10 text-gray-200" />
+                <Building2 className="h-10 w-10 text-gray-600" />
               )}
             </div>
             {isEditing && (
@@ -122,7 +122,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
           </div>
           <div>
             <h2 className="text-2xl font-bold">{editedData.companyName}</h2>
-            <p className="text-gray-200">ABN: {editedData.abn}</p>
+            <p className="text-gray-600">ABN: {editedData.abn}</p>
           </div>
         </div>
       </div>
@@ -148,7 +148,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
               </button>
               <button
                 onClick={handleCancel}
-                className="px-3 py-1 text-sm text-gray-200 hover:bg-gray-50 rounded"
+                className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded"
               >
                 Cancel
               </button>
@@ -158,7 +158,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
 
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="text-sm text-gray-200">Company Name</label>
+            <label className="text-sm text-gray-600">Company Name</label>
             {isEditing ? (
               <input
                 type="text"
@@ -172,12 +172,12 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
           </div>
 
           <div>
-            <label className="text-sm text-gray-200">ABN</label>
+            <label className="text-sm text-gray-600">ABN</label>
             <p className="font-medium">{profile.abn}</p>
           </div>
 
           <div>
-            <label className="text-sm text-gray-200">Email</label>
+            <label className="text-sm text-gray-600">Email</label>
             {isEditing ? (
               <input
                 type="email"
@@ -191,7 +191,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
           </div>
 
           <div>
-            <label className="text-sm text-gray-200">Phone</label>
+            <label className="text-sm text-gray-600">Phone</label>
             {isEditing ? (
               <input
                 type="tel"
@@ -213,10 +213,10 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
         <div className="space-y-4">
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
             <div className="flex items-center gap-3">
-              <Shield className="h-5 w-5 text-gray-200" />
+              <Shield className="h-5 w-5 text-gray-600" />
               <div>
                 <p className="font-medium">Two-Factor Authentication</p>
-                <p className="text-sm text-gray-200">
+                <p className="text-sm text-gray-600">
                   {twoFactorEnabled ? 'Enabled - Your account is secured' : 'Add an extra layer of security'}
                 </p>
               </div>
@@ -235,10 +235,10 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
 
           <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
             <div className="flex items-center gap-3">
-              <Lock className="h-5 w-5 text-gray-200" />
+              <Lock className="h-5 w-5 text-gray-600" />
               <div>
                 <p className="font-medium">Password</p>
-                <p className="text-sm text-gray-200">Last changed 30 days ago</p>
+                <p className="text-sm text-gray-600">Last changed 30 days ago</p>
               </div>
             </div>
             <button className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded">
@@ -261,7 +261,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
                   <p className="text-sm text-gray-300 mt-20">QR Code</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-200 mt-2">
+              <p className="text-sm text-gray-600 mt-2">
                 Scan this QR code with your authenticator app
               </p>
             </div>

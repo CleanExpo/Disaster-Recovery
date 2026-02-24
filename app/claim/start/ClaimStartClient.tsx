@@ -213,7 +213,7 @@ function ClaimStartContent() {
               <Shield className="h-8 w-8 text-blue-600" />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">Start Your Claim</h1>
-                <p className="text-sm text-gray-200">24/7 Online Emergency Response</p>
+                <p className="text-sm text-gray-600">24/7 Online Emergency Response</p>
               </div>
             </div>
             {isDemoRunning && (
@@ -252,7 +252,7 @@ function ClaimStartContent() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Full Name *
                 </label>
                 <input
@@ -269,7 +269,7 @@ function ClaimStartContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Email Address *
                 </label>
                 <input
@@ -286,7 +286,7 @@ function ClaimStartContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Property Address *
                 </label>
                 <input
@@ -313,7 +313,7 @@ function ClaimStartContent() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Insurance Company *
                 </label>
                 <input
@@ -330,7 +330,7 @@ function ClaimStartContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Claim Number (if available)
                 </label>
                 <input
@@ -357,7 +357,7 @@ function ClaimStartContent() {
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-2">
+                  <label className="block text-sm font-medium text-gray-600 mb-2">
                     Type of Damage *
                   </label>
                   <select
@@ -380,7 +380,7 @@ function ClaimStartContent() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-2">
+                  <label className="block text-sm font-medium text-gray-600 mb-2">
                     Date of Incident *
                   </label>
                   <input
@@ -397,7 +397,7 @@ function ClaimStartContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Description of Damage *
                 </label>
                 <textarea
@@ -414,7 +414,7 @@ function ClaimStartContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Upload Photos of Damage
                 </label>
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colours">
@@ -435,10 +435,10 @@ function ClaimStartContent() {
                     className="hidden"
                   />
                   <label htmlFor="image-upload" className="cursor-pointer">
-                    <Camera className="h-12 w-12 text-gray-200 mx-auto mb-3" />
-                    <p className="text-sm font-medium text-gray-200">Click to upload photos</p>
+                    <Camera className="h-12 w-12 text-gray-600 mx-auto mb-3" />
+                    <p className="text-sm font-medium text-gray-600">Click to upload photos</p>
                     <p className="text-xs text-gray-300 mt-1">or drag and drop</p>
-                    <p className="text-xs text-gray-200 mt-2">PNG, JPG, GIF up to 10MB each</p>
+                    <p className="text-xs text-gray-600 mt-2">PNG, JPG, GIF up to 10MB each</p>
                   </label>
                 </div>
 
@@ -486,7 +486,7 @@ function ClaimStartContent() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-2">
+                <label className="block text-sm font-medium text-gray-600 mb-2">
                   Urgency Level *
                   <span className="ml-2 text-xs font-normal text-gray-300">
                     (Select based on safety and habitability)
@@ -563,7 +563,7 @@ function ClaimStartContent() {
               className={`
                 flex items-center gap-3 px-8 py-4 text-lg font-semibold rounded-xl transition-all
                 ${isSubmitting || isDemoRunning
-                  ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                  ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                   : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transform hover:scale-105'
                 }
               `}
@@ -589,7 +589,7 @@ function ClaimStartContent() {
 
 function ClaimStartPageOriginal() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center"><div className="text-gray-200">Loading...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center"><div className="text-gray-600">Loading...</div></div>}>
       <ClaimStartContent />
     </Suspense>
   );

@@ -290,12 +290,12 @@ function Day1PlatformOrientationOriginal() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Day 1: Platform Orientation</h1>
-                <p className="text-sm text-gray-200">Welcome to the NRP Contractor Network</p>
+                <p className="text-sm text-gray-600">Welcome to the NRP Contractor Network</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <div className="text-right">
-                <p className="text-sm text-gray-200">Day Progress</p>
+                <p className="text-sm text-gray-600">Day Progress</p>
                 <p className="text-lg font-bold">{calculateOverallProgress()}%</p>
               </div>
               <Button variant="outline">
@@ -335,10 +335,10 @@ function Day1PlatformOrientationOriginal() {
                         ) : (
                           <div className="h-4 w-4 rounded-full border-2 border-gray-300" />
                         )}
-                        <span className="text-xs text-gray-200">Module {module.id}</span>
+                        <span className="text-xs text-gray-600">Module {module.id}</span>
                       </div>
                       <h4 className="text-sm font-medium">{module.title}</h4>
-                      <p className="text-xs text-gray-200 mt-1">
+                      <p className="text-xs text-gray-600 mt-1">
                         {module.duration} • {module.type}
                       </p>
                     </div>
@@ -368,7 +368,7 @@ function Day1PlatformOrientationOriginal() {
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle>{modules[currentModule].title}</CardTitle>
-                  <p className="text-sm text-gray-200 mt-1">
+                  <p className="text-sm text-gray-600 mt-1">
                     Module {modules[currentModule].id} of {modules.length} • {modules[currentModule].duration}
                   </p>
                 </div>
@@ -439,7 +439,7 @@ function Day1PlatformOrientationOriginal() {
                   </TabsList>
                   
                   <TabsContent value="overview" className="mt-4">
-                    <p className="text-gray-200">{modules[currentModule].content.description}</p>
+                    <p className="text-gray-600">{modules[currentModule].content.description}</p>
                   </TabsContent>
                   
                   {modules[currentModule].content.sections?.map((section, idx) => (
@@ -479,7 +479,7 @@ function Day1PlatformOrientationOriginal() {
                 </Button>
                 <div className="flex items-center gap-2">
                   <Progress value={moduleProgress[currentModule]} className="w-32" />
-                  <span className="text-sm text-gray-200">{moduleProgress[currentModule]}%</span>
+                  <span className="text-sm text-gray-600">{moduleProgress[currentModule]}%</span>
                 </div>
                 <Button 
                   onClick={() => {
@@ -504,7 +504,7 @@ function Day1PlatformOrientationOriginal() {
                   <MessageSquare className="h-8 w-8 text-blue-600" />
                   <div>
                     <p className="font-semibold">Live Support</p>
-                    <p className="text-xs text-gray-200">Get help from instructors</p>
+                    <p className="text-xs text-gray-600">Get help from instructors</p>
                   </div>
                 </div>
               </CardContent>
@@ -515,7 +515,7 @@ function Day1PlatformOrientationOriginal() {
                   <Users className="h-8 w-8 text-green-600" />
                   <div>
                     <p className="font-semibold">Peer Forum</p>
-                    <p className="text-xs text-gray-200">Connect with other contractors</p>
+                    <p className="text-xs text-gray-600">Connect with other contractors</p>
                   </div>
                 </div>
               </CardContent>
@@ -526,7 +526,7 @@ function Day1PlatformOrientationOriginal() {
                   <FileText className="h-8 w-8 text-purple-600" />
                   <div>
                     <p className="font-semibold">Resources</p>
-                    <p className="text-xs text-gray-200">Download study materials</p>
+                    <p className="text-xs text-gray-600">Download study materials</p>
                   </div>
                 </div>
               </CardContent>

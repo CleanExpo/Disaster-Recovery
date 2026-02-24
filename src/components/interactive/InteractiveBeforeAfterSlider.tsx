@@ -74,7 +74,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
       case 'water': return 'text-blue-600 bg-blue-50 border-blue-200';
       case 'mould': return 'text-green-600 bg-green-50 border-green-200';
       case 'storm': return 'text-purple-600 bg-purple-50 border-purple-200';
-      default: return 'text-gray-200 bg-gray-50 border-gray-200';
+      default: return 'text-gray-600 bg-gray-50 border-gray-200';
     }
   };
 
@@ -144,7 +144,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
                   <CheckCircle className="h-20 w-20 text-green-600 mx-auto mb-4" />
                 </motion.div>
                 <p className="text-gray-800 font-bold text-xl">{caseData.afterLabel}</p>
-                <p className="text-sm text-gray-200 mt-2">Professional finish</p>
+                <p className="text-sm text-gray-600 mt-2">Professional finish</p>
               </div>
             </div>
           </motion.div>
@@ -237,7 +237,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
 
         {/* Progress Indicator */}
         <div className="mt-4 mb-6">
-          <div className="flex items-center justify-between text-sm text-gray-200 mb-2">
+          <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
             <span>Before</span>
             <motion.span 
               className="font-bold text-blue-600"
@@ -263,7 +263,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
       {/* Description */}
       <div className="px-8 pb-8">
         <div className="bg-gray-50 rounded-xl p-4">
-          <p className="text-gray-200 text-sm leading-relaxed">
+          <p className="text-gray-600 text-sm leading-relaxed">
             <strong>{caseData.title}:</strong> {caseData.description}
           </p>
         </div>
@@ -305,7 +305,7 @@ export default function InteractiveBeforeAfterSlider() {
         </motion.h3>
         
         <motion.p 
-          className="text-xl text-gray-200 max-w-3xl mx-auto mb-8"
+          className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.4 }}

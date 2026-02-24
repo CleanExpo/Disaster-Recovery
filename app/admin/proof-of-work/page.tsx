@@ -146,7 +146,7 @@ function ProofOfWorkAdminOriginal() {
       case 'VERIFIED': return 'text-green-600 bg-green-100';
       case 'REJECTED': return 'text-red-600 bg-red-100';
       case 'PENDING': return 'text-yellow-600 bg-yellow-100';
-      default: return 'text-gray-200 bg-gray-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
   };
 
@@ -177,7 +177,7 @@ function ProofOfWorkAdminOriginal() {
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Proof of Work Review</h1>
-              <p className="text-gray-200">
+              <p className="text-gray-600">
                 Review and verify contractor project evidence for certification approval
               </p>
             </div>
@@ -189,7 +189,7 @@ function ProofOfWorkAdminOriginal() {
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Total Claims</p>
+                <p className="text-sm font-medium text-gray-600">Total Claims</p>
                 <p className="text-3xl font-bold text-gray-900">{statistics.total}</p>
               </div>
               <div className="p-3 bg-blue-100 rounded-full">
@@ -201,7 +201,7 @@ function ProofOfWorkAdminOriginal() {
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Pending Review</p>
+                <p className="text-sm font-medium text-gray-600">Pending Review</p>
                 <p className="text-3xl font-bold text-yellow-600">{statistics.byVerificationStatus.PENDING || 0}</p>
               </div>
               <div className="p-3 bg-yellow-100 rounded-full">
@@ -213,7 +213,7 @@ function ProofOfWorkAdminOriginal() {
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Verified</p>
+                <p className="text-sm font-medium text-gray-600">Verified</p>
                 <p className="text-3xl font-bold text-green-600">{statistics.byVerificationStatus.VERIFIED || 0}</p>
               </div>
               <div className="p-3 bg-green-100 rounded-full">
@@ -225,7 +225,7 @@ function ProofOfWorkAdminOriginal() {
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-200">Rejected</p>
+                <p className="text-sm font-medium text-gray-600">Rejected</p>
                 <p className="text-3xl font-bold text-red-600">{statistics.byVerificationStatus.REJECTED || 0}</p>
               </div>
               <div className="p-3 bg-red-100 rounded-full">
@@ -239,7 +239,7 @@ function ProofOfWorkAdminOriginal() {
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
           <div className="grid md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Work Type</label>
+              <label className="block text-sm font-medium text-gray-600 mb-2">Work Type</label>
               <select
                 value={filters.workType}
                 onChange={(e) => setFilters({...filters, workType: e.target.value})}
@@ -255,7 +255,7 @@ function ProofOfWorkAdminOriginal() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Status</label>
+              <label className="block text-sm font-medium text-gray-600 mb-2">Status</label>
               <select
                 value={filters.verificationStatus}
                 onChange={(e) => setFilters({...filters, verificationStatus: e.target.value})}
@@ -269,7 +269,7 @@ function ProofOfWorkAdminOriginal() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Property Type</label>
+              <label className="block text-sm font-medium text-gray-600 mb-2">Property Type</label>
               <select
                 value={filters.propertyType}
                 onChange={(e) => setFilters({...filters, propertyType: e.target.value})}
@@ -283,9 +283,9 @@ function ProofOfWorkAdminOriginal() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">Search</label>
+              <label className="block text-sm font-medium text-gray-600 mb-2">Search</label>
               <div className="relative">
-                <Search className="w-4 h-4 text-gray-200 absolute left-3 top-3" />
+                <Search className="w-4 h-4 text-gray-600 absolute left-3 top-3" />
                 <input
                   type="text"
                   value={filters.search}
@@ -383,7 +383,7 @@ function ProofOfWorkAdminOriginal() {
                     <td className="px-6 py-4">
                       <div className="flex flex-wrap gap-1">
                         {claim.evidence.map((evidence, index) => (
-                          <div key={index} className="flex items-center gap-1 text-xs text-gray-200">
+                          <div key={index} className="flex items-center gap-1 text-xs text-gray-600">
                             {getEvidenceIcon(evidence.type)}
                             <span>{evidence.type.replace(/_/g, ' ')}</span>
                           </div>
@@ -425,7 +425,7 @@ function ProofOfWorkAdminOriginal() {
           {pagination.pages > 1 && (
             <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
               <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-200">
+                <div className="text-sm text-gray-600">
                   Showing {((pagination.page - 1) * pagination.limit) + 1} to{' '}
                   {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
                   {pagination.total} results
@@ -485,7 +485,7 @@ function ClaimReviewModal({
         <div className="p-6 border-b">
           <div className="flex items-center justify-between">
             <h3 className="text-2xl font-bold text-gray-900">Review Proof of Work</h3>
-            <button onClick={onClose} className="text-gray-200 hover:text-gray-200">
+            <button onClick={onClose} className="text-gray-600 hover:text-gray-600">
               <X className="w-6 h-6" />
             </button>
           </div>
@@ -498,26 +498,26 @@ function ClaimReviewModal({
               <h4 className="font-semibold text-gray-900 mb-4">Project Information</h4>
               <div className="space-y-3">
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Project Name</label>
+                  <label className="text-sm font-medium text-gray-600">Project Name</label>
                   <p className="text-sm text-gray-900">{claim.projectName}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Client</label>
+                  <label className="text-sm font-medium text-gray-600">Client</label>
                   <p className="text-sm text-gray-900">{claim.clientName}</p>
-                  <p className="text-xs text-gray-200 flex items-center gap-1">
+                  <p className="text-xs text-gray-600 flex items-center gap-1">
                     <MessageSquare className="w-3 h-3" />
                     {claim.clientContact}
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Address</label>
+                  <label className="text-sm font-medium text-gray-600">Address</label>
                   <p className="text-sm text-gray-900 flex items-center gap-1">
                     <MapPin className="w-3 h-3" />
                     {claim.projectAddress}
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Completion Date</label>
+                  <label className="text-sm font-medium text-gray-600">Completion Date</label>
                   <p className="text-sm text-gray-900 flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     {new Date(claim.completionDate).toLocaleDateString('en-AU')}
@@ -530,27 +530,27 @@ function ClaimReviewModal({
               <h4 className="font-semibold text-gray-900 mb-4">Project Details</h4>
               <div className="space-y-3">
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Work Type</label>
+                  <label className="text-sm font-medium text-gray-600">Work Type</label>
                   <p className="text-sm text-gray-900">
                     {claim.workType.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Property Type</label>
+                  <label className="text-sm font-medium text-gray-600">Property Type</label>
                   <p className="text-sm text-gray-900">{claim.propertyType}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Project Value</label>
+                  <label className="text-sm font-medium text-gray-600">Project Value</label>
                   <p className="text-sm text-gray-900 flex items-center gap-1">
                     <DollarSign className="w-3 h-3" />
                     ${claim.projectValue.toLocaleString()}
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-200">Damage Types</label>
+                  <label className="text-sm font-medium text-gray-600">Damage Types</label>
                   <div className="flex flex-wrap gap-1 mt-1">
                     {claim.damageType.map(type => (
-                      <span key={type} className="text-xs bg-gray-100 text-gray-200 px-2 py-1 rounded">
+                      <span key={type} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
                         {type}
                       </span>
                     ))}
@@ -558,7 +558,7 @@ function ClaimReviewModal({
                 </div>
                 {claim.insuranceCompany && (
                   <div>
-                    <label className="text-sm font-medium text-gray-200">Insurance Company</label>
+                    <label className="text-sm font-medium text-gray-600">Insurance Company</label>
                     <p className="text-sm text-gray-900">{claim.insuranceCompany}</p>
                   </div>
                 )}
@@ -568,7 +568,7 @@ function ClaimReviewModal({
 
           {/* Project Description */}
           <div className="mb-6">
-            <label className="text-sm font-medium text-gray-200">Project Description</label>
+            <label className="text-sm font-medium text-gray-600">Project Description</label>
             <p className="text-sm text-gray-900 bg-gray-50 p-3 rounded-lg mt-1">
               {claim.projectDescription}
             </p>
@@ -582,15 +582,15 @@ function ClaimReviewModal({
                 <div key={index} className="border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center gap-2 mb-2">
                     {evidence.type.includes('PHOTO') ? (
-                      <Image className="w-4 h-4 text-gray-200" />
+                      <Image className="w-4 h-4 text-gray-600" />
                     ) : (
-                      <FileText className="w-4 h-4 text-gray-200" />
+                      <FileText className="w-4 h-4 text-gray-600" />
                     )}
                     <span className="text-sm font-medium text-gray-900">
                       {evidence.type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-200 mb-2">{evidence.description}</p>
+                  <p className="text-sm text-gray-600 mb-2">{evidence.description}</p>
                   <a
                     href={evidence.url}
                     target="_blank"
@@ -606,7 +606,7 @@ function ClaimReviewModal({
 
           {/* Verification Notes */}
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Verification Notes
             </label>
             <textarea

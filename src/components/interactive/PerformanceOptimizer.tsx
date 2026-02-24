@@ -343,7 +343,7 @@ export function OptimizedImage({
       {/* Placeholder while loading */}
       {!loaded && !error && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
-          <div className="text-gray-200 text-sm">Loading...</div>
+          <div className="text-gray-600 text-sm">Loading...</div>
         </div>
       )}
       

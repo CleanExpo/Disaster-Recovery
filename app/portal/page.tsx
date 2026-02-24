@@ -85,7 +85,7 @@ function ContractorPortalOriginal() {
             </button>
           </div>
           <div className="mt-4">
-            <p className="text-sm text-gray-200">Contractor ID</p>
+            <p className="text-sm text-gray-600">Contractor ID</p>
             <p className="font-mono text-sm">{contractorData.id}</p>
           </div>
         </div>
@@ -125,12 +125,12 @@ function ContractorPortalOriginal() {
               </button>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Welcome back, {contractorData.name}</h1>
-                <p className="text-sm text-gray-200">Territory: {contractorData.territory} • Status: <span className="text-green-600 font-medium">{contractorData.status}</span></p>
+                <p className="text-sm text-gray-600">Territory: {contractorData.territory} • Status: <span className="text-green-600 font-medium">{contractorData.status}</span></p>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <div className="text-right">
-                <p className="text-sm text-gray-200">Certification Level</p>
+                <p className="text-sm text-gray-600">Certification Level</p>
                 <p className="text-lg font-bold text-yellow-600">{contractorData.certification}</p>
               </div>
               <Button className="bg-blue-600 hover:bg-blue-700">
@@ -147,7 +147,7 @@ function ContractorPortalOriginal() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-gray-200">Active Leads</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-600">Active Leads</CardTitle>
                 <AlertCircle className="h-4 w-4 text-blue-600" />
               </CardHeader>
               <CardContent>
@@ -158,7 +158,7 @@ function ContractorPortalOriginal() {
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-gray-200">Monthly Revenue</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-600">Monthly Revenue</CardTitle>
                 <DollarSign className="h-4 w-4 text-green-600" />
               </CardHeader>
               <CardContent>
@@ -169,7 +169,7 @@ function ContractorPortalOriginal() {
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-gray-200">Response Time</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-600">Response Time</CardTitle>
                 <Clock className="h-4 w-4 text-orange-600" />
               </CardHeader>
               <CardContent>
@@ -180,7 +180,7 @@ function ContractorPortalOriginal() {
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <CardTitle className="text-sm font-medium text-gray-200">Performance Rating</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-600">Performance Rating</CardTitle>
                 <TrendingUp className="h-4 w-4 text-purple-600" />
               </CardHeader>
               <CardContent>
@@ -216,7 +216,7 @@ function ContractorPortalOriginal() {
                           )}
                         </div>
                         <p className="text-sm font-medium">{lead.type}</p>
-                        <p className="text-xs text-gray-200">{lead.location}</p>
+                        <p className="text-xs text-gray-600">{lead.location}</p>
                       </div>
                       <div className="text-right">
                         <p className="font-bold">${lead.value.toLocaleString()}</p>
@@ -245,7 +245,7 @@ function ContractorPortalOriginal() {
                     <span>{contractorData.training.completed}%</span>
                   </div>
                   <Progress value={contractorData.training.completed} className="h-2" />
-                  <p className="text-xs text-gray-200 mt-1">
+                  <p className="text-xs text-gray-600 mt-1">
                     {contractorData.training.inProgress} in progress, {contractorData.training.required} required
                   </p>
                 </div>
@@ -256,7 +256,7 @@ function ContractorPortalOriginal() {
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="font-medium text-sm">{training.title}</p>
-                          <p className="text-xs text-gray-200 mt-1">
+                          <p className="text-xs text-gray-600 mt-1">
                             <Calendar className="inline h-3 w-3 mr-1" />
                             {training.date} • {training.duration}
                           </p>

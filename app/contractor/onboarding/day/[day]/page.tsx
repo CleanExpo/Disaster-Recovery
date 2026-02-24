@@ -144,7 +144,7 @@ function DayTrainingPageOriginal() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-          <p className="text-gray-200">Module not found</p>
+          <p className="text-gray-600">Module not found</p>
         </div>
       </div>
     );
@@ -195,14 +195,14 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'video' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-200'
+                  : 'border-transparent text-gray-300 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
                 <Video className="w-4 h-4" />
                 <span>Video Lessons</span>
                 {module.components.videos && (
-                  <span className="bg-gray-100 text-gray-200 px-2 py-0.5 rounded-full text-xs">
+                  <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
                     {module.components.videos.length}
                   </span>
                 )}
@@ -214,14 +214,14 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'reading' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-200'
+                  : 'border-transparent text-gray-300 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
                 <BookOpen className="w-4 h-4" />
                 <span>Reading Materials</span>
                 {module.components.readings && (
-                  <span className="bg-gray-100 text-gray-200 px-2 py-0.5 rounded-full text-xs">
+                  <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
                     {module.components.readings.length}
                   </span>
                 )}
@@ -233,7 +233,7 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'podcast' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-200'
+                  : 'border-transparent text-gray-300 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -250,14 +250,14 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'assignment' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-200'
+                  : 'border-transparent text-gray-300 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
                 <FileText className="w-4 h-4" />
                 <span>Assignments</span>
                 {module.components.assignments && (
-                  <span className="bg-gray-100 text-gray-200 px-2 py-0.5 rounded-full text-xs">
+                  <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs">
                     {module.components.assignments.length}
                   </span>
                 )}
@@ -333,7 +333,7 @@ function DayTrainingPageOriginal() {
                                 {watched >= 95 ? (
                                   <CheckCircle className="w-5 h-5 text-green-600" />
                                 ) : (
-                                  <Play className="w-5 h-5 text-gray-200" />
+                                  <Play className="w-5 h-5 text-gray-600" />
                                 )}
                               </div>
                               <div>
@@ -383,11 +383,11 @@ function DayTrainingPageOriginal() {
                         {isCompleted ? (
                           <CheckCircle className="w-6 h-6 text-green-500" />
                         ) : (
-                          <Clock className="w-6 h-6 text-gray-200" />
+                          <Clock className="w-6 h-6 text-gray-600" />
                         )}
                       </div>
                       
-                      <div className="prose prose-sm max-w-none text-gray-200">
+                      <div className="prose prose-sm max-w-none text-gray-600">
                         <p>{reading.content}</p>
                       </div>
                       
@@ -423,7 +423,7 @@ function DayTrainingPageOriginal() {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">AI-Generated Podcast Episodes</h3>
-                      <p className="text-sm text-gray-200 mt-1">
+                      <p className="text-sm text-gray-600 mt-1">
                         Listen to conversational discussions of today's topics, generated from the training materials using NotebookLM.
                       </p>
                     </div>
@@ -490,7 +490,7 @@ function DayTrainingPageOriginal() {
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <h3 className="font-semibold text-gray-900">{assignment.title}</h3>
-                          <p className="text-sm text-gray-200 mt-1">{assignment.description}</p>
+                          <p className="text-sm text-gray-600 mt-1">{assignment.description}</p>
                           <div className="flex items-center space-x-4 mt-2">
                             <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
                               {assignment.type}
@@ -510,7 +510,7 @@ function DayTrainingPageOriginal() {
                           {assignment.requirements.map((req, i) => (
                             <li key={i} className="flex items-start space-x-2">
                               <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-1.5" />
-                              <span className="text-sm text-gray-200">{req}</span>
+                              <span className="text-sm text-gray-600">{req}</span>
                             </li>
                           ))}
                         </ul>
@@ -555,7 +555,7 @@ function DayTrainingPageOriginal() {
                 {module.objectives.map((objective, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                    <p className="text-sm text-gray-200">{objective}</p>
+                    <p className="text-sm text-gray-600">{objective}</p>
                   </div>
                 ))}
               </div>
@@ -565,7 +565,7 @@ function DayTrainingPageOriginal() {
                 <div className="space-y-3">
                   {module.components.videos && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-200">Videos</span>
+                      <span className="text-gray-600">Videos</span>
                       <span className="font-semibold">
                         {Object.values(progress.videosWatched).filter(v => v >= 95).length}/{module.components.videos.length}
                       </span>
@@ -573,7 +573,7 @@ function DayTrainingPageOriginal() {
                   )}
                   {module.components.readings && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-200">Readings</span>
+                      <span className="text-gray-600">Readings</span>
                       <span className="font-semibold">
                         {progress.readingsCompleted.length}/{module.components.readings.length}
                       </span>
@@ -581,7 +581,7 @@ function DayTrainingPageOriginal() {
                   )}
                   {module.components.assignments && (
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-200">Assignments</span>
+                      <span className="text-gray-600">Assignments</span>
                       <span className="font-semibold">
                         {progress.assignmentsSubmitted.length}/{module.components.assignments.length}
                       </span>
@@ -669,7 +669,7 @@ function DayTrainingPageOriginal() {
                               }}
                               className="text-blue-600"
                             />
-                            <span className="text-sm text-gray-200">{option}</span>
+                            <span className="text-sm text-gray-600">{option}</span>
                           </label>
                         ))}
                       </div>

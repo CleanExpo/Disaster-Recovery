@@ -128,7 +128,7 @@ export default function PremiumHeader() {
                 />
               </div>
               <div className="hidden sm:block">
-                <p className="text-xs text-gray-200 font-medium">Queensland's Trusted Restoration Experts</p>
+                <p className="text-xs text-gray-600 font-medium">Queensland's Trusted Restoration Experts</p>
               </div>
             </Link>
 
@@ -193,7 +193,7 @@ export default function PremiumHeader() {
                               {subItem.label}
                             </div>
                             {subItem.description && (
-                              <div className="text-xs text-gray-200">
+                              <div className="text-xs text-gray-600">
                                 {subItem.description}
                               </div>
                             )}
@@ -210,7 +210,7 @@ export default function PremiumHeader() {
             <div className="hidden lg:flex items-center gap-3">
               <Link
                 href="/partner-portal"
-                className="px-4 py-2 text-sm font-medium text-gray-200 hover:text-blue-700 transition-colours"
+                className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-700 transition-colours"
               >
                 Partner Portal
               </Link>
@@ -303,7 +303,7 @@ export default function PremiumHeader() {
                             key={subItem.href}
                             href={subItem.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="block px-4 py-2 text-base text-gray-200 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colours"
+                            className="block px-4 py-2 text-base text-gray-600 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition-colours"
                           >
                             {subItem.label}
                           </Link>

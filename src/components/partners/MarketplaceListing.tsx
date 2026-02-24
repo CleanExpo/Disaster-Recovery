@@ -563,19 +563,19 @@ export default function MarketplaceListing() {
                 </span>
                 <div className="flex items-center text-blue-600">
                   <Star className="w-4 h-4 fill-current" />
-                  <span className="text-sm text-gray-200 ml-1">
+                  <span className="text-sm text-gray-600 ml-1">
                     {partner.marketplace.reviews.average} ({partner.marketplace.reviews.count})
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <button className="text-gray-200 hover:text-red-500">
+          <button className="text-gray-600 hover:text-red-500">
             <Heart className="w-5 h-5" />
           </button>
         </div>
 
-        <p className="text-gray-200 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {partner.description}
         </p>
 
@@ -586,7 +586,7 @@ export default function MarketplaceListing() {
             </span>
           ))}
           {partner.marketplace.tags.length > 4 && (
-            <span className="px-2 py-1 bg-gray-100 text-gray-200 text-xs rounded-full">
+            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
               +{partner.marketplace.tags.length - 4} more
             </span>
           )}
@@ -606,7 +606,7 @@ export default function MarketplaceListing() {
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-4 text-sm text-gray-200 mb-4">
+        <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 mb-4">
           <div className="flex items-center">
             <MapPin className="w-4 h-4 mr-2" />
             <span>{partner.address.city}, {partner.address.state}</span>
@@ -624,10 +624,10 @@ export default function MarketplaceListing() {
           >
             View Details
           </button>
-          <button className="p-2 border border-gray-300 rounded-lg text-gray-200 hover:text-blue-600 hover:border-blue-300 transition-colours">
+          <button className="p-2 border border-gray-300 rounded-lg text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colours">
             <Share2 className="w-4 h-4" />
           </button>
-          <button className="p-2 border border-gray-300 rounded-lg text-gray-200 hover:text-blue-600 hover:border-blue-300 transition-colours">
+          <button className="p-2 border border-gray-300 rounded-lg text-gray-600 hover:text-blue-600 hover:border-blue-300 transition-colours">
             <MessageSquare className="w-4 h-4" />
           </button>
         </div>
@@ -639,7 +639,7 @@ export default function MarketplaceListing() {
     <div className="max-w-7xl mx-auto p-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Partner Marketplace</h1>
-        <p className="text-gray-200 mt-2">
+        <p className="text-gray-600 mt-2">
           Discover trusted partners and exclusive offers for your restoration business
         </p>
       </div>
@@ -649,7 +649,7 @@ export default function MarketplaceListing() {
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-3 w-5 h-5 text-gray-200" />
+              <Search className="absolute left-3 top-3 w-5 h-5 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search partners, services, or keywords..."
@@ -698,7 +698,7 @@ export default function MarketplaceListing() {
           </div>
         </div>
         
-        <div className="mt-4 flex items-center justify-between text-sm text-gray-200">
+        <div className="mt-4 flex items-center justify-between text-sm text-gray-600">
           <span>{sortedPartners.length} partners found</span>
           <div className="flex items-center space-x-4">
             <span>Active promotions: {mockPartners.filter(p => p.marketplace.promotions.length > 0).length}</span>
@@ -730,10 +730,10 @@ export default function MarketplaceListing() {
       {sortedPartners.length === 0 && (
         <div className="text-center py-12">
           <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Search className="w-12 h-12 text-gray-200" />
+            <Search className="w-12 h-12 text-gray-600" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">No partners found</h3>
-          <p className="text-gray-200 mb-6">Try adjusting your search criteria or browse all categories</p>
+          <p className="text-gray-600 mb-6">Try adjusting your search criteria or browse all categories</p>
           <button
             onClick={() => {
               setSearchTerm('');
@@ -756,7 +756,7 @@ export default function MarketplaceListing() {
                 <h2 className="text-2xl font-bold text-gray-900">Partner Details</h2>
                 <button
                   onClick={() => setSelectedPartner(null)}
-                  className="text-gray-200 hover:text-gray-200"
+                  className="text-gray-600 hover:text-gray-600"
                 >
                   <XCircle className="w-6 h-6" />
                 </button>
@@ -764,7 +764,7 @@ export default function MarketplaceListing() {
             </div>
             <div className="p-6">
               {/* Partner detail content would go here */}
-              <p className="text-gray-200">
+              <p className="text-gray-600">
                 Detailed partner information, services, reviews, and contact options would be displayed here.
               </p>
             </div>

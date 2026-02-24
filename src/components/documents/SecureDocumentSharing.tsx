@@ -241,7 +241,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
       case 'email': return <Mail className="w-5 h-5 text-green-600" />;
       case 'user_specific': return <UserCheck className="w-5 h-5 text-purple-600" />;
       case 'organisation': return <Users className="w-5 h-5 text-blue-700" />;
-      default: return <Share2 className="w-5 h-5 text-gray-200" />;
+      default: return <Share2 className="w-5 h-5 text-gray-600" />;
     }
   };
 
@@ -263,13 +263,13 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
               onClick={() => setShowCreateModal(false)}
               className="p-2 hover:bg-gray-100 rounded-lg"
             >
-              <XCircle className="w-5 h-5 text-gray-200" />
+              <XCircle className="w-5 h-5 text-gray-600" />
             </button>
           </div>
           {selectedDocument && (
             <div className="mt-3 p-3 bg-gray-50 rounded-lg">
               <p className="font-medium text-gray-900">{selectedDocument.title}</p>
-              <p className="text-sm text-gray-200">
+              <p className="text-sm text-gray-600">
                 {selectedDocument.fileName} • {formatFileSize(selectedDocument.fileSize)}
               </p>
             </div>
@@ -278,7 +278,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
         
         <div className="p-6 space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Share Method
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -306,7 +306,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
           {(shareForm.shareType === 'email' || shareForm.shareType === 'user_specific') && (
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 {shareForm.shareType === 'email' ? 'Email Addresses' : 'User IDs'}
               </label>
               <div className="space-y-2">
@@ -348,7 +348,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-3">
+            <label className="block text-sm font-medium text-gray-600 mb-3">
               Permissions
             </label>
             <div className="space-y-3">
@@ -373,7 +373,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                     className="mr-2"
                     disabled={key === 'canView'}
                   />
-                  <span className="text-sm text-gray-200">{label}</span>
+                  <span className="text-sm text-gray-600">{label}</span>
                 </label>
               ))}
             </div>
@@ -381,7 +381,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Password Protection (Optional)
               </label>
               <input
@@ -394,7 +394,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Expiry Date (Optional)
               </label>
               <input
@@ -407,7 +407,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-200 mb-2">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
                 Download Limit (0 = unlimited)
               </label>
               <input
@@ -422,7 +422,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-200 mb-2">
+            <label className="block text-sm font-medium text-gray-600 mb-2">
               Message (Optional)
             </label>
             <textarea
@@ -467,7 +467,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                 onClick={() => setShowAccessLog(null)}
                 className="p-2 hover:bg-gray-100 rounded-lg"
               >
-                <XCircle className="w-5 h-5 text-gray-200" />
+                <XCircle className="w-5 h-5 text-gray-600" />
               </button>
             </div>
           </div>
@@ -477,7 +477,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
               {share.accessLog.length === 0 ? (
                 <div className="text-center py-8">
                   <Activity className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                  <p className="text-gray-200">No access activity yet</p>
+                  <p className="text-gray-600">No access activity yet</p>
                 </div>
               ) : (
                 share.accessLog.map((entry) => (
@@ -491,12 +491,12 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                         <Eye className="w-4 h-4 text-blue-600" /> :
                         entry.action === 'downloaded' ?
                         <Download className="w-4 h-4 text-green-600" /> :
-                        <Activity className="w-4 h-4 text-gray-200" />
+                        <Activity className="w-4 h-4 text-gray-600" />
                       }
                     </div>
                     <div className="flex-1">
                       <p className="font-medium text-gray-900">{entry.accessedBy}</p>
-                      <p className="text-sm text-gray-200 capitalize">{entry.action} document</p>
+                      <p className="text-sm text-gray-600 capitalize">{entry.action} document</p>
                       <p className="text-xs text-gray-300">
                         {new Date(entry.accessedAt).toLocaleString()} • IP: {entry.ipAddress}
                       </p>
@@ -531,7 +531,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Document Sharing</h1>
-          <p className="text-gray-200 mt-1">Securely share documents with controlled access</p>
+          <p className="text-gray-600 mt-1">Securely share documents with controlled access</p>
         </div>
         <div className="flex items-center space-x-2">
           <button 
@@ -556,7 +556,7 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
           <div className="text-center py-12">
             <Share2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No shared documents</h3>
-            <p className="text-gray-200 mb-4">Create your first document share to get started</p>
+            <p className="text-gray-600 mb-4">Create your first document share to get started</p>
             <button 
               onClick={() => setShowCreateModal(true)}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -576,19 +576,19 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
                         <h3 className="font-medium text-gray-900">
                           Document Share • {share.shareType.replace('_', ' ').toUpperCase()}
                         </h3>
-                        <p className="text-sm text-gray-200">
+                        <p className="text-sm text-gray-600">
                           Created {new Date(share.createdAt).toLocaleDateString()}
                         </p>
                       </div>
                       <div className="flex items-center space-x-2">
                         {share.password && (
-                          <div className="flex items-center text-xs text-gray-200 bg-yellow-50 px-2 py-1 rounded">
+                          <div className="flex items-center text-xs text-gray-600 bg-yellow-50 px-2 py-1 rounded">
                             <Lock className="w-3 h-3 mr-1" />
                             Protected
                           </div>
                         )}
                         {share.expiryDate && (
-                          <div className="flex items-center text-xs text-gray-200 bg-blue-50 px-2 py-1 rounded">
+                          <div className="flex items-center text-xs text-gray-600 bg-blue-50 px-2 py-1 rounded">
                             <Clock className="w-3 h-3 mr-1" />
                             Expires {new Date(share.expiryDate).toLocaleDateString()}
                           </div>
@@ -604,18 +604,18 @@ const SecureDocumentSharing: React.FC<SecureDocumentSharingProps> = ({
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <p className="text-sm text-gray-200">Recipients</p>
+                        <p className="text-sm text-gray-600">Recipients</p>
                         <p className="font-medium">
                           {share.shareType === 'public_link' ? 'Public Link' : 
                            share.sharedWith.length > 0 ? share.sharedWith.join(', ') : 'No recipients'}
                         </p>
                       </div>
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <p className="text-sm text-gray-200">Access Count</p>
+                        <p className="text-sm text-gray-600">Access Count</p>
                         <p className="font-medium">{share.downloadCount} times</p>
                       </div>
                       <div className="bg-gray-50 rounded-lg p-3">
-                        <p className="text-sm text-gray-200">Download Limit</p>
+                        <p className="text-sm text-gray-600">Download Limit</p>
                         <p className="font-medium">
                           {share.downloadLimit ? `${share.downloadLimit} downloads` : 'Unlimited'}
                         </p>

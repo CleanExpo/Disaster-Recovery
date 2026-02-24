@@ -13,7 +13,7 @@ const SEO_CONFIG = {
   siteName: 'Disaster Recovery',
   siteUrl: 'https://disasterrecovery.com.au',
   defaultLocation: 'Brisbane, Queensland',
-  businessName: 'National Restoration Professionals (NRP)',
+  businessName: 'National Restoration Professionals Group (NRPG)',
   
   // Image optimisation settings
   quality: {

@@ -84,17 +84,17 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 <Card className="p-6">
                   <CheckCircle2 className="h-8 w-8 text-green-500 mb-3" />
                   <h3 className="font-bold mb-2">Emergency Response</h3>
-                  <p className="text-gray-200">24/7 rapid response team available for immediate assistance</p>
+                  <p className="text-gray-600">24/7 rapid response team available for immediate assistance</p>
                 </Card>
                 <Card className="p-6">
                   <CheckCircle2 className="h-8 w-8 text-green-500 mb-3" />
                   <h3 className="font-bold mb-2">Insurance Claims</h3>
-                  <p className="text-gray-200">Full claims documentation for your insurer</p>
+                  <p className="text-gray-600">Full claims documentation for your insurer</p>
                 </Card>
                 <Card className="p-6">
                   <CheckCircle2 className="h-8 w-8 text-green-500 mb-3" />
                   <h3 className="font-bold mb-2">Complete Restoration</h3>
-                  <p className="text-gray-200">Full property restoration from start to finish</p>
+                  <p className="text-gray-600">Full property restoration from start to finish</p>
                 </Card>
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                       {item.step}
                     </div>
                     <h3 className="font-bold mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-200">{item.desc}</p>
+                    <p className="text-sm text-gray-600">{item.desc}</p>
                   </Card>
                 ))}
               </div>
@@ -143,15 +143,15 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               <div className="space-y-4">
                 <Card className="p-6">
                   <h3 className="text-lg font-bold mb-2">How quickly can you respond?</h3>
-                  <p className="text-gray-200">Our emergency teams typically arrive within 30-60 minutes for urgent situations. We have crews stationed throughout the area for rapid response.</p>
+                  <p className="text-gray-600">Our emergency teams typically arrive within 30-60 minutes for urgent situations. We have crews stationed throughout the area for rapid response.</p>
                 </Card>
                 <Card className="p-6">
                   <h3 className="text-lg font-bold mb-2">Is the service covered by insurance?</h3>
-                  <p className="text-gray-200">Most insurance policies cover sudden damage. We work directly with all major insurers and can manage your claim from start to finish.</p>
+                  <p className="text-gray-600">Most insurance policies cover sudden damage. We work directly with all major insurers and can manage your claim from start to finish.</p>
                 </Card>
                 <Card className="p-6">
                   <h3 className="text-lg font-bold mb-2">What areas do you service?</h3>
-                  <p className="text-gray-200">We service all metropolitan and regional areas nationwide with local teams ready to respond 24/7.</p>
+                  <p className="text-gray-600">We service all metropolitan and regional areas nationwide with local teams ready to respond 24/7.</p>
                 </Card>
               </div>
             </div>

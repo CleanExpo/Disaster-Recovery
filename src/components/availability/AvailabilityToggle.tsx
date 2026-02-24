@@ -358,7 +358,7 @@ const AvailabilityToggle: React.FC = () => {
               <p className="text-xs text-gray-300">Current Reason</p>
               <p className="text-sm font-medium mt-1">{availability.statusReason.description}</p>
               {availability.estimatedReturnDate && (
-                <p className="text-sm text-gray-200 mt-1">
+                <p className="text-sm text-gray-600 mt-1">
                   Expected return: {new Date(availability.estimatedReturnDate).toLocaleDateString()}
                 </p>
               )}
@@ -368,7 +368,7 @@ const AvailabilityToggle: React.FC = () => {
 
         {/* Quick Status Toggle */}
         <div>
-          <h3 className="text-sm font-medium text-gray-200 mb-3">Quick Status Change</h3>
+          <h3 className="text-sm font-medium text-gray-600 mb-3">Quick Status Change</h3>
           <div className="grid grid-cols-4 gap-3">
             {statusOptions.slice(0, 4).map((option) => {
               const Icon = option.icon;
@@ -384,7 +384,7 @@ const AvailabilityToggle: React.FC = () => {
                   }`}
                 >
                   <Icon className={`h-6 w-6 mx-auto mb-2 ${
-                    isSelected ? 'text-indigo-600' : 'text-gray-200'
+                    isSelected ? 'text-indigo-600' : 'text-gray-600'
                   }`} />
                   <p className="text-xs font-medium">{option.label}</p>
                 </button>
@@ -412,7 +412,7 @@ const AvailabilityToggle: React.FC = () => {
                     }`}
                   >
                     <Icon className={`h-6 w-6 mx-auto mb-2 ${
-                      isSelected ? 'text-indigo-600' : 'text-gray-200'
+                      isSelected ? 'text-indigo-600' : 'text-gray-600'
                     }`} />
                     <p className="text-xs font-medium">{option.label}</p>
                   </button>
@@ -461,7 +461,7 @@ const AvailabilityToggle: React.FC = () => {
                   ) : item.status === 'in_progress' ? (
                     <Clock className="h-5 w-5 text-blue-600" />
                   ) : (
-                    <XCircle className="h-5 w-5 text-gray-200" />
+                    <XCircle className="h-5 w-5 text-gray-600" />
                   )}
                   <div>
                     <p className="font-medium text-sm">{item.requirement}</p>
@@ -505,7 +505,7 @@ const AvailabilityToggle: React.FC = () => {
       {/* Status History */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h3 className="text-lg font-semibold mb-4 flex items-center">
-          <Clock className="h-5 w-5 mr-2 text-gray-200" />
+          <Clock className="h-5 w-5 mr-2 text-gray-600" />
           Recent Status Changes
         </h3>
 
@@ -527,7 +527,7 @@ const AvailabilityToggle: React.FC = () => {
                 <p className="text-xs text-gray-300">
                   {new Date(history.timestamp).toLocaleDateString()}
                 </p>
-                <p className="text-xs text-gray-200">
+                <p className="text-xs text-gray-600">
                   by {history.changedBy}
                 </p>
               </div>
@@ -642,7 +642,7 @@ const AvailabilityToggle: React.FC = () => {
               Cannot Pause - Compliance Issues
             </h3>
             
-            <p className="text-gray-200 mb-4">
+            <p className="text-gray-600 mb-4">
               You cannot pause your account until the following requirements are met:
             </p>
 

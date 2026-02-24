@@ -291,7 +291,7 @@ function LeadManagementDashboardOriginal() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-200">Loading lead data...</p>
+          <p className="mt-4 text-gray-600">Loading lead data...</p>
         </div>
       </div>
     );
@@ -303,7 +303,7 @@ function LeadManagementDashboardOriginal() {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Lead Management Dashboard</h1>
-          <p className="text-gray-200">Track and manage all incoming disaster recovery leads</p>
+          <p className="text-gray-600">Track and manage all incoming disaster recovery leads</p>
         </div>
 
         {/* Stats Cards */}
@@ -316,7 +316,7 @@ function LeadManagementDashboardOriginal() {
               <span className="text-sm text-gray-300">Total</span>
             </div>
             <p className="text-2xl font-bold text-gray-900">{stats?.total || 0}</p>
-            <p className="text-sm text-gray-200 mt-1">Active leads</p>
+            <p className="text-sm text-gray-600 mt-1">Active leads</p>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-6">
@@ -329,7 +329,7 @@ function LeadManagementDashboardOriginal() {
             <p className="text-2xl font-bold text-gray-900">
               ${(stats?.revenue || 0).toLocaleString()}
             </p>
-            <p className="text-sm text-gray-200 mt-1">Total collected</p>
+            <p className="text-sm text-gray-600 mt-1">Total collected</p>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-6">
@@ -342,7 +342,7 @@ function LeadManagementDashboardOriginal() {
             <p className="text-2xl font-bold text-gray-900">
               {stats?.conversionRate.toFixed(1)}%
             </p>
-            <p className="text-sm text-gray-200 mt-1">Lead to job rate</p>
+            <p className="text-sm text-gray-600 mt-1">Lead to job rate</p>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-6">
@@ -355,7 +355,7 @@ function LeadManagementDashboardOriginal() {
             <p className="text-2xl font-bold text-gray-900">
               {stats?.avgResponseTime || 0} min
             </p>
-            <p className="text-sm text-gray-200 mt-1">Avg response time</p>
+            <p className="text-sm text-gray-600 mt-1">Avg response time</p>
           </div>
         </div>
 
@@ -364,7 +364,7 @@ function LeadManagementDashboardOriginal() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4 flex-1">
               <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-200" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-600" />
                 <input
                   type="text"
                   placeholder="Search by name, booking ID, email, or phone..."
@@ -401,7 +401,7 @@ function LeadManagementDashboardOriginal() {
             </div>
 
             <div className="flex items-center gap-2">
-              <button className="p-2 text-gray-200 hover:bg-gray-100 rounded-lg transition-colours">
+              <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colours">
                 <RefreshCw className="h-5 w-5" />
               </button>
               <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center gap-2">
@@ -508,14 +508,14 @@ function LeadManagementDashboardOriginal() {
                       <div className="flex items-center gap-2">
                         <button 
                           onClick={() => setSelectedLead(lead)}
-                          className="p-1 text-gray-200 hover:bg-gray-100 rounded"
+                          className="p-1 text-gray-600 hover:bg-gray-100 rounded"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
-                        <button className="p-1 text-gray-200 hover:bg-gray-100 rounded">
+                        <button className="p-1 text-gray-600 hover:bg-gray-100 rounded">
                           <Edit className="h-4 w-4" />
                         </button>
-                        <button className="p-1 text-gray-200 hover:bg-gray-100 rounded">
+                        <button className="p-1 text-gray-600 hover:bg-gray-100 rounded">
                           <Send className="h-4 w-4" />
                         </button>
                       </div>
@@ -550,15 +550,15 @@ function LeadManagementDashboardOriginal() {
                 <h3 className="font-semibold text-gray-900 mb-3">Customer Information</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-200">Name</p>
+                    <p className="text-sm text-gray-600">Name</p>
                     <p className="font-medium">{selectedLead.customer.name}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-200">Email</p>
+                    <p className="text-sm text-gray-600">Email</p>
                     <p className="font-medium">{selectedLead.customer.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-200">Address</p>
+                    <p className="text-sm text-gray-600">Address</p>
                     <p className="font-medium">
                       {selectedLead.customer.address}, {selectedLead.customer.suburb}, {selectedLead.customer.state} {selectedLead.customer.postcode}
                     </p>
@@ -571,10 +571,10 @@ function LeadManagementDashboardOriginal() {
                 <h3 className="font-semibold text-gray-900 mb-3">Service Details</h3>
                 <div className="space-y-2">
                   <p className="text-sm">
-                    <span className="text-gray-200">Type:</span> <span className="font-medium">{selectedLead.service.type}</span>
+                    <span className="text-gray-600">Type:</span> <span className="font-medium">{selectedLead.service.type}</span>
                   </p>
                   <p className="text-sm">
-                    <span className="text-gray-200">Urgency:</span> 
+                    <span className="text-gray-600">Urgency:</span> 
                     <span className={`ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
                       selectedLead.service.urgency === 'emergency' ? 'bg-red-100 text-red-800' :
                       selectedLead.service.urgency === 'urgent' ? 'bg-orange-100 text-orange-800' :
@@ -584,10 +584,10 @@ function LeadManagementDashboardOriginal() {
                     </span>
                   </p>
                   <p className="text-sm">
-                    <span className="text-gray-200">Description:</span> <span className="font-medium">{selectedLead.service.description}</span>
+                    <span className="text-gray-600">Description:</span> <span className="font-medium">{selectedLead.service.description}</span>
                   </p>
                   <p className="text-sm">
-                    <span className="text-gray-200">Affected Areas:</span> <span className="font-medium">{selectedLead.service.affectedAreas.join(', ')}</span>
+                    <span className="text-gray-600">Affected Areas:</span> <span className="font-medium">{selectedLead.service.affectedAreas.join(', ')}</span>
                   </p>
                 </div>
               </div>
@@ -598,8 +598,8 @@ function LeadManagementDashboardOriginal() {
                   <h3 className="font-semibold text-gray-900 mb-3">Notes</h3>
                   <ul className="space-y-2">
                     {selectedLead.notes.map((note, index) => (
-                      <li key={index} className="text-sm text-gray-200 flex items-start gap-2">
-                        <span className="text-gray-200">•</span>
+                      <li key={index} className="text-sm text-gray-600 flex items-start gap-2">
+                        <span className="text-gray-600">•</span>
                         <span>{note}</span>
                       </li>
                     ))}
@@ -612,7 +612,7 @@ function LeadManagementDashboardOriginal() {
               <div className="flex justify-end gap-3">
                 <button
                   onClick={() => setSelectedLead(null)}
-                  className="px-4 py-2 border border-gray-300 text-gray-200 rounded-lg hover:bg-gray-100"
+                  className="px-4 py-2 border border-gray-300 text-gray-600 rounded-lg hover:bg-gray-100"
                 >
                   Close
                 </button>

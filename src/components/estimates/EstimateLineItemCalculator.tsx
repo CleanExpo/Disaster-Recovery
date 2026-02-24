@@ -344,7 +344,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
         <div className="grid grid-cols-3 gap-4 mb-6">
           {categoryTotals.map(({ category, total }) => (
             <div key={category} className="bg-gray-50 p-4 rounded">
-              <p className="text-sm text-gray-200 capitalize">{category.replace('_', ' ')}</p>
+              <p className="text-sm text-gray-600 capitalize">{category.replace('_', ' ')}</p>
               <p className="text-xl font-bold text-gray-900">
                 ${total.toLocaleString('en-AU', { minimumFractionDigits: 2 })}
               </p>
@@ -427,7 +427,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                       
                       <p className="font-medium text-gray-900">{item.description}</p>
                       
-                      <div className="mt-2 flex items-center space-x-4 text-sm text-gray-200">
+                      <div className="mt-2 flex items-center space-x-4 text-sm text-gray-600">
                         <span>{item.quantity} {item.unit}</span>
                         <span>@ ${item.unitPrice}/unit</span>
                         <span className="font-semibold text-gray-900">
@@ -468,13 +468,13 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                     <div className="flex items-center space-x-2 ml-4">
                       <button
                         onClick={() => setEditingItem(item.id)}
-                        className="p-2 text-gray-200 hover:text-blue-600"
+                        className="p-2 text-gray-600 hover:text-blue-600"
                       >
                         <Edit2 className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteItem(item.id)}
-                        className="p-2 text-gray-200 hover:text-red-600"
+                        className="p-2 text-gray-600 hover:text-red-600"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -495,7 +495,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-1">Category</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Category</label>
                 <select
                   value={customItem.category}
                   onChange={(e) => setCustomItem({ ...customItem, category: e.target.value as LineItemCategory })}
@@ -511,7 +511,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-200 mb-1">Description</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Description</label>
                 <input
                   type="text"
                   value={customItem.description || ''}
@@ -523,7 +523,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">Quantity</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Quantity</label>
                   <input
                     type="number"
                     value={customItem.quantity || ''}
@@ -532,7 +532,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">Unit</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Unit</label>
                   <input
                     type="text"
                     value={customItem.unit || ''}
@@ -541,7 +541,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">Price/Unit</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Price/Unit</label>
                   <input
                     type="number"
                     value={customItem.unitPrice || ''}
@@ -558,7 +558,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                   onChange={(e) => setCustomItem({ ...customItem, taxable: e.target.checked })}
                   className="mr-2"
                 />
-                <label className="text-sm text-gray-200">GST Applicable</label>
+                <label className="text-sm text-gray-600">GST Applicable</label>
               </div>
             </div>
 

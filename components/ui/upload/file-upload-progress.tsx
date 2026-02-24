@@ -278,7 +278,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
         )}
       >
         <input {...getInputProps()} />
-        <Cloud className="w-12 h-12 mx-auto mb-4 text-gray-200" />
+        <Cloud className="w-12 h-12 mx-auto mb-4 text-gray-600" />
         {isDragActive ? (
           <p className="text-lg font-medium">Drop files here...</p>
         ) : (

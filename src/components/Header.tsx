@@ -343,7 +343,7 @@ const Header: React.FC = () => {
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colours duration-150"
                   >
                     <MapPin className="h-4 w-4 text-blue-600" />
-                    <span className="text-gray-200">{city}</span>
+                    <span className="text-gray-600">{city}</span>
                   </Link>
                 ))}
               </div>

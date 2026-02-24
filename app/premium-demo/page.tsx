@@ -47,7 +47,7 @@ function PremiumDemoPageOriginal() {
                   <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     Premium UI System
                   </h1>
-                  <p className="text-xs text-gray-200">Version 2.0 - Actually Works</p>
+                  <p className="text-xs text-gray-600">Version 2.0 - Actually Works</p>
                 </div>
               </div>
               
@@ -75,7 +75,7 @@ function PremiumDemoPageOriginal() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              <span className="text-sm font-semibold text-gray-200">Real Premium Components That Actually Work</span>
+              <span className="text-sm font-semibold text-gray-600">Real Premium Components That Actually Work</span>
             </div>
             
             <h1 className="text-6xl font-bold mb-6 animate-scale-in">
@@ -84,7 +84,7 @@ function PremiumDemoPageOriginal() {
               </span>
             </h1>
             
-            <p className="text-xl text-gray-200 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="text-xl text-gray-600 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               Not just promises - actual working components with glass morphism, 
               micro-interactions, gradients, and sophisticated animations.
             </p>
@@ -124,7 +124,7 @@ function PremiumDemoPageOriginal() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Default Variants */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
-            <h3 className="font-semibold text-gray-200 mb-3">Default Variants</h3>
+            <h3 className="font-semibold text-gray-600 mb-3">Default Variants</h3>
             <Button variant="default" className="w-full">
               Default Gradient
             </Button>
@@ -141,7 +141,7 @@ function PremiumDemoPageOriginal() {
           
           {/* Glass & Effects */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
-            <h3 className="font-semibold text-gray-200 mb-3">Glass & Effects</h3>
+            <h3 className="font-semibold text-gray-600 mb-3">Glass & Effects</h3>
             <Button variant="ghost" className="w-full">
               Glass Morphism
             </Button>
@@ -158,7 +158,7 @@ function PremiumDemoPageOriginal() {
           
           {/* Animated Variants */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
-            <h3 className="font-semibold text-gray-200 mb-3">Animations</h3>
+            <h3 className="font-semibold text-gray-600 mb-3">Animations</h3>
             <Button variant="default" className="w-full">
               Shimmer Effect
             </Button>
@@ -175,7 +175,7 @@ function PremiumDemoPageOriginal() {
           
           {/* Sizes */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
-            <h3 className="font-semibold text-gray-200 mb-3">Button Sizes</h3>
+            <h3 className="font-semibold text-gray-600 mb-3">Button Sizes</h3>
             <Button size="sm" variant="default">Extra Small</Button>
             <Button size="sm" variant="default">Small</Button>
             <Button size="default" variant="default">Default</Button>
@@ -185,7 +185,7 @@ function PremiumDemoPageOriginal() {
           
           {/* Icon Buttons */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
-            <h3 className="font-semibold text-gray-200 mb-3">Icon Buttons</h3>
+            <h3 className="font-semibold text-gray-600 mb-3">Icon Buttons</h3>
             <div className="flex flex-wrap gap-3">
               <Button size="icon" variant="default">
                 <Home className="w-5 h-5" />
@@ -210,7 +210,7 @@ function PremiumDemoPageOriginal() {
           
           {/* Gradient Animations */}
           <div className="glass-light rounded-2xl p-6 space-y-4">
-            <h3 className="font-semibold text-gray-200 mb-3">Gradient Animations</h3>
+            <h3 className="font-semibold text-gray-600 mb-3">Gradient Animations</h3>
             <Button className="w-full text-white">
               Rainbow Gradient
             </Button>
@@ -262,7 +262,7 @@ function PremiumDemoPageOriginal() {
                 <h3 className="text-3xl font-bold mb-1 bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent">
                   {stat.value}
                 </h3>
-                <p className="text-sm text-gray-200">{stat.label}</p>
+                <p className="text-sm text-gray-600">{stat.label}</p>
                 
                 {/* Progress Bar */}
                 <div className="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">

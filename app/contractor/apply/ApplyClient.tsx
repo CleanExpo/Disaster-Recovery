@@ -143,7 +143,7 @@ function ContractorApplicationContent() {
       completionModal.innerHTML = `
         <div class="bg-white rounded-xl p-8 max-w-2xl animate-scale-in">
           <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Demo Application Complete!</h2>
-          <p class="text-gray-200 mb-6">The contractor application has been submitted successfully.</p>
+          <p class="text-gray-600 mb-6">The contractor application has been submitted successfully.</p>
           <div class="bg-blue-50 p-4 rounded-lg mb-6">
             <h3 class="font-semibold text-blue-900 mb-2">Next Steps for Contractor:</h3>
             <ul class="text-sm text-blue-800 space-y-1">
