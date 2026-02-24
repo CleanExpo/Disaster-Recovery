@@ -430,7 +430,7 @@ function MouldRemediationGuidePageOriginal() {
                 Get Mould Help Now
               </Link>
               <Link
-                href="/insurance-decoder/mould-coverage"
+                href="/insurance-decoder/mould"
                 className="bg-white text-teal-900 hover:bg-teal-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
               >
                 <Shield className="w-5 h-5" />
@@ -935,7 +935,7 @@ function MouldRemediationGuidePageOriginal() {
             </div>
             <div className="mt-8 text-center">
               <Link
-                href="/insurance-decoder/mould-coverage"
+                href="/insurance-decoder/mould"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
                 <Calculator className="w-5 h-5" />
@@ -1001,7 +1001,7 @@ function MouldRemediationGuidePageOriginal() {
                   <li>• Liability considerations</li>
                 </ul>
                 <Link
-                  href="/property/commercial/mould-management"
+                  href="/property/commercial"
                   className="mt-4 inline-flex items-center text-green-600 hover:text-green-700 font-semibold"
                 >
                   Commercial Mould Guide <ChevronRight className="w-4 h-4" />
@@ -1025,7 +1025,7 @@ function MouldRemediationGuidePageOriginal() {
                   <li>• Environmental monitoring</li>
                 </ul>
                 <Link
-                  href="/property/industrial/mould-control"
+                  href="/property/industrial"
                   className="mt-4 inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold"
                 >
                   Industrial Mould Guide <ChevronRight className="w-4 h-4" />
@@ -1124,7 +1124,7 @@ function MouldRemediationGuidePageOriginal() {
               </Link>
               
               <Link
-                href="/locations/sydney/mould-remediation"
+                href="/locations/sydney"
                 className="bg-gradient-to-br from-green-50 to-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all border border-green-100"
               >
                 <MapPin className="w-10 h-10 text-green-600 mb-3" />
