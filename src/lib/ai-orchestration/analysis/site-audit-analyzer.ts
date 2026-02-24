@@ -326,7 +326,7 @@ export class SiteAuditAnalyzer extends EventEmitter {
       },
       performance: {
         largeAssets: [
-          'Unoptimized images',
+          'Unoptimised images',
           'Large JavaScript bundles'
         ],
         renderBlocking: [

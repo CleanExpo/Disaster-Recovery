@@ -235,7 +235,7 @@ export function Step3Compliance({ data, updateData, errors }: Step3CompliancePro
           <Alert className="bg-blue-50 border-blue-200">
             <Info className="h-4 w-4 text-blue-600" />
             <AlertDescription className="text-blue-700">
-              <strong>Need this certification?</strong> Find registered training organizations (RTOs):
+              <strong>Need this certification?</strong> Find registered training organisations (RTOs):
               <div className="mt-2 space-y-1">
                 <a 
                   href="https://training.gov.au/Training/Details/CPP40421" 

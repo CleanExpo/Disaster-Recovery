@@ -320,7 +320,7 @@ export function EmailTemplates() {
             Email Templates
           </h2>
           <p className="text-gray-700 mt-1">
-            Manage and customize email notification templates
+            Manage and customise email notification templates
           </p>
         </div>
         <div className="flex gap-2">

@@ -1,4 +1,4 @@
-// Who's First Scenario Generator - Creates SEO-optimized content for every disaster scenario
+// Who's First Scenario Generator - Creates SEO-optimised content for every disaster scenario
 
 export interface WhosFirstScenario {
   id: string;
@@ -215,7 +215,7 @@ export class WhosFirstGenerator {
       '2. Safety assessment and hazard mitigation',
       '3. Comprehensive damage documentation for insurance',
       '4. Emergency mitigation to prevent further damage',
-      '5. Insurance liaison and claim maximization',
+      '5. Insurance liaison and claim maximisation',
       '6. Coordinate all necessary specialists',
       '7. Project management through completion',
       '8. Quality assurance and warranty',
@@ -241,7 +241,7 @@ export class WhosFirstGenerator {
       'Proper documentation from hour one doubles average claim payout',
       'Insurance companies prefer approved restoration companies',
       'Secondary damage (like mould) may not be covered if primary damage isn\'t addressed quickly',
-      'We speak insurance language - technical terms that maximize coverage',
+      'We speak insurance language - technical terms that maximise coverage',
       'Our documentation has never had a claim rejected',
       'We identify coverage you didn\'t know you had',
       'We prevent claim delays with proper procedures',
@@ -309,7 +309,7 @@ export class WhosFirstGenerator {
       },
     };
 
-    return impacts[damageType] || { withUs: 'Minimized', withoutUs: 'Significant', savings: 'Substantial' };
+    return impacts[damageType] || { withUs: 'Minimised', withoutUs: 'Significant', savings: 'Substantial' };
   }
 
   private static generateFAQs(damageType: string, variation: string, propertyType: string): { question: string; answer: string }[] {
@@ -324,7 +324,7 @@ export class WhosFirstGenerator {
       },
       {
         question: 'Will calling you first cost me more?',
-        answer: 'Actually, it saves you money. We prevent secondary damage, maximize insurance coverage, and eliminate redundant work. Our coordinated approach typically saves 40-60% compared to calling multiple contractors separately.',
+        answer: 'Actually, it saves you money. We prevent secondary damage, maximise insurance coverage, and eliminate redundant work. Our coordinated approach typically saves 40-60% compared to calling multiple contractors separately.',
       },
       {
         question: 'How quickly can you respond?',
@@ -373,7 +373,7 @@ export class WhosFirstGenerator {
     return {
       title: `${locationText} Family Saves $45,000 by Calling Us First`,
       situation: `A ${this.formatString(variation)} incident occurred in a family home. The homeowner almost called their insurance company first, but remembered our "Who's First?" message.`,
-      action: `They called Disaster Recovery immediately. We arrived within 45 minutes, documented everything, stopped damage spread, and coordinated the entire restoration while maximizing their insurance claim.`,
+      action: `They called Disaster Recovery immediately. We arrived within 45 minutes, documented everything, stopped damage spread, and coordinated the entire restoration while maximising their insurance claim.`,
       result: `Insurance covered 95% of costs (industry average: 60%). Total savings: $45,000. Time to resolution: 3 weeks (industry average: 8 weeks). Zero secondary damage.`,
     };
   }

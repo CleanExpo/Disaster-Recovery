@@ -101,7 +101,7 @@ function CustomerServiceCoursePageOriginal() {
       title: 'Crisis Intervention',
       duration: '60 min',
       lessons: [
-        'Recognizing trauma responses',
+        'Recognising trauma responses',
         'When to involve professionals',
         'Supporting vulnerable customers',
         'Maintaining professional boundaries'

@@ -268,7 +268,7 @@ export default function ReportingModule() {
                   Data Insights:
 • Predictive lead volume forecasting
 • Seasonal trend analysis
-• Territory optimization recommendations
+• Territory optimisation recommendations
 • Pricing strategy insights
 • Contractor performance benchmarking
 • Insurance company scorecards

@@ -85,7 +85,7 @@ export default function DashboardModule() {
             </li>
             <li key="2" className="flex items-start gap-2">"
               <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />"
-              <span className="text-gray-700">Customizing Your Dashboard</span>"
+              <span className="text-gray-700">Customising Your Dashboard</span>"
             </li>
           </ul>
         </CardContent>
@@ -126,7 +126,7 @@ export default function DashboardModule() {
             className="relative"
           >
             <span className="flex items-center gap-2">"
-              {completedSections.includes('Customizing Your Dashboard') ? ('
+              {completedSections.includes('Customising Your Dashboard') ? ('
                 <CheckCircle2 className="h-4 w-4 text-green-600" />"
               ) : (
                 <BookOpen className="h-4 w-4" />"
@@ -210,7 +210,7 @@ export default function DashboardModule() {
 • Conversion Rate: Percentage of leads converted to jobs (target: >70%)
 • Customer Satisfaction: Insurance company ratings (target: >4.5/5)
 • Territory Coverage: Percentage of your area served (target: >90%)
-• Revenue Per Lead: Average job value (optimize for profitability)
+• Revenue Per Lead: Average job value (optimise for profitability)
 • Emergency Response Rate: 24/7 availability score
                 </div>
               </div>
@@ -260,7 +260,7 @@ export default function DashboardModule() {
         <TabsContent value="section-2" className="space-y-4">"
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">Customizing Your Dashboard</CardTitle>"
+              <CardTitle className="text-2xl">Customising Your Dashboard</CardTitle>"
             </CardHeader>
             <CardContent className="space-y-4">"
               <div className="prose prose-gray max-w-none">"
@@ -271,7 +271,7 @@ export default function DashboardModule() {
 • Territory-specific views
 • Service category filters
 • Alert thresholds for urgent leads
-• Mobile dashboard optimization
+• Mobile dashboard optimisation
                 </div>
               </div>
 
@@ -292,10 +292,10 @@ export default function DashboardModule() {
               <div className="flex items-center justify-between pt-4 border-t">"
                 <Button
                   variant="outline"
-                  onClick={() => markSectionComplete('Customizing Your Dashboard')}'
-                  disabled={completedSections.includes('Customizing Your Dashboard')}'
+                  onClick={() => markSectionComplete('Customising Your Dashboard')}'
+                  disabled={completedSections.includes('Customising Your Dashboard')}'
                 >
-                  {completedSections.includes('Customizing Your Dashboard') ? ('
+                  {completedSections.includes('Customising Your Dashboard') ? ('
                     <>
                       <CheckCircle2 className="h-4 w-4 mr-2" />"
                       Completed

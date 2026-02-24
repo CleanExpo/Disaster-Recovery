@@ -577,7 +577,7 @@ function OnlineClaimPageOriginal() {
                 </Alert>
 
                 <div className="space-y-4">
-                  <h3 className="font-semibold">Work Authorizations</h3>
+                  <h3 className="font-semibold">Work Authorisations</h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-2">
                       <Checkbox
@@ -585,7 +585,7 @@ function OnlineClaimPageOriginal() {
                         onCheckedChange={(checked) => setFormData({...formData, authorizePropertyAccess: checked as boolean})}
                       />
                       <Label className="font-normal">
-                        I authorize the assigned contractor to access my property for inspection and make-safe works
+                        I authorise the assigned contractor to access my property for inspection and make-safe works
                       </Label>
                     </div>
                     <div className="flex items-start gap-2">
@@ -594,7 +594,7 @@ function OnlineClaimPageOriginal() {
                         onCheckedChange={(checked) => setFormData({...formData, authorizeInsuranceLiaison: checked as boolean})}
                       />
                       <Label className="font-normal">
-                        I authorize the contractor to liaise with my insurance company on my behalf
+                        I authorise the contractor to liaise with my insurance company on my behalf
                       </Label>
                     </div>
                     <div className="flex items-start gap-2">
@@ -603,7 +603,7 @@ function OnlineClaimPageOriginal() {
                         onCheckedChange={(checked) => setFormData({...formData, authorizeWorkCommencement: checked as boolean})}
                       />
                       <Label className="font-normal">
-                        I authorize the contractor to commence emergency make-safe works as required
+                        I authorise the contractor to commence emergency make-safe works as required
                       </Label>
                     </div>
                   </div>

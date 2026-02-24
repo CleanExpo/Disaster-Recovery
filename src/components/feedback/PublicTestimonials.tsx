@@ -71,7 +71,7 @@ export default function PublicTestimonials({
       customerLocation: 'Sydney, NSW',
       jobType: 'water_damage',
       rating: 5,
-      testimonialText: 'Outstanding service! AquaTech responded immediately to our water damage emergency. Their team was professional, thorough, and restored our office building to perfect condition. The communication throughout the process was excellent, and they worked efficiently to minimize business disruption.',
+      testimonialText: 'Outstanding service! AquaTech responded immediately to our water damage emergency. Their team was professional, thorough, and restored our office building to perfect condition. The communication throughout the process was excellent, and they worked efficiently to minimise business disruption.',
       photos: ['/testimonials/water-damage-before.jpg', '/testimonials/water-damage-after.jpg'],
       publishedDate: new Date('2024-03-15'),
       featured: true,

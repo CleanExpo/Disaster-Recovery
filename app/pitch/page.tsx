@@ -99,7 +99,7 @@ function PitchSelectionOriginal() {
             </h1>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
               Select the presentation tailored to your needs and discover how Disaster Recovery Pro
-              is revolutionizing the industry for everyone involved.
+              is revolutionising the industry for everyone involved.
             </p>
           </motion.div>
 

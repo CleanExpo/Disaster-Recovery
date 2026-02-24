@@ -573,7 +573,7 @@ const Footer: React.FC = () => {
                       <span className="text-white">{ABN}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>License:</span>
+                      <span>Licence:</span>
                       <span className="text-white">QLD-DR-001234</span>
                     </div>
                     <div className="flex justify-between">

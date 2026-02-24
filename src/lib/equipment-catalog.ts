@@ -536,7 +536,7 @@ export const equipmentCatalog: EquipmentSpecification[] = [
       monthly: 7500
     },
     description: 'Industrial ultrasonic cleaning system for delicate restoration of fire and smoke damaged items.',
-    technicalDetails: 'Utilizes cavitation process to remove contaminants at microscopic level. Dual frequency allows optimisation for different material types.',
+    technicalDetails: 'Utilises cavitation process to remove contaminants at microscopic level. Dual frequency allows optimisation for different material types.',
     operationalRequirements: [
       '220V power supply',
       'Water supply connection',

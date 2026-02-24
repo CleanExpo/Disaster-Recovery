@@ -603,7 +603,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-semibold">{metric.utilizationRate}%</p>
-                  <p className="text-xs text-gray-300">Utilization</p>
+                  <p className="text-xs text-gray-300">Utilisation</p>
                 </div>
               </div>
 

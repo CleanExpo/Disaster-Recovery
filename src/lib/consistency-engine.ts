@@ -555,7 +555,7 @@ export const SEO_CONFIG = {
         cls: 0.1  // Cumulative Layout Shift
       },
       techniques: [
-        'Image optimization with WebP',
+        'Image optimisation with WebP',
         'Lazy loading below fold',
         'Code splitting by route',
         'Edge caching with CDN',

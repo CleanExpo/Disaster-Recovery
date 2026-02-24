@@ -48,8 +48,8 @@ function Day4HealthSafetyOriginal() {
             qld: {
               authority: "Workplace Health and Safety Queensland",
               specificRequirements: [
-                "Asbestos license for removal >10m²",
-                "High risk work licenses",
+                "Asbestos licence for removal >10m²",
+                "High risk work licences",
                 "Electrical safety requirements",
                 "Construction induction (White Card)"
               ]
@@ -59,7 +59,7 @@ function Day4HealthSafetyOriginal() {
               specificRequirements: [
                 "SafeWork Method Statements (SWMS)",
                 "Asbestos removal notification",
-                "Demolition licenses",
+                "Demolition licences",
                 "Traffic management certification"
               ]
             }
@@ -380,14 +380,14 @@ function Day4HealthSafetyOriginal() {
           friable: {
             definition: "Can be crumbled by hand pressure",
             examples: ["Pipe lagging", "Sprayed coatings", "Fire doors"],
-            risk: "High - releases fibers easily",
-            license: "Class A license required"
+            risk: "High - releases fibres easily",
+            license: "Class A licence required"
           },
           nonFriable: {
             definition: "Bonded, cannot be crumbled by hand",
             examples: ["Fibro sheets", "Floor tiles", "Roofing"],
             risk: "Lower unless damaged",
-            license: "Class B license for >10m²"
+            license: "Class B licence for >10m²"
           }
         },
         procedures: {
@@ -417,7 +417,7 @@ function Day4HealthSafetyOriginal() {
             "Pleural plaques"
           ],
           latency: "10-40 years after exposure",
-          exposure: "No safe level - minimize all exposure"
+          exposure: "No safe level - minimise all exposure"
         }
       }
     }
@@ -530,7 +530,7 @@ function Day4HealthSafetyOriginal() {
             <AlertTriangle className="h-4 w-4 text-red-600" />
             <AlertDescription className="text-xs">
               Safety compliance is mandatory. Failure to follow WHS requirements can result in 
-              prosecution and license suspension.
+              prosecution and licence suspension.
             </AlertDescription>
           </Alert>
         </aside>

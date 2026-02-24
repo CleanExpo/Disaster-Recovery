@@ -1209,7 +1209,7 @@ Professional drying is both science and art. While psychrometric principles guid
 - **Surface Area**: Increased airflow across wet surfaces accelerates evaporation
 - **Air Exchange**: Moving saturated air away from wet surfaces maintains drying potential
 - **Temperature**: Warm air holds more moisture than cold air
-- **Pressure Differentials**: Creating airflow patterns optimizes moisture removal
+- **Pressure Differentials**: Creating airflow patterns optimises moisture removal
 
 **Air Mover Placement Strategies:**
 
@@ -1423,10 +1423,10 @@ This advanced understanding of drying systems enables you to handle complex wate
         ],
         assessmentQuestions: [
           {
-            question: "What is the optimal angle for air mover placement to maximize evaporation?",
+            question: "What is the optimal angle for air mover placement to maximise evaporation?",
             options: ["30 degrees", "45 degrees", "60 degrees", "90 degrees"],
             correctAnswer: "45 degrees",
-            explanation: "45-degree angle provides optimal airflow across wet surfaces to maximize evaporation rates."
+            explanation: "45-degree angle provides optimal airflow across wet surfaces to maximise evaporation rates."
           },
           {
             question: "At what temperature do refrigerant dehumidifiers begin to lose efficiency significantly?",
@@ -1472,7 +1472,7 @@ This advanced understanding of drying systems enables you to handle complex wate
           "How do you prioritize the drying strategy across multiple levels?",
           "What additional challenges does multi-story water damage present?",
           "How do you prevent moisture migration between levels?",
-          "What equipment placement strategy optimizes drying efficiency?"
+          "What equipment placement strategy optimises drying efficiency?"
         ],
         correctApproach: "Start with source control and upper level extraction, establish containment between levels, monitor moisture migration patterns, coordinate equipment placement to prevent cross-contamination between affected areas"
       }

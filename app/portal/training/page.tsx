@@ -132,7 +132,7 @@ function TrainingHubOriginal() {
       ]
     },
     week2: {
-      title: "Week 2: Advanced Skills & Specialization",
+      title: "Week 2: Advanced Skills & Specialisation",
       days: [
         {
           day: 8,
@@ -182,7 +182,7 @@ function TrainingHubOriginal() {
           duration: "8 hours",
           modules: [
             "Commercial project management",
-            "Business interruption minimization",
+            "Business interruption minimisation",
             "Multi-unit coordination",
             "Industrial drying systems",
             "Documentation at scale",

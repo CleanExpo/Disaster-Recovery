@@ -120,7 +120,7 @@ const day1: DayContent = {
     {
       id: "D1-LO1",
       title: "Identify Australian Disaster Types",
-      description: "Recognise and categorize all major disaster types affecting Australian properties",
+      description: "Recognise and categorise all major disaster types affecting Australian properties",
       measurableOutcome: "Correctly identify 15+ disaster types with 95% accuracy",
       assessmentCriteria: "Written assessment and visual identification test"
     },
@@ -1162,7 +1162,7 @@ const day2: DayContent = {
     {
       id: "D2-LO1",
       title: "Master Water Damage Categories and Classes",
-      description: "Accurately categorize water damage for proper restoration approach",
+      description: "Accurately categorise water damage for proper restoration approach",
       measurableOutcome: "Correctly classify 20 water damage scenarios with 100% accuracy",
       assessmentCriteria: "Written and photographic classification test"
     },
@@ -1198,7 +1198,7 @@ const day2: DayContent = {
       content: `
 **Understanding Water Categories: The Foundation of Safe Restoration**
 
-Water damage categorization determines your safety approach, equipment needs, and restoration procedures. Getting this wrong can endanger health, violate regulations, and result in claim denial.
+Water damage categorisation determines your safety approach, equipment needs, and restoration procedures. Getting this wrong can endanger health, violate regulations, and result in claim denial.
 
 **Category 1: Clean Water**
 
@@ -2627,7 +2627,7 @@ Recoverable after replacement: $1,500
         "Established central command in empty unit",
         "Created detailed unit-by-unit documentation system",
         "Engaged asbestos hygienist for safe removal",
-        "Implemented night shift work to maximize access",
+        "Implemented night shift work to maximise access",
         "Coordinated with property manager for communications",
         "Developed cost allocation matrix for insurers"
       ],

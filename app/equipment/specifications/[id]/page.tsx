@@ -70,7 +70,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
             </Link>
             <span className="text-gray-700">/</span>
             <Link href="/equipment/catalog" className="text-gray-700 hover:text-blue-600">
-              Catalog
+              Catalogue
             </Link>
             <span className="text-gray-700">/</span>
             <Link href={`/equipment/${equipment.category.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-700 hover:text-blue-600">
@@ -88,7 +88,7 @@ export default function EquipmentSpecificationPage({ params }: EquipmentPageProp
         <Link href="/equipment/catalog">
           <Button variant="outline" className="mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Catalog
+            Back to Catalogue
           </Button>
         </Link>
 

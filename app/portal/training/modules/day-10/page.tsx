@@ -987,7 +987,7 @@ function Day10ModuleOriginal() {
               <ul>
                 <li>Biohazard cleaning requires specialised training and strict protocols</li>
                 <li>Always obtain proper clearance before beginning trauma scene cleaning</li>
-                <li>PPE is your last line of defense - use engineering controls first</li>
+                <li>PPE is your last line of defence - use engineering controls first</li>
                 <li>Respirator is the last item removed to maintain protection</li>
                 <li>Different pathogens require different disinfection strategies</li>
                 <li>C. difficile spores require sporicidal agents - alcohol is ineffective</li>

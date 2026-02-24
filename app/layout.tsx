@@ -215,7 +215,7 @@ export default function RootLayout({
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Biohazard Cleanup",
-                      "description": "Specialized biohazard and trauma scene cleanup"
+                      "description": "Specialised biohazard and trauma scene cleanup"
                     }
                   }
                 ]

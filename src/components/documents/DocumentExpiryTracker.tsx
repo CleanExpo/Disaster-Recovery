@@ -62,7 +62,7 @@ const DocumentExpiryTracker: React.FC<DocumentExpiryTrackerProps> = ({
         },
         {
           documentId: 'doc_003',
-          title: 'Business License',
+          title: 'Business Licence',
           category: 'compliance',
           expiryDate: '2024-06-30T23:59:59Z',
           daysUntilExpiry: 75,

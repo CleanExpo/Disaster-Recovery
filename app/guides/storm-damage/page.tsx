@@ -228,7 +228,7 @@ function StormDamageGuidePageOriginal() {
   const restorationSteps = [
     {
       step: 1,
-      title: 'Safety & Stabilization',
+      title: 'Safety & Stabilisation',
       duration: '0-48 hours',
       tasks: [
         'Structural engineer assessment',
@@ -342,7 +342,7 @@ function StormDamageGuidePageOriginal() {
     },
     {
       question: 'What about damage from trees on my property?',
-      answer: 'If your tree falls and damages your property, your insurance typically covers it. If a neighbor\'s tree damages your property, your insurance still covers it (then may pursue their insurance). Removal is usually covered only if the tree damaged a covered structure.'
+      answer: 'If your tree falls and damages your property, your insurance typically covers it. If a neighbour\'s tree damages your property, your insurance still covers it (then may pursue their insurance). Removal is usually covered only if the tree damaged a covered structure.'
     },
     {
       question: 'Will insurance cover upgrading to current building codes?',

@@ -1346,7 +1346,7 @@ Biohazard cleanup involves exposure to potentially infectious materials and toxi
 **DOT Hazardous Material Regulations:**
 - **Classification**: Biohazard waste classified as regulated medical waste
 - **Packaging**: Specific packaging requirements for transportation
-- **Labeling**: Proper hazard labels and shipping papers
+- **Labelling**: Proper hazard labels and shipping papers
 - **Training**: DOT training for personnel handling regulated materials
 
 ### Decontamination Procedures
@@ -1383,7 +1383,7 @@ Biohazard cleanup involves exposure to potentially infectious materials and toxi
 **Packaging Requirements:**
 - **Primary Container**: Leak-proof, labeled biohazard containers
 - **Secondary Containment**: Additional containment for transportation
-- **Labeling**: Proper biohazard labels and identification
+- **Labelling**: Proper biohazard labels and identification
 - **Documentation**: Chain of custody and waste tracking forms
 
 **Treatment and Disposal:**
@@ -1433,7 +1433,7 @@ Biohazard cleanup involves exposure to potentially infectious materials and toxi
 - **Warranty**: Appropriate warranty for biohazard cleanup work
 - **Maintenance**: Recommendations for ongoing maintenance of cleaned areas
 
-This comprehensive approach to biohazard safety ensures worker protection, regulatory compliance, and successful cleanup outcomes while minimizing liability and health risks.
+This comprehensive approach to biohazard safety ensures worker protection, regulatory compliance, and successful cleanup outcomes while minimising liability and health risks.
         `,
         keyPoints: [
           "Bloodborne pathogen safety is paramount in all biohazard cleanup work",
@@ -1636,7 +1636,7 @@ Success as a disaster recovery contractor depends heavily on understanding how i
 - **Detail Photos**: Close-up photos of specific damage areas
 - **Before/During/After**: Document conditions throughout restoration process
 - **Reference Points**: Include measuring devices or reference objects for scale
-- **Labeling**: Clear labeling of all photos with location and description
+- **Labelling**: Clear labelling of all photos with location and description
 
 **Written Documentation:**
 - **Initial Assessment**: Detailed written assessment of damage and restoration requirements

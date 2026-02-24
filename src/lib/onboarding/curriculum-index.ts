@@ -193,7 +193,7 @@ export const CERTIFICATION_REQUIREMENTS = {
   ],
   timeRequirement: "14 days (84-112 hours)",
   prerequisites: [
-    "Valid driver's license",
+    "Valid driver's licence",
     "Working with Children Check (if applicable)",
     "Police clearance",
     "Basic computer skills",

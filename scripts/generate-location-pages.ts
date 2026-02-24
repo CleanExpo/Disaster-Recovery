@@ -26,7 +26,7 @@ const AUSTRALIAN_LOCATIONS = {
     { name: 'Launceston', state: 'TAS', postcode: '7250', population: 90953 },
     { name: 'Mackay', state: 'QLD', postcode: '4740', population: 85919 }
   ],
-  // Regional Centers
+  // Regional Centres
   regional: [
     { name: 'Albury', state: 'NSW', postcode: '2640' },
     { name: 'Wodonga', state: 'VIC', postcode: '3690' },

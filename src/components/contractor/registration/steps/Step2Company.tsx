@@ -322,7 +322,7 @@ export function Step2Company({ data, updateData, errors }: Step2CompanyProps) {
                 <SelectItem value="TRUST">Trust</SelectItem>
               </SelectContent>
             </Select>
-            <p className="text-xs text-gray-700">Business type categorization</p>
+            <p className="text-xs text-gray-700">Business type categorisation</p>
             {errors['company.companyStructure'] && (
               <p className="text-sm text-red-500">{errors['company.companyStructure']}</p>
             )}

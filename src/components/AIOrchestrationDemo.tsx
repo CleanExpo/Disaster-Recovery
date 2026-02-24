@@ -41,7 +41,7 @@ const EXAMPLE_PROMPTS = [
   },
   {
     title: "Storm Damage Evaluation",
-    prompt: "Severe hailstorm damaged my commercial building roof and broke several windows. Need to assess structural integrity, prioritize repairs, and estimate costs for insurance claim. The building houses IT equipment that needs protection.",
+    prompt: "Severe hailstorm damaged my commercial building roof and broke several windows. Need to assess structural integrity, prioritise repairs, and estimate costs for insurance claim. The building houses IT equipment that needs protection.",
     type: "business-analytics"
   }
 ];

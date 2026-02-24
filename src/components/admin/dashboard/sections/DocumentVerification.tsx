@@ -229,7 +229,7 @@ export function DocumentVerification() {
             <SelectContent>
               <SelectItem value="all">All Types</SelectItem>
               <SelectItem value="insurance">Insurance</SelectItem>
-              <SelectItem value="license">License</SelectItem>
+              <SelectItem value="license">Licence</SelectItem>
               <SelectItem value="certification">Certification</SelectItem>
               <SelectItem value="abn">ABN</SelectItem>
               <SelectItem value="identification">ID</SelectItem>
@@ -274,7 +274,7 @@ export function DocumentVerification() {
             <CardContent>
               <p className="text-xs text-gray-700">
                 {queue.priority === 'urgent' && 'Expiring within 7 days'}
-                {queue.priority === 'high' && 'Insurance & Licenses'}
+                {queue.priority === 'high' && 'Insurance & Licences'}
                 {queue.priority === 'normal' && 'Certifications & ABN'}
                 {queue.priority === 'low' && 'ID & Bank Details'}
               </p>

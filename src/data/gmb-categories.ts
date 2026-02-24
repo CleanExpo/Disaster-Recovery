@@ -1,6 +1,6 @@
 /**
  * Google My Business (GMB) Categories for Disaster Recovery Services
- * These are the primary and secondary categories that maximize SEO visibility
+ * These are the primary and secondary categories that maximise SEO visibility
  * Each category represents a pillar page for optimal search engine coverage
  */
 

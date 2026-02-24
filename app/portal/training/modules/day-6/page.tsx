@@ -36,7 +36,7 @@ function Day6CustomerServiceOriginal() {
               "Acknowledge their feelings - 'I understand this is stressful'",
               "Use their name frequently",
               "Mirror their emotions appropriately",
-              "Avoid minimizing their concerns"
+              "Avoid minimising their concerns"
             ],
             phrases: {
               good: [
@@ -193,7 +193,7 @@ function Day6CustomerServiceOriginal() {
             considerations: [
               "Noise from equipment",
               "Restricted access to areas",
-              "Dust and odors",
+              "Dust and odours",
               "Safety zones"
             ]
           },
@@ -369,7 +369,7 @@ function Day6CustomerServiceOriginal() {
             "Good personal hygiene"
           ],
           site: [
-            "Clean, organized equipment",
+            "Clean, organised equipment",
             "Professional signage",
             "Tidy work areas",
             "Proper containment setup",
@@ -405,7 +405,7 @@ function Day6CustomerServiceOriginal() {
             "All conversations logged",
             "Change requests in writing",
             "Photo consent obtained",
-            "Work authorizations signed",
+            "Work authorisations signed",
             "Completion certificates"
           ]
         }
@@ -462,7 +462,7 @@ function Day6CustomerServiceOriginal() {
           positive: {
             response: "Thank you publicly",
             elements: [
-              "Personalized message",
+              "Personalised message",
               "Mention specific details",
               "Share credit with team",
               "Professional tone"

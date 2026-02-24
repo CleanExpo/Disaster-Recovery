@@ -105,7 +105,7 @@ class PsychologyExpert extends ExpertAgent {
         'Trust must be established in first 10 seconds',
         'Emotional support as important as technical solution',
         'Decision fatigue reduction through AI guidance',
-        'Cognitive load minimization in UI/UX'
+        'Cognitive load minimisation in UI/UX'
       ],
       risks: [
         'Over-automation losing human touch',
@@ -209,7 +209,7 @@ class TechnologyExpert extends ExpertAgent {
         scale: '1M claims/year',
         innovations: [
           'Computer vision damage assessment',
-          'Predictive disaster modeling',
+          'Predictive disaster modelling',
           'Autonomous contractor dispatch',
           'Real-time optimization'
         ]
@@ -511,7 +511,7 @@ export class MultiAgentOrchestrator extends EventEmitter {
         'Geographic expansion timing',
         'Technology build vs buy decisions'
       ],
-      synthesis: 'Unanimous agreement: Platform can reach $20M through AI-powered network effects, but execution speed is critical. Main debate centers on resource allocation between growth and sustainability.',
+      synthesis: 'Unanimous agreement: Platform can reach $20M through AI-powered network effects, but execution speed is critical. Main debate centres on resource allocation between growth and sustainability.',
       actionPlan: [
         '1. Deploy HRM across platform (Week 1)',
         '2. Launch contractor onboarding (Week 1)',

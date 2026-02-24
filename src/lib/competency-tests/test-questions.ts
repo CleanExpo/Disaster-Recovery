@@ -330,10 +330,10 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     id: 'lic_001',
     category: CompetencyCategory.SPECIAL_LICENSES,
     subcategory: 'Electrical Work',
-    question: 'TRUE or FALSE: A disaster recovery technician can disconnect and reconnect electrical appliances during flood restoration without an electrical license.',
+    question: 'TRUE or FALSE: A disaster recovery technician can disconnect and reconnect electrical appliances during flood restoration without an electrical licence.',
     questionType: 'TRUE_FALSE',
     correctAnswer: 'FALSE',
-    explanation: 'Any electrical work, including disconnecting/reconnecting fixed wired appliances, requires a licensed electrician. Technicians can only unplug portable appliances.',
+    explanation: 'Any electrical work, including disconnecting/reconnecting fixed wired appliances, requires a licenced electrician. Technicians can only unplug portable appliances.',
     reference: 'Electrical Safety Act 2002 - Section 55',
     difficulty: 'BASIC',
     points: 5,
@@ -343,7 +343,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     id: 'lic_002',
     category: CompetencyCategory.SPECIAL_LICENSES,
     subcategory: 'Plumbing',
-    question: 'Which of the following requires a plumbing license in Queensland?',
+    question: 'Which of the following requires a plumbing licence in Queensland?',
     questionType: 'MULTIPLE_CHOICE',
     options: [
       'Extracting water with portable pumps',
@@ -352,7 +352,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
       'Cleaning gutters'
     ],
     correctAnswer: 'Disconnecting a toilet for drying',
-    explanation: 'Any work on sanitary plumbing, including disconnecting toilets, requires a plumbing license. Water extraction and dehumidification are not regulated plumbing work.',
+    explanation: 'Any work on sanitary plumbing, including disconnecting toilets, requires a plumbing licence. Water extraction and dehumidification are not regulated plumbing work.',
     reference: 'Plumbing and Drainage Act 2018 (QLD) - Section 106',
     difficulty: 'INTERMEDIATE',
     points: 6,
@@ -362,7 +362,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     id: 'lic_003',
     category: CompetencyCategory.SPECIAL_LICENSES,
     subcategory: 'Asbestos Removal',
-    question: 'What is the maximum amount of non-friable asbestos that can be removed without an asbestos removal license?',
+    question: 'What is the maximum amount of non-friable asbestos that can be removed without an asbestos removal licence?',
     questionType: 'MULTIPLE_CHOICE',
     options: [
       '10 square metres',
@@ -371,7 +371,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
       'Any amount with proper PPE'
     ],
     correctAnswer: '10 square metres',
-    explanation: 'Up to 10m² of non-friable asbestos can be removed without a license, but must follow all safety procedures. Friable asbestos always requires a Class A license.',
+    explanation: 'Up to 10m² of non-friable asbestos can be removed without a licence, but must follow all safety procedures. Friable asbestos always requires a Class A licence.',
     reference: 'Work Health and Safety Regulation 2011 - Regulation 485',
     difficulty: 'INTERMEDIATE',
     points: 7,

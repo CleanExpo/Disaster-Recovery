@@ -222,7 +222,7 @@ function Day2WaterDamageRestorationOriginal() {
               "Class of water damage",
               "Temperature and initial RH",
               "Air movement",
-              "Vapor barriers",
+              "Vapour barriers",
               "HVAC operation"
             ]
           }
@@ -248,7 +248,7 @@ function Day2WaterDamageRestorationOriginal() {
           vaporPressure: {
             definition: "Force driving evaporation",
             calculation: "Difference between surface and air",
-            optimization: "Maximize pressure differential"
+            optimization: "Maximise pressure differential"
           }
         },
         dryingScience: {
@@ -285,7 +285,7 @@ function Day2WaterDamageRestorationOriginal() {
           "Affected areas and materials",
           "Moisture mapping with readings",
           "Photo documentation - minimum 20 photos",
-          "Customer authorization forms",
+          "Customer authorisation forms",
           "Insurance adjuster contact"
         ],
         dailyMonitoring: [
@@ -323,7 +323,7 @@ function Day2WaterDamageRestorationOriginal() {
           "Contain damage - prevent secondary damage",
           "Remove excess water - extract immediately",
           "Evaporate remaining moisture",
-          "Dehumidify to remove vapor",
+          "Dehumidify to remove vapour",
           "Monitor progress daily",
           "Confirm drying to standard"
         ],

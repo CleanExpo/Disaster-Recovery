@@ -8,7 +8,7 @@ export const methLabDecontaminationData: ServicePageData = {
   slug: 'meth-lab-decontamination',
   breadcrumbLabel: 'Biohazard',
   title: 'Clandestine Drug Lab Decontamination',
-  leadText: 'Rigorous, scientific remediation to restore your property to safe, legal habitation standards. Conducted exclusively by specialized NRPG bio-technicians.',
+  leadText: 'Rigorous, scientific remediation to restore your property to safe, legal habitation standards. Conducted exclusively by specialised NRPG bio-technicians.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #0A1B2C 0%, #1A4674 100%)',
     leadBorderColor: '#F29900',
@@ -44,7 +44,7 @@ export const methLabDecontaminationData: ServicePageData = {
   protocolSteps: [
     {
       title: 'Initial Environmental Assessment:',
-      description: ' Deployment of specialized field technicians to conduct thorough site mapping and chemical sampling.',
+      description: ' Deployment of specialised field technicians to conduct thorough site mapping and chemical sampling.',
     },
     {
       title: 'Site Containment & Depressurization:',

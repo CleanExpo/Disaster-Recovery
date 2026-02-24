@@ -170,11 +170,11 @@ async function generateActionPlan(results: any) {
   console.log(chalk.white('   4. ✓ Applied consistent professional styling'));
   console.log(chalk.white('   5. ✓ Enhanced brand perception'));
 
-  console.log(chalk.yellow('\n🔄 REMAINING OPTIMIZATIONS:'));
+  console.log(chalk.yellow('\n🔄 REMAINING OPTIMISATIONS:'));
   console.log(chalk.white('   1. Add authentication to portal pages'));
   console.log(chalk.white('   2. Implement portal functionality (dashboards, job board, etc.)'));
   console.log(chalk.white('   3. Create missing sub-pages (documents, messages, etc.)'));
-  console.log(chalk.white('   4. Add SEO optimization for new pages'));
+  console.log(chalk.white('   4. Add SEO optimisation for new pages'));
   console.log(chalk.white('   5. Mobile responsive improvements'));
 
   console.log(chalk.blue('\n🚀 ENHANCEMENT OPPORTUNITIES:'));

@@ -250,10 +250,10 @@ export const TRAINING_MODULES = {
           • How to prevent? (Corrective actions)
           
           Root Cause Categories:
-          • Absent/Failed Defenses
+          • Absent/Failed Defences
           • Individual/Team Actions
           • Task/Environmental Conditions
-          • Organizational Factors
+          • Organisational Factors
           
           Reporting Timeline:
           • Notify within 2 hours

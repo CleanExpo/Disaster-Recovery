@@ -38,7 +38,7 @@ function WRTCoursePageOriginal() {
       lessons: [
         'Understanding psychrometry',
         'Temperature and humidity relationships',
-        'Dew point and vapor pressure',
+        'Dew point and vapour pressure',
         'Evaporation and dehumidification'
       ],
       completed: false,

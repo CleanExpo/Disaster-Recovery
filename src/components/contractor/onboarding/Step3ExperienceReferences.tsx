@@ -230,7 +230,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
             <Award className="mr-2 h-5 w-5 text-purple-600" />
-            Service Specializations
+            Service Specialisations
           </h3>
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -582,7 +582,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
               <Textarea
                 id="professionalMemberships"
                 {...register('professionalMemberships')}
-                placeholder="List memberships in professional organizations (e.g., IICRC, RIA, local trade associations)..."
+                placeholder="List memberships in professional organisations (e.g., IICRC, RIA, local trade associations)..."
                 rows={3}
               />
             </div>

@@ -105,9 +105,9 @@ export function generateLocationIntro(location: LocationData): string {
   const templates = [
     `${location.city}, ${location.state} residents face unique challenges when it comes to property damage restoration. With a population of ${location.population.toLocaleString()}, this ${location.climate} climate city experiences specific environmental factors that can impact your home or business.`,
     
-    `Located in ${location.state}, ${location.city} is home to ${location.population.toLocaleString()} people who understand the importance of reliable disaster recovery services. The local ${location.climate} climate creates specific conditions that require specialized restoration expertise.`,
+    `Located in ${location.state}, ${location.city} is home to ${location.population.toLocaleString()} people who understand the importance of reliable disaster recovery services. The local ${location.climate} climate creates specific conditions that require specialised restoration expertise.`,
     
-    `When disaster strikes in ${location.city}, you need local experts who understand the unique challenges of this ${location.state} location. Our ${location.city} team serves all ${location.population.toLocaleString()} residents with specialized knowledge of regional restoration requirements.`
+    `When disaster strikes in ${location.city}, you need local experts who understand the unique challenges of this ${location.state} location. Our ${location.city} team serves all ${location.population.toLocaleString()} residents with specialised knowledge of regional restoration requirements.`
   ];
   
   return templates[Math.floor(Math.random() * templates.length)];
@@ -115,7 +115,7 @@ export function generateLocationIntro(location: LocationData): string {
 
 export function generateCommonIssuesSection(location: LocationData): string {
   const issues = location.commonIssues.slice(0, 3).join(', ');
-  return `${location.city} properties commonly experience ${issues}. These local conditions require specialized restoration techniques that our certified technicians are trained to handle. We understand the specific challenges that ${location.climate} climates present to property owners.`;
+  return `${location.city} properties commonly experience ${issues}. These local conditions require specialised restoration techniques that our certified technicians are trained to handle. We understand the specific challenges that ${location.climate} climates present to property owners.`;
 }
 
 export function generateServiceAreas(location: LocationData): string {

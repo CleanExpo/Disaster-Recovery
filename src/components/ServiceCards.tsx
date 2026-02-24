@@ -52,7 +52,7 @@ const services: ServiceCard[] = [
   },
   {
     title: 'Commercial Services',
-    description: 'Minimize downtime with our rapid commercial restoration',
+    description: 'Minimise downtime with our rapid commercial restoration',
     icon: Building2,
     colour: 'purple',
     gradient: 'from-purple-500 to-pink-500',

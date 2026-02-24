@@ -673,7 +673,7 @@ function Day14ModuleOriginal() {
                 <li>Recognised across the Australian restoration industry</li>
                 <li>Valid for 2 years with annual refresher required</li>
                 <li>Access to ongoing professional development</li>
-                <li>Priority for specialized training opportunities</li>
+                <li>Priority for specialised training opportunities</li>
                 <li>Eligible for senior technician pathway</li>
               </ul>
             </div>

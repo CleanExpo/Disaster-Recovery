@@ -218,7 +218,7 @@ function CourseCatalogPageOriginal() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Course Catalog</h1>
+          <h1 className="text-4xl font-bold text-white mb-4">Course Catalogue</h1>
           <p className="text-gray-700">Access all NRP training courses and certifications</p>
         </div>
 

@@ -28,7 +28,7 @@ export const mouldRemediationData: ServicePageData = {
     {
       iconSvg: iconContainment,
       title: 'Negative Pressure Containment',
-      description: 'We construct airtight microbial containment chambers utilizing 6-mil poly-sheeting and zipper-doors, keeping active mould spores isolated from healthy, unaffected areas of the home.',
+      description: 'We construct airtight microbial containment chambers utilising 6-mil poly-sheeting and zipper-doors, keeping active mould spores isolated from healthy, unaffected areas of the home.',
     },
     {
       iconSvg: iconMicrobe,
@@ -45,7 +45,7 @@ export const mouldRemediationData: ServicePageData = {
   protocolSteps: [
     {
       title: 'Initial Moisture Root-Cause:',
-      description: ' Mould only grows where water exists. We first utilize thermal imaging to locate and halt the source of moisture intrusion.',
+      description: ' Mould only grows where water exists. We first utilise thermal imaging to locate and halt the source of moisture intrusion.',
     },
     {
       title: 'Pre-Remediation IAQ Testing:',

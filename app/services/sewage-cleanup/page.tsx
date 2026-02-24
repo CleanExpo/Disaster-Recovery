@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Sewage Cleanup Brisbane | Disaster Recovery',
-  description: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form',
+  description: 'Professional sewage cleanup and sanitisation in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form',
 };
 
 export default function SewageCleanupPage() {
@@ -14,7 +14,7 @@ export default function SewageCleanupPage() {
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Sewage Cleanup Brisbane',
-        subtitle: 'Professional sewage cleanup and sanitization in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online ',
+        subtitle: 'Professional sewage cleanup and sanitisation in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online ',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
       breadcrumbs={[

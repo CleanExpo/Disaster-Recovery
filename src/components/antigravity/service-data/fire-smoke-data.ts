@@ -8,7 +8,7 @@ export const fireSmokeData: ServicePageData = {
   slug: 'fire-smoke',
   breadcrumbLabel: 'Fire & Smoke',
   title: 'Fire & Smoke Remediation',
-  leadText: 'Advanced recovery protocols for structural fire damage. We deploy intensive carbon filtration, thermal fogging, and specialized chemical sponges to permanently neutralize highly toxic smoke residues.',
+  leadText: 'Advanced recovery protocols for structural fire damage. We deploy intensive carbon filtration, thermal fogging, and specialised chemical sponges to permanently neutralize highly toxic smoke residues.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #2D0A0A 0%, #741A1A 100%)',
     headerRadial: 'radial-gradient(circle at bottom right, rgba(239, 68, 68, 0.2) 0%, transparent 70%)',
@@ -28,7 +28,7 @@ export const fireSmokeData: ServicePageData = {
     {
       iconSvg: iconScrub,
       title: 'Soot Decontamination',
-      description: 'Utilizing specialized dry chem sponges and highly formulated degreasers, we methodically lift bonded soot and carbon from porous drywall and historic masonry without causing micro-abrasions.',
+      description: 'Utilising specialised dry chem sponges and highly formulated degreasers, we methodically lift bonded soot and carbon from porous drywall and historic masonry without causing micro-abrasions.',
     },
     {
       iconSvg: iconWind,

@@ -104,7 +104,7 @@ export default function ClientPitch() {
               <CheckCircle2 className="w-10 h-10 text-green-600 mb-4" />
               <h3 className="text-lg font-semibold text-white mb-2">Verified Contractors</h3>
               <p className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-                All contractors are licensed, insured, and quality-verified
+                All contractors are licenced, insured, and quality-verified
               </p>
             </div>
 

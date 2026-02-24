@@ -229,7 +229,7 @@ function R6DemoPageOriginal() {
               { 
                 step: '01', 
                 title: 'Emergency Response', 
-                desc: 'Immediate 24/7 response to minimize damage',
+                desc: 'Immediate 24/7 response to minimise damage',
                 icon: Zap
               },
               { 

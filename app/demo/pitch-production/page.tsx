@@ -28,7 +28,7 @@ function PitchProductionPageOriginal() {
             Investor Pitch Deck - Production Version
           </h1>
           <p className="text-blue-700 text-lg">
-            Professional presentation with ElevenLabs voice narration and synchronized slides
+            Professional presentation with ElevenLabs voice narration and synchronised slides
           </p>
         </div>
         

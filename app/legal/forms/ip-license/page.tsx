@@ -6,9 +6,9 @@ import { AgLegalPageTemplate } from '@/components/antigravity';
 export default function IntellectualPropertyLicenseAgreementsPage() {
   return (
     <AgLegalPageTemplate
-      title="Intellectual Property License Agreements"
-      category="Ip License"
-      description="Legal documents and agreements for ip license"
+      title="Intellectual Property Licence Agreements"
+      category="IP Licence"
+      description="Legal documents and agreements for IP licence"
     />
   );
 }

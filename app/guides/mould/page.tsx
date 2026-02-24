@@ -49,7 +49,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'High - respiratory issues, allergies',
       growthConditions: 'Warm, humid environments',
       removalDifficulty: 'Moderate to High',
-      identificationTips: 'Powdery texture, musty odor'
+      identificationTips: 'Powdery texture, musty odour'
     },
     penicillium: {
       name: 'Penicillium',
@@ -94,7 +94,7 @@ function MouldRemediationGuidePageOriginal() {
       healthRisk: 'High - neurological effects possible',
       growthConditions: 'Chronic water damage',
       removalDifficulty: 'High',
-      identificationTips: 'Cotton-like texture, musty odor'
+      identificationTips: 'Cotton-like texture, musty odour'
     }
   };
 
@@ -222,7 +222,7 @@ function MouldRemediationGuidePageOriginal() {
       duration: 'Day 3-5',
       activities: [
         'Antimicrobial application',
-        'Surface sanitization',
+        'Surface sanitisation',
         'Air scrubbing',
         'Fogging treatment',
         'Encapsulation if needed'

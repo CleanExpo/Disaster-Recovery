@@ -573,7 +573,7 @@ export function EnhancedDashboard() {
               { name: 'Insurance', status: 'Active', expiry: 'Mar 15, 2025', icon: Shield },
               { name: 'IICRC Certification', status: 'Active', expiry: 'Jun 20, 2025', icon: Award },
               { name: 'Background Check', status: 'Verified', expiry: 'Dec 01, 2024', icon: Users },
-              { name: 'Business License', status: 'Active', expiry: 'Sep 30, 2025', icon: FileText }
+              { name: 'Business Licence', status: 'Active', expiry: 'Sep 30, 2025', icon: FileText }
             ].map((item) => (
               <div key={item.name} className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">

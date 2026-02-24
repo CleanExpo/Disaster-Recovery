@@ -406,7 +406,7 @@ export default function MouldRemediationPage() {
                 },
                 {
                   step: 5,
-                  title: "Cleaning & Sanitization",
+                  title: "Cleaning & Sanitisation",
                   description: "HEPA vacuum, antimicrobial treatment, and fogging of affected areas.",
                   time: "Day 3-4"
                 },

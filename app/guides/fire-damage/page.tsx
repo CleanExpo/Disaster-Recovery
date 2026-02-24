@@ -55,13 +55,13 @@ function FireDamageGuidePageOriginal() {
     },
     smoke: {
       title: 'Smoke Damage',
-      description: 'Acidic residue and odor penetration',
+      description: 'Acidic residue and odour penetration',
       severity: 'Medium-High',
       timeline: '2-72 hours critical',
       restoration: '1-3 months typical',
       indicators: [
         'Black soot on surfaces',
-        'Persistent smoke odor',
+        'Persistent smoke odour',
         'Discoloration of walls/ceilings',
         'HVAC system contamination',
         'Fabric and upholstery damage'
@@ -160,7 +160,7 @@ function FireDamageGuidePageOriginal() {
     {
       type: 'Wet Smoke',
       source: 'Low-heat, smoldering fires',
-      characteristics: 'Sticky, smeary, strong odor',
+      characteristics: 'Sticky, smeary, strong odour',
       difficulty: 'Very High',
       surfaces: ['Plastics', 'Rubber', 'Synthetic materials']
     },
@@ -174,7 +174,7 @@ function FireDamageGuidePageOriginal() {
     {
       type: 'Protein Smoke',
       source: 'Kitchen fires, organic materials',
-      characteristics: 'Nearly invisible, strong odor',
+      characteristics: 'Nearly invisible, strong odour',
       difficulty: 'High',
       surfaces: ['All surfaces', 'Paint', 'Varnish']
     },
@@ -216,7 +216,7 @@ function FireDamageGuidePageOriginal() {
       duration: '1-2 weeks',
       activities: [
         'Smoke/soot removal',
-        'Odor neutralization',
+        'Odour neutralisation',
         'Debris removal',
         'Salvage operations'
       ]
@@ -267,7 +267,7 @@ function FireDamageGuidePageOriginal() {
     {
       item: 'Smoke Damage',
       typically: 'Covered',
-      notes: 'Cleaning and deodorization',
+      notes: 'Cleaning and deodourisation',
       watch: 'May require specific mention'
     },
     {
@@ -307,7 +307,7 @@ function FireDamageGuidePageOriginal() {
     },
     {
       question: 'What\'s the difference between smoke and soot damage?',
-      answer: 'Soot is the black carbon residue left by burned materials, while smoke damage includes both residue and odor penetration. Smoke can travel further and penetrate porous materials deeply.'
+      answer: 'Soot is the black carbon residue left by burned materials, while smoke damage includes both residue and odour penetration. Smoke can travel further and penetrate porous materials deeply.'
     },
     {
       question: 'Will insurance cover all fire damage?',
@@ -326,8 +326,8 @@ function FireDamageGuidePageOriginal() {
       answer: 'Non-porous items like glass and metal can often be cleaned. Some electronics may be restored. Porous materials (carpets, upholstery) heavily affected by smoke usually need replacement. Professional assessment is crucial.'
     },
     {
-      question: 'How do I eliminate smoke odor?',
-      answer: 'Smoke odor requires professional treatment including ozone generators, thermal fogging, or hydroxyl generators. Surface cleaning alone won\'t eliminate odors embedded in materials.'
+      question: 'How do I eliminate smoke odour?',
+      answer: 'Smoke odour requires professional treatment including ozone generators, thermal fogging, or hydroxyl generators. Surface cleaning alone won\'t eliminate odours embedded in materials.'
     }
   ];
 

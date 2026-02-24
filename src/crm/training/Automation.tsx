@@ -266,9 +266,9 @@ export default function AutomationModule() {
               <div className="prose prose-gray max-w-none">
                 <div className="whitespace-pre-line text-gray-700 leading-relaxed">
                   Smart Automation:
-• Lead scoring and prioritization
+• Lead scoring and prioritisation
 • Optimal contractor matching
-• Price optimization suggestions
+• Price optimisation suggestions
 • Capacity planning predictions
 • Quality assurance monitoring
 • Fraud detection alerts

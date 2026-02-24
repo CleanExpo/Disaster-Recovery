@@ -359,7 +359,7 @@ function PartnerPortalOriginal() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2">Specializations</h3>
+                  <h3 className="font-bold mb-2">Specialisations</h3>
                   <div className="flex flex-wrap gap-2">
                     {dashboardData.partner.specializations.map(spec => (
                       <Badge key={spec} variant="outline">{spec}</Badge>

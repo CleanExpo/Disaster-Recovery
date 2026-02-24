@@ -588,7 +588,7 @@ function Day8MouldRemediationOriginal() {
           <Alert className="mt-4 border-purple-200 bg-purple-50">
             <AlertOctagon className="h-4 w-4 text-purple-600" />
             <AlertDescription className="text-xs">
-              Mould remediation requires specialized training and equipment
+              Mould remediation requires specialised training and equipment
             </AlertDescription>
           </Alert>
         </aside>

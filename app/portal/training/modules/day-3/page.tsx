@@ -67,7 +67,7 @@ function Day3InsuranceClaimsOriginal() {
             paymentTerms: "30-60 days",
             preferredVendor: "Strict panel only",
             requirements: [
-              "Pre-authorization required",
+              "Pre-authorisation required",
               "Detailed line items",
               "Comparative quotes >$25k",
               "Certificate of currency",
@@ -134,7 +134,7 @@ function Day3InsuranceClaimsOriginal() {
             "Date and cause of loss statement",
             "Initial damage assessment",
             "Emergency mitigation steps taken",
-            "Customer authorization to proceed",
+            "Customer authorisation to proceed",
             "Insurance company contact details"
           ],
           photos: {
@@ -182,7 +182,7 @@ function Day3InsuranceClaimsOriginal() {
           bestPractices: [
             "Use insurance company template if provided",
             "Match line items to RestoreAssist.app exactly",
-            "Include all labor and materials",
+            "Include all labour and materials",
             "Document pre-existing damage separately",
             "Separate emergency from repairs",
             "Include moisture logs as appendix"
@@ -199,7 +199,7 @@ function Day3InsuranceClaimsOriginal() {
           definition: "Industry standard estimating software",
           usage: "95% of Australian insurers require it",
           pricing: "Updated monthly with local pricing",
-          access: "License required ($200-400/month)"
+          access: "Licence required ($200-400/month)"
         },
         commonLineItems: [
           {
@@ -382,7 +382,7 @@ function Day3InsuranceClaimsOriginal() {
             "Certificate of Currency (insurance)",
             "ABN and business registration",
             "Bank account for EFT",
-            "RestoreAssist.app license",
+            "RestoreAssist.app licence",
             "Quality certifications"
           ],
           process: [
@@ -409,7 +409,7 @@ function Day3InsuranceClaimsOriginal() {
             "Scope creep - get written approval",
             "Customer complaints - address immediately",
             "Incorrect line items - match RestoreAssist.app",
-            "No authorization - never proceed without",
+            "No authorisation - never proceed without",
             "Poor photo quality - retake before leaving"
           ]
         }

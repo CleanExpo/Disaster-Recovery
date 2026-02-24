@@ -49,7 +49,7 @@ export const laserCleaningData: ServicePageData = {
     },
     {
       title: 'Safety Parameter Setup:',
-      description: ' Establishing a Class 4 laser exclusion zone with specialized optical barriers to protect surrounding personnel from scattered radiation.',
+      description: ' Establishing a Class 4 laser exclusion zone with specialised optical barriers to protect surrounding personnel from scattered radiation.',
     },
     {
       title: 'Precision Ablation Phase:',

@@ -185,7 +185,7 @@ function DemoPageOriginal() {
             <p className="text-gray-300 mb-6">
               Each demonstration showcases a different aspect of our comprehensive disaster recovery platform. 
               From AI-powered contractor matching to real-time emergency response coordination, these demos 
-              illustrate how we're revolutionizing the industry.
+              illustrate how we're revolutionising the industry.
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>

@@ -160,7 +160,7 @@ export const PRICING_PLANS: PricingTier[] = [
       'Custom reporting',
       'Dedicated support',
       'Full API access',
-      'White labeling',
+      'White labelling',
       'Custom integrations',
       'Training included',
       'SLA guarantee'

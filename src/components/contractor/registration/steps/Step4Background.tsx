@@ -386,7 +386,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
             <Info className="h-4 w-4 text-blue-600" />
             <AlertDescription className="text-blue-700">
               Upload clear copies of government-issued photo ID for all directors listed in Step 2. 
-              Acceptable forms: Driver's License, Passport, or Proof of Age Card.
+              Acceptable forms: Driver's Licence, Passport, or Proof of Age Card.
             </AlertDescription>
           </Alert>
 
@@ -412,7 +412,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                   Click to upload ID documents
                 </span>
                 <span className="text-xs text-gray-600 mt-1">
-                  PDF or image files (Driver's License, Passport, etc.)
+                  PDF or image files (Driver's Licence, Passport, etc.)
                 </span>
               </label>
             </div>

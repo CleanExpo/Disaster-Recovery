@@ -56,7 +56,7 @@ export const BUSINESS_CONFIG = {
       'IICRC Water Damage Restoration',
       'IICRC Fire & Smoke Restoration', 
       'IICRC Applied Microbial Remediation',
-      'Asbestos Removal License',
+      'Asbestos Removal Licence',
       'Public Liability Insurance ($20M)',
       'Workers Compensation Insurance'
     ],

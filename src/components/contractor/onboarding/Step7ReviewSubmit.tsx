@@ -163,7 +163,7 @@ export default function Step7ReviewSubmit({
         { label: 'Public Liability', value: applicationData.insurance?.publicLiability ? `$${applicationData.insurance.publicLiability}` : 'Not provided', required: true },
         { label: 'Professional Indemnity', value: applicationData.insurance?.professionalIndemnity ? `$${applicationData.insurance.professionalIndemnity}` : 'Not provided', required: true },
         { label: 'Workers Compensation', value: applicationData.insurance?.workersComp ? 'Active' : 'Not provided', required: true },
-        { label: 'Licenses', value: applicationData.insurance?.licenses?.length ? `${applicationData.insurance.licenses.length} licenses` : 'None provided' },
+        { label: 'Licences', value: applicationData.insurance?.licenses?.length ? `${applicationData.insurance.licenses.length} licences` : 'None provided' },
       ]
     },
     {
@@ -551,7 +551,7 @@ export default function Step7ReviewSubmit({
                           I agree to background and reference verification
                         </FormLabel>
                         <FormDescription>
-                          NRP will verify insurance, licenses, and contact references
+                          NRP will verify insurance, licences, and contact references
                         </FormDescription>
                       </div>
                     </FormItem>

@@ -77,7 +77,7 @@ This Network Participation Agreement ("Agreement") is entered into between Natio
    Address: {{company_address}}
    email: {{company_phone}}
    Email: {{company_email}}
-   License Number: {{license_number}}
+   Licence Number: {{license_number}}
 
 2. SERVICES
 The Contractor agrees to provide restoration services including but not limited to:
@@ -247,7 +247,7 @@ CONTRACTOR CERTIFICATION
 I certify that all work has been completed to professional standards and all materials used meet or exceed manufacturer specifications.
 
 Contractor: {{contractor_name}}
-License: {{contractor_license}}
+Licence: {{contractor_license}}
 Signature: _________________________ Date: _____________
 
 CUSTOMER ACCEPTANCE

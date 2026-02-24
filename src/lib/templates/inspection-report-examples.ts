@@ -433,7 +433,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
   clientCommunication: {
     clientPresent: true,
     clientConcerns: [
-      'Minimizing business disruption during restoration',
+      'Minimising business disruption during restoration',
       'Ensuring complete removal of water damage',
       'Timeline for returning to normal operations',
       'Preventing mould growth'
@@ -587,7 +587,7 @@ export const COMPLETION_CHECKLIST = {
     'All mandatory fields completed',
     'Photos reviewed for quality and clarity',
     'Moisture readings checked for accuracy and completeness',
-    'Work recommendations prioritized appropriately',
+    'Work recommendations prioritised appropriately',
     'IICRC standards referenced correctly',
     'Grammar and spelling checked',
     'Client communication documented thoroughly',

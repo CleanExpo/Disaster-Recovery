@@ -86,7 +86,7 @@ export const PAGE_IMAGE_REQUIREMENTS = {
     hero: {
       purpose: "Local area recognition",
       requirements: [
-        "Include recognizable local landmarks",
+        "Include recognisable local landmarks",
         "Show Disaster Recovery vehicle/team",
         "Display local weather/climate context",
         "Include Australian architectural style"
@@ -205,8 +205,8 @@ export function generateOptimal3DPrompt(
       'flood-recovery': 'submersible pumps removing flood water, truck-mounted extraction units, infrared cameras detecting moisture, ',
       'storm-damage': 'emergency tarping on damaged roof, tree removal equipment, structural stabilization systems, ',
       'sewage-cleanup': 'biohazard containment systems, industrial sanitization equipment, waste removal apparatus, ',
-      'biohazard-cleaning': 'specialized decontamination chambers, UV-C sterilization lights, medical-grade cleaning systems, ',
-      'trauma-scene': 'discrete professional service vehicles, specialized cleaning equipment, privacy screens, ',
+      'biohazard-cleaning': 'specialised decontamination chambers, UV-C sterilization lights, medical-grade cleaning systems, ',
+      'trauma-scene': 'discrete professional service vehicles, specialised cleaning equipment, privacy screens, ',
       'emergency-board-up': 'rapid response vehicles, professional boarding materials, security systems being installed, ',
       'contents-restoration': 'ultrasonic cleaning tanks, document drying chambers, electronics restoration stations, '
     };

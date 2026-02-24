@@ -148,7 +148,7 @@ export class MockDataFactory {
       'Master Builders Association',
       'ISO 9001',
       'OH&S Certified',
-      'Asbestos Removal License',
+      'Asbestos Removal Licence',
       'EPA Approved'
     ];
   }
@@ -168,7 +168,7 @@ export class MockDataFactory {
       { suburb: 'Perth CBD', city: 'Perth', state: 'WA', postcode: '6000', coordinates: [-31.9505, 115.8605] },
       { suburb: 'Adelaide CBD', city: 'Adelaide', state: 'SA', postcode: '5000', coordinates: [-34.9285, 138.6007] },
       
-      // Regional Centers
+      // Regional Centres
       { suburb: 'Newcastle', city: 'Newcastle', state: 'NSW', postcode: '2300', coordinates: [-32.9283, 151.7817] },
       { suburb: 'Wollongong', city: 'Wollongong', state: 'NSW', postcode: '2500', coordinates: [-34.4278, 150.8931] },
       { suburb: 'Geelong', city: 'Geelong', state: 'VIC', postcode: '3220', coordinates: [-38.1499, 144.3617] },

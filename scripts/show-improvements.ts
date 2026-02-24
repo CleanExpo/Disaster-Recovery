@@ -49,7 +49,7 @@ console.log(chalk.gray('      • Direct contractor communication'));
 console.log(chalk.white('\n   🛠️  Contractor Portal:'));
 console.log(chalk.gray('      • Job board with intelligent matching'));
 console.log(chalk.gray('      • Earnings and payment tracking'));
-console.log(chalk.gray('      • Training and certification center'));
+console.log(chalk.gray('      • Training and certification centre'));
 console.log(chalk.gray('      • Performance analytics dashboard'));
 
 console.log(chalk.white('\n   📈 Pitch Deck Portal:'));
@@ -71,7 +71,7 @@ console.log(chalk.magenta('\n💡 HRM ANALYSIS INSIGHTS:'));
 console.log(chalk.white('   🧠 Hierarchical Reasoning Applied:'));
 console.log(chalk.gray('      • Identified user flow gaps'));
 console.log(chalk.gray('      • Analyzed color psychology impact'));
-console.log(chalk.gray('      • Optimized for trust and credibility'));
+console.log(chalk.gray('      • Optimised for trust and credibility'));
 console.log(chalk.gray('      • Enhanced professional perception'));
 
 console.log(chalk.white('\n   📊 Business Impact Analysis:'));

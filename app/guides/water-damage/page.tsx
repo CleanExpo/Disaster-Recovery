@@ -345,7 +345,7 @@ function WaterDamageGuidePageOriginal() {
                   >
                     <Icon className="w-12 h-12 text-blue-600 mb-4" />
                     <h3 className="text-2xl font-bold mb-3">{property.type} Properties</h3>
-                    <p className="text-gray-700 mb-4">Specialized guidance for {property.type.toLowerCase()} water damage</p>
+                    <p className="text-gray-700 mb-4">Specialised guidance for {property.type.toLowerCase()} water damage</p>
                     <div className="space-y-2">
                       {property.specifics.map((specific, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-sm">

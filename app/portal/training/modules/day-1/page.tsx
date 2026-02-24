@@ -32,7 +32,7 @@ function Day1PlatformOrientationOriginal() {
       type: "video",
       content: {
         videoUrl: "/training/day1/module1.mp4",
-        description: "Understanding NRP's vision to revolutionize disaster recovery across Australia",
+        description: "Understanding NRP's vision to revolutionise disaster recovery across Australia",
         keyPoints: [
           "NRP's mission: National disaster recovery platform with zero human intervention",
           "AI-powered lead distribution system",
@@ -71,7 +71,7 @@ function Day1PlatformOrientationOriginal() {
             title: "Dashboard Overview",
             points: [
               "Understanding your performance metrics",
-              "Lead pipeline visualization",
+              "Lead pipeline visualisation",
               "Revenue tracking and projections",
               "Territory heat maps",
               "Real-time notification system"
@@ -103,7 +103,7 @@ function Day1PlatformOrientationOriginal() {
     },
     {
       id: 3,
-      title: "Account Setup & Profile Optimization",
+      title: "Account Setup & Profile Optimisation",
       duration: "60 min",
       type: "workshop",
       content: {
@@ -199,7 +199,7 @@ function Day1PlatformOrientationOriginal() {
             situation: "Sewage backup in aged care facility",
             criticalSteps: [
               "Immediate response confirmation",
-              "PPE and equipment mobilization",
+              "PPE and equipment mobilisation",
               "Facility manager coordination",
               "Resident safety protocols",
               "Biohazard containment procedures"
@@ -208,10 +208,10 @@ function Day1PlatformOrientationOriginal() {
           },
           {
             type: "Large Commercial Fire",
-            situation: "Shopping center fire damage",
+            situation: "Shopping centre fire damage",
             criticalSteps: [
               "Multi-crew coordination",
-              "Business interruption minimization",
+              "Business interruption minimisation",
               "Security and access management",
               "Stakeholder communication",
               "Emergency board-up procedures"
@@ -250,7 +250,7 @@ function Day1PlatformOrientationOriginal() {
             ]
           },
           {
-            title: "Performance Optimization",
+            title: "Performance Optimisation",
             details: [
               "Response time improvement",
               "Customer satisfaction metrics",

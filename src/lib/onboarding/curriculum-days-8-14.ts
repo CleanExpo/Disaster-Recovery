@@ -50,7 +50,7 @@ Property damage creates unique psychological stresses that go far beyond the fin
 
 **Initial Shock and Denial:**
 - **Characteristics**: Difficulty accepting the extent of damage, numbness, disbelief
-- **Behaviours**: May minimize damage, delay decision-making, appear detached
+- **Behaviours**: May minimise damage, delay decision-making, appear detached
 - **Service Approach**: Gentle patience, provide clear information, avoid pressure
 - **Timeline**: Usually first 24-48 hours after loss
 
@@ -61,7 +61,7 @@ Property damage creates unique psychological stresses that go far beyond the fin
 - **Common Triggers**: Delays, unexpected costs, insurance coverage issues
 
 **Bargaining and Negotiation:**
-- **Characteristics**: Attempting to minimize scope, seeking alternatives
+- **Characteristics**: Attempting to minimise scope, seeking alternatives
 - **Behaviours**: Questioning necessity of work, seeking multiple opinions
 - **Service Approach**: Educational approach, explain consequences of inadequate restoration
 - **Professional Response**: Maintain standards while showing understanding
@@ -96,7 +96,7 @@ Property damage creates unique psychological stresses that go far beyond the fin
 - **Emotional Impact**: Stress about business continuity, employee concerns, financial pressure
 - **Service Needs**: Rapid response, business continuity planning, clear timelines
 - **Communication**: Business-focused but acknowledge personal impact
-- **Special Considerations**: Coordination with business insurance, minimize business interruption
+- **Special Considerations**: Coordination with business insurance, minimise business interruption
 
 ### Trauma-Informed Communication Principles
 
@@ -188,7 +188,7 @@ Property damage creates unique psychological stresses that go far beyond the fin
 
 **Families with Children:**
 - **Safety**: Extra attention to child safety during restoration work
-- **Disruption**: Minimize disruption to children's routines when possible
+- **Disruption**: Minimise disruption to children's routines when possible
 - **Communication**: Age-appropriate explanations for children who ask questions
 - **Stress**: Understand additional family stress from displacement
 
@@ -373,7 +373,7 @@ This systematic approach to communication and expectation management creates the
     keyTerminology: [
       {
         term: "Trauma-Informed Service",
-        definition: "Service approach that recognizes and responds to the emotional impact of property loss"
+        definition: "Service approach that recognises and responds to the emotional impact of property loss"
       },
       {
         term: "Active Listening",
@@ -523,7 +523,7 @@ Sustainable business success requires understanding all aspects of business oper
 **Real-Time Job Costing:**
 - **Labour Tracking**: Accurate tracking of all labour hours by technician and task
 - **Material Tracking**: Recording all materials used with current pricing
-- **Equipment Utilization**: Tracking equipment usage and associated costs
+- **Equipment Utilisation**: Tracking equipment usage and associated costs
 - **Subcontractor Costs**: Managing and tracking all third-party costs
 - **Administrative Time**: Tracking administrative time spent on each job
 
@@ -567,7 +567,7 @@ Net Margin: [Net Profit / Revenue * 100]%
 - **Factoring**: Consider factoring for improved cash flow if needed
 
 **Expense Management:**
-- **Material Inventory**: Manage inventory levels to minimize carrying costs
+- **Material Inventory**: Manage inventory levels to minimise carrying costs
 - **Equipment Financing**: Lease vs. buy analysis for equipment acquisitions
 - **Seasonal Adjustments**: Adjust inventory and staffing for seasonal demand
 - **Emergency Reserves**: Maintain cash reserves for emergency equipment needs
@@ -578,7 +578,7 @@ Net Margin: [Net Profit / Revenue * 100]%
 **Productivity Metrics:**
 - **Revenue per Technician**: Monthly revenue divided by number of technicians
 - **Jobs per Technician**: Number of jobs completed per technician per month
-- **Equipment Utilization**: Percentage of time equipment is revenue-generating
+- **Equipment Utilisation**: Percentage of time equipment is revenue-generating
 - **Vehicle Efficiency**: Miles driven per dollar of revenue generated
 - **Administrative Efficiency**: Administrative costs as percentage of revenue
 
@@ -670,7 +670,7 @@ This comprehensive understanding of business operations provides the foundation 
         definition: "Current assets minus current liabilities, indicating business liquidity"
       },
       {
-        term: "Equipment Utilization",
+        term: "Equipment Utilisation",
         definition: "Percentage of time equipment generates revenue versus sits idle"
       }
     ],
@@ -1543,7 +1543,7 @@ This comprehensive understanding of advanced technologies and methods enables co
         id: "day13-obj2",
         title: "Continuing Education Strategy",
         description: "Master ongoing learning strategies, resources, and requirements for professional growth",
-        measurableOutcome: "Can identify and utilize continuing education resources for ongoing professional development"
+        measurableOutcome: "Can identify and utilise continuing education resources for ongoing professional development"
       },
       {
         id: "day13-obj3",
@@ -2108,7 +2108,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 **Growth and Development Metrics:**
 - Monthly revenue growth: Track month-over-month growth
 - Service area expansion: Geographic and service type growth
-- Equipment utilization: Maximize return on equipment investment
+- Equipment utilisation: Maximise return on equipment investment
 - Certification progress: Stay on track with professional development
 - Market share: Track position in local market
 

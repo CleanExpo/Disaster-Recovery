@@ -355,15 +355,15 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold mb-4 flex items-center">
             <FileText className="mr-2 h-5 w-5 text-green-600" />
-            Contractor License (Required)
+            Contractor Licence (Required)
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <Label htmlFor="contractorLicenseNumber">License Number</Label>
+              <Label htmlFor="contractorLicenseNumber">Licence Number</Label>
               <Input
                 id="contractorLicenseNumber"
-                {...register('contractorLicenseNumber', { required: 'License number is required' })}
+                {...register('contractorLicenseNumber', { required: 'Licence number is required' })}
                 placeholder="e.g., QBCC 1234567"
               />
               {errors.contractorLicenseNumber && (
@@ -408,32 +408,32 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
 
           {/* Specialised Licenses */}
           <div className="mt-4">
-            <Label className="text-sm font-medium text-gray-700">Specialised Licenses (Optional)</Label>
+            <Label className="text-sm font-medium text-gray-700">Specialised Licences (Optional)</Label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
               <div>
-                <Label htmlFor="asbestosLicense" className="text-sm">Asbestos License</Label>
+                <Label htmlFor="asbestosLicense" className="text-sm">Asbestos Licence</Label>
                 <Input
                   id="asbestosLicense"
                   {...register('asbestosLicense')}
-                  placeholder="License number"
+                  placeholder="Licence number"
                 />
               </div>
-              
+
               <div>
-                <Label htmlFor="plumbingLicense" className="text-sm">Plumbing License</Label>
+                <Label htmlFor="plumbingLicense" className="text-sm">Plumbing Licence</Label>
                 <Input
                   id="plumbingLicense"
                   {...register('plumbingLicense')}
-                  placeholder="License number"
+                  placeholder="Licence number"
                 />
               </div>
-              
+
               <div>
-                <Label htmlFor="electricalLicense" className="text-sm">Electrical License</Label>
+                <Label htmlFor="electricalLicense" className="text-sm">Electrical Licence</Label>
                 <Input
                   id="electricalLicense"
                   {...register('electricalLicense')}
-                  placeholder="License number"
+                  placeholder="Licence number"
                 />
               </div>
             </div>
@@ -485,7 +485,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
           <Alert className="mb-4">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              Please upload clear, legible copies of all insurance certificates, licenses, and certifications
+              Please upload clear, legible copies of all insurance certificates, licences, and certifications
             </AlertDescription>
           </Alert>
           
@@ -518,7 +518,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
             </div>
             
             <div>
-              <Label>License Documents</Label>
+              <Label>Licence Documents</Label>
               <input
                 type="file"
                 multiple

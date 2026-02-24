@@ -75,8 +75,8 @@ function ContractorPortalJobsPageOriginal() {
       value: '$28,000',
       urgency: 'urgent',
       deadline: '24 hours',
-      description: 'Chemical spill cleanup in manufacturing facility. Specialized hazmat response required.',
-      requirements: ['Hazmat Certification', 'Specialized PPE', 'Emergency Response Team']
+      description: 'Chemical spill cleanup in manufacturing facility. Specialised hazmat response required.',
+      requirements: ['Hazmat Certification', 'Specialised PPE', 'Emergency Response Team']
     }
   ];
 

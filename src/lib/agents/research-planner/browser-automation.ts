@@ -444,8 +444,8 @@ ${testCase.steps.map(step => {
         'Cumulative Layout Shift': '< 0.1'
       },
       recommendations: [
-        'Optimize image loading with lazy loading',
-        'Minimize JavaScript bundle size',
+        'Optimise image loading with lazy loading',
+        'Minimise JavaScript bundle size',
         'Use code splitting for better performance',
         'Implement caching strategies'
       ]

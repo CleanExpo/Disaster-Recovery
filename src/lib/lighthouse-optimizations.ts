@@ -46,7 +46,7 @@ export const lighthouseOptimizations = {
     tti: { // Time to Interactive
       target: '< 3.8s',
       optimizations: [
-        'Minimize main thread work',
+        'Minimise main thread work',
         'Reduce JavaScript execution time',
         'Optimise third-party scripts',
         'Use code splitting',
@@ -54,7 +54,7 @@ export const lighthouseOptimizations = {
     tbt: { // Total Blocking Time
       target: '< 200ms',
       optimizations: [
-        'Minimize long tasks',
+        'Minimise long tasks',
         'Optimise JavaScript bundles',
         'Defer non-critical JavaScript',
         'Use requestIdleCallback for non-urgent work',
@@ -63,7 +63,7 @@ export const lighthouseOptimizations = {
       target: '< 3.4s',
       optimizations: [
         'Optimise critical rendering path',
-        'Minimize main thread work',
+        'Minimise main thread work',
         'Reduce JavaScript execution time',
         'Optimise CSS delivery',
       ] } },

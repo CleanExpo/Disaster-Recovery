@@ -137,7 +137,7 @@ export const pitchDeckData: PitchDeckSlide[] = [
       },
       {
         title: 'Smart Routing',
-        description: 'Intelligent lead distribution with performance-based prioritization',
+        description: 'Intelligent lead distribution with performance-based prioritisation',
         icon: Target
       },
       {

@@ -404,7 +404,7 @@ export const QUALITY_CONTROL_CHECKLIST = [
   'Environmental conditions recorded',
   'Safety hazards identified and documented',
   'IICRC standards referenced appropriately',
-  'Work recommendations prioritized correctly',
+  'Work recommendations prioritised correctly',
   'Client communication documented',
   'Regulatory requirements identified',
   'Inspector certifications current and relevant',

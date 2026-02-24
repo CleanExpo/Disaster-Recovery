@@ -733,7 +733,7 @@ function Day7AssessmentOriginal() {
                     <Info className="h-4 w-4" />
                     <AlertTitle>Advanced Training Ahead</AlertTitle>
                     <AlertDescription>
-                      Week 2 focuses on specialized skills and advanced scenarios
+                      Week 2 focuses on specialised skills and advanced scenarios
                     </AlertDescription>
                   </Alert>
 

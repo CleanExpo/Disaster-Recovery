@@ -491,7 +491,7 @@ function CRMPortalPageOriginal() {
                 <span className="text-sm font-bold text-purple-600 bg-purple-100 px-2 py-1 rounded">Day 5-8</span>
                 <span className="text-xs text-blue-600 font-medium">Advanced</span>
               </div>
-              <h4 className="font-medium text-gray-900 mb-2">Specialized Skills</h4>
+              <h4 className="font-medium text-gray-900 mb-2">Specialised Skills</h4>
               <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Fire & Smoke Damage</li>
                 <li>• Biohazard Safety</li>

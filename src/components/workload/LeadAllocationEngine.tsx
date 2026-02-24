@@ -144,7 +144,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
             finalScore,
             rank: 0
           },
-          eligibilityReason: `Within service area, ${Math.round(utilizationRate)}% capacity utilized`
+          eligibilityReason: `Within service area, ${Math.round(utilizationRate)}% capacity utilised`
         } as EligibleContractor;
       });
     
@@ -209,7 +209,7 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
             .map(ec => ec.contractorId),
           constraints: [
             `Max lead share: ${config.maxLeadSharePercentage}%`,
-            `Max capacity utilization: ${config.saturationProtection.maxCapacityUtilization}%`
+            `Max capacity utilisation: ${config.saturationProtection.maxCapacityUtilization}%`
           ]
         },
         auditInfo: {

@@ -404,7 +404,7 @@ export default function PartnerDashboard() {
                 <CheckCircle className="w-4 h-4 text-green-500" />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-700">Licenses Current</span>
+                <span className="text-gray-700">Licences Current</span>
                 <CheckCircle className="w-4 h-4 text-green-500" />
               </div>
               <div className="flex items-center justify-between">

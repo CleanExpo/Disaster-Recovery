@@ -64,7 +64,7 @@ const professionalSlides = [
     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     animation: "slideUp",
     duration: 12000,
-    narration: "Welcome to National Recovery Partners. We're revolutionizing Australia's 4.2 billion dollar disaster recovery industry through our AI-powered claims distribution platform. With 23.7 million properties at risk and disasters increasing 35% since the 1990s, we're building the infrastructure to connect insurance companies with quality contractors instantly, across every location in Australia.",
+    narration: "Welcome to National Recovery Partners. We're revolutionising Australia's 4.2 billion dollar disaster recovery industry through our AI-powered claims distribution platform. With 23.7 million properties at risk and disasters increasing 35% since the 1990s, we're building the infrastructure to connect insurance companies with quality contractors instantly, across every location in Australia.",
     speakerNotes: "Emphasize the scale of the opportunity and our unique position as a technology platform, not a service provider. Highlight that we're building infrastructure, not just another restoration company."
   },
   {

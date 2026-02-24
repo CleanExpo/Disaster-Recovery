@@ -235,14 +235,14 @@ function Day5EquipmentTechnologyOriginal() {
               stages: [
                 "Pre-filter - large particles",
                 "HEPA filter - fine particles",
-                "Carbon filter - odors (optional)"
+                "Carbon filter - odours (optional)"
               ],
               applications: [
                 "Mould remediation",
                 "Fire/smoke damage",
                 "Sewage cleanup",
                 "Dust control",
-                "Odor removal"
+                "Odour removal"
               ]
             },
             negativeAir: {

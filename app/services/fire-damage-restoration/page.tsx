@@ -46,7 +46,7 @@ const fireDamageFAQs = [
   },
   {
     question: "How long does fire damage restoration take?",
-    answer: "Minor fire damage typically takes 1-2 weeks to restore. Extensive fire damage requiring structural repairs can take 1-3 months. We provide a detailed timeline after our initial assessment and work efficiently to minimize disruption."
+    answer: "Minor fire damage typically takes 1-2 weeks to restore. Extensive fire damage requiring structural repairs can take 1-3 months. We provide a detailed timeline after our initial assessment and work efficiently to minimise disruption."
   },
   {
     question: "Will insurance cover fire damage restoration?",
@@ -266,7 +266,7 @@ export default function FireDamageRestorationPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Thermal fogging deodorization</span>
+                    <span className="text-sm">Thermal fogging deodorisation</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
@@ -406,7 +406,7 @@ export default function FireDamageRestorationPage() {
                 },
                 {
                   step: 5,
-                  title: "Odour Removal & Deodorization",
+                  title: "Odour Removal & Deodorisation",
                   description: "Advanced odour elimination using thermal fogging and ozone treatment.",
                   time: "Days 4-6"
                 },

@@ -368,7 +368,7 @@ export class AccessibilityGuardianAgent implements UIAgent {
 
     if (needsLabel) {
       if (hasLabel) {
-        strengths.push('Element has proper ARIA labeling')
+        strengths.push('Element has proper ARIA labelling')
       } else {
         issues.push({
           id: 'missing-aria-label',

@@ -216,10 +216,10 @@ export const PROPERTY_TYPES = {
       examples: [
         'Office buildings',
         'Retail stores',
-        'Shopping centers',
+        'Shopping centres',
         'Hotels & motels',
         'Restaurants',
-        'Medical centers'
+        'Medical centres'
       ]
     },
     {
@@ -228,9 +228,9 @@ export const PROPERTY_TYPES = {
       examples: [
         'Warehouses',
         'Factories',
-        'Distribution centers',
+        'Distribution centres',
         'Cold storage',
-        'Data centers',
+        'Data centres',
         'Processing plants'
       ]
     },

@@ -140,9 +140,9 @@ export function generateContent(
   let intro = '';
   if (businessType) {
     const businessName = businessType.replace(/-/g, ' ');
-    intro = `When ${businessName} properties in ${locationName} ${postcode} experience ${service.name.toLowerCase()}, immediate professional response is critical. Our certified disaster recovery specialists understand the unique challenges facing ${businessName} owners and provide comprehensive ${service.name.toLowerCase()} services designed to minimize business interruption and ensure complete property restoration.`;
+    intro = `When ${businessName} properties in ${locationName} ${postcode} experience ${service.name.toLowerCase()}, immediate professional response is critical. Our certified disaster recovery specialists understand the unique challenges facing ${businessName} owners and provide comprehensive ${service.name.toLowerCase()} services designed to minimise business interruption and ensure complete property restoration.`;
   } else {
-    intro = `${locationName} ${postcode} property owners trust our certified disaster recovery team for professional ${service.name.toLowerCase()} services. Whether your ${propertyType.name.toLowerCase()} property has suffered from burst pipes, storm damage, or other water-related emergencies, our IICRC-certified technicians respond immediately to minimize damage and begin the restoration process.`;
+    intro = `${locationName} ${postcode} property owners trust our certified disaster recovery team for professional ${service.name.toLowerCase()} services. Whether your ${propertyType.name.toLowerCase()} property has suffered from burst pipes, storm damage, or other water-related emergencies, our IICRC-certified technicians respond immediately to minimise damage and begin the restoration process.`;
   }
 
   // Service-specific content
@@ -203,7 +203,7 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
         <li><strong>Antimicrobial Treatment:</strong> EPA-approved treatments prevent mould and bacteria growth</li>
         <li><strong>Contents Restoration:</strong> Specialised cleaning and restoration of affected belongings</li>
       </ul>
-      <p>Every ${propertyType.name.toLowerCase()} property in ${locationName} receives a customized drying plan based on IICRC S500 standards, ensuring complete water removal and proper drying conditions.</p>`,
+      <p>Every ${propertyType.name.toLowerCase()} property in ${locationName} receives a customised drying plan based on IICRC S500 standards, ensuring complete water removal and proper drying conditions.</p>`,
     
     'mould-remediation': `
       <p>Mould contamination poses serious health risks and requires specialised remediation following strict protocols. Our certified mould specialists provide:</p>
@@ -367,7 +367,7 @@ function generateEmergencyContent(locationName: string, service: typeof SERVICE_
         <li><strong>Call Immediately:</strong> Contact our Emergency Response for immediate dispatch</li>
         <li><strong>Safety First:</strong> Ensure all occupants are safe and utilities are secured if necessary</li>
         <li><strong>Document Damage:</strong> Take photos for insurance purposes before any cleanup</li>
-        <li><strong>Minimize Exposure:</strong> Limit access to damaged areas until professionals arrive</li>
+        <li><strong>Minimise Exposure:</strong> Limit access to damaged areas until professionals arrive</li>
         <li><strong>Professional Assessment:</strong> Allow our certified technicians to evaluate the full extent</li>
       </ol>
     </div>

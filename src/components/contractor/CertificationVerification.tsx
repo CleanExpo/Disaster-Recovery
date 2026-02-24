@@ -304,7 +304,7 @@ export default function CertificationVerification({
             Certification Verification
           </h2>
           <p className="text-gray-600 mb-6">
-            Upload and verify your professional certifications, licenses, and training credentials. 
+            Upload and verify your professional certifications, licences, and training credentials. 
             All certifications are automatically verified against official databases where possible.
           </p>
 
@@ -636,7 +636,7 @@ function AddCertificationModal({
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-2">
-                Certification/License Number
+                Certification/Licence Number
               </label>
               <input
                 type="text"
@@ -695,7 +695,7 @@ function AddCertificationModal({
               contractorId={contractorId}
               documentType="CERTIFICATION"
               title="Upload Certification Document"
-              description="Upload a clear photo or scan of your certification/license"
+              description="Upload a clear photo or scan of your certification/licence"
               onUploadComplete={handleDocumentUpload}
             />
           </div>

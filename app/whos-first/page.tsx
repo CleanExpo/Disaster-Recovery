@@ -288,7 +288,7 @@ function WhosFirstPageOriginal() {
             >
               <div className="text-center mb-8">
                 <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Your Personalized First-Call Plan</h3>
+                <h3 className="text-2xl font-bold mb-2">Your Personalised First-Call Plan</h3>
                 <p className="text-gray-600">Based on your specific situation</p>
               </div>
               

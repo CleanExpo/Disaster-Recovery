@@ -653,7 +653,7 @@ export default function CampaignManagementTools() {
               <p className="text-2xl font-bold text-blue-700">
                 {formatPercentage((pool.allocatedBudget / pool.totalBudget) * 100)}
               </p>
-              <p className="text-sm text-gray-700">Utilization</p>
+              <p className="text-sm text-gray-700">Utilisation</p>
             </div>
           </div>
 

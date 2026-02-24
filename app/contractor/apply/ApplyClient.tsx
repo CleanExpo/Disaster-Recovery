@@ -26,7 +26,7 @@ import Step7ReviewSubmit from '@/components/contractor/onboarding/Step7ReviewSub
 
 const ONBOARDING_STEPS = [
   { id: 1, name: 'Business Information', icon: Building2, description: 'Company details & ABN' },
-  { id: 2, name: 'Insurance & Licensing', icon: Shield, description: 'Certificates & licenses' },
+  { id: 2, name: 'Insurance & Licensing', icon: Shield, description: 'Certificates & licences' },
   { id: 3, name: 'Experience & References', icon: Award, description: 'Work history & references' },
   { id: 4, name: 'Equipment & Resources', icon: FileText, description: 'Tools & team capacity' },
   { id: 5, name: 'Health & Safety', icon: Shield, description: 'WHS compliance & procedures' },
@@ -88,7 +88,7 @@ function ContractorApplicationContent() {
     // Progress through each step with descriptions
     const stepDescriptions = [
       'Filling business information and ABN details...',
-      'Adding insurance policies and licenses...',
+      'Adding insurance policies and licences...',
       'Documenting experience and references...',
       'Listing equipment and team resources...',
       'Confirming health & safety compliance...',

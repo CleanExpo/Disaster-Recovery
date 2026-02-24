@@ -96,7 +96,7 @@ describe('HRM Integration Tests', () => {
           'ensure air quality safety',
           'prevent secondary damage',
           'coordinate insurance assessment',
-          'minimize business interruption'
+          'minimise business interruption'
         ]
       };
 
@@ -274,7 +274,7 @@ describe('HRM Integration Tests', () => {
     });
 
     test('Performance comparison: HRM vs traditional approaches', async () => {
-      const complexTask = `Coordinate disaster recovery for shopping center with:
+      const complexTask = `Coordinate disaster recovery for shopping centre with:
                            - 200 retail stores affected
                            - Mixed damage types (water, smoke, structural)
                            - 48-hour restoration deadline

@@ -421,7 +421,7 @@ export class PlatformTransformationAnalyzer extends EventEmitter {
     // Mathematical Optimization
     const mathAnalysis = await this.hrmProvider.reason({
       problem: JSON.stringify({
-        optimization: 'Minimize cost, maximize speed and quality',
+        optimization: 'Minimise cost, maximise speed and quality',
         constraints: 'Resources, time, geography',
         objective: 'Optimal resource allocation'
       }),
@@ -520,7 +520,7 @@ export class PlatformTransformationAnalyzer extends EventEmitter {
           routing: 'HRM-optimized contractor dispatch',
           pricing: 'Dynamic pricing based on complexity',
           matching: 'AI contractor-job matching',
-          forecasting: 'Predictive disaster modeling'
+          forecasting: 'Predictive disaster modelling'
         },
         metrics: {
           kpis: {
@@ -609,7 +609,7 @@ export class PlatformTransformationAnalyzer extends EventEmitter {
           validation: [
             'Statistical significance testing',
             'Cohort analysis',
-            'Regression modeling'
+            'Regression modelling'
           ]
         },
         dataScience: {

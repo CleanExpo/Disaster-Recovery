@@ -131,7 +131,7 @@ export function ResearchPlannerUI() {
             Research Planner Agent System
           </CardTitle>
           <CardDescription>
-            AI-powered research and analysis with specialized sub-agents
+            AI-powered research and analysis with specialised sub-agents
           </CardDescription>
         </CardHeader>
         <CardContent>

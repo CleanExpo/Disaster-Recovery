@@ -145,7 +145,7 @@ export default function IntroductionModule() {
             <CardContent className="space-y-4">
               <div className="prose prose-gray max-w-none">
                 <div className="whitespace-pre-line text-gray-700 leading-relaxed">
-                  The NRP CRM is your central command center for managing disaster recovery operations across Australia. 
+                  The NRP CRM is your central command centre for managing disaster recovery operations across Australia. 
 This comprehensive system enables efficient lead management, contractor coordination, and insurance claim processing.
 
 Key Benefits:
@@ -270,7 +270,7 @@ Key Benefits:
                   Initial Setup Steps:
 1. Complete your contractor profile with certifications
 2. Define your service territories and radius
-3. Set your service categories and specializations
+3. Set your service categories and specialisations
 4. Configure lead preferences and pricing
 5. Upload insurance credentials
 6. Activate emergency response availability

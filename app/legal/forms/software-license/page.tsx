@@ -6,9 +6,9 @@ import { AgLegalPageTemplate } from '@/components/antigravity';
 export default function SoftwareLicenseAgreementsPage() {
   return (
     <AgLegalPageTemplate
-      title="Software License Agreements"
-      category="Software License"
-      description="Legal documents and agreements for software license"
+      title="Software Licence Agreements"
+      category="Software Licence"
+      description="Legal documents and agreements for software licence"
     />
   );
 }

@@ -149,7 +149,7 @@ export default function AnalyticsModule() {
 • Revenue Analytics - Track income by service, territory, insurer
 • Lead Analytics - Sources, conversion rates, response times
 • Territory Analytics - Coverage, competition, growth potential
-• Contractor Analytics - Performance rankings, capacity utilization
+• Contractor Analytics - Performance rankings, capacity utilisation
 • Insurance Analytics - Claim types, approval rates, payment speeds
 • Market Analytics - Demand forecasting, seasonal patterns
                 </div>

@@ -31,7 +31,7 @@ function ContractorPortalTrainingPageOriginal() {
     {
       id: 3,
       title: 'Fire & Smoke Restoration',
-      category: 'Specialization',
+      category: 'Specialisation',
       duration: '2 days',
       progress: 0,
       status: 'not-started',

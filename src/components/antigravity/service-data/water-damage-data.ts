@@ -8,7 +8,7 @@ export const waterDamageData: ServicePageData = {
   slug: 'water-damage',
   breadcrumbLabel: 'Water & Flood',
   title: 'Emergency Flood & Water Extraction',
-  leadText: 'Rapid-response mitigation for all categories of water damage. We utilize advanced thermal imaging and high-velocity structural drying to halt secondary damage and mold amplification.',
+  leadText: 'Rapid-response mitigation for all categories of water damage. We utilise advanced thermal imaging and high-velocity structural drying to halt secondary damage and mold amplification.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #051A2E 0%, #155C8F 100%)',
     headerRadial: 'radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 60%)',

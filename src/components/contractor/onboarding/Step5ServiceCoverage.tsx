@@ -439,7 +439,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             </div>
             <p className="text-blue-700 text-sm mt-3">
               Based on your selections, we'll automatically generate location-specific pages for your service areas, 
-              maximizing your visibility across all selected property and disaster types.
+              maximising your visibility across all selected property and disaster types.
             </p>
           </div>
         </div>

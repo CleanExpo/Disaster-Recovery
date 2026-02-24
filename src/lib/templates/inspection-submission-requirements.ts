@@ -493,7 +493,7 @@ export const QUALITY_SCORING = {
     weight: 25,
     criteria: [
       'Adequate quantity (minimum met)',
-      'Proper categorization',
+      'Proper categorisation',
       'Clear, well-lit images',
       'Detailed descriptions',
       'Required angles covered'

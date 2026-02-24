@@ -5,8 +5,8 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Ozone Generators | Deodorization | Advanced Restoration Technology',
-  description: 'Professional ozone generators for deodorization. Latest technology for faster, better restoration results.' };
+  title: 'Ozone Generators | Deodorisation | Advanced Restoration Technology',
+  description: 'Professional ozone generators for deodorisation. Latest technology for faster, better restoration results.' };
 
 export default function OzoneGeneratorsPage() {
   return (
@@ -15,7 +15,7 @@ export default function OzoneGeneratorsPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Settings className="h-12 w-12" />,
         title: 'Ozone Generators',
-        subtitle: 'Professional Equipment for Deodorization',
+        subtitle: 'Professional Equipment for Deodorisation',
       }}
       cta={{ text: 'Learn More', href: '/services' }}
       breadcrumbs={[

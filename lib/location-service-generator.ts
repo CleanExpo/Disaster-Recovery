@@ -358,7 +358,7 @@ export class LocationServiceGenerator {
       case 'fire':
         issues.push('Kitchen fires from cooking accidents');
         issues.push('Electrical fires in older properties');
-        issues.push('Smoke damage from neighboring properties');
+        issues.push('Smoke damage from neighbouring properties');
         break;
       case 'storm':
         issues.push('Roof damage from fallen trees');

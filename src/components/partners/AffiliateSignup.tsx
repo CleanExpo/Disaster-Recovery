@@ -674,7 +674,7 @@ export default function AffiliateSignup() {
                 </div>
                 <div>
                   <h5 className="font-medium text-gray-900">4. Compliance Requirements</h5>"
-                  <p>Partners must maintain appropriate licenses, insurance, and certifications relevant to their service category.</p>
+                  <p>Partners must maintain appropriate licences, insurance, and certifications relevant to their service category.</p>
                 </div>
                 <div>
                   <h5 className="font-medium text-gray-900">5. Termination</h5>"
