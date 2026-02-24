@@ -132,6 +132,7 @@ const nextConfig = {
   // Redirects
   async redirects() {
     return [
+      // --- Existing redirects ---
       {
         source: '/home',
         destination: '/',
@@ -147,6 +148,148 @@ const nextConfig = {
         destination: '/services/fire-damage-restoration',
         permanent: true,
       },
+
+      // --- Legacy WordPress → Next.js redirects (GSC 404 cleanup) ---
+
+      // WordPress tag archives → blog (53 URLs)
+      { source: '/tag/:slug*/feed', destination: '/blog', permanent: true },
+      { source: '/tag/:slug*', destination: '/blog', permanent: true },
+
+      // WordPress category archives → blog (4 URLs)
+      { source: '/category/:slug*', destination: '/blog', permanent: true },
+
+      // Old blog pagination → blog (8 URLs)
+      { source: '/our-blog/:path*', destination: '/blog', permanent: true },
+      { source: '/blog/', destination: '/blog', permanent: true },
+
+      // Old location pages → services (77 + 19 URLs)
+      { source: '/locations/:loc/water-damage-restoration', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/locations/:loc/fire-damage-restoration', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/locations/:loc/storm-damage-restoration', destination: '/services/storm-damage-restoration', permanent: true },
+      { source: '/locations/:loc/mould-remediation', destination: '/services/mould-remediation', permanent: true },
+      { source: '/locations/:loc', destination: '/services', permanent: true },
+      { source: '/location/disaster-recovery-qld-service-locations/:slug*', destination: '/services', permanent: true },
+      { source: '/location/:slug*', destination: '/services', permanent: true },
+
+      // Old service hierarchy pages → new service pages (19 URLs)
+      { source: '/water-damage-restoration-service/water-extraction-flood-recovery', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/water-damage-restoration-service/burst-pipes-restoration-services', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/water-damage-restoration-service/storm-damage-restoration-services', destination: '/services/storm-damage-restoration', permanent: true },
+      { source: '/water-damage-restoration-service/thermography-services', destination: '/services/technical-assessment', permanent: true },
+      { source: '/water-damage-restoration-service/structural-drying-restoration-services', destination: '/services/structural-drying', permanent: true },
+      { source: '/water-damage-restoration-service/concrete-drying-services', destination: '/services/structural-drying', permanent: true },
+      { source: '/water-damage-restoration-service/:slug*', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/fire-damage-restoration-service/:slug*', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/fire-remediation-services/:slug*', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/mould-remediation-services/:slug*', destination: '/services/mould-remediation', permanent: true },
+      { source: '/sewage-cleanup-services/:slug*', destination: '/services/sewage-cleanup', permanent: true },
+      { source: '/waste-management-services/:slug*', destination: '/services/sewage-cleanup', permanent: true },
+      { source: '/building-restoration-services/:slug*', destination: '/services', permanent: true },
+
+      // Old commercial/services pages → new equivalents (18 URLs)
+      { source: '/services/commercial/:slug*', destination: '/services/commercial', permanent: true },
+      { source: '/services/water-flood-services', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/services/mould-removal', destination: '/services/mould-remediation', permanent: true },
+      { source: '/services/odour-measures', destination: '/services', permanent: true },
+      { source: '/services/blasting', destination: '/services', permanent: true },
+      { source: '/services/dry-fogging', destination: '/services', permanent: true },
+      { source: '/services/vandalism', destination: '/services', permanent: true },
+      { source: '/services/fire-damage-restoration/smoke-damage', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/services/fire-damage-restoration/soot-removal', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/services/fire-damage-restoration/structural-repairs', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/services/fire-damage-restoration/odour-removal', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/water-flood-services', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/fire-smoke', destination: '/services/fire-damage-restoration', permanent: true },
+      { source: '/commercial', destination: '/services/commercial', permanent: true },
+      { source: '/commercial/', destination: '/services/commercial', permanent: true },
+
+      // Insurance partner pages → about (13 URLs)
+      { source: '/insurance-partners/:slug', destination: '/about', permanent: true },
+      { source: '/insurance-partners', destination: '/about', permanent: true },
+
+      // Insurance guide pages → claim (7 URLs)
+      { source: '/insurance-guide/:slug*', destination: '/claim', permanent: true },
+      { source: '/insurance-guide', destination: '/claim', permanent: true },
+      { source: '/insurance-claims', destination: '/claim', permanent: true },
+
+      // About/story pages → about (10 URLs)
+      { source: '/about-us-disaster-recovery-qld-our-story/:slug*', destination: '/about', permanent: true },
+      { source: '/about-us/', destination: '/about', permanent: true },
+      { source: '/about-us', destination: '/about', permanent: true },
+      { source: '/about-phil-mcgurk', destination: '/about', permanent: true },
+      { source: '/phill-mcgurk-the-author', destination: '/about', permanent: true },
+
+      // Video/course/lesson pages → homepage (9 URLs)
+      { source: '/topic/:slug*', destination: '/', permanent: true },
+      { source: '/lessons/:slug*', destination: '/', permanent: true },
+      { source: '/courses/:slug*', destination: '/', permanent: true },
+
+      // Old standalone service pages → new equivalents
+      { source: '/water-damage-cleanup', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/water-damage-cleanup/', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/water-extraction', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/water-extraction/', destination: '/services/water-damage-restoration', permanent: true },
+      { source: '/mould-remediation', destination: '/services/mould-remediation', permanent: true },
+      { source: '/odour-removal', destination: '/services', permanent: true },
+      { source: '/biohazard-restoration', destination: '/services/biohazard-cleaning', permanent: true },
+      { source: '/sanitisation', destination: '/services', permanent: true },
+      { source: '/thermography', destination: '/services/technical-assessment', permanent: true },
+      { source: '/commercial-restoration-services/:slug*', destination: '/services/commercial', permanent: true },
+      { source: '/commercial-restoration-services', destination: '/services/commercial', permanent: true },
+      { source: '/commercial-cleaning-services/:slug*', destination: '/services/commercial', permanent: true },
+      { source: '/commercial-cleaning-services', destination: '/services/commercial', permanent: true },
+      { source: '/commercial-cleaning-service', destination: '/services/commercial', permanent: true },
+
+      // Old misc pages → new equivalents
+      { source: '/service-areas', destination: '/services', permanent: true },
+      { source: '/services/', destination: '/services', permanent: true },
+      { source: '/resources/:slug*', destination: '/guides', permanent: true },
+      { source: '/resources', destination: '/guides', permanent: true },
+      { source: '/standards/:slug*', destination: '/certifications', permanent: true },
+      { source: '/licenses-insurances/:slug*', destination: '/certifications', permanent: true },
+      { source: '/licenses-insurances', destination: '/certifications', permanent: true },
+      { source: '/contact-us', destination: '/contact', permanent: true },
+      { source: '/contact-us/', destination: '/contact', permanent: true },
+      { source: '/free-quote', destination: '/claim', permanent: true },
+      { source: '/free-quote/', destination: '/claim', permanent: true },
+      { source: '/get-help', destination: '/claim', permanent: true },
+      { source: '/emergency-form', destination: '/claim', permanent: true },
+      { source: '/assessment', destination: '/claim', permanent: true },
+      { source: '/sitemap', destination: '/sitemap.xml', permanent: true },
+      { source: '/reviews', destination: '/testimonials', permanent: true },
+      { source: '/terms', destination: '/terms', permanent: false },
+      { source: '/terms-of-service', destination: '/terms', permanent: true },
+      { source: '/accessibility', destination: '/about', permanent: true },
+
+      // Old location-specific blog posts → blog
+      { source: '/cleaning/:slug*', destination: '/services', permanent: true },
+      { source: '/cleaning__trashed/:slug*', destination: '/services', permanent: true },
+
+      // Strata/property management pages → services
+      { source: '/strata-remediation-services-:slug*', destination: '/services', permanent: true },
+      { source: '/building-management-restoration-services-:slug*', destination: '/services', permanent: true },
+      { source: '/property-maintenance-restoration-services-:slug*', destination: '/services', permanent: true },
+      { source: '/packout-and-storage-services-:slug*', destination: '/services', permanent: true },
+      { source: '/structural-and-specialised-drying-services-:slug*', destination: '/services/structural-drying', permanent: true },
+      { source: '/structual-and-specialised-drying-services-:slug*', destination: '/services/structural-drying', permanent: true },
+
+      // Old Queensland suburb pages → services
+      { source: '/palm-beach-queensland', destination: '/services', permanent: true },
+      { source: '/redland-bay-queensland', destination: '/services', permanent: true },
+      { source: '/esk-queensland', destination: '/services', permanent: true },
+      { source: '/wacol-queensland-australia', destination: '/services', permanent: true },
+      { source: '/brisbane-australia', destination: '/services', permanent: true },
+      { source: '/gold-coast-australia', destination: '/services', permanent: true },
+      { source: '/ipswich-australia', destination: '/services', permanent: true },
+      { source: '/logan-australia', destination: '/services', permanent: true },
+      { source: '/toowoomba-regional-australia', destination: '/services', permanent: true },
+      { source: '/moreton-bay-region-australia', destination: '/services', permanent: true },
+      { source: '/scenic-rim-regional-australia', destination: '/services', permanent: true },
+      { source: '/lockyer-valley-regional-australia', destination: '/services', permanent: true },
+      { source: '/logan', destination: '/services', permanent: true },
+      { source: '/ipswich', destination: '/services', permanent: true },
+      { source: '/hamilton', destination: '/services', permanent: true },
+      { source: '/hamilton/', destination: '/services', permanent: true },
     ];
   },
 
