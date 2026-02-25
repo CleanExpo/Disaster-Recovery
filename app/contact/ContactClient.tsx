@@ -11,7 +11,6 @@ import {
   Mail,
   MapPin,
   Clock,
-  MessageCircle,
   CheckCircle,
   AlertTriangle,
   ArrowRight,
@@ -531,7 +530,7 @@ function ModernContactPageOriginal() {
         </div>
       </section>
 
-      {/* Live Chat Section */}
+      {/* Emergency Claim CTA */}
       <section className="relative z-10 px-6 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -540,24 +539,25 @@ function ModernContactPageOriginal() {
           viewport={{ once: true }}
           className="max-w-4xl overflow-hidden mx-auto text-center"
         >
-          <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl p-12 border border-blue-500/30">
-            <MessageCircle className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+          <div className="bg-gradient-to-r from-red-500/10 to-blue-600/10 rounded-3xl p-12 border border-red-500/30">
+            <Zap className="w-16 h-16 text-red-500 mx-auto mb-6" />
             <h2 className="text-3xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-400 to-blue-500 bg-clip-text text-transparent">
                 Need Immediate Help?
               </span>
             </h2>
-            <p className="text-gray-700 mb-6">
-              Chat with our emergency response team for instant assistance
+            <p className="text-gray-400 mb-6">
+              Submit an emergency claim online — a contractor will call you within 60 minutes.
             </p>
-            <motion.button
+            <motion.a
+              href="/claim"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+              className="bg-gradient-to-r from-red-600 to-blue-700 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
             >
-              <MessageCircle className="w-5 h-5" />
-              Start Live Chat
-            </motion.button>
+              <ArrowRight className="w-5 h-5" />
+              Lodge Emergency Claim
+            </motion.a>
           </div>
         </motion.div>
       </section>

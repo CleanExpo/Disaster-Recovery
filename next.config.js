@@ -180,7 +180,7 @@ const nextConfig = {
       },
       {
         source: '/portal/connect',
-        destination: '/claim/start',
+        destination: '/claim',
         permanent: false,
       },
       {
@@ -188,6 +188,18 @@ const nextConfig = {
         destination: '/services/fire-damage-restoration',
         permanent: true,
       },
+
+      // --- Phase 0: Conversion funnel fixes (2026-02-25) ---
+      // /claim/start is a dead-end demo form — redirect all traffic to the working /claim form
+      { source: '/claim/start', destination: '/claim', permanent: false },
+      // Dead routes that 404 or lead to broken flows
+      { source: '/client/emergency', destination: '/claim', permanent: true },
+      { source: '/client/instant-quote', destination: '/claim', permanent: true },
+      // /book-service funnel replaced by /claim — fake bank details removed
+      { source: '/book-service', destination: '/claim', permanent: true },
+      { source: '/book-service/payment', destination: '/claim', permanent: true },
+      { source: '/book-service/success', destination: '/claim', permanent: true },
+      { source: '/quote', destination: '/claim', permanent: true },
 
       // --- Legacy WordPress → Next.js redirects (GSC 404 cleanup) ---
 

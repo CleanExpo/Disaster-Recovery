@@ -38,7 +38,7 @@ interface BookingData {
   claimNumber?: string;
   
   // Payment details
-  paymentMethod: 'card' | 'bank_transfer';
+  paymentMethod: 'card';
   billingAddress?: {
     line1: string;
     line2?: string;
@@ -93,8 +93,8 @@ export async function POST(request: NextRequest) {
       throw error;
     }
 
-    if (bookingData.paymentMethod === 'card') {
-      // Create a Payment Intent for card payments
+    {
+      // Create a Payment Intent for card payment
       const paymentIntent = await stripe.paymentIntents.create({
         amount: totalAmount,
         currency: 'aud',
@@ -150,71 +150,6 @@ export async function POST(request: NextRequest) {
           amount: totalAmount,
           serviceFee,
           contractorAmount } });
-    } else {
-      // Handle bank transfer
-      // Create an invoice for bank transfer payments
-      const invoice = await stripe.invoices.create({
-        customer: customer.id,
-        collection_method: 'send_invoice',
-        days_until_due: 1, // Due immediately for emergency services
-        description: `Disaster Recovery Service - ${bookingData.serviceType}`,
-        metadata: {
-          bookingId,
-          serviceType: bookingData.serviceType,
-          urgencyLevel: bookingData.urgencyLevel } });
-
-      // Add line item for the service
-      await stripe.invoiceItems.create({
-        customer: customer.id,
-        invoice: invoice.id,
-        amount: totalAmount,
-        currency: 'aud',
-        description: `Emergency ${bookingData.serviceType} Service - Initial Booking Fee` });
-
-      // Finalize and send the invoice
-      const finalizedInvoice = await stripe.invoices.finalizeInvoice(invoice.id);
-
-      // Get the hosted invoice URL for the customer to view
-      const hostedInvoiceUrl = finalizedInvoice.hosted_invoice_url;
-
-      // Persist payment record to database
-      await prisma.payment.create({
-        data: {
-          bookingId,
-          amount: totalAmount / 100,
-          currency: 'AUD',
-          status: 'PENDING',
-          stripePaymentId: invoice.id,
-          stripeCustomerId: customer.id,
-          method: 'bank_transfer',
-          description: `Disaster Recovery Service - ${bookingData.serviceType}`,
-          metadata: JSON.stringify({
-            serviceType: bookingData.serviceType,
-            urgencyLevel: bookingData.urgencyLevel,
-            propertyType: bookingData.propertyType,
-            suburb: bookingData.suburb,
-            state: bookingData.state,
-            serviceFee: serviceFee / 100,
-            contractorAmount: contractorAmount / 100,
-          }),
-        },
-      });
-
-      return NextResponse.json({
-        success: true,
-        data: {
-          bookingId,
-          invoiceId: invoice.id,
-          invoiceUrl: hostedInvoiceUrl,
-          amount: totalAmount,
-          serviceFee,
-          contractorAmount,
-          paymentMethod: 'bank_transfer',
-          bankDetails: {
-            accountName: 'Natural Response Pty Ltd',
-            bsb: '123-456',
-            accountNumber: '12345678',
-            reference: bookingId } } });
     }
   } catch (error) {
     console.error('Payment processing error:', error);
