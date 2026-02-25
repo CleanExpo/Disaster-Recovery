@@ -13,6 +13,7 @@ import { AntigravityTrustBanner } from './AntigravityTrustBanner';
 import { AntigravityRecoveryProcess } from './AntigravityRecoveryProcess';
 import { AntigravityServicePillarCard } from './AntigravityServicePillarCard';
 import { AntigravityBrandEquipment } from './AntigravityBrandEquipment';
+import { AntigravityCommercialSection } from './AntigravityCommercialSection';
 import { AntigravityContractorNetworkCTA } from './AntigravityContractorNetworkCTA';
 import { AntigravityFooter } from './AntigravityFooter';
 
@@ -72,6 +73,7 @@ export function AntigravityHomePage() {
         </div>
       </section>
 
+      <AntigravityCommercialSection />
       <AntigravityBrandEquipment />
       <AntigravityContractorNetworkCTA />
       <AntigravityFooter />

@@ -15,6 +15,7 @@ export { AntigravityRecoveryProcess } from './AntigravityRecoveryProcess';
 export { AntigravityServicePillarCard } from './AntigravityServicePillarCard';
 export { AntigravityBeforeAfterSlider } from './AntigravityBeforeAfterSlider';
 export { AntigravityBrandEquipment } from './AntigravityBrandEquipment';
+export { AntigravityCommercialSection } from './AntigravityCommercialSection';
 export { AntigravityContractorNetworkCTA } from './AntigravityContractorNetworkCTA';
 
 // Homepage Composition
