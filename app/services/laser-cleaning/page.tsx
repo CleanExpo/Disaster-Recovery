@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function LaserCleaningPage() {
   if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <AntigravityServicePageTemplate data={laserCleaningData} />;
+    return <AntigravityServicePageTemplate data={laserCleaningData} heroImage="/images/generated/disaster-recovery/hero-fire-damage.webp" />;
   }
 
   return (

@@ -77,7 +77,7 @@ const structuredData = {
 
 export default function WaterDamageRestorationPage() {
   if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <AntigravityServicePageTemplate data={waterDamageData} />;
+    return <AntigravityServicePageTemplate data={waterDamageData} heroImage="/images/generated/disaster-recovery/hero-water-damage.webp" />;
   }
 
   // Get real statistics

@@ -12,11 +12,13 @@ export default function SolarPanelWaterDamagePage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Star className="h-12 w-12" />,
         title: 'Solar Panel Water Damage',
         subtitle: 'Professional solar panel water damage services in Queensland. 24/7 emergency response for solar system, panel flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

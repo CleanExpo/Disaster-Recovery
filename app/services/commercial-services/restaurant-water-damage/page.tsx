@@ -12,11 +12,13 @@ export default function RestaurantWaterDamagePage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Restaurant Water Damage',
         subtitle: 'Professional restaurant water damage services in Queensland. 24/7 emergency response for kitchen flooding, hospitality water.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

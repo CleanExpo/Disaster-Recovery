@@ -51,11 +51,13 @@ export default function BiohazardCleanupPage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Biohazard Cleanup Services',
         subtitle: 'Professional biohazard cleanup services following IICRC S540 standards. Crime scene cleanup, trauma cleaning, blood cleanup, sewage cleanup. Licensed specialists available 24/7.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

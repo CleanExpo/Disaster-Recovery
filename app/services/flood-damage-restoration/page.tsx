@@ -143,12 +143,14 @@ export default function FloodDamageRestorationPage() {
       <AgContentPageTemplate
         hero={{
           gradient: 'linear-gradient(135deg, #0C4A6E 0%, #0369A1 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
           icon: <Waves className="h-12 w-12" />,
           title: 'Flood Damage Restoration',
           subtitle:
             'Australia-wide 24/7 emergency flood response. IICRC-certified contractors for water extraction, structural drying, decontamination and full property restoration — all insurance companies accepted.',
         }}
         cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

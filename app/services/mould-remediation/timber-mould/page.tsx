@@ -12,11 +12,13 @@ export default function TimberMouldTreatmentPage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Timber Mould Treatment',
         subtitle: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

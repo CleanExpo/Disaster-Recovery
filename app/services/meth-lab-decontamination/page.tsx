@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function MethLabDecontaminationPage() {
   if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <AntigravityServicePageTemplate data={methLabDecontaminationData} />;
+    return <AntigravityServicePageTemplate data={methLabDecontaminationData} heroImage="/images/generated/disaster-recovery/hero-biohazard.webp" />;
   }
 
   return (

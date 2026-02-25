@@ -12,11 +12,13 @@ export default function EmergencyPlumbingServicesPage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Emergency Plumbing Services',
         subtitle: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

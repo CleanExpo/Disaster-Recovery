@@ -51,11 +51,13 @@ export default function StructuralDryingPage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0C4A6E 0%, #0369A1 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Wind className="h-12 w-12" />,
         title: 'Structural Drying Services',
         subtitle: 'Professional structural drying services with industrial dehumidifiers, air movers, and moisture monitoring. Expert water extraction and building drying to prevent mould and structural damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

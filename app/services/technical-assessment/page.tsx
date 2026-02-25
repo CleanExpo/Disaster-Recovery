@@ -21,11 +21,13 @@ export default function TechnicalAssessmentPage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <ClipboardCheck className="h-12 w-12" />,
         title: 'Technical Assessment Services',
         subtitle: 'Professional technical assessment and damage evaluation services. IICRC certified inspectors provide comprehensive reports for insurance claims and restoration planning.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
