@@ -278,11 +278,12 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Professional water damage restoration services across Australia.' },
   ],
   'how-it-works': [
+    { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: '$2,750 emergency service, insurance reimbursement, and your right to choose a contractor.' },
     { title: 'Lodge a Claim', href: '/claim/start', description: 'Start your insurance claim online with 24/7 availability.' },
     { title: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Get an instant cost estimate for any type of restoration.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your insurance claim step by step.' },
     { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency disaster response across Australia.' },
-    { title: 'About NRPG', href: '/about', description: 'Learn about the National Recovery Platform Group.' },
+    { title: 'About Disaster Recovery', href: '/about', description: 'Australia\'s national claims distribution platform connecting property owners with certified contractors.' },
   ],
   'blog': [
     { title: 'Water Damage Guide', href: '/guides/water-damage', description: 'Complete guide to water damage restoration.' },
