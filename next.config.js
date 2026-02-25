@@ -126,32 +126,9 @@ const nextConfig = {
           },
         ],
       },
-      // Group C soft 404s — noindex pages with generic/placeholder content
-      // Remove these headers when pages get real location-specific content
-      {
-        source: '/locations/brookwater',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
-      {
-        source: '/locations/eagle-farm',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
-      {
-        source: '/locations/indooroopilly',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
-      {
-        source: '/locations/melbourne',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
-      {
-        source: '/locations/perth',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
-      {
-        source: '/locations/adelaide',
-        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
-      },
+      // Group C — location pages now have rich data-driven content (Phase 1 shipped 2026-02-25)
+      // brookwater/eagle-farm/indooroopilly redirect to /locations/brisbane
+      // melbourne/perth/adelaide have dedicated JSON data files with verified ABS/BOM/ICA data
       {
         source: '/resources/disaster-prep-videos',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
@@ -225,12 +202,18 @@ const nextConfig = {
       { source: '/our-blog/:path*', destination: '/blog', permanent: true },
       { source: '/blog/', destination: '/blog', permanent: true },
 
-      // Old location pages → services (77 + 19 URLs)
+      // Brisbane suburb redirects — these pages had no content, now redirect to rich Brisbane page
+      { source: '/locations/brookwater', destination: '/locations/brisbane', permanent: true },
+      { source: '/locations/eagle-farm', destination: '/locations/brisbane', permanent: true },
+      { source: '/locations/indooroopilly', destination: '/locations/brisbane', permanent: true },
+
+      // Old location pages → services (legacy WordPress slugs only)
+      // Negative lookahead excludes slugs that have real page files in app/locations/
       { source: '/locations/:loc/water-damage-restoration', destination: '/services/water-damage-restoration', permanent: true },
       { source: '/locations/:loc/fire-damage-restoration', destination: '/services/fire-damage-restoration', permanent: true },
       { source: '/locations/:loc/storm-damage-restoration', destination: '/services/storm-damage-restoration', permanent: true },
       { source: '/locations/:loc/mould-remediation', destination: '/services/mould-remediation', permanent: true },
-      { source: '/locations/:loc', destination: '/services', permanent: true },
+      { source: '/locations/:loc((?!nsw|vic|qld|wa|sa|tas|nt|act|sydney|melbourne|brisbane|perth|adelaide|gold-coast|newcastle|auckland).*)', destination: '/services', permanent: true },
       { source: '/location/disaster-recovery-qld-service-locations/:slug*', destination: '/services', permanent: true },
       { source: '/location/:slug*', destination: '/services', permanent: true },
 

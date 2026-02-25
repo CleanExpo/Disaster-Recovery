@@ -1,0 +1,154 @@
+{
+  "slug": "brisbane",
+  "city": "Brisbane",
+  "state": "QLD",
+  "stateFullName": "Queensland",
+  "population": 2526238,
+  "dwellings": 960000,
+  "elevation": 28,
+  "coordinates": { "lat": -27.4705, "lng": 153.026 },
+  "timezone": "Australia/Brisbane",
+
+  "climate": {
+    "annualRainfallMm": 997.7,
+    "avgMaxTempC": 26.6,
+    "avgMinTempC": 16.6,
+    "avgHumidityPercent": 63,
+    "wetMonths": ["Jan", "Feb", "Mar", "Dec"],
+    "dryMonths": ["Jul", "Aug", "Sep"],
+    "rainfallSeasonality": "Subtropical wet summer — 65% of annual rainfall falls October to March",
+    "cycloneSeason": "November to April",
+    "frostRisk": false,
+    "coastalExposure": true
+  },
+
+  "risks": {
+    "primary": [
+      {
+        "type": "riverine flooding",
+        "severity": "high",
+        "description": "The Brisbane River corridor is one of Australia's most flood-prone urban waterways. The 2011 and 2022 floods demonstrated the catastrophic potential, with thousands of properties inundated across the inner city, Ipswich corridor, and western suburbs."
+      },
+      {
+        "type": "severe storm cells",
+        "severity": "high",
+        "description": "Southeast Queensland experiences some of Australia's most intense supercell thunderstorms, producing destructive winds, large hail, and torrential rainfall. The 2014 November supercell caused over $1.5 billion in insured losses."
+      },
+      {
+        "type": "cyclone damage",
+        "severity": "moderate",
+        "description": "While direct cyclone hits on Brisbane are infrequent, tropical cyclones making landfall in central Queensland produce damaging wind, heavy rainfall, and flooding across the southeast region."
+      }
+    ],
+    "secondary": [
+      {
+        "type": "humidity-driven mould",
+        "severity": "high",
+        "description": "Brisbane's subtropical humidity (averaging 63%) creates persistent mould risk year-round. Properties that experience any water intrusion can develop visible mould colonisation within 24-48 hours during summer months."
+      },
+      {
+        "type": "flash flooding",
+        "severity": "moderate",
+        "description": "Intense rainfall from storm cells causes rapid flash flooding in creek catchments including Oxley Creek, Breakfast Creek, and Norman Creek, affecting residential properties with limited warning time."
+      }
+    ],
+    "floodZone": "High — Brisbane River corridor, Bremer River, Oxley Creek, Breakfast Creek, Norman Creek",
+    "cycloneCategory": "Region C (Brisbane metro)"
+  },
+
+  "historicalEvents": [
+    {
+      "year": 2022,
+      "event": "2022 Southeast Queensland floods",
+      "description": "Catastrophic rainfall produced major flooding across Brisbane and southeast Queensland in February-March 2022. The Brisbane River peaked at 3.85m at the city gauge, inundating thousands of properties. Over 216,465 insurance claims were lodged across the affected region.",
+      "insuranceCostAud": "$4.3–4.8 billion"
+    },
+    {
+      "year": 2011,
+      "event": "2011 Brisbane floods",
+      "description": "The Brisbane River reached 4.46m at the city gauge — its highest level since 1974 — inundating over 14,000 properties. The flood devastated suburbs including Rocklea, Graceville, and the CBD, requiring years of restoration work.",
+      "insuranceCostAud": "$2.4 billion"
+    },
+    {
+      "year": 2015,
+      "event": "Cyclone Marcia",
+      "description": "Cyclone Marcia made landfall as a Category 5 system near Shoalwater Bay, causing significant wind damage in Rockhampton and Yeppoon. Associated rainfall and storm activity affected Brisbane and the southeast, requiring emergency response across the region."
+    },
+    {
+      "year": 2014,
+      "event": "November supercell thunderstorm",
+      "description": "A devastating supercell thunderstorm struck Brisbane's northern suburbs with giant hail (up to 14cm diameter), destructive winds, and intense rainfall. The event caused catastrophic damage to roofing, vehicles, and building exteriors across a wide area.",
+      "insuranceCostAud": "$1.55 billion"
+    }
+  ],
+
+  "suburbs": [
+    { "name": "Brisbane CBD", "slug": "brisbane-cbd" },
+    { "name": "Fortitude Valley", "slug": "fortitude-valley" },
+    { "name": "South Bank", "slug": "south-bank" },
+    { "name": "New Farm", "slug": "new-farm" },
+    { "name": "Toowong", "slug": "toowong" },
+    { "name": "Indooroopilly", "slug": "indooroopilly", "riskNote": "Brisbane River flood risk — affected in 2011 and 2022 events" },
+    { "name": "Carindale", "slug": "carindale" },
+    { "name": "Chermside", "slug": "chermside" },
+    { "name": "Cleveland", "slug": "cleveland" },
+    { "name": "Redcliffe", "slug": "redcliffe", "riskNote": "Coastal storm and cyclone exposure" },
+    { "name": "Caboolture", "slug": "caboolture" },
+    { "name": "Brookwater", "slug": "brookwater", "riskNote": "Flash flooding risk in western corridor" },
+    { "name": "Eagle Farm", "slug": "eagle-farm", "riskNote": "Low-lying suburb with Brisbane River flood exposure" },
+    { "name": "Rocklea", "slug": "rocklea", "riskNote": "Severe flood risk — Oxley Creek and Brisbane River confluence" },
+    { "name": "Graceville", "slug": "graceville", "riskNote": "High flood risk — Brisbane River corridor" },
+    { "name": "Milton", "slug": "milton", "riskNote": "Brisbane River flood risk — affected in 2011 and 2022" }
+  ],
+
+  "regions": [
+    "Inner City",
+    "Northern Suburbs",
+    "Southern Suburbs",
+    "Eastern Suburbs",
+    "Western Suburbs",
+    "Bayside"
+  ],
+
+  "council": {
+    "name": "Brisbane City Council",
+    "emergencyUrl": "https://www.brisbane.qld.gov.au/community-and-safety/community-safety/disasters-and-emergencies",
+    "sesUnit": "QLD SES Brisbane Region"
+  },
+
+  "insuranceProfile": {
+    "topClaimType": "water and flood damage",
+    "avgClaimValueAud": "$22,000",
+    "claimsPerCapita": "Highest in Australia for flood claims",
+    "icaRegion": "Queensland"
+  },
+
+  "serviceNotes": {
+    "waterDamage": "Brisbane's flood-prone geography makes water damage restoration a critical service. Properties along the Brisbane River, Oxley Creek, and Breakfast Creek corridors require specialist flood recovery capabilities including industrial-scale water extraction, anti-microbial treatment, and structural drying in subtropical conditions.",
+    "fireDamage": "While bushfire risk is lower than southern capitals, Brisbane properties still require fire damage restoration from kitchen fires, electrical faults, and structure fires. The subtropical climate accelerates smoke damage penetration into building materials.",
+    "mouldRemediation": "Brisbane's year-round humidity makes mould remediation the most persistent restoration challenge. Any water intrusion — from flooding, leaks, or storm damage — can produce visible mould colonisation within 24-48 hours. Air scrubbing, antimicrobial treatment, and humidity management are essential components of every restoration project.",
+    "stormDamage": "Supercell thunderstorms and tropical rainfall events produce severe roof and structural damage across Brisbane. Emergency tarping is critical to prevent secondary water damage, particularly given the rapid onset of mould in Brisbane's subtropical climate.",
+    "floodRecovery": "Brisbane's flood history (2011, 2022) has created specialised demand for large-scale flood recovery. Contractors require experience with contaminated floodwater, structural assessment of flood-affected properties, and long-duration drying programs in high-humidity conditions."
+  },
+
+  "seasonalRisks": [
+    { "month": "Jan", "risks": ["flooding", "cyclone risk", "severe storms", "mould"] },
+    { "month": "Feb", "risks": ["flooding", "cyclone risk", "humidity mould"] },
+    { "month": "Mar", "risks": ["late cyclone season", "flooding", "storm damage"] },
+    { "month": "Apr", "risks": ["autumn storms", "mould growth"] },
+    { "month": "May", "risks": ["storm damage", "dry season transition"] },
+    { "month": "Jun", "risks": ["dry season maintenance"] },
+    { "month": "Jul", "risks": ["dry season maintenance", "pipe condensation"] },
+    { "month": "Aug", "risks": ["early storm season preparation"] },
+    { "month": "Sep", "risks": ["spring storms", "storm damage"] },
+    { "month": "Oct", "risks": ["severe storms", "early cyclone activity"] },
+    { "month": "Nov", "risks": ["cyclone season begins", "severe storms", "flooding"] },
+    { "month": "Dec", "risks": ["cyclone risk", "flooding", "severe storms", "mould"] }
+  ],
+
+  "sourceUrls": [
+    "https://abs.gov.au/census/find-census-data/quickstats/2021/3GBRI",
+    "http://www.bom.gov.au/climate/averages/tables/cw_040842_All.shtml",
+    "https://www.icainternational.com/data-and-reports"
+  ]
+}

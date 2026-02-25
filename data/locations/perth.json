@@ -1,0 +1,150 @@
+{
+  "slug": "perth",
+  "city": "Perth",
+  "state": "WA",
+  "stateFullName": "Western Australia",
+  "population": 2100000,
+  "dwellings": 820000,
+  "elevation": 20,
+  "coordinates": { "lat": -31.9505, "lng": 115.8605 },
+  "timezone": "Australia/Perth",
+
+  "climate": {
+    "annualRainfallMm": 726.9,
+    "avgMaxTempC": 24.9,
+    "avgMinTempC": 12.9,
+    "avgHumidityPercent": 52,
+    "wetMonths": ["May", "Jun", "Jul", "Aug"],
+    "dryMonths": ["Dec", "Jan", "Feb", "Mar"],
+    "rainfallSeasonality": "Strongly seasonal — 77.7% of rainfall falls May to September",
+    "cycloneSeason": "November to April (rare metro impact)",
+    "frostRisk": false,
+    "coastalExposure": true
+  },
+
+  "risks": {
+    "primary": [
+      {
+        "type": "bushfire threat",
+        "severity": "high",
+        "description": "Perth's eastern Hills suburbs (Mundaring, Kalamunda, Roleystone) sit within dense jarrah-marri forest, creating extreme bushfire risk with BAL-29 to BAL-FZ ratings. The 2016 Perth Hills fire destroyed 57 homes."
+      },
+      {
+        "type": "severe storms",
+        "severity": "high",
+        "description": "Winter cold fronts and summer thunderstorm systems produce damaging winds exceeding 100 km/h, causing widespread roof damage and tree falls. Perth receives an average of 15 severe thunderstorm days per year."
+      },
+      {
+        "type": "flash flooding",
+        "severity": "moderate",
+        "description": "Intense winter rainfall events overwhelm Perth's stormwater systems, causing localised flooding along the Swan River and Canning River corridors, particularly in low-lying suburbs."
+      }
+    ],
+    "secondary": [
+      {
+        "type": "cyclone impact",
+        "severity": "moderate",
+        "description": "While rare, tropical cyclones occasionally track south to affect the Perth metropolitan area. Cyclone Alby in 1978 caused significant wind damage across the city."
+      },
+      {
+        "type": "extreme heat damage",
+        "severity": "moderate",
+        "description": "Perth regularly experiences summer heatwaves exceeding 40°C, causing thermal expansion in roofing materials, air conditioning failures, and increased pipe stress."
+      }
+    ],
+    "bushfireAttackLevel": "BAL-29 for Hills suburbs (Mundaring, Kalamunda, Roleystone); BAL-LOW for metro",
+    "floodZone": "Low-moderate — Swan River corridor, Canning River catchment",
+    "cycloneCategory": "Region C (Perth metro — rare direct impact)"
+  },
+
+  "historicalEvents": [
+    {
+      "year": 1978,
+      "event": "Cyclone Alby",
+      "description": "Cyclone Alby tracked unusually far south, bringing destructive winds and heavy rain to the Perth metropolitan area. The storm caused widespread property damage, multiple fatalities, and triggered bushfires across the southwest.",
+      "insuranceCostAud": "$265 million (normalised to current values)"
+    },
+    {
+      "year": 2016,
+      "event": "Perth Hills bushfire (Yarloop-Waroona)",
+      "description": "A devastating bushfire destroyed 57 homes in the Perth Hills and Waroona district. Ember attack extended into suburban Mundaring and Kalamunda, requiring emergency make-safe and smoke damage restoration across hundreds of properties."
+    },
+    {
+      "year": 2010,
+      "event": "Toodyay bushfire",
+      "description": "A fast-moving grassfire destroyed 37 homes in Toodyay, northeast of Perth. The fire highlighted the bushfire vulnerability of Perth's peri-urban fringe and the need for rapid restoration response in fire-affected communities."
+    },
+    {
+      "year": 2021,
+      "event": "Cyclone Seroja",
+      "description": "Cyclone Seroja made landfall as a Category 3 system near Kalbarri, causing catastrophic damage in the Mid West region. While Perth metro avoided direct impact, associated storm activity caused property damage across northern suburbs.",
+      "insuranceCostAud": "$380 million"
+    }
+  ],
+
+  "suburbs": [
+    { "name": "Perth CBD", "slug": "perth-cbd" },
+    { "name": "Fremantle", "slug": "fremantle", "riskNote": "Coastal storm exposure" },
+    { "name": "Subiaco", "slug": "subiaco" },
+    { "name": "Cottesloe", "slug": "cottesloe", "riskNote": "Coastal erosion and storm surge risk" },
+    { "name": "Scarborough", "slug": "scarborough", "riskNote": "Coastal wind and storm damage exposure" },
+    { "name": "Joondalup", "slug": "joondalup" },
+    { "name": "Midland", "slug": "midland" },
+    { "name": "Armadale", "slug": "armadale", "riskNote": "Bushfire risk from adjacent jarrah forest" },
+    { "name": "Rockingham", "slug": "rockingham" },
+    { "name": "Mandurah", "slug": "mandurah" },
+    { "name": "Claremont", "slug": "claremont" },
+    { "name": "Victoria Park", "slug": "victoria-park" },
+    { "name": "Mundaring", "slug": "mundaring", "riskNote": "High bushfire risk — BAL-29 zone" },
+    { "name": "Kalamunda", "slug": "kalamunda", "riskNote": "High bushfire risk — BAL-29 zone" }
+  ],
+
+  "regions": [
+    "Perth Metro",
+    "Western Suburbs",
+    "Northern Suburbs",
+    "Southern Suburbs",
+    "Eastern Suburbs (Hills)",
+    "Coastal"
+  ],
+
+  "council": {
+    "name": "City of Perth",
+    "emergencyUrl": "https://www.perth.wa.gov.au/live-and-work/safety-and-emergencies",
+    "sesUnit": "DFES / WA SES Metropolitan"
+  },
+
+  "insuranceProfile": {
+    "topClaimType": "bushfire and storm damage",
+    "avgClaimValueAud": "$15,200",
+    "icaRegion": "Western Australia"
+  },
+
+  "serviceNotes": {
+    "waterDamage": "Perth's strongly seasonal rainfall means water damage claims peak dramatically during the May-September wet season. Older properties in the western suburbs with limestone foundations are particularly vulnerable to rising damp and water ingress during prolonged rain events.",
+    "fireDamage": "Perth's Hills suburbs face Australia's highest urban bushfire risk. Smoke damage from bushfires can travel 50+ kilometres, affecting properties well beyond the fire front. Specialist soot and smoke remediation is frequently required across the entire eastern metropolitan corridor.",
+    "mouldRemediation": "Despite Perth's dry summers, air conditioning condensation and poor ventilation in modern sealed buildings create year-round mould risk. Post-flood mould colonisation occurs rapidly in Perth's warm climate, requiring intervention within 24-48 hours.",
+    "stormDamage": "Winter cold fronts regularly produce destructive wind gusts across Perth, with coastal suburbs bearing the brunt. Emergency tarping and make-safe services are critical during the wet season to prevent cascading water damage from compromised roofing."
+  },
+
+  "seasonalRisks": [
+    { "month": "Jan", "risks": ["bushfire", "extreme heat damage"] },
+    { "month": "Feb", "risks": ["bushfire", "cyclone risk (northern WA)"] },
+    { "month": "Mar", "risks": ["late cyclone season", "thunderstorms"] },
+    { "month": "Apr", "risks": ["autumn storms", "early rain"] },
+    { "month": "May", "risks": ["winter storm onset", "flooding"] },
+    { "month": "Jun", "risks": ["heavy rainfall", "flooding", "wind damage"] },
+    { "month": "Jul", "risks": ["storm damage", "flooding", "roof leaks"] },
+    { "month": "Aug", "risks": ["wind damage", "coastal erosion", "flooding"] },
+    { "month": "Sep", "risks": ["spring storms", "rising damp"] },
+    { "month": "Oct", "risks": ["early bushfire season", "storm cells"] },
+    { "month": "Nov", "risks": ["bushfire", "cyclone season begins"] },
+    { "month": "Dec", "risks": ["bushfire", "extreme heat", "cyclone risk"] }
+  ],
+
+  "sourceUrls": [
+    "https://abs.gov.au/census/find-census-data/quickstats/2021/5GPER",
+    "http://www.bom.gov.au/climate/averages/tables/cw_009225_All.shtml",
+    "https://www.icainternational.com/data-and-reports"
+  ]
+}

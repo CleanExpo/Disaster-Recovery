@@ -1,0 +1,147 @@
+{
+  "slug": "adelaide",
+  "city": "Adelaide",
+  "state": "SA",
+  "stateFullName": "South Australia",
+  "population": 1387290,
+  "dwellings": 571000,
+  "elevation": 50,
+  "coordinates": { "lat": -34.9285, "lng": 138.6007 },
+  "timezone": "Australia/Adelaide",
+
+  "climate": {
+    "annualRainfallMm": 526.5,
+    "avgMaxTempC": 22.4,
+    "avgMinTempC": 11.6,
+    "avgHumidityPercent": 50,
+    "wetMonths": ["Jun", "Jul", "Aug"],
+    "dryMonths": ["Jan", "Feb", "Mar"],
+    "rainfallSeasonality": "Mediterranean pattern — dry hot summers, cool wet winters",
+    "frostRisk": true,
+    "coastalExposure": true
+  },
+
+  "risks": {
+    "primary": [
+      {
+        "type": "bushfire risk",
+        "severity": "high",
+        "description": "Adelaide's Hills Face Zone creates one of Australia's most dangerous urban-bushfire interfaces. The Adelaide Hills, Mount Lofty Ranges, and suburbs like Burnside and Crafers face extreme bushfire risk with BAL-29 to BAL-FZ ratings."
+      },
+      {
+        "type": "severe storms",
+        "severity": "high",
+        "description": "Adelaide experiences intense thunderstorm events producing damaging winds, large hail, and heavy rainfall. The 2016 statewide storm caused a blackout affecting the entire state."
+      },
+      {
+        "type": "flash flooding",
+        "severity": "moderate",
+        "description": "The Torrens River corridor and Brownhill Creek catchment are vulnerable to flash flooding during intense rainfall events, affecting properties in the inner suburbs and western plains."
+      }
+    ],
+    "secondary": [
+      {
+        "type": "heat-related pipe failures",
+        "severity": "moderate",
+        "description": "Adelaide regularly experiences extended heatwaves exceeding 40°C for multiple consecutive days, causing thermal stress on plumbing systems, particularly in older heritage stone buildings."
+      },
+      {
+        "type": "storm surges",
+        "severity": "low",
+        "description": "Coastal suburbs along Gulf St Vincent face occasional storm surge and erosion during severe winter weather systems."
+      }
+    ],
+    "bushfireAttackLevel": "BAL-29+ for Hills Face Zone (Burnside, Crafers, Lobethal, Uraidla)",
+    "floodZone": "Moderate — Torrens River corridor, Brownhill Creek catchment"
+  },
+
+  "historicalEvents": [
+    {
+      "year": 1983,
+      "event": "Ash Wednesday bushfires",
+      "description": "The Ash Wednesday fires devastated parts of the Adelaide Hills and South Australia, killing 28 people in SA and destroying hundreds of homes. The fires remain a defining disaster event for Adelaide's bushfire preparedness framework.",
+      "insuranceCostAud": "$204 million (SA total)"
+    },
+    {
+      "year": 2016,
+      "event": "SA statewide blackout storm",
+      "description": "A severe storm system with winds exceeding 120 km/h brought down transmission towers, causing a statewide blackout. The associated rainfall and wind caused extensive property damage across Adelaide, with thousands of insurance claims for roof damage and water ingress."
+    },
+    {
+      "year": 2015,
+      "event": "Pinery bushfire",
+      "description": "A fast-moving grassfire north of Adelaide destroyed 91 homes and killed two people. The fire burned through 82,600 hectares and required extensive restoration across affected farming communities.",
+      "insuranceCostAud": "$135 million"
+    },
+    {
+      "year": 2019,
+      "event": "Adelaide Hills bushfires (Cudlee Creek)",
+      "description": "The Cudlee Creek fire burned through the Adelaide Hills in December 2019, destroying 86 homes and damaging hundreds more. The fire directly threatened outer suburban Adelaide and required large-scale emergency restoration services.",
+      "insuranceCostAud": "$166 million"
+    }
+  ],
+
+  "suburbs": [
+    { "name": "Adelaide CBD", "slug": "adelaide-cbd" },
+    { "name": "Glenelg", "slug": "glenelg", "riskNote": "Coastal storm exposure" },
+    { "name": "Norwood", "slug": "norwood" },
+    { "name": "Unley", "slug": "unley" },
+    { "name": "Burnside", "slug": "burnside", "riskNote": "High bushfire risk — Hills Face Zone interface" },
+    { "name": "Prospect", "slug": "prospect" },
+    { "name": "Port Adelaide", "slug": "port-adelaide", "riskNote": "Flood and storm surge risk" },
+    { "name": "Marion", "slug": "marion" },
+    { "name": "Salisbury", "slug": "salisbury" },
+    { "name": "Tea Tree Gully", "slug": "tea-tree-gully", "riskNote": "Bushfire risk from adjacent ranges" },
+    { "name": "Modbury", "slug": "modbury" },
+    { "name": "Crafers", "slug": "crafers", "riskNote": "Extreme bushfire risk — BAL-FZ zone" },
+    { "name": "Stirling", "slug": "stirling", "riskNote": "High bushfire risk — Adelaide Hills" }
+  ],
+
+  "regions": [
+    "City and North Adelaide",
+    "Eastern Suburbs",
+    "Western Suburbs",
+    "Southern Suburbs",
+    "Adelaide Hills"
+  ],
+
+  "council": {
+    "name": "City of Adelaide",
+    "emergencyUrl": "https://www.cityofadelaide.com.au/about-council/emergency-management/",
+    "sesUnit": "SA SES Metropolitan"
+  },
+
+  "insuranceProfile": {
+    "topClaimType": "bushfire damage",
+    "avgClaimValueAud": "$18,500",
+    "icaRegion": "South Australia"
+  },
+
+  "serviceNotes": {
+    "waterDamage": "Adelaide's heritage stone buildings present unique water damage challenges — moisture absorbed into limestone and sandstone walls requires specialist drying techniques. The Torrens River corridor properties are particularly vulnerable during winter flooding events.",
+    "fireDamage": "Bushfire smoke and ember attack from the Hills Face Zone can affect properties across Adelaide's eastern suburbs. Heritage buildings in Burnside and Norwood require careful fire damage restoration to preserve period features while ensuring structural safety.",
+    "mouldRemediation": "Adelaide's dry summers mean mould risk is concentrated in the cooler months when poor ventilation in older stone buildings traps moisture. Post-flood mould remediation in Torrens corridor properties requires rapid response to prevent colonisation in porous stonework.",
+    "stormDamage": "Adelaide's exposure to severe thunderstorm events and winter cold fronts produces significant roof and structural damage. Older properties with slate or terracotta roofing are particularly vulnerable to hail and wind damage."
+  },
+
+  "seasonalRisks": [
+    { "month": "Jan", "risks": ["bushfire", "extreme heat damage", "pipe stress"] },
+    { "month": "Feb", "risks": ["bushfire", "heatwave damage"] },
+    { "month": "Mar", "risks": ["late bushfire season", "autumn storms"] },
+    { "month": "Apr", "risks": ["storm damage", "early rainfall"] },
+    { "month": "May", "risks": ["winter storm onset", "rising damp"] },
+    { "month": "Jun", "risks": ["heavy rainfall", "flooding", "mould risk"] },
+    { "month": "Jul", "risks": ["storm damage", "pipe bursts", "flooding"] },
+    { "month": "Aug", "risks": ["wind damage", "coastal erosion"] },
+    { "month": "Sep", "risks": ["spring storms", "rising damp"] },
+    { "month": "Oct", "risks": ["early bushfire season", "severe storms"] },
+    { "month": "Nov", "risks": ["bushfire", "severe thunderstorms", "hail"] },
+    { "month": "Dec", "risks": ["bushfire", "extreme heat", "heatwave"] }
+  ],
+
+  "sourceUrls": [
+    "https://abs.gov.au/census/find-census-data/quickstats/2021/4GADE",
+    "http://www.bom.gov.au/climate/averages/tables/cw_023090_All.shtml",
+    "https://www.icainternational.com/data-and-reports"
+  ]
+}

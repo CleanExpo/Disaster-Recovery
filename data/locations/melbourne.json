@@ -1,0 +1,154 @@
+{
+  "slug": "melbourne",
+  "city": "Melbourne",
+  "state": "VIC",
+  "stateFullName": "Victoria",
+  "population": 4917750,
+  "dwellings": 1855300,
+  "elevation": 31,
+  "coordinates": { "lat": -37.8136, "lng": 144.9631 },
+  "timezone": "Australia/Melbourne",
+
+  "climate": {
+    "annualRainfallMm": 578.3,
+    "avgMaxTempC": 20.4,
+    "avgMinTempC": 11.7,
+    "avgHumidityPercent": 57,
+    "wetMonths": ["Oct", "Nov", "Jun"],
+    "dryMonths": ["Jan", "Feb", "Mar"],
+    "rainfallSeasonality": "Relatively even distribution with a slight autumn-winter peak",
+    "frostRisk": true,
+    "coastalExposure": true
+  },
+
+  "risks": {
+    "primary": [
+      {
+        "type": "flash flooding",
+        "severity": "high",
+        "description": "Melbourne's extensive stormwater infrastructure is regularly overwhelmed during intense rainfall, causing flash flooding in low-lying suburbs along the Maribyrnong River and Elster Creek corridors."
+      },
+      {
+        "type": "wind damage",
+        "severity": "high",
+        "description": "Severe thunderstorms and cold front passages produce destructive wind gusts exceeding 100 km/h, causing widespread roof damage and tree falls across the metropolitan area."
+      },
+      {
+        "type": "bushfire proximity",
+        "severity": "moderate",
+        "description": "Outer eastern and northern suburbs including Eltham, Warrandyte, and the Dandenong Ranges face direct bushfire threat, with ember attack possible in adjacent residential areas."
+      }
+    ],
+    "secondary": [
+      {
+        "type": "burst pipes from cold snaps",
+        "severity": "moderate",
+        "description": "Winter temperatures regularly drop below 5°C across Melbourne, causing pipe failures in older properties particularly in the inner west and northern suburbs."
+      },
+      {
+        "type": "hail damage",
+        "severity": "moderate",
+        "description": "Melbourne experiences significant hailstorm events, with supercell thunderstorms producing hailstones large enough to damage roofing, skylights, and vehicles."
+      }
+    ],
+    "bushfireAttackLevel": "BAL-12.5 to BAL-19 for outer eastern suburbs (Eltham, Warrandyte, Hurstbridge fringe)",
+    "floodZone": "Moderate — Maribyrnong River corridor, Elster Creek catchment, Yarra River floodplain"
+  },
+
+  "historicalEvents": [
+    {
+      "year": 2009,
+      "event": "Black Saturday bushfires",
+      "description": "The deadliest bushfire disaster in Australian history killed 173 people and destroyed over 2,000 homes across Victoria. Peri-urban Melbourne suburbs experienced ember attack, and smoke damage affected properties across the eastern metropolitan area.",
+      "insuranceCostAud": "$1.07 billion"
+    },
+    {
+      "year": 2010,
+      "event": "Melbourne storm event",
+      "description": "A severe thunderstorm system produced destructive winds and heavy rainfall across the metropolitan area, causing widespread roof damage, flooding, and power outages affecting hundreds of thousands of properties.",
+      "insuranceCostAud": "$1.04 billion"
+    },
+    {
+      "year": 2016,
+      "event": "Thunderstorm asthma event",
+      "description": "An unprecedented thunderstorm asthma event overwhelmed emergency services. Associated storm damage from the preceding cold front caused significant property damage across Melbourne's western suburbs."
+    },
+    {
+      "year": 2022,
+      "event": "October floods",
+      "description": "Prolonged rainfall across Victoria caused major flooding along the Maribyrnong River, inundating homes in Maribyrnong and Flemington. The Yarra River reached minor flood level, with hundreds of properties requiring water damage restoration.",
+      "insuranceCostAud": "$890 million (Victoria-wide)"
+    }
+  ],
+
+  "suburbs": [
+    { "name": "Melbourne CBD", "slug": "melbourne-cbd" },
+    { "name": "St Kilda", "slug": "st-kilda" },
+    { "name": "South Yarra", "slug": "south-yarra" },
+    { "name": "Richmond", "slug": "richmond" },
+    { "name": "Fitzroy", "slug": "fitzroy" },
+    { "name": "Carlton", "slug": "carlton" },
+    { "name": "Camberwell", "slug": "camberwell" },
+    { "name": "Brighton", "slug": "brighton" },
+    { "name": "Footscray", "slug": "footscray", "riskNote": "Flash flooding risk from Maribyrnong River" },
+    { "name": "Williamstown", "slug": "williamstown", "riskNote": "Coastal exposure and storm surge risk" },
+    { "name": "Frankston", "slug": "frankston" },
+    { "name": "Dandenong", "slug": "dandenong" },
+    { "name": "Box Hill", "slug": "box-hill" },
+    { "name": "Glen Waverley", "slug": "glen-waverley" },
+    { "name": "Ringwood", "slug": "ringwood" },
+    { "name": "Maribyrnong", "slug": "maribyrnong", "riskNote": "High flood risk — Maribyrnong River corridor" },
+    { "name": "Eltham", "slug": "eltham", "riskNote": "Bushfire risk — BAL-12.5 to BAL-19 zone" },
+    { "name": "Warrandyte", "slug": "warrandyte", "riskNote": "High bushfire risk — BAL-19+ zone" }
+  ],
+
+  "regions": [
+    "Inner Melbourne",
+    "Inner East",
+    "Bayside",
+    "Western Suburbs",
+    "Northern Suburbs",
+    "South Eastern Suburbs",
+    "Mornington Peninsula"
+  ],
+
+  "council": {
+    "name": "City of Melbourne",
+    "emergencyUrl": "https://www.melbourne.vic.gov.au/community/safety-emergency/pages/emergencies.aspx",
+    "sesUnit": "Victoria SES Metropolitan West / Metropolitan East"
+  },
+
+  "insuranceProfile": {
+    "topClaimType": "storm and water damage",
+    "avgClaimValueAud": "$12,500",
+    "icaRegion": "Victoria"
+  },
+
+  "serviceNotes": {
+    "waterDamage": "Melbourne's ageing stormwater infrastructure and clay soils make water ingress a persistent problem, particularly in period homes across the inner suburbs. Rapid water extraction and structural drying are critical to prevent subfloor damage in these properties.",
+    "fireDamage": "Smoke and soot damage from bushfire events can affect properties well beyond the fire front. Melbourne's eastern suburbs regularly require smoke damage assessment and remediation following fire activity in the Dandenong Ranges and Yarra Valley corridors.",
+    "mouldRemediation": "Melbourne's cool, damp winters combined with poor ventilation in older buildings create ideal conditions for mould colonisation. Properties along creek corridors and in flood-prone areas require proactive moisture management.",
+    "stormDamage": "Destructive wind gusts from severe thunderstorms and cold front passages cause significant roof damage across Melbourne. Rapid emergency tarping and make-safe services prevent secondary water damage from rain ingress."
+  },
+
+  "seasonalRisks": [
+    { "month": "Jan", "risks": ["bushfire", "heatwave damage", "UV degradation"] },
+    { "month": "Feb", "risks": ["bushfire", "severe thunderstorms", "hail"] },
+    { "month": "Mar", "risks": ["autumn storms", "flash flooding"] },
+    { "month": "Apr", "risks": ["storm damage", "early cold snap"] },
+    { "month": "May", "risks": ["cold snap pipe bursts", "winter storm onset"] },
+    { "month": "Jun", "risks": ["winter storms", "flooding", "mould risk"] },
+    { "month": "Jul", "risks": ["pipe bursts", "storm damage", "mould growth"] },
+    { "month": "Aug", "risks": ["wind damage", "flooding"] },
+    { "month": "Sep", "risks": ["spring storms", "rising damp"] },
+    { "month": "Oct", "risks": ["severe storms", "flooding", "hail"] },
+    { "month": "Nov", "risks": ["storm cells", "early bushfire season"] },
+    { "month": "Dec", "risks": ["bushfire", "severe thunderstorms", "heatwave"] }
+  ],
+
+  "sourceUrls": [
+    "https://abs.gov.au/census/find-census-data/quickstats/2021/2GMEL",
+    "http://www.bom.gov.au/climate/averages/tables/cw_086071_All.shtml",
+    "https://www.icainternational.com/data-and-reports"
+  ]
+}
