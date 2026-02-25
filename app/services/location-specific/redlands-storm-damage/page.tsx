@@ -12,13 +12,13 @@ export default function RedlandsStormDamagePage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1E3A5F 100%)',
-        heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
+        heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <MapPin className="h-12 w-12" />,
         title: 'Redlands Storm Damage',
         subtitle: 'Professional redlands storm damage services in Queensland. 24/7 emergency response for bayside damage, island restoration.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
-      ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"
+      ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
