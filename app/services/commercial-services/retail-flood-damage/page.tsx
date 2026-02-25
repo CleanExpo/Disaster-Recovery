@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Retail Store Flood Recovery | Disaster Recovery',
-  description: 'Professional retail store flood recovery services in Queensland. 24/7 emergency response for shop flooding, retail water damage.',
+  description: 'Professional retail store flood recovery services across Australia. 24/7 emergency response for shop flooding, retail water damage.',
 };
 
 export default function RetailStoreFloodRecoveryPage() {
@@ -15,7 +15,7 @@ export default function RetailStoreFloodRecoveryPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Retail Store Flood Recovery',
-        subtitle: 'Professional retail store flood recovery services in Queensland. 24/7 emergency response for shop flooding, retail water damage.',
+        subtitle: 'Professional retail store flood recovery services across Australia. 24/7 emergency response for shop flooding, retail water damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

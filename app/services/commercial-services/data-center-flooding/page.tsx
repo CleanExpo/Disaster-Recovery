@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Data Centre Water Damage | Disaster Recovery',
-  description: 'Professional data centre water damage services in Queensland. 24/7 emergency response for server room flooding, IT disaster.',
+  description: 'Professional data centre water damage services across Australia. 24/7 emergency response for server room flooding, IT disaster.',
 };
 
 export default function DataCenterWaterDamagePage() {
@@ -15,7 +15,7 @@ export default function DataCenterWaterDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Data Centre Water Damage',
-        subtitle: 'Professional data centre water damage services in Queensland. 24/7 emergency response for server room flooding, IT disaster.',
+        subtitle: 'Professional data centre water damage services across Australia. 24/7 emergency response for server room flooding, IT disaster.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

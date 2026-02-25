@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Gym & Fitness Centre Flooding | Disaster Recovery',
-  description: 'Professional gym & fitness centre flooding services in Queensland. 24/7 emergency response for sports facility, gym water damage.',
+  description: 'Professional gym & fitness centre flooding services across Australia. 24/7 emergency response for sports facility, gym water damage.',
 };
 
 export default function GymFitnessCenterFloodingPage() {
@@ -15,7 +15,7 @@ export default function GymFitnessCenterFloodingPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Gym & Fitness Centre Flooding',
-        subtitle: 'Professional gym & fitness centre flooding services in Queensland. 24/7 emergency response for sports facility, gym water damage.',
+        subtitle: 'Professional gym & fitness centre flooding services across Australia. 24/7 emergency response for sports facility, gym water damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

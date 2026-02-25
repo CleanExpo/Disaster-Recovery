@@ -3,8 +3,8 @@ import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Life Safety | Disaster Recovery",
-  description: "Corporate offices, co-working spaces, professional services",
+  title: "Commercial Property Disaster Recovery | Disaster Recovery",
+  description: "Commercial property disaster recovery services for corporate offices, co-working spaces, and professional services across Australia.",
 };
 
 export default function CommercialPropertyPage() {
@@ -13,14 +13,14 @@ export default function CommercialPropertyPage() {
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
-        title: "Life Safety",
-        subtitle: "Corporate offices, co-working spaces, professional services",
+        title: "Commercial Property Disaster Recovery",
+        subtitle: "Commercial property disaster recovery services for corporate offices, co-working spaces, and professional services across Australia.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Property", href: "/property" },
-        { label: "Life Safety" },
+        { label: "Commercial Property Disaster Recovery" },
       ]}
     />
   );

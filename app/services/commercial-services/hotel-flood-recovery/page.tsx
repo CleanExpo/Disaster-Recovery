@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Hotel Flood Restoration | Disaster Recovery',
-  description: 'Professional hotel flood restoration services in Queensland. 24/7 emergency response for accommodation flooding, guest room water.',
+  description: 'Professional hotel flood restoration services across Australia. 24/7 emergency response for accommodation flooding, guest room water.',
 };
 
 export default function HotelFloodRestorationPage() {
@@ -15,7 +15,7 @@ export default function HotelFloodRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Hotel Flood Restoration',
-        subtitle: 'Professional hotel flood restoration services in Queensland. 24/7 emergency response for accommodation flooding, guest room water.',
+        subtitle: 'Professional hotel flood restoration services across Australia. 24/7 emergency response for accommodation flooding, guest room water.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'School Water Damage Cleanup | Disaster Recovery',
-  description: 'Professional school water damage cleanup services in Queensland. 24/7 emergency response for education facility, classroom flooding.',
+  description: 'Professional school water damage cleanup services across Australia. 24/7 emergency response for education facility, classroom flooding.',
 };
 
 export default function SchoolWaterDamageCleanupPage() {
@@ -15,7 +15,7 @@ export default function SchoolWaterDamageCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'School Water Damage Cleanup',
-        subtitle: 'Professional school water damage cleanup services in Queensland. 24/7 emergency response for education facility, classroom flooding.',
+        subtitle: 'Professional school water damage cleanup services across Australia. 24/7 emergency response for education facility, classroom flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

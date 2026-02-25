@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Healthcare Facility Water Damage | Disaster Recovery',
-  description: 'Professional healthcare facility water damage services in Queensland. 24/7 emergency response for medical facility, hospital flooding.',
+  description: 'Professional healthcare facility water damage services across Australia. 24/7 emergency response for medical facility, hospital flooding.',
 };
 
 export default function HealthcareFacilityWaterDamagePage() {
@@ -15,7 +15,7 @@ export default function HealthcareFacilityWaterDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Healthcare Facility Water Damage',
-        subtitle: 'Professional healthcare facility water damage services in Queensland. 24/7 emergency response for medical facility, hospital flooding.',
+        subtitle: 'Professional healthcare facility water damage services across Australia. 24/7 emergency response for medical facility, hospital flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

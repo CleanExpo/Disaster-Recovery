@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Restaurant Water Damage | Disaster Recovery',
-  description: 'Professional restaurant water damage services in Queensland. 24/7 emergency response for kitchen flooding, hospitality water.',
+  description: 'Professional restaurant water damage services across Australia. 24/7 emergency response for kitchen flooding, hospitality water.',
 };
 
 export default function RestaurantWaterDamagePage() {
@@ -15,7 +15,7 @@ export default function RestaurantWaterDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Restaurant Water Damage',
-        subtitle: 'Professional restaurant water damage services in Queensland. 24/7 emergency response for kitchen flooding, hospitality water.',
+        subtitle: 'Professional restaurant water damage services across Australia. 24/7 emergency response for kitchen flooding, hospitality water.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

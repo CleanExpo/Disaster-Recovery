@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Factory Flood Recovery | Disaster Recovery',
-  description: 'Professional factory flood recovery services in Queensland. 24/7 emergency response for manufacturing plant, industrial water.',
+  description: 'Professional factory flood recovery services across Australia. 24/7 emergency response for manufacturing plant, industrial water.',
 };
 
 export default function FactoryFloodRecoveryPage() {
@@ -15,7 +15,7 @@ export default function FactoryFloodRecoveryPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Factory Flood Recovery',
-        subtitle: 'Professional factory flood recovery services in Queensland. 24/7 emergency response for manufacturing plant, industrial water.',
+        subtitle: 'Professional factory flood recovery services across Australia. 24/7 emergency response for manufacturing plant, industrial water.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

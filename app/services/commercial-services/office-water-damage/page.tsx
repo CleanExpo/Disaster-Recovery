@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Office Water Damage Restoration | Disaster Recovery',
-  description: 'Professional office water damage restoration services in Queensland. 24/7 emergency response for commercial flooding, workplace water.',
+  description: 'Professional office water damage restoration services across Australia. 24/7 emergency response for commercial flooding, workplace water.',
 };
 
 export default function OfficeWaterDamageRestorationPage() {
@@ -15,7 +15,7 @@ export default function OfficeWaterDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Office Water Damage Restoration',
-        subtitle: 'Professional office water damage restoration services in Queensland. 24/7 emergency response for commercial flooding, workplace water.',
+        subtitle: 'Professional office water damage restoration services across Australia. 24/7 emergency response for commercial flooding, workplace water.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

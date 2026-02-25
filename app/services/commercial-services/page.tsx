@@ -3,8 +3,8 @@ import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Office Buildings | Disaster Recovery',
-  description: 'Professional commercial restoration services for businesses across Queensland. Minimising downtime and protecting your business assets.',
+  title: 'Commercial Restoration Services | Disaster Recovery',
+  description: 'Professional commercial restoration services for businesses across Australia. Minimising downtime and protecting your business assets.',
 };
 
 export default function CommercialServicesPage() {
@@ -14,15 +14,15 @@ export default function CommercialServicesPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Building2 className="h-12 w-12" />,
-        title: 'Office Buildings',
-        subtitle: 'Professional commercial restoration services for businesses across Queensland. Minimising downtime and protecting your business assets.',
+        title: 'Commercial Restoration Services',
+        subtitle: 'Professional commercial restoration services for businesses across Australia. Minimising downtime and protecting your business assets.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
-        { label: 'Office Buildings' },
+        { label: 'Commercial Restoration Services' },
       ]}
     />
   );
