@@ -406,7 +406,7 @@ export default function CostEstimator() {
 
                   {/* CTA */}
                   <Link
-                    href="/claim/start"
+                    href={`/claim?damageType=${encodeURIComponent(damageType)}&propertyType=${encodeURIComponent(propertyType)}&urgency=${encodeURIComponent(urgency)}&estimateLow=${result.low}&estimateHigh=${result.high}`}
                     className="block w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:shadow-xl hover:shadow-red-500/30 transition-all"
                   >
                     <span className="inline-flex items-center gap-2">

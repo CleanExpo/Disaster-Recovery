@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -31,15 +32,64 @@ import {
 
 const PLATFORM_FEE = 2750.00;
 
+// Map cost estimator damage types to claim form damage types
+const ESTIMATOR_TO_CLAIM_DAMAGE: Record<string, string> = {
+  'water-damage': 'Water/Flood Damage',
+  'fire-damage': 'Fire/Smoke Damage',
+  'mould-removal': 'Mould Growth',
+  'flood-restoration': 'Water/Flood Damage',
+  'storm-damage': 'Storm/Wind Damage',
+  'sewage': 'Sewage Overflow',
+  'biohazard': 'Biohazard Contamination',
+};
+
+const ESTIMATOR_TO_URGENCY: Record<string, string> = {
+  'emergency': 'emergency',
+  'urgent': 'urgent',
+  'scheduled': 'standard',
+};
+
 function OnlineClaimPageOriginal() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [claimId, setClaimId] = useState<string | null>(null);
+  const [estimate, setEstimate] = useState<{ low: number; high: number } | null>(null);
 
   // Scroll to top when step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
+
+  // Read cost estimator data from URL params
+  useEffect(() => {
+    if (!searchParams) return;
+    const estimateLow = searchParams.get('estimateLow');
+    const estimateHigh = searchParams.get('estimateHigh');
+    const damageType = searchParams.get('damageType');
+    const urgency = searchParams.get('urgency');
+    const propertyType = searchParams.get('propertyType');
+
+    if (estimateLow && estimateHigh) {
+      setEstimate({ low: Number(estimateLow), high: Number(estimateHigh) });
+    }
+
+    // Pre-fill form fields from estimator
+    const updates: Partial<typeof formData> = {};
+    if (damageType && ESTIMATOR_TO_CLAIM_DAMAGE[damageType]) {
+      updates.damageTypes = [ESTIMATOR_TO_CLAIM_DAMAGE[damageType]];
+    }
+    if (urgency && ESTIMATOR_TO_URGENCY[urgency]) {
+      updates.urgencyLevel = ESTIMATOR_TO_URGENCY[urgency];
+    }
+    if (propertyType) {
+      updates.propertyType = propertyType === 'commercial' ? 'commercial' : 'house';
+    }
+    if (Object.keys(updates).length > 0) {
+      setFormData(prev => ({ ...prev, ...updates }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const [formData, setFormData] = useState({
     // Client Information
@@ -212,8 +262,50 @@ function OnlineClaimPageOriginal() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Submit Online Claim</h1>
-          <p className="text-gray-700">Platform Fee: ${PLATFORM_FEE.toFixed(2)}</p>
         </div>
+
+        {/* Pricing Breakdown Banner */}
+        <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+          <h2 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <DollarSign className="h-5 w-5 text-blue-600" />
+            Emergency Make-Safe Fee: ${PLATFORM_FEE.toFixed(2)}
+          </h2>
+          <div className="space-y-1.5 text-sm text-gray-700 ml-7">
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">├─</span>
+              <span><strong>$550</strong> Platform Fee (contractor matching + claims documentation)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">├─</span>
+              <span><strong>$2,200</strong> Held for Your Contractor (credited toward restoration)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">└─</span>
+              <span>Payment plans available via{' '}
+                <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">
+                  Blue Fire Finance
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Cost Estimate Banner (shown when arriving from cost estimator) */}
+        {estimate && (
+          <div className="mb-6 bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+            <div className="flex items-start gap-3">
+              <DollarSign className="h-5 w-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="font-semibold text-emerald-900">
+                  Your estimated restoration cost: ${estimate.low.toLocaleString()} – ${estimate.high.toLocaleString()}
+                </p>
+                <p className="text-sm text-emerald-700 mt-1">
+                  The $2,750 emergency make-safe fee gets work started immediately. $2,200 is credited toward your total restoration.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Progress Steps */}
         <div className="flex justify-center mb-8">
@@ -235,9 +327,9 @@ function OnlineClaimPageOriginal() {
         <Alert className="mb-6 bg-yellow-50 border-yellow-200">
           <AlertTriangle className="h-4 w-4 text-yellow-600" />
           <AlertDescription>
-            <strong>Important:</strong> Disaster Recovery is a lead generation platform only.
-            We connect you with certified contractors who handle all work and communication.
-            The $2,750 fee covers lead generation and contractor matching services only.
+            <strong>Important:</strong> Disaster Recovery connects you with certified NRPG contractors
+            who handle all work, communication, and service delivery. We bill you directly —
+            work begins immediately without waiting for insurer approval.
           </AlertDescription>
         </Alert>
 
@@ -619,8 +711,8 @@ function OnlineClaimPageOriginal() {
                         required
                       />
                       <Label className="font-normal">
-                        I understand that Disaster Recovery is a lead generation platform only and does not
-                        perform restoration work. The $2,750 fee covers lead generation and contractor matching services.
+                        I understand that Disaster Recovery connects me with certified NRPG contractors.
+                        The $2,750 emergency make-safe fee includes a $550 platform fee and $2,200 held for my contractor.
                       </Label>
                     </div>
                     <div className="flex items-start gap-2">
@@ -682,7 +774,7 @@ function OnlineClaimPageOriginal() {
                 <Alert className="bg-blue-50 border-blue-200">
                   <DollarSign className="h-4 w-4 text-blue-600" />
                   <AlertDescription className="text-blue-800">
-                    <strong>Platform Fee:</strong> ${PLATFORM_FEE.toFixed(2)} - Covers lead generation and contractor matching
+                    <strong>Emergency Make-Safe Fee:</strong> ${PLATFORM_FEE.toFixed(2)} — $550 platform fee + $2,200 held for your contractor
                   </AlertDescription>
                 </Alert>
 
@@ -693,8 +785,15 @@ function OnlineClaimPageOriginal() {
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Platform Service Fee</span>
-                      <span className="font-semibold">${PLATFORM_FEE.toFixed(2)}</span>
+                      <span>Platform Fee</span>
+                      <span className="font-semibold">$550.00</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Held for Contractor</span>
+                      <span className="font-semibold">$2,200.00</span>
+                    </div>
+                    <div className="text-xs text-gray-500 pl-1">
+                      Credited toward your restoration work
                     </div>
                     <div className="border-t pt-2">
                       <div className="flex justify-between text-lg font-bold">
@@ -721,21 +820,31 @@ function OnlineClaimPageOriginal() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold mb-2">What You're Paying For:</h4>
                   <ul className="text-sm space-y-1">
-                    <li>✓ Immediate contractor matching based on location and service needs</li>
-                    <li>✓ Access to certified NRP network contractors</li>
-                    <li>✓ Quality assurance through NRP standards compliance</li>
-                    <li>✓ Lead generation and qualification services</li>
-                    <li>✓ Platform technology and support</li>
+                    <li>✓ Immediate contractor matching based on location and damage type</li>
+                    <li>✓ Emergency make-safe works begin within 60 minutes</li>
+                    <li>✓ $2,200 credited toward your full restoration</li>
+                    <li>✓ Full claims documentation for your insurer</li>
+                    <li>✓ Contractor provides formal contract with clear terms</li>
                   </ul>
                 </div>
 
                 <Alert>
                   <Info className="h-4 w-4" />
                   <AlertDescription>
-                    <strong>Note:</strong> This fee does not include restoration work costs.
-                    Your contractor will provide separate quotes for all work to be performed.
+                    <strong>How billing works:</strong> We bill you directly — work begins immediately
+                    without waiting for insurer approval. We provide full documentation to support your
+                    insurance claim for reimbursement.
                   </AlertDescription>
                 </Alert>
+
+                <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+                  <p className="text-sm text-indigo-900">
+                    <strong>Need to spread the cost?</strong> Flexible payment plans available through{' '}
+                    <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-indigo-600 font-semibold hover:underline">
+                      Blue Fire Finance
+                    </a>.
+                  </p>
+                </div>
 
                 <div className="flex justify-between">
                   <Button variant="outline" onClick={() => setStep(3)}>
@@ -759,7 +868,11 @@ function OnlineClaimPageOriginal() {
 }
 export default function OnlineClaimPage() {
   if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <OnlineClaimPageOriginal />;
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>}>
+        <OnlineClaimPageOriginal />
+      </Suspense>
+    );
   }
 
   return (
@@ -768,7 +881,9 @@ export default function OnlineClaimPage() {
       <nav className="ag-breadcrumb" aria-label="Breadcrumb" style={{ padding: '1rem 1.5rem 0', maxWidth: '1200px', margin: '0 auto' }}>
         <Link href="/">Home</Link> / <span>Lodge a Claim</span>
       </nav>
-      <OnlineClaimPageOriginal />
+      <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" /></div>}>
+        <OnlineClaimPageOriginal />
+      </Suspense>
       <AntigravityFooter />
     </>
   );
