@@ -89,7 +89,7 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
 export default function MouldRemediationPage() {
   if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <AntigravityServicePageTemplate data={mouldRemediationData} />;
+    return <AntigravityServicePageTemplate data={mouldRemediationData} heroImage="/images/generated/disaster-recovery/hero-mould-remediation.webp" />;
   }
 
   return (

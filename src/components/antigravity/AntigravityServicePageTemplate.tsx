@@ -8,14 +8,23 @@ import { AntigravityFooter } from './AntigravityFooter';
 
 interface Props {
   data: ServicePageData;
+  heroImage?: string;
+  ctaImage?: string;
 }
 
-export function AntigravityServicePageTemplate({ data }: Props) {
+export function AntigravityServicePageTemplate({ data, heroImage, ctaImage }: Props) {
   return (
     <>
       <AntigravityNavbar />
-      <header className="ag-service-header">
-        <div className="ag-header-overlay" style={{ background: data.theme.headerGradient }}>
+      <header
+        className="ag-service-header"
+        style={heroImage ? {
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        } : undefined}
+      >
+        <div className="ag-header-overlay" style={{ background: data.theme.headerGradient, opacity: heroImage ? 0.75 : undefined }}>
           {data.theme.headerRadial && (
             <div style={{
               position: 'absolute', inset: 0, zIndex: 1,

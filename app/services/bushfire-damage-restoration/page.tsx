@@ -159,12 +159,14 @@ export default function BushfireDamageRestorationPage() {
       <AgContentPageTemplate
         hero={{
           gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
+          heroImage: '/images/generated/disaster-recovery/hero-bushfire-damage.webp',
           icon: <Flame className="h-12 w-12" />,
           title: 'Bushfire Damage Restoration',
           subtitle:
             'Australia-wide emergency bushfire response — IICRC-certified contractors for fire damage, smoke damage, ember attack and structural restoration. Insurance-approved, 24/7 availability.',
         }}
         cta={{ text: 'Get Emergency Help', href: '/claim' }}
+        ctaImage="/images/generated/disaster-recovery/cta-bushfire-damage.webp"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

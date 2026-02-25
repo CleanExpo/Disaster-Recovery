@@ -63,6 +63,8 @@ export interface AgContentPageTemplateProps {
   sections?: ContentSection[];
   /** Cross-category related pages for internal linking */
   relatedPages?: RelatedPageLink[];
+  /** Optional background image for the bottom CTA section */
+  ctaImage?: string;
   /** Fallback content: rendered when ANTIGRAVITY_UI flag is OFF */
   fallback?: ReactNode;
 }
@@ -87,6 +89,7 @@ export function AgContentPageTemplate({
   stats,
   sections,
   relatedPages,
+  ctaImage,
   fallback,
 }: AgContentPageTemplateProps) {
   if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
@@ -290,8 +293,15 @@ export function AgContentPageTemplate({
 
       {/* Bottom CTA */}
       {cta && (
-        <section className="ag-network-cta">
-          <div className="ag-cta-background" />
+        <section
+          className="ag-network-cta"
+          style={ctaImage ? {
+            backgroundImage: `url(${ctaImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          } : undefined}
+        >
+          <div className="ag-cta-background" style={ctaImage ? { background: 'rgba(15, 41, 66, 0.8)' } : undefined} />
           <div className="ag-container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '2rem 1.5rem' }}>
             <div style={{ marginBottom: '1rem' }}>
               <div className="ag-icon-hero" style={{ margin: '0 auto' }}>

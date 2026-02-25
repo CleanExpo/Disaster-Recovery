@@ -21,11 +21,13 @@ export default function WaterDamageRestorationPage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1565C0 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Water Damage Restoration Services',
         subtitle: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

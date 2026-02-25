@@ -161,12 +161,14 @@ export default function CycloneDamageRestorationPage() {
       <AgContentPageTemplate
         hero={{
           gradient: 'linear-gradient(135deg, #1E293B 0%, #475569 100%)',
+          heroImage: '/images/generated/disaster-recovery/hero-cyclone-damage.webp',
           icon: <Wind className="h-12 w-12" />,
           title: 'Cyclone Damage Restoration',
           subtitle:
             'Australia-wide emergency cyclone response — IICRC-certified contractors for Category 1 to 5 cyclone damage, roof restoration, structural repair, storm surge cleanup and full insurance claim support.',
         }}
         cta={{ text: 'Get Emergency Help', href: '/claim' }}
+        ctaImage="/images/generated/disaster-recovery/cta-cyclone-damage.webp"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

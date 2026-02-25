@@ -52,11 +52,13 @@ export default function FireDamagePage() {
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
+        heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Fire & Smoke Damage Restoration',
         subtitle: 'Expert fire and smoke damage restoration services following IICRC S700 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
+      ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
