@@ -10,6 +10,9 @@ const PAGES_WITH_OWN_FAQ = [
   '/locations/perth',
   '/locations/adelaide',
   '/locations/brisbane',
+  '/for/property-managers',
+  '/for/strata-managers',
+  '/for/business-owners',
 ];
 
 // All data below is trusted static content — safe to stringify
