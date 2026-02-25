@@ -5,7 +5,7 @@
  * Converted from Hero.astro
  *
  * CTAs:
- *   "Secure Connection" -> /claim/start
+ *   "Secure Connection" -> /claim
  *   "Lodge a Claim"     -> /claim
  */
 

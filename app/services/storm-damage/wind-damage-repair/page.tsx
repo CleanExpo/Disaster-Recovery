@@ -16,7 +16,7 @@ export default function WindDamageRestorationPage() {
         title: 'Wind Damage Restoration',
         subtitle: 'Professional wind damage restoration services in Queensland. 24/7 emergency response for cyclone damage, storm wind repair.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

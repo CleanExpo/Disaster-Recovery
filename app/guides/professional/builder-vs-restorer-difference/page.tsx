@@ -25,7 +25,7 @@ export default function BuilderVsRestorerPage() {
         { label: 'Professional', href: '/guides/professional' },
         { label: 'Builder vs Restorer: The $15,000 Difference' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

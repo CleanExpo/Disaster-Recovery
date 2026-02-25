@@ -20,7 +20,7 @@ export default function GuidesIndexPage() {
         title: 'Restoration Guides',
         subtitle: 'Expert Advice for Australian Property Owners',
       }}
-      cta={{ text: 'Lodge a Claim', href: '/claim/start' }}
+      cta={{ text: 'Lodge a Claim', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Guides' },

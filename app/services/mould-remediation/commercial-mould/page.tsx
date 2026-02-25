@@ -16,7 +16,7 @@ export default function CommercialMouldRemediationPage() {
         title: 'Commercial Mould Remediation',
         subtitle: 'Professional commercial mould remediation services in Queensland. 24/7 emergency response for office mould, workplace mould.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

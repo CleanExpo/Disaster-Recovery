@@ -17,7 +17,7 @@ export default function WollongongPage() {
         title: 'Disaster Recovery Wollongong',
         subtitle: '24/7 Emergency Services in Wollongong',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

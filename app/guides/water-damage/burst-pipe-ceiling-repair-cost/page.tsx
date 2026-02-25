@@ -21,7 +21,7 @@ export default function BurstPipeCeilingRepairCostPage() {
         { label: 'Water Damage', href: '/guides/water-damage' },
         { label: 'Burst Pipe Ceiling Damage: Repair Costs & Process' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

@@ -16,7 +16,7 @@ export default function FlashFloodDamageRecoveryPage() {
         title: 'Flash Flood Damage Recovery',
         subtitle: 'Professional flash flood damage recovery services in Queensland. 24/7 emergency response for flood cleanup, storm flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

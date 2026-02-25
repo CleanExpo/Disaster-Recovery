@@ -17,7 +17,7 @@ export default function TownsvillePage() {
         title: 'Disaster Recovery Townsville',
         subtitle: '24/7 Emergency Services in Townsville',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

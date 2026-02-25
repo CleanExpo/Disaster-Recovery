@@ -148,7 +148,7 @@ export default function FloodDamageRestorationPage() {
           subtitle:
             'Australia-wide 24/7 emergency flood response. IICRC-certified contractors for water extraction, structural drying, decontamination and full property restoration — all insurance companies accepted.',
         }}
-        cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+        cta={{ text: 'Get Emergency Help', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

@@ -17,7 +17,7 @@ export default function MountGambierPage() {
         title: 'Disaster Recovery Mount Gambier',
         subtitle: '24/7 Emergency Services in Mount Gambier',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

@@ -186,7 +186,7 @@ export default function MobileNav() {
                 {/* CTA Buttons */}
                 <div className="px-6 py-4 border-t space-y-3">
                   <Button className="w-full" size="lg" asChild>
-                    <Link href="/book-service">
+                    <Link href="/claim">
                       Submit Claim
                     </Link>
                   </Button>
@@ -240,10 +240,10 @@ export default function MobileNav() {
             <span>Services</span>
           </Link>
           <Link
-            href="/book-service"
+            href="/claim"
             className={cn(
               "flex flex-col items-center justify-center gap-1 text-xs",
-              isActive('/book-service') ? "text-primary" : "text-muted-foreground"
+              isActive('/claim') ? "text-primary" : "text-muted-foreground"
             )}
           >
             <FileText className="h-5 w-5" />

@@ -16,7 +16,7 @@ export default function CarpetMouldRemediationPage() {
         title: 'Carpet Mould Remediation',
         subtitle: 'Professional carpet mould remediation services in Queensland. 24/7 emergency response for mouldy carpet, underlay mould.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

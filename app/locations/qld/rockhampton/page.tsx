@@ -17,7 +17,7 @@ export default function RockhamptonPage() {
         title: 'Disaster Recovery Rockhampton',
         subtitle: '24/7 Emergency Services in Rockhampton',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

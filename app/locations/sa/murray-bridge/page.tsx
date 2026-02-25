@@ -17,7 +17,7 @@ export default function MurrayBridgePage() {
         title: 'Disaster Recovery Murray Bridge',
         subtitle: '24/7 Emergency Services in Murray Bridge',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

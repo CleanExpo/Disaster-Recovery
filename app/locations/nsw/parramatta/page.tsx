@@ -17,7 +17,7 @@ export default function ParramattaPage() {
         title: 'Disaster Recovery Parramatta',
         subtitle: '24/7 Emergency Services in Parramatta',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

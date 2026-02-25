@@ -19,7 +19,7 @@ export default function MajorFloodRecoveryPage() {
         title: 'Major Flood Recovery',
         subtitle: 'Comprehensive flood damage restoration, water extraction, and mould prevention',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Disasters', href: '/disasters' },

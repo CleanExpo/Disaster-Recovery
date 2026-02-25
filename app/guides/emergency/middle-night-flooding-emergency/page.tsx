@@ -21,7 +21,7 @@ export default function MiddleNightFloodingEmergencyPage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: 'Middle of Night Flooding: Emergency Response' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

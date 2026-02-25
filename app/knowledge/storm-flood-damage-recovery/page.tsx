@@ -30,7 +30,7 @@ export default function StormFloodDamageRecoveryPage() {
           subtitle: 'Category 3 floodwater protocols, storm damage categories, and disaster assistance',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

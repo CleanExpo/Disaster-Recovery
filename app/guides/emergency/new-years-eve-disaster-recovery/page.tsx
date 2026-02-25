@@ -21,7 +21,7 @@ export default function NewYearsEveDisasterRecoveryPage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: "New Year's Eve Disaster Recovery" },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

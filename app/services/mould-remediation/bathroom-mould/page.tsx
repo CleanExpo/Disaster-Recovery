@@ -16,7 +16,7 @@ export default function BathroomMouldRemediationPage() {
         title: 'Bathroom Mould Remediation',
         subtitle: 'Professional bathroom mould remediation services in Queensland. 24/7 emergency response for shower mould, bathroom ceiling mould.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

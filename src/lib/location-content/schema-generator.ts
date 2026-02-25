@@ -33,7 +33,7 @@ export function generateLocationSchemas(
     },
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: `${BASE_URL}/claim/start`,
+      serviceUrl: `${BASE_URL}/claim`,
       availableLanguage: 'English',
     },
     hasOfferCatalog: {

@@ -17,7 +17,7 @@ export default function MackayPage() {
         title: 'Disaster Recovery Mackay',
         subtitle: '24/7 Emergency Services in Mackay',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

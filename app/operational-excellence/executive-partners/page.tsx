@@ -61,7 +61,7 @@ export default function ExecutivePartnersPage() {
           title: 'Executive Partners — Industry-Leading Affiliations',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Operational Excellence', href: '/operational-excellence' },

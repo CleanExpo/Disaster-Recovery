@@ -50,9 +50,9 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
       description: 'Emergency restoration services',
       href: '/client',
       subItems: [
-        { label: 'Emergency Help', href: '/client/emergency', icon: <email className="h-4 w-4" /> },
+        { label: 'Emergency Help', href: '/claim', icon: <email className="h-4 w-4" /> },
         { label: 'Insurance Claims', href: '/client/claims', icon: <Shield className="h-4 w-4" /> },
-        { label: 'Get Quote', href: '/client/instant-quote', icon: <Zap className="h-4 w-4" /> },
+        { label: 'Get Quote', href: '/claim', icon: <Zap className="h-4 w-4" /> },
         { label: 'Track Restoration', href: '/client/track', icon: <Globe className="h-4 w-4" /> },
       ]
     },
@@ -299,7 +299,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
 
               {/* Emergency CTA */}
               <Link
-                href="/client/emergency"
+                href="/claim"
                 className="ml-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse"
               >
                 <span className="flex items-center gap-2">
@@ -373,7 +373,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
               
               {/* Mobile Emergency Button */}
               <Link
-                href="/client/emergency"
+                href="/claim"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-center px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold animate-pulse"
               >

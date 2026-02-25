@@ -166,7 +166,7 @@ export default function CycloneDamageRestorationPage() {
           subtitle:
             'Australia-wide emergency cyclone response — IICRC-certified contractors for Category 1 to 5 cyclone damage, roof restoration, structural repair, storm surge cleanup and full insurance claim support.',
         }}
-        cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+        cta={{ text: 'Get Emergency Help', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

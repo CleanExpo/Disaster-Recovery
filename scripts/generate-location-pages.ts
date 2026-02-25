@@ -100,7 +100,7 @@ export default function ${safeName}Page() {
         title: '${svcLabel}${location.name}',
         subtitle: 'Immediate disaster recovery response in ${location.name} and surrounding areas. 24/7 emergency service.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

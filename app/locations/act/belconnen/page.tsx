@@ -17,7 +17,7 @@ export default function BelconnenPage() {
         title: 'Disaster Recovery Belconnen',
         subtitle: '24/7 Emergency Services in Belconnen',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

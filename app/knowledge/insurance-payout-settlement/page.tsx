@@ -29,7 +29,7 @@ export default function InsurancePayoutSettlementPage() {
           title: 'Insurance Payouts & Cash Settlements',
           subtitle: 'When to accept, when to refuse, and how to protect your rights under Australian insurance law',
         }}
-        cta={{ text: 'Get a Professional Assessment', href: '/claim/start' }}
+        cta={{ text: 'Get a Professional Assessment', href: '/claim' }}
         secondaryCta={{ text: 'Insurance Claims Guide', href: '/knowledge/insurance-claims-process-australia' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },

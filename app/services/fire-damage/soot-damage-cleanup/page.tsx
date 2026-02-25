@@ -16,7 +16,7 @@ export default function SootDamageCleaningPage() {
         title: 'Soot Damage Cleaning',
         subtitle: 'Professional soot damage cleaning services in Queensland. 24/7 emergency response for soot removal, carbon cleaning.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

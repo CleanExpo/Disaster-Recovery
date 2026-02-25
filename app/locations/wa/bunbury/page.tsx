@@ -17,7 +17,7 @@ export default function BunburyPage() {
         title: 'Disaster Recovery Bunbury',
         subtitle: '24/7 Emergency Services in Bunbury',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

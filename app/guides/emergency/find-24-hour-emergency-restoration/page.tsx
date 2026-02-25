@@ -21,7 +21,7 @@ export default function Find24HourEmergencyRestorationPage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: '24 Hour Emergency Restoration Services Near You' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

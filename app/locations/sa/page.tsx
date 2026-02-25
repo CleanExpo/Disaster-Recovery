@@ -28,7 +28,7 @@ export default function SouthAustraliaPage() {
         title: 'Disaster Recovery South Australia',
         subtitle: '24/7 Emergency Services in South Australia',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

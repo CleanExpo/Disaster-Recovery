@@ -16,7 +16,7 @@ export default function HealthcareFacilityWaterDamagePage() {
         title: 'Healthcare Facility Water Damage',
         subtitle: 'Professional healthcare facility water damage services in Queensland. 24/7 emergency response for medical facility, hospital flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

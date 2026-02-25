@@ -21,7 +21,7 @@ export default function BestRestorationCompanyAustraliaPage() {
         { label: 'Guides', href: '/guides/guides' },
         { label: 'Best Restoration Companies in Australia: How to...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

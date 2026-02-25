@@ -51,7 +51,7 @@ export default function PerthLocationPage() {
           title: 'Disaster Recovery Perth',
           subtitle: '24/7 Emergency Services in Perth, Western Australia',
         }}
-        cta={{ text: 'Emergency Response', href: '/claim/start' }}
+        cta={{ text: 'Emergency Response', href: '/claim' }}
         breadcrumbs={breadcrumbs}
         sections={content.sections}
         relatedPages={getRelatedPages('location-perth')}

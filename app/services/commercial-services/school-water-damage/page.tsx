@@ -16,7 +16,7 @@ export default function SchoolWaterDamageCleanupPage() {
         title: 'School Water Damage Cleanup',
         subtitle: 'Professional school water damage cleanup services in Queensland. 24/7 emergency response for education facility, classroom flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

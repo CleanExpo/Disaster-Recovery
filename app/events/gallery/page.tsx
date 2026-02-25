@@ -16,7 +16,7 @@ export default function EventsGalleryPage() {
         title: "Gallery",
         subtitle: "",
       }}
-      cta={{ text: 'Get Started', href: '/claim/start' }}
+      cta={{ text: 'Get Started', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Events", href: "/events" },

@@ -46,7 +46,7 @@ export default function MobileFAB() {
     {
       icon: FileText,
       label: 'Submit Claim',
-      href: '/book-service',
+      href: '/claim',
       color: 'bg-blue-600 hover:bg-blue-700'
     },
     {

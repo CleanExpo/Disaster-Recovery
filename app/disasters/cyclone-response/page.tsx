@@ -19,7 +19,7 @@ export default function CycloneDamageRecoveryPage() {
         title: 'Cyclone Damage Recovery',
         subtitle: 'Expert cyclone damage restoration including structural repairs, water extraction, and debris removal',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Disasters', href: '/disasters' },

@@ -17,7 +17,7 @@ export default function EarlyMorningEmergencyPage() {
         title: 'Early Morning Emergency Services',
         subtitle: 'No Extra Charges • Same Day Response',
       }}
-      cta={{ text: 'Emergency Response Now', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Emergency', href: '/emergency' },

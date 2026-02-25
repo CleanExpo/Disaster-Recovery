@@ -21,7 +21,7 @@ export default function InsuranceDepreciationWaterDamagePage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Understanding Depreciation in Water Damage Claims' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

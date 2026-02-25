@@ -30,7 +30,7 @@ export default function MouldRemediationStandardsPage() {
           subtitle: 'IICRC S520 containment, HEPA filtration, and post-remediation verification protocols',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

@@ -55,7 +55,7 @@ export default function EmergencyResponsePage() {
         title: '24/7 Online Emergency Response Services',
         subtitle: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

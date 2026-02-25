@@ -59,7 +59,7 @@ export default function FieldEssentialsPage() {
           title: 'Field Essentials — Prepared for Any Environment',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Operational Excellence', href: '/operational-excellence' },

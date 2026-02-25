@@ -17,7 +17,7 @@ export default function GungahlinPage() {
         title: 'Disaster Recovery Gungahlin',
         subtitle: '24/7 Emergency Services in Gungahlin',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

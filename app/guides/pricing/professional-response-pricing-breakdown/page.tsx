@@ -25,7 +25,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
         { label: 'Pricing', href: '/guides/pricing' },
         { label: 'NRP Pricing Guidance - Professional Standards &...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

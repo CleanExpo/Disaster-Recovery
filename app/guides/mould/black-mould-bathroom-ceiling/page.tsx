@@ -21,7 +21,7 @@ export default function BlackMouldBathroomCeilingPage() {
         { label: 'Mould', href: '/guides/mould' },
         { label: 'Black Mould on Bathroom Ceiling: Removal Guide' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

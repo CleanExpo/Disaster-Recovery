@@ -21,7 +21,7 @@ export default function FloodDamageHardwoodFloorsPage() {
         { label: 'Flood Damage', href: '/guides/flood-damage' },
         { label: 'Restoring Flood Damaged Hardwood Floors' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

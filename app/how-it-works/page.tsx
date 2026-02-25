@@ -21,7 +21,7 @@ export default function HowItWorksPage() {
         title: 'How It Works',
         subtitle: 'From Damage to Restoration — Your Complete 6-Step Journey',
       }}
-      cta={{ text: 'Lodge a Claim', href: '/claim/start' }}
+      cta={{ text: 'Lodge a Claim', href: '/claim' }}
       secondaryCta={{ text: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },

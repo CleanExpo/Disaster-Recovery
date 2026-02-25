@@ -16,7 +16,7 @@ export default function InsuranceDecoderHub() {
         title: "Burst Pipe Water Damage",
         subtitle: "",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Burst Pipe Water Damage" },

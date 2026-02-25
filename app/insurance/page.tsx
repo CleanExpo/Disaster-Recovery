@@ -41,7 +41,7 @@ export default function InsurancePage() {
         title: "Insurance Claims Assistance",
         subtitle: "Expert insurance claims assistance for disaster recovery. Work with NRMA, Suncorp, AAMI, QBE, Allianz and all major Australian insurers. Full claims documentation provided.",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Insurance Claims Assistance" },

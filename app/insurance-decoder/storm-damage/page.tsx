@@ -16,7 +16,7 @@ export default function StormDamageInsurancePage() {
         title: "Covered Storm Events",
         subtitle: "Fixed dollar amount (e.g., $1,000)",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Insurance Decoder", href: "/insurance-decoder" },

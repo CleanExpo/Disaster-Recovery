@@ -63,7 +63,7 @@ export const methLabDecontaminationData: ServicePageData = {
     statusText: 'Live Network Active',
     heading: 'Secure Decontamination Connection',
     description: 'Discreet, compliance-certified teams ready to deploy Australia-wide.',
-    ctaHref: '/claim/start?service=meth-lab-decontamination',
+    ctaHref: '/claim?service=meth-lab-decontamination',
     ctaText: 'Make a Claim',
     footerNote: 'Discreet, unmarked vehicles available upon request to protect property reputation.',
     trustText: 'Adhering strictly to Australian National Guidelines for Clandestine Drug Laboratories.',

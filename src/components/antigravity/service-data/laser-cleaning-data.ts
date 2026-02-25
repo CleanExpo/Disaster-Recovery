@@ -64,7 +64,7 @@ export const laserCleaningData: ServicePageData = {
     statusText: 'Live Equipment Ready',
     heading: 'Deploy Laser Specialist',
     description: 'Secure our advanced laser remediation units for immediate dispatch.',
-    ctaHref: '/claim/start?service=laser-cleaning',
+    ctaHref: '/claim?service=laser-cleaning',
     ctaText: 'Make a Claim',
     footerNote: 'Ideal for heritage-listed restorations, industrial manufacturing lines, and severe fire damage.',
     trustText: 'Adhering to strict Australian occupational health and laser safety regulations.',

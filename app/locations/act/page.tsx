@@ -28,7 +28,7 @@ export default function AustralianCapitalTerritoryPage() {
         title: 'Disaster Recovery Australian Capital Territory',
         subtitle: '24/7 Emergency Services in Australian Capital Territory',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

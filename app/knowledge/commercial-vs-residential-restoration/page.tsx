@@ -30,7 +30,7 @@ export default function CommercialVsResidentialRestorationPage() {
           subtitle: 'BCA compliance, ISO 22301 business continuity, and multi-stakeholder coordination',
         }}
         cta={{ text: 'Commercial Services', href: '/services/commercial-services' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

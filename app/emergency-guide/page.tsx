@@ -16,7 +16,7 @@ export default function EmergencyGuidePage() {
         title: "Water Damage Prevention",
         subtitle: "Police, Fire, Ambulance",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Water Damage Prevention" },

@@ -17,7 +17,7 @@ export default function PortLincolnPage() {
         title: 'Disaster Recovery Port Lincoln',
         subtitle: '24/7 Emergency Services in Port Lincoln',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

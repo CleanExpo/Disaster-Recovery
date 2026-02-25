@@ -16,7 +16,7 @@ export default function SewageCleanupPage() {
         title: 'Sewage Cleanup Brisbane',
         subtitle: 'Professional sewage cleanup and sanitisation in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online ',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

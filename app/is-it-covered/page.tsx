@@ -16,7 +16,7 @@ export default function CoverageChecker() {
         title: "This is critical for determining coverage",
         subtitle: "Happened all at once",
       }}
-      cta={{ text: 'Check Coverage', href: '/claim/start' }}
+      cta={{ text: 'Check Coverage', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "This is critical for determining cove..." },

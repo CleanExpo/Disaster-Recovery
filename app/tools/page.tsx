@@ -20,7 +20,7 @@ export default function ToolsIndexPage() {
         title: 'Tools & Calculators',
         subtitle: 'Free Assessment Tools for Property Owners',
       }}
-      cta={{ text: 'Lodge a Claim', href: '/claim/start' }}
+      cta={{ text: 'Lodge a Claim', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Tools' },

@@ -86,7 +86,7 @@ export default function CostEstimatorPage() {
           title: 'Emergency Cost Estimator',
           subtitle: 'Instant estimate based on real Australian restoration data',
         }}
-        cta={{ text: 'Lodge a Claim', href: '/claim/start' }}
+        cta={{ text: 'Lodge a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Tools', href: '/tools' },

@@ -19,7 +19,7 @@ export default function BushfireSmokeDamagePage() {
         title: 'Bushfire & Smoke Damage',
         subtitle: 'Complete bushfire recovery including smoke damage, soot removal, and structural restoration',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Disasters', href: '/disasters' },

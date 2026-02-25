@@ -16,7 +16,7 @@ export default function GymFitnessCenterFloodingPage() {
         title: 'Gym & Fitness Centre Flooding',
         subtitle: 'Professional gym & fitness centre flooding services in Queensland. 24/7 emergency response for sports facility, gym water damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

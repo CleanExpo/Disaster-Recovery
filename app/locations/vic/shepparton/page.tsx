@@ -17,7 +17,7 @@ export default function SheppartonPage() {
         title: 'Disaster Recovery Shepparton',
         subtitle: '24/7 Emergency Services in Shepparton',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

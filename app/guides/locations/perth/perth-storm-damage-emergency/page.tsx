@@ -21,7 +21,7 @@ export default function PerthStormDamageEmergencyPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Perth Storm Damage Emergency Response' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

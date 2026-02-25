@@ -21,7 +21,7 @@ export default function WhatToDoAfterFloodDamagePage() {
         { label: 'Emergency Guides', href: '/guides/emergency-guides' },
         { label: 'Immediate Steps After Flood Damage: Emergency G...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

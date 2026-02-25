@@ -17,7 +17,7 @@ export default function TownsvilleFloods2019Page() {
         title: 'Townsville Floods 2019',
         subtitle: 'How we helped recover from Townsville Floods 2019. Real results, timelines, and restoration process.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Case Studies', href: '/case-studies' },

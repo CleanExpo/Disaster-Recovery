@@ -30,7 +30,7 @@ export default function PsychrometricScienceRestorationPage() {
           subtitle: 'Temperature-humidity relationships, grain depression, and the drying equation',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

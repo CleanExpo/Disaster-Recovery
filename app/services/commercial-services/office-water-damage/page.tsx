@@ -16,7 +16,7 @@ export default function OfficeWaterDamageRestorationPage() {
         title: 'Office Water Damage Restoration',
         subtitle: 'Professional office water damage restoration services in Queensland. 24/7 emergency response for commercial flooding, workplace water.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

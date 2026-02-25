@@ -59,7 +59,7 @@ export default function SafetyPpePage() {
           title: 'Safety & PPE — Protecting Our People on Every Site',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Operational Excellence', href: '/operational-excellence' },

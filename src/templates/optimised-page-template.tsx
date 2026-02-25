@@ -366,7 +366,7 @@ export const EmergencyCTA = ({
       <div className="bg-red-600 rounded-2xl p-4 shadow-2xl animate-pulse">
         <p className="text-white font-bold text-sm mb-2">{title}</p>
         <Link
-          href="/client/emergency"
+          href="/claim"
           className="flex items-center gap-2 px-4 py-2 bg-white text-red-600 rounded-lg font-bold hover:bg-gray-100 transition-all"
         >
           <email className="h-5 w-5" />

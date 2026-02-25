@@ -21,7 +21,7 @@ export default function InsuranceApprovedContractorsPage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Insurance Approved Restoration Contractors' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

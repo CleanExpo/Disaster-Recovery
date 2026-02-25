@@ -304,7 +304,7 @@ export default function UltraModernHero() {
           </Link>
 
           <Link
-            href="/claim/start"
+            href="/claim"
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-lg border-2 overflow-hidden transition-all hover:scale-105"
             style={{
               borderColor: 'rgba(99, 91, 255, 0.5)',

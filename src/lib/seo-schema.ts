@@ -22,7 +22,7 @@ export const generateLocationServiceSchema = (location: string, postalCode: stri
   },
   "availableChannel": {
     "@type": "ServiceChannel",
-    "serviceUrl": `https://disasterrecovery.com.au/claim/start`,
+    "serviceUrl": `https://disasterrecovery.com.au/claim`,
     "availableLanguage": "English"
   },
   "hasOfferCatalog": {

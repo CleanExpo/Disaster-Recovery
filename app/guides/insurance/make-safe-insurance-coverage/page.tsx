@@ -21,7 +21,7 @@ export default function MakeSafeInsuranceCoveragePage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Make Safe Services: What Insurance Covers' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

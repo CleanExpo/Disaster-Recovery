@@ -21,7 +21,7 @@ export default function BrisbaneCommercialWaterDamagePage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Brisbane Commercial Water Damage Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

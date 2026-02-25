@@ -21,7 +21,7 @@ export default function RestaurantFireDamageRestorationPage() {
         { label: 'Commercial', href: '/guides/commercial' },
         { label: 'Restaurant Kitchen Fire Damage Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

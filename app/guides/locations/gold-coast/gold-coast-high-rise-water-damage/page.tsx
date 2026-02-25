@@ -21,7 +21,7 @@ export default function GoldCoastHighRiseWaterDamagePage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Gold Coast High Rise Water Damage Specialists' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

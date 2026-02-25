@@ -21,7 +21,7 @@ export default function WhatDisasterRecoveryIncludesPage() {
         { label: 'Services', href: '/guides/services' },
         { label: "What's Included in DR Services" },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

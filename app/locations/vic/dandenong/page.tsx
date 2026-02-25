@@ -17,7 +17,7 @@ export default function DandenongPage() {
         title: 'Disaster Recovery Dandenong',
         subtitle: '24/7 Emergency Services in Dandenong',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

@@ -25,7 +25,7 @@ export default function RealCostInsuranceDelaysPage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'The Real Cost of Insurance Delays - ASIC & ICA ...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

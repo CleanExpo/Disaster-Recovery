@@ -30,7 +30,7 @@ export default function WaterDamageRestorationSciencePage() {
           subtitle: 'IICRC S500 protocols, contamination categories, and psychrometric drying principles',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

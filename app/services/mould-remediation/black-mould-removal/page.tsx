@@ -16,7 +16,7 @@ export default function BlackMouldRemovalBrisbanePage() {
         title: 'Black Mould Removal Brisbane',
         subtitle: 'Professional black mould removal brisbane services in Queensland. 24/7 emergency response for toxic black mould, stachybotrys removal.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

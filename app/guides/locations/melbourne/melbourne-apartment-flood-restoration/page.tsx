@@ -21,7 +21,7 @@ export default function MelbourneApartmentFloodRestorationPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Melbourne Apartment Flood Damage Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

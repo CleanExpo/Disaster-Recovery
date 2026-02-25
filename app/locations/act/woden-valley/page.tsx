@@ -17,7 +17,7 @@ export default function WodenValleyPage() {
         title: 'Disaster Recovery Woden Valley',
         subtitle: '24/7 Emergency Services in Woden Valley',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

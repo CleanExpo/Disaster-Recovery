@@ -18,7 +18,7 @@ export default function SewageChecklistPage() {
         title: "Sewage Backup Emergency Checklist",
         subtitle: "",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Emergency", href: "/emergency" },

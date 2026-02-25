@@ -16,7 +16,7 @@ export default function WaterDamageInsurancePage() {
         title: "Call Certified Restoration Professionals",
         subtitle: "",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Insurance Decoder", href: "/insurance-decoder" },

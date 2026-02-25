@@ -16,7 +16,7 @@ export default function CommercialServicesPage() {
         title: 'Office Buildings',
         subtitle: 'Professional commercial restoration services for businesses across Queensland. Minimising downtime and protecting your business assets.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

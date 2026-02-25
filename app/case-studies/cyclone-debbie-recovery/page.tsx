@@ -17,7 +17,7 @@ export default function CycloneDebbieRecoveryPage() {
         title: 'Cyclone Debbie Recovery',
         subtitle: 'How we helped recover from Cyclone Debbie Recovery. Real results, timelines, and restoration process.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Case Studies', href: '/case-studies' },

@@ -31,7 +31,7 @@ export default function ShouldITakeAPayoutPage() {
         title: 'Should I Take an Insurance Payout?',
         subtitle: 'When your insurer offers a cash settlement instead of managing repairs, the decision can save you thousands — or cost you thousands. Here\u2019s how to tell the difference.',
       }}
-      cta={{ text: 'Get a Professional Assessment', href: '/claim/start' }}
+      cta={{ text: 'Get a Professional Assessment', href: '/claim' }}
       secondaryCta={{ text: 'Insurance Claims Guide', href: '/knowledge/insurance-claims-process-australia' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
@@ -296,7 +296,7 @@ export default function ShouldITakeAPayoutPage() {
                 If the damage is genuinely cosmetic, surface-level, and you are confident there is nothing hidden — a cash settlement can be a fast and practical solution. Use the contents claims strategy to maximise your total claim value, and make sure the offer covers like-for-like replacement.
               </p>
               <p className="mt-4">
-                <Link href="/claim/start" className="text-blue-600 hover:underline font-medium">
+                <Link href="/claim" className="text-blue-600 hover:underline font-medium">
                   Request a free professional assessment &rarr;
                 </Link>
               </p>
@@ -310,7 +310,7 @@ export default function ShouldITakeAPayoutPage() {
         { title: 'Section 54 Rights', href: '/guides/insurance/section-54-contractor-rights', description: 'Your legal right to choose your own qualified contractors.' },
         { title: 'Document Water Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', description: 'How to document damage properly to support your claim.' },
         { title: 'Loss Assessor vs Contractor', href: '/guides/insurance/loss-assessor-vs-contractor', description: 'Understanding the difference and who works for whom.' },
-        { title: 'Start a Claim', href: '/claim/start', description: 'Get a free professional assessment before making any decisions.' },
+        { title: 'Start a Claim', href: '/claim', description: 'Get a free professional assessment before making any decisions.' },
       ]}
     />
   );

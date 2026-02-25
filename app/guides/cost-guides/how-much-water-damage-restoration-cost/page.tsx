@@ -21,7 +21,7 @@ export default function HowMuchWaterDamageRestorationCostPage() {
         { label: 'Cost Guides', href: '/guides/cost-guides' },
         { label: 'Water Damage Restoration Cost Guide Australia 2024' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

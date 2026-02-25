@@ -20,7 +20,7 @@ export default function EmergencyChecklistsPage() {
         title: 'Emergency Response Checklists',
         subtitle: 'Step-by-step guides for immediate action during disasters. Follow these critical checklists to protect life, property, and ensure proper insurance documentation.',
       }}
-      cta={{ text: 'Emergency Response Now', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Emergency', href: '/emergency' },

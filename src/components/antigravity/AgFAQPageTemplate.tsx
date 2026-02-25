@@ -135,7 +135,7 @@ export function AgFAQPageTemplate({
           <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem', fontSize: '1.125rem' }}>
             Get connected with IICRC certified contractors in your area
           </p>
-          <Link href="/claim/start" className="ag-btn-primary-glow">
+          <Link href="/claim" className="ag-btn-primary-glow">
             Get Emergency Help
           </Link>
         </div>

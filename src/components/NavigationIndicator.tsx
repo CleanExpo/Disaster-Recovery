@@ -57,7 +57,7 @@ const navigationStructure: NavItem[] = [
     label: 'Contact',
     href: '/contact',
     children: [
-      { label: 'Book Service', href: '/book-service' },
+      { label: 'Book Service', href: '/claim' },
       { label: 'Get Quote', href: '/contact/quote' },
       { label: 'Emergency', href: '/contact/emergency' },
     ]

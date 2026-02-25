@@ -21,7 +21,7 @@ export default function MouldRemovalInsuranceCoveragePage() {
         { label: 'Insurance Guides', href: '/guides/insurance-guides' },
         { label: 'Is Mould Removal Covered by Insurance in Austra...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

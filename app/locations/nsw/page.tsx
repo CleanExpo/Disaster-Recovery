@@ -28,7 +28,7 @@ export default function NewSouthWalesPage() {
         title: 'Disaster Recovery New South Wales',
         subtitle: '24/7 Emergency Services in New South Wales',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

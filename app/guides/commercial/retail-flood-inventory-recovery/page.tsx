@@ -21,7 +21,7 @@ export default function RetailFloodInventoryRecoveryPage() {
         { label: 'Commercial', href: '/guides/commercial' },
         { label: 'Retail Store Flood: Inventory Recovery Process' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

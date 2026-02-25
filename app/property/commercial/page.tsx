@@ -16,7 +16,7 @@ export default function CommercialPropertyPage() {
         title: "Life Safety",
         subtitle: "Corporate offices, co-working spaces, professional services",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Property", href: "/property" },

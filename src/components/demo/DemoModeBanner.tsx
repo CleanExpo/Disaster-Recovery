@@ -28,7 +28,7 @@ export default function DemoModeBanner() {
     setShowDemoMenu(false);
     
     // Navigate to client claim page
-    window.location.href = '/claim/start?demo=auto';
+    window.location.href = '/claim?demo=auto';
   };
 
   const startInvestorPitchDemo = async () => {

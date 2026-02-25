@@ -27,7 +27,7 @@ export default function AboutPage() {
         title: 'About Disaster Recovery Australia',
         subtitle: 'Australia\'s national claims distribution platform — connecting property owners with certified restoration contractors 24/7, from single rooms to 80-floor towers.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       secondaryCta={{ text: 'View Our Certifications', href: '/certifications' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
@@ -194,7 +194,7 @@ export default function AboutPage() {
         { title: 'How It Works', href: '/how-it-works', description: 'Step-by-step guide to using our platform for disaster recovery claims.' },
         { title: 'Our Services', href: '/services', description: 'Full list of disaster recovery services distributed through our platform.' },
         { title: 'Service Locations', href: '/locations', description: 'Find certified contractors in your area across all Australian states and territories.' },
-        { title: 'Start a Claim', href: '/claim/start', description: 'Submit your damage claim online for immediate contractor matching.' },
+        { title: 'Start a Claim', href: '/claim', description: 'Submit your damage claim online for immediate contractor matching.' },
       ]}
     />
   );

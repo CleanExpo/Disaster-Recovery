@@ -21,7 +21,7 @@ export default function AdelaideRentalMouldRemediationPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Adelaide Rental Property Mould Remediation' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

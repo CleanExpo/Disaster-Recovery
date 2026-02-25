@@ -30,7 +30,7 @@ export default function NewcastleLocationPage() {
           title: 'Disaster Recovery Newcastle',
           subtitle: '24/7 Emergency Services in Newcastle',
         }}
-        cta={{ text: 'Emergency Response', href: '/claim/start' }}
+        cta={{ text: 'Emergency Response', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Locations', href: '/locations' },

@@ -185,7 +185,7 @@ export default function UltraModernServicesPage() {
         subtitle:
           'Professional disaster recovery and restoration services available 24/7 across Australia. From emergency water extraction to specialist biohazard remediation, we cover every scenario.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services' },

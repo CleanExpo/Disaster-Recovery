@@ -16,7 +16,7 @@ export default function CycloneDamageRestorationPage() {
         title: 'Cyclone Damage Restoration',
         subtitle: 'Professional cyclone damage restoration services in Queensland. 24/7 emergency response for tropical cyclone, hurricane damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

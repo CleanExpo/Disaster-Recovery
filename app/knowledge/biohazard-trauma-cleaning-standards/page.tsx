@@ -30,7 +30,7 @@ export default function BiohazardTraumaCleaningStandardsPage() {
           subtitle: 'AS/NZS 3816 clinical waste, bloodborne pathogen protocols, and biohazard classification',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

@@ -17,7 +17,7 @@ export default function BlackSummerBushfireRestorationPage() {
         title: 'Black Summer Bushfire Restoration',
         subtitle: 'How we helped recover from Black Summer Bushfire Restoration. Real results, timelines, and restoration process.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Case Studies', href: '/case-studies' },

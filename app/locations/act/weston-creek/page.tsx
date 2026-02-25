@@ -17,7 +17,7 @@ export default function WestonCreekPage() {
         title: 'Disaster Recovery Weston Creek',
         subtitle: '24/7 Emergency Services in Weston Creek',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

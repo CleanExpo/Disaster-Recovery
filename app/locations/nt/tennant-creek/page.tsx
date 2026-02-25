@@ -17,7 +17,7 @@ export default function TennantCreekPage() {
         title: 'Disaster Recovery Tennant Creek',
         subtitle: '24/7 Emergency Services in Tennant Creek',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

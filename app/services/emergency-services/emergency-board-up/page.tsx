@@ -16,7 +16,7 @@ export default function EmergencyBoardUpServicesPage() {
         title: 'Emergency Board Up Services',
         subtitle: 'Professional emergency board up services services in Queensland. 24/7 emergency response for security boarding, window boarding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

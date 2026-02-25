@@ -20,7 +20,7 @@ export default function CostGuidesIndexPage() {
         title: 'Restoration Cost Guides',
         subtitle: 'Transparent Pricing Across Australia',
       }}
-      cta={{ text: 'Get Free Quote', href: '/claim/start' }}
+      cta={{ text: 'Get Free Quote', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Cost Guides' },

@@ -17,7 +17,7 @@ export default function EmergencyTimesPage() {
         title: "24/7 Online Emergency Response Times & Fees",
         subtitle: "Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. Insurance approved.",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "24/7 Online Emergency Response Times ..." },

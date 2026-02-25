@@ -16,7 +16,7 @@ export default function DocumentWaterDamageRecoveryPage() {
         title: 'Document Water Damage Recovery',
         subtitle: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

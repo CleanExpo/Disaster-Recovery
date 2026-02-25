@@ -17,7 +17,7 @@ export default function ToowoombaPage() {
         title: 'Disaster Recovery Toowoomba',
         subtitle: '24/7 Emergency Services in Toowoomba',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

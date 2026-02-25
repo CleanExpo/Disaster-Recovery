@@ -51,7 +51,7 @@ export default function AdelaideLocationPage() {
           title: 'Disaster Recovery Adelaide',
           subtitle: '24/7 Emergency Services in Adelaide, South Australia',
         }}
-        cta={{ text: 'Emergency Response', href: '/claim/start' }}
+        cta={{ text: 'Emergency Response', href: '/claim' }}
         breadcrumbs={breadcrumbs}
         sections={content.sections}
         relatedPages={getRelatedPages('location-adelaide')}

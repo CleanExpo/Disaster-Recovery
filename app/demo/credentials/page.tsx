@@ -16,7 +16,7 @@ const DEMO_CREDENTIALS = {
   customer: {
     title: 'Customer Insurance Claim',
     description: 'Submit a claim as a homeowner with water damage',
-    url: '/claim/start?demo=auto',
+    url: '/claim?demo=auto',
     credentials: {
       name: 'John Smith',
       email: 'john.smith@example.com',

@@ -17,7 +17,7 @@ export default function BurniePage() {
         title: 'Disaster Recovery Burnie',
         subtitle: '24/7 Emergency Services in Burnie',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

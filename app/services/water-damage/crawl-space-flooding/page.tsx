@@ -16,7 +16,7 @@ export default function CrawlSpaceWaterRemovalPage() {
         title: 'Crawl Space Water Removal',
         subtitle: 'Professional crawl space water removal services in Queensland. 24/7 emergency response for under house flooding, subfloor water.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

@@ -116,7 +116,7 @@ export default function KnowledgeHubPage() {
           'Expert-verified disaster recovery science, IICRC standards, Australian legal frameworks, and restoration best practices',
       }}
       cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-      secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+      secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Knowledge Base' },
@@ -239,7 +239,7 @@ export default function KnowledgeHubPage() {
         { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Comprehensive fire and smoke damage restoration.' },
         { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520 certified mould removal and prevention.' },
         { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your disaster insurance claim.' },
-        { title: 'Start a Claim', href: '/claim/start', description: 'Begin your disaster recovery claim with NRP Group.' },
+        { title: 'Start a Claim', href: '/claim', description: 'Begin your disaster recovery claim with NRP Group.' },
       ]}
     />
   );

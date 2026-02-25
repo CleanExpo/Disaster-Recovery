@@ -74,7 +74,7 @@ export default function OperationalExcellenceIndexPage() {
           'The technology, safety standards, equipment and partnerships behind every Disaster Recovery project',
       }}
       cta={{ text: 'Get Emergency Help', href: '/emergency' }}
-      secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+      secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Operational Excellence' },
@@ -157,7 +157,7 @@ export default function OperationalExcellenceIndexPage() {
         { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Comprehensive fire and smoke damage restoration.' },
         { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520 certified mould removal and prevention.' },
         { title: 'Knowledge Base', href: '/knowledge', description: 'Expert-verified restoration science and standards.' },
-        { title: 'Start a Claim', href: '/claim/start', description: 'Begin your disaster recovery claim with NRP Group.' },
+        { title: 'Start a Claim', href: '/claim', description: 'Begin your disaster recovery claim with NRP Group.' },
       ]}
     />
   );

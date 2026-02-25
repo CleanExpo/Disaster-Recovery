@@ -17,7 +17,7 @@ export default function ArmadalePage() {
         title: 'Disaster Recovery Armadale',
         subtitle: '24/7 Emergency Services in Armadale',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

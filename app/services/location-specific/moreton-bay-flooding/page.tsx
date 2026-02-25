@@ -16,7 +16,7 @@ export default function MoretonBayFloodServicesPage() {
         title: 'Moreton Bay Flood Services',
         subtitle: 'Professional moreton bay flood services services in Queensland. 24/7 emergency response for northern flooding, bay area.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

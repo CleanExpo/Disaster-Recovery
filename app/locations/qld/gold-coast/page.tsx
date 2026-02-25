@@ -17,7 +17,7 @@ export default function GoldCoastPage() {
         title: 'Disaster Recovery Gold Coast',
         subtitle: '24/7 Emergency Services in Gold Coast',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

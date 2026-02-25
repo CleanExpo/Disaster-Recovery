@@ -164,7 +164,7 @@ export default function BushfireDamageRestorationPage() {
           subtitle:
             'Australia-wide emergency bushfire response — IICRC-certified contractors for fire damage, smoke damage, ember attack and structural restoration. Insurance-approved, 24/7 availability.',
         }}
-        cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+        cta={{ text: 'Get Emergency Help', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

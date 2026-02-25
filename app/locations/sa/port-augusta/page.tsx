@@ -17,7 +17,7 @@ export default function PortAugustaPage() {
         title: 'Disaster Recovery Port Augusta',
         subtitle: '24/7 Emergency Services in Port Augusta',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

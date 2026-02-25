@@ -21,7 +21,7 @@ export default function ChristmasEmergencyWaterDamagePage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: 'Christmas Day Water Damage Emergency Services' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

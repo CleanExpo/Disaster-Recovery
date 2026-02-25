@@ -16,7 +16,7 @@ export default function SuicideCleanupServicesPage() {
         title: 'Suicide Cleanup Services',
         subtitle: 'Professional suicide cleanup services services in Queensland. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

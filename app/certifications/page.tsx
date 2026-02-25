@@ -17,7 +17,7 @@ export default function CertificationsPage() {
         title: "Certifications",
         subtitle: "",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Certifications" },

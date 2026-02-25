@@ -287,7 +287,7 @@ export default function EnhancedMobileNav() {
               {/* Bottom Actions */}
               <div className="border-t border-gray-200 p-4 space-y-3">
                 <Link
-                  href="/book-service"
+                  href="/claim"
                   className="block w-full py-3 px-4 bg-blue-600 text-white text-center font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   Book Emergency Service

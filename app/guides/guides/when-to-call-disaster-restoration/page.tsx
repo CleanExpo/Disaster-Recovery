@@ -21,7 +21,7 @@ export default function WhenToCallDisasterRestorationPage() {
         { label: 'Guides', href: '/guides/guides' },
         { label: 'When to Call Professional Disaster Restoration ...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

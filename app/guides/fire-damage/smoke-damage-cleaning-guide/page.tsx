@@ -21,7 +21,7 @@ export default function SmokeDamageCleaningGuidePage() {
         { label: 'Fire Damage', href: '/guides/fire-damage' },
         { label: 'Smoke Damage Cleaning After House Fire' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

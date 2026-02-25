@@ -21,7 +21,7 @@ export default function StructuralDryingEquipmentCostPage() {
         { label: 'Equipment', href: '/guides/equipment' },
         { label: 'Structural Drying Equipment: Rental vs Professi...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

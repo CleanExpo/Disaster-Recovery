@@ -16,7 +16,7 @@ export default function CleanClaimsPartnershipPage() {
         title: "Global Expansion",
         subtitle: "Clean Claims enters Asia-Pacific market through strategic Australian partnership",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Partners", href: "/partners" },

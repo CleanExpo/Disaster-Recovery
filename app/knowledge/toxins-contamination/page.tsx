@@ -16,7 +16,7 @@ export default function ToxinsContaminationKnowledgePage() {
         title: "Biological Toxins",
         subtitle: "Living organisms and their byproducts that cause health issues",
       }}
-      cta={{ text: 'Get Started', href: '/claim/start' }}
+      cta={{ text: 'Get Started', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Knowledge", href: "/knowledge" },

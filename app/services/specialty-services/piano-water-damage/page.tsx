@@ -16,7 +16,7 @@ export default function PianoWaterDamageRestorationPage() {
         title: 'Piano Water Damage Restoration',
         subtitle: 'Professional piano water damage restoration services in Queensland. 24/7 emergency response for musical instrument, piano flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

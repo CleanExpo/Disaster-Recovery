@@ -27,7 +27,7 @@ export function EmergencyCTA({
   };
 
   return (
-    <Link href="/claim/start">
+    <Link href="/claim">
       <Button size="lg" className={`${getButtonStyle()} ${className}`}>
         {variant === 'urgent' && <AlertTriangle className="mr-2 h-5 w-5" />}
         {text}
@@ -45,7 +45,7 @@ export function LocationCTA({ city, service }: { city?: string; service?: string
     : 'Get Instant Quote';
 
   return (
-    <Link href="/claim/start">
+    <Link href="/claim">
       <Button size="lg" className="bg-green-600 hover:bg-green-800 text-white">
         <MapPin className="mr-2 h-5 w-5" />
         {text}

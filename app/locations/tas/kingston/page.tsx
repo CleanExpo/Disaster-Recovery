@@ -17,7 +17,7 @@ export default function KingstonPage() {
         title: 'Disaster Recovery Kingston',
         subtitle: '24/7 Emergency Services in Kingston',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

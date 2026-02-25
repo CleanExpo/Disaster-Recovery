@@ -17,7 +17,7 @@ export default function HAZMATCertifiedPage() {
         title: 'HAZMAT Certified',
         subtitle: 'Certified handling of hazardous materials, chemical contamination, and dangerous goods incidents in property restoration.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       secondaryCta={{ text: 'View All Certifications', href: '/certifications' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },

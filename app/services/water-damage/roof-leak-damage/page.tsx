@@ -16,7 +16,7 @@ export default function RoofLeakWaterDamagePage() {
         title: 'Roof Leak Water Damage',
         subtitle: 'Professional roof leak water damage services in Queensland. 24/7 emergency response for roof leaking, storm water damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

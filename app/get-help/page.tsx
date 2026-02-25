@@ -16,7 +16,7 @@ export default function GetHelpPage() {
         title: "Get Emergency Help",
         subtitle: "Get instant help from IICRC certified disaster recovery contractors in your area. 24/7 emergency response, insurance approved.",
       }}
-      cta={{ text: 'Get Help Now', href: '/claim/start' }}
+      cta={{ text: 'Get Help Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Get Emergency Help" },

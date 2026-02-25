@@ -28,7 +28,7 @@ export default function MinimumTrainingRequirementsPage() {
         subtitle: 'Every technician in the Disaster Recovery network must complete these mandatory safety and compliance courses before deployment to any site.',
       }}
       cta={{ text: 'View All Certifications', href: '/certifications' }}
-      secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+      secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Certifications', href: '/certifications' },

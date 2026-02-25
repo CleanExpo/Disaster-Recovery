@@ -21,7 +21,7 @@ export default function EasterWeekendEmergencyRestorationPage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: 'Easter Long Weekend Emergency Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

@@ -16,7 +16,7 @@ export default function RestaurantWaterDamagePage() {
         title: 'Restaurant Water Damage',
         subtitle: 'Professional restaurant water damage services in Queensland. 24/7 emergency response for kitchen flooding, hospitality water.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

@@ -16,7 +16,7 @@ export default function NRMAPartnershipPage() {
         title: "Emergency Claim",
         subtitle: "NRMA policyholders jump to front of queue",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Partners", href: "/partners" },

@@ -180,7 +180,7 @@ function ExpandableFABMenu() {
       icon: FileText,
       label: 'Submit Claim Form',
       colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
-      action: () => window.location.href = '/book-service'
+      action: () => window.location.href = '/claim'
     },
     {
       icon: Mail,
@@ -315,7 +315,7 @@ function QuickActionDock() {
       icon: FileText,
       label: 'Submit Claim',
       colour: 'bg-gradient-to-r from-red-500 to-red-600',
-      action: () => window.location.href = '/book-service',
+      action: () => window.location.href = '/claim',
       size: 'lg' as const
     },
     {

@@ -27,7 +27,7 @@ export default function NotFound() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/claim/start">
+              <Link href="/claim">
                 <Button className="bg-red-600 hover:bg-red-700 text-white">
                   <AlertTriangle className="mr-2 h-4 w-4" />
                   Get Emergency Help

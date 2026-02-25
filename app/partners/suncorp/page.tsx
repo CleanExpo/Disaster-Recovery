@@ -16,7 +16,7 @@ export default function SuncorpPartnershipPage() {
         title: "Emergency Claim",
         subtitle: "All Suncorp Group brands covered",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Partners", href: "/partners" },

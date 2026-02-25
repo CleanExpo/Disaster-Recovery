@@ -200,7 +200,7 @@ export function AgPricingPageTemplate({
           <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem', fontSize: '1.125rem' }}>
             Transparent pricing from {minimumCallout}. {insuranceCoverage} insurance covered.
           </p>
-          <Link href="/claim/start" className="ag-btn-primary-glow">
+          <Link href="/claim" className="ag-btn-primary-glow">
             Get Free {cityName} Quote
           </Link>
         </div>

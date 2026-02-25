@@ -16,7 +16,7 @@ export default function EmergencyStructuralDryingPage() {
         title: 'Emergency Structural Drying',
         subtitle: 'Professional emergency structural drying services in Queensland. 24/7 emergency response for rapid drying, moisture removal.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

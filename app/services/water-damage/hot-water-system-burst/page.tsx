@@ -16,7 +16,7 @@ export default function HotWaterSystemBurstDamagePage() {
         title: 'Hot Water System Burst Damage',
         subtitle: 'Professional hot water system burst damage services in Queensland. 24/7 emergency response for hot water tank leak, heater flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

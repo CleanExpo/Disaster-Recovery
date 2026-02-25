@@ -19,7 +19,7 @@ export default function LocationsPage() {
         title: 'Service Locations',
         subtitle: 'Find disaster recovery services across all Australian states and territories',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations' },

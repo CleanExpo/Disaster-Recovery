@@ -21,7 +21,7 @@ export default function NewcastleIndustrialFloodRecoveryPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Newcastle Industrial Flood Recovery Services' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

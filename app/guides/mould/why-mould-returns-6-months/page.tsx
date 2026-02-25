@@ -25,7 +25,7 @@ export default function WhyMouldReturnsPage() {
         { label: 'Mould', href: '/guides/mould' },
         { label: 'Why Mould Returns Within 6 Months - VBA Researc...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

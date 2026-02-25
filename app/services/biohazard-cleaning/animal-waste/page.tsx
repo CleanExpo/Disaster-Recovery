@@ -16,7 +16,7 @@ export default function AnimalWasteCleanupPage() {
         title: 'Animal Waste Cleanup',
         subtitle: 'Professional animal waste cleanup services in Queensland. 24/7 emergency response for pet hoarding, feces removal.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

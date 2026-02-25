@@ -99,7 +99,7 @@ export default function MobileHero() {
             className="w-full text-base h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
             asChild
           >
-            <Link href="/book-service">
+            <Link href="/claim">
               Submit Insurance Claim
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

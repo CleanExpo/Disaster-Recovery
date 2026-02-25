@@ -16,7 +16,7 @@ export default function CaravanWaterDamagePage() {
         title: 'Caravan Water Damage',
         subtitle: 'Professional caravan water damage services in Queensland. 24/7 emergency response for RV flooding, mobile home water.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

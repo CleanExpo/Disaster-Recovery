@@ -17,7 +17,7 @@ export default function MidlandPage() {
         title: 'Disaster Recovery Midland',
         subtitle: '24/7 Emergency Services in Midland',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

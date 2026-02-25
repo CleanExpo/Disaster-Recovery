@@ -101,7 +101,7 @@ export default function HeroSection() {
           </a>
           
           <Link
-            href="/claim/start"
+            href="/claim"
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-semibold text-lg transition-all hover:bg-white/20 hover:scale-105"
           >
             <span>Get Instant Quote</span>

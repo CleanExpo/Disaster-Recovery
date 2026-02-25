@@ -16,7 +16,7 @@ export default function InfectiousDiseaseSanitisationPage() {
         title: 'Infectious Disease Sanitisation',
         subtitle: 'Professional infectious disease sanitisation services in Queensland. 24/7 emergency response for COVID cleaning, virus disinfection.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

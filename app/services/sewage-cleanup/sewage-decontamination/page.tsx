@@ -16,7 +16,7 @@ export default function SewageDecontaminationServicesPage() {
         title: 'Sewage Decontamination Services',
         subtitle: 'Professional sewage decontamination services services in Queensland. 24/7 emergency response for sanitisation, bacterial cleanup.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

@@ -17,7 +17,7 @@ export default function MandurahPage() {
         title: 'Disaster Recovery Mandurah',
         subtitle: '24/7 Emergency Services in Mandurah',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

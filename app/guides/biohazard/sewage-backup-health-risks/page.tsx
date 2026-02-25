@@ -21,7 +21,7 @@ export default function SewageBackupHealthRisksPage() {
         { label: 'Biohazard', href: '/guides/biohazard' },
         { label: 'Sewage Backup: Health Risks & Safe Cleanup' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

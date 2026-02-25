@@ -16,7 +16,7 @@ export default function TimberMouldTreatmentPage() {
         title: 'Timber Mould Treatment',
         subtitle: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

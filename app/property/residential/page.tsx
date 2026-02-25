@@ -16,7 +16,7 @@ export default function ResidentialPropertyPage() {
         title: "Initial Contact",
         subtitle: "Single-family homes on individual blocks",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Property", href: "/property" },

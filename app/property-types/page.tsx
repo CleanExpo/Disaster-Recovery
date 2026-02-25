@@ -17,7 +17,7 @@ export default function PropertyTypesPage() {
         title: "Property Type Disaster Recovery",
         subtitle: "Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Property Type Disaster Recovery" },

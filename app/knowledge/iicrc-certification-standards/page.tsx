@@ -30,7 +30,7 @@ export default function IICRCCertificationStandardsPage() {
           subtitle: '8 core standards, certification levels, and why certification matters for your claim',
         }}
         cta={{ text: 'Find Certified Contractors', href: '/contractors' }}
-        secondaryCta={{ text: 'Start a Claim', href: '/claim/start' }}
+        secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Knowledge Base', href: '/knowledge' },

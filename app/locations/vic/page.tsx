@@ -28,7 +28,7 @@ export default function VictoriaPage() {
         title: 'Disaster Recovery Victoria',
         subtitle: '24/7 Emergency Services in Victoria',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

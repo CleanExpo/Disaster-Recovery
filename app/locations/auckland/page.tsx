@@ -33,7 +33,7 @@ export default function AucklandLocationPage() {
           title: 'Disaster Recovery Auckland',
           subtitle: '24/7 Emergency Services in Auckland',
         }}
-        cta={{ text: 'Emergency Response', href: '/claim/start' }}
+        cta={{ text: 'Emergency Response', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Locations', href: '/locations' },

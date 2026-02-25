@@ -21,7 +21,7 @@ export default function HowLongFireDamageRestorationPage() {
         { label: 'Guides', href: '/guides/guides' },
         { label: 'Fire Damage Restoration Timeline: What to Expect' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

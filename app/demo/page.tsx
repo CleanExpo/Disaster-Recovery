@@ -16,7 +16,7 @@ const demos = [
     title: 'Insurance Claim Portal',
     description: 'Watch how customers submit claims with our intelligent form auto-completion and AI damage assessment',
     icon: Shield,
-    href: '/claim/start?demo=auto',
+    href: '/claim?demo=auto',
     features: ['Auto-fill demo', 'Photo upload', 'Urgency triage', 'Instant dispatch'],
     bgColor: 'from-green-600 to-emerald-600',
     status: 'live'

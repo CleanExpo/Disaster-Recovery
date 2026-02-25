@@ -16,7 +16,7 @@ export default function EmergencyRoofTarpingPage() {
         title: 'Emergency Roof Tarping',
         subtitle: 'Professional emergency roof tarping services in Queensland. 24/7 emergency response for temporary roof, tarp installation.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

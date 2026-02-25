@@ -16,7 +16,7 @@ export default function MainSewerLineBackupPage() {
         title: 'Main Sewer Line Backup',
         subtitle: 'Professional main sewer line backup services in Queensland. 24/7 emergency response for sewer blockage, main drain backup.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

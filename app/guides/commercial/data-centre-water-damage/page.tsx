@@ -21,7 +21,7 @@ export default function DataCentreWaterDamagePage() {
         { label: 'Commercial', href: '/guides/commercial' },
         { label: 'Data Centre Water Damage Recovery Services' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

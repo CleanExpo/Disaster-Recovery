@@ -17,7 +17,7 @@ export default function AliceSpringsPage() {
         title: 'Disaster Recovery Alice Springs',
         subtitle: '24/7 Emergency Services in Alice Springs',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

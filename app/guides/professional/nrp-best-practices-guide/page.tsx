@@ -25,7 +25,7 @@ export default function NRPBestPracticesGuidePage() {
         { label: 'Professional', href: '/guides/professional' },
         { label: 'NRP Best Practices Guide - Professional Standar...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

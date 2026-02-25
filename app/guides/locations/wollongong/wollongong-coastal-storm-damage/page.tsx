@@ -21,7 +21,7 @@ export default function WollongongCoastalStormDamagePage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Wollongong Coastal Property Storm Damage Repair' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

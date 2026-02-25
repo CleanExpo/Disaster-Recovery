@@ -164,7 +164,7 @@ export default function StormDamageRestorationPage() {
           subtitle:
             'Australia-wide emergency storm response — IICRC-certified contractors for cyclone, hail, wind and roof damage. Insurance-approved, 24/7 availability.',
         }}
-        cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+        cta={{ text: 'Get Emergency Help', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Services', href: '/services' },

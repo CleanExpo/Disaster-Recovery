@@ -21,7 +21,7 @@ export default function WhyHireIicrcCertifiedPage() {
         { label: 'Certifications', href: '/guides/certifications' },
         { label: 'Why IICRC Certification Matters for Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

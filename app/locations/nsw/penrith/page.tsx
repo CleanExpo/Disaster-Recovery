@@ -17,7 +17,7 @@ export default function PenrithPage() {
         title: 'Disaster Recovery Penrith',
         subtitle: '24/7 Emergency Services in Penrith',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

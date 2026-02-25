@@ -18,7 +18,7 @@ export default function FAQIndexPage() {
         title: 'Frequently Asked Questions',
         subtitle: 'Get answers to common disaster recovery questions',
       }}
-      cta={{ text: 'Get Help Now', href: '/claim/start' }}
+      cta={{ text: 'Get Help Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'FAQ' },

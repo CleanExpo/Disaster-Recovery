@@ -21,7 +21,7 @@ export default function DocumentWaterDamageInsurancePage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Documenting Water Damage for Insurance Claims' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

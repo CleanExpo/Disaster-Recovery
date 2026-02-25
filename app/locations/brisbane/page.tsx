@@ -51,7 +51,7 @@ export default function BrisbaneLocationPage() {
           title: 'Disaster Recovery Brisbane',
           subtitle: '24/7 Emergency Services in Brisbane, Queensland',
         }}
-        cta={{ text: 'Emergency Response', href: '/claim/start' }}
+        cta={{ text: 'Emergency Response', href: '/claim' }}
         breadcrumbs={breadcrumbs}
         sections={content.sections}
         relatedPages={getRelatedPages('location-brisbane')}

@@ -16,7 +16,7 @@ export default function RetailStoreFloodRecoveryPage() {
         title: 'Retail Store Flood Recovery',
         subtitle: 'Professional retail store flood recovery services in Queensland. 24/7 emergency response for shop flooding, retail water damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

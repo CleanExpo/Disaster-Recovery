@@ -21,7 +21,7 @@ export default function ContentsPackOutStoragePage() {
         { label: 'Services', href: '/guides/services' },
         { label: 'Contents Pack Out & Storage During Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

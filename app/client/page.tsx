@@ -16,7 +16,7 @@ export default function ClientPortalPage() {
         title: "Client Portal",
         subtitle: "",
       }}
-      cta={{ text: 'Get Started', href: '/claim/start' }}
+      cta={{ text: 'Get Started', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Client Portal" },

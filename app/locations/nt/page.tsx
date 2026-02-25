@@ -28,7 +28,7 @@ export default function NorthernTerritoryPage() {
         title: 'Disaster Recovery Northern Territory',
         subtitle: '24/7 Emergency Services in Northern Territory',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

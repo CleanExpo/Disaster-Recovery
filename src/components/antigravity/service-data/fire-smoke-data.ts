@@ -64,7 +64,7 @@ export const fireSmokeData: ServicePageData = {
     statusText: '24/7 Fire Response Active',
     heading: 'Deploy Fire Specialists',
     description: 'Trigger immediate dispatch of certified FSRT crews to your disaster zone.',
-    ctaHref: '/claim/start?service=fire-damage',
+    ctaHref: '/claim?service=fire-damage',
     ctaText: 'Make a Claim',
     footerNote: 'Approved and trusted by top tier insurers across Australia and New Zealand.',
     trustText: 'Operating strictly under IICRC FSRT Standards for Fire & Smoke Damage Restoration.',

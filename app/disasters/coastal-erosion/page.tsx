@@ -19,7 +19,7 @@ export default function CoastalStormSurgeDamagePage() {
         title: 'Coastal & Storm Surge Damage',
         subtitle: 'Specialised coastal property restoration from storm surge, king tides, and erosion damage',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Disasters', href: '/disasters' },

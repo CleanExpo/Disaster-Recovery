@@ -51,7 +51,7 @@ export default function MelbourneLocationPage() {
           title: 'Disaster Recovery Melbourne',
           subtitle: '24/7 Emergency Services in Melbourne, Victoria',
         }}
-        cta={{ text: 'Emergency Response', href: '/claim/start' }}
+        cta={{ text: 'Emergency Response', href: '/claim' }}
         breadcrumbs={breadcrumbs}
         sections={content.sections}
         relatedPages={getRelatedPages('location-melbourne')}

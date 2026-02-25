@@ -21,7 +21,7 @@ export default function SunshineCoastHotelRestorationPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Sunshine Coast Hotel Water Damage Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

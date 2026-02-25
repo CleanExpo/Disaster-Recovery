@@ -16,7 +16,7 @@ export default function NaturalDisasterResponsePage() {
         title: 'Natural Disaster Response',
         subtitle: 'Professional natural disaster response services in Queensland. 24/7 emergency response for catastrophe response, major event.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

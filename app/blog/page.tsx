@@ -20,7 +20,7 @@ export default function BlogPage() {
         title: 'Blog & Resources',
         subtitle: 'Expert Guides, Knowledge Base & Industry Insights',
       }}
-      cta={{ text: 'Lodge a Claim', href: '/claim/start' }}
+      cta={{ text: 'Lodge a Claim', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Blog & Resources' },

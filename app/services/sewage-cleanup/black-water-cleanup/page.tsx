@@ -16,7 +16,7 @@ export default function BlackWaterContaminationPage() {
         title: 'Black Water Contamination',
         subtitle: 'Professional black water contamination services in Queensland. 24/7 emergency response for category 3 water, hazardous sewage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

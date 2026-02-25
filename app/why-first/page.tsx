@@ -16,7 +16,7 @@ export default function WhyFirstPage() {
         title: "Cognitive Performance",
         subtitle: "Poor indoor air quality reduces cognitive function by up to 9%. Professional restoration prevents this invisible threat.",
       }}
-      cta={{ text: 'Get Started', href: '/claim/start' }}
+      cta={{ text: 'Get Started', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Cognitive Performance" },

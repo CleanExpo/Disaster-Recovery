@@ -16,7 +16,7 @@ export default function ShowerLeakWaterDamagePage() {
         title: 'Shower Leak Water Damage',
         subtitle: 'Professional shower leak water damage services in Queensland. 24/7 emergency response for shower pan leak, bathroom flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

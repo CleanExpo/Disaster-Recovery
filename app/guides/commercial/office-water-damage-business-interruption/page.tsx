@@ -21,7 +21,7 @@ export default function OfficeWaterDamageBusinessInterruptionPage() {
         { label: 'Commercial', href: '/guides/commercial' },
         { label: 'Office Water Damage: Minimising Business Interr...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

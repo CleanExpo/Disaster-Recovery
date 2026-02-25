@@ -16,7 +16,7 @@ export default function PriorityEmergencyResponsePage() {
         title: 'Priority Emergency Response',
         subtitle: 'Professional priority emergency response services in Queensland. 24/7 emergency response for rapid deployment, first response.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

@@ -29,7 +29,7 @@ export default function InsuranceClaimsProcessPage() {
           title: 'Insurance Claims Process — Australia',
           subtitle: 'Insurance Contracts Act 1984, AFCA dispute resolution, and claims timeline',
         }}
-        cta={{ text: 'Start a Claim', href: '/claim/start' }}
+        cta={{ text: 'Start a Claim', href: '/claim' }}
         secondaryCta={{ text: 'Get Emergency Help', href: '/emergency' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },

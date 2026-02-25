@@ -17,7 +17,7 @@ export default function RockinghamPage() {
         title: 'Disaster Recovery Rockingham',
         subtitle: '24/7 Emergency Services in Rockingham',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

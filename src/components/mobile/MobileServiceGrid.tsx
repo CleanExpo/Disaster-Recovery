@@ -185,7 +185,7 @@ export default function MobileServiceGrid() {
               </p>
             </div>
             <Button size="lg" className="w-full sm:w-auto" asChild>
-              <Link href="/book-service">
+              <Link href="/claim">
                 Submit Claim Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

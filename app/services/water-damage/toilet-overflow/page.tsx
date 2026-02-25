@@ -16,7 +16,7 @@ export default function ToiletOverflowCleanupPage() {
         title: 'Toilet Overflow Cleanup',
         subtitle: 'Professional toilet overflow cleanup services in Queensland. 24/7 emergency response for toilet flooding, bathroom water damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

@@ -16,7 +16,7 @@ export default function AfterHoursEmergencyResponsePage() {
         title: 'After Hours Emergency Response',
         subtitle: 'Professional after hours emergency response services in Queensland. 24/7 emergency response for night emergency, weekend service.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

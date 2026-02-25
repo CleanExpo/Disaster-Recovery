@@ -17,7 +17,7 @@ export default function FremantlePage() {
         title: 'Disaster Recovery Fremantle',
         subtitle: '24/7 Emergency Services in Fremantle',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

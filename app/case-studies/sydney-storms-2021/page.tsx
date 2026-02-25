@@ -17,7 +17,7 @@ export default function SydneyStorms2021Page() {
         title: 'Sydney Storms 2021',
         subtitle: 'How we helped recover from Sydney Storms 2021. Real results, timelines, and restoration process.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Case Studies', href: '/case-studies' },

@@ -21,7 +21,7 @@ export default function LossAssessorVsContractorPage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Loss Assessor vs Restoration Contractor: Roles ...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

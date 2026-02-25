@@ -16,7 +16,7 @@ export default function DataCenterWaterDamagePage() {
         title: 'Data Centre Water Damage',
         subtitle: 'Professional data centre water damage services in Queensland. 24/7 emergency response for server room flooding, IT disaster.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

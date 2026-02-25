@@ -16,7 +16,7 @@ export default function ElectronicsWaterDamagePage() {
         title: 'Electronics Water Damage',
         subtitle: 'Professional electronics water damage services in Queensland. 24/7 emergency response for computer water damage, device recovery.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

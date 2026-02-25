@@ -17,7 +17,7 @@ export default function GawlerPage() {
         title: 'Disaster Recovery Gawler',
         subtitle: '24/7 Emergency Services in Gawler',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

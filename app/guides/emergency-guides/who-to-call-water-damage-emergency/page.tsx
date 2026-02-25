@@ -21,7 +21,7 @@ export default function WhoToCallWaterDamageEmergencyPage() {
         { label: 'Emergency Guides', href: '/guides/emergency-guides' },
         { label: 'Emergency Water Damage: Who to Call First' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

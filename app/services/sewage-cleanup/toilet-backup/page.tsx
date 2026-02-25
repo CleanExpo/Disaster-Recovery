@@ -16,7 +16,7 @@ export default function ToiletSewageBackupCleanupPage() {
         title: 'Toilet Sewage Backup Cleanup',
         subtitle: 'Professional toilet sewage backup cleanup services in Queensland. 24/7 emergency response for toilet overflow, bathroom sewage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

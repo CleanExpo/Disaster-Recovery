@@ -17,7 +17,7 @@ export default function documentdryingFAQPage() {
         title: 'Document drying FAQ',
         subtitle: 'Common questions and expert answers',
       }}
-      cta={{ text: 'Get Help Now', href: '/claim/start' }}
+      cta={{ text: 'Get Help Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'FAQ', href: '/faq' },

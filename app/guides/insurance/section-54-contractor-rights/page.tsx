@@ -25,7 +25,7 @@ export default function Section54ContractorRightsPage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Section 54 Insurance Contracts Act: Your Right ...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

@@ -21,7 +21,7 @@ export default function EmergencyBoardUpStormDamagePage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: 'Emergency Board Up Services After Storm Damage' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

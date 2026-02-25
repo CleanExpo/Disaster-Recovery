@@ -16,7 +16,7 @@ export default function IndustrialPropertyPage() {
         title: "Industrial Facility Disaster Recovery",
         subtitle: "Production plants, assembly lines, fabrication shops",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Property", href: "/property" },

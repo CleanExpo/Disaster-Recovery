@@ -17,7 +17,7 @@ export default function UlverstonePage() {
         title: 'Disaster Recovery Ulverstone',
         subtitle: '24/7 Emergency Services in Ulverstone',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

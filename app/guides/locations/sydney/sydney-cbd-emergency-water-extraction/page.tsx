@@ -21,7 +21,7 @@ export default function SydneyCbdEmergencyWaterExtractionPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Sydney CBD Emergency Water Extraction - 24/7 Se...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

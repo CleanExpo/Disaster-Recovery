@@ -285,7 +285,7 @@ const PHASE_4_ROUTES = [
   '/testimonials',
   '/login',
   '/signup',
-  '/claim/start',
+  '/claim',
   '/quote',
   '/get-help',
   '/government-funding',

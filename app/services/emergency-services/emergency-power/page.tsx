@@ -16,7 +16,7 @@ export default function EmergencyPowerSolutionsPage() {
         title: 'Emergency Power Solutions',
         subtitle: 'Professional emergency power solutions services in Queensland. 24/7 emergency response for generators, temporary power.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

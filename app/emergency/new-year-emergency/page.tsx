@@ -20,7 +20,7 @@ export default function NewYearEmergencyServicePage() {
         title: 'New Year Emergency Service',
         subtitle: 'Insurance Covered',
       }}
-      cta={{ text: 'Emergency Response Now', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Emergency', href: '/emergency' },

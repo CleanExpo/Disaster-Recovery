@@ -21,7 +21,7 @@ export default function StormDamageRoofLeakRepairPage() {
         { label: 'Storm Damage', href: '/guides/storm-damage' },
         { label: 'Emergency Storm Damage Roof Leak Repairs' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

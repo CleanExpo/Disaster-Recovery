@@ -21,7 +21,7 @@ export default function WarehouseRoofLeakRestorationPage() {
         { label: 'Commercial', href: '/guides/commercial' },
         { label: 'Warehouse Roof Leak Damage Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

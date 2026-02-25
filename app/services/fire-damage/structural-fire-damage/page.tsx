@@ -16,7 +16,7 @@ export default function StructuralFireDamageRepairPage() {
         title: 'Structural Fire Damage Repair',
         subtitle: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

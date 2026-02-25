@@ -17,7 +17,7 @@ export default function DisastersPage() {
         title: "Disaster Types & Emergency Response",
         subtitle: "Comprehensive disaster recovery for all types of natural disasters in Australia. Cyclones, bushfires, floods, storms, and more.",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Disaster Types & Emergency Response" },

@@ -28,7 +28,7 @@ export default function QueenslandPage() {
         title: 'Disaster Recovery Queensland',
         subtitle: '24/7 Emergency Services in Queensland',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

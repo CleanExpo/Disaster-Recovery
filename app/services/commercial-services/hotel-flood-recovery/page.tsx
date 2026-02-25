@@ -16,7 +16,7 @@ export default function HotelFloodRestorationPage() {
         title: 'Hotel Flood Restoration',
         subtitle: 'Professional hotel flood restoration services in Queensland. 24/7 emergency response for accommodation flooding, guest room water.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

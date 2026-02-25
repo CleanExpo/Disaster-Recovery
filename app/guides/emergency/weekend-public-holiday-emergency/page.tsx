@@ -21,7 +21,7 @@ export default function WeekendPublicHolidayEmergencyPage() {
         { label: 'Emergency', href: '/guides/emergency' },
         { label: 'Weekend & Public Holiday Emergency Restoration' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

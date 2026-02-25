@@ -16,7 +16,7 @@ export default function SolarPanelWaterDamagePage() {
         title: 'Solar Panel Water Damage',
         subtitle: 'Professional solar panel water damage services in Queensland. 24/7 emergency response for solar system, panel flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

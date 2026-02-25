@@ -25,7 +25,7 @@ export default function RealEmergencyResponseCostsPage() {
         { label: 'Pricing', href: '/guides/pricing' },
         { label: "Real Emergency Response Costs" },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

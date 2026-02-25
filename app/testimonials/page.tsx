@@ -16,7 +16,7 @@ export default function TestimonialsPage() {
         title: "Testimonials",
         subtitle: "",
       }}
-      cta={{ text: 'Get Help Now', href: '/claim/start' }}
+      cta={{ text: 'Get Help Now', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Testimonials" },

@@ -16,7 +16,7 @@ export default function StormDrainSewageBackupPage() {
         title: 'Storm Drain Sewage Backup',
         subtitle: 'Professional storm drain sewage backup services in Queensland. 24/7 emergency response for stormwater overflow, drain flooding.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

@@ -17,7 +17,7 @@ export default function CranbournePage() {
         title: 'Disaster Recovery Cranbourne',
         subtitle: '24/7 Emergency Services in Cranbourne',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Locations', href: '/locations' },

@@ -16,7 +16,7 @@ export default function CommercialFireRestorationPage() {
         title: 'Commercial Fire Restoration',
         subtitle: 'Professional commercial fire restoration services in Queensland. 24/7 emergency response for business fire, office fire damage.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

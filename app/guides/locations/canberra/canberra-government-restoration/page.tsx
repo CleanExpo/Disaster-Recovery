@@ -21,7 +21,7 @@ export default function CanberraGovernmentRestorationPage() {
         { label: 'Locations', href: '/guides/locations' },
         { label: 'Canberra Government Building Restoration Services' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

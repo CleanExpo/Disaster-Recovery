@@ -16,7 +16,7 @@ export default function MarineWaterDamagePage() {
         title: 'Marine Water Damage',
         subtitle: 'Professional marine water damage services in Queensland. 24/7 emergency response for boat flooding, yacht restoration.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

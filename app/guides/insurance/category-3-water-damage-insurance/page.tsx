@@ -21,7 +21,7 @@ export default function Category3WaterDamageInsurancePage() {
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Category 3 Water Damage: Insurance Claims Guide' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

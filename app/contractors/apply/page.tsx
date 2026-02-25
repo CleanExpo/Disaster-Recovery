@@ -16,7 +16,7 @@ export default function ContractorApplicationPage() {
         title: "Apply to Join Network",
         subtitle: "Apply to join Australia's premier disaster recovery network. IICRC certification required. Get qualified leads in your territory.",
       }}
-      cta={{ text: 'Get Started', href: '/claim/start' }}
+      cta={{ text: 'Get Started', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: "Contractors", href: "/contractors" },

@@ -19,7 +19,7 @@ export default function SevereStormResponsePage() {
         title: 'Severe Storm Response',
         subtitle: 'Emergency storm damage repairs including roof tarping, water extraction, and debris removal',
       }}
-      cta={{ text: 'Emergency Response', href: '/claim/start' }}
+      cta={{ text: 'Emergency Response', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Disasters', href: '/disasters' },

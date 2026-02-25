@@ -16,7 +16,7 @@ export default function FireDamagedContentsRestorationPage() {
         title: 'Fire Damaged Contents Restoration',
         subtitle: 'Professional fire damaged contents restoration services in Queensland. 24/7 emergency response for belongings restoration, document recovery.',
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },

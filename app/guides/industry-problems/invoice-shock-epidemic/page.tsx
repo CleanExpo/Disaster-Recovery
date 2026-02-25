@@ -25,7 +25,7 @@ export default function InvoiceShockEpidemicPage() {
         { label: 'Industry Problems', href: '/guides/industry-problems' },
         { label: 'Invoice Shock Epidemic - NSW Fair Trading Warns...' },
       ]}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
     />
   );
 }

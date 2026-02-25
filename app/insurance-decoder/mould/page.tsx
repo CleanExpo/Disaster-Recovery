@@ -16,7 +16,7 @@ export default function MouldInsurancePage() {
         title: "Immediate Documentation",
         subtitle: "",
       }}
-      cta={{ text: 'Get Emergency Help', href: '/claim/start' }}
+      cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Insurance Decoder", href: "/insurance-decoder" },

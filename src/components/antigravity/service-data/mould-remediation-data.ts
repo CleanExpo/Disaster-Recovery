@@ -64,7 +64,7 @@ export const mouldRemediationData: ServicePageData = {
     statusText: 'Live Response Active',
     heading: 'Deploy Mould Techs',
     description: 'Automated dispatch to the nearest available biohazard extraction fleet.',
-    ctaHref: '/claim/start?service=mould-remediation',
+    ctaHref: '/claim?service=mould-remediation',
     ctaText: 'Make a Claim',
     footerNote: 'Direct insurance billing available. IICRC S520 compliant reporting provided to all adjusters.',
     trustText: 'Operating strictly under IICRC S520 Standard for Professional Microbial Remediation.',
