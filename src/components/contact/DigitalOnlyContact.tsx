@@ -17,16 +17,13 @@ export function DigitalContactBar() {
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <button 
-            onClick={() => {
-              const event = new CustomEvent('openChat');
-              window.dispatchEvent(event);
-            }}
+          <a
+            href="/claim"
             className="bg-white text-blue-600 px-4 py-1.5 rounded-full font-bold text-sm hover:bg-yellow-400 hover:text-black transition-all transform hover:scale-105"
           >
             <MessageCircle className="inline h-4 w-4 mr-1" />
-            <span>Live Chat</span>
-          </button>
+            <span>Lodge Claim</span>
+          </a>
           <a 
             href="/claim"
             className="bg-green-500 text-white px-4 py-1.5 rounded-full font-bold text-sm hover:bg-green-400 transition-all"
@@ -43,10 +40,10 @@ export function EmergencyContactOptions() {
   const contactMethods = [
     {
       icon: MessageCircle,
-      title: "Live Chat",
-      description: "Instant response 24/7",
-      action: "Start Chat",
-      time: "< 30 seconds",
+      title: "Online Claim",
+      description: "Lodge emergency claim 24/7",
+      action: "Lodge Claim",
+      time: "2 minutes",
       color: "blue"
     },
     {
@@ -100,12 +97,7 @@ export function QuickResponseForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Trigger chat or form submission
-    setTimeout(() => {
-      const event = new CustomEvent('openChat');
-      window.dispatchEvent(event);
-    }, 500);
+    window.location.href = '/claim';
   };
 
   if (submitted) {
@@ -200,17 +192,14 @@ export function MobileDigitalContact() {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-blue-500 shadow-2xl z-[9990] md:hidden">
       <div className="grid grid-cols-2 gap-1 p-2">
-        <button 
-          onClick={() => {
-            const event = new CustomEvent('openChat');
-            window.dispatchEvent(event);
-          }}
+        <a
+          href="/claim"
           className="flex flex-col items-center justify-center py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
         >
           <MessageCircle className="h-6 w-6 text-blue-600 mb-1" />
-          <span className="text-xs font-medium">Live Chat</span>
-          <span className="text-xs text-blue-500">Instant</span>
-        </button>
+          <span className="text-xs font-medium">Lodge Claim</span>
+          <span className="text-xs text-blue-500">2 mins</span>
+        </a>
         <a 
           href="/claim"
           className="flex flex-col items-center justify-center py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"

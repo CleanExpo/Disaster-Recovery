@@ -434,17 +434,22 @@ export function KnowledgeBase() {
                 <CardTitle className="text-base">Need More Help?</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button className="w-full justify-start" variant="outline">
-                  <MessageSquare className="h-4 w-4 mr-2" />
-                  Start Live Chat
-                </Button>
+                <a href="/claim">
+                  <Button className="w-full justify-start" variant="outline">
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    Lodge Emergency Claim
+                  </Button>
+                </a>
                 <Button className="w-full justify-start" variant="outline">
                   <Mail className="h-4 w-4 mr-2" />
                   Email Support
                 </Button>
-                <Button className="w-full justify-start" variant="outline">
-                  <MessageSquare className="h-4 w-4 mr-2" />
-                  Call online support</Button>
+                <a href="/claim">
+                  <Button className="w-full justify-start" variant="outline">
+                    <MessageSquare className="h-4 w-4 mr-2" />
+                    Online Support
+                  </Button>
+                </a>
               </CardContent>
             </Card>
 

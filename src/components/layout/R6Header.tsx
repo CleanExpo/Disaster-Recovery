@@ -128,7 +128,6 @@ export default function R6Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [showLiveChat, setShowLiveChat] = useState(false);
   const [emergencyMode, setEmergencyMode] = useState(false);
   const pathname = usePathname();
 
@@ -199,13 +198,13 @@ export default function R6Header() {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <button
-                onClick={() => setShowLiveChat(true)}
+              <Link
+                href="/claim"
                 className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full hover:bg-white/20 transition-all duration-300 group text-sm font-medium"
               >
                 <Headphones className="w-4 h-4 group-hover:bounce transition-all" />
-                <span>Live Chat</span>
-              </button>
+                <span>Lodge Claim</span>
+              </Link>
               <a 
                 href="#contact-form"
                 className={cn(
@@ -334,13 +333,13 @@ export default function R6Header() {
             <div className="hidden lg:flex items-center gap-3">
               {/* Emergency Quick Actions */}
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setShowLiveChat(true)}
+                <Link
+                  href="/claim"
                   className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-[#6a6d72] hover:text-[#131cff] hover:bg-[#131cff]/5 rounded-lg transition-all duration-300 group"
                 >
                   <MessageCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  <span className="hidden xl:inline">Live Chat</span>
-                </button>
+                  <span className="hidden xl:inline">Lodge Claim</span>
+                </Link>
                 
                 {/* Response Time Indicator */}
                 <div className="flex items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg border border-green-200">
@@ -452,14 +451,15 @@ export default function R6Header() {
                 <span className="font-bold">60min</span>
               </div>
 
-              {/* Live Chat Button */}
-              <button
-                onClick={() => setShowLiveChat(true)}
+              {/* Lodge Emergency Claim Button */}
+              <Link
+                href="/claim"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#00a0d2]/10 text-[#00a0d2] rounded-lg font-semibold hover:bg-[#00a0d2]/20 transition-all duration-300"
               >
                 <MessageCircle className="w-4 h-4" />
-                Start Live Chat
-              </button>
+                Lodge Emergency Claim
+              </Link>
 
               {/* Emergency Call Button */}
               <a href="#contact-form" className="block">
@@ -489,83 +489,6 @@ export default function R6Header() {
         </div>
       </header>
 
-      {/* Live Chat Modal */}
-      {showLiveChat && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[80vh] overflow-hidden">
-            {/* Chat Header */}
-            <div className="bg-gradient-to-r from-[#131cff] to-[#00a0d2] text-white p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <Headphones className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">Emergency Support</h3>
-                  <p className="text-sm opacity-90 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                    Available now • Avg response: 30 seconds
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowLiveChat(false)}
-                className="p-2 hover:bg-white/20 rounded-lg transition-colours"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Chat Content */}
-            <div className="p-6 space-y-4">
-              <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm text-gray-600 mb-3">
-                  👋 Hi! I'm here to help with your emergency restoration needs.
-                </p>
-                <p className="text-sm font-semibold text-gray-900 mb-2">
-                  Quick questions to get started:
-                </p>
-                <div className="space-y-2">
-                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colours text-sm">
-                    💧 Water damage emergency
-                  </button>
-                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colours text-sm">
-                    🔥 Fire/smoke damage
-                  </button>
-                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colours text-sm">
-                    ⚠️ Sewage/biohazard cleanup
-                  </button>
-                  <button className="w-full text-left p-2 bg-white rounded border hover:border-[#131cff] hover:bg-[#131cff]/5 transition-colours text-sm">
-                    🏠 Other emergency restoration
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Type your message..."
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:border-[#131cff] focus:ring-1 focus:ring-[#131cff] outline-none"
-                />
-                <button className="bg-[#131cff] text-white px-4 py-2 rounded-lg hover:bg-[#0f17cc] transition-colours">
-                  Send
-                </button>
-              </div>
-
-              <div className="text-center pt-2 border-t">
-                <p className="text-xs text-gray-300 mb-2">
-                  For immediate emergencies, call directly:
-                </p>
-                <a href="#contact-form">
-                  <R6Button variant="danger" size="sm" className="animate-pulse">
-                    <MessageSquare className="w-4 h-4 mr-2" />
-                    Use Our Online Form
-                  </R6Button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }

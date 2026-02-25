@@ -54,16 +54,13 @@ export function QuickActionBar() {
           <Phone className="h-5 w-5 text-red-600 mb-1" />
           <span className="text-xs font-medium">Make a Claim</span>
         </a>
-        <button 
-          onClick={() => {
-            const chatBtn = document.querySelector('[class*="chat"]');
-            if (chatBtn) (chatBtn as HTMLElement).click();
-          }}
+        <a
+          href="/claim"
           className="flex flex-col items-center justify-center py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
         >
           <MessageCircle className="h-5 w-5 text-blue-600 mb-1" />
-          <span className="text-xs font-medium">Live Chat</span>
-        </button>
+          <span className="text-xs font-medium">Lodge Claim</span>
+        </a>
         <a 
           href="/claim"
           className="flex flex-col items-center justify-center py-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
@@ -178,21 +175,17 @@ export function ImprovedChatButton() {
           <div className="absolute bottom-0 right-6 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-black" />
         </div>
       )}
-      <button
+      <a
+        href="/claim"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => {
-          // Trigger chat opening
-          const event = new CustomEvent('openChat');
-          window.dispatchEvent(event);
-        }}
         className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300"
-        aria-label="Open live chat"
+        aria-label="Lodge emergency claim"
       >
         <MessageCircle size={28} />
         <span className="absolute top-0 right-0 h-3 w-3 bg-red-500 rounded-full animate-ping" />
         <span className="absolute top-0 right-0 h-3 w-3 bg-red-500 rounded-full" />
-      </button>
+      </a>
     </div>
   );
 }
