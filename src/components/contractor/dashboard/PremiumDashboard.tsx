@@ -71,8 +71,8 @@ function LiveActivityFeed() {
   const activities = [
     { id: 1, type: 'job', text: 'New water damage job assigned', time: '2m ago', icon: Droplets, colour: 'text-blue-500' },
     { id: 2, type: 'payment', text: 'Payment received: $3,450', time: '15m ago', icon: DollarSign, colour: 'text-green-500' },
-    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, colour: 'text-blue-600' },
-    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, colour: 'text-blue-600' }
+    { id: 3, type: 'rating', text: '5-star review received', time: '1h ago', icon: Star, colour: 'text-yellow-400' },
+    { id: 4, type: 'alert', text: 'Weather alert: Heavy rain expected', time: '2h ago', icon: AlertTriangle, colour: 'text-amber-400' }
   ];
   
   return (
@@ -91,7 +91,7 @@ function LiveActivityFeed() {
               <activity.icon className="h-4 w-4" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-600">{activity.text}</p>
+              <p className="text-sm text-gray-400">{activity.text}</p>
               <p className="text-xs text-gray-300 mt-1">{activity.time}</p>
             </div>
           </motion.div>
@@ -127,7 +127,7 @@ function PerformanceChart() {
             transition={{ delay: index * 0.1 }}
           >
             <div className="relative w-full flex flex-col items-center">
-              <span className="text-xs text-gray-600 mb-1">{item.jobs}</span>
+              <span className="text-xs text-gray-400 mb-1">{item.jobs}</span>
               <motion.div
                 className="w-full bg-gradient-to-t from-blue-500 to-purple-600 rounded-t-lg relative overflow-hidden"
                 initial={{ height: 0 }}
@@ -153,10 +153,10 @@ function PerformanceChart() {
 // AI Insights Component
 function AIInsights() {
   const insights = [
-    { icon: TrendingUp, text: 'Revenue up 23% this month', colour: 'text-emerald-600' },
-    { icon: Clock, text: 'Response time improved by 15%', colour: 'text-blue-600' },
-    { icon: Target, text: '3 jobs near completion', colour: 'text-purple-600' },
-    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-blue-500' }
+    { icon: TrendingUp, text: 'Revenue up 23% this month', colour: 'text-emerald-400' },
+    { icon: Clock, text: 'Response time improved by 15%', colour: 'text-blue-400' },
+    { icon: Target, text: '3 jobs near completion', colour: 'text-purple-400' },
+    { icon: AlertCircle, text: '2 invoices overdue', colour: 'text-amber-400' }
   ];
   
   return (
@@ -170,7 +170,7 @@ function AIInsights() {
           className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colours cursor-pointer"
         >
           <insight.icon className={`h-5 w-5 ${insight.colour}`} />
-          <span className="text-sm text-gray-600">{insight.text}</span>
+          <span className="text-sm text-gray-400">{insight.text}</span>
           <Sparkles className="h-4 w-4 text-blue-500 ml-auto" />
         </motion.div>
       ))}
@@ -209,7 +209,7 @@ function JobCard({ job }: any) {
               {job.status}
             </div>
           </div>
-          <p className="text-sm text-gray-600">{job.client}</p>
+          <p className="text-sm text-gray-400">{job.client}</p>
         </div>
         <div className={`p-2 rounded-lg bg-gradient-to-br ${statusColors[job.status]} opacity-20 group-hover:opacity-30 transition-opacity`}>
           <Icon className="h-5 w-5 text-white" />
@@ -236,8 +236,8 @@ function JobCard({ job }: any) {
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
       >
-        <span className="text-xs text-blue-600">View Details</span>
-        <ChevronRight className="h-4 w-4 text-blue-600" />
+        <span className="text-xs text-blue-400">View Details</span>
+        <ChevronRight className="h-4 w-4 text-blue-400" />
       </motion.div>
     </motion.div>
   );
@@ -318,14 +318,14 @@ export default function PremiumDashboard() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">NRPG Contractor Portal</h1>
-                <p className="text-xs text-gray-600">Premium Dashboard</p>
+                <p className="text-xs text-gray-400">Premium Dashboard</p>
               </div>
             </div>
             
             <div className="flex items-center gap-3">
               {/* Connection Status */}
               <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium ${
-                isOnline ? 'bg-green-500/20 text-emerald-600' : 'bg-blue-600/20 text-blue-500'
+                isOnline ? 'bg-green-500/20 text-emerald-400' : 'bg-blue-500/20 text-blue-400'
               }`}>
                 {isOnline ? <Wifi className="h-3 w-3" /> : <WifiOff className="h-3 w-3" />}
                 {isOnline ? 'Online' : 'Offline'}
@@ -358,7 +358,7 @@ export default function PremiumDashboard() {
                 </div>
                 <div className="hidden lg:block">
                   <p className="text-sm font-medium text-white">Demo Services</p>
-                  <p className="text-xs text-gray-600">Premium Tier</p>
+                  <p className="text-xs text-gray-400">Premium Tier</p>
                 </div>
               </div>
             </div>
@@ -379,8 +379,8 @@ export default function PremiumDashboard() {
                 <AlertTriangle className="h-5 w-5 text-blue-500" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-orange-700">Emergency Job Available</p>
-                <p className="text-xs text-gray-600">Water damage at 42 Emergency St - High priority</p>
+                <p className="text-sm font-semibold text-orange-400">Emergency Job Available</p>
+                <p className="text-xs text-gray-400">Water damage at 42 Emergency St - High priority</p>
               </div>
             </div>
             <motion.button
@@ -413,9 +413,9 @@ export default function PremiumDashboard() {
                   <div className={`p-2 rounded-lg bg-gradient-to-br ${stat.colour} opacity-20`}>
                     <stat.icon className="h-4 w-4 text-white" />
                   </div>
-                  <span className="text-xs text-emerald-600">{stat.trend}</span>
+                  <span className="text-xs text-emerald-400">{stat.trend}</span>
                 </div>
-                <p className="text-xs text-gray-600 mb-1">{stat.label}</p>
+                <p className="text-xs text-gray-400 mb-1">{stat.label}</p>
                 <p className="text-lg font-bold text-white">
                   {typeof stat.value === 'number' ? <AnimatedCounter value={stat.value} /> : stat.value}
                 </p>
