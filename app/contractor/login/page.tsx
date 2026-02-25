@@ -96,11 +96,8 @@ function ContractorLoginPageOriginal() {
           localStorage.setItem('rememberedUser', formData.username);
         }
         
-        // Smooth transition to dashboard
-        document.body.style.opacity = '0';
-        setTimeout(() => {
-          router.push('/contractor/dashboard');
-        }, 300);
+        // Navigate to dashboard
+        router.push('/contractor/dashboard');
         return;
       }
 
