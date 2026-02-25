@@ -598,7 +598,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
     faqs: [
       { question: 'How quickly should I respond to water damage?', answer: 'Immediately. Professional water extraction should begin within 60 minutes of discovery for best outcomes. Mould can begin growing within 24–48 hours. Every hour of delay increases restoration costs by an estimated 10–15%. Turn off the water source and electricity to affected areas while waiting for professionals.' },
       { question: 'What should I do in the first hour after a disaster?', answer: 'Ensure personal safety first. Call emergency services if needed (000). Turn off utilities if safe to do so. Take photos and video of all damage. Contact your insurance company. Call a professional restoration company. Do not enter structurally compromised areas.' },
-      { question: 'Is 24/7 emergency response really available?', answer: 'Yes, professional disaster recovery companies maintain 24/7 emergency dispatch capability. Disasters do not follow business hours — burst pipes commonly occur at night, storms hit at any time, and fires can start in the early morning. NRP Group coordinates emergency response around the clock across Australia.' },
+      { question: 'Is 24/7 emergency response really available?', answer: 'Yes, professional disaster recovery companies maintain 24/7 emergency dispatch capability. Disasters do not follow business hours — burst pipes commonly occur at night, storms hit at any time, and fires can start in the early morning. NRPG coordinates emergency response around the clock across Australia.' },
       { question: 'What does emergency board-up and tarp-up involve?', answer: 'Board-up secures broken windows, doors, and openings with plywood to prevent further damage and unauthorised entry. Tarp-up covers damaged roofing with heavy-duty tarpaulins to prevent rain ingress. Both are temporary measures to stabilise the property until permanent repairs can begin.' },
       { question: 'Who pays for emergency response?', answer: 'Emergency response and temporary stabilisation (board-up, tarp-up, water extraction) are typically covered under your insurance policy as reasonable mitigation costs. You have a duty to mitigate further damage, and insurers generally cover these emergency costs even before the full claim is assessed.' },
     ],
@@ -1110,7 +1110,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
       topic: 'Restoration Certification',
       vetted: [
         'IICRC-certified firm with multiple certified technicians',
-        'Current certifications verified annually by NRP Group',
+        'Current certifications verified annually by NRPG',
         'Continuing education maintained for latest industry standards',
         'Equipment calibration and maintenance per IICRC requirements',
         'Code of ethics commitment with formal complaint resolution',
@@ -1129,7 +1129,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
       { question: 'What is IICRC certification?', answer: 'The IICRC (Institute of Inspection, Cleaning and Restoration Certification) is the international standard-setting and certification body for the restoration industry. IICRC certification requires formal training, examination, and ongoing education. It is recognised worldwide and preferred by Australian insurers for restoration work.' },
       { question: 'Why should I choose an IICRC-certified contractor?', answer: 'IICRC-certified contractors have demonstrated competence through formal training and examination, commit to ethical business practices, follow scientific restoration protocols, and are preferred by insurance companies. Using certified contractors typically results in better restoration outcomes, smoother insurance claims, and legal protection through demonstrated standard of care.' },
       { question: 'What IICRC certifications should a water damage restorer have?', answer: 'At minimum, a water damage restorer should hold WRT (Water Restoration Technician) certification. For comprehensive water damage work, look for additional certifications: ASD (Applied Structural Drying) for complex drying, AMRT (Applied Microbial Remediation Technician) if mould is present, and FSRT (Fire and Smoke Restoration Technician) if secondary fire damage exists.' },
-      { question: 'How do I verify a contractor\'s IICRC certification?', answer: 'You can verify IICRC certification directly through the IICRC website at iicrc.org using their contractor search tool. Certified firms and technicians are listed with their current certification status, disciplines, and expiry dates. NRP Group verifies all network contractor certifications annually.' },
+      { question: 'How do I verify a contractor\'s IICRC certification?', answer: 'You can verify IICRC certification directly through the IICRC website at iicrc.org using their contractor search tool. Certified firms and technicians are listed with their current certification status, disciplines, and expiry dates. NRPG verifies all network contractor certifications annually.' },
       { question: 'Do Australian insurers require IICRC certification?', answer: 'While not legally mandated, most major Australian insurers strongly prefer or require IICRC-certified contractors for insured restoration work. Insurer panel contractor agreements typically include IICRC certification as a condition. Using non-certified contractors may result in claim disputes or reduced coverage.' },
       { question: 'How often must IICRC certification be renewed?', answer: 'IICRC certifications must be renewed through continuing education credits. Technicians must accumulate a specified number of education hours within each certification cycle. Firms must maintain certified staff ratios and comply with business practice standards. Certifications lapse if renewal requirements are not met.' },
     ],
@@ -1141,7 +1141,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
     snippetAnswer: (
       <>
         <p>
-          <strong>The NRP Group Make Safe &amp; Forensic Assessment</strong> is a $2,750 (AUD) scientific
+          <strong>The NRPG Make Safe &amp; Forensic Assessment</strong> is a $2,750 (AUD) scientific
           risk mitigation and liability transfer service. It includes{' '}
           <CitationTooltip source="IICRC Standards" credibility={10} url="https://www.iicrc.org">
             IICRC-compliant forensic inspection

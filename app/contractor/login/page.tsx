@@ -205,10 +205,10 @@ function ContractorLoginPageOriginal() {
               <Building2 className="h-10 w-10 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">
-              NRP Contractor Portal
+              NRPG Contractor Portal
             </h1>
             <p className="text-gray-300">
-              National Restoration Platform CRM
+              National Restoration Professionals Group CRM
             </p>
           </div>
 

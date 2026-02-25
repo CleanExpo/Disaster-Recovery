@@ -290,7 +290,7 @@ function CustomerServiceCoursePageOriginal() {
                   <Award className="w-5 h-5 text-purple-600" />
                   <div>
                     <p className="text-gray-200 text-sm">Certification</p>
-                    <p className="text-white font-semibold">NRP Excellence Badge</p>
+                    <p className="text-white font-semibold">NRPG Excellence Badge</p>
                   </div>
                 </div>
               </div>

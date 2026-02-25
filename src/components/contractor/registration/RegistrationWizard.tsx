@@ -182,10 +182,10 @@ export function RegistrationWizard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">
-            NRP Contractor Onboarding Portal
+            NRPG Contractor Onboarding Portal
           </h1>
           <p className="text-gray-700 mt-2">
-            Complete your registration to become an NRP certified contractor partner
+            Complete your registration to become an NRPG certified contractor partner
           </p>
         </div>
 

@@ -395,7 +395,7 @@ export function APIDocumentation() {
                 API Documentation
               </h1>
               <p className="text-blue-800">
-                Build powerful integrations with the NRP platform
+                Build powerful integrations with the NRPG platform
               </p>
             </div>
             <div className="flex items-center gap-4">
@@ -649,14 +649,14 @@ export function APIDocumentation() {
           <TabsContent value="getting-started" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Getting Started with NRP API</CardTitle>
+                <CardTitle>Getting Started with NRPG API</CardTitle>
                 <CardDescription>
                   Follow these steps to integrate with our API
                 </CardDescription>
               </CardHeader>
               <CardContent className="prose max-w-none">
                 <h3>1. Create an API Key</h3>
-                <p>Sign in to your NRP dashboard and navigate to Settings → API Keys to create your first API key.</p>
+                <p>Sign in to your NRPG dashboard and navigate to Settings → API Keys to create your first API key.</p>
                 
                 <h3>2. Choose Your Environment</h3>
                 <p>Start with our sandbox environment for testing:</p>

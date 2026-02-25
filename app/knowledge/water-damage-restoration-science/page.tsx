@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'water-damage-restoration-science';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Science | IICRC S500 Standards | NRP Group',
+  title: 'Water Damage Restoration Science | IICRC S500 Standards | NRPG',
   description:
     'Comprehensive guide to water damage restoration science: IICRC S500 contamination categories, drying classes, psychrometric principles, and Australian insurance obligations.',
 };

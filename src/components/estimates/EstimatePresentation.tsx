@@ -471,7 +471,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <div>
                     <p className="font-semibold text-blue-900">Price Transparency</p>
                     <p className="text-sm text-blue-800 mt-1">
-                      This estimate shows comparisons between NRP guidelines, contractor rates, and industry averages to ensure fair and transparent pricing.
+                      This estimate shows comparisons between NRPG guidelines, contractor rates, and industry averages to ensure fair and transparent pricing.
                     </p>
                   </div>
                 </div>
@@ -482,7 +482,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <thead className="bg-gray-50">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase">Category</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">NRP Guideline</th>
+                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">NRPG Guideline</th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Contractor Rate</th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Industry Avg</th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-300 uppercase">Selected</th>
@@ -527,7 +527,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
 
               <div className="bg-gray-50 p-4 rounded">
                 <p className="text-sm text-gray-600">
-                  <strong>Note:</strong> Variance shows the percentage difference between the selected price and NRP guidelines. 
+                  <strong>Note:</strong> Variance shows the percentage difference between the selected price and NRPG guidelines. 
                   Variances within ±10% are considered standard market rates.
                 </p>
               </div>

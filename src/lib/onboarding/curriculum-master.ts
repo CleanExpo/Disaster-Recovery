@@ -1,5 +1,5 @@
 /**
- * MASTER 14-DAY ONBOARDING CURRICULUM FOR NRP CONTRACTORS
+ * MASTER 14-DAY ONBOARDING CURRICULUM FOR NRPG CONTRACTORS
  * =========================================================
  * 
  * CRITICAL: This is the complete, production-ready curriculum containing
@@ -112,7 +112,7 @@ const day1: DayContent = {
   day: 1,
   title: "Welcome to Disaster Recovery: Industry Foundation",
   subtitle: "Understanding the Australian Disaster Recovery Landscape",
-  overview: `Your journey as a professional disaster recovery contractor begins with understanding the critical role you'll play in helping Australians rebuild after catastrophic events. Today establishes the foundation for your career in one of the nation's most essential service industries, covering the scope of disasters, industry standards, and the NRP network advantage.`,
+  overview: `Your journey as a professional disaster recovery contractor begins with understanding the critical role you'll play in helping Australians rebuild after catastrophic events. Today establishes the foundation for your career in one of the nation's most essential service industries, covering the scope of disasters, industry standards, and the NRPG network advantage.`,
   duration: "8 hours",
   difficulty: 'beginner',
   
@@ -133,9 +133,9 @@ const day1: DayContent = {
     },
     {
       id: "D1-LO3",
-      title: "Master NRP Network Model",
-      description: "Understand the revolutionary NRP distributor model and contractor benefits",
-      measurableOutcome: "Articulate NRP's value proposition and operational model",
+      title: "Master NRPG Network Model",
+      description: "Understand the revolutionary NRPG distributor model and contractor benefits",
+      measurableOutcome: "Articulate NRPG's value proposition and operational model",
       assessmentCriteria: "Presentation and Q&A assessment"
     },
     {
@@ -156,7 +156,7 @@ const day1: DayContent = {
       content: `
 **Introduction to Australian Disasters**
 
-Australia faces a unique and challenging disaster profile due to its geographic size, diverse climate zones, and increasing extreme weather events. As an NRP contractor, you'll respond to disasters ranging from tropical cyclones in Queensland to bushfires in Victoria, from urban flooding in Sydney to remote outback emergencies.
+Australia faces a unique and challenging disaster profile due to its geographic size, diverse climate zones, and increasing extreme weather events. As an NRPG contractor, you'll respond to disasters ranging from tropical cyclones in Queensland to bushfires in Victoria, from urban flooding in Sydney to remote outback emergencies.
 
 **Major Disaster Categories:**
 
@@ -216,9 +216,9 @@ Scientific data shows disaster frequency and intensity increasing:
 
 **Your Critical Role:**
 
-As an NRP contractor, you're not just a service provider - you're a community lifeline. Families depend on you to restore their homes, businesses rely on you to resume operations, and insurers trust you to mitigate losses. Your rapid response can mean the difference between a quick recovery and long-term displacement for disaster victims.
+As an NRPG contractor, you're not just a service provider - you're a community lifeline. Families depend on you to restore their homes, businesses rely on you to resume operations, and insurers trust you to mitigate losses. Your rapid response can mean the difference between a quick recovery and long-term displacement for disaster victims.
 
-The 24-48 hour window after a disaster is critical. Water damage becomes structural damage, mould begins growing, and temporary repairs prevent catastrophic losses. Your expertise, backed by NRP's network and resources, positions you as the professional families turn to in their darkest hours.
+The 24-48 hour window after a disaster is critical. Water damage becomes structural damage, mould begins growing, and temporary repairs prevent catastrophic losses. Your expertise, backed by NRPG's network and resources, positions you as the professional families turn to in their darkest hours.
       `,
       keyPoints: [
         "Australia faces $4.2 billion in annual disaster recovery needs",
@@ -285,13 +285,13 @@ The 24-48 hour window after a disaster is critical. Water damage becomes structu
     },
     {
       id: "D1-M2",
-      title: "The NRP Network Advantage",
+      title: "The NRPG Network Advantage",
       duration: 60,
       type: 'interactive',
       content: `
-**Understanding the NRP Revolution**
+**Understanding the NRPG Revolution**
 
-National Recovery Partners represents a paradigm shift in disaster recovery service delivery. Unlike traditional restoration companies that compete locally, NRP creates a collaborative network where contractors support each other while maintaining independent businesses.
+National Recovery Partners represents a paradigm shift in disaster recovery service delivery. Unlike traditional restoration companies that compete locally, NRPG creates a collaborative network where contractors support each other while maintaining independent businesses.
 
 **The Traditional Model Problems:**
 
@@ -316,9 +316,9 @@ National Recovery Partners represents a paradigm shift in disaster recovery serv
    - Limited availability during disasters
    - Communication breakdowns
 
-**The NRP Network Solution:**
+**The NRPG Network Solution:**
 
-NRP operates as a technology-enabled distributor, not a restoration company. We connect insurance claims to qualified contractors through our AI-powered platform, creating value for all stakeholders:
+NRPG operates as a technology-enabled distributor, not a restoration company. We connect insurance claims to qualified contractors through our AI-powered platform, creating value for all stakeholders:
 
 **For Contractors:**
 - Guaranteed lead flow from insurance partners
@@ -340,7 +340,7 @@ NRP operates as a technology-enabled distributor, not a restoration company. We 
 
 **Revenue Model Transparency:**
 
-Your success is our success. NRP operates on a performance-based model:
+Your success is our success. NRPG operates on a performance-based model:
 - Application Fee: $275 (one-time)
 - Joining Fee: $2,200 (includes training materials)
 - Monthly Subscription: Sliding scale based on performance
@@ -354,7 +354,7 @@ Your success is our success. NRP operates on a performance-based model:
 
 **Network Growth Strategy:**
 
-NRP is targeting 10,000 contractors nationally by 2027:
+NRPG is targeting 10,000 contractors nationally by 2027:
 - Phase 1 (2024): 500 foundation contractors
 - Phase 2 (2025): 2,500 contractors, IPO preparation
 - Phase 3 (2026): 5,000 contractors, international expansion
@@ -389,7 +389,7 @@ Year 5: Multi-crew operation, passive income streams
 
 **Quality Standards:**
 
-NRP maintains the highest industry standards:
+NRPG maintains the highest industry standards:
 - IICRC certification required within 6 months
 - Background checks and insurance verification
 - Customer satisfaction monitoring (minimum 4.5 stars)
@@ -409,22 +409,22 @@ As more contractors join, the network becomes more valuable:
 - Enhanced brand recognition and trust
       `,
       keyPoints: [
-        "NRP is a technology distributor, not a restoration company",
-        "Performance-based model aligns NRP success with contractor success",
+        "NRPG is a technology distributor, not a restoration company",
+        "Performance-based model aligns NRPG success with contractor success",
         "Network effects create competitive advantages for all members",
         "Technology platform handles customer acquisition and administration",
         "Collective strength provides better terms with insurers and suppliers",
         "Quality standards ensure consistent service delivery across network"
       ],
       practicalExercises: [
-        "Calculate your ROI for joining NRP versus independent operation",
+        "Calculate your ROI for joining NRPG versus independent operation",
         "Map your local market and identify network coverage gaps",
-        "Create a 5-year business plan leveraging NRP resources",
+        "Create a 5-year business plan leveraging NRPG resources",
         "Identify 3 ways you can contribute to network success"
       ],
       assessmentQuestions: [
         {
-          question: "What is NRP's primary business model?",
+          question: "What is NRPG's primary business model?",
           options: [
             "Franchise restoration company",
             "Technology-enabled distributor",
@@ -432,21 +432,21 @@ As more contractors join, the network becomes more valuable:
             "Equipment supplier"
           ],
           correctAnswer: "Technology-enabled distributor",
-          explanation: "NRP operates as a technology-enabled distributor, connecting insurance claims to qualified contractors while providing infrastructure and support, not as a restoration company itself.",
+          explanation: "NRPG operates as a technology-enabled distributor, connecting insurance claims to qualified contractors while providing infrastructure and support, not as a restoration company itself.",
           difficulty: 'basic'
         },
         {
           question: "What is the monthly subscription fee after the introductory period?",
           options: ["$297", "$397", "$495", "$595"],
           correctAnswer: "$495",
-          explanation: "After the 3-month introductory period (free, $198, $247), the regular monthly subscription is $495, which includes access to all NRP systems and support.",
+          explanation: "After the 3-month introductory period (free, $198, $247), the regular monthly subscription is $495, which includes access to all NRPG systems and support.",
           difficulty: 'basic'
         },
         {
-          question: "What is NRP's contractor target by 2027?",
+          question: "What is NRPG's contractor target by 2027?",
           options: ["5,000", "7,500", "10,000", "15,000"],
           correctAnswer: "10,000",
-          explanation: "NRP aims to have 10,000 contractors in the network by 2027, creating the largest disaster recovery network in Australia.",
+          explanation: "NRPG aims to have 10,000 contractors in the network by 2027, creating the largest disaster recovery network in Australia.",
           difficulty: 'intermediate'
         }
       ]
@@ -459,7 +459,7 @@ As more contractors join, the network becomes more valuable:
       content: `
 **The Restoration Professional's Code**
 
-Disaster recovery work places you in people's homes during their most vulnerable moments. The trust placed in you demands the highest ethical standards and professional conduct. This module establishes the non-negotiable standards for NRP contractors.
+Disaster recovery work places you in people's homes during their most vulnerable moments. The trust placed in you demands the highest ethical standards and professional conduct. This module establishes the non-negotiable standards for NRPG contractors.
 
 **Core Ethical Principles:**
 
@@ -606,7 +606,7 @@ You must report:
 Maintain appropriate relationships:
 - No personal relationships with customers during work
 - Decline gifts over $50 value
-- No private work arrangements outside NRP
+- No private work arrangements outside NRPG
 - Respect customer privacy and space
 - Professional social media conduct
 - No discrimination or harassment
@@ -621,17 +621,17 @@ Maintain appropriate relationships:
         "Conflict resolution skills are essential for success"
       ],
       practicalExercises: [
-        "Review and sign NRP Code of Conduct",
+        "Review and sign NRPG Code of Conduct",
         "Complete online WHS compliance module",
         "Practice customer interaction scenarios",
         "Create personal professional standards document"
       ],
       assessmentQuestions: [
         {
-          question: "What is the minimum public liability insurance required for NRP contractors?",
+          question: "What is the minimum public liability insurance required for NRPG contractors?",
           options: ["$5 million", "$10 million", "$20 million", "$30 million"],
           correctAnswer: "$20 million",
-          explanation: "NRP contractors must maintain minimum $20 million public liability insurance to cover potential damages during restoration work.",
+          explanation: "NRPG contractors must maintain minimum $20 million public liability insurance to cover potential damages during restoration work.",
           difficulty: 'basic'
         },
         {
@@ -815,7 +815,7 @@ Never enter confined spaces without:
 2. Provide first aid
 3. Call emergency services
 4. Preserve scene
-5. Notify NRP immediately
+5. Notify NRPG immediately
 6. Document everything
 7. Complete reports
 8. Participate in investigation
@@ -941,7 +941,7 @@ Disaster work takes emotional toll:
         "Realistic timeline for certification",
         "Specific, measurable goals",
         "Budget feasibility",
-        "Alignment with NRP standards"
+        "Alignment with NRPG standards"
       ]
     },
     {
@@ -1116,7 +1116,7 @@ Disaster work takes emotional toll:
       submissionRequirements: [
         "Digital contact database (Excel or similar)",
         "Printed emergency contact card for vehicle",
-        "Uploaded to NRP contractor portal"
+        "Uploaded to NRPG contractor portal"
       ]
     }
   ],
@@ -1138,7 +1138,7 @@ Disaster work takes emotional toll:
       passingCriteria: "Identify all major hazards in case studies"
     },
     {
-      requirement: "Sign NRP Code of Conduct",
+      requirement: "Sign NRPG Code of Conduct",
       verificationMethod: "Digital signature system",
       passingCriteria: "Completed with witness verification"
     }

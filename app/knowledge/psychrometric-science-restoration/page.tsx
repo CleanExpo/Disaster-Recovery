@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'psychrometric-science-restoration';
 
 export const metadata: Metadata = {
-  title: 'Psychrometric Science in Restoration | Structural Drying | NRP Group',
+  title: 'Psychrometric Science in Restoration | Structural Drying | NRPG',
   description:
     'Psychrometric science in disaster restoration: temperature-humidity relationships, grain depression, vapour pressure differentials, and the drying equation for Australian conditions.',
 };

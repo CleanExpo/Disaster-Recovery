@@ -45,7 +45,7 @@ function BookingSuccessPageContent() {
 
   useEffect(() => {
     // In production, fetch booking details from API using booking ID
-    const bookingId = searchParams?.get('booking') || 'NRP-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    const bookingId = searchParams?.get('booking') || 'NRPG-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase();
     
     // Mock booking details
     const mockBooking: BookingDetails = {

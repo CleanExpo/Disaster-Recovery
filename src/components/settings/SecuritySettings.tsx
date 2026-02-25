@@ -242,7 +242,7 @@ export function SecuritySettings() {
 
   const handleEnable2FA = async () => {
     // Generate QR code and backup codes
-    setQrCodeUrl('https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=otpauth://totp/NRP:john.doe@example.com?secret=JBSWY3DPEHPK3PXP&issuer=NRP');
+    setQrCodeUrl('https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=otpauth://totp/NRPG:john.doe@example.com?secret=JBSWY3DPEHPK3PXP&issuer=NRPG');
     setBackupCodes([
       'ABCD-1234-EFGH',
       'IJKL-5678-MNOP',

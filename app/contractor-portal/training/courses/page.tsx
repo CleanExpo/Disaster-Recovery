@@ -219,7 +219,7 @@ function CourseCatalogPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Course Catalogue</h1>
-          <p className="text-gray-700">Access all NRP training courses and certifications</p>
+          <p className="text-gray-700">Access all NRPG training courses and certifications</p>
         </div>
 
         {/* Search and Filters */}

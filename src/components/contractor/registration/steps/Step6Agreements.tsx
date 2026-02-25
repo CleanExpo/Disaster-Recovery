@@ -47,7 +47,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
   const [agreements, setAgreements] = useState<Agreement[]>([
     {
       id: 'partnership',
-      title: 'NRP Partnership Agreement',
+      title: 'NRPG Partnership Agreement',
       icon: <Briefcase className="h-5 w-5" />,
       description: 'Full network contract terms and obligations',
       content: [
@@ -200,7 +200,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
         <FileSignature className="h-4 w-4 text-blue-600" />
         <AlertDescription className="text-blue-800">
           <strong>Legal Agreements:</strong> Please review and accept all agreements to complete your 
-          contractor registration. These agreements form the legal basis of your partnership with NRP.
+          contractor registration. These agreements form the legal basis of your partnership with NRPG.
         </AlertDescription>
       </Alert>
 
@@ -437,7 +437,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
             <ul className="space-y-2 ml-4">
               <li className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5" />
-                <span>These agreements constitute legally binding contracts between your business and NRP</span>
+                <span>These agreements constitute legally binding contracts between your business and NRPG</span>
               </li>
               <li className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5" />
@@ -481,7 +481,7 @@ export function Step6Agreements({ data, updateData, errors }: Step6AgreementsPro
           <strong>Agreement Requirements:</strong>
           <ul className="mt-2 ml-4 list-disc text-sm">
             <li className={agreements.find(a => a.id === 'partnership')?.accepted ? "text-green-700" : ""}>
-              NRP Partnership Agreement: {agreements.find(a => a.id === 'partnership')?.accepted ? "✓ Accepted" : "Required"}
+              NRPG Partnership Agreement: {agreements.find(a => a.id === 'partnership')?.accepted ? "✓ Accepted" : "Required"}
             </li>
             <li className={agreements.find(a => a.id === 'code_of_conduct')?.accepted ? "text-green-700" : ""}>
               Code of Conduct: {agreements.find(a => a.id === 'code_of_conduct')?.accepted ? "✓ Accepted" : "Required"}

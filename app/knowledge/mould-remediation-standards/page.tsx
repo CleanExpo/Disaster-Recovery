@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'mould-remediation-standards';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Standards | IICRC S520 Protocols | NRP Group',
+  title: 'Mould Remediation Standards | IICRC S520 Protocols | NRPG',
   description:
     'Professional mould remediation standards: IICRC S520 containment protocols, HEPA filtration, antimicrobial treatment, and WHO indoor air quality guidelines for Australian properties.',
 };

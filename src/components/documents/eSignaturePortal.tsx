@@ -48,7 +48,7 @@ const eSignaturePortal: React.FC<eSignaturePortalProps> = ({
           id: 'esig_001',
           documentId: 'doc_001',
           title: 'Network Participation Agreement',
-          description: 'Annual network participation agreement for NRP contractors',
+          description: 'Annual network participation agreement for NRPG contractors',
           requesterUserId: 'admin_001',
           status: 'in_progress',
           createdAt: '2024-04-10T10:00:00Z',

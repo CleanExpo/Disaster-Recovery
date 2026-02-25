@@ -76,7 +76,7 @@ function ContractorPortalOriginal() {
       <aside className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 fixed lg:static inset-y-0 left-0 w-64 bg-slate-900 text-white transition-transform duration-300 z-50`}>
         <div className="p-6 border-b border-slate-800">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold">NRP Portal</h2>
+            <h2 className="text-xl font-bold">NRPG Portal</h2>
             <button 
               onClick={() => setSidebarOpen(false)}
               className="lg:hidden"

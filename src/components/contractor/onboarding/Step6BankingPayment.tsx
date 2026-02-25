@@ -484,7 +484,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
           
           <div className="space-y-4">
             <div className="p-4 bg-gray-50 rounded-lg">
-              <h4 className="font-medium mb-2">NRP Platform Fees</h4>
+              <h4 className="font-medium mb-2">NRPG Platform Fees</h4>
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• Application Fee: $275 (one-time, non-refundable)</li>
                 <li>• Joining Fee: $2,200 (upon approval)</li>
@@ -502,7 +502,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   className="mt-1"
                 />
                 <Label htmlFor="agreeToTerms" className="text-sm">
-                  I agree to the NRP Terms of Service and understand the contractor obligations
+                  I agree to the NRPG Terms of Service and understand the contractor obligations
                 </Label>
               </div>
               

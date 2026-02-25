@@ -136,7 +136,7 @@ export default function EnhancedMobileNav() {
         <div className="flex items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center space-x-2">
             <Shield className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gray-900">NRP</span>
+            <span className="text-xl font-bold text-gray-900">NRPG</span>
           </Link>
           
           <div className="flex items-center space-x-2">

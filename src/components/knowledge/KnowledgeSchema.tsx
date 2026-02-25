@@ -26,12 +26,12 @@ export function KnowledgeSchema({
     description,
     author: {
       '@type': 'Organization',
-      name: 'NRP Group',
+      name: 'Disaster Recovery',
       url: baseUrl,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'NRP Group',
+      name: 'Disaster Recovery',
       url: baseUrl,
     },
     datePublished,

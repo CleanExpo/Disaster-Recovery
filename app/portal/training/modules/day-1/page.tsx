@@ -32,9 +32,9 @@ function Day1PlatformOrientationOriginal() {
       type: "video",
       content: {
         videoUrl: "/training/day1/module1.mp4",
-        description: "Understanding NRP's vision to revolutionise disaster recovery across Australia",
+        description: "Understanding NRPG's vision to revolutionise disaster recovery across Australia",
         keyPoints: [
-          "NRP's mission: National disaster recovery platform with zero human intervention",
+          "NRPG's mission: National disaster recovery platform with zero human intervention",
           "AI-powered lead distribution system",
           "Contractor empowerment through technology",
           "Community-focused profit model",
@@ -42,7 +42,7 @@ function Day1PlatformOrientationOriginal() {
         ],
         quiz: [
           {
-            question: "What is NRP's primary role in the disaster recovery ecosystem?",
+            question: "What is NRPG's primary role in the disaster recovery ecosystem?",
             options: [
               "Direct service provider",
               "Claims distributor and contractor connector",
@@ -52,7 +52,7 @@ function Day1PlatformOrientationOriginal() {
             correct: 1
           },
           {
-            question: "What percentage of Australia does NRP aim to cover?",
+            question: "What percentage of Australia does NRPG aim to cover?",
             options: ["Major cities only", "50% coverage", "75% coverage", "100% nationwide"],
             correct: 3
           }
@@ -290,7 +290,7 @@ function Day1PlatformOrientationOriginal() {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Day 1: Platform Orientation</h1>
-                <p className="text-sm text-gray-600">Welcome to the NRP Contractor Network</p>
+                <p className="text-sm text-gray-600">Welcome to the NRPG Contractor Network</p>
               </div>
             </div>
             <div className="flex items-center gap-4">

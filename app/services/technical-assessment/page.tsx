@@ -3,7 +3,7 @@ import { ClipboardCheck } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Technical Assessment Services | Property Damage Evaluation | NRP Australia',
+  title: 'Technical Assessment Services | Property Damage Evaluation | NRPG Australia',
   description: 'Professional technical assessment and damage evaluation services. IICRC certified inspectors provide comprehensive reports for insurance claims and restoration planning.',
   keywords: [
     'technical assessment',

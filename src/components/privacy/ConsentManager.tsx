@@ -61,7 +61,7 @@ export function ConsentManager({ userId, userType, onConsentUpdate }: ConsentMan
     {
       id: 'terms_of_service',
       name: 'Terms of Service',
-      description: 'Legal agreement for using NRP Contractor Portal',
+      description: 'Legal agreement for using NRPG Contractor Portal',
       icon: <FileText className="h-5 w-5" />,
       required: true,
       details: [

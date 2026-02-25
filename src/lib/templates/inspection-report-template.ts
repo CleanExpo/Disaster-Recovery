@@ -3,7 +3,7 @@
  * 
  * This template system provides standardized inspection reporting for all
  * disaster recovery work types. Reports follow IICRC standards and insurance
- * industry requirements while maintaining consistency across all NRP contractors.
+ * industry requirements while maintaining consistency across all NRPG contractors.
  */
 
 export interface InspectionPhoto {
@@ -284,7 +284,7 @@ export function generateReportNumber(): string {
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const day = String(now.getDate()).padStart(2, '0');
   const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  return `NRP-${year}${month}${day}-${random}`;
+  return `NRPG-${year}${month}${day}-${random}`;
 }
 
 export function createInspectionReport(

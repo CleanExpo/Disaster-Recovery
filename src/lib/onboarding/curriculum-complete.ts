@@ -1,5 +1,5 @@
 /**
- * Complete 14-Day Onboarding Curriculum for NRP Contractors
+ * Complete 14-Day Onboarding Curriculum for NRPG Contractors
  * 
  * This comprehensive curriculum contains all the detailed content needed for:
  * - Video production and training materials
@@ -79,7 +79,7 @@ export const COMPLETE_CURRICULUM: DayContent[] = [
       {
         id: "day1-obj3",
         title: "Business Model Comprehension", 
-        description: "Understand NRP's role as a claims distributor and your position in the ecosystem",
+        description: "Understand NRPG's role as a claims distributor and your position in the ecosystem",
         measurableOutcome: "Can articulate the lead distribution model, quality standards, and contractor responsibilities"
       }
     ],
@@ -191,7 +191,7 @@ The Australian disaster recovery industry represents a $4.2 billion annual marke
 
 ### Your Role in the Ecosystem
 
-As an NRP contractor, you are part of a critical infrastructure network:
+As an NRPG contractor, you are part of a critical infrastructure network:
 
 **Emergency Response Chain:**
 1. **Disaster Occurs**: Natural or man-made event
@@ -222,7 +222,7 @@ As an NRP contractor, you are part of a critical infrastructure network:
 - Detailed documentation and reporting requirements
 - Claims handling procedures and timelines
 
-**NRP Quality Framework:**
+**NRPG Quality Framework:**
 - Minimum 4.8/5.0 customer satisfaction rating
 - 95% job completion rate within agreed timelines  
 - Zero safety incidents or regulatory violations
@@ -253,19 +253,19 @@ As an NRP contractor, you are part of a critical infrastructure network:
       },
       {
         id: "day1-mod2",
-        title: "NRP Business Model and Contractor Role",
+        title: "NRPG Business Model and Contractor Role",
         duration: 30,
         type: "video",
         content: `
-# Understanding NRP's Business Model: Your Path to Success
+# Understanding NRPG's Business Model: Your Path to Success
 
 ## National Recovery Partners: Claims Distribution Excellence
 
-National Recovery Partners (NRP) operates as Premier disaster recovery claims distribution network, connecting insurance companies and property owners with qualified restoration contractors across every corner of the continent.
+National Recovery Partners (NRPG) operates as Premier disaster recovery claims distribution network, connecting insurance companies and property owners with qualified restoration contractors across every corner of the continent.
 
 ### The Distribution Model Explained
 
-**Traditional vs NRP Model:**
+**Traditional vs NRPG Model:**
 
 **Traditional Model Problems:**
 - Property owners struggle to find qualified contractors during disasters
@@ -274,7 +274,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 - Pricing inconsistency creates claim disputes
 - No standardized processes or quality control
 
-**NRP Solution:**
+**NRPG Solution:**
 - **Pre-Qualified Network**: Every contractor thoroughly vetted and certified
 - **National Coverage**: From Sydney CBD to remote outback communities
 - **Standardized Processes**: IICRC-compliant procedures across all contractors
@@ -287,7 +287,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 **1. Claim Initiation:**
 - Property owner contacts insurance company
 - Initial assessment determines restoration needs
-- Claim details entered into NRP system with location, scope, and urgency
+- Claim details entered into NRPG system with location, scope, and urgency
 
 **2. Contractor Matching:**
 - System identifies qualified contractors within service radius
@@ -301,12 +301,12 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 
 **4. Client Contact and Assessment:**
 - Contractor contacts property owner within response window
-- On-site assessment conducted using NRP standardized procedures
+- On-site assessment conducted using NRPG standardized procedures
 - Detailed scope of work and estimate prepared using approved pricing
 
 **5. Work Authorisation:**
 - Insurance adjuster reviews and approves scope
-- Work authorised through NRP platform
+- Work authorised through NRPG platform
 - Project tracking and milestone reporting begins
 
 ### Your Revenue Model
@@ -358,7 +358,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 - Safety record: Zero incidents or workers compensation claims
 
 **Quality Assurance Process:**
-- Monthly performance reviews with NRP team
+- Monthly performance reviews with NRPG team
 - Random quality inspections on completed work
 - Customer feedback surveys on every project
 - Annual certification renewals and continuing education
@@ -379,7 +379,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 - Peer mentoring and best practice sharing
 
 **Marketing Support:**
-- NRP brand recognition and marketing campaigns
+- NRPG brand recognition and marketing campaigns
 - Professional uniforms and vehicle signage
 - Website presence and online reviews management
 - Insurance company relationship management
@@ -396,7 +396,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 
 **Additional Revenue Streams:**
 - **Training Delivery**: Teach onboarding courses to new contractors
-- **Quality Assurance**: Conduct inspections and audits for NRP
+- **Quality Assurance**: Conduct inspections and audits for NRPG
 - **Emergency Response Team**: Premium rates for major disaster deployment
 - **Commercial Specialist**: Focus on high-value commercial and industrial work
 
@@ -410,7 +410,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 - Termination conditions and notice periods
 
 **Legal Protections:**
-- Public liability insurance coverage through NRP group policy
+- Public liability insurance coverage through NRPG group policy
 - Legal support for warranty and dispute resolution
 - Workers compensation compliance assistance
 - Regulatory compliance monitoring and updates
@@ -418,7 +418,7 @@ National Recovery Partners (NRP) operates as Premier disaster recovery claims di
 This business model has been proven successful nationwide, with contractors achieving financial independence while providing essential community services. Your success depends on commitment to quality, professional standards, and continuous improvement.
         `,
         keyPoints: [
-          "NRP operates as a claims distributor, not a direct service provider",
+          "NRPG operates as a claims distributor, not a direct service provider",
           "Lead fees range from 0% (emergency) to 5% (maintenance) of job value",
           "Average monthly revenue ranges from $45k-$350k based on experience",
           "24/7 emergency response capability is required",
@@ -586,7 +586,7 @@ When facing ethical dilemmas, use this framework:
 - Would I be comfortable if this decision was public?
 
 **4. Seek Guidance:**
-- NRP support team consultation
+- NRPG support team consultation
 - IICRC technical advisors
 - Industry associations
 - Legal counsel when necessary
@@ -620,7 +620,7 @@ When facing ethical dilemmas, use this framework:
 - Offer third-party inspection if client has concerns
 - Maintain professional demeanor and avoid criticizing competitor
 
-This foundation of professional standards and ethics will guide every decision you make as an NRP contractor. Your reputation, business success, and the trust of the community depend on unwavering commitment to these principles.
+This foundation of professional standards and ethics will guide every decision you make as an NRPG contractor. Your reputation, business success, and the trust of the community depend on unwavering commitment to these principles.
         `,
         keyPoints: [
           "Integrity and honesty are non-negotiable in disaster recovery work",
@@ -687,14 +687,14 @@ This foundation of professional standards and ethics will guide every decision y
       }
     ],
     documentationRequirements: [
-      "Complete contractor profile setup in NRP system",
+      "Complete contractor profile setup in NRPG system",
       "Upload insurance certificates and licensing documentation", 
       "Photograph current equipment and vehicle setup",
       "Submit emergency contact information and backup procedures"
     ],
     dailyChecklist: [
       "Review Australian disaster statistics and understand regional patterns",
-      "Understand NRP lead distribution model and revenue structure",
+      "Understand NRPG lead distribution model and revenue structure",
       "Internalize IICRC professional standards framework",
       "Practice professional introduction and client communication scripts",
       "Set up emergency response systems and contact procedures"
@@ -706,7 +706,7 @@ This foundation of professional standards and ethics will guide every decision y
     day: 2,
     title: "Water Damage Restoration Mastery",
     subtitle: "Comprehensive Water Damage Assessment, Mitigation, and Restoration",
-    overview: "Water damage represents 60% of all disaster recovery work in Australia. Today you'll master the complete water damage restoration process from emergency response through final restoration, including the critical science of psychrometry, advanced drying techniques, and contamination management. This knowledge forms the foundation for most of your NRP contractor work.",
+    overview: "Water damage represents 60% of all disaster recovery work in Australia. Today you'll master the complete water damage restoration process from emergency response through final restoration, including the critical science of psychrometry, advanced drying techniques, and contamination management. This knowledge forms the foundation for most of your NRPG contractor work.",
     learningObjectives: [
       {
         id: "day2-obj1",

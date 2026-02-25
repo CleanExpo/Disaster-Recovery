@@ -71,7 +71,7 @@ function WorkflowDemonstrationOriginal() {
     },
     {
       id: 'contractor-matching',
-      title: 'Find Local NRP Contractor',
+      title: 'Find Local NRPG Contractor',
       description: 'System matches claim to certified contractor based on location and services',
       status: 'pending'
     },

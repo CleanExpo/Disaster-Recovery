@@ -101,7 +101,7 @@ function LeadManagementDashboardOriginal() {
   const mockLeads: Lead[] = [
     {
       id: 'LEAD-001',
-      bookingId: 'NRP-2024-ABC123',
+      bookingId: 'NRPG-2024-ABC123',
       createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
       customer: {
         name: 'John Smith',
@@ -137,7 +137,7 @@ function LeadManagementDashboardOriginal() {
       notes: ['Customer very stressed, needs immediate help', 'Contractor on the way'] },
     {
       id: 'LEAD-002',
-      bookingId: 'NRP-2024-DEF456',
+      bookingId: 'NRPG-2024-DEF456',
       createdAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
       customer: {
         name: 'Sarah Johnson',
@@ -168,7 +168,7 @@ function LeadManagementDashboardOriginal() {
       notes: ['Awaiting payment confirmation'] },
     {
       id: 'LEAD-003',
-      bookingId: 'NRP-2024-GHI789',
+      bookingId: 'NRPG-2024-GHI789',
       createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
       customer: {
         name: 'Michael Brown',

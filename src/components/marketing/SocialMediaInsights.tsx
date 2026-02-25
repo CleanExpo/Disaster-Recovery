@@ -49,7 +49,7 @@ export default function SocialMediaInsights() {
       {
         platform: 'facebook',
         accountId: 'fb-123456789',
-        accountName: 'NRP Restoration Professionals',
+        accountName: 'NRPG Restoration Professionals',
         followers: 12500,
         engagement: {
           likes: 3450,

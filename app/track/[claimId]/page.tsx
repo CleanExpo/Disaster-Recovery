@@ -389,7 +389,7 @@ function TrackClaimPageOriginal({ params }: { params: Promise<{ claimId: string 
           <Shield className="h-4 w-4" />
           <AlertDescription>
             <strong>Remember:</strong> Disaster Recovery is a lead generation platform. 
-            Your assigned contractor handles all service delivery according to strict NRP standards. 
+            Your assigned contractor handles all service delivery according to strict NRPG standards. 
             The $2,750 platform fee has been processed for lead generation and contractor matching services.
           </AlertDescription>
         </Alert>

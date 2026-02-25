@@ -723,7 +723,7 @@ export default function AffiliateSignup() {
       <div className="mb-8">"
         <h1 className="text-3xl font-bold text-gray-900">Partner & Affiliate Signup</h1>"
         <p className="text-gray-700 mt-2">"
-          Join our network and grow your business with NRP
+          Join our network and grow your business with NRPG
         </p>
       </div>
 

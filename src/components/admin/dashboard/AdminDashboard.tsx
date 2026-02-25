@@ -90,7 +90,7 @@ export function AdminDashboard({ user }: AdminDashboardProps) {
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
-                NRP Admin Portal
+                NRPG Admin Portal
               </h1>
               <p className="text-gray-700">
                 Contractor Management & Compliance

@@ -439,7 +439,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
                         <div className="mt-2 flex items-center space-x-3 text-xs">
                           {item.priceComparison.nrpGuideline && (
                             <span className="text-blue-600">
-                              NRP: ${item.priceComparison.nrpGuideline}
+                              NRPG: ${item.priceComparison.nrpGuideline}
                             </span>
                           )}
                           {item.priceComparison.variance && (

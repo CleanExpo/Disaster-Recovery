@@ -9,9 +9,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'make-safe-forensic-assessment';
 
 export const metadata: Metadata = {
-  title: 'Make Safe & Forensic Assessment | $2,750 Fixed-Price Service | NRP Group',
+  title: 'Make Safe & Forensic Assessment | $2,750 Fixed-Price Service | NRPG',
   description:
-    'NRP Group $2,750 Make Safe & Forensic Assessment: IICRC inspection, thermal imaging, moisture mapping, emergency stabilisation, and Paperwork Assurance Report for insurance claims.',
+    'NRPG $2,750 Make Safe & Forensic Assessment: IICRC inspection, thermal imaging, moisture mapping, emergency stabilisation, and Paperwork Assurance Report for insurance claims.',
 };
 
 export default function MakeSafeForensicAssessmentPage() {
@@ -23,7 +23,7 @@ export default function MakeSafeForensicAssessmentPage() {
       'Scientific risk mitigation and liability transfer service including IICRC forensic inspection, emergency stabilisation, and Paperwork Assurance Report.',
     provider: {
       '@type': 'Organization',
-      name: 'NRP Group',
+      name: 'NRPG',
       url: 'https://disaster-recovery-seven-virid.vercel.app',
     },
     offers: {

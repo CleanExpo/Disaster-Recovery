@@ -39,7 +39,7 @@ export default function CommunicationModule() {
                 Communication Hub
               </CardTitle>
               <CardDescription className="text-primary-700 mt-2">
-                Master the communication features of the NRP CRM system
+                Master the communication features of the NRPG CRM system
               </CardDescription>
             </div>
             <div className="text-right">

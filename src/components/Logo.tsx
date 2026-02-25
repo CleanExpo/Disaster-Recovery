@@ -41,8 +41,8 @@ export const Logo: React.FC<LogoProps> = ({
 
   const logoAltText = {
     'disaster-recovery': 'Disaster Recovery',
-    'nrp': 'NRP',
-    'combined': 'Disaster Recovery by NRP' };
+    'nrp': 'NRPG',
+    'combined': 'Disaster Recovery by NRPG' };
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
@@ -66,14 +66,14 @@ export const Logo: React.FC<LogoProps> = ({
             'font-bold',
             darkMode ? 'text-white' : 'text-gray-900'
           )}>
-            {variant === 'nrp' ? 'NRP' : 'Disaster Recovery'}
+            {variant === 'nrp' ? 'NRPG' : 'Disaster Recovery'}
           </span>
           {variant === 'combined' && (
             <span className={cn(
               'text-xs',
               darkMode ? 'text-gray-700' : 'text-gray-700'
             )}>
-              Powered by NRP
+              Powered by NRPG
             </span>
           )}
         </div>

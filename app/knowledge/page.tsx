@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Knowledge Base | Disaster Recovery Science & Standards | NRP Group',
+  title: 'Knowledge Base | Disaster Recovery Science & Standards | NRPG',
   description:
-    'Authoritative disaster recovery knowledge hub covering IICRC standards, Australian insurance law, psychrometric science, and restoration best practices. Expert-verified content from NRP Group.',
+    'Authoritative disaster recovery knowledge hub covering IICRC standards, Australian insurance law, psychrometric science, and restoration best practices. Expert-verified content from NRPG.',
   openGraph: {
     title: 'Knowledge Base | Disaster Recovery Science & Standards',
     description:
@@ -239,7 +239,7 @@ export default function KnowledgeHubPage() {
         { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Comprehensive fire and smoke damage restoration.' },
         { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520 certified mould removal and prevention.' },
         { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your disaster insurance claim.' },
-        { title: 'Start a Claim', href: '/claim', description: 'Begin your disaster recovery claim with NRP Group.' },
+        { title: 'Start a Claim', href: '/claim', description: 'Begin your disaster recovery claim with NRPG.' },
       ]}
     />
   );

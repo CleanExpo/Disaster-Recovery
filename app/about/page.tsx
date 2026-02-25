@@ -156,7 +156,7 @@ export default function AboutPage() {
           body: (
             <div className="space-y-4">
               <p>
-                Our system is designed for speed and simplicity. There are no phone calls to NRP, no waiting on hold, and no manual quote requests. The entire process is automated:
+                Our system is designed for speed and simplicity. There are no phone calls to NRPG, no waiting on hold, and no manual quote requests. The entire process is automated:
               </p>
               <ol className="list-decimal pl-6 space-y-3">
                 <li><strong>Submit your claim online</strong> — Describe the damage, upload photos, and provide your location. Our system is available 24/7.</li>

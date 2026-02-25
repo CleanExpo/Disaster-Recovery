@@ -317,7 +317,7 @@ export default function PremiumDashboard() {
                 <Building2 className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">NRP Contractor Portal</h1>
+                <h1 className="text-xl font-bold text-white">NRPG Contractor Portal</h1>
                 <p className="text-xs text-gray-600">Premium Dashboard</p>
               </div>
             </div>

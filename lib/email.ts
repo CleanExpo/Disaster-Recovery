@@ -163,13 +163,13 @@ function generateHtmlFromTemplate(template?: string, data?: Record<string, any>)
       <body>
         <div class="container">
           <div class="header">
-            <h1>NRP Disaster Recovery</h1>
+            <h1>NRPG Disaster Recovery</h1>
           </div>
           <div class="content">
             {{CONTENT}}
           </div>
           <div class="footer">
-            <p>© 2024 NRP Disaster Recovery. All rights reserved.</p>
+            <p>© 2024 NRPG Disaster Recovery. All rights reserved.</p>
           </div>
         </div>
       </body>

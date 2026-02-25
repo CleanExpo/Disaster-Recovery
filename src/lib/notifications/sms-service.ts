@@ -321,7 +321,7 @@ class SMSService {
       'compliance-expiry': 'URGENT: Your {{itemName}} expires in {{days}} days. Renew at {{link}}',
       'job-assignment': 'NEW JOB: {{jobType}} at {{address}}. Accept at {{link}}',
       'invoice-due': 'Invoice {{invoiceNumber}} for ${{amount}} due {{date}}. Pay at {{link}}',
-      'verification': 'Your NRP verification code is {{code}}. Valid for 10 minutes.'
+      'verification': 'Your NRPG verification code is {{code}}. Valid for 10 minutes.'
     };
     
     return templates[templateId] || null;

@@ -275,7 +275,7 @@ function ContractorApplicationContent() {
             <Link href="/" className="flex items-center gap-3">
               <Shield className="h-8 w-8 text-blue-600" />
               <div>
-                <div className="text-white font-semibold">NRP</div>
+                <div className="text-white font-semibold">NRPG</div>
                 <div className="text-slate-600 text-xs">Contractor Application</div>
               </div>
             </Link>

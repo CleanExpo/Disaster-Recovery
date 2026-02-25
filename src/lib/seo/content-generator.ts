@@ -403,7 +403,7 @@ export function generateSchemaMarkup(
     "@type": "LocalBusiness",
     "@id": `https://nrpaus.com.au/${generateSlug(location, service, propertyType, businessType)}`,
     "name": `${service.name} ${locationName} - National Recovery Partners`,
-    "alternateName": "NRP Australia",
+    "alternateName": "NRPG Australia",
     "description": generateMetaDescription(location, service, propertyType, businessType),
     "url": `https://nrpaus.com.au/${generateSlug(location, service, propertyType, businessType)}`,
     "email": "",
@@ -475,7 +475,7 @@ export function generateSchemaMarkup(
       }
     ],
     "sameAs": [
-      "https://www.facebook.com/NRPAustralia",
+      "https://www.facebook.com/NRPGAustralia",
       "https://www.linkedin.com/company/nrp-australia"
     ]
   };

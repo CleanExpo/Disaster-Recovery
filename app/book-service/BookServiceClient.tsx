@@ -225,7 +225,7 @@ function BookServicePageOriginal() {
       });
       
       // Generate booking ID
-      const bookingId = 'NRP-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+      const bookingId = 'NRPG-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase();
       
       // Redirect to success page with booking details
       const successParams = new URLSearchParams({

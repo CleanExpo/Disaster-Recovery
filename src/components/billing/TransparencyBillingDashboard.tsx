@@ -469,7 +469,7 @@ const TransparencyBillingDashboard: React.FC = () => {
               <p className="text-sm font-medium text-blue-900">Important Notice</p>
               <p className="text-sm text-blue-800 mt-1">
                 The following rates are provided for transparency and client understanding. These are industry guideline 
-                rates only; exact pricing will always be quoted by your assigned NRP contractor after assessment. 
+                rates only; exact pricing will always be quoted by your assigned NRPG contractor after assessment. 
                 Contractors may upload their own rates for validation. Any new line items or out-of-range prices 
                 will be flagged for admin review.
               </p>

@@ -1773,7 +1773,7 @@ This comprehensive approach to professional development ensures continuous growt
     realWorldScenarios: [
       {
         title: "Planning Career Advancement in Restoration",
-        scenario: "You've been working as an NRP contractor for two years and want to advance your career, increase your earnings, and eventually expand into specialty services or possibly start your own company.",
+        scenario: "You've been working as an NRPG contractor for two years and want to advance your career, increase your earnings, and eventually expand into specialty services or possibly start your own company.",
         questions: [
           "What certifications should be prioritized based on your goals?",
           "How do you balance continuing education with business demands?",
@@ -1796,14 +1796,14 @@ This comprehensive approach to professional development ensures continuous growt
       "Identify career advancement strategies and opportunities",
       "Create industry networking and leadership involvement plans"
     ],
-    nextDayPreparation: "Tomorrow is your final assessment day - comprehensive testing of all knowledge gained during the 14-day program and preparation for your NRP contractor certification."
+    nextDayPreparation: "Tomorrow is your final assessment day - comprehensive testing of all knowledge gained during the 14-day program and preparation for your NRPG contractor certification."
   },
 
   {
     day: 14,
     title: "Certification Assessment and Next Steps",
-    subtitle: "Final Assessment and Launch: Demonstrating Mastery and Beginning Your NRP Journey",
-    overview: "This final day combines comprehensive assessment of all learning with preparation for beginning work as a certified NRP contractor. You'll demonstrate mastery through written and practical assessments, receive certification, and develop your launch strategy.",
+    subtitle: "Final Assessment and Launch: Demonstrating Mastery and Beginning Your NRPG Journey",
+    overview: "This final day combines comprehensive assessment of all learning with preparation for beginning work as a certified NRPG contractor. You'll demonstrate mastery through written and practical assessments, receive certification, and develop your launch strategy.",
     learningObjectives: [
       {
         id: "day14-obj1",
@@ -1813,9 +1813,9 @@ This comprehensive approach to professional development ensures continuous growt
       },
       {
         id: "day14-obj2",
-        title: "NRP Contractor Certification",
-        description: "Complete all requirements for NRP contractor certification and network admission",
-        measurableOutcome: "Receive official NRP contractor certification and access to lead distribution system"
+        title: "NRPG Contractor Certification",
+        description: "Complete all requirements for NRPG contractor certification and network admission",
+        measurableOutcome: "Receive official NRPG contractor certification and access to lead distribution system"
       },
       {
         id: "day14-obj3",
@@ -1957,7 +1957,7 @@ This comprehensive assessment evaluates your mastery of all aspects of disaster 
 
 ### Certification Requirements
 
-**Minimum Requirements for NRP Contractor Certification:**
+**Minimum Requirements for NRPG Contractor Certification:**
 - Pass final assessment at Proficient level (80%) or higher
 - Complete all 14 days of training program
 - Submit all required documentation and proof of work
@@ -1967,17 +1967,17 @@ This comprehensive assessment evaluates your mastery of all aspects of disaster 
 - Sign contractor agreement and commit to quality standards
 
 **Certification Benefits:**
-- Official NRP Contractor Certificate
-- Access to NRP lead distribution system
-- Professional contractor profile on NRP website
-- NRP marketing materials and brand usage rights
+- Official NRPG Contractor Certificate
+- Access to NRPG lead distribution system
+- Professional contractor profile on NRPG website
+- NRPG marketing materials and brand usage rights
 - Ongoing support and training opportunities
 - Performance tracking and recognition programs
 
 ### Post-Certification Next Steps
 
 **Immediate Actions (Week 1)**
-- Activate NRP lead distribution system access
+- Activate NRPG lead distribution system access
 - Complete contractor profile and marketing materials
 - Set up response systems for emergency calls
 - Review and practice all emergency response protocols
@@ -2000,13 +2000,13 @@ This comprehensive assessment evaluates your mastery of all aspects of disaster 
 - Create systematic business operation procedures
 - Plan for growth and capacity expansion
 
-This comprehensive assessment ensures that only qualified, capable contractors receive NRP certification and begin serving clients with professional expertise.
+This comprehensive assessment ensures that only qualified, capable contractors receive NRPG certification and begin serving clients with professional expertise.
         `,
         keyPoints: [
           "Comprehensive assessment covers all technical and business aspects of disaster recovery",
           "Practical scenarios test real-world application of knowledge and skills",
-          "Minimum 80% proficiency required for NRP contractor certification",
-          "Certification provides access to lead distribution system and NRP support",
+          "Minimum 80% proficiency required for NRPG contractor certification",
+          "Certification provides access to lead distribution system and NRPG support",
           "Post-certification success depends on consistent application of learning",
           "Ongoing professional development maintains certification and drives growth"
         ],
@@ -2053,12 +2053,12 @@ This comprehensive assessment ensures that only qualified, capable contractors r
 
 ## Your Journey from Training to Thriving Business
 
-Completing certification is just the beginning. Success as an NRP contractor depends on systematic business launch, consistent quality delivery, and continuous improvement based on performance metrics.
+Completing certification is just the beginning. Success as an NRPG contractor depends on systematic business launch, consistent quality delivery, and continuous improvement based on performance metrics.
 
 ### 30-Day Launch Plan
 
 **Week 1: System Activation**
-- Activate NRP lead distribution system
+- Activate NRPG lead distribution system
 - Complete contractor profile with professional photos
 - Set up 24/7 emergency response system
 - Test all communication systems and protocols
@@ -2069,7 +2069,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 - Introduce yourself to local insurance adjusters
 - Join relevant professional associations
 - Establish relationships with key suppliers
-- Create marketing materials using NRP brand guidelines
+- Create marketing materials using NRPG brand guidelines
 - Develop referral network contact strategy
 - Set up tracking systems for leads and conversions
 
@@ -2122,7 +2122,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 
 **Challenge: Pricing and Estimating Accuracy**
 - Solution: Conservative estimates initially to ensure profitability
-- Mentorship: Seek guidance from experienced NRP contractors
+- Mentorship: Seek guidance from experienced NRPG contractors
 - Software: Master estimating software through practice and training
 - Analysis: Track estimate vs. actual costs to improve accuracy
 
@@ -2184,7 +2184,7 @@ Completing certification is just the beginning. Success as an NRP contractor dep
 - Professional development and certification planning
 - Succession planning and long-term goals setting
 
-This systematic approach to business launch and success planning provides the roadmap for building a thriving disaster recovery business as an NRP contractor.
+This systematic approach to business launch and success planning provides the roadmap for building a thriving disaster recovery business as an NRPG contractor.
         `,
         keyPoints: [
           "30-day launch plan ensures systematic business activation and market preparation",
@@ -2203,12 +2203,12 @@ This systematic approach to business launch and success planning provides the ro
     ],
     keyTerminology: [
       {
-        term: "NRP Contractor Certification",
-        definition: "Official certification recognising completion of comprehensive training and qualification for NRP network participation"
+        term: "NRPG Contractor Certification",
+        definition: "Official certification recognising completion of comprehensive training and qualification for NRPG network participation"
       },
       {
         term: "Lead Distribution System",
-        definition: "NRP technology platform that matches qualified leads with appropriate contractors based on location and specialty"
+        definition: "NRPG technology platform that matches qualified leads with appropriate contractors based on location and specialty"
       },
       {
         term: "Performance Metrics",
@@ -2225,8 +2225,8 @@ This systematic approach to business launch and success planning provides the ro
     ],
     realWorldScenarios: [
       {
-        title: "Your First Month as Certified NRP Contractor",
-        scenario: "You've received your NRP certification and are ready to begin receiving leads. Your first emergency call comes in at 11 PM on a Friday night - a significant water loss at a commercial building.",
+        title: "Your First Month as Certified NRPG Contractor",
+        scenario: "You've received your NRPG certification and are ready to begin receiving leads. Your first emergency call comes in at 11 PM on a Friday night - a significant water loss at a commercial building.",
         questions: [
           "What immediate actions do you take upon receiving the emergency call?",
           "How do you ensure you're properly prepared for this first professional call?",
@@ -2238,18 +2238,18 @@ This systematic approach to business launch and success planning provides the ro
     ],
     documentationRequirements: [
       "Completed final assessment with passing score",
-      "Signed NRP contractor agreement and certification documents",
+      "Signed NRPG contractor agreement and certification documents",
       "Business launch plan with 30-day action items and goals",
       "Performance tracking system and success metrics framework"
     ],
     dailyChecklist: [
       "Complete comprehensive final assessment covering all disaster recovery knowledge",
-      "Receive NRP contractor certification and network access",
+      "Receive NRPG contractor certification and network access",
       "Develop detailed business launch strategy and implementation plan",
       "Create performance tracking and continuous improvement systems",
       "Prepare for transition from training to professional contractor work"
     ],
-    nextDayPreparation: "Congratulations on completing the comprehensive NRP contractor onboarding program! You're now ready to begin your career as a certified disaster recovery professional. Your success depends on consistent application of everything you've learned and commitment to ongoing professional development."
+    nextDayPreparation: "Congratulations on completing the comprehensive NRPG contractor onboarding program! You're now ready to begin your career as a certified disaster recovery professional. Your success depends on consistent application of everything you've learned and commitment to ongoing professional development."
   }
 ];
 

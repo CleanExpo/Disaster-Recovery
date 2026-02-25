@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'emergency-response-protocols';
 
 export const metadata: Metadata = {
-  title: 'Emergency Response Protocols | PPRR Framework | NRP Group',
+  title: 'Emergency Response Protocols | PPRR Framework | NRPG',
   description:
     'Emergency disaster response protocols: PPRR framework, the golden hour in restoration, WHS obligations, professional response sequence, and Safe Work Australia compliance.',
 };

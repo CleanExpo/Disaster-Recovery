@@ -49,7 +49,7 @@ export async function createStripeCustomer(
     name,
     metadata: {
       contractorId,
-      platform: 'NRP',
+      platform: 'NRPG',
       ...metadata } });
   
   return customer;
@@ -71,8 +71,8 @@ export async function createOnboardingPaymentIntent(
       type: 'onboarding',
       applicationFee: PAYMENT_AMOUNTS.APPLICATION_FEE.toString(),
       joiningFee: PAYMENT_AMOUNTS.JOINING_FEE.toString() },
-    description: 'NRP Contractor Onboarding - Application Fee ($275) + Joining Fee ($2,200)',
-    statement_descriptor: 'NRP ONBOARDING' });
+    description: 'NRPG Contractor Onboarding - Application Fee ($275) + Joining Fee ($2,200)',
+    statement_descriptor: 'NRPG ONBOARDING' });
   
   return paymentIntent;
 }
@@ -92,7 +92,7 @@ export async function createContractorSubscription(
     metadata: {
       contractorId,
       promoSchedule: 'month1_free_month2_60off_month3_50off' },
-    description: 'NRP Contractor Subscription' });
+    description: 'NRPG Contractor Subscription' });
   
   // Schedule price changes for months 2 and 3
   await createSubscriptionSchedule(subscription.id, customerId);
@@ -190,7 +190,7 @@ export async function createOnboardingCheckoutSession(
           currency: 'aud',
           product_data: {
             name: 'Application Fee',
-            description: 'NRP Contractor Application Processing Fee' },
+            description: 'NRPG Contractor Application Processing Fee' },
           unit_amount: PAYMENT_AMOUNTS.APPLICATION_FEE },
         quantity: 1 },
       {
@@ -198,7 +198,7 @@ export async function createOnboardingCheckoutSession(
           currency: 'aud',
           product_data: {
             name: 'Joining Fee',
-            description: 'NRP Network Access & Training Materials' },
+            description: 'NRPG Network Access & Training Materials' },
           unit_amount: PAYMENT_AMOUNTS.JOINING_FEE },
         quantity: 1 },
     ],

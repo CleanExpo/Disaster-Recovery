@@ -1,4 +1,4 @@
-// NRP Contractor CRM Type Definitions
+// NRPG Contractor CRM Type Definitions
 
 export interface ContractorOnboardingData {
   // Step 1: Account Creation

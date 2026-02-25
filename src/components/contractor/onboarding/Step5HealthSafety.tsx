@@ -127,7 +127,7 @@ const safetySchema = z.object({
   
   // Additional Commitments
   commitToNRPStandards: z.boolean().refine(val => val === true, {
-    message: "You must commit to NRP safety standards"
+    message: "You must commit to NRPG safety standards"
   }),
   shareIncidentData: z.boolean(),
   participateInSafetyPrograms: z.boolean()
@@ -235,7 +235,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
               <Shield className="h-4 w-4" />
               <AlertTitle>Safety Excellence Standards</AlertTitle>
               <AlertDescription>
-                NRP maintains the highest safety standards in the industry. Your commitment to safety directly impacts your contractor rating and lead allocation.
+                NRPG maintains the highest safety standards in the industry. Your commitment to safety directly impacts your contractor rating and lead allocation.
               </AlertDescription>
             </Alert>
 
@@ -1096,12 +1096,12 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
 
             <Separator />
 
-            {/* NRP Safety Commitments */}
+            {/* NRPG Safety Commitments */}
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5" />
-                  NRP Safety Commitments
+                  NRPG Safety Commitments
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -1118,10 +1118,10 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
-                          Commit to NRP Safety Standards
+                          Commit to NRPG Safety Standards
                         </FormLabel>
                         <FormDescription>
-                          I commit to maintaining the highest safety standards as required by NRP
+                          I commit to maintaining the highest safety standards as required by NRPG
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -1167,7 +1167,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
                           Participate in Safety Programs
                         </FormLabel>
                         <FormDescription>
-                          Willing to participate in NRP safety initiatives and training programs
+                          Willing to participate in NRPG safety initiatives and training programs
                         </FormDescription>
                       </div>
                     </FormItem>
@@ -1181,7 +1181,7 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
               <CheckCircle2 className="h-4 w-4 text-green-600" />
               <AlertTitle>Safety Excellence Recognition</AlertTitle>
               <AlertDescription>
-                Contractors with exceptional safety records receive priority lead allocation and can earn the NRP Safety Excellence badge.
+                Contractors with exceptional safety records receive priority lead allocation and can earn the NRPG Safety Excellence badge.
               </AlertDescription>
             </Alert>
           </CardContent>

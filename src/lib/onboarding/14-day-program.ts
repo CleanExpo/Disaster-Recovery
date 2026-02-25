@@ -10,9 +10,9 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
   {
     day: 1,
     title: 'Welcome & Australian Legal Framework',
-    description: 'Introduction to NRP platform and Australian consumer protection laws',
+    description: 'Introduction to NRPG platform and Australian consumer protection laws',
     objectives: [
-      'Understand NRP\'s role as a claims distributor',
+      'Understand NRPG\'s role as a claims distributor',
       'Master Australian Consumer Law requirements',
       'Learn mandatory disclosure obligations',
       'Comprehend cooling-off period rules'
@@ -572,7 +572,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
             'Scope of work with limitations',
             'Costing breakdown'
           ],
-          submissionFormat: 'PDF report following NRP template'
+          submissionFormat: 'PDF report following NRPG template'
         }
       ]
     },
@@ -782,7 +782,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
     title: 'Technology & Digital Systems',
     description: 'Leveraging technology for efficiency and compliance',
     objectives: [
-      'Master NRP platform features',
+      'Master NRPG platform features',
       'Understand API integrations',
       'Learn digital documentation tools',
       'Implement cyber security basics'
@@ -790,7 +790,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
     components: {
       videos: [
         {
-          title: 'NRP Platform Deep Dive',
+          title: 'NRPG Platform Deep Dive',
           url: '/training/videos/nrp-platform',
           duration: 120,
           mandatory: true
@@ -810,16 +810,16 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
       ],
       readings: [
         {
-          title: 'NRP API Documentation',
+          title: 'NRPG API Documentation',
           content: 'Integration guide for job management',
           estimatedTime: 90,
-          source: 'NRP Technical Docs'
+          source: 'NRPG Technical Docs'
         }
       ],
       assignments: [
         {
           title: 'Platform Proficiency Test',
-          description: 'Complete all NRP platform functions',
+          description: 'Complete all NRPG platform functions',
           type: 'PRACTICAL',
           requirements: [
             'Create test job',
@@ -864,7 +864,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
           title: 'Evidence Requirements Guide',
           content: 'What constitutes acceptable proof',
           estimatedTime: 45,
-          source: 'NRP Onboarding Team'
+          source: 'NRPG Onboarding Team'
         }
       ],
       assignments: [
@@ -920,7 +920,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
       'Pass comprehensive competency test',
       'Complete practical scenarios',
       'Sign partnership agreements',
-      'Receive NRP certification'
+      'Receive NRPG certification'
     ],
     components: {
       videos: [
@@ -959,7 +959,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
       documentsRequired: [
         {
           name: 'Signed Partnership Agreement',
-          description: 'Final NRP partnership agreement',
+          description: 'Final NRPG partnership agreement',
           format: ['PDF'],
           maxSize: 5,
           verificationRequired: true
@@ -1093,7 +1093,7 @@ export function generateCertificate(
   contractorId: string,
   completionDate: Date
 ): string {
-  const certNumber = `NRP-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+  const certNumber = `NRPG-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
   const expiryDate = new Date(completionDate);
   expiryDate.setFullYear(expiryDate.getFullYear() + 2); // 2-year validity
   

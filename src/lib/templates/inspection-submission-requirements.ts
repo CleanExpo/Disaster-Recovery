@@ -2,7 +2,7 @@
  * Inspection Report Submission Requirements and Validation
  * 
  * This system defines the standards and requirements for submitting
- * inspection reports through the NRP contractor platform.
+ * inspection reports through the NRPG contractor platform.
  */
 
 import { InspectionReport, InspectionPhoto, MoistureReading } from './inspection-report-template';
@@ -457,13 +457,13 @@ export const SUBMISSION_STAGES = {
   },
   submitted: {
     name: 'Submitted',
-    description: 'Report submitted for NRP review',
+    description: 'Report submitted for NRPG review',
     requirements: ['All critical requirements met', 'Validation passed'],
     actions: ['Await review', 'View status']
   },
   under_review: {
     name: 'Under Review',
-    description: 'NRP team reviewing report for quality and completeness',
+    description: 'NRPG team reviewing report for quality and completeness',
     requirements: ['No action required from contractor'],
     actions: ['Monitor status', 'Respond to review comments if requested']
   },
@@ -475,7 +475,7 @@ export const SUBMISSION_STAGES = {
   },
   approved: {
     name: 'Approved',
-    description: 'Report meets NRP standards and is approved',
+    description: 'Report meets NRPG standards and is approved',
     requirements: ['No further action required'],
     actions: ['Download approved report', 'Proceed with work']
   },

@@ -143,7 +143,7 @@ export const ROLE_DEFINITIONS: Record<UserRole, RoleDefinition> = {
   portal_admin: {
     id: 'portal_admin',
     name: 'Portal Administrator',
-    description: 'NRP platform administrator with full system access',
+    description: 'NRPG platform administrator with full system access',
     isSystemRole: true,
     hierarchy: 10,
     permissions: [

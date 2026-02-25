@@ -39,7 +39,7 @@ export default function DashboardModule() {
                 Dashboard Navigation & Metrics
               </CardTitle>
               <CardDescription className="text-primary-700 mt-2">"
-                Master the dashboard features of the NRP CRM system
+                Master the dashboard features of the NRPG CRM system
               </CardDescription>
             </div>
             <div className="text-right">"

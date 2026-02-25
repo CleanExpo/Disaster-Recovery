@@ -711,7 +711,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Unit Price</th>
                   {showComparison && (
                     <>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">NRP Guide</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">NRPG Guide</th>
                       <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Industry Avg</th>
                     </>
                   )}
@@ -807,7 +807,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
                 <div>
                   <p className="font-medium capitalize">{comparison.category.replace('_', ' ')}</p>
                   <div className="flex items-center space-x-4 mt-1 text-sm">
-                    <span className="text-gray-700">NRP: ${comparison.nrpTotal.toFixed(2)}</span>
+                    <span className="text-gray-700">NRPG: ${comparison.nrpTotal.toFixed(2)}</span>
                     <span className="text-gray-700">Contractor: ${comparison.contractorTotal.toFixed(2)}</span>
                     <span className="text-gray-700">Industry: ${comparison.industryAverage.toFixed(2)}</span>
                   </div>
@@ -818,7 +818,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
                     <p className={`text-sm ${
                       Math.abs(comparison.variance) > 10 ? 'text-yellow-600' : 'text-green-600'
                     }`}>
-                      {comparison.variance > 0 ? '+' : ''}{comparison.variance.toFixed(1)}% from NRP
+                      {comparison.variance > 0 ? '+' : ''}{comparison.variance.toFixed(1)}% from NRPG
                     </p>
                   )}
                 </div>

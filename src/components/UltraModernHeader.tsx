@@ -604,7 +604,7 @@ export default function UltraModernHeader() {
                 href="/crm"
                 className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl min-h-[44px] inline-flex items-center justify-center px-4 py-3"
               >
-                NRP CRM Portal
+                NRPG CRM Portal
               </Link>
               
               {/* Claim Button */}
@@ -724,7 +724,7 @@ export default function UltraModernHeader() {
                     background: 'linear-gradient(135deg, #4545ff 0%, #8845ff 100%)',
                     boxShadow: '0 10px 40px rgba(69, 69, 255, 0.3)' }}
                 >
-                  🔐 NRP CRM Portal
+                  🔐 NRPG CRM Portal
                 </div>
               </Link>
               

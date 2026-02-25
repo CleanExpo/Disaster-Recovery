@@ -149,7 +149,7 @@ export class MDCreatorAgent extends EventEmitter {
       {
         title: 'Executive Summary',
         level: 2,
-        content: `The Disaster Recovery Platform is a comprehensive, AI-driven system designed to dominate the Australian disaster recovery market through SEO monopolization and autonomous operations. The platform connects insurance claims with contractors nationwide while maintaining zero human intervention from NRP.`
+        content: `The Disaster Recovery Platform is a comprehensive, AI-driven system designed to dominate the Australian disaster recovery market through SEO monopolization and autonomous operations. The platform connects insurance claims with contractors nationwide while maintaining zero human intervention from NRPG.`
       },
       {
         title: 'Business Model',

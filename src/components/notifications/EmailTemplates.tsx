@@ -82,7 +82,7 @@ const defaultTemplates: NotificationTemplate[] = [
       
       <p>If you have any questions, please contact our support team.</p>
       
-      <p>Best regards,<br>NRP Compliance Team</p>
+      <p>Best regards,<br>NRPG Compliance Team</p>
     </div>
     <div class="footer">
       <p>© 2024 National Restoration Professionals. All rights reserved.</p>
@@ -143,7 +143,7 @@ const defaultTemplates: NotificationTemplate[] = [
       
       <p>Thank you for your continued partnership.</p>
       
-      <p>Best regards,<br>NRP Billing Department</p>
+      <p>Best regards,<br>NRPG Billing Department</p>
     </div>
   </div>
 </body>
@@ -204,7 +204,7 @@ const defaultTemplates: NotificationTemplate[] = [
         <a href="{{declineLink}}" class="button button-danger">Decline</a>
       </p>
       
-      <p>Best regards,<br>NRP Job Dispatch</p>
+      <p>Best regards,<br>NRPG Job Dispatch</p>
     </div>
   </div>
 </body>

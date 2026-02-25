@@ -816,7 +816,7 @@ function Day5EquipmentTechnologyOriginal() {
               <CardContent>
                 <Tabs defaultValue="nrp">
                   <TabsList>
-                    <TabsTrigger value="nrp">NRP App</TabsTrigger>
+                    <TabsTrigger value="nrp">NRPG App</TabsTrigger>
                     <TabsTrigger value="supporting">Supporting Apps</TabsTrigger>
                     <TabsTrigger value="offline">Offline Mode</TabsTrigger>
                   </TabsList>

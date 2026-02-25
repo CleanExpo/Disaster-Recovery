@@ -290,7 +290,7 @@ export const IMAGE_REQUIREMENTS: ImageRequirement[] = [
     style: 'inspirational, professional, modern',
     colorScheme: ['#0066CC', '#FFD700', '#FFFFFF'],
     keywords: ['recruitment', 'contractor', 'join', 'opportunity'],
-    altText: 'Join the NRP contractor network - recruitment banner',
+    altText: 'Join the NRPG contractor network - recruitment banner',
     usage: ['marketing/recruitment/facebook-ads'],
     generated: false
   },

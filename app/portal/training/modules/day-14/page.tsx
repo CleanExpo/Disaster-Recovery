@@ -591,7 +591,7 @@ function Day14ModuleOriginal() {
                   {examScore >= 80 ? (
                     <div className={styles.passResult}>
                       <h3>🎉 Congratulations! You Passed!</h3>
-                      <p>You have successfully completed the NRP Disaster Recovery Certification Program.</p>
+                      <p>You have successfully completed the NRPG Disaster Recovery Certification Program.</p>
                     </div>
                   ) : (
                     <div className={styles.failResult}>
@@ -631,7 +631,7 @@ function Day14ModuleOriginal() {
                 
                 <div className={styles.certificateBody}>
                   <p>has successfully completed the</p>
-                  <h3>NRP Disaster Recovery & Restoration</h3>
+                  <h3>NRPG Disaster Recovery & Restoration</h3>
                   <h3>Professional Certification Program</h3>
                   <p>Achieving a score of {examScore}%</p>
                 </div>
@@ -655,13 +655,13 @@ function Day14ModuleOriginal() {
                     <p>Date: {new Date().toLocaleDateString()}</p>
                   </div>
                   <div className={styles.certSeal}>
-                    <p>NRP CERTIFIED</p>
+                    <p>NRPG CERTIFIED</p>
                     <p>TECHNICIAN</p>
                   </div>
                   <div className={styles.certSignature}>
                     <p>_____________________</p>
                     <p>Operations Manager</p>
-                    <p>Cert #: NRP-2024-001</p>
+                    <p>Cert #: NRPG-2024-001</p>
                   </div>
                 </div>
               </div>
@@ -878,7 +878,7 @@ function Day14ModuleOriginal() {
 
             <div className={styles.finalMessage}>
               <h2>🎊 Congratulations & Welcome!</h2>
-              <p>You are now part of the NRP Disaster Recovery team. Your journey in the restoration industry begins now. Remember:</p>
+              <p>You are now part of the NRPG Disaster Recovery team. Your journey in the restoration industry begins now. Remember:</p>
               <ul>
                 <li>Every job is a learning opportunity</li>
                 <li>Safety is always the top priority</li>

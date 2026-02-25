@@ -143,7 +143,7 @@ export default function WebsiteAnalytics() {
       topPages: [
         {
           pagePath: '/',
-          pageTitle: 'Home - NRP Restoration Professionals',
+          pageTitle: 'Home - NRPG Restoration Professionals',
           pageviews: 34567,
           uniquePageviews: 28456,
           avgTimeOnPage: 145,

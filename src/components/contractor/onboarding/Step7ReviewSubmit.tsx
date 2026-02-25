@@ -61,7 +61,7 @@ const reviewSchema = z.object({
     message: "You must authorise the payment"
   }),
   confirmCommitment: z.boolean().refine(val => val === true, {
-    message: "You must confirm your commitment to NRP standards"
+    message: "You must confirm your commitment to NRPG standards"
   }),
   agreeToBackground: z.boolean().refine(val => val === true, {
     message: "You must agree to background verification"
@@ -472,7 +472,7 @@ export default function Step7ReviewSubmit({
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
-                          I accept the NRP Contractor Terms and Conditions
+                          I accept the NRPG Contractor Terms and Conditions
                         </FormLabel>
                         <FormDescription>
                           <Button
@@ -525,7 +525,7 @@ export default function Step7ReviewSubmit({
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel>
-                          I commit to maintaining NRP quality and service standards
+                          I commit to maintaining NRPG quality and service standards
                         </FormLabel>
                         <FormDescription>
                           Including 24/7 availability, rapid response times, and professional conduct
@@ -551,7 +551,7 @@ export default function Step7ReviewSubmit({
                           I agree to background and reference verification
                         </FormLabel>
                         <FormDescription>
-                          NRP will verify insurance, licences, and contact references
+                          NRPG will verify insurance, licences, and contact references
                         </FormDescription>
                       </div>
                     </FormItem>

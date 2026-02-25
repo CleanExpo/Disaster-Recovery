@@ -186,7 +186,7 @@ function KPITrackingPageOriginal() {
       setRecentJobs([
         {
           jobId: 'JOB-001',
-          bookingId: 'NRP-2024-ABC123',
+          bookingId: 'NRPG-2024-ABC123',
           customerName: 'John Smith',
           serviceType: 'Water Damage',
           kpis: {
@@ -202,7 +202,7 @@ function KPITrackingPageOriginal() {
           paymentReleased: 2200 },
         {
           jobId: 'JOB-002',
-          bookingId: 'NRP-2024-DEF456',
+          bookingId: 'NRPG-2024-DEF456',
           customerName: 'Sarah Johnson',
           serviceType: 'Fire Damage',
           kpis: {

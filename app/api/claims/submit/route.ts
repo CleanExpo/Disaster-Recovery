@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       claimId: claim.id,
       message: 'Claim submitted successfully. Payment of $2,750 processed.',
       nextSteps: [
-        'Your claim is being matched with a certified NRP contractor',
+        'Your claim is being matched with a certified NRPG contractor',
         'The contractor will contact you directly within 60 MINUTES',
         'The contractor will schedule an inspection at your convenience',
         'All further communication will be directly with your assigned contractor'
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       importantNotes: [
         'Disaster Recovery is a lead generation platform',
         'Your assigned contractor handles all service delivery',
-        'Contractors follow strict NRP standards and guidelines',
+        'Contractors follow strict NRPG standards and guidelines',
         'Platform fee covers lead generation and contractor matching only'
       ],
       trackingUrl: `/track/${claim.id}`

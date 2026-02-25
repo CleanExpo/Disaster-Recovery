@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'commercial-vs-residential-restoration';
 
 export const metadata: Metadata = {
-  title: 'Commercial vs Residential Restoration | BCA Compliance | NRP Group',
+  title: 'Commercial vs Residential Restoration | BCA Compliance | NRPG',
   description:
     'Commercial vs residential disaster restoration: BCA class differences, ISO 22301 business continuity, multi-stakeholder coordination, and compliance requirements in Australia.',
 };

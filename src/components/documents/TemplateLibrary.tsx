@@ -65,12 +65,12 @@ const TemplateLibrary: React.FC<TemplateLibraryProps> = ({
         {
           id: 'template_001',
           name: 'Network Participation Agreement',
-          description: 'Standard agreement template for new contractors joining the NRP network',
+          description: 'Standard agreement template for new contractors joining the NRPG network',
           category: 'agreement',
           templateType: 'agreement',
           content: `NETWORK PARTICIPATION AGREEMENT
 
-This Network Participation Agreement ("Agreement") is entered into between National Restoration Professionals LLC ("NRP") and {{contractor_name}} ("Contractor").
+This Network Participation Agreement ("Agreement") is entered into between National Restoration Professionals Group ("NRPG") and {{contractor_name}} ("Contractor").
 
 1. CONTRACTOR INFORMATION
    Company Name: {{company_name}}
@@ -99,7 +99,7 @@ Invoice submission: {{invoice_requirements}}
 By signing below, both parties agree to the terms of this agreement.
 
 Contractor Signature: _________________________ Date: _____________
-NRP Representative: _________________________ Date: _____________`,
+NRPG Representative: _________________________ Date: _____________`,
           fields: [
             {
               id: 'field_001',

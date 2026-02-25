@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'insurance-payout-settlement';
 
 export const metadata: Metadata = {
-  title: 'Insurance Payouts & Cash Settlements | Disaster Recovery | NRP Group',
+  title: 'Insurance Payouts & Cash Settlements | Disaster Recovery | NRPG',
   description:
     'When to accept an insurance payout, when to refuse, contents claims strategy, hidden damage risks, and your rights under Australian insurance law.',
 };

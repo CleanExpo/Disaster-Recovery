@@ -35,7 +35,7 @@ function Day7AssessmentOriginal() {
           {
             module: "Platform & Systems",
             keyPoints: [
-              "NRP mission and business model",
+              "NRPG mission and business model",
               "Lead management system operation",
               "Dashboard navigation and features",
               "Emergency response procedures",

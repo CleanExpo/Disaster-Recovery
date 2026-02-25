@@ -1,6 +1,6 @@
 /**
  * Contractor Onboarding Types
- * Comprehensive type definitions for the NRP contractor onboarding system
+ * Comprehensive type definitions for the NRPG contractor onboarding system
  */
 
 // Property Coverage Matrix Types

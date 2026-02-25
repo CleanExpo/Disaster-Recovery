@@ -39,7 +39,7 @@ export default function AnalyticsModule() {
                 Advanced Analytics
               </CardTitle>
               <CardDescription className="text-primary-700 mt-2">
-                Master the analytics features of the NRP CRM system
+                Master the analytics features of the NRPG CRM system
               </CardDescription>
             </div>
             <div className="text-right">

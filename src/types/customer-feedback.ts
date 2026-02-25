@@ -242,7 +242,7 @@ export interface Testimonial {
 
 export interface TestimonialDisplay {
   id: string;
-  contractorId?: string; // If null, shown on main NRP site
+  contractorId?: string; // If null, shown on main NRPG site
   testimonials: Testimonial[];
   layout: 'carousel' | 'grid' | 'list';
   filterBy?: {

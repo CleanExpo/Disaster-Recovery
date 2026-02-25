@@ -50,7 +50,7 @@ function TrainingDemoContent() {
             <div className="flex items-center gap-3">
               <BookOpen className="h-8 w-8 text-blue-600" />
               <div>
-                <h1 className="text-xl font-bold text-white">NRP Training Academy</h1>
+                <h1 className="text-xl font-bold text-white">NRPG Training Academy</h1>
                 <p className="text-sm text-slate-600">Professional Development Portal</p>
               </div>
             </div>

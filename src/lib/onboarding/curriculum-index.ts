@@ -2,7 +2,7 @@
  * MASTER CURRICULUM INDEX
  * =======================
  * 
- * This is the single source of truth for the complete 14-day NRP contractor
+ * This is the single source of truth for the complete 14-day NRPG contractor
  * onboarding curriculum. All training content is consolidated here for:
  * 
  * - Video production scripts
@@ -51,7 +51,7 @@ export const MASTER_CURRICULUM: Record<number, {
 }> = {
   1: {
     title: "Foundation and Industry Overview",
-    focus: "Understanding disaster recovery landscape, NRP network, safety fundamentals",
+    focus: "Understanding disaster recovery landscape, NRPG network, safety fundamentals",
     duration: "8 hours",
     modules: 4,
     assessmentQuestions: 15,
@@ -209,10 +209,10 @@ export const CERTIFICATION_REQUIREMENTS = {
     "Marketing materials"
   ],
   certificationBenefits: [
-    "NRP Certified Contractor status",
+    "NRPG Certified Contractor status",
     "Lead distribution access",
     "Insurance approved vendor listing",
-    "Use of NRP branding",
+    "Use of NRPG branding",
     "Ongoing training access",
     "Technical support",
     "Network membership"

@@ -61,9 +61,9 @@ const mockMessages: ChatMessage[] = [
     id: '1',
     sessionId: 'session-1',
     senderId: 'bot',
-    senderName: 'NRP Support',
+    senderName: 'NRPG Support',
     senderType: 'bot',
-    message: 'Hello! Welcome to NRP Support. How can I help you today?',
+    message: 'Hello! Welcome to NRPG Support. How can I help you today?',
     timestamp: new Date(Date.now() - 5 * 60 * 1000)
   },
   {
@@ -243,7 +243,7 @@ export function LiveChat({ embedded = false }: LiveChatProps) {
             <AvatarFallback>{mockAgent.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-medium">{session ? mockAgent.name : 'NRP Support'}</p>
+            <p className="font-medium">{session ? mockAgent.name : 'NRPG Support'}</p>
             <p className="text-xs text-blue-800 flex items-center gap-1">
               {session ? (
                 <>

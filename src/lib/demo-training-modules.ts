@@ -268,7 +268,7 @@ export const TRAINING_MODULES = {
   },
   
   businessOperations: {
-    title: 'NRP Business Operations Training',
+    title: 'NRPG Business Operations Training',
     duration: '4 hours',
     modules: [
       {
@@ -276,7 +276,7 @@ export const TRAINING_MODULES = {
         title: 'Module 1: Lead Management System',
         duration: '60 minutes',
         content: `
-          NRP Lead Distribution System:
+          NRPG Lead Distribution System:
           
           Lead Priority Levels:
           • Priority 1 - Emergency (Respond within 1 hour)

@@ -23,7 +23,7 @@ export function PricingGuidelines() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                  <span><strong>National Pricing Guidelines:</strong> NRP implements industry-standard pricing ranges to ensure fairness</span>
+                  <span><strong>National Pricing Guidelines:</strong> NRPG implements industry-standard pricing ranges to ensure fairness</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
@@ -39,7 +39,7 @@ export function PricingGuidelines() {
             <div className="bg-white rounded-lg p-4 border border-blue-100">
               <p className="font-medium text-blue-900 mb-2">Important to Understand:</p>
               <p className="text-blue-700">
-                While contractors operate independently and set their own rates, NRP guides them to maintain 
+                While contractors operate independently and set their own rates, NRPG guides them to maintain 
                 pricing within industry-acceptable ranges. This approach protects both clients from overcharging 
                 and contractors from undervaluing their expertise. Final pricing may vary based on:
               </p>
@@ -82,7 +82,7 @@ export function EstimateDisclaimer() {
         <div>
           <p className="font-semibold text-amber-900 mb-1">Estimate Notice</p>
           <p className="text-amber-800">
-            This is an estimate provided by an independent contractor following NRP pricing guidelines. 
+            This is an estimate provided by an independent contractor following NRPG pricing guidelines. 
             Final costs may vary based on actual conditions encountered. Contractors set their own rates 
             within industry-acceptable ranges to ensure fair pricing for both clients and service providers.
           </p>
@@ -110,7 +110,7 @@ export function ContractorPricingInfo() {
           <TrendingUp className="h-8 w-8 mx-auto mb-3 opacity-90" />
           <h4 className="font-semibold mb-2">Guided Pricing</h4>
           <p className="text-sm text-blue-800">
-            NRP provides pricing guidelines to ensure rates fall within industry-acceptable ranges
+            NRPG provides pricing guidelines to ensure rates fall within industry-acceptable ranges
           </p>
         </div>
         

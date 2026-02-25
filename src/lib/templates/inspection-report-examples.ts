@@ -3,7 +3,7 @@
  * 
  * This file contains comprehensive examples of properly completed inspection
  * reports for different types of disaster recovery work. These serve as 
- * templates and training materials for NRP contractors.
+ * templates and training materials for NRPG contractors.
  */
 
 import { 
@@ -19,7 +19,7 @@ import {
 export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
   // Report Metadata
   id: 'inspection_1697123456_abc123def',
-  reportNumber: 'NRP-20231012-1234',
+  reportNumber: 'NRPG-20231012-1234',
   contractorId: 'contractor_123',
   clientId: 'client_456',
   propertyId: 'property_789',
@@ -29,7 +29,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
   inspectorCertifications: [
     'IICRC Water Damage Restoration Technician (WRT)',
     'IICRC Applied Structural Drying Technician (ASD)',
-    'NRP Certified Inspector Level 2'
+    'NRPG Certified Inspector Level 2'
   ],
 
   // Property Information

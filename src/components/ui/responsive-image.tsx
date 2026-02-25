@@ -9,7 +9,7 @@
  * - Lazy loading for performance
  * - WebP with fallbacks
  * - Proper compression
- * - NRP watermark display
+ * - NRPG watermark display
  */
 
 import React, { useState, useEffect } from 'react';
@@ -177,7 +177,7 @@ export function ResponsiveImage({
         <div className="absolute bottom-4 right-4 opacity-90 pointer-events-none z-10">
           <Image
             src="/images/optimised/branding/Disaster Recovery Logo.png"
-            alt="NRP Logo"
+            alt="NRPG Logo"
             width={deviceType === 'mobile' ? 60 : deviceType === 'tablet' ? 80 : 100}
             height={deviceType === 'mobile' ? 20 : deviceType === 'tablet' ? 27 : 33}
             className="drop-shadow-lg"
@@ -276,7 +276,7 @@ export function ResponsivePicture({
         <div className="absolute bottom-4 right-4 opacity-90 pointer-events-none">
           <img
             src="/images/optimised/branding/Disaster Recovery Logo.png"
-            alt="NRP Logo"
+            alt="NRPG Logo"
             className="w-20 md:w-24 lg:w-28 h-auto drop-shadow-lg"
             loading="eager"
           />

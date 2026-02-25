@@ -36,10 +36,10 @@ export default function IntroductionModule() {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-3xl font-bold text-primary-900">
-                NRP CRM System Introduction
+                NRPG CRM System Introduction
               </CardTitle>
               <CardDescription className="text-primary-700 mt-2">
-                Master the introduction features of the NRP CRM system
+                Master the introduction features of the NRPG CRM system
               </CardDescription>
             </div>
             <div className="text-right">
@@ -77,7 +77,7 @@ export default function IntroductionModule() {
             
             <li key="0" className="flex items-start gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-              <span className="text-gray-700">Welcome to NRP CRM</span>
+              <span className="text-gray-700">Welcome to NRPG CRM</span>
             </li>
             <li key="1" className="flex items-start gap-2">
               <CheckCircle2 className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
@@ -100,7 +100,7 @@ export default function IntroductionModule() {
             className="relative"
           >
             <span className="flex items-center gap-2">
-              {completedSections.includes('Welcome to NRP CRM') ? (
+              {completedSections.includes('Welcome to NRPG CRM') ? (
                 <CheckCircle2 className="h-4 w-4 text-green-600" />
               ) : (
                 <BookOpen className="h-4 w-4" />
@@ -140,12 +140,12 @@ export default function IntroductionModule() {
         <TabsContent value="section-0" className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">Welcome to NRP CRM</CardTitle>
+              <CardTitle className="text-2xl">Welcome to NRPG CRM</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="prose prose-gray max-w-none">
                 <div className="whitespace-pre-line text-gray-700 leading-relaxed">
-                  The NRP CRM is your central command centre for managing disaster recovery operations across Australia. 
+                  The NRPG CRM is your central command centre for managing disaster recovery operations across Australia. 
 This comprehensive system enables efficient lead management, contractor coordination, and insurance claim processing.
 
 Key Benefits:
@@ -174,10 +174,10 @@ Key Benefits:
               <div className="flex items-center justify-between pt-4 border-t">
                 <Button
                   variant="outline"
-                  onClick={() => markSectionComplete('Welcome to NRP CRM')}
-                  disabled={completedSections.includes('Welcome to NRP CRM')}
+                  onClick={() => markSectionComplete('Welcome to NRPG CRM')}
+                  disabled={completedSections.includes('Welcome to NRPG CRM')}
                 >
-                  {completedSections.includes('Welcome to NRP CRM') ? (
+                  {completedSections.includes('Welcome to NRPG CRM') ? (
                     <>
                       <CheckCircle2 className="h-4 w-4 mr-2" />
                       Completed
@@ -356,7 +356,7 @@ Key Benefits:
               Module Completed!
             </CardTitle>
             <CardDescription className="text-green-700">
-              Congratulations! You've successfully completed the NRP CRM System Introduction module.
+              Congratulations! You've successfully completed the NRPG CRM System Introduction module.
             </CardDescription>
           </CardHeader>
           <CardContent>

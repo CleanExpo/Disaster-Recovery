@@ -224,7 +224,7 @@ function OnlineClaimPageOriginal() {
                   What Happens Next
                 </h3>
                 <ol className="space-y-2 text-sm">
-                  <li>1. Your claim is being matched with a certified NRP contractor</li>
+                  <li>1. Your claim is being matched with a certified NRPG contractor</li>
                   <li>2. <strong className="text-red-600">The contractor will call you directly within 60 MINUTES</strong></li>
                   <li>3. They will schedule an inspection at your convenience</li>
                   <li>4. The contractor handles all work and insurance liaison</li>
@@ -237,7 +237,7 @@ function OnlineClaimPageOriginal() {
                 <AlertDescription>
                   <strong>Important:</strong> Disaster Recovery is a lead generation platform.
                   Your assigned contractor will handle all service delivery, communication, and work completion
-                  according to strict NRP standards.
+                  according to strict NRPG standards.
                 </AlertDescription>
               </Alert>
 
@@ -733,7 +733,7 @@ function OnlineClaimPageOriginal() {
                         required
                       />
                       <Label className="font-normal">
-                        I agree to the terms of service and understand that contractors follow NRP standards
+                        I agree to the terms of service and understand that contractors follow NRPG standards
                         and guidelines but are independent service providers.
                       </Label>
                     </div>
