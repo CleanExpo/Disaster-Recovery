@@ -24,6 +24,7 @@ import { AntigravityLayoutGuard } from '@/components/AntigravityLayoutGuard'
 import LoadingIndicator from '@/components/LoadingIndicator'
 import ProgressSpinner from '@/components/ProgressSpinner'
 import LazyImage from '@/components/LazyImage'
+import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -286,50 +287,7 @@ export default function RootLayout({
             })
           }}
         />
-        <Script
-          id="faq-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "How does your online system work?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Simply fill out our online form with your damage details and location. We instantly match you with IICRC certified contractors within your selected radius (20-100km). You'll receive multiple quotes within 30-60 minutes."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Why is there a $2,200 minimum service fee?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The $2,200 minimum covers emergency response, professional assessment, initial mitigation, industrial equipment, certified technicians, and insurance documentation. This ensures proper restoration and prevents secondary damage that could cost thousands more."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Are all contractors IICRC certified?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, 100% of our network contractors must maintain current IICRC certification, carry $20M public liability insurance, and meet strict Disaster Recovery Network standards."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is insurance coverage available?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, most disasters are insurance covered. We bill you directly so work begins immediately, and provide full claims documentation to support your insurance reimbursement."
-                  }
-                }
-              ]
-            })
-          }}
-        />
+        <GlobalFAQSchema />
         <Script
           id="breadcrumb-schema"
           type="application/ld+json"
