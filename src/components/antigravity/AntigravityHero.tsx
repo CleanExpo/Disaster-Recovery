@@ -56,7 +56,7 @@ export function AntigravityHero() {
           <p className="ag-hero-subtext ag-slide-up-3">
             When disaster strikes, every minute counts. Connect instantly with the NRPG
             network of elite, IICRC-certified restoration specialists for rapid emergency
-            response and seamless insurance billing.
+            response and full claims documentation.
           </p>
 
           <div className="ag-hero-actions ag-slide-up-4">
@@ -84,10 +84,10 @@ export function AntigravityHero() {
 
           <div className="ag-glass-orb">
             <div className="ag-orb-icon">
-              <Image src="/images/antigravity/icon_3d_shield.webp" alt="Insurer Approved" width={48} height={48} draggable={false} />
+              <Image src="/images/antigravity/icon_3d_shield.webp" alt="IICRC Certified" width={48} height={48} draggable={false} />
             </div>
             <div className="ag-orb-text">
-              <strong>100% Insurer Approved</strong>
+              <strong>IICRC Certified</strong>
               <span>Flexible Payment Options</span>
             </div>
           </div>

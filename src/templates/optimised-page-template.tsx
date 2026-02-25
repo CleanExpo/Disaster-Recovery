@@ -119,8 +119,8 @@ export function generateAustralianMetadata({
 }): Metadata {
   return {
     title: `${title} | Disaster Recovery Australia`,
-    description: `${description} 24/7 emergency response across Australia. Insurance approved. CSIRO-backed methods.`,
-    keywords: [...keywords, 'Australia', 'emergency', '24/7', 'insurance approved'].join(', '),
+    description: `${description} 24/7 emergency response across Australia. Full claims documentation provided. CSIRO-backed methods.`,
+    keywords: [...keywords, 'Australia', 'emergency', '24/7', 'IICRC certified'].join(', '),
     authors: [{ name: 'Disaster Recovery Australia' }],
     creator: 'Disaster Recovery Australia',
     publisher: 'Disaster Recovery Australia',
@@ -383,7 +383,7 @@ export const TrustIndicators = () => {
     <div className="flex flex-wrap justify-center items-center gap-6 py-8">
       <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
         <Shield className="h-5 w-5 text-emerald-600" />
-        <span className="text-white text-sm">Insurance Approved</span>
+        <span className="text-white text-sm">Claims Documentation</span>
       </div>
       <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
         <Award className="h-5 w-5 text-blue-600" />

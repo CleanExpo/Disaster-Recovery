@@ -38,7 +38,7 @@ export function AntigravityFooter() {
           </p>
           <div className="ag-footer-badges">
             <span className="ag-badge">IICRC Certified</span>
-            <span className="ag-badge">Insurance Approved</span>
+            <span className="ag-badge">Insurance-Compliant Documentation</span>
           </div>
           <div className="ag-footer-social">
             <a href="https://www.reddit.com/r/Disaster_Recovery_Qld/" target="_blank" rel="noopener noreferrer" aria-label="Reddit">

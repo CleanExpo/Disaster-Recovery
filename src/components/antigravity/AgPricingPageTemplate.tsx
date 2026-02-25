@@ -85,7 +85,7 @@ export function AgPricingPageTemplate({
           <h1 className="ag-slide-up-2">{serviceName} Cost in {cityName}</h1>
 
           <p className="ag-lead-text ag-slide-up-3" style={{ borderLeft: 'none' }}>
-            Transparent pricing with no hidden fees. Insurance approved.
+            Transparent pricing with no hidden fees. Full claims documentation provided.
           </p>
         </div>
       </header>
