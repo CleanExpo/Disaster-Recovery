@@ -277,17 +277,31 @@ export function generateServiceHowToSchema(serviceSlug: string) {
 // All service slugs that have HowTo data
 export const servicesWithHowTo = Object.keys(serviceHowToData);
 
-export const generateVideoSchema = () => ({
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "Disaster Recovery Australia - How We Work",
-  "description": "Learn how Australia's largest disaster recovery network provides 24/7 emergency restoration services",
-  "thumbnailUrl": "https://disasterrecovery.com.au/video-thumb.jpg",
-  "uploadDate": "2025-01-01T08:00:00+10:00",
-  "duration": "PT2M30S",
-  "contentUrl": "https://disasterrecovery.com.au/video/how-we-work.mp4",
-  "embedUrl": "https://disasterrecovery.com.au/embed/how-we-work"
-});
+import type { VideoConfig } from '../../data/seo/video-config';
+import { getYouTubeThumbnail, getYouTubeEmbedUrl, getYouTubeWatchUrl } from '../../data/seo/video-config';
+
+/** Generate VideoObject JSON-LD from a VideoConfig entry */
+export function generateVideoSchema(video: VideoConfig) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: video.thumbnailUrl || getYouTubeThumbnail(video.youtubeId),
+    uploadDate: video.uploadDate,
+    duration: video.duration,
+    contentUrl: getYouTubeWatchUrl(video.youtubeId),
+    embedUrl: getYouTubeEmbedUrl(video.youtubeId),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://disasterrecovery.com.au/logos/3D NRP Logo.png',
+      },
+    },
+  };
+}
 
 // Helper functions for location data
 function getRegionFromLocation(location: string): string {
@@ -344,7 +358,7 @@ export function generateAllSchemas(pageType: string, location?: string, postalCo
     case 'home':
       schemas.push(generateFAQSchema());
       schemas.push(generateHowToSchema());
-      schemas.push(generateVideoSchema());
+      // Video schemas are now handled per-page by VideoEmbed component
       break;
     case 'location':
       if (location && postalCode) {

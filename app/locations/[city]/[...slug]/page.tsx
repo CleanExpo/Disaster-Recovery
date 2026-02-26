@@ -4,6 +4,7 @@ import { LocationServiceGenerator } from '../../../../lib/location-service-gener
 import LocationServicePageComponent from '../../../../components/location-service-page-simple';
 import { getSuburb, getSuburbSlugs, suburbCities, validServices, cityStateMap } from '@/lib/suburb-utils';
 import { NAP } from '@/lib/constants';
+import { getVideoForService } from '../../../../data/seo/video-config';
 
 const BASE_URL = NAP.url;
 
@@ -241,6 +242,9 @@ export default function LocationServicePage({ params }: { params: { city: string
   // AggregateRating schema — service-level rating for rich results
   const aggregateRatingSchema = buildAggregateRatingSchema(cityTitle, serviceTitle, suburbName);
 
+  // Video — auto-matched by service category (only renders if status === 'live')
+  const serviceVideo = getVideoForService(service);
+
   return (
     <>
       {faqSchema && (
@@ -260,7 +264,7 @@ export default function LocationServicePage({ params }: { params: { city: string
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
       />
-      <LocationServicePageComponent data={pageData} />
+      <LocationServicePageComponent data={pageData} video={serviceVideo || null} />
     </>
   );
 }

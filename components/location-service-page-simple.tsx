@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Phone, Shield, MapPin, CheckCircle, AlertTriangle, ChevronRight, Home } from 'lucide-react';
+import VideoEmbed from '../src/components/seo/VideoEmbed';
+import type { VideoConfig } from '../data/seo/video-config';
 
 // Build breadcrumb items from the current pathname
 function useBreadcrumbs() {
@@ -38,7 +40,7 @@ function useBreadcrumbs() {
   return crumbs;
 }
 
-export default function LocationServicePageComponent({ data }: { data: any }) {
+export default function LocationServicePageComponent({ data, video }: { data: any; video?: VideoConfig | null }) {
   // Parse the title to extract service type and location
   const title = data.h1 || 'Disaster Recovery Services';
   const description = data.metaDescription || '';
@@ -262,6 +264,9 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
           </div>
         </div>
       </section>
+
+      {/* Video Section — auto-rendered when service has a live video */}
+      {video && <VideoEmbed video={video} heading="Watch: How It Works" />}
 
       {/* FAQs — Q&A content section optimised for AEO/featured snippets */}
       {data.faqs && data.faqs.length > 0 && (
