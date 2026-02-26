@@ -1,7 +1,24 @@
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 import { LocationServiceGenerator } from '../../../../lib/location-service-generator';
 import LocationServicePageComponent from '../../../../components/location-service-page-simple';
 import { getSuburb, getSuburbSlugs, suburbCities, validServices, cityStateMap } from '@/lib/suburb-utils';
+
+// Build FAQPage JSON-LD from generator FAQ data
+function buildFAQSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
 
 const validCities = [
   'sydney', 'melbourne', 'brisbane', 'perth', 'adelaide',
@@ -113,26 +130,38 @@ function generateSuburbServiceMetadata(city: string, suburbSlug: string, service
 export default function LocationServicePage({ params }: { params: { city: string; slug: string[] } }) {
   const { city, slug } = params;
 
+  let pageData;
+
   if (slug.length === 1) {
-    // City-service page
     const service = slug[0];
     if (!validCities.includes(city) || !validServices.includes(service as any)) {
       notFound();
     }
-    const pageData = LocationServiceGenerator.generateLocationServicePage(city, service);
-    return <LocationServicePageComponent data={pageData} />;
-  }
-
-  if (slug.length === 2) {
-    // Suburb-service page
+    pageData = LocationServiceGenerator.generateLocationServicePage(city, service);
+  } else if (slug.length === 2) {
     const [suburbSlug, service] = slug;
     const suburbData = getSuburb(city, suburbSlug);
     if (!suburbData || !validServices.includes(service as any)) {
       notFound();
     }
-    const pageData = LocationServiceGenerator.generateLocationServicePage(city, service, suburbData.name);
-    return <LocationServicePageComponent data={pageData} />;
+    pageData = LocationServiceGenerator.generateLocationServicePage(city, service, suburbData.name);
+  } else {
+    notFound();
   }
 
-  notFound();
+  // FAQPage schema — all data is trusted static content from LocationServiceGenerator
+  const faqSchema = pageData.faqs?.length > 0 ? buildFAQSchema(pageData.faqs) : null;
+
+  return (
+    <>
+      {faqSchema && (
+        <Script
+          id="location-faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <LocationServicePageComponent data={pageData} />
+    </>
+  );
 }

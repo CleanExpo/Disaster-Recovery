@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { generateServiceHowToSchema } from '@/lib/seo-schema'
 import { AgContentPageTemplate } from '@/components/antigravity'
 import { Waves, Shield, Clock, AlertTriangle, CheckCircle, Droplets, Home, Thermometer, FileCheck, AlertCircle } from 'lucide-react'
 
@@ -139,6 +140,7 @@ export default function FloodDamageRestorationPage() {
       <StructuredData data={floodServiceSchema} />
       <StructuredData data={generateFAQSchema(floodFAQs)} />
       <StructuredData data={breadcrumbSchema} />
+      <StructuredData data={generateServiceHowToSchema('flood-damage-restoration')} />
 
       <AgContentPageTemplate
         hero={{

@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { generateServiceHowToSchema } from '@/lib/seo-schema'
 import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
@@ -92,6 +93,7 @@ export default function FireDamageRestorationPage() {
       <StructuredData data={fireDamageServiceSchema} />
       <StructuredData data={generateFAQSchema(fireDamageFAQs)} />
       <StructuredData data={breadcrumbSchema} />
+      <StructuredData data={generateServiceHowToSchema('fire-damage-restoration')} />
 
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-blue-700 to-red-600 text-white py-3 px-4">

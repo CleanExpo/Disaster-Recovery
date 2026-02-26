@@ -2,7 +2,41 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Phone, Shield, MapPin, CheckCircle, AlertTriangle } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { Phone, Shield, MapPin, CheckCircle, AlertTriangle, ChevronRight, Home } from 'lucide-react';
+
+// Build breadcrumb items from the current pathname
+function useBreadcrumbs() {
+  const pathname = usePathname();
+  const segments = pathname.split('/').filter(Boolean);
+  // segments: ["locations", "sydney", "water-damage-restoration"]
+  // or:       ["locations", "sydney", "haymarket", "water-damage-restoration"]
+
+  const crumbs: { label: string; href: string }[] = [{ label: 'Home', href: '/' }];
+
+  if (segments[0] === 'locations') {
+    crumbs.push({ label: 'Locations', href: '/locations' });
+
+    if (segments[1]) {
+      const cityLabel = segments[1].split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      crumbs.push({ label: cityLabel, href: `/locations/${segments[1]}` });
+    }
+
+    if (segments.length === 4 && segments[2]) {
+      // Suburb-service page: /locations/sydney/haymarket/water-damage-restoration
+      const suburbLabel = segments[2].split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      crumbs.push({ label: suburbLabel, href: `/locations/${segments[1]}/${segments[2]}` });
+    }
+
+    const serviceSegment = segments[segments.length - 1];
+    if (serviceSegment) {
+      const serviceLabel = serviceSegment.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      crumbs.push({ label: serviceLabel, href: pathname });
+    }
+  }
+
+  return crumbs;
+}
 
 export default function LocationServicePageComponent({ data }: { data: any }) {
   // Parse the title to extract service type and location
@@ -13,7 +47,8 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
   const location = data.location || {};
   const city = location.city || 'Your Area';
   const suburbs = data.content?.serviceAreas || location.suburbs || [];
-  
+  const breadcrumbs = useBreadcrumbs();
+
   // Determine service icon based on title
   const getServiceIcon = () => {
     const titleLower = title.toLowerCase();
@@ -27,6 +62,29 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+      {/* Breadcrumb Navigation */}
+      {breadcrumbs.length > 1 && (
+        <nav aria-label="Breadcrumb" className="bg-slate-900 border-b border-slate-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <ol className="flex items-center gap-1 text-sm text-gray-400 flex-wrap">
+              {breadcrumbs.map((crumb, i) => (
+                <li key={crumb.href} className="flex items-center gap-1">
+                  {i > 0 && <ChevronRight className="w-3 h-3 text-gray-600" />}
+                  {i === 0 && <Home className="w-3.5 h-3.5 mr-0.5" />}
+                  {i === breadcrumbs.length - 1 ? (
+                    <span className="text-gray-200 font-medium">{crumb.label}</span>
+                  ) : (
+                    <Link href={crumb.href} className="hover:text-white transition-colors">
+                      {crumb.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </nav>
+      )}
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-30"></div>

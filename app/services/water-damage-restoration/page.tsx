@@ -12,6 +12,7 @@ import {
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityServicePageTemplate } from '@/components/antigravity';
 import { waterDamageData } from '@/components/antigravity';
+import { generateServiceHowToSchema } from '@/lib/seo-schema';
 
 import {
   generateAustralianMetadata,
@@ -88,10 +89,14 @@ export default function WaterDamageRestorationPage() {
   
   return (
     <>
-      {/* Schema Markup */}
+      {/* Schema Markup — all data is trusted static content */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceHowToSchema('water-damage-restoration')) }}
       />
 
       <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">

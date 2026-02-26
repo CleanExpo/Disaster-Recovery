@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
+import { generateServiceHowToSchema } from '@/lib/seo-schema'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
 
@@ -98,6 +99,7 @@ export default function MouldRemediationPage() {
       <StructuredData data={mouldServiceSchema} />
       <StructuredData data={generateFAQSchema(mouldFAQs)} />
       <StructuredData data={breadcrumbSchema} />
+      <StructuredData data={generateServiceHowToSchema('mould-remediation')} />
 
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-3 px-4">

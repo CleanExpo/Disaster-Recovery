@@ -175,6 +175,108 @@ export const generateHowToSchema = () => ({
   ]
 });
 
+// Service-specific HowTo schemas for process-based service pages
+// Each service has its own professional restoration process
+const serviceHowToData: Record<string, {
+  name: string;
+  description: string;
+  totalTime: string;
+  steps: { name: string; text: string; url?: string }[];
+}> = {
+  'water-damage-restoration': {
+    name: 'How Professional Water Damage Restoration Works',
+    description: 'The IICRC-standard process for restoring water-damaged properties, from emergency extraction through to complete restoration and sign-off.',
+    totalTime: 'P3D',
+    steps: [
+      { name: 'Emergency Water Extraction', text: 'IICRC-certified technicians arrive within 60 minutes to extract standing water using truck-mounted and portable pumps. Industrial wet vacuums remove water from carpets, underlay, and hard surfaces to stop the damage spreading.' },
+      { name: 'Moisture Mapping and Assessment', text: 'Using thermal imaging cameras and pinless moisture meters, technicians map the full extent of water intrusion including inside wall cavities, under flooring, and above ceilings. This determines the IICRC water damage category (1–3) and class (1–4).' },
+      { name: 'Structural Drying and Dehumidification', text: 'Commercial-grade dehumidifiers and high-velocity air movers are strategically placed based on the moisture map. Drying progress is monitored daily with moisture readings until materials reach their dry standard — typically 2–5 days depending on severity.' },
+      { name: 'Antimicrobial Treatment', text: 'All affected areas are treated with IICRC-approved antimicrobial agents to prevent mould growth. This is critical in Australia where warm, humid conditions can trigger mould within 24–48 hours of water exposure.' },
+      { name: 'Restoration and Rebuild', text: 'Once materials are verified dry, restoration begins — replacing damaged plasterboard, skirting boards, flooring, and cabinetry. A final moisture check confirms the property meets pre-loss condition. Full documentation is provided for your insurance claim.' },
+    ],
+  },
+  'fire-damage-restoration': {
+    name: 'How Professional Fire Damage Restoration Works',
+    description: 'The complete fire and smoke damage restoration process, from make-safe through soot removal, odour elimination, and full structural rebuild.',
+    totalTime: 'P14D',
+    steps: [
+      { name: 'Emergency Make-Safe and Board-Up', text: 'Technicians secure the property by boarding up windows, tarping the roof, and fencing off unsafe areas. Emergency services clearance is confirmed, and structural stability is assessed before any restoration work begins.' },
+      { name: 'Smoke and Soot Assessment', text: 'Fire investigators and restoration technicians assess the type of fire residue (dry, wet, protein, or fuel oil soot) and the extent of smoke penetration. Different soot types require different cleaning methods — this assessment determines the restoration strategy.' },
+      { name: 'Contents Pack-Out and Inventory', text: 'Salvageable contents are professionally packed out, inventoried, and transported to a climate-controlled facility for specialist cleaning. Non-salvageable items are documented for your insurance claim with photos and descriptions.' },
+      { name: 'Soot Removal and Surface Cleaning', text: 'Using HEPA-filtered vacuums, dry sponges, and chemical cleaning agents, technicians remove soot from all surfaces including walls, ceilings, HVAC ducts, and structural members. This prevents long-term corrosion and staining.' },
+      { name: 'Odour Elimination', text: 'Professional thermal fogging and ozone treatment eliminate embedded smoke odour from structural materials, soft furnishings, and HVAC systems. Hydroxyl generators may be used for occupied areas. Multiple treatments ensure complete odour removal.' },
+      { name: 'Structural Restoration and Rebuild', text: 'Damaged structural elements are repaired or replaced — framing, plasterboard, electrical, plumbing, and finishes. The property is restored to pre-loss condition with all work documented for insurance claim support.' },
+    ],
+  },
+  'mould-remediation': {
+    name: 'How Professional Mould Remediation Works',
+    description: 'The IICRC S520–standard process for safely removing mould contamination, treating affected materials, and preventing recurrence in Australian properties.',
+    totalTime: 'P5D',
+    steps: [
+      { name: 'Mould Inspection and Air Quality Testing', text: 'A qualified mould assessor conducts visual inspection and collects air samples for laboratory analysis. This identifies the mould species present (e.g., Aspergillus, Cladosporium, Stachybotrys) and determines the scope of contamination — critical for choosing the correct remediation protocol.' },
+      { name: 'Containment Setup', text: 'The contaminated area is sealed off using polyethylene sheeting and negative air pressure machines with HEPA filtration. This containment prevents mould spores spreading to unaffected areas during removal — essential in multi-unit buildings and shared wall properties.' },
+      { name: 'Mould Removal and Material Disposal', text: 'Contaminated porous materials (plasterboard, carpet, insulation) are carefully removed and disposed of as contaminated waste. Non-porous surfaces are HEPA-vacuumed and scrubbed with IICRC-approved biocide solutions. Technicians wear full PPE including P2 respirators.' },
+      { name: 'Antimicrobial Treatment and Encapsulation', text: 'All remediated surfaces receive antimicrobial treatment to kill residual spores. Where appropriate, encapsulant coatings are applied to structural timber and concrete to prevent future mould colonisation.' },
+      { name: 'Clearance Testing and Moisture Source Resolution', text: 'Post-remediation air quality testing confirms spore counts have returned to safe levels. The underlying moisture source (leak, condensation, ventilation) is identified and repaired to prevent recurrence. A clearance certificate is issued for your records.' },
+    ],
+  },
+  'flood-recovery': {
+    name: 'How Professional Flood Recovery Works',
+    description: 'The emergency flood recovery process for Australian properties, from contaminated water removal through sanitisation, drying, and full restoration.',
+    totalTime: 'P7D',
+    steps: [
+      { name: 'Contaminated Water Removal', text: 'Flood water is classified as Category 3 (grossly contaminated) under IICRC standards. Submersible pumps and tanker trucks remove standing water, followed by extraction of water from saturated building materials. All flood water is treated as a biohazard.' },
+      { name: 'Debris Removal and Gut-Out', text: 'Flood-damaged contents, carpets, underlay, and porous building materials below the flood line are removed. In severe floods, plasterboard is cut at least 300mm above the visible water line to account for wicking. All materials are disposed of as contaminated waste.' },
+      { name: 'Sanitisation and Disinfection', text: 'All remaining surfaces are pressure-washed and treated with hospital-grade disinfectants to eliminate bacteria, sewage contamination, and other pathogens. HVAC systems are inspected and cleaned to prevent contaminated air circulation.' },
+      { name: 'Structural Drying', text: 'Industrial drying equipment (LGR dehumidifiers, air movers, desiccant systems) dry the structure to verified moisture levels. Flood-affected properties typically require 5–10 days of controlled drying, monitored with daily moisture readings.' },
+      { name: 'Restoration and Rebuild', text: 'New plasterboard, insulation, flooring, cabinetry, and electrical components are installed. The property is restored to pre-flood condition with complete documentation including before/after photos, moisture logs, and waste disposal certificates for insurance claims.' },
+    ],
+  },
+  'storm-damage-repairs': {
+    name: 'How Professional Storm Damage Repair Works',
+    description: 'The process for restoring storm-damaged properties, from emergency tarping and make-safe through to structural repair and weatherproofing.',
+    totalTime: 'P10D',
+    steps: [
+      { name: 'Emergency Make-Safe and Tarping', text: 'Within 60 minutes of your call, technicians arrive to tarp damaged roofs, board up broken windows, and secure the property against further weather exposure. Fallen trees or debris are cleared from access points and critical areas.' },
+      { name: 'Damage Assessment and Documentation', text: 'A detailed scope of works is prepared documenting all storm damage — roof, gutters, fascia, windows, fencing, landscaping, and interior water ingress. Photos, measurements, and itemised costings are compiled for your insurance claim submission.' },
+      { name: 'Water Ingress Mitigation', text: 'Any water that has entered through the damaged roof or windows is extracted and affected areas are set up for structural drying. This prevents secondary damage including mould growth, timber rot, and electrical faults.' },
+      { name: 'Structural Repairs', text: 'Licensed builders repair or replace damaged roof tiles, sheeting, battens, and trusses. Broken windows, damaged guttering, fascia boards, and external cladding are restored. All structural work is certified to meet current Australian Building Code requirements.' },
+      { name: 'Final Inspection and Weatherproofing', text: 'A final inspection verifies all repairs are complete and the property is weatherproof. Gutters are cleared, downpipes checked, and roof integrity confirmed. Documentation including trade certificates and warranty information is provided for your records.' },
+    ],
+  },
+};
+
+// Slug aliases so both location-page slugs and service-page slugs resolve
+const serviceSlugAliases: Record<string, string> = {
+  'storm-damage-restoration': 'storm-damage-repairs',
+  'flood-damage-restoration': 'flood-recovery',
+};
+
+// Generate a service-specific HowTo schema
+export function generateServiceHowToSchema(serviceSlug: string) {
+  const resolved = serviceSlugAliases[serviceSlug] || serviceSlug;
+  const data = serviceHowToData[resolved];
+  if (!data) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: data.name,
+    description: data.description,
+    totalTime: data.totalTime,
+    step: data.steps.map((step, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url ? { url: step.url } : {}),
+    })),
+  };
+}
+
+// All service slugs that have HowTo data
+export const servicesWithHowTo = Object.keys(serviceHowToData);
+
 export const generateVideoSchema = () => ({
   "@context": "https://schema.org",
   "@type": "VideoObject",

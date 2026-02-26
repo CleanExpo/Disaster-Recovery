@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { generateServiceHowToSchema } from '@/lib/seo-schema'
 import { AgContentPageTemplate } from '@/components/antigravity'
 import {
   CloudLightning,
@@ -155,6 +156,7 @@ export default function StormDamageRestorationPage() {
       <StructuredData data={stormServiceSchema} />
       <StructuredData data={generateFAQSchema(stormFAQs)} />
       <StructuredData data={breadcrumbSchema} />
+      <StructuredData data={generateServiceHowToSchema('storm-damage-restoration')} />
 
       <AgContentPageTemplate
         hero={{
