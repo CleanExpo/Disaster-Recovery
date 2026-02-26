@@ -832,11 +832,11 @@ function FireDamageGuidePageOriginal() {
             </h2>
             <div className="grid md:grid-cols-4 gap-6">
               <Link
-                href="/guides/smoke-damage"
+                href="/guides/fire-damage/smoke-damage-cleaning-guide"
                 className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
                 <Wind className="w-10 h-10 text-gray-600 mb-3" />
-                <h3 className="font-bold mb-2">Smoke Damage Guide</h3>
+                <h3 className="font-bold mb-2">Smoke Damage Cleaning Guide</h3>
                 <p className="text-gray-600 text-sm">Deep dive into smoke damage types and restoration</p>
               </Link>
               

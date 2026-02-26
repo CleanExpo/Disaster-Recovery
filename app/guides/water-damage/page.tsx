@@ -485,21 +485,21 @@ function WaterDamageGuidePageOriginal() {
             </Link>
             
             <Link
-              href="/guides/mould-prevention"
+              href="/guides/mould/why-mould-returns-6-months"
               className="bg-green-50 rounded-lg p-6 hover:shadow-lg transition-all"
             >
               <Shield className="w-8 h-8 text-green-600 mb-3" />
-              <h3 className="font-bold mb-2">Mould Prevention</h3>
-              <p className="text-sm text-gray-700">Stop mould before it starts</p>
+              <h3 className="font-bold mb-2">Why Mould Returns</h3>
+              <p className="text-sm text-gray-700">Stop mould before it starts again</p>
             </Link>
             
             <Link
-              href="/guides/drying-process"
+              href="/guides/equipment/structural-drying-equipment-cost"
               className="bg-blue-50 rounded-lg p-6 hover:shadow-lg transition-all"
             >
               <Info className="w-8 h-8 text-blue-600 mb-3" />
-              <h3 className="font-bold mb-2">Drying Process</h3>
-              <p className="text-sm text-gray-700">Professional drying explained</p>
+              <h3 className="font-bold mb-2">Structural Drying Equipment</h3>
+              <p className="text-sm text-gray-700">Professional drying equipment explained</p>
             </Link>
             
             <Link
