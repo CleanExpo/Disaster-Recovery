@@ -35,7 +35,7 @@ export const metadata: Metadata = generateSEO({
   canonical: 'https://disasterrecovery.com.au/services/mould-remediation',
   openGraph: {
     title: 'Professional Mould Remediation Brisbane - Safe & Certified Removal',
-    description: 'IICRC certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Protect your health - call now.',
+    description: 'IICRC-certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Submit your claim online now.',
     images: [{ url: '/images/services/mould-remediation.webp', alt: 'Professional Mould Remediation Service' }],
     type: 'website'
   }
