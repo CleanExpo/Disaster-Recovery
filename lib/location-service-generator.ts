@@ -279,7 +279,7 @@ export class LocationServiceGenerator {
     const locationText = suburb ? `${suburb} and surrounding ${location.city} areas` : `${location.city} and all suburbs`;
     const variationText = variation ? `${variation} ` : '';
     
-    return `Professional ${variationText}${service.type.toLowerCase()} services in ${locationText}. 24/7 emergency response, insurance approved, certified technicians. Call 1800 000 000 for immediate assistance.`;
+    return `Professional ${variationText}${service.type.toLowerCase()} services in ${locationText}. 24/7 emergency response, IICRC-certified contractors. Submit your claim online for immediate assistance.`;
   }
 
   private static generateContent(
@@ -296,11 +296,11 @@ export class LocationServiceGenerator {
       whyChooseUs: [
         `Local ${locationText} team with deep knowledge of the area`,
         'Average 45-minute emergency response time',
-        'All major insurance companies approved',
+        'Full claims documentation for all major insurers',
         'IICRC certified technicians',
         '100% satisfaction guarantee',
-        'No hidden fees or charges',
-        'Direct insurance billing available'
+        'Transparent pricing — we bill you directly',
+        'Payment plans available via Blue Fire Finance'
       ],
       
       serviceAreas: suburb 
