@@ -371,7 +371,7 @@ const ContractorPriceUpload: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Contractor Price Management</h2>
-              <p className="text-sm text-gray-300">Upload and manage your service rates</p>
+              <p className="text-sm text-gray-500">Upload and manage your service rates</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -490,13 +490,13 @@ const ContractorPriceUpload: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Status</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Category</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Item</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Price</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Unit</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Validation</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase">Actions</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Unit</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Validation</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -525,7 +525,7 @@ const ContractorPriceUpload: React.FC = () => {
                       {rate.normalHoursPrice && rate.afterHoursPrice ? (
                         <div>
                           <p>${rate.normalHoursPrice} (normal)</p>
-                          <p className="text-xs text-gray-300">${rate.afterHoursPrice} (after)</p>
+                          <p className="text-xs text-gray-500">${rate.afterHoursPrice} (after)</p>
                         </div>
                       ) : (
                         <p>${rate.price}</p>
@@ -601,7 +601,7 @@ const ContractorPriceUpload: React.FC = () => {
                 <FileSpreadsheet className="h-5 w-5 text-gray-600" />
                 <div>
                   <p className="font-medium text-sm">{upload.filename}</p>
-                  <p className="text-xs text-gray-300">
+                  <p className="text-xs text-gray-500">
                     Uploaded {new Date(upload.uploadedAt).toLocaleDateString()} by {upload.uploadedBy}
                   </p>
                 </div>

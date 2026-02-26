@@ -160,7 +160,7 @@ function ModernContactPageOriginal() {
               transition={{ duration: 2, repeat: Infinity }}
             >
               <AlertTriangle className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-medium text-red-700">24/7 Online Emergency Response</span>
+              <span className="text-sm font-medium text-red-400">24/7 Online Emergency Response</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
@@ -173,7 +173,7 @@ function ModernContactPageOriginal() {
               </span>
             </h1>
             
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Connect with certified restoration specialists in minutes. 
               Available 24/7 for all emergency disaster recovery needs.
             </p>
@@ -203,9 +203,9 @@ function ModernContactPageOriginal() {
                     <div className={iconClassName}>
                       {info.icon}
                     </div>
-                    <h3 className="text-sm text-gray-700 mb-1">{info.title}</h3>
+                    <h3 className="text-sm text-gray-300 mb-1">{info.title}</h3>
                     <p className="text-xl font-bold mb-1">{info.value}</p>
-                    <p className="text-xs text-gray-700">{info.subtext}</p>
+                    <p className="text-xs text-gray-300">{info.subtext}</p>
                   </div>
                 </motion.div>
               );
@@ -232,7 +232,7 @@ function ModernContactPageOriginal() {
                         Emergency Contact Form
                       </span>
                     </h2>
-                    <p className="text-gray-700">Fill out the form below for immediate assistance</p>
+                    <p className="text-gray-300">Fill out the form below for immediate assistance</p>
                   </div>
 
                   {/* Error Message */}
@@ -244,7 +244,7 @@ function ModernContactPageOriginal() {
                       role="alert"
                       aria-live="polite"
                     >
-                      <p className="text-red-700 text-sm">{error}</p>
+                      <p className="text-red-400 text-sm">{error}</p>
                     </motion.div>
                   )}
 
@@ -260,7 +260,7 @@ function ModernContactPageOriginal() {
                         whileTap={{ scale: 0.995 }}
                         className="relative"
                       >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
                           Your Name *
                         </label>
                         <input
@@ -279,7 +279,7 @@ function ModernContactPageOriginal() {
                             animate={{ opacity: 1, y: 0 }}
                             className="absolute -top-2 left-2 bg-gray-900 px-2"
                           >
-                            <span className="text-xs text-purple-600">Full name</span>
+                            <span className="text-xs text-purple-400">Full name</span>
                           </motion.div>
                         )}
                       </motion.div>
@@ -289,7 +289,7 @@ function ModernContactPageOriginal() {
                         whileTap={{ scale: 0.995 }}
                         className="relative"
                       >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
                           Email Address *
                         </label>
                         <input
@@ -309,7 +309,7 @@ function ModernContactPageOriginal() {
                       <motion.div
                         whileTap={{ scale: 0.995 }}
                       >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
                           Service Required *
                         </label>
                         <select
@@ -332,7 +332,7 @@ function ModernContactPageOriginal() {
                         whileTap={{ scale: 0.995 }}
                         className="relative"
                       >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
                           Phone Number *
                         </label>
                         <input
@@ -350,7 +350,7 @@ function ModernContactPageOriginal() {
 
                     {/* Urgency Selection */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-4">
+                      <label className="block text-sm font-medium text-gray-300 mb-4">
                         Urgency Level *
                       </label>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -386,7 +386,7 @@ function ModernContactPageOriginal() {
                     <motion.div
                       whileTap={{ scale: 0.995 }}
                     >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
                         Describe Your Situation *
                       </label>
                       <textarea
@@ -430,7 +430,7 @@ function ModernContactPageOriginal() {
                     </motion.button>
 
                     {/* Trust Indicators */}
-                    <div className="flex items-center justify-center gap-6 text-xs text-gray-700">
+                    <div className="flex items-center justify-center gap-6 text-xs text-gray-300">
                       <div className="flex items-center gap-1">
                         <ShieldCheck className="w-4 h-4" />
                         SSL Secured
@@ -459,7 +459,7 @@ function ModernContactPageOriginal() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
                   >
-                    <CheckCircle className="w-24 h-24 text-emerald-600 mx-auto mb-6" />
+                    <CheckCircle className="w-24 h-24 text-emerald-400 mx-auto mb-6" />
                   </motion.div>
                   
                   <motion.h2
@@ -477,7 +477,7 @@ function ModernContactPageOriginal() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="text-xl text-gray-700 mb-8"
+                    className="text-xl text-gray-300 mb-8"
                   >
                     Our emergency response team will contact you within minutes.
                   </motion.p>
@@ -488,18 +488,18 @@ function ModernContactPageOriginal() {
                     transition={{ delay: 0.5 }}
                     className="bg-gray-900/50 rounded-xl p-6 text-left space-y-3"
                   >
-                    <h3 className="font-semibold text-emerald-600 mb-3">What happens next:</h3>
+                    <h3 className="font-semibold text-emerald-400 mb-3">What happens next:</h3>
                     <div className="flex items-start gap-3">
-                      <span className="text-emerald-600">1.</span>
-                      <span className="text-gray-700">Immediate phone call from our dispatch team</span>
+                      <span className="text-emerald-400">1.</span>
+                      <span className="text-gray-300">Immediate phone call from our dispatch team</span>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-emerald-600">2.</span>
-                      <span className="text-gray-700">Emergency crew dispatched to your location</span>
+                      <span className="text-emerald-400">2.</span>
+                      <span className="text-gray-300">Emergency crew dispatched to your location</span>
                     </div>
                     <div className="flex items-start gap-3">
-                      <span className="text-emerald-600">3.</span>
-                      <span className="text-gray-700">On-site assessment and immediate action</span>
+                      <span className="text-emerald-400">3.</span>
+                      <span className="text-gray-300">On-site assessment and immediate action</span>
                     </div>
                   </motion.div>
 

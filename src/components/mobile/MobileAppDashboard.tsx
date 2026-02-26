@@ -209,7 +209,7 @@ export function MobileAppDashboard() {
           <div className="flex items-center justify-between mb-2">
             <div>
               <h2 className="text-lg font-semibold">Good Morning, John</h2>
-              <p className="text-sm text-blue-800">2 jobs scheduled today</p>
+              <p className="text-sm text-blue-200">2 jobs scheduled today</p>
             </div>
             <div className="text-right">
               <Badge className="bg-white/20 text-white">
@@ -220,11 +220,11 @@ export function MobileAppDashboard() {
           <div className="mt-4 grid grid-cols-2 gap-2">
             <div className="bg-white/10 rounded-lg p-2 text-center">
               <p className="text-2xl font-bold">92%</p>
-              <p className="text-xs text-blue-800">Compliance Score</p>
+              <p className="text-xs text-blue-200">Compliance Score</p>
             </div>
             <div className="bg-white/10 rounded-lg p-2 text-center">
               <p className="text-2xl font-bold">4.8</p>
-              <p className="text-xs text-blue-800">Rating</p>
+              <p className="text-xs text-blue-200">Rating</p>
             </div>
           </div>
         </div>
@@ -261,7 +261,7 @@ export function MobileAppDashboard() {
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <p className="font-medium text-sm">{job.jobNumber}</p>
-                    <p className="text-xs text-gray-300">{job.client.name}</p>
+                    <p className="text-xs text-gray-500">{job.client.name}</p>
                   </div>
                   <Badge className={`text-xs ${
                     job.priority === 'emergency' ? 'bg-red-100 text-red-700' :
@@ -314,7 +314,7 @@ export function MobileAppDashboard() {
               <RefreshCw className={`h-4 w-4 ${mockSyncStatus.isSyncing ? 'animate-spin' : ''}`} />
               <span className="text-sm">Sync Status</span>
             </div>
-            <span className="text-xs text-gray-300">
+            <span className="text-xs text-gray-500">
               {mockSyncStatus.isSyncing ? 'Syncing...' : `Last: ${new Date(mockSyncStatus.lastSync).toLocaleTimeString()}`}
             </span>
           </div>
@@ -342,7 +342,7 @@ export function MobileAppDashboard() {
               <Smartphone className="h-8 w-8" />
               Mobile App Features
             </h1>
-            <p className="text-blue-800">
+            <p className="text-blue-200">
               Secure, mobile-optimised contractor portal for field technicians
             </p>
           </div>
@@ -491,11 +491,11 @@ export function MobileAppDashboard() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">App Size</span>
-                  <span className="text-sm text-gray-300">~45 MB</span>
+                  <span className="text-sm text-gray-500">~45 MB</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Offline Storage</span>
-                  <span className="text-sm text-gray-300">Up to 500 MB</span>
+                  <span className="text-sm text-gray-500">Up to 500 MB</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Battery Usage</span>
@@ -503,7 +503,7 @@ export function MobileAppDashboard() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Security</span>
-                  <Badge className="bg-blue-100 text-blue-800">AES-256</Badge>
+                  <Badge className="bg-blue-100 text-blue-200">AES-256</Badge>
                 </div>
               </div>
             </CardContent>
@@ -523,7 +523,7 @@ export function MobileAppDashboard() {
                 <Play className="h-4 w-4 mr-2" />
                 Get it on Google Play
               </Button>
-              <p className="text-xs text-center text-gray-300">
+              <p className="text-xs text-center text-gray-500">
                 Version 2.1.0 • Released Dec 2024
               </p>
             </CardContent>

@@ -71,7 +71,7 @@ export default function DemoModeIndicator() {
                       {service.replace(/([A-Z])/g, ' $1').trim()}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-300 dark:text-gray-200">
+                  <p className="text-xs text-gray-500 dark:text-gray-200">
                     {status as string}
                   </p>
                 </div>

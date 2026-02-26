@@ -18,7 +18,7 @@ export function TransparencyHub() {
             <h1 className="text-5xl font-bold mb-6">
               The UBER of Disaster Recovery
             </h1>
-            <p className="text-xl mb-8 text-blue-800">
+            <p className="text-xl mb-8 text-blue-200">
               Revolutionary transparency connecting clients directly with vetted contractors.
               No hidden fees. No surprises. Just honest, professional restoration.
             </p>
@@ -26,17 +26,17 @@ export function TransparencyHub() {
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
                 <Globe className="h-12 w-12 mb-4 text-yellow-600" />
                 <h3 className="text-xl font-semibold mb-2">National Coverage</h3>
-                <p className="text-blue-800">115,000+ contractors across every Australian postcode</p>
+                <p className="text-blue-200">115,000+ contractors across every Australian postcode</p>
               </div>
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
                 <Shield className="h-12 w-12 mb-4 text-green-600" />
                 <h3 className="text-xl font-semibold mb-2">100% Transparent</h3>
-                <p className="text-blue-800">See exactly what's covered and what isn't</p>
+                <p className="text-blue-200">See exactly what's covered and what isn't</p>
               </div>
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
                 <Users className="h-12 w-12 mb-4 text-purple-600" />
                 <h3 className="text-xl font-semibold mb-2">Direct Connection</h3>
-                <p className="text-blue-800">No middleman markup, direct contractor rates</p>
+                <p className="text-blue-200">No middleman markup, direct contractor rates</p>
               </div>
             </div>
           </div>

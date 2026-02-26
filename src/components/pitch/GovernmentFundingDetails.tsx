@@ -47,7 +47,7 @@ export default function GovernmentFundingDetails() {
             <Shield className="h-12 w-12 text-yellow-600" />
             Government Funding Framework
           </h1>
-          <p className="text-xl text-blue-800 max-w-4xl mx-auto">
+          <p className="text-xl text-blue-200 max-w-4xl mx-auto">
             Comprehensive pathway to $2.4B in Australian government funding and industry recognition for 
             the specialty cleaning and restoration sector
           </p>

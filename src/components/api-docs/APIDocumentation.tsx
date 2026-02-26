@@ -394,7 +394,7 @@ export function APIDocumentation() {
                 <Code className="h-8 w-8" />
                 API Documentation
               </h1>
-              <p className="text-blue-800">
+              <p className="text-blue-200">
                 Build powerful integrations with the NRPG platform
               </p>
             </div>
@@ -417,21 +417,21 @@ export function APIDocumentation() {
           <div className="grid grid-cols-4 gap-4 mt-6">
             <div className="bg-white/10 rounded-lg p-4">
               <p className="text-2xl font-bold">{apiCategories.length}</p>
-              <p className="text-sm text-blue-800">API Categories</p>
+              <p className="text-sm text-blue-200">API Categories</p>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
               <p className="text-2xl font-bold">
                 {apiCategories.reduce((sum, cat) => sum + cat.endpoints.length, 0)}
               </p>
-              <p className="text-sm text-blue-800">Endpoints</p>
+              <p className="text-sm text-blue-200">Endpoints</p>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
               <p className="text-2xl font-bold">99.9%</p>
-              <p className="text-sm text-blue-800">Uptime SLA</p>
+              <p className="text-sm text-blue-200">Uptime SLA</p>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
               <p className="text-2xl font-bold">100/s</p>
-              <p className="text-sm text-blue-800">Rate Limit</p>
+              <p className="text-sm text-blue-200">Rate Limit</p>
             </div>
           </div>
         </div>

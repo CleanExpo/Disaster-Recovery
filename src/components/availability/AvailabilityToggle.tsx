@@ -313,7 +313,7 @@ const AvailabilityToggle: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Availability Management</h2>
-              <p className="text-sm text-gray-300">Control your availability status and schedule</p>
+              <p className="text-sm text-gray-500">Control your availability status and schedule</p>
             </div>
           </div>
           <div className={`px-4 py-2 rounded-full border-2 ${getStatusColor(availability.currentStatus)}`}>
@@ -328,15 +328,15 @@ const AvailabilityToggle: React.FC = () => {
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <p className="text-xs text-gray-300">Last Status Change</p>
+              <p className="text-xs text-gray-500">Last Status Change</p>
               <p className="text-sm font-medium">{getTimeSinceLastChange()}</p>
             </div>
             <div>
-              <p className="text-xs text-gray-300">Active Jobs</p>
+              <p className="text-xs text-gray-500">Active Jobs</p>
               <p className="text-sm font-medium">{availability.complianceStatus.outstandingJobs}</p>
             </div>
             <div>
-              <p className="text-xs text-gray-300">Compliance Status</p>
+              <p className="text-xs text-gray-500">Compliance Status</p>
               <div className="flex items-center space-x-1 mt-1">
                 {availability.complianceStatus.isCompliant ? (
                   <>
@@ -355,7 +355,7 @@ const AvailabilityToggle: React.FC = () => {
 
           {availability.statusReason && (
             <div className="mt-4 pt-4 border-t">
-              <p className="text-xs text-gray-300">Current Reason</p>
+              <p className="text-xs text-gray-500">Current Reason</p>
               <p className="text-sm font-medium mt-1">{availability.statusReason.description}</p>
               {availability.estimatedReturnDate && (
                 <p className="text-sm text-gray-600 mt-1">
@@ -435,7 +435,7 @@ const AvailabilityToggle: React.FC = () => {
             disabled={isChangingStatus || selectedStatus === availability.currentStatus}
             className={`px-6 py-2 rounded-lg font-medium ${
               isChangingStatus || selectedStatus === availability.currentStatus
-                ? 'bg-gray-300 text-gray-300 cursor-not-allowed'
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 : 'bg-indigo-600 text-white hover:bg-indigo-700'
             }`}
           >
@@ -465,7 +465,7 @@ const AvailabilityToggle: React.FC = () => {
                   )}
                   <div>
                     <p className="font-medium text-sm">{item.requirement}</p>
-                    <p className="text-xs text-gray-300 capitalize">{item.category}</p>
+                    <p className="text-xs text-gray-500 capitalize">{item.category}</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -524,7 +524,7 @@ const AvailabilityToggle: React.FC = () => {
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-xs text-gray-300">
+                <p className="text-xs text-gray-500">
                   {new Date(history.timestamp).toLocaleDateString()}
                 </p>
                 <p className="text-xs text-gray-600">
@@ -622,7 +622,7 @@ const AvailabilityToggle: React.FC = () => {
                 disabled={!selectedReason || (selectedReason === 'other' && !customReason)}
                 className={`px-4 py-2 rounded-lg font-medium ${
                   !selectedReason || (selectedReason === 'other' && !customReason)
-                    ? 'bg-gray-300 text-gray-300 cursor-not-allowed'
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     : 'bg-indigo-600 text-white hover:bg-indigo-700'
                 }`}
               >

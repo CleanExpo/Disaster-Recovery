@@ -107,7 +107,7 @@ export default function ServiceCards() {
               Complete Disaster Recovery
             </span>
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Industry-leading restoration services with cutting-edge technology and certified experts
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function ServiceCards() {
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-600 transition-colours">
                     {service.title}
                   </h3>
-                  <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">
                     {service.description}
                   </p>
                   
@@ -147,7 +147,7 @@ export default function ServiceCards() {
                     {service.features.map((feature, i) => (
                       <div key={i} className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full" />
-                        <span className="text-xs text-gray-700">{feature}</span>
+                        <span className="text-xs text-gray-300">{feature}</span>
                       </div>
                     ))}
                   </div>

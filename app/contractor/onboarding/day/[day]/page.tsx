@@ -195,7 +195,7 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'video' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -214,7 +214,7 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'reading' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -233,7 +233,7 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'podcast' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -250,7 +250,7 @@ function DayTrainingPageOriginal() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition ${
                 activeTab === 'assignment' 
                   ? 'border-blue-600 text-blue-600' 
-                  : 'border-transparent text-gray-300 hover:text-gray-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-600'
               }`}
             >
               <div className="flex items-center space-x-2">
@@ -282,7 +282,7 @@ function DayTrainingPageOriginal() {
                       <p className="text-white text-lg font-semibold">
                         {module.components.videos[currentVideo]?.title}
                       </p>
-                      <p className="text-gray-300 mt-2">
+                      <p className="text-gray-500 mt-2">
                         Duration: {module.components.videos[currentVideo]?.duration} minutes
                       </p>
                       <button
@@ -338,7 +338,7 @@ function DayTrainingPageOriginal() {
                               </div>
                               <div>
                                 <p className="font-medium text-gray-900">{video.title}</p>
-                                <p className="text-sm text-gray-300">{video.duration} minutes</p>
+                                <p className="text-sm text-gray-500">{video.duration} minutes</p>
                               </div>
                             </div>
                             {video.mandatory && (
@@ -355,7 +355,7 @@ function DayTrainingPageOriginal() {
                                   style={{ width: `${watched}%` }}
                                 />
                               </div>
-                              <p className="text-xs text-gray-300 mt-1">{watched}% watched</p>
+                              <p className="text-xs text-gray-500 mt-1">{watched}% watched</p>
                             </div>
                           )}
                         </div>
@@ -376,7 +376,7 @@ function DayTrainingPageOriginal() {
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <h3 className="font-semibold text-gray-900">{reading.title}</h3>
-                          <p className="text-sm text-gray-300 mt-1">
+                          <p className="text-sm text-gray-500 mt-1">
                             Source: {reading.source} • {reading.estimatedTime} min read
                           </p>
                         </div>
@@ -444,7 +444,7 @@ function DayTrainingPageOriginal() {
                               <p className="font-medium text-gray-900">
                                 Episode {index + 1}: {video.title}
                               </p>
-                              <p className="text-sm text-gray-300">
+                              <p className="text-sm text-gray-500">
                                 AI Discussion • {Math.round(video.duration * 1.5)} min
                               </p>
                             </div>

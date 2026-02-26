@@ -437,7 +437,7 @@ function ClaimStartContent() {
                   <label htmlFor="image-upload" className="cursor-pointer">
                     <Camera className="h-12 w-12 text-gray-600 mx-auto mb-3" />
                     <p className="text-sm font-medium text-gray-600">Click to upload photos</p>
-                    <p className="text-xs text-gray-300 mt-1">or drag and drop</p>
+                    <p className="text-xs text-gray-500 mt-1">or drag and drop</p>
                     <p className="text-xs text-gray-600 mt-2">PNG, JPG, GIF up to 10MB each</p>
                   </label>
                 </div>
@@ -488,7 +488,7 @@ function ClaimStartContent() {
               <div>
                 <label className="block text-sm font-medium text-gray-600 mb-2">
                   Urgency Level *
-                  <span className="ml-2 text-xs font-normal text-gray-300">
+                  <span className="ml-2 text-xs font-normal text-gray-500">
                     (Select based on safety and habitability)
                   </span>
                 </label>

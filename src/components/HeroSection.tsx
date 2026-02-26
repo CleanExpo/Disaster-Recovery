@@ -83,9 +83,9 @@ export default function HeroSection() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
           Professional disaster recovery services with guaranteed 
-          <span className="text-cyan-600 font-semibold"> 60-minute response time</span> across 
+          <span className="text-cyan-400 font-semibold"> 60-minute response time</span> across 
           all major Australian cities
         </p>
 
@@ -116,8 +116,8 @@ export default function HeroSection() {
               key={index}
               className="flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-sm rounded-full border border-white/10"
             >
-              <feature.icon className="w-6 h-6 text-cyan-600" />
-              <span className="text-gray-700 font-medium">{feature.text}</span>
+              <feature.icon className="w-6 h-6 text-cyan-400" />
+              <span className="text-gray-200 font-medium">{feature.text}</span>
             </div>
           ))}
         </div>

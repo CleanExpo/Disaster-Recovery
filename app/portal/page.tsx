@@ -85,7 +85,7 @@ function ContractorPortalOriginal() {
             </button>
           </div>
           <div className="mt-4">
-            <p className="text-sm text-gray-600">Contractor ID</p>
+            <p className="text-sm text-gray-400">Contractor ID</p>
             <p className="font-mono text-sm">{contractorData.id}</p>
           </div>
         </div>
@@ -152,7 +152,7 @@ function ContractorPortalOriginal() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{contractorData.leads.active}</div>
-                <p className="text-xs text-gray-300 mt-1">4 urgent, 5 high priority</p>
+                <p className="text-xs text-gray-500 mt-1">4 urgent, 5 high priority</p>
               </CardContent>
             </Card>
 
@@ -174,7 +174,7 @@ function ContractorPortalOriginal() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{contractorData.performance.responseTime}</div>
-                <p className="text-xs text-gray-300 mt-1">Target: &lt;60 min</p>
+                <p className="text-xs text-gray-500 mt-1">Target: &lt;60 min</p>
               </CardContent>
             </Card>
 
@@ -185,7 +185,7 @@ function ContractorPortalOriginal() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{contractorData.performance.rating}/5.0</div>
-                <p className="text-xs text-gray-300 mt-1">{contractorData.performance.completionRate}% completion rate</p>
+                <p className="text-xs text-gray-500 mt-1">{contractorData.performance.completionRate}% completion rate</p>
               </CardContent>
             </Card>
           </div>

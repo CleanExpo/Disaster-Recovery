@@ -433,7 +433,7 @@ function EmergencyResponseTimer() {
               />
               <div className="flex-1">"
                 <div className="text-sm font-semibold text-gray-600">Response Timer</div>"
-                <div className="text-xs text-gray-300">Teams dispatching</div>"
+                <div className="text-xs text-gray-500">Teams dispatching</div>"
               </div>
               <div className="text-right">"
                 <motion.div 
@@ -445,7 +445,7 @@ function EmergencyResponseTimer() {
                 >
                   {formatTime(timeElapsed)}
                 </motion.div>
-                <div className="text-xs text-gray-300">elapsed</div>"
+                <div className="text-xs text-gray-500">elapsed</div>"
               </div>
             </div>
           </div>

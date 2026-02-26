@@ -313,7 +313,7 @@ function LeadManagementDashboardOriginal() {
               <div className="p-2 bg-blue-100 rounded-lg">
                 <Activity className="h-6 w-6 text-blue-600" />
               </div>
-              <span className="text-sm text-gray-300">Total</span>
+              <span className="text-sm text-gray-500">Total</span>
             </div>
             <p className="text-2xl font-bold text-gray-900">{stats?.total || 0}</p>
             <p className="text-sm text-gray-600 mt-1">Active leads</p>
@@ -324,7 +324,7 @@ function LeadManagementDashboardOriginal() {
               <div className="p-2 bg-green-100 rounded-lg">
                 <DollarSign className="h-6 w-6 text-green-600" />
               </div>
-              <span className="text-sm text-gray-300">Revenue</span>
+              <span className="text-sm text-gray-500">Revenue</span>
             </div>
             <p className="text-2xl font-bold text-gray-900">
               ${(stats?.revenue || 0).toLocaleString()}
@@ -337,7 +337,7 @@ function LeadManagementDashboardOriginal() {
               <div className="p-2 bg-purple-100 rounded-lg">
                 <TrendingUp className="h-6 w-6 text-purple-600" />
               </div>
-              <span className="text-sm text-gray-300">Conversion</span>
+              <span className="text-sm text-gray-500">Conversion</span>
             </div>
             <p className="text-2xl font-bold text-gray-900">
               {stats?.conversionRate.toFixed(1)}%
@@ -348,9 +348,9 @@ function LeadManagementDashboardOriginal() {
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="p-2 bg-orange-100 rounded-lg">
-                <Clock className="h-6 w-6 text-blue-700" />
+                <Clock className="h-6 w-6 text-orange-600" />
               </div>
-              <span className="text-sm text-gray-300">Response</span>
+              <span className="text-sm text-gray-500">Response</span>
             </div>
             <p className="text-2xl font-bold text-gray-900">
               {stats?.avgResponseTime || 0} min
@@ -418,25 +418,25 @@ function LeadManagementDashboardOriginal() {
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Lead Details
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Customer
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Service
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Payment
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Contractor
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -447,7 +447,7 @@ function LeadManagementDashboardOriginal() {
                     <td className="px-6 py-4">
                       <div>
                         <p className="text-sm font-medium text-gray-900">{lead.bookingId}</p>
-                        <p className="text-xs text-gray-300">{getTimeSince(lead.createdAt)}</p>
+                        <p className="text-xs text-gray-500">{getTimeSince(lead.createdAt)}</p>
                         {lead.priority === 'high' && (
                           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 mt-1">
                             High Priority
@@ -458,7 +458,7 @@ function LeadManagementDashboardOriginal() {
                     <td className="px-6 py-4">
                       <div>
                         <p className="text-sm font-medium text-gray-900">{lead.customer.name}</p>
-                        <p className="text-xs text-gray-300">{lead.customer.suburb}, {lead.customer.state}</p>
+                        <p className="text-xs text-gray-500">{lead.customer.suburb}, {lead.customer.state}</p>
                       </div>
                     </td>
                     <td className="px-6 py-4">
@@ -467,7 +467,7 @@ function LeadManagementDashboardOriginal() {
                           {getUrgencyIcon(lead.service.urgency)}
                           <p className="text-sm text-gray-900">{lead.service.type}</p>
                         </div>
-                        <p className="text-xs text-gray-300 mt-1">
+                        <p className="text-xs text-gray-500 mt-1">
                           {lead.service.propertyType} - {lead.service.affectedAreas.join(', ')}
                         </p>
                       </div>
@@ -491,12 +491,12 @@ function LeadManagementDashboardOriginal() {
                       {lead.contractor.assigned ? (
                         <div>
                           <p className="text-sm text-gray-900">{lead.contractor.username}</p>
-                          <p className="text-xs text-gray-300">
+                          <p className="text-xs text-gray-500">
                             Response: {lead.contractor.responseTime} min
                           </p>
                         </div>
                       ) : (
-                        <span className="text-sm text-gray-300">Not assigned</span>
+                        <span className="text-sm text-gray-500">Not assigned</span>
                       )}
                     </td>
                     <td className="px-6 py-4">
@@ -539,7 +539,7 @@ function LeadManagementDashboardOriginal() {
                   onClick={() => setSelectedLead(null)}
                   className="p-2 hover:bg-gray-100 rounded-lg"
                 >
-                  <XCircle className="h-5 w-5 text-gray-300" />
+                  <XCircle className="h-5 w-5 text-gray-500" />
                 </button>
               </div>
             </div>

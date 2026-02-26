@@ -381,7 +381,7 @@ export default function CertificationVerification({
                             
                             {existingCert.expiryDate && (
                               <div className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4 text-gray-300" />
+                                <Calendar className="w-4 h-4 text-gray-500" />
                                 <span className={`text-sm ${
                                   isExpiryWarning(existingCert) ? 'text-red-600 font-medium' : 'text-gray-600'
                                 }`}>
@@ -522,7 +522,7 @@ export default function CertificationVerification({
               <p className="text-sm text-gray-600">
                 Complete all required certifications to proceed with onboarding
               </p>
-              <p className="text-xs text-gray-300 mt-1">
+              <p className="text-xs text-gray-500 mt-1">
                 Certifications are verified against official databases and renewal dates are monitored
               </p>
             </div>

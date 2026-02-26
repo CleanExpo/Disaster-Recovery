@@ -27,7 +27,7 @@ function PitchProductionPageOriginal() {
           <h1 className="text-4xl font-bold text-white mb-4">
             Investor Pitch Deck - Production Version
           </h1>
-          <p className="text-blue-700 text-lg">
+          <p className="text-blue-300 text-lg">
             Professional presentation with ElevenLabs voice narration and synchronised slides
           </p>
         </div>

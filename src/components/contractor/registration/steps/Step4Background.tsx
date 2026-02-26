@@ -268,7 +268,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-blue-600">{calculateCompletion()}%</div>
-              <div className="text-xs text-gray-300 mt-1">
+              <div className="text-xs text-gray-500 mt-1">
                 {Object.values(validationStatus).filter(v => v).length} of 4 complete
               </div>
             </div>
@@ -425,7 +425,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                       <FileText className="h-5 w-5 text-gray-600" />
                       <div>
                         <p className="text-sm font-medium">{file.name}</p>
-                        <p className="text-xs text-gray-300">
+                        <p className="text-xs text-gray-500">
                           {(file.size / 1024).toFixed(1)} KB
                         </p>
                       </div>
@@ -641,7 +641,7 @@ export function Step4Background({ data, updateData, errors }: Step4BackgroundPro
                   <>
                     <CheckCircle className="h-8 w-8 text-green-600 mb-2" />
                     <span className="text-sm font-medium">{projectSummaryFile.name}</span>
-                    <span className="text-xs text-gray-300 mt-1">Click to replace</span>
+                    <span className="text-xs text-gray-500 mt-1">Click to replace</span>
                   </>
                 ) : (
                   <>

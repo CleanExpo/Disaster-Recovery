@@ -95,7 +95,7 @@ function DemoPageOriginal() {
             <div className="flex items-center gap-3">
               <Link 
                 href="/demo/credentials"
-                className="px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 text-blue-700 rounded-lg transition flex items-center gap-2"
+                className="px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 rounded-lg transition flex items-center gap-2"
               >
                 View Test Credentials
               </Link>
@@ -129,7 +129,7 @@ function DemoPageOriginal() {
                 <div className="relative p-8">
                   {/* Status Badge */}
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-green-500/20 text-emerald-600 text-xs font-semibold rounded-full border border-green-500/30">
+                    <span className="px-3 py-1 bg-green-500/20 text-emerald-400 text-xs font-semibold rounded-full border border-green-500/30">
                       {demo.status === 'live' ? 'LIVE DEMO' : 'COMING SOON'}
                     </span>
                   </div>
@@ -150,7 +150,7 @@ function DemoPageOriginal() {
                   {/* Features */}
                   <div className="space-y-2 mb-6">
                     {demo.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-600">
+                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-300">
                         <ChevronRight className="h-4 w-4 text-gray-300" />
                         <span>{feature}</span>
                       </div>
@@ -189,16 +189,16 @@ function DemoPageOriginal() {
             </p>
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
-                <div className="text-3xl font-bold text-blue-600">10,000+</div>
-                <div className="text-sm text-gray-600">Contractors</div>
+                <div className="text-3xl font-bold text-blue-400">10,000+</div>
+                <div className="text-sm text-gray-300">Contractors</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-emerald-600">$2.8B</div>
-                <div className="text-sm text-gray-600">Market Size</div>
+                <div className="text-3xl font-bold text-emerald-400">$2.8B</div>
+                <div className="text-sm text-gray-300">Market Size</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-purple-600">24/7</div>
-                <div className="text-sm text-gray-600">Response Time</div>
+                <div className="text-3xl font-bold text-purple-400">24/7</div>
+                <div className="text-sm text-gray-300">Response Time</div>
               </div>
             </div>
           </div>

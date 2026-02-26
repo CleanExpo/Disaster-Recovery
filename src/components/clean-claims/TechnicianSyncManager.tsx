@@ -279,7 +279,7 @@ const TechnicianSyncManager: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Technician Sync Manager</h2>
-              <p className="text-sm text-gray-300">Clean Claims API Integration</p>
+              <p className="text-sm text-gray-500">Clean Claims API Integration</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -295,7 +295,7 @@ const TechnicianSyncManager: React.FC = () => {
               disabled={isSyncing}
               className={`px-4 py-2 rounded-lg flex items-center space-x-2 ${
                 isSyncing 
-                  ? 'bg-gray-300 text-gray-300 cursor-not-allowed'
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   : 'bg-blue-600 text-white hover:bg-blue-700'
               }`}
             >
@@ -324,23 +324,23 @@ const TechnicianSyncManager: React.FC = () => {
         {/* Metrics */}
         <div className="grid grid-cols-5 gap-4 mt-4">
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Total Technicians</p>
+            <p className="text-xs text-gray-500">Total Technicians</p>
             <p className="text-2xl font-semibold">{syncMetrics.totalTechnicians}</p>
           </div>
           <div className="bg-green-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Synced</p>
+            <p className="text-xs text-gray-500">Synced</p>
             <p className="text-2xl font-semibold text-green-600">{syncMetrics.syncedTechnicians}</p>
           </div>
           <div className="bg-yellow-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Pending</p>
+            <p className="text-xs text-gray-500">Pending</p>
             <p className="text-2xl font-semibold text-yellow-600">{syncMetrics.pendingSync}</p>
           </div>
           <div className="bg-red-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Failed</p>
+            <p className="text-xs text-gray-500">Failed</p>
             <p className="text-2xl font-semibold text-red-600">{syncMetrics.failedSync}</p>
           </div>
           <div className="bg-blue-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Last Sync</p>
+            <p className="text-xs text-gray-500">Last Sync</p>
             <p className="text-sm font-medium text-blue-600">
               {syncMetrics.lastSyncTime 
                 ? new Date(syncMetrics.lastSyncTime).toLocaleTimeString()
@@ -399,7 +399,7 @@ const TechnicianSyncManager: React.FC = () => {
                       />
                     ) : (
                       <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                        <User className="h-6 w-6 text-gray-300" />
+                        <User className="h-6 w-6 text-gray-500" />
                       </div>
                     )}
                     <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white ${
@@ -449,7 +449,7 @@ const TechnicianSyncManager: React.FC = () => {
                       </div>
                     ))}
                     {technician.certifications.length > 3 && (
-                      <span className="text-xs text-gray-300">
+                      <span className="text-xs text-gray-500">
                         +{technician.certifications.length - 3} more
                       </span>
                     )}
@@ -459,7 +459,7 @@ const TechnicianSyncManager: React.FC = () => {
                 {/* Sync Status */}
                 <div className="flex items-center space-x-3">
                   <div className="text-right">
-                    <p className="text-xs text-gray-300">Sync Status</p>
+                    <p className="text-xs text-gray-500">Sync Status</p>
                     <span className={`inline-block px-2 py-1 text-xs rounded-full ${
                       getStatusColor(technician.syncStatus.status)
                     }`}>
@@ -521,7 +521,7 @@ const TechnicianSyncManager: React.FC = () => {
                   />
                 ) : (
                   <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center">
-                    <User className="h-10 w-10 text-gray-300" />
+                    <User className="h-10 w-10 text-gray-500" />
                   </div>
                 )}
                 <button className="absolute bottom-0 right-0 p-1 bg-white rounded-full shadow-lg hover:bg-gray-50">
@@ -549,7 +549,7 @@ const TechnicianSyncManager: React.FC = () => {
               </div>
               <div className="text-right">
                 {selectedTechnician.cleanClaimsId && (
-                  <p className="text-xs text-gray-300">Clean Claims ID</p>
+                  <p className="text-xs text-gray-500">Clean Claims ID</p>
                 )}
                 <p className="font-mono text-sm">{selectedTechnician.cleanClaimsId || 'Not synced'}</p>
               </div>
@@ -560,11 +560,11 @@ const TechnicianSyncManager: React.FC = () => {
               <h5 className="font-medium mb-3">Contact Information</h5>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-gray-300">Email</p>
+                  <p className="text-xs text-gray-500">Email</p>
                   <p className="text-sm">{selectedTechnician.email || 'Not provided'}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-300">Phone</p>
+                  <p className="text-xs text-gray-500">Phone</p>
                   <p className="text-sm">{selectedTechnician.contactNumber || 'Not provided'}</p>
                 </div>
               </div>
@@ -599,7 +599,7 @@ const TechnicianSyncManager: React.FC = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-300">No certifications on file</p>
+                <p className="text-sm text-gray-500">No certifications on file</p>
               )}
             </div>
 
@@ -609,28 +609,28 @@ const TechnicianSyncManager: React.FC = () => {
                 <h5 className="font-medium mb-3">Professional Details</h5>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs text-gray-300">Experience</p>
+                    <p className="text-xs text-gray-500">Experience</p>
                     <p className="text-sm">{selectedTechnician.metadata.yearsExperience} years</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-300">Completed Jobs</p>
+                    <p className="text-xs text-gray-500">Completed Jobs</p>
                     <p className="text-sm">{selectedTechnician.metadata.completedJobs}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-300">Rating</p>
+                    <p className="text-xs text-gray-500">Rating</p>
                     <div className="flex items-center space-x-1">
                       <Star className="h-4 w-4 text-blue-600" />
                       <span className="text-sm">{selectedTechnician.metadata.rating}</span>
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs text-gray-300">Languages</p>
+                    <p className="text-xs text-gray-500">Languages</p>
                     <p className="text-sm">{selectedTechnician.metadata.languages?.join(', ')}</p>
                   </div>
                 </div>
                 {selectedTechnician.metadata.bio && (
                   <div className="mt-4">
-                    <p className="text-xs text-gray-300 mb-1">Bio</p>
+                    <p className="text-xs text-gray-500 mb-1">Bio</p>
                     <p className="text-sm text-gray-600">{selectedTechnician.metadata.bio}</p>
                   </div>
                 )}
@@ -682,7 +682,7 @@ const TechnicianSyncManager: React.FC = () => {
 
             <div className="mt-4">
               <p className="text-sm text-gray-600">Expected format:</p>
-              <ul className="text-xs text-gray-300 mt-2 space-y-1">
+              <ul className="text-xs text-gray-500 mt-2 space-y-1">
                 <li>• Name, Email, Phone, Company, Certifications</li>
                 <li>• CSV format with headers</li>
                 <li>• Maximum 500 records per import</li>

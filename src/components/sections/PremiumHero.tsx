@@ -120,7 +120,7 @@ export default function PremiumHero({
                   </span>
                 ))}
               </h1>
-              <p className="text-xl text-blue-800 leading-relaxed max-w-xl">
+              <p className="text-xl text-blue-100 leading-relaxed max-w-xl">
                 {description}
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function PremiumHero({
                   className="flex items-center gap-2 text-white/90 animate-fade-in"
                   style={{ animationDelay: `${index * 100 + 500}ms` }}
                 >
-                  <badge.icon className="w-5 h-5 text-blue-700" />
+                  <badge.icon className="w-5 h-5 text-blue-300" />
                   <span className="text-sm font-medium">{badge.text}</span>
                 </div>
               ))}
@@ -209,9 +209,9 @@ export default function PremiumHero({
                           key={stat.label}
                           className="text-center p-4 bg-white/5 rounded-lg border border-white/10"
                         >
-                          <stat.icon className="w-8 h-8 text-blue-700 mx-auto mb-2" />
+                          <stat.icon className="w-8 h-8 text-blue-300 mx-auto mb-2" />
                           <div className="text-2xl font-bold text-white">{stat.value}</div>
-                          <div className="text-xs text-blue-700">{stat.label}</div>
+                          <div className="text-xs text-blue-300">{stat.label}</div>
                         </div>
                       ))}
                     </div>
@@ -247,10 +247,10 @@ export default function PremiumHero({
                   className="flex items-center justify-center gap-4 animate-fade-in-up"
                   style={{ animationDelay: `${index * 100 + 800}ms` }}
                 >
-                  <stat.icon className="w-8 h-8 text-blue-700" />
+                  <stat.icon className="w-8 h-8 text-blue-300" />
                   <div>
                     <div className="text-2xl font-bold text-white">{stat.value}</div>
-                    <div className="text-sm text-blue-700">{stat.label}</div>
+                    <div className="text-sm text-blue-300">{stat.label}</div>
                   </div>
                 </div>
               ))}

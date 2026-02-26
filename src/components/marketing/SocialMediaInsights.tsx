@@ -315,7 +315,7 @@ export default function SocialMediaInsights() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900 capitalize">{platform.platform}</h3>
-                <p className="text-sm text-gray-300">{platform.accountName}</p>
+                <p className="text-sm text-gray-500">{platform.accountName}</p>
               </div>
             </div>
             <ExternalLink className="w-5 h-5 text-gray-600" />
@@ -354,7 +354,7 @@ export default function SocialMediaInsights() {
             <span className="text-green-600 font-medium">
               +{platform.insights.audienceGrowth}%
             </span>
-            <span className="text-gray-300 ml-1">this month</span>
+            <span className="text-gray-500 ml-1">this month</span>
           </div>
         </div>
       ))}
@@ -380,7 +380,7 @@ export default function SocialMediaInsights() {
           <span className="text-sm font-medium text-green-600">
             +{formatPercentage(mockSocialInsights.aggregatedMetrics.growthRate)}
           </span>
-          <span className="text-sm text-gray-300 ml-1">growth</span>
+          <span className="text-sm text-gray-500 ml-1">growth</span>
         </div>
       </div>
 
@@ -444,7 +444,7 @@ export default function SocialMediaInsights() {
               <p className="text-sm font-medium text-gray-900 line-clamp-2">
                 {content.content}
               </p>
-              <div className="flex items-center space-x-4 mt-2 text-xs text-gray-300">
+              <div className="flex items-center space-x-4 mt-2 text-xs text-gray-500">
                 <span>{content.publishedDate.toLocaleDateString('en-AU')}</span>
                 <span className="capitalize">{content.type}</span>
                 {content.location && <span>{content.location}</span>}
@@ -472,7 +472,7 @@ export default function SocialMediaInsights() {
                   <span>{formatNumber(content.performance.shares)}</span>
                 </div>
               </div>
-              <p className="text-sm text-gray-300 mt-1">
+              <p className="text-sm text-gray-500 mt-1">
                 {formatPercentage(content.performance.engagementRate)} engagement
               </p>
             </div>
@@ -502,7 +502,7 @@ export default function SocialMediaInsights() {
               <p className="font-medium text-gray-900 line-clamp-2">
                 {post.content}
               </p>
-              <div className="flex items-center space-x-4 mt-2 text-sm text-gray-300">
+              <div className="flex items-center space-x-4 mt-2 text-sm text-gray-500">
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-1" />
                   <span>{post.scheduledDate.toLocaleDateString('en-AU')}</span>

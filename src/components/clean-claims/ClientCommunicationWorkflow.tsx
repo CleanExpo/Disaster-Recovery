@@ -410,7 +410,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Client Communication Workflow</h2>
-              <p className="text-sm text-gray-300">Automated client engagement and transparency</p>
+              <p className="text-sm text-gray-500">Automated client engagement and transparency</p>
             </div>
           </div>
           <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center space-x-2">
@@ -422,23 +422,23 @@ const ClientCommunicationWorkflow: React.FC = () => {
         {/* Statistics */}
         <div className="grid grid-cols-5 gap-4">
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Total Sent</p>
+            <p className="text-xs text-gray-500">Total Sent</p>
             <p className="text-2xl font-semibold">156</p>
           </div>
           <div className="bg-green-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Delivered</p>
+            <p className="text-xs text-gray-500">Delivered</p>
             <p className="text-2xl font-semibold text-green-600">148</p>
           </div>
           <div className="bg-purple-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Opened</p>
+            <p className="text-xs text-gray-500">Opened</p>
             <p className="text-2xl font-semibold text-purple-600">132</p>
           </div>
           <div className="bg-yellow-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Scheduled</p>
+            <p className="text-xs text-gray-500">Scheduled</p>
             <p className="text-2xl font-semibold text-yellow-600">8</p>
           </div>
           <div className="bg-blue-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Open Rate</p>
+            <p className="text-xs text-gray-500">Open Rate</p>
             <p className="text-2xl font-semibold text-blue-600">84.6%</p>
           </div>
         </div>
@@ -536,13 +536,13 @@ const ClientCommunicationWorkflow: React.FC = () => {
                     <div className="text-right">
                       {comm.status === 'scheduled' && comm.scheduledFor && (
                         <>
-                          <p className="text-xs text-gray-300">Scheduled</p>
+                          <p className="text-xs text-gray-500">Scheduled</p>
                           <p className="text-sm">{new Date(comm.scheduledFor).toLocaleString()}</p>
                         </>
                       )}
                       {comm.sentAt && (
                         <>
-                          <p className="text-xs text-gray-300">Sent</p>
+                          <p className="text-xs text-gray-500">Sent</p>
                           <p className="text-sm">{new Date(comm.sentAt).toLocaleString()}</p>
                         </>
                       )}
@@ -579,7 +579,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                 {/* Technician Profiles Preview */}
                 {comm.content.technicianProfiles && comm.content.technicianProfiles.length > 0 && (
                   <div className="mt-3 flex items-center space-x-2">
-                    <span className="text-xs text-gray-300">Team:</span>
+                    <span className="text-xs text-gray-500">Team:</span>
                     {comm.content.technicianProfiles.slice(0, 3).map((tech) => (
                       <div key={tech.technicianId} className="flex items-center space-x-1">
                         {tech.photo ? (
@@ -595,7 +595,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                       </div>
                     ))}
                     {comm.content.technicianProfiles.length > 3 && (
-                      <span className="text-xs text-gray-300">
+                      <span className="text-xs text-gray-500">
                         +{comm.content.technicianProfiles.length - 3} more
                       </span>
                     )}
@@ -606,7 +606,7 @@ const ClientCommunicationWorkflow: React.FC = () => {
                 {comm.attachments && comm.attachments.length > 0 && (
                   <div className="mt-3 flex items-center space-x-2">
                     <Paperclip className="h-4 w-4 text-gray-600" />
-                    <span className="text-xs text-gray-300">
+                    <span className="text-xs text-gray-500">
                       {comm.attachments.length} attachment{comm.attachments.length > 1 ? 's' : ''}
                     </span>
                   </div>

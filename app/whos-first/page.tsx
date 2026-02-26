@@ -197,7 +197,7 @@ function WhosFirstPageOriginal() {
                       <Icon className="w-8 h-8" />
                       <div>
                         <h3 className="text-xl font-bold">{scenario.question}</h3>
-                        <p className="text-blue-800">{scenario.title}</p>
+                        <p className="text-blue-100">{scenario.title}</p>
                       </div>
                     </div>
                   </div>
@@ -347,19 +347,19 @@ function WhosFirstPageOriginal() {
           <div className="grid md:grid-cols-4 gap-6 mb-12">
             <div className="bg-white/10 backdrop-blur rounded-lg p-6">
               <p className="text-4xl font-bold mb-2">100%</p>
-              <p className="text-blue-700">Claim Success Rate</p>
+              <p className="text-blue-200">Claim Success Rate</p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-6">
               <p className="text-4xl font-bold mb-2">24/7</p>
-              <p className="text-blue-700">Always Available</p>
+              <p className="text-blue-200">Always Available</p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-6">
               <p className="text-4xl font-bold mb-2">1 Call</p>
-              <p className="text-blue-700">Coordinates Everything</p>
+              <p className="text-blue-200">Coordinates Everything</p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-6">
               <p className="text-4xl font-bold mb-2">$0</p>
-              <p className="text-blue-700">Upfront Costs</p>
+              <p className="text-blue-200">Upfront Costs</p>
             </div>
           </div>
           <motion.a

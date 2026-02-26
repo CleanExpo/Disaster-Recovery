@@ -176,7 +176,7 @@ const ModernServiceCards: React.FC = () => {
             whileHover={{ scale: 1.05 }}
           >
             <Award className="h-4 w-4 text-blue-600" />
-            <span className="text-sm font-medium text-blue-700">Premium Services</span>
+            <span className="text-sm font-medium text-blue-300">Premium Services</span>
           </motion.div>
           
           <h2 className="text-5xl lg:text-6xl font-black mb-6 premium-heading">
@@ -187,7 +187,7 @@ const ModernServiceCards: React.FC = () => {
             </span>
           </h2>
           
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto premium-text">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto premium-text">
             Advanced disaster recovery technology meets decades of expertise. 
             Every service backed by AI-powered assessments and guaranteed results.
           </p>
@@ -273,7 +273,7 @@ const ModernServiceCards: React.FC = () => {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-gray-700 mb-6 leading-relaxed group-hover:text-gray-700 transition-colours">
+                <p className="text-gray-300 mb-6 leading-relaxed group-hover:text-gray-300 transition-colours">
                   {service.description}
                 </p>
                 
@@ -297,7 +297,7 @@ const ModernServiceCards: React.FC = () => {
                       >
                         <CheckCircle className="h-3 w-3 text-white" />
                       </motion.div>
-                      <span className="text-sm text-gray-700 group-hover:text-white transition-colours">
+                      <span className="text-sm text-gray-300 group-hover:text-white transition-colours">
                         {feature}
                       </span>
                     </motion.li>
@@ -308,7 +308,7 @@ const ModernServiceCards: React.FC = () => {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${service.colour} animate-pulse`} />
-                    <span className="text-xs text-gray-700 uppercase tracking-wide">
+                    <span className="text-xs text-gray-300 uppercase tracking-wide">
                       {service.stats.label}
                     </span>
                   </div>
@@ -365,15 +365,15 @@ const ModernServiceCards: React.FC = () => {
           transition={{ duration: 0.8, delay: 1 }}
         >
           <div className="inline-flex items-center gap-6">
-            <div className="flex items-center gap-2 text-sm text-gray-700">
+            <div className="flex items-center gap-2 text-sm text-gray-300">
               <Shield className="h-4 w-4 text-blue-600" />
               <span>Industry Certified</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
+            <div className="flex items-center gap-2 text-sm text-gray-300">
               <Clock className="h-4 w-4 text-emerald-600" />
               <span>24/7 Response</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-700">
+            <div className="flex items-center gap-2 text-sm text-gray-300">
               <Award className="h-4 w-4 text-purple-600" />
               <span>Guaranteed Results</span>
             </div>

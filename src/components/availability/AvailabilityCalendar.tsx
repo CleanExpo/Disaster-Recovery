@@ -386,7 +386,7 @@ const AvailabilityCalendar: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Availability Calendar</h2>
-              <p className="text-sm text-gray-300">Plan and manage your future availability</p>
+              <p className="text-sm text-gray-500">Plan and manage your future availability</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -468,7 +468,7 @@ const AvailabilityCalendar: React.FC = () => {
                   >
                     <div className="flex justify-between items-start">
                       <span className={`text-sm font-medium ${
-                        day.isWeekend ? 'text-gray-300' : ''
+                        day.isWeekend ? 'text-gray-500' : ''
                       }`}>
                         {day.date.getDate()}
                       </span>
@@ -540,7 +540,7 @@ const AvailabilityCalendar: React.FC = () => {
 
                 return (
                   <div key={i} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50">
-                    <span className="text-sm text-gray-300 w-16">{formatTime(time)}</span>
+                    <span className="text-sm text-gray-500 w-16">{formatTime(time)}</span>
                     <div className={`flex-1 p-2 rounded flex items-center space-x-2 ${
                       status === 'available' ? 'bg-green-50' :
                       status === 'busy' ? 'bg-yellow-50' :
@@ -557,7 +557,7 @@ const AvailabilityCalendar: React.FC = () => {
                       }`} />
                       <span className="text-sm capitalize">{status}</span>
                       {windowAtTime && (
-                        <span className="text-xs text-gray-300">({windowAtTime.reason.description})</span>
+                        <span className="text-xs text-gray-500">({windowAtTime.reason.description})</span>
                       )}
                     </div>
                   </div>
@@ -590,7 +590,7 @@ const AvailabilityCalendar: React.FC = () => {
                       </p>
                       <p className="text-sm text-gray-600">{window.reason.description}</p>
                       {window.notes && (
-                        <p className="text-xs text-gray-300 mt-1">{window.notes}</p>
+                        <p className="text-xs text-gray-500 mt-1">{window.notes}</p>
                       )}
                     </div>
                   </div>
@@ -611,7 +611,7 @@ const AvailabilityCalendar: React.FC = () => {
                       }}
                       className="p-1 hover:bg-gray-100 rounded"
                     >
-                      <Edit className="h-4 w-4 text-gray-300" />
+                      <Edit className="h-4 w-4 text-gray-500" />
                     </button>
                     <button
                       onClick={() => handleDeleteWindow(window.id)}
@@ -787,7 +787,7 @@ const AvailabilityCalendar: React.FC = () => {
                             min="0"
                             max="100"
                           />
-                          <span className="text-sm text-gray-300">% capacity</span>
+                          <span className="text-sm text-gray-500">% capacity</span>
                           <button
                             onClick={() => {
                               const updated = [...weeklyScheduleForm];

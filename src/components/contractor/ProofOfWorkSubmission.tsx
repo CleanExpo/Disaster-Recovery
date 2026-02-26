@@ -401,7 +401,7 @@ function ClaimFormModal({
             <button
               onClick={() => setActiveTab('details')}
               className={`px-4 py-2 rounded-lg font-medium ${
-                activeTab === 'details' ? 'bg-blue-100 text-blue-700' : 'text-gray-300 hover:text-gray-600'
+                activeTab === 'details' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:text-gray-600'
               }`}
             >
               Project Details
@@ -409,7 +409,7 @@ function ClaimFormModal({
             <button
               onClick={() => setActiveTab('evidence')}
               className={`px-4 py-2 rounded-lg font-medium ${
-                activeTab === 'evidence' ? 'bg-blue-100 text-blue-700' : 'text-gray-300 hover:text-gray-600'
+                activeTab === 'evidence' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:text-gray-600'
               }`}
             >
               Evidence ({formData.evidence.length})
@@ -709,7 +709,7 @@ function EvidenceUploadSection({
                     <X className="w-4 h-4" />
                   </button>
                 </div>
-                <p className="text-xs text-gray-300">
+                <p className="text-xs text-gray-500">
                   Uploaded: {new Date(item.uploadedAt).toLocaleDateString()}
                 </p>
               </div>

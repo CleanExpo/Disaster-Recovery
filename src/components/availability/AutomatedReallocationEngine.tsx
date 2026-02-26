@@ -424,7 +424,7 @@ const AutomatedReallocationEngine: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Automated Reallocation Engine</h2>
-              <p className="text-sm text-gray-300">Seamless lead redistribution when contractors are unavailable</p>
+              <p className="text-sm text-gray-500">Seamless lead redistribution when contractors are unavailable</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -453,27 +453,27 @@ const AutomatedReallocationEngine: React.FC = () => {
         {/* Stats Overview */}
         <div className="grid grid-cols-6 gap-4">
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Total Reallocations</p>
+            <p className="text-xs text-gray-500">Total Reallocations</p>
             <p className="text-xl font-semibold">{stats.totalReallocations}</p>
           </div>
           <div className="bg-green-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Successful</p>
+            <p className="text-xs text-gray-500">Successful</p>
             <p className="text-xl font-semibold text-green-600">{stats.successfulReallocations}</p>
           </div>
           <div className="bg-red-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Failed</p>
+            <p className="text-xs text-gray-500">Failed</p>
             <p className="text-xl font-semibold text-red-600">{stats.failedReallocations}</p>
           </div>
           <div className="bg-blue-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Avg Time</p>
+            <p className="text-xs text-gray-500">Avg Time</p>
             <p className="text-xl font-semibold text-blue-600">{stats.averageReallocationTime}s</p>
           </div>
           <div className="bg-purple-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Active Rules</p>
+            <p className="text-xs text-gray-500">Active Rules</p>
             <p className="text-xl font-semibold text-purple-600">{stats.activeRules}</p>
           </div>
           <div className="bg-yellow-50 rounded-lg p-3">
-            <p className="text-xs text-gray-300">Queued Leads</p>
+            <p className="text-xs text-gray-500">Queued Leads</p>
             <p className="text-xl font-semibold text-yellow-600">{stats.queuedLeads}</p>
           </div>
         </div>
@@ -500,7 +500,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-semibold">{contractor.utilizationRate}%</p>
-                  <p className="text-xs text-gray-300">Utilisation</p>
+                  <p className="text-xs text-gray-500">Utilisation</p>
                 </div>
               </div>
 
@@ -581,7 +581,7 @@ const AutomatedReallocationEngine: React.FC = () => {
 
               <div className="grid grid-cols-3 gap-4 mt-3 text-sm">
                 <div>
-                  <p className="text-gray-300 mb-1">Conditions ({rule.conditions.length})</p>
+                  <p className="text-gray-500 mb-1">Conditions ({rule.conditions.length})</p>
                   {rule.conditions.slice(0, 2).map((condition, index) => (
                     <div key={index} className="text-xs bg-blue-50 px-2 py-1 rounded mb-1">
                       {condition.type}: {condition.operator} {condition.value}
@@ -589,7 +589,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                   ))}
                 </div>
                 <div>
-                  <p className="text-gray-300 mb-1">Actions ({rule.actions.length})</p>
+                  <p className="text-gray-500 mb-1">Actions ({rule.actions.length})</p>
                   {rule.actions.slice(0, 2).map((action, index) => (
                     <div key={index} className="text-xs bg-green-50 px-2 py-1 rounded mb-1">
                       {action.type}
@@ -597,7 +597,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                   ))}
                 </div>
                 <div>
-                  <p className="text-gray-300 mb-1">Notifications ({rule.notifications.length})</p>
+                  <p className="text-gray-500 mb-1">Notifications ({rule.notifications.length})</p>
                   {rule.notifications.slice(0, 2).map((notification, index) => (
                     <div key={index} className="text-xs bg-yellow-50 px-2 py-1 rounded mb-1">
                       {notification.recipient} via {notification.channel}
@@ -621,14 +621,14 @@ const AutomatedReallocationEngine: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Time</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Trigger</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Affected</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Leads</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Reallocated To</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Success</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Response</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Rule</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Trigger</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Affected</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Leads</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Reallocated To</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Success</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Response</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rule</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -641,7 +641,7 @@ const AutomatedReallocationEngine: React.FC = () => {
                     </td>
                     <td className="px-4 py-2">
                       <div className="flex items-center space-x-1">
-                        <TriggerIcon className="h-4 w-4 text-gray-300" />
+                        <TriggerIcon className="h-4 w-4 text-gray-500" />
                         <span className="text-sm capitalize">{event.triggerType}</span>
                       </div>
                     </td>

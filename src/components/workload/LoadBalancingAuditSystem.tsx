@@ -409,7 +409,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold">Load Balancing & Audit System</h2>
-              <p className="text-sm text-gray-300">Fair distribution monitoring and complete allocation history</p>
+              <p className="text-sm text-gray-500">Fair distribution monitoring and complete allocation history</p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -419,7 +419,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
               className={`px-4 py-2 rounded-lg flex items-center space-x-2 ${
                 systemHealth?.redistributionNeeded
                   ? 'bg-blue-700 text-white hover:bg-orange-700'
-                  : 'bg-gray-300 text-gray-300 cursor-not-allowed'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             >
               <Activity className="h-4 w-4" />
@@ -441,7 +441,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-300">Fairness Score</p>
+                  <p className="text-xs text-gray-500">Fairness Score</p>
                   <p className="text-2xl font-semibold">{systemHealth.fairnessScore}%</p>
                 </div>
                 <Scale className="h-8 w-8 text-indigo-500" />
@@ -450,7 +450,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-300">Efficiency</p>
+                  <p className="text-xs text-gray-500">Efficiency</p>
                   <p className="text-2xl font-semibold">{systemHealth.efficiencyScore}%</p>
                 </div>
                 <TrendingUp className="h-8 w-8 text-green-500" />
@@ -459,7 +459,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-300">Avg Response</p>
+                  <p className="text-xs text-gray-500">Avg Response</p>
                   <p className="text-2xl font-semibold">{systemHealth.responseTimeAvg}m</p>
                 </div>
                 <Clock className="h-8 w-8 text-blue-500" />
@@ -468,7 +468,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-300">Accept Rate</p>
+                  <p className="text-xs text-gray-500">Accept Rate</p>
                   <p className="text-2xl font-semibold">{systemHealth.acceptanceRate}%</p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-500" />
@@ -603,7 +603,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-semibold">{metric.utilizationRate}%</p>
-                  <p className="text-xs text-gray-300">Utilisation</p>
+                  <p className="text-xs text-gray-500">Utilisation</p>
                 </div>
               </div>
 
@@ -629,19 +629,19 @@ const LoadBalancingAuditSystem: React.FC = () => {
               {/* Metrics */}
               <div className="grid grid-cols-4 gap-4 mt-3">
                 <div>
-                  <p className="text-xs text-gray-300">Weekly Leads</p>
+                  <p className="text-xs text-gray-500">Weekly Leads</p>
                   <p className="text-sm font-medium">{metric.weeklyLeads}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-300">Monthly Leads</p>
+                  <p className="text-xs text-gray-500">Monthly Leads</p>
                   <p className="text-sm font-medium">{metric.monthlyLeads}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-300">Lead Share</p>
+                  <p className="text-xs text-gray-500">Lead Share</p>
                   <p className="text-sm font-medium">{metric.sharePercentage}%</p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-300">Deviation</p>
+                  <p className="text-xs text-gray-500">Deviation</p>
                   <p className={`text-sm font-medium ${
                     Math.abs(metric.deviation) > 10 ? 'text-red-600' :
                     Math.abs(metric.deviation) > 5 ? 'text-yellow-600' :
@@ -679,7 +679,7 @@ const LoadBalancingAuditSystem: React.FC = () => {
                     </span>
                     <p className="text-sm font-medium">{alert.message}</p>
                     {alert.contractor && (
-                      <span className="text-sm text-gray-300">({alert.contractor})</span>
+                      <span className="text-sm text-gray-500">({alert.contractor})</span>
                     )}
                   </div>
                   <button
@@ -739,14 +739,14 @@ const LoadBalancingAuditSystem: React.FC = () => {
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Time</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Event</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Lead</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Contractor</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Method</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Score</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Duration</th>
-                <th className="px-4 py-2 text-left text-xs font-medium text-gray-300 uppercase">Actions</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Event</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Lead</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contractor</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Method</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Score</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
+                <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -823,49 +823,49 @@ const LoadBalancingAuditSystem: React.FC = () => {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-300">Event ID</p>
+                  <p className="text-sm text-gray-500">Event ID</p>
                   <p className="font-medium">{selectedLog.id}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Timestamp</p>
+                  <p className="text-sm text-gray-500">Timestamp</p>
                   <p className="font-medium">{new Date(selectedLog.timestamp).toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Event Type</p>
+                  <p className="text-sm text-gray-500">Event Type</p>
                   <p className="font-medium capitalize">{selectedLog.eventType.replace('_', ' ')}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Lead ID</p>
+                  <p className="text-sm text-gray-500">Lead ID</p>
                   <p className="font-medium">{selectedLog.leadId}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Contractor</p>
+                  <p className="text-sm text-gray-500">Contractor</p>
                   <p className="font-medium">{selectedLog.contractorName}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Allocation Method</p>
+                  <p className="text-sm text-gray-500">Allocation Method</p>
                   <p className="font-medium capitalize">{selectedLog.method.replace('_', ' ')}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Score</p>
+                  <p className="text-sm text-gray-500">Score</p>
                   <p className="font-medium">{selectedLog.score || 'N/A'}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Duration</p>
+                  <p className="text-sm text-gray-500">Duration</p>
                   <p className="font-medium">{selectedLog.duration}ms</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">Success</p>
+                  <p className="text-sm text-gray-500">Success</p>
                   <p className="font-medium">{selectedLog.success ? 'Yes' : 'No'}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300">User</p>
+                  <p className="text-sm text-gray-500">User</p>
                   <p className="font-medium">{selectedLog.userId}</p>
                 </div>
               </div>
               {Object.keys(selectedLog.details).length > 0 && (
                 <div>
-                  <p className="text-sm text-gray-300 mb-2">Additional Details</p>
+                  <p className="text-sm text-gray-500 mb-2">Additional Details</p>
                   <pre className="bg-gray-50 p-3 rounded text-xs">
                     {JSON.stringify(selectedLog.details, null, 2)}
                   </pre>
