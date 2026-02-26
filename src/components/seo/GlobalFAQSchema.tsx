@@ -65,6 +65,11 @@ const PAGES_WITH_OWN_FAQ = [
   '/guides/services/contents-pack-out-storage',
   '/guides/services/what-disaster-recovery-includes',
   '/guides/insurance-guides/mould-removal-insurance-coverage',
+  '/water-damage-restoration-sydney',
+  '/water-damage-restoration-melbourne',
+  '/fire-damage-restoration-brisbane',
+  '/flood-damage-restoration-perth',
+  '/storm-damage-restoration-gold-coast',
 ];
 
 // All data below is trusted static content — safe to stringify
