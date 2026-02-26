@@ -181,7 +181,7 @@ const nextConfig = {
       {
         source: '/portal/connect',
         destination: '/claim',
-        permanent: false,
+        permanent: true,
       },
       {
         source: '/services/fire-smoke',
@@ -191,7 +191,7 @@ const nextConfig = {
 
       // --- Phase 0: Conversion funnel fixes (2026-02-25) ---
       // /claim/start is a dead-end demo form — redirect all traffic to the working /claim form
-      { source: '/claim/start', destination: '/claim', permanent: false },
+      { source: '/claim/start', destination: '/claim', permanent: true },
       // Dead routes that 404 or lead to broken flows
       { source: '/client/emergency', destination: '/claim', permanent: true },
       { source: '/client/instant-quote', destination: '/claim', permanent: true },
@@ -315,7 +315,7 @@ const nextConfig = {
       { source: '/assessment', destination: '/claim', permanent: true },
       { source: '/sitemap', destination: '/sitemap.xml', permanent: true },
       { source: '/reviews', destination: '/testimonials', permanent: true },
-      { source: '/terms', destination: '/terms', permanent: false },
+      // Self-referential /terms redirect removed — page exists at app/terms/
       { source: '/terms-of-service', destination: '/terms', permanent: true },
       { source: '/accessibility', destination: '/about', permanent: true },
 

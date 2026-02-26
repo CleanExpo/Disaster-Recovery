@@ -341,7 +341,7 @@ export default function RootLayout({
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-98HWF2NV95'}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -349,7 +349,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}');
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-98HWF2NV95'}');
           `}
         </Script>
       </body>
