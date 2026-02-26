@@ -118,7 +118,7 @@ export default function PremiumHeader() {
               <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
                 <Image
                   src="/logos/3D Disaster Recovery Round Borders.png"
-                  alt="Disaster Recovery QLD"
+                  alt="Disaster Recovery logo"
                   fill
                   className="object-contain rounded-full"
                   style={{
@@ -267,7 +267,7 @@ export default function PremiumHeader() {
             <div className="flex items-center justify-between p-6 border-b">
               <Image
                 src="/images/optimised/branding/Disaster Recovery Logo.png"
-                alt="Disaster Recovery QLD"
+                alt="Disaster Recovery logo"
                 width={150}
                 height={40}
                 className="h-10 w-auto"

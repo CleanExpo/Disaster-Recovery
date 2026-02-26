@@ -269,6 +269,8 @@ export function ResponsivePicture({
         loading={loading}
         decoding="async"
         className="w-full h-auto"
+        width={1920}
+        height={1080}
       />
       
       {/* Watermark overlay */}
@@ -279,6 +281,8 @@ export function ResponsivePicture({
             alt="NRPG Logo"
             className="w-20 md:w-24 lg:w-28 h-auto drop-shadow-lg"
             loading="eager"
+            width={112}
+            height={37}
           />
         </div>
       )}

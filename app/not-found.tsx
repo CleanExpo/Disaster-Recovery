@@ -1,7 +1,14 @@
+import type { Metadata } from 'next'
 import Link from 'next/link';
 import { AlertTriangle, Home, Search, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+  description: 'The page you are looking for could not be found. Browse our disaster recovery services or lodge a claim for 24/7 emergency restoration.',
+  robots: { index: false, follow: true },
+}
 
 export default function NotFound() {
   return (

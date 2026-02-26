@@ -70,10 +70,10 @@
       "icons": [{ "src": "/emergency-icon.png", "sizes": "96x96" }]
     },
     {
-      "name": "Get Quote",
-      "short_name": "Quote",
-      "description": "Get instant restoration quote",
-      "url": "/get-quote",
+      "name": "Lodge a Claim",
+      "short_name": "Claim",
+      "description": "Lodge your restoration claim online",
+      "url": "/claim",
       "icons": [{ "src": "/quote-icon.png", "sizes": "96x96" }]
     },
     {

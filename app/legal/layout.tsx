@@ -1,12 +1,27 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Legal Documents | Disaster Recovery Australia',
-  description: 'Legal documents, policies, and compliance information for Disaster Recovery Australia. Contractor agreements, service terms, privacy policies, and regulatory compliance.',
-  keywords: ['disaster recovery legal', 'contractor agreements', 'service terms', 'privacy policy', 'compliance documents Australia'],
+  title: {
+    template: '%s | Legal | Disaster Recovery Australia',
+    default: 'Legal Documents | Disaster Recovery Australia',
+  },
+  description:
+    'Legal documents, terms of service, privacy policy, and compliance documentation for Disaster Recovery Australia.',
+  robots: { index: true, follow: true },
+  keywords: [
+    'disaster recovery legal',
+    'contractor agreements',
+    'service terms',
+    'privacy policy',
+    'compliance documents Australia',
+  ],
   alternates: { canonical: 'https://disasterrecovery.com.au/legal' },
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+export default function LegalLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
 }

@@ -3,8 +3,16 @@ import { Handshake } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Emergency Claim | Disaster Recovery",
-  description: "NRMA policyholders jump to front of queue",
+  title: 'NRMA Policyholder Emergency Claim | Disaster Recovery',
+  description: 'NRMA policyholders receive priority emergency restoration matching. Submit your claim for fast-tracked IICRC-certified contractor response across Australia.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/partners/nrma',
+  },
+  openGraph: {
+    title: 'NRMA Policyholder Emergency Claim | Disaster Recovery',
+    description: 'NRMA policyholders receive priority matching with IICRC-certified restoration contractors.',
+    type: 'website',
+  },
 };
 
 export default function NRMAPartnershipPage() {

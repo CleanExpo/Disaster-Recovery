@@ -136,7 +136,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
               <div className="relative">
                 <Image
                   src="/logos/3D Disaster Recovery Round Borders.png"
-                  alt="Disaster Recovery"
+                  alt="Disaster Recovery logo"
                   width={50}
                   height={50}
                   className="rounded-full group-hover:scale-110 transition-transform"

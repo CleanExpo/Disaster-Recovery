@@ -3,8 +3,9 @@ import { Zap } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Simple Server Component Page | Disaster Recovery",
-  description: "",
+  title: 'Disaster Recovery Australia | 24/7 Emergency Restoration',
+  description: 'Disaster Recovery Australia connects property owners with IICRC-certified restoration contractors. 24/7 emergency response for water, fire, storm, and mould damage.',
+  robots: { index: false, follow: false },
 };
 
 export default function SimplePage() {

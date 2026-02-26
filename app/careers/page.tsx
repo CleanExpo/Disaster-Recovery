@@ -3,8 +3,16 @@ import { Briefcase } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Careers | Disaster Recovery",
-  description: "",
+  title: 'Careers at Disaster Recovery Australia',
+  description: 'Join the Disaster Recovery team. Explore career opportunities in disaster restoration, contractor management, and emergency response across Australia.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/careers',
+  },
+  openGraph: {
+    title: 'Careers at Disaster Recovery Australia',
+    description: 'Explore career opportunities in disaster restoration and emergency response across Australia.',
+    type: 'website',
+  },
 };
 
 export default function CareersPage() {

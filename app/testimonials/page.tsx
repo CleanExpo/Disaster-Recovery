@@ -3,8 +3,16 @@ import { Star } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Testimonials | Disaster Recovery",
-  description: "",
+  title: 'Client Testimonials | Disaster Recovery Australia',
+  description: 'Read verified reviews and testimonials from property owners who used Disaster Recovery Australia. 4.7-star rating from IICRC-certified restoration work.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/testimonials',
+  },
+  openGraph: {
+    title: 'Client Testimonials | Disaster Recovery Australia',
+    description: 'Verified reviews from property owners. 4.7-star rating from certified restoration work.',
+    type: 'website',
+  },
 };
 
 export default function TestimonialsPage() {

@@ -598,6 +598,9 @@ function MouldRemediationGuidePageOriginal() {
                     src="/images/generated/disaster-recovery/efflorescence-vs-mould.webp"
                     alt="Side-by-side comparison of white crystalline efflorescence deposits on brick versus fuzzy organic mould growth"
                     className="w-full h-48 object-cover"
+                    width={600}
+                    height={192}
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-amber-900">What Is Efflorescence?</h3>

@@ -24,7 +24,7 @@ export function ComprehensiveSEO({ location = 'Australia', service, pageType = '
         "provider": {
           "@type": "Organization",
           "name": "National Restoration Professionals Group",
-          "url": "https://disaster-recovery-seven.vercel.app"
+          "url": "https://disasterrecovery.com.au"
         },
         "areaServed": {
           "@type": "Country",

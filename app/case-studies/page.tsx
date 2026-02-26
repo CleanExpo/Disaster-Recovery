@@ -5,8 +5,16 @@ import { getCaseStudySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Case studies | Disaster Recovery Case Study',
-  description: '',
+  title: 'Case Studies | Disaster Recovery Australia',
+  description: 'Real disaster recovery case studies from across Australia. Bushfires, floods, cyclones, and storms — see how certified contractors restored properties.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/case-studies',
+  },
+  openGraph: {
+    title: 'Case Studies | Disaster Recovery Australia',
+    description: 'Real disaster recovery case studies from bushfires, floods, cyclones, and storms across Australia.',
+    type: 'website',
+  },
 };
 
 export default function CaseStudiesPage() {

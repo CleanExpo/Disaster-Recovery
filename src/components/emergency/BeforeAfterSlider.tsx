@@ -139,13 +139,13 @@ export default function BeforeAfterSlider() {
             <div className="relative h-[500px]">
               <Image
                 src={currentCase.beforeImage}
-                alt="Disaster damage"
+                alt={`${currentCase.title} - before restoration`}
                 fill
                 className="object-cover"
               />
               {/* Dark overlay for better visibility */}
               <div className="absolute inset-0 bg-red-900/30"></div>
-              
+
               {/* Before Label */}
               <div className="absolute top-4 left-4 z-20">
                 <div className="bg-red-600 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-xl">
@@ -165,7 +165,7 @@ export default function BeforeAfterSlider() {
               <div className="relative h-[500px]">
                 <Image
                   src={currentCase.afterImage}
-                  alt="Restored property"
+                  alt={`${currentCase.title} - after restoration`}
                   fill
                   className="object-cover"
                   style={{ filter: 'brightness(1.2) saturate(1.2)' }} // Make it look restored

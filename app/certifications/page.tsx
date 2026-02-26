@@ -4,8 +4,16 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCertificationSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: "Certifications | Disaster Recovery",
-  description: "",
+  title: 'Certifications | Disaster Recovery Australia',
+  description: 'Mandatory OH&S training and industry certifications for Disaster Recovery contractors. IICRC, WorkSafe, ISO, HAZMAT, and asbestos licensing requirements.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/certifications',
+  },
+  openGraph: {
+    title: 'Certifications | Disaster Recovery Australia',
+    description: 'Mandatory OH&S training and certifications for Disaster Recovery contractors.',
+    type: 'website',
+  },
 };
 
 export default function CertificationsPage() {

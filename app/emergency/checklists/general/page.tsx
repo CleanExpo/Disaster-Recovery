@@ -5,8 +5,16 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: "Universal Disaster Response Checklist | Disaster Recovery",
-  description: "",
+  title: 'Disaster Response Checklist | Disaster Recovery',
+  description: 'Universal disaster response checklist for any emergency. Safety actions, documentation, insurance notification, and professional restoration steps for property owners.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/emergency/checklists/general',
+  },
+  openGraph: {
+    title: 'Disaster Response Checklist | Disaster Recovery',
+    description: 'Universal disaster response checklist for any property emergency in Australia.',
+    type: 'website',
+  },
 };
 
 export default function GeneralDisasterChecklistPage() {

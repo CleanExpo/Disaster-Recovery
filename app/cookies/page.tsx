@@ -3,8 +3,16 @@ import { FileText } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Cookies | Disaster Recovery",
-  description: "",
+  title: 'Cookie Policy | Disaster Recovery Australia',
+  description: 'How Disaster Recovery Australia uses cookies and similar technologies. Learn about the cookies we use and how to manage your preferences.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cookies',
+  },
+  openGraph: {
+    title: 'Cookie Policy | Disaster Recovery Australia',
+    description: 'How Disaster Recovery Australia uses cookies and similar technologies.',
+    type: 'website',
+  },
 };
 
 export default function CookiesPage() {

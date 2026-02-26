@@ -3,8 +3,16 @@ import { Map } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Site Map | Disaster Recovery",
-  description: "",
+  title: 'Site Map | Disaster Recovery Australia',
+  description: 'Complete site map for Disaster Recovery Australia. Browse all service pages, location pages, guides, emergency checklists, and insurance decoder tools.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/sitemap-page',
+  },
+  openGraph: {
+    title: 'Site Map | Disaster Recovery Australia',
+    description: 'Browse all pages on Disaster Recovery Australia — services, locations, guides, and tools.',
+    type: 'website',
+  },
 };
 
 export default function SitemapPage() {

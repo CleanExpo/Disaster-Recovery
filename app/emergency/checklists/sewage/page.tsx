@@ -5,8 +5,16 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: "Sewage Backup Emergency Checklist | Disaster Recovery",
-  description: "",
+  title: 'Sewage Backup Emergency Checklist | Disaster Recovery',
+  description: 'Sewage backup emergency checklist. Immediate safety steps, contamination containment, health risks, and professional cleanup requirements for Category 3 water.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/emergency/checklists/sewage',
+  },
+  openGraph: {
+    title: 'Sewage Backup Emergency Checklist | Disaster Recovery',
+    description: 'Emergency checklist for sewage backup. Safety, containment, and professional cleanup.',
+    type: 'website',
+  },
 };
 
 export default function SewageChecklistPage() {

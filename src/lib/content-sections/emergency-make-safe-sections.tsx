@@ -50,6 +50,8 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
             alt="3D illustration of emergency make-safe operation on a storm-damaged Australian home with blue tarps and emergency lighting"
             style={sectionImg}
             loading="eager"
+            width={600}
+            height={400}
           />
           <p style={prose}>
             An emergency make-safe is defined by the Insurance Council of Australia (ICA) as{' '}
@@ -138,6 +140,8 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
             alt="3D illustration of insurance reimbursement process with compliant invoice and approval stamp"
             style={sectionImg}
             loading="lazy"
+            width={600}
+            height={400}
           />
           <p style={prose}>
             Standard Australian home and commercial insurance policies cover reasonable emergency
@@ -202,6 +206,8 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
             alt="3D illustration of Authority to Commence contract document with clipboard, pen, and inspection report"
             style={sectionImg}
             loading="lazy"
+            width={600}
+            height={400}
           />
           <p style={prose}>
             The Authority to Commence is the legal document that binds the contract between you and
@@ -341,6 +347,8 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
             alt="3D comparison showing standard TPA contractor versus NRPG-certified professional with equipment and credentials"
             style={sectionImg}
             loading="lazy"
+            width={600}
+            height={400}
           />
           <p style={prose}>
             Not all contractors are equal. The General Insurance Code of Practice 2020 (Para 38)

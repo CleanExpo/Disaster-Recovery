@@ -80,7 +80,7 @@ export default function PremiumHero({
           >
             <Image
               src={image}
-              alt="Disaster Recovery Services"
+              alt=""
               fill
               className="object-cover object-centre"
               priority={index === 0}

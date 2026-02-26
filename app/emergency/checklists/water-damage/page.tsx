@@ -5,8 +5,16 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: "Water Damage Emergency Checklist | Disaster Recovery",
-  description: "",
+  title: 'Water Damage Emergency Checklist | Disaster Recovery',
+  description: 'Water damage emergency checklist. Stop the source, protect belongings, document damage, and arrange IICRC-certified water extraction within 24-48 hours.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/emergency/checklists/water-damage',
+  },
+  openGraph: {
+    title: 'Water Damage Emergency Checklist | Disaster Recovery',
+    description: 'Emergency checklist for water damage. Stop the source, document, and get certified help.',
+    type: 'website',
+  },
 };
 
 export default function WaterDamageChecklistPage() {

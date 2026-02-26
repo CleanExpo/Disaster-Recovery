@@ -5,8 +5,16 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: "Fire Damage Emergency Checklist | Disaster Recovery",
-  description: "",
+  title: 'Fire Damage Emergency Checklist | Disaster Recovery',
+  description: 'Step-by-step fire damage emergency checklist. What to do after a house fire, safety priorities, documentation steps, and when to call certified professionals.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/emergency/checklists/fire-damage',
+  },
+  openGraph: {
+    title: 'Fire Damage Emergency Checklist | Disaster Recovery',
+    description: 'Step-by-step fire damage emergency checklist. Safety, documentation, and next steps.',
+    type: 'website',
+  },
 };
 
 export default function FireDamageChecklistPage() {

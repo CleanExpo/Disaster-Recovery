@@ -81,6 +81,8 @@ function ContractorPortalLandingOriginal() {
                     src="/logos/disaster-recovery-logo.png"
                     alt="National Restoration Professionals"
                     className="h-20 mx-auto"
+                    width={240}
+                    height={80}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';

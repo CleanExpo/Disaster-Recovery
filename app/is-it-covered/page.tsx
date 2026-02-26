@@ -3,8 +3,16 @@ import { Shield } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "This is critical for determining coverage | Disaster Recovery",
-  description: "Happened all at once",
+  title: 'Is It Covered? Insurance Coverage Checker | Disaster Recovery',
+  description: 'Check whether your property damage is covered by insurance. Understand how sudden vs gradual damage affects your claim and what documentation you need.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/is-it-covered',
+  },
+  openGraph: {
+    title: 'Is It Covered? Insurance Coverage Checker | Disaster Recovery',
+    description: 'Check whether your property damage is covered by insurance. Sudden vs gradual damage explained.',
+    type: 'website',
+  },
 };
 
 export default function CoverageChecker() {
@@ -13,13 +21,13 @@ export default function CoverageChecker() {
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 100%)',
         icon: <Shield className="h-12 w-12" />,
-        title: "This is critical for determining coverage",
-        subtitle: "Happened all at once",
+        title: "Is It Covered?",
+        subtitle: "Check whether your property damage is covered by insurance and understand what affects your claim.",
       }}
       cta={{ text: 'Check Coverage', href: '/claim' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
-        { label: "This is critical for determining cove..." },
+        { label: "Is It Covered?" },
       ]}
     />
   );

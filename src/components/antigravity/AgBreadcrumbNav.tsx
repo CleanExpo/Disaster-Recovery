@@ -24,7 +24,7 @@ export function AgBreadcrumbNav({ items, dark = false }: AgBreadcrumbNavProps) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.label,
-      ...(item.href ? { item: `https://disaster-recovery-seven.vercel.app${item.href}` } : {}),
+      ...(item.href ? { item: `https://disasterrecovery.com.au${item.href}` } : {}),
     })),
   });
 

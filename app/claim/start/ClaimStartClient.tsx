@@ -451,6 +451,8 @@ function ClaimStartContent() {
                           src={preview}
                           alt={`Damage photo ${index + 1}`}
                           className="w-full h-24 object-cover rounded-lg border border-gray-200"
+                          width={150}
+                          height={96}
                         />
                         <button
                           type="button"
