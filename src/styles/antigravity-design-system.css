@@ -3324,3 +3324,55 @@ details.ag-accordion-item > summary::marker {
 .ag-icon-inline         { display: inline-flex; align-items: center; flex-shrink: 0; color: var(--ag-secondary-blue); }
 .ag-icon-inline-success { display: inline-flex; align-items: center; flex-shrink: 0; color: #16a34a; }
 .ag-icon-inline-danger  { display: inline-flex; align-items: center; flex-shrink: 0; color: var(--ag-emergency-red); }
+
+
+/* ========================================================================== */
+/* 29. Mobile Responsive Overrides (UNI-697)                                  */
+/* ========================================================================== */
+
+/* Hero padding — templates use inline styles so !important is required */
+@media (max-width: 600px) {
+  .ag-service-header {
+    padding: 3rem 0 2rem !important;
+  }
+
+  .ag-service-body {
+    padding: 2.5rem 1rem !important;
+    gap: 2rem;
+  }
+
+  .ag-services-overview {
+    padding: 3rem 1rem;
+  }
+
+  .ag-services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Reduce vertical padding on all content sections */
+  .ag-content-section,
+  .ag-faq-section,
+  .ag-cta-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Hero title scaling */
+  .ag-header-content h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .ag-lead-text {
+    font-size: 1rem;
+    padding-left: 0;
+  }
+
+  /* Icon containers */
+  .ag-icon-hero {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+}

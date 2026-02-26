@@ -101,20 +101,20 @@ export default function LocationServicePageComponent({ data, video }: { data: an
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               {title}
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-800">
+            <p className="text-lg md:text-2xl mb-8 text-blue-100">
               {description}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
               <Link
                 href="/whos-first"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Emergency Response
               </Link>
               <Link
                 href="/insurance-decoder"
-                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-white text-blue-900 hover:bg-blue-50 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Insurance Help
@@ -125,14 +125,14 @@ export default function LocationServicePageComponent({ data, video }: { data: an
       </section>
 
       {/* Emergency Banner */}
-      <section className="bg-red-600 text-white py-6">
+      <section className="bg-red-600 text-white py-4 md:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-4">
-            <AlertTriangle className="w-8 h-8" />
-            <p className="text-lg font-semibold">
-              24/7 Emergency Response Available - Insurance Approved Contractors
+          <div className="flex items-center justify-center gap-2 md:gap-4">
+            <AlertTriangle className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0" />
+            <p className="text-sm md:text-lg font-semibold text-center">
+              24/7 Emergency Response — IICRC-Certified Contractors
             </p>
-            <Phone className="w-6 h-6" />
+            <Phone className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
           </div>
         </div>
       </section>
@@ -355,8 +355,8 @@ export default function LocationServicePageComponent({ data, video }: { data: an
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Need Emergency Restoration Services?
             </h2>
-            <p className="text-xl mb-8 text-blue-800">
-              Available 24/7 across {city} - Insurance approved contractors ready to help
+            <p className="text-xl mb-8 text-blue-100">
+              Available 24/7 across {city} — IICRC-certified contractors ready to help
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

@@ -48,7 +48,7 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 hero-title"
               >
-                <span className="text-7xl md:text-8xl font-black text-blue-600 block mb-4 tracking-tight animate-pulse" style={{ animationDuration: '3s' }}>WHO'S FIRST</span>
+                <span className="text-4xl sm:text-6xl md:text-8xl font-black text-blue-600 block mb-4 tracking-tight animate-pulse" style={{ animationDuration: '3s' }}>WHO'S FIRST</span>
                 Australia's #1 Digital Disaster
                 <span className="block gradient-text">Recovery Platform</span>
               </motion.h1>
