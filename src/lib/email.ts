@@ -266,13 +266,17 @@ export const emailTemplates = {
     ` }) };
 
 // Send email function
-export async function sendEmail(to: string | string[], template: { subject: string; html: string }) {
+export async function sendEmail(to: string | string[], template: { subject: string; html: string; text?: string }) {
   try {
-    const mailOptions = {
+    const mailOptions: Record<string, unknown> = {
       from: EMAIL_CONFIG.from,
       to: Array.isArray(to) ? to.join(', ') : to,
       subject: template.subject,
-      html: template.html };
+      html: template.html,
+    };
+    if (template.text) {
+      mailOptions.text = template.text;
+    }
 
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent:', info.messageId);
