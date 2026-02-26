@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import Script from 'next/script';
 import { generateArticleSchema } from '@/lib/seo';
 import { StructuredData } from '@/components/seo/StructuredData';
-import { 
+import {
   Flame, 
   AlertTriangle, 
   Shield, 
@@ -870,6 +871,60 @@ function FireDamageGuidePageOriginal() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Frequently Asked Questions About Fire Damage
+          </h2>
+          {[
+            {
+              q: 'How long does fire damage restoration take?',
+              a: 'Fire damage restoration typically takes 2–8 weeks depending on severity. Minor smoke damage (one room) can be addressed in 1–2 weeks. Moderate fire damage requiring structural repairs takes 4–6 weeks. Major fire damage with structural compromise, roof replacement, or extensive reconstruction can take 8–16 weeks. The process includes emergency board-up, water extraction (from firefighting), smoke and soot removal, structural drying, odour neutralisation, and reconstruction.'
+            },
+            {
+              q: 'Is fire damage covered by home insurance in Australia?',
+              a: 'Yes, fire damage is covered by virtually all Australian home and contents insurance policies under the "fire and explosion" peril. This includes structural damage, smoke damage, and firefighter water damage. Most policies also cover temporary accommodation (typically 12 months) while your home is uninhabitable. However, you must document all damage before any cleanup begins and lodge your claim promptly. We bill you directly — you then claim reimbursement from your insurer with the full documentation we provide.'
+            },
+            {
+              q: 'Can smoke damage be cleaned or does everything need replacing?',
+              a: 'Many smoke-damaged items can be professionally cleaned and restored, but it depends on the smoke type and material. Protein residue from kitchen fires cleans well from hard surfaces. Synthetic smoke (from burning plastics) is more corrosive and may permanently stain porous materials. Soft furnishings, carpets, and curtains often need replacing if heavily affected. Hard surfaces like countertops, tiles, and glass generally respond well to professional cleaning with specialised solvents. An IICRC-certified technician can assess what is salvageable versus what requires replacement.'
+            },
+            {
+              q: 'Is it safe to enter my home after a fire?',
+              a: 'Do not enter a fire-damaged property until the fire service has cleared it as structurally safe. Even after clearance, risks include weakened floors and ceilings, toxic soot particles, asbestos exposure (in pre-1990 homes), electrical hazards, and gas leaks. Always wear an N95 respirator, closed shoes, and long sleeves when entering. Avoid touching soot-covered surfaces with bare hands, as soot contains carcinogenic compounds. A professional make-safe assessment identifies and mitigates these hazards before any restoration work begins.'
+            },
+            {
+              q: 'How do you remove smoke smell from a house?',
+              a: 'Professional smoke odour removal uses a multi-step process: thermal fogging penetrates porous materials with deodorising agents, ozone treatment oxidises odour molecules in enclosed spaces, hydroxyl generators break down airborne particles, and air scrubbers with HEPA and carbon filtration remove residual particulates. For severe smoke, affected gyprock may need cutting out and replacing as drywall absorbs smoke compounds deep into its core. DIY methods like vinegar, baking soda, or air fresheners only mask the smell temporarily — they cannot reach smoke particles embedded in walls, insulation, and structural cavities.'
+            },
+            {
+              q: 'What should I do immediately after a house fire?',
+              a: 'After the fire service gives clearance: (1) Contact your insurer to lodge a claim. (2) Document all damage with timestamped photos and video before anything is touched or cleaned. (3) Contact a professional restoration company for emergency board-up and make-safe. (4) Do not attempt to clean soot yourself as improper cleaning can set stains permanently. (5) Secure valuables and important documents if safely accessible. (6) Arrange temporary accommodation — most policies cover this. (7) Keep all receipts for emergency expenses as these are typically reimbursable.'
+            },
+          ].map((faq, i) => (
+            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+              <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-orange-600 transition-colors">
+                {faq.q}
+              </summary>
+              <div className="px-5 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* AI Citation Block */}
+      <section className="py-6 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
+          <div><strong className="text-orange-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
+          <div><strong className="text-orange-900">Category:</strong> Fire Damage Restoration</div>
+          <div><strong className="text-orange-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
+          <div><strong className="text-orange-900">Standard:</strong> IICRC S520 certified practices</div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -907,6 +962,19 @@ function FireDamageGuidePageOriginal() {
     </div>
   );
 }
+const fireDamageFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How long does fire damage restoration take?', acceptedAnswer: { '@type': 'Answer', text: 'Fire damage restoration typically takes 2–8 weeks depending on severity. Minor smoke damage (one room) can be addressed in 1–2 weeks. Moderate fire damage requiring structural repairs takes 4–6 weeks. Major fire damage with structural compromise can take 8–16 weeks.' } },
+    { '@type': 'Question', name: 'Is fire damage covered by home insurance in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, fire damage is covered by virtually all Australian home and contents insurance policies under the fire and explosion peril. This includes structural damage, smoke damage, and firefighter water damage. Most policies also cover temporary accommodation.' } },
+    { '@type': 'Question', name: 'Can smoke damage be cleaned or does everything need replacing?', acceptedAnswer: { '@type': 'Answer', text: 'Many smoke-damaged items can be professionally cleaned and restored depending on the smoke type and material. Hard surfaces generally respond well to professional cleaning. Soft furnishings may need replacing if heavily affected.' } },
+    { '@type': 'Question', name: 'Is it safe to enter my home after a fire?', acceptedAnswer: { '@type': 'Answer', text: 'Do not enter a fire-damaged property until the fire service has cleared it as structurally safe. Risks include weakened floors, toxic soot particles, asbestos exposure in pre-1990 homes, electrical hazards, and gas leaks.' } },
+    { '@type': 'Question', name: 'How do you remove smoke smell from a house?', acceptedAnswer: { '@type': 'Answer', text: 'Professional smoke odour removal uses thermal fogging, ozone treatment, hydroxyl generators, and HEPA air scrubbers. For severe smoke, affected gyprock may need replacing. DIY methods only mask the smell temporarily.' } },
+    { '@type': 'Question', name: 'What should I do immediately after a house fire?', acceptedAnswer: { '@type': 'Answer', text: 'After fire service clearance: contact your insurer, document all damage with photos before cleanup, contact a professional for emergency board-up, do not clean soot yourself, secure valuables, arrange temporary accommodation, and keep all receipts.' } },
+  ],
+});
+
 const fireDamageArticleSchema = generateArticleSchema({
   headline: 'Fire Damage Restoration Guide Australia',
   description: 'Comprehensive guide to fire and smoke damage restoration including emergency steps, restoration process, insurance claims, and safety information.',
@@ -921,6 +989,9 @@ export default function FireDamageGuidePage() {
     return (
       <>
         <StructuredData data={fireDamageArticleSchema} />
+        <Script id="fire-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
+          {fireDamageFaqSchema}
+        </Script>
         <FireDamageGuidePageOriginal />
       </>
     );
@@ -929,6 +1000,9 @@ export default function FireDamageGuidePage() {
   return (
     <>
       <StructuredData data={fireDamageArticleSchema} />
+      <Script id="fire-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
+        {fireDamageFaqSchema}
+      </Script>
       <AntigravityNavbar />
       <FireDamageGuidePageOriginal />
       <AntigravityFooter />

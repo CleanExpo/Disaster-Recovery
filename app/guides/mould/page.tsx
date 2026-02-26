@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import Script from 'next/script';
 import { generateArticleSchema } from '@/lib/seo';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { 
@@ -1136,6 +1137,60 @@ function MouldRemediationGuidePageOriginal() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Frequently Asked Questions About Mould
+          </h2>
+          {[
+            {
+              q: 'Is black mould dangerous to health?',
+              a: 'Yes. Black mould (Stachybotrys chartarum) produces mycotoxins that can cause respiratory issues, allergic reactions, headaches, fatigue, and in severe cases, neurological symptoms. However, all mould species can affect health — colour alone does not indicate toxicity. People with asthma, allergies, compromised immune systems, and young children are most vulnerable. Any visible mould growth larger than 1 square metre should be professionally assessed and remediated by IICRC-certified technicians using containment and HEPA filtration to prevent spore spread during removal.'
+            },
+            {
+              q: 'How much does mould removal cost in Australia?',
+              a: 'Professional mould remediation in Australia typically costs $1,500–$8,000+ depending on the extent and location. Small areas (under 1 sqm, surface mould on accessible walls) cost $500–$1,500. Moderate infestations (1–10 sqm, behind walls or in ceiling cavities) cost $2,000–$5,000. Large-scale remediation (structural mould, entire rooms, HVAC contamination) can exceed $8,000–$15,000. The Disaster Recovery platform fee is $550 with $2,200 held for your contractor. Costs increase when mould is in concealed areas requiring demolition for access. Payment plans are available through Blue Fire Finance.'
+            },
+            {
+              q: 'Does insurance cover mould removal in Australia?',
+              a: 'Mould removal is covered by most Australian insurance policies only when the mould results from a covered event — such as a burst pipe, storm damage, or firefighting water. Mould from gradual moisture buildup, poor ventilation, condensation, or maintenance neglect is almost always excluded. To maximise your claim: document the original water event, report promptly (mould from a covered event reported months later may be disputed), and get a professional mould assessment linking the growth to the insured event. We provide full documentation to support your insurance claim.'
+            },
+            {
+              q: 'Can I remove mould myself or do I need professionals?',
+              a: 'Small areas of surface mould under 1 square metre on non-porous surfaces (tiles, glass, metal) can be cleaned with a solution of 80% white vinegar and 20% water. However, professional remediation is essential when: mould exceeds 1 sqm, mould is on porous materials (gyprock, timber, carpet), mould is in concealed spaces (wall cavities, ceiling voids), occupants have health symptoms, or the moisture source has not been identified. DIY cleaning of large mould areas without proper containment can spread millions of spores through your HVAC system, making the problem significantly worse.'
+            },
+            {
+              q: 'Why does mould keep coming back after cleaning?',
+              a: 'Mould returns for three main reasons: (1) The moisture source was not identified and fixed — mould is a symptom of excess moisture, not the root cause. Common hidden sources include subfloor moisture, condensation in wall cavities, leaking pipes behind walls, and inadequate ventilation in bathrooms and laundries. (2) Surface cleaning only removed visible mould but left the root system (hyphae) embedded in porous materials like gyprock and timber. (3) Spores were spread during DIY cleaning and colonised new areas. Professional remediation addresses all three by identifying and fixing the moisture source, removing contaminated materials, and using HEPA containment to prevent cross-contamination.'
+            },
+            {
+              q: 'How quickly does mould grow after water damage?',
+              a: 'Mould can begin growing within 24–48 hours of water damage in the right conditions (moisture above 60% RH, temperature 20–30°C, organic material to feed on). Visible mould colonies typically appear within 3–7 days. By 14 days, mould can penetrate deep into gyprock, timber, and carpet underlay, making remediation significantly more complex and expensive. This is why the IICRC standard requires water damage drying to begin within 24 hours — preventing mould growth is far cheaper than remediating an established infestation.'
+            },
+          ].map((faq, i) => (
+            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+              <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-teal-600 transition-colors">
+                {faq.q}
+              </summary>
+              <div className="px-5 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* AI Citation Block */}
+      <section className="py-6 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
+          <div><strong className="text-teal-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
+          <div><strong className="text-teal-900">Category:</strong> Mould Remediation</div>
+          <div><strong className="text-teal-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
+          <div><strong className="text-teal-900">Standard:</strong> IICRC S520 certified practices</div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-teal-600 to-green-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1173,6 +1228,19 @@ function MouldRemediationGuidePageOriginal() {
     </div>
   );
 }
+const mouldFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Is black mould dangerous to health?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Black mould (Stachybotrys chartarum) produces mycotoxins that can cause respiratory issues, allergic reactions, headaches, and fatigue. All mould species can affect health. Any visible mould over 1 square metre should be professionally remediated.' } },
+    { '@type': 'Question', name: 'How much does mould removal cost in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Professional mould remediation typically costs $1,500–$8,000+. Small areas cost $500–$1,500, moderate infestations $2,000–$5,000, and large-scale remediation can exceed $8,000–$15,000.' } },
+    { '@type': 'Question', name: 'Does insurance cover mould removal in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Mould removal is covered only when the mould results from a covered event such as a burst pipe or storm damage. Mould from gradual moisture, poor ventilation, or maintenance neglect is almost always excluded.' } },
+    { '@type': 'Question', name: 'Can I remove mould myself or do I need professionals?', acceptedAnswer: { '@type': 'Answer', text: 'Small areas under 1 square metre on non-porous surfaces can be cleaned with 80% white vinegar. Professional remediation is essential when mould exceeds 1 sqm, is on porous materials, or is in concealed spaces.' } },
+    { '@type': 'Question', name: 'Why does mould keep coming back after cleaning?', acceptedAnswer: { '@type': 'Answer', text: 'Mould returns because: the moisture source was not fixed, surface cleaning left root systems in porous materials, or spores were spread during DIY cleaning. Professional remediation addresses all three factors.' } },
+    { '@type': 'Question', name: 'How quickly does mould grow after water damage?', acceptedAnswer: { '@type': 'Answer', text: 'Mould can begin growing within 24–48 hours. Visible colonies appear in 3–7 days. By 14 days, mould penetrates deep into materials. This is why drying must begin within 24 hours per IICRC standards.' } },
+  ],
+});
+
 const mouldArticleSchema = generateArticleSchema({
   headline: 'Mould Remediation Guide Australia',
   description: 'Expert guide to mould remediation including health risks, removal process, prevention strategies, and insurance coverage information.',
@@ -1187,6 +1255,9 @@ export default function MouldRemediationGuidePage() {
     return (
       <>
         <StructuredData data={mouldArticleSchema} />
+        <Script id="mould-faq-schema" type="application/ld+json" strategy="afterInteractive">
+          {mouldFaqSchema}
+        </Script>
         <MouldRemediationGuidePageOriginal />
       </>
     );
@@ -1195,6 +1266,9 @@ export default function MouldRemediationGuidePage() {
   return (
     <>
       <StructuredData data={mouldArticleSchema} />
+      <Script id="mould-faq-schema" type="application/ld+json" strategy="afterInteractive">
+        {mouldFaqSchema}
+      </Script>
       <AntigravityNavbar />
       <MouldRemediationGuidePageOriginal />
       <AntigravityFooter />

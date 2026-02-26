@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import Script from 'next/script';
 import { generateArticleSchema } from '@/lib/seo';
 import { StructuredData } from '@/components/seo/StructuredData';
-import { 
+import {
   Cloud, 
   AlertTriangle, 
   Shield, 
@@ -968,6 +969,60 @@ function StormDamageGuidePageOriginal() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Frequently Asked Questions About Storm Damage
+          </h2>
+          {[
+            {
+              q: 'What should I do immediately after a storm damages my property?',
+              a: 'Safety first — do not enter the property if you suspect structural damage, fallen power lines, or gas leaks. Once safe: (1) Document all damage with timestamped photos and video before any temporary repairs. (2) Perform temporary make-safe only — cover roof holes with tarps, board up broken windows. (3) Contact your insurer to lodge a claim within 24 hours. (4) Contact a professional restoration company for emergency board-up and water extraction. (5) Keep all receipts for emergency expenses. Do not make permanent repairs until your insurer has assessed the damage or authorised repairs.'
+            },
+            {
+              q: 'Does home insurance cover storm damage in Australia?',
+              a: 'Most Australian home insurance policies cover storm damage including wind, hail, rain, and lightning. This typically includes roof damage, water ingress from storm damage, fallen trees (on your property), broken windows, and fence damage. However, flood damage from rising water levels usually requires separate flood cover — check your Product Disclosure Statement. Stormwater damage (water entering through storm-damaged openings) is generally covered, but pre-existing maintenance issues like worn roof tiles may reduce your claim. We bill you directly for restoration work, and you claim reimbursement from your insurer.'
+            },
+            {
+              q: 'How long does storm damage repair take?',
+              a: 'Emergency make-safe (tarping, board-up, water extraction) is completed within 24–48 hours. Minor storm repairs (broken windows, gutter replacement, small roof patches) take 1–2 weeks. Moderate damage (partial roof replacement, ceiling repairs, structural drying) takes 3–6 weeks. Major storm damage (full roof replacement, structural repairs, extensive water damage remediation) can take 6–12 weeks. After major weather events, repair timelines can extend due to high demand for materials and tradespeople.'
+            },
+            {
+              q: 'Can I claim for storm damage to my fence?',
+              a: 'Fence damage from storms is covered under most Australian home insurance policies, but coverage varies. Some policies cover the full replacement cost while others only cover a set amount (often $5,000–$15,000) or a percentage of your sum insured. Shared boundary fences can be complex — your insurer typically covers your half. Retaining walls may be excluded or covered under a separate section. Check your PDS for specific fence and wall coverage limits before lodging a claim.'
+            },
+            {
+              q: 'What types of storm damage are most common in Australia?',
+              a: 'The most common storm damage types in Australia are: (1) Roof damage — lifted or broken tiles, damaged ridge capping, punctured metal roofing from hail. (2) Water ingress — rain entering through storm-damaged roofs, windows, or doors causing ceiling damage and mould risk. (3) Fallen trees and branches — on roofs, fences, cars, and power lines. (4) Hail damage — to roofs, skylights, solar panels, cars, and outdoor equipment. (5) Wind damage — to fences, carports, pergolas, and outdoor structures. (6) Flash flooding — from overwhelmed stormwater drains and gutters.'
+            },
+            {
+              q: 'Should I tarp my roof myself or wait for professionals?',
+              a: 'If you can safely access your roof and the storm has passed, temporary tarping prevents further water damage and demonstrates reasonable mitigation to your insurer. Use a heavy-duty tarp (minimum 200gsm) extending at least 1 metre past the damaged area on all sides, secured with timber battens or sandbags — never nails through the tarp into tiles. However, do not attempt roof work in ongoing severe weather, high winds, wet conditions, or if you are not confident at heights. Professional emergency tarping is available 24/7 and is a claimable expense under most policies.'
+            },
+          ].map((faq, i) => (
+            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+              <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-sky-600 transition-colors">
+                {faq.q}
+              </summary>
+              <div className="px-5 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* AI Citation Block */}
+      <section className="py-6 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
+          <div><strong className="text-sky-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
+          <div><strong className="text-sky-900">Category:</strong> Storm Damage Restoration</div>
+          <div><strong className="text-sky-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
+          <div><strong className="text-sky-900">Standard:</strong> IICRC S500/S520 certified practices</div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-sky-600 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1005,6 +1060,19 @@ function StormDamageGuidePageOriginal() {
     </div>
   );
 }
+const stormDamageFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What should I do immediately after a storm damages my property?', acceptedAnswer: { '@type': 'Answer', text: 'Safety first. Once safe: document all damage with timestamped photos, perform temporary make-safe, contact your insurer within 24 hours, and contact a professional restoration company. Do not make permanent repairs until your insurer has assessed the damage.' } },
+    { '@type': 'Question', name: 'Does home insurance cover storm damage in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home insurance policies cover storm damage including wind, hail, rain, and lightning. Flood damage from rising water usually requires separate cover. Check your PDS for specifics.' } },
+    { '@type': 'Question', name: 'How long does storm damage repair take?', acceptedAnswer: { '@type': 'Answer', text: 'Emergency make-safe takes 24–48 hours. Minor repairs take 1–2 weeks. Moderate damage takes 3–6 weeks. Major storm damage with full roof replacement can take 6–12 weeks.' } },
+    { '@type': 'Question', name: 'Can I claim for storm damage to my fence?', acceptedAnswer: { '@type': 'Answer', text: 'Fence damage from storms is covered under most policies, but limits vary ($5,000–$15,000 or percentage of sum insured). Shared boundary fences are typically covered at 50%.' } },
+    { '@type': 'Question', name: 'What types of storm damage are most common in Australia?', acceptedAnswer: { '@type': 'Answer', text: 'Roof damage, water ingress, fallen trees, hail damage to roofs and solar panels, wind damage to fences and structures, and flash flooding from overwhelmed stormwater systems.' } },
+    { '@type': 'Question', name: 'Should I tarp my roof myself or wait for professionals?', acceptedAnswer: { '@type': 'Answer', text: 'If safe and the storm has passed, temporary tarping prevents further damage. Use 200gsm+ tarp extending 1m past damage. Do not attempt in ongoing weather or if not confident at heights. Professional tarping is a claimable expense.' } },
+  ],
+});
+
 const stormDamageArticleSchema = generateArticleSchema({
   headline: 'Storm Damage Restoration Guide Australia',
   description: 'Complete guide to storm damage restoration including emergency response, types of storm damage, insurance claims, and professional repair services.',
@@ -1019,6 +1087,9 @@ export default function StormDamageGuidePage() {
     return (
       <>
         <StructuredData data={stormDamageArticleSchema} />
+        <Script id="storm-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
+          {stormDamageFaqSchema}
+        </Script>
         <StormDamageGuidePageOriginal />
       </>
     );
@@ -1027,6 +1098,9 @@ export default function StormDamageGuidePage() {
   return (
     <>
       <StructuredData data={stormDamageArticleSchema} />
+      <Script id="storm-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
+        {stormDamageFaqSchema}
+      </Script>
       <AntigravityNavbar />
       <StormDamageGuidePageOriginal />
       <AntigravityFooter />

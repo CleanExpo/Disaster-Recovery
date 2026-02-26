@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import Script from 'next/script';
 import { generateArticleSchema } from '@/lib/seo';
 import { StructuredData } from '@/components/seo/StructuredData';
 
@@ -513,6 +514,60 @@ function WaterDamageGuidePageOriginal() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Frequently Asked Questions About Water Damage
+          </h2>
+          {[
+            {
+              q: 'How quickly should I respond to water damage?',
+              a: 'Within the first 2 hours is critical. Water damage worsens exponentially — Category 1 (clean) water can progress to Category 2 (grey) within 48 hours, and mould can begin growing within 24–48 hours. Stopping the water source, documenting damage with photos, and contacting a professional restoration company immediately gives you the best chance of minimising damage and costs.'
+            },
+            {
+              q: 'How much does water damage restoration cost in Australia?',
+              a: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000. The Disaster Recovery platform fee is $550, with $2,200 held for your contractor and credited toward restoration work. Payment plans are available through Blue Fire Finance.'
+            },
+            {
+              q: 'Is water damage covered by insurance in Australia?',
+              a: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm-related water ingress, and appliance failures. However, gradual damage from maintenance neglect, seepage through foundations, and standard flood events (which require separate flood cover) are commonly excluded. Always check your Product Disclosure Statement (PDS) and document all damage with timestamped photos before any cleanup begins.'
+            },
+            {
+              q: 'What are the three categories of water damage?',
+              a: 'The IICRC S500 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources like broken supply lines and poses low health risk. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation. Category determines the restoration approach, equipment needed, and safety protocols.'
+            },
+            {
+              q: 'How long does water damage restoration take?',
+              a: 'The drying phase alone takes 2–7+ days depending on the damage class. Class 1 (part of a room) typically dries in 2–3 days, Class 2 (entire room, walls up to 24 inches) takes 3–5 days, and Class 3–4 (saturated walls, ceilings, specialty materials) requires 5–7+ days. Full restoration including repairs, reconstruction, and contents restoration can take 2–6 weeks for significant damage. IICRC-certified technicians use moisture meters and thermal imaging to confirm materials are fully dry before reconstruction begins.'
+            },
+            {
+              q: 'Can I clean up water damage myself?',
+              a: 'Small Category 1 (clean water) spills under 1 square metre can be safely cleaned if addressed within 48 hours using towels, fans, and a dehumidifier. However, any water damage larger than one room, any Category 2 or 3 water, damage involving walls or ceilings, or damage older than 48 hours requires professional restoration. DIY attempts on significant water damage often lead to hidden moisture pockets, mould growth behind walls, and structural issues that cost far more to remediate later.'
+            },
+          ].map((faq, i) => (
+            <details key={i} className="mb-4 bg-white rounded-lg shadow-sm border border-gray-200" {...(i === 0 ? { open: true } : {})}>
+              <summary className="cursor-pointer p-5 font-semibold text-lg text-gray-900 hover:text-blue-600 transition-colors">
+                {faq.q}
+              </summary>
+              <div className="px-5 pb-5 text-gray-700 leading-relaxed border-t border-gray-100 pt-4">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* AI Citation Block */}
+      <section className="py-6 px-4 bg-white border-t border-gray-100">
+        <div className="max-w-4xl mx-auto flex flex-wrap gap-6 text-xs text-gray-500">
+          <div><strong className="text-blue-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
+          <div><strong className="text-blue-900">Category:</strong> Water Damage Restoration</div>
+          <div><strong className="text-blue-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
+          <div><strong className="text-blue-900">Standard:</strong> IICRC S500 certified practices</div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto text-center">
@@ -561,6 +616,43 @@ function WaterDamageGuidePageOriginal() {
     </div>
   );
 }
+const waterDamageFaqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly should I respond to water damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Within the first 2 hours is critical. Water damage worsens exponentially — Category 1 (clean) water can progress to Category 2 (grey) within 48 hours, and mould can begin growing within 24–48 hours. Stopping the water source, documenting damage with photos, and contacting a professional restoration company immediately gives you the best chance of minimising damage and costs.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does water damage restoration cost in Australia?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Water damage restoration in Australia typically ranges from $2,000 to $15,000+ depending on the damage class and category. Class 1 (minimal absorption, one room) averages $2,000–$4,000, while Class 3–4 damage (saturated walls, ceilings, specialty materials) can exceed $15,000.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is water damage covered by insurance in Australia?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm-related water ingress, and appliance failures. However, gradual damage from maintenance neglect, seepage through foundations, and standard flood events (which require separate flood cover) are commonly excluded.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'What are the three categories of water damage?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The IICRC S500 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does water damage restoration take?',
+      acceptedAnswer: { '@type': 'Answer', text: 'The drying phase alone takes 2–7+ days depending on the damage class. Class 1 typically dries in 2–3 days, Class 2 takes 3–5 days, and Class 3–4 requires 5–7+ days. Full restoration including repairs and reconstruction can take 2–6 weeks for significant damage.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I clean up water damage myself?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Small Category 1 (clean water) spills under 1 square metre can be safely cleaned if addressed within 48 hours. However, any damage larger than one room, any Category 2 or 3 water, damage involving walls or ceilings, or damage older than 48 hours requires professional restoration.' },
+    },
+  ],
+});
+
 const waterDamageArticleSchema = generateArticleSchema({
   headline: 'Water Damage Restoration Guide Australia',
   description: 'Complete guide to water damage restoration including emergency response, drying science, insurance claims, and professional restoration process.',
@@ -575,6 +667,9 @@ export default function WaterDamageGuidePage() {
     return (
       <>
         <StructuredData data={waterDamageArticleSchema} />
+        <Script id="water-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
+          {waterDamageFaqSchema}
+        </Script>
         <WaterDamageGuidePageOriginal />
       </>
     );
@@ -583,6 +678,9 @@ export default function WaterDamageGuidePage() {
   return (
     <>
       <StructuredData data={waterDamageArticleSchema} />
+      <Script id="water-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
+        {waterDamageFaqSchema}
+      </Script>
       <AntigravityNavbar />
       <WaterDamageGuidePageOriginal />
       <AntigravityFooter />

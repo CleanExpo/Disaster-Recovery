@@ -15,6 +15,10 @@ const PAGES_WITH_OWN_FAQ = [
   '/for/business-owners',
   '/about',
   '/facts',
+  '/guides/water-damage',
+  '/guides/fire-damage',
+  '/guides/storm-damage',
+  '/guides/mould',
 ];
 
 // All data below is trusted static content — safe to stringify
