@@ -66,7 +66,7 @@ function ClientPortalPageOriginal() {
             className="max-w-6xl mx-auto"
           >
             <h1 className="text-4xl font-bold mb-4">Client Portal</h1>
-            <p className="text-xl text-blue-800">
+            <p className="text-xl text-blue-200">
               Track your recovery progress and manage all claims in one place
             </p>
           </motion.div>

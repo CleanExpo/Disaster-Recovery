@@ -210,7 +210,7 @@ const Footer: React.FC = () => {
                 <div className={`w-3 h-3 rounded-full animate-pulse ${isAvailable ? 'bg-emerald-500' : 'bg-red-400'}`}></div>
               </div>
               <p className="text-xl opacity-95">
-                Teams ready to respond within <strong className="text-yellow-700">60 minutes</strong> nationwide
+                Teams ready to respond within <strong className="text-yellow-200">60 minutes</strong> nationwide
               </p>
             </div>
             

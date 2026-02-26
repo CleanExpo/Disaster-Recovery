@@ -252,11 +252,11 @@ function WRTCoursePageOriginal() {
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
                         {completedModules.includes(module.id) ? (
-                          <CheckCircle className="w-6 h-6 text-green-600" />
+                          <CheckCircle className="w-6 h-6 text-green-400" />
                         ) : module.locked ? (
                           <Lock className="w-6 h-6 text-gray-200" />
                         ) : (
-                          <PlayCircle className="w-6 h-6 text-blue-600" />
+                          <PlayCircle className="w-6 h-6 text-blue-400" />
                         )}
                       </div>
                       <div className="flex-1">
@@ -300,21 +300,21 @@ function WRTCoursePageOriginal() {
               <h3 className="text-xl font-semibold text-white mb-4">Course Details</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <BookOpen className="w-5 h-5 text-blue-600" />
+                  <BookOpen className="w-5 h-5 text-blue-400" />
                   <div>
                     <p className="text-gray-200 text-sm">Modules</p>
                     <p className="text-white font-semibold">12 Comprehensive Modules</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-blue-600" />
+                  <Clock className="w-5 h-5 text-blue-400" />
                   <div>
                     <p className="text-gray-200 text-sm">Duration</p>
                     <p className="text-white font-semibold">3 Days (24 Hours)</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Award className="w-5 h-5 text-blue-600" />
+                  <Award className="w-5 h-5 text-blue-400" />
                   <div>
                     <p className="text-gray-200 text-sm">Certification</p>
                     <p className="text-white font-semibold">IICRC WRT Certificate</p>
@@ -329,19 +329,19 @@ function WRTCoursePageOriginal() {
               <div className="space-y-2">
                 <button className="w-full p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group">
                   <span className="text-white">Course Manual (PDF)</span>
-                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-600" />
+                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-400" />
                 </button>
                 <button className="w-full p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group">
                   <span className="text-white">Quick Reference Guide</span>
-                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-600" />
+                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-400" />
                 </button>
                 <button className="w-full p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group">
                   <span className="text-white">Psychrometric Chart</span>
-                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-600" />
+                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-400" />
                 </button>
                 <button className="w-full p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-between group">
                   <span className="text-white">Australian Standards</span>
-                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-600" />
+                  <Download className="w-4 h-4 text-gray-200 group-hover:text-blue-400" />
                 </button>
               </div>
             </div>
@@ -356,7 +356,7 @@ function WRTCoursePageOriginal() {
                 </p>
                 <button 
                   onClick={() => setShowCertificate(true)}
-                  className="w-full px-4 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3 bg-white text-blue-400 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
                 >
                   <Eye className="w-5 h-5" />
                   View Certificate

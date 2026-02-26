@@ -272,19 +272,19 @@ export default function BeforeAfterSlider() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
               <div className="text-3xl font-bold text-blue-500">48hrs</div>
-              <div className="text-gray-600">Average Restoration</div>
+              <div className="text-gray-300">Average Restoration</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-emerald-600">100%</div>
-              <div className="text-gray-600">Insurance Approved</div>
+              <div className="text-3xl font-bold text-emerald-400">100%</div>
+              <div className="text-gray-300">Insurance Approved</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-600">24/7</div>
-              <div className="text-gray-600">Emergency Response</div>
+              <div className="text-3xl font-bold text-blue-400">24/7</div>
+              <div className="text-gray-300">Emergency Response</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-red-600">47min</div>
-              <div className="text-gray-600">Average Arrival</div>
+              <div className="text-3xl font-bold text-red-400">47min</div>
+              <div className="text-gray-300">Average Arrival</div>
             </div>
           </div>
         </motion.div>

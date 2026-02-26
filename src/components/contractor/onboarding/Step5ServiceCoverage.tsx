@@ -223,7 +223,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
       {/* Property Types */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-4">Property Types You Service</h3>
-        <p className="text-slate-600 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-4">
           Select all property types you can handle. Click to expand and select specific scales.
         </p>
         
@@ -247,18 +247,18 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                           ? `bg-${property.colour}-600/20 border-2 border-${property.colour}-500` 
                           : 'bg-slate-800 border-2 border-slate-700'}
                       `}>
-                        <Icon className={`h-5 w-5 ${isSelected ? `text-${property.colour}-400` : 'text-slate-600'}`} />
+                        <Icon className={`h-5 w-5 ${isSelected ? `text-${property.colour}-400` : 'text-slate-400'}`} />
                       </div>
                       <div className="text-left">
                         <div className="font-medium text-white">{property.label}</div>
-                        <div className="text-sm text-slate-600">{property.description}</div>
+                        <div className="text-sm text-slate-400">{property.description}</div>
                       </div>
                     </button>
                     
                     {isSelected && (
                       <button
                         onClick={() => setExpandedProperty(isExpanded ? null : property.type)}
-                        className="px-3 py-1 text-sm text-blue-600 hover:text-blue-700"
+                        className="px-3 py-1 text-sm text-blue-400 hover:text-blue-300"
                       >
                         {isExpanded ? 'Hide Scales' : 'Select Scales'}
                       </button>
@@ -279,7 +279,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                               onChange={() => handlePropertyScaleToggle(scale.value)}
                               className="w-4 h-4 text-blue-600 bg-slate-800 border-slate-600 rounded focus:ring-blue-500"
                             />
-                            <span className="text-sm text-slate-700">{scale.label}</span>
+                            <span className="text-sm text-slate-300">{scale.label}</span>
                           </label>
                         ))}
                       </div>
@@ -295,7 +295,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
       {/* Disaster Types */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-4">Disaster Types You Handle</h3>
-        <p className="text-slate-600 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-4">
           Select all disaster types you're equipped and qualified to handle.
         </p>
         
@@ -312,10 +312,10 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                   flex items-center gap-3 p-3 rounded-lg border-2 transition
                   ${isSelected 
                     ? 'bg-slate-800/50 border-blue-500 text-white' 
-                    : 'bg-slate-900/50 border-slate-700 text-slate-600 hover:border-slate-600'}
+                    : 'bg-slate-900/50 border-slate-700 text-slate-400 hover:border-slate-600'}
                 `}
               >
-                <Icon className={`h-5 w-5 ${isSelected ? 'text-blue-600' : 'text-slate-500'}`} />
+                <Icon className={`h-5 w-5 ${isSelected ? 'text-blue-400' : 'text-slate-500'}`} />
                 <span className="text-sm font-medium">{disaster.label}</span>
               </button>
             );
@@ -326,7 +326,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
       {/* Scale Capabilities */}
       <div>
         <h3 className="text-lg font-semibold text-white mb-4">Project Scale Capabilities</h3>
-        <p className="text-slate-600 text-sm mb-4">
+        <p className="text-slate-400 text-sm mb-4">
           Select the maximum scale of projects you can handle.
         </p>
         
@@ -346,12 +346,12 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
                 `}
               >
                 <div className="text-left">
-                  <div className={`font-medium ${isSelected ? 'text-white' : 'text-slate-600'}`}>
+                  <div className={`font-medium ${isSelected ? 'text-white' : 'text-slate-400'}`}>
                     {scale.label}
                   </div>
                   <div className="text-sm text-slate-500">{scale.floors}</div>
                 </div>
-                {isSelected && <CheckCircle className="h-5 w-5 text-emerald-600" />}
+                {isSelected && <CheckCircle className="h-5 w-5 text-emerald-400" />}
               </button>
             );
           })}
@@ -372,7 +372,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             />
             <div>
               <div className="font-medium text-white">24/7 Online Emergency Response</div>
-              <div className="text-sm text-slate-600">Available for emergency callouts</div>
+              <div className="text-sm text-slate-400">Available for emergency callouts</div>
             </div>
           </label>
           
@@ -385,7 +385,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             />
             <div>
               <div className="font-medium text-white">After Hours Service</div>
-              <div className="text-sm text-slate-600">Work outside business hours</div>
+              <div className="text-sm text-slate-400">Work outside business hours</div>
             </div>
           </label>
           
@@ -398,7 +398,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             />
             <div>
               <div className="font-medium text-white">Weekend Service</div>
-              <div className="text-sm text-slate-600">Available on weekends</div>
+              <div className="text-sm text-slate-400">Available on weekends</div>
             </div>
           </label>
           
@@ -411,7 +411,7 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             />
             <div>
               <div className="font-medium text-white">Public Holiday Service</div>
-              <div className="text-sm text-slate-600">Available on public holidays</div>
+              <div className="text-sm text-slate-400">Available on public holidays</div>
             </div>
           </label>
         </div>
@@ -425,19 +425,19 @@ export default function Step5ServiceCoverage({ data, updateData, errors }: Step5
             <h4 className="font-semibold text-white mb-2">Your Coverage Impact</h4>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
               <div>
-                <div className="text-slate-600">Property Types</div>
-                <div className="text-2xl font-bold text-blue-600">{serviceCoverage.propertyTypes.length}</div>
+                <div className="text-slate-400">Property Types</div>
+                <div className="text-2xl font-bold text-blue-400">{serviceCoverage.propertyTypes.length}</div>
               </div>
               <div>
-                <div className="text-slate-600">Disaster Types</div>
-                <div className="text-2xl font-bold text-emerald-600">{serviceCoverage.disasterTypes.length}</div>
+                <div className="text-slate-400">Disaster Types</div>
+                <div className="text-2xl font-bold text-emerald-400">{serviceCoverage.disasterTypes.length}</div>
               </div>
               <div>
-                <div className="text-slate-600">Est. Pages Generated</div>
+                <div className="text-slate-400">Est. Pages Generated</div>
                 <div className="text-2xl font-bold text-blue-500">{estimatedPageCount.toLocaleString()}+</div>
               </div>
             </div>
-            <p className="text-blue-700 text-sm mt-3">
+            <p className="text-blue-400 text-sm mt-3">
               Based on your selections, we'll automatically generate location-specific pages for your service areas, 
               maximising your visibility across all selected property and disaster types.
             </p>

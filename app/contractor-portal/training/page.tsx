@@ -87,30 +87,30 @@ function ContractorPortalTrainingPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Training Center</h1>
-          <p className="text-gray-700">Enhance your skills and earn certifications</p>
+          <p className="text-gray-300">Enhance your skills and earn certifications</p>
         </div>
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <GraduationCap className="w-8 h-8 text-blue-600 mb-3" />
+            <GraduationCap className="w-8 h-8 text-blue-400 mb-3" />
             <p className="text-2xl font-bold text-white">5</p>
-            <p className="text-gray-700">Courses Enrolled</p>
+            <p className="text-gray-300">Courses Enrolled</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <Award className="w-8 h-8 text-green-600 mb-3" />
+            <Award className="w-8 h-8 text-green-400 mb-3" />
             <p className="text-2xl font-bold text-white">3</p>
-            <p className="text-gray-700">Certifications Earned</p>
+            <p className="text-gray-300">Certifications Earned</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <Clock className="w-8 h-8 text-yellow-600 mb-3" />
+            <Clock className="w-8 h-8 text-yellow-400 mb-3" />
             <p className="text-2xl font-bold text-white">48</p>
-            <p className="text-gray-700">Training Hours</p>
+            <p className="text-gray-300">Training Hours</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-            <TrendingUp className="w-8 h-8 text-purple-600 mb-3" />
+            <TrendingUp className="w-8 h-8 text-purple-400 mb-3" />
             <p className="text-2xl font-bold text-white">85%</p>
-            <p className="text-gray-700">Avg Score</p>
+            <p className="text-gray-300">Avg Score</p>
           </div>
         </div>
 
@@ -133,8 +133,8 @@ function ContractorPortalTrainingPageOriginal() {
                     <div className="flex justify-between items-start mb-3">
                       <div className="flex-1">
                         <h3 className="text-white font-semibold mb-1">{course.title}</h3>
-                        <p className="text-gray-700 text-sm mb-2">{course.description}</p>
-                        <div className="flex items-center gap-4 text-sm text-gray-700">
+                        <p className="text-gray-300 text-sm mb-2">{course.description}</p>
+                        <div className="flex items-center gap-4 text-sm text-gray-300">
                           <span className="flex items-center gap-1">
                             <BookOpen className="w-4 h-4" />
                             {course.category}
@@ -151,7 +151,7 @@ function ContractorPortalTrainingPageOriginal() {
                     </div>
                     <div className="mb-3">
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-700">Progress</span>
+                        <span className="text-gray-300">Progress</span>
                         <span className="text-white font-semibold">{course.progress}%</span>
                       </div>
                       <div className="w-full bg-white/20 rounded-full h-2">
@@ -192,8 +192,8 @@ function ContractorPortalTrainingPageOriginal() {
                 {upcomingWebinars.map((webinar, index) => (
                   <div key={index} className="p-3 bg-white/5 rounded-lg">
                     <p className="text-white font-medium text-sm mb-1">{webinar.title}</p>
-                    <p className="text-gray-700 text-xs">{webinar.date} • {webinar.time}</p>
-                    <button className="mt-2 text-blue-600 hover:text-blue-700 text-sm">Register →</button>
+                    <p className="text-gray-300 text-xs">{webinar.date} • {webinar.time}</p>
+                    <button className="mt-2 text-blue-400 hover:text-blue-300 text-sm">Register →</button>
                   </div>
                 ))}
               </div>
@@ -211,9 +211,9 @@ function ContractorPortalTrainingPageOriginal() {
                     }`}
                   >
                     <achievement.icon className={`w-8 h-8 mx-auto mb-2 ${
-                      achievement.earned ? 'text-yellow-600' : 'text-gray-700'
+                      achievement.earned ? 'text-yellow-400' : 'text-gray-300'
                     }`} />
-                    <p className={`text-xs ${achievement.earned ? 'text-white' : 'text-gray-700'}`}>
+                    <p className={`text-xs ${achievement.earned ? 'text-white' : 'text-gray-300'}`}>
                       {achievement.title}
                     </p>
                   </div>

@@ -81,17 +81,17 @@ function ContractorPortalResourcesPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Resources</h1>
-          <p className="text-gray-700">Training materials, guides, and documentation</p>
+          <p className="text-gray-300">Training materials, guides, and documentation</p>
         </div>
 
         {/* Quick Help */}
         <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 mb-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <HelpCircle className="w-8 h-8 text-blue-600" />
+              <HelpCircle className="w-8 h-8 text-blue-400" />
               <div>
                 <h2 className="text-xl font-semibold text-white">Need Help?</h2>
-                <p className="text-gray-700">Access our 24/7 contractor support line</p>
+                <p className="text-gray-300">Access our 24/7 contractor support line</p>
               </div>
             </div>
             <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
@@ -115,11 +115,11 @@ function ContractorPortalResourcesPageOriginal() {
                   <div key={itemIndex} className="flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                     <div className="flex-1">
                       <p className="text-white font-medium">{item.title}</p>
-                      <p className="text-gray-700 text-sm">
+                      <p className="text-gray-300 text-sm">
                         {item.type} • {item.size || item.duration}
                       </p>
                     </div>
-                    <button className="p-2 text-blue-600 hover:text-blue-700 transition-colors">
+                    <button className="p-2 text-blue-400 hover:text-blue-300 transition-colors">
                       <Download className="w-5 h-5" />
                     </button>
                   </div>

@@ -290,7 +290,7 @@ export default function FormDemonstration() {
                             ? 'bg-green-500 text-white'
                             : index === currentStep && isPlaying
                             ? 'bg-blue-500 text-white animate-pulse'
-                            : 'bg-slate-600 text-slate-700'
+                            : 'bg-slate-600 text-slate-200'
                         }`}>
                           {step.isCompleted ? (
                             <CheckCircle className="h-4 w-4" />
@@ -302,7 +302,7 @@ export default function FormDemonstration() {
                         </div>
                         <div>
                           <h4 className="font-semibold text-white">{step.title}</h4>
-                          <p className="text-sm text-slate-600">{step.description}</p>
+                          <p className="text-sm text-slate-400">{step.description}</p>
                         </div>
                       </div>
                     </motion.div>

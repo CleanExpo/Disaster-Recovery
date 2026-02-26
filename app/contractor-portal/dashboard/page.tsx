@@ -65,7 +65,7 @@ function ContractorPortalDashboardPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Contractor Dashboard</h1>
-          <p className="text-gray-700">Welcome back! Manage your restoration projects</p>
+          <p className="text-gray-300">Welcome back! Manage your restoration projects</p>
         </div>
 
         {/* Stats Grid */}
@@ -76,10 +76,10 @@ function ContractorPortalDashboardPageOriginal() {
                 <div className={`${stat.color} p-3 rounded-lg`}>
                   <stat.icon className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-green-600 text-sm font-semibold">{stat.trend}</span>
+                <span className="text-green-400 text-sm font-semibold">{stat.trend}</span>
               </div>
               <p className="text-3xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-gray-700">{stat.label}</p>
+              <p className="text-gray-300">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -90,7 +90,7 @@ function ContractorPortalDashboardPageOriginal() {
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-white">Active Jobs</h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm">View All Jobs</button>
+                <button className="text-blue-400 hover:text-blue-300 text-sm">View All Jobs</button>
               </div>
               <div className="space-y-4">
                 {activeJobs.map((job) => (
@@ -98,14 +98,14 @@ function ContractorPortalDashboardPageOriginal() {
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="text-white font-semibold text-lg">{job.id}</h3>
-                        <p className="text-gray-700">{job.client} • {job.type}</p>
+                        <p className="text-gray-300">{job.client} • {job.type}</p>
                       </div>
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(job.status)}`}>
                         {job.status.replace('-', ' ')}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-4 text-gray-700">
+                      <div className="flex items-center gap-4 text-gray-300">
                         <span className="flex items-center gap-1">
                           <MapPin className="w-4 h-4" />
                           {job.location}
@@ -115,7 +115,7 @@ function ContractorPortalDashboardPageOriginal() {
                           Due: {job.deadline}
                         </span>
                       </div>
-                      <span className="text-green-600 font-semibold">{job.value}</span>
+                      <span className="text-green-400 font-semibold">{job.value}</span>
                     </div>
                     <div className="mt-3">
                       <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
@@ -133,16 +133,16 @@ function ContractorPortalDashboardPageOriginal() {
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-semibold text-white">Today's Schedule</h2>
-                <Clock className="w-5 h-5 text-blue-600" />
+                <Clock className="w-5 h-5 text-blue-400" />
               </div>
               <div className="space-y-3">
                 {upcomingSchedule.map((item, index) => (
                   <div key={index} className="p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                     <div className="flex items-start gap-3">
-                      <span className="text-blue-600 font-semibold text-sm whitespace-nowrap">{item.time}</span>
+                      <span className="text-blue-400 font-semibold text-sm whitespace-nowrap">{item.time}</span>
                       <div className="flex-1">
                         <p className="text-white font-medium text-sm">{item.task}</p>
-                        <p className="text-gray-700 text-xs mt-1">{item.client}</p>
+                        <p className="text-gray-300 text-xs mt-1">{item.client}</p>
                       </div>
                     </div>
                   </div>
@@ -156,7 +156,7 @@ function ContractorPortalDashboardPageOriginal() {
               <div className="space-y-3">
                 <div>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-700">Jobs Completed</span>
+                    <span className="text-gray-300">Jobs Completed</span>
                     <span className="text-white font-semibold">12/15</span>
                   </div>
                   <div className="w-full bg-white/20 rounded-full h-2">
@@ -165,7 +165,7 @@ function ContractorPortalDashboardPageOriginal() {
                 </div>
                 <div>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-700">Revenue Target</span>
+                    <span className="text-gray-300">Revenue Target</span>
                     <span className="text-white font-semibold">$38K/$50K</span>
                   </div>
                   <div className="w-full bg-white/20 rounded-full h-2">
@@ -174,7 +174,7 @@ function ContractorPortalDashboardPageOriginal() {
                 </div>
                 <div>
                   <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-700">Customer Satisfaction</span>
+                    <span className="text-gray-300">Customer Satisfaction</span>
                     <span className="text-white font-semibold">96%</span>
                   </div>
                   <div className="w-full bg-white/20 rounded-full h-2">

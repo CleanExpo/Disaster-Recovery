@@ -91,44 +91,44 @@ function ContractorPortalEarningsPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Earnings</h1>
-          <p className="text-gray-700">Track your income and payment history</p>
+          <p className="text-gray-300">Track your income and payment history</p>
         </div>
 
         {/* Earnings Summary */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
-              <DollarSign className="w-8 h-8 text-green-600" />
-              <ArrowUp className="w-5 h-5 text-green-600" />
+              <DollarSign className="w-8 h-8 text-green-400" />
+              <ArrowUp className="w-5 h-5 text-green-400" />
             </div>
             <p className="text-3xl font-bold text-white mb-1">{earningsSummary.totalEarnings}</p>
-            <p className="text-gray-700">Total Earnings</p>
+            <p className="text-gray-300">Total Earnings</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
-              <Calendar className="w-8 h-8 text-blue-600" />
-              <TrendingUp className="w-5 h-5 text-blue-600" />
+              <Calendar className="w-8 h-8 text-blue-400" />
+              <TrendingUp className="w-5 h-5 text-blue-400" />
             </div>
             <p className="text-3xl font-bold text-white mb-1">{earningsSummary.thisMonth}</p>
-            <p className="text-gray-700">This Month</p>
+            <p className="text-gray-300">This Month</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
-              <CreditCard className="w-8 h-8 text-yellow-600" />
+              <CreditCard className="w-8 h-8 text-yellow-400" />
               <span className="text-xs px-2 py-1 bg-yellow-600 text-white rounded-full">Pending</span>
             </div>
             <p className="text-3xl font-bold text-white mb-1">{earningsSummary.pending}</p>
-            <p className="text-gray-700">Pending Payment</p>
+            <p className="text-gray-300">Pending Payment</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
             <div className="flex items-center justify-between mb-4">
-              <DollarSign className="w-8 h-8 text-purple-600" />
+              <DollarSign className="w-8 h-8 text-purple-400" />
               <button className="text-xs px-3 py-1 bg-purple-600 text-white rounded-full hover:bg-purple-700">
                 Withdraw
               </button>
             </div>
             <p className="text-3xl font-bold text-white mb-1">{earningsSummary.available}</p>
-            <p className="text-gray-700">Available to Withdraw</p>
+            <p className="text-gray-300">Available to Withdraw</p>
           </div>
         </div>
 
@@ -139,13 +139,13 @@ function ContractorPortalEarningsPageOriginal() {
             {monthlyBreakdown.map((month, index) => (
               <div key={index} className="p-4 bg-white/5 rounded-lg">
                 <h3 className="text-white font-semibold mb-2">{month.month}</h3>
-                <p className="text-2xl font-bold text-green-600 mb-1">{month.earnings}</p>
-                <p className="text-gray-700 text-sm">{month.jobs} jobs completed</p>
+                <p className="text-2xl font-bold text-green-400 mb-1">{month.earnings}</p>
+                <p className="text-gray-300 text-sm">{month.jobs} jobs completed</p>
                 <div className="mt-3 flex items-center gap-2">
                   <div className="flex-1 bg-white/20 rounded-full h-2">
                     <div className="bg-green-500 h-2 rounded-full" style={{ width: `${(month.jobs / 20) * 100}%` }}></div>
                   </div>
-                  <span className="text-xs text-gray-700">{month.jobs}/20</span>
+                  <span className="text-xs text-gray-300">{month.jobs}/20</span>
                 </div>
               </div>
             ))}
@@ -180,30 +180,30 @@ function ContractorPortalEarningsPageOriginal() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-white/20">
-                  <th className="text-left py-3 px-4 text-gray-700">Transaction ID</th>
-                  <th className="text-left py-3 px-4 text-gray-700">Date</th>
-                  <th className="text-left py-3 px-4 text-gray-700">Job Details</th>
-                  <th className="text-left py-3 px-4 text-gray-700">Amount</th>
-                  <th className="text-left py-3 px-4 text-gray-700">Status</th>
-                  <th className="text-left py-3 px-4 text-gray-700">Method</th>
+                  <th className="text-left py-3 px-4 text-gray-300">Transaction ID</th>
+                  <th className="text-left py-3 px-4 text-gray-300">Date</th>
+                  <th className="text-left py-3 px-4 text-gray-300">Job Details</th>
+                  <th className="text-left py-3 px-4 text-gray-300">Amount</th>
+                  <th className="text-left py-3 px-4 text-gray-300">Status</th>
+                  <th className="text-left py-3 px-4 text-gray-300">Method</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTransactions.map((transaction) => (
                   <tr key={transaction.id} className="border-b border-white/10 hover:bg-white/5">
                     <td className="py-3 px-4 text-white">{transaction.id}</td>
-                    <td className="py-3 px-4 text-gray-700">{transaction.date}</td>
+                    <td className="py-3 px-4 text-gray-300">{transaction.date}</td>
                     <td className="py-3 px-4">
                       <p className="text-white">{transaction.job}</p>
-                      <p className="text-gray-700 text-sm">{transaction.client}</p>
+                      <p className="text-gray-300 text-sm">{transaction.client}</p>
                     </td>
-                    <td className="py-3 px-4 text-green-600 font-semibold">{transaction.amount}</td>
+                    <td className="py-3 px-4 text-green-400 font-semibold">{transaction.amount}</td>
                     <td className="py-3 px-4">
                       <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(transaction.status)}`}>
                         {transaction.status}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-gray-700">{transaction.method}</td>
+                    <td className="py-3 px-4 text-gray-300">{transaction.method}</td>
                   </tr>
                 ))}
               </tbody>

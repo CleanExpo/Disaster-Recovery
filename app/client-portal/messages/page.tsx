@@ -95,7 +95,7 @@ function ClientPortalMessagesPageOriginal() {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">Messages</h1>
-          <p className="text-gray-700">Communicate with your restoration team</p>
+          <p className="text-gray-300">Communicate with your restoration team</p>
         </div>
 
         <div className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden" style={{ height: 'calc(100vh - 250px)' }}>
@@ -104,7 +104,7 @@ function ClientPortalMessagesPageOriginal() {
             <div className="w-1/3 border-r border-white/20">
               <div className="p-4 border-b border-white/20">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-700 w-5 h-5" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-300 w-5 h-5" />
                   <input
                     type="text"
                     placeholder="Search conversations..."
@@ -130,9 +130,9 @@ function ClientPortalMessagesPageOriginal() {
                       <div className="flex-1">
                         <div className="flex justify-between items-start mb-1">
                           <h3 className="text-white font-semibold">{conv.name}</h3>
-                          <span className="text-gray-700 text-xs">{conv.time}</span>
+                          <span className="text-gray-300 text-xs">{conv.time}</span>
                         </div>
-                        <p className="text-gray-700 text-sm truncate">{conv.lastMessage}</p>
+                        <p className="text-gray-300 text-sm truncate">{conv.lastMessage}</p>
                       </div>
                       {conv.unread > 0 && (
                         <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
@@ -157,7 +157,7 @@ function ClientPortalMessagesPageOriginal() {
                     <h3 className="text-white font-semibold">
                       {conversations.find(c => c.id === selectedConversation)?.name}
                     </h3>
-                    <p className="text-gray-700 text-sm">Active now</p>
+                    <p className="text-gray-300 text-sm">Active now</p>
                   </div>
                 </div>
               </div>
@@ -180,8 +180,8 @@ function ClientPortalMessagesPageOriginal() {
                       <div className={`flex items-center gap-1 mt-1 ${
                         message.isMe ? 'justify-end' : 'justify-start'
                       }`}>
-                        <span className="text-gray-700 text-xs">{message.time}</span>
-                        {message.isMe && <CheckCheck className="w-4 h-4 text-blue-600" />}
+                        <span className="text-gray-300 text-xs">{message.time}</span>
+                        {message.isMe && <CheckCheck className="w-4 h-4 text-blue-400" />}
                       </div>
                     </div>
                   </div>
@@ -191,7 +191,7 @@ function ClientPortalMessagesPageOriginal() {
               {/* Message Input */}
               <div className="p-4 border-t border-white/20">
                 <div className="flex gap-2">
-                  <button className="p-2 text-gray-700 hover:text-white transition-colors">
+                  <button className="p-2 text-gray-300 hover:text-white transition-colors">
                     <Paperclip className="w-5 h-5" />
                   </button>
                   <input

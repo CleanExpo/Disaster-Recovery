@@ -86,12 +86,12 @@ function ContractorPortalPageOriginal() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-4xl font-bold mb-4">Contractor Portal</h1>
-                <p className="text-xl text-indigo-800">
+                <p className="text-xl text-indigo-200">
                   Manage jobs, track earnings, and grow your business
                 </p>
               </div>
               <div className="text-right">
-                <div className="text-sm text-indigo-700">Territory</div>
+                <div className="text-sm text-indigo-200">Territory</div>
                 <div className="text-2xl font-bold">Brisbane Metro</div>
                 <div className="mt-2">
                   <span className="px-3 py-1 bg-green-500 text-white rounded-full text-sm">
