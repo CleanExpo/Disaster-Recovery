@@ -223,7 +223,7 @@ export default function LocationServicePage({ params }: { params: { city: string
       notFound();
     }
     suburbName = suburbData.name;
-    pageData = LocationServiceGenerator.generateLocationServicePage(city, service, suburbName);
+    pageData = LocationServiceGenerator.generateLocationServicePage(city, service, suburbName, undefined, suburbData);
   } else {
     notFound();
   }

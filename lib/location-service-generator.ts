@@ -1,5 +1,6 @@
 // Location-based Service Page Generator for SEO Domination
 import { serviceFAQs, defaultServiceFAQs } from '../src/lib/location-content/service-faqs';
+import type { SuburbData } from '../data/suburbs/sydney';
 
 export interface LocationServicePage {
   id: string;
@@ -230,32 +231,33 @@ export class LocationServiceGenerator {
     locationKey: string,
     serviceKey: string,
     suburb?: string,
-    variation?: string
+    variation?: string,
+    suburbData?: SuburbData
   ): LocationServicePage {
     const location = this.locations[locationKey];
     const service = this.services[serviceKey];
-    
+
     if (!location || !service) {
       throw new Error('Invalid location or service');
     }
 
     const fullLocation = suburb ? `${suburb}, ${location.city}` : location.city;
     const variationText = variation ? `${variation} ` : '';
-    
+
     const pageId = `${serviceKey}-${locationKey}${suburb ? `-${suburb.toLowerCase().replace(/\s+/g, '-')}` : ''}`;
-    
+
     return {
       id: pageId,
       title: `${variationText}${service.type} ${fullLocation} | 24/7 Emergency Response`,
       metaTitle: `${variationText}${service.type} ${fullLocation} | Disaster Recovery`,
-      metaDescription: this.generateMetaDescription(service, location, suburb, variation),
+      metaDescription: this.generateMetaDescription(service, location, suburb, variation, suburbData),
       h1: `${variationText}${service.type} Services in ${fullLocation}`,
       location: {
         city: location.city,
         state: location.state,
         suburb,
         region: suburb ? this.getRegionForSuburb(location, suburb) : undefined,
-        population: location.population
+        population: suburbData?.population || location.population
       },
       service: {
         type: service.type,
@@ -263,7 +265,7 @@ export class LocationServiceGenerator {
         urgency: service.urgency,
         keywords: service.keywords
       },
-      content: this.generateContent(service, location, suburb, variation),
+      content: this.generateContent(service, location, suburb, variation, suburbData),
       faqs: this.generateFAQs(service, location, suburb),
       relatedPages: this.generateRelatedPages(locationKey, serviceKey, suburb),
       schema: this.generateSchema(service, location, suburb)
@@ -274,57 +276,186 @@ export class LocationServiceGenerator {
     service: any,
     location: any,
     suburb?: string,
-    variation?: string
+    variation?: string,
+    suburbData?: SuburbData
   ): string {
     const locationText = suburb ? `${suburb} and surrounding ${location.city} areas` : `${location.city} and all suburbs`;
     const variationText = variation ? `${variation} ` : '';
-    
+
+    // Suburb-specific risk phrase if data available
+    if (suburbData) {
+      const riskPhrase = this.getRiskPhrase(suburbData, service.category);
+      if (riskPhrase) {
+        return `${riskPhrase} Professional ${variationText}${service.type.toLowerCase()} in ${locationText}. 24/7 response, IICRC-certified. Submit your claim online.`;
+      }
+    }
+
     return `Professional ${variationText}${service.type.toLowerCase()} services in ${locationText}. 24/7 emergency response, IICRC-certified contractors. Submit your claim online for immediate assistance.`;
+  }
+
+  // Generate a suburb-specific risk phrase for meta descriptions and intros
+  private static getRiskPhrase(suburbData: SuburbData, serviceCategory: string): string | null {
+    const { density, riskFactors } = suburbData;
+
+    if (serviceCategory === 'water' || serviceCategory === 'flood') {
+      if (riskFactors.includes('flood')) return `${suburbData.name} is in a known flood zone.`;
+      if (riskFactors.includes('stormwater-flooding') && density === 'high') return `High-density ${suburbData.name} faces stormwater flooding risks.`;
+      if (density === 'high') return `${suburbData.name}'s high-density apartments need fast water extraction.`;
+    }
+    if (serviceCategory === 'fire' && riskFactors.includes('bushfire')) {
+      return `${suburbData.name} is in a bushfire-prone zone.`;
+    }
+    if (serviceCategory === 'storm' && riskFactors.includes('storm-damage')) {
+      return `${suburbData.name} is exposed to severe storm damage.`;
+    }
+    if (serviceCategory === 'mould') {
+      if (riskFactors.includes('water-damage') || riskFactors.includes('stormwater-flooding')) {
+        return `Damp conditions in ${suburbData.name} make mould a persistent risk.`;
+      }
+    }
+    return null;
   }
 
   private static generateContent(
     service: any,
     location: any,
     suburb?: string,
-    variation?: string
+    variation?: string,
+    suburbData?: SuburbData
   ) {
     const locationText = suburb || location.city;
-    
+
     return {
-      intro: `When disaster strikes in ${locationText}, you need immediate, professional ${service.type.toLowerCase()} services. Our ${location.city}-based emergency response team is available 24/7, with typical response times of 30-60 minutes throughout ${suburb ? `${suburb} and nearby suburbs` : `Greater ${location.city}`}.`,
-      
-      whyChooseUs: [
-        `Local ${locationText} team with deep knowledge of the area`,
-        'Average 45-minute emergency response time',
-        'Full claims documentation for all major insurers',
-        'IICRC certified technicians',
-        '100% satisfaction guarantee',
-        'Transparent pricing — we bill you directly',
-        'Payment plans available via Blue Fire Finance'
-      ],
-      
-      serviceAreas: suburb 
+      intro: this.generateIntro(service, location, suburb, suburbData),
+
+      whyChooseUs: this.generateWhyChooseUs(locationText, suburbData),
+
+      serviceAreas: suburb
         ? this.getNearbySuburbs(location, suburb)
         : location.suburbs.slice(0, 10),
-      
-      emergencyResponse: `Our ${locationText} rapid response team is strategically positioned to reach any location within ${suburb ? `${suburb} and surrounding areas` : location.city} within 60 minutes. We maintain fully equipped vehicles throughout ${location.city} to ensure the fastest possible response to your ${service.type.toLowerCase()} emergency.`,
-      
-      localKnowledge: this.generateLocalKnowledge(service, location, suburb),
-      
-      commonIssues: this.generateCommonIssues(service, location, suburb),
-      
+
+      emergencyResponse: this.generateEmergencyResponse(service, location, suburb, suburbData),
+
+      localKnowledge: this.generateLocalKnowledge(service, location, suburb, suburbData),
+
+      commonIssues: this.generateCommonIssues(service, location, suburb, suburbData),
+
       insurancePartners: [
         'AAMI', 'Suncorp', 'Allianz', 'NRMA', 'QBE', 'CGU',
         'Budget Direct', 'Youi', 'RACQ', 'CommInsure'
       ],
-      
+
       testimonial: this.generateTestimonial(service, location, suburb)
     };
   }
 
-  private static generateLocalKnowledge(service: any, location: any, suburb?: string): string[] {
-    const knowledge = [];
-    
+  // Generate a unique intro paragraph using suburb data
+  private static generateIntro(service: any, location: any, suburb?: string, suburbData?: SuburbData): string {
+    const locationText = suburb || location.city;
+
+    // If no suburb data, use the standard template
+    if (!suburbData || !suburb) {
+      return `When disaster strikes in ${locationText}, you need immediate, professional ${service.type.toLowerCase()} services. Our ${location.city}-based emergency response team is available 24/7, with typical response times of 30-60 minutes throughout Greater ${location.city}.`;
+    }
+
+    // Build a unique intro from suburb data
+    const { population, density, riskFactors, notes } = suburbData;
+    const parts: string[] = [];
+
+    // Opening — density-aware
+    if (density === 'high') {
+      parts.push(`${suburb} is one of ${location.city}'s most densely populated areas${population ? `, home to over ${population.toLocaleString()} residents` : ''}. In high-density living, ${service.type.toLowerCase()} emergencies demand rapid professional response to prevent damage spreading to neighbouring units and common areas.`);
+    } else if (density === 'low' && riskFactors.includes('flood')) {
+      parts.push(`${suburb} sits within a known flood-prone zone${population ? `, with a community of ${population.toLocaleString()} residents` : ''}. When floodwaters threaten, fast ${service.type.toLowerCase()} response is critical to protect homes and reduce long-term damage.`);
+    } else if (density === 'low' && riskFactors.includes('bushfire')) {
+      parts.push(`${suburb} borders bushland that places residents at elevated fire risk${population ? `, with ${population.toLocaleString()} people in the area` : ''}. After fire or ember attack, professional ${service.type.toLowerCase()} is essential to make properties safe.`);
+    } else {
+      parts.push(`${suburb}${population ? `, home to ${population.toLocaleString()} residents` : ''}, is a key ${location.city} suburb where ${service.type.toLowerCase()} emergencies require fast, local expertise.`);
+    }
+
+    // Context from notes — extract a key fact
+    if (notes) {
+      const noteFact = this.extractNoteFact(notes, suburb);
+      if (noteFact) {
+        parts.push(noteFact);
+      }
+    }
+
+    // Closing — service promise
+    parts.push(`Our ${location.city}-based team responds 24/7, typically reaching ${suburb} and nearby suburbs within 30-60 minutes.`);
+
+    return parts.join(' ');
+  }
+
+  // Extract a useful fact from the suburb notes field
+  private static extractNoteFact(notes: string, suburb: string): string | null {
+    // Split notes by period/sentence and pick the most descriptive one
+    const sentences = notes.split(/\.\s+/).filter(s => s.length > 15);
+    if (sentences.length === 0) return null;
+
+    // Prefer sentences with specific data (percentages, years, measurements)
+    const dataRich = sentences.find(s => /\d{4}|\d+%|\d+mm|\d+,\d+|km²/.test(s));
+    if (dataRich) return dataRich.endsWith('.') ? dataRich : `${dataRich}.`;
+
+    // Otherwise use the first substantive sentence
+    const first = sentences[0];
+    return first.endsWith('.') ? first : `${first}.`;
+  }
+
+  // Generate unique "Why Choose Us" bullets with suburb context
+  private static generateWhyChooseUs(locationText: string, suburbData?: SuburbData): string[] {
+    const base = [
+      `Local ${locationText} team with deep knowledge of the area`,
+      'Average 45-minute emergency response time',
+      'Full claims documentation for all major insurers',
+      'IICRC certified technicians',
+      '100% satisfaction guarantee',
+      'Transparent pricing — we bill you directly',
+      'Payment plans available via Blue Fire Finance'
+    ];
+
+    // Add a suburb-specific bullet if data available
+    if (suburbData) {
+      if (suburbData.density === 'high') {
+        base[0] = `Experienced with ${locationText}'s high-density apartments and multi-storey buildings`;
+      } else if (suburbData.riskFactors.includes('flood')) {
+        base[0] = `Specialist flood recovery expertise for ${locationText}'s flood-prone area`;
+      } else if (suburbData.riskFactors.includes('bushfire')) {
+        base[0] = `Bushfire damage specialists familiar with ${locationText}'s fire-prone surrounds`;
+      }
+    }
+
+    return base;
+  }
+
+  // Generate unique emergency response section
+  private static generateEmergencyResponse(service: any, location: any, suburb?: string, suburbData?: SuburbData): string {
+    const locationText = suburb || location.city;
+
+    if (!suburbData || !suburb) {
+      return `Our ${locationText} rapid response team is strategically positioned to reach any location within ${location.city} within 60 minutes. We maintain fully equipped vehicles throughout ${location.city} to ensure the fastest possible response to your ${service.type.toLowerCase()} emergency.`;
+    }
+
+    // Density-aware response messaging
+    if (suburbData.density === 'high') {
+      return `In ${suburb}'s high-density environment, ${service.type.toLowerCase()} emergencies can escalate rapidly through shared walls and common areas. Our ${location.city} team carries specialist equipment for apartment buildings and high-rises, typically arriving within 30-60 minutes. We coordinate with strata managers and body corporates to minimise disruption.`;
+    }
+
+    if (suburbData.riskFactors.includes('flood')) {
+      return `${suburb} is in a flood-affected zone, so our ${location.city} team maintains dedicated flood recovery equipment ready for rapid deployment. We typically reach ${suburb} and surrounding areas within 30-60 minutes and begin water extraction immediately to prevent secondary damage like mould growth.`;
+    }
+
+    if (suburbData.riskFactors.includes('bushfire')) {
+      return `Given ${suburb}'s proximity to bushland, our ${location.city} team is equipped for post-fire and ember attack recovery. We reach ${suburb} within 30-60 minutes and can begin make-safe operations, smoke damage assessment, and structural drying immediately.`;
+    }
+
+    return `Our ${location.city} rapid response team is positioned to reach ${suburb} and surrounding areas within 30-60 minutes. Fully equipped vehicles are deployed across ${location.city} to ensure the fastest response to your ${service.type.toLowerCase()} emergency.`;
+  }
+
+  private static generateLocalKnowledge(service: any, location: any, suburb?: string, suburbData?: SuburbData): string[] {
+    const knowledge: string[] = [];
+
+    // City-level knowledge
     if (location.city === 'Sydney') {
       knowledge.push('Understanding of Sydney\'s unique weather patterns and storm seasons');
       knowledge.push('Familiarity with heritage building requirements in older suburbs');
@@ -337,18 +468,45 @@ export class LocationServiceGenerator {
       knowledge.push('Experience with Melbourne\'s variable weather conditions');
       knowledge.push('Understanding of Victorian building codes and regulations');
       knowledge.push('Knowledge of local drainage and flooding hotspots');
+    } else if (location.city === 'Perth') {
+      knowledge.push('Experience with Western Australia\'s hot, dry climate and sudden storm events');
+      knowledge.push('Knowledge of Perth\'s sandy soils and drainage challenges');
+    } else if (location.city === 'Adelaide') {
+      knowledge.push('Understanding of South Australia\'s Adelaide Hills bushfire corridor');
+      knowledge.push('Experience with Adelaide\'s ageing stormwater infrastructure');
+    } else if (location.city === 'Darwin') {
+      knowledge.push('Expertise in tropical cyclone damage recovery');
+      knowledge.push('Understanding of monsoon season flooding patterns in the Top End');
+    } else if (location.city === 'Cairns') {
+      knowledge.push('Specialist cyclone and tropical storm recovery experience');
+      knowledge.push('Understanding of Far North Queensland\'s high-humidity mould risks');
     }
-    
-    if (suburb) {
+
+    // Suburb-specific knowledge from data
+    if (suburbData && suburb) {
+      if (suburbData.density === 'high') {
+        knowledge.push(`Experience with ${suburb}'s high-density apartment buildings and strata properties`);
+      }
+      if (suburbData.riskFactors.includes('flood')) {
+        knowledge.push(`Knowledge of ${suburb}'s flood catchment zones and drainage infrastructure`);
+      }
+      if (suburbData.riskFactors.includes('bushfire')) {
+        knowledge.push(`Familiarity with ${suburb}'s bushfire attack levels and ember protection needs`);
+      }
+      if (suburbData.riskFactors.includes('stormwater-flooding')) {
+        knowledge.push(`Understanding of ${suburb}'s stormwater systems and flash flood risk areas`);
+      }
+    } else if (suburb) {
       knowledge.push(`Specific knowledge of ${suburb} property types and common issues`);
     }
-    
+
     return knowledge;
   }
 
-  private static generateCommonIssues(service: any, location: any, suburb?: string): string[] {
-    const issues = [];
-    
+  private static generateCommonIssues(service: any, location: any, suburb?: string, suburbData?: SuburbData): string[] {
+    const issues: string[] = [];
+
+    // Base service-category issues
     switch (service.category) {
       case 'water':
         issues.push('Burst pipes from aging infrastructure');
@@ -372,7 +530,28 @@ export class LocationServiceGenerator {
         issues.push('Hidden mould in wall cavities');
         break;
     }
-    
+
+    // Suburb-specific issues based on risk factors and density
+    if (suburbData && suburb) {
+      if (suburbData.density === 'high' && service.category === 'water') {
+        issues.push(`Water damage spreading between units in ${suburb}'s apartment complexes`);
+        issues.push('Failed waterproofing membranes in high-rise bathrooms and balconies');
+      }
+      if (suburbData.riskFactors.includes('flood') && (service.category === 'water' || service.category === 'flood')) {
+        issues.push(`Riverine flooding in ${suburb}'s flood-prone catchment zones`);
+      }
+      if (suburbData.riskFactors.includes('stormwater-flooding')) {
+        issues.push(`Stormwater system overflows during intense rainfall events in ${suburb}`);
+      }
+      if (suburbData.riskFactors.includes('bushfire') && service.category === 'fire') {
+        issues.push(`Ember attack from nearby bushland threatening ${suburb} properties`);
+        issues.push('Radiant heat damage to external surfaces and fencing');
+      }
+      if (suburbData.riskFactors.includes('storm-damage') && service.category === 'storm') {
+        issues.push(`Tree strike and canopy damage near ${suburb}'s bushland borders`);
+      }
+    }
+
     return issues;
   }
 
