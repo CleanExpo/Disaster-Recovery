@@ -91,7 +91,7 @@ function LiveActivityFeed() {
               <activity.icon className="h-4 w-4" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-400">{activity.text}</p>
+              <p className="text-sm text-gray-300">{activity.text}</p>
               <p className="text-xs text-gray-300 mt-1">{activity.time}</p>
             </div>
           </motion.div>
@@ -127,7 +127,7 @@ function PerformanceChart() {
             transition={{ delay: index * 0.1 }}
           >
             <div className="relative w-full flex flex-col items-center">
-              <span className="text-xs text-gray-400 mb-1">{item.jobs}</span>
+              <span className="text-xs text-gray-300 mb-1">{item.jobs}</span>
               <motion.div
                 className="w-full bg-gradient-to-t from-blue-500 to-purple-600 rounded-t-lg relative overflow-hidden"
                 initial={{ height: 0 }}
@@ -170,7 +170,7 @@ function AIInsights() {
           className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colours cursor-pointer"
         >
           <insight.icon className={`h-5 w-5 ${insight.colour}`} />
-          <span className="text-sm text-gray-400">{insight.text}</span>
+          <span className="text-sm text-gray-300">{insight.text}</span>
           <Sparkles className="h-4 w-4 text-blue-500 ml-auto" />
         </motion.div>
       ))}
@@ -209,7 +209,7 @@ function JobCard({ job }: any) {
               {job.status}
             </div>
           </div>
-          <p className="text-sm text-gray-400">{job.client}</p>
+          <p className="text-sm text-gray-300">{job.client}</p>
         </div>
         <div className={`p-2 rounded-lg bg-gradient-to-br ${statusColors[job.status]} opacity-20 group-hover:opacity-30 transition-opacity`}>
           <Icon className="h-5 w-5 text-white" />
@@ -318,7 +318,7 @@ export default function PremiumDashboard() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">NRPG Contractor Portal</h1>
-                <p className="text-xs text-gray-400">Premium Dashboard</p>
+                <p className="text-xs text-gray-300">Premium Dashboard</p>
               </div>
             </div>
             
@@ -358,7 +358,7 @@ export default function PremiumDashboard() {
                 </div>
                 <div className="hidden lg:block">
                   <p className="text-sm font-medium text-white">Demo Services</p>
-                  <p className="text-xs text-gray-400">Premium Tier</p>
+                  <p className="text-xs text-gray-300">Premium Tier</p>
                 </div>
               </div>
             </div>
@@ -380,7 +380,7 @@ export default function PremiumDashboard() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-orange-400">Emergency Job Available</p>
-                <p className="text-xs text-gray-400">Water damage at 42 Emergency St - High priority</p>
+                <p className="text-xs text-gray-300">Water damage at 42 Emergency St - High priority</p>
               </div>
             </div>
             <motion.button
@@ -415,7 +415,7 @@ export default function PremiumDashboard() {
                   </div>
                   <span className="text-xs text-emerald-400">{stat.trend}</span>
                 </div>
-                <p className="text-xs text-gray-400 mb-1">{stat.label}</p>
+                <p className="text-xs text-gray-300 mb-1">{stat.label}</p>
                 <p className="text-lg font-bold text-white">
                   {typeof stat.value === 'number' ? <AnimatedCounter value={stat.value} /> : stat.value}
                 </p>
