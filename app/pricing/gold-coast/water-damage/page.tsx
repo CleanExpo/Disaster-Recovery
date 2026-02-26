@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cost Gold Coast | Pricing from $2,640 | Free Quote',
-  description: 'Water Damage Restoration pricing in Gold Coast, QLD. Minimum $2,640, average $6,600. Insurance approved, no hidden fees.',
+  description: 'Water Damage Restoration pricing in Gold Coast, QLD. Minimum $2,640, average $6,600. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost gold coast',
     'water-damage pricing gold coast',

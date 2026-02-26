@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Sydney | Pricing from $2,860 | Free Quote',
-  description: 'Flood Recovery pricing in Sydney, NSW. Minimum $2,860, average $11,050. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Sydney, NSW. Minimum $2,860, average $11,050. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost sydney',
     'flood-recovery pricing sydney',

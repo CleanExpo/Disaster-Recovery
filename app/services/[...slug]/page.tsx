@@ -159,7 +159,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-6 h-6 text-blue-500" />
-                    <span>Insurance Approved</span>
+                    <span>IICRC Certified</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <MapPin className="w-6 h-6 text-blue-500" />
@@ -283,7 +283,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                     <strong>24/7 Emergency Service</strong>
                   </div>
                   <div className="text-sm text-gray-700">
-                    <strong>Insurance Approved</strong> Contractors
+                    <strong>IICRC-Certified</strong> Contractors
                   </div>
                 </div>
               </div>

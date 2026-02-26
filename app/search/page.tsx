@@ -50,7 +50,7 @@ const mockSearchData: SearchResult[] = [
     location: 'Brisbane CBD',
     rating: 4.9,
     responseTime: '< 30 minutes',
-    tags: ['emergency', 'water damage', 'flood', 'burst pipes', 'insurance approved'],
+    tags: ['emergency', 'water damage', 'flood', 'burst pipes', 'IICRC certified'],
     url: '/services/water-damage',
     priority: 'emergency'
   },
@@ -75,7 +75,7 @@ const mockSearchData: SearchResult[] = [
     category: 'Restoration Contractor',
     location: 'Sydney',
     rating: 4.9,
-    tags: ['IICRC certified', 'experienced', 'insurance approved', 'comprehensive'],
+    tags: ['IICRC certified', 'experienced', 'claims-ready', 'comprehensive'],
     url: '/contractors/elite-restoration'
   },
   {
@@ -294,7 +294,7 @@ function SearchPageContent() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
                   <div className="space-y-2">
-                    {['Emergency Response', '24/7 Available', 'Insurance Approved', 'IICRC Certified'].map(option => (
+                    {['Emergency Response', '24/7 Available', 'IICRC Certified', 'Claims-Ready'].map(option => (
                       <label key={option} className="flex items-center">
                         <input type="checkbox" className="mr-2" />
                         <span className="text-sm">{option}</span>

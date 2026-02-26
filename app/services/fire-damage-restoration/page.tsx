@@ -15,7 +15,7 @@ import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRig
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
   title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery',
-  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. Insurance approved, IICRC certified. Use Our Online Form',
+  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. IICRC-certified contractors. Use Our Online Form',
   keywords: [
     'fire damage restoration Brisbane',
     'smoke damage cleanup Queensland',
@@ -33,7 +33,7 @@ export const metadata: Metadata = generateSEO({
   canonical: 'https://disasterrecovery.com.au/services/fire-damage-restoration',
   openGraph: {
     title: 'Fire & Smoke Damage Restoration Brisbane - 24/7 Emergency Service',
-    description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, insurance approved, complete restoration services.',
+    description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, IICRC-certified, complete restoration services.',
     images: [{ url: '/images/services/fire-damage-restoration.webp', alt: 'Fire Damage Restoration Service' }],
     type: 'website'
   }
@@ -114,7 +114,7 @@ export default function FireDamageRestorationPage() {
               </h1>
               <p className="text-xl text-gray-700 mb-8">
                 IICRC certified fire restoration experts providing complete fire damage recovery, 
-                smoke removal, and odour elimination. Insurance approved with 25+ years experience.
+                smoke removal, and odour elimination. IICRC-certified with 25+ years experience.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -165,7 +165,7 @@ export default function FireDamageRestorationPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-blue-700" />
-                  <span className="text-sm font-medium">Insurance Approved</span>
+                  <span className="text-sm font-medium">IICRC Certified</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-blue-700" />

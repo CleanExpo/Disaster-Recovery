@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Public Holiday Emergency | All Public Holidays | $2200 Minimum + $1000 Surcharge',
-  description: 'Holiday disaster response when other services are closed. 45 minutes response time. Available All Public Holidays. Insurance approved.',
+  description: 'Holiday disaster response when other services are closed. 45 minutes response time. Available All Public Holidays. IICRC-certified.',
   keywords: ["public holiday emergency","christmas emergency","easter disaster recovery"],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/public-holiday' },
 };

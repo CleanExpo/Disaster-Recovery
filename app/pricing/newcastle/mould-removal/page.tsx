@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Cost Newcastle | Pricing from $2,310 | Free Quote',
-  description: 'Mould Remediation pricing in Newcastle, NSW. Minimum $2,310, average $4,725. Insurance approved, no hidden fees.',
+  description: 'Mould Remediation pricing in Newcastle, NSW. Minimum $2,310, average $4,725. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost newcastle',
     'mould-removal pricing newcastle',

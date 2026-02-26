@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Cost Brisbane | Pricing from $2,640 | Free Quote',
-  description: 'Mould Remediation pricing in Brisbane, QLD. Minimum $2,640, average $5,400. Insurance approved, no hidden fees.',
+  description: 'Mould Remediation pricing in Brisbane, QLD. Minimum $2,640, average $5,400. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost brisbane',
     'mould-removal pricing brisbane',

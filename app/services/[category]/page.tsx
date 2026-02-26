@@ -123,7 +123,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
                   <Shield className="h-5 w-5 text-blue-600" />
-                  <span className="text-white">Insurance Approved</span>
+                  <span className="text-white">IICRC Certified</span>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full">
                   <MapPin className="h-5 w-5 text-purple-600" />
@@ -209,7 +209,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl mb-4">
                   <Award className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Insurance Approved</h3>
+                <h3 className="text-xl font-bold text-white mb-2">IICRC Certified</h3>
                 <p className="text-blue-700">Preferred vendor for major insurers</p>
               </div>
 

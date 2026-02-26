@@ -11,7 +11,7 @@ import { Waves, Shield, Clock, AlertTriangle, CheckCircle, Droplets, Home, Therm
 export const metadata: Metadata = generateSEO({
   title: 'Flood Damage Restoration Australia | 24/7 Emergency Flood Cleanup | Disaster Recovery',
   description:
-    'Professional flood damage restoration across Australia. 24/7 emergency flood water extraction, structural drying, decontamination and full flood recovery. IICRC-certified contractors, insurance approved. Start your claim online now.',
+    'Professional flood damage restoration across Australia. 24/7 emergency flood water extraction, structural drying, decontamination and full flood recovery. IICRC-certified contractors, claims-ready documentation. Start your claim online now.',
   keywords: [
     'flood damage restoration',
     'flood cleanup',

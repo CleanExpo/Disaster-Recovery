@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Commercial Buildings Disaster Recovery | Offices, shops, warehouses | Australia',
-  description: 'Specialised disaster recovery for commercial buildings. Offices, shops, warehouses. Insurance approved, 24/7 response.' };
+  description: 'Specialised disaster recovery for commercial buildings. Offices, shops, warehouses. IICRC-certified, 24/7 response.' };
 
 export default function CommercialBuildingsPage() {
   return (

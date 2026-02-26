@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Cost Sydney | Pricing from $2,860 | Free Quote',
-  description: 'Mould Remediation pricing in Sydney, NSW. Minimum $2,860, average $5,850. Insurance approved, no hidden fees.',
+  description: 'Mould Remediation pricing in Sydney, NSW. Minimum $2,860, average $5,850. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost sydney',
     'mould-removal pricing sydney',

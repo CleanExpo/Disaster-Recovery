@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     'emergency restoration cost',
     '$2200 minimum service',
     'what\'s included callout fee',
-    'insurance approved rates',
+    'IICRC certified rates',
     'emergency response pricing'
   ]
 };

@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cost Melbourne | Pricing from $2,750 | Free Quote',
-  description: 'Water Damage Restoration pricing in Melbourne, VIC. Minimum $2,750, average $6,875. Insurance approved, no hidden fees.',
+  description: 'Water Damage Restoration pricing in Melbourne, VIC. Minimum $2,750, average $6,875. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost melbourne',
     'water-damage pricing melbourne',

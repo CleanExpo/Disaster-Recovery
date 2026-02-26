@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Cost Melbourne | Pricing from $2,750 | Free Quote',
-  description: 'Mould Remediation pricing in Melbourne, VIC. Minimum $2,750, average $5,625. Insurance approved, no hidden fees.',
+  description: 'Mould Remediation pricing in Melbourne, VIC. Minimum $2,750, average $5,625. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost melbourne',
     'mould-removal pricing melbourne',

@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Cost Sunshine Coast | Pricing from $2,420 | Free Quote',
-  description: 'Mould Remediation pricing in Sunshine Coast, QLD. Minimum $2,420, average $4,950. Insurance approved, no hidden fees.',
+  description: 'Mould Remediation pricing in Sunshine Coast, QLD. Minimum $2,420, average $4,950. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost sunshine coast',
     'mould-removal pricing sunshine coast',

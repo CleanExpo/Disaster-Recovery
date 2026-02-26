@@ -95,7 +95,7 @@ export default function CostEstimatorPage() {
         stats={[
           { label: 'Market Size', value: '$4.2B' },
           { label: 'Response', value: '24/7' },
-          { label: 'Provider Status', value: 'Insurance Approved' },
+          { label: 'Provider Status', value: 'IICRC Certified' },
           { label: 'Certification', value: 'IICRC Certified' },
         ]}
         sections={[

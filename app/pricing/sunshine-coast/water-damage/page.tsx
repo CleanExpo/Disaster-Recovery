@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cost Sunshine Coast | Pricing from $2,420 | Free Quote',
-  description: 'Water Damage Restoration pricing in Sunshine Coast, QLD. Minimum $2,420, average $6,050. Insurance approved, no hidden fees.',
+  description: 'Water Damage Restoration pricing in Sunshine Coast, QLD. Minimum $2,420, average $6,050. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost sunshine coast',
     'water-damage pricing sunshine coast',

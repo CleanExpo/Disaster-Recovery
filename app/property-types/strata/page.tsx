@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Strata Properties Disaster Recovery | Body corporate managed properties | Australia',
-  description: 'Specialised disaster recovery for strata properties. Body corporate managed properties. Insurance approved, 24/7 response.' };
+  description: 'Specialised disaster recovery for strata properties. Body corporate managed properties. IICRC-certified, 24/7 response.' };
 
 export default function StrataPropertiesPage() {
   return (

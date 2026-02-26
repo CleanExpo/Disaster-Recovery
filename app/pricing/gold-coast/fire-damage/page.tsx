@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Cost Gold Coast | Pricing from $2,640 | Free Quote',
-  description: 'Fire & Smoke Damage pricing in Gold Coast, QLD. Minimum $2,640, average $14,400. Insurance approved, no hidden fees.',
+  description: 'Fire & Smoke Damage pricing in Gold Coast, QLD. Minimum $2,640, average $14,400. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost gold coast',
     'fire-damage pricing gold coast',

@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Cost Wollongong | Pricing from $2,310 | Free Quote',
-  description: 'Fire & Smoke Damage pricing in Wollongong, NSW. Minimum $2,310, average $12,600. Insurance approved, no hidden fees.',
+  description: 'Fire & Smoke Damage pricing in Wollongong, NSW. Minimum $2,310, average $12,600. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost wollongong',
     'fire-damage pricing wollongong',

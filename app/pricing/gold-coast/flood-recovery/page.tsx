@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Gold Coast | Pricing from $2,640 | Free Quote',
-  description: 'Flood Recovery pricing in Gold Coast, QLD. Minimum $2,640, average $10,200. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Gold Coast, QLD. Minimum $2,640, average $10,200. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost gold coast',
     'flood-recovery pricing gold coast',

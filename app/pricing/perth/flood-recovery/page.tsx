@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Perth | Pricing from $2,530 | Free Quote',
-  description: 'Flood Recovery pricing in Perth, WA. Minimum $2,530, average $9,775. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Perth, WA. Minimum $2,530, average $9,775. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost perth',
     'flood-recovery pricing perth',

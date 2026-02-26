@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Rural Properties Disaster Recovery | Farms and country properties | Australia',
-  description: 'Specialised disaster recovery for rural properties. Farms and country properties. Insurance approved, 24/7 response.' };
+  description: 'Specialised disaster recovery for rural properties. Farms and country properties. IICRC-certified, 24/7 response.' };
 
 export default function RuralPropertiesPage() {
   return (

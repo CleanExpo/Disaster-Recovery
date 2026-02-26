@@ -25,7 +25,7 @@ import {
 export const metadata: Metadata = generateSEO({
   title: 'Cyclone Damage Restoration Australia | Emergency Tropical Cyclone Recovery | Disaster Recovery',
   description:
-    'Australia-wide cyclone damage restoration — emergency response for Category 1 to Category 5 cyclone damage, roof loss, structural failure, storm surge flooding and wind damage. IICRC-certified contractors, insurance-approved, 24/7 availability. Start your claim online now.',
+    'Australia-wide cyclone damage restoration — emergency response for Category 1 to Category 5 cyclone damage, roof loss, structural failure, storm surge flooding and wind damage. IICRC-certified contractors, claims-ready documentation, 24/7 availability. Start your claim online now.',
   keywords: [
     'cyclone damage restoration',
     'cyclone cleanup Australia',
@@ -505,7 +505,7 @@ export default function CycloneDamageRestorationPage() {
                 <p>
                   After a major cyclone, insurers receive thousands of claims simultaneously. Properties
                   with thorough, professional documentation are processed faster and with fewer disputes.
-                  Disaster Recovery connects you with experienced, insurance-approved contractors who know
+                  Disaster Recovery connects you with experienced, IICRC-certified contractors who know
                   exactly what insurers require for cyclone damage claims.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

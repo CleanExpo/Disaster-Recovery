@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Melbourne | Pricing from $2,750 | Free Quote',
-  description: 'Flood Recovery pricing in Melbourne, VIC. Minimum $2,750, average $10,625. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Melbourne, VIC. Minimum $2,750, average $10,625. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost melbourne',
     'flood-recovery pricing melbourne',

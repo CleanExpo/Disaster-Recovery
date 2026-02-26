@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Repair Cost Perth | Pricing from $2,530 | Free Quote',
-  description: 'Storm Damage Repair pricing in Perth, WA. Minimum $2,530, average $7,475. Insurance approved, no hidden fees.',
+  description: 'Storm Damage Repair pricing in Perth, WA. Minimum $2,530, average $7,475. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost perth',
     'storm-damage pricing perth',

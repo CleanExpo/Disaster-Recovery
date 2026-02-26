@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Cost Perth | Pricing from $2,530 | Free Quote',
-  description: 'Fire & Smoke Damage pricing in Perth, WA. Minimum $2,530, average $13,800. Insurance approved, no hidden fees.',
+  description: 'Fire & Smoke Damage pricing in Perth, WA. Minimum $2,530, average $13,800. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost perth',
     'fire-damage pricing perth',

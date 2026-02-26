@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Repair Cost Newcastle | Pricing from $2,310 | Free Quote',
-  description: 'Storm Damage Repair pricing in Newcastle, NSW. Minimum $2,310, average $6,825. Insurance approved, no hidden fees.',
+  description: 'Storm Damage Repair pricing in Newcastle, NSW. Minimum $2,310, average $6,825. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost newcastle',
     'storm-damage pricing newcastle',

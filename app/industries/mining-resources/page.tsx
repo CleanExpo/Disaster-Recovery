@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Mining & Resources Disaster Recovery | Specialised Industrial Restoration | Australia',
-  description: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+  description: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["mining disaster recovery","mine site restoration","processing plant cleanup"]
 };
 
@@ -17,7 +17,7 @@ export default function MiningResourcesPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Mining & Resources Disaster Recovery',
-        subtitle: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+        subtitle: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
       cta={{ text: 'Get Industry Quote', href: '/quote' }}
       breadcrumbs={[

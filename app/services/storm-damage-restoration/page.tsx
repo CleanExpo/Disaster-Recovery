@@ -24,7 +24,7 @@ import {
 export const metadata: Metadata = generateSEO({
   title: 'Storm Damage Restoration Australia | Emergency Cyclone, Hail & Wind Repair | Disaster Recovery',
   description:
-    'Australia-wide storm damage restoration — emergency response for cyclone damage, hail damage, wind damage, roof damage and fallen trees. IICRC-certified contractors, insurance-approved, 24/7 availability. Start your claim online now.',
+    'Australia-wide storm damage restoration — emergency response for cyclone damage, hail damage, wind damage, roof damage and fallen trees. IICRC-certified contractors, claims-ready documentation, 24/7 availability. Start your claim online now.',
   keywords: [
     'storm damage restoration',
     'cyclone damage repair',
@@ -165,7 +165,7 @@ export default function StormDamageRestorationPage() {
           icon: <CloudLightning className="h-12 w-12" />,
           title: 'Storm Damage Restoration',
           subtitle:
-            'Australia-wide emergency storm response — IICRC-certified contractors for cyclone, hail, wind and roof damage. Insurance-approved, 24/7 availability.',
+            'Australia-wide emergency storm response — IICRC-certified contractors for cyclone, hail, wind and roof damage. Claims-ready documentation, 24/7 availability.',
         }}
         cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"
@@ -394,7 +394,7 @@ export default function StormDamageRestorationPage() {
                 <p>
                   Navigating an insurance claim after a storm can be overwhelming — especially when you are dealing
                   with property damage and displacement at the same time. Disaster Recovery simplifies the process
-                  by connecting you with experienced, insurance-approved contractors who understand exactly what
+                  by connecting you with experienced, IICRC-certified contractors who understand exactly what
                   insurers require.
                 </p>
                 <p style={{ marginTop: '1rem' }}>

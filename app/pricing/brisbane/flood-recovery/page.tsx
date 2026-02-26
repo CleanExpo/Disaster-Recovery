@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Brisbane | Pricing from $2,640 | Free Quote',
-  description: 'Flood Recovery pricing in Brisbane, QLD. Minimum $2,640, average $10,200. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Brisbane, QLD. Minimum $2,640, average $10,200. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost brisbane',
     'flood-recovery pricing brisbane',

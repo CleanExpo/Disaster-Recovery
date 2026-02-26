@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Repair Cost Adelaide | Pricing from $2,420 | Free Quote',
-  description: 'Storm Damage Repair pricing in Adelaide, SA. Minimum $2,420, average $7,150. Insurance approved, no hidden fees.',
+  description: 'Storm Damage Repair pricing in Adelaide, SA. Minimum $2,420, average $7,150. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost adelaide',
     'storm-damage pricing adelaide',

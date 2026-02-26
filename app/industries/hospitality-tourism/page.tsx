@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hospitality & Tourism Disaster Recovery | Specialised Industrial Restoration | Australia',
-  description: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+  description: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["hotel disaster recovery","resort restoration","tourism facility cleanup"]
 };
 
@@ -17,7 +17,7 @@ export default function HospitalityTourismPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Hospitality & Tourism Disaster Recovery',
-        subtitle: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+        subtitle: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
       cta={{ text: 'Get Industry Quote', href: '/quote' }}
       breadcrumbs={[

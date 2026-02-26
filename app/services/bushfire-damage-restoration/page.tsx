@@ -23,7 +23,7 @@ import {
 export const metadata: Metadata = generateSEO({
   title: 'Bushfire Damage Restoration Australia | Emergency Fire & Smoke Repair | Disaster Recovery',
   description:
-    'Australia-wide bushfire damage restoration — emergency response for fire damage, smoke damage, ember attack and radiant heat damage. IICRC-certified contractors, insurance-approved, 24/7 availability. Start your claim online now.',
+    'Australia-wide bushfire damage restoration — emergency response for fire damage, smoke damage, ember attack and radiant heat damage. IICRC-certified contractors, claims-ready documentation, 24/7 availability. Start your claim online now.',
   keywords: [
     'bushfire damage restoration',
     'bushfire cleanup Australia',
@@ -163,7 +163,7 @@ export default function BushfireDamageRestorationPage() {
           icon: <Flame className="h-12 w-12" />,
           title: 'Bushfire Damage Restoration',
           subtitle:
-            'Australia-wide emergency bushfire response — IICRC-certified contractors for fire damage, smoke damage, ember attack and structural restoration. Insurance-approved, 24/7 availability.',
+            'Australia-wide emergency bushfire response — IICRC-certified contractors for fire damage, smoke damage, ember attack and structural restoration. Claims-ready documentation, 24/7 availability.',
         }}
         cta={{ text: 'Get Emergency Help', href: '/claim' }}
         ctaImage="/images/generated/disaster-recovery/cta-bushfire-damage.webp"
@@ -406,7 +406,7 @@ export default function BushfireDamageRestorationPage() {
                   Navigating an insurance claim after a bushfire is complex — particularly when dealing with total
                   loss, hazardous materials, temporary accommodation and the emotional weight of losing a home
                   or business. Disaster Recovery simplifies the process by connecting you with experienced,
-                  insurance-approved contractors who understand exactly what insurers require.
+                  IICRC-certified contractors who understand exactly what insurers require.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
                   <strong>How we support your bushfire insurance claim:</strong>
@@ -729,7 +729,7 @@ export default function BushfireDamageRestorationPage() {
             title: 'Storm Damage Restoration',
             href: '/services/storm-damage-restoration',
             description:
-              'Emergency storm damage response for cyclone, hail, wind and roof damage — 24/7 availability, insurance-approved contractors.',
+              'Emergency storm damage response for cyclone, hail, wind and roof damage — 24/7 availability, IICRC-certified contractors.',
           },
           {
             title: 'Smoke Damage Restoration',

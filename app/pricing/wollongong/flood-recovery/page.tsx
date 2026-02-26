@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Wollongong | Pricing from $2,310 | Free Quote',
-  description: 'Flood Recovery pricing in Wollongong, NSW. Minimum $2,310, average $8,925. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Wollongong, NSW. Minimum $2,310, average $8,925. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost wollongong',
     'flood-recovery pricing wollongong',

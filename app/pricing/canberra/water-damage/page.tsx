@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cost Canberra | Pricing from $2,530 | Free Quote',
-  description: 'Water Damage Restoration pricing in Canberra, ACT. Minimum $2,530, average $6,325. Insurance approved, no hidden fees.',
+  description: 'Water Damage Restoration pricing in Canberra, ACT. Minimum $2,530, average $6,325. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost canberra',
     'water-damage pricing canberra',

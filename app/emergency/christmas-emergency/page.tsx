@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Christmas Day Emergency | December 25th | $2200 Minimum + $1500 Surcharge',
-  description: 'Christmas Day disaster recovery - we never close. 60 minutes response time. Available December 25th. Insurance approved.',
+  description: 'Christmas Day disaster recovery - we never close. 60 minutes response time. Available December 25th. IICRC-certified.',
   keywords: ["christmas emergency","december 25 disaster","xmas day recovery"],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/christmas' },
 };

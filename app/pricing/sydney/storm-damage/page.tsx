@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Repair Cost Sydney | Pricing from $2,860 | Free Quote',
-  description: 'Storm Damage Repair pricing in Sydney, NSW. Minimum $2,860, average $8,450. Insurance approved, no hidden fees.',
+  description: 'Storm Damage Repair pricing in Sydney, NSW. Minimum $2,860, average $8,450. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost sydney',
     'storm-damage pricing sydney',

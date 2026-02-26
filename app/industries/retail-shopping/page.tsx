@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Retail & Shopping Centres Disaster Recovery | Specialised Industrial Restoration | Australia',
-  description: 'Rapid restoration for retail stores and shopping centres to minimise business interruption. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+  description: 'Rapid restoration for retail stores and shopping centres to minimise business interruption. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["retail disaster recovery","shopping centre restoration","store cleanup"]
 };
 
@@ -17,7 +17,7 @@ export default function RetailShoppingCentersPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Retail & Shopping Centres Disaster Recovery',
-        subtitle: 'Rapid restoration for retail stores and shopping centres to minimise business interruption. 24/7 emergency response, insurance approved, minimal downtime guaranteed.',
+        subtitle: 'Rapid restoration for retail stores and shopping centres to minimise business interruption. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
       cta={{ text: 'Get Industry Quote', href: '/quote' }}
       breadcrumbs={[

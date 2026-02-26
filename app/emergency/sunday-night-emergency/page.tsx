@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Sunday Night Emergency | Sunday 6PM - Monday 6AM | $2200 Minimum + $750 Surcharge',
-  description: 'Sunday night disaster recovery before the work week. 30 minutes response time. Available Sunday 6PM - Monday 6AM. Insurance approved.',
+  description: 'Sunday night disaster recovery before the work week. 30 minutes response time. Available Sunday 6PM - Monday 6AM. IICRC-certified.',
   keywords: ["sunday night emergency","sunday evening disaster","pre-monday emergency"]
 };
 

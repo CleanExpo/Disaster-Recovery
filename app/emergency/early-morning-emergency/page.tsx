@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Early Morning Emergency | 4AM - 7AM | $2200 Minimum + $500 Surcharge',
-  description: 'Dawn disaster recovery before the day begins. 30 minutes response time. Available 4AM - 7AM. Insurance approved.',
+  description: 'Dawn disaster recovery before the day begins. 30 minutes response time. Available 4AM - 7AM. IICRC-certified.',
   keywords: ["early morning emergency","dawn disaster","5am emergency service"],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/early-morning' },
 };

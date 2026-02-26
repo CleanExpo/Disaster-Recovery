@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Repair Cost Gold Coast | Pricing from $2,640 | Free Quote',
-  description: 'Storm Damage Repair pricing in Gold Coast, QLD. Minimum $2,640, average $7,800. Insurance approved, no hidden fees.',
+  description: 'Storm Damage Repair pricing in Gold Coast, QLD. Minimum $2,640, average $7,800. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost gold coast',
     'storm-damage pricing gold coast',

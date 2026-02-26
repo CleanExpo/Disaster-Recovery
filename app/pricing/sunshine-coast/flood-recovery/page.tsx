@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Flood Recovery Cost Sunshine Coast | Pricing from $2,420 | Free Quote',
-  description: 'Flood Recovery pricing in Sunshine Coast, QLD. Minimum $2,420, average $9,350. Insurance approved, no hidden fees.',
+  description: 'Flood Recovery pricing in Sunshine Coast, QLD. Minimum $2,420, average $9,350. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost sunshine coast',
     'flood-recovery pricing sunshine coast',

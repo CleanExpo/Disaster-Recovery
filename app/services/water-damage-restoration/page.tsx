@@ -41,7 +41,7 @@ const LandingHeader = dynamic(() => import('@/components/LandingHeader'), {
 // Generate metadata - using real data
 export const metadata: Metadata = generateAustralianMetadata({
   title: 'Water Damage Restoration Services Australia',
-  description: 'Professional water damage restoration across Australia. 2-hour response. Insurance approved. Based on 2022 Brisbane floods recovery success - 20,439 properties restored.',
+  description: 'Professional water damage restoration across Australia. 2-hour response. IICRC-certified. Based on 2022 Brisbane floods recovery success - 20,439 properties restored.',
   keywords: [
     'water damage restoration',
     'flood recovery',
@@ -183,7 +183,7 @@ export default function WaterDamageRestorationPage() {
                     IICRC S500
                   </div>
                   <div className="absolute bottom-10 left-10 px-4 py-2 bg-green-500/90 backdrop-blur-sm rounded-full text-white font-bold">
-                    Insurance Approved
+                    IICRC Certified
                   </div>
                 </div>
               </div>

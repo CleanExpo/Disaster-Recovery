@@ -3,7 +3,7 @@ import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
   title: 'Storm Damage Repair Cost Melbourne | Pricing from $2,750 | Free Quote',
-  description: 'Storm Damage Repair pricing in Melbourne, VIC. Minimum $2,750, average $8,125. Insurance approved, no hidden fees.',
+  description: 'Storm Damage Repair pricing in Melbourne, VIC. Minimum $2,750, average $8,125. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost melbourne',
     'storm-damage pricing melbourne',
