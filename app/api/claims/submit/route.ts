@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { sendEmail } from '@/lib/email';
+import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
 
 // Fixed platform fee
 const PLATFORM_FEE = 2750.00;
@@ -74,6 +76,27 @@ export async function POST(request: NextRequest) {
         tenantId:             body.tenantId || null,
       },
     });
+
+    // Send Claim Support Pack email (non-blocking — failures don't block the claim)
+    try {
+      const supportPackEmail = generateClaimSupportPackEmail({
+        claimId: claim.id,
+        clientName: body.fullName,
+        email: body.email,
+        propertyAddress: body.propertyAddress,
+        suburb: body.suburb,
+        state: body.state,
+        postcode: body.postcode,
+        damageTypes: Array.isArray(body.damageTypes) ? body.damageTypes : [],
+        urgencyLevel: body.urgencyLevel || 'standard',
+        insuranceCompany: body.insuranceCompany || undefined,
+        policyNumber: body.policyNumber || undefined,
+      });
+      await sendEmail(body.email, supportPackEmail);
+    } catch (emailError) {
+      // Log but don't fail the claim — email is supplementary
+      console.error('Claim Support Pack email failed (non-critical):', emailError);
+    }
 
     return NextResponse.json({
       success: true,
