@@ -5,6 +5,7 @@ import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect, use } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -384,12 +385,37 @@ function TrackClaimPageOriginal({ params }: { params: Promise<{ claimId: string 
           </CardContent>
         </Card>
 
+        {/* Claim Support Pack CTA */}
+        <Card className="mb-6 border-blue-200 bg-blue-50">
+          <CardContent className="py-6">
+            <div className="flex items-start gap-4">
+              <Shield className="h-8 w-8 text-blue-600 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold text-lg text-gray-900 mb-1">
+                  Your Claim Support Pack
+                </h3>
+                <p className="text-gray-700 text-sm mb-3">
+                  Know your rights, questions to ask your insurer, expert contacts, and a step-by-step claim guide.
+                </p>
+                <Link
+                  href={`/claim/${claimData.id}/support`}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  <FileText className="h-4 w-4" />
+                  View Support Pack
+                  <ChevronRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Platform Notice */}
         <Alert>
           <Shield className="h-4 w-4" />
           <AlertDescription>
-            <strong>Remember:</strong> Disaster Recovery is a lead generation platform. 
-            Your assigned contractor handles all service delivery according to strict NRPG standards. 
+            <strong>Remember:</strong> Disaster Recovery is a lead generation platform.
+            Your assigned contractor handles all service delivery according to strict NRPG standards.
             The $2,750 platform fee has been processed for lead generation and contractor matching services.
           </AlertDescription>
         </Alert>

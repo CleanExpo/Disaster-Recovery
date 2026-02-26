@@ -202,6 +202,39 @@ export const KNOW_YOUR_RIGHTS = [
   },
 ];
 
+// ─── Questions to Ask Your Insurer ──────────────────────────
+// From UNI-904 spec — empowers property owners with the right
+// questions to protect their claim. All questions are grounded
+// in ICA Code of Practice or Insurance Contracts Act 1984.
+
+export const QUESTIONS_FOR_INSURER = [
+  {
+    question: 'Please confirm in writing whether the damage at my property on [DATE] is covered under my policy.',
+    why: 'A written confirmation creates a record. If your insurer later changes their position, you have evidence of the original response.',
+    source: 'General Insurance Code of Practice 2020, Section 9.4',
+  },
+  {
+    question: 'What is the specific exclusion you are relying on if you decline any part of this claim?',
+    why: 'Your insurer must tell you the exact policy clause they are relying on — they cannot give a vague reason.',
+    source: 'General Insurance Code of Practice 2020, Section 9.9',
+  },
+  {
+    question: 'What is your timeframe for appointing an assessor under the General Insurance Code of Practice?',
+    why: 'Under the Code, your insurer must keep you informed and act within reasonable timeframes.',
+    source: 'General Insurance Code of Practice 2020, Section 9.7',
+  },
+  {
+    question: 'If I disagree with the assessment, what is your internal dispute resolution process?',
+    why: 'Every insurer must have an internal dispute resolution (IDR) process. You must exhaust IDR before escalating to AFCA.',
+    source: 'General Insurance Code of Practice 2020, Part 10',
+  },
+  {
+    question: 'How do I access the Australian Financial Complaints Authority (AFCA) if I am unsatisfied with the outcome?',
+    why: 'AFCA provides FREE, independent dispute resolution. Their decisions are BINDING on your insurer for claims up to $1.085 million.',
+    source: 'Australian Financial Complaints Authority Act 2018',
+  },
+];
+
 // ─── Document Checklist ─────────────────────────────────────
 
 export const DOCUMENT_CHECKLIST = [

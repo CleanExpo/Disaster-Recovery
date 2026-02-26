@@ -114,7 +114,8 @@ export async function POST(request: NextRequest) {
         'Contractors follow strict NRPG standards and guidelines',
         'Platform fee covers lead generation and contractor matching only'
       ],
-      trackingUrl: `/track/${claim.id}`
+      trackingUrl: `/track/${claim.id}`,
+      supportPackUrl: `/claim/${claim.id}/support`
     }, { status: 201 });
 
   } catch (error) {
