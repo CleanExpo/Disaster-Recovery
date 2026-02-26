@@ -2,6 +2,10 @@
 import { sydneySuburbs } from '../../data/suburbs/sydney';
 import { melbourneSuburbs } from '../../data/suburbs/melbourne';
 import { brisbaneSuburbs } from '../../data/suburbs/brisbane';
+import { perthSuburbs } from '../../data/suburbs/perth';
+import { adelaideSuburbs } from '../../data/suburbs/adelaide';
+import { darwinSuburbs } from '../../data/suburbs/darwin';
+import { cairnsSuburbs } from '../../data/suburbs/cairns';
 import type { SuburbData } from '../../data/suburbs/sydney';
 
 // Convert suburb name to URL slug
@@ -14,6 +18,10 @@ export const cityStateMap: Record<string, string> = {
   sydney: 'NSW',
   melbourne: 'VIC',
   brisbane: 'QLD',
+  perth: 'WA',
+  adelaide: 'SA',
+  darwin: 'NT',
+  cairns: 'QLD',
 };
 
 // Build suburb lookup maps: { slug → SuburbData }
@@ -26,11 +34,27 @@ melbourneSuburbs.forEach(s => melbourneMap.set(toSlug(s.name), s));
 const brisbaneMap = new Map<string, SuburbData>();
 brisbaneSuburbs.forEach(s => brisbaneMap.set(toSlug(s.name), s));
 
+const perthMap = new Map<string, SuburbData>();
+perthSuburbs.forEach(s => perthMap.set(toSlug(s.name), s));
+
+const adelaideMap = new Map<string, SuburbData>();
+adelaideSuburbs.forEach(s => adelaideMap.set(toSlug(s.name), s));
+
+const darwinMap = new Map<string, SuburbData>();
+darwinSuburbs.forEach(s => darwinMap.set(toSlug(s.name), s));
+
+const cairnsMap = new Map<string, SuburbData>();
+cairnsSuburbs.forEach(s => cairnsMap.set(toSlug(s.name), s));
+
 // All suburb maps by parent city slug
 export const suburbsByCity: Record<string, Map<string, SuburbData>> = {
   sydney: sydneyMap,
   melbourne: melbourneMap,
   brisbane: brisbaneMap,
+  perth: perthMap,
+  adelaide: adelaideMap,
+  darwin: darwinMap,
+  cairns: cairnsMap,
 };
 
 // Get suburb data by city slug + suburb slug
@@ -45,7 +69,7 @@ export function getSuburbSlugs(citySlug: string): string[] {
 }
 
 // Supported cities for suburb expansion
-export const suburbCities = ['sydney', 'melbourne', 'brisbane'] as const;
+export const suburbCities = ['sydney', 'melbourne', 'brisbane', 'perth', 'adelaide', 'darwin', 'cairns'] as const;
 
 // All valid services (shared with city-service page)
 export const validServices = [
