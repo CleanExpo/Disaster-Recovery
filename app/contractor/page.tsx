@@ -211,7 +211,7 @@ function ContractorPortalLandingOriginal() {
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             <span className="block">Ready to get started?</span>
           </h2>
-          <p className="mt-4 text-lg leading-6 text-blue-700">
+          <p className="mt-4 text-lg leading-6 text-blue-200">
             Join our network of professional restoration contractors today.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
