@@ -56,6 +56,15 @@ const PAGES_WITH_OWN_FAQ = [
   '/guides/locations/sunshine-coast/sunshine-coast-hotel-restoration',
   '/guides/locations/sydney/sydney-cbd-emergency-water-extraction',
   '/guides/locations/wollongong/wollongong-coastal-storm-damage',
+  '/guides/professional/builder-vs-restorer-difference',
+  '/guides/professional/nrp-best-practices-guide',
+  '/guides/storm-damage/storm-damage-roof-leak-repair',
+  '/guides/water-damage/burst-pipe-ceiling-repair-cost',
+  '/guides/pricing/professional-response-pricing-breakdown',
+  '/guides/pricing/real-emergency-response-costs',
+  '/guides/services/contents-pack-out-storage',
+  '/guides/services/what-disaster-recovery-includes',
+  '/guides/insurance-guides/mould-removal-insurance-coverage',
 ];
 
 // All data below is trusted static content — safe to stringify
