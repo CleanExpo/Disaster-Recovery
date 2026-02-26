@@ -140,42 +140,37 @@ export const generateBreadcrumbSchema = (items: Array<{name: string, url: string
 export const generateHowToSchema = () => ({
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "How to Get Emergency Restoration Services",
-  "description": "Quick guide to getting immediate disaster recovery assistance",
-  "estimatedCost": {
-    "@type": "MonetaryAmount",
-    "currency": "AUD",
-    "value": "0"
-  },
+  "name": "How to Get Emergency Restoration Services in Australia",
+  "description": "Step-by-step guide to getting immediate disaster recovery assistance from NRPG's certified contractor network",
   "totalTime": "PT5M",
   "step": [
     {
       "@type": "HowToStep",
-      "name": "Report Damage",
-      "text": "Lodge your claim online at disasterrecovery.com.au/claim to report your emergency",
-      "url": "https://disasterrecovery.com.au/emergency",
-      "image": "https://disasterrecovery.com.au/images/step1.jpg"
+      "position": 1,
+      "name": "Report Your Damage",
+      "text": "Lodge your claim online at disasterrecovery.com.au/claim with details of the damage, location, and photos if available.",
+      "url": "https://disasterrecovery.com.au/claim"
     },
     {
       "@type": "HowToStep",
-      "name": "Instant Match",
-      "text": "Our AI instantly matches you with the nearest certified contractor",
-      "url": "https://disasterrecovery.com.au/how-it-works",
-      "image": "https://disasterrecovery.com.au/images/step2.jpg"
+      "position": 2,
+      "name": "Get Matched with a Certified Contractor",
+      "text": "NRPG instantly matches you with the nearest IICRC-certified contractor within your selected radius (20–100 km).",
+      "url": "https://disasterrecovery.com.au/how-it-works"
     },
     {
       "@type": "HowToStep",
-      "name": "Fast Response",
-      "text": "Contractor arrives within 60 minutes to assess and begin restoration",
-      "url": "https://disasterrecovery.com.au/response-time",
-      "image": "https://disasterrecovery.com.au/images/step3.jpg"
+      "position": 3,
+      "name": "Receive a 60-Minute Emergency Response",
+      "text": "Your matched contractor arrives within 60 minutes to assess the damage and begin make-safe and mitigation work.",
+      "url": "https://disasterrecovery.com.au/claim"
     },
     {
       "@type": "HowToStep",
-      "name": "Full Restoration",
-      "text": "Complete restoration with insurance handled directly",
-      "url": "https://disasterrecovery.com.au/insurance",
-      "image": "https://disasterrecovery.com.au/images/step4.jpg"
+      "position": 4,
+      "name": "Complete Restoration with Full Documentation",
+      "text": "The contractor completes full restoration and provides comprehensive documentation to support your insurance claim.",
+      "url": "https://disasterrecovery.com.au/claim"
     }
   ]
 });

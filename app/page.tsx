@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import HomePage from './HomePageClient';
+import { generateHowToSchema } from '@/lib/seo-schema';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services',
@@ -15,6 +17,19 @@ export const metadata: Metadata = {
   },
 };
 
+// HowTo schema data — all trusted static content, safe to stringify
+const howToSchemaData = JSON.stringify(generateHowToSchema());
+
 export default function HomePageWrapper() {
-  return <HomePage />;
+  return (
+    <>
+      <Script
+        id="howto-schema"
+        type="application/ld+json"
+        // Trusted static schema data from generateHowToSchema() — no user input
+        dangerouslySetInnerHTML={{ __html: howToSchemaData }}
+      />
+      <HomePage />
+    </>
+  );
 }

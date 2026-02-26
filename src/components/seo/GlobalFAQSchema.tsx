@@ -13,6 +13,8 @@ const PAGES_WITH_OWN_FAQ = [
   '/for/property-managers',
   '/for/strata-managers',
   '/for/business-owners',
+  '/about',
+  '/facts',
 ];
 
 // All data below is trusted static content — safe to stringify

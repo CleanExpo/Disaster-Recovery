@@ -28,6 +28,24 @@ export const WEBSITE_DESIGNER = 'Zenith';
 export const DESIGNER_URL = 'https://zenith.engineer';
 export const PARENT_AGENCY = 'Unite-Group Agency';
 
+// Centralised NAP (Name, Address, Phone) + social links for schema consistency
+export const NAP = {
+  name: 'Disaster Recovery',
+  legalName: 'National Restoration Professionals Group Pty Ltd',
+  alternateName: 'NRPG',
+  url: 'https://disasterrecovery.com.au',
+  email: 'contractors@disasterrecovery.com.au',
+  abn: '85 151 794 142',
+  priceRange: '$2,200+',
+  logo: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
+  ogImage: 'https://disasterrecovery.com.au/images/disaster-recovery-og.jpg',
+  sameAs: [
+    'https://www.facebook.com/DisasterRecoveryAU',
+    'https://www.linkedin.com/company/disaster-recovery-au',
+    'https://www.instagram.com/disasterrecoveryau',
+  ],
+} as const;
+
 // Lead Pricing
 export const LEAD_PRICE = 550;
 export const LEAD_PRICE_PREMIUM = 750; // For capital cities

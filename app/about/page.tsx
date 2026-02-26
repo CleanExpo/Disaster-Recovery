@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
+import { NAP } from '@/lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = generateSEO({
@@ -18,8 +20,78 @@ export const metadata: Metadata = generateSEO({
   canonical: '/about',
 });
 
+// About-specific Organization schema — trusted static data, safe to stringify
+const aboutOrganizationSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${NAP.url}/#organization`,
+  name: NAP.name,
+  legalName: NAP.legalName,
+  alternateName: NAP.alternateName,
+  url: NAP.url,
+  logo: NAP.logo,
+  image: NAP.ogImage,
+  email: NAP.email,
+  foundingDate: '2024',
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  description: 'Australia\'s national disaster recovery claims distribution platform. Connecting property owners with IICRC-certified contractors 24/7 for water, fire, storm, mould, and biohazard restoration.',
+  sameAs: NAP.sameAs,
+  knowsAbout: [
+    'Water damage restoration',
+    'Fire damage restoration',
+    'Mould remediation',
+    'Storm damage repair',
+    'Flood recovery',
+    'Biohazard cleaning',
+    'Emergency property restoration',
+    'Insurance claims documentation',
+    'IICRC certification standards',
+  ],
+});
+
+// About-page FAQ — trusted static data, safe to stringify
+const aboutFAQs = [
+  {
+    question: 'What is Disaster Recovery Australia?',
+    answer: 'Disaster Recovery Australia is a national claims distribution platform that connects property owners with IICRC-certified restoration contractors across all Australian states and territories. We operate 24/7/365 as the bridge between insurance claims and qualified restoration professionals.',
+  },
+  {
+    question: 'Is Disaster Recovery Australia a restoration company?',
+    answer: 'No. Disaster Recovery Australia is a distribution network, not a restoration company. We match property owners with certified contractors in their area. Contractors bill you directly, and we provide full documentation for your insurance reimbursement claim.',
+  },
+  {
+    question: 'What areas does Disaster Recovery cover?',
+    answer: 'Disaster Recovery covers all 8 Australian states and territories — from metropolitan Sydney and Melbourne to regional centres like Townsville and Wagga Wagga, and remote communities like Coober Pedy and Broken Hill. Our network handles jobs from single rooms to 80-floor towers.',
+  },
+  {
+    question: 'What certifications do your contractors hold?',
+    answer: 'All contractors must maintain current IICRC certification, minimum $20 million public liability insurance, WorkSafe accreditation, and compliance with Australian Standards including AS/NZS 4360. Specialist certifications (asbestos, HAZMAT, ISO) are required for relevant work categories.',
+  },
+  {
+    question: 'How does billing work with Disaster Recovery?',
+    answer: 'Your matched contractor bills you directly — not your insurer. This means work begins immediately without waiting for insurer approval. We provide comprehensive documentation to support your insurance reimbursement claim. Payment plans are available through Blue Fire Finance.',
+  },
+  {
+    question: 'How quickly can a contractor respond?',
+    answer: 'Our platform matches you with the nearest IICRC-certified contractor automatically. Emergency jobs receive priority dispatching, with contractors typically responding within 60 minutes in metropolitan areas. The platform operates 24/7/365 with no phone queues or business-hours limitations.',
+  },
+];
+const aboutFAQSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: aboutFAQs.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+});
+
 export default function AboutPage() {
   return (
+    <>
+      {/* Organization + FAQ schemas — trusted static data from constants, no user input */}
+      <Script id="about-org-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: aboutOrganizationSchema }} />
+      <Script id="about-faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: aboutFAQSchema }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 100%)',
@@ -187,6 +259,48 @@ export default function AboutPage() {
             </div>
           ),
         },
+        {
+          heading: 'Platform Statistics',
+          body: (
+            <div className="space-y-4">
+              <p>
+                Key metrics about the Disaster Recovery Australia platform:
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                {[
+                  { metric: 'States & Territories Covered', value: '8 / 8' },
+                  { metric: 'Service Categories', value: '10+' },
+                  { metric: 'Platform Availability', value: '24/7/365' },
+                  { metric: 'Contractor Certification', value: '100% IICRC' },
+                  { metric: 'Minimum Public Liability', value: '$20M' },
+                  { metric: 'Target Response Time', value: '60 minutes' },
+                  { metric: 'Minimum Service Fee', value: '$2,200' },
+                  { metric: 'Payment Plans', value: 'Available' },
+                  { metric: 'Platform Type', value: '100% Digital' },
+                ].map(({ metric, value }) => (
+                  <div key={metric} className="border border-gray-700 rounded-lg p-3">
+                    <div className="text-lg font-bold text-white">{value}</div>
+                    <div className="text-sm text-gray-400">{metric}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ),
+          background: 'light',
+        },
+        {
+          heading: 'Frequently Asked Questions',
+          body: (
+            <div className="space-y-6">
+              {aboutFAQs.map((faq) => (
+                <div key={faq.question}>
+                  <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
+                  <p className="text-gray-300">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          ),
+        },
       ]}
       relatedPages={[
         { title: 'Our Certifications', href: '/certifications', description: 'View the professional certifications required for all contractors in our network.' },
@@ -197,5 +311,6 @@ export default function AboutPage() {
         { title: 'Start a Claim', href: '/claim', description: 'Submit your damage claim online for immediate contractor matching.' },
       ]}
     />
+    </>
   );
 }

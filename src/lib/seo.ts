@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { NAP } from '@/lib/constants'
 
 interface SEOConfig {
   title: string
@@ -68,17 +69,17 @@ export interface BusinessLocationInfo {
 export const generateLocalBusinessSchema = (businessInfo: BusinessLocationInfo) => ({
   '@context': 'https://schema.org',
   '@type': 'DamageRestorationService',
-  '@id': 'https://disasterrecovery.com.au/#organization',
-  name: 'Disaster Recovery',
-  url: 'https://disasterrecovery.com.au',
+  '@id': `${NAP.url}/#organization`,
+  name: NAP.name,
+  url: NAP.url,
   logo: {
     '@type': 'ImageObject',
-    url: 'https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png',
+    url: NAP.logo,
     width: 250,
     height: 60 },
-  image: 'https://disasterrecovery.com.au/images/disaster-recovery-og.jpg',
+  image: NAP.ogImage,
   description: `${businessInfo.city}, ${businessInfo.stateFullName}'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.`,
-  email: 'info@disasterrecovery.com.au',
+  email: NAP.email,
   address: {
     '@type': 'PostalAddress',
     streetAddress: businessInfo.streetAddress,
@@ -97,11 +98,7 @@ export const generateLocalBusinessSchema = (businessInfo: BusinessLocationInfo) 
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '00:00',
     closes: '23:59' },
-  sameAs: [
-    'https://www.facebook.com/DisasterRecoveryAU',
-    'https://www.linkedin.com/company/disaster-recovery-au',
-    'https://www.instagram.com/disasterrecoveryau',
-  ],
+  sameAs: NAP.sameAs,
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Disaster Recovery Services',

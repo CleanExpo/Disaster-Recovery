@@ -1,7 +1,8 @@
 import type { LocationData } from '../../../data/locations/_schema';
 import type { FAQEntry } from './faq-generator';
+import { NAP } from '@/lib/constants';
 
-const BASE_URL = 'https://disasterrecovery.com.au';
+const BASE_URL = NAP.url;
 
 export function generateLocationSchemas(
   data: LocationData,
@@ -96,11 +97,11 @@ export function generateLocationSchemas(
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     '@id': `${BASE_URL}/locations/${slug}/#localbusiness`,
-    name: `Disaster Recovery ${city}`,
+    name: `${NAP.name} ${city}`,
     url: `${BASE_URL}/locations/${slug}`,
     description: `24/7 emergency disaster recovery and property restoration services in ${city}, ${stateFullName}. IICRC-certified contractor network for water damage, fire damage, mould, and storm restoration.`,
-    image: `${BASE_URL}/images/disaster-recovery-og.jpg`,
-    priceRange: '$2,200+',
+    image: NAP.ogImage,
+    priceRange: NAP.priceRange,
     areaServed: [
       {
         '@type': 'City',

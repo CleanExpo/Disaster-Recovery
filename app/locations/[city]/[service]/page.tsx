@@ -47,13 +47,19 @@ export async function generateMetadata({ params }: { params: { city: string; ser
   const serviceTitle = params.service.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   
   return {
-    title: `${serviceTitle} ${cityTitle} | 24/7 Emergency Response`,
-    description: `Professional ${serviceTitle.toLowerCase()} services in ${cityTitle}. Available 24/7 for emergency response. Insurance approved contractors. Call now for immediate assistance.`,
-    keywords: `${params.service}, ${params.city}, emergency restoration, insurance claims, 24 hour service`,
+    title: `Emergency ${serviceTitle} ${cityTitle} | NRPG 24/7`,
+    description: `Need emergency ${serviceTitle.toLowerCase()} in ${cityTitle}? NRPG connects you with IICRC-certified contractors in under 60 minutes. Available 24/7 across ${cityTitle}.`,
+    keywords: `${params.service}, ${params.city}, emergency restoration, disaster recovery, 24 hour service`,
     openGraph: {
-      title: `${serviceTitle} ${cityTitle} - Emergency Response`,
-      description: `Get immediate ${serviceTitle.toLowerCase()} help in ${cityTitle}. Professional, insurance-approved contractors available 24/7.`,
+      title: `Emergency ${serviceTitle} ${cityTitle} | NRPG 24/7`,
+      description: `Emergency ${serviceTitle.toLowerCase()} in ${cityTitle} — IICRC-certified contractors respond in under 60 minutes. Available 24/7.`,
       type: 'website',
+      images: [{
+        url: `https://disasterrecovery.com.au/api/og?title=${encodeURIComponent(`Emergency ${serviceTitle}`)}&city=${encodeURIComponent(cityTitle)}&service=${encodeURIComponent(params.service)}`,
+        width: 1200,
+        height: 630,
+        alt: `Emergency ${serviceTitle} in ${cityTitle} - Disaster Recovery Australia`,
+      }],
     }
   };
 }
