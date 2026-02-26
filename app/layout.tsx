@@ -128,6 +128,8 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
+        <link rel="alternate" hrefLang="en-AU" href="https://disasterrecovery.com.au" />
+        <link rel="alternate" hrefLang="x-default" href="https://disasterrecovery.com.au" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

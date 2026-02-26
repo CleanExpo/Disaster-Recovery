@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
+import { suburbCities, getSuburbSlugs, validServices } from '@/lib/suburb-utils';
 
 /**
  * Recursively find all page.tsx files under a directory,
@@ -175,11 +176,47 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route => !EXCLUDED_PREFIXES.some(prefix => route.startsWith(prefix))
   );
 
-  // Generate sitemap entries
-  return publicRoutes.map(route => ({
+  // Generate sitemap entries for static pages
+  const staticEntries: MetadataRoute.Sitemap = publicRoutes.map(route => ({
     url: route === '/' ? baseUrl : `${baseUrl}${route}`,
     lastModified: currentDate,
     changeFrequency: getChangeFrequency(route),
     priority: getPriority(route),
   }));
+
+  // Generate entries for dynamic city-service pages
+  const cities = [
+    'sydney', 'melbourne', 'brisbane', 'perth', 'adelaide',
+    'darwin', 'hobart', 'canberra', 'newcastle', 'wollongong',
+    'gold-coast', 'sunshine-coast', 'geelong', 'townsville', 'cairns',
+  ];
+  const cityServiceEntries: MetadataRoute.Sitemap = [];
+  for (const city of cities) {
+    for (const service of validServices) {
+      cityServiceEntries.push({
+        url: `${baseUrl}/locations/${city}/${service}`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
+        priority: 0.8,
+      });
+    }
+  }
+
+  // Generate entries for dynamic suburb-service pages
+  const suburbServiceEntries: MetadataRoute.Sitemap = [];
+  for (const city of suburbCities) {
+    const suburbs = getSuburbSlugs(city);
+    for (const suburb of suburbs) {
+      for (const service of validServices) {
+        suburbServiceEntries.push({
+          url: `${baseUrl}/locations/${city}/${suburb}/${service}`,
+          lastModified: currentDate,
+          changeFrequency: 'weekly',
+          priority: 0.75,
+        });
+      }
+    }
+  }
+
+  return [...staticEntries, ...cityServiceEntries, ...suburbServiceEntries];
 }
