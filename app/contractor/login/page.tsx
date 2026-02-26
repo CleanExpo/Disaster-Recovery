@@ -246,7 +246,7 @@ function ContractorLoginPageOriginal() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <User className="h-5 w-5 text-gray-200 group-focus-within:text-blue-600 transition-colours" />
+                      <User className="h-5 w-5 text-gray-200 group-focus-within:text-blue-400 transition-colours" />
                     </div>
                     <input
                       id="username"
@@ -267,7 +267,7 @@ function ContractorLoginPageOriginal() {
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Lock className="h-5 w-5 text-gray-200 group-focus-within:text-blue-600 transition-colours" />
+                      <Lock className="h-5 w-5 text-gray-200 group-focus-within:text-blue-400 transition-colours" />
                     </div>
                     <input
                       id="password"
@@ -307,7 +307,7 @@ function ContractorLoginPageOriginal() {
                   </label>
                   <Link
                     href="/contractor/forgot-password"
-                    className="text-sm text-blue-600 hover:text-blue-700 transition-colours"
+                    className="text-sm text-blue-400 hover:text-blue-300 transition-colours"
                   >
                     Forgot password?
                   </Link>
@@ -317,7 +317,7 @@ function ContractorLoginPageOriginal() {
                 {error && (
                   <div className="bg-red-500/10 border border-red-600/50 rounded-lg p-3 flex items-start backdrop-blur-sm">
                     <AlertCircle className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-red-700">{error}</span>
+                    <span className="text-sm text-red-400">{error}</span>
                   </div>
                 )}
 
@@ -399,7 +399,7 @@ function ContractorLoginPageOriginal() {
               href="/contractor/apply"
               className="text-sm text-gray-300 hover:text-white transition-colours block"
             >
-              Don't have an account? <span className="text-blue-600">Register as a contractor</span>
+              Don't have an account? <span className="text-blue-400">Register as a contractor</span>
             </Link>
             <Link
               href="/"
