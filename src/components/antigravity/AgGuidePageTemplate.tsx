@@ -96,9 +96,39 @@ export function AgGuidePageTemplate({
       })
     : null;
 
+  // Article schema for GEO citation and rich results
+  const articleSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: subtitle || `Expert guide on ${title.toLowerCase()} from Disaster Recovery Australia`,
+    author: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
+      url: 'https://disasterrecovery.com.au',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Australia',
+      url: 'https://disasterrecovery.com.au',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://disasterrecovery.com.au/logos/3D NRP Logo.png',
+      },
+    },
+    articleSection: category,
+    inLanguage: 'en-AU',
+    isAccessibleForFree: true,
+  });
+
   return (
     <>
       <AntigravityNavbar />
+
+      {/* Article structured data — all data is trusted static content */}
+      <Script id="guide-article-schema" type="application/ld+json" strategy="afterInteractive">
+        {articleSchema}
+      </Script>
 
       {/* FAQPage structured data */}
       {faqSchema && (

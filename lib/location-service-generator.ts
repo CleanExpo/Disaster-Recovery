@@ -1,4 +1,5 @@
 // Location-based Service Page Generator for SEO Domination
+import { serviceFAQs, defaultServiceFAQs } from '../src/lib/location-content/service-faqs';
 
 export interface LocationServicePage {
   id: string;
@@ -404,30 +405,14 @@ export class LocationServiceGenerator {
   }
 
   private static generateFAQs(service: any, location: any, suburb?: string) {
-    const locationText = suburb || location.city;
-    
-    return [
-      {
-        question: `How quickly can you respond to ${service.type.toLowerCase()} in ${locationText}?`,
-        answer: `Our emergency response team typically arrives within 30-60 minutes for urgent ${service.type.toLowerCase()} calls in ${locationText}. We maintain crews throughout ${location.city} to ensure rapid response times.`
-      },
-      {
-        question: `Do you work with insurance companies for ${service.type.toLowerCase()} claims?`,
-        answer: `Yes, we work with all major insurance companies and can bill them directly. We'll document all damage, provide detailed reports, and handle the entire claims process for you.`
-      },
-      {
-        question: `What areas do you service around ${locationText}?`,
-        answer: `We service all of ${locationText} and surrounding suburbs including ${this.getNearbySuburbs(location, suburb).slice(0, 5).join(', ')}. Our ${location.city} team covers the entire metropolitan area.`
-      },
-      {
-        question: `Are you available 24/7 for emergency ${service.type.toLowerCase()}?`,
-        answer: `Yes, our emergency response team is available 24 hours a day, 7 days a week, including public holidays. Disasters don't wait, and neither do we.`
-      },
-      {
-        question: `What certifications do your ${locationText} technicians have?`,
-        answer: `All our technicians are IICRC certified and undergo continuous training. We maintain the highest industry standards for ${service.type.toLowerCase()} in ${location.city}.`
-      }
-    ];
+    // Use service-specific FAQ data if available, otherwise fall back to defaults
+    const generator = serviceFAQs[service.category === 'water' ? 'water-damage-restoration' :
+      service.category === 'fire' ? 'fire-damage-restoration' :
+      service.category === 'mould' ? 'mould-remediation' :
+      service.category === 'flood' ? 'flood-recovery' :
+      service.category === 'storm' ? 'storm-damage-repairs' : ''] || defaultServiceFAQs;
+
+    return generator(location.city, suburb);
   }
 
   private static generateRelatedPages(locationKey: string, serviceKey: string, suburb?: string): string[] {

@@ -263,19 +263,40 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
         </div>
       </section>
 
-      {/* FAQs */}
+      {/* FAQs — Q&A content section optimised for AEO/featured snippets */}
       {data.faqs && data.faqs.length > 0 && (
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              {data.faqs.map((faq, idx) => (
-                <div key={idx} className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold mb-3">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Frequently Asked Questions</h2>
+              <p className="text-gray-500 mb-8">Common questions about our services in {city}</p>
+              <div className="space-y-4">
+                {data.faqs.map((faq, idx) => (
+                  <motion.details
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: idx * 0.05 }}
+                    viewport={{ once: true }}
+                    className="group bg-gray-50 rounded-lg border border-gray-200 overflow-hidden"
+                    {...(idx === 0 ? { open: true } : {})}
+                  >
+                    <summary className="flex items-center justify-between cursor-pointer p-5 font-semibold text-gray-900 hover:bg-gray-100 transition-colors list-none [&::-webkit-details-marker]:hidden">
+                      <span className="pr-4">{faq.question}</span>
+                      <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-90" />
+                    </summary>
+                    <div className="px-5 pb-5 text-gray-600 leading-relaxed border-t border-gray-200 pt-4">
+                      {faq.answer}
+                    </div>
+                  </motion.details>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </section>
       )}
