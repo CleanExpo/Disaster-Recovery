@@ -27,6 +27,16 @@ const PAGES_WITH_OWN_FAQ = [
   '/guides/emergency/middle-night-flooding-emergency',
   '/guides/emergency/emergency-board-up-storm-damage',
   '/guides/mould/why-mould-returns-6-months',
+  '/guides/commercial/data-centre-water-damage',
+  '/guides/commercial/office-water-damage-business-interruption',
+  '/guides/commercial/restaurant-fire-damage-restoration',
+  '/guides/commercial/retail-flood-inventory-recovery',
+  '/guides/commercial/warehouse-roof-leak-restoration',
+  '/guides/certifications/why-hire-iicrc-certified',
+  '/guides/equipment/structural-drying-equipment-cost',
+  '/guides/flood-damage/flood-damage-hardwood-floors',
+  '/guides/biohazard/sewage-backup-health-risks',
+  '/guides/guides/how-long-fire-damage-restoration',
 ];
 
 // All data below is trusted static content — safe to stringify
