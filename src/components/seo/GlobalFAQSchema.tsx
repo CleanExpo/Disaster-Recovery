@@ -19,6 +19,14 @@ const PAGES_WITH_OWN_FAQ = [
   '/guides/fire-damage',
   '/guides/storm-damage',
   '/guides/mould',
+  '/guides/insurance/should-i-take-a-payout',
+  '/guides/insurance/insurance-approved-contractors',
+  '/guides/insurance/loss-assessor-vs-contractor',
+  '/guides/insurance/section-54-contractor-rights',
+  '/guides/emergency/find-24-hour-emergency-restoration',
+  '/guides/emergency/middle-night-flooding-emergency',
+  '/guides/emergency/emergency-board-up-storm-damage',
+  '/guides/mould/why-mould-returns-6-months',
 ];
 
 // All data below is trusted static content — safe to stringify

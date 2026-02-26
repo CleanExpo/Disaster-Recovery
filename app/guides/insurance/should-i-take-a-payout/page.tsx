@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { DollarSign } from 'lucide-react';
 import Link from 'next/link';
-import { AgContentPageTemplate } from '@/components/antigravity';
+import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
@@ -24,27 +24,20 @@ export const metadata: Metadata = generateSEO({
 
 export default function ShouldITakeAPayoutPage() {
   return (
-    <AgContentPageTemplate
-      hero={{
-        gradient: 'linear-gradient(135deg, #92400E 0%, #D97706 100%)',
-        icon: <DollarSign className="h-12 w-12" />,
-        title: 'Should I Take an Insurance Payout?',
-        subtitle: 'When your insurer offers a cash settlement instead of managing repairs, the decision can save you thousands — or cost you thousands. Here\u2019s how to tell the difference.',
-      }}
-      cta={{ text: 'Get a Professional Assessment', href: '/claim' }}
-      secondaryCta={{ text: 'Insurance Claims Guide', href: '/knowledge/insurance-claims-process-australia' }}
+    <AgGuidePageTemplate
+      category="Insurance"
+      title="Should I Take an Insurance Payout?"
+      subtitle="When your insurer offers a cash settlement instead of managing repairs, the decision can save you thousands — or cost you thousands. Here's how to tell the difference."
+      gradient="linear-gradient(135deg, #92400E 0%, #D97706 100%)"
+      icon={<DollarSign className="h-10 w-10" />}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Guides', href: '/guides' },
         { label: 'Insurance', href: '/guides/insurance' },
         { label: 'Should I Take a Payout?' },
       ]}
-      stats={[
-        { label: 'Framework', value: 'ICA 1984' },
-        { label: 'Dispute Body', value: 'AFCA' },
-        { label: 'Key Risk', value: 'Hidden Damage' },
-        { label: 'Best First Step', value: 'Assessment' },
-      ]}
+      cta={{ text: 'Get a Professional Assessment', href: '/claim' }}
+      lastReviewed="2026-02-26"
       sections={[
         {
           heading: 'What Is a Cash Settlement?',
@@ -61,7 +54,7 @@ export default function ShouldITakeAPayoutPage() {
               </p>
               <p>
                 <strong>You are not obligated to accept.</strong> A cash settlement is an option, not a requirement. You have every right to reject the offer and request managed repairs, negotiate a higher amount, or dispute the offer through the insurer&apos;s internal complaints process and then through{' '}
-                <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AFCA</a>{' '}
+                <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">AFCA</a>{' '}
                 (Australian Financial Complaints Authority).
               </p>
             </div>
@@ -242,7 +235,7 @@ export default function ShouldITakeAPayoutPage() {
                   <strong>Check for like-for-like replacement</strong> — Your policy likely entitles you to restoration using equivalent materials and finishes. If the cash offer is based on builder&apos;s-grade materials replacing premium finishes, or lower labour rates than local market rates, it may not meet your policy terms.
                 </li>
                 <li>
-                  <strong>Understand your rights under the Insurance Contracts Act 1984</strong> — Australian insurance law provides protections for policyholders. You are entitled to a fair settlement that reflects the actual cost of restoring your property to its pre-loss condition. <Link href="/guides/insurance/section-54-contractor-rights" className="text-blue-600 hover:underline">Learn about your Section 54 rights</Link>.
+                  <strong>Understand your rights under the Insurance Contracts Act 1984</strong> — Australian insurance law provides protections for policyholders. You are entitled to a fair settlement that reflects the actual cost of restoring your property to its pre-loss condition. <Link href="/guides/insurance/section-54-contractor-rights" className="text-blue-400 hover:underline">Learn about your Section 54 rights</Link>.
                 </li>
                 <li>
                   <strong>Consider the hidden damage risk</strong> — If the damage involves water, fire, smoke, mould, sewage, or any form of contamination, the risk of hidden damage is high. In these cases, a cash settlement is almost always premature unless an invasive investigation has been completed.
@@ -269,7 +262,7 @@ export default function ShouldITakeAPayoutPage() {
                   <strong>Internal Dispute Resolution (IDR)</strong> — If negotiation fails, lodge a formal complaint through the insurer&apos;s internal complaints process. The insurer is required to respond within 30 calendar days. Reference specific policy terms, the ICA 1984, and your independent documentation.
                 </li>
                 <li>
-                  <strong>AFCA (Australian Financial Complaints Authority)</strong> — If the IDR process does not resolve the dispute, lodge a complaint with <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">AFCA</a>. AFCA provides free, independent dispute resolution for insurance complaints up to $1.085 million. AFCA&apos;s decisions are binding on the insurer.
+                  <strong>AFCA (Australian Financial Complaints Authority)</strong> — If the IDR process does not resolve the dispute, lodge a complaint with <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">AFCA</a>. AFCA provides free, independent dispute resolution for insurance complaints up to $1.085 million. AFCA&apos;s decisions are binding on the insurer.
                 </li>
               </ol>
               <p>
@@ -295,22 +288,61 @@ export default function ShouldITakeAPayoutPage() {
               <p>
                 If the damage is genuinely cosmetic, surface-level, and you are confident there is nothing hidden — a cash settlement can be a fast and practical solution. Use the contents claims strategy to maximise your total claim value, and make sure the offer covers like-for-like replacement.
               </p>
+              <p>
+                If you choose to get the work done rather than accept a payout: work begins immediately without waiting for insurer approval. After make-safe, your contractor provides a formal contract with full terms and conditions. We bill you directly — you control the process and claim reimbursement from your insurer using the full claims documentation we provide. Payment plans are available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Blue Fire Finance</a>.
+              </p>
               <p className="mt-4">
-                <Link href="/claim" className="text-blue-600 hover:underline font-medium">
-                  Request a free professional assessment &rarr;
+                <Link href="/claim" className="text-blue-400 hover:underline font-medium">
+                  Request a professional assessment &rarr;
                 </Link>
               </p>
             </div>
           ),
         },
       ]}
-      relatedPages={[
-        { title: 'Insurance Payouts — Knowledge Base', href: '/knowledge/insurance-payout-settlement', description: 'In-depth reference article on cash settlements, legal framework, and dispute resolution.' },
-        { title: 'Insurance Claims Process', href: '/knowledge/insurance-claims-process-australia', description: 'Complete guide to the Australian insurance claims process, AFCA, and your rights.' },
-        { title: 'Section 54 Rights', href: '/guides/insurance/section-54-contractor-rights', description: 'Your legal right to choose your own qualified contractors.' },
-        { title: 'Document Water Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', description: 'How to document damage properly to support your claim.' },
-        { title: 'Loss Assessor vs Contractor', href: '/guides/insurance/loss-assessor-vs-contractor', description: 'Understanding the difference and who works for whom.' },
-        { title: 'Start a Claim', href: '/claim', description: 'Get a free professional assessment before making any decisions.' },
+      faqs={[
+        {
+          question: 'Can I reject a cash settlement offer from my insurer?',
+          answer: 'Yes. A cash settlement is an option, not a requirement. You have every right to reject the offer and request managed repairs instead, negotiate a higher amount, or dispute the offer through the insurer\'s internal complaints process and then through AFCA (Australian Financial Complaints Authority). Under the General Insurance Code of Practice, your insurer must not pressure you into accepting.',
+        },
+        {
+          question: 'What is the contents claims strategy for maximising my payout?',
+          answer: 'Your policy has two separate covers — building (the structure) and contents (your moveable possessions). When both are damaged, taking a cash settlement for the building portion settles those costs separately, leaving your full contents entitlement intact. This strategy is most valuable when contents damage is extensive and close to the sum insured. However, it is only safe when the building damage is genuinely understood and there is low risk of hidden damage.',
+        },
+        {
+          question: 'Why are insurance cash settlement offers often too low?',
+          answer: 'Cash settlement offers are typically based on a visual inspection by the insurer\'s loss adjuster, using the cheapest available materials and labour rates. They almost always account only for visible damage. With water, fire, mould, and contamination damage, concealed damage behind walls, under floors, and in ceiling cavities frequently represents 3–5 times more affected area than what is visible. Once you accept the payout, the claim is usually closed — and you bear the cost of any additional damage discovered during repairs.',
+        },
+        {
+          question: 'Should I get an independent assessment before accepting a payout?',
+          answer: 'If the damage involves water, fire, smoke, mould, sewage, or any form of contamination — absolutely yes. An independent IICRC-certified restoration professional will conduct moisture mapping, thermal imaging, and a thorough investigation to identify concealed damage that the insurer\'s assessor may have missed. The resulting scope of works gives you an accurate cost to compare against the cash offer, and serves as evidence if you need to negotiate or dispute.',
+        },
+        {
+          question: 'What happens if I accept a payout and then discover more damage?',
+          answer: 'Once you accept a cash settlement, the claim is typically closed. If you discover additional damage during repairs — which is common with water, fire, and mould damage — you may not be able to reopen the claim or request additional funds. You become personally responsible for the full cost of any additional work. This is why an independent assessment before accepting is so important: it identifies the true scope before you commit.',
+        },
+      ]}
+      relatedGuides={[
+        {
+          title: 'Section 54 — Your Right to Choose Contractors',
+          href: '/guides/insurance/section-54-contractor-rights',
+          description: 'Your legal right to choose your own qualified contractors under the Insurance Contracts Act.',
+        },
+        {
+          title: 'Insurance Approved Contractors — What It Really Means',
+          href: '/guides/insurance/insurance-approved-contractors',
+          description: 'What "insurance approved" actually means and why it does not mean "better quality".',
+        },
+        {
+          title: 'Loss Assessor vs Restoration Contractor',
+          href: '/guides/insurance/loss-assessor-vs-contractor',
+          description: 'Understanding the difference between who represents you and who does the physical work.',
+        },
+        {
+          title: 'Document Water Damage for Insurance',
+          href: '/guides/insurance/document-water-damage-insurance',
+          description: 'How to document property damage properly to support your insurance claim.',
+        },
       ]}
     />
   );
