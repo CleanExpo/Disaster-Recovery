@@ -46,6 +46,9 @@ export const NAP = {
   ],
 } as const;
 
+// Google Business Profile
+export const GBP_PLACE_ID = 'ChIJFTIv0bpOkWsRz_SIAaNI3Lc';
+
 // Lead Pricing
 export const LEAD_PRICE = 550;
 export const LEAD_PRICE_PREMIUM = 750; // For capital cities
