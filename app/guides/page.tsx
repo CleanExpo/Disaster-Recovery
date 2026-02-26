@@ -28,7 +28,7 @@ export default function GuidesIndexPage() {
       stats={[
         { label: 'Expert Guides', value: '60+' },
         { label: 'Damage Types', value: 'All' },
-        { label: 'Updated', value: '2024' },
+        { label: 'Updated', value: '2026' },
         { label: 'Free Access', value: 'Always' },
       ]}
       sections={[

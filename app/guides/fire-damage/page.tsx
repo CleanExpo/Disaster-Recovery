@@ -913,7 +913,7 @@ const fireDamageArticleSchema = generateArticleSchema({
   image: '/images/guides/fire-damage.webp',
   author: 'Disaster Recovery Team',
   datePublished: '2024-11-15',
-  dateModified: '2025-06-01',
+  dateModified: '2026-02-26',
 });
 
 export default function FireDamageGuidePage() {

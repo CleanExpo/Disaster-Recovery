@@ -53,6 +53,10 @@ export interface AgGuidePageTemplateProps {
   cta?: { text: string; href: string };
   /** Fallback content when AG flag is OFF */
   fallback?: ReactNode;
+  /** Last-reviewed date for AI citation freshness (ISO format, e.g. '2026-02-26') */
+  lastReviewed?: string;
+  /** Optional stats for the guide hero (e.g. [{ label: 'Updated', value: '2026' }]) */
+  stats?: { label: string; value: string }[];
 }
 
 /* -------------------------------------------------------------------------- */
@@ -75,6 +79,8 @@ export function AgGuidePageTemplate({
   relatedGuides,
   cta,
   fallback,
+  lastReviewed,
+  stats,
 }: AgGuidePageTemplateProps) {
   if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
     return <>{fallback}</>;
@@ -97,6 +103,8 @@ export function AgGuidePageTemplate({
     : null;
 
   // Article schema for GEO citation and rich results
+  // Enhanced with AI citation signals: dateModified, speakableSpecification, mainEntityOfPage
+  const reviewDate = lastReviewed || '2026-02-26';
   const articleSchema = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -119,6 +127,14 @@ export function AgGuidePageTemplate({
     articleSection: category,
     inLanguage: 'en-AU',
     isAccessibleForFree: true,
+    dateModified: reviewDate,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+    },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '.ag-hero-subtext', '.ag-prose h2'],
+    },
   });
 
   return (
@@ -171,6 +187,23 @@ export function AgGuidePageTemplate({
               {subtitle}
             </p>
           )}
+
+          {/* Last-reviewed badge — freshness signal for users and AI crawlers */}
+          <div className="ag-slide-up-3" style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            marginTop: '1.5rem',
+            padding: '0.375rem 0.875rem',
+            borderRadius: '9999px',
+            background: 'rgba(255,255,255,0.12)',
+            backdropFilter: 'blur(8px)',
+            fontSize: '0.8rem',
+            color: 'rgba(255,255,255,0.75)',
+          }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+            Last reviewed {new Date(reviewDate).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}
+          </div>
         </div>
       </header>
 
@@ -256,6 +289,36 @@ export function AgGuidePageTemplate({
           </div>
         </section>
       )}
+
+      {/* AI Citation Block — structured data for LLM attribution */}
+      <section style={{ padding: '2rem 1.5rem', background: 'var(--ag-background-light)', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+        <div className="ag-container" style={{ maxWidth: '800px' }}>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '1.5rem',
+            fontSize: '0.8rem',
+            color: 'var(--ag-text-muted)',
+            lineHeight: 1.6,
+          }}>
+            <div>
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au
+            </div>
+            <div>
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Category:</strong> {category}
+            </div>
+            <div>
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Last reviewed:</strong>{' '}
+              <time dateTime={reviewDate}>
+                {new Date(reviewDate).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+            </div>
+            <div>
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Standard:</strong> IICRC S500/S520 certified practices
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       {cta && (
