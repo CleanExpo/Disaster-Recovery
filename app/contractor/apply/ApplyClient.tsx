@@ -273,22 +273,22 @@ function ContractorApplicationContent() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-3">
-              <Shield className="h-8 w-8 text-blue-600" />
+              <Shield className="h-8 w-8 text-blue-400" />
               <div>
                 <div className="text-white font-semibold">NRPG</div>
-                <div className="text-slate-600 text-xs">Contractor Application</div>
+                <div className="text-slate-400 text-xs">Contractor Application</div>
               </div>
             </Link>
             
             <div className="flex items-center gap-4">
               {isDemoRunning && (
-                <div className="flex items-center gap-2 px-4 py-2 bg-blue-600/20 text-yellow-700 rounded-lg animate-pulse">
+                <div className="flex items-center gap-2 px-4 py-2 bg-blue-600/20 text-yellow-400 rounded-lg animate-pulse">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Demo Running...
                 </div>
               )}
               {isSaving && (
-                <div className="flex items-center gap-2 text-blue-700 text-sm">
+                <div className="flex items-center gap-2 text-blue-400 text-sm">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Saving progress...
                 </div>
@@ -303,7 +303,7 @@ function ContractorApplicationContent() {
               </button>
               <Link
                 href="/"
-                className="flex items-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-700 rounded-lg transition"
+                className="flex items-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg transition"
               >
                 <X className="h-4 w-4" />
                 Exit
@@ -334,7 +334,7 @@ function ContractorApplicationContent() {
                       w-12 h-12 rounded-full flex items-center justify-center transition-all
                       ${isCompleted ? 'bg-green-700 text-white' : 
                         isCurrent ? 'bg-blue-600 text-white ring-4 ring-blue-600/30' : 
-                        'bg-slate-700 text-slate-600'}
+                        'bg-slate-700 text-slate-400'}
                     `}>
                       {isCompleted ? (
                         <CheckCircle className="h-6 w-6" />
@@ -343,10 +343,10 @@ function ContractorApplicationContent() {
                       )}
                     </div>
                     <div className="absolute top-14 w-32 text-center">
-                      <div className={`text-sm font-medium ${isCurrent ? 'text-white' : 'text-slate-600'}`}>
+                      <div className={`text-sm font-medium ${isCurrent ? 'text-white' : 'text-slate-400'}`}>
                         Step {step.id}
                       </div>
-                      <div className={`text-xs ${isCurrent ? 'text-blue-700' : 'text-slate-500'} hidden sm:block`}>
+                      <div className={`text-xs ${isCurrent ? 'text-blue-400' : 'text-slate-400'} hidden sm:block`}>
                         {step.name}
                       </div>
                     </div>
@@ -371,7 +371,7 @@ function ContractorApplicationContent() {
               <h2 className="text-3xl font-bold text-white mb-2">
                 {ONBOARDING_STEPS[currentStep - 1].name}
               </h2>
-              <p className="text-slate-600">
+              <p className="text-slate-400">
                 {ONBOARDING_STEPS[currentStep - 1].description}
               </p>
             </div>
@@ -396,7 +396,7 @@ function ContractorApplicationContent() {
                 Previous
               </button>
 
-              <div className="text-slate-600">
+              <div className="text-slate-400">
                 Step {currentStep} of 7
               </div>
 
@@ -438,10 +438,10 @@ function ContractorApplicationContent() {
           {/* Help Section */}
           <div className="mt-8 p-6 bg-blue-900/20 backdrop-blur-sm border border-blue-500/30 rounded-xl">
             <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
+              <AlertCircle className="h-5 w-5 text-blue-400 mt-0.5" />
               <div>
-                <h3 className="font-semibold text-blue-700 mb-1">Need Help?</h3>
-                <p className="text-blue-700 text-sm">
+                <h3 className="font-semibold text-blue-400 mb-1">Need Help?</h3>
+                <p className="text-blue-400 text-sm">
                   Your progress is automatically saved. You can exit and return at any time to complete your application.
                   For assistance, email contractors@nrp.com.au
                 </p>

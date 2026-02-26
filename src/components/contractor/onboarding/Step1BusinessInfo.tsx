@@ -119,7 +119,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
     <div className="space-y-6">
       {/* Company Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-2">
           Company Name *
         </label>
         <input
@@ -132,13 +132,13 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           required
         />
         {errors.companyName && (
-          <p className="mt-1 text-sm text-red-600">{errors.companyName[0]}</p>
+          <p className="mt-1 text-sm text-red-400">{errors.companyName[0]}</p>
         )}
       </div>
 
       {/* Trading Name */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-2">
           Trading Name (if different)
         </label>
         <input
@@ -153,7 +153,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
 
       {/* ABN */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-2">
           Australian Business Number (ABN) *
         </label>
         <div className="relative">
@@ -175,18 +175,18 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
             {abnValidation.isValidating && (
-              <Loader2 className="h-5 w-5 text-blue-600 animate-spin" />
+              <Loader2 className="h-5 w-5 text-blue-400 animate-spin" />
             )}
             {abnValidation.isValid === true && (
-              <CheckCircle className="h-5 w-5 text-emerald-600" />
+              <CheckCircle className="h-5 w-5 text-emerald-400" />
             )}
             {abnValidation.isValid === false && (
-              <AlertCircle className="h-5 w-5 text-red-600" />
+              <AlertCircle className="h-5 w-5 text-red-400" />
             )}
           </div>
         </div>
         {abnValidation.message && (
-          <p className={`mt-1 text-sm ${abnValidation.isValid ? 'text-emerald-600' : 'text-red-600'}`}>
+          <p className={`mt-1 text-sm ${abnValidation.isValid ? 'text-emerald-400' : 'text-red-400'}`}>
             {abnValidation.message}
           </p>
         )}
@@ -194,7 +194,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           href="https://abr.business.gov.au/Search/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 mt-2 text-xs text-blue-600 hover:text-blue-700"
+          className="inline-flex items-center gap-1 mt-2 text-xs text-blue-400 hover:text-blue-300"
         >
           <Search className="h-3 w-3" />
           Look up ABN
@@ -204,7 +204,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
       {/* ACN (if company) */}
       {businessInfo.businessType === 'COMPANY' && (
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-slate-300 mb-2">
             Australian Company Number (ACN)
           </label>
           <input
@@ -220,7 +220,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
 
       {/* Business Type */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-2">
           Business Type *
         </label>
         <select
@@ -239,7 +239,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
       <div className="grid md:grid-cols-2 gap-6">
         {/* Year Established */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-slate-300 mb-2">
             Year Established *
           </label>
           <input
@@ -256,7 +256,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
 
         {/* Number of Employees */}
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-slate-300 mb-2">
             Number of Employees *
           </label>
           <select
@@ -275,7 +275,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
 
       {/* Annual Revenue */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-2">
           Annual Revenue (Optional)
         </label>
         <select
@@ -293,7 +293,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
 
       {/* Website */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label className="block text-sm font-medium text-slate-300 mb-2">
           Company Website (Optional)
         </label>
         <input
@@ -309,7 +309,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
       {/* Contact Information */}
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-slate-300 mb-2">
             Business Email *
           </label>
           <input
@@ -323,7 +323,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-slate-300 mb-2">
             Business Phone *
           </label>
           <input
@@ -341,7 +341,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
       {/* Address Information */}
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-2">
+          <label className="block text-sm font-medium text-slate-300 mb-2">
             Business Address *
           </label>
           <input
@@ -356,7 +356,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               Suburb *
             </label>
             <input
@@ -370,7 +370,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               State *
             </label>
             <select
@@ -391,7 +391,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">
+            <label className="block text-sm font-medium text-slate-300 mb-2">
               Postcode *
             </label>
             <input
@@ -411,10 +411,10 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
       {/* Information Box */}
       <div className="p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg">
         <div className="flex items-start gap-3">
-          <Building2 className="h-5 w-5 text-blue-600 mt-0.5" />
+          <Building2 className="h-5 w-5 text-blue-400 mt-0.5" />
           <div>
-            <h4 className="font-medium text-blue-700 mb-1">Business Information Required</h4>
-            <p className="text-blue-700 text-sm">
+            <h4 className="font-medium text-blue-400 mb-1">Business Information Required</h4>
+            <p className="text-blue-400 text-sm">
               We verify all business details with the Australian Business Register (ABR) and ASIC. 
               Please ensure all information matches your official registration.
             </p>
