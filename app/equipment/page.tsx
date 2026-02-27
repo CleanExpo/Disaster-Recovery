@@ -5,7 +5,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Restoration Equipment & Technology | IICRC-Grade Tools | Disaster Recovery',
+  title: 'Restoration Equipment & Technology | IICRC',
   description: 'Professional IICRC-grade restoration equipment used by our certified contractors. Air scrubbers, dehumidifiers, thermal imaging, moisture meters, and more.',
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment' },
 };

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Smoke Odour Removal Services | Disaster Recovery',
+  title: 'Smoke Odour Removal Services',
   description: 'Professional smoke odour removal services services in Queensland. 24/7 emergency response for smoke smell, fire odour elimination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/smoke-odour-removal',

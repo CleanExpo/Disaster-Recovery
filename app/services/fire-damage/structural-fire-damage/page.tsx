@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Structural Fire Damage Repair | Disaster Recovery',
+  title: 'Structural Fire Damage Repair',
   description: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/structural-fire-damage',

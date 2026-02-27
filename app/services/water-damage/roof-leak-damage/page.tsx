@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Roof Leak Water Damage | Disaster Recovery',
+  title: 'Roof Leak Water Damage',
   description: 'Professional roof leak water damage services in Queensland. 24/7 emergency response for roof leaking, storm water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/roof-leak-damage',

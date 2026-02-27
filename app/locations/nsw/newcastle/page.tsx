@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Newcastle | Emergency Services New South Wales',
+  title: 'Disaster Recovery Newcastle',
   description: '24/7 disaster recovery in Newcastle, New South Wales. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/nsw/newcastle',

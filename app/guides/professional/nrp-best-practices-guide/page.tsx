@@ -3,7 +3,7 @@ import { Users } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'NRPG Best Practices Guide - Professional Standards for Disaster Recovery | Disaster Recovery',
+  title: 'NRPG Best Practices Guide',
   description: 'Comprehensive guide to National Restoration Professionals Group best practices, mandatory procedures, and professional standards for emergency response and disaster recovery contractors.',
   keywords: 'NRPG best practices, professional standards, disaster recovery procedures, emergency response protocols, contractor certification, industry standards',
   openGraph: {

@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Adelaide mould removal Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Adelaide mould removal Cost | Pricing Guide 2024',
   description: 'How much does mould removal cost in Adelaide? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/adelaide-mould-removal',

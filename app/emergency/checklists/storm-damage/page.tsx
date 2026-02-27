@@ -5,13 +5,13 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Emergency Checklist | Disaster Recovery',
+  title: 'Storm Damage Emergency Checklist',
   description: 'Storm damage emergency checklist for property owners. Roof damage, fallen trees, water ingress, emergency tarping, and insurance documentation steps.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/emergency/checklists/storm-damage',
   },
   openGraph: {
-    title: 'Storm Damage Emergency Checklist | Disaster Recovery',
+    title: 'Storm Damage Emergency Checklist',
     description: 'Emergency checklist for storm damage. Roof, trees, water ingress, and insurance steps.',
     type: 'website',
   },

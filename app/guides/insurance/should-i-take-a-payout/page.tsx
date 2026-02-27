@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Should I Take an Insurance Payout? | When Cash Settlements Help or Hurt',
+  title: 'Should I Take an Insurance Payout?',
   description: 'Understanding insurance cash settlement offers. When taking a payout works in your favour and when it could cost you more. Contents claims strategy, hidden damage risks, and your rights under Australian insurance law.',
   keywords: [
     'insurance payout',

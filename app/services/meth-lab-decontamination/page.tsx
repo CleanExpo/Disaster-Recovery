@@ -4,7 +4,7 @@ import { AntigravityServicePageTemplate } from '@/components/antigravity';
 import { methLabDecontaminationData } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Clandestine Drug Lab Decontamination | Certified Remediation',
+  title: 'Clandestine Drug Lab Decontamination',
   description:
     'Professional clandestine drug laboratory decontamination and methamphetamine residue remediation. NATA-accredited testing, council clearance certificates, and Level C hazmat protocols across Australia.',
   keywords: [
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'hazmat decontamination',
   ].join(', '),
   openGraph: {
-    title: 'Drug Lab Decontamination | Disaster Recovery Australia',
+    title: 'Drug Lab Decontamination',
     description:
       'Certified clandestine drug laboratory remediation with NATA-accredited testing and council clearance. Discreet, compliance-certified teams Australia-wide.',
     type: 'website',

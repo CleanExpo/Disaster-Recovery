@@ -3,13 +3,13 @@ import { FileText } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Disaster Recovery Australia',
+  title: 'Terms of Service',
   description: 'Terms of Service for Disaster Recovery Australia. Conditions of use for emergency restoration and disaster recovery services across Australia.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/terms',
   },
   openGraph: {
-    title: 'Terms of Service | Disaster Recovery Australia',
+    title: 'Terms of Service',
     description: 'Terms and conditions for Disaster Recovery Australia restoration services.',
     type: 'website',
   },

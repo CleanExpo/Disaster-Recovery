@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Storm & Natural Disaster Recovery | Emergency Response | Roof Repair & Restoration',
+  title: 'Storm & Natural Disaster Recovery | Emergency Response',
   description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response nationwide.',
   keywords: [
     'storm damage restoration',
@@ -25,15 +25,9 @@ export const metadata: Metadata = {
     'bushfire damage recovery'
   ],
   openGraph: {
-    title: 'Storm & Natural Disaster Recovery Services | 24/7 Online Emergency Response',
+    title: 'Storm & Natural Disaster Recovery Services | 24/7',
     description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response nationwide.',
-    images: [
-      {
-        url: '/images/optimised/damage/3D Hurricane Damage.png',
-        width: 1200,
-        height: 630,
-        alt: 'Professional storm damage restoration service' },
-    ] },
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Storm & Natural Disaster Recovery | Emergency Response',

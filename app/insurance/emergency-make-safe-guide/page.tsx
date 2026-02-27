@@ -5,7 +5,7 @@ import { getEmergencyMakeSafeSections } from '@/lib/content-sections/emergency-m
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Make-Safe Repairs: $2,750 Cost, Insurance Reimbursement & Your Rights | Disaster Recovery',
+  title: 'Emergency Make-Safe Repairs | $2,750 Guide',
   description:
     'Complete guide to emergency make-safe repair costs in Australia. Learn about the $2,750 initial service, insurance reimbursement process, Authority to Commence requirements, and your right to choose a contractor under the General Insurance Code of Practice.',
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'insurance claim process Australia',
   ],
   openGraph: {
-    title: 'Emergency Make-Safe Repairs: $2,750 Cost, Insurance Reimbursement & Your Rights',
+    title: 'Emergency Make-Safe Repairs: $2,750 Cost, Insurance',
     description:
       'Complete guide to the $2,750 emergency make-safe service, insurance reimbursement process, and your rights under the General Insurance Code of Practice 2020.',
     type: 'website',

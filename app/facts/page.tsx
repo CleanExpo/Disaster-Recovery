@@ -7,7 +7,7 @@ import { NAP } from '@/lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Disaster Recovery Facts & Statistics | Verified Data About NRPG',
+  title: 'Facts & Statistics | Verified NRPG Data',
   description: 'Verified facts and statistics about Disaster Recovery Australia (NRPG). Platform metrics, Australian disaster data from ABS/BOM/ICA, contractor standards, and service coverage.',
   keywords: [
     'disaster recovery Australia statistics',

@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Strata Managers | Body Corporate Disaster Recovery | Disaster Recovery',
+  title: 'Strata Managers | Body Corporate Disaster Recovery',
   description:
     'Emergency disaster restoration for strata managers and body corporate committees across Australia. Common property restoration, emergency spending authority, per-lot documentation.',
   alternates: {

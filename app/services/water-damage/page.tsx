@@ -5,11 +5,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Services | 24/7 Online Emergency Response | IICRC S500 Certified',
+  title: 'Water Damage Restoration | 24/7 IICRC S500',
   description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
-    title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
+    title: 'Emergency Water Damage - IICRC Certified Professionals',
     description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, IICRC-certified. Submit your claim online now.',
     type: 'website' },
   alternates: {

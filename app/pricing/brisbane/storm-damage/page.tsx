@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Repair Cost Brisbane | Pricing from $2,640 | Free Quote',
+  title: 'Storm Damage Repair Cost Brisbane | $2,640',
   description: 'Storm Damage Repair pricing in Brisbane, QLD. Minimum $2,640, average $7,800. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost brisbane',

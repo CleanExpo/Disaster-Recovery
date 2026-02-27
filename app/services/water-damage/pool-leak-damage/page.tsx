@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Pool Leak Property Damage | Disaster Recovery',
+  title: 'Pool Leak Property Damage',
   description: 'Professional pool leak property damage services in Queensland. 24/7 emergency response for swimming pool leak, pool water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/pool-leak-damage',

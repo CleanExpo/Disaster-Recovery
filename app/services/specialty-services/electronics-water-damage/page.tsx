@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Electronics Water Damage | Disaster Recovery',
+  title: 'Electronics Water Damage',
   description: 'Professional electronics water damage services in Queensland. 24/7 emergency response for computer water damage, device recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/electronics-water-damage',

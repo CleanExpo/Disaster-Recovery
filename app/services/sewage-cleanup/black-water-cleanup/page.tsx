@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Black Water Contamination | Disaster Recovery',
+  title: 'Black Water Contamination',
   description: 'Professional black water contamination services in Queensland. 24/7 emergency response for category 3 water, hazardous sewage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/black-water-cleanup',

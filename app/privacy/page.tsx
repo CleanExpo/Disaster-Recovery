@@ -3,13 +3,13 @@ import { Lock } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Disaster Recovery Australia',
+  title: 'Privacy Policy',
   description: 'Privacy Policy for Disaster Recovery Australia. How we collect, use, and protect your personal information under the Australian Privacy Act.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/privacy',
   },
   openGraph: {
-    title: 'Privacy Policy | Disaster Recovery Australia',
+    title: 'Privacy Policy',
     description: 'How Disaster Recovery Australia collects, uses, and protects your personal information.',
     type: 'website',
   },

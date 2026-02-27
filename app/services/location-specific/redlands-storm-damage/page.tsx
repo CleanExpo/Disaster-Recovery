@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Redlands Storm Damage | Disaster Recovery',
+  title: 'Redlands Storm Damage',
   description: 'Professional redlands storm damage services in Queensland. 24/7 emergency response for bayside damage, island restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/location-specific/redlands-storm-damage',

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Professional Biohazard Cleanup Services | NRPG Australia',
+  title: 'Professional Biohazard Cleanup Services | NRPG',
   description: 'Expert biohazard cleanup and decontamination services. IICRC certified technicians available 24/7 for crime scene cleanup, trauma scene cleanup, and infectious waste removal.',
   keywords: [
     'biohazard cleanup',
@@ -16,7 +16,10 @@ export const metadata: Metadata = {
     'infectious waste removal',
     'hazmat cleanup',
     'OSHA compliance cleanup'
-  ] };
+  ],
+  alternates: {
+    canonical: '/services/biohazard-cleaning' },
+};
 
 export default function BiohazardPage() {
   return (

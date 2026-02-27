@@ -5,7 +5,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Restoration Pricing by City | Transparent Costs | Disaster Recovery Australia',
+  title: 'Restoration Pricing by City | Transparent Costs',
   description: 'Transparent disaster restoration pricing across 10 Australian cities. Water damage, fire, mould, storm, and flood recovery costs with free quotes.',
   alternates: { canonical: 'https://disasterrecovery.com.au/pricing' },
 };

@@ -5,7 +5,7 @@ import { getCompareSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Professional vs DIY Disaster Recovery | Cost & Risk Comparison',
+  title: 'Professional vs DIY Disaster Recovery',
   description: 'Compare professional disaster recovery vs DIY attempts. Understand the real costs, risks, and why professional restoration saves money.',
   alternates: { canonical: 'https://disasterrecovery.com.au/compare/professional-vs-diy' },
 };

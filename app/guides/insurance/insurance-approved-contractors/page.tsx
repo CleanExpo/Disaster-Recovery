@@ -4,7 +4,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Insurance Approved Contractors — What It Really Means | Your Right to Choose',
+  title: 'Insurance Approved Contractors — What It Really Means',
   description: 'What "insurance approved" really means, why insurers push their own panel contractors, and your legal right under Section 54 of the Insurance Contracts Act to choose your own qualified restoration contractor.',
   keywords: [
     'insurance approved contractors',

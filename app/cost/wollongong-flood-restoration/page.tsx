@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Wollongong flood restoration Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Wollongong flood restoration Cost | Pricing Guide 2024',
   description: 'How much does flood restoration cost in Wollongong? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/wollongong-flood-restoration',

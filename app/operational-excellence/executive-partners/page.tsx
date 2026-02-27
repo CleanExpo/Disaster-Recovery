@@ -13,7 +13,7 @@ import { generateSEO } from '@/lib/seo';
 const SLUG = 'executive-partners';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Executive Partners | IICRC CARSI NRPG | Disaster Recovery',
+  title: 'Executive Partners | IICRC CARSI NRPG',
   description:
     'Proudly affiliated with IICRC, CARSI, RestoreAssist and NRPG. Our executive partnerships set the standard for restoration excellence across Australia and New Zealand.',
   keywords: [

@@ -5,7 +5,7 @@ import { getCaseStudySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Cyclone Debbie Recovery | Case Study | Disaster Recovery Success Story',
+  title: 'Case Study | Cyclone Debbie Recovery',
   description: 'How we helped recover from Cyclone Debbie Recovery. Real results, timelines, and restoration process.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/case-studies/cyclone-debbie-recovery',

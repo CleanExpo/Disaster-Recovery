@@ -5,7 +5,7 @@ import { getCaseStudySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Brisbane Floods 2022 Recovery | Case Study | Disaster Recovery Success Story',
+  title: 'Case Study | Brisbane Floods 2022',
   description: 'How we helped recover from Brisbane Floods 2022 Recovery. Real results, timelines, and restoration process.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/case-studies/brisbane-floods-2022',

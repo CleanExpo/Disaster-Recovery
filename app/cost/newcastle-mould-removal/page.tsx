@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Newcastle mould removal Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Newcastle mould removal Cost | Pricing Guide 2024',
   description: 'How much does mould removal cost in Newcastle? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/newcastle-mould-removal',

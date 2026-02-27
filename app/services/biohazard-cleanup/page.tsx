@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Biohazard Cleanup Services | IICRC S540 Certified | Crime Scene & Trauma Cleanup',
+  title: 'Biohazard Cleanup Services | IICRC S540 Certified',
   description: 'Professional biohazard cleanup services following IICRC S540 standards. Crime scene cleanup, trauma cleaning, blood cleanup, sewage cleanup. Licensed specialists available 24/7.',
   keywords: [
     'biohazard cleanup',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     description: 'Expert biohazard cleanup services. IICRC S540 certified technicians. Professional trauma and crime scene cleanup available 24/7.',
     images: ['/images/optimised/process/3D Hazardous Cleaning.png'] },
   alternates: {
-    canonical: '/services/biohazard-cleanup' },
+    canonical: '/services/biohazard-cleaning' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',

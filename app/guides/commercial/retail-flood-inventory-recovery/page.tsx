@@ -3,7 +3,7 @@ import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Retail Store Flood: Inventory Recovery Process | Disaster Recovery',
+  title: 'Retail Store Flood: Inventory Recovery Process',
   description: 'Expert answers and solutions for "retail store flood damage inventory recovery". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'retail store flood damage inventory recovery, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/retail-flood-inventory-recovery' },

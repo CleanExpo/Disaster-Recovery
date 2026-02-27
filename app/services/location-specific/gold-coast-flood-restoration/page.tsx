@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Gold Coast Flood Restoration | Disaster Recovery',
+  title: 'Gold Coast Flood Restoration',
   description: 'Professional gold coast flood restoration services in Queensland. 24/7 emergency response for coastal flooding, beach property.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/location-specific/gold-coast-flood-restoration',

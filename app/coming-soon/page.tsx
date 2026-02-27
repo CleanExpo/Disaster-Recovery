@@ -3,10 +3,10 @@ import { Clock } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Coming Soon | Disaster Recovery Australia',
+  title: 'Coming Soon',
   description: 'New features and services coming soon to Disaster Recovery Australia. IICRC-certified disaster restoration platform covering all Australian states and territories.',
   openGraph: {
-    title: 'Coming Soon | Disaster Recovery Australia',
+    title: 'Coming Soon',
     description: 'New features and services coming soon to Disaster Recovery Australia.',
     type: 'website',
   },

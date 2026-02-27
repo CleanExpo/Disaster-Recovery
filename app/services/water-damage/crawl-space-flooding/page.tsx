@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Crawl Space Water Removal | Disaster Recovery',
+  title: 'Crawl Space Water Removal',
   description: 'Professional crawl space water removal services in Queensland. 24/7 emergency response for under house flooding, subfloor water.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/crawl-space-flooding',

@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Sydney flood restoration Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Sydney flood restoration Cost | Pricing Guide 2024',
   description: 'How much does flood restoration cost in Sydney? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/sydney-flood-restoration',

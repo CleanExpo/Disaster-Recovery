@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Water Damaged Art Restoration | Disaster Recovery',
+  title: 'Water Damaged Art Restoration',
   description: 'Professional water damaged art restoration services in Queensland. 24/7 emergency response for painting restoration, artwork recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/art-restoration',

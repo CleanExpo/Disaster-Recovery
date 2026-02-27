@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'New Year Emergency Services | December 31 - January 2 | 24/7 Disaster Recovery',
+  title: 'New Year Emergency Services | December 31 - January 2',
   description: 'Emergency disaster recovery services available December 31 - January 2. No call-out fees, immediate response nationwide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/new-year' },
 };

@@ -5,7 +5,7 @@ import { getDisasterSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Cyclone Damage Recovery Services | 24/7 Online Emergency Response | Disaster Recovery',
+  title: 'Cyclone Damage Recovery Services | 24/7',
   description: 'Expert cyclone damage restoration including structural repairs, water extraction, and debris removal. Serving Far North Queensland, Northern Territory, North Western Australia. 2-4 hours response time.',
   keywords: ["cyclone damage","tropical storm recovery","wind damage repair"],
   alternates: { canonical: 'https://disasterrecovery.com.au/disasters/cyclone-response' },

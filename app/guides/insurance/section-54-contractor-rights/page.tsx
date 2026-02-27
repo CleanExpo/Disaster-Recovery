@@ -4,7 +4,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Section 54 Insurance Contracts Act — Your Right to Choose Contractors',
+  title: 'Section 54 Insurance Contracts Act — Your Right to',
   description: 'Complete guide to Section 54 of the Insurance Contracts Act 1984. Your legal right to choose your own restoration contractor, how to exercise it, and how to respond when your insurer pressures you to use their panel.',
   keywords: [
     'Section 54 Insurance Contracts Act',

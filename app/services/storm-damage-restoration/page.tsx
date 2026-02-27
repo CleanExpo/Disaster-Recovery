@@ -22,7 +22,7 @@ import {
 // SEO Metadata with AI optimisation
 // ---------------------------------------------------------------------------
 export const metadata: Metadata = generateSEO({
-  title: 'Storm Damage Restoration Australia | Emergency Cyclone, Hail & Wind Repair | Disaster Recovery',
+  title: 'Storm Damage Restoration | 24/7 Emergency',
   description:
     'Australia-wide storm damage restoration — emergency response for cyclone damage, hail damage, wind damage, roof damage and fallen trees. IICRC-certified contractors, claims-ready documentation, 24/7 availability. Start your claim online now.',
   keywords: [

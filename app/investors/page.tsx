@@ -3,13 +3,13 @@ import { TrendingUp } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Investor Information | Disaster Recovery Australia',
+  title: 'Investor Information',
   description: 'Investor information for Disaster Recovery Australia. National disaster restoration claims distribution platform covering all Australian states and territories.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/investors',
   },
   openGraph: {
-    title: 'Investor Information | Disaster Recovery Australia',
+    title: 'Investor Information',
     description: 'Investor information for Disaster Recovery Australia — national claims distribution platform.',
     type: 'website',
   },

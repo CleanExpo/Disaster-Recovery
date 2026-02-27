@@ -5,7 +5,7 @@ import { getLocationPageContent, generateLocationSchemas } from '@/lib/location-
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Brisbane | 24/7 Emergency Restoration QLD',
+  title: 'Disaster Recovery Brisbane | 24/7',
   description: 'Professional disaster recovery in Brisbane, Queensland. 997.7mm annual rainfall, 2011 and 2022 flood history, subtropical mould risk. IICRC-certified contractors for water damage, fire damage, mould remediation. 24/7 emergency response across Brookwater, Eagle Farm, Indooroopilly and all suburbs.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/brisbane',

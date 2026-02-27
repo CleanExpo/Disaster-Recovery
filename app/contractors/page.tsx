@@ -3,7 +3,7 @@ import { Wrench } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Join Our Network | IICRC Certified Contractors | Disaster Recovery',
+  title: 'Join Our Contractor Network | IICRC',
   description: 'Join Australia\'s premier disaster recovery network. IICRC certification required. Get qualified leads in your service area.' };
 
 export default function ContractorsPage() {

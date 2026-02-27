@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'How Long Does Fire Damage Restoration Take? | Australian Timeline Guide',
+  title: 'How Long Does Fire Restoration Take?',
   description: 'Fire damage restoration timelines in Australia — from minor kitchen fires to severe structural damage. Phases of restoration, factors that affect duration, and how to speed up the process.',
   keywords: [
     'fire damage restoration timeline',

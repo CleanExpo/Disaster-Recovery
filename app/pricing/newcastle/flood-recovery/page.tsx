@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Flood Recovery Cost Newcastle | Pricing from $2,310 | Free Quote',
+  title: 'Flood Recovery Cost Newcastle | Pricing from $2,310',
   description: 'Flood Recovery pricing in Newcastle, NSW. Minimum $2,310, average $8,925. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost newcastle',

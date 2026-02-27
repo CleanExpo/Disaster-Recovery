@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Wind Damage Restoration | Disaster Recovery',
+  title: 'Wind Damage Restoration',
   description: 'Professional wind damage restoration services in Queensland. 24/7 emergency response for cyclone damage, storm wind repair.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/wind-damage-repair',

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Priority Emergency Response | Disaster Recovery',
+  title: 'Priority Emergency Response',
   description: 'Professional priority emergency response services in Queensland. 24/7 emergency response for rapid deployment, first response.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/priority-response',

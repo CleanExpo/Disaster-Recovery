@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Logan Water Damage Services | Disaster Recovery',
+  title: 'Logan Water Damage Services',
   description: 'Professional logan water damage services services in Queensland. 24/7 emergency response for Logan flooding, southern Brisbane.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/location-specific/logan-water-damage',

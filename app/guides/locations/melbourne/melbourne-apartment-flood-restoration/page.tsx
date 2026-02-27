@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Melbourne Apartment Flood Damage Restoration | Disaster Recovery',
+  title: 'Melbourne Apartment Flood Damage Restoration',
   description: 'Expert guide to apartment flood restoration in Melbourne. Strata considerations, multi-level water damage, Docklands and Southbank high-rise specialists, IICRC certified 24/7.',
   keywords: 'melbourne apartment flood restoration, strata water damage melbourne, docklands flood damage, southbank apartment water damage, high rise restoration melbourne, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/melbourne/melbourne-apartment-flood-restoration' },

@@ -3,7 +3,7 @@ import { ClipboardCheck } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Apply to Join Network | Disaster Recovery",
+  title: "Apply to Join Network",
   description: "Apply to join Australia's premier disaster recovery network. IICRC certification required. Get qualified leads in your territory.",
 };
 

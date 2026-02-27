@@ -3,13 +3,13 @@ import { Factory } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Industrial Facility Disaster Recovery | Disaster Recovery',
+  title: 'Industrial Facility Disaster Recovery',
   description: 'Disaster restoration for industrial facilities — factories, warehouses, processing plants, and manufacturing sites. IICRC-certified contractors with HAZMAT and confined-space capability.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/property/industrial',
   },
   openGraph: {
-    title: 'Industrial Facility Disaster Recovery | Disaster Recovery',
+    title: 'Industrial Facility Disaster Recovery',
     description: 'Disaster restoration for factories, warehouses, and manufacturing sites. IICRC-certified contractors.',
     type: 'website',
   },

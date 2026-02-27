@@ -13,7 +13,7 @@ import { generateSEO } from '@/lib/seo';
 const SLUG = 'command-ecosystem';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Command Ecosystem | Technology Integration | Disaster Recovery',
+  title: 'Command Ecosystem | Technology Integration',
   description:
     "Discover how Disaster Recovery's command ecosystem integrates iPads, mobiles and laptops for real-time claims management, GPS dispatch and IICRC-compliant reporting.",
   keywords: [

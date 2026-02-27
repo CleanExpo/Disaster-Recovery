@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Roof Tarping | Disaster Recovery',
+  title: 'Emergency Roof Tarping',
   description: 'Professional emergency roof tarping services in Queensland. 24/7 emergency response for temporary roof, tarp installation.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-tarping',

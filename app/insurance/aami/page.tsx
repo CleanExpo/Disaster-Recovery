@@ -5,7 +5,7 @@ import { getInsuranceSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'AAMI Insurance Claims | Approved Restoration Provider | Claims Assistance',
+  title: 'AAMI Insurance Claims | Approved Restoration Provider',
   description: 'Preferred AAMI insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
   alternates: { canonical: 'https://disasterrecovery.com.au/insurance/aami' },
 };

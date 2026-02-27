@@ -5,7 +5,7 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Professional Equipment Catalogue | Disaster Recovery Equipment & Specifications',
+  title: 'Professional Equipment Catalogue',
   description: 'Browse our comprehensive catalogue of professional disaster recovery equipment. Detailed specifications, rental pricing, and availability for water damage, fire restoration, and mould remediation equipment.',
   keywords: 'disaster recovery equipment, restoration equipment catalogue, industrial dehumidifiers, air scrubbers, thermal imaging cameras, moisture meters, equipment rental Brisbane',
   openGraph: {

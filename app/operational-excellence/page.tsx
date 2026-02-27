@@ -5,7 +5,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Operational Excellence | Disaster Recovery',
+  title: 'Operational Excellence',
   description:
     'Discover the technology, safety standards, field equipment, industry partnerships and remediation assets that power Disaster Recovery across Australia and New Zealand.',
   keywords: [

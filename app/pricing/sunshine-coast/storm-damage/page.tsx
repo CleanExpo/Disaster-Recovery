@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Repair Cost Sunshine Coast | Pricing from $2,420 | Free Quote',
+  title: 'Storm Damage Repair Cost Sunshine Coast | $2,420',
   description: 'Storm Damage Repair pricing in Sunshine Coast, QLD. Minimum $2,420, average $7,150. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost sunshine coast',

@@ -3,7 +3,7 @@ import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "New Year's Eve Disaster Recovery Services | Disaster Recovery",
+  title: "New Year's Eve Disaster Recovery Services",
   description: "Fire or water damage on New Year's Eve? IICRC certified contractors respond overnight — no surcharges. Lodge your claim online for immediate matching.",
   keywords: "new years eve disaster recovery, new years eve fire damage, firework damage property, new years water damage, overnight emergency restoration, Australia",
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/new-years-eve-disaster-recovery' },

@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Flood Damage Restoration Perth | 24/7 Emergency Response | IICRC Certified',
+  title: 'Flood Damage Restoration Perth | 24/7',
   description: 'Emergency flood damage restoration in Perth. IICRC-certified contractors respond in under 60 minutes across all Perth metro suburbs. Available 24/7.',
   keywords: 'flood damage restoration perth, flood damage perth, flood cleanup perth, flood recovery perth, emergency flood restoration perth, flood damage repair perth',
   openGraph: {

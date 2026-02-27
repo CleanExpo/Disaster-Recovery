@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Flood Recovery Cost Adelaide | Pricing from $2,420 | Free Quote',
+  title: 'Flood Recovery Cost Adelaide | Pricing from $2,420',
   description: 'Flood Recovery pricing in Adelaide, SA. Minimum $2,420, average $9,350. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost adelaide',

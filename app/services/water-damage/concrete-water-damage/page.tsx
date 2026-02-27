@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Concrete Water Damage Restoration | Disaster Recovery',
+  title: 'Concrete Water Damage Restoration',
   description: 'Professional concrete water damage restoration services in Queensland. 24/7 emergency response for concrete flooding, slab moisture.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/concrete-water-damage',

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage Cost Brisbane | Pricing from $2,640 | Free Quote',
+  title: 'Fire & Smoke Damage Cost Brisbane | $2,640',
   description: 'Fire & Smoke Damage pricing in Brisbane, QLD. Minimum $2,640, average $14,400. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost brisbane',

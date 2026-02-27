@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Melbourne | 24/7 Emergency Response | IICRC Certified',
+  title: 'Water Damage Restoration Melbourne | 24/7',
   description: 'Emergency water damage restoration in Melbourne. IICRC-certified contractors respond in under 60 minutes across all Melbourne metro suburbs. Available 24/7.',
   keywords: 'water damage restoration melbourne, water damage melbourne, flood cleanup melbourne, burst pipe melbourne, emergency water removal melbourne, water damage repair melbourne',
   openGraph: {

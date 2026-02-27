@@ -5,7 +5,7 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Drone Roof Inspection | Damage assessment | Advanced Restoration Technology',
+  title: 'Drone Roof Inspection | Damage assessment',
   description: 'Professional drone roof inspection for damage assessment. Latest technology for faster, better restoration results.',
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment/drone-inspection' },
 };

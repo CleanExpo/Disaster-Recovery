@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Structural Drying Services | Professional Water Extraction | Industrial Dehumidifiers',
+  title: 'Structural Drying Services',
   description: 'Professional structural drying services with industrial dehumidifiers, air movers, and moisture monitoring. Expert water extraction and building drying to prevent mould and structural damage.',
   keywords: [
     'structural drying',
@@ -25,15 +25,9 @@ export const metadata: Metadata = {
     'professional drying technicians'
   ],
   openGraph: {
-    title: 'Professional Structural Drying Services | Industrial Water Extraction',
+    title: 'Professional Structural Drying Services',
     description: 'Expert structural drying services with industrial equipment. Professional water extraction, dehumidification, and moisture monitoring to prevent mould and structural damage.',
-    images: [
-      {
-        url: '/images/optimised/equipment/3D Dehumidifier.png',
-        width: 1200,
-        height: 630,
-        alt: 'Professional structural drying equipment' },
-    ] },
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Structural Drying Services | Professional Water Extraction',

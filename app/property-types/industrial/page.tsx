@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Industrial Facilities Disaster Recovery | Factories and warehouses | Australia',
+  title: 'Industrial Facilities Disaster Recovery',
   description: 'Specialised disaster recovery for industrial facilities. Factories and warehouses. IICRC-certified, 24/7 response.',
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/industrial' },
 };

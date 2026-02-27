@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Structural Drying | Disaster Recovery',
+  title: 'Emergency Structural Drying',
   description: 'Professional emergency structural drying services in Queensland. 24/7 emergency response for rapid drying, moisture removal.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-drying',

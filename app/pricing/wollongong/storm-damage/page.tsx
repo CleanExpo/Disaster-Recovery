@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Repair Cost Wollongong | Pricing from $2,310 | Free Quote',
+  title: 'Storm Damage Repair Cost Wollongong | $2,310',
   description: 'Storm Damage Repair pricing in Wollongong, NSW. Minimum $2,310, average $6,825. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost wollongong',

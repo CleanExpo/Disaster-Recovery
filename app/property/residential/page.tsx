@@ -3,13 +3,13 @@ import { Home } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Residential Property Restoration | Disaster Recovery Australia',
+  title: 'Residential Property Restoration',
   description: 'Disaster restoration for all residential property types — houses, units, apartments, townhouses, and high-rises. IICRC-certified contractors for water, fire, storm, and mould damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/property/residential',
   },
   openGraph: {
-    title: 'Residential Property Restoration | Disaster Recovery Australia',
+    title: 'Residential Property Restoration',
     description: 'Disaster restoration for all residential property types. IICRC-certified contractors Australia-wide.',
     type: 'website',
   },

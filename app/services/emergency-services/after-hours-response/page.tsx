@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'After Hours Emergency Response | Disaster Recovery',
+  title: 'After Hours Emergency Response',
   description: 'Professional after hours emergency response services in Queensland. 24/7 emergency response for night emergency, weekend service.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/after-hours-response',

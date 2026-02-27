@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Sydney storm damage Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Sydney storm damage Cost | Pricing Guide 2024',
   description: 'How much does storm damage cost in Sydney? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/sydney-storm-damage',

@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ChildPageGrid from '@/components/seo/ChildPageGrid';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Comparisons | Make Informed Restoration Decisions',
+  title: 'Compare Restoration Options | Informed Choices',
   description: 'Compare disaster recovery options side by side. DIY vs professional, insurance vs cash, local vs national, and more. Make the right choice for your situation.',
   alternates: { canonical: 'https://disasterrecovery.com.au/compare' },
 };

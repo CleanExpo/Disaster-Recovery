@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Facilities Managers | Commercial Building Restoration | Disaster Recovery',
+  title: 'Facilities Managers | Commercial Building Restoration',
   description:
     'Emergency disaster restoration for facilities managers across Australia. Approved supplier panel, SLA compliance, IICRC certification, multi-floor coordination.',
   alternates: {

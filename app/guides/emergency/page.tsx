@@ -4,13 +4,13 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Emergency Response Guides | Disaster Recovery Australia',
+  title: 'Emergency Response Guides',
   description: 'Emergency preparedness and response guides for Australian property owners. What to do when disaster strikes — holidays, weekends, and after hours.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/guides/emergency',
   },
   openGraph: {
-    title: 'Emergency Response Guides | Disaster Recovery Australia',
+    title: 'Emergency Response Guides',
     description: 'Emergency preparedness and response guides for property owners.',
     type: 'website',
   },

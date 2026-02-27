@@ -5,11 +5,11 @@ import { getTechnologySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Certified Thermal Imaging Analysis | Level 1/2 Thermography | Disaster Recovery',
+  title: 'Certified Thermal Imaging Analysis',
   description: 'Professional thermography services by certified Level 1/2 technicians. Electrical hot spot analysis, building envelope assessment, and quantitative thermal reporting. Only ~15 certified specialists nationally.',
   keywords: 'certified thermal imaging, Level 1 thermography, electrical hot spot detection, building envelope analysis, quantitative thermal analysis, thermography certification',
   openGraph: {
-    title: 'Certified Thermal Imaging Analysis | Disaster Recovery',
+    title: 'Certified Thermal Imaging Analysis',
     description: 'Beyond basic moisture detection - certified thermography analysis by qualified specialists.',
   },
   alternates: {

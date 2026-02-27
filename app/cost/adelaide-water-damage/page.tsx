@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Adelaide water damage Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Adelaide water damage Cost | Pricing Guide 2024',
   description: 'How much does water damage cost in Adelaide? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/adelaide-water-damage',

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Caravan Water Damage | Disaster Recovery',
+  title: 'Caravan Water Damage',
   description: 'Professional caravan water damage services in Queensland. 24/7 emergency response for RV flooding, mobile home water.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/caravan-water-damage',

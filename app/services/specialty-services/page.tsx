@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Specialty Restoration Services | Document, Art, Electronics & More',
+  title: 'Specialty Restoration Services',
   description: 'Specialist disaster recovery for valuable and unique items. Document drying, electronics restoration, art conservation, antique repair, and more. IICRC-certified technicians.',
   alternates: { canonical: 'https://disasterrecovery.com.au/services/specialty-services' },
 };

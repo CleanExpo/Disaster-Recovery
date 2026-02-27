@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Structural Drying Equipment: Types, Costs & Why It Matters | Disaster Recovery',
+  title: 'Structural Drying Equipment | Costs & Types',
   description: 'Professional structural drying equipment explained — air movers, dehumidifiers, injection drying systems, desiccants, and moisture monitoring. What it costs and why hardware store fans are not enough.',
   keywords: [
     'structural drying equipment',

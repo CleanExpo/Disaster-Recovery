@@ -3,13 +3,13 @@ import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Mould Insurance Coverage Decoder | Disaster Recovery',
+  title: 'Mould Insurance Coverage Decoder',
   description: 'Is mould covered by your home insurance? Decode your policy to understand mould coverage, exclusions, and what documentation you need for a successful claim.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/insurance-decoder/mould',
   },
   openGraph: {
-    title: 'Mould Insurance Coverage Decoder | Disaster Recovery',
+    title: 'Mould Insurance Coverage Decoder',
     description: 'Understand your insurance policy mould coverage, exclusions, and claim requirements.',
     type: 'website',
   },

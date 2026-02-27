@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Fire Damage Restoration Brisbane | 24/7 Emergency Response | IICRC Certified',
+  title: 'Fire Damage Restoration Brisbane | 24/7',
   description: 'Emergency fire damage restoration in Brisbane. IICRC-certified contractors for smoke damage, soot removal, structural restoration. Available 24/7 with 60-minute response.',
   keywords: 'fire damage restoration brisbane, fire damage brisbane, smoke damage brisbane, soot removal brisbane, fire restoration brisbane, house fire brisbane',
   openGraph: {

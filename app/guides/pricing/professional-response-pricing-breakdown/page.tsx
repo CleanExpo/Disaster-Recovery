@@ -3,7 +3,7 @@ import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Professional Disaster Response Pricing Breakdown | Disaster Recovery',
+  title: 'Professional Disaster Response Pricing Breakdown',
   description: 'Understand what professional disaster response actually costs in Australia. Extraction, drying, decontamination, monitoring — transparent pricing with no hidden fees.',
   keywords: 'disaster response pricing, restoration costs Australia, water damage pricing, fire restoration cost, mould remediation pricing, emergency restoration fees, transparent pricing',
   openGraph: {

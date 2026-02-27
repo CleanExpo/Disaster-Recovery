@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Factory Flood Recovery | Disaster Recovery',
+  title: 'Factory Flood Recovery',
   description: 'Professional factory flood recovery services across Australia. 24/7 emergency response for manufacturing plant, industrial water.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services/factory-water-damage',

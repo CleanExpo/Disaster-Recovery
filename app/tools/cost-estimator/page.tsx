@@ -7,7 +7,7 @@ import { getCostEstimatorSections } from '@/lib/content-sections';
 import CostEstimator from '@/components/tools/CostEstimator';
 
 export const metadata: Metadata = {
-  title: 'Emergency Cost Estimator | Disaster Recovery Australia',
+  title: 'Emergency Cost Estimator',
   description:
     'Get an instant cost estimate for water damage, fire, mould, storm, sewage, or biohazard restoration. Free, no-obligation estimate based on Australian pricing data.',
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     'emergency restoration pricing',
   ],
   openGraph: {
-    title: 'Emergency Cost Estimator | Disaster Recovery Australia',
+    title: 'Emergency Cost Estimator',
     description:
       'Instant cost estimate for water damage, fire, mould, storm, sewage, or biohazard restoration based on real Australian pricing data.',
     type: 'website',

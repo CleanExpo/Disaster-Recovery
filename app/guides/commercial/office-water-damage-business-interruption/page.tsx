@@ -3,7 +3,7 @@ import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Office Water Damage: Minimising Business Interruption | Disaster Recovery',
+  title: 'Office Water Damage: Minimising Business Interruption',
   description: 'Expert answers and solutions for "office building water damage business interruption". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'office building water damage business interruption, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/office-water-damage-business-interruption' },

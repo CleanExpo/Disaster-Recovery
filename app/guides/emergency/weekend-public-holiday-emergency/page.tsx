@@ -3,7 +3,7 @@ import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Weekend & Public Holiday Emergency Restoration | Disaster Recovery',
+  title: 'Weekend & Public Holiday Emergency Restoration',
   description: 'Emergency restoration on weekends and public holidays — no surcharges. IICRC certified contractors respond 24/7 across Australia. Lodge your claim online.',
   keywords: 'weekend emergency restoration, public holiday emergency restoration, after hours restoration, 24/7 disaster recovery, no surcharge emergency, Australia',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/weekend-public-holiday-emergency' },

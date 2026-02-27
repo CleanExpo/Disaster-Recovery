@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Insurance Partners | Priority Emergency Claims | Disaster Recovery Australia',
+  title: 'Insurance Partners | Priority Emergency Claims',
   description: 'Disaster Recovery partners with major Australian insurers for priority emergency claims processing. NRMA, Suncorp, and Clean Claims partnerships.',
   alternates: { canonical: 'https://disasterrecovery.com.au/partners' },
 };

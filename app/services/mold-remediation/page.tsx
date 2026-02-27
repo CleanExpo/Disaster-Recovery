@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Services | IICRC S520 Certified | Black Mould Removal Specialists',
+  title: 'Mould Remediation Services | IICRC S520 Certified',
   description: 'Professional mould remediation services following IICRC S520 standards. Black mould removal, toxic mould cleanup, mould testing & inspection. Licensed technicians available 24/7.',
   keywords: [
     'mould remediation',
@@ -27,13 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Professional Mould Remediation | IICRC S520 Certified Specialists',
     description: 'Expert mould remediation services following IICRC S520 standards. Comprehensive black mould removal and toxic mould cleanup with 24/7 emergency response.',
-    images: [
-      {
-        url: '/images/optimised/damage/3D Mould Damage.png',
-        width: 1200,
-        height: 630,
-        alt: 'Professional mould remediation service' },
-    ] },
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'Mould Remediation Services | IICRC S520 Certified',

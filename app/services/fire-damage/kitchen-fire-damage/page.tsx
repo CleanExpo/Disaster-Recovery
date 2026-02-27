@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Kitchen Fire Damage Restoration | Disaster Recovery',
+  title: 'Kitchen Fire Damage Restoration',
   description: 'Professional kitchen fire damage restoration services in Queensland. 24/7 emergency response for cooking fire, kitchen smoke damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/kitchen-fire-damage',

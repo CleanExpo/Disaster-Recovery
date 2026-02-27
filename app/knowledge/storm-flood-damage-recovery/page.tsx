@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'storm-flood-damage-recovery';
 
 export const metadata: Metadata = {
-  title: 'Storm & Flood Damage Recovery | Category 3 Protocols | NRPG',
+  title: 'Storm & Flood Damage Recovery | Category 3 Protocols',
   description:
     'Storm and flood damage recovery in Australia: Category 3 floodwater protocols, IICRC S500, BOM severe weather data, flood insurance, and government disaster assistance.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/storm-flood-damage-recovery' },

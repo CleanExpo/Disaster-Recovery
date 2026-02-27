@@ -5,7 +5,7 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Ultrasonic Cleaning | Contents restoration | Advanced Restoration Technology',
+  title: 'Ultrasonic Cleaning | Contents restoration',
   description: 'Professional ultrasonic cleaning for contents restoration. Latest technology for faster, better restoration results.',
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment/ultrasonic-cleaning' },
 };

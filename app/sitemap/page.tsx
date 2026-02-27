@@ -3,7 +3,7 @@ import { Map } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Sitemap | All Pages | Disaster Recovery',
+  title: 'Sitemap | All Pages',
   description: 'Complete sitemap of all pages on Disaster Recovery. Find services, locations, pricing, and resources.',
   robots: {
     index: true,

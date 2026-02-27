@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Natural Disaster Response | Disaster Recovery',
+  title: 'Natural Disaster Response',
   description: 'Professional natural disaster response services in Queensland. 24/7 emergency response for catastrophe response, major event.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/disaster-response',

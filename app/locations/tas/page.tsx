@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Tasmania | 24/7 Emergency Services | Hobart & All Cities',
+  title: 'Disaster Recovery Tasmania | 24/7 Emergency Services',
   description: 'Leading disaster recovery services across Tasmania. Emergency response for Bushfires, Flooding, Severe Storms, Landslides. Serving Hobart, Launceston, Devonport, Burnie and all TAS regions. Call Online Form Available 24/7.',
   keywords: [
     'disaster recovery Tasmania',

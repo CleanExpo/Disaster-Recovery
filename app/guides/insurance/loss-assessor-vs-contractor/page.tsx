@@ -4,7 +4,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Loss Assessor vs Restoration Contractor — Who Does What | Disaster Recovery',
+  title: 'Loss Assessor vs Contractor — Who Does What',
   description: 'The difference between a loss assessor and a restoration contractor explained. When you need a loss assessor to negotiate your claim, when you just need a contractor, and how proper documentation can replace both.',
   keywords: [
     'loss assessor vs contractor',

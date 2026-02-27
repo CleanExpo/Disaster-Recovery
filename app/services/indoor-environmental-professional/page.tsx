@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Indoor Environmental Professional (IEP) Services | Disaster Recovery',
+  title: 'Indoor Environmental Professional (IEP) Services',
   description: 'Certified Indoor Environmental Professionals (IEP) providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting nationwide.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/indoor-environmental-professional',

@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'insurance-claims-process-australia';
 
 export const metadata: Metadata = {
-  title: 'Insurance Claims Process Australia | Disaster Recovery | NRPG',
+  title: 'Insurance Claims Process',
   description:
     'Australian insurance claims process for disaster recovery: Insurance Contracts Act 1984, General Insurance Code of Practice, AFCA dispute resolution, and claims timeline guide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/insurance-claims-process-australia' },

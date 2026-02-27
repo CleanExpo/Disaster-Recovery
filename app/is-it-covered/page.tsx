@@ -3,13 +3,13 @@ import { Shield } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Is It Covered? Insurance Coverage Checker | Disaster Recovery',
+  title: 'Is It Covered? | Insurance Checker',
   description: 'Check whether your property damage is covered by insurance. Understand how sudden vs gradual damage affects your claim and what documentation you need.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/is-it-covered',
   },
   openGraph: {
-    title: 'Is It Covered? Insurance Coverage Checker | Disaster Recovery',
+    title: 'Is It Covered? | Insurance Checker',
     description: 'Check whether your property damage is covered by insurance. Sudden vs gradual damage explained.',
     type: 'website',
   },

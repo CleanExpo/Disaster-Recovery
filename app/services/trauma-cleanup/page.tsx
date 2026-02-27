@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Trauma Scene Cleanup | IICRC-Certified Specialists | 24/7 Response',
+  title: 'Trauma Scene Cleanup | IICRC-Certified Specialists',
   description: 'Professional trauma scene cleanup services across Australia. IICRC-certified technicians for unattended death, accident, and crime scene restoration. Compassionate, discreet, available 24/7.',
   keywords: [
     'trauma cleanup',

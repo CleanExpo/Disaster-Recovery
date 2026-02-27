@@ -21,7 +21,7 @@ import {
 // SEO Metadata with AI optimisation
 // ---------------------------------------------------------------------------
 export const metadata: Metadata = generateSEO({
-  title: 'Bushfire Damage Restoration Australia | Emergency Fire & Smoke Repair | Disaster Recovery',
+  title: 'Bushfire Damage Restoration',
   description:
     'Australia-wide bushfire damage restoration — emergency response for fire damage, smoke damage, ember attack and radiant heat damage. IICRC-certified contractors, claims-ready documentation, 24/7 availability. Start your claim online now.',
   keywords: [

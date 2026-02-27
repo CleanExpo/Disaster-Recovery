@@ -3,7 +3,7 @@ import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Disclaimer | Disaster Recovery Australia',
+  title: 'Disclaimer',
   description: 'Important disclaimers regarding the use of Disaster Recovery Australia services. We are a lead generation platform connecting property owners with certified contractors.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/disclaimer',

@@ -3,7 +3,7 @@ import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Restaurant Kitchen Fire Damage Restoration | Disaster Recovery',
+  title: 'Restaurant Kitchen Fire Damage Restoration',
   description: 'Expert answers and solutions for "restaurant kitchen fire damage restoration". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'restaurant kitchen fire damage restoration, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/restaurant-fire-damage-restoration' },

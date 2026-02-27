@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import PaymentPage from './PaymentClient';
 
 export const metadata: Metadata = {
-  title: 'Secure Payment | Disaster Recovery Australia',
+  title: 'Secure Payment',
   description: 'Complete your restoration service booking with our secure payment system. Stripe-powered checkout with full payment protection.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/book-service/payment',
   },
   openGraph: {
-    title: 'Secure Payment | Disaster Recovery Australia',
+    title: 'Secure Payment',
     description: 'Complete your restoration service booking with secure Stripe-powered checkout.',
     type: 'website',
   },

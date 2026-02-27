@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Sunshine Coast Hotel Water Damage Restoration | Disaster Recovery',
+  title: 'Sunshine Coast Hotel Water Damage Restoration',
   description: 'Specialist hotel and resort restoration on the Sunshine Coast. Minimising guest disruption, cyclone and storm recovery, Noosa to Caloundra coverage, IICRC certified 24/7.',
   keywords: 'sunshine coast hotel restoration, resort water damage noosa, hotel storm damage sunshine coast, tourism restoration, mooloolaba hotel flood, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/sunshine-coast/sunshine-coast-hotel-restoration' },

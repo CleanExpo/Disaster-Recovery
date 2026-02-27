@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Data Centre Water Damage | Disaster Recovery',
+  title: 'Data Centre Water Damage',
   description: 'Professional data centre water damage services across Australia. 24/7 emergency response for server room flooding, IT disaster.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services/data-center-flooding',

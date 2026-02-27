@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'ANZAC Day Emergency Services | April 25 | 24/7 Disaster Recovery',
+  title: 'ANZAC Day Emergency Services | April 25',
   description: 'Emergency disaster recovery services available April 25. No call-out fees, immediate response nationwide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/anzac-day' },
 };

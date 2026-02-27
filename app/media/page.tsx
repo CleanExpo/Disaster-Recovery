@@ -3,13 +3,13 @@ import { Newspaper } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Media & Press | Disaster Recovery Australia',
+  title: 'Media & Press',
   description: 'Media enquiries, press releases, and news from Disaster Recovery Australia. Contact our media team for interviews and industry commentary.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/media',
   },
   openGraph: {
-    title: 'Media & Press | Disaster Recovery Australia',
+    title: 'Media & Press',
     description: 'Media enquiries, press releases, and news from Disaster Recovery Australia.',
     type: 'website',
   },

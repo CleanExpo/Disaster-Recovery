@@ -3,7 +3,7 @@ import { Zap } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Australia | 24/7 Emergency Restoration',
+  title: '24/7 Emergency Restoration',
   description: 'Disaster Recovery Australia connects property owners with IICRC-certified restoration contractors. 24/7 emergency response for water, fire, storm, and mould damage.',
   robots: { index: false, follow: false },
 };

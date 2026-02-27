@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Cost Brisbane | Pricing from $2,640 | Free Quote',
+  title: 'Water Damage Restoration Cost Brisbane | $2,640',
   description: 'Water Damage Restoration pricing in Brisbane, QLD. Minimum $2,640, average $6,600. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost brisbane',

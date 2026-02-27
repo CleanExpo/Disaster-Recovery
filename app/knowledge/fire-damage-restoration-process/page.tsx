@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'fire-damage-restoration-process';
 
 export const metadata: Metadata = {
-  title: 'Fire Damage Restoration Process | IICRC S540 Standards | NRPG',
+  title: 'Fire Damage Restoration Process | IICRC S540 Standards',
   description:
     'Complete fire damage restoration process: IICRC S540 standards, 4-phase restoration, smoke particle science, asbestos obligations, and Australian insurance claims for fire damage.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/fire-damage-restoration-process' },

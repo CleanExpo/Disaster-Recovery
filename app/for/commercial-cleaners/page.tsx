@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Commercial Cleaners | Referral Partner Program | Disaster Recovery',
+  title: 'Commercial Cleaners | Referral Partner Program',
   description:
     'Partner with Disaster Recovery when damage exceeds your cleaning scope. Your client stays your client. Emergency referral program for commercial cleaning companies across Australia.',
   alternates: {

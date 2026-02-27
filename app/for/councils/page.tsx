@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Local Councils | Government Facility Restoration | Disaster Recovery',
+  title: 'Local Councils | Government Facility Restoration',
   description:
     'Emergency disaster restoration for local councils and government facilities across Australia. Community facility restoration, make-safe order support, procurement panel arrangements.',
   alternates: {

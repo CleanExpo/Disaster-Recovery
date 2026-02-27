@@ -4,13 +4,13 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Restoration Equipment Guides | Disaster Recovery Australia',
+  title: 'Restoration Equipment Guides',
   description: 'Guides to professional restoration equipment — structural drying, dehumidifiers, air movers, and moisture detection technology used in disaster recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/guides/equipment',
   },
   openGraph: {
-    title: 'Restoration Equipment Guides | Disaster Recovery Australia',
+    title: 'Restoration Equipment Guides',
     description: 'Guides to professional restoration equipment and structural drying technology.',
     type: 'website',
   },

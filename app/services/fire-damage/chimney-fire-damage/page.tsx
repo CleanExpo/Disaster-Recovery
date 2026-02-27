@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Chimney Fire Damage Cleanup | Disaster Recovery',
+  title: 'Chimney Fire Damage Cleanup',
   description: 'Professional chimney fire damage cleanup services in Queensland. 24/7 emergency response for flue fire, chimney restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/chimney-fire-damage',

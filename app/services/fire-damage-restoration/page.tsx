@@ -14,7 +14,7 @@ import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRig
 
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
-  title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery',
+  title: 'Fire Damage Restoration Brisbane',
   description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. IICRC-certified contractors. Use Our Online Form',
   keywords: [
     'fire damage restoration Brisbane',

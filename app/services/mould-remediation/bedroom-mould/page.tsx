@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Bedroom Mould Remediation | Disaster Recovery',
+  title: 'Bedroom Mould Remediation',
   description: 'Professional bedroom mould remediation services in Queensland. 24/7 emergency response for sleeping area mould, health risks.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/bedroom-mould',

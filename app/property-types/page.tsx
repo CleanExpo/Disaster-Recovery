@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ChildPageGrid from '@/components/seo/ChildPageGrid';
 
 export const metadata: Metadata = {
-  title: 'Property Type Disaster Recovery | Residential, Commercial, Strata | All Properties',
+  title: 'Property Type Disaster Recovery',
   description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types' },
 };

@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Restoration Guides | Disaster Recovery Australia',
+  title: 'Restoration Guides',
   description: 'Expert guides on water damage, fire restoration, mould remediation, storm damage, insurance claims, and emergency preparedness for Australian property owners.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/guides',

@@ -5,7 +5,7 @@ import { getCertificationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'ISO Certified | Quality management | Disaster Recovery',
+  title: 'ISO Certified | Quality management',
   description: 'ISO Certified restoration services. Quality management. Qualified, certified, and compliant disaster recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/certifications/iso-certified',

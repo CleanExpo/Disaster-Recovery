@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Drug Lab Decontamination | Disaster Recovery',
+  title: 'Drug Lab Decontamination',
   description: 'Professional drug lab decontamination services in Queensland. 24/7 emergency response for meth lab cleanup, chemical remediation.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/drug-lab-cleanup',

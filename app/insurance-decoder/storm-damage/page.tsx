@@ -3,13 +3,13 @@ import { CloudLightning } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Insurance Decoder | Disaster Recovery',
+  title: 'Storm Damage Insurance Decoder',
   description: 'Is storm damage covered by your home insurance? Decode cyclone, hail, wind, and flood coverage. Understand excess amounts, exclusions, and claim documentation steps.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/insurance-decoder/storm-damage',
   },
   openGraph: {
-    title: 'Storm Damage Insurance Decoder | Disaster Recovery',
+    title: 'Storm Damage Insurance Decoder',
     description: 'Is storm damage covered by your insurance? Decode cyclone, hail, wind, and flood coverage.',
     type: 'website',
   },

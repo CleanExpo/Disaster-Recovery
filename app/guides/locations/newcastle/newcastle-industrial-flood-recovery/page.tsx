@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Newcastle Industrial Flood Recovery Services | Disaster Recovery',
+  title: 'Newcastle Industrial Flood Recovery Services',
   description: 'Specialist industrial flood recovery in Newcastle. Hunter River flood zones, port industrial areas, Kooragang Island, heavy industry restoration, IICRC certified 24/7.',
   keywords: 'newcastle industrial flood recovery, hunter river flooding, kooragang island flood, newcastle port water damage, industrial restoration newcastle, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/newcastle/newcastle-industrial-flood-recovery' },

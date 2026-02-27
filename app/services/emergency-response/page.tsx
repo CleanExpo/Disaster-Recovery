@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: '24/7 Online Emergency Response Services | Disaster Recovery Specialists | 1-Hour Response Time',
+  title: '24/7 Emergency Response | 1-Hour Response',
   description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
   keywords: [
     'emergency response services',
@@ -27,20 +27,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: '24/7 Online Emergency Response Services | 1-Hour Response Time',
     description: 'Professional 24/7 emergency response for disaster recovery. Rapid response team available for water, fire, and storm damage emergencies.',
-    images: [
-      {
-        url: '/images/optimised/process/3D Assessment.png',
-        width: 1200,
-        height: 630,
-        alt: '24/7 emergency response service' },
-    ] },
+  },
   twitter: {
     card: 'summary_large_image',
-    title: '24/7 Online Emergency Response Services | Disaster Recovery',
+    title: '24/7 Online Emergency Response Services',
     description: 'Professional emergency response team available 24/7. 1-hour response time for disaster recovery emergencies.',
   },
   alternates: {
-    canonical: '/services/emergency-response' },
+    canonical: '/services/emergency-services' },
   other: {
     'geo.region': 'AU',
     'geo.placename': 'Australia',

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Bushfire Smoke Damage | Disaster Recovery',
+  title: 'Bushfire Smoke Damage',
   description: 'Professional bushfire smoke damage services in Queensland. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/bushfire-smoke-damage',

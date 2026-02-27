@@ -23,7 +23,7 @@ import {
 // SEO Metadata — cyclone damage restoration (national, cyclone-prone focus)
 // ---------------------------------------------------------------------------
 export const metadata: Metadata = generateSEO({
-  title: 'Cyclone Damage Restoration Australia | Emergency Tropical Cyclone Recovery | Disaster Recovery',
+  title: 'Cyclone Damage Restoration | 24/7 Emergency',
   description:
     'Australia-wide cyclone damage restoration — emergency response for Category 1 to Category 5 cyclone damage, roof loss, structural failure, storm surge flooding and wind damage. IICRC-certified contractors, claims-ready documentation, 24/7 availability. Start your claim online now.',
   keywords: [

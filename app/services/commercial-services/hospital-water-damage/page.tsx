@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Healthcare Facility Water Damage | Disaster Recovery',
+  title: 'Healthcare Facility Water Damage',
   description: 'Professional healthcare facility water damage services across Australia. 24/7 emergency response for medical facility, hospital flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services/hospital-water-damage',

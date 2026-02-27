@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Hot Water System Burst Damage | Disaster Recovery',
+  title: 'Hot Water System Burst Damage',
   description: 'Professional hot water system burst damage services in Queensland. 24/7 emergency response for hot water tank leak, heater flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/hot-water-system-burst',

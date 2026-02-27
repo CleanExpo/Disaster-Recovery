@@ -7,7 +7,7 @@ import { NAP } from '@/lib/constants';
 import Link from 'next/link';
 
 export const metadata: Metadata = generateSEO({
-  title: 'About Disaster Recovery Australia | National Claims Distribution Platform',
+  title: 'About Us | National Claims Platform',
   description: 'Australia\'s national disaster recovery claims distribution platform. Connecting property owners with IICRC-certified contractors 24/7 for water, fire, storm, mould, and biohazard restoration.',
   keywords: [
     'about disaster recovery Australia',

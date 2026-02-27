@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Plumbing Services | Disaster Recovery',
+  title: 'Emergency Plumbing Services',
   description: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-plumbing',

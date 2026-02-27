@@ -5,7 +5,7 @@ import { getCaseStudySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Sydney Storms 2021 | Case Study | Disaster Recovery Success Story',
+  title: 'Sydney Storms 2021 | Case Study',
   description: 'How we helped recover from Sydney Storms 2021. Real results, timelines, and restoration process.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/case-studies/sydney-storms-2021',

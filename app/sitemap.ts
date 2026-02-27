@@ -118,6 +118,13 @@ const PRIORITY_MAP: Record<string, number> = {
   '/terms': 0.3,
   '/cookies': 0.3,
   '/legal': 0.3,
+  '/events': 0.5,
+  '/insurance-decoder': 0.7,
+  '/property': 0.75,
+  '/tools': 0.7,
+  '/get-help': 0.8,
+  '/government-funding': 0.7,
+  '/whos-first': 0.8,
 };
 
 // Change frequency mapping by route prefix
@@ -154,6 +161,13 @@ const FREQUENCY_MAP: Record<string, MetadataRoute.Sitemap[0]['changeFrequency']>
   '/terms': 'yearly',
   '/cookies': 'yearly',
   '/legal': 'yearly',
+  '/events': 'monthly',
+  '/insurance-decoder': 'monthly',
+  '/property': 'monthly',
+  '/tools': 'monthly',
+  '/get-help': 'weekly',
+  '/government-funding': 'monthly',
+  '/whos-first': 'weekly',
 };
 
 function getPriority(route: string): number {

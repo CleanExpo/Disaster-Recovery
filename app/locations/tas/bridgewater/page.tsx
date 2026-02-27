@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Bridgewater | Emergency Services Tasmania',
+  title: 'Disaster Recovery Bridgewater',
   description: '24/7 disaster recovery in Bridgewater, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/tas/bridgewater',

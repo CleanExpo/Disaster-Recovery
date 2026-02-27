@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Suicide Cleanup Services | Disaster Recovery',
+  title: 'Suicide Cleanup Services',
   description: 'Professional suicide cleanup services services in Queensland. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/suicide-cleanup',

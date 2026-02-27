@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Wine Cellar Flood Recovery | Disaster Recovery',
+  title: 'Wine Cellar Flood Recovery',
   description: 'Professional wine cellar flood recovery services in Queensland. 24/7 emergency response for wine storage, cellar water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/wine-cellar-flooding',

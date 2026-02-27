@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Restoration Gold Coast | 24/7 Emergency Response | IICRC Certified',
+  title: 'Storm Damage Restoration Gold Coast | 24/7',
   description: 'Emergency storm damage restoration on the Gold Coast. IICRC-certified contractors respond in under 60 minutes across all Gold Coast suburbs. Available 24/7.',
   keywords: 'storm damage restoration gold coast, storm damage gold coast, hail damage gold coast, wind damage gold coast, emergency storm repair gold coast, storm damage repair gold coast',
   openGraph: {

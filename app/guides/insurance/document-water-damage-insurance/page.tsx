@@ -3,7 +3,7 @@ import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Documenting Water Damage for Insurance Claims | Disaster Recovery',
+  title: 'Documenting Water Damage for Insurance Claims',
   description: 'Expert answers and solutions for "how to document water damage for insurance claim". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'how to document water damage for insurance claim, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance/document-water-damage-insurance' },

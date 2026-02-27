@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Cost Adelaide | Pricing from $2,420 | Free Quote',
+  title: 'Mould Remediation Cost Adelaide | Pricing from $2,420',
   description: 'Mould Remediation pricing in Adelaide, SA. Minimum $2,420, average $4,950. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost adelaide',

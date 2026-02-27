@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Brisbane CBD Water Damage | Disaster Recovery',
+  title: 'Brisbane CBD Water Damage',
   description: 'Professional brisbane cbd water damage services in Queensland. 24/7 emergency response for city flooding, downtown Brisbane.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/location-specific/brisbane-cbd-water-damage',

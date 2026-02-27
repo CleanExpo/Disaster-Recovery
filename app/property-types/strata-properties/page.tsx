@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Strata Property Disaster Recovery | Strata Properties | $2200 Minimum',
+  title: 'Strata Property Disaster Recovery | Strata Properties',
   description: 'Coordinated disaster recovery for strata-managed properties and common areas. 30 minutes response. 100% via strata insurance coverage.',
   keywords: ["strata disaster recovery","body corporate restoration","common area damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/strata-properties' },

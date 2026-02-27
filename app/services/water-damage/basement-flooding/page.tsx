@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Basement Flooding Cleanup Brisbane | Disaster Recovery',
+  title: 'Basement Flooding Cleanup Brisbane',
   description: 'Emergency basement flooding cleanup and restoration in Brisbane. 24/7 water extraction, drying, and flood damage repair services.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/basement-flooding',

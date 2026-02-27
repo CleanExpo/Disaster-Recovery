@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery South Australia | 24/7 Emergency Services | Adelaide & All Cities',
+  title: 'Disaster Recovery South | 24/7 Emergency Services',
   description: 'Leading disaster recovery services across South Australia. Emergency response for Bushfires, Heatwaves, Flooding, Severe Storms. Serving Adelaide, Mount Gambier, Whyalla, Murray Bridge and all SA regions. Call Online Form Available 24/7.',
   keywords: [
     'disaster recovery South Australia',

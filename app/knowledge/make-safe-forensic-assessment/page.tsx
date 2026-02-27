@@ -9,7 +9,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'make-safe-forensic-assessment';
 
 export const metadata: Metadata = {
-  title: 'Make Safe & Forensic Assessment | $2,750 Fixed-Price Service | NRPG',
+  title: 'Make Safe & Forensic Assessment | $2,750',
   description:
     'NRPG $2,750 Make Safe & Forensic Assessment: IICRC inspection, thermal imaging, moisture mapping, emergency stabilisation, and Paperwork Assurance Report for insurance claims.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/make-safe-forensic-assessment' },

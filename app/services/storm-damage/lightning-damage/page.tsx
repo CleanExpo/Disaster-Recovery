@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Lightning Strike Damage | Disaster Recovery',
+  title: 'Lightning Strike Damage',
   description: 'Professional lightning strike damage services in Queensland. 24/7 emergency response for electrical surge, lightning fire.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/lightning-damage',

@@ -3,7 +3,7 @@ import { BookOpen } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'When to Call Professional Disaster Restoration Services | Disaster Recovery',
+  title: 'When to Call Professional Disaster Restoration',
   description: 'Know when to call a professional restorer vs DIY. Damage thresholds, time-critical scenarios, and decision criteria for Australian property owners.',
   keywords: 'when to call disaster restoration, DIY vs professional restoration, water damage threshold, when to call restorer, restoration decision guide, Australia',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/guides/when-to-call-disaster-restoration' },

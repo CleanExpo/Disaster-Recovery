@@ -8,7 +8,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 const SLUG = 'biohazard-trauma-cleaning-standards';
 
 export const metadata: Metadata = {
-  title: 'Biohazard & Trauma Cleaning Standards | AS/NZS 3816 | NRPG',
+  title: 'Biohazard & Trauma Cleaning Standards | AS/NZS 3816',
   description:
     'Biohazard and trauma cleaning standards in Australia: IICRC S540, AS/NZS 3816 clinical waste management, bloodborne pathogen protocols, and WHS regulations.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/biohazard-trauma-cleaning-standards' },

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Timber Mould Treatment | Disaster Recovery',
+  title: 'Timber Mould Treatment',
   description: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/timber-mould',

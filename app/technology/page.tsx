@@ -5,7 +5,7 @@ import { getTechnologySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Advanced Technology | Disaster Recovery',
+  title: 'Advanced Technology',
   description: 'Industry-leading restoration technology including AI damage detection, thermal imaging, and HEPA filtration systems for superior disaster recovery results.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/technology',

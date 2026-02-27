@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Ipswich Flood Recovery | Disaster Recovery',
+  title: 'Ipswich Flood Recovery',
   description: 'Professional ipswich flood recovery services in Queensland. 24/7 emergency response for western flooding, Ipswich restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/location-specific/ipswich-flood-recovery',

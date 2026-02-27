@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Commercial Restoration Services | Disaster Recovery',
+  title: 'Commercial Restoration Services',
   description: 'Professional commercial restoration services for businesses across Australia. Minimising downtime and protecting your business assets.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services',

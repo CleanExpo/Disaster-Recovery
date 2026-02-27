@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Government Facility Disaster Recovery | Government Properties | $2200 Minimum',
+  title: 'Government Facility Disaster Recovery | $2200',
   description: 'Approved vendor for government facility disaster recovery and restoration. Immediate priority response. 100% funded insurance coverage.',
   keywords: ["government disaster recovery","public facility restoration","council property damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/government-facilities' },

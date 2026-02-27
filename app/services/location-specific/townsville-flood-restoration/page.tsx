@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Townsville Flood Restoration | Disaster Recovery',
+  title: 'Townsville Flood Restoration',
   description: 'Professional townsville flood restoration services in Queensland. 24/7 emergency response for north QLD flooding, tropical recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/location-specific/townsville-flood-restoration',

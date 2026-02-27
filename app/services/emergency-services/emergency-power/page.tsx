@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Power Solutions | Disaster Recovery',
+  title: 'Emergency Power Solutions',
   description: 'Professional emergency power solutions services in Queensland. 24/7 emergency response for generators, temporary power.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-power',

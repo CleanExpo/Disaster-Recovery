@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: '24/7 Online Emergency Response Times & Fees | After Hours, Weekends, Holidays',
+  title: 'Emergency Response Times & Fees | 24/7',
   description: 'Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. IICRC-certified.',
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency' },
 };

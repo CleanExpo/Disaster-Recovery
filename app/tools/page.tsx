@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Tools | Disaster Recovery Australia',
+  title: 'Tools',
   description: 'Free tools for property damage assessment. Use our cost estimator to get instant pricing for water damage, fire, mould, storm, and flood restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/tools',

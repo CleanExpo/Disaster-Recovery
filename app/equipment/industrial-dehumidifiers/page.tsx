@@ -5,7 +5,7 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Industrial Dehumidifiers | Structural drying | Advanced Restoration Technology',
+  title: 'Industrial Dehumidifiers | Structural drying',
   description: 'Professional industrial dehumidifiers for structural drying. Latest technology for faster, better restoration results.',
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment/industrial-dehumidifiers' },
 };

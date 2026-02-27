@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Dandenong | Emergency Services Victoria',
+  title: 'Disaster Recovery Dandenong',
   description: '24/7 disaster recovery in Dandenong, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/vic/dandenong',

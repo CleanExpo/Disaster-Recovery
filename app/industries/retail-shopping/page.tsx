@@ -5,7 +5,7 @@ import { getIndustrySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Retail & Shopping Centres Disaster Recovery | Specialised Industrial Restoration | Australia',
+  title: 'Retail & Shopping Centre Disaster Recovery',
   description: 'Rapid restoration for retail stores and shopping centres to minimise business interruption. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["retail disaster recovery","shopping centre restoration","store cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/retail-shopping' },

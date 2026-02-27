@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Flash Flood Damage Recovery | Disaster Recovery',
+  title: 'Flash Flood Damage Recovery',
   description: 'Professional flash flood damage recovery services in Queensland. 24/7 emergency response for flood cleanup, storm flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/flood-damage-restoration',

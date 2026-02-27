@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage Cost Newcastle | Pricing from $2,310 | Free Quote',
+  title: 'Fire & Smoke Damage Cost Newcastle | $2,310',
   description: 'Fire & Smoke Damage pricing in Newcastle, NSW. Minimum $2,310, average $12,600. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost newcastle',

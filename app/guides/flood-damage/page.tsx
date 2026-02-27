@@ -4,13 +4,13 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Flood Damage Recovery Guides | Disaster Recovery Australia',
+  title: 'Flood Damage Recovery Guides',
   description: 'Expert guides for flood damage recovery in Australian properties. Hardwood floor restoration, contamination cleanup, and post-flood drying techniques.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/guides/flood-damage',
   },
   openGraph: {
-    title: 'Flood Damage Recovery Guides | Disaster Recovery Australia',
+    title: 'Flood Damage Recovery Guides',
     description: 'Expert guides for flood damage recovery in Australian properties.',
     type: 'website',
   },

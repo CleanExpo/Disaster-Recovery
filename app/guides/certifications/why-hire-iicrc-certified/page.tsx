@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Why Hire IICRC Certified Restoration Professionals | Disaster Recovery',
+  title: 'Why Hire IICRC Certified Restoration Professionals',
   description: 'What IICRC certification means, what WRT, FSRT and AMRT qualifications cover, and why hiring certified technicians protects your property and your insurance claim.',
   keywords: [
     'IICRC certified restoration',

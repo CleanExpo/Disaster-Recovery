@@ -25,13 +25,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!scenario) {
     return {
-      title: 'Scenario Not Found | Disaster Recovery',
+      title: 'Scenario Not Found',
       description: 'The requested scenario could not be found.',
     };
   }
 
   return {
-    title: `${scenario.title} | Who's First? Disaster Recovery`,
+    title: `${scenario.title} | Who's First?`,
     description: scenario.metaDescription,
     keywords: scenario.searchKeywords.join(', '),
     openGraph: {

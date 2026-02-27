@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Perth water damage Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Perth water damage Cost | Pricing Guide 2024',
   description: 'How much does water damage cost in Perth? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/perth-water-damage',

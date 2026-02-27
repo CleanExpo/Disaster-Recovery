@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Flood & Water Emergencies | Disaster Recovery',
+  title: 'Flood & Water Emergencies',
   description: '24/7 emergency disaster response services across Queensland. Immediate response for water, fire, storm, and hazardous material incidents.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services',

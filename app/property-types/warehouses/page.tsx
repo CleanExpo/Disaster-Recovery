@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Warehouse & Storage Disaster Recovery | Industrial Properties | $2200 Minimum',
+  title: 'Warehouse & Storage Disaster Recovery | $2200',
   description: 'Large-scale disaster recovery for warehouses and storage facilities. 45 minutes response. 100% insurance coverage.',
   keywords: ["warehouse flood recovery","storage facility restoration","industrial damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/warehouses' },

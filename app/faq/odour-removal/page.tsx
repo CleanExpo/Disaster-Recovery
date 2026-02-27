@@ -5,7 +5,7 @@ import { getFAQSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'odour removal FAQ | Common Questions Answered | Expert Guide',
+  title: 'odour removal FAQ | Common Questions Answered',
   description: 'Everything you need to know about odour removal. Expert answers to common questions, tips, and advice.',
   alternates: { canonical: 'https://disasterrecovery.com.au/faq/odour-removal' },
 };

@@ -4,13 +4,13 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Insurance Claims Guides | Disaster Recovery Australia',
+  title: 'Insurance Claims Guides',
   description: 'Expert guides for navigating insurance claims after property damage. Learn how to document damage, understand your policy, and maximise your claim outcome.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/guides/insurance',
   },
   openGraph: {
-    title: 'Insurance Claims Guides | Disaster Recovery Australia',
+    title: 'Insurance Claims Guides',
     description: 'Expert guides for navigating insurance claims after property damage.',
     type: 'website',
   },

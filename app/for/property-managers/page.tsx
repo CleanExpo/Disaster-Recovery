@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Property Managers | Emergency Restoration for Managed Properties | Disaster Recovery',
+  title: 'Property Managers',
   description: 'Emergency disaster restoration for property managers and managing agents across Australia. 24/7 response, full documentation for owners, preferred supplier arrangements.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/for/property-managers',

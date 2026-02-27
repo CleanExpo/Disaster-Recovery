@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Hotel & Accommodation Disaster Recovery | Hospitality Properties | $2200 Minimum',
+  title: 'Hotel & Accommodation Disaster Recovery | $2200',
   description: 'Minimal disruption disaster recovery for hotels and accommodation providers. Immediate response. 100% insurance coverage.',
   keywords: ["hotel disaster recovery","accommodation restoration","hospitality damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/hotels-accommodation' },

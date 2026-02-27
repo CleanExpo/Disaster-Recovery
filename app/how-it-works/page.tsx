@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'How It Works | From Damage to Restoration | Disaster Recovery Australia',
+  title: 'How It Works | Damage to Restoration',
   description: 'Your complete 6-step journey from property damage to full restoration. Emergency make-safe from $2,750, IICRC-certified contractors, client-direct billing, and flexible payment plans via Blue Fire Finance.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/how-it-works',

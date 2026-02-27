@@ -4,7 +4,7 @@ import { Wrench } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Our Services | Disaster Recovery',
+  title: 'Our Services',
   description:
     'Comprehensive disaster recovery services across Australia including water damage restoration, fire damage restoration, flood recovery, storm damage repair, mould remediation, structural drying, biohazard cleaning, sewage cleanup, trauma cleanup, emergency response and commercial services.',
   alternates: {

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Cost Sydney | Pricing from $2,860 | Free Quote',
+  title: 'Water Damage Restoration Cost Sydney | $2,860',
   description: 'Water Damage Restoration pricing in Sydney, NSW. Minimum $2,860, average $7,150. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost sydney',

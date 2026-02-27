@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Nhulunbuy | Emergency Services Northern Territory',
+  title: 'Disaster Recovery Nhulunbuy',
   description: '24/7 disaster recovery in Nhulunbuy, Northern Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/nt/nhulunbuy',

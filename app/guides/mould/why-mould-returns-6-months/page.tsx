@@ -3,11 +3,11 @@ import { Bug } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Why Mould Returns Within 6 Months - VBA Research Shows 92% Have Water Defects | Disaster Recovery',
+  title: 'Why Mould Returns Within 6 Months | VBA Data',
   description: 'Victorian Building Authority research reveals 92% of insurance claims have water-related defects. One in three Australian homes affected by mould. Learn the 7 reasons professional remediation fails.',
   keywords: 'mould returns after removal, Victorian Building Authority mould research, ABCB condensation management, AS-IICRC S520:2025 standard, professional mould removal problems',
   openGraph: {
-    title: 'VBA Research: 92% of Insurance Claims Have Water Defects Leading to Mould',
+    title: 'VBA Research: 92% of Insurance Claims Have Water',
     description: 'Victorian Building Authority data reveals the mould crisis affecting one in three Australian homes.',
   },
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/mould/why-mould-returns-6-months' },

@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Weston Creek | Emergency Services Australian Capital Territory',
+  title: 'Disaster Recovery Weston Creek',
   description: '24/7 disaster recovery in Weston Creek, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/act/weston-creek',

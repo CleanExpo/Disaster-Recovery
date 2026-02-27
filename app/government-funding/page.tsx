@@ -3,7 +3,7 @@ import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Government Funding & Assistance | Disaster Recovery",
+  title: "Government Funding & Assistance",
   description: "Financial assistance for disaster-affected communities to rebuild essential infrastructure",
   alternates: {
     canonical: 'https://disasterrecovery.com.au/government-funding',

@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Luxury Properties Disaster Recovery | High-value estates and homes | Australia',
+  title: 'Luxury Properties Disaster Recovery',
   description: 'Specialised disaster recovery for luxury properties. High-value estates and homes. IICRC-certified, 24/7 response.',
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/luxury' },
 };

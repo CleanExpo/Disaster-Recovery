@@ -13,7 +13,7 @@ import { generateSEO } from '@/lib/seo';
 const SLUG = 'safety-ppe';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Safety & PPE Standards | Protective Equipment | Disaster Recovery',
+  title: 'Safety & PPE Standards | Protective Equipment',
   description:
     'Rigorous safety and PPE standards protect every Disaster Recovery technician. Hazmat suits, helmets, respirators and Australian WHS-compliant protective gear deployed on every site.',
   keywords: [

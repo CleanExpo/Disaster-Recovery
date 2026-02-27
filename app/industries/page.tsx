@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ChildPageGrid from '@/components/seo/ChildPageGrid';
 
 export const metadata: Metadata = {
-  title: 'Industry-Specific Disaster Recovery | Commercial & Industrial Restoration',
+  title: 'Industry-Specific Disaster Recovery',
   description: 'Specialised disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
   alternates: { canonical: 'https://disasterrecovery.com.au/industries' },
 };

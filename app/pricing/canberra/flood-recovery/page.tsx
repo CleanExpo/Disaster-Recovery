@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Flood Recovery Cost Canberra | Pricing from $2,530 | Free Quote',
+  title: 'Flood Recovery Cost Canberra | Pricing from $2,530',
   description: 'Flood Recovery pricing in Canberra, ACT. Minimum $2,530, average $9,775. IICRC-certified, transparent pricing.',
   keywords: [
     'flood recovery cost canberra',

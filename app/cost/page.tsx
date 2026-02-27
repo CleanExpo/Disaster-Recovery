@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Restoration Cost Guides | Disaster Recovery Australia',
+  title: 'Restoration Cost Guides',
   description: 'Transparent pricing for water damage, fire, mould, storm, and flood restoration across Australia. City-specific cost guides with insurance coverage information.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost',

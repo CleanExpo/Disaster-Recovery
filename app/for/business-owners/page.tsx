@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Business Owners | Commercial Disaster Recovery | Disaster Recovery',
+  title: 'Business Owners | Commercial Disaster Recovery',
   description:
     'Emergency disaster restoration for business owners and commercial tenants across Australia. Get back to trading fast with full business interruption documentation.',
   alternates: {

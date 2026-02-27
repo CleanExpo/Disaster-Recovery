@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Infectious Disease Sanitisation | Disaster Recovery',
+  title: 'Infectious Disease Sanitisation',
   description: 'Professional infectious disease sanitisation services in Queensland. 24/7 emergency response for COVID cleaning, virus disinfection.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/infectious-disease',

@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Murray Bridge | Emergency Services South Australia',
+  title: 'Disaster Recovery Murray Bridge',
   description: '24/7 disaster recovery in Murray Bridge, South Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/sa/murray-bridge',

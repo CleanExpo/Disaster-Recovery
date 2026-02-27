@@ -5,7 +5,7 @@ import { getDisasterSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Coastal & Storm Surge Damage Services | 24/7 Online Emergency Response | Disaster Recovery',
+  title: 'Coastal & Storm Surge Damage | 24/7',
   description: 'Specialised coastal property restoration from storm surge, king tides, and erosion damage. Serving All Coastal Areas. 2-4 hours response time.',
   keywords: ["coastal damage","storm surge recovery","beach erosion repair"],
   alternates: { canonical: 'https://disasterrecovery.com.au/disasters/coastal-erosion' },

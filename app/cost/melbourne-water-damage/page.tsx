@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Melbourne water damage Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Melbourne water damage Cost | Pricing Guide 2024',
   description: 'How much does water damage cost in Melbourne? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/melbourne-water-damage',

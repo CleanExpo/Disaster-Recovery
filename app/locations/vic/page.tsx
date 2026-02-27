@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Victoria | 24/7 Emergency Services | Melbourne & All Cities',
+  title: 'Disaster Recovery Victoria | 24/7 Emergency Services',
   description: 'Leading disaster recovery services across Victoria. Emergency response for Bushfires, Flooding, Storms, Heatwaves. Serving Melbourne, Geelong, Ballarat, Bendigo and all VIC regions. Call Online Form Available 24/7.',
   keywords: [
     'disaster recovery Victoria',

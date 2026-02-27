@@ -3,7 +3,7 @@ import { Eye } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Accessibility Statement | Disaster Recovery Australia',
+  title: 'Accessibility Statement',
   description: 'Our commitment to digital accessibility. Disaster Recovery Australia strives to ensure our website is accessible to all users, including those with disabilities.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/accessibility',

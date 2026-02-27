@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Gold Coast High Rise Water Damage Specialists | Disaster Recovery',
+  title: 'Gold Coast High Rise Water Damage Specialists',
   description: 'Expert guide to high-rise water damage on the Gold Coast. Strata and body corporate complexities, salt air corrosion, Surfers Paradise tower restoration, IICRC certified 24/7.',
   keywords: 'gold coast high rise water damage, surfers paradise water damage, strata water damage gold coast, body corporate restoration, high rise flood gold coast, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/gold-coast/gold-coast-high-rise-water-damage' },

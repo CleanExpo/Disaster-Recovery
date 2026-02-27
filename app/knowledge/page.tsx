@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Knowledge Base | Disaster Recovery Science & Standards | NRPG',
+  title: 'Knowledge Base | Restoration Science',
   description:
     'Authoritative disaster recovery knowledge hub covering IICRC standards, Australian insurance law, psychrometric science, and restoration best practices. Expert-verified content from NRPG.',
   openGraph: {

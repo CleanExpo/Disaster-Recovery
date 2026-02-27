@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Crime Scene Cleanup Brisbane | Disaster Recovery',
+  title: 'Crime Scene Cleanup Brisbane',
   description: 'Professional crime scene cleanup brisbane services in Queensland. 24/7 emergency response for forensic cleaning, trauma cleanup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/crime-scene-cleanup',

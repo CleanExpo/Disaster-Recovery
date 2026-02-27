@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Grease Trap Overflow | Disaster Recovery',
+  title: 'Grease Trap Overflow',
   description: 'Professional grease trap overflow services in Queensland. 24/7 emergency response for commercial kitchen, grease spill.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/grease-trap-overflow',

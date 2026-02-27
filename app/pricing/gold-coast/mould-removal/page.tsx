@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Cost Gold Coast | Pricing from $2,640 | Free Quote',
+  title: 'Mould Remediation Cost Gold Coast | $2,640',
   description: 'Mould Remediation pricing in Gold Coast, QLD. Minimum $2,640, average $5,400. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost gold coast',

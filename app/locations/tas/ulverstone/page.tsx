@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Ulverstone | Emergency Services Tasmania',
+  title: 'Disaster Recovery Ulverstone',
   description: '24/7 disaster recovery in Ulverstone, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/tas/ulverstone',

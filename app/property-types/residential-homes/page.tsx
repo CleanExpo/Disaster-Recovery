@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Residential Home Disaster Recovery | Residential Properties | $2200 Minimum',
+  title: 'Residential Home Disaster Recovery | $2200',
   description: 'Complete disaster recovery for houses, townhouses, and residential properties. 30-60 minutes response. 95% insurance coverage.',
   keywords: ["residential disaster recovery","home restoration","house water damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/residential-homes' },

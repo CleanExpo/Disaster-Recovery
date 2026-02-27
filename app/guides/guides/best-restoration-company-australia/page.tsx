@@ -3,7 +3,7 @@ import { BookOpen } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Best Restoration Companies in Australia: How to Choose | Disaster Recovery',
+  title: 'Best Restoration Companies in Australia: How to Choose',
   description: 'Expert answers and solutions for "which restoration company is best in australia". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'which restoration company is best in australia, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/guides/best-restoration-company-australia' },

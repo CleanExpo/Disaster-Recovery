@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Midnight Emergency Response | 12AM - 6AM | $2200 Minimum + $750 Surcharge',
+  title: 'Midnight Emergency Response | 12AM - 6AM',
   description: 'Middle of the night disaster recovery services. 45 minutes response time. Available 12AM - 6AM. IICRC-certified.',
   keywords: ["midnight emergency","late night disaster","3am emergency service"],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/midnight' },

@@ -5,7 +5,7 @@ import { getCompareSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Insurance Claim vs Cash Payment | Comparison Guide | Make the Right Choice',
+  title: 'Insurance Claim vs Cash Payment | Comparison Guide',
   description: 'Compare insurance claim vs cash payment. Pros, cons, costs, and expert recommendations to help you decide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/compare/insurance-vs-cash' },
 };

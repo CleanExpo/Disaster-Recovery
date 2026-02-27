@@ -13,7 +13,7 @@ import { generateSEO } from '@/lib/seo';
 const SLUG = 'chemical-remediation-assets';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Chemical & Remediation Assets | Equipment | Disaster Recovery',
+  title: 'Chemical & Remediation Assets | Equipment',
   description:
     'Professional chemical and remediation assets including negative air machines, antimicrobial treatments, branded containment systems and EPA-registered disinfectants for Australian restoration.',
   keywords: [

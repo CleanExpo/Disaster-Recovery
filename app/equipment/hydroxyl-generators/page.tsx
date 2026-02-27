@@ -5,7 +5,7 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Hydroxyl Generators | Odour elimination | Advanced Restoration Technology',
+  title: 'Hydroxyl Generators | Odour elimination',
   description: 'Professional hydroxyl generators for odour elimination. Latest technology for faster, better restoration results.',
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment/hydroxyl-generators' },
 };

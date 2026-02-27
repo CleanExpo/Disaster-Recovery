@@ -3,7 +3,7 @@ import { Zap } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Test Page | Disaster Recovery",
+  title: "Test Page",
   description: "",
 };
 

@@ -5,7 +5,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Minimum Training Requirements | Site Technician OH&S Courses | Disaster Recovery',
+  title: 'Minimum Training Requirements',
   description: 'Mandatory OH&S training requirements for all Disaster Recovery site technicians. Work safety, risk management, SWMS, SDS, SOP, and asbestos awareness courses.',
   keywords: [
     'OH&S training requirements',

@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Response Checklists | Disaster Recovery Australia',
+  title: 'Emergency Response Checklists',
   description: 'Step-by-step emergency response checklists for water damage, fire, storm, mould, and sewage disasters. Protect life, property, and ensure proper insurance documentation.',
   keywords: ['emergency checklist', 'disaster response checklist', 'water damage checklist', 'fire damage steps', 'storm damage checklist Australia'],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/checklists' },

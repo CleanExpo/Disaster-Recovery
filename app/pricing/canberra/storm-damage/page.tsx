@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Storm Damage Repair Cost Canberra | Pricing from $2,530 | Free Quote',
+  title: 'Storm Damage Repair Cost Canberra | $2,530',
   description: 'Storm Damage Repair pricing in Canberra, ACT. Minimum $2,530, average $7,475. IICRC-certified, transparent pricing.',
   keywords: [
     'storm damage repair cost canberra',

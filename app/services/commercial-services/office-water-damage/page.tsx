@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Office Water Damage Restoration | Disaster Recovery',
+  title: 'Office Water Damage Restoration',
   description: 'Professional office water damage restoration services across Australia. 24/7 emergency response for commercial flooding, workplace water.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services/office-water-damage',

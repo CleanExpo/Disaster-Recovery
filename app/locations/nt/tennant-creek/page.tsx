@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Tennant Creek | Emergency Services Northern Territory',
+  title: 'Disaster Recovery Tennant Creek',
   description: '24/7 disaster recovery in Tennant Creek, Northern Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/nt/tennant-creek',

@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Restoring Flood Damaged Hardwood Floors | Assessment, Drying & Refinishing',
+  title: 'Restoring Flood Damaged Hardwood Floors',
   description: 'Can flood-damaged hardwood floors be saved? Professional assessment criteria, controlled drying process, sanding, refinishing, and when replacement is the only option. Australian restoration guide.',
   keywords: [
     'flood damage hardwood floors',

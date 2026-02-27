@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { generateSEO } from '@/lib/seo';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Sewage Backup Health Risks & Professional Cleanup | Disaster Recovery',
+  title: 'Sewage Backup Health Risks & Professional Cleanup',
   description: 'Health risks from sewage backup exposure — pathogens, bacteria, viruses, and parasites. Why DIY cleanup is dangerous and how IICRC Category 3 remediation protocol ensures safe re-occupation.',
   keywords: [
     'sewage backup health risks',

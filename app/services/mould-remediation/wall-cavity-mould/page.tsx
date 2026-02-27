@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Wall Cavity Mould Removal | Disaster Recovery',
+  title: 'Wall Cavity Mould Removal',
   description: 'Professional wall cavity mould removal services in Queensland. 24/7 emergency response for inside wall mould, hidden mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/wall-cavity-mould',

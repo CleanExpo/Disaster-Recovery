@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Storm Surge Flood Damage | Disaster Recovery',
+  title: 'Storm Surge Flood Damage',
   description: 'Professional storm surge flood damage services in Queensland. 24/7 emergency response for coastal flooding, tidal damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/storm-surge-damage',

@@ -3,7 +3,7 @@ import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Data Centre Water Damage Recovery Services | Disaster Recovery',
+  title: 'Data Centre Water Damage Recovery Services',
   description: 'Expert answers and solutions for "data centre water damage recovery". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'data centre water damage recovery, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/data-centre-water-damage' },

@@ -3,13 +3,13 @@ import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Insurance Decoder | Disaster Recovery',
+  title: 'Water Damage Insurance Decoder',
   description: 'Is water damage covered by your home insurance? Decode burst pipes, flooding, and leak coverage. Understand policy terms and claim steps for homeowners.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/insurance-decoder/water-damage',
   },
   openGraph: {
-    title: 'Water Damage Insurance Decoder | Disaster Recovery',
+    title: 'Water Damage Insurance Decoder',
     description: 'Is water damage covered by your insurance? Decode policy terms and claim steps.',
     type: 'website',
   },

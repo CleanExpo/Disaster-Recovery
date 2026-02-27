@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Bathroom Mould Remediation | Disaster Recovery',
+  title: 'Bathroom Mould Remediation',
   description: 'Professional bathroom mould remediation services in Queensland. 24/7 emergency response for shower mould, bathroom ceiling mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/bathroom-mould',

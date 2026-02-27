@@ -5,7 +5,7 @@ import { getLocationPageContent, generateLocationSchemas } from '@/lib/location-
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Adelaide | 24/7 Emergency Restoration SA',
+  title: 'Disaster Recovery Adelaide | 24/7',
   description: 'Professional disaster recovery in Adelaide, South Australia. Bushfire risk in Hills Face Zone (BAL-29+), 526.5mm annual rainfall, heritage stone building specialists. IICRC-certified contractors for water damage, fire damage, mould remediation. 24/7 emergency response.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/adelaide',

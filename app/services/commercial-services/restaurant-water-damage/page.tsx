@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Restaurant Water Damage | Disaster Recovery',
+  title: 'Restaurant Water Damage',
   description: 'Professional restaurant water damage services across Australia. 24/7 emergency response for kitchen flooding, hospitality water.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services/restaurant-water-damage',

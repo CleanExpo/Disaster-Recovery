@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Location-Specific Restoration Services | Queensland Emergency Response',
+  title: 'Location-Specific Restoration Services',
   description: 'Disaster recovery services tailored to specific Queensland locations. Brisbane CBD, Gold Coast, Sunshine Coast, Cairns, Townsville, and more.',
   alternates: { canonical: 'https://disasterrecovery.com.au/services/location-specific' },
 };

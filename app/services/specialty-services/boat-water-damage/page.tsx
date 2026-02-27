@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Marine Water Damage | Disaster Recovery',
+  title: 'Marine Water Damage',
   description: 'Professional marine water damage services in Queensland. 24/7 emergency response for boat flooding, yacht restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/boat-water-damage',

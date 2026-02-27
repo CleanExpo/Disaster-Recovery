@@ -5,7 +5,7 @@ import { getInsuranceSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Insurance Claims Assistance | All Major Australian Insurers | Disaster Recovery Australia',
+  title: 'Insurance Claims | All Major Insurers',
   description: 'Expert insurance claims assistance for disaster recovery. Work with NRMA, Suncorp, AAMI, QBE, Allianz and all major Australian insurers. Full claims documentation provided.',
   keywords: [
     'insurance claims assistance',

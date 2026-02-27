@@ -5,13 +5,13 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Mould Discovery Checklist | Disaster Recovery',
+  title: 'Mould Discovery Checklist',
   description: 'Found mould in your property? Follow this emergency checklist for containment steps, health precautions, documentation, and IICRC-certified remediation advice.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/emergency/checklists/mould',
   },
   openGraph: {
-    title: 'Mould Discovery Checklist | Disaster Recovery',
+    title: 'Mould Discovery Checklist',
     description: 'Emergency checklist for mould discovery. Containment, health precautions, and next steps.',
     type: 'website',
   },

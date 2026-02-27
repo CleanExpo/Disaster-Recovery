@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Sanitisation | Disaster Recovery',
+  title: 'Emergency Sanitisation',
   description: 'Professional emergency sanitisation services in Queensland. 24/7 emergency response for urgent disinfection, contamination control.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-sanitization',

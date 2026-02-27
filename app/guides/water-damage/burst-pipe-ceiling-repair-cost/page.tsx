@@ -3,7 +3,7 @@ import { Droplets } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Burst Pipe Ceiling Damage: Repair Costs & Process | Disaster Recovery',
+  title: 'Burst Pipe Ceiling Damage: Repair Costs & Process',
   description: 'Expert answers and solutions for "burst pipe water damage ceiling repair cost". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'burst pipe water damage ceiling repair cost, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/water-damage/burst-pipe-ceiling-repair-cost' },

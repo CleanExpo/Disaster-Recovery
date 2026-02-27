@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 import FormDemonstration from '@/components/demo/FormDemonstration'
 
 export const metadata = {
-  title: 'Form Demonstration | Disaster Recovery Platform',
+  title: 'Form Demonstration',
   description: 'Watch our HRM-powered platform demonstrate intelligent form processing with realistic mock data for emergency restoration requests.',
 }
 

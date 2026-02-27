@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Geelong | Emergency Services Victoria',
+  title: 'Disaster Recovery Geelong | 24/7 Emergency VIC',
   description: '24/7 disaster recovery in Geelong, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/vic/geelong',

@@ -3,13 +3,13 @@ import { Handshake } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Suncorp Group Emergency Claim | Disaster Recovery',
+  title: 'Suncorp Group Emergency Claim',
   description: 'Suncorp Group policyholders — AAMI, GIO, Apia, and more — receive priority emergency restoration matching with IICRC-certified contractors Australia-wide.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/partners/suncorp',
   },
   openGraph: {
-    title: 'Suncorp Group Emergency Claim | Disaster Recovery',
+    title: 'Suncorp Group Emergency Claim',
     description: 'All Suncorp Group brands receive priority matching with IICRC-certified restoration contractors.',
     type: 'website',
   },

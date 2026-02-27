@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Storm Window Damage | Disaster Recovery',
+  title: 'Storm Window Damage',
   description: 'Professional storm window damage services in Queensland. 24/7 emergency response for broken windows, glass damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/window-storm-damage',

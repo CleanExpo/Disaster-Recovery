@@ -3,13 +3,13 @@ import { FileSearch } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Insurance Decoder | Disaster Recovery Australia',
+  title: 'Insurance Decoder',
   description: 'Decode your home insurance policy. Understand what water damage, fire, storm, and mould coverage actually means and what to do when you need to claim.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/insurance-decoder',
   },
   openGraph: {
-    title: 'Insurance Decoder | Disaster Recovery Australia',
+    title: 'Insurance Decoder',
     description: 'Decode your home insurance policy. Understand disaster coverage and claims.',
     type: 'website',
   },

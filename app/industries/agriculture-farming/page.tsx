@@ -5,7 +5,7 @@ import { getIndustrySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Agriculture & Farming Disaster Recovery | Specialised Industrial Restoration | Australia',
+  title: 'Agriculture & Farming Disaster Recovery',
   description: 'Farm and agricultural facility disaster recovery including livestock areas and crop storage. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["farm disaster recovery","agricultural restoration","rural property cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/agriculture-farming' },

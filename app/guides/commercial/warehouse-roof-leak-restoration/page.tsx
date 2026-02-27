@@ -3,7 +3,7 @@ import { Building2 } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Warehouse Roof Leak Damage Restoration | Disaster Recovery',
+  title: 'Warehouse Roof Leak Damage Restoration',
   description: 'Expert answers and solutions for "warehouse roof leak damage restoration". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'warehouse roof leak damage restoration, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/warehouse-roof-leak-restoration' },

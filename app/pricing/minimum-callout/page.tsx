@@ -3,7 +3,7 @@ import { DollarSign } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: '$2200 Minimum Callout Fee Explained | What\'s Included | Disaster Recovery',
+  title: '$2200 Minimum Callout Fee Explained | What\'s Included',
   description: 'Our $2200 minimum callout includes comprehensive assessment, emergency mitigation, insurance documentation, and immediate response. No hidden fees.',
   keywords: [
     'disaster recovery callout fee',

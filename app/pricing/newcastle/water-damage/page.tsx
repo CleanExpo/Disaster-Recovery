@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Cost Newcastle | Pricing from $2,310 | Free Quote',
+  title: 'Water Damage Restoration Cost Newcastle | $2,310',
   description: 'Water Damage Restoration pricing in Newcastle, NSW. Minimum $2,310, average $5,775. IICRC-certified, transparent pricing.',
   keywords: [
     'water damage restoration cost newcastle',

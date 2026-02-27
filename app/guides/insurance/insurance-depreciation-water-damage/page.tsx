@@ -3,7 +3,7 @@ import { Shield } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Understanding Depreciation in Water Damage Claims | Disaster Recovery',
+  title: 'Understanding Depreciation in Water Damage Claims',
   description: 'How insurance depreciation affects water damage payouts in Australia. Learn how insurers calculate depreciation, when to dispute it, and how to maximise your claim.',
   keywords: 'insurance depreciation water damage, water damage claim payout, depreciation dispute insurance, insurance claim depreciation Australia, replacement vs depreciated value',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance/insurance-depreciation-water-damage' },

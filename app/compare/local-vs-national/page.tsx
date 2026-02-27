@@ -5,7 +5,7 @@ import { getCompareSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Local vs National Companies | Comparison Guide | Make the Right Choice',
+  title: 'Local vs National Companies | Comparison Guide',
   description: 'Compare local vs national companies. Pros, cons, costs, and expert recommendations to help you decide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/compare/local-vs-national' },
 };

@@ -3,13 +3,13 @@ import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Fire Damage Insurance Decoder | Disaster Recovery',
+  title: 'Fire Damage Insurance Decoder',
   description: 'Is fire damage covered by your home insurance? Decode dwelling, contents, and additional living expenses coverage. Understand policy exclusions and claim documentation requirements.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/insurance-decoder/fire-damage',
   },
   openGraph: {
-    title: 'Fire Damage Insurance Decoder | Disaster Recovery',
+    title: 'Fire Damage Insurance Decoder',
     description: 'Is fire damage covered by your insurance? Decode dwelling, contents, and living expenses coverage.',
     type: 'website',
   },

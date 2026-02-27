@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Weekend Emergency Services | Saturday & Sunday | 24/7 Disaster Recovery',
+  title: 'Weekend Emergency Services | Saturday & Sunday',
   description: 'Emergency disaster recovery services available Saturday & Sunday. No call-out fees, immediate response nationwide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/weekend' },
 };

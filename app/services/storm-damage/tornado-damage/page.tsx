@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Tornado Damage Cleanup | Disaster Recovery',
+  title: 'Tornado Damage Cleanup',
   description: 'Professional tornado damage cleanup services in Queensland. 24/7 emergency response for twister damage, severe wind.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/tornado-damage',

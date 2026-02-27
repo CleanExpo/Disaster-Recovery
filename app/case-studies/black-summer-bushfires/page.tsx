@@ -5,7 +5,7 @@ import { getCaseStudySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Black Summer Bushfire Restoration | Case Study | Disaster Recovery Success Story',
+  title: 'Case Study | Black Summer Bushfire',
   description: 'How we helped recover from Black Summer Bushfire Restoration. Real results, timelines, and restoration process.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/case-studies/black-summer-bushfires',

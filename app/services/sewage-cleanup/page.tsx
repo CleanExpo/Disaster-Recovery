@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Sewage Cleanup Brisbane | Disaster Recovery',
+  title: 'Sewage Cleanup Brisbane',
   description: 'Professional sewage cleanup and sanitisation in Brisbane & Queensland. 24/7 emergency response for sewage backup, overflow cleanup, contamination removal. Health-certified technicians. Use Our Online Form',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup',

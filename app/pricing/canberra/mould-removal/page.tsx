@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Cost Canberra | Pricing from $2,530 | Free Quote',
+  title: 'Mould Remediation Cost Canberra | Pricing from $2,530',
   description: 'Mould Remediation pricing in Canberra, ACT. Minimum $2,530, average $5,175. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost canberra',

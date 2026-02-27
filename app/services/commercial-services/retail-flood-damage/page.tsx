@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Retail Store Flood Recovery | Disaster Recovery',
+  title: 'Retail Store Flood Recovery',
   description: 'Professional retail store flood recovery services across Australia. 24/7 emergency response for shop flooding, retail water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services/retail-flood-damage',

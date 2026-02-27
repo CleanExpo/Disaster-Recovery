@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Unattended Death Cleanup | Disaster Recovery',
+  title: 'Unattended Death Cleanup',
   description: 'Professional unattended death cleanup services in Queensland. 24/7 emergency response for decomposition cleanup, deceased estate.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/unattended-death',

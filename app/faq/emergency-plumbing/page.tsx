@@ -5,7 +5,7 @@ import { getFAQSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'emergency plumbing FAQ | Common Questions Answered | Expert Guide',
+  title: 'emergency plumbing FAQ | Common Questions Answered',
   description: 'Everything you need to know about emergency plumbing. Expert answers to common questions, tips, and advice.',
   alternates: { canonical: 'https://disasterrecovery.com.au/faq/emergency-plumbing' },
 };

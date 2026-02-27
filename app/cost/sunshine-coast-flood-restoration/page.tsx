@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'SunshineCoast flood restoration Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Sunshine Coast Flood Restoration Cost | 2024',
   description: 'How much does flood restoration cost in SunshineCoast? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/sunshine-coast-flood-restoration',

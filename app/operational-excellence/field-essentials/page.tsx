@@ -13,7 +13,7 @@ import { generateSEO } from '@/lib/seo';
 const SLUG = 'field-essentials';
 
 export const metadata: Metadata = generateSEO({
-  title: 'Field Essentials | Deployment Kits | Disaster Recovery',
+  title: 'Field Essentials | Deployment Kits',
   description:
     'Battle-tested field essentials for Australian disaster recovery. Branded deployment kits with flashlights, powerbanks, weatherproof gear and emergency supplies for any environment.',
   keywords: [

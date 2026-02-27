@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Crawl Space Mould Treatment | Disaster Recovery',
+  title: 'Crawl Space Mould Treatment',
   description: 'Professional crawl space mould treatment services in Queensland. 24/7 emergency response for subfloor mould, under house mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/crawl-space-mould',

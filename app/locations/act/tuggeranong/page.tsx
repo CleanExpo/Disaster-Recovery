@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Tuggeranong | Emergency Services Australian Capital Territory',
+  title: 'Disaster Recovery Tuggeranong',
   description: '24/7 disaster recovery in Tuggeranong, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/act/tuggeranong',

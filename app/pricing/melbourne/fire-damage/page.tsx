@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage Cost Melbourne | Pricing from $2,750 | Free Quote',
+  title: 'Fire & Smoke Damage Cost Melbourne | $2,750',
   description: 'Fire & Smoke Damage pricing in Melbourne, VIC. Minimum $2,750, average $15,000. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost melbourne',

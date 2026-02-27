@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Main Sewer Line Backup | Disaster Recovery',
+  title: 'Main Sewer Line Backup',
   description: 'Professional main sewer line backup services in Queensland. 24/7 emergency response for sewer blockage, main drain backup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/main-line-backup',

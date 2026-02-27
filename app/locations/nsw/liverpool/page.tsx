@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Liverpool | Emergency Services New South Wales',
+  title: 'Disaster Recovery Liverpool',
   description: '24/7 disaster recovery in Liverpool, New South Wales. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/nsw/liverpool',

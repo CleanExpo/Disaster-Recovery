@@ -5,7 +5,7 @@ import { getIndustrySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Healthcare & Medical Facilities Disaster Recovery | Specialised Industrial Restoration | Australia',
+  title: 'Healthcare & Medical Disaster Recovery',
   description: 'Critical disaster recovery for hospitals, clinics, aged care, and medical centres. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["hospital disaster recovery","medical facility restoration","healthcare cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/healthcare-medical' },

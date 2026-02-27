@@ -3,7 +3,7 @@ import { DollarSign } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: "Real Emergency Response Costs — What You'll Actually Pay | Disaster Recovery",
+  title: "Real Emergency Response Costs — What You'll Actually Pay",
   description: "The real costs of emergency disaster response in Australia. Emergency callout fees, after-hours pricing, what drives costs up, and the DR platform's transparent $2,750 model.",
   keywords: 'emergency response costs, disaster callout fees, after hours restoration pricing, emergency restoration cost Australia, transparent restoration pricing',
   openGraph: {

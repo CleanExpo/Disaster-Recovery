@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
-  title: 'Newcastle fire damage Cost | Pricing Guide 2024 | Free Quotes',
+  title: 'Newcastle fire damage Cost | Pricing Guide 2024',
   description: 'How much does fire damage cost in Newcastle? Average prices, insurance coverage, payment plans. Get free quote now.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/newcastle-fire-damage',

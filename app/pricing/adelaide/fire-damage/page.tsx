@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage Cost Adelaide | Pricing from $2,420 | Free Quote',
+  title: 'Fire & Smoke Damage Cost Adelaide | $2,420',
   description: 'Fire & Smoke Damage pricing in Adelaide, SA. Minimum $2,420, average $13,200. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost adelaide',

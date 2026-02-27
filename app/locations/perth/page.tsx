@@ -5,7 +5,7 @@ import { getLocationPageContent, generateLocationSchemas } from '@/lib/location-
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Perth | 24/7 Emergency Restoration WA',
+  title: 'Disaster Recovery Perth | 24/7 Emergency WA',
   description: 'Professional disaster recovery in Perth, Western Australia. Bushfire risk in Hills suburbs (BAL-29), 726.9mm annual rainfall, and cyclone awareness. IICRC-certified contractors for water damage, fire damage, mould remediation. 24/7 emergency response.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/perth',

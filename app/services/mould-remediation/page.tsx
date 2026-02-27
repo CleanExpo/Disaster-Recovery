@@ -15,7 +15,7 @@ import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscop
 
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
-  title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery',
+  title: 'Mould Remediation Brisbane',
   description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form',
   keywords: [
     'mould remediation Brisbane',
@@ -35,7 +35,7 @@ export const metadata: Metadata = generateSEO({
   ],
   canonical: 'https://disasterrecovery.com.au/services/mould-remediation',
   openGraph: {
-    title: 'Professional Mould Remediation Brisbane - Safe & Certified Removal',
+    title: 'Professional Mould Remediation Brisbane - Safe &',
     description: 'IICRC-certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Submit your claim online now.',
     images: [{ url: '/images/services/mould-remediation.webp', alt: 'Professional Mould Remediation Service' }],
     type: 'website'

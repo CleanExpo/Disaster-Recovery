@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Antique Water Damage Restoration | Disaster Recovery',
+  title: 'Antique Water Damage Restoration',
   description: 'Professional antique water damage restoration services in Queensland. 24/7 emergency response for heritage items, valuable restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/antique-restoration',

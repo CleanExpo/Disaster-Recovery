@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Cost Wollongong | Pricing from $2,310 | Free Quote',
+  title: 'Mould Remediation Cost Wollongong | $2,310',
   description: 'Mould Remediation pricing in Wollongong, NSW. Minimum $2,310, average $4,725. IICRC-certified, transparent pricing.',
   keywords: [
     'mould remediation cost wollongong',

@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Sydney CBD Emergency Water Extraction - 24/7 Service | Disaster Recovery',
+  title: 'Sydney CBD Emergency Water Extraction - 24/7 Service',
   description: 'Emergency water extraction in Sydney CBD. High-rise office buildings, underground car parks, Pitt Street Mall, Darling Harbour, heritage buildings. IICRC certified 24/7.',
   keywords: 'emergency water extraction sydney cbd, sydney cbd water damage, pitt street water damage, darling harbour flood, heritage building restoration sydney, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/sydney/sydney-cbd-emergency-water-extraction' },

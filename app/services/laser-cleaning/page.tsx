@@ -4,7 +4,7 @@ import { AntigravityServicePageTemplate } from '@/components/antigravity';
 import { laserCleaningData } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Precision Laser Cleaning Services | Non-Abrasive Restoration',
+  title: 'Precision Laser Cleaning Services',
   description:
     'Advanced laser cleaning and restoration for smoke, soot, heritage brickwork, and delicate surfaces. Non-abrasive vaporisation technology by IICRC-certified technicians across Australia.',
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'precision restoration Australia',
   ].join(', '),
   openGraph: {
-    title: 'Precision Laser Cleaning | Disaster Recovery Australia',
+    title: 'Precision Laser Cleaning',
     description:
       'Non-abrasive laser vaporisation for smoke, soot, and heritage surface restoration. Advanced technology deployed by certified technicians.',
     type: 'website',

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Commercial Restoration Services | Business Continuity | 24/7 Online Emergency Response',
+  title: 'Commercial Restoration Services | Business Continuity',
   description: 'Professional commercial restoration services with business continuity focus. Office water damage, retail fire damage, industrial restoration. Minimize downtime with expert disaster recovery.',
   keywords: [
     'commercial restoration',
@@ -16,7 +16,9 @@ export const metadata: Metadata = {
     'industrial restoration',
     'business continuity',
     'commercial disaster recovery'
-  ]
+  ],
+  alternates: {
+    canonical: '/services/commercial-services' },
 };
 
 export default function CommercialRestorationPage() {

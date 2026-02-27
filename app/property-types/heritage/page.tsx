@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Heritage Buildings Disaster Recovery | Protected and historical properties | Australia',
+  title: 'Heritage Buildings Disaster Recovery',
   description: 'Specialised disaster recovery for heritage buildings. Protected and historical properties. IICRC-certified, 24/7 response.',
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/heritage' },
 };

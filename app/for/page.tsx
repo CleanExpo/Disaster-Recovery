@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'For Business | Commercial Disaster Recovery | Disaster Recovery Australia',
+  title: 'Commercial Disaster Recovery for Business',
   description: 'Disaster recovery services for property managers, strata managers, business owners, facilities managers, councils, and commercial cleaners across Australia.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/for',

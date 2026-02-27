@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Technical Assessment Services | Property Damage Evaluation | NRPG Australia',
+  title: 'Technical Assessment Services',
   description: 'Professional technical assessment and damage evaluation services. IICRC certified inspectors provide comprehensive reports for insurance claims and restoration planning.',
   keywords: [
     'technical assessment',

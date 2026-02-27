@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: '24 Hour Water Extraction | Disaster Recovery',
+  title: '24 Hour Water Extraction',
   description: 'Professional 24 hour water extraction services in Queensland. 24/7 emergency response for emergency pumping, rapid extraction.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/24-hour-water-extraction',

@@ -5,7 +5,7 @@ import { getPropertyTypeSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Healthcare Facility Disaster Recovery | Healthcare Properties | $2200 Minimum',
+  title: 'Healthcare Facility Disaster Recovery | $2200',
   description: 'Specialised disaster recovery for hospitals, clinics, and medical facilities. Immediate response. 100% insurance coverage.',
   keywords: ["healthcare disaster recovery","hospital restoration","medical facility damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/healthcare-facilities' },

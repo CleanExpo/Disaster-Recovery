@@ -3,13 +3,13 @@ import { User } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Client Portal | Disaster Recovery Australia',
+  title: 'Client Portal',
   description: 'Access your Disaster Recovery client portal. Track your restoration claim, view contractor progress, download documentation, and manage your property damage project.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/client',
   },
   openGraph: {
-    title: 'Client Portal | Disaster Recovery Australia',
+    title: 'Client Portal',
     description: 'Track your restoration claim, view progress, and manage your property damage project.',
     type: 'website',
   },

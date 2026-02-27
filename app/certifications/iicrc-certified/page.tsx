@@ -5,7 +5,7 @@ import { getCertificationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'IICRC Certified | International restoration standard | Disaster Recovery',
+  title: 'IICRC Certified | International restoration standard',
   description: 'IICRC Certified restoration services. International restoration standard. Qualified, certified, and compliant disaster recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/certifications/iicrc-certified',

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Electrical Fire Damage Cleanup | Disaster Recovery',
+  title: 'Electrical Fire Damage Cleanup',
   description: 'Professional electrical fire damage cleanup services in Queensland. 24/7 emergency response for wiring fire, electrical burn damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/electrical-fire-damage',

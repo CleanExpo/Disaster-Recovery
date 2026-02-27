@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Toilet Sewage Backup Cleanup | Disaster Recovery',
+  title: 'Toilet Sewage Backup Cleanup',
   description: 'Professional toilet sewage backup cleanup services in Queensland. 24/7 emergency response for toilet overflow, bathroom sewage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/toilet-backup',

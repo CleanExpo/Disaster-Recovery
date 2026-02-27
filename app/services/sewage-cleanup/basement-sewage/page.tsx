@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Basement Sewage Flooding | Disaster Recovery',
+  title: 'Basement Sewage Flooding',
   description: 'Professional basement sewage flooding services in Queensland. 24/7 emergency response for lower level sewage, underground backup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/basement-sewage',

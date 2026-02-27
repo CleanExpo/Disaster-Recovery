@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Piano Water Damage Restoration | Disaster Recovery',
+  title: 'Piano Water Damage Restoration',
   description: 'Professional piano water damage restoration services in Queensland. 24/7 emergency response for musical instrument, piano flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/piano-water-damage',

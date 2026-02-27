@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Hail Damage Restoration | Disaster Recovery',
+  title: 'Hail Damage Restoration',
   description: 'Professional hail damage restoration services in Queensland. 24/7 emergency response for hailstorm damage, ice damage repair.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/hail-damage-repair',

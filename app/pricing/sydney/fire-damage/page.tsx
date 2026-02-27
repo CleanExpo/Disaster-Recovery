@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { AgPricingPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage Cost Sydney | Pricing from $2,860 | Free Quote',
+  title: 'Fire & Smoke Damage Cost Sydney | Pricing from $2,860',
   description: 'Fire & Smoke Damage pricing in Sydney, NSW. Minimum $2,860, average $15,600. IICRC-certified, transparent pricing.',
   keywords: [
     'fire & smoke damage cost sydney',

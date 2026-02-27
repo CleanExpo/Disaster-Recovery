@@ -3,13 +3,13 @@ import { FileText } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | Disaster Recovery Australia',
+  title: 'Cookie Policy',
   description: 'How Disaster Recovery Australia uses cookies and similar technologies. Learn about the cookies we use and how to manage your preferences.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cookies',
   },
   openGraph: {
-    title: 'Cookie Policy | Disaster Recovery Australia',
+    title: 'Cookie Policy',
     description: 'How Disaster Recovery Australia uses cookies and similar technologies.',
     type: 'website',
   },

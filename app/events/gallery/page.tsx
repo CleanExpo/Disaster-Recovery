@@ -3,13 +3,13 @@ import { Camera } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Photo Gallery | Disaster Recovery Australia',
+  title: 'Photo Gallery',
   description: 'Before and after photos from disaster restoration projects across Australia. See real results from IICRC-certified restoration contractors.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/events/gallery',
   },
   openGraph: {
-    title: 'Photo Gallery | Disaster Recovery Australia',
+    title: 'Photo Gallery',
     description: 'Before and after photos from disaster restoration projects across Australia.',
     type: 'website',
   },

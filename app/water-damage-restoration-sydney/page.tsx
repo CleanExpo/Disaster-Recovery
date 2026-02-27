@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 import { NAP } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Sydney | 24/7 Emergency Response | IICRC Certified',
+  title: 'Water Damage Restoration Sydney | 24/7',
   description: 'Emergency water damage restoration in Sydney. IICRC-certified contractors respond in under 60 minutes across all Sydney metro suburbs. Available 24/7.',
   keywords: 'water damage restoration sydney, water damage sydney, flood cleanup sydney, burst pipe sydney, emergency water removal sydney, water damage repair sydney',
   openGraph: {

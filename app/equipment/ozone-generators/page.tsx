@@ -5,7 +5,7 @@ import { getEquipmentSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Ozone Generators | Deodorisation | Advanced Restoration Technology',
+  title: 'Ozone Generators | Deodorisation',
   description: 'Professional ozone generators for deodorisation. Latest technology for faster, better restoration results.',
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment/ozone-generators' },
 };

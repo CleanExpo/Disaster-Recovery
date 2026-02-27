@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Sewage Decontamination Services | Disaster Recovery',
+  title: 'Sewage Decontamination Services',
   description: 'Professional sewage decontamination services services in Queensland. 24/7 emergency response for sanitisation, bacterial cleanup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/sewage-decontamination',

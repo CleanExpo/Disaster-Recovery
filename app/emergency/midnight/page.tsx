@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Midnight Emergency Services | 12AM - 6AM | 24/7 Disaster Recovery',
+  title: 'Midnight Emergency Services | 12AM - 6AM',
   description: 'Emergency disaster recovery services available 12AM - 6AM. No call-out fees, immediate response nationwide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/midnight' },
 };

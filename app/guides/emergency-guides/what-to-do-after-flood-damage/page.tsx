@@ -3,7 +3,7 @@ import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Immediate Steps After Flood Damage: Emergency Guide | Disaster Recovery',
+  title: 'Immediate Steps After Flood Damage: Emergency Guide',
   description: 'Expert answers and solutions for "what to do immediately after flood damage". IICRC certified professionals available 24/7 nationwide.',
   keywords: 'what to do immediately after flood damage, disaster recovery, restoration services, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency-guides/what-to-do-after-flood-damage' },

@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Air Conditioning Mould Removal | Disaster Recovery',
+  title: 'Air Conditioning Mould Removal',
   description: 'Professional air conditioning mould removal services in Queensland. 24/7 emergency response for AC duct mould, HVAC contamination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/hvac-mould',

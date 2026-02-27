@@ -5,7 +5,7 @@ import { getEmergencySections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'After Hours Emergency Service | 5PM - 9AM Weekdays | $2200 Minimum + $500 Surcharge',
+  title: 'After Hours Emergency Service | 5PM - 9AM Weekdays',
   description: '24/7 emergency response when disaster strikes outside business hours. 30 minutes response time. Available 5PM - 9AM Weekdays. IICRC-certified.',
   keywords: ["after hours emergency","night time disaster recovery","evening emergency service"],
   alternates: { canonical: 'https://disasterrecovery.com.au/emergency/after-hours' },

@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Biohazard Cleaning Brisbane | Disaster Recovery',
+  title: 'Biohazard Cleaning Brisbane',
   description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police-registered, IICRC-certified. Use Our Online Form',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning',

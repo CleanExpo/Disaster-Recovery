@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Fire & Smoke Damage Restoration | IICRC Certified Specialists | Available 24/7',
+  title: 'Fire & Smoke Damage Restoration | 24/7 IICRC',
   description: 'Expert fire and smoke damage restoration services following IICRC S700 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
   keywords: [
     'fire damage restoration',

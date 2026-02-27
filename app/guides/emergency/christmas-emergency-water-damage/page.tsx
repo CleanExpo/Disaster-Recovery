@@ -3,7 +3,7 @@ import { Siren } from 'lucide-react';
 import { AgGuidePageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Christmas Day Water Damage Emergency Services | Disaster Recovery',
+  title: 'Christmas Day Water Damage Emergency Services',
   description: 'Water damage over Christmas? Our IICRC certified contractors respond on Dec 25 — no surcharges. Lodge your claim online for 60-minute emergency matching.',
   keywords: 'christmas day water damage emergency, christmas plumbing emergency, water damage december, holiday water damage restoration, Australia, IICRC certified',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/christmas-emergency-water-damage' },

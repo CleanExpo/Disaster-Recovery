@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Garage Flood Cleanup | Disaster Recovery',
+  title: 'Garage Flood Cleanup',
   description: 'Professional garage flood cleanup services in Queensland. 24/7 emergency response for garage water damage, carport flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/garage-flooding',

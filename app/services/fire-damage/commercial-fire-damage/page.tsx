@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Commercial Fire Restoration | Disaster Recovery',
+  title: 'Commercial Fire Restoration',
   description: 'Professional commercial fire restoration services in Queensland. 24/7 emergency response for business fire, office fire damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/commercial-fire-damage',

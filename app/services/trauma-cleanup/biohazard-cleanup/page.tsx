@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Biohazard Cleanup After Trauma | IICRC S540 Certified | 24/7',
+  title: 'Biohazard Cleanup After Trauma | IICRC S540 Certified',
   description: 'Specialised biohazard cleanup following trauma events. IICRC S540-certified decontamination for blood, bodily fluids, and infectious materials. Discreet, professional service Australia-wide.',
   keywords: [
     'biohazard cleanup trauma',

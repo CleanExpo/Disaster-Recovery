@@ -3,13 +3,13 @@ import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 
 export const metadata: Metadata = {
-  title: 'Toxins and Contamination Knowledge Base | Disaster Recovery',
+  title: 'Toxins and Contamination Knowledge Base',
   description: 'Understand biological toxins and contamination in property damage. Mould, bacteria, viruses, and chemical hazards — health risks, cleanup standards, and IICRC-certified decontamination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/knowledge/toxins-contamination',
   },
   openGraph: {
-    title: 'Toxins and Contamination Knowledge Base | Disaster Recovery',
+    title: 'Toxins and Contamination Knowledge Base',
     description: 'Biological toxins and contamination in property damage. Health risks, cleanup standards, and decontamination.',
     type: 'website',
   },

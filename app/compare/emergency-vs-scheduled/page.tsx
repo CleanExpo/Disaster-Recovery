@@ -5,7 +5,7 @@ import { getCompareSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency vs Scheduled Service | Comparison Guide | Make the Right Choice',
+  title: 'Emergency vs Scheduled Service | Comparison Guide',
   description: 'Compare emergency vs scheduled service. Pros, cons, costs, and expert recommendations to help you decide.',
   alternates: { canonical: 'https://disasterrecovery.com.au/compare/emergency-vs-scheduled' },
 };

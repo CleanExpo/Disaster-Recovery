@@ -5,7 +5,7 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery New South Wales | 24/7 Emergency Services | Sydney & All Cities',
+  title: 'Disaster Recovery New South Wales | 24/7',
   description: 'Leading disaster recovery services across New South Wales. Emergency response for Bushfires, Flooding, Storms, Coastal Erosion. Serving Sydney, Newcastle, Wollongong, Central Coast and all NSW regions. Call Online Form Available 24/7.',
   keywords: [
     'disaster recovery New South Wales',

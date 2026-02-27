@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Document Water Damage Recovery | Disaster Recovery',
+  title: 'Document Water Damage Recovery',
   description: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/document-drying',

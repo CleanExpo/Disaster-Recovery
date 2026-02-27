@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Commercial Sewage Cleanup | Disaster Recovery',
+  title: 'Commercial Sewage Cleanup',
   description: 'Professional commercial sewage cleanup services in Queensland. 24/7 emergency response for business sewage, workplace contamination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/commercial-sewage',
