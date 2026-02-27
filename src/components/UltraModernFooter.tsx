@@ -30,8 +30,8 @@ export default function UltraModernFooter() {
     { label: 'About Us', href: '/about' },
     { label: 'How It Works', href: '/how-it-works' },
     { label: 'Guides & Resources', href: '/guides' },
-    { label: 'Case Studies', href: '/case-studies' },
-    { label: 'Certifications', href: '/certifications' },
+    { label: 'Industries', href: '/industries' },
+    { label: 'Property Types', href: '/property-types' },
   ];
 
   const support = [
@@ -39,7 +39,7 @@ export default function UltraModernFooter() {
     { label: 'Emergency Guide', href: '/emergency-guide' },
     { label: 'Insurance Claims', href: '/insurance' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Careers', href: '/careers' },
+    { label: 'Compare Options', href: '/compare' },
   ];
 
   const socialLinks = [

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
   title: 'Commercial Restoration Services | Disaster Recovery',
@@ -23,6 +24,12 @@ export default function CommercialServicesPage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Commercial Restoration Services' },
+      ]}
+      sections={[
+        {
+          heading: 'Commercial Restoration Services',
+          body: <ServiceChildLinks category="commercial-services" />,
+        },
       ]}
     />
   );

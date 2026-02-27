@@ -154,6 +154,42 @@ const assessmentServices: ServiceLink[] = [
   },
 ];
 
+const specialtyServices: ServiceLink[] = [
+  {
+    title: 'Specialty Restoration Services',
+    href: '/services/specialty-services',
+    description: 'Specialist recovery for documents, electronics, artwork, antiques, pianos and other valuable items.',
+  },
+  {
+    title: 'Location-Specific Services',
+    href: '/services/location-specific',
+    description: 'Restoration services tailored to specific Queensland locations and their unique risk profiles.',
+  },
+];
+
+const relatedSections: ServiceLink[] = [
+  {
+    title: 'By Industry',
+    href: '/industries',
+    description: 'Disaster recovery tailored to your industry — agriculture, healthcare, education, mining, and more.',
+  },
+  {
+    title: 'By Property Type',
+    href: '/property-types',
+    description: 'Services for every property type from residential homes to high-rise commercial towers.',
+  },
+  {
+    title: 'By Disaster Type',
+    href: '/disasters',
+    description: 'Bushfire, cyclone, flood, storm and coastal erosion response across Australia.',
+  },
+  {
+    title: 'Compare Options',
+    href: '/compare',
+    description: 'Side-by-side comparisons to help you choose the right restoration approach.',
+  },
+];
+
 /* -------------------------------------------------------------------------- */
 /* Helper to render a grid of service link cards                               */
 /* -------------------------------------------------------------------------- */
@@ -245,6 +281,29 @@ export default function UltraModernServicesPage() {
                 Independent technical assessment and indoor environmental professional services providing detailed reporting for insurance claims, compliance and remediation planning.
               </p>
               <ServiceGrid services={assessmentServices} />
+            </>
+          ),
+        },
+        {
+          heading: 'Specialty Restoration',
+          background: 'light',
+          body: (
+            <>
+              <p style={{ color: 'var(--ag-text-muted, #5C6A79)', marginBottom: '1.5rem', fontSize: '1rem', lineHeight: 1.6 }}>
+                Expert recovery for irreplaceable and high-value items including documents, electronics, artwork, antiques, pianos and solar panels.
+              </p>
+              <ServiceGrid services={specialtyServices} />
+            </>
+          ),
+        },
+        {
+          heading: 'Browse by Category',
+          body: (
+            <>
+              <p style={{ color: 'var(--ag-text-muted, #5C6A79)', marginBottom: '1.5rem', fontSize: '1rem', lineHeight: 1.6 }}>
+                Find the right disaster recovery service by industry, property type, disaster type, or compare your options.
+              </p>
+              <ServiceGrid services={relatedSections} />
             </>
           ),
         },

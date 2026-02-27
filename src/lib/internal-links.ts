@@ -247,11 +247,11 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
   ],
   'guides-general': [
     { title: 'Water Damage Guide', href: '/guides/water-damage', description: 'Complete guide to water damage restoration.' },
-    { title: 'Fire Damage Guide', href: '/guides/fire-damage', description: 'What to do after fire damage.' },
-    { title: 'Mould Guide', href: '/guides/mould', description: 'Understanding mould risks and remediation.' },
     { title: 'Insurance Guide', href: '/guides/insurance', description: 'Navigate your disaster insurance claim.' },
-    { title: 'Emergency Guide', href: '/guides/emergency', description: 'Emergency preparedness and response.' },
-    { title: 'Cost Guides', href: '/guides/cost-guides', description: 'Restoration cost guides by service and location.' },
+    { title: 'Browse by Industry', href: '/industries', description: 'Disaster recovery tailored to agriculture, healthcare, education, mining, and more.' },
+    { title: 'Browse by Property Type', href: '/property-types', description: 'Services for every property from residential homes to high-rise towers.' },
+    { title: 'Disaster Types', href: '/disasters', description: 'Bushfire, cyclone, flood, storm and coastal erosion response across Australia.' },
+    { title: 'Compare Options', href: '/compare', description: 'Side-by-side comparisons — DIY vs professional, insurance vs cash, and more.' },
   ],
   'knowledge-base': [
     { title: 'Water Damage Science', href: '/knowledge/water-damage-restoration-science', description: 'IICRC S500 water damage categories, classes, and psychrometric drying science.' },
@@ -280,10 +280,10 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
   'how-it-works': [
     { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: '$2,750 emergency service, insurance reimbursement, and your right to choose a contractor.' },
     { title: 'Lodge a Claim', href: '/claim', description: 'Start your insurance claim online with 24/7 availability.' },
-    { title: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Get an instant cost estimate for any type of restoration.' },
-    { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your insurance claim step by step.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency disaster response across Australia.' },
-    { title: 'About Disaster Recovery', href: '/about', description: 'Australia\'s national claims distribution platform connecting property owners with certified contractors.' },
+    { title: 'Browse by Industry', href: '/industries', description: 'Disaster recovery tailored to your industry — agriculture, healthcare, mining, and more.' },
+    { title: 'Browse by Property Type', href: '/property-types', description: 'Services for every property from residential homes to high-rise towers.' },
+    { title: 'Compare Options', href: '/compare', description: 'Side-by-side comparisons — DIY vs professional, insurance vs cash, and more.' },
+    { title: 'Disaster Types', href: '/disasters', description: 'Bushfire, cyclone, flood, storm and coastal erosion recovery.' },
   ],
   'blog': [
     { title: 'Water Damage Guide', href: '/guides/water-damage', description: 'Complete guide to water damage restoration.' },

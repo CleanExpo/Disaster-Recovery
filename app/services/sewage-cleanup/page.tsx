@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
   title: 'Sewage Cleanup Brisbane | Disaster Recovery',
@@ -23,6 +24,12 @@ export default function SewageCleanupPage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Sewage Cleanup Brisbane' },
+      ]}
+      sections={[
+        {
+          heading: 'Sewage Cleanup Services',
+          body: <ServiceChildLinks category="sewage-cleanup" />,
+        },
       ]}
     />
   );

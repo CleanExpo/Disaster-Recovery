@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
+import ServiceChildLinks from '@/components/seo/ServiceChildLinks'
 import { generateServiceHowToSchema } from '@/lib/seo-schema'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
@@ -90,7 +91,15 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 
 export default function MouldRemediationPage() {
   if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <AntigravityServicePageTemplate data={mouldRemediationData} heroImage="/images/generated/disaster-recovery/hero-mould-remediation.webp" />;
+    return (
+      <>
+        <AntigravityServicePageTemplate data={mouldRemediationData} heroImage="/images/generated/disaster-recovery/hero-mould-remediation.webp" />
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-2xl font-bold text-white mb-8">Mould Remediation Services</h2>
+          <ServiceChildLinks category="mould-remediation" />
+        </section>
+      </>
+    );
   }
 
   return (
@@ -538,6 +547,12 @@ export default function MouldRemediationPage() {
             Serving Brisbane • Gold Coast • Ipswich • Logan City • Toowoomba • Sunshine Coast • Moreton Bay
           </p>
         </div>
+      </section>
+
+      {/* Child Service Links */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-2xl font-bold text-white mb-8">Mould Remediation Services</h2>
+        <ServiceChildLinks category="mould-remediation" />
       </section>
     </div>
   )

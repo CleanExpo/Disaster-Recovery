@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
+import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Restoration | IICRC Certified Specialists | Available 24/7',
@@ -63,6 +64,12 @@ export default function FireDamagePage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Fire & Smoke Damage Restoration' },
+      ]}
+      sections={[
+        {
+          heading: 'Fire Damage Restoration Services',
+          body: <ServiceChildLinks category="fire-damage" />,
+        },
       ]}
       relatedPages={getRelatedPages('fire-damage')}
     />

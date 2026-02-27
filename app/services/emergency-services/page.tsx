@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
   title: 'Flood & Water Emergencies | Disaster Recovery',
@@ -23,6 +24,12 @@ export default function EmergencyServicesPage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Flood & Water Emergencies' },
+      ]}
+      sections={[
+        {
+          heading: 'Emergency Response Services',
+          body: <ServiceChildLinks category="emergency-services" />,
+        },
       ]}
     />
   );
