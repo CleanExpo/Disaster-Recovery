@@ -43,7 +43,7 @@ export default function GuidesIndexPage() {
                   { title: 'Fire & Smoke Damage', href: '/guides/fire-damage', desc: 'What to do after fire damage and the restoration process.' },
                   { title: 'Mould Remediation', href: '/guides/mould', desc: 'Health risks, identification, and professional mould removal.' },
                   { title: 'Storm Damage', href: '/guides/storm-damage', desc: 'Storm and cyclone damage repair and insurance claims.' },
-                  { title: 'Flood Recovery', href: '/guides/flood', desc: 'Post-flood restoration, drying, and contamination cleanup.' },
+                  { title: 'Flood Recovery', href: '/guides/flood-damage', desc: 'Post-flood restoration, drying, and contamination cleanup.' },
                   { title: 'Emergency Response', href: '/guides/emergency', desc: 'Emergency preparedness and what to do when disaster strikes.' },
                 ].map((guide) => (
                   <a key={guide.href} href={guide.href} className="block p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all">

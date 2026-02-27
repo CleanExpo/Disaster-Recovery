@@ -248,7 +248,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
               Submit Form Now: Get Help Now
             </a>
             <Link
-              href="/get-quote"
+              href="/quote"
               className="inline-flex items-center justify-center px-8 py-4 bg-primary-800 text-white rounded-lg font-bold text-lg hover:bg-primary-900 transition-colours"
             >
               Get Free Assessment

@@ -251,7 +251,7 @@ export default function FloodDamageRestorationPerthPage() {
           },
         ]}
         relatedGuides={[
-          { title: 'Flood Damage Restoration Cost Guide Australia 2026', href: '/guides/cost-guides/flood-damage-restoration-cost-guide', description: 'Detailed cost breakdown by flood severity and water contamination category.' },
+          { title: 'Water Damage Restoration Cost Guide Australia 2026', href: '/guides/cost-guides/how-much-water-damage-restoration-cost', description: 'Detailed cost breakdown by water damage severity and contamination category.' },
           { title: 'How to Document Flood Damage for Insurance', href: '/guides/insurance/document-water-damage-insurance', description: 'Step-by-step guide to documenting flood damage for a successful insurance claim.' },
           { title: 'Mould After Flooding: Prevention and Remediation', href: '/guides/professional/mould-remediation-guide', description: 'How to prevent and treat mould growth after flood events in Australian properties.' },
           { title: 'What Does Disaster Recovery Include?', href: '/guides/services/what-disaster-recovery-includes', description: 'Full breakdown of what our restoration service covers from make-safe to rebuild.' },

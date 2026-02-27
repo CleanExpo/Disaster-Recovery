@@ -41,22 +41,22 @@ export const metadata: Metadata = {
     'ICBM': '-25.2744, 133.7751' }
 };
 
-export default function BiohazardCleanupPage() {
+export default function TraumaCleanupPage() {
   return (
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <Heart className="h-12 w-12" />,
-        title: 'Biohazard Cleanup Services',
-        subtitle: 'Professional biohazard cleanup services following IICRC S540 standards. Crime scene cleanup, trauma cleaning, blood cleanup, sewage cleanup. Licensed specialists available 24/7.',
+        title: 'Trauma Scene Cleanup',
+        subtitle: 'Compassionate, discreet trauma scene cleanup by IICRC-certified specialists. Unattended death, accident scene, and crime scene restoration. Available 24/7 across Australia.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
-        { label: 'Biohazard Cleanup Services' },
+        { label: 'Trauma Scene Cleanup' },
       ]}
     />
   );

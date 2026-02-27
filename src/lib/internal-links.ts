@@ -169,7 +169,7 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Gold Coast Water Damage Costs', href: '/cost/gold-coast-water-damage', description: 'Water damage restoration costs on the Gold Coast.' },
     { title: 'Gold Coast Mould Removal Costs', href: '/cost/gold-coast-mould-removal', description: 'Mould remediation costs on the Gold Coast.' },
     { title: 'Brisbane Services', href: '/locations/brisbane', description: 'Disaster recovery services in Brisbane.' },
-    { title: 'Sunshine Coast Services', href: '/locations/sunshine-coast', description: 'Disaster recovery services on the Sunshine Coast.' },
+    { title: 'Sunshine Coast Services', href: '/locations/qld/sunshine-coast', description: 'Disaster recovery services on the Sunshine Coast.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your insurance claim for storm damage.' },
   ],
   'location-newcastle': [

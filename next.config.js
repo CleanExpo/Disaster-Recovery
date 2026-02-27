@@ -452,6 +452,14 @@ const nextConfig = {
 
       // Indexed page returning "Service Not Found" — active in Google index
       { source: '/services/fire-smoke-damage', destination: '/services/fire-damage-restoration', permanent: true },
+
+      // --- Duplicate content consolidation (keyword cannibalisation prevention) ---
+      { source: '/services/biohazard', destination: '/services/biohazard-cleaning', permanent: true },
+      { source: '/services/commercial', destination: '/services/commercial-services', permanent: true },
+      { source: '/compare/professional-vs-diy', destination: '/compare/diy-vs-professional', permanent: true },
+      { source: '/property-types/residential-homes', destination: '/property-types/residential', permanent: true },
+      { source: '/property-types/strata-properties', destination: '/property-types/strata', permanent: true },
+      { source: '/property-types/government-facilities', destination: '/property-types/government', permanent: true },
     ];
   },
 
