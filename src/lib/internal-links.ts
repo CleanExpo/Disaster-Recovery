@@ -264,12 +264,12 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Guides & Resources', href: '/guides', description: 'Practical restoration guides for property owners.' },
   ],
   'operational-excellence': [
+    { title: 'Restoration Equipment', href: '/equipment', description: 'IICRC-grade professional equipment used by our certified contractors.' },
     { title: 'Command Ecosystem', href: '/operational-excellence/command-ecosystem', description: 'Integrated technology for claims management, GPS dispatch and IICRC-compliant digital workflows.' },
     { title: 'Safety & PPE', href: '/operational-excellence/safety-ppe', description: 'Rigorous safety standards, hazmat suits, respirators and WHS-compliant protective equipment.' },
-    { title: 'Field Essentials', href: '/operational-excellence/field-essentials', description: 'Battle-tested deployment kits with flashlights, power banks and weatherproof gear.' },
-    { title: 'Executive Partners', href: '/operational-excellence/executive-partners', description: 'IICRC, CARSI, RestoreAssist and NRPG industry-leading affiliations.' },
+    { title: 'Our Technology', href: '/technology', description: 'The technology platform powering our nationwide restoration network.' },
     { title: 'Chemical & Remediation Assets', href: '/operational-excellence/chemical-remediation-assets', description: 'Negative air machines, antimicrobial treatments and branded containment systems.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency disaster response across Australia and New Zealand.' },
+    { title: 'Our Partners', href: '/partners', description: 'Strategic insurance and technology partnerships.' },
   ],
   'pricing': [
     { title: 'All Cost Guides', href: '/cost', description: 'In-depth cost guides with insurance coverage info for all damage types.' },

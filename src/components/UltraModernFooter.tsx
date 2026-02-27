@@ -24,14 +24,16 @@ export default function UltraModernFooter() {
     { label: 'Mould Remediation', href: '/services/mould-remediation' },
     { label: 'Storm Damage', href: '/services/storm-damage' },
     { label: 'Biohazard Cleanup', href: '/services/biohazard-cleaning' },
+    { label: 'Equipment', href: '/equipment' },
   ];
 
   const company = [
     { label: 'About Us', href: '/about' },
     { label: 'How It Works', href: '/how-it-works' },
-    { label: 'Industries', href: '/industries' },
-    { label: 'Property Types', href: '/property-types' },
-    { label: 'Knowledge Base', href: '/knowledge' },
+    { label: 'Partners', href: '/partners' },
+    { label: 'Testimonials', href: '/testimonials' },
+    { label: 'Facts & Statistics', href: '/facts' },
+    { label: 'Media & Press', href: '/media' },
   ];
 
   const support = [
@@ -40,6 +42,7 @@ export default function UltraModernFooter() {
     { label: 'Pricing by City', href: '/pricing' },
     { label: 'Insurance Claims', href: '/insurance' },
     { label: 'FAQ', href: '/faq' },
+    { label: 'Get a Quote', href: '/quote' },
   ];
 
   const socialLinks = [
@@ -342,6 +345,9 @@ export default function UltraModernFooter() {
               </Link>
               <Link href="/disclaimer" className="text-gray-400 hover:text-white transition-colors">
                 Disclaimer
+              </Link>
+              <Link href="/search" className="text-gray-400 hover:text-white transition-colors">
+                Search
               </Link>
             </div>
           </div>
