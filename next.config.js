@@ -199,7 +199,10 @@ const nextConfig = {
       { source: '/book-service', destination: '/claim', permanent: true },
       { source: '/book-service/payment', destination: '/claim', permanent: true },
       { source: '/book-service/success', destination: '/claim', permanent: true },
-      { source: '/quote', destination: '/claim', permanent: true },
+      { source: '/book-service/error', destination: '/claim', permanent: true },
+      { source: '/ai-assessment', destination: '/tools/cost-estimator', permanent: true },
+      { source: '/free-assessment', destination: '/tools/cost-estimator', permanent: true },
+      { source: '/quote', destination: '/tools/cost-estimator', permanent: true },
 
       // --- Legacy WordPress → Next.js redirects (GSC 404 cleanup) ---
 
