@@ -92,7 +92,7 @@ export default function PremiumHeader() {
                 <Clock className="w-4 h-4" />
                 <span>24/7 Emergency Service</span>
               </div>
-              <a href="#contact-form" className="flex items-center gap-2 font-semibold hover:text-blue-700 transition-colours">
+              <a href="/claim" className="flex items-center gap-2 font-semibold hover:text-blue-700 transition-colours">
                 <MessageSquare className="w-4 h-4" />
                 <span>online support</span>
               </a>
@@ -215,7 +215,7 @@ export default function PremiumHeader() {
                 Partner Portal
               </Link>
               <a
-                href="#contact-form"
+                href="/claim"
                 className={cn(
                   "flex items-center gap-2 px-5 py-2.5 rounded-lg",
                   "bg-gradient-to-r from-red-600 to-red-500",
@@ -318,7 +318,7 @@ export default function PremiumHeader() {
             {/* Mobile Menu Footer */}
             <div className="p-6 border-t space-y-4">
               <a
-                href="#contact-form"
+                href="/claim"
                 className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 <MessageSquare className="w-5 h-5" />

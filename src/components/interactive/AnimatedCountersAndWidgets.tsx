@@ -195,7 +195,7 @@ function LiveAvailabilityWidget() {
       {/* CTA Button */}
       <motion.div className="mt-6">
         <motion.a
-          href="#contact-form"
+          href="/claim"
           className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-lg font-bold text-center block"
           whileHover={{ scale: 1.02, y: -1 }}
           whileTap={{ scale: 0.98 }}

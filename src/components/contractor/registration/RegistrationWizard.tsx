@@ -291,7 +291,7 @@ export function RegistrationWizard() {
               contractors@nrp.com.au
             </a>
             {' '}or call{' '}
-            <a href="#contact-form" className="text-blue-600 hover:underline">
+            <a href="/claim" className="text-blue-600 hover:underline">
               online support</a>
           </p>
         </div>

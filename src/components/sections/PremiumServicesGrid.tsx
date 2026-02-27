@@ -255,7 +255,7 @@ export default function PremiumServicesGrid({
               
               <div className="flex gap-3">
                 <a
-                  href="#contact-form"
+                  href="/claim"
                   className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
                 >
                   Use Our Online Form

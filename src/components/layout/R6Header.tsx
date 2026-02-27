@@ -206,7 +206,7 @@ export default function R6Header() {
                 <span>Lodge Claim</span>
               </Link>
               <a 
-                href="#contact-form"
+                href="/claim"
                 className={cn(
                   "flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full transition-all duration-300 group font-bold",
                   emergencyMode 
@@ -360,7 +360,7 @@ export default function R6Header() {
                   <span className="group-hover:scale-105 transition-transform">Cost Estimator</span>
                 </R6Button>
                 
-                <a href="#contact-form">
+                <a href="/claim">
                   <R6Button
                     variant={emergencyMode ? "danger" : "gradient"}
                     size="sm"
@@ -462,7 +462,7 @@ export default function R6Header() {
               </Link>
 
               {/* Emergency Call Button */}
-              <a href="#contact-form" className="block">
+              <a href="/claim" className="block">
                 <R6Button 
                   variant={emergencyMode ? "danger" : "gradient"}
                   fullWidth

@@ -136,7 +136,7 @@ function QuotePageOriginal() {
             Don't want to wait? Continue now:
           </h3>
           <Link
-            href="/book-service?source=quote"
+            href="/tools/cost-estimator"
             className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-colours"
           >
             Get My Estimate

@@ -142,7 +142,7 @@ export default function PremiumHero({
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#contact-form"
+                href="/claim"
                 className={cn(
                   "group flex items-center justify-center gap-3 px-8 py-4",
                   "bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600",
@@ -158,7 +158,7 @@ export default function PremiumHero({
               </a>
               
               <Link
-                href="/free-assessment"
+                href="/tools/cost-estimator"
                 className={cn(
                   "group flex items-center justify-center gap-3 px-8 py-4",
                   "bg-white/10 backdrop-blur-md hover:bg-white/20",
