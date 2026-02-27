@@ -275,10 +275,10 @@ function generateWhyChooseUsContent(service: typeof SERVICE_TYPES[0], propertyTy
       <div>
         <h4 class="font-semibold mb-3">🛡️ Insurance Expertise</h4>
         <ul class="space-y-1">
-          <li>• Direct Insurance Billing</li>
-          <li>• Claims Documentation</li>
-          <li>• Adjuster Coordination</li>
-          <li>• Preferred Contractor Network</li>
+          <li>• We Bill You Directly</li>
+          <li>• Full Claims Documentation</li>
+          <li>• Insurance Reimbursement Support</li>
+          <li>• IICRC-Certified Contractor Network</li>
         </ul>
       </div>
       <div>

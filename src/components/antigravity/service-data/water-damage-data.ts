@@ -66,7 +66,7 @@ export const waterDamageData: ServicePageData = {
     description: 'Automated dispatch to the nearest available water extraction fleet.',
     ctaHref: '/claim?service=water-damage',
     ctaText: 'Make a Claim',
-    footerNote: 'Direct insurance billing available. IICRC S500 compliant reporting provided to all adjusters.',
+    footerNote: 'We bill you directly — full claims documentation provided. IICRC S500 compliant reporting.',
     trustText: 'Operating strictly under IICRC S500 Standard for Professional Water Damage Restoration.',
   },
 };
