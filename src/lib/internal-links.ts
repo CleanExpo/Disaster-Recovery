@@ -225,11 +225,11 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
   ],
   'insurance': [
     { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: '$2,750 emergency service, insurance reimbursement, and your right to choose a contractor.' },
+    { title: 'Is It Covered?', href: '/is-it-covered', description: 'Check if your damage type is typically covered by Australian insurance policies.' },
+    { title: 'Insurance Decoder', href: '/insurance-decoder', description: 'Decode your insurance policy jargon and understand your coverage.' },
+    { title: 'Government Funding', href: '/government-funding', description: 'Australian government disaster recovery grants and funding programs.' },
     { title: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Instant cost estimate with insurance coverage likelihood for any damage type.' },
-    { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Water damage services covered by most insurers.' },
-    { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Fire damage restoration insurance claims.' },
-    { title: 'Storm Damage Restoration', href: '/services/storm-damage-restoration', description: 'Storm damage insurance coverage guide.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency response for insured events.' },
+    { title: 'Cost Guides', href: '/cost', description: 'Transparent restoration costs across Australian cities.' },
   ],
   'emergency': [
     { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: 'Understand the $2,750 make-safe cost and how to claim reimbursement from your insurer.' },
@@ -240,11 +240,12 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Start your insurance claim after an emergency.' },
   ],
   'commercial': [
-    { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Commercial water damage restoration services.' },
-    { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Commercial fire damage restoration.' },
-    { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'Commercial mould inspection and removal.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 commercial emergency response.' },
-    { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Commercial property insurance claims.' },
+    { title: 'For Business Owners', href: '/for/business-owners', description: 'Disaster recovery solutions for business owners and operators.' },
+    { title: 'For Facilities Managers', href: '/for/facilities-managers', description: 'Commercial facilities disaster response and prevention.' },
+    { title: 'For Property Managers', href: '/for/property-managers', description: 'Property management disaster recovery partnerships.' },
+    { title: 'For Strata Managers', href: '/for/strata-managers', description: 'Strata and body corporate disaster recovery coordination.' },
+    { title: 'Commercial Services', href: '/services/commercial-services', description: 'Large-scale commercial restoration services.' },
+    { title: 'Why Independent Professionals', href: '/why-independent-professionals', description: 'Benefits of choosing independent certified contractors.' },
   ],
   'guides-general': [
     { title: 'Water Damage Guide', href: '/guides/water-damage', description: 'Complete guide to water damage restoration.' },
@@ -295,10 +296,10 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Disaster Types', href: '/disasters', description: 'Bushfire, cyclone, flood, storm and coastal erosion recovery.' },
   ],
   'blog': [
-    { title: 'Water Damage Guide', href: '/guides/water-damage', description: 'Complete guide to water damage restoration.' },
+    { title: 'Disaster Recovery Facts', href: '/facts', description: 'Key statistics and facts about disaster recovery in Australia.' },
+    { title: 'Testimonials', href: '/testimonials', description: 'Real stories from property owners we have helped.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your insurance claim step by step.' },
-    { title: 'Water Damage Science', href: '/knowledge/water-damage-restoration-science', description: 'IICRC S500 water damage science and standards.' },
-    { title: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Get an instant restoration cost estimate.' },
+    { title: 'Knowledge Base', href: '/knowledge', description: 'IICRC standards, restoration science, and Australian law.' },
     { title: 'How It Works', href: '/how-it-works', description: 'Learn how our platform connects you with contractors.' },
   ],
 };

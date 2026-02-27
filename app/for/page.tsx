@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getRelatedPages } from '@/lib/internal-links';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -95,6 +96,7 @@ export default function ForBusinessPage() {
           background: 'light',
         },
       ]}
+      relatedPages={getRelatedPages('commercial')}
     />
   );
 }
