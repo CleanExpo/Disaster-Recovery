@@ -5,8 +5,8 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Crime Scene Cleanup Brisbane',
-  description: 'Professional crime scene cleanup brisbane services in Queensland. 24/7 emergency response for forensic cleaning, trauma cleanup.',
+  title: 'Crime Scene Cleanup | 24/7 Response',
+  description: 'Professional crime scene cleanup services across Australia. 24/7 emergency response for forensic cleaning, trauma cleanup. Discreet, compassionate, IICRC-certified.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/crime-scene-cleanup',
   },
@@ -19,8 +19,8 @@ export default function CrimeSceneCleanupBrisbanePage() {
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
-        title: 'Crime Scene Cleanup Brisbane',
-        subtitle: 'Professional crime scene cleanup brisbane services in Queensland. 24/7 emergency response for forensic cleaning, trauma cleanup.',
+        title: 'Crime Scene Cleanup Services',
+        subtitle: 'Professional crime scene cleanup services across Australia. 24/7 emergency response for forensic cleaning, trauma cleanup. Discreet, compassionate, IICRC-certified.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"

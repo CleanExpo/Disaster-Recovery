@@ -70,9 +70,9 @@ const fireDamageFAQs = [
 // Service schema data
 const fireDamageServiceSchema = generateServiceSchema({
   name: 'Fire Damage Restoration',
-  description: 'Complete fire damage restoration including smoke removal, soot cleanup, odour elimination, and structural repairs. 24/7 emergency response across Brisbane and Queensland.',
+  description: 'Complete fire damage restoration including smoke removal, soot cleanup, odour elimination, and structural repairs. 24/7 emergency response across Australia.',
   image: '/images/services/fire-damage-restoration.webp',
-  areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast']
+  areaServed: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Hobart']
 })
 
 // Breadcrumb schema

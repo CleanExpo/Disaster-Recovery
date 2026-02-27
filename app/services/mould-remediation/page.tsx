@@ -77,9 +77,9 @@ const mouldFAQs = [
 // Service schema data
 const mouldServiceSchema = generateServiceSchema({
   name: 'Mould Remediation Services',
-  description: 'Professional mould inspection, testing, removal and remediation services. IICRC certified technicians providing safe, thorough mould elimination across Brisbane and Queensland.',
+  description: 'Professional mould inspection, testing, removal and remediation services. IICRC-certified technicians providing safe, thorough mould elimination across Australia.',
   image: '/images/services/mould-remediation.webp',
-  areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast', 'Moreton Bay']
+  areaServed: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Gold Coast', 'Canberra', 'Hobart']
 })
 
 // Breadcrumb schema
