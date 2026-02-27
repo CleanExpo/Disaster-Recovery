@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import ModernContactPage from './ContactClient';
 
 export const metadata: Metadata = {
@@ -14,6 +15,40 @@ export const metadata: Metadata = {
   },
 };
 
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Disaster Recovery',
+  url: 'https://disasterrecovery.com.au/contact',
+  mainEntity: {
+    '@type': 'Organization',
+    '@id': 'https://disasterrecovery.com.au/#organization',
+    name: 'Disaster Recovery',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'emergency',
+      url: 'https://disasterrecovery.com.au/claim',
+      availableLanguage: 'English',
+      areaServed: { '@type': 'Country', name: 'Australia' },
+      hoursAvailable: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      },
+    },
+  },
+};
+
 export default function ContactPage() {
-  return <ModernContactPage />;
+  return (
+    <>
+      <Script
+        id="contact-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+      />
+      <ModernContactPage />
+    </>
+  );
 }

@@ -71,13 +71,33 @@ const howToSchema = {
   ],
 };
 
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Disaster Recovery Cost Estimator',
+  url: 'https://disasterrecovery.com.au/tools/cost-estimator',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'AUD',
+  },
+  description: 'Interactive cost estimator for water damage, fire, mould, storm, sewage, and biohazard restoration in Australia. Based on $85/hr contractor rates plus materials.',
+  provider: {
+    '@type': 'Organization',
+    '@id': 'https://disasterrecovery.com.au/#organization',
+    name: 'Disaster Recovery',
+  },
+};
+
 export default function CostEstimatorPage() {
   return (
     <>
       <Script
         id="cost-estimator-schema"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([howToSchema, softwareSchema]) }}
       />
       <AgContentPageTemplate
         hero={{
