@@ -24,8 +24,9 @@ export function AntigravityHero() {
             alt="Professional disaster recovery technician arriving at an Australian property"
             fill
             priority
+            fetchPriority="high"
             style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
-            sizes="100vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
           />
         </div>
       </div>

@@ -6,7 +6,7 @@
  * Each card links directly to its service pillar page.
  */
 
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -75,6 +75,19 @@ const cards: AssessmentCard[] = [
 
 export function AntigravityQuickAssessment() {
   const cardRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const sectionRef = useRef<HTMLElement>(null);
+  const [bgLoaded, setBgLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setBgLoaded(true); observer.disconnect(); } },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const card = cardRefs.current.get(id);
@@ -85,7 +98,7 @@ export function AntigravityQuickAssessment() {
   }, []);
 
   return (
-    <section className="ag-assessment-section ag-container">
+    <section ref={sectionRef} className="ag-assessment-section ag-container">
       <div className="ag-assessment-header">
         <div className="ag-badge-pulse">Live Network Connection</div>
         <h2>Emergency Rapid Assessment</h2>
@@ -95,7 +108,7 @@ export function AntigravityQuickAssessment() {
         </p>
       </div>
 
-      <div className="ag-bento-grid">
+      <div className={`ag-bento-grid${bgLoaded ? ' ag-bg-loaded' : ''}`}>
         {cards.map((card) => (
           <Link
             key={card.id}

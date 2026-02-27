@@ -2,11 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
-import '@/styles/logo-transparency.css'
 import '@/styles/mobile-responsive.css'
-import '@/styles/mobile-fixes.css'
 import '@/styles/performance-optimizations.css'
-import '@/styles/mobile-touch-targets.css'
 import '@/styles/antigravity-design-system.css'
 import { Providers } from './providers'
 import UltraModernHeader from '@/components/UltraModernHeader'
@@ -129,6 +126,8 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="alternate" hrefLang="en-AU" href="https://disasterrecovery.com.au" />
         <link rel="alternate" hrefLang="x-default" href="https://disasterrecovery.com.au" />
         <link rel="icon" href="/favicon.ico" sizes="any" />

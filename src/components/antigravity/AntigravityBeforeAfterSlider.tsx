@@ -43,7 +43,7 @@ export function AntigravityBeforeAfterSlider({
     const position = Math.max(0, Math.min(clientX - rect.left, rect.width));
     const percentage = (position / rect.width) * 100;
 
-    before.style.width = `${percentage}%`;
+    before.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
     handle.style.left = `${percentage}%`;
   }, []);
 
