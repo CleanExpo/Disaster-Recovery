@@ -20,7 +20,7 @@ const faqs: { question: string; answer: string }[] = [
   {
     question: 'My business premises is flooded — what should I do first?',
     answer:
-      'Ensure everyone is safe and evacuate the premises if necessary. Turn off the electricity at the mains if you can reach the switchboard safely. Do not walk through standing water that may be in contact with electrical sources. Once safe, photograph and video the damage immediately — before you touch anything. Then call Disaster Recovery on 1300 309 361 for emergency response within 60 minutes.',
+      'Ensure everyone is safe and evacuate the premises if necessary. Turn off the electricity at the mains if you can reach the switchboard safely. Do not walk through standing water that may be in contact with electrical sources. Once safe, photograph and video the damage immediately — before you touch anything. Then lodge a claim online at disasterrecovery.com.au/claim for emergency response within 60 minutes.',
   },
   {
     question: 'Is the landlord or tenant responsible for flood damage restoration?',

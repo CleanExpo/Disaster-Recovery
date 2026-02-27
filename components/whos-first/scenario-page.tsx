@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Phone, AlertTriangle, Clock, Shield, DollarSign, CheckCircle, XCircle, ArrowRight, AlertCircle, FileText, Users, Heart } from 'lucide-react';
+import { AlertTriangle, Clock, Shield, DollarSign, CheckCircle, XCircle, ArrowRight, AlertCircle, FileText, Users, Heart } from 'lucide-react';
 import { WhosFirstScenario } from '@/lib/whos-first-generator';
 import Link from 'next/link';
 
@@ -52,11 +52,10 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
             className="flex flex-wrap gap-4 justify-center"
           >
             <a
-              href="tel:1800000000"
+              href="/claim"
               className="bg-green-500 hover:bg-green-800 text-white px-8 py-4 rounded-lg font-bold text-lg flex items-center gap-2 shadow-xl transition-all hover:scale-105"
             >
-              <Phone className="w-6 h-6" />
-              Call Us First Now
+              Lodge a Claim Now
             </a>
             <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:bg-gray-100 transition-all">
               Get Immediate Help Online
@@ -360,11 +359,10 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
           
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="tel:1800000000"
+              href="/claim"
               className="bg-green-500 hover:bg-green-800 text-white px-10 py-5 rounded-lg font-bold text-xl flex items-center gap-3 shadow-2xl transition-all hover:scale-105"
             >
-              <Phone className="w-7 h-7" />
-              Call Us First: 1800 000 000
+              Lodge a Claim Now
             </a>
             <button className="bg-white text-blue-900 px-10 py-5 rounded-lg font-bold text-xl shadow-2xl hover:bg-gray-100 transition-all">
               Start Online Assessment

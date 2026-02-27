@@ -187,7 +187,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'Mould thrives in humid Australian conditions. If your {{city}} property has persistent musty odours, visible growth, or occupant health complaints, professional assessment is critical. Our team provides free initial advice and transparent pricing.',
+        summary: 'Mould thrives in humid Australian conditions. If your {{city}} property has persistent musty odours, visible growth, or occupant health complaints, professional assessment is critical. Our team provides transparent pricing and IICRC-certified remediation.',
         ctaText: 'Read the Guide',
         ctaPath: '/guides/mould',
         topicType: 'STANDARD',
@@ -358,7 +358,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'Not sure if your property damage is covered by insurance? Our {{city}} team provides free initial guidance and full claims documentation for all major Australian insurers. We bill you directly — you claim reimbursement from your insurer.',
+        summary: 'Not sure if your property damage is covered by insurance? Our {{city}} team provides full claims documentation for all major Australian insurers. We bill you directly — you claim reimbursement from your insurer.',
         ctaText: 'Check Coverage',
         ctaPath: '/is-it-covered',
         topicType: 'STANDARD',

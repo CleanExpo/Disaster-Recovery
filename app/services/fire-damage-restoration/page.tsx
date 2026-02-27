@@ -43,7 +43,7 @@ export const metadata: Metadata = generateSEO({
 const fireDamageFAQs = [
   {
     question: "What should I do immediately after a fire?",
-    answer: "First, ensure everyone is safe and don't re-enter the property until cleared by fire services. Contact your insurance company and call our 24/7 emergency line at online support. We'll secure your property, assess damage, and begin restoration immediately to prevent further damage from smoke and water."
+    answer: "First, ensure everyone is safe and don't re-enter the property until cleared by fire services. Contact your insurance company and lodge a claim online at disasterrecovery.com.au/claim — available 24/7. We'll secure your property, assess damage, and begin restoration immediately to prevent further damage from smoke and water."
   },
   {
     question: "How long does fire damage restoration take?",

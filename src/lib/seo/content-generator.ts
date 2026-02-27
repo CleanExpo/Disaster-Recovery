@@ -102,10 +102,10 @@ export function generateMetaDescription(
   
   if (businessType) {
     const businessName = businessType.replace(/-/g, ' ');
-    return `Professional ${service.name.toLowerCase()} for ${businessName} in ${locationName}. ${urgencyPhrase} from ${professionalPhrase}. Insurance approved contractors. Get Help Now!`;
+    return `Professional ${service.name.toLowerCase()} for ${businessName} in ${locationName}. ${urgencyPhrase} from ${professionalPhrase}. IICRC-certified contractors. Lodge a claim online.`;
   }
   
-  return `Expert ${service.name.toLowerCase()} services in ${locationName} ${location.postcode}. ${urgencyPhrase} from ${professionalPhrase}. IICRC certified, insurance approved. Free quotes.`;
+  return `Expert ${service.name.toLowerCase()} services in ${locationName} ${location.postcode}. ${urgencyPhrase} from ${professionalPhrase}. IICRC certified. Lodge a claim online for immediate response.`;
 }
 
 // Generate H1 title
@@ -185,7 +185,7 @@ export function generateContent(
       <p class="text-blue-800 mb-4">Our ${locationName} emergency response team is available 24/7 for immediate ${service.name.toLowerCase()} services. Don't let damage worsen - contact us now for rapid professional response.</p>
       <div class="flex flex-col sm:flex-row gap-4">
         <a href="#contact-form" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Use Our Online Form</a>
-        <a href="/contact" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">Get Free Quote</a>
+        <a href="/tools/cost-estimator" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">Get Cost Estimate</a>
       </div>
     </div>
   </div>

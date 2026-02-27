@@ -67,7 +67,7 @@ function SignupPageOriginal() {
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Create an account</h1>
           <p className="text-muted-foreground">
-            Get started with your free trial
+            Get started with your account
           </p>
         </div>
 
