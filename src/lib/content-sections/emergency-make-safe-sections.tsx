@@ -462,8 +462,8 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
           </h3>
           <p style={prose}>
             Yes. Disaster Recovery requires the initial $2,750 payment to commence emergency works.
-            This model differs from some insurer-appointed contractors who direct-bill. The trade-off
-            is speed: Disaster Recovery can attend immediately without waiting for insurer approval,
+            Unlike insurer-appointed contractors who may take days to gain approval, we attend immediately. The trade-off
+            is speed: Disaster Recovery can be on-site within the hour without waiting for insurer approval,
             and the compliant invoice is designed for straightforward reimbursement through your
             claim.
           </p>

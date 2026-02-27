@@ -128,9 +128,9 @@ export default function CommercialCleanersPage() {
             <div className="prose prose-lg max-w-none">
               <p>
                 This is deliberately simple. No contracts to sign. No referral fees to
-                negotiate. No paperwork to fill out. You call us when your client has damage
-                that exceeds your cleaning scope, and we handle the restoration. That is the
-                entire program.
+                negotiate. No paperwork to fill out. You lodge a referral online when your client
+                has damage that exceeds your cleaning scope, and we handle the restoration. That
+                is the entire program.
               </p>
 
               <h3>How it works</h3>
@@ -140,7 +140,7 @@ export default function CommercialCleanersPage() {
               </p>
               <ol>
                 <li>
-                  <strong>You call us or lodge a referral online.</strong> Tell us the site
+                  <strong>Lodge a referral online.</strong> Tell us the site
                   address, the type of damage and any access details. That is all we need to
                   get moving.
                 </li>
@@ -174,7 +174,7 @@ export default function CommercialCleanersPage() {
                 <Link href="/claim" className="text-blue-600 hover:underline font-medium">
                   lodge a referral online
                 </Link>{' '}
-                or call us directly. An IICRC-certified contractor will be in contact within
+                and an IICRC-certified contractor will be in contact within
                 60 minutes and on-site within the hour — anywhere in Australia. Your client
                 sees you as the person who solved the problem, even though you called in the
                 specialist. That is the point.

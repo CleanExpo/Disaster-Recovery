@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'How It Works | Damage to Restoration',
-  description: 'Your complete 6-step journey from property damage to full restoration. Emergency make-safe from $2,750, IICRC-certified contractors, client-direct billing, and flexible payment plans via Blue Fire Finance.',
+  description: 'Your complete 6-step journey from property damage to full restoration. Emergency make-safe from $2,750, IICRC-certified contractors, immediate response with no insurer delays, and flexible payment plans via Blue Fire Finance.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/how-it-works',
   },
@@ -152,7 +152,7 @@ export default function HowItWorksPage() {
                 <li><strong>IICRC-certified network</strong> — every contractor meets the highest industry standards</li>
                 <li><strong>60-minute response guarantee</strong> — a contractor will call you within the hour</li>
                 <li><strong>Insurance-compliant documentation</strong> — all invoicing formatted for insurer acceptance</li>
-                <li><strong>Client-direct billing</strong> — work begins immediately, no insurer delays</li>
+                <li><strong>We bill you directly</strong> — work begins immediately, no insurer delays</li>
                 <li><strong>Flexible payment plans</strong> — manage costs through{' '}
                   <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Blue Fire Finance</a>
                 </li>
