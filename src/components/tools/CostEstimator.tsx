@@ -84,10 +84,19 @@ const DAMAGE_TYPES = [
   { value: 'biohazard',         label: 'Biohazard' },
 ]
 
+const BASE_HOURLY_RATE = 85 // Normal contractor rate $/hr
+const EMERGENCY_HOURLY_RATE = 120 // After-hours/emergency rate $/hr
+
 const RESPONSE_TIMES: Record<string, string> = {
   emergency: 'Within 2 hours',
   urgent: 'Within 24 hours',
   scheduled: 'Within 3\u20135 business days',
+}
+
+const HOURLY_RATES: Record<string, number> = {
+  emergency: EMERGENCY_HOURLY_RATE,
+  urgent: BASE_HOURLY_RATE,
+  scheduled: BASE_HOURLY_RATE,
 }
 
 /* -------------------------------------------------------------------------- */
@@ -127,7 +136,11 @@ function calculateEstimate(damageType: string, propertyType: string, area: numbe
   const low = Math.round(baseLow * areaMultiplier * urgencyMultiplier * commercialMultiplier / 100) * 100
   const high = Math.round(baseHigh * areaMultiplier * urgencyMultiplier * commercialMultiplier / 100) * 100
 
-  return { low, high }
+  const hourlyRate = HOURLY_RATES[urgency] || BASE_HOURLY_RATE
+  const estHoursLow = Math.round(low / hourlyRate)
+  const estHoursHigh = Math.round(high / hourlyRate)
+
+  return { low, high, hourlyRate, estHoursLow, estHoursHigh }
 }
 
 function formatCurrency(amount: number): string {
@@ -143,7 +156,7 @@ export default function CostEstimator() {
   const [propertyType, setPropertyType] = useState('residential')
   const [area, setArea] = useState(30)
   const [urgency, setUrgency] = useState('urgent')
-  const [result, setResult] = useState<{ low: number; high: number } | null>(null)
+  const [result, setResult] = useState<{ low: number; high: number; hourlyRate: number; estHoursLow: number; estHoursHigh: number } | null>(null)
   const [showResult, setShowResult] = useState(false)
 
   const handleCalculate = useCallback(() => {
@@ -349,6 +362,20 @@ export default function CostEstimator() {
                         {propertyType === 'commercial' ? 'Commercial' : 'Residential'} \u2022 {area} m² \u2022 {urgency === 'emergency' ? 'Emergency response' : urgency === 'urgent' ? 'Urgent (24hrs)' : 'Scheduled'}
                       </p>
                     </div>
+                    <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-white/10">
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-emerald-400">${result.hourlyRate}/hr</div>
+                        <div className="text-white/50 text-xs">{urgency === 'emergency' ? 'Emergency rate' : 'Normal rate'}</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-blue-400">{result.estHoursLow}\u2013{result.estHoursHigh} hrs</div>
+                        <div className="text-white/50 text-xs">Est. labour hours</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-amber-400">+ materials</div>
+                        <div className="text-white/50 text-xs">Equipment &amp; supplies</div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Insurance + Response Grid */}
@@ -421,7 +448,8 @@ export default function CostEstimator() {
             {/* Disclaimer */}
             <div className="mt-6 text-center text-white/60">
               <p className="text-sm">
-                * Estimates based on typical Australian restoration pricing data.
+                * Estimates based on a normal contractor rate of ${BASE_HOURLY_RATE}/hr
+                (${EMERGENCY_HOURLY_RATE}/hr for emergency callouts) plus materials and equipment.
                 Actual costs vary based on site-specific conditions and the accuracy
                 of the information provided.
               </p>
