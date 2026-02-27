@@ -35,12 +35,12 @@ const navigationStructure: NavItem[] = [
   },
   {
     label: 'Resources',
-    href: '/resources',
+    href: '/guides',
     children: [
-      { label: 'Emergency Guide', href: '/resources/emergency-guide' },
-      { label: 'Insurance Claims', href: '/resources/insurance' },
-      { label: 'FAQ', href: '/resources/faq' },
-      { label: 'Blog', href: '/resources/blog' },
+      { label: 'Guides', href: '/guides' },
+      { label: 'Insurance Claims', href: '/insurance' },
+      { label: 'Cost Guides', href: '/cost' },
+      { label: 'Blog', href: '/blog' },
     ]
   },
   {
@@ -48,9 +48,9 @@ const navigationStructure: NavItem[] = [
     href: '/about',
     children: [
       { label: 'Why First', href: '/why-first' },
-      { label: 'Our Process', href: '/about/process' },
-      { label: 'Certifications', href: '/about/certifications' },
-      { label: 'Testimonials', href: '/about/testimonials' },
+      { label: 'Our Process', href: '/how-it-works' },
+      { label: 'Certifications', href: '/certifications' },
+      { label: 'Testimonials', href: '/testimonials' },
     ]
   },
   {
@@ -59,7 +59,7 @@ const navigationStructure: NavItem[] = [
     children: [
       { label: 'Book Service', href: '/claim' },
       { label: 'Cost Estimator', href: '/tools/cost-estimator' },
-      { label: 'Emergency', href: '/contact/emergency' },
+      { label: 'Emergency', href: '/claim' },
     ]
   }
 ];

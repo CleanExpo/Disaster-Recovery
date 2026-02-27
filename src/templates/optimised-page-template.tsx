@@ -118,7 +118,7 @@ export function generateAustralianMetadata({
   image?: string;
 }): Metadata {
   return {
-    title: `${title} | Disaster Recovery Australia`,
+    title: title,
     description: `${description} 24/7 emergency response across Australia. Full claims documentation provided. CSIRO-backed methods.`,
     keywords: [...keywords, 'Australia', 'emergency', '24/7', 'IICRC certified'].join(', '),
     authors: [{ name: 'Disaster Recovery Australia' }],
