@@ -1,7 +1,34 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import Link from 'next/link';
 import { Wrench } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Disaster Recovery Services',
+  description: 'Comprehensive disaster recovery services across Australia including water damage restoration, fire damage restoration, flood recovery, storm damage repair, mould remediation, structural drying, biohazard cleaning, and more.',
+  numberOfItems: 16,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Water Damage Restoration', url: 'https://disasterrecovery.com.au/services/water-damage-restoration' },
+    { '@type': 'ListItem', position: 2, name: 'Fire Damage Restoration', url: 'https://disasterrecovery.com.au/services/fire-damage-restoration' },
+    { '@type': 'ListItem', position: 3, name: 'Flood Damage Restoration', url: 'https://disasterrecovery.com.au/services/flood-damage-restoration' },
+    { '@type': 'ListItem', position: 4, name: 'Storm Damage Restoration', url: 'https://disasterrecovery.com.au/services/storm-damage-restoration' },
+    { '@type': 'ListItem', position: 5, name: 'Mould Remediation', url: 'https://disasterrecovery.com.au/services/mould-remediation' },
+    { '@type': 'ListItem', position: 6, name: 'Structural Drying', url: 'https://disasterrecovery.com.au/services/structural-drying' },
+    { '@type': 'ListItem', position: 7, name: 'Biohazard Cleaning', url: 'https://disasterrecovery.com.au/services/biohazard-cleaning' },
+    { '@type': 'ListItem', position: 8, name: 'Sewage Cleanup', url: 'https://disasterrecovery.com.au/services/sewage-cleanup' },
+    { '@type': 'ListItem', position: 9, name: 'Trauma Cleanup', url: 'https://disasterrecovery.com.au/services/trauma-cleanup' },
+    { '@type': 'ListItem', position: 10, name: 'Meth Lab Decontamination', url: 'https://disasterrecovery.com.au/services/meth-lab-decontamination' },
+    { '@type': 'ListItem', position: 11, name: 'Laser Cleaning', url: 'https://disasterrecovery.com.au/services/laser-cleaning' },
+    { '@type': 'ListItem', position: 12, name: 'Emergency Response', url: 'https://disasterrecovery.com.au/services/emergency-services' },
+    { '@type': 'ListItem', position: 13, name: 'Commercial Services', url: 'https://disasterrecovery.com.au/services/commercial-services' },
+    { '@type': 'ListItem', position: 14, name: 'Bushfire Damage Restoration', url: 'https://disasterrecovery.com.au/services/bushfire-damage-restoration' },
+    { '@type': 'ListItem', position: 15, name: 'Cyclone Damage Restoration', url: 'https://disasterrecovery.com.au/services/cyclone-damage-restoration' },
+    { '@type': 'ListItem', position: 16, name: 'Specialty Services', url: 'https://disasterrecovery.com.au/services/specialty-services' },
+  ],
+};
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Services | 24/7 IICRC-Certified',
@@ -215,7 +242,10 @@ function ServiceGrid({ services }: { services: ServiceLink[] }) {
 /* -------------------------------------------------------------------------- */
 
 export default function UltraModernServicesPage() {
+  const schemaStr = JSON.stringify(itemListSchema);
   return (
+    <>
+    <Script id="services-list-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 100%)',
@@ -312,5 +342,6 @@ export default function UltraModernServicesPage() {
         },
       ]}
     />
+    </>
   );
 }

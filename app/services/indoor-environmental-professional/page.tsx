@@ -1,8 +1,21 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Leaf } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Indoor Environmental Professional (IEP) Services',
+  description: 'Certified Indoor Environmental Professionals providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting nationwide.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Indoor Environmental Assessment',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
 
 export const metadata: Metadata = {
   title: 'Indoor Environmental Professional (IEP) Services',
@@ -25,7 +38,10 @@ export const metadata: Metadata = {
 };
 
 export default function IndoorEnvironmentalProfessionalPage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="iep-svc-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
@@ -44,5 +60,6 @@ export default function IndoorEnvironmentalProfessionalPage() {
       sections={getServiceChildSections({ serviceName: 'Indoor Environmental Professional (IEP) Services', parentCategory: 'Environmental Services', context: 'building health assessments, air quality testing, and mould investigations' })}
       relatedPages={getRelatedPages('guides-general')}
     />
+    </>
   );
 }

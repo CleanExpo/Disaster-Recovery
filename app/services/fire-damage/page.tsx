@@ -1,8 +1,21 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Fire & Smoke Damage Restoration',
+  description: 'Expert fire and smoke damage restoration services following IICRC S700 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Fire Damage Restoration',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Restoration | 24/7 IICRC',
@@ -50,6 +63,10 @@ export const metadata: Metadata = {
 
 export default function FireDamagePage() {
   return (
+    <>
+    <Script id="fire-damage-schema" type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+    />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
@@ -73,5 +90,6 @@ export default function FireDamagePage() {
       ]}
       relatedPages={getRelatedPages('fire-damage')}
     />
+    </>
   );
 }

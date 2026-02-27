@@ -1,8 +1,21 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Water Damage Restoration',
+  description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Water Damage Restoration',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration | 24/7 IICRC S500',
@@ -18,6 +31,10 @@ export const metadata: Metadata = {
 
 export default function WaterDamageRestorationPage() {
   return (
+    <>
+    <Script id="water-damage-schema" type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+    />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1565C0 100%)',
@@ -41,5 +58,6 @@ export default function WaterDamageRestorationPage() {
       ]}
       relatedPages={getRelatedPages('water-damage')}
     />
+    </>
   );
 }

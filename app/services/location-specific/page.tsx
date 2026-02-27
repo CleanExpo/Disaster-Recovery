@@ -1,8 +1,21 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 import Link from 'next/link';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Location-Specific Restoration Services',
+  description: 'Disaster recovery services tailored to specific Australian locations. Brisbane CBD, Gold Coast, Sunshine Coast, Cairns, Townsville, and more.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Location-Specific Disaster Recovery',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
 
 export const metadata: Metadata = {
   title: 'Location-Specific Restoration Services',
@@ -24,7 +37,10 @@ const locationServices = [
 ];
 
 export default function LocationSpecificPage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="location-svc-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1E3A5F 100%)',
@@ -67,5 +83,6 @@ export default function LocationSpecificPage() {
       ]}
       relatedPages={getRelatedPages('water-damage')}
     />
+    </>
   );
 }

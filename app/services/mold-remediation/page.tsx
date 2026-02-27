@@ -1,8 +1,21 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Mould Remediation Services',
+  description: 'Professional mould remediation services following IICRC S520 standards. Black mould removal, toxic mould cleanup, mould testing and inspection. Licensed technicians available 24/7.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Mould Remediation',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Services | IICRC S520 Certified',
@@ -44,6 +57,10 @@ export const metadata: Metadata = {
 
 export default function MoldRemediationPage() {
   return (
+    <>
+    <Script id="mold-remediation-schema" type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+    />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
@@ -62,5 +79,6 @@ export default function MoldRemediationPage() {
       sections={getServiceChildSections({ serviceName: 'Mould Remediation Services', parentCategory: 'Mould Remediation', context: 'IICRC S520 certified black mould removal and toxic mould cleanup' })}
       relatedPages={getRelatedPages('biohazard')}
     />
+    </>
   );
 }

@@ -175,7 +175,7 @@ export default function BushfireDamageRestorationPage() {
         stats={[
           { value: '24/7', label: 'Emergency Response' },
           { value: 'Bushfire', label: 'Specialists' },
-          { value: 'Insurance', label: 'Approved & Supported' },
+          { value: 'IICRC', label: 'Certified Contractors' },
           { value: 'National', label: 'Australia-Wide Coverage' },
         ]}
         sections={[

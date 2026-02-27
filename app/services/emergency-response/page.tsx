@@ -1,8 +1,21 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '24/7 Emergency Response Services',
+  description: 'Professional 24/7 emergency response services for disaster recovery. Water damage, fire damage, storm damage emergency mitigation. 1-hour response time nationwide.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Emergency Response',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
 
 export const metadata: Metadata = {
   title: '24/7 Emergency Response | 1-Hour Response',
@@ -43,7 +56,10 @@ export const metadata: Metadata = {
 };
 
 export default function EmergencyResponsePage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="emergency-response-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
@@ -62,5 +78,6 @@ export default function EmergencyResponsePage() {
       sections={getServiceChildSections({ serviceName: '24/7 Online Emergency Response Services', parentCategory: 'Emergency Services', context: 'rapid disaster mitigation and emergency response' })}
       relatedPages={getRelatedPages('emergency')}
     />
+    </>
   );
 }
