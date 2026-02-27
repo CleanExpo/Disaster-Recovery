@@ -43,7 +43,7 @@ export default function SewageCleanupPage() {
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
-        { label: 'Sewage Cleanup Brisbane' },
+        { label: 'Sewage Cleanup' },
       ]}
       sections={[
         {

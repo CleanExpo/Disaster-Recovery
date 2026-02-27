@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlackMouldRemovalBrisbanePage() {
+export default function BlackMouldRemovalPage() {
   return (
     <AgContentPageTemplate
       hero={{
@@ -28,9 +28,9 @@ export default function BlackMouldRemovalBrisbanePage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
-        { label: 'Black Mould Removal Brisbane' },
+        { label: 'Black Mould Removal' },
       ]}
-      sections={getServiceChildSections({ serviceName: 'Black Mould Removal Brisbane', parentCategory: 'Mould Remediation', context: 'toxic black mould and stachybotrys removal' })}
+      sections={getServiceChildSections({ serviceName: 'Black Mould Removal', parentCategory: 'Mould Remediation', context: 'toxic black mould and stachybotrys removal' })}
       relatedPages={getRelatedPages('water-damage')}
     />
   );

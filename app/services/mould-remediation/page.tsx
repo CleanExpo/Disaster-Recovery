@@ -125,12 +125,12 @@ export default function MouldRemediationPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Professional Mould Remediation & Removal in Brisbane
+                Professional Mould Remediation & Removal Across Australia
               </h1>
               <p className="text-xl text-gray-600 mb-8">
                 IICRC certified mould specialists providing safe, thorough mould inspection, 
                 testing, and complete remediation. Protect your property and health with 
-                Queensland's trusted mould experts.
+                Australia's trusted mould experts.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -544,7 +544,7 @@ export default function MouldRemediationPage() {
             </Button>
           </div>
           <p className="mt-6 text-sm">
-            Serving Brisbane • Gold Coast • Ipswich • Logan City • Toowoomba • Sunshine Coast • Moreton Bay
+            Serving Sydney • Melbourne • Brisbane • Perth • Adelaide • Gold Coast • Canberra • Hobart
           </p>
         </div>
       </section>

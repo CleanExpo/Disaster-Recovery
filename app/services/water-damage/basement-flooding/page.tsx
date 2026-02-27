@@ -28,9 +28,9 @@ export default function BasementFloodingPage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Water Damage', href: '/services/water-damage' },
-        { label: 'Basement Flooding Cleanup Brisbane' },
+        { label: 'Basement Flooding Cleanup' },
       ]}
-      sections={getServiceChildSections({ serviceName: 'Basement Flooding Cleanup Brisbane', parentCategory: 'Water Damage', context: 'basement water extraction and flood damage repair' })}
+      sections={getServiceChildSections({ serviceName: 'Basement Flooding Cleanup', parentCategory: 'Water Damage', context: 'basement water extraction and flood damage repair' })}
       relatedPages={getRelatedPages('water-damage')}
     />
   );

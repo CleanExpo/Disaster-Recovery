@@ -28,9 +28,9 @@ export default function BurstPipesPage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Water Damage', href: '/services/water-damage' },
-        { label: 'Burst Pipe Emergency Services Brisbane' },
+        { label: 'Burst Pipe Emergency Services' },
       ]}
-      sections={getServiceChildSections({ serviceName: 'Burst Pipe Emergency Services Brisbane', parentCategory: 'Water Damage', context: 'burst pipe repair and emergency water damage restoration' })}
+      sections={getServiceChildSections({ serviceName: 'Burst Pipe Emergency Services', parentCategory: 'Water Damage', context: 'burst pipe repair and emergency water damage restoration' })}
       relatedPages={getRelatedPages('water-damage')}
     />
   );

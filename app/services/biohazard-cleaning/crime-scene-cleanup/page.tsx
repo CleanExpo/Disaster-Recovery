@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CrimeSceneCleanupBrisbanePage() {
+export default function CrimeSceneCleanupPage() {
   return (
     <AgContentPageTemplate
       hero={{
@@ -28,9 +28,9 @@ export default function CrimeSceneCleanupBrisbanePage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
-        { label: 'Crime Scene Cleanup Brisbane' },
+        { label: 'Crime Scene Cleanup' },
       ]}
-      sections={getServiceChildSections({ serviceName: 'Crime Scene Cleanup Brisbane', parentCategory: 'Biohazard Cleaning', context: 'forensic cleaning and trauma scene remediation' })}
+      sections={getServiceChildSections({ serviceName: 'Crime Scene Cleanup', parentCategory: 'Biohazard Cleaning', context: 'forensic cleaning and trauma scene remediation' })}
       relatedPages={getRelatedPages('biohazard')}
     />
   );

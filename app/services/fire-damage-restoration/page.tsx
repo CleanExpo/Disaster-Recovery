@@ -110,7 +110,7 @@ export default function FireDamageRestorationPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Fire & Smoke Damage Restoration Specialists in Queensland
+                Fire & Smoke Damage Restoration Specialists Across Australia
               </h1>
               <p className="text-xl text-gray-700 mb-8">
                 IICRC certified fire restoration experts providing complete fire damage recovery, 
@@ -501,7 +501,7 @@ export default function FireDamageRestorationPage() {
             </Button>
           </div>
           <p className="mt-6 text-sm">
-            Serving Brisbane • Gold Coast • Ipswich • Logan City • Toowoomba • Sunshine Coast
+            Serving Sydney • Melbourne • Brisbane • Perth • Adelaide • Gold Coast • Canberra • Hobart
           </p>
         </div>
       </section>

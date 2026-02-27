@@ -166,7 +166,7 @@ const specialtyServices: ServiceLink[] = [
   {
     title: 'Location-Specific Services',
     href: '/services/location-specific',
-    description: 'Restoration services tailored to specific Queensland locations and their unique risk profiles.',
+    description: 'Restoration services tailored to specific Australian locations and their unique risk profiles.',
   },
 ];
 

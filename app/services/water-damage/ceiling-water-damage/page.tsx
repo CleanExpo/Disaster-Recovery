@@ -5,8 +5,8 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Emergency Response',
-  description: 'Expert ceiling water damage repair and restoration in Queensland. Emergency response for ceiling leaks, sagging, and collapse prevention.',
+  title: 'Ceiling Water Damage Repair | 24/7 Response',
+  description: 'Expert ceiling water damage repair and restoration across Australia. Emergency response for ceiling leaks, sagging, and collapse prevention.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/ceiling-water-damage',
   },
@@ -19,8 +19,8 @@ export default function CeilingWaterDamagePage() {
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1565C0 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
-        title: 'Emergency Response',
-        subtitle: 'Expert ceiling water damage repair and restoration in Queensland. Emergency response for ceiling leaks, sagging, and collapse prevention.',
+        title: 'Ceiling Water Damage Repair',
+        subtitle: 'Expert ceiling water damage repair and restoration across Australia. Emergency response for ceiling leaks, sagging, and collapse prevention.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"
@@ -28,9 +28,9 @@ export default function CeilingWaterDamagePage() {
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
         { label: 'Water Damage', href: '/services/water-damage' },
-        { label: 'Emergency Response' },
+        { label: 'Ceiling Water Damage' },
       ]}
-      sections={getServiceChildSections({ serviceName: 'Emergency Response', parentCategory: 'Water Damage', context: 'ceiling leak repair, sagging prevention, and collapse mitigation' })}
+      sections={getServiceChildSections({ serviceName: 'Ceiling Water Damage Repair', parentCategory: 'Water Damage', context: 'ceiling leak repair, sagging prevention, and collapse mitigation' })}
       relatedPages={getRelatedPages('water-damage')}
     />
   );
