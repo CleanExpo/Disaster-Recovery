@@ -184,7 +184,7 @@ export function generateContent(
       <h3 class="text-xl font-semibold text-blue-900 mb-3">Need Immediate Assistance?</h3>
       <p class="text-blue-800 mb-4">Our ${locationName} emergency response team is available 24/7 for immediate ${service.name.toLowerCase()} services. Don't let damage worsen - contact us now for rapid professional response.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#contact-form" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Use Our Online Form</a>
+        <a href="/claim" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition text-center">Lodge a Claim Online</a>
         <a href="/tools/cost-estimator" class="bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition text-center">Get Cost Estimate</a>
       </div>
     </div>

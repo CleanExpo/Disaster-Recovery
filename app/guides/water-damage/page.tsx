@@ -605,7 +605,7 @@ function WaterDamageGuidePageOriginal() {
               Emergency? Make a Claim
             </a>
             <Link
-              href="/emergency/water-damage"
+              href="/emergency/checklists/water-damage"
               className="bg-white text-blue-900 px-10 py-5 rounded-lg font-bold text-xl shadow-2xl hover:bg-gray-100 transition-all"
             >
               Get Emergency Guide
