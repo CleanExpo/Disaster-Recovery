@@ -16,3 +16,6 @@ export { getKnowledgeBaseSections, getKnowledgeEntryFaqs, getKnowledgeEntrySlugs
 export { getOperationalExcellenceSections, getOperationalExcellenceFaqs, getOperationalExcellenceStats } from './operational-excellence-sections';
 export { getEmergencyMakeSafeSections } from './emergency-make-safe-sections';
 export { getCostEstimatorSections } from './cost-estimator-sections';
+export { getCommercialInsuranceSections } from './commercial-insurance-sections';
+export { getMarineInsuranceSections } from './marine-insurance-sections';
+export { getAviationInsuranceSections } from './aviation-insurance-sections';

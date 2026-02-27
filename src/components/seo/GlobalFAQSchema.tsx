@@ -70,6 +70,37 @@ const PAGES_WITH_OWN_FAQ = [
   '/fire-damage-restoration-brisbane',
   '/flood-damage-restoration-perth',
   '/storm-damage-restoration-gold-coast',
+  // Commercial & industrial insurance providers
+  '/insurance/chubb',
+  '/insurance/zurich',
+  '/insurance/aig',
+  '/insurance/liberty-specialty',
+  '/insurance/berkshire-hathaway',
+  '/insurance/fm-global',
+  '/insurance/hdi-global',
+  '/insurance/tokio-marine',
+  '/insurance/wfi',
+  '/insurance/lumley',
+  '/insurance/hollard',
+  '/insurance/marsh',
+  '/insurance/aon',
+  '/insurance/gallagher',
+  // Marine & transport insurance providers
+  '/insurance/nti',
+  '/insurance/nm-insurance',
+  '/insurance/360-underwriting',
+  '/insurance/epsilon-insurance',
+  '/insurance/qbe-marine',
+  '/insurance/chubb-marine',
+  '/insurance/allianz-marine',
+  '/insurance/coverforce',
+  // Aviation & aerospace insurance providers
+  '/insurance/qbe-aviation',
+  '/insurance/chubb-aviation',
+  '/insurance/aig-aerospace',
+  '/insurance/global-aerospace',
+  '/insurance/allianz-aviation',
+  '/insurance/shielded-aviation',
 ];
 
 // All data below is trusted static content — safe to stringify

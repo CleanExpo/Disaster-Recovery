@@ -34,6 +34,7 @@ type CategoryKey =
   | 'cost-storm'
   | 'cost-flood'
   | 'insurance'
+  | 'commercial-insurance'
   | 'emergency'
   | 'commercial'
   | 'guides-general'
@@ -230,6 +231,14 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Government Funding', href: '/government-funding', description: 'Australian government disaster recovery grants and funding programs.' },
     { title: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Instant cost estimate with insurance coverage likelihood for any damage type.' },
     { title: 'Cost Guides', href: '/cost', description: 'Transparent restoration costs across Australian cities.' },
+  ],
+  'commercial-insurance': [
+    { title: 'Insurance Claims Hub', href: '/insurance', description: 'All insurance providers — residential, commercial, marine, and aviation claims assistance.' },
+    { title: 'For Business Owners', href: '/for/business-owners', description: 'Disaster recovery solutions for business owners and commercial operators.' },
+    { title: 'For Facilities Managers', href: '/for/facilities-managers', description: 'Commercial facilities disaster response and large-scale restoration.' },
+    { title: 'Commercial Services', href: '/services/commercial-services', description: 'Large-scale commercial and industrial restoration services.' },
+    { title: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Instant cost estimate with insurance coverage likelihood for any damage type.' },
+    { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: '$2,750 emergency service, insurance reimbursement, and your right to choose a contractor.' },
   ],
   'emergency': [
     { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: 'Understand the $2,750 make-safe cost and how to claim reimbursement from your insurer.' },
