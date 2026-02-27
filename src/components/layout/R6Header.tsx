@@ -85,9 +85,9 @@ const navigation: NavItem[] = [
         icon: '📋'
       },
       { 
-        label: 'Free Assessment',
-        href: '/free-assessment',
-        description: 'No-obligation damage assessment',
+        label: 'Cost Estimator',
+        href: '/tools/cost-estimator',
+        description: 'Instant cost estimate for your situation',
         icon: '🔍'
       }
     ]
@@ -357,7 +357,7 @@ export default function R6Header() {
                   size="sm"
                   className="hidden xl:inline-flex group hover:border-[#131cff] hover:bg-[#131cff]/5"
                 >
-                  <span className="group-hover:scale-105 transition-transform">Free Assessment</span>
+                  <span className="group-hover:scale-105 transition-transform">Cost Estimator</span>
                 </R6Button>
                 
                 <a href="#contact-form">
@@ -478,10 +478,10 @@ export default function R6Header() {
                 </R6Button>
               </a>
 
-              {/* Free Assessment */}
+              {/* Cost Estimator */}
               <R6Button variant="outline" fullWidth className="group">
                 <span className="group-hover:scale-105 transition-transform">
-                  Get Free Assessment
+                  Get Cost Estimate
                 </span>
               </R6Button>
             </div>

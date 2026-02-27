@@ -163,7 +163,7 @@ export default function WaterDamageRestorationPage() {
                     href="/claim"
                     className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
                   >
-                    Free Assessment
+                    Lodge a Claim
                   </Link>
                 </div>
               </div>

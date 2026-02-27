@@ -256,7 +256,7 @@ export default function BeforeAfterSlider() {
                 Full restoration covered. We handle all paperwork and deal directly with your insurer.
               </p>
               <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform">
-                Get Your Free Assessment Now
+                Get a Cost Estimate Now
               </button>
             </motion.div>
           </div>

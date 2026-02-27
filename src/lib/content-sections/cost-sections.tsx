@@ -142,7 +142,7 @@ export function getCostSections({ city, serviceType }: CostSectionParams): Conte
             <li><strong>We bill you directly</strong> — No waiting for insurer approval. Work begins as soon as the contract is signed.</li>
             <li><strong>Full claims documentation</strong> — We provide all photos, reports, and scope-of-works documentation your insurer requires for reimbursement.</li>
             <li><strong>Payment plans available</strong> — Flexible finance through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a> if you need to spread the cost while awaiting reimbursement.</li>
-            <li><strong>Free assessments</strong> — We provide free, no-obligation on-site assessments and written quotes before any work begins.</li>
+            <li><strong>On-site assessments</strong> — We provide on-site assessments and written estimates before any work begins.</li>
           </ul>
         </>
       ),
@@ -165,8 +165,8 @@ export function getCostSections({ city, serviceType }: CostSectionParams): Conte
           </p>
           <h3>Do you charge for quotes in {city}?</h3>
           <p>
-            No. We provide free emergency assessments and written quotes in the {city} area.
-            There is no obligation and no call-out fee.
+            We provide on-site assessments and written estimates in the {city} area.
+            Use our online cost estimator for an instant estimate based on your details.
           </p>
           <h3>Can I get a payment plan?</h3>
           <p>

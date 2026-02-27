@@ -20,7 +20,7 @@ export default function CostGuidesIndexPage() {
         title: 'Restoration Cost Guides',
         subtitle: 'Transparent Pricing Across Australia',
       }}
-      cta={{ text: 'Get Free Quote', href: '/claim' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Cost Guides' },
@@ -29,7 +29,7 @@ export default function CostGuidesIndexPage() {
         { label: 'Cities Covered', value: '10+' },
         { label: 'Damage Types', value: '5' },
         { label: 'Updated', value: '2026' },
-        { label: 'Free Quotes', value: 'Always' },
+        { label: 'Instant Estimates', value: 'Always' },
       ]}
       sections={[
         {

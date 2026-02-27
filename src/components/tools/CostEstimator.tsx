@@ -410,7 +410,7 @@ export default function CostEstimator() {
                     className="block w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:shadow-xl hover:shadow-red-500/30 transition-all"
                   >
                     <span className="inline-flex items-center gap-2">
-                      Get Free Assessment
+                      Lodge a Claim
                       <ArrowRight className="h-5 w-5" />
                     </span>
                   </Link>
@@ -422,8 +422,8 @@ export default function CostEstimator() {
             <div className="mt-6 text-center text-white/60">
               <p className="text-sm">
                 * Estimates based on typical Australian restoration pricing data.
-                Actual costs vary based on site-specific conditions. Free, no-obligation
-                quotes provided after assessment.
+                Actual costs vary based on site-specific conditions and the accuracy
+                of the information provided.
               </p>
             </div>
           </div>

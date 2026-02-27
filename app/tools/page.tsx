@@ -5,7 +5,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Tools',
-  description: 'Free tools for property damage assessment. Use our cost estimator to get instant pricing for water damage, fire, mould, storm, and flood restoration.',
+  description: 'Property damage assessment tools. Use our cost estimator to get instant pricing estimates for water damage, fire, mould, storm, and flood restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/tools',
   },
@@ -18,7 +18,7 @@ export default function ToolsIndexPage() {
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 50%, #0F2942 100%)',
         icon: <Wrench className="h-12 w-12" />,
         title: 'Tools & Calculators',
-        subtitle: 'Free Assessment Tools for Property Owners',
+        subtitle: 'Assessment Tools for Property Owners',
       }}
       cta={{ text: 'Lodge a Claim', href: '/claim' }}
       breadcrumbs={[

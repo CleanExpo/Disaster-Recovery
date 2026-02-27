@@ -6,7 +6,7 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Brisbane mould removal Cost | Pricing Guide 2024',
-  description: 'How much does mould removal cost in Brisbane? Average prices, insurance coverage, payment plans. Get free quote now.',
+  description: 'How much does mould removal cost in Brisbane? Average prices, insurance coverage, payment plans. Use our cost estimator for an instant estimate.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/cost/brisbane-mould-removal',
   },
@@ -19,9 +19,9 @@ export default function BrisbanemouldremovalCostPage() {
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A5C3A 60%, #0F2942 100%)',
         icon: <DollarSign className="h-12 w-12" />,
         title: 'Brisbane Mould removal Cost',
-        subtitle: 'Transparent Pricing • Insurance Coverage • Free Quotes',
+        subtitle: 'Transparent Pricing • Insurance Coverage • Instant Estimates',
       }}
-      cta={{ text: 'Get Free Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Cost Guides', href: '/cost' },

@@ -223,7 +223,7 @@ export default function InsuranceCalculator() {
                     Our team helps you navigate the claim process from start to finish
                   </p>
                   <button className="bg-white text-green-600 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center gap-2">
-                    Get Free Assessment
+                    Get Cost Estimate
                     <ArrowRight className="h-5 w-5" />
                   </button>
                 </div>

@@ -105,8 +105,8 @@ export function getCompareSections({ option1, option2 }: CompareSectionParams): 
             <li><strong>For insured events</strong> — Always use a certified, insurer-approved provider. It protects your claim, costs you only your excess, and ensures the job is done to Australian Standards.</li>
           </ul>
           <p>
-            If you are unsure which approach is right for your situation, we offer free, no-obligation
-            assessments. A qualified technician will inspect the damage and give you an honest
+            If you are unsure which approach is right for your situation, lodge a claim for an on-site
+            assessment. A qualified technician will inspect the damage and give you an honest
             recommendation — including advising you if the damage is minor enough to handle yourself.
           </p>
         </>

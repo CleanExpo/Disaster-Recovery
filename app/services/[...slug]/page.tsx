@@ -186,7 +186,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
               {/* Contact Form */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Get Free Quote
+                  Get a Quote
                 </h3>
                 <form className="space-y-4">
                   <div>

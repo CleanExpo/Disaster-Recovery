@@ -31,7 +31,7 @@ function QuotePageOriginal() {
           <div className="max-w-4xl mx-auto text-center">
             <FileText className="h-16 w-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Get Your Free Quote
+              Get a Cost Estimate
             </h1>
             <p className="text-xl mb-8">
               Connect with IICRC certified disaster recovery professionals. 
@@ -139,7 +139,7 @@ function QuotePageOriginal() {
             href="/book-service?source=quote"
             className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-colours"
           >
-            Get My Free Quote
+            Get My Estimate
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>

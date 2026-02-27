@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Restoration Pricing by City | Transparent Costs',
-  description: 'Transparent disaster restoration pricing across 10 Australian cities. Water damage, fire, mould, storm, and flood recovery costs with free quotes.',
+  description: 'Transparent disaster restoration pricing across 10 Australian cities. Water damage, fire, mould, storm, and flood recovery cost estimates.',
   alternates: { canonical: 'https://disasterrecovery.com.au/pricing' },
 };
 
@@ -67,7 +67,7 @@ export default function PricingHubPage() {
         title: 'Restoration Pricing by City',
         subtitle: 'Transparent pricing for disaster restoration across 10 Australian cities. Select your city and damage type for detailed cost breakdowns.',
       }}
-      cta={{ text: 'Get Free Quote', href: '/claim' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Pricing' },
@@ -76,7 +76,7 @@ export default function PricingHubPage() {
         { label: 'Cities', value: '10' },
         { label: 'Service Types', value: '5' },
         { label: 'Updated', value: '2026' },
-        { label: 'Free Quotes', value: 'Always' },
+        { label: 'Instant Estimates', value: 'Always' },
       ]}
       sections={[
         ...serviceTypes.map((service, i) => ({

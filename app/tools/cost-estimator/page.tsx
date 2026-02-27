@@ -9,7 +9,7 @@ import CostEstimator from '@/components/tools/CostEstimator';
 export const metadata: Metadata = {
   title: 'Emergency Cost Estimator',
   description:
-    'Get an instant cost estimate for water damage, fire, mould, storm, sewage, or biohazard restoration. Free, no-obligation estimate based on Australian pricing data.',
+    'Get an instant cost estimate for water damage, fire, mould, storm, sewage, or biohazard restoration. Estimate based on Australian pricing data and the accuracy of information provided.',
   keywords: [
     'disaster recovery cost estimator',
     'water damage cost calculator',

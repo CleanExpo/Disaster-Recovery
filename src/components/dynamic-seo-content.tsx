@@ -52,7 +52,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 className="bg-white text-blue-900 hover:bg-blue-50"
                 onClick={() => setShowLeadForm(true)}
               >
-                Get Free Quote
+                Get Cost Estimate
               </Button>
             </div>
             <div className="mt-6 flex items-center justify-center gap-4 text-sm">
@@ -181,7 +181,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               className="bg-white text-blue-900 hover:bg-blue-50"
               onClick={() => setShowLeadForm(true)}
             >
-              Get Free Quote
+              Get Cost Estimate
             </Button>
           </div>
         </div>

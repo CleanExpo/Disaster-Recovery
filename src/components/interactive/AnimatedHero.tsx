@@ -129,7 +129,7 @@ export default function AnimatedHero() {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full text-lg"
             >
-              Get Free Quote
+              Get Cost Estimate
             </motion.button>
           </div>
         </motion.div>

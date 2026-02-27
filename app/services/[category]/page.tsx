@@ -144,7 +144,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
                   href="/claim"
                   className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all"
                 >
-                  Get Free Quote
+                  Get a Quote
                 </Link>
               </div>
             </div>

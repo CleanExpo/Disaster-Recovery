@@ -185,7 +185,7 @@ export default function LeadCaptureForm() {
           </div>
           <div className="flex items-center gap-2 text-sm">
             <CheckCircle2 className="h-4 w-4 text-green-600" />
-            <span>No Obligation Quote</span>
+            <span>Get an Estimate</span>
           </div>
         </div>
       </div>

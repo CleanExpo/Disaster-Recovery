@@ -37,7 +37,7 @@ const navigation: NavItem[] = [
     items: [
       { label: '24/7 Online Emergency Response', href: '/services/emergency-services', description: 'Immediate disaster response' },
       { label: 'Insurance Claims', href: '/insurance-claims', description: 'We work with all insurers' },
-      { label: 'Free Assessment', href: '/free-assessment', description: 'No-obligation damage assessment' }
+      { label: 'Cost Estimator', href: '/tools/cost-estimator', description: 'Instant cost estimate for your situation' }
     ]
   },
   {

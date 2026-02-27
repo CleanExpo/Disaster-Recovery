@@ -34,10 +34,10 @@ function getDefaultQuestions(topic: string): { q: string; a: string }[] {
 
   return [
     { q: `What does professional ${topic.replace(/-/g, ' ')} involve?`, a: `Professional ${topic.replace(/-/g, ' ')} follows a structured process including assessment, documentation, specialist treatment or restoration, quality verification, and insurance coordination. Our certified technicians use commercial-grade equipment and follow Australian Standards for every job.` },
-    { q: `How much does ${topic.replace(/-/g, ' ')} cost?`, a: `Costs vary based on the extent of damage, property size, materials involved, and specific requirements. For insured events, we provide all documentation to support your reimbursement claim. Payment plans are available through our finance partner. We provide free, no-obligation assessments and written quotes before any chargeable work begins.` },
+    { q: `How much does ${topic.replace(/-/g, ' ')} cost?`, a: `Costs vary based on the extent of damage, property size, materials involved, and specific requirements. For insured events, we provide all documentation to support your reimbursement claim. Payment plans are available through our finance partner. We provide on-site assessments and written estimates before any chargeable work begins.` },
     { q: `Is ${topic.replace(/-/g, ' ')} covered by insurance?`, a: `Most home and commercial insurance policies cover ${topic.replace(/-/g, ' ')} resulting from sudden, accidental events. Coverage depends on your specific policy and the cause of damage. Our team can review your policy and advise on coverage during the initial assessment.` },
     { q: `How long does ${topic.replace(/-/g, ' ')} take?`, a: `Timelines depend on damage severity. Minor situations may be resolved in 1–3 days, moderate damage in 1–2 weeks, and severe or extensive damage may require several weeks. We provide a detailed timeline and keep you informed throughout the process.` },
-    { q: `Do I need professional help for ${topic.replace(/-/g, ' ')}?`, a: `For anything beyond minor, surface-level damage, professional restoration is recommended. Hidden damage, health risks, and insurance requirements make professional assessment important even when visible damage appears minor. We offer free assessments to help you decide.` },
+    { q: `Do I need professional help for ${topic.replace(/-/g, ' ')}?`, a: `For anything beyond minor, surface-level damage, professional restoration is recommended. Hidden damage, health risks, and insurance requirements make professional assessment important even when visible damage appears minor. Use our cost estimator for an instant estimate, or lodge a claim for an on-site assessment.` },
   ];
 }
 
@@ -59,7 +59,7 @@ export function getFAQSections({ topic, questions }: FAQSectionParams): ContentS
           <p>
             This information is based on real-world experience from our nationwide network of IICRC-
             certified restoration professionals. If your specific question is not answered here,
-            contact us for a free, no-obligation consultation.
+            contact us or use the cost estimator for an instant estimate.
           </p>
         </>
       ),
@@ -103,7 +103,7 @@ export function getFAQSections({ topic, questions }: FAQSectionParams): ContentS
           </p>
           <ul>
             <li><strong>Claims documentation</strong> — We provide all photos, reports, and documentation your insurer requires to process your reimbursement claim. Payment plans available through <a href="https://www.bluefirefinance.com.au" target="_blank" rel="noopener noreferrer">Blue Fire Finance</a>.</li>
-            <li><strong>Free assessments</strong> — We provide free, no-obligation on-site assessments and written quotes before any chargeable work begins.</li>
+            <li><strong>On-site assessments</strong> — We provide on-site assessments and written estimates before any chargeable work begins.</li>
             <li><strong>No call-out fees</strong> — Emergency assessments carry no call-out fee in metropolitan areas Australia-wide.</li>
             <li><strong>Transparent pricing</strong> — For non-insured work, we provide detailed written quotes with no hidden charges. Payment plans are available for larger jobs.</li>
           </ul>
@@ -120,11 +120,11 @@ export function getFAQSections({ topic, questions }: FAQSectionParams): ContentS
           </p>
           <ul>
             <li><strong>Emergency situations</strong> — Submit an online form for immediate dispatch of a restoration team to your property.</li>
-            <li><strong>General enquiries</strong> — Contact us for free advice, assessments, or quotes with no obligation.</li>
+            <li><strong>General enquiries</strong> — Contact us for advice, assessments, or cost estimates.</li>
             <li><strong>Insurance assistance</strong> — We can review your policy, explain your coverage, and manage the claims process on your behalf.</li>
           </ul>
           <p>
-            All consultations are free and confidential. Our qualified technicians provide honest
+            All initial consultations are confidential. Our qualified technicians provide honest
             assessments and will tell you if professional restoration is not necessary for your
             situation.
           </p>

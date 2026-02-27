@@ -248,10 +248,10 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
               Submit Form Now: Get Help Now
             </a>
             <Link
-              href="/quote"
+              href="/tools/cost-estimator"
               className="inline-flex items-center justify-center px-8 py-4 bg-primary-800 text-white rounded-lg font-bold text-lg hover:bg-primary-900 transition-colours"
             >
-              Get Free Assessment
+              Get Cost Estimate
             </Link>
           </div>
         </div>

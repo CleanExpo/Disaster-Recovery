@@ -25,7 +25,7 @@ export default function MinimumCalloutPage() {
         title: 'Minimum Callout Pricing',
         subtitle: 'Transparent disaster recovery pricing',
       }}
-      cta={{ text: 'Get Free Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Pricing', href: '/pricing' },

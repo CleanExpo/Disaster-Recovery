@@ -143,7 +143,7 @@ export function getCostEstimatorSections(): ContentSection[] {
             Most Australian home and commercial insurance policies cover sudden, accidental
             damage (burst pipes, storms, fires). Coverage for mould and flood damage varies
             significantly between insurers and policies. Our team can review your policy
-            details during the free assessment and advise whether your situation is likely
+            details during the initial assessment and advise whether your situation is likely
             covered — before any financial commitment.
           </p>
 

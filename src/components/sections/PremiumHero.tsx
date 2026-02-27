@@ -168,7 +168,7 @@ export default function PremiumHero({
                 )}
               >
                 <CheckCircle className="w-5 h-5" />
-                <span>Free Assessment</span>
+                <span>Cost Estimate</span>
               </Link>
 
               {showVideo && (
