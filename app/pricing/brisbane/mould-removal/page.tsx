@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing brisbane',
     'brisbane mould remediation price',
     'disaster recovery cost brisbane'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/brisbane/mould-removal' },
 };
 
 export default function BrisbaneMouldRemediationPricingPage() {

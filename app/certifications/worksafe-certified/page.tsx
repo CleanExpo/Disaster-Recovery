@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'WorkSafe Certified | Safety compliance | Disaster Recovery',
-  description: 'WorkSafe Certified restoration services. Safety compliance. Qualified, certified, and compliant disaster recovery.' };
+  description: 'WorkSafe Certified restoration services. Safety compliance. Qualified, certified, and compliant disaster recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/certifications/worksafe-certified',
+  },
+};
 
 export default function WorkSafeCertifiedPage() {
   return (

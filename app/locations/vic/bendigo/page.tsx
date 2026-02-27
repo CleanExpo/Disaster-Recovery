@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Bendigo | Emergency Services Victoria',
-  description: '24/7 disaster recovery in Bendigo, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Bendigo, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/vic/bendigo',
+  },
+};
 
 export default function BendigoPage() {
   return (

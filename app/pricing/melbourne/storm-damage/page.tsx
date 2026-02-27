@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing melbourne',
     'melbourne storm damage repair price',
     'disaster recovery cost melbourne'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/melbourne/storm-damage' },
 };
 
 export default function MelbourneStormDamageRepairPricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing sunshine coast',
     'sunshine coast water damage restoration price',
     'disaster recovery cost sunshine coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sunshine-coast/water-damage' },
 };
 
 export default function SunshineCoastWaterDamageRestorationPricingPage() {

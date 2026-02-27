@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Professional Disaster Response Pricing Breakdown',
     description: 'What professional disaster response costs in Australia — extraction, drying, decontamination, and monitoring explained with transparent pricing.',
   },
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/pricing/professional-response-pricing-breakdown' },
 };
 
 export default function ProfessionalResponsePricingBreakdownPage() {

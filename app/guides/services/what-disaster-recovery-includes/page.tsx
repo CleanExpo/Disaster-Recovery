@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "What's Included in Disaster Recovery Services — Full Breakdown | Disaster Recovery",
   description: 'Complete breakdown of what the Disaster Recovery platform includes: $550 platform fee, $2,200 contractor credit, documentation, formal contract, and payment options.',
   keywords: 'disaster recovery services, what is included, platform fee, contractor credit, restoration documentation, emergency restoration Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/services/what-disaster-recovery-includes' },
 };
 
 export default function WhatDisasterRecoveryIncludesPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing brisbane',
     'brisbane storm damage repair price',
     'disaster recovery cost brisbane'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/brisbane/storm-damage' },
 };
 
 export default function BrisbaneStormDamageRepairPricingPage() {

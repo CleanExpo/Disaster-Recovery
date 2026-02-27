@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing adelaide',
     'adelaide flood recovery price',
     'disaster recovery cost adelaide'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/adelaide/flood-recovery' },
 };
 
 export default function AdelaideFloodRecoveryPricingPage() {

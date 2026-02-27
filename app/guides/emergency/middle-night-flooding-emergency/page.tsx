@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Middle of Night Flooding: Emergency Response | Disaster Recovery',
   description: 'Expert answers and solutions for "middle of night flooding emergency help". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'middle of night flooding emergency help, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'middle of night flooding emergency help, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/middle-night-flooding-emergency' },
+};
 
 export default function MiddleNightFloodingEmergencyPage() {
   return (

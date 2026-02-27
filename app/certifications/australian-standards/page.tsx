@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Australian Standards Compliant | AS/NZS compliance | Disaster Recovery',
-  description: 'Australian Standards Compliant restoration services. AS/NZS compliance. Qualified, certified, and compliant disaster recovery.' };
+  description: 'Australian Standards Compliant restoration services. AS/NZS compliance. Qualified, certified, and compliant disaster recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/certifications/australian-standards',
+  },
+};
 
 export default function AustralianStandardsCompliantPage() {
   return (

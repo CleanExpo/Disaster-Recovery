@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Belconnen | Emergency Services Australian Capital Territory',
-  description: '24/7 disaster recovery in Belconnen, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Belconnen, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/act/belconnen',
+  },
+};
 
 export default function BelconnenPage() {
   return (

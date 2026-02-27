@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing newcastle',
     'newcastle water damage restoration price',
     'disaster recovery cost newcastle'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/newcastle/water-damage' },
 };
 
 export default function NewcastleWaterDamageRestorationPricingPage() {

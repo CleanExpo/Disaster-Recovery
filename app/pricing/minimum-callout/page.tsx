@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     'what\'s included callout fee',
     'IICRC certified rates',
     'emergency response pricing'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/minimum-callout' },
 };
 
 export default function MinimumCalloutPage() {

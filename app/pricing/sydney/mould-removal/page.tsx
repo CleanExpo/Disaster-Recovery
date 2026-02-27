@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing sydney',
     'sydney mould remediation price',
     'disaster recovery cost sydney'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sydney/mould-removal' },
 };
 
 export default function SydneyMouldRemediationPricingPage() {

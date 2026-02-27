@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Emergency Storm Damage Roof Leak Repairs | Disaster Recovery',
   description: 'Expert answers and solutions for "storm damage roof leak emergency repair". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'storm damage roof leak emergency repair, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'storm damage roof leak emergency repair, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/storm-damage/storm-damage-roof-leak-repair' },
+};
 
 export default function StormDamageRoofLeakRepairPage() {
   return (

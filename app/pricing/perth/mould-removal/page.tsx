@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing perth',
     'perth mould remediation price',
     'disaster recovery cost perth'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/perth/mould-removal' },
 };
 
 export default function PerthMouldRemediationPricingPage() {

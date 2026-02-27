@@ -8,6 +8,9 @@ import { LocationSchemaWrapper } from '@/components/seo/LocationSchemaWrapper';
 export const metadata: Metadata = {
   title: 'Disaster Recovery Sydney | 24/7 Emergency Restoration NSW',
   description: 'Professional disaster recovery services in Sydney, New South Wales. IICRC-certified contractors for water damage, fire damage, mould remediation. 24/7 emergency response.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/sydney',
+  },
 };
 
 export default function SydneyLocationPage() {

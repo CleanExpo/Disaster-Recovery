@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Category 3 Water Damage: Insurance Claims Guide | Disaster Recovery',
   description: 'What Category 3 (black water) damage means for your insurance claim. Higher costs, health risks, specialist remediation requirements, and how to ensure your claim is properly assessed.',
   keywords: 'category 3 water damage insurance claim, black water damage, sewage damage insurance, contaminated water restoration, IICRC S500, disaster recovery Australia',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance/category-3-water-damage-insurance' },
 };
 
 export default function Category3WaterDamageInsurancePage() {

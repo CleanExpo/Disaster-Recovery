@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing adelaide',
     'adelaide storm damage repair price',
     'disaster recovery cost adelaide'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/adelaide/storm-damage' },
 };
 
 export default function AdelaideStormDamageRepairPricingPage() {

@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Easter Long Weekend Emergency Restoration | Disaster Recovery',
   description: 'Storm or water damage over Easter? IICRC certified contractors respond all 4 days — no surcharges. Lodge your claim online for immediate matching.',
-  keywords: 'easter long weekend emergency restoration, easter storm damage, public holiday emergency restoration, easter water damage, Australia, IICRC certified' };
+  keywords: 'easter long weekend emergency restoration, easter storm damage, public holiday emergency restoration, easter water damage, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/easter-weekend-emergency-restoration' },
+};
 
 export default function EasterWeekendEmergencyRestorationPage() {
   return (

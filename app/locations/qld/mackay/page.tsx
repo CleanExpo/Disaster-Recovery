@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Mackay | Emergency Services Queensland',
-  description: '24/7 disaster recovery in Mackay, Queensland. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Mackay, Queensland. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/qld/mackay',
+  },
+};
 
 export default function MackayPage() {
   return (

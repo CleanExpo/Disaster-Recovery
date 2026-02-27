@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing gold coast',
     'gold coast storm damage repair price',
     'disaster recovery cost gold coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/gold-coast/storm-damage' },
 };
 
 export default function GoldCoastStormDamageRepairPricingPage() {

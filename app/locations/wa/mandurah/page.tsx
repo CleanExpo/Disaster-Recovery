@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Mandurah | Emergency Services Western Australia',
-  description: '24/7 disaster recovery in Mandurah, Western Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Mandurah, Western Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/wa/mandurah',
+  },
+};
 
 export default function MandurahPage() {
   return (

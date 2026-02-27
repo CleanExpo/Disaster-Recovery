@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing newcastle',
     'newcastle flood recovery price',
     'disaster recovery cost newcastle'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/newcastle/flood-recovery' },
 };
 
 export default function NewcastleFloodRecoveryPricingPage() {

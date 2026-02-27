@@ -7,7 +7,11 @@ export const metadata: Metadata = {
   description: 'Complete sitemap of all pages on Disaster Recovery. Find services, locations, pricing, and resources.',
   robots: {
     index: true,
-    follow: true } };
+    follow: true },
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/sitemap',
+  },
+};
 
 export default function SitemapPage() {
   return (

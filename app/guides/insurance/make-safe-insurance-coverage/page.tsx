@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Make Safe Services: What Insurance Covers | Disaster Recovery',
   description: 'What make-safe works include, your duty to mitigate, and what insurers are obliged to cover. Understand your rights before lodging a claim.',
-  keywords: 'make safe insurance coverage, duty to mitigate insurance, emergency make safe works, what insurance covers make safe, insurance obligations Australia' };
+  keywords: 'make safe insurance coverage, duty to mitigate insurance, emergency make safe works, what insurance covers make safe, insurance obligations Australia',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance/make-safe-insurance-coverage' },
+};
 
 export default function MakeSafeInsuranceCoveragePage() {
   return (

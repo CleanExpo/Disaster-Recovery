@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing sydney',
     'sydney water damage restoration price',
     'disaster recovery cost sydney'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sydney/water-damage' },
 };
 
 export default function SydneyWaterDamageRestorationPricingPage() {

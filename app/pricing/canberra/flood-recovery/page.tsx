@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing canberra',
     'canberra flood recovery price',
     'disaster recovery cost canberra'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/canberra/flood-recovery' },
 };
 
 export default function CanberraFloodRecoveryPricingPage() {

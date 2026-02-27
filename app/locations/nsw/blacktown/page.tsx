@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Blacktown | Emergency Services New South Wales',
-  description: '24/7 disaster recovery in Blacktown, New South Wales. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Blacktown, New South Wales. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/nsw/blacktown',
+  },
+};
 
 export default function BlacktownPage() {
   return (

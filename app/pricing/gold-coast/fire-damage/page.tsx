@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing gold coast',
     'gold coast fire & smoke damage price',
     'disaster recovery cost gold coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/gold-coast/fire-damage' },
 };
 
 export default function GoldCoastFireSmokeDamagePricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing wollongong',
     'wollongong storm damage repair price',
     'disaster recovery cost wollongong'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/wollongong/storm-damage' },
 };
 
 export default function WollongongStormDamageRepairPricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing canberra',
     'canberra storm damage repair price',
     'disaster recovery cost canberra'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/canberra/storm-damage' },
 };
 
 export default function CanberraStormDamageRepairPricingPage() {

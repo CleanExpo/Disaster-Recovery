@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing perth',
     'perth water damage restoration price',
     'disaster recovery cost perth'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/perth/water-damage' },
 };
 
 export default function PerthWaterDamageRestorationPricingPage() {

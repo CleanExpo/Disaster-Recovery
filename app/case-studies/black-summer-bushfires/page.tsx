@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Black Summer Bushfire Restoration | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Black Summer Bushfire Restoration. Real results, timelines, and restoration process.' };
+  description: 'How we helped recover from Black Summer Bushfire Restoration. Real results, timelines, and restoration process.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/case-studies/black-summer-bushfires',
+  },
+};
 
 export default function BlackSummerBushfireRestorationPage() {
   return (

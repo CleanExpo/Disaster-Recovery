@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: "Commercial Property Disaster Recovery | Disaster Recovery",
   description: "Commercial property disaster recovery services for corporate offices, co-working spaces, and professional services across Australia.",
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/property/commercial',
+  },
 };
 
 export default function CommercialPropertyPage() {

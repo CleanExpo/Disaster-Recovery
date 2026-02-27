@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Adelaide Rental Property Mould Remediation | Disaster Recovery',
   description: 'Expert guide to mould remediation in Adelaide rental properties. Landlord and tenant responsibilities under the SA Residential Tenancies Act, IICRC certified professionals available 24/7.',
-  keywords: 'adelaide mould remediation rental property, mould removal adelaide, rental mould SA, landlord tenant mould adelaide, disaster recovery, IICRC certified' };
+  keywords: 'adelaide mould remediation rental property, mould removal adelaide, rental mould SA, landlord tenant mould adelaide, disaster recovery, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/adelaide/adelaide-rental-mould-remediation' },
+};
 
 export default function AdelaideRentalMouldRemediationPage() {
   return (

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing brisbane',
     'brisbane water damage restoration price',
     'disaster recovery cost brisbane'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/brisbane/water-damage' },
 };
 
 export default function BrisbaneWaterDamageRestorationPricingPage() {

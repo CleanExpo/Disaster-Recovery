@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing adelaide',
     'adelaide mould remediation price',
     'disaster recovery cost adelaide'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/adelaide/mould-removal' },
 };
 
 export default function AdelaideMouldRemediationPricingPage() {

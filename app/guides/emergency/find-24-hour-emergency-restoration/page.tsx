@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: '24 Hour Emergency Restoration Services Near You | Disaster Recovery',
   description: 'Expert answers and solutions for "where to find 24 hour emergency restoration". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'where to find 24 hour emergency restoration, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'where to find 24 hour emergency restoration, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency/find-24-hour-emergency-restoration' },
+};
 
 export default function Find24HourEmergencyRestorationPage() {
   return (

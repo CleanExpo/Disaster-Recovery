@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Burnie | Emergency Services Tasmania',
-  description: '24/7 disaster recovery in Burnie, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Burnie, Tasmania. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/tas/burnie',
+  },
+};
 
 export default function BurniePage() {
   return (

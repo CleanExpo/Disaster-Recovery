@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing newcastle',
     'newcastle mould remediation price',
     'disaster recovery cost newcastle'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/newcastle/mould-removal' },
 };
 
 export default function NewcastleMouldRemediationPricingPage() {

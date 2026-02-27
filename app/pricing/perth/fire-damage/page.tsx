@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing perth',
     'perth fire & smoke damage price',
     'disaster recovery cost perth'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/perth/fire-damage' },
 };
 
 export default function PerthFireSmokeDamagePricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing sydney',
     'sydney flood recovery price',
     'disaster recovery cost sydney'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sydney/flood-recovery' },
 };
 
 export default function SydneyFloodRecoveryPricingPage() {

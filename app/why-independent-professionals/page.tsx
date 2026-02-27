@@ -5,7 +5,10 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Why Choose Independent Restoration Professionals | IICRC Certified Experts vs 3-Day Trained Employees',
   description: 'Discover why independent IICRC-certified restoration professionals with years of training outperform builder/restorer employees with just 3 days of training.',
-  keywords: ['IICRC certified', 'restoration professionals', 'independent contractors', 'qualified restorers', 'industry training']
+  keywords: ['IICRC certified', 'restoration professionals', 'independent contractors', 'qualified restorers', 'industry training'],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/why-independent-professionals',
+  },
 };
 
 export default function WhyIndependentProfessionalsPage() {

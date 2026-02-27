@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Retail Store Flood: Inventory Recovery Process | Disaster Recovery',
   description: 'Expert answers and solutions for "retail store flood damage inventory recovery". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'retail store flood damage inventory recovery, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'retail store flood damage inventory recovery, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/commercial/retail-flood-inventory-recovery' },
+};
 
 export default function RetailFloodInventoryRecoveryPage() {
   return (

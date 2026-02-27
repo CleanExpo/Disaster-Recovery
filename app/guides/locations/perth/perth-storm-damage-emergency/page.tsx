@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Perth Storm Damage Emergency Response | Disaster Recovery',
   description: 'Expert guide to storm damage emergency response in Perth. Severe thunderstorms, hail events, coastal wind damage, northern suburbs risk profiles, IICRC certified 24/7.',
-  keywords: 'perth storm damage emergency, perth hail damage, coastal wind damage perth, storm damage repair perth, emergency restoration perth, IICRC certified' };
+  keywords: 'perth storm damage emergency, perth hail damage, coastal wind damage perth, storm damage repair perth, emergency restoration perth, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/perth/perth-storm-damage-emergency' },
+};
 
 export default function PerthStormDamageEmergencyPage() {
   return (

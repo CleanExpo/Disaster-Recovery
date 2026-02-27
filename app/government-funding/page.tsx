@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: "Government Funding & Assistance | Disaster Recovery",
   description: "Financial assistance for disaster-affected communities to rebuild essential infrastructure",
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/government-funding',
+  },
 };
 
 export default function GovernmentFundingPage() {

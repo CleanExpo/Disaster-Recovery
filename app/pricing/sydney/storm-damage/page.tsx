@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing sydney',
     'sydney storm damage repair price',
     'disaster recovery cost sydney'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sydney/storm-damage' },
 };
 
 export default function SydneyStormDamageRepairPricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing newcastle',
     'newcastle fire & smoke damage price',
     'disaster recovery cost newcastle'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/newcastle/fire-damage' },
 };
 
 export default function NewcastleFireSmokeDamagePricingPage() {

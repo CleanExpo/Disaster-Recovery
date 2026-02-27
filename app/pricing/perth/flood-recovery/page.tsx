@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing perth',
     'perth flood recovery price',
     'disaster recovery cost perth'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/perth/flood-recovery' },
 };
 
 export default function PerthFloodRecoveryPricingPage() {

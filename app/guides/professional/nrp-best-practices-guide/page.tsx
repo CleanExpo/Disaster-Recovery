@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   keywords: 'NRPG best practices, professional standards, disaster recovery procedures, emergency response protocols, contractor certification, industry standards',
   openGraph: {
     title: 'NRPG Best Practices Guide - Professional Standards',
-    description: 'Official guide to professional standards and mandatory procedures for NRPG contractors in emergency response and disaster recovery.' }
+    description: 'Official guide to professional standards and mandatory procedures for NRPG contractors in emergency response and disaster recovery.' },
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/professional/nrp-best-practices-guide' },
 };
 
 export default function NRPBestPracticesGuidePage() {

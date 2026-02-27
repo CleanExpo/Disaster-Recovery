@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Black Mould on Bathroom Ceiling: Removal Guide | Disaster Recovery',
   description: 'Expert answers and solutions for "black mould removal bathroom ceiling". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'black mould removal bathroom ceiling, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'black mould removal bathroom ceiling, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/mould/black-mould-bathroom-ceiling' },
+};
 
 export default function BlackMouldBathroomCeilingPage() {
   return (

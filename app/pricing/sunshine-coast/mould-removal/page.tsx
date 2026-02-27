@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing sunshine coast',
     'sunshine coast mould remediation price',
     'disaster recovery cost sunshine coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sunshine-coast/mould-removal' },
 };
 
 export default function SunshineCoastMouldRemediationPricingPage() {

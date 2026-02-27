@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing melbourne',
     'melbourne water damage restoration price',
     'disaster recovery cost melbourne'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/melbourne/water-damage' },
 };
 
 export default function MelbourneWaterDamageRestorationPricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing wollongong',
     'wollongong water damage restoration price',
     'disaster recovery cost wollongong'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/wollongong/water-damage' },
 };
 
 export default function WollongongWaterDamageRestorationPricingPage() {

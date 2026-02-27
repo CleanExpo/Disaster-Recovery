@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Cyclone Debbie Recovery | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Cyclone Debbie Recovery. Real results, timelines, and restoration process.' };
+  description: 'How we helped recover from Cyclone Debbie Recovery. Real results, timelines, and restoration process.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/case-studies/cyclone-debbie-recovery',
+  },
+};
 
 export default function CycloneDebbieRecoveryPage() {
   return (

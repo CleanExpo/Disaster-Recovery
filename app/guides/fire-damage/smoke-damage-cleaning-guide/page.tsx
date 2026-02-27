@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Smoke Damage Cleaning After House Fire | Disaster Recovery',
   description: 'Expert answers and solutions for "smoke damage cleaning after house fire". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'smoke damage cleaning after house fire, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'smoke damage cleaning after house fire, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/fire-damage/smoke-damage-cleaning-guide' },
+};
 
 export default function SmokeDamageCleaningGuidePage() {
   return (

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing newcastle',
     'newcastle storm damage repair price',
     'disaster recovery cost newcastle'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/newcastle/storm-damage' },
 };
 
 export default function NewcastleStormDamageRepairPricingPage() {

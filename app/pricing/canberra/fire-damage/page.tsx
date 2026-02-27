@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing canberra',
     'canberra fire & smoke damage price',
     'disaster recovery cost canberra'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/canberra/fire-damage' },
 };
 
 export default function CanberraFireSmokeDamagePricingPage() {

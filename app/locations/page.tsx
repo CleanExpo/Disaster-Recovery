@@ -8,6 +8,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Service Locations | Disaster Recovery Australia-Wide',
   description: 'Find disaster recovery services across all Australian states and territories. 24/7 emergency response nationwide.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations',
+  },
 };
 
 export default function LocationsPage() {

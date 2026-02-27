@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing sunshine coast',
     'sunshine coast flood recovery price',
     'disaster recovery cost sunshine coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sunshine-coast/flood-recovery' },
 };
 
 export default function SunshineCoastFloodRecoveryPricingPage() {

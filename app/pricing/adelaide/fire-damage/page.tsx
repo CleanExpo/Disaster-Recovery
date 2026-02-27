@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing adelaide',
     'adelaide fire & smoke damage price',
     'disaster recovery cost adelaide'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/adelaide/fire-damage' },
 };
 
 export default function AdelaideFireSmokeDamagePricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing adelaide',
     'adelaide water damage restoration price',
     'disaster recovery cost adelaide'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/adelaide/water-damage' },
 };
 
 export default function AdelaideWaterDamageRestorationPricingPage() {

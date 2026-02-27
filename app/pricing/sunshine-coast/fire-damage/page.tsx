@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing sunshine coast',
     'sunshine coast fire & smoke damage price',
     'disaster recovery cost sunshine coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sunshine-coast/fire-damage' },
 };
 
 export default function SunshineCoastFireSmokeDamagePricingPage() {

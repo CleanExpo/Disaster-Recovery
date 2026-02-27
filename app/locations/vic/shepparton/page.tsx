@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Shepparton | Emergency Services Victoria',
-  description: '24/7 disaster recovery in Shepparton, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Shepparton, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/vic/shepparton',
+  },
+};
 
 export default function SheppartonPage() {
   return (

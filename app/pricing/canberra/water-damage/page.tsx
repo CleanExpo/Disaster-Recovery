@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing canberra',
     'canberra water damage restoration price',
     'disaster recovery cost canberra'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/canberra/water-damage' },
 };
 
 export default function CanberraWaterDamageRestorationPricingPage() {

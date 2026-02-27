@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Port Augusta | Emergency Services South Australia',
-  description: '24/7 disaster recovery in Port Augusta, South Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Port Augusta, South Australia. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/sa/port-augusta',
+  },
+};
 
 export default function PortAugustaPage() {
   return (

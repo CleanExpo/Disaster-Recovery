@@ -8,6 +8,9 @@ import { LocationSchemaWrapper } from '@/components/seo/LocationSchemaWrapper';
 export const metadata: Metadata = {
   title: 'Disaster Recovery Gold Coast | 24/7 Emergency Restoration QLD',
   description: 'Professional disaster recovery services on the Gold Coast, Queensland. IICRC-certified contractors for water damage, fire damage, mould remediation. 24/7 emergency response.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/gold-coast',
+  },
 };
 
 export default function GoldCoastLocationPage() {

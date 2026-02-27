@@ -16,7 +16,10 @@ export const metadata: Metadata = {
     ...['Sydney', 'Melbourne', 'Brisbane'].map((city: string) => `${city.toLowerCase()} disaster recovery`),
     'insurance restoration Western Australia',
     '24/7 emergency WA'
-  ]
+  ],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/wa',
+  },
 };
 
 export default function WesternAustraliaPage() {

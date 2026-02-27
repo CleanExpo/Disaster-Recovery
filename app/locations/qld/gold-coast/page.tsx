@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Gold Coast | Emergency Services Queensland',
-  description: '24/7 disaster recovery in Gold Coast, Queensland. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Gold Coast, Queensland. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/qld/gold-coast',
+  },
+};
 
 export default function GoldCoastPage() {
   return (

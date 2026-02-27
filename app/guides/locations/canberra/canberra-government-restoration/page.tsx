@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Canberra Government Building Restoration Services | Disaster Recovery',
   description: 'Specialist government and institutional building restoration in Canberra. Heritage compliance, security clearance protocols, IICRC certified contractors available 24/7.',
-  keywords: 'canberra government building restoration, institutional restoration canberra, heritage building restoration ACT, government property damage, IICRC certified' };
+  keywords: 'canberra government building restoration, institutional restoration canberra, heritage building restoration ACT, government property damage, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/canberra/canberra-government-restoration' },
+};
 
 export default function CanberraGovernmentRestorationPage() {
   return (

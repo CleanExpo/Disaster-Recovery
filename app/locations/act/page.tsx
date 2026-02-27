@@ -16,7 +16,10 @@ export const metadata: Metadata = {
     ...['Sydney', 'Melbourne', 'Brisbane'].map((city: string) => `${city.toLowerCase()} disaster recovery`),
     'insurance restoration Australian Capital Territory',
     '24/7 emergency ACT'
-  ]
+  ],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/act',
+  },
 };
 
 export default function AustralianCapitalTerritoryPage() {

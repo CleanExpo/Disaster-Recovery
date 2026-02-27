@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Woden Valley | Emergency Services Australian Capital Territory',
-  description: '24/7 disaster recovery in Woden Valley, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Woden Valley, Australian Capital Territory. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/act/woden-valley',
+  },
+};
 
 export default function WodenValleyPage() {
   return (

@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Wollongong Coastal Property Storm Damage Repair | Disaster Recovery',
   description: 'Expert guide to coastal storm damage repair in Wollongong. Illawarra escarpment weather, East Coast Lows, salt spray damage, Wollongong to Kiama coverage, IICRC certified 24/7.',
-  keywords: 'wollongong coastal storm damage, illawarra storm damage, east coast low wollongong, salt spray damage wollongong, shellharbour storm repair, kiama storm damage, IICRC certified' };
+  keywords: 'wollongong coastal storm damage, illawarra storm damage, east coast low wollongong, salt spray damage wollongong, shellharbour storm repair, kiama storm damage, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/wollongong/wollongong-coastal-storm-damage' },
+};
 
 export default function WollongongCoastalStormDamagePage() {
   return (

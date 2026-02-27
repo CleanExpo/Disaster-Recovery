@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Cranbourne | Emergency Services Victoria',
-  description: '24/7 disaster recovery in Cranbourne, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' };
+  description: '24/7 disaster recovery in Cranbourne, Victoria. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/vic/cranbourne',
+  },
+};
 
 export default function CranbournePage() {
   return (

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: "Global Expansion | Disaster Recovery",
   description: "Clean Claims enters Asia-Pacific market through strategic Australian partnership",
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/partners/clean-claims',
+  },
 };
 
 export default function CleanClaimsPartnershipPage() {

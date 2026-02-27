@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Emergency Water Damage: Who to Call First | Disaster Recovery',
   description: 'Expert answers and solutions for "who to call for emergency water damage". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'who to call for emergency water damage, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'who to call for emergency water damage, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/emergency-guides/who-to-call-water-damage-emergency' },
+};
 
 export default function WhoToCallWaterDamageEmergencyPage() {
   return (

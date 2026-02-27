@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Cost Guide Australia 2026 | Disaster Recovery',
   description: 'Expert answers and solutions for "how much does water damage restoration cost in australia". IICRC certified professionals available 24/7 nationwide.',
-  keywords: 'how much does water damage restoration cost in australia, disaster recovery, restoration services, Australia, IICRC certified' };
+  keywords: 'how much does water damage restoration cost in australia, disaster recovery, restoration services, Australia, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/cost-guides/how-much-water-damage-restoration-cost' },
+};
 
 export default function HowMuchWaterDamageRestorationCostPage() {
   return (

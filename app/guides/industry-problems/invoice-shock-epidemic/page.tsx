@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   keywords: 'NSW Fair Trading contractor complaints, ACCC emergency pricing, invoice shock epidemic, hidden costs disaster recovery, consumer protection emergency services',
   openGraph: {
     title: 'Invoice Shock Crisis - NSW Fair Trading & ACCC Warnings',
-    description: 'Government agencies warn of contractor exploitation. 45 complaints against single trader causing $52,957 consumer detriment.' }
+    description: 'Government agencies warn of contractor exploitation. 45 complaints against single trader causing $52,957 consumer detriment.' },
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/industry-problems/invoice-shock-epidemic' },
 };
 
 export default function InvoiceShockEpidemicPage() {

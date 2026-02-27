@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing melbourne',
     'melbourne flood recovery price',
     'disaster recovery cost melbourne'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/melbourne/flood-recovery' },
 };
 
 export default function MelbourneFloodRecoveryPricingPage() {

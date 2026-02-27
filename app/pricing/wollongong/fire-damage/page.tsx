@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing wollongong',
     'wollongong fire & smoke damage price',
     'disaster recovery cost wollongong'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/wollongong/fire-damage' },
 };
 
 export default function WollongongFireSmokeDamagePricingPage() {

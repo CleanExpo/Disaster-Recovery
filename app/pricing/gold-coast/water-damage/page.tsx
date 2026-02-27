@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'water-damage pricing gold coast',
     'gold coast water damage restoration price',
     'disaster recovery cost gold coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/gold-coast/water-damage' },
 };
 
 export default function GoldCoastWaterDamageRestorationPricingPage() {

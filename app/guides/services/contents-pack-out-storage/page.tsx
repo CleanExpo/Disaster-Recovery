@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Contents Pack-Out & Storage During Restoration | Disaster Recovery',
   description: 'What contents pack-out means, when it is necessary, the full process from inventory to return, insurance coverage, and how DR coordinates pack-out during restoration.',
   keywords: 'contents pack out, contents storage restoration, pack out process, contents inventory, insurance contents claim, restoration contents handling, furniture storage disaster',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/services/contents-pack-out-storage' },
 };
 
 export default function ContentsPackOutStoragePage() {

@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Brisbane Floods 2022 Recovery | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Brisbane Floods 2022 Recovery. Real results, timelines, and restoration process.' };
+  description: 'How we helped recover from Brisbane Floods 2022 Recovery. Real results, timelines, and restoration process.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/case-studies/brisbane-floods-2022',
+  },
+};
 
 export default function BrisbaneFloods2022RecoveryPage() {
   return (

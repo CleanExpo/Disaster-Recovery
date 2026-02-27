@@ -5,7 +5,9 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Brisbane Commercial Water Damage Restoration | Disaster Recovery',
   description: 'Expert guide to commercial water damage restoration in Brisbane. Subtropical storm risks, CBD and Fortitude Valley flood zones, 24/7 IICRC certified response.',
-  keywords: 'brisbane commercial water damage restoration, brisbane CBD flood, fortitude valley water damage, commercial restoration brisbane, IICRC certified' };
+  keywords: 'brisbane commercial water damage restoration, brisbane CBD flood, fortitude valley water damage, commercial restoration brisbane, IICRC certified',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/locations/brisbane/brisbane-commercial-water-damage' },
+};
 
 export default function BrisbaneCommercialWaterDamagePage() {
   return (

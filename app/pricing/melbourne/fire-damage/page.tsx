@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing melbourne',
     'melbourne fire & smoke damage price',
     'disaster recovery cost melbourne'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/melbourne/fire-damage' },
 };
 
 export default function MelbourneFireSmokeDamagePricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing brisbane',
     'brisbane fire & smoke damage price',
     'disaster recovery cost brisbane'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/brisbane/fire-damage' },
 };
 
 export default function BrisbaneFireSmokeDamagePricingPage() {

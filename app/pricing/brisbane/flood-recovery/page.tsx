@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing brisbane',
     'brisbane flood recovery price',
     'disaster recovery cost brisbane'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/brisbane/flood-recovery' },
 };
 
 export default function BrisbaneFloodRecoveryPricingPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'fire-damage pricing sydney',
     'sydney fire & smoke damage price',
     'disaster recovery cost sydney'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/sydney/fire-damage' },
 };
 
 export default function SydneyFireSmokeDamagePricingPage() {

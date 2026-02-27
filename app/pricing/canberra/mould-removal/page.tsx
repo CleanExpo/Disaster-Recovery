@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing canberra',
     'canberra mould remediation price',
     'disaster recovery cost canberra'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/canberra/mould-removal' },
 };
 
 export default function CanberraMouldRemediationPricingPage() {

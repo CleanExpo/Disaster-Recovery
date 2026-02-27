@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Certified Thermal Imaging Analysis | Disaster Recovery',
     description: 'Beyond basic moisture detection - certified thermography analysis by qualified specialists.',
-    images: ['/images/thermal-technology.jpg'] } };
+    images: ['/images/thermal-technology.jpg'] },
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/technology/thermal',
+  },
+};
 
 export default function ThermalImagingPage() {
   return (

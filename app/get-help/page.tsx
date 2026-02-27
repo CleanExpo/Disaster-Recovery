@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: "Get Emergency Help | Disaster Recovery",
   description: "Get instant help from IICRC certified disaster recovery contractors in your area. 24/7 emergency response, IICRC-certified.",
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/get-help',
+  },
 };
 
 export default function GetHelpPage() {

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing gold coast',
     'gold coast mould remediation price',
     'disaster recovery cost gold coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/gold-coast/mould-removal' },
 };
 
 export default function GoldCoastMouldRemediationPricingPage() {

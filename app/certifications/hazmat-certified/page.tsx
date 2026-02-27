@@ -6,6 +6,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'HAZMAT Certified | Hazardous Materials Restoration | Disaster Recovery',
   description: 'HAZMAT certified restoration professionals handling hazardous materials, chemical spills, biohazard contamination, and dangerous goods incidents across Australia.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/certifications/hazmat-certified',
+  },
 };
 
 export default function HAZMATCertifiedPage() {

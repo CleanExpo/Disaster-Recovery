@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: "Cognitive Performance | Disaster Recovery",
   description: "Poor indoor air quality reduces cognitive function by up to 9%. Professional restoration prevents this invisible threat.",
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/why-first',
+  },
 };
 
 export default function WhyFirstPage() {

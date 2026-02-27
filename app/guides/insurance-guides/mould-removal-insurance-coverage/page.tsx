@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Is Mould Removal Covered by Insurance in Australia? | Disaster Recovery',
   description: 'When insurance covers mould removal in Australia, when it does not, common policy exclusions, how to document mould for a claim, and how DR helps with mould claims documentation.',
   keywords: 'mould removal insurance, mould insurance coverage Australia, mould remediation claim, insurance mould exclusion, mould documentation insurance, mould claim denied',
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance-guides/mould-removal-insurance-coverage' },
 };
 
 export default function MouldRemovalInsuranceCoveragePage() {

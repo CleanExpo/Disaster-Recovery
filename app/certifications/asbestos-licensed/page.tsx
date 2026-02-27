@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Asbestos Removal Licensed | Class A & B asbestos | Disaster Recovery',
-  description: 'Asbestos Removal Licensed restoration services. Class A & B asbestos. Qualified, certified, and compliant disaster recovery.' };
+  description: 'Asbestos Removal Licensed restoration services. Class A & B asbestos. Qualified, certified, and compliant disaster recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/certifications/asbestos-licensed',
+  },
+};
 
 export default function AsbestosRemovalLicensedPage() {
   return (

@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing melbourne',
     'melbourne mould remediation price',
     'disaster recovery cost melbourne'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/melbourne/mould-removal' },
 };
 
 export default function MelbourneMouldRemediationPricingPage() {

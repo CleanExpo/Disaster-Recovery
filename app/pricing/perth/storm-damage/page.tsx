@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'storm-damage pricing perth',
     'perth storm damage repair price',
     'disaster recovery cost perth'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/perth/storm-damage' },
 };
 
 export default function PerthStormDamageRepairPricingPage() {

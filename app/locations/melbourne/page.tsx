@@ -7,6 +7,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Disaster Recovery Melbourne | 24/7 Emergency Restoration VIC',
   description: 'Professional disaster recovery in Melbourne, Victoria. 578.3mm annual rainfall, flash flooding along Maribyrnong River, and bushfire risk in outer suburbs. IICRC-certified contractors for water damage, fire damage, mould remediation. 24/7 emergency response for 4.9M+ residents.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/melbourne',
+  },
 };
 
 const breadcrumbs = [

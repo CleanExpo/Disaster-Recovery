@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     title: 'Real Emergency Response Costs — Transparent Pricing',
     description: 'What professional emergency response actually costs in Australia — no surprise invoices.',
   },
+  alternates: { canonical: 'https://disasterrecovery.com.au/guides/pricing/real-emergency-response-costs' },
 };
 
 export default function RealEmergencyResponseCostsPage() {

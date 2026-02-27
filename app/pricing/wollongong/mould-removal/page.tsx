@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'mould-removal pricing wollongong',
     'wollongong mould remediation price',
     'disaster recovery cost wollongong'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/wollongong/mould-removal' },
 };
 
 export default function WollongongMouldRemediationPricingPage() {

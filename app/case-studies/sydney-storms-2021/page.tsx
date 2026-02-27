@@ -6,7 +6,11 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Sydney Storms 2021 | Case Study | Disaster Recovery Success Story',
-  description: 'How we helped recover from Sydney Storms 2021. Real results, timelines, and restoration process.' };
+  description: 'How we helped recover from Sydney Storms 2021. Real results, timelines, and restoration process.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/case-studies/sydney-storms-2021',
+  },
+};
 
 export default function SydneyStorms2021Page() {
   return (

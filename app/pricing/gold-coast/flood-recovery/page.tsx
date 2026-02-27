@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     'flood-recovery pricing gold coast',
     'gold coast flood recovery price',
     'disaster recovery cost gold coast'
-  ]
+  ],
+  alternates: { canonical: 'https://disasterrecovery.com.au/pricing/gold-coast/flood-recovery' },
 };
 
 export default function GoldCoastFloodRecoveryPricingPage() {
