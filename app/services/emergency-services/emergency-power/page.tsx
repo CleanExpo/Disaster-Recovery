@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Power Solutions',
-  description: 'Professional emergency power solutions services in Queensland. 24/7 emergency response for generators, temporary power.',
+  description: 'Professional emergency power solutions services across Australia. 24/7 emergency response for generators, temporary power.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-power',
   },
@@ -20,7 +20,7 @@ export default function EmergencyPowerSolutionsPage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Emergency Power Solutions',
-        subtitle: 'Professional emergency power solutions services in Queensland. 24/7 emergency response for generators, temporary power.',
+        subtitle: 'Professional emergency power solutions services across Australia. 24/7 emergency response for generators, temporary power.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

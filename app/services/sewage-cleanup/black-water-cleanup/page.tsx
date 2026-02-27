@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Black Water Contamination',
-  description: 'Professional black water contamination services in Queensland. 24/7 emergency response for category 3 water, hazardous sewage.',
+  description: 'Professional black water contamination services across Australia. 24/7 emergency response for category 3 water, hazardous sewage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/black-water-cleanup',
   },
@@ -20,7 +20,7 @@ export default function BlackWaterContaminationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Black Water Contamination',
-        subtitle: 'Professional black water contamination services in Queensland. 24/7 emergency response for category 3 water, hazardous sewage.',
+        subtitle: 'Professional black water contamination services across Australia. 24/7 emergency response for category 3 water, hazardous sewage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

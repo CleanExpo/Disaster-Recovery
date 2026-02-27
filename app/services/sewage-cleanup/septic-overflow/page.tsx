@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Septic Tank Overflow Cleanup',
-  description: 'Professional septic tank overflow cleanup services in Queensland. 24/7 emergency response for septic backup, tank overflow.',
+  description: 'Professional septic tank overflow cleanup services across Australia. 24/7 emergency response for septic backup, tank overflow.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/septic-overflow',
   },
@@ -20,7 +20,7 @@ export default function SepticTankOverflowCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Septic Tank Overflow Cleanup',
-        subtitle: 'Professional septic tank overflow cleanup services in Queensland. 24/7 emergency response for septic backup, tank overflow.',
+        subtitle: 'Professional septic tank overflow cleanup services across Australia. 24/7 emergency response for septic backup, tank overflow.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

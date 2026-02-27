@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Bodily Fluid Cleanup',
-  description: 'Professional bodily fluid cleanup services in Queensland. 24/7 emergency response for vomit cleanup, human waste.',
+  description: 'Professional bodily fluid cleanup services across Australia. 24/7 emergency response for vomit cleanup, human waste.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/bodily-fluids',
   },
@@ -20,7 +20,7 @@ export default function BodilyFluidCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Bodily Fluid Cleanup',
-        subtitle: 'Professional bodily fluid cleanup services in Queensland. 24/7 emergency response for vomit cleanup, human waste.',
+        subtitle: 'Professional bodily fluid cleanup services across Australia. 24/7 emergency response for vomit cleanup, human waste.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"

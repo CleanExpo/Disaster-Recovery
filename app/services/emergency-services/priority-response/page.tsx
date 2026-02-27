@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Priority Emergency Response',
-  description: 'Professional priority emergency response services in Queensland. 24/7 emergency response for rapid deployment, first response.',
+  description: 'Professional priority emergency response services across Australia. 24/7 emergency response for rapid deployment, first response.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/priority-response',
   },
@@ -20,7 +20,7 @@ export default function PriorityEmergencyResponsePage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Priority Emergency Response',
-        subtitle: 'Professional priority emergency response services in Queensland. 24/7 emergency response for rapid deployment, first response.',
+        subtitle: 'Professional priority emergency response services across Australia. 24/7 emergency response for rapid deployment, first response.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

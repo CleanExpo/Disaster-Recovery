@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Commercial Sewage Cleanup',
-  description: 'Professional commercial sewage cleanup services in Queensland. 24/7 emergency response for business sewage, workplace contamination.',
+  description: 'Professional commercial sewage cleanup services across Australia. 24/7 emergency response for business sewage, workplace contamination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/commercial-sewage',
   },
@@ -20,7 +20,7 @@ export default function CommercialSewageCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Commercial Sewage Cleanup',
-        subtitle: 'Professional commercial sewage cleanup services in Queensland. 24/7 emergency response for business sewage, workplace contamination.',
+        subtitle: 'Professional commercial sewage cleanup services across Australia. 24/7 emergency response for business sewage, workplace contamination.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

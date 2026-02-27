@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Grey Water Damage Cleanup',
-  description: 'Professional grey water damage cleanup services in Queensland. 24/7 emergency response for washing machine water, sink overflow.',
+  description: 'Professional grey water damage cleanup services across Australia. 24/7 emergency response for washing machine water, sink overflow.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/grey-water-cleanup',
   },
@@ -20,7 +20,7 @@ export default function GreyWaterDamageCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Grey Water Damage Cleanup',
-        subtitle: 'Professional grey water damage cleanup services in Queensland. 24/7 emergency response for washing machine water, sink overflow.',
+        subtitle: 'Professional grey water damage cleanup services across Australia. 24/7 emergency response for washing machine water, sink overflow.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

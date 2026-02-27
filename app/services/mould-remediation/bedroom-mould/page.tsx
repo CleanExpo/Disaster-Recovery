@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Bedroom Mould Remediation',
-  description: 'Professional bedroom mould remediation services in Queensland. 24/7 emergency response for sleeping area mould, health risks.',
+  description: 'Professional bedroom mould remediation services across Australia. 24/7 emergency response for sleeping area mould, health risks.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/bedroom-mould',
   },
@@ -20,7 +20,7 @@ export default function BedroomMouldRemediationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Bedroom Mould Remediation',
-        subtitle: 'Professional bedroom mould remediation services in Queensland. 24/7 emergency response for sleeping area mould, health risks.',
+        subtitle: 'Professional bedroom mould remediation services across Australia. 24/7 emergency response for sleeping area mould, health risks.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Washing Machine Flood Damage',
-  description: 'Professional washing machine flood damage services in Queensland. 24/7 emergency response for washing machine overflow, laundry flooding.',
+  description: 'Professional washing machine flood damage services across Australia. 24/7 emergency response for washing machine overflow, laundry flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/washing-machine-flooding',
   },
@@ -20,7 +20,7 @@ export default function WashingMachineFloodDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Washing Machine Flood Damage',
-        subtitle: 'Professional washing machine flood damage services in Queensland. 24/7 emergency response for washing machine overflow, laundry flooding.',
+        subtitle: 'Professional washing machine flood damage services across Australia. 24/7 emergency response for washing machine overflow, laundry flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

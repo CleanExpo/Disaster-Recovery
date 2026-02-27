@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Natural Disaster Response',
-  description: 'Professional natural disaster response services in Queensland. 24/7 emergency response for catastrophe response, major event.',
+  description: 'Professional natural disaster response services across Australia. 24/7 emergency response for catastrophe response, major event.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/disaster-response',
   },
@@ -20,7 +20,7 @@ export default function NaturalDisasterResponsePage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Natural Disaster Response',
-        subtitle: 'Professional natural disaster response services in Queensland. 24/7 emergency response for catastrophe response, major event.',
+        subtitle: 'Professional natural disaster response services across Australia. 24/7 emergency response for catastrophe response, major event.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Smoke Odour Removal Services',
-  description: 'Professional smoke odour removal services services in Queensland. 24/7 emergency response for smoke smell, fire odour elimination.',
+  description: 'Professional smoke odour removal services services across Australia. 24/7 emergency response for smoke smell, fire odour elimination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/smoke-odour-removal',
   },
@@ -20,7 +20,7 @@ export default function SmokeOdourRemovalServicesPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Smoke Odour Removal Services',
-        subtitle: 'Professional smoke odour removal services services in Queensland. 24/7 emergency response for smoke smell, fire odour elimination.',
+        subtitle: 'Professional smoke odour removal services services across Australia. 24/7 emergency response for smoke smell, fire odour elimination.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

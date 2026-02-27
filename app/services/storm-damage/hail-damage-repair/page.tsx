@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hail Damage Restoration',
-  description: 'Professional hail damage restoration services in Queensland. 24/7 emergency response for hailstorm damage, ice damage repair.',
+  description: 'Professional hail damage restoration services across Australia. 24/7 emergency response for hailstorm damage, ice damage repair.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/hail-damage-repair',
   },
@@ -20,7 +20,7 @@ export default function HailDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Hail Damage Restoration',
-        subtitle: 'Professional hail damage restoration services in Queensland. 24/7 emergency response for hailstorm damage, ice damage repair.',
+        subtitle: 'Professional hail damage restoration services across Australia. 24/7 emergency response for hailstorm damage, ice damage repair.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Soot Damage Cleaning',
-  description: 'Professional soot damage cleaning services in Queensland. 24/7 emergency response for soot removal, carbon cleaning.',
+  description: 'Professional soot damage cleaning services across Australia. 24/7 emergency response for soot removal, carbon cleaning.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/soot-damage-cleanup',
   },
@@ -20,7 +20,7 @@ export default function SootDamageCleaningPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Soot Damage Cleaning',
-        subtitle: 'Professional soot damage cleaning services in Queensland. 24/7 emergency response for soot removal, carbon cleaning.',
+        subtitle: 'Professional soot damage cleaning services across Australia. 24/7 emergency response for soot removal, carbon cleaning.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Kitchen Fire Damage Restoration',
-  description: 'Professional kitchen fire damage restoration services in Queensland. 24/7 emergency response for cooking fire, kitchen smoke damage.',
+  description: 'Professional kitchen fire damage restoration services across Australia. 24/7 emergency response for cooking fire, kitchen smoke damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/kitchen-fire-damage',
   },
@@ -20,7 +20,7 @@ export default function KitchenFireDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Kitchen Fire Damage Restoration',
-        subtitle: 'Professional kitchen fire damage restoration services in Queensland. 24/7 emergency response for cooking fire, kitchen smoke damage.',
+        subtitle: 'Professional kitchen fire damage restoration services across Australia. 24/7 emergency response for cooking fire, kitchen smoke damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

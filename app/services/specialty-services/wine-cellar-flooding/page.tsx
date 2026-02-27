@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Wine Cellar Flood Recovery',
-  description: 'Professional wine cellar flood recovery services in Queensland. 24/7 emergency response for wine storage, cellar water damage.',
+  description: 'Professional wine cellar flood recovery services across Australia. 24/7 emergency response for wine storage, cellar water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/wine-cellar-flooding',
   },
@@ -20,7 +20,7 @@ export default function WineCellarFloodRecoveryPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Star className="h-12 w-12" />,
         title: 'Wine Cellar Flood Recovery',
-        subtitle: 'Professional wine cellar flood recovery services in Queensland. 24/7 emergency response for wine storage, cellar water damage.',
+        subtitle: 'Professional wine cellar flood recovery services across Australia. 24/7 emergency response for wine storage, cellar water damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Blood Spill Cleanup Services',
-  description: 'Professional blood spill cleanup services services in Queensland. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
+  description: 'Professional blood spill cleanup services services across Australia. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/blood-cleanup',
   },
@@ -20,7 +20,7 @@ export default function BloodSpillCleanupServicesPage() {
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Blood Spill Cleanup Services',
-        subtitle: 'Professional blood spill cleanup services services in Queensland. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
+        subtitle: 'Professional blood spill cleanup services services across Australia. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"

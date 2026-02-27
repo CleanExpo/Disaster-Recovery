@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Roof Tarping',
-  description: 'Professional emergency roof tarping services in Queensland. 24/7 emergency response for temporary roof, tarp installation.',
+  description: 'Professional emergency roof tarping services across Australia. 24/7 emergency response for temporary roof, tarp installation.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-tarping',
   },
@@ -20,7 +20,7 @@ export default function EmergencyRoofTarpingPage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Emergency Roof Tarping',
-        subtitle: 'Professional emergency roof tarping services in Queensland. 24/7 emergency response for temporary roof, tarp installation.',
+        subtitle: 'Professional emergency roof tarping services across Australia. 24/7 emergency response for temporary roof, tarp installation.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

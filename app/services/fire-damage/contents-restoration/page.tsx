@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Fire Damaged Contents Restoration',
-  description: 'Professional fire damaged contents restoration services in Queensland. 24/7 emergency response for belongings restoration, document recovery.',
+  description: 'Professional fire damaged contents restoration services across Australia. 24/7 emergency response for belongings restoration, document recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/contents-restoration',
   },
@@ -20,7 +20,7 @@ export default function FireDamagedContentsRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Fire Damaged Contents Restoration',
-        subtitle: 'Professional fire damaged contents restoration services in Queensland. 24/7 emergency response for belongings restoration, document recovery.',
+        subtitle: 'Professional fire damaged contents restoration services across Australia. 24/7 emergency response for belongings restoration, document recovery.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

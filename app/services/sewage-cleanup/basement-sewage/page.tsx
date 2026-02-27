@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Basement Sewage Flooding',
-  description: 'Professional basement sewage flooding services in Queensland. 24/7 emergency response for lower level sewage, underground backup.',
+  description: 'Professional basement sewage flooding services across Australia. 24/7 emergency response for lower level sewage, underground backup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/basement-sewage',
   },
@@ -20,7 +20,7 @@ export default function BasementSewageFloodingPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Basement Sewage Flooding',
-        subtitle: 'Professional basement sewage flooding services in Queensland. 24/7 emergency response for lower level sewage, underground backup.',
+        subtitle: 'Professional basement sewage flooding services across Australia. 24/7 emergency response for lower level sewage, underground backup.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

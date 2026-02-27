@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Sanitisation',
-  description: 'Professional emergency sanitisation services in Queensland. 24/7 emergency response for urgent disinfection, contamination control.',
+  description: 'Professional emergency sanitisation services across Australia. 24/7 emergency response for urgent disinfection, contamination control.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-sanitization',
   },
@@ -20,7 +20,7 @@ export default function EmergencySanitisationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Emergency Sanitisation',
-        subtitle: 'Professional emergency sanitisation services in Queensland. 24/7 emergency response for urgent disinfection, contamination control.',
+        subtitle: 'Professional emergency sanitisation services across Australia. 24/7 emergency response for urgent disinfection, contamination control.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

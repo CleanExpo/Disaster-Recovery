@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Structural Fire Damage Repair',
-  description: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
+  description: 'Professional structural fire damage repair services across Australia. 24/7 emergency response for building fire, frame damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/structural-fire-damage',
   },
@@ -20,7 +20,7 @@ export default function StructuralFireDamageRepairPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Structural Fire Damage Repair',
-        subtitle: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
+        subtitle: 'Professional structural fire damage repair services across Australia. 24/7 emergency response for building fire, frame damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Lightning Strike Damage',
-  description: 'Professional lightning strike damage services in Queensland. 24/7 emergency response for electrical surge, lightning fire.',
+  description: 'Professional lightning strike damage services across Australia. 24/7 emergency response for electrical surge, lightning fire.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/lightning-damage',
   },
@@ -20,7 +20,7 @@ export default function LightningStrikeDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Lightning Strike Damage',
-        subtitle: 'Professional lightning strike damage services in Queensland. 24/7 emergency response for electrical surge, lightning fire.',
+        subtitle: 'Professional lightning strike damage services across Australia. 24/7 emergency response for electrical surge, lightning fire.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

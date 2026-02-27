@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Fallen Tree Damage Cleanup',
-  description: 'Professional fallen tree damage cleanup services in Queensland. 24/7 emergency response for tree removal, storm tree damage.',
+  description: 'Professional fallen tree damage cleanup services across Australia. 24/7 emergency response for tree removal, storm tree damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/tree-damage-cleanup',
   },
@@ -20,7 +20,7 @@ export default function FallenTreeDamageCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Fallen Tree Damage Cleanup',
-        subtitle: 'Professional fallen tree damage cleanup services in Queensland. 24/7 emergency response for tree removal, storm tree damage.',
+        subtitle: 'Professional fallen tree damage cleanup services across Australia. 24/7 emergency response for tree removal, storm tree damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

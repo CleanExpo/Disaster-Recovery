@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hot Water System Burst Damage',
-  description: 'Professional hot water system burst damage services in Queensland. 24/7 emergency response for hot water tank leak, heater flooding.',
+  description: 'Professional hot water system burst damage services across Australia. 24/7 emergency response for hot water tank leak, heater flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/hot-water-system-burst',
   },
@@ -20,7 +20,7 @@ export default function HotWaterSystemBurstDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Hot Water System Burst Damage',
-        subtitle: 'Professional hot water system burst damage services in Queensland. 24/7 emergency response for hot water tank leak, heater flooding.',
+        subtitle: 'Professional hot water system burst damage services across Australia. 24/7 emergency response for hot water tank leak, heater flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Electronics Water Damage',
-  description: 'Professional electronics water damage services in Queensland. 24/7 emergency response for computer water damage, device recovery.',
+  description: 'Professional electronics water damage services across Australia. 24/7 emergency response for computer water damage, device recovery.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/electronics-water-damage',
   },
@@ -20,7 +20,7 @@ export default function ElectronicsWaterDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Star className="h-12 w-12" />,
         title: 'Electronics Water Damage',
-        subtitle: 'Professional electronics water damage services in Queensland. 24/7 emergency response for computer water damage, device recovery.',
+        subtitle: 'Professional electronics water damage services across Australia. 24/7 emergency response for computer water damage, device recovery.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

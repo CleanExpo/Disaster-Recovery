@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Concrete Water Damage Restoration',
-  description: 'Professional concrete water damage restoration services in Queensland. 24/7 emergency response for concrete flooding, slab moisture.',
+  description: 'Professional concrete water damage restoration services across Australia. 24/7 emergency response for concrete flooding, slab moisture.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/concrete-water-damage',
   },
@@ -20,7 +20,7 @@ export default function ConcreteWaterDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Concrete Water Damage Restoration',
-        subtitle: 'Professional concrete water damage restoration services in Queensland. 24/7 emergency response for concrete flooding, slab moisture.',
+        subtitle: 'Professional concrete water damage restoration services across Australia. 24/7 emergency response for concrete flooding, slab moisture.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

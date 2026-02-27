@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Toilet Sewage Backup Cleanup',
-  description: 'Professional toilet sewage backup cleanup services in Queensland. 24/7 emergency response for toilet overflow, bathroom sewage.',
+  description: 'Professional toilet sewage backup cleanup services across Australia. 24/7 emergency response for toilet overflow, bathroom sewage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/toilet-backup',
   },
@@ -20,7 +20,7 @@ export default function ToiletSewageBackupCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Toilet Sewage Backup Cleanup',
-        subtitle: 'Professional toilet sewage backup cleanup services in Queensland. 24/7 emergency response for toilet overflow, bathroom sewage.',
+        subtitle: 'Professional toilet sewage backup cleanup services across Australia. 24/7 emergency response for toilet overflow, bathroom sewage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

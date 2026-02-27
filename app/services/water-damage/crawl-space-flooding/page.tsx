@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Crawl Space Water Removal',
-  description: 'Professional crawl space water removal services in Queensland. 24/7 emergency response for under house flooding, subfloor water.',
+  description: 'Professional crawl space water removal services across Australia. 24/7 emergency response for under house flooding, subfloor water.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/crawl-space-flooding',
   },
@@ -20,7 +20,7 @@ export default function CrawlSpaceWaterRemovalPage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Crawl Space Water Removal',
-        subtitle: 'Professional crawl space water removal services in Queensland. 24/7 emergency response for under house flooding, subfloor water.',
+        subtitle: 'Professional crawl space water removal services across Australia. 24/7 emergency response for under house flooding, subfloor water.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

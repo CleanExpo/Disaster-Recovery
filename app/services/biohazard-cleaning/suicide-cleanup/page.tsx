@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Suicide Cleanup Services',
-  description: 'Professional suicide cleanup services services in Queensland. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
+  description: 'Professional suicide cleanup services services across Australia. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/suicide-cleanup',
   },
@@ -20,7 +20,7 @@ export default function SuicideCleanupServicesPage() {
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Suicide Cleanup Services',
-        subtitle: 'Professional suicide cleanup services services in Queensland. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
+        subtitle: 'Professional suicide cleanup services services across Australia. 24/7 emergency response for trauma cleaning, compassionate cleanup.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"

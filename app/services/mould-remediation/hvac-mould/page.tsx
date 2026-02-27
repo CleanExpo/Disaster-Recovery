@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Air Conditioning Mould Removal',
-  description: 'Professional air conditioning mould removal services in Queensland. 24/7 emergency response for AC duct mould, HVAC contamination.',
+  description: 'Professional air conditioning mould removal services across Australia. 24/7 emergency response for AC duct mould, HVAC contamination.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/hvac-mould',
   },
@@ -20,7 +20,7 @@ export default function AirConditioningMouldRemovalPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Air Conditioning Mould Removal',
-        subtitle: 'Professional air conditioning mould removal services in Queensland. 24/7 emergency response for AC duct mould, HVAC contamination.',
+        subtitle: 'Professional air conditioning mould removal services across Australia. 24/7 emergency response for AC duct mould, HVAC contamination.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"

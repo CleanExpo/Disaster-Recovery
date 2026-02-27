@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Pool Leak Property Damage',
-  description: 'Professional pool leak property damage services in Queensland. 24/7 emergency response for swimming pool leak, pool water damage.',
+  description: 'Professional pool leak property damage services across Australia. 24/7 emergency response for swimming pool leak, pool water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/pool-leak-damage',
   },
@@ -20,7 +20,7 @@ export default function PoolLeakPropertyDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Pool Leak Property Damage',
-        subtitle: 'Professional pool leak property damage services in Queensland. 24/7 emergency response for swimming pool leak, pool water damage.',
+        subtitle: 'Professional pool leak property damage services across Australia. 24/7 emergency response for swimming pool leak, pool water damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

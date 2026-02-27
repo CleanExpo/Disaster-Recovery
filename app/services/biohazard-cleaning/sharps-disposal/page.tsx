@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Needle & Sharps Disposal',
-  description: 'Professional needle & sharps disposal services in Queensland. 24/7 emergency response for syringe cleanup, medical waste.',
+  description: 'Professional needle & sharps disposal services across Australia. 24/7 emergency response for syringe cleanup, medical waste.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/sharps-disposal',
   },
@@ -20,7 +20,7 @@ export default function NeedleSharpsDisposalPage() {
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Needle & Sharps Disposal',
-        subtitle: 'Professional needle & sharps disposal services in Queensland. 24/7 emergency response for syringe cleanup, medical waste.',
+        subtitle: 'Professional needle & sharps disposal services across Australia. 24/7 emergency response for syringe cleanup, medical waste.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"

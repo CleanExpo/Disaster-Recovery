@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Plumbing Services',
-  description: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
+  description: 'Professional emergency plumbing services services across Australia. 24/7 emergency response for burst pipe repair, leak stop.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-plumbing',
   },
@@ -20,7 +20,7 @@ export default function EmergencyPlumbingServicesPage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Emergency Plumbing Services',
-        subtitle: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
+        subtitle: 'Professional emergency plumbing services services across Australia. 24/7 emergency response for burst pipe repair, leak stop.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

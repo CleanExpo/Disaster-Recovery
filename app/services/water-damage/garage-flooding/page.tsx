@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Garage Flood Cleanup',
-  description: 'Professional garage flood cleanup services in Queensland. 24/7 emergency response for garage water damage, carport flooding.',
+  description: 'Professional garage flood cleanup services across Australia. 24/7 emergency response for garage water damage, carport flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/garage-flooding',
   },
@@ -20,7 +20,7 @@ export default function GarageFloodCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Garage Flood Cleanup',
-        subtitle: 'Professional garage flood cleanup services in Queensland. 24/7 emergency response for garage water damage, carport flooding.',
+        subtitle: 'Professional garage flood cleanup services across Australia. 24/7 emergency response for garage water damage, carport flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

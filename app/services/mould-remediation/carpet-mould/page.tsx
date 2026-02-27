@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Carpet Mould Remediation',
-  description: 'Professional carpet mould remediation services in Queensland. 24/7 emergency response for mouldy carpet, underlay mould.',
+  description: 'Professional carpet mould remediation services across Australia. 24/7 emergency response for mouldy carpet, underlay mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/carpet-mould',
   },
@@ -20,7 +20,7 @@ export default function CarpetMouldRemediationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Carpet Mould Remediation',
-        subtitle: 'Professional carpet mould remediation services in Queensland. 24/7 emergency response for mouldy carpet, underlay mould.',
+        subtitle: 'Professional carpet mould remediation services across Australia. 24/7 emergency response for mouldy carpet, underlay mould.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"

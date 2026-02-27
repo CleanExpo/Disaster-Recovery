@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Toilet Overflow Cleanup',
-  description: 'Professional toilet overflow cleanup services in Queensland. 24/7 emergency response for toilet flooding, bathroom water damage.',
+  description: 'Professional toilet overflow cleanup services across Australia. 24/7 emergency response for toilet flooding, bathroom water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/toilet-overflow',
   },
@@ -20,7 +20,7 @@ export default function ToiletOverflowCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Toilet Overflow Cleanup',
-        subtitle: 'Professional toilet overflow cleanup services in Queensland. 24/7 emergency response for toilet flooding, bathroom water damage.',
+        subtitle: 'Professional toilet overflow cleanup services across Australia. 24/7 emergency response for toilet flooding, bathroom water damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

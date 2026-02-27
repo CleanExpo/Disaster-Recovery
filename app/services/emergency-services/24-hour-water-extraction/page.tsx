@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: '24 Hour Water Extraction',
-  description: 'Professional 24 hour water extraction services in Queensland. 24/7 emergency response for emergency pumping, rapid extraction.',
+  description: 'Professional 24 hour water extraction services across Australia. 24/7 emergency response for emergency pumping, rapid extraction.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/24-hour-water-extraction',
   },
@@ -20,7 +20,7 @@ export default function TwentyFourHourWaterExtractionPage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: '24 Hour Water Extraction',
-        subtitle: 'Professional 24 hour water extraction services in Queensland. 24/7 emergency response for emergency pumping, rapid extraction.',
+        subtitle: 'Professional 24 hour water extraction services across Australia. 24/7 emergency response for emergency pumping, rapid extraction.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

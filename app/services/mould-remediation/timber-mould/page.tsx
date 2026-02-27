@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Timber Mould Treatment',
-  description: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
+  description: 'Professional timber mould treatment services across Australia. 24/7 emergency response for wood rot, structural mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/timber-mould',
   },
@@ -20,7 +20,7 @@ export default function TimberMouldTreatmentPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Timber Mould Treatment',
-        subtitle: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
+        subtitle: 'Professional timber mould treatment services across Australia. 24/7 emergency response for wood rot, structural mould.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"

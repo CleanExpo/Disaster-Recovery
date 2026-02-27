@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Wind Damage Restoration',
-  description: 'Professional wind damage restoration services in Queensland. 24/7 emergency response for cyclone damage, storm wind repair.',
+  description: 'Professional wind damage restoration services across Australia. 24/7 emergency response for cyclone damage, storm wind repair.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/wind-damage-repair',
   },
@@ -20,7 +20,7 @@ export default function WindDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Wind Damage Restoration',
-        subtitle: 'Professional wind damage restoration services in Queensland. 24/7 emergency response for cyclone damage, storm wind repair.',
+        subtitle: 'Professional wind damage restoration services across Australia. 24/7 emergency response for cyclone damage, storm wind repair.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

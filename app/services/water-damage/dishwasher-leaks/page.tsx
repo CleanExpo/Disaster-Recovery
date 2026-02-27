@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Dishwasher Leak Water Damage',
-  description: 'Professional dishwasher leak water damage services in Queensland. 24/7 emergency response for dishwasher flooding, kitchen water damage.',
+  description: 'Professional dishwasher leak water damage services across Australia. 24/7 emergency response for dishwasher flooding, kitchen water damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage/dishwasher-leaks',
   },
@@ -20,7 +20,7 @@ export default function DishwasherLeakWaterDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-water-damage.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Dishwasher Leak Water Damage',
-        subtitle: 'Professional dishwasher leak water damage services in Queensland. 24/7 emergency response for dishwasher flooding, kitchen water damage.',
+        subtitle: 'Professional dishwasher leak water damage services across Australia. 24/7 emergency response for dishwasher flooding, kitchen water damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-water-damage.webp"

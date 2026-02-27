@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Asbestos Water Damage',
-  description: 'Professional asbestos water damage services in Queensland. 24/7 emergency response for wet asbestos, contaminated materials.',
+  description: 'Professional asbestos water damage services across Australia. 24/7 emergency response for wet asbestos, contaminated materials.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/asbestos-water-damage',
   },
@@ -20,7 +20,7 @@ export default function AsbestosWaterDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Star className="h-12 w-12" />,
         title: 'Asbestos Water Damage',
-        subtitle: 'Professional asbestos water damage services in Queensland. 24/7 emergency response for wet asbestos, contaminated materials.',
+        subtitle: 'Professional asbestos water damage services across Australia. 24/7 emergency response for wet asbestos, contaminated materials.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

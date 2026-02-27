@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Storm Drain Sewage Backup',
-  description: 'Professional storm drain sewage backup services in Queensland. 24/7 emergency response for stormwater overflow, drain flooding.',
+  description: 'Professional storm drain sewage backup services across Australia. 24/7 emergency response for stormwater overflow, drain flooding.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/storm-drain-backup',
   },
@@ -20,7 +20,7 @@ export default function StormDrainSewageBackupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Storm Drain Sewage Backup',
-        subtitle: 'Professional storm drain sewage backup services in Queensland. 24/7 emergency response for stormwater overflow, drain flooding.',
+        subtitle: 'Professional storm drain sewage backup services across Australia. 24/7 emergency response for stormwater overflow, drain flooding.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

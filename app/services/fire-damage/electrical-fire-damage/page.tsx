@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Electrical Fire Damage Cleanup',
-  description: 'Professional electrical fire damage cleanup services in Queensland. 24/7 emergency response for wiring fire, electrical burn damage.',
+  description: 'Professional electrical fire damage cleanup services across Australia. 24/7 emergency response for wiring fire, electrical burn damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/electrical-fire-damage',
   },
@@ -20,7 +20,7 @@ export default function ElectricalFireDamageCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Electrical Fire Damage Cleanup',
-        subtitle: 'Professional electrical fire damage cleanup services in Queensland. 24/7 emergency response for wiring fire, electrical burn damage.',
+        subtitle: 'Professional electrical fire damage cleanup services across Australia. 24/7 emergency response for wiring fire, electrical burn damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

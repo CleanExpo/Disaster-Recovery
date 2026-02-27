@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Antique Water Damage Restoration',
-  description: 'Professional antique water damage restoration services in Queensland. 24/7 emergency response for heritage items, valuable restoration.',
+  description: 'Professional antique water damage restoration services across Australia. 24/7 emergency response for heritage items, valuable restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/antique-restoration',
   },
@@ -20,7 +20,7 @@ export default function AntiqueWaterDamageRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Star className="h-12 w-12" />,
         title: 'Antique Water Damage Restoration',
-        subtitle: 'Professional antique water damage restoration services in Queensland. 24/7 emergency response for heritage items, valuable restoration.',
+        subtitle: 'Professional antique water damage restoration services across Australia. 24/7 emergency response for heritage items, valuable restoration.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

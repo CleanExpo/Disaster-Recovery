@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Document Water Damage Recovery',
-  description: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
+  description: 'Professional document water damage recovery services across Australia. 24/7 emergency response for paper restoration, book drying.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/specialty-services/document-drying',
   },
@@ -20,7 +20,7 @@ export default function DocumentWaterDamageRecoveryPage() {
         heroImage: '/images/generated/disaster-recovery/hero-commercial-services.webp',
         icon: <Star className="h-12 w-12" />,
         title: 'Document Water Damage Recovery',
-        subtitle: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
+        subtitle: 'Professional document water damage recovery services across Australia. 24/7 emergency response for paper restoration, book drying.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-commercial-services.webp"

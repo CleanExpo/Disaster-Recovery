@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Chimney Fire Damage Cleanup',
-  description: 'Professional chimney fire damage cleanup services in Queensland. 24/7 emergency response for flue fire, chimney restoration.',
+  description: 'Professional chimney fire damage cleanup services across Australia. 24/7 emergency response for flue fire, chimney restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/chimney-fire-damage',
   },
@@ -20,7 +20,7 @@ export default function ChimneyFireDamageCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Chimney Fire Damage Cleanup',
-        subtitle: 'Professional chimney fire damage cleanup services in Queensland. 24/7 emergency response for flue fire, chimney restoration.',
+        subtitle: 'Professional chimney fire damage cleanup services across Australia. 24/7 emergency response for flue fire, chimney restoration.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

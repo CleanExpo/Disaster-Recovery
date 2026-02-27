@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Storm Surge Flood Damage',
-  description: 'Professional storm surge flood damage services in Queensland. 24/7 emergency response for coastal flooding, tidal damage.',
+  description: 'Professional storm surge flood damage services across Australia. 24/7 emergency response for coastal flooding, tidal damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/storm-surge-damage',
   },
@@ -20,7 +20,7 @@ export default function StormSurgeFloodDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Storm Surge Flood Damage',
-        subtitle: 'Professional storm surge flood damage services in Queensland. 24/7 emergency response for coastal flooding, tidal damage.',
+        subtitle: 'Professional storm surge flood damage services across Australia. 24/7 emergency response for coastal flooding, tidal damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

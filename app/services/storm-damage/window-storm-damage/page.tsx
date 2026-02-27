@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Storm Window Damage',
-  description: 'Professional storm window damage services in Queensland. 24/7 emergency response for broken windows, glass damage.',
+  description: 'Professional storm window damage services across Australia. 24/7 emergency response for broken windows, glass damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/window-storm-damage',
   },
@@ -20,7 +20,7 @@ export default function StormWindowDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Storm Window Damage',
-        subtitle: 'Professional storm window damage services in Queensland. 24/7 emergency response for broken windows, glass damage.',
+        subtitle: 'Professional storm window damage services across Australia. 24/7 emergency response for broken windows, glass damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

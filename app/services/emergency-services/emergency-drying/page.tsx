@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Structural Drying',
-  description: 'Professional emergency structural drying services in Queensland. 24/7 emergency response for rapid drying, moisture removal.',
+  description: 'Professional emergency structural drying services across Australia. 24/7 emergency response for rapid drying, moisture removal.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-drying',
   },
@@ -20,7 +20,7 @@ export default function EmergencyStructuralDryingPage() {
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
         title: 'Emergency Structural Drying',
-        subtitle: 'Professional emergency structural drying services in Queensland. 24/7 emergency response for rapid drying, moisture removal.',
+        subtitle: 'Professional emergency structural drying services across Australia. 24/7 emergency response for rapid drying, moisture removal.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-emergency-response.webp"

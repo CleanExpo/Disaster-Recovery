@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Bushfire Smoke Damage',
-  description: 'Professional bushfire smoke damage services in Queensland. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
+  description: 'Professional bushfire smoke damage services across Australia. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/bushfire-smoke-damage',
   },
@@ -20,7 +20,7 @@ export default function BushfireSmokeDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Bushfire Smoke Damage',
-        subtitle: 'Professional bushfire smoke damage services in Queensland. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
+        subtitle: 'Professional bushfire smoke damage services across Australia. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

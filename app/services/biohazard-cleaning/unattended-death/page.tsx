@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Unattended Death Cleanup',
-  description: 'Professional unattended death cleanup services in Queensland. 24/7 emergency response for decomposition cleanup, deceased estate.',
+  description: 'Professional unattended death cleanup services across Australia. 24/7 emergency response for decomposition cleanup, deceased estate.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/unattended-death',
   },
@@ -20,7 +20,7 @@ export default function UnattendedDeathCleanupPage() {
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Unattended Death Cleanup',
-        subtitle: 'Professional unattended death cleanup services in Queensland. 24/7 emergency response for decomposition cleanup, deceased estate.',
+        subtitle: 'Professional unattended death cleanup services across Australia. 24/7 emergency response for decomposition cleanup, deceased estate.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"

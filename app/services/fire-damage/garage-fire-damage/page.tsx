@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Garage Fire Restoration',
-  description: 'Professional garage fire restoration services in Queensland. 24/7 emergency response for vehicle fire, garage smoke damage.',
+  description: 'Professional garage fire restoration services across Australia. 24/7 emergency response for vehicle fire, garage smoke damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/fire-damage/garage-fire-damage',
   },
@@ -20,7 +20,7 @@ export default function GarageFireRestorationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Garage Fire Restoration',
-        subtitle: 'Professional garage fire restoration services in Queensland. 24/7 emergency response for vehicle fire, garage smoke damage.',
+        subtitle: 'Professional garage fire restoration services across Australia. 24/7 emergency response for vehicle fire, garage smoke damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

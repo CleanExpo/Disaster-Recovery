@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Grease Trap Overflow',
-  description: 'Professional grease trap overflow services in Queensland. 24/7 emergency response for commercial kitchen, grease spill.',
+  description: 'Professional grease trap overflow services across Australia. 24/7 emergency response for commercial kitchen, grease spill.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/grease-trap-overflow',
   },
@@ -20,7 +20,7 @@ export default function GreaseTrapOverflowPage() {
         heroImage: '/images/generated/disaster-recovery/hero-sewage-cleanup.webp',
         icon: <Droplets className="h-12 w-12" />,
         title: 'Grease Trap Overflow',
-        subtitle: 'Professional grease trap overflow services in Queensland. 24/7 emergency response for commercial kitchen, grease spill.',
+        subtitle: 'Professional grease trap overflow services across Australia. 24/7 emergency response for commercial kitchen, grease spill.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-sewage-cleanup.webp"

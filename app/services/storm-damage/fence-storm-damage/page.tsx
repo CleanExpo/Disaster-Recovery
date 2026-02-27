@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Fence Storm Damage Repair',
-  description: 'Professional fence storm damage repair services in Queensland. 24/7 emergency response for fence repair, boundary damage.',
+  description: 'Professional fence storm damage repair services across Australia. 24/7 emergency response for fence repair, boundary damage.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/storm-damage/fence-storm-damage',
   },
@@ -20,7 +20,7 @@ export default function FenceStormDamageRepairPage() {
         heroImage: '/images/generated/disaster-recovery/hero-storm-damage.webp',
         icon: <CloudLightning className="h-12 w-12" />,
         title: 'Fence Storm Damage Repair',
-        subtitle: 'Professional fence storm damage repair services in Queensland. 24/7 emergency response for fence repair, boundary damage.',
+        subtitle: 'Professional fence storm damage repair services across Australia. 24/7 emergency response for fence repair, boundary damage.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-storm-damage.webp"

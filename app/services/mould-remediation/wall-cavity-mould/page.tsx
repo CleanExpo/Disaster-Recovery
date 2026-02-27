@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Wall Cavity Mould Removal',
-  description: 'Professional wall cavity mould removal services in Queensland. 24/7 emergency response for inside wall mould, hidden mould.',
+  description: 'Professional wall cavity mould removal services across Australia. 24/7 emergency response for inside wall mould, hidden mould.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/wall-cavity-mould',
   },
@@ -20,7 +20,7 @@ export default function WallCavityMouldRemovalPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Wall Cavity Mould Removal',
-        subtitle: 'Professional wall cavity mould removal services in Queensland. 24/7 emergency response for inside wall mould, hidden mould.',
+        subtitle: 'Professional wall cavity mould removal services across Australia. 24/7 emergency response for inside wall mould, hidden mould.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"

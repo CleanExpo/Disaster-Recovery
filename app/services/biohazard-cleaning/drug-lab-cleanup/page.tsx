@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Drug Lab Decontamination',
-  description: 'Professional drug lab decontamination services in Queensland. 24/7 emergency response for meth lab cleanup, chemical remediation.',
+  description: 'Professional drug lab decontamination services across Australia. 24/7 emergency response for meth lab cleanup, chemical remediation.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/drug-lab-cleanup',
   },
@@ -20,7 +20,7 @@ export default function DrugLabDecontaminationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
         title: 'Drug Lab Decontamination',
-        subtitle: 'Professional drug lab decontamination services in Queensland. 24/7 emergency response for meth lab cleanup, chemical remediation.',
+        subtitle: 'Professional drug lab decontamination services across Australia. 24/7 emergency response for meth lab cleanup, chemical remediation.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"
