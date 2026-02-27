@@ -5,8 +5,25 @@ import { getRelatedPages } from '@/lib/internal-links';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Biohazard Cleaning Brisbane',
-  description: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police-registered, IICRC-certified. Use Our Online Form',
+  title: 'Biohazard Cleaning Services | IICRC Certified',
+  description: 'Professional biohazard cleaning and crime scene cleanup across Australia. Discreet, compassionate trauma cleaning, unattended death, blood cleanup. IICRC-certified technicians.',
+  keywords: [
+    'biohazard cleaning',
+    'crime scene cleanup',
+    'trauma cleaning',
+    'blood cleanup',
+    'unattended death cleanup',
+    'biohazard remediation',
+    'hoarding cleanup',
+    'drug lab cleanup',
+    'sharps disposal',
+    'infectious disease cleanup',
+    'bodily fluid cleanup',
+    'suicide cleanup',
+    'IICRC S540 certified',
+    'biohazard decontamination',
+    'forensic cleaning',
+  ],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning',
   },
@@ -19,15 +36,15 @@ export default function BiohazardCleaningPage() {
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-biohazard.webp',
         icon: <AlertTriangle className="h-12 w-12" />,
-        title: 'Biohazard Cleaning Brisbane',
-        subtitle: 'Professional biohazard cleaning and crime scene cleanup in Brisbane. Discrete, compassionate trauma cleaning, unattended death, blood cleanup. Police-registered, IICRC-certified. Use Our Online Form',
+        title: 'Biohazard Cleaning Services',
+        subtitle: 'Professional biohazard cleaning and crime scene cleanup across Australia. Discreet, compassionate trauma cleaning, unattended death, blood cleanup. IICRC-certified technicians.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-biohazard.webp"
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Services', href: '/services' },
-        { label: 'Biohazard Cleaning Brisbane' },
+        { label: 'Biohazard Cleaning Services' },
       ]}
       sections={[
         {

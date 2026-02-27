@@ -7,6 +7,18 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Indoor Environmental Professional (IEP) Services',
   description: 'Certified Indoor Environmental Professionals (IEP) providing comprehensive building health assessments, air quality testing, mould investigations, and environmental consulting nationwide.',
+  keywords: [
+    'indoor environmental professional',
+    'IEP services',
+    'indoor air quality testing',
+    'mould investigation',
+    'building health assessment',
+    'environmental consulting',
+    'air quality monitoring',
+    'moisture assessment',
+    'building diagnostics',
+    'environmental site assessment',
+  ],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/indoor-environmental-professional',
   },

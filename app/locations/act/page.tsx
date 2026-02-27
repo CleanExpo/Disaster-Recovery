@@ -5,8 +5,8 @@ import { getLocationSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Disaster Recoveryn Capital Territory | 24/7',
-  description: 'Leading disaster recovery services nationwiden Capital Territory. Emergency response for Bushfires, Storms, Hail, Frost Damage. Serving Canberra, Belconnen, Tuggeranong, Gungahlin and all ACT regions. Call Online Form Available 24/7.',
+  title: 'Disaster Recovery ACT | 24/7 Emergency Services',
+  description: 'Leading disaster recovery services in the Australian Capital Territory. Emergency response for bushfires, storms, hail, frost damage. Serving Canberra, Belconnen, Tuggeranong, Gungahlin and all ACT regions.',
   keywords: [
     'disaster recovery Australian Capital Territory',
     'emergency services Canberra',

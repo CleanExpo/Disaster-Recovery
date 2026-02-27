@@ -7,6 +7,23 @@ import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 export const metadata: Metadata = {
   title: 'Specialty Restoration Services',
   description: 'Specialist disaster recovery for valuable and unique items. Document drying, electronics restoration, art conservation, antique repair, and more. IICRC-certified technicians.',
+  keywords: [
+    'specialty restoration services',
+    'document drying',
+    'electronics water damage restoration',
+    'art restoration',
+    'antique restoration',
+    'piano water damage',
+    'boat water damage',
+    'caravan water damage',
+    'solar panel water damage',
+    'wine cellar flooding',
+    'asbestos water damage',
+    'specialist item restoration',
+    'valuable item recovery',
+    'contents restoration',
+    'heritage restoration',
+  ],
   alternates: { canonical: 'https://disasterrecovery.com.au/services/specialty-services' },
 };
 

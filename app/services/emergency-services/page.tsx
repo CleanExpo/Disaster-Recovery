@@ -5,7 +5,24 @@ import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
   title: 'Flood & Water Emergencies',
-  description: '24/7 emergency disaster response services across Queensland. Immediate response for water, fire, storm, and hazardous material incidents.',
+  description: '24/7 emergency disaster response services across Australia. Immediate response for water, fire, storm, and hazardous material incidents.',
+  keywords: [
+    'emergency restoration services',
+    '24/7 emergency response',
+    'emergency water extraction',
+    'emergency board up',
+    'emergency tarping',
+    'disaster response team',
+    'emergency plumbing response',
+    'emergency drying services',
+    'after hours emergency response',
+    'emergency sanitisation',
+    'priority response team',
+    'emergency power restoration',
+    'flood emergency response',
+    'storm emergency services',
+    'emergency disaster recovery',
+  ],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/emergency-services',
   },

@@ -14,14 +14,14 @@ import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRig
 
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
-  title: 'Fire Damage Restoration Brisbane',
-  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. IICRC-certified contractors. Use Our Online Form',
+  title: 'Fire Damage Restoration | 24/7 Response',
+  description: 'Expert fire damage restoration across Australia. 24/7 emergency response for smoke damage, soot removal, odour elimination. IICRC-certified contractors.',
   keywords: [
-    'fire damage restoration Brisbane',
-    'smoke damage cleanup Queensland',
+    'fire damage restoration',
+    'smoke damage cleanup',
     'fire restoration services',
     'smoke and soot removal',
-    'fire damage repair Brisbane',
+    'fire damage repair',
     'odour removal after fire',
     'fire damage insurance claims',
     'emergency fire restoration',
@@ -32,8 +32,8 @@ export const metadata: Metadata = generateSEO({
   ],
   canonical: 'https://disasterrecovery.com.au/services/fire-damage-restoration',
   openGraph: {
-    title: 'Fire & Smoke Damage Restoration Brisbane - 24/7 Emergency Service',
-    description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, IICRC-certified, complete restoration services.',
+    title: 'Fire & Smoke Damage Restoration | 24/7 Emergency',
+    description: 'Professional fire damage restoration and smoke cleanup across Australia. Fast response, IICRC-certified, complete restoration services.',
     images: [{ url: '/images/services/fire-damage-restoration.webp', alt: 'Fire Damage Restoration Service' }],
     type: 'website'
   }

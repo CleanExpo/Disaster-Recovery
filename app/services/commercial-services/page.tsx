@@ -6,6 +6,23 @@ import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 export const metadata: Metadata = {
   title: 'Commercial Restoration Services',
   description: 'Professional commercial restoration services for businesses across Australia. Minimising downtime and protecting your business assets.',
+  keywords: [
+    'commercial restoration services',
+    'commercial water damage restoration',
+    'office water damage',
+    'retail flood damage',
+    'warehouse flooding restoration',
+    'hotel flood recovery',
+    'restaurant water damage',
+    'hospital water damage',
+    'school water damage',
+    'factory water damage',
+    'data center flooding',
+    'gym flooding restoration',
+    'commercial disaster recovery',
+    'business property restoration',
+    'commercial fire damage restoration',
+  ],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/commercial-services',
   },

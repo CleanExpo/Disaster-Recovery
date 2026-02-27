@@ -15,18 +15,18 @@ import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscop
 
 // SEO Metadata with AI optimisation
 export const metadata: Metadata = generateSEO({
-  title: 'Mould Remediation Brisbane',
-  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form',
+  title: 'Mould Remediation Services | IICRC Certified',
+  description: 'Expert mould remediation and removal across Australia. IICRC-certified mould inspection, testing, and complete removal. Health-focused solutions with 24/7 response.',
   keywords: [
-    'mould remediation Brisbane',
-    'mould removal Queensland',
-    'black mould removal Brisbane',
+    'mould remediation',
+    'mould removal services',
+    'black mould removal',
     'mould inspection services',
-    'mould testing Brisbane',
+    'mould testing',
     'toxic mould remediation',
     'bathroom mould removal',
     'ceiling mould treatment',
-    'mould prevention Brisbane',
+    'mould prevention',
     'IICRC mould certified',
     'air quality testing mould',
     'flood mould remediation',
@@ -35,8 +35,8 @@ export const metadata: Metadata = generateSEO({
   ],
   canonical: 'https://disasterrecovery.com.au/services/mould-remediation',
   openGraph: {
-    title: 'Professional Mould Remediation Brisbane - Safe &',
-    description: 'IICRC-certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Submit your claim online now.',
+    title: 'Professional Mould Remediation | IICRC-Certified',
+    description: 'IICRC-certified mould remediation experts across Australia. Complete mould removal, air quality testing, and prevention. Lodge a claim online now.',
     images: [{ url: '/images/services/mould-remediation.webp', alt: 'Professional Mould Remediation Service' }],
     type: 'website'
   }
