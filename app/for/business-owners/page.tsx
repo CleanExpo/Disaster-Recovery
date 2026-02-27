@@ -151,10 +151,9 @@ export default function BusinessOwnersPage() {
                   claim and one less thing to replace before you can reopen.
                 </p>
 
-                <h3>5. Call Disaster Recovery — 60-minute response guarantee</h3>
+                <h3>5. Contact Disaster Recovery — 60-minute response guarantee</h3>
                 <p>
-                  Call us or{' '}
-                  <Link href="/claim"><strong>lodge an emergency claim online</strong></Link>.
+                  <Link href="/claim"><strong>Lodge an emergency claim online</strong></Link>.
                   Our IICRC-certified contractors from the national NRPG network arrive within 60
                   minutes, 24 hours a day, 365 days a year. We begin emergency make-safe
                   immediately: water extraction, containment, drying equipment deployment and

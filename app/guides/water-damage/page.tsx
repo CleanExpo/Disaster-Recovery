@@ -587,7 +587,7 @@ function WaterDamageGuidePageOriginal() {
               </div>
               <div className="flex items-start gap-3">
                 <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">2</span>
-                <p>Call us immediately</p>
+                <p>Lodge a claim online immediately</p>
               </div>
               <div className="flex items-start gap-3">
                 <span className="bg-white/20 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 font-bold">3</span>

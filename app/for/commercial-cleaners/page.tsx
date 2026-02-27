@@ -111,8 +111,8 @@ export default function CommercialCleanersPage() {
                 If your cleaning team cannot safely complete the job with standard cleaning
                 equipment and products, or if the job requires drying equipment, containment
                 barriers, HEPA filtration, PPE beyond standard cleaning gear, or specialist
-                certifications — it is a restoration job. Call us, and we will take it from
-                there.
+                certifications — it is a restoration job. Lodge a referral online, and we
+                will take it from there.
               </p>
             </div>
           ),
@@ -323,15 +323,15 @@ export default function CommercialCleanersPage() {
                   contractor match.
                 </li>
                 <li>
-                  <strong>Phone:</strong> Call <strong>1300 309 361</strong> to speak with our
-                  team directly. Available 24 hours a day, 7 days a week, 365 days a year.
+                  <strong>24/7 availability:</strong> Our online referral system operates around the clock
+                  — 24 hours a day, 7 days a week, 365 days a year.
                 </li>
               </ul>
 
               <h3 style={{ color: 'var(--ag-surface-white)' }}>What information to have ready</h3>
               <p style={{ color: 'rgba(255,255,255,0.85)' }}>
                 To ensure the fastest possible response, have the following details on hand
-                when you call or lodge online:
+                when you lodge your referral online:
               </p>
               <ul style={{ color: 'rgba(255,255,255,0.85)' }}>
                 <li><strong>Site address</strong> — the full street address of the affected property</li>
