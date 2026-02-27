@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Education & Schools Disaster Recovery | Specialised Industrial Restoration | Australia',
   description: 'School and university disaster recovery with minimal disruption to learning. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
   keywords: ["school disaster recovery","university restoration","education facility cleanup"]
+  alternates: { canonical: 'https://disasterrecovery.com.au/industries/education-schools' },
 };
 
 export default function EducationSchoolsPage() {

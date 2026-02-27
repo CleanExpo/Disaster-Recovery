@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Allianz Insurance Claims | Approved Restoration Provider | Claims Assistance',
-  description: 'Preferred Allianz insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.' };
+  description: 'Preferred Allianz insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/allianz' },
+};
 
 export default function AllianzInsurancePage() {
   return (

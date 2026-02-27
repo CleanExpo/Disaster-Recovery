@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description:
       'Expert-verified disaster recovery knowledge covering IICRC standards, Australian law, and restoration science.',
   },
+  alternates: { canonical: 'https://disasterrecovery.com.au/knowledge' },
 };
 
 const KNOWLEDGE_ENTRIES = [

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Emergency Response Protocols | PPRR Framework | NRPG',
   description:
     'Emergency disaster response protocols: PPRR framework, the golden hour in restoration, WHS obligations, professional response sequence, and Safe Work Australia compliance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/emergency-response-protocols' },
 };
 
 export default function EmergencyResponseProtocolsPage() {

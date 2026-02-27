@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'GIO Insurance Claims | Approved Restoration Provider | Claims Assistance',
-  description: 'Preferred GIO insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.' };
+  description: 'Preferred GIO insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/gio' },
+};
 
 export default function GIOInsurancePage() {
   return (

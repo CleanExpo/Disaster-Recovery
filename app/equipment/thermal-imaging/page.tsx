@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Thermal Imaging Cameras | Moisture detection | Advanced Restoration Technology',
-  description: 'Professional thermal imaging cameras for moisture detection. Latest technology for faster, better restoration results.' };
+  description: 'Professional thermal imaging cameras for moisture detection. Latest technology for faster, better restoration results.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/equipment/thermal-imaging' },
+};
 
 export default function ThermalImagingCamerasPage() {
   return (

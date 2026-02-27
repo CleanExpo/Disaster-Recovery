@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Rural Properties Disaster Recovery | Farms and country properties | Australia',
-  description: 'Specialised disaster recovery for rural properties. Farms and country properties. IICRC-certified, 24/7 response.' };
+  description: 'Specialised disaster recovery for rural properties. Farms and country properties. IICRC-certified, 24/7 response.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/rural' },
+};
 
 export default function RuralPropertiesPage() {
   return (

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Major Flood Recovery Services | 24/7 Online Emergency Response | Disaster Recovery',
   description: 'Comprehensive flood damage restoration, water extraction, and mould prevention. Serving Queensland, Northern NSW, Victoria. 1-2 hours response time.',
   keywords: ["flood recovery","water damage restoration","flood cleanup"]
+  alternates: { canonical: 'https://disasterrecovery.com.au/disasters/flood-recovery' },
 };
 
 export default function MajorFloodRecoveryPage() {

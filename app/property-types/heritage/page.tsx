@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Heritage Buildings Disaster Recovery | Protected and historical properties | Australia',
-  description: 'Specialised disaster recovery for heritage buildings. Protected and historical properties. IICRC-certified, 24/7 response.' };
+  description: 'Specialised disaster recovery for heritage buildings. Protected and historical properties. IICRC-certified, 24/7 response.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/heritage' },
+};
 
 export default function HeritageBuildingsPage() {
   return (

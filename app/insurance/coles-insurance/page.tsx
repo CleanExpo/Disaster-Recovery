@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Coles Insurance Insurance Claims | Approved Restoration Provider | Claims Assistance',
-  description: 'Preferred Coles Insurance insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.' };
+  description: 'Preferred Coles Insurance insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/coles-insurance' },
+};
 
 export default function ColesInsuranceInsurancePage() {
   return (

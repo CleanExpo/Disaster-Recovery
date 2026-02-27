@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Psychrometric Science in Restoration | Structural Drying | NRPG',
   description:
     'Psychrometric science in disaster restoration: temperature-humidity relationships, grain depression, vapour pressure differentials, and the drying equation for Australian conditions.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/psychrometric-science-restoration' },
 };
 
 export default function PsychrometricScienceRestorationPage() {

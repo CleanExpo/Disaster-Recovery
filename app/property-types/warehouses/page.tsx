@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Warehouse & Storage Disaster Recovery | Industrial Properties | $2200 Minimum',
   description: 'Large-scale disaster recovery for warehouses and storage facilities. 45 minutes response. 100% insurance coverage.',
   keywords: ["warehouse flood recovery","storage facility restoration","industrial damage"]
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/warehouses' },
 };
 
 export default function WarehouseStoragePage() {

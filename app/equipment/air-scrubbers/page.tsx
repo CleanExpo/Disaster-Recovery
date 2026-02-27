@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'HEPA Air Scrubbers | Air purification | Advanced Restoration Technology',
-  description: 'Professional hepa air scrubbers for air purification. Latest technology for faster, better restoration results.' };
+  description: 'Professional hepa air scrubbers for air purification. Latest technology for faster, better restoration results.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/equipment/air-scrubbers' },
+};
 
 export default function HEPAAirScrubbersPage() {
   return (

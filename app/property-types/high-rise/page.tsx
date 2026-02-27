@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'High Rise Buildings Disaster Recovery | Apartments and office towers | Australia',
-  description: 'Specialised disaster recovery for high rise buildings. Apartments and office towers. IICRC-certified, 24/7 response.' };
+  description: 'Specialised disaster recovery for high rise buildings. Apartments and office towers. IICRC-certified, 24/7 response.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/high-rise' },
+};
 
 export default function HighRiseBuildingsPage() {
   return (

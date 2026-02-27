@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Christmas Emergency Services | December 24-26 | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available December 24-26. No call-out fees, immediate response nationwide.' };
+  description: 'Emergency disaster recovery services available December 24-26. No call-out fees, immediate response nationwide.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/emergency/christmas' },
+};
 
 export default function ChristmasEmergencyPage() {
   return (

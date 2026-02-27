@@ -7,7 +7,9 @@ import ChildPageGrid from '@/components/seo/ChildPageGrid';
 
 export const metadata: Metadata = {
   title: 'Property Type Disaster Recovery | Residential, Commercial, Strata | All Properties',
-  description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.' };
+  description: 'Specialised disaster recovery for all property types. Residential homes, commercial offices, strata properties, government facilities.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types' },
+};
 
 export default function PropertyTypesPage() {
   return (

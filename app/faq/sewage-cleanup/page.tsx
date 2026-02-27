@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'sewage cleanup FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about sewage cleanup. Expert answers to common questions, tips, and advice.' };
+  description: 'Everything you need to know about sewage cleanup. Expert answers to common questions, tips, and advice.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/faq/sewage-cleanup' },
+};
 
 export default function sewagecleanupFAQPage() {
   return (

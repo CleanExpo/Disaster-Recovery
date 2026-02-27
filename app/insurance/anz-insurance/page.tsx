@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'ANZ Insurance Insurance Claims | Approved Restoration Provider | Claims Assistance',
-  description: 'Preferred ANZ Insurance insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.' };
+  description: 'Preferred ANZ Insurance insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/anz-insurance' },
+};
 
 export default function ANZInsuranceInsurancePage() {
   return (

@@ -7,7 +7,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | All FAQs | Disaster Recovery',
-  description: 'Find answers to all your questions about disaster recovery, water damage, fire restoration, mould removal, insurance claims, and emergency response.' };
+  description: 'Find answers to all your questions about disaster recovery, water damage, fire restoration, mould removal, insurance claims, and emergency response.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/faq' },
+};
 
 export default function FAQIndexPage() {
   return (

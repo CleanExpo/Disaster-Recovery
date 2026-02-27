@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Cheap vs Quality Restoration | Comparison Guide | Make the Right Choice',
-  description: 'Compare cheap vs quality restoration. Pros, cons, costs, and expert recommendations to help you decide.' };
+  description: 'Compare cheap vs quality restoration. Pros, cons, costs, and expert recommendations to help you decide.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/compare/cheap-vs-quality' },
+};
 
 export default function CheapvsQualityRestorationPage() {
   return (

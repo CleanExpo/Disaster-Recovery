@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Residential Properties Disaster Recovery | Houses, units, apartments | Australia',
-  description: 'Specialised disaster recovery for residential properties. Houses, units, apartments. IICRC-certified, 24/7 response.' };
+  description: 'Specialised disaster recovery for residential properties. Houses, units, apartments. IICRC-certified, 24/7 response.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/residential' },
+};
 
 export default function ResidentialPropertiesPage() {
   return (

@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'document drying FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about document drying. Expert answers to common questions, tips, and advice.' };
+  description: 'Everything you need to know about document drying. Expert answers to common questions, tips, and advice.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/faq/document-drying' },
+};
 
 export default function documentdryingFAQPage() {
   return (

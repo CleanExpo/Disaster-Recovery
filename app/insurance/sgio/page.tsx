@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'SGIO Insurance Claims | Approved Restoration Provider | Claims Assistance',
-  description: 'Preferred SGIO insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.' };
+  description: 'Preferred SGIO insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/sgio' },
+};
 
 export default function SGIOInsurancePage() {
   return (

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Insurance Payouts & Cash Settlements | Disaster Recovery | NRPG',
   description:
     'When to accept an insurance payout, when to refuse, contents claims strategy, hidden damage risks, and your rights under Australian insurance law.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/insurance-payout-settlement' },
 };
 
 export default function InsurancePayoutSettlementPage() {

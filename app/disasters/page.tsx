@@ -7,7 +7,9 @@ import ChildPageGrid from '@/components/seo/ChildPageGrid';
 
 export const metadata: Metadata = {
   title: 'Disaster Types & Emergency Response | All Australian Natural Disasters',
-  description: 'Comprehensive disaster recovery for all types of natural disasters in Australia. Cyclones, bushfires, floods, storms, and more.' };
+  description: 'Comprehensive disaster recovery for all types of natural disasters in Australia. Cyclones, bushfires, floods, storms, and more.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/disasters' },
+};
 
 export default function DisastersPage() {
   return (

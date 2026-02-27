@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Government Facilities Disaster Recovery | Federal, state, local government | Australia',
-  description: 'Specialised disaster recovery for government facilities. Federal, state, local government. IICRC-certified, 24/7 response.' };
+  description: 'Specialised disaster recovery for government facilities. Federal, state, local government. IICRC-certified, 24/7 response.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/government' },
+};
 
 export default function GovernmentFacilitiesPage() {
   return (

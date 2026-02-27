@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'Hotel & Accommodation Disaster Recovery | Hospitality Properties | $2200 Minimum',
   description: 'Minimal disruption disaster recovery for hotels and accommodation providers. Immediate response. 100% insurance coverage.',
   keywords: ["hotel disaster recovery","accommodation restoration","hospitality damage"]
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/hotels-accommodation' },
 };
 
 export default function HotelAccommodationPage() {

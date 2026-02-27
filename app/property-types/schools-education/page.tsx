@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: 'School & Education Disaster Recovery | Education Properties | $2200 Minimum',
   description: 'Safe and rapid disaster recovery for schools and educational facilities. 30 minutes response. 100% insurance coverage.',
   keywords: ["school disaster recovery","education facility restoration","classroom flood damage"]
+  alternates: { canonical: 'https://disasterrecovery.com.au/property-types/schools-education' },
 };
 
 export default function SchoolEducationPage() {

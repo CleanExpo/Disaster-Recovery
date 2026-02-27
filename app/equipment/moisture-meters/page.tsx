@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Professional Moisture Meters | Water damage assessment | Advanced Restoration Technology',
-  description: 'Professional professional moisture meters for water damage assessment. Latest technology for faster, better restoration results.' };
+  description: 'Professional professional moisture meters for water damage assessment. Latest technology for faster, better restoration results.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/equipment/moisture-meters' },
+};
 
 export default function ProfessionalMoistureMetersPage() {
   return (

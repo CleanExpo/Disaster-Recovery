@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'storm damage FAQ | Common Questions Answered | Expert Guide',
-  description: 'Everything you need to know about storm damage. Expert answers to common questions, tips, and advice.' };
+  description: 'Everything you need to know about storm damage. Expert answers to common questions, tips, and advice.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/faq/storm-damage' },
+};
 
 export default function stormdamageFAQPage() {
   return (

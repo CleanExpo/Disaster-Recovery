@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Late Night Emergency Services | 10PM - 2AM | 24/7 Disaster Recovery',
-  description: 'Emergency disaster recovery services available 10PM - 2AM. No call-out fees, immediate response nationwide.' };
+  description: 'Emergency disaster recovery services available 10PM - 2AM. No call-out fees, immediate response nationwide.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/emergency/late-night' },
+};
 
 export default function LateNightEmergencyPage() {
   return (

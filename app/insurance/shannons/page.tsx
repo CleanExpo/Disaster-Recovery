@@ -6,7 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Shannons Insurance Claims | Approved Restoration Provider | Claims Assistance',
-  description: 'Preferred Shannons insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.' };
+  description: 'Preferred Shannons insurance restoration provider. Full claims documentation, flexible payment options, and 24/7 claims assistance.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/shannons' },
+};
 
 export default function ShannonsInsurancePage() {
   return (
