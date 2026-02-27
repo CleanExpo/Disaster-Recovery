@@ -74,9 +74,14 @@ const residentialProviders = [
   { name: 'ANZ Insurance', href: '/insurance/anz-insurance' },
   { name: 'NAB Insurance', href: '/insurance/nab-insurance' },
   { name: 'Westpac Insurance', href: '/insurance/westpac-insurance' },
+  { name: 'Terri Scheer', href: '/insurance/terri-scheer' },
+  { name: 'Apia', href: '/insurance/apia' },
+  { name: 'Elders Insurance', href: '/insurance/elders-insurance' },
+  { name: 'SGUA', href: '/insurance/sgua' },
 ];
 
 const heavyCommercialProviders = [
+  { name: 'IAG', href: '/insurance/iag', desc: 'Insurance Australia Group — parent of NRMA, CGU, SGIO' },
   { name: 'Chubb', href: '/insurance/chubb', desc: 'Property, liability, engineering, multinational' },
   { name: 'Zurich', href: '/insurance/zurich', desc: 'Commercial lines, NM Insurance underwriter' },
   { name: 'AIG', href: '/insurance/aig', desc: 'Industrial, aerospace, large commercial' },

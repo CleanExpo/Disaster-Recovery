@@ -101,6 +101,12 @@ const PAGES_WITH_OWN_FAQ = [
   '/insurance/global-aerospace',
   '/insurance/allianz-aviation',
   '/insurance/shielded-aviation',
+  // Additional residential & landlord insurance providers
+  '/insurance/iag',
+  '/insurance/terri-scheer',
+  '/insurance/apia',
+  '/insurance/elders-insurance',
+  '/insurance/sgua',
 ];
 
 // All data below is trusted static content — safe to stringify

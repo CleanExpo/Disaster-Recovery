@@ -1,0 +1,32 @@
+import { Metadata } from 'next';
+import { Shield } from 'lucide-react';
+import { AgContentPageTemplate } from '@/components/antigravity';
+import { getInsuranceSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
+
+export const metadata: Metadata = {
+  title: 'Apia Insurance Claims | Over 50s Home Insurance Restoration',
+  description: 'IICRC-certified restoration for Apia insurance claims. Suncorp Group brand for over 50s — full claims documentation for home and landlord property damage.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/insurance/apia' },
+};
+
+export default function ApiaInsurancePage() {
+  return (
+    <AgContentPageTemplate
+      hero={{
+        gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 100%)',
+        icon: <Shield className="h-12 w-12" />,
+        title: 'Apia Insurance Claims',
+        subtitle: 'Suncorp Group Brand • Over 50s Specialist • Full Claims Documentation',
+      }}
+      cta={{ text: 'Start Your Claim', href: '/claim' }}
+      breadcrumbs={[
+        { label: 'Home', href: '/' },
+        { label: 'Insurance', href: '/insurance' },
+        { label: 'Apia Insurance Claims' },
+      ]}
+      sections={getInsuranceSections({ insurerName: 'Apia', insurerSlug: 'apia' })}
+      relatedPages={getRelatedPages('insurance')}
+    />
+  );
+}
