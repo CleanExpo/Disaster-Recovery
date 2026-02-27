@@ -23,7 +23,7 @@ export default function CertificationsPage() {
         gradient: 'linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%)',
         icon: <Award className="h-12 w-12" />,
         title: "Certifications",
-        subtitle: "",
+        subtitle: "Mandatory OH&S training and industry certifications required for all Disaster Recovery contractors. IICRC, WorkSafe, ISO, HAZMAT, and asbestos licensing.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[

@@ -22,7 +22,7 @@ export default function TestimonialsPage() {
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
         icon: <Star className="h-12 w-12" />,
         title: "Testimonials",
-        subtitle: "",
+        subtitle: "Real stories from property owners across Australia who trusted Disaster Recovery for emergency restoration. 4.7-star rated.",
       }}
       cta={{ text: 'Get Help Now', href: '/claim' }}
       breadcrumbs={[

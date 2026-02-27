@@ -22,7 +22,7 @@ export default function EventsGalleryPage() {
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 100%)',
         icon: <Camera className="h-12 w-12" />,
         title: "Gallery",
-        subtitle: "",
+        subtitle: "Before-and-after photos from disaster restoration projects across Australia. See real results from IICRC-certified contractors.",
       }}
       cta={{ text: 'Get Started', href: '/claim' }}
       breadcrumbs={[

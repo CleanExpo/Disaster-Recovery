@@ -22,7 +22,7 @@ export default function CareersPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Briefcase className="h-12 w-12" />,
         title: "Careers",
-        subtitle: "",
+        subtitle: "Join the Disaster Recovery team. We are building Australia's largest IICRC-certified contractor network for emergency restoration.",
       }}
       cta={{ text: 'View Openings', href: '/careers' }}
       breadcrumbs={[

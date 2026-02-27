@@ -24,7 +24,7 @@ export default function StormDamageChecklistPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #475569 100%)',
         icon: <CloudLightning className="h-12 w-12" />,
         title: "Storm Damage Emergency Checklist",
-        subtitle: "",
+        subtitle: "Roof damage, fallen trees, water ingress — emergency steps for storm-affected properties. Tarping, documentation, and insurance notification.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[

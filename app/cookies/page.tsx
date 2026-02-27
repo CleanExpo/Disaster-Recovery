@@ -22,7 +22,7 @@ export default function CookiesPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <FileText className="h-12 w-12" />,
         title: "Cookies",
-        subtitle: "",
+        subtitle: "How Disaster Recovery Australia uses cookies and similar technologies on our website.",
       }}
       cta={{ text: 'Contact Us', href: '/contact' }}
       breadcrumbs={[

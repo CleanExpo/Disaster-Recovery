@@ -24,7 +24,7 @@ export default function MouldChecklistPage() {
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
         icon: <Bug className="h-12 w-12" />,
         title: "Mould Discovery Emergency Checklist",
-        subtitle: "",
+        subtitle: "Found mould in your property? Follow these containment steps, health precautions, and documentation guidelines before calling certified remediators.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[

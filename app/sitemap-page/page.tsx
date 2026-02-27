@@ -22,7 +22,7 @@ export default function SitemapPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Map className="h-12 w-12" />,
         title: "Site Map",
-        subtitle: "",
+        subtitle: "Complete navigation guide to all Disaster Recovery services, locations, guides, emergency checklists, and insurance tools.",
       }}
       cta={{ text: 'Home', href: '/' }}
       breadcrumbs={[

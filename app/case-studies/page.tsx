@@ -23,8 +23,8 @@ export default function CaseStudiesPage() {
       hero={{
         gradient: 'linear-gradient(135deg, #14532D 0%, #15803D 100%)',
         icon: <FileText className="h-12 w-12" />,
-        title: 'Case studies',
-        subtitle: '',
+        title: 'Case Studies',
+        subtitle: 'Real disaster recovery case studies from across Australia. Bushfires, floods, cyclones, and storms — how certified contractors restored properties.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[

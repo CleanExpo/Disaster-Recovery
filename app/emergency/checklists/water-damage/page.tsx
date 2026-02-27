@@ -24,7 +24,7 @@ export default function WaterDamageChecklistPage() {
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1565C0 100%)',
         icon: <Droplets className="h-12 w-12" />,
         title: "Water Damage Emergency Checklist",
-        subtitle: "",
+        subtitle: "Step-by-step actions when water damage strikes. Stop the source, protect belongings, document for insurance, and arrange certified extraction.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[

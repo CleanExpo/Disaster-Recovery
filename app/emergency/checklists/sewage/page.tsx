@@ -24,7 +24,7 @@ export default function SewageChecklistPage() {
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
         icon: <Droplets className="h-12 w-12" />,
         title: "Sewage Backup Emergency Checklist",
-        subtitle: "",
+        subtitle: "Category 3 contaminated water requires immediate action. Safety steps, containment, health risks, and professional cleanup requirements.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[

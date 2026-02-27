@@ -24,7 +24,7 @@ export default function FireDamageChecklistPage() {
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
         icon: <Flame className="h-12 w-12" />,
         title: "Fire Damage Emergency Checklist",
-        subtitle: "",
+        subtitle: "What to do after a fire. Safety priorities, documentation steps for insurance, and when to call certified fire restoration professionals.",
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       breadcrumbs={[
