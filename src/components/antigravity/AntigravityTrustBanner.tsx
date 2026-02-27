@@ -3,7 +3,10 @@
  * Converted from TrustBanner.astro — Server Component
  */
 
-const insurers = ['NRMA Insurance', 'RACV', 'AAMI', 'Suncorp', 'Allianz', 'QBE'];
+const insurers = [
+  'NRMA Insurance', 'Suncorp', 'AAMI', 'Allianz', 'QBE', 'RACV',
+  'CGU', 'GIO', 'RACQ', 'Vero', 'CommInsure', 'Youi',
+];
 
 export function AntigravityTrustBanner() {
   return (
@@ -16,8 +19,8 @@ export function AntigravityTrustBanner() {
 
       <div className="ag-marquee-container">
         <div className="ag-marquee-track">
-          {/* Doubled for seamless infinite loop */}
-          {[...insurers, ...insurers].map((name, i) => (
+          {/* Tripled for seamless infinite loop on wide screens */}
+          {[...insurers, ...insurers, ...insurers].map((name, i) => (
             <div key={i} className="ag-logo-item">
               {name}
             </div>

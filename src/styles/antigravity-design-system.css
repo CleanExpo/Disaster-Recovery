@@ -628,6 +628,8 @@
   position: relative;
   z-index: 10;
   margin-top: -4rem;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .ag-assessment-header {
@@ -829,11 +831,18 @@
 .ag-bento-water {
   background:
     linear-gradient(135deg, rgba(212,232,247,0.2) 0%, rgba(168,212,240,0.15) 50%, rgba(232,244,253,0.2) 100%),
-    url('/images/generated/disaster-recovery/card-bg-water.webp'),
     url('/images/antigravity/bg-water.svg');
   background-size: cover;
   background-position: center;
   border-color: rgba(168, 212, 240, 0.5);
+}
+.ag-bg-loaded .ag-bento-water {
+  background:
+    linear-gradient(135deg, rgba(212,232,247,0.2) 0%, rgba(168,212,240,0.15) 50%, rgba(232,244,253,0.2) 100%),
+    url('/images/generated/disaster-recovery/card-bg-water.webp'),
+    url('/images/antigravity/bg-water.svg');
+  background-size: cover;
+  background-position: center;
 }
 .ag-bento-water::before {
   content: '';
@@ -859,11 +868,18 @@
 .ag-bento-fire {
   background:
     linear-gradient(135deg, rgba(45,34,38,0.2) 0%, rgba(74,48,40,0.15) 50%, rgba(107,58,31,0.2) 100%),
-    url('/images/generated/disaster-recovery/card-bg-fire.webp'),
     url('/images/antigravity/bg-fire.svg');
   background-size: cover;
   background-position: center;
   border-color: rgba(180, 100, 40, 0.4);
+}
+.ag-bg-loaded .ag-bento-fire {
+  background:
+    linear-gradient(135deg, rgba(45,34,38,0.2) 0%, rgba(74,48,40,0.15) 50%, rgba(107,58,31,0.2) 100%),
+    url('/images/generated/disaster-recovery/card-bg-fire.webp'),
+    url('/images/antigravity/bg-fire.svg');
+  background-size: cover;
+  background-position: center;
 }
 .ag-bento-fire::before {
   content: '';
@@ -889,11 +905,18 @@
 .ag-bento-mould {
   background:
     linear-gradient(135deg, rgba(200,212,198,0.2) 0%, rgba(168,184,164,0.15) 50%, rgba(212,221,208,0.2) 100%),
-    url('/images/generated/disaster-recovery/card-bg-mould.webp'),
     url('/images/antigravity/bg-mould.svg');
   background-size: cover;
   background-position: center;
   border-color: rgba(160, 185, 155, 0.5);
+}
+.ag-bg-loaded .ag-bento-mould {
+  background:
+    linear-gradient(135deg, rgba(200,212,198,0.2) 0%, rgba(168,184,164,0.15) 50%, rgba(212,221,208,0.2) 100%),
+    url('/images/generated/disaster-recovery/card-bg-mould.webp'),
+    url('/images/antigravity/bg-mould.svg');
+  background-size: cover;
+  background-position: center;
 }
 .ag-bento-mould::before {
   content: '';
@@ -919,11 +942,18 @@
 .ag-bento-storm {
   background:
     linear-gradient(135deg, rgba(90,106,122,0.2) 0%, rgba(122,138,154,0.15) 50%, rgba(74,90,106,0.2) 100%),
-    url('/images/generated/disaster-recovery/card-bg-storm.webp'),
     url('/images/antigravity/bg-storm.svg');
   background-size: cover;
   background-position: center;
   border-color: rgba(120, 140, 160, 0.4);
+}
+.ag-bg-loaded .ag-bento-storm {
+  background:
+    linear-gradient(135deg, rgba(90,106,122,0.2) 0%, rgba(122,138,154,0.15) 50%, rgba(74,90,106,0.2) 100%),
+    url('/images/generated/disaster-recovery/card-bg-storm.webp'),
+    url('/images/antigravity/bg-storm.svg');
+  background-size: cover;
+  background-position: center;
 }
 .ag-bento-storm::before {
   content: '';
@@ -954,11 +984,18 @@
 .ag-bento-biohazard {
   background:
     linear-gradient(135deg, rgba(26,32,48,0.2) 0%, rgba(42,48,64,0.15) 50%, rgba(26,37,53,0.2) 100%),
-    url('/images/generated/disaster-recovery/card-bg-biohazard.webp'),
     url('/images/antigravity/bg-biohazard.svg');
   background-size: cover;
   background-position: center;
   border-color: rgba(60, 80, 100, 0.5);
+}
+.ag-bg-loaded .ag-bento-biohazard {
+  background:
+    linear-gradient(135deg, rgba(26,32,48,0.2) 0%, rgba(42,48,64,0.15) 50%, rgba(26,37,53,0.2) 100%),
+    url('/images/generated/disaster-recovery/card-bg-biohazard.webp'),
+    url('/images/antigravity/bg-biohazard.svg');
+  background-size: cover;
+  background-position: center;
 }
 .ag-bento-biohazard::before {
   content: '';
@@ -1005,11 +1042,18 @@
 .ag-bento-sewage {
   background:
     linear-gradient(135deg, rgba(40,45,30,0.2) 0%, rgba(55,60,45,0.15) 50%, rgba(35,40,28,0.2) 100%),
-    url('/images/generated/disaster-recovery/card-bg-sewage.webp'),
     url('/images/antigravity/bg-biohazard.svg');
   background-size: cover;
   background-position: center;
   border-color: rgba(80, 90, 60, 0.5);
+}
+.ag-bg-loaded .ag-bento-sewage {
+  background:
+    linear-gradient(135deg, rgba(40,45,30,0.2) 0%, rgba(55,60,45,0.15) 50%, rgba(35,40,28,0.2) 100%),
+    url('/images/generated/disaster-recovery/card-bg-sewage.webp'),
+    url('/images/antigravity/bg-biohazard.svg');
+  background-size: cover;
+  background-position: center;
 }
 .ag-bento-sewage::before {
   content: '';
@@ -1151,7 +1195,7 @@
 
 @keyframes ag-scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 2rem)); }
+  100% { transform: translateX(calc(-33.333% - 1.333rem)); }
 }
 
 
@@ -1162,6 +1206,8 @@
 .ag-process-section {
   padding: 6rem 1.5rem;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .ag-process-header {
@@ -1393,6 +1439,8 @@
 .ag-slider-section {
   padding: 6rem 1.5rem;
   display: flex;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
   flex-direction: column;
   align-items: center;
 }
@@ -1445,10 +1493,10 @@
 }
 
 .ag-before-layer {
-  width: 50%;
+  width: 100%;
+  clip-path: inset(0 50% 0 0);
   z-index: 2;
   overflow: hidden;
-  border-right: 2px solid rgba(255, 255, 255, 0.4);
 }
 
 .ag-slider-img {
@@ -1527,6 +1575,8 @@
 .ag-equipment-section {
   padding: 8rem 1.5rem;
   background-color: #f9fbfc;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
   border-top: 1px solid var(--ag-border-grey);
   border-bottom: 1px solid var(--ag-border-grey);
 }
@@ -1644,6 +1694,8 @@
 .ag-network-cta {
   position: relative;
   padding: 6rem 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
   color: var(--ag-surface-white);
   overflow: hidden;
 }
@@ -2090,6 +2142,8 @@
 .ag-commercial-section {
   padding: 6rem 1.5rem;
   background: linear-gradient(135deg, #0F2942 0%, #1E3A5F 100%);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
   color: #ffffff;
 }
 
