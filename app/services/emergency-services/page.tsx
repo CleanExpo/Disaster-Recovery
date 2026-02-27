@@ -4,7 +4,7 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
 
 export const metadata: Metadata = {
-  title: 'Flood & Water Emergencies',
+  title: '24/7 Emergency Services | Rapid Disaster Response',
   description: '24/7 emergency disaster response services across Australia. Immediate response for water, fire, storm, and hazardous material incidents.',
   keywords: [
     'emergency restoration services',
@@ -35,7 +35,7 @@ export default function EmergencyServicesPage() {
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)',
         heroImage: '/images/generated/disaster-recovery/hero-emergency-response.webp',
         icon: <Siren className="h-12 w-12" />,
-        title: 'Flood & Water Emergencies',
+        title: '24/7 Emergency Disaster Response',
         subtitle: '24/7 emergency disaster response services across Australia. Immediate response for water, fire, storm, and hazardous material incidents.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}

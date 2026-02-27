@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Bushfire & Smoke Damage Services | 24/7',
-  description: 'Complete bushfire recovery including smoke damage, soot removal, and structural restoration. Serving NSW, Victoria, South Australia, Tasmania, Western Australia. Immediate response time.',
+  description: 'Complete bushfire recovery including smoke damage, soot removal, and structural restoration across Australia. 24/7 emergency response with IICRC-certified contractors.',
   keywords: ["bushfire restoration","smoke damage cleanup","fire recovery"],
   alternates: { canonical: 'https://disasterrecovery.com.au/disasters/bushfire-restoration' },
 };

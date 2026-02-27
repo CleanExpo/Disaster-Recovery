@@ -134,14 +134,14 @@ export default function GMBCategoryPage({ params }: { params: { category: string
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/client/emergency"
+                  href="/claim"
                   className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all"
                 >
                   Get Emergency Help
                   <ArrowRight className="inline-block ml-2 h-5 w-5" />
                 </Link>
                 <Link
-                  href="/client/instant-quote"
+                  href="/claim"
                   className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all"
                 >
                   Get Free Quote
@@ -312,7 +312,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/client/emergency"
+                href="/claim"
                 className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all animate-pulse"
               >
                 <MessageSquare className="inline-block mr-2 h-5 w-5" />

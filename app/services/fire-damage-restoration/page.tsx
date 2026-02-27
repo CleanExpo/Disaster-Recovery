@@ -100,7 +100,7 @@ export default function FireDamageRestorationPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Flame className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Fire Damage Emergency Response</span>
-          <a href="#contact-form" className="font-bold underline">online support</a>
+          <a href="/claim" className="font-bold underline">online support</a>
         </div>
       </div>
 
@@ -133,7 +133,7 @@ export default function FireDamageRestorationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
+                      <a href="/claim" className="flex items-center justify-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <MessageSquare className="h-5 w-5" />
                         Use Our Online Form'
                       </a>
@@ -492,7 +492,7 @@ export default function FireDamageRestorationPage() {
             are ready to respond immediately and restore your home or business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="/claim" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <MessageSquare className="h-5 w-5" />
               Use Our Online Form'
             </a>

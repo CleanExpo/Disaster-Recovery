@@ -5,7 +5,7 @@ import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
-  title: 'Professional Biohazard Cleanup Services | NRPG',
+  title: 'Professional Biohazard Cleanup Services | IICRC Certified',
   description: 'Expert biohazard cleanup and decontamination services. IICRC certified technicians available 24/7 for crime scene cleanup, trauma scene cleanup, and infectious waste removal.',
   keywords: [
     'biohazard cleanup',

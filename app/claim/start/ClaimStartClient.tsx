@@ -234,7 +234,7 @@ function ClaimStartContent() {
             <div>
               <h2 className="font-bold text-red-900 mb-1">Emergency? Submit Form Now!</h2>
               <p className="text-red-700">For immediate emergency response, use our 24/7 online form:</p>
-              <a href="#contact-form" className="text-2xl font-bold text-red-600 hover:text-red-700">
+              <a href="/claim" className="text-2xl font-bold text-red-600 hover:text-red-700">
                 Online Form Available 24/7
               </a>
             </div>

@@ -153,14 +153,14 @@ export default function WaterDamageRestorationPage() {
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
-                    href="/client/emergency"
+                    href="/claim"
                     className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center animate-pulse"
                   >
                     <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Call {AUSTRALIAN_CONFIG.emergency.number} Now
                   </Link>
                   <Link
-                    href="/client/instant-quote"
+                    href="/claim"
                     className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
                   >
                     Free Assessment
@@ -198,7 +198,7 @@ export default function WaterDamageRestorationPage() {
               <AlertTriangle className="h-6 w-6 text-red-600 animate-pulse" />
               <p className="text-white font-semibold">
                 CSIRO: Properties dried within 48 hours show 87% less structural damage.
-                <Link href="/client/emergency" className="text-red-600 ml-2 underline">
+                <Link href="/claim" className="text-red-600 ml-2 underline">
                   Act now - {buildingResearch.healthImpactCost} annual health cost from mould.
                 </Link>
               </p>
@@ -477,7 +477,7 @@ export default function WaterDamageRestorationPage() {
               Don't lose {buildingResearch.propertyValueLoss} of your property value.
             </p>
             <Link
-              href="/client/emergency"
+              href="/claim"
               className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"
             >
               <MessageSquare className="inline-block mr-2 h-6 w-6" />

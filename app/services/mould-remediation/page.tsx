@@ -115,7 +115,7 @@ export default function MouldRemediationPage() {
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertTriangle className="h-5 w-5 animate-pulse" />
           <span className="font-bold">Professional Mould Remediation Services</span>
-          <a href="#contact-form" className="font-bold underline">online support</a>
+          <a href="/claim" className="font-bold underline">online support</a>
         </div>
       </div>
 
@@ -149,7 +149,7 @@ export default function MouldRemediationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-800">
+                      <a href="/claim" className="flex items-center justify-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-800">
                         <MessageSquare className="h-5 w-5" />
                         Use Our Online Form'
                       </a>
@@ -535,7 +535,7 @@ export default function MouldRemediationPage() {
             Our certified experts provide safe, thorough mould removal with guaranteed results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+            <a href="/claim" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
               <MessageSquare className="h-5 w-5" />
               Use Our Online Form'
             </a>
