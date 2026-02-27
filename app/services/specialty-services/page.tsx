@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Sparkles } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
@@ -27,8 +28,21 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://disasterrecovery.com.au/services/specialty-services' },
 };
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Specialty Restoration Services',
+  description: 'Specialist disaster recovery for valuable and unique items. Document drying, electronics restoration, art conservation, antique repair, and more. IICRC-certified technicians.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization', name: 'Disaster Recovery' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Specialty Item and Contents Restoration',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim', serviceType: 'Online' },
+};
+
 export default function SpecialtyServicesPage() {
   return (
+    <>
+    <Script id="specialty-services-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #4A1D96 0%, #7C3AED 100%)',
@@ -51,5 +65,6 @@ export default function SpecialtyServicesPage() {
       ]}
       relatedPages={getRelatedPages('guides-general')}
     />
+    </>
   );
 }
