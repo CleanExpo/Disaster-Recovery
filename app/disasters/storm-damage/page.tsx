@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Severe Storm Response Services | 24/7 Online Emergency Response | Disaster Recovery',
   description: 'Emergency storm damage repairs including roof tarping, water extraction, and debris removal. Serving All Australian States. 30 minutes response time.',
-  keywords: ["storm damage repair","emergency tarping","hail damage"]
+  keywords: ["storm damage repair","emergency tarping","hail damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/disasters/storm-damage' },
 };
 

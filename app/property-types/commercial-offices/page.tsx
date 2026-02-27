@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Commercial Office Disaster Recovery | Commercial Properties | $2200 Minimum',
   description: 'Business continuity focused disaster recovery for offices and commercial spaces. 30 minutes priority response. 100% insurance coverage.',
-  keywords: ["commercial disaster recovery","office flood restoration","business continuity"]
+  keywords: ["commercial disaster recovery","office flood restoration","business continuity"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/commercial-offices' },
 };
 

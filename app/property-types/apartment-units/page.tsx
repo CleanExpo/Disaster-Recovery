@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Apartment & Unit Disaster Recovery | Residential Properties | $2200 Minimum',
   description: 'Specialised disaster recovery for apartments, units, and high-rise residences. 30-45 minutes response. 95% insurance coverage.',
-  keywords: ["apartment water damage","unit flood recovery","high rise restoration"]
+  keywords: ["apartment water damage","unit flood recovery","high rise restoration"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/apartment-units' },
 };
 

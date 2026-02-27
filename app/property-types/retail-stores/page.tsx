@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Retail Store Disaster Recovery | Commercial Properties | $2200 Minimum',
   description: 'Rapid disaster recovery to minimise retail business interruption. 30 minutes priority response. 100% insurance coverage.',
-  keywords: ["retail disaster recovery","shop flood damage","store restoration"]
+  keywords: ["retail disaster recovery","shop flood damage","store restoration"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/retail-stores' },
 };
 

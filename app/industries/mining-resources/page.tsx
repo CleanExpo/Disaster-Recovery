@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Mining & Resources Disaster Recovery | Specialised Industrial Restoration | Australia',
   description: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
-  keywords: ["mining disaster recovery","mine site restoration","processing plant cleanup"]
+  keywords: ["mining disaster recovery","mine site restoration","processing plant cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/mining-resources' },
 };
 

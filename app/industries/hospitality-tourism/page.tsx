@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Hospitality & Tourism Disaster Recovery | Specialised Industrial Restoration | Australia',
   description: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
-  keywords: ["hotel disaster recovery","resort restoration","tourism facility cleanup"]
+  keywords: ["hotel disaster recovery","resort restoration","tourism facility cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/hospitality-tourism' },
 };
 

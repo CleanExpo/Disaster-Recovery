@@ -7,7 +7,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Government Facility Disaster Recovery | Government Properties | $2200 Minimum',
   description: 'Approved vendor for government facility disaster recovery and restoration. Immediate priority response. 100% funded insurance coverage.',
-  keywords: ["government disaster recovery","public facility restoration","council property damage"]
+  keywords: ["government disaster recovery","public facility restoration","council property damage"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/government-facilities' },
 };
 
