@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { FileText } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
@@ -12,8 +13,67 @@ export const metadata: Metadata = {
   },
 };
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How Disaster Recovery Works — From Damage to Restoration',
+  description:
+    'Your complete 6-step journey from property damage to full restoration with IICRC-certified contractors, 60-minute response, and insurance-compliant documentation.',
+  totalTime: 'P14D',
+  estimatedCost: {
+    '@type': 'MonetaryAmount',
+    currency: 'AUD',
+    value: '2750',
+  },
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Lodge Your Claim Online',
+      text: 'Submit your property damage details through our online form — available 24/7/365. Provide information about the type of damage, property location, and insurance details.',
+      url: 'https://disasterrecovery.com.au/claim',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Matched With a Certified Contractor',
+      text: 'Our system immediately matches you with an IICRC-certified contractor in your area from the NRPG network. A qualified restoration professional will contact you within 60 minutes.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Emergency Make-Safe',
+      text: 'Your contractor performs an emergency make-safe to stabilise the property and prevent further damage. The $2,750 initial emergency service covers 24/7 dispatch, damage assessment, water extraction, temporary weatherproofing, and insurance-compliant documentation.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Documentation and Formal Contract',
+      text: 'After the emergency make-safe, your contractor provides an Authority to Commence — the formal contract defining the full scope of restoration works, terms and conditions, and cost breakdown.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: 'Full Restoration',
+      text: 'Your assigned contractor completes the full restoration to pre-loss condition, which may include structural drying, mould remediation, smoke removal, structural repairs, and contents restoration — all to IICRC standards.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 6,
+      name: 'Insurance Claim Support',
+      text: 'Once restoration is complete, you receive all documentation needed to claim reimbursement from your insurer — compliant invoicing, before-and-after photos, technical reports, and the signed Authority to Commence.',
+    },
+  ],
+};
+
 export default function HowItWorksPage() {
   return (
+    <>
+    <Script
+      id="how-it-works-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+    />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 50%, #0F2942 100%)',
@@ -163,5 +223,6 @@ export default function HowItWorksPage() {
       ]}
       relatedPages={getRelatedPages('how-it-works')}
     />
+    </>
   );
 }
