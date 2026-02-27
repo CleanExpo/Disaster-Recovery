@@ -138,7 +138,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2">
                     <MessageSquare className="w-5 h-5" />
-                    Get Instant Quote
+                    Get Cost Estimate
                   </button>
                   <button className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition">
                     View Our Work
@@ -186,7 +186,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
               {/* Contact Form */}
               <div className="bg-white rounded-xl shadow-lg p-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Get a Quote
+                  Get Cost Estimate
                 </h3>
                 <form className="space-y-4">
                   <div>
@@ -230,7 +230,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                     ></textarea>
                   </div>
                   <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition">
-                    Get Instant Quote
+                    Get Cost Estimate
                   </button>
                 </form>
               </div>

@@ -141,10 +141,10 @@ export default function GMBCategoryPage({ params }: { params: { category: string
                   <ArrowRight className="inline-block ml-2 h-5 w-5" />
                 </Link>
                 <Link
-                  href="/claim"
+                  href="/tools/cost-estimator"
                   className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all"
                 >
-                  Get a Quote
+                  Get Cost Estimate
                 </Link>
               </div>
             </div>

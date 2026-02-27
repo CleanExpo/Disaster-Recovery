@@ -20,7 +20,7 @@ export default function IndustriesPage() {
         title: 'Industry-Specific Disaster Recovery',
         subtitle: 'Specialised disaster recovery services for all Australian industries. Mining, healthcare, education, retail, agriculture, and more.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/claim' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries' },

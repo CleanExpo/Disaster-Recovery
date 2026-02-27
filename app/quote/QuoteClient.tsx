@@ -35,7 +35,7 @@ function QuotePageOriginal() {
             </h1>
             <p className="text-xl mb-8">
               Connect with IICRC certified disaster recovery professionals. 
-              Get detailed quotes for water damage, fire damage, mould remediation, and more.
+              Get detailed cost estimates for water damage, fire damage, mould remediation, and more.
             </p>
             <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
               <Card className="bg-white/10 backdrop-blur p-4">
@@ -110,9 +110,9 @@ function QuotePageOriginal() {
                 <div className="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
                   <span className="font-bold text-blue-600">3</span>
                 </div>
-                <h3 className="font-bold mb-2">Receive Quotes</h3>
+                <h3 className="font-bold mb-2">Receive Estimates</h3>
                 <p className="text-sm text-gray-700">
-                  Get detailed quotes from multiple contractors
+                  Get detailed cost estimates from IICRC-certified contractors
                 </p>
               </Card>
               <Card className="p-6 text-center bg-white shadow-md">
