@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'HEPA Air Filtration Systems | Disaster Recovery',
     description: 'Breathe easy with our hospital-grade HEPA air filtration technology.',
-    images: ['/images/hepa-technology.jpg'] },
+  },
   alternates: {
     canonical: 'https://disasterrecovery.com.au/technology/hepa',
   },

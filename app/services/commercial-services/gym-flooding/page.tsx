@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Gym & Fitness Centre Flooding | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function GymFitnessCenterFloodingPage() {
         { label: 'Commercial Services', href: '/services/commercial-services' },
         { label: 'Gym & Fitness Centre Flooding' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Gym & Fitness Centre Flooding', parentCategory: 'Commercial Services', context: 'sports facility and gym water damage recovery' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

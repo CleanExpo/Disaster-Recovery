@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function CeilingWaterDamagePage() {
         { label: 'Water Damage', href: '/services/water-damage' },
         { label: 'Emergency Response' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Response', parentCategory: 'Water Damage', context: 'ceiling leak repair, sagging prevention, and collapse mitigation' })}
       relatedPages={getRelatedPages('water-damage')}
     />
   );

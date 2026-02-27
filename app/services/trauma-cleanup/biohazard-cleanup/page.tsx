@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Heart } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Biohazard Cleanup After Trauma | IICRC S540 Certified | 24/7',
@@ -57,6 +59,8 @@ export default function BiohazardCleanupPage() {
         { label: 'Trauma Cleanup', href: '/services/trauma-cleanup' },
         { label: 'Biohazard Cleanup Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Biohazard Cleanup Services', parentCategory: 'Trauma Cleanup', context: 'biohazard decontamination and S540-certified remediation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

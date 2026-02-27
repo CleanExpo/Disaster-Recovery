@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Drug Lab Decontamination | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function DrugLabDecontaminationPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Drug Lab Decontamination' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Drug Lab Decontamination', parentCategory: 'Biohazard Cleaning', context: 'meth lab cleanup and chemical remediation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Board Up Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function EmergencyBoardUpServicesPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Emergency Board Up Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Board Up Services', parentCategory: 'Emergency Services', context: 'security boarding and window boarding after damage' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

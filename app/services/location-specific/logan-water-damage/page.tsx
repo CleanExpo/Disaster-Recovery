@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Logan Water Damage Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function LoganWaterDamageServicesPage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Logan Water Damage Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Logan Water Damage Services', parentCategory: 'Location Specific', context: 'Logan and southern Brisbane flood and water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

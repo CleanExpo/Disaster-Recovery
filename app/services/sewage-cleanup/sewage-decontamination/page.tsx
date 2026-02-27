@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Sewage Decontamination Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SewageDecontaminationServicesPage() {
         { label: 'Sewage Cleanup', href: '/services/sewage-cleanup' },
         { label: 'Sewage Decontamination Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Sewage Decontamination Services', parentCategory: 'Sewage Cleanup', context: 'sanitisation and bacterial sewage cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

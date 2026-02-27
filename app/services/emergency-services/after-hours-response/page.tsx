@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'After Hours Emergency Response | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function AfterHoursEmergencyResponsePage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'After Hours Emergency Response' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'After Hours Emergency Response', parentCategory: 'Emergency Services', context: 'night and weekend emergency disaster response' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

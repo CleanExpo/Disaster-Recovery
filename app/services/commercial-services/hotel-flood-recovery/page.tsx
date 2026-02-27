@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hotel Flood Restoration | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function HotelFloodRestorationPage() {
         { label: 'Commercial Services', href: '/services/commercial-services' },
         { label: 'Hotel Flood Restoration' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Hotel Flood Restoration', parentCategory: 'Commercial Services', context: 'accommodation flooding and guest room water damage' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

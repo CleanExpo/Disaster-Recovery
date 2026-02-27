@@ -38,20 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: scenario.title,
       description: scenario.metaDescription,
       type: 'article',
-      images: [
-        {
-          url: '/images/whos-first-og.jpg',
-          width: 1200,
-          height: 630,
-          alt: scenario.title,
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: scenario.title,
       description: scenario.metaDescription,
-      images: ['/images/whos-first-twitter.jpg'],
     },
     alternates: {
       canonical: `/whos-first/${params.scenario}`,

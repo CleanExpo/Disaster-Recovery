@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Crime Scene Cleanup Brisbane | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function CrimeSceneCleanupBrisbanePage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Crime Scene Cleanup Brisbane' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Crime Scene Cleanup Brisbane', parentCategory: 'Biohazard Cleaning', context: 'forensic cleaning and trauma scene remediation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Septic Tank Overflow Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SepticTankOverflowCleanupPage() {
         { label: 'Sewage Cleanup', href: '/services/sewage-cleanup' },
         { label: 'Septic Tank Overflow Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Septic Tank Overflow Cleanup', parentCategory: 'Sewage Cleanup', context: 'septic system backup and tank overflow' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

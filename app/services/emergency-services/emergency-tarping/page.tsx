@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Roof Tarping | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function EmergencyRoofTarpingPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Emergency Roof Tarping' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Roof Tarping', parentCategory: 'Emergency Services', context: 'temporary roof protection and tarp installation after storm damage' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Storm Drain Sewage Backup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function StormDrainSewageBackupPage() {
         { label: 'Sewage Cleanup', href: '/services/sewage-cleanup' },
         { label: 'Storm Drain Sewage Backup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Storm Drain Sewage Backup', parentCategory: 'Sewage Cleanup', context: 'stormwater overflow and drain flooding' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

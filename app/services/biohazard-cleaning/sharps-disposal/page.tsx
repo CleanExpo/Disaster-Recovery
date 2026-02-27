@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Needle & Sharps Disposal | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function NeedleSharpsDisposalPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Needle & Sharps Disposal' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Needle & Sharps Disposal', parentCategory: 'Biohazard Cleaning', context: 'syringe cleanup and medical waste disposal' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

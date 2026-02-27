@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Brisbane CBD Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function BrisbaneCBDWaterDamagePage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Brisbane CBD Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Brisbane CBD Water Damage', parentCategory: 'Location Specific', context: 'CBD and downtown Brisbane water damage and flood restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function BurstPipesPage() {
         { label: 'Water Damage', href: '/services/water-damage' },
         { label: 'Burst Pipe Emergency Services Brisbane' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Burst Pipe Emergency Services Brisbane', parentCategory: 'Water Damage', context: 'burst pipe repair and emergency water damage restoration' })}
       relatedPages={getRelatedPages('water-damage')}
     />
   );

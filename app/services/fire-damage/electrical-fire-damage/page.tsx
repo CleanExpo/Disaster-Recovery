@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Electrical Fire Damage Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function ElectricalFireDamageCleanupPage() {
         { label: 'Fire Damage', href: '/services/fire-damage' },
         { label: 'Electrical Fire Damage Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Electrical Fire Damage Cleanup', parentCategory: 'Fire Damage', context: 'wiring fire and electrical burn damage cleanup and restoration' })}
+      relatedPages={getRelatedPages('fire-damage')}
     />
   );
 }

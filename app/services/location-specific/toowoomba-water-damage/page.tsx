@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Toowoomba Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function ToowoombaWaterDamagePage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Toowoomba Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Toowoomba Water Damage', parentCategory: 'Location Specific', context: 'highlands and Darling Downs water damage and flood restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

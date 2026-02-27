@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Unattended Death Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function UnattendedDeathCleanupPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Unattended Death Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Unattended Death Cleanup', parentCategory: 'Biohazard Cleaning', context: 'decomposition cleanup and deceased estate remediation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

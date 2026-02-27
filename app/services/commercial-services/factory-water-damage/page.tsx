@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Factory Flood Recovery | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function FactoryFloodRecoveryPage() {
         { label: 'Commercial Services', href: '/services/commercial-services' },
         { label: 'Factory Flood Recovery' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Factory Flood Recovery', parentCategory: 'Commercial Services', context: 'manufacturing plant and industrial water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

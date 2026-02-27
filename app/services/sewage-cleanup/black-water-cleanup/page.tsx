@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Black Water Contamination | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function BlackWaterContaminationPage() {
         { label: 'Sewage Cleanup', href: '/services/sewage-cleanup' },
         { label: 'Black Water Contamination' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Black Water Contamination', parentCategory: 'Sewage Cleanup', context: 'category 3 water and hazardous sewage cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

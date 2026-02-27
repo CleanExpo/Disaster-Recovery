@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Priority Emergency Response | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function PriorityEmergencyResponsePage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Priority Emergency Response' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Priority Emergency Response', parentCategory: 'Emergency Services', context: 'rapid deployment and first response for urgent disaster situations' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

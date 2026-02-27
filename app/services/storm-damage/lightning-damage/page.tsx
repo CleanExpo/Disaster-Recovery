@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { CloudLightning } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Lightning Strike Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function LightningStrikeDamagePage() {
         { label: 'Storm Damage', href: '/services/storm-damage' },
         { label: 'Lightning Strike Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Lightning Strike Damage', parentCategory: 'Storm Damage', context: 'electrical surge and lightning fire restoration' })}
+      relatedPages={getRelatedPages('storm-damage')}
     />
   );
 }

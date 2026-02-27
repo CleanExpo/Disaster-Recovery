@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Pool Leak Property Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function PoolLeakPropertyDamagePage() {
         { label: 'Water Damage', href: '/services/water-damage' },
         { label: 'Pool Leak Property Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Pool Leak Property Damage', parentCategory: 'Water Damage', context: 'swimming pool leak and pool water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

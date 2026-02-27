@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Dishwasher Leak Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function DishwasherLeakWaterDamagePage() {
         { label: 'Water Damage', href: '/services/water-damage' },
         { label: 'Dishwasher Leak Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Dishwasher Leak Water Damage', parentCategory: 'Water Damage', context: 'dishwasher overflow and kitchen water damage cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

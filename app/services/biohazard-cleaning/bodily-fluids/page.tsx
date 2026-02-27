@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Bodily Fluid Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function BodilyFluidCleanupPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Bodily Fluid Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Bodily Fluid Cleanup', parentCategory: 'Biohazard Cleaning', context: 'vomit and human waste sanitisation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

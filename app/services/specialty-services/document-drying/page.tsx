@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Star } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Document Water Damage Recovery | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function DocumentWaterDamageRecoveryPage() {
         { label: 'Specialty Services', href: '/services/specialty-services' },
         { label: 'Document Water Damage Recovery' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Document Water Damage Recovery', parentCategory: 'Specialty Services', context: 'paper restoration and book drying services' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Structural Drying | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function EmergencyStructuralDryingPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Emergency Structural Drying' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Structural Drying', parentCategory: 'Emergency Services', context: 'rapid structural drying and moisture removal after water damage' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

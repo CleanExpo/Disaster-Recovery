@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Bushfire Smoke Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function BushfireSmokeDamagePage() {
         { label: 'Fire Damage', href: '/services/fire-damage' },
         { label: 'Bushfire Smoke Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Bushfire Smoke Damage', parentCategory: 'Fire Damage', context: 'wildfire and bushfire smoke damage restoration and air quality recovery' })}
+      relatedPages={getRelatedPages('fire-damage')}
     />
   );
 }

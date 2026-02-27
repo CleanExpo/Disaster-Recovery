@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Star } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Caravan Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function CaravanWaterDamagePage() {
         { label: 'Specialty Services', href: '/services/specialty-services' },
         { label: 'Caravan Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Caravan Water Damage', parentCategory: 'Specialty Services', context: 'RV and mobile home water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

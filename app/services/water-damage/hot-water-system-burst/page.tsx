@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hot Water System Burst Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function HotWaterSystemBurstDamagePage() {
         { label: 'Water Damage', href: '/services/water-damage' },
         { label: 'Hot Water System Burst Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Hot Water System Burst Damage', parentCategory: 'Water Damage', context: 'hot water tank leak and heater flooding cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

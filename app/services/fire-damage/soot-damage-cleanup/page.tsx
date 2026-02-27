@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Soot Damage Cleaning | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SootDamageCleaningPage() {
         { label: 'Fire Damage', href: '/services/fire-damage' },
         { label: 'Soot Damage Cleaning' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Soot Damage Cleaning', parentCategory: 'Fire Damage', context: 'soot removal and carbon cleaning after fire damage' })}
+      relatedPages={getRelatedPages('fire-damage')}
     />
   );
 }

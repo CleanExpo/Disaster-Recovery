@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Power Solutions | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function EmergencyPowerSolutionsPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Emergency Power Solutions' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Power Solutions', parentCategory: 'Emergency Services', context: 'temporary generators and emergency power supply after disasters' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

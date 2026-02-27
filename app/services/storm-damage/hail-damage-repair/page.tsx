@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { CloudLightning } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hail Damage Restoration | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function HailDamageRestorationPage() {
         { label: 'Storm Damage', href: '/services/storm-damage' },
         { label: 'Hail Damage Restoration' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Hail Damage Restoration', parentCategory: 'Storm Damage', context: 'hailstorm and ice damage repair' })}
+      relatedPages={getRelatedPages('storm-damage')}
     />
   );
 }

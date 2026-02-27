@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Star } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Solar Panel Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SolarPanelWaterDamagePage() {
         { label: 'Specialty Services', href: '/services/specialty-services' },
         { label: 'Solar Panel Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Solar Panel Water Damage', parentCategory: 'Specialty Services', context: 'solar system and panel water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

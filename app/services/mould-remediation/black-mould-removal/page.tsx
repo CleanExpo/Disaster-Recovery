@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Black Mould Removal Brisbane | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function BlackMouldRemovalBrisbanePage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Black Mould Removal Brisbane' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Black Mould Removal Brisbane', parentCategory: 'Mould Remediation', context: 'toxic black mould and stachybotrys removal' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Smoke Odour Removal Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SmokeOdourRemovalServicesPage() {
         { label: 'Fire Damage', href: '/services/fire-damage' },
         { label: 'Smoke Odour Removal Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Smoke Odour Removal Services', parentCategory: 'Fire Damage', context: 'smoke smell elimination and fire odour treatment' })}
+      relatedPages={getRelatedPages('fire-damage')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Professional Biohazard Cleanup Services | NRPG Australia',
@@ -33,6 +35,8 @@ export default function BiohazardPage() {
         { label: 'Services', href: '/services' },
         { label: 'Professional Biohazard Cleanup Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Professional Biohazard Cleanup Services', parentCategory: 'Biohazard Services', context: 'biohazard cleanup and decontamination' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

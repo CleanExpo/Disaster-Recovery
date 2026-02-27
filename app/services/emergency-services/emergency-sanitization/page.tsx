@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Sanitisation | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function EmergencySanitisationPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Emergency Sanitisation' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Sanitisation', parentCategory: 'Emergency Services', context: 'urgent disinfection and contamination control after disasters' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

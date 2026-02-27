@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Mould Remediation Services | IICRC S520 Certified | Black Mould Removal Specialists',
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mould Remediation Services | IICRC S520 Certified',
     description: 'Expert mould remediation services. IICRC S520 certified technicians. Professional black mould removal available 24/7.',
-    images: ['/images/optimised/damage/3D Mould Damage.png'] },
+  },
   alternates: {
     canonical: '/services/mould-remediation' },
   other: {
@@ -63,6 +65,8 @@ export default function MoldRemediationPage() {
         { label: 'Services', href: '/services' },
         { label: 'Mould Remediation Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Mould Remediation Services', parentCategory: 'Mould Remediation', context: 'IICRC S520 certified black mould removal and toxic mould cleanup' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

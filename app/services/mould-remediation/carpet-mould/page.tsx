@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Carpet Mould Remediation | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function CarpetMouldRemediationPage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Carpet Mould Remediation' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Carpet Mould Remediation', parentCategory: 'Mould Remediation', context: 'carpet and underlay mould treatment' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

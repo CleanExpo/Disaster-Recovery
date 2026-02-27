@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Grey Water Damage Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function GreyWaterDamageCleanupPage() {
         { label: 'Sewage Cleanup', href: '/services/sewage-cleanup' },
         { label: 'Grey Water Damage Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Grey Water Damage Cleanup', parentCategory: 'Sewage Cleanup', context: 'washing machine and sink overflow cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

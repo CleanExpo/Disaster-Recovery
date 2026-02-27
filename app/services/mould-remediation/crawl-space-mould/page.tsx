@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Crawl Space Mould Treatment | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function CrawlSpaceMouldTreatmentPage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Crawl Space Mould Treatment' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Crawl Space Mould Treatment', parentCategory: 'Mould Remediation', context: 'subfloor and under-house mould treatment' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

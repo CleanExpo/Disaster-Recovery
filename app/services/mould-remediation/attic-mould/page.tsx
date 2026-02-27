@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Attic Mould Removal | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function AtticMouldRemovalPage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Attic Mould Removal' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Attic Mould Removal', parentCategory: 'Mould Remediation', context: 'roof cavity and ceiling mould removal and prevention' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

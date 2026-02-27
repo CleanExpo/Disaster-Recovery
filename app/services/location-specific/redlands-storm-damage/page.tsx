@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Redlands Storm Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function RedlandsStormDamagePage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Redlands Storm Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Redlands Storm Damage', parentCategory: 'Location Specific', context: 'bayside and island storm damage restoration in the Redlands' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

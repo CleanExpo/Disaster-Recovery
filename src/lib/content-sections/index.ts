@@ -11,6 +11,7 @@ export { getIndustrySections } from './industry-sections';
 export { getFAQSections } from './faq-sections';
 export { getCaseStudySections } from './case-study-sections';
 export { getTechnologySections } from './technology-sections';
+export { getServiceChildSections } from './service-child-sections';
 export { getKnowledgeBaseSections, getKnowledgeEntryFaqs, getKnowledgeEntrySlugs } from './knowledge-sections';
 export { getOperationalExcellenceSections, getOperationalExcellenceFaqs, getOperationalExcellenceStats } from './operational-excellence-sections';
 export { getEmergencyMakeSafeSections } from './emergency-make-safe-sections';

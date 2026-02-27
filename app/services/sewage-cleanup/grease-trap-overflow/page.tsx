@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Grease Trap Overflow | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function GreaseTrapOverflowPage() {
         { label: 'Sewage Cleanup', href: '/services/sewage-cleanup' },
         { label: 'Grease Trap Overflow' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Grease Trap Overflow', parentCategory: 'Sewage Cleanup', context: 'commercial kitchen grease trap overflow cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

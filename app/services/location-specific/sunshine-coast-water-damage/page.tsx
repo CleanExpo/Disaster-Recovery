@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Sunshine Coast Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SunshineCoastWaterDamagePage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Sunshine Coast Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Sunshine Coast Water Damage', parentCategory: 'Location Specific', context: 'coastal water damage and beach property restoration on the Sunshine Coast' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

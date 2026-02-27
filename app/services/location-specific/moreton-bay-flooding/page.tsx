@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Moreton Bay Flood Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function MoretonBayFloodServicesPage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Moreton Bay Flood Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Moreton Bay Flood Services', parentCategory: 'Location Specific', context: 'northern Brisbane and Moreton Bay region flood restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Wall Cavity Mould Removal | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function WallCavityMouldRemovalPage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Wall Cavity Mould Removal' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Wall Cavity Mould Removal', parentCategory: 'Mould Remediation', context: 'hidden mould inside wall cavities' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

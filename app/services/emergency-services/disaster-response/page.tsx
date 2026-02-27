@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Natural Disaster Response | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function NaturalDisasterResponsePage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Natural Disaster Response' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Natural Disaster Response', parentCategory: 'Emergency Services', context: 'catastrophe response and major event recovery' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Townsville Flood Restoration | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function TownsvilleFloodRestorationPage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Townsville Flood Restoration' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Townsville Flood Restoration', parentCategory: 'Location Specific', context: 'north Queensland tropical flood recovery and water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

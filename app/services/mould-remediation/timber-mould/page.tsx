@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Timber Mould Treatment | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function TimberMouldTreatmentPage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Timber Mould Treatment' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Timber Mould Treatment', parentCategory: 'Mould Remediation', context: 'wood rot and structural timber mould treatment' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

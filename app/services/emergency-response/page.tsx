@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: '24/7 Online Emergency Response Services | Disaster Recovery Specialists | 1-Hour Response Time',
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '24/7 Online Emergency Response Services | Disaster Recovery',
     description: 'Professional emergency response team available 24/7. 1-hour response time for disaster recovery emergencies.',
-    images: ['/images/optimised/process/3D Assessment.png'] },
+  },
   alternates: {
     canonical: '/services/emergency-response' },
   other: {
@@ -63,6 +65,8 @@ export default function EmergencyResponsePage() {
         { label: 'Services', href: '/services' },
         { label: '24/7 Online Emergency Response Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: '24/7 Online Emergency Response Services', parentCategory: 'Emergency Services', context: 'rapid disaster mitigation and emergency response' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

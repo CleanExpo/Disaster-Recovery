@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
     description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, IICRC-certified. Submit your claim online now.',
-    images: ['/images/optimised/damage/3D Water Damage.png'],
     type: 'website' },
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage' }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Fire Damaged Contents Restoration | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function FireDamagedContentsRestorationPage() {
         { label: 'Fire Damage', href: '/services/fire-damage' },
         { label: 'Fire Damaged Contents Restoration' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Fire Damaged Contents Restoration', parentCategory: 'Fire Damage', context: 'salvaging and restoring belongings and documents after fire' })}
+      relatedPages={getRelatedPages('fire-damage')}
     />
   );
 }

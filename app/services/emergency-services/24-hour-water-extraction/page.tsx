@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: '24 Hour Water Extraction | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function TwentyFourHourWaterExtractionPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: '24 Hour Water Extraction' },
       ]}
+      sections={getServiceChildSections({ serviceName: '24 Hour Water Extraction', parentCategory: 'Emergency Services', context: 'emergency pumping and rapid water extraction' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

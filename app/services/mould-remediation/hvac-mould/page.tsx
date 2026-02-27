@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Bug } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Air Conditioning Mould Removal | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function AirConditioningMouldRemovalPage() {
         { label: 'Mould Remediation', href: '/services/mould-remediation' },
         { label: 'Air Conditioning Mould Removal' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Air Conditioning Mould Removal', parentCategory: 'Mould Remediation', context: 'HVAC and air conditioning duct mould removal' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

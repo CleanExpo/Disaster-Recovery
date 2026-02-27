@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Animal Waste Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function AnimalWasteCleanupPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Animal Waste Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Animal Waste Cleanup', parentCategory: 'Biohazard Cleaning', context: 'animal waste and pet hoarding remediation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

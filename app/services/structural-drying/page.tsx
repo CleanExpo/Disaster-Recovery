@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Wind } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Structural Drying Services | Professional Water Extraction | Industrial Dehumidifiers',
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Structural Drying Services | Professional Water Extraction',
     description: 'Expert structural drying services. Industrial dehumidifiers, air movers, and professional moisture monitoring available 24/7.',
-    images: ['/images/optimised/equipment/3D Dehumidifier.png'] },
+  },
   alternates: {
     canonical: '/services/structural-drying' },
   other: {
@@ -63,6 +65,8 @@ export default function StructuralDryingPage() {
         { label: 'Services', href: '/services' },
         { label: 'Structural Drying Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Structural Drying Services', parentCategory: 'Water Damage', context: 'industrial dehumidification and moisture control' })}
+      relatedPages={getRelatedPages('structural-drying')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Heart } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Trauma Scene Cleanup | IICRC-Certified Specialists | 24/7 Response',
@@ -58,6 +60,8 @@ export default function TraumaCleanupPage() {
         { label: 'Services', href: '/services' },
         { label: 'Trauma Scene Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Trauma Scene Cleanup', parentCategory: 'Trauma Cleanup', context: 'compassionate trauma scene and crime scene restoration' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

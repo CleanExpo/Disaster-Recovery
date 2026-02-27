@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Storm & Natural Disaster Recovery | Emergency Response',
     description: 'Expert storm damage restoration services. Professional cyclone, hail, and wind damage repair available 24/7.',
-    images: ['/images/optimised/damage/3D Hurricane Damage.png'] },
+  },
   alternates: {
     canonical: '/services/storm-damage' },
   other: {

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Blood Spill Cleanup Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function BloodSpillCleanupServicesPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Blood Spill Cleanup Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Blood Spill Cleanup Services', parentCategory: 'Biohazard Cleaning', context: 'bloodborne pathogen and blood spill decontamination' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Infectious Disease Sanitisation | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function InfectiousDiseaseSanitisationPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Infectious Disease Sanitisation' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Infectious Disease Sanitisation', parentCategory: 'Biohazard Cleaning', context: 'COVID cleaning and virus disinfection' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

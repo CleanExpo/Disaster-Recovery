@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Siren } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Emergency Plumbing Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function EmergencyPlumbingServicesPage() {
         { label: 'Emergency Services', href: '/services/emergency-services' },
         { label: 'Emergency Plumbing Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Emergency Plumbing Services', parentCategory: 'Emergency Services', context: 'burst pipe repair and emergency leak stop services' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }

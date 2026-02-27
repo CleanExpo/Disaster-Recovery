@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Leaf } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Indoor Environmental Professional (IEP) Services | Disaster Recovery',
@@ -27,6 +29,8 @@ export default function IndoorEnvironmentalProfessionalPage() {
         { label: 'Services', href: '/services' },
         { label: 'Indoor Environmental Professional' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Indoor Environmental Professional (IEP) Services', parentCategory: 'Environmental Services', context: 'building health assessments, air quality testing, and mould investigations' })}
+      relatedPages={getRelatedPages('guides-general')}
     />
   );
 }

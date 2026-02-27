@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Gold Coast Flood Restoration | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function GoldCoastFloodRestorationPage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Gold Coast Flood Restoration' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Gold Coast Flood Restoration', parentCategory: 'Location Specific', context: 'coastal flooding and beach property water damage restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

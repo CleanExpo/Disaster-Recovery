@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Flame } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Chimney Fire Damage Cleanup | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function ChimneyFireDamageCleanupPage() {
         { label: 'Fire Damage', href: '/services/fire-damage' },
         { label: 'Chimney Fire Damage Cleanup' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Chimney Fire Damage Cleanup', parentCategory: 'Fire Damage', context: 'flue fire damage repair and chimney restoration services' })}
+      relatedPages={getRelatedPages('fire-damage')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Suicide Cleanup Services | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function SuicideCleanupServicesPage() {
         { label: 'Biohazard Cleaning', href: '/services/biohazard-cleaning' },
         { label: 'Suicide Cleanup Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Suicide Cleanup Services', parentCategory: 'Biohazard Cleaning', context: 'trauma cleaning and compassionate scene remediation' })}
+      relatedPages={getRelatedPages('biohazard')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Star } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Antique Water Damage Restoration | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function AntiqueWaterDamageRestorationPage() {
         { label: 'Specialty Services', href: '/services/specialty-services' },
         { label: 'Antique Water Damage Restoration' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Antique Water Damage Restoration', parentCategory: 'Specialty Services', context: 'heritage item and valuable antique restoration' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

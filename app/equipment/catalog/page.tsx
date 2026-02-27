@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Professional Disaster Recovery Equipment Catalogue',
     description: 'Complete catalogue of professional-grade restoration equipment with detailed specifications and rental options.',
-    images: ['/images/equipment/catalog-hero.jpg'],
     type: 'website' },
   alternates: { canonical: 'https://disasterrecovery.com.au/equipment/catalog' },
 };

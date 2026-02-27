@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { ClipboardCheck } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Technical Assessment Services | Property Damage Evaluation | NRPG Australia',
@@ -33,6 +35,8 @@ export default function TechnicalAssessmentPage() {
         { label: 'Services', href: '/services' },
         { label: 'Technical Assessment Services' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Technical Assessment Services', parentCategory: 'Technical Services', context: 'property damage evaluation and insurance inspection' })}
+      relatedPages={getRelatedPages('guides-general')}
     />
   );
 }

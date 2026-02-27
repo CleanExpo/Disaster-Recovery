@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Shower Leak Water Damage | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function ShowerLeakWaterDamagePage() {
         { label: 'Water Damage', href: '/services/water-damage' },
         { label: 'Shower Leak Water Damage' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Shower Leak Water Damage', parentCategory: 'Water Damage', context: 'shower pan leak and bathroom flooding cleanup' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Ipswich Flood Recovery | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function IpswichFloodRecoveryPage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Ipswich Flood Recovery' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Ipswich Flood Recovery', parentCategory: 'Location Specific', context: 'western corridor flood recovery and water damage restoration in Ipswich' })}
+      relatedPages={getRelatedPages('water-damage')}
     />
   );
 }

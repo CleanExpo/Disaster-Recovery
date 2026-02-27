@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Star } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Wine Cellar Flood Recovery | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function WineCellarFloodRecoveryPage() {
         { label: 'Specialty Services', href: '/services/specialty-services' },
         { label: 'Wine Cellar Flood Recovery' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Wine Cellar Flood Recovery', parentCategory: 'Specialty Services', context: 'wine storage and cellar water damage restoration' })}
+      relatedPages={getRelatedPages('guides-general')}
     />
   );
 }

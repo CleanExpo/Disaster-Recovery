@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
+import { getServiceChildSections } from '@/lib/content-sections';
+import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Cairns Cyclone Recovery | Disaster Recovery',
@@ -28,6 +30,8 @@ export default function CairnsCycloneRecoveryPage() {
         { label: 'Location Specific', href: '/services/location-specific' },
         { label: 'Cairns Cyclone Recovery' },
       ]}
+      sections={getServiceChildSections({ serviceName: 'Cairns Cyclone Recovery', parentCategory: 'Location Specific', context: 'tropical cyclone damage restoration in Far North Queensland' })}
+      relatedPages={getRelatedPages('emergency')}
     />
   );
 }
