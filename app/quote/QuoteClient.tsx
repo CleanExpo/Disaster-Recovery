@@ -17,7 +17,7 @@ function QuotePageOriginal() {
   // Auto-redirect after showing brief info
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/book-service?source=quote');
+      router.push('/tools/cost-estimator');
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -46,7 +46,7 @@ function QuotePageOriginal() {
               <Card className="bg-white/10 backdrop-blur p-4">
                 <Clock className="h-8 w-8 mx-auto mb-2" />
                 <p className="font-bold">Fast Response</p>
-                <p className="text-sm opacity-90">Quotes within 30 minutes</p>
+                <p className="text-sm opacity-90">Estimates within minutes</p>
               </Card>
               <Card className="bg-white/10 backdrop-blur p-4">
                 <Users className="h-8 w-8 mx-auto mb-2" />
@@ -65,11 +65,11 @@ function QuotePageOriginal() {
             <Card className="p-8 border-2 border-blue-200 bg-blue-50">
               <div className="animate-spin h-12 w-12 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-6"></div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Connecting You to Our Quote System
+                Connecting You to Our Cost Estimator
               </h2>
               <p className="text-gray-700 mb-6">
-                You'll be redirected to our comprehensive quote request form where you can 
-                provide details about your damage and connect with certified contractors.
+                You'll be redirected to our cost estimator where you can
+                get an instant estimate based on your damage type and property details.
               </p>
               <div className="flex items-center justify-center text-blue-600 font-medium">
                 <span>Redirecting</span>
@@ -145,11 +145,11 @@ function QuotePageOriginal() {
         </div>
       </section>
 
-      {/* Services We Quote */}
+      {/* Services We Cover */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
-            Services We Quote
+            Services We Cover
           </h2>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="p-6 bg-white shadow-md">
