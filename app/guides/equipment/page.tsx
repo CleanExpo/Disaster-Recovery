@@ -29,7 +29,7 @@ export default function EquipmentGuidesPage() {
         title: 'Restoration Equipment Guides',
         subtitle: 'Professional disaster recovery relies on specialised equipment. Our guides explain the technology behind structural drying, moisture detection, and contamination remediation.',
       }}
-      cta={{ text: 'Get a Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Guides', href: '/guides' },

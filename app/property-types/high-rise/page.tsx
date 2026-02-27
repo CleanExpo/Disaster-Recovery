@@ -19,7 +19,7 @@ export default function HighRiseBuildingsPage() {
         title: 'High Rise Buildings Disaster Recovery',
         subtitle: 'Apartments and office towers',
       }}
-      cta={{ text: 'Get Assessment', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Property Types', href: '/property-types' },

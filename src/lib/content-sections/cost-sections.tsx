@@ -102,7 +102,7 @@ export function getCostSections({ city, serviceType }: CostSectionParams): Conte
           <p>
             These are indicative ranges only. Every property is different, and your actual cost will
             depend on the specific factors outlined below. Our {city} team provides a detailed,
-            written quote after the initial assessment — before any chargeable work begins.
+            written estimate after the initial assessment — before any chargeable work begins.
           </p>
         </>
       ),

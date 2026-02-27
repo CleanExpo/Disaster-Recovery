@@ -154,7 +154,7 @@ export default function FireDamageRestorationPage() {
                 </Dialog>
                 
                 <Button size="lg" variant="outline">
-                  Free Fire Damage Assessment
+                  Get Fire Damage Estimate
                 </Button>
               </div>
 

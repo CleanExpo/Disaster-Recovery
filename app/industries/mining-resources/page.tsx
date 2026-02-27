@@ -20,7 +20,7 @@ export default function MiningResourcesPage() {
         title: 'Mining & Resources Disaster Recovery',
         subtitle: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries', href: '/industries' },

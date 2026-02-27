@@ -20,7 +20,7 @@ export default function RetailShoppingCentersPage() {
         title: 'Retail & Shopping Centres Disaster Recovery',
         subtitle: 'Rapid restoration for retail stores and shopping centres to minimise business interruption. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries', href: '/industries' },

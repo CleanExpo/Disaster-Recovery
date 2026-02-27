@@ -170,7 +170,7 @@ export default function MouldRemediationPage() {
                 </Dialog>
                 
                 <Button size="lg" variant="outline">
-                  Free Mould Assessment
+                  Get Mould Estimate
                 </Button>
               </div>
 

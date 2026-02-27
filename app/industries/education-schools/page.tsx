@@ -20,7 +20,7 @@ export default function EducationSchoolsPage() {
         title: 'Education & Schools Disaster Recovery',
         subtitle: 'School and university disaster recovery with minimal disruption to learning. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries', href: '/industries' },

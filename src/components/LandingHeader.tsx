@@ -52,7 +52,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
       subItems: [
         { label: 'Emergency Help', href: '/claim', icon: <email className="h-4 w-4" /> },
         { label: 'Insurance Claims', href: '/client/claims', icon: <Shield className="h-4 w-4" /> },
-        { label: 'Get Quote', href: '/claim', icon: <Zap className="h-4 w-4" /> },
+        { label: 'Cost Estimator', href: '/tools/cost-estimator', icon: <Zap className="h-4 w-4" /> },
         { label: 'Track Restoration', href: '/client/track', icon: <Globe className="h-4 w-4" /> },
       ]
     },

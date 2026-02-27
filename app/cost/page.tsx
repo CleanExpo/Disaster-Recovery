@@ -152,7 +152,7 @@ export default function CostGuidesIndexPage() {
           heading: 'Get a Personalised Estimate',
           body: (
             <div className="prose prose-lg max-w-none">
-              <p>Use our free <a href="/tools/cost-estimator">Cost Estimator Tool</a> to get an instant estimate based on your specific situation, property type, and location. No obligation, no signup required.</p>
+              <p>Use our <a href="/tools/cost-estimator">Cost Estimator Calculator</a> to get an instant estimate based on your specific situation, property type, and location. No signup required.</p>
             </div>
           ),
           background: 'dark',

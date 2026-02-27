@@ -59,7 +59,7 @@ export default function MakeSafeForensicAssessmentPage() {
           title: 'Make Safe & Forensic Assessment',
           subtitle: '$2,750 fixed-price scientific risk mitigation and liability transfer service',
         }}
-        cta={{ text: 'Book Make Safe Now', href: '/book-service' }}
+        cta={{ text: 'Book Make Safe Now', href: '/claim' }}
         secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
         breadcrumbs={[
           { label: 'Home', href: '/' },

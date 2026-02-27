@@ -106,7 +106,7 @@ export function EnhancedChatBot() {
       response.options = ['Get Emergency Response', 'Insurance Help', 'Speak to Expert'];
     } else if (input.includes('mould') || input.includes('mold')) {
       response.text = "Mould remediation requires certified professionals. We have EPA-licensed specialists ready to help.";
-      response.options = ['Book Inspection', 'Get Quote', 'Health Concerns'];
+      response.options = ['Book Inspection', 'Get Estimate', 'Health Concerns'];
     } else if (input.includes('estimate') || input.includes('quote') || input.includes('cost')) {
       response.text = "Our transparent pricing model means you see exactly what contractors charge. Estimates are provided based on damage assessment, following national pricing guidelines.";
       response.options = ['Understand Coverage', 'Site Manager Info', 'Get Estimate Now'];

@@ -195,13 +195,13 @@ export function AgPricingPageTemplate({
             <DollarSign size={48} style={{ color: 'rgba(255,255,255,0.9)' }} />
           </div>
           <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--ag-surface-white)', marginBottom: '1rem' }}>
-            Get Your Free {serviceName} Quote for {cityName}
+            Get Your {serviceName} Estimate for {cityName}
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem', fontSize: '1.125rem' }}>
             Transparent pricing from {minimumCallout}. {insuranceCoverage} insurance covered.
           </p>
           <Link href="/claim" className="ag-btn-primary-glow">
-            Get Free {cityName} Quote
+            Get {cityName} Estimate
           </Link>
         </div>
       </section>

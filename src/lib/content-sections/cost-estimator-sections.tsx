@@ -44,7 +44,7 @@ export function getCostEstimatorSections(): ContentSection[] {
           </ol>
           <p>
             These estimates are indicative only. Every property and situation is unique.
-            Our contractors provide a detailed, written quote after a free on-site assessment
+            Our contractors provide a detailed, written estimate after the on-site assessment
             — before any chargeable work begins.
           </p>
         </>
@@ -134,7 +134,7 @@ export function getCostEstimatorSections(): ContentSection[] {
             across Australia. They provide a realistic ballpark to help you plan and assess
             quotes. Final costs depend on site-specific conditions discovered during the
             on-site assessment — including hidden damage, material types, and access
-            constraints. Our contractors provide a detailed, binding quote before any
+            constraints. Our contractors provide a detailed, written estimate before any
             chargeable work begins.
           </p>
 

@@ -42,7 +42,7 @@ export default function UltraModernFooter() {
     { label: 'Pricing by City', href: '/pricing' },
     { label: 'Insurance Claims', href: '/insurance' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Get a Quote', href: '/quote' },
+    { label: 'Get Cost Estimate', href: '/tools/cost-estimator' },
   ];
 
   const socialLinks = [

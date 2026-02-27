@@ -20,7 +20,7 @@ export default function ResidentialHomePage() {
         title: 'Residential Home Disaster Recovery',
         subtitle: 'Insurance Coverage',
       }}
-      cta={{ text: 'Get Assessment', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Property Types', href: '/property-types' },

@@ -19,7 +19,7 @@ export default function HeritageBuildingsPage() {
         title: 'Heritage Buildings Disaster Recovery',
         subtitle: 'Protected and historical properties',
       }}
-      cta={{ text: 'Get Assessment', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Property Types', href: '/property-types' },

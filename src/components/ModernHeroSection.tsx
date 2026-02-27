@@ -248,7 +248,7 @@ const ModernHeroSection: React.FC = () => {
                 </motion.button>
               </Link>
 
-              <Link href="/ai-assessment">
+              <Link href="/tools/cost-estimator">
                 <motion.button
                   ref={assessmentButtonRef as React.RefObject<HTMLButtonElement>}
                   className="group relative px-12 py-5 text-lg font-semibold rounded-2xl glass-card text-white magnetic-element"
@@ -257,7 +257,7 @@ const ModernHeroSection: React.FC = () => {
                 >
                   <div className="relative flex items-center gap-3">
                     <PlayCircle className="h-5 w-5" />
-                    <span>Free AI Assessment</span>
+                    <span>Cost Estimator</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </div>
                 </motion.button>

@@ -58,7 +58,7 @@ const navigationStructure: NavItem[] = [
     href: '/contact',
     children: [
       { label: 'Book Service', href: '/claim' },
-      { label: 'Get Quote', href: '/contact/quote' },
+      { label: 'Cost Estimator', href: '/tools/cost-estimator' },
       { label: 'Emergency', href: '/contact/emergency' },
     ]
   }

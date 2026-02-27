@@ -20,7 +20,7 @@ export default function HospitalityTourismPage() {
         title: 'Hospitality & Tourism Disaster Recovery',
         subtitle: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries', href: '/industries' },

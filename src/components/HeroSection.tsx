@@ -104,7 +104,7 @@ export default function HeroSection() {
             href="/claim"
             className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-semibold text-lg transition-all hover:bg-white/20 hover:scale-105"
           >
-            <span>Get Instant Quote</span>
+            <span>Get Cost Estimate</span>
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

@@ -19,7 +19,7 @@ export default function GovernmentFacilitiesPage() {
         title: 'Government Facilities Disaster Recovery',
         subtitle: 'Federal, state, local government',
       }}
-      cta={{ text: 'Get Assessment', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Property Types', href: '/property-types' },

@@ -404,7 +404,7 @@ export default function LeadCaptureForm() {
                   <SelectItem value="emergency">Emergency - Immediate Response Needed</SelectItem>
                   <SelectItem value="urgent">Urgent - Within 24 Hours</SelectItem>
                   <SelectItem value="soon">Soon - Within This Week</SelectItem>
-                  <SelectItem value="planning">Planning - Getting Quotes</SelectItem>
+                  <SelectItem value="planning">Planning - Getting Estimates</SelectItem>
                 </SelectContent>
               </Select>
             </div>

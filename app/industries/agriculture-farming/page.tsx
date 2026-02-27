@@ -20,7 +20,7 @@ export default function AgricultureFarmingPage() {
         title: 'Agriculture & Farming Disaster Recovery',
         subtitle: 'Farm and agricultural facility disaster recovery including livestock areas and crop storage. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries', href: '/industries' },

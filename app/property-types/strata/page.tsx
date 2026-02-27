@@ -19,7 +19,7 @@ export default function StrataPropertiesPage() {
         title: 'Strata Properties Disaster Recovery',
         subtitle: 'Body corporate managed properties',
       }}
-      cta={{ text: 'Get Assessment', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Property Types', href: '/property-types' },

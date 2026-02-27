@@ -19,7 +19,7 @@ export default function LuxuryPropertiesPage() {
         title: 'Luxury Properties Disaster Recovery',
         subtitle: 'High-value estates and homes',
       }}
-      cta={{ text: 'Get Assessment', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Property Types', href: '/property-types' },

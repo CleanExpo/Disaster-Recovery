@@ -39,10 +39,10 @@ export function EmergencyCTA({
 
 export function LocationCTA({ city, service }: { city?: string; service?: string }) {
   const text = city && service 
-    ? `Get ${service} Quote in ${city}`
-    : city 
+    ? `Get ${service} Estimate in ${city}`
+    : city
     ? `Get Help in ${city}`
-    : 'Get Instant Quote';
+    : 'Get Cost Estimate';
 
   return (
     <Link href="/claim">

@@ -20,7 +20,7 @@ export default function HealthcareMedicalFacilitiesPage() {
         title: 'Healthcare & Medical Facilities Disaster Recovery',
         subtitle: 'Critical disaster recovery for hospitals, clinics, aged care, and medical centres. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
       }}
-      cta={{ text: 'Get Industry Quote', href: '/quote' }}
+      cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Industries', href: '/industries' },

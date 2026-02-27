@@ -29,7 +29,7 @@ export default function GuidesIndexPage() {
         { label: 'Expert Guides', value: '55+' },
         { label: 'Damage Types', value: 'All' },
         { label: 'Updated', value: '2026' },
-        { label: 'Free Access', value: 'Always' },
+        { label: 'Open Access', value: 'Always' },
       ]}
       sections={[
         {

@@ -36,7 +36,7 @@ const howToSchema = {
   '@type': 'HowTo',
   name: 'Estimate Disaster Recovery Costs in Australia',
   description:
-    'Use our free interactive tool to get an instant cost estimate for emergency restoration based on your specific situation.',
+    'Use our interactive estimator calculator to get an instant cost estimate for emergency restoration based on your specific situation.',
   estimatedCost: {
     '@type': 'MonetaryAmount',
     currency: 'AUD',
