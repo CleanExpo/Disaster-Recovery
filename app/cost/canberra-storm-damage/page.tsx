@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Canberra storm damage Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does storm damage cost in Canberra? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does storm damage cost in Canberra? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/canberra-storm-damage',
+  },
+};
 
 export default function CanberrastormdamageCostPage() {
   return (

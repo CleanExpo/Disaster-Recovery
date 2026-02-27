@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Timber Mould Treatment | Disaster Recovery',
   description: 'Professional timber mould treatment services in Queensland. 24/7 emergency response for wood rot, structural mould.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/timber-mould',
+  },
 };
 
 export default function TimberMouldTreatmentPage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Grease Trap Overflow | Disaster Recovery',
   description: 'Professional grease trap overflow services in Queensland. 24/7 emergency response for commercial kitchen, grease spill.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/grease-trap-overflow',
+  },
 };
 
 export default function GreaseTrapOverflowPage() {

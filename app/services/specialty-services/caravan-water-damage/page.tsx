@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Caravan Water Damage | Disaster Recovery',
   description: 'Professional caravan water damage services in Queensland. 24/7 emergency response for RV flooding, mobile home water.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/caravan-water-damage',
+  },
 };
 
 export default function CaravanWaterDamagePage() {

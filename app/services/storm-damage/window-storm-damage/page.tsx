@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Storm Window Damage | Disaster Recovery',
   description: 'Professional storm window damage services in Queensland. 24/7 emergency response for broken windows, glass damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/window-storm-damage',
+  },
 };
 
 export default function StormWindowDamagePage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Electronics Water Damage | Disaster Recovery',
   description: 'Professional electronics water damage services in Queensland. 24/7 emergency response for computer water damage, device recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/electronics-water-damage',
+  },
 };
 
 export default function ElectronicsWaterDamagePage() {

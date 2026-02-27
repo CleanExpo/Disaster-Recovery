@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'SunshineCoast storm damage Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does storm damage cost in SunshineCoast? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does storm damage cost in SunshineCoast? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/sunshine-coast-storm-damage',
+  },
+};
 
 export default function SunshineCoaststormdamageCostPage() {
   return (

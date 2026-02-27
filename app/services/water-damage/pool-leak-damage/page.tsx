@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Pool Leak Property Damage | Disaster Recovery',
   description: 'Professional pool leak property damage services in Queensland. 24/7 emergency response for swimming pool leak, pool water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/pool-leak-damage',
+  },
 };
 
 export default function PoolLeakPropertyDamagePage() {

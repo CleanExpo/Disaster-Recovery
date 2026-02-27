@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Carpet Mould Remediation | Disaster Recovery',
   description: 'Professional carpet mould remediation services in Queensland. 24/7 emergency response for mouldy carpet, underlay mould.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/carpet-mould',
+  },
 };
 
 export default function CarpetMouldRemediationPage() {

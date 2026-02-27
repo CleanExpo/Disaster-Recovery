@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Septic Tank Overflow Cleanup | Disaster Recovery',
   description: 'Professional septic tank overflow cleanup services in Queensland. 24/7 emergency response for septic backup, tank overflow.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/septic-overflow',
+  },
 };
 
 export default function SepticTankOverflowCleanupPage() {

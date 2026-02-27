@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Chimney Fire Damage Cleanup | Disaster Recovery',
   description: 'Professional chimney fire damage cleanup services in Queensland. 24/7 emergency response for flue fire, chimney restoration.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/chimney-fire-damage',
+  },
 };
 
 export default function ChimneyFireDamageCleanupPage() {

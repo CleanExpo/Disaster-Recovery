@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Warehouse Flood Cleanup | Disaster Recovery',
   description: 'Professional warehouse flood cleanup services across Australia. 24/7 emergency response for industrial flooding, storage water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/warehouse-flooding',
+  },
 };
 
 export default function WarehouseFloodCleanupPage() {

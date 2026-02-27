@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Water Damaged Art Restoration | Disaster Recovery',
   description: 'Professional water damaged art restoration services in Queensland. 24/7 emergency response for painting restoration, artwork recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/art-restoration',
+  },
 };
 
 export default function WaterDamagedArtRestorationPage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'School Water Damage Cleanup | Disaster Recovery',
   description: 'Professional school water damage cleanup services across Australia. 24/7 emergency response for education facility, classroom flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/school-water-damage',
+  },
 };
 
 export default function SchoolWaterDamageCleanupPage() {

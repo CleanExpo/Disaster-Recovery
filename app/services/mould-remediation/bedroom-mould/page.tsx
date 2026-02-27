@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Bedroom Mould Remediation | Disaster Recovery',
   description: 'Professional bedroom mould remediation services in Queensland. 24/7 emergency response for sleeping area mould, health risks.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/bedroom-mould',
+  },
 };
 
 export default function BedroomMouldRemediationPage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Storm Drain Sewage Backup | Disaster Recovery',
   description: 'Professional storm drain sewage backup services in Queensland. 24/7 emergency response for stormwater overflow, drain flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/storm-drain-backup',
+  },
 };
 
 export default function StormDrainSewageBackupPage() {

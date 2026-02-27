@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Smoke Odour Removal Services | Disaster Recovery',
   description: 'Professional smoke odour removal services services in Queensland. 24/7 emergency response for smoke smell, fire odour elimination.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/smoke-odour-removal',
+  },
 };
 
 export default function SmokeOdourRemovalServicesPage() {

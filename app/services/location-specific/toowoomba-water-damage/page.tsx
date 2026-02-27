@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Toowoomba Water Damage | Disaster Recovery',
   description: 'Professional toowoomba water damage services in Queensland. 24/7 emergency response for highlands flooding, mountain damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/location-specific/toowoomba-water-damage',
+  },
 };
 
 export default function ToowoombaWaterDamagePage() {

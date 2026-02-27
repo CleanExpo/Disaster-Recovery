@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'SunshineCoast mould removal Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does mould removal cost in SunshineCoast? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does mould removal cost in SunshineCoast? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/sunshine-coast-mould-removal',
+  },
+};
 
 export default function SunshineCoastmouldremovalCostPage() {
   return (

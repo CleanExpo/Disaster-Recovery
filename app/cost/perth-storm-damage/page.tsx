@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Perth storm damage Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does storm damage cost in Perth? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does storm damage cost in Perth? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/perth-storm-damage',
+  },
+};
 
 export default function PerthstormdamageCostPage() {
   return (

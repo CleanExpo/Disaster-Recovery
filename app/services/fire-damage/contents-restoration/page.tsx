@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Fire Damaged Contents Restoration | Disaster Recovery',
   description: 'Professional fire damaged contents restoration services in Queensland. 24/7 emergency response for belongings restoration, document recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/contents-restoration',
+  },
 };
 
 export default function FireDamagedContentsRestorationPage() {

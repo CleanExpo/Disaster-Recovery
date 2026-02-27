@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Shower Leak Water Damage | Disaster Recovery',
   description: 'Professional shower leak water damage services in Queensland. 24/7 emergency response for shower pan leak, bathroom flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/shower-leaks',
+  },
 };
 
 export default function ShowerLeakWaterDamagePage() {

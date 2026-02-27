@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Natural Disaster Response | Disaster Recovery',
   description: 'Professional natural disaster response services in Queensland. 24/7 emergency response for catastrophe response, major event.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/disaster-response',
+  },
 };
 
 export default function NaturalDisasterResponsePage() {

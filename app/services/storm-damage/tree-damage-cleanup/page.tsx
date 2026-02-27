@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Fallen Tree Damage Cleanup | Disaster Recovery',
   description: 'Professional fallen tree damage cleanup services in Queensland. 24/7 emergency response for tree removal, storm tree damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/tree-damage-cleanup',
+  },
 };
 
 export default function FallenTreeDamageCleanupPage() {

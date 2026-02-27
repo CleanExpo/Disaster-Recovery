@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Wind Damage Restoration | Disaster Recovery',
   description: 'Professional wind damage restoration services in Queensland. 24/7 emergency response for cyclone damage, storm wind repair.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/wind-damage-repair',
+  },
 };
 
 export default function WindDamageRestorationPage() {

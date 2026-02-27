@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Asbestos Water Damage | Disaster Recovery',
   description: 'Professional asbestos water damage services in Queensland. 24/7 emergency response for wet asbestos, contaminated materials.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/asbestos-water-damage',
+  },
 };
 
 export default function AsbestosWaterDamagePage() {

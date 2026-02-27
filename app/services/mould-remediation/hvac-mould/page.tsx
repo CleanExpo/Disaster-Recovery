@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Air Conditioning Mould Removal | Disaster Recovery',
   description: 'Professional air conditioning mould removal services in Queensland. 24/7 emergency response for AC duct mould, HVAC contamination.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/hvac-mould',
+  },
 };
 
 export default function AirConditioningMouldRemovalPage() {

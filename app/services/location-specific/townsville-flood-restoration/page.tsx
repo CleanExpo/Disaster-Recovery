@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Townsville Flood Restoration | Disaster Recovery',
   description: 'Professional townsville flood restoration services in Queensland. 24/7 emergency response for north QLD flooding, tropical recovery.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/location-specific/townsville-flood-restoration',
+  },
 };
 
 export default function TownsvilleFloodRestorationPage() {

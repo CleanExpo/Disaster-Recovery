@@ -6,7 +6,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Sydney mould removal Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does mould removal cost in Sydney? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does mould removal cost in Sydney? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/sydney-mould-removal',
+  },
+};
 
 export default function SydneymouldremovalCostPage() {
   return (

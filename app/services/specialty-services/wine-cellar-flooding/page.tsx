@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Wine Cellar Flood Recovery | Disaster Recovery',
   description: 'Professional wine cellar flood recovery services in Queensland. 24/7 emergency response for wine storage, cellar water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/wine-cellar-flooding',
+  },
 };
 
 export default function WineCellarFloodRecoveryPage() {

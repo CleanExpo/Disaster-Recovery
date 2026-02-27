@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Structural Fire Damage Repair | Disaster Recovery',
   description: 'Professional structural fire damage repair services in Queensland. 24/7 emergency response for building fire, frame damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/structural-fire-damage',
+  },
 };
 
 export default function StructuralFireDamageRepairPage() {

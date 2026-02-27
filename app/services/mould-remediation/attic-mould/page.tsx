@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Attic Mould Removal | Disaster Recovery',
   description: 'Professional attic mould removal services in Queensland. 24/7 emergency response for roof cavity mould, ceiling mould.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/attic-mould',
+  },
 };
 
 export default function AtticMouldRemovalPage() {

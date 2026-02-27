@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Office Water Damage Restoration | Disaster Recovery',
   description: 'Professional office water damage restoration services across Australia. 24/7 emergency response for commercial flooding, workplace water.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/office-water-damage',
+  },
 };
 
 export default function OfficeWaterDamageRestorationPage() {

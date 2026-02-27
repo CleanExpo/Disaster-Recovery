@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Dishwasher Leak Water Damage | Disaster Recovery',
   description: 'Professional dishwasher leak water damage services in Queensland. 24/7 emergency response for dishwasher flooding, kitchen water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/dishwasher-leaks',
+  },
 };
 
 export default function DishwasherLeakWaterDamagePage() {

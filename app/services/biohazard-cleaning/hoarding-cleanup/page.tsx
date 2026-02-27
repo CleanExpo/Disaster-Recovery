@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Hoarding Cleanup Services | Disaster Recovery',
   description: 'Professional hoarding cleanup services services in Queensland. 24/7 emergency response for hoarder house, extreme cleaning.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/hoarding-cleanup',
+  },
 };
 
 export default function HoardingCleanupServicesPage() {

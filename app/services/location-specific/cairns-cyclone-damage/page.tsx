@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Cairns Cyclone Recovery | Disaster Recovery',
   description: 'Professional cairns cyclone recovery services in Queensland. 24/7 emergency response for tropical damage, FNQ restoration.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/location-specific/cairns-cyclone-damage',
+  },
 };
 
 export default function CairnsCycloneRecoveryPage() {

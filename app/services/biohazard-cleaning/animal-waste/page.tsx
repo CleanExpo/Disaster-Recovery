@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Animal Waste Cleanup | Disaster Recovery',
   description: 'Professional animal waste cleanup services in Queensland. 24/7 emergency response for pet hoarding, feces removal.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/animal-waste',
+  },
 };
 
 export default function AnimalWasteCleanupPage() {

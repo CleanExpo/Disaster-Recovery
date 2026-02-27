@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Cyclone Damage Restoration | Disaster Recovery',
   description: 'Professional cyclone damage restoration services in Queensland. 24/7 emergency response for tropical cyclone, hurricane damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/cyclone-damage',
+  },
 };
 
 export default function CycloneDamageRestorationPage() {

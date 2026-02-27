@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Drug Lab Decontamination | Disaster Recovery',
   description: 'Professional drug lab decontamination services in Queensland. 24/7 emergency response for meth lab cleanup, chemical remediation.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/drug-lab-cleanup',
+  },
 };
 
 export default function DrugLabDecontaminationPage() {

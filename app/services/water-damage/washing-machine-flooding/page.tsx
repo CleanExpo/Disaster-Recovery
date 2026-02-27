@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Washing Machine Flood Damage | Disaster Recovery',
   description: 'Professional washing machine flood damage services in Queensland. 24/7 emergency response for washing machine overflow, laundry flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/washing-machine-flooding',
+  },
 };
 
 export default function WashingMachineFloodDamagePage() {

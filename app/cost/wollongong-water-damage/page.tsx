@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Wollongong water damage Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does water damage cost in Wollongong? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does water damage cost in Wollongong? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/wollongong-water-damage',
+  },
+};
 
 export default function WollongongwaterdamageCostPage() {
   return (

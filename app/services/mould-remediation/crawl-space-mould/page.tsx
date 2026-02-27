@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Crawl Space Mould Treatment | Disaster Recovery',
   description: 'Professional crawl space mould treatment services in Queensland. 24/7 emergency response for subfloor mould, under house mould.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/crawl-space-mould',
+  },
 };
 
 export default function CrawlSpaceMouldTreatmentPage() {

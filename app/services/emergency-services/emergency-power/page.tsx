@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Emergency Power Solutions | Disaster Recovery',
   description: 'Professional emergency power solutions services in Queensland. 24/7 emergency response for generators, temporary power.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-power',
+  },
 };
 
 export default function EmergencyPowerSolutionsPage() {

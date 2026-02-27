@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Commercial Fire Restoration | Disaster Recovery',
   description: 'Professional commercial fire restoration services in Queensland. 24/7 emergency response for business fire, office fire damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/commercial-fire-damage',
+  },
 };
 
 export default function CommercialFireRestorationPage() {

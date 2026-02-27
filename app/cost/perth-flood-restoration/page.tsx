@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Perth flood restoration Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does flood restoration cost in Perth? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does flood restoration cost in Perth? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/perth-flood-restoration',
+  },
+};
 
 export default function PerthfloodrestorationCostPage() {
   return (

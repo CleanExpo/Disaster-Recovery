@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Priority Emergency Response | Disaster Recovery',
   description: 'Professional priority emergency response services in Queensland. 24/7 emergency response for rapid deployment, first response.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/priority-response',
+  },
 };
 
 export default function PriorityEmergencyResponsePage() {

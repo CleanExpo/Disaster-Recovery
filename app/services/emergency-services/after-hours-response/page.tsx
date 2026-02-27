@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'After Hours Emergency Response | Disaster Recovery',
   description: 'Professional after hours emergency response services in Queensland. 24/7 emergency response for night emergency, weekend service.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/after-hours-response',
+  },
 };
 
 export default function AfterHoursEmergencyResponsePage() {

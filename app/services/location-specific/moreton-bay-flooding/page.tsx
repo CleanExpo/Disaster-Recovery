@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Moreton Bay Flood Services | Disaster Recovery',
   description: 'Professional moreton bay flood services services in Queensland. 24/7 emergency response for northern flooding, bay area.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/location-specific/moreton-bay-flooding',
+  },
 };
 
 export default function MoretonBayFloodServicesPage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Tornado Damage Cleanup | Disaster Recovery',
   description: 'Professional tornado damage cleanup services in Queensland. 24/7 emergency response for twister damage, severe wind.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/tornado-damage',
+  },
 };
 
 export default function TornadoDamageCleanupPage() {

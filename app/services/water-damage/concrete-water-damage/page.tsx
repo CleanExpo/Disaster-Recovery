@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Concrete Water Damage Restoration | Disaster Recovery',
   description: 'Professional concrete water damage restoration services in Queensland. 24/7 emergency response for concrete flooding, slab moisture.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/concrete-water-damage',
+  },
 };
 
 export default function ConcreteWaterDamageRestorationPage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Document Water Damage Recovery | Disaster Recovery',
   description: 'Professional document water damage recovery services in Queensland. 24/7 emergency response for paper restoration, book drying.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/document-drying',
+  },
 };
 
 export default function DocumentWaterDamageRecoveryPage() {

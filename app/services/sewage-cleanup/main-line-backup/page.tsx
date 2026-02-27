@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Main Sewer Line Backup | Disaster Recovery',
   description: 'Professional main sewer line backup services in Queensland. 24/7 emergency response for sewer blockage, main drain backup.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/main-line-backup',
+  },
 };
 
 export default function MainSewerLineBackupPage() {

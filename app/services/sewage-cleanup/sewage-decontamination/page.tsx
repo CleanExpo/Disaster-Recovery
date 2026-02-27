@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Sewage Decontamination Services | Disaster Recovery',
   description: 'Professional sewage decontamination services services in Queensland. 24/7 emergency response for sanitisation, bacterial cleanup.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/sewage-decontamination',
+  },
 };
 
 export default function SewageDecontaminationServicesPage() {

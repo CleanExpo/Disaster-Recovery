@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Needle & Sharps Disposal | Disaster Recovery',
   description: 'Professional needle & sharps disposal services in Queensland. 24/7 emergency response for syringe cleanup, medical waste.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/sharps-disposal',
+  },
 };
 
 export default function NeedleSharpsDisposalPage() {

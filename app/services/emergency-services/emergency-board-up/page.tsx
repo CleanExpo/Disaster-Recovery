@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Emergency Board Up Services | Disaster Recovery',
   description: 'Professional emergency board up services services in Queensland. 24/7 emergency response for security boarding, window boarding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-board-up',
+  },
 };
 
 export default function EmergencyBoardUpServicesPage() {

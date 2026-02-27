@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Blood Spill Cleanup Services | Disaster Recovery',
   description: 'Professional blood spill cleanup services services in Queensland. 24/7 emergency response for bloodborne pathogen, accident cleanup.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/blood-cleanup',
+  },
 };
 
 export default function BloodSpillCleanupServicesPage() {

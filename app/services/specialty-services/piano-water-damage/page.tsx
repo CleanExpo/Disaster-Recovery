@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Piano Water Damage Restoration | Disaster Recovery',
   description: 'Professional piano water damage restoration services in Queensland. 24/7 emergency response for musical instrument, piano flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/piano-water-damage',
+  },
 };
 
 export default function PianoWaterDamageRestorationPage() {

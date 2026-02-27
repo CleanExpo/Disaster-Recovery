@@ -6,7 +6,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Brisbane fire damage Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does fire damage cost in Brisbane? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does fire damage cost in Brisbane? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/brisbane-fire-damage',
+  },
+};
 
 export default function BrisbanefiredamageCostPage() {
   return (

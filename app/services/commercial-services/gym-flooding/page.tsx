@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Gym & Fitness Centre Flooding | Disaster Recovery',
   description: 'Professional gym & fitness centre flooding services across Australia. 24/7 emergency response for sports facility, gym water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/gym-flooding',
+  },
 };
 
 export default function GymFitnessCenterFloodingPage() {

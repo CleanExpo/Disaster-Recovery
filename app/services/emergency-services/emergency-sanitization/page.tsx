@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Emergency Sanitisation | Disaster Recovery',
   description: 'Professional emergency sanitisation services in Queensland. 24/7 emergency response for urgent disinfection, contamination control.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-sanitization',
+  },
 };
 
 export default function EmergencySanitisationPage() {

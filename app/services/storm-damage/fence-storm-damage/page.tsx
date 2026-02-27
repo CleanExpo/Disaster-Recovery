@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Fence Storm Damage Repair | Disaster Recovery',
   description: 'Professional fence storm damage repair services in Queensland. 24/7 emergency response for fence repair, boundary damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/fence-storm-damage',
+  },
 };
 
 export default function FenceStormDamageRepairPage() {

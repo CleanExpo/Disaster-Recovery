@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Toilet Overflow Cleanup | Disaster Recovery',
   description: 'Professional toilet overflow cleanup services in Queensland. 24/7 emergency response for toilet flooding, bathroom water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/toilet-overflow',
+  },
 };
 
 export default function ToiletOverflowCleanupPage() {

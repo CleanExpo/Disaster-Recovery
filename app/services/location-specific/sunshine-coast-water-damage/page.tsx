@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Sunshine Coast Water Damage | Disaster Recovery',
   description: 'Professional sunshine coast water damage services in Queensland. 24/7 emergency response for coastal damage, beach restoration.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/location-specific/sunshine-coast-water-damage',
+  },
 };
 
 export default function SunshineCoastWaterDamagePage() {

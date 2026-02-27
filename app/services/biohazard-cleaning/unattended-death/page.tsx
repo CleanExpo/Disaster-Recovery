@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Unattended Death Cleanup | Disaster Recovery',
   description: 'Professional unattended death cleanup services in Queensland. 24/7 emergency response for decomposition cleanup, deceased estate.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/unattended-death',
+  },
 };
 
 export default function UnattendedDeathCleanupPage() {

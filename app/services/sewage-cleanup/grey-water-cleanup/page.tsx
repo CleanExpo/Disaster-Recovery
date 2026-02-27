@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Grey Water Damage Cleanup | Disaster Recovery',
   description: 'Professional grey water damage cleanup services in Queensland. 24/7 emergency response for washing machine water, sink overflow.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/grey-water-cleanup',
+  },
 };
 
 export default function GreyWaterDamageCleanupPage() {

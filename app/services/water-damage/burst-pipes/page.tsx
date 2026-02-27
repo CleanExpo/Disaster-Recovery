@@ -6,6 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Burst Pipe Emergency Services Brisbane | Disaster Recovery',
   description: 'Emergency burst pipe repair and water damage restoration in Queensland. 24/7 response for pipe bursts, leaks, and flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/burst-pipes',
+  },
 };
 
 export default function BurstPipesPage() {

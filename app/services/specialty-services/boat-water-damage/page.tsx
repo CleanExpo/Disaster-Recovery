@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Marine Water Damage | Disaster Recovery',
   description: 'Professional marine water damage services in Queensland. 24/7 emergency response for boat flooding, yacht restoration.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/boat-water-damage',
+  },
 };
 
 export default function MarineWaterDamagePage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Commercial Mould Remediation | Disaster Recovery',
   description: 'Professional commercial mould remediation services in Queensland. 24/7 emergency response for office mould, workplace mould.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/commercial-mould',
+  },
 };
 
 export default function CommercialMouldRemediationPage() {

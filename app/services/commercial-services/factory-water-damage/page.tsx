@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Factory Flood Recovery | Disaster Recovery',
   description: 'Professional factory flood recovery services across Australia. 24/7 emergency response for manufacturing plant, industrial water.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/factory-water-damage',
+  },
 };
 
 export default function FactoryFloodRecoveryPage() {

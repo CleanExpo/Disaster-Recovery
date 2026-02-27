@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Solar Panel Water Damage | Disaster Recovery',
   description: 'Professional solar panel water damage services in Queensland. 24/7 emergency response for solar system, panel flooding.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/specialty-services/solar-panel-water-damage',
+  },
 };
 
 export default function SolarPanelWaterDamagePage() {

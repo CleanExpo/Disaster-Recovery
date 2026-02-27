@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Hail Damage Restoration | Disaster Recovery',
   description: 'Professional hail damage restoration services in Queensland. 24/7 emergency response for hailstorm damage, ice damage repair.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/hail-damage-repair',
+  },
 };
 
 export default function HailDamageRestorationPage() {

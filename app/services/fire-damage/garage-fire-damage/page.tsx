@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Garage Fire Restoration | Disaster Recovery',
   description: 'Professional garage fire restoration services in Queensland. 24/7 emergency response for vehicle fire, garage smoke damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/garage-fire-damage',
+  },
 };
 
 export default function GarageFireRestorationPage() {

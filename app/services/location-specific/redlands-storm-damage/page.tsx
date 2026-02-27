@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Redlands Storm Damage | Disaster Recovery',
   description: 'Professional redlands storm damage services in Queensland. 24/7 emergency response for bayside damage, island restoration.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/location-specific/redlands-storm-damage',
+  },
 };
 
 export default function RedlandsStormDamagePage() {

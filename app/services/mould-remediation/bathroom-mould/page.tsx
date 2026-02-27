@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Bathroom Mould Remediation | Disaster Recovery',
   description: 'Professional bathroom mould remediation services in Queensland. 24/7 emergency response for shower mould, bathroom ceiling mould.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/bathroom-mould',
+  },
 };
 
 export default function BathroomMouldRemediationPage() {

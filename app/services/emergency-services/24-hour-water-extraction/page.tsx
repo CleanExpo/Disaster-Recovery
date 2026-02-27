@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: '24 Hour Water Extraction | Disaster Recovery',
   description: 'Professional 24 hour water extraction services in Queensland. 24/7 emergency response for emergency pumping, rapid extraction.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/24-hour-water-extraction',
+  },
 };
 
 export default function TwentyFourHourWaterExtractionPage() {

@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Canberra flood restoration Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does flood restoration cost in Canberra? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does flood restoration cost in Canberra? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/canberra-flood-restoration',
+  },
+};
 
 export default function CanberrafloodrestorationCostPage() {
   return (

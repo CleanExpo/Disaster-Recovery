@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Soot Damage Cleaning | Disaster Recovery',
   description: 'Professional soot damage cleaning services in Queensland. 24/7 emergency response for soot removal, carbon cleaning.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/soot-damage-cleanup',
+  },
 };
 
 export default function SootDamageCleaningPage() {

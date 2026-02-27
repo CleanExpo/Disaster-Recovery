@@ -6,6 +6,9 @@ import { getRelatedPages } from '@/lib/internal-links';
 export const metadata: Metadata = {
   title: 'Emergency Response | Disaster Recovery',
   description: 'Expert ceiling water damage repair and restoration in Queensland. Emergency response for ceiling leaks, sagging, and collapse prevention.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage/ceiling-water-damage',
+  },
 };
 
 export default function CeilingWaterDamagePage() {

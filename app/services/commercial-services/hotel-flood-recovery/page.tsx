@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Hotel Flood Restoration | Disaster Recovery',
   description: 'Professional hotel flood restoration services across Australia. 24/7 emergency response for accommodation flooding, guest room water.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/hotel-flood-recovery',
+  },
 };
 
 export default function HotelFloodRestorationPage() {

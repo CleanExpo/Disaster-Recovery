@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Retail Store Flood Recovery | Disaster Recovery',
   description: 'Professional retail store flood recovery services across Australia. 24/7 emergency response for shop flooding, retail water damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-services/retail-flood-damage',
+  },
 };
 
 export default function RetailStoreFloodRecoveryPage() {

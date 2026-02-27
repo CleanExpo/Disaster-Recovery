@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Emergency Plumbing Services | Disaster Recovery',
   description: 'Professional emergency plumbing services services in Queensland. 24/7 emergency response for burst pipe repair, leak stop.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/emergency-services/emergency-plumbing',
+  },
 };
 
 export default function EmergencyPlumbingServicesPage() {

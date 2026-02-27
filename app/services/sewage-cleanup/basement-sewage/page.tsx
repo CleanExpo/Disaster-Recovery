@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Basement Sewage Flooding | Disaster Recovery',
   description: 'Professional basement sewage flooding services in Queensland. 24/7 emergency response for lower level sewage, underground backup.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup/basement-sewage',
+  },
 };
 
 export default function BasementSewageFloodingPage() {

@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Black Mould Removal Brisbane | Disaster Recovery',
   description: 'Professional black mould removal brisbane services in Queensland. 24/7 emergency response for toxic black mould, stachybotrys removal.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation/black-mould-removal',
+  },
 };
 
 export default function BlackMouldRemovalBrisbanePage() {

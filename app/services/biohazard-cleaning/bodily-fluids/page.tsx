@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Bodily Fluid Cleanup | Disaster Recovery',
   description: 'Professional bodily fluid cleanup services in Queensland. 24/7 emergency response for vomit cleanup, human waste.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning/bodily-fluids',
+  },
 };
 
 export default function BodilyFluidCleanupPage() {

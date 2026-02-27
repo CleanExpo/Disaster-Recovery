@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Bushfire Smoke Damage | Disaster Recovery',
   description: 'Professional bushfire smoke damage services in Queensland. 24/7 emergency response for wildfire smoke, outdoor fire damage.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage/bushfire-smoke-damage',
+  },
 };
 
 export default function BushfireSmokeDamagePage() {

@@ -5,7 +5,11 @@ import { getCostSections } from '@/lib/content-sections';
 
 export const metadata: Metadata = {
   title: 'Newcastle water damage Cost | Pricing Guide 2024 | Free Quotes',
-  description: 'How much does water damage cost in Newcastle? Average prices, insurance coverage, payment plans. Get free quote now.' };
+  description: 'How much does water damage cost in Newcastle? Average prices, insurance coverage, payment plans. Get free quote now.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cost/newcastle-water-damage',
+  },
+};
 
 export default function NewcastlewaterdamageCostPage() {
   return (

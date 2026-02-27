@@ -5,6 +5,9 @@ import { AgContentPageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Lightning Strike Damage | Disaster Recovery',
   description: 'Professional lightning strike damage services in Queensland. 24/7 emergency response for electrical surge, lightning fire.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage/lightning-damage',
+  },
 };
 
 export default function LightningStrikeDamagePage() {
