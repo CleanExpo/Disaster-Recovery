@@ -22,15 +22,16 @@ export default function UltraModernFooter() {
     { label: 'Water Damage', href: '/services/water-damage' },
     { label: 'Fire & Smoke', href: '/services/fire-damage' },
     { label: 'Mould Remediation', href: '/services/mould-remediation' },
-    { label: 'Commercial Services', href: '/services/commercial' },
+    { label: 'Storm Damage', href: '/services/storm-damage' },
+    { label: 'Biohazard Cleanup', href: '/services/biohazard-cleaning' },
   ];
 
   const company = [
     { label: 'About Us', href: '/about' },
-    { label: 'Technology', href: '/technology' },
+    { label: 'How It Works', href: '/how-it-works' },
+    { label: 'Guides & Resources', href: '/guides' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'Certifications', href: '/certifications' },
-    { label: 'Clean Claims Partner', href: '/partners/clean-claims' },
   ];
 
   const support = [
@@ -38,6 +39,7 @@ export default function UltraModernFooter() {
     { label: 'Emergency Guide', href: '/emergency-guide' },
     { label: 'Insurance Claims', href: '/insurance' },
     { label: 'FAQ', href: '/faq' },
+    { label: 'Careers', href: '/careers' },
   ];
 
   const socialLinks = [
@@ -325,12 +327,21 @@ export default function UltraModernFooter() {
             </div>
 
             {/* Legal links */}
-            <div className="flex items-center gap-6 text-sm">
-              <Link href="/privacy" className="text-gray-700 hover:text-white transition-colours">
-                Privacy Policy
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
+              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+                Privacy
               </Link>
-              <Link href="/terms" className="text-gray-700 hover:text-white transition-colours">
-                Terms of Service
+              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
+                Terms
+              </Link>
+              <Link href="/accessibility" className="text-gray-400 hover:text-white transition-colors">
+                Accessibility
+              </Link>
+              <Link href="/cookies" className="text-gray-400 hover:text-white transition-colors">
+                Cookies
+              </Link>
+              <Link href="/disclaimer" className="text-gray-400 hover:text-white transition-colors">
+                Disclaimer
               </Link>
             </div>
           </div>
