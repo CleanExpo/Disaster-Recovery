@@ -86,9 +86,9 @@ const navigation: NavItem[] = [
     title: 'Portal',
     icon: Shield,
     children: [
-      { title: 'Client Portal', href: '/portal/client' },
-      { title: 'Contractor Portal', href: '/portal/contractor' },
-      { title: 'Partner Portal', href: '/portal/partner' }
+      { title: 'Client Portal', href: '/client-portal' },
+      { title: 'Contractor Portal', href: '/contractor-portal' },
+      { title: 'Partner Portal', href: '/contractor-portal' }
     ]
   }
 ];
@@ -191,7 +191,7 @@ export default function MobileNav() {
                     </Link>
                   </Button>
                   <Button variant="outline" className="w-full" size="lg" asChild>
-                    <Link href="/portal/login">
+                    <Link href="/contractor/login">
                       <LogIn className="mr-2 h-4 w-4" />
                       Sign In
                     </Link>
@@ -250,7 +250,7 @@ export default function MobileNav() {
             <span>Claim</span>
           </Link>
           <Link
-            href="/portal/client"
+            href="/client-portal"
             className={cn(
               "flex flex-col items-center justify-center gap-1 text-xs",
               pathname?.startsWith('/portal') ? "text-primary" : "text-muted-foreground"

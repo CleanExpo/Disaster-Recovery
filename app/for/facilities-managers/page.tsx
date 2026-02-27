@@ -1,7 +1,19 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Wrench } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Emergency Restoration for Facilities Managers',
+  description: 'Emergency disaster restoration for facilities managers across Australia. Approved supplier panel, SLA compliance, IICRC certification, multi-floor coordination.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Facilities Management Disaster Recovery',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+};
 
 export const metadata: Metadata = {
   title: 'Facilities Managers | Commercial Building Restoration',
@@ -17,7 +29,10 @@ export const metadata: Metadata = {
 /* -------------------------------------------------------------------------- */
 
 export default function FacilitiesManagersPage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="facilities-managers-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
@@ -288,5 +303,6 @@ export default function FacilitiesManagersPage() {
         },
       ]}
     />
+    </>
   );
 }

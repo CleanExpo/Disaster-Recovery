@@ -230,7 +230,7 @@ const ModernHeroSection: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1 }}
             >
-              <Link href="/emergency-help">
+              <Link href="/claim">
                 <motion.button
                   ref={emergencyButtonRef as React.RefObject<HTMLButtonElement>}
                   className="group relative px-12 py-5 text-lg font-bold text-white rounded-2xl overflow-hidden premium-button"

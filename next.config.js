@@ -413,6 +413,8 @@ const nextConfig = {
       { source: '/help', destination: '/claim', permanent: true },
       { source: '/find-contractor', destination: '/claim', permanent: true },
       { source: '/claim/submit', destination: '/claim', permanent: true },
+      { source: '/complaints', destination: '/contact', permanent: true },
+      { source: '/emergency-help', destination: '/claim', permanent: true },
 
       // Old WordPress blog posts (soft 404)
       { source: '/allergen-containment-abilities-of-vacuum-cleaners', destination: '/blog', permanent: true },

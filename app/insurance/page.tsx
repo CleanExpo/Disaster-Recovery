@@ -1,8 +1,20 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Shield } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getInsuranceSections } from '@/lib/content-sections';
 import { getRelatedPages } from '@/lib/internal-links';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Insurance Claims Assistance',
+  description: 'Expert insurance claims assistance for disaster recovery. Full claims documentation provided to support reimbursement from all major Australian insurers.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Insurance Claims Documentation',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+};
 
 export const metadata: Metadata = {
   title: 'Insurance Claims | All Major Insurers',
@@ -32,7 +44,10 @@ export const metadata: Metadata = {
 };
 
 export default function InsurancePage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="insurance-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%)',
@@ -49,5 +64,6 @@ export default function InsurancePage() {
       sections={getInsuranceSections({ insurerName: 'Insurance Partners', insurerSlug: 'insurance' })}
       relatedPages={getRelatedPages('insurance')}
     />
+    </>
   );
 }

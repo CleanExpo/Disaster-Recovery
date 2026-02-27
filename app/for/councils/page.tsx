@@ -1,7 +1,19 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Landmark } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Emergency Restoration for Local Councils',
+  description: 'Emergency disaster restoration for local councils and government facilities across Australia. Community facility restoration, make-safe order support, procurement panel arrangements.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Government Facility Disaster Recovery',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+};
 
 export const metadata: Metadata = {
   title: 'Local Councils | Government Facility Restoration',
@@ -17,7 +29,10 @@ export const metadata: Metadata = {
 /* -------------------------------------------------------------------------- */
 
 export default function CouncilsPage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="councils-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
@@ -371,5 +386,6 @@ export default function CouncilsPage() {
         },
       ]}
     />
+    </>
   );
 }

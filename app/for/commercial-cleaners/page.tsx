@@ -1,7 +1,19 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Handshake } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import Link from 'next/link';
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Referral Partner Program for Commercial Cleaners',
+  description: 'Partner with Disaster Recovery when damage exceeds your cleaning scope. Your client stays your client. Emergency referral program for commercial cleaning companies across Australia.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Referral Partner Program',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim' },
+};
 
 export const metadata: Metadata = {
   title: 'Commercial Cleaners | Referral Partner Program',
@@ -13,7 +25,10 @@ export const metadata: Metadata = {
 };
 
 export default function CommercialCleanersPage() {
+  const schemaStr = JSON.stringify(serviceSchema);
   return (
+    <>
+    <Script id="commercial-cleaners-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
@@ -384,5 +399,6 @@ export default function CommercialCleanersPage() {
         },
       ]}
     />
+    </>
   );
 }

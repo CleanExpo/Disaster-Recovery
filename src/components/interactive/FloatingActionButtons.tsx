@@ -322,7 +322,7 @@ function QuickActionDock() {
       icon: Clock,
       label: 'Track Claim',
       colour: 'bg-gradient-to-r from-blue-500 to-blue-600',
-      action: () => window.location.href = '/portal/client',
+      action: () => window.location.href = '/client-portal',
       size: 'md' as const
     },
     {

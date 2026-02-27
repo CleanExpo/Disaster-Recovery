@@ -1,8 +1,30 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Building2 } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 import Link from 'next/link';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Commercial Disaster Recovery for Business',
+  description: 'Disaster recovery services for property managers, strata managers, business owners, facilities managers, councils, and commercial cleaners across Australia.',
+  url: 'https://disasterrecovery.com.au/for',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: 6,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Property Managers', url: 'https://disasterrecovery.com.au/for/property-managers' },
+      { '@type': 'ListItem', position: 2, name: 'Strata Managers', url: 'https://disasterrecovery.com.au/for/strata-managers' },
+      { '@type': 'ListItem', position: 3, name: 'Business Owners', url: 'https://disasterrecovery.com.au/for/business-owners' },
+      { '@type': 'ListItem', position: 4, name: 'Facilities Managers', url: 'https://disasterrecovery.com.au/for/facilities-managers' },
+      { '@type': 'ListItem', position: 5, name: 'Local Councils', url: 'https://disasterrecovery.com.au/for/councils' },
+      { '@type': 'ListItem', position: 6, name: 'Commercial Cleaners', url: 'https://disasterrecovery.com.au/for/commercial-cleaners' },
+    ],
+  },
+};
 
 export const metadata: Metadata = {
   title: 'Commercial Disaster Recovery for Business',
@@ -13,7 +35,10 @@ export const metadata: Metadata = {
 };
 
 export default function ForBusinessPage() {
+  const schemaStr = JSON.stringify(pageSchema);
   return (
+    <>
+    <Script id="for-business-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
@@ -98,5 +123,6 @@ export default function ForBusinessPage() {
       ]}
       relatedPages={getRelatedPages('commercial')}
     />
+    </>
   );
 }

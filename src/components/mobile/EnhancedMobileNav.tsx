@@ -299,7 +299,7 @@ export default function EnhancedMobileNav() {
                   Client Portal
                 </Link>
                 <div className="flex items-center justify-center space-x-4 pt-2">
-                  <Link href="/settings" className="text-gray-600 hover:text-gray-900">
+                  <Link href="/contact" className="text-gray-600 hover:text-gray-900">
                     <Settings className="h-5 w-5" />
                   </Link>
                   <span className="text-gray-300">|</span>

@@ -1,10 +1,23 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Wrench } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getRelatedPages } from '@/lib/internal-links';
 
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Disaster Recovery Cost Estimator',
+  description: 'Property damage assessment tools. Get instant pricing estimates for water damage, fire, mould, storm, and flood restoration across Australia.',
+  url: 'https://disasterrecovery.com.au/tools',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web Browser',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'AUD' },
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
+};
+
 export const metadata: Metadata = {
-  title: 'Tools',
+  title: 'Tools & Calculators | Disaster Recovery Cost Estimator',
   description: 'Property damage assessment tools. Use our cost estimator to get instant pricing estimates for water damage, fire, mould, storm, and flood restoration.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/tools',
@@ -12,7 +25,10 @@ export const metadata: Metadata = {
 };
 
 export default function ToolsIndexPage() {
+  const schemaStr = JSON.stringify(pageSchema);
   return (
+    <>
+    <Script id="tools-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0F2942 0%, #1A4674 50%, #0F2942 100%)',
@@ -66,5 +82,6 @@ export default function ToolsIndexPage() {
       ]}
       relatedPages={getRelatedPages('cost-estimator')}
     />
+    </>
   );
 }

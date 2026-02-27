@@ -592,7 +592,7 @@ const Footer: React.FC = () => {
                     Terms of Service
                     <ExternalLink className="h-4 w-4" />
                   </FooterLink>
-                  <FooterLink href="/complaints" className="flex items-center justify-between p-3 bg-gray-700 hover:bg-gray-800 rounded transition-colours">
+                  <FooterLink href="/contact" className="flex items-center justify-between p-3 bg-gray-700 hover:bg-gray-800 rounded transition-colours">
                     Complaints Procedure
                     <ExternalLink className="h-4 w-4" />
                   </FooterLink>
