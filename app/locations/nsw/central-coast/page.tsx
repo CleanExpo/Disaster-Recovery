@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Central Coast',
-  description: '24/7 disaster recovery in Central Coast, New South Wales. Water damage, fire restoration, mould removal. Call Online Form Available 24/7.' ,
+  description: '24/7 disaster recovery in Central Coast, New South Wales. Water damage, fire restoration, mould removal. Lodge a claim online 24/7.' ,
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/nsw/central-coast',
   },

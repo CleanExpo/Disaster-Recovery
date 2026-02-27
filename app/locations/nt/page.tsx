@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Northern Territory | 24/7',
-  description: 'Leading disaster recovery services across Northern Territory. Emergency response for Cyclones, Flooding, Bushfires, Extreme Heat. Serving Darwin, Palmerston, Alice Springs, Katherine and all NT regions. Call Online Form Available 24/7.',
+  description: 'Leading disaster recovery services across Northern Territory. Emergency response for Cyclones, Flooding, Bushfires, Extreme Heat. Serving Darwin, Palmerston, Alice Springs, Katherine and all NT regions. Lodge a claim online 24/7.',
   keywords: [
     'disaster recovery Northern Territory',
     'emergency services Darwin',

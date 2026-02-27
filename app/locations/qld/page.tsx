@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Queensland | 24/7 Emergency Services',
-  description: 'Leading disaster recovery services across Queensland. Emergency response for Cyclones, Flooding, Severe Storms, Storm Surge. Serving Brisbane, Gold Coast, Sunshine Coast, Townsville and all QLD regions. Call Online Form Available 24/7.',
+  description: 'Leading disaster recovery services across Queensland. Emergency response for Cyclones, Flooding, Severe Storms, Storm Surge. Serving Brisbane, Gold Coast, Sunshine Coast, Townsville and all QLD regions. Lodge a claim online 24/7.',
   keywords: [
     'disaster recovery Queensland',
     'emergency services Brisbane',

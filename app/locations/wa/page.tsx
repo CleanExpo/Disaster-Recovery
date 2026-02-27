@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Disaster Recovery Western | 24/7 Emergency Services',
-  description: 'Leading disaster recovery services across Western Australia. Emergency response for Bushfires, Cyclones, Flooding, Severe Storms. Serving Perth, Fremantle, Mandurah, Bunbury and all WA regions. Call Online Form Available 24/7.',
+  description: 'Leading disaster recovery services across Western Australia. Emergency response for Bushfires, Cyclones, Flooding, Severe Storms. Serving Perth, Fremantle, Mandurah, Bunbury and all WA regions. Lodge a claim online 24/7.',
   keywords: [
     'disaster recovery Western Australia',
     'emergency services Perth',
