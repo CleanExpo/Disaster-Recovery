@@ -93,8 +93,8 @@ export default function CampaignTrackingDashboard() {
           type: 'text',
           assets: [],
           headlines: ['24/7 Emergency Water Damage Repair', 'Sydney\'s #1 Restoration Experts'],
-          descriptions: ['Fast response, professional service, insurance approved'],
-          callToActions: ['Submit Form Now', 'Get Quote'],
+          descriptions: ['Fast response, professional service, IICRC certified'],
+          callToActions: ['Submit Form Now', 'Get Estimate'],
           landingPages: ['/emergency-water-damage-sydney'],
           performance: {
             impressions: 45600,

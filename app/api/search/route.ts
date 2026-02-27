@@ -45,7 +45,7 @@ const searchDatabase: SearchResult[] = [
     rating: 4.9,
     responseTime: '< 30 minutes',
     price: 150,
-    tags: ['emergency', 'water damage', 'flood', 'burst pipes', 'insurance approved', '24/7', 'IICRC certified'],
+    tags: ['emergency', 'water damage', 'flood', 'burst pipes', 'IICRC certified', '24/7', 'IICRC certified'],
     url: '/services/emergency-water-damage',
     priority: 'emergency',
     metadata: {
@@ -66,7 +66,7 @@ const searchDatabase: SearchResult[] = [
     rating: 4.8,
     responseTime: '< 45 minutes',
     price: 200,
-    tags: ['fire damage', 'smoke removal', 'odour elimination', 'structural repair', 'content cleaning', 'insurance approved'],
+    tags: ['fire damage', 'smoke removal', 'odour elimination', 'structural repair', 'content cleaning', 'IICRC certified'],
     url: '/services/fire-damage-restoration',
     priority: 'urgent',
     metadata: {
@@ -86,7 +86,7 @@ const searchDatabase: SearchResult[] = [
     location: 'Sydney',
     rating: 4.9,
     responseTime: '< 20 minutes',
-    tags: ['IICRC certified', 'experienced', 'insurance approved', 'comprehensive', 'emergency response', 'water damage', 'fire restoration'],
+    tags: ['IICRC certified', 'experienced', 'IICRC certified', 'comprehensive', 'emergency response', 'water damage', 'fire restoration'],
     url: '/contractors/elite-restoration',
     metadata: {
       certifications: ['IICRC', 'WRT', 'FSRT', 'ASD', 'CCT'],

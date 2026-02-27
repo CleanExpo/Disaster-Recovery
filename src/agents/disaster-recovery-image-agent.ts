@@ -294,7 +294,7 @@ export function generateSEOMetadata(
   // Generate description
   const description = `Professional 3D rendered visualisation of ${
     service ? service.replace(/-/g, ' ') : 'disaster recovery'
-  } services ${location ? `in ${location}, Australia` : ''}. 24/7 emergency response, insurance approved, certified technicians.`;
+  } services ${location ? `in ${location}, Australia` : ''}. 24/7 emergency response, IICRC certified technicians.`;
   
   // Generate schema markup
   const schema = {

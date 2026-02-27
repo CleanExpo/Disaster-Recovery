@@ -35,7 +35,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
             </h1>
             <p className="text-xl mb-8 text-blue-800">
               Professional disaster recovery services for {pageTitle.toLowerCase()}. 
-              Available 24/7 with insurance approved solutions.
+              Available 24/7 with IICRC-certified solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -62,7 +62,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               </div>
               <div className="flex items-center gap-1">
                 <Shield className="h-4 w-4" />
-                <span>Insurance Approved</span>
+                <span>IICRC Certified</span>
               </div>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
@@ -127,7 +127,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                   'IICRC Certified',
                   'Licensed & Insured',
                   '5-Star Reviews',
-                  'Insurance Approved'
+                  'IICRC Certified'
                 ].map((signal, index) => (
                   <Card key={index} className="p-4 text-center">
                     <CheckCircle2 className="h-6 w-6 text-green-500 mx-auto mb-2" />

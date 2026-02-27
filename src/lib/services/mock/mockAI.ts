@@ -27,7 +27,7 @@ class MockAIService {
     ],
     contractor_matching: [
       "Recommended contractors based on your requirements: 1) Rapid Response Restoration (4.8★, 30-min response), 2) Emergency Flood Services (4.6★, specializes in water damage), 3) Property Restoration Services (4.7★, available 24/7).",
-      "Top matches for your emergency: 1) Fire Damage Specialists (4.9★, certified for fire restoration), 2) Crisis Response Team (4.7★, immediate availability), 3) Disaster Recovery Professionals (4.8★, insurance approved)."
+      "Top matches for your emergency: 1) Fire Damage Specialists (4.9★, certified for fire restoration), 2) Crisis Response Team (4.7★, immediate availability), 3) Disaster Recovery Professionals (4.8★, IICRC certified)."
     ],
     insurance_guidance: [
       "Your insurance policy likely covers this type of water damage under 'sudden and accidental' provisions. Document all damage with photos, keep receipts, and request an adjuster visit within 48 hours.",

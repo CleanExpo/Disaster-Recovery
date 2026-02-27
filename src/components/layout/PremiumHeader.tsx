@@ -80,7 +80,7 @@ export default function PremiumHeader() {
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4" />
-                <span>Insurance Approved</span>
+                <span>IICRC Certified</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />

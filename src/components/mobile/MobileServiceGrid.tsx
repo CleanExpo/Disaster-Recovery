@@ -42,7 +42,7 @@ const services: Service[] = [
     icon: Droplets,
     href: '/services/water-damage',
     color: 'from-blue-500 to-cyan-500',
-    features: ['24hr Response', 'Insurance Approved', 'Moisture Detection'],
+    features: ['24hr Response', 'IICRC Certified', 'Moisture Detection'],
     urgent: true,
     popular: true
   },

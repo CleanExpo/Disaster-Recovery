@@ -33,7 +33,7 @@ const stats = [
 
 const trustBadges = [
   { icon: Shield, text: 'IICRC Certified' },
-  { icon: Award, text: 'Insurance Approved' },
+  { icon: Award, text: 'IICRC Certified' },
   { icon: Clock, text: '24/7 Emergency' },
   { icon: Star, text: '5-Star Rated' }
 ];

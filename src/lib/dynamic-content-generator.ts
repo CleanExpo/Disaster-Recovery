@@ -202,7 +202,7 @@ export function generateLocationContent(
   
   return {
     title: `${serviceData.service} ${location.city} ${location.state} | 24/7 Emergency Response`,
-    metaDescription: `Professional ${serviceData.service.toLowerCase()} in ${location.city}, ${location.state}. 24/7 emergency service, insurance approved, rapid response across all ${location.city} suburbs. Lodge a claim online.`,
+    metaDescription: `Professional ${serviceData.service.toLowerCase()} in ${location.city}, ${location.state}. 24/7 emergency service, IICRC certified, rapid response across all ${location.city} suburbs. Lodge a claim online.`,
     h1: `${serviceData.service} Services in ${location.city}, ${location.state}`,
     sections: {
       intro: generateLocationIntro(location),

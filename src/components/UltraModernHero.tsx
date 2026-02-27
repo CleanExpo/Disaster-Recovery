@@ -336,7 +336,7 @@ export default function UltraModernHero() {
         >
           {[
             { icon: '🛡️', text: '24/7 Response' },
-            { icon: '✓', text: 'Insurance Approved' },
+            { icon: '✓', text: 'IICRC Certified' },
             { icon: '⚡', text: '60min Guarantee' },
             { icon: '🏆', text: 'IICRC Certified' },
           ].map((badge, index) => (

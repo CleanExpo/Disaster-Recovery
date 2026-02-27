@@ -25,7 +25,7 @@ export default function HeroSection() {
   const features = [
     { icon: Clock, text: '24/7 Response' },
     { icon: ShieldCheck, text: 'Fully Certified' },
-    { icon: CheckCircle, text: 'Insurance Approved' }
+    { icon: CheckCircle, text: 'IICRC Certified' }
   ];
 
   return (

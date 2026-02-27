@@ -383,7 +383,7 @@ export function generateLongTailKeywords(location: string, service: string) {
     `${location} ${service} near me`,
     `best ${service} ${location}`,
     `${service} restoration ${location}`,
-    `${location} ${service} insurance approved`,
+    `${location} ${service} IICRC certified`,
     `urgent ${service} ${location} today`,
     `same day ${service} ${location}`,
     `${location} ${service} cost`,

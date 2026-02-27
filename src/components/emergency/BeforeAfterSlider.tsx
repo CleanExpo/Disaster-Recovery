@@ -247,13 +247,13 @@ export default function BeforeAfterSlider() {
               className="bg-gradient-to-r from-green-900/50 to-blue-900/50 rounded-xl p-6 border border-green-500/30"
             >
               <div className="flex items-center justify-between mb-4">
-                <h4 className="text-lg font-bold text-white">Insurance Approved</h4>
+                <h4 className="text-lg font-bold text-white">IICRC Certified</h4>
                 <span className="text-3xl font-bold text-emerald-600">
                   {currentCase.insuranceAmount}
                 </span>
               </div>
               <p className="text-gray-300 mb-4">
-                Full restoration covered. We handle all paperwork and deal directly with your insurer.
+                Full restoration with complete claims documentation provided to support your insurance reimbursement.
               </p>
               <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform">
                 Get a Cost Estimate Now
@@ -276,7 +276,7 @@ export default function BeforeAfterSlider() {
             </div>
             <div>
               <div className="text-3xl font-bold text-emerald-400">100%</div>
-              <div className="text-gray-300">Insurance Approved</div>
+              <div className="text-gray-300">IICRC Certified</div>
             </div>
             <div>
               <div className="text-3xl font-bold text-blue-400">24/7</div>

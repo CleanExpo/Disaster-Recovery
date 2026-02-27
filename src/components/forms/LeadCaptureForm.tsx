@@ -177,7 +177,7 @@ export default function LeadCaptureForm() {
         <div className="flex items-center justify-center gap-4 mt-4">
           <div className="flex items-center gap-2 text-sm">
             <Shield className="h-4 w-4 text-green-600" />
-            <span>Insurance Approved</span>
+            <span>IICRC Certified</span>
           </div>
           <div className="flex items-center gap-2 text-sm">
             <MessageSquare className="h-4 w-4 text-blue-600" />

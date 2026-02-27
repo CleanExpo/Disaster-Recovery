@@ -18,8 +18,8 @@ export function TrustBadges({ variant = 'compact', showAll = false }: TrustBadge
       link: 'https://www.iicrc.org/verify'
     },
     {
-      name: 'Insurance Approved',
-      description: 'Approved by all major Australian insurance companies',
+      name: 'IICRC Certified',
+      description: 'IICRC-certified restoration technicians across Australia',
       logo: '/badges/insurance.svg',
       verified: true
     },

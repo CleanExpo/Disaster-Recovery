@@ -62,7 +62,7 @@ export default function EmergencyHero() {
               <Shield className="h-6 w-6 text-blue-500" />
             </div>
             <div className="text-2xl font-bold">100%</div>
-            <div className="text-sm opacity-90">Insurance Approved</div>
+            <div className="text-sm opacity-90">IICRC Certified</div>
           </div>
           
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">

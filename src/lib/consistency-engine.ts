@@ -344,7 +344,7 @@ export const LINKING_STRATEGY = {
       ],
       trust: [
         'IICRC certified professionals',
-        'insurance approved contractors',
+        'IICRC-certified contractors',
         'verified disaster recovery network',
         'trusted emergency responders'
       ]
@@ -537,7 +537,7 @@ export const SEO_CONFIG = {
     dynamic: {
       pattern: '/[state]/[city]/[service]',
       title: '[Service] in [City], [State] | 24/7 Online Emergency Response',
-      description: 'Professional [service] services in [City]. IICRC certified, insurance approved. Rapid response for [disaster] emergencies. Get Help Now!',
+      description: 'Professional [service] services in [City]. IICRC certified. Rapid response for [disaster] emergencies. Get Help Now!',
       h1: 'Emergency [Service] Services in [City]',
       content: {
         intro: 'When disaster strikes in [City], you need immediate professional help.',

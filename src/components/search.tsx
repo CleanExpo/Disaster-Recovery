@@ -39,7 +39,7 @@ export function Search() {
     { id: '2', text: 'Fire restoration services', type: 'popular', category: 'Fire Damage' },
     { id: '3', text: 'Mould inspection Brisbane', type: 'popular', category: 'Mould Services', location: 'Brisbane' },
     { id: '4', text: 'Storm damage repair', type: 'popular', category: 'Storm Damage' },
-    { id: '5', text: 'Insurance approved contractors', type: 'popular' },
+    { id: '5', text: 'IICRC-certified contractors', type: 'popular' },
   ];
 
   const recentSearches: SearchSuggestion[] = [

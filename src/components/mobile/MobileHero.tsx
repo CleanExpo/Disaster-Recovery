@@ -63,7 +63,7 @@ export default function MobileHero() {
           className="text-base sm:text-lg text-center text-gray-600 dark:text-gray-200 mb-6"
         >
           Professional restoration services nationwide. 
-          Insurance approved. Immediate response.
+          IICRC certified. Immediate response.
         </motion.p>
 
         {/* Trust Indicators */}

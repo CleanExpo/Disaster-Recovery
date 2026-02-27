@@ -13,7 +13,7 @@ export const HERO_CONTENT = {
   trustBadges: [
     'IICRC Certified Network',
     '24/7 Online Emergency Response',
-    'Insurance Approved',
+    'IICRC Certified',
     'AI-Powered Matching'
   ],
   emergencyBanner: {

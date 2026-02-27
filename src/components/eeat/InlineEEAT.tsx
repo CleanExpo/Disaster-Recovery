@@ -40,7 +40,7 @@ export function InlineEEAT() {
               'EPA Licensed',
               'WorkSafe Accredited',
               'Master Builders',
-              'Insurance Approved'
+              'IICRC Certified'
             ].map((cert, idx) => (
               <div key={idx} className="bg-white border rounded-lg p-4 text-center">
                 <div className="text-green-500 mb-2">✓</div>

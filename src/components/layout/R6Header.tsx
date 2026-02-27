@@ -183,7 +183,7 @@ export default function R6Header() {
               </div>
               <div className="flex items-center gap-2 group">
                 <Award className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium">Insurance Approved</span>
+                <span className="text-sm font-medium">IICRC Certified</span>
               </div>
               <div className="flex items-center gap-2 group">
                 <Users className="w-4 h-4 group-hover:scale-110 transition-transform" />

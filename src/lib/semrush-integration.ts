@@ -61,7 +61,7 @@ export const targetKeywords = {
   ],
   insurance: [
     'insurance restoration contractor',
-    'insurance approved restoration',
+    'IICRC certified restoration',
     'insurance claim water damage',
     'make safe services insurance',
     'storm damage insurance claim',
