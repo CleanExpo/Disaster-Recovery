@@ -40,6 +40,7 @@ type CategoryKey =
   | 'knowledge-base'
   | 'operational-excellence'
   | 'cost-estimator'
+  | 'pricing'
   | 'how-it-works'
   | 'blog';
 
@@ -188,39 +189,39 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency disaster response.' },
   ],
   'cost-water': [
+    { title: 'Water Damage Pricing by City', href: '/pricing', description: 'Detailed pricing breakdowns for water damage restoration in every major city.' },
     { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Professional water damage restoration services.' },
-    { title: 'Structural Drying', href: '/services/structural-drying', description: 'Industrial drying to protect your property long-term.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'How to claim water damage on your insurance.' },
-    { title: 'Mould Remediation Costs', href: '/cost/sydney-mould-removal', description: 'Mould often follows water damage — know the costs.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency water damage response.' },
+    { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Instant cost estimate based on your specific situation.' },
+    { title: 'All Cost Guides', href: '/cost', description: 'Browse cost guides for all damage types across Australia.' },
   ],
   'cost-fire': [
+    { title: 'Fire Damage Pricing by City', href: '/pricing', description: 'Detailed pricing breakdowns for fire damage restoration in every major city.' },
     { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Professional fire and smoke damage restoration.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Filing your fire damage insurance claim.' },
-    { title: 'Commercial Services', href: '/services/commercial-services', description: 'Commercial fire damage restoration services.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency fire damage response.' },
-    { title: 'Biohazard Cleanup', href: '/services/biohazard-cleaning', description: 'Post-fire biohazard cleanup services.' },
+    { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Instant cost estimate based on your specific situation.' },
+    { title: 'All Cost Guides', href: '/cost', description: 'Browse cost guides for all damage types across Australia.' },
   ],
   'cost-mould': [
+    { title: 'Mould Removal Pricing by City', href: '/pricing', description: 'Detailed pricing breakdowns for mould removal in every major city.' },
     { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'Professional mould removal and remediation.' },
-    { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Fix the water source causing mould.' },
     { title: 'Mould Health Guide', href: '/guides/mould', description: 'Health risks of mould exposure.' },
-    { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Is mould covered by insurance?' },
-    { title: 'Indoor Environmental Assessment', href: '/services/indoor-environmental-professional', description: 'Professional mould testing and air quality assessment.' },
+    { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Instant cost estimate based on your specific situation.' },
+    { title: 'All Cost Guides', href: '/cost', description: 'Browse cost guides for all damage types across Australia.' },
   ],
   'cost-storm': [
+    { title: 'Storm Damage Pricing by City', href: '/pricing', description: 'Detailed pricing breakdowns for storm damage restoration in every major city.' },
     { title: 'Storm Damage Restoration', href: '/services/storm-damage-restoration', description: 'Professional storm damage repair services.' },
-    { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Storm water ingress repair and drying.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'How to claim storm damage on insurance.' },
-    { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 storm damage emergency response.' },
-    { title: 'Flood Restoration Costs', href: '/cost/sydney-flood-restoration', description: 'Flash flood restoration costs.' },
+    { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Instant cost estimate based on your specific situation.' },
+    { title: 'All Cost Guides', href: '/cost', description: 'Browse cost guides for all damage types across Australia.' },
   ],
   'cost-flood': [
+    { title: 'Flood Recovery Pricing by City', href: '/pricing', description: 'Detailed pricing breakdowns for flood restoration in every major city.' },
     { title: 'Flood Damage Restoration', href: '/services/flood-damage-restoration', description: 'Specialist flood recovery services.' },
-    { title: 'Structural Drying', href: '/services/structural-drying', description: 'Post-flood structural drying services.' },
-    { title: 'Mould Remediation Costs', href: '/cost/sydney-mould-removal', description: 'Mould often follows flooding — know the costs.' },
     { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Filing your flood damage insurance claim.' },
-    { title: 'Sewage Cleanup', href: '/services/sewage-cleanup', description: 'Contaminated floodwater cleanup.' },
+    { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Instant cost estimate based on your specific situation.' },
+    { title: 'All Cost Guides', href: '/cost', description: 'Browse cost guides for all damage types across Australia.' },
   ],
   'insurance': [
     { title: 'Emergency Make-Safe Guide', href: '/insurance/emergency-make-safe-guide', description: '$2,750 emergency service, insurance reimbursement, and your right to choose a contractor.' },
@@ -257,9 +258,9 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Water Damage Science', href: '/knowledge/water-damage-restoration-science', description: 'IICRC S500 water damage categories, classes, and psychrometric drying science.' },
     { title: 'Mould Remediation Standards', href: '/knowledge/mould-remediation-standards', description: 'IICRC S520 mould remediation protocols and Australian health guidelines.' },
     { title: 'Fire Damage Restoration', href: '/knowledge/fire-damage-restoration-process', description: 'Four-phase fire restoration process including smoke and soot science.' },
-    { title: 'Insurance Claims Guide', href: '/knowledge/insurance-claims-process-australia', description: 'Australian insurance claims process, AFCA, and legal frameworks.' },
-    { title: 'IICRC Certification', href: '/knowledge/iicrc-certification-standards', description: 'IICRC certification requirements, standards, and why they matter.' },
-    { title: 'Emergency Protocols', href: '/knowledge/emergency-response-protocols', description: 'PPRR emergency response framework and the golden hour principle.' },
+    { title: 'Cost Guides', href: '/cost', description: 'Transparent restoration cost guides across Australia.' },
+    { title: 'Pricing by City', href: '/pricing', description: 'City-specific pricing for all damage types.' },
+    { title: 'Guides & Resources', href: '/guides', description: 'Practical restoration guides for property owners.' },
   ],
   'operational-excellence': [
     { title: 'Command Ecosystem', href: '/operational-excellence/command-ecosystem', description: 'Integrated technology for claims management, GPS dispatch and IICRC-compliant digital workflows.' },
@@ -268,6 +269,14 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Executive Partners', href: '/operational-excellence/executive-partners', description: 'IICRC, CARSI, RestoreAssist and NRPG industry-leading affiliations.' },
     { title: 'Chemical & Remediation Assets', href: '/operational-excellence/chemical-remediation-assets', description: 'Negative air machines, antimicrobial treatments and branded containment systems.' },
     { title: 'Emergency Response', href: '/services/emergency-response', description: '24/7 emergency disaster response across Australia and New Zealand.' },
+  ],
+  'pricing': [
+    { title: 'All Cost Guides', href: '/cost', description: 'In-depth cost guides with insurance coverage info for all damage types.' },
+    { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Get an instant personalised cost estimate.' },
+    { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your insurance claim step by step.' },
+    { title: 'Minimum Callout Fees', href: '/pricing/minimum-callout', description: 'Emergency callout minimum fees across Australia.' },
+    { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Professional water damage restoration services.' },
+    { title: 'Knowledge Base', href: '/knowledge', description: 'IICRC standards, Australian law, and restoration science.' },
   ],
   'cost-estimator': [
     { title: 'Water Damage Cost Guide', href: '/cost/sydney-water-damage', description: 'Detailed water damage restoration costs by city across Australia.' },
@@ -322,6 +331,9 @@ export function getRelatedPages(slug: string): RelatedPage[] {
 
   // Cost estimator tool
   if (slug.includes('cost-estimator')) return RELATED_PAGES_MAP['cost-estimator'];
+
+  // Pricing pages
+  if (slug.includes('pricing')) return RELATED_PAGES_MAP['pricing'];
 
   // Cost page matching
   if (slug.includes('cost')) {

@@ -103,6 +103,22 @@ const KNOWLEDGE_ENTRIES = [
     gradient: 'from-amber-600 to-orange-500',
     icon: '💰',
   },
+  {
+    slug: 'make-safe-forensic-assessment',
+    title: 'Make-Safe & Forensic Assessment',
+    description:
+      'Emergency make-safe procedures, forensic damage assessment methodology, and documentation for insurance claims.',
+    gradient: 'from-rose-600 to-pink-500',
+    icon: '🛡️',
+  },
+  {
+    slug: 'toxins-contamination',
+    title: 'Toxins & Contamination',
+    description:
+      'Biological toxins, chemical hazards, mould species health risks, and IICRC-certified decontamination protocols.',
+    gradient: 'from-lime-700 to-green-500',
+    icon: '⚠️',
+  },
 ];
 
 export default function KnowledgeHubPage() {

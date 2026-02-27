@@ -29,17 +29,17 @@ export default function UltraModernFooter() {
   const company = [
     { label: 'About Us', href: '/about' },
     { label: 'How It Works', href: '/how-it-works' },
-    { label: 'Guides & Resources', href: '/guides' },
     { label: 'Industries', href: '/industries' },
     { label: 'Property Types', href: '/property-types' },
+    { label: 'Knowledge Base', href: '/knowledge' },
   ];
 
   const support = [
-    { label: 'Contact', href: '/contact' },
-    { label: 'Emergency Guide', href: '/emergency-guide' },
+    { label: 'Guides & Resources', href: '/guides' },
+    { label: 'Cost Guides', href: '/cost' },
+    { label: 'Pricing by City', href: '/pricing' },
     { label: 'Insurance Claims', href: '/insurance' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Compare Options', href: '/compare' },
   ];
 
   const socialLinks = [

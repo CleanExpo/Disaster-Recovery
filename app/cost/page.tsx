@@ -28,7 +28,7 @@ export default function CostGuidesIndexPage() {
       stats={[
         { label: 'Cities Covered', value: '10+' },
         { label: 'Damage Types', value: '5' },
-        { label: 'Updated', value: '2024' },
+        { label: 'Updated', value: '2026' },
         { label: 'Free Quotes', value: 'Always' },
       ]}
       sections={[
@@ -158,7 +158,14 @@ export default function CostGuidesIndexPage() {
           background: 'dark',
         },
       ]}
-      relatedPages={getRelatedPages('cost-water')}
+      relatedPages={[
+        { title: 'Pricing by City', href: '/pricing', description: 'Detailed pricing breakdowns for every city and damage type.' },
+        { title: 'Cost Estimator Tool', href: '/tools/cost-estimator', description: 'Get an instant personalised cost estimate.' },
+        { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your insurance claim step by step.' },
+        { title: 'Knowledge Base', href: '/knowledge', description: 'IICRC standards and restoration science.' },
+        { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Professional water damage restoration services.' },
+        { title: 'All Services', href: '/services', description: 'Browse all disaster recovery services.' },
+      ]}
     />
   );
 }
