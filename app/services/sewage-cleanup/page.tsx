@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Droplets } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import ServiceChildLinks from '@/components/seo/ServiceChildLinks';
@@ -28,8 +29,22 @@ export const metadata: Metadata = {
   },
 };
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Sewage Cleanup Services',
+  description: 'Professional sewage cleanup and sanitisation across Australia. 24/7 emergency response for sewage backup, overflow cleanup, and contamination removal. IICRC-certified technicians.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization', name: 'Disaster Recovery' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Sewage Cleanup and Decontamination',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim', serviceType: 'Online' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
+
 export default function SewageCleanupPage() {
   return (
+    <>
+    <Script id="sewage-cleanup-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #7F1D1D 0%, #B91C1C 100%)',
@@ -52,5 +67,6 @@ export default function SewageCleanupPage() {
         },
       ]}
     />
+    </>
   );
 }

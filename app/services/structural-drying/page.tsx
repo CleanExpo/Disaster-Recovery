@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { Wind } from 'lucide-react';
 import { AgContentPageTemplate } from '@/components/antigravity';
 import { getServiceChildSections } from '@/lib/content-sections';
@@ -42,8 +43,22 @@ export const metadata: Metadata = {
     'ICBM': '-25.2744, 133.7751' }
 };
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Structural Drying Services',
+  description: 'Professional structural drying services with industrial dehumidifiers, air movers, and moisture monitoring. Expert water extraction and building drying to prevent mould and structural damage.',
+  provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization', name: 'Disaster Recovery' },
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  serviceType: 'Structural Drying and Dehumidification',
+  availableChannel: { '@type': 'ServiceChannel', serviceUrl: 'https://disasterrecovery.com.au/claim', serviceType: 'Online' },
+  hoursAvailable: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], opens: '00:00', closes: '23:59' },
+};
+
 export default function StructuralDryingPage() {
   return (
+    <>
+    <Script id="structural-drying-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
     <AgContentPageTemplate
       hero={{
         gradient: 'linear-gradient(135deg, #0C4A6E 0%, #0369A1 100%)',
@@ -62,5 +77,6 @@ export default function StructuralDryingPage() {
       sections={getServiceChildSections({ serviceName: 'Structural Drying Services', parentCategory: 'Water Damage', context: 'industrial dehumidification and moisture control' })}
       relatedPages={getRelatedPages('structural-drying')}
     />
+    </>
   );
 }
