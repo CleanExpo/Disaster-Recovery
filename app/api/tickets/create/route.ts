@@ -1,45 +1,60 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { ticketCreateSchema, ticketGetSchema } from '@/lib/api/validations';
+import {
+  apiSuccess,
+  apiValidationError,
+  apiBadRequest,
+  apiNotFound,
+  apiInternalError,
+} from '@/lib/api/responses';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Calculate lead score from submitted data
-    const leadScore = calculateLeadScore(body);
+    // --- Zod validation (was: zero validation, raw body.* into prisma) ---
+    const parsed = ticketCreateSchema.safeParse(body);
+    if (!parsed.success) {
+      return apiValidationError(parsed.error);
+    }
+    const data = parsed.data;
+
+    // Calculate lead score from validated data
+    const leadScore = calculateLeadScore(data);
 
     // Determine urgentResponse flag
     const isUrgent =
-      body.urgencyLevel === 'emergency' || body.urgencyLevel === 'urgent';
+      data.urgencyLevel === 'emergency' || data.urgencyLevel === 'urgent';
 
     // Build a location string from property address fields
     const location = [
-      body.propertyAddress,
-      body.suburb,
-      body.state,
-      body.postcode,
+      data.propertyAddress,
+      data.suburb,
+      data.state,
+      data.postcode,
     ]
       .filter(Boolean)
       .join(', ');
 
     // Build the service title from damage types
-    const serviceTitle = Array.isArray(body.damageType)
-      ? body.damageType.join(', ')
-      : body.damageType || 'General Service Request';
+    const serviceTitle = Array.isArray(data.damageType)
+      ? data.damageType.join(', ')
+      : data.damageType || 'General Service Request';
 
     // Create a real ServiceRequest record
     const serviceRequest = await prisma.serviceRequest.create({
       data: {
-        userId: body.email || 'anonymous',
-        serviceCategory: body.propertyType || 'residential',
-        urgency: body.urgencyLevel || 'standard',
+        userId: data.email,
+        serviceCategory: data.propertyType,
+        urgency: data.urgencyLevel,
         serviceTitle,
-        description: body.damageDescription || '',
+        description: data.damageDescription,
         location,
-        budget: body.budget || null,
-        phone: body.phone || null,
-        preferredTime: body.readyToStart || null,
-        insurance: body.hasInsurance === true,
+        budget: data.budget ?? null,
+        phone: data.phone ?? null,
+        preferredTime: data.readyToStart ?? null,
+        insurance: data.hasInsurance,
         urgentResponse: isUrgent,
         status: 'PENDING',
         leadScore,
@@ -47,78 +62,46 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json(
-      {
-        success: true,
-        ticketId: serviceRequest.id,
-        message:
-          'Ticket created successfully. A specialist will contact you within 30 minutes.',
-        estimatedResponse: '30 minutes',
-        trackingUrl: `/track/${serviceRequest.id}`,
-      },
-      { status: 201 }
-    );
+    return apiSuccess({
+      ticketId: serviceRequest.id,
+      message: 'Ticket created successfully. A specialist will contact you within 30 minutes.',
+      estimatedResponse: '30 minutes',
+      trackingUrl: `/track/${serviceRequest.id}`,
+    }, 201);
   } catch (error) {
-    console.error('Error creating ticket:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Failed to create ticket',
-        message: 'Please try again or contact support',
-      },
-      { status: 500 }
-    );
+    if (error instanceof SyntaxError) {
+      return apiBadRequest('Invalid JSON in request body');
+    }
+    return apiInternalError(error, 'tickets/create');
   }
 }
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const ticketId = searchParams.get('id');
+  const raw = { id: searchParams.get('id') ?? '' };
 
-  if (!ticketId) {
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Ticket ID required',
-      },
-      { status: 400 }
-    );
+  const parsed = ticketGetSchema.safeParse(raw);
+  if (!parsed.success) {
+    return apiValidationError(parsed.error);
   }
 
   try {
     const serviceRequest = await prisma.serviceRequest.findUnique({
-      where: { id: ticketId },
+      where: { id: parsed.data.id },
     });
 
     if (!serviceRequest) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Ticket not found',
-        },
-        { status: 404 }
-      );
+      return apiNotFound('Ticket not found');
     }
 
-    return NextResponse.json({
-      success: true,
-      ticket: serviceRequest,
-    });
+    return apiSuccess({ ticket: serviceRequest });
   } catch (error) {
-    console.error('Error fetching ticket:', error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: 'Failed to fetch ticket',
-        message: 'Please try again or contact support',
-      },
-      { status: 500 }
-    );
+    return apiInternalError(error, 'tickets/create GET');
   }
 }
 
 // Helper: calculate lead score from request data
-function calculateLeadScore(data: any): number {
+function calculateLeadScore(data: Record<string, any>): number {
   let score = 0;
 
   // Insurance (30 points)

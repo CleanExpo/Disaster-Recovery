@@ -1,28 +1,61 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { ImageOptimizer } from '@/lib/imageOptimizer';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { existsSync } from 'fs';
+import { uploadOptionsSchema, batchOptimiseSchema } from '@/lib/api/validations';
+import {
+  apiSuccess,
+  apiValidationError,
+  apiBadRequest,
+  apiInternalError,
+} from '@/lib/api/responses';
 
-// Note: In Next.js 13+ App Router, body parsing is handled automatically
-// No need for the deprecated config export
+// Allowed MIME types for upload
+const ALLOWED_MIME_TYPES = new Set([
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/avif',
+  'image/gif',
+]);
+
+// Max file size: 10 MB
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
-    
+
     if (!file) {
-      return NextResponse.json(
-        { error: 'No file uploaded' },
-        { status: 400 }
+      return apiBadRequest('No file uploaded');
+    }
+
+    // File type validation
+    if (!ALLOWED_MIME_TYPES.has(file.type)) {
+      return apiBadRequest(
+        `File type '${file.type}' is not allowed. Accepted: JPEG, PNG, WebP, AVIF, GIF`,
       );
     }
 
-    // Get optimization options from form data
-    const quality = parseInt(formData.get('quality') as string) || 85;
-    const maxWidth = parseInt(formData.get('maxWidth') as string) || 1920;
-    const format = (formData.get('format') as 'jpeg' | 'webp' | 'avif' | 'png') || 'webp';
+    // File size validation
+    if (file.size > MAX_FILE_SIZE) {
+      return apiBadRequest(
+        `File size ${(file.size / 1024 / 1024).toFixed(1)}MB exceeds the 10MB limit`,
+      );
+    }
+
+    // Validate optimisation options via Zod
+    const optsParsed = uploadOptionsSchema.safeParse({
+      quality: formData.get('quality'),
+      maxWidth: formData.get('maxWidth'),
+      format: formData.get('format'),
+    });
+    if (!optsParsed.success) {
+      return apiValidationError(optsParsed.error);
+    }
+    const opts = optsParsed.data;
 
     // Convert file to buffer
     const bytes = await file.arrayBuffer();
@@ -30,10 +63,11 @@ export async function POST(request: NextRequest) {
 
     // Optimize the image
     const optimizedBuffer = await ImageOptimizer.optimizeBuffer(buffer, {
-      quality,
-      width: maxWidth,
-      format,
-      maintainAspectRatio: true });
+      quality: opts.quality,
+      width: opts.maxWidth,
+      format: opts.format,
+      maintainAspectRatio: true,
+    });
 
     // Get optimization stats
     const stats = await ImageOptimizer.getOptimizationStats(buffer, optimizedBuffer);
@@ -42,7 +76,7 @@ export async function POST(request: NextRequest) {
     const timestamp = Date.now();
     const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const nameWithoutExt = path.parse(sanitizedName).name;
-    const filename = `${nameWithoutExt}_${timestamp}.${format}`;
+    const filename = `${nameWithoutExt}_${timestamp}.${opts.format}`;
 
     // Ensure upload directory exists
     const uploadDir = path.join(process.cwd(), 'public', 'uploads');
@@ -54,48 +88,44 @@ export async function POST(request: NextRequest) {
     const filePath = path.join(uploadDir, filename);
     await writeFile(filePath, optimizedBuffer);
 
-    // Return success response with stats
-    return NextResponse.json({
-      success: true,
+    return apiSuccess({
       filename,
       url: `/uploads/${filename}`,
       stats: {
         originalSize: `${(stats.originalSize / 1024).toFixed(2)} KB`,
         optimizedSize: `${(stats.optimizedSize / 1024).toFixed(2)} KB`,
         reduction: `${(stats.reduction / 1024).toFixed(2)} KB`,
-        reductionPercent: `${stats.reductionPercent}%` } });
+        reductionPercent: `${stats.reductionPercent}%`,
+      },
+    });
   } catch (error) {
-    console.error('Upload error:', error);
-    return NextResponse.json(
-      { error: 'Failed to upload and optimize image' },
-      { status: 500 }
-    );
+    return apiInternalError(error, 'upload');
   }
 }
 
 // API endpoint for batch optimization
 export async function PUT(request: NextRequest) {
   try {
-    const { directory, options } = await request.json();
-    
-    if (!directory) {
-      return NextResponse.json(
-        { error: 'Directory path required' },
-        { status: 400 }
-      );
+    const body = await request.json();
+
+    const parsed = batchOptimiseSchema.safeParse(body);
+    if (!parsed.success) {
+      return apiValidationError(parsed.error);
     }
 
-    const results = await ImageOptimizer.batchOptimize(directory, options);
-    
-    return NextResponse.json({
-      success: true,
-      optimized: results.length,
-      results });
-  } catch (error) {
-    console.error('Batch optimization error:', error);
-    return NextResponse.json(
-      { error: 'Failed to batch optimize images' },
-      { status: 500 }
+    const results = await ImageOptimizer.batchOptimize(
+      parsed.data.directory,
+      parsed.data.options,
     );
+
+    return apiSuccess({
+      optimized: results.length,
+      results,
+    });
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      return apiBadRequest('Invalid JSON in request body');
+    }
+    return apiInternalError(error, 'upload/batch');
   }
 }

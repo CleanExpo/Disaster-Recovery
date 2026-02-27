@@ -81,7 +81,7 @@ export async function GET() {
       rating: FALLBACK_RATING,
       reviewCount: FALLBACK_REVIEW_COUNT,
       source: 'fallback',
-      reason: error instanceof Error ? error.message : 'Unknown error',
+      reason: 'Places API temporarily unavailable',
     });
   }
 }

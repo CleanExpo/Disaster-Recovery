@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { searchParamsSchema, type SearchParamsInput } from '@/lib/api/validations';
+import { apiSuccess, apiValidationError, apiInternalError } from '@/lib/api/responses';
 
 export interface SearchParams {
   q?: string;
@@ -268,20 +270,14 @@ function sortResults(results: SearchResult[], sortBy: string = 'relevance'): Sea
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    
-    const params: SearchParams = {
-      q: searchParams.get('q') || undefined,
-      category: searchParams.get('category') || undefined,
-      location: searchParams.get('location') || undefined,
-      type: (searchParams.get('type') as any) || undefined,
-      minRating: searchParams.get('minRating') ? parseFloat(searchParams.get('minRating')!) : undefined,
-      emergencyOnly: searchParams.get('emergencyOnly') === 'true',
-      insuranceApproved: searchParams.get('insuranceApproved') === 'true',
-      certifiedOnly: searchParams.get('certifiedOnly') === 'true',
-      sortBy: (searchParams.get('sortBy') as any) || 'relevance',
-      page: parseInt(searchParams.get('page') || '1'),
-      limit: parseInt(searchParams.get('limit') || '10')
-    };
+
+    // --- Zod validation of query params (replaces manual parsing + unsafe casts) ---
+    const raw = Object.fromEntries(searchParams.entries());
+    const parsed = searchParamsSchema.safeParse(raw);
+    if (!parsed.success) {
+      return apiValidationError(parsed.error);
+    }
+    const params = parsed.data as SearchParams;
 
     let results = [...searchDatabase];
 
@@ -343,12 +339,7 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Search API error:', error);
-    return NextResponse.json({
-      success: false,
-      message: 'Search failed',
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
+    return apiInternalError(error, 'search GET');
   }
 }
 
@@ -364,10 +355,6 @@ export async function POST(request: NextRequest) {
     
     return results;
   } catch (error) {
-    console.error('Search POST API error:', error);
-    return NextResponse.json({
-      success: false,
-      message: 'Search failed'
-    }, { status: 500 });
+    return apiInternalError(error, 'search POST');
   }
 }

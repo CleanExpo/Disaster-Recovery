@@ -23,6 +23,7 @@ import ProgressSpinner from '@/components/ProgressSpinner'
 import LazyImage from '@/components/LazyImage'
 import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema'
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -335,6 +336,7 @@ export default function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-98HWF2NV95'}');
           `}
         </Script>
+        <SpeedInsights />
       </body>
     </html>
   )

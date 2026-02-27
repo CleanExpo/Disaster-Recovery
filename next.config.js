@@ -10,6 +10,23 @@ try {
   // Bundle analyzer not installed, continue without it
 }
 
+// Sentry — only wraps when SENTRY_DSN is configured
+let withSentryConfig = (config) => config;
+try {
+  const { withSentryConfig: sentry } = require('@sentry/nextjs');
+  if (process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN) {
+    withSentryConfig = (config) =>
+      sentry(config, {
+        // Suppress source map upload unless auth token is set
+        silent: !process.env.SENTRY_AUTH_TOKEN,
+        // Automatically tree-shake Sentry logger in production
+        disableLogger: true,
+      });
+  }
+} catch (e) {
+  // @sentry/nextjs not installed, continue without it
+}
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -576,4 +593,4 @@ const nextConfig = {
   distDir: '.next',
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = withSentryConfig(withBundleAnalyzer(nextConfig));
