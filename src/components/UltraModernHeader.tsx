@@ -316,6 +316,7 @@ const navItems: NavItem[] = [
     href: '/about'
   },
   { 
+    { label: 'Cost Estimate', href: '/cost-estimate' },
     label: 'Contact', 
     href: '/contact'
   }
