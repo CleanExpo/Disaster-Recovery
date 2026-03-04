@@ -54,7 +54,7 @@ D:\Disaster Recovery/
 │   ├── index.html                 # Main demo site
 │   └── components.html            # Component showcase
 ├── analyze-r6-design.js           # Website analysis script
-├── r6-digital-analysis.json       # Analysis results
+├── public/images/root-screenshots/r6-digital-analysis.json   # Analysis results
 └── README.md                      # This file
 ```
 
@@ -383,9 +383,9 @@ The included `analyze-r6-design.js` script uses Playwright to:
 node analyze-r6-design.js
 
 # Generates:
-# - r6-digital-homepage.png
-# - r6-digital-fullpage.png  
-# - r6-digital-analysis.json
+# - public/images/root-screenshots/r6-digital-homepage.png
+# - public/images/root-screenshots/r6-digital-fullpage.png
+# - public/images/root-screenshots/r6-digital-analysis.json
 ```
 
 ## 🎬 Demo Sites
@@ -428,7 +428,7 @@ Inspired by [R6 Digital](https://r6digital.com.au/creative-services/website-desi
 For questions about implementation or customization:
 
 - Review the component showcase: `demo/components.html`
-- Check the analysis results: `r6-digital-analysis.json`
+- Check the analysis results: `public/images/root-screenshots/r6-digital-analysis.json`
 - Examine the demo implementation: `demo/index.html`
 
 ---

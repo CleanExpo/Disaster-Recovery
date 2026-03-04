@@ -12,6 +12,9 @@
 
 const { chromium } = require('playwright');
 const fs = require('fs').promises;
+const path = require('path');
+
+const OUTPUT_DIR = path.join(__dirname, 'public', 'images', 'root-screenshots');
 
 // Helper function to convert RGB to Hex
 function rgbToHex(rgb) {
@@ -651,15 +654,16 @@ async function analyzeR6Design() {
     console.log('═══════════════════════════════════════════');
     
     try {
+      await fs.mkdir(OUTPUT_DIR, { recursive: true });
       // Take screenshots
       await page.screenshot({ 
-        path: 'r6-digital-homepage.png', 
+        path: path.join(OUTPUT_DIR, 'r6-digital-homepage.png'), 
         fullPage: false 
       });
       console.log('✅ Homepage screenshot saved');
       
       await page.screenshot({ 
-        path: 'r6-digital-fullpage.png', 
+        path: path.join(OUTPUT_DIR, 'r6-digital-fullpage.png'), 
         fullPage: true 
       });
       console.log('✅ Full page screenshot saved');
@@ -678,8 +682,8 @@ async function analyzeR6Design() {
         }
       };
       
-      await fs.writeFile('r6-digital-analysis.json', JSON.stringify(finalAnalysis, null, 2));
-      console.log('✅ Analysis data exported to r6-digital-analysis.json');
+      await fs.writeFile(path.join(OUTPUT_DIR, 'r6-digital-analysis.json'), JSON.stringify(finalAnalysis, null, 2));
+      console.log('✅ Analysis data exported to public/images/root-screenshots/r6-digital-analysis.json');
       
     } catch (error) {
       console.warn('⚠️ Could not save screenshots or data:', error.message);
@@ -727,9 +731,9 @@ async function main() {
     await analyzeR6Design();
     console.log('\n🎉 Analysis completed successfully!');
     console.log('\nFiles generated:');
-    console.log('  - r6-digital-homepage.png');
-    console.log('  - r6-digital-fullpage.png');
-    console.log('  - r6-digital-analysis.json');
+    console.log('  - public/images/root-screenshots/r6-digital-homepage.png');
+    console.log('  - public/images/root-screenshots/r6-digital-fullpage.png');
+    console.log('  - public/images/root-screenshots/r6-digital-analysis.json');
   } catch (error) {
     console.error('\n💥 Analysis failed:', error.message);
     console.error('\nPossible solutions:');

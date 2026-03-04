@@ -1,5 +1,8 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
+const fs = require('fs');
+
+const SCREENSHOT_DIR = path.join(__dirname, 'public', 'images', 'root-screenshots');
 
 async function testDesignSystem() {
     console.log('Testing Global Design System Implementation...\n');
@@ -9,6 +12,7 @@ async function testDesignSystem() {
     });
 
     try {
+        fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
         const page = await browser.newPage();
         await page.setViewport({ width: 1280, height: 800 });
         
@@ -85,7 +89,7 @@ async function testDesignSystem() {
             
             // Take screenshot
             await page.screenshot({ 
-                path: path.join(__dirname, testPage.screenshot),
+                path: path.join(SCREENSHOT_DIR, testPage.screenshot),
                 fullPage: true 
             });
             console.log(`  Screenshot saved: ${testPage.screenshot}\n`);
@@ -99,10 +103,10 @@ async function testDesignSystem() {
         });
         
         await page.screenshot({ 
-            path: path.join(__dirname, 'mobile-homepage-redesign.png'),
+            path: path.join(SCREENSHOT_DIR, 'mobile-homepage-redesign.png'),
             fullPage: true 
         });
-        console.log('  Mobile screenshot saved: mobile-homepage-redesign.png\n');
+        console.log('  Mobile screenshot saved: public/images/root-screenshots/mobile-homepage-redesign.png\n');
         
         console.log('✅ Design System Test Complete!');
         
