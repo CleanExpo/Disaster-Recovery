@@ -265,33 +265,36 @@ async function runChecks() {
   // Summary
   console.log(`${colors.blue}═══════════════════════════════════════${colors.reset}`);
   
+  const reportsDir = path.join(process.cwd(), '.reports');
+  const statusPath = path.join(reportsDir, 'critical-checks-status.json');
+
   if (totalIssues === 0) {
     console.log(`${colors.green}✅ ALL CRITICAL CHECKS PASSED!${colors.reset}`);
     console.log(`${colors.green}Safe to deploy!${colors.reset}\n`);
-    
-    // Save success state
+
+    await fs.mkdir(reportsDir, { recursive: true });
     await fs.writeFile(
-      'critical-checks-status.json',
+      statusPath,
       JSON.stringify({
         timestamp: new Date().toISOString(),
         status: 'PASSED',
         results
       }, null, 2)
     );
-    
+
     return 0;
   } else {
     console.log(`${colors.red}❌ ${totalIssues} CRITICAL ISSUES FOUND!${colors.reset}`);
     console.log(`${colors.red}DO NOT DEPLOY until these are fixed!${colors.reset}\n`);
-    
+
     console.log(`${colors.yellow}To fix:${colors.reset}`);
     console.log('1. Run: npm run fix');
     console.log('2. Run: node scripts/critical-issues-monitor.js');
     console.log('3. Repeat until all checks pass\n');
-    
-    // Save failure state
+
+    await fs.mkdir(reportsDir, { recursive: true });
     await fs.writeFile(
-      'critical-checks-status.json',
+      statusPath,
       JSON.stringify({
         timestamp: new Date().toISOString(),
         status: 'FAILED',
@@ -299,7 +302,7 @@ async function runChecks() {
         issueCount: totalIssues
       }, null, 2)
     );
-    
+
     return 1;
   }
 }

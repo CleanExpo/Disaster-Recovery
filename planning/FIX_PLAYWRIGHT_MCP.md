@@ -4,7 +4,7 @@
 Since you already have Puppeteer MCP configured in Cline, you can use it for browser automation tasks. Puppeteer provides similar capabilities to Playwright.
 
 ## Option 2: Add Playwright MCP to Cline Configuration
-If you specifically need Playwright MCP, add it to your `cline_mcp_config.json`:
+If you specifically need Playwright MCP, add it to your Cline MCP config (project: `config/mcp/cline.json`; or Cline’s own config location):
 
 ```json
 {

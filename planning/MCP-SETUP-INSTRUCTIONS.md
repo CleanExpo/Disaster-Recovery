@@ -35,8 +35,8 @@ setup-mcps-for-claude.bat
 
 #### Step 2: Copy Configuration File
 
-1. Copy `claude_desktop_config.json` from `D:\Disaster Recovery\`
-2. Paste it into `%APPDATA%\Claude\`
+1. Copy `config/mcp/claude-desktop.json` from the project root (or from your `D:\Disaster Recovery\` clone)
+2. Paste it into `%APPDATA%\Claude\` and rename to `claude_desktop_config.json` if needed
 3. The file should now be at: `%APPDATA%\Claude\claude_desktop_config.json`
 
 #### Step 3: Install Playwright MCP

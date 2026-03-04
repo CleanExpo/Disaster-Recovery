@@ -52,9 +52,13 @@ const manifest = {
   buildTime: new Date().toISOString()
 };
 
+const reportsDir = path.join(process.cwd(), '.reports');
+if (!fs.existsSync(reportsDir)) {
+  fs.mkdirSync(reportsDir, { recursive: true });
+}
 fs.writeFileSync(
-  path.join(process.cwd(), 'build-manifest.json'),
+  path.join(reportsDir, 'build-manifest.json'),
   JSON.stringify(manifest, null, 2)
 );
 
-console.log('📝 Build manifest created');
+console.log('📝 Build manifest created at .reports/build-manifest.json');

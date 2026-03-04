@@ -50,7 +50,7 @@ export class MCPManagementAgent extends EventEmitter {
   private configPath: string;
   private initialized: boolean = false;
 
-  constructor(configPath: string = 'mcp-complete-config.json') {
+  constructor(configPath: string = 'config/mcp/complete.json') {
     super();
     this.configPath = configPath;
     this.processes = new Map();

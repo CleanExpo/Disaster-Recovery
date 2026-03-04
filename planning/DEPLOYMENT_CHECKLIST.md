@@ -39,7 +39,7 @@
   ```
 - [ ] Configure Vercel staging project
   ```bash
-  vercel --prod -c vercel.staging.json
+  vercel --prod -c config/vercel.staging.json
   ```
 
 ### Database Migration
