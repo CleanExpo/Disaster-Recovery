@@ -13,9 +13,9 @@ const LegacyHomePage = dynamic(() => import('@/components/LegacyHomePage'), {
 
 export default function HomePage() {
 
-  if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <AntigravityHomePage />;
-  }
+  // if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
+  //   return <AntigravityHomePage />;
+  // }
 
-  return <LegacyHomePage />;
+  return <AntigravityHomePage />;
 }
