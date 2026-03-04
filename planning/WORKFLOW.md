@@ -130,7 +130,6 @@ npm run verify:all
 npm run lint
 npm run typecheck
 npm run test
-npm run test:e2e
 npm run lighthouse
 npm run security:audit
 ```

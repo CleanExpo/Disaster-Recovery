@@ -74,8 +74,6 @@
     "dist",
     "build",
     "scripts",
-    "tests",
-    "playwright-report",
     "test-results",
     "audio-system/**",
     "audio-system.backup/**",

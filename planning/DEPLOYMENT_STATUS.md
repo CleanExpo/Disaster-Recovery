@@ -135,11 +135,6 @@ Deployment: ⏳ IN PROGRESS
    vercel env add GOOGLE_MAPS_API_KEY staging
    ```
 
-3. **Run E2E Tests**
-   ```bash
-   npm run test:e2e
-   ```
-
 ### Within 24 Hours
 1. Complete functional testing
 2. Performance benchmarking
