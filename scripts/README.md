@@ -3,6 +3,12 @@
 This directory contains operational automation. To avoid script sprawl, we use a
 small trusted core and strict governance checks.
 
+## Directory Layout
+
+- `scripts/core/`: trusted operational scripts.
+- `scripts/_governance/`: policy and validators.
+- `scripts/README.md`: usage and rules.
+
 ## Script Tiers
 
 - `core`:
