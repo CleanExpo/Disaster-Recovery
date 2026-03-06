@@ -4,7 +4,8 @@
 import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -76,18 +77,19 @@ const workflowSteps = [
   { key: 'claimFinalized', label: 'Claim Complete', icon: Home }
 ];
 
-function TrackClaimPageOriginal({ params }: { params: Promise<{ claimId: string }> }) {
-  const resolvedParams = use(params);
+function TrackClaimPageOriginal() {
+  const params = useParams<{ claimId: string }>();
+  const claimId = params?.claimId || '';
   const [claimData, setClaimData] = useState<ClaimData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [timeElapsed, setTimeElapsed] = useState('');
 
   useEffect(() => {
+    if (!claimId) return;
     fetchClaimData();
     const interval = setInterval(fetchClaimData, 30000); // Refresh every 30 seconds
     return () => clearInterval(interval);
-  }, [resolvedParams.claimId]);
+  }, [claimId]);
 
   useEffect(() => {
     if (claimData) {
@@ -111,18 +113,18 @@ function TrackClaimPageOriginal({ params }: { params: Promise<{ claimId: string 
 
   const fetchClaimData = async () => {
     try {
-      const response = await fetch(`/api/claims/submit?id=${resolvedParams.claimId}`);
+      const response = await fetch(`/api/claims/submit?id=${claimId}`);
       const result = await response.json();
       
       if (result.success) {
         setClaimData(result.claim);
       } else {
         // Mock data for demo
-        setClaimData(createMockClaim(resolvedParams.claimId));
+        setClaimData(createMockClaim(claimId));
       }
-    } catch (err) {
+    } catch {
       // Use mock data for demo
-      setClaimData(createMockClaim(resolvedParams.claimId));
+      setClaimData(createMockClaim(claimId));
     } finally {
       setLoading(false);
     }
