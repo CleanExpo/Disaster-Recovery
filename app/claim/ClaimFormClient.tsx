@@ -49,12 +49,73 @@ const ESTIMATOR_TO_URGENCY: Record<string, string> = {
   'scheduled': 'standard',
 };
 
+const QUICK_FILL_SCENARIOS: Record<string, Record<string, unknown>> = {
+  burstPipe: {
+    fullName: 'Alex Taylor',
+    phone: '0400123456',
+    email: 'alex.taylor@example.com',
+    propertyAddress: '25 King Street',
+    suburb: 'Brisbane',
+    state: 'QLD',
+    postcode: '4000',
+    propertyType: 'house',
+    damageTypes: ['Water/Flood Damage'],
+    damageDate: new Date().toISOString().slice(0, 10),
+    damageDescription: 'Burst pipe in kitchen caused water damage to flooring and cabinetry.',
+    urgencyLevel: 'emergency',
+    hazards: ['Standing water'],
+    hasInsurance: true,
+    insuranceCompany: 'Suncorp',
+    policyNumber: 'POL-123456',
+    hasPhotos: true
+  },
+  stormDamage: {
+    fullName: 'Jordan Lee',
+    phone: '0411222333',
+    email: 'jordan.lee@example.com',
+    propertyAddress: '82 Main Road',
+    suburb: 'Newcastle',
+    state: 'NSW',
+    postcode: '2300',
+    propertyType: 'house',
+    damageTypes: ['Storm/Wind Damage', 'Structural Damage'],
+    damageDate: new Date().toISOString().slice(0, 10),
+    damageDescription: 'Storm damage to roof and ceiling leaks in living room.',
+    urgencyLevel: 'urgent',
+    hazards: ['Structural instability'],
+    hasInsurance: true,
+    insuranceCompany: 'NRMA',
+    policyNumber: 'POL-789012',
+    hasPhotos: true
+  },
+  mouldClaim: {
+    fullName: 'Casey Morgan',
+    phone: '0422333444',
+    email: 'casey.morgan@example.com',
+    propertyAddress: '14 River Drive',
+    suburb: 'Melbourne',
+    state: 'VIC',
+    postcode: '3000',
+    propertyType: 'apartment',
+    damageTypes: ['Mould Growth'],
+    damageDate: new Date().toISOString().slice(0, 10),
+    damageDescription: 'Visible mould growth in bathroom and bedroom walls after long-term leak.',
+    urgencyLevel: 'standard',
+    hazards: ['Mould growth'],
+    hasInsurance: false,
+    policyNumber: '',
+    hasPhotos: true
+  }
+};
+
 function OnlineClaimPageOriginal() {
   const searchParams = useSearchParams();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [claimId, setClaimId] = useState<string | null>(null);
   const [estimate, setEstimate] = useState<{ low: number; high: number } | null>(null);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [selectedScenario, setSelectedScenario] = useState<string>('');
 
   // Scroll to top when step changes
   useEffect(() => {
@@ -143,22 +204,29 @@ function OnlineClaimPageOriginal() {
   });
 
   const handleSubmit = async () => {
+    if (!formData.fullName || !formData.phone || !formData.email || !formData.propertyAddress || !formData.suburb || !formData.state || !formData.postcode || !formData.damageDescription || formData.damageTypes.length === 0) {
+      setSubmissionError('Please complete required fields in steps 1-2 before submitting.');
+      setStep(1);
+      return;
+    }
+
     if (!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms) {
-      alert('Please accept all terms and conditions');
+      setSubmissionError('Please accept all terms and conditions.');
       return;
     }
 
     setSubmitting(true);
+    setSubmissionError(null);
 
     try {
-      // Simulate payment processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      formData.paymentConfirmed = true;
-
       const response = await fetch('/api/claims/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          paymentConfirmed: false,
+          paymentAmount: 0
+        })
       });
 
       const result = await response.json();
@@ -167,13 +235,18 @@ function OnlineClaimPageOriginal() {
         setClaimId(result.claimId);
         setStep(5); // Success step
       } else {
-        alert(result.message || 'Failed to submit claim');
+        setSubmissionError(result.message || 'Failed to submit claim');
       }
-    } catch (error) {
-      alert('Error submitting claim. Please try again.');
+    } catch {
+      setSubmissionError('Error submitting claim. Please try again.');
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const applyQuickFill = () => {
+    if (!selectedScenario || !QUICK_FILL_SCENARIOS[selectedScenario]) return;
+    setFormData(prev => ({ ...prev, ...QUICK_FILL_SCENARIOS[selectedScenario] }));
   };
 
   const damageTypeOptions = [
@@ -214,7 +287,7 @@ function OnlineClaimPageOriginal() {
               <Alert className="bg-green-50 border-green-200">
                 <CheckCircle2 className="h-4 w-4 text-green-600" />
                 <AlertDescription className="text-green-800">
-                  Payment of <strong>${PLATFORM_FEE.toFixed(2)}</strong> has been processed successfully.
+                  Your claim has been received and is being assigned to a contractor now.
                 </AlertDescription>
               </Alert>
 
@@ -260,9 +333,36 @@ function OnlineClaimPageOriginal() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Submit Online Claim</h1>
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl font-bold mb-2">Submit Online Claim</h1>
+          </div>
+          <div className="bg-green-50 border border-green-200 rounded-lg p-3 md:max-w-sm w-full">
+            <Label className="text-xs font-semibold text-green-900">Quick Fill Scenario</Label>
+            <div className="mt-2 flex gap-2">
+              <Select value={selectedScenario} onValueChange={setSelectedScenario}>
+                <SelectTrigger className="bg-white">
+                  <SelectValue placeholder="Select scenario" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="burstPipe">Burst Pipe (Emergency)</SelectItem>
+                  <SelectItem value="stormDamage">Storm Damage (Urgent)</SelectItem>
+                  <SelectItem value="mouldClaim">Mould Claim (Standard)</SelectItem>
+                </SelectContent>
+              </Select>
+              <Button type="button" onClick={applyQuickFill} className="bg-green-700 hover:bg-green-800">
+                Fill
+              </Button>
+            </div>
+          </div>
         </div>
+
+        {submissionError && (
+          <Alert className="mb-6 border-red-200 bg-red-50">
+            <AlertCircle className="h-4 w-4 text-red-600" />
+            <AlertDescription className="text-red-800">{submissionError}</AlertDescription>
+          </Alert>
+        )}
 
         {/* Pricing Breakdown Banner */}
         <div className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
@@ -339,7 +439,7 @@ function OnlineClaimPageOriginal() {
               {step === 1 && 'Property & Damage Information'}
               {step === 2 && 'Insurance & Documentation'}
               {step === 3 && 'Authorizations & Terms'}
-              {step === 4 && 'Payment Information'}
+              {step === 4 && 'Final Review & Submit'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -762,43 +862,43 @@ function OnlineClaimPageOriginal() {
                     className="bg-blue-600 hover:bg-blue-700"
                     disabled={!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms}
                   >
-                    Proceed to Payment
+                    Proceed to Final Review
                   </Button>
                 </div>
               </div>
             )}
 
-            {/* Step 4: Payment */}
+            {/* Step 4: Final Review */}
             {step === 4 && (
               <div className="space-y-6">
                 <Alert className="bg-blue-50 border-blue-200">
                   <DollarSign className="h-4 w-4 text-blue-600" />
                   <AlertDescription className="text-blue-800">
-                    <strong>Emergency Make-Safe Fee:</strong> ${PLATFORM_FEE.toFixed(2)} — $550 platform fee + $2,200 held for your contractor
+                    <strong>Claim Review:</strong> Submit now and your claim is sent immediately for contractor matching.
                   </AlertDescription>
                 </Alert>
 
                 <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <CreditCard className="h-5 w-5" />
-                    Payment Summary
+                    Submission Summary
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Platform Fee</span>
-                      <span className="font-semibold">$550.00</span>
+                      <span>Claim Intake</span>
+                      <span className="font-semibold">Included</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Held for Contractor</span>
-                      <span className="font-semibold">$2,200.00</span>
+                      <span>Contractor Matching</span>
+                      <span className="font-semibold">Immediate</span>
                     </div>
                     <div className="text-xs text-gray-500 pl-1">
-                      Credited toward your restoration work
+                      You will receive contact and next-step guidance after submission
                     </div>
                     <div className="border-t pt-2">
                       <div className="flex justify-between text-lg font-bold">
                         <span>Total Due</span>
-                        <span>${PLATFORM_FEE.toFixed(2)}</span>
+                        <span>$0.00 (submit now)</span>
                       </div>
                     </div>
                   </div>
@@ -855,7 +955,7 @@ function OnlineClaimPageOriginal() {
                     className="bg-green-600 hover:bg-green-800"
                     disabled={submitting}
                   >
-                    {submitting ? 'Processing Payment...' : `Pay $${PLATFORM_FEE.toFixed(2)} & Submit Claim`}
+                    {submitting ? 'Submitting Claim...' : 'Submit Claim'}
                   </Button>
                 </div>
               </div>
