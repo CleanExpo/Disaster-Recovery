@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "lastReviewed": "2026-03-06",
+  "policies": {
+    "coreOnlyForAutomation": true,
+    "requireOwner": true
+  },
+  "scripts": [
+    {
+      "path": "scripts/dev-with-optimization.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Optimized local dev startup"
+    },
+    {
+      "path": "scripts/validate-env.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Environment validation for builds"
+    },
+    {
+      "path": "scripts/pre-build-fix.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Pre-build auto-fixes"
+    },
+    {
+      "path": "scripts/pre-build-validator.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Pre-build validation checks"
+    },
+    {
+      "path": "scripts/vercel-build.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Vercel build orchestration"
+    },
+    {
+      "path": "scripts/seed.ts",
+      "tier": "core",
+      "owner": "backend",
+      "purpose": "Database seed entrypoint"
+    },
+    {
+      "path": "scripts/process-images.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Image processing pipeline"
+    },
+    {
+      "path": "scripts/seo-process-images.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "SEO image processing pipeline"
+    },
+    {
+      "path": "scripts/web-optimize-images.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Web image optimization"
+    },
+    {
+      "path": "scripts/analyze-platform-transformation.ts",
+      "tier": "core",
+      "owner": "architecture",
+      "purpose": "Platform transformation analysis"
+    },
+    {
+      "path": "scripts/audit-site-hrm.ts",
+      "tier": "core",
+      "owner": "architecture",
+      "purpose": "Site audit utilities"
+    },
+    {
+      "path": "scripts/fix-color-scheme.ts",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Color system remediation"
+    },
+    {
+      "path": "scripts/google-indexing.js",
+      "tier": "core",
+      "owner": "seo",
+      "purpose": "Google indexing automation"
+    },
+    {
+      "path": "scripts/auto-deploy.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Deployment automation commands"
+    },
+    {
+      "path": "scripts/deployment-monitor.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Deployment status monitoring and fixes"
+    },
+    {
+      "path": "scripts/generate-images.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Generated image orchestration"
+    },
+    {
+      "path": "scripts/optimize-all-images.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Bulk image optimization"
+    },
+    {
+      "path": "scripts/check-image-sizes.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Image size compliance checks"
+    },
+    {
+      "path": "scripts/optimize-images.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Alternative image optimization flow"
+    },
+    {
+      "path": "scripts/image-optimization-worker.js",
+      "tier": "core",
+      "owner": "frontend",
+      "purpose": "Background image optimization worker"
+    },
+    {
+      "path": "scripts/postinstall.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Post-install project setup"
+    },
+    {
+      "path": "scripts/critical-issues-monitor.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Critical deployment checks"
+    },
+    {
+      "path": "scripts/_governance/validate-script-governance.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Validate script governance and automation references"
+    },
+    {
+      "path": "scripts/force-build-pages.js",
+      "tier": "core",
+      "owner": "platform",
+      "purpose": "Required page build manifest generation"
+    },
+    {
+      "path": "scripts/generate-sitemap.js",
+      "tier": "core",
+      "owner": "seo",
+      "purpose": "Sitemap generation for deploy"
+    }
+  ]
+}
