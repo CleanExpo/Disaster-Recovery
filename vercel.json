@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
   "installCommand": "npm install --force --legacy-peer-deps --include=dev",
-  "buildCommand": "npx prisma@5 generate && node scripts/force-build-pages.js && node scripts/generate-sitemap.js && next build",
+  "buildCommand": "npx prisma@5 generate && node scripts/core/force-build-pages.js && node scripts/core/generate-sitemap.js && next build",
   "public": true,
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=8192",

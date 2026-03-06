@@ -26,7 +26,7 @@ jobs:
       run: npm run check:scripts
     
     - name: Run pre-build validation
-      run: node scripts/pre-build-fix.js
+      run: node scripts/core/pre-build-fix.js
     
     - name: Check TypeScript
       run: npx tsc --noEmit
