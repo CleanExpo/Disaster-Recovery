@@ -324,7 +324,7 @@ export default function CostEstimator() {
                 >
                   <CalendarClock className="h-5 w-5" />
                   <span>Scheduled</span>
-                  <span className="text-xs font-normal opacity-70">3\u20135 days</span>
+                  <span className="text-xs font-normal opacity-80">3–5 days</span>
                 </button>
               </div>
             </div>
@@ -349,81 +349,81 @@ export default function CostEstimator() {
                   className="mt-8"
                 >
                   {/* Cost Range */}
-                  <div className="bg-black/30 rounded-xl p-6 mb-4">
-                    <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                      <DollarSign className="h-6 w-6 text-emerald-400" />
-                      Your Estimated Cost
+                  <div className="bg-black/40 rounded-xl p-6 mb-4 border border-white/20">
+                    <h3 className="text-xl font-bold mb-4 flex items-center gap-2 !text-white">
+                      <DollarSign className="h-6 w-6 shrink-0 !text-white" />
+                      <span className="!text-white">Your Estimated Cost</span>
                     </h3>
                     <div className="text-center py-4">
                       <div className="text-5xl md:text-6xl font-bold text-white mb-2">
-                        {formatCurrency(result.low)} <span className="text-2xl text-white/60">\u2013</span> {formatCurrency(result.high)}
+                        {formatCurrency(result.low)} <span className="text-2xl text-slate-200 font-normal" aria-hidden="true">–</span> {formatCurrency(result.high)}
                       </div>
-                      <p className="text-white/60 text-sm">
-                        {propertyType === 'commercial' ? 'Commercial' : 'Residential'} \u2022 {area} m² \u2022 {urgency === 'emergency' ? 'Emergency response' : urgency === 'urgent' ? 'Urgent (24hrs)' : 'Scheduled'}
+                      <p className="text-slate-200 text-sm font-medium mt-1">
+                        {propertyType === 'commercial' ? 'Commercial' : 'Residential'} · {area} m² · {urgency === 'emergency' ? 'Emergency response' : urgency === 'urgent' ? 'Urgent (24hrs)' : 'Scheduled'}
                       </p>
                     </div>
-                    <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-white/10">
+                    <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-white/20">
                       <div className="text-center">
                         <div className="text-lg font-bold text-emerald-400">${result.hourlyRate}/hr</div>
-                        <div className="text-white/50 text-xs">{urgency === 'emergency' ? 'Emergency rate' : 'Normal rate'}</div>
+                        <div className="text-slate-200 text-xs font-medium">{urgency === 'emergency' ? 'Emergency rate' : 'Normal rate'}</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-blue-400">{result.estHoursLow}\u2013{result.estHoursHigh} hrs</div>
-                        <div className="text-white/50 text-xs">Est. labour hours</div>
+                        <div className="text-lg font-bold text-blue-300">{result.estHoursLow}–{result.estHoursHigh} hrs</div>
+                        <div className="text-slate-200 text-xs font-medium">Est. labour hours</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-amber-400">+ materials</div>
-                        <div className="text-white/50 text-xs">Equipment &amp; supplies</div>
+                        <div className="text-lg font-bold text-amber-300">+ materials</div>
+                        <div className="text-slate-200 text-xs font-medium">Equipment &amp; supplies</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Insurance + Response Grid */}
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
-                    <div className="bg-white/10 rounded-xl p-5">
+                    <div className="bg-white/15 rounded-xl p-5 border border-white/20">
                       <div className="flex items-center gap-2 mb-3">
                         <Shield className="h-5 w-5 text-emerald-400" />
                         <span className="text-white font-bold">Insurance Reimbursement</span>
                       </div>
                       <div className="text-3xl font-bold text-white mb-1">{insurance.likelihood}</div>
-                      <div className="text-white/60 text-sm mb-2">Typical coverage likelihood</div>
-                      <div className="text-white/80 text-sm">
-                        <span className="font-medium">Typical excess:</span> {insurance.excess}
+                      <div className="text-slate-200 text-sm mb-2 font-medium">Typical coverage likelihood</div>
+                      <div className="text-slate-100 text-sm">
+                        <span className="font-semibold text-white">Typical excess:</span> {insurance.excess}
                       </div>
                     </div>
 
-                    <div className="bg-white/10 rounded-xl p-5">
+                    <div className="bg-white/15 rounded-xl p-5 border border-white/20">
                       <div className="flex items-center gap-2 mb-3">
                         <Clock className="h-5 w-5 text-blue-400" />
                         <span className="text-white font-bold">Response Time</span>
                       </div>
                       <div className="text-3xl font-bold text-white mb-1">{RESPONSE_TIMES[urgency]}</div>
-                      <div className="text-white/60 text-sm mb-2">Estimated arrival</div>
-                      <div className="text-white/80 text-sm">
+                      <div className="text-slate-200 text-sm mb-2 font-medium">Estimated arrival</div>
+                      <div className="text-slate-100 text-sm">
                         24/7 availability across Australia
                       </div>
                     </div>
                   </div>
 
                   {/* Insurance Note */}
-                  <div className="bg-blue-500/20 border border-blue-500/40 rounded-xl p-4 mb-4">
+                  <div className="bg-blue-500/25 border border-blue-400/50 rounded-xl p-4 mb-4">
                     <div className="flex items-start gap-3">
-                      <Shield className="h-5 w-5 text-blue-400 mt-0.5 flex-shrink-0" />
+                      <Shield className="h-5 w-5 text-blue-300 mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="text-white font-bold mb-1">Insurance Note</div>
-                        <div className="text-white/80 text-sm">{insurance.note}</div>
+                        <div className="text-slate-100 text-sm leading-relaxed">{insurance.note}</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Cost Factors */}
                   {factors && (
-                    <div className="bg-white/5 rounded-xl p-5 mb-4">
+                    <div className="bg-white/10 rounded-xl p-5 mb-4 border border-white/15">
                       <h4 className="text-white font-bold mb-3">Key Factors Affecting Your Cost</h4>
                       <ul className="space-y-2">
                         {factors.map((factor, i) => (
-                          <li key={i} className="flex items-start gap-2 text-white/80 text-sm">
-                            <span className="text-blue-400 mt-0.5">\u2022</span>
+                          <li key={i} className="flex items-start gap-2 text-slate-100 text-sm leading-relaxed">
+                            <span className="text-emerald-400 mt-0.5 font-bold" aria-hidden="true">·</span>
                             {factor}
                           </li>
                         ))}
@@ -446,8 +446,8 @@ export default function CostEstimator() {
             </AnimatePresence>
 
             {/* Disclaimer */}
-            <div className="mt-6 text-center text-white/60">
-              <p className="text-sm">
+            <div className="mt-6 text-center text-slate-200">
+              <p className="text-sm leading-relaxed max-w-2xl mx-auto">
                 * Estimates based on a normal contractor rate of ${BASE_HOURLY_RATE}/hr
                 (${EMERGENCY_HOURLY_RATE}/hr for emergency callouts) plus materials and equipment.
                 Actual costs vary based on site-specific conditions and the accuracy
