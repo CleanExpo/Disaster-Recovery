@@ -1,6 +1,5 @@
 'use client';
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -573,7 +572,7 @@ function ClaimSupportPageContent() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white">
+      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white p-4">
         <div className="container mx-auto px-4 py-10">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-2">
@@ -665,10 +664,6 @@ function ClaimSupportPageContent() {
 }
 
 export default function ClaimSupportPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ClaimSupportPageContent />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

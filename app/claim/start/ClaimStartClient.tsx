@@ -2,7 +2,6 @@
 
 
 import Link from 'next/link';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect, Suspense } from 'react';
@@ -597,10 +596,6 @@ function ClaimStartPageOriginal() {
   );
 }
 export default function ClaimStartPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ClaimStartPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
