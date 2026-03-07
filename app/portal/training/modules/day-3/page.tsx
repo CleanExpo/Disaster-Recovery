@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -734,10 +733,6 @@ function Day3InsuranceClaimsOriginal() {
   );
 }
 export default function Day3InsuranceClaims() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <Day3InsuranceClaimsOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

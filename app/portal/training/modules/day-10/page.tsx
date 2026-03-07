@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState } from 'react';
@@ -1022,10 +1021,6 @@ function Day10ModuleOriginal() {
   );
 }
 export default function Day10Module() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <Day10ModuleOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

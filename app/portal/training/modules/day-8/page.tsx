@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -912,10 +911,6 @@ function Day8MouldRemediationOriginal() {
   );
 }
 export default function Day8MouldRemediation() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <Day8MouldRemediationOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
