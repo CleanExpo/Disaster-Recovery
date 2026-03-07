@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityServicePageTemplate } from '@/components/antigravity';
 import { laserCleaningData } from '@/components/antigravity';
 
@@ -39,16 +38,5 @@ export const metadata: Metadata = {
 export default function LaserCleaningPage() {
   const schemaStr = JSON.stringify(serviceSchema);
   const schemaTag = <Script id="laser-cleaning-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />;
-  if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <>{schemaTag}<AntigravityServicePageTemplate data={laserCleaningData} heroImage="/images/generated/disaster-recovery/hero-fire-damage.webp" /></>;
-  }
-
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Precision Laser Cleaning</h1>
-        <p className="text-lg text-gray-600">Coming soon — advanced laser restoration services.</p>
-      </div>
-    </div>
-  );
+  return <>{schemaTag}<AntigravityServicePageTemplate data={laserCleaningData} heroImage="/images/generated/disaster-recovery/hero-fire-damage.webp" /></>;
 }

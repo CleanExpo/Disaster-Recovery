@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityServicePageTemplate } from '@/components/antigravity';
 import { methLabDecontaminationData } from '@/components/antigravity';
 
@@ -40,16 +39,5 @@ export const metadata: Metadata = {
 export default function MethLabDecontaminationPage() {
   const schemaStr = JSON.stringify(serviceSchema);
   const schemaTag = <Script id="meth-lab-schema" type="application/ld+json" dangerouslySetInnerHTML={{__html: schemaStr}} />;
-  if (FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <>{schemaTag}<AntigravityServicePageTemplate data={methLabDecontaminationData} heroImage="/images/generated/disaster-recovery/hero-biohazard.webp" /></>;
-  }
-
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Clandestine Drug Lab Decontamination</h1>
-        <p className="text-lg text-gray-600">Coming soon — certified biohazard remediation services.</p>
-      </div>
-    </div>
-  );
+  return <>{schemaTag}<AntigravityServicePageTemplate data={methLabDecontaminationData} heroImage="/images/generated/disaster-recovery/hero-biohazard.webp" /></>;
 }
