@@ -1,7 +1,6 @@
 'use client'
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react'
@@ -178,10 +177,6 @@ function SignupPageOriginal() {
   )
 }
 export default function SignupPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <SignupPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
