@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Droplets, AlertTriangle, Clock, Shield, FileText, Phone, CheckCircle, XCircle, Info, Home, Building, Factory, ArrowRight, AlertCircle, Zap } from 'lucide-react';
 import Link from 'next/link';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Script from 'next/script';
@@ -663,18 +662,6 @@ const waterDamageArticleSchema = generateArticleSchema({
 });
 
 export default function WaterDamageGuidePage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return (
-      <>
-        <StructuredData data={waterDamageArticleSchema} />
-        <Script id="water-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
-          {waterDamageFaqSchema}
-        </Script>
-        <WaterDamageGuidePageOriginal />
-      </>
-    );
-  }
-
   return (
     <>
       <StructuredData data={waterDamageArticleSchema} />

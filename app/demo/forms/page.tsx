@@ -1,4 +1,4 @@
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
+
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { Suspense } from 'react'
@@ -24,10 +24,6 @@ function FormDemoPageOriginal() {
   )
 }
 export default function FormDemoPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <FormDemoPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

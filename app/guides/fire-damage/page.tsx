@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Script from 'next/script';
@@ -985,18 +984,6 @@ const fireDamageArticleSchema = generateArticleSchema({
 });
 
 export default function FireDamageGuidePage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return (
-      <>
-        <StructuredData data={fireDamageArticleSchema} />
-        <Script id="fire-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
-          {fireDamageFaqSchema}
-        </Script>
-        <FireDamageGuidePageOriginal />
-      </>
-    );
-  }
-
   return (
     <>
       <StructuredData data={fireDamageArticleSchema} />

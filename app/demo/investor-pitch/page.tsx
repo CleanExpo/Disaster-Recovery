@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect, useRef } from 'react';
@@ -494,10 +493,6 @@ CONFIDENTIAL - NOT FOR DISTRIBUTION
   );
 }
 export default function InvestorPitchPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <InvestorPitchPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

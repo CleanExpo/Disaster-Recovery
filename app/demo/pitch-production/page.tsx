@@ -1,7 +1,6 @@
 'use client'
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import dynamic from 'next/dynamic'
@@ -43,10 +42,6 @@ function PitchProductionPageOriginal() {
   )
 }
 export default function PitchProductionPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <PitchProductionPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

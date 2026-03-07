@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -197,10 +196,6 @@ function PitchSelectionOriginal() {
   );
 }
 export default function PitchSelection() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <PitchSelectionOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

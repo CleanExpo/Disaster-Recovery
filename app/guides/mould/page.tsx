@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Script from 'next/script';
@@ -1254,18 +1253,6 @@ const mouldArticleSchema = generateArticleSchema({
 });
 
 export default function MouldRemediationGuidePage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return (
-      <>
-        <StructuredData data={mouldArticleSchema} />
-        <Script id="mould-faq-schema" type="application/ld+json" strategy="afterInteractive">
-          {mouldFaqSchema}
-        </Script>
-        <MouldRemediationGuidePageOriginal />
-      </>
-    );
-  }
-
   return (
     <>
       <StructuredData data={mouldArticleSchema} />

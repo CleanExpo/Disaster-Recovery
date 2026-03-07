@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React from 'react';
@@ -355,10 +354,6 @@ function DemoCredentialsPageOriginal() {
   );
 }
 export default function DemoCredentialsPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <DemoCredentialsPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

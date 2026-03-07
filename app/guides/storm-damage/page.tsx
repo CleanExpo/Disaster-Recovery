@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import Script from 'next/script';
@@ -1083,18 +1082,6 @@ const stormDamageArticleSchema = generateArticleSchema({
 });
 
 export default function StormDamageGuidePage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return (
-      <>
-        <StructuredData data={stormDamageArticleSchema} />
-        <Script id="storm-damage-faq-schema" type="application/ld+json" strategy="afterInteractive">
-          {stormDamageFaqSchema}
-        </Script>
-        <StormDamageGuidePageOriginal />
-      </>
-    );
-  }
-
   return (
     <>
       <StructuredData data={stormDamageArticleSchema} />
