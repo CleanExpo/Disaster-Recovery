@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -30,6 +30,10 @@ import {
 } from 'lucide-react';
 
 const PLATFORM_FEE = 2750.00;
+
+// Clear selected/unselected checkbox style
+const CHECKBOX_CLASS =
+  'h-5 w-5 rounded border-2 border-gray-400 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600 data-[state=checked]:text-white shrink-0';
 
 // Map cost estimator damage types to claim form damage types
 const ESTIMATOR_TO_CLAIM_DAMAGE: Record<string, string> = {
@@ -121,21 +125,19 @@ function OnlineClaimPageOriginal() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [step]);
 
-  // Read cost estimator data from URL params
-  useEffect(() => {
-    if (!searchParams) return;
-    const estimateLow = searchParams.get('estimateLow');
-    const estimateHigh = searchParams.get('estimateHigh');
-    const damageType = searchParams.get('damageType');
-    const urgency = searchParams.get('urgency');
-    const propertyType = searchParams.get('propertyType');
+  // Read cost estimator data from URL params (sync from both useSearchParams and window so client nav is reliable)
+  const applyParamsToForm = useCallback((params: URLSearchParams) => {
+    const estimateLow = params.get('estimateLow');
+    const estimateHigh = params.get('estimateHigh');
+    const damageType = params.get('damageType');
+    const urgency = params.get('urgency');
+    const propertyType = params.get('propertyType');
 
     if (estimateLow && estimateHigh) {
       setEstimate({ low: Number(estimateLow), high: Number(estimateHigh) });
     }
 
-    // Pre-fill form fields from estimator
-    const updates: Partial<typeof formData> = {};
+    const updates: Record<string, unknown> = {};
     if (damageType && ESTIMATOR_TO_CLAIM_DAMAGE[damageType]) {
       updates.damageTypes = [ESTIMATOR_TO_CLAIM_DAMAGE[damageType]];
     }
@@ -146,10 +148,23 @@ function OnlineClaimPageOriginal() {
       updates.propertyType = propertyType === 'commercial' ? 'commercial' : 'house';
     }
     if (Object.keys(updates).length > 0) {
-      setFormData(prev => ({ ...prev, ...updates }));
+      setFormData((prev) => ({ ...prev, ...updates }));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.toString()) applyParamsToForm(params);
+  }, [applyParamsToForm]);
+
+  useEffect(() => {
+    if (!searchParams) return;
+    const estimateLow = searchParams.get('estimateLow');
+    const estimateHigh = searchParams.get('estimateHigh');
+    if (!estimateLow && !estimateHigh && !searchParams.get('damageType')) return;
+    applyParamsToForm(searchParams);
+  }, [searchParams, applyParamsToForm]);
 
   const [formData, setFormData] = useState({
     // Client Information
@@ -585,8 +600,10 @@ function OnlineClaimPageOriginal() {
                     <Label>Type of Damage (select all that apply) *</Label>
                     <div className="grid md:grid-cols-2 gap-2 mt-2">
                       {damageTypeOptions.map((type) => (
-                        <div key={type} className="flex items-center gap-2">
+                        <div key={type} className="flex items-center gap-3 py-1">
                           <Checkbox
+                            id={`damage-${type}`}
+                            className={CHECKBOX_CLASS}
                             checked={formData.damageTypes.includes(type)}
                             onCheckedChange={(checked) => {
                               if (checked) {
@@ -596,7 +613,7 @@ function OnlineClaimPageOriginal() {
                               }
                             }}
                           />
-                          <Label className="font-normal">{type}</Label>
+                          <Label htmlFor={`damage-${type}`} className="font-normal cursor-pointer">{type}</Label>
                         </div>
                       ))}
                     </div>
@@ -641,8 +658,10 @@ function OnlineClaimPageOriginal() {
                     <Label>Safety Hazards Present</Label>
                     <div className="grid md:grid-cols-2 gap-2 mt-2">
                       {hazardOptions.map((hazard) => (
-                        <div key={hazard} className="flex items-center gap-2">
+                        <div key={hazard} className="flex items-center gap-3 py-1">
                           <Checkbox
+                            id={`hazard-${hazard}`}
+                            className={CHECKBOX_CLASS}
                             checked={formData.hazards.includes(hazard)}
                             onCheckedChange={(checked) => {
                               if (checked) {
@@ -652,7 +671,7 @@ function OnlineClaimPageOriginal() {
                               }
                             }}
                           />
-                          <Label className="font-normal">{hazard}</Label>
+                          <Label htmlFor={`hazard-${hazard}`} className="font-normal cursor-pointer">{hazard}</Label>
                         </div>
                       ))}
                     </div>
@@ -675,12 +694,14 @@ function OnlineClaimPageOriginal() {
                     <Shield className="h-4 w-4" />
                     Insurance Information
                   </h3>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3 py-1">
                     <Checkbox
+                      id="hasInsurance"
+                      className={CHECKBOX_CLASS}
                       checked={formData.hasInsurance}
                       onCheckedChange={(checked) => setFormData({...formData, hasInsurance: checked as boolean})}
                     />
-                    <Label>I have insurance coverage for this damage</Label>
+                    <Label htmlFor="hasInsurance" className="cursor-pointer">I have insurance coverage for this damage</Label>
                   </div>
                   {formData.hasInsurance && (
                     <div className="grid md:grid-cols-2 gap-4 mt-4">
@@ -730,12 +751,14 @@ function OnlineClaimPageOriginal() {
                     <FileText className="h-4 w-4" />
                     Documentation
                   </h3>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3 py-1">
                     <Checkbox
+                      id="hasPhotos"
+                      className={CHECKBOX_CLASS}
                       checked={formData.hasPhotos}
                       onCheckedChange={(checked) => setFormData({...formData, hasPhotos: checked as boolean})}
                     />
-                    <Label>I have photos/videos of the damage to provide</Label>
+                    <Label htmlFor="hasPhotos" className="cursor-pointer">I have photos/videos of the damage to provide</Label>
                   </div>
                   <Alert>
                     <Info className="h-4 w-4" />
@@ -770,30 +793,36 @@ function OnlineClaimPageOriginal() {
                 <div className="space-y-4">
                   <h3 className="font-semibold">Work Authorisations</h3>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-2">
+                    <div className="flex items-start gap-3 py-1">
                       <Checkbox
+                        id="authorizePropertyAccess"
+                        className={CHECKBOX_CLASS}
                         checked={formData.authorizePropertyAccess}
                         onCheckedChange={(checked) => setFormData({...formData, authorizePropertyAccess: checked as boolean})}
                       />
-                      <Label className="font-normal">
+                      <Label htmlFor="authorizePropertyAccess" className="font-normal cursor-pointer leading-snug">
                         I authorise the assigned contractor to access my property for inspection and make-safe works
                       </Label>
                     </div>
-                    <div className="flex items-start gap-2">
+                    <div className="flex items-start gap-3 py-1">
                       <Checkbox
+                        id="authorizeInsuranceLiaison"
+                        className={CHECKBOX_CLASS}
                         checked={formData.authorizeInsuranceLiaison}
                         onCheckedChange={(checked) => setFormData({...formData, authorizeInsuranceLiaison: checked as boolean})}
                       />
-                      <Label className="font-normal">
+                      <Label htmlFor="authorizeInsuranceLiaison" className="font-normal cursor-pointer leading-snug">
                         I authorise the contractor to liaise with my insurance company on my behalf
                       </Label>
                     </div>
-                    <div className="flex items-start gap-2">
+                    <div className="flex items-start gap-3 py-1">
                       <Checkbox
+                        id="authorizeWorkCommencement"
+                        className={CHECKBOX_CLASS}
                         checked={formData.authorizeWorkCommencement}
                         onCheckedChange={(checked) => setFormData({...formData, authorizeWorkCommencement: checked as boolean})}
                       />
-                      <Label className="font-normal">
+                      <Label htmlFor="authorizeWorkCommencement" className="font-normal cursor-pointer leading-snug">
                         I authorise the contractor to commence emergency make-safe works as required
                       </Label>
                     </div>
@@ -803,35 +832,41 @@ function OnlineClaimPageOriginal() {
                 <div className="space-y-4">
                   <h3 className="font-semibold">Understanding & Agreement</h3>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-2">
+                    <div className="flex items-start gap-3 py-1">
                       <Checkbox
+                        id="understandPlatformRole"
+                        className={CHECKBOX_CLASS}
                         checked={formData.understandPlatformRole}
                         onCheckedChange={(checked) => setFormData({...formData, understandPlatformRole: checked as boolean})}
                         required
                       />
-                      <Label className="font-normal">
+                      <Label htmlFor="understandPlatformRole" className="font-normal cursor-pointer leading-snug">
                         I understand that Disaster Recovery connects me with certified NRPG contractors.
                         The $2,750 emergency make-safe fee includes a $550 platform fee and $2,200 held for my contractor.
                       </Label>
                     </div>
-                    <div className="flex items-start gap-2">
+                    <div className="flex items-start gap-3 py-1">
                       <Checkbox
+                        id="acceptContractorCommunication"
+                        className={CHECKBOX_CLASS}
                         checked={formData.acceptContractorCommunication}
                         onCheckedChange={(checked) => setFormData({...formData, acceptContractorCommunication: checked as boolean})}
                         required
                       />
-                      <Label className="font-normal">
+                      <Label htmlFor="acceptContractorCommunication" className="font-normal cursor-pointer leading-snug">
                         I understand that all communication regarding work, scheduling, and claims will be
                         directly with the assigned contractor, not Disaster Recovery.
                       </Label>
                     </div>
-                    <div className="flex items-start gap-2">
+                    <div className="flex items-start gap-3 py-1">
                       <Checkbox
+                        id="agreeToTerms"
+                        className={CHECKBOX_CLASS}
                         checked={formData.agreeToTerms}
                         onCheckedChange={(checked) => setFormData({...formData, agreeToTerms: checked as boolean})}
                         required
                       />
-                      <Label className="font-normal">
+                      <Label htmlFor="agreeToTerms" className="font-normal cursor-pointer leading-snug">
                         I agree to the terms of service and understand that contractors follow NRPG standards
                         and guidelines but are independent service providers.
                       </Label>
