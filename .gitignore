@@ -29,6 +29,10 @@ yarn-error.log*
 # Local env files
 .env
 .env*.local
+
+# Reports (keep folder only)
+.reports/*
+!.reports/.gitkeep
 .env.local
 .env.development.local
 .env.test.local
