@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -378,10 +377,6 @@ function WhosFirstPageOriginal() {
   );
 }
 export default function WhosFirstPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <WhosFirstPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

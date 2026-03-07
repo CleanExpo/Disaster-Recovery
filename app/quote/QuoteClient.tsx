@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useEffect } from 'react';
@@ -195,10 +194,6 @@ function QuotePageOriginal() {
   );
 }
 export default function QuotePage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <QuotePageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

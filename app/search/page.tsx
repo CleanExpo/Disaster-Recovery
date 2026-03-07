@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect, useMemo, Suspense } from 'react';
@@ -467,10 +466,6 @@ function SearchPageOriginal() {
   );
 }
 export default function SearchPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <SearchPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useCallback } from 'react';
@@ -236,10 +235,6 @@ function ImageOptimizerPageOriginal() {
   );
 }
 export default function ImageOptimizerPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ImageOptimizerPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

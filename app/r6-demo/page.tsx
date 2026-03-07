@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React from 'react';
@@ -337,10 +336,6 @@ function R6DemoPageOriginal() {
   );
 }
 export default function R6DemoPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <R6DemoPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

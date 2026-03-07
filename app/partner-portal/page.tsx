@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
@@ -393,10 +392,6 @@ function PartnerPortalOriginal() {
   );
 }
 export default function PartnerPortal() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <PartnerPortalOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
