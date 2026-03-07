@@ -1,7 +1,6 @@
 'use client'
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useSession } from 'next-auth/react'
@@ -105,10 +104,6 @@ function DashboardPageOriginal() {
   )
 }
 export default function DashboardPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <DashboardPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
