@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { FileText, Download, Video, Book, Shield, Wrench, HelpCircle, Award } from 'lucide-react';
@@ -133,10 +132,6 @@ function ContractorPortalResourcesPageOriginal() {
   );
 }
 export default function ContractorPortalResourcesPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ContractorPortalResourcesPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

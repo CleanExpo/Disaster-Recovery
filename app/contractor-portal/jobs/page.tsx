@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -259,10 +258,6 @@ function ContractorPortalJobsPageOriginal() {
   );
 }
 export default function ContractorPortalJobsPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ContractorPortalJobsPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

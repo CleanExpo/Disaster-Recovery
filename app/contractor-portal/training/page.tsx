@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { GraduationCap, Clock, Award, CheckCircle, PlayCircle, BookOpen, Target, TrendingUp } from 'lucide-react';
@@ -227,10 +226,6 @@ function ContractorPortalTrainingPageOriginal() {
   );
 }
 export default function ContractorPortalTrainingPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ContractorPortalTrainingPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

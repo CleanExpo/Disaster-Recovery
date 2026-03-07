@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { DollarSign, Briefcase, TrendingUp, Clock, Star, Calendar, MapPin, Award } from 'lucide-react';
@@ -190,10 +189,6 @@ function ContractorPortalDashboardPageOriginal() {
   );
 }
 export default function ContractorPortalDashboardPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ContractorPortalDashboardPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
