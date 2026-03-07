@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
@@ -429,10 +428,6 @@ function SEMrushDashboardOriginal() {
   );
 }
 export default function SEMrushDashboard() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <SEMrushDashboardOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
@@ -628,10 +627,6 @@ function LeadManagementDashboardOriginal() {
   );
 }
 export default function LeadManagementDashboard() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <LeadManagementDashboardOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

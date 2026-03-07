@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
@@ -507,10 +506,6 @@ function SiteAuditPageOriginal() {
   );
 }
 export default function SiteAuditPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <SiteAuditPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
