@@ -419,12 +419,12 @@ export default function CostEstimator() {
                   {/* Cost Factors */}
                   {factors && (
                     <div className="bg-white/10 rounded-xl p-5 mb-4 border border-white/15">
-                      <h4 className="text-white font-bold mb-3">Key Factors Affecting Your Cost</h4>
+                      <h4 className="!text-white font-bold mb-3">Key Factors Affecting Your Cost</h4>
                       <ul className="space-y-2">
                         {factors.map((factor, i) => (
-                          <li key={i} className="flex items-start gap-2 text-slate-100 text-sm leading-relaxed">
-                            <span className="text-emerald-400 mt-0.5 font-bold" aria-hidden="true">·</span>
-                            {factor}
+                          <li key={i} className="flex items-start gap-2 !text-white text-sm leading-relaxed">
+                            <span className="text-emerald-400 mt-0.5 font-bold shrink-0" aria-hidden="true">·</span>
+                            <span className="!text-white">{factor}</span>
                           </li>
                         ))}
                       </ul>
