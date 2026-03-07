@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import React, { useEffect, useState, Suspense } from 'react';
@@ -307,10 +306,6 @@ function BookingErrorPageOriginal() {
   );
 }
 export default function BookingErrorPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <BookingErrorPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
