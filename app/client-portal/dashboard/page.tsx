@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { BarChart3, FileText, Clock, CheckCircle, TrendingUp, Calendar, DollarSign, AlertCircle } from 'lucide-react';
@@ -122,10 +121,6 @@ function ClientPortalDashboardPageOriginal() {
   );
 }
 export default function ClientPortalDashboardPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ClientPortalDashboardPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

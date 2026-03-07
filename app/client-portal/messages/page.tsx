@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState } from 'react';
@@ -219,10 +218,6 @@ function ClientPortalMessagesPageOriginal() {
   );
 }
 export default function ClientPortalMessagesPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ClientPortalMessagesPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
