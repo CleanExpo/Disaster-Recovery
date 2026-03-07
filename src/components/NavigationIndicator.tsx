@@ -57,9 +57,9 @@ const navigationStructure: NavItem[] = [
     label: 'Contact',
     href: '/contact',
     children: [
-      { label: 'Book Service', href: '/claim' },
+      { label: 'Lodge a Claim', href: '/claim' },
       { label: 'Cost Estimator', href: '/tools/cost-estimator' },
-      { label: 'Emergency', href: '/claim' },
+      { label: 'Contact Us', href: '/contact' },
     ]
   }
 ];
@@ -115,14 +115,22 @@ export default function NavigationIndicator() {
             </div>
           </div>
 
-          {/* Quick Navigation */}
-          {section.children && section.children.length > 0 && (
-            <div className="hidden md:flex items-center space-x-1">
-              <span className="text-sm text-gray-500 mr-2">Also in {section.label}:</span>
-              {section.children
-                .filter(child => child.href !== pathname)
-                .slice(0, 3)
-                .map((child, index) => (
+          {/* Quick Navigation — dedupe by href so same link appears once */}
+          {section.children && section.children.length > 0 && (() => {
+            const basePath = pathname.split('?')[0];
+            const seen = new Set<string>();
+            const links = section.children
+              .filter(child => {
+                if (child.href === basePath) return false;
+                if (seen.has(child.href)) return false;
+                seen.add(child.href);
+                return true;
+              })
+              .slice(0, 3);
+            return (
+              <div className="hidden md:flex items-center space-x-1">
+                <span className="text-sm text-gray-500 mr-2">Also in {section.label}:</span>
+                {links.map((child) => (
                   <Link
                     key={child.href}
                     href={child.href}
@@ -131,8 +139,9 @@ export default function NavigationIndicator() {
                     {child.label}
                   </Link>
                 ))}
-            </div>
-          )}
+              </div>
+            );
+          })()}
         </div>
 
         {/* Visual Progress Indicator */}

@@ -217,6 +217,19 @@ function OnlineClaimPageOriginal() {
     agreeToTerms: false
   });
 
+  const step1Complete = Boolean(
+    formData.fullName?.trim() &&
+    formData.phone?.trim() &&
+    formData.email?.trim() &&
+    formData.propertyAddress?.trim() &&
+    formData.suburb?.trim() &&
+    formData.state?.trim() &&
+    formData.postcode?.trim() &&
+    formData.propertyType &&
+    formData.damageDescription?.trim() &&
+    formData.damageTypes.length > 0
+  );
+
   const handleSubmit = async () => {
     if (!formData.fullName || !formData.phone || !formData.email || !formData.propertyAddress || !formData.suburb || !formData.state || !formData.postcode || !formData.damageDescription || formData.damageTypes.length === 0) {
       setSubmissionError('Please complete required fields in steps 1-2 before submitting.');
@@ -679,7 +692,11 @@ function OnlineClaimPageOriginal() {
                 </div>
 
                 <div className="flex justify-end">
-                  <Button onClick={() => setStep(2)} className="bg-blue-600 hover:bg-blue-700">
+                  <Button
+                    onClick={() => setStep(2)}
+                    className="bg-blue-600 hover:bg-blue-700"
+                    disabled={!step1Complete}
+                  >
                     Next Step
                   </Button>
                 </div>
