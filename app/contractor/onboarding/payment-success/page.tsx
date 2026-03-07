@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useEffect, useState, Suspense } from 'react';
@@ -230,10 +229,6 @@ function PaymentSuccessPageOriginal() {
   );
 }
 export default function PaymentSuccessPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <PaymentSuccessPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />

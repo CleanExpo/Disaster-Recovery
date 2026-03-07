@@ -1,7 +1,6 @@
 'use client';
 
 
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 export const dynamic = 'force-dynamic';
@@ -462,10 +461,6 @@ function ContractorApplicationPageOriginal() {
   );
 }
 export default function ContractorApplicationPage() {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <ContractorApplicationPageOriginal />;
-  }
-
   return (
     <>
       <AntigravityNavbar />
