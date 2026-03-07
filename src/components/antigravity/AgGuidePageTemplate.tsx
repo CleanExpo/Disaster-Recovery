@@ -3,7 +3,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityFooter } from './AntigravityFooter';
 import { AgAccordion } from './AgAccordion';
@@ -78,14 +77,9 @@ export function AgGuidePageTemplate({
   faqs,
   relatedGuides,
   cta,
-  fallback,
   lastReviewed,
   stats,
 }: AgGuidePageTemplateProps) {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <>{fallback}</>;
-  }
-
   // FAQPage schema for rich results
   const faqSchema = faqs && faqs.length > 0
     ? JSON.stringify({

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import { HelpCircle } from 'lucide-react';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityFooter } from './AntigravityFooter';
 import { AgAccordion } from './AgAccordion';
@@ -42,12 +41,7 @@ export function AgFAQPageTemplate({
   subtitle,
   faqs,
   relatedCategories,
-  fallback,
 }: AgFAQPageTemplateProps) {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <>{fallback}</>;
-  }
-
   // FAQPage schema for rich results
   const faqSchema = JSON.stringify({
     '@context': 'https://schema.org',

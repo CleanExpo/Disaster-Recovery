@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { FileText } from 'lucide-react';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityFooter } from './AntigravityFooter';
 
@@ -51,12 +50,7 @@ export function AgLegalPageTemplate({
   documents,
   sections,
   effectiveDate,
-  fallback,
 }: AgLegalPageTemplateProps) {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <>{fallback}</>;
-  }
-
   const isIndex = documents && documents.length > 0;
 
   return (

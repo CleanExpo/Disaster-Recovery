@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { FEATURE_FLAGS } from '@/lib/feature-flags';
 import { AntigravityNavbar } from './AntigravityNavbar';
 import { AntigravityFooter } from './AntigravityFooter';
 
@@ -64,8 +63,6 @@ export interface AgContentPageTemplateProps {
   relatedPages?: RelatedPageLink[];
   /** Optional background image for the bottom CTA section */
   ctaImage?: string;
-  /** Fallback content: rendered when ANTIGRAVITY_UI flag is OFF */
-  fallback?: ReactNode;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -77,8 +74,7 @@ export interface AgContentPageTemplateProps {
  *
  * Covers ~280 stub/thin pages (cost, insurance, emergency, property-types,
  * equipment, certifications, compare, technology, disasters, thin service
- * sub-pages). Renders AG chrome when the feature flag is ON; otherwise
- * passes through to the fallback (original page content).
+ * sub-pages).
  */
 export function AgContentPageTemplate({
   hero,
@@ -89,12 +85,7 @@ export function AgContentPageTemplate({
   sections,
   relatedPages,
   ctaImage,
-  fallback,
 }: AgContentPageTemplateProps) {
-  if (!FEATURE_FLAGS.ANTIGRAVITY_UI) {
-    return <>{fallback}</>;
-  }
-
   return (
     <>
       <AntigravityNavbar />
