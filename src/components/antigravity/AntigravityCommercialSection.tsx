@@ -51,7 +51,7 @@ export function AntigravityCommercialSection() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-          <Link href="/for" className="ag-commercial-hub-link">
+          <Link href="/for-business" className="ag-commercial-hub-link">
             View all commercial services →
           </Link>
         </div>

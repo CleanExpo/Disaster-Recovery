@@ -64,7 +64,7 @@ export function AntigravityNavbar() {
         <div className="ag-nav-links">
           <Link href="/services">Services</Link>
           <Link href="/locations">Locations</Link>
-          <Link href="/for">For Business</Link>
+          <Link href="/for-business">For Business</Link>
           <Link href="/about">About NRPG</Link>
         </div>
 
@@ -94,7 +94,7 @@ export function AntigravityNavbar() {
       <div className={`ag-mobile-nav ${mobileOpen ? 'ag-mobile-nav-open' : ''}`}>
         <Link href="/services" onClick={() => setMobileOpen(false)}>Services</Link>
         <Link href="/locations" onClick={() => setMobileOpen(false)}>Locations</Link>
-        <Link href="/for" onClick={() => setMobileOpen(false)}>For Business</Link>
+        <Link href="/for-business" onClick={() => setMobileOpen(false)}>For Business</Link>
         <Link href="/about" onClick={() => setMobileOpen(false)}>About NRPG</Link>
         <Link href="/contractor/login" onClick={() => setMobileOpen(false)}>Contractor Portal</Link>
         <Link href="/claim" onClick={() => setMobileOpen(false)}>Report a Claim</Link>
