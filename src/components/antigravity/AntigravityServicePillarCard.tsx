@@ -23,13 +23,13 @@ export function AntigravityServicePillarCard({
 }: AntigravityServicePillarCardProps) {
   return (
     <Link href={href} className="ag-service-card">
-      <div className="ag-card-image-wrapper">
+      <div className="ag-card-image-wrapper relative w-full aspect-[3/2] overflow-hidden">
         <div className="ag-cert-badge">{certBadge}</div>
         <Image
           src={imageSrc}
           alt={title}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           sizes="(max-width: 768px) 100vw, 340px"
         />
         <div className="ag-image-overlay" />
