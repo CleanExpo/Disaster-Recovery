@@ -33,6 +33,112 @@ const ONBOARDING_STEPS = [
   { id: 7, name: 'Review & Submit', shortName: 'Review', icon: CheckCircle, description: 'Final review & payment' }
 ];
 
+/** Build residential restoration sample preset (used for quick-fill). Step components use mixed shapes so we use a loose type. */
+function getResidentialPresetData(): Record<string, unknown> {
+  const c = DEMO_DATA.contractor as Record<string, unknown>;
+  const ins = c.insurance as Record<string, unknown>;
+  const pl = ins?.publicLiability as Record<string, unknown> | undefined;
+  const pi = ins?.professionalIndemnity as Record<string, unknown> | undefined;
+  const wc = ins?.workersCompensation as Record<string, unknown> | undefined;
+  const lic = (ins?.licenses as Array<Record<string, unknown>>)?.[0];
+  const bank = c.banking as Record<string, unknown> | undefined;
+  const biz = c.businessInfo as Record<string, unknown>;
+  const exp = c.experience as Record<string, unknown>;
+  return {
+    ...c,
+    businessInfo: c.businessInfo,
+    insurance: c.insurance,
+    experience: c.experience,
+    equipment: c.equipment,
+    healthSafety: c.healthSafety,
+    banking: c.banking,
+    generalLiabilityInsurer: (pl?.provider as string) ?? '',
+    generalLiabilityPolicyNumber: (pl?.policyNumber as string) ?? '',
+    generalLiabilityCoverage: pl?.coverAmount != null ? `$${Number(pl.coverAmount)}` : '',
+    generalLiabilityExpiry: (pl?.expiryDate as string) ?? '',
+    professionalIndemnityInsurer: (pi?.provider as string) ?? '',
+    professionalIndemnityPolicyNumber: (pi?.policyNumber as string) ?? '',
+    professionalIndemnityCoverage: pi?.coverAmount != null ? `$${Number(pi.coverAmount)}` : '',
+    professionalIndemnityExpiry: (pi?.expiryDate as string) ?? '',
+    workersCompInsurer: (wc?.provider as string) ?? '',
+    workersCompPolicyNumber: (wc?.policyNumber as string) ?? '',
+    workersCompExpiry: (wc?.expiryDate as string) ?? '',
+    contractorLicenseNumber: (lic?.number as string) ?? '',
+    contractorLicenseState: 'QLD',
+    contractorLicenseExpiry: (lic?.expiryDate as string) ?? '',
+    bankName: 'Commonwealth Bank',
+    accountName: (bank?.accountName as string) ?? '',
+    bsb: (bank?.bsb as string) ?? '',
+    accountNumber: (bank?.accountNumber as string) ?? '',
+    abn: (bank?.abn as string) ?? (biz?.abn as string) ?? '',
+    gstRegistered: (bank?.gstRegistered as boolean) ?? true,
+    paymentTerms: (bank?.paymentTerms as string) === '30 days' ? '30days' : '30days',
+    preferredPaymentMethod: ((bank?.preferredPaymentMethod as string) ?? 'eft').toLowerCase().replace(/ /g, '_') as 'eft' | 'cheque' | 'credit_card',
+    invoiceEmail: (biz?.email as string) ?? '',
+    insuranceDirectBilling: false,
+    preferredInsurers: [] as string[],
+    restoreAssistAccess: false,
+    creditLimit: '',
+    tradesmanInsurance: false,
+    publicLiabilityLimit: '',
+    acceptCreditCards: false,
+    agreeToTerms: false,
+    agreeToFees: false,
+    understandPaymentTerms: false,
+    workExperience: (exp?.majorProjects as Array<Record<string, unknown>>)?.map((p) => ({
+      projectName: p.name,
+      clientName: '',
+      projectType: 'Restoration',
+      projectValue: String(p.value ?? ''),
+      completionDate: '',
+      description: p.description ?? '',
+      challenges: '',
+      outcome: ''
+    })) ?? [],
+    references: (exp?.references as Array<Record<string, unknown>>) ?? [],
+    specializations: (exp?.specializations as string[]) ?? []
+  };
+}
+
+/** Quick-fill presets: select one and the form fills immediately (no button). */
+const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unknown> }[] = [
+  { id: '', label: 'Start from scratch', data: {} },
+  { id: 'residential', label: 'Residential restoration (sample)', data: getResidentialPresetData() },
+  {
+    id: 'commercial',
+    label: 'Commercial cleaning (sample)',
+    data: (() => {
+      const base = getResidentialPresetData();
+      const merged = { ...base };
+      const biz = merged.businessInfo as Record<string, unknown>;
+      if (biz) {
+        merged.businessInfo = {
+          ...biz,
+          companyName: 'Metro Commercial Cleaning Pty Ltd',
+          tradingName: 'Metro Clean',
+          abn: '98765432101',
+          numberOfEmployees: 12,
+          annualRevenue: '$500K–$1M',
+          website: 'https://metroclean.com.au',
+          address: '45 Industrial Ave',
+          suburb: 'Melbourne',
+          state: 'VIC',
+          postcode: '3000'
+        };
+        (merged.businessInfo as Record<string, unknown>).email = 'apply@metroclean.com.au';
+      }
+      const bank = merged.banking as Record<string, unknown>;
+      if (bank) merged.banking = { ...bank, accountName: 'Metro Commercial Cleaning Pty Ltd', bsb: '063-000', accountNumber: '87654321' };
+      merged.accountName = 'Metro Commercial Cleaning Pty Ltd';
+      merged.bsb = '063-000';
+      merged.accountNumber = '87654321';
+      merged.abn = '98765432101';
+      merged.invoiceEmail = 'apply@metroclean.com.au';
+      return merged;
+    })()
+  }
+];
+
 function ContractorApplicationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -43,6 +149,7 @@ function ContractorApplicationContent() {
   const [validationErrors, setValidationErrors] = useState<Record<string, string[]>>({});
   const [isSaving, setIsSaving] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [quickFillSelection, setQuickFillSelection] = useState<string>('');
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -218,6 +325,12 @@ function ContractorApplicationContent() {
     }
   };
 
+  const handleQuickFillChange = (value: string) => {
+    setQuickFillSelection(value);
+    const preset = QUICK_FILL_PRESETS.find((p) => p.id === value);
+    setOnboardingData(preset ? { ...preset.data } : {});
+  };
+
   const handleSubmit = async () => {
     setIsSubmitting(true);
     
@@ -388,6 +501,28 @@ function ContractorApplicationContent() {
           </div>
         </div>
 
+              {/* Quick fill: select a preset and the form fills immediately */}
+              <div className="mb-6 flex justify-end">
+                <div className="inline-flex flex-col items-stretch gap-2 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-left">
+                  <label htmlFor="quick-fill" className="text-sm font-medium text-slate-300 whitespace-nowrap">
+                    Quick fill
+                  </label>
+                  <select
+                    id="quick-fill"
+                    value={quickFillSelection}
+                    onChange={(e) => handleQuickFillChange(e.target.value)}
+                    className="min-w-[200px] max-w-[280px] px-3 py-2 rounded-lg bg-slate-700/80 border border-slate-600 text-white text-sm text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    aria-label="Fill form with sample data"
+                  >
+                    {QUICK_FILL_PRESETS.map((preset) => (
+                      <option key={preset.id || 'blank'} value={preset.id}>
+                        {preset.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
         {/* Step content card */}
         <div className="max-w-5xl mx-auto">
           <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
@@ -409,7 +544,8 @@ function ContractorApplicationContent() {
                 </div>
               </div>
 
-              <div className="min-h-[360px]">
+
+              <div className="min-h-[360px]" key={`step-${currentStep}-${quickFillSelection}`}>
                 {renderStepContent()}
               </div>
 
