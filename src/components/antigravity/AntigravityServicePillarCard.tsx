@@ -28,9 +28,8 @@ export function AntigravityServicePillarCard({
         <Image
           src={imageSrc}
           alt={title}
-          width={600}
-          height={400}
-          style={{ objectFit: 'cover' }}
+          fill
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, 340px"
         />
         <div className="ag-image-overlay" />
