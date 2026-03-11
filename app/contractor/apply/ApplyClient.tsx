@@ -5,13 +5,13 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 export const dynamic = 'force-dynamic';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, Fragment } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { 
-  Shield, Building2, FileText, Award, MapPin, UserCheck, CheckCircle,
-  ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X
+  Shield, Building2, FileText, Award, CreditCard, UserCheck, CheckCircle,
+  ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X, ShieldCheck
 } from 'lucide-react';
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
 import { DEMO_DATA, simulateClick, autoFillForm } from '@/lib/demo-mode';
@@ -24,13 +24,13 @@ import Step6BankingPayment from '@/components/contractor/onboarding/Step6Banking
 import Step7ReviewSubmit from '@/components/contractor/onboarding/Step7ReviewSubmit';
 
 const ONBOARDING_STEPS = [
-  { id: 1, name: 'Business Information', icon: Building2, description: 'Company details & ABN' },
-  { id: 2, name: 'Insurance & Licensing', icon: Shield, description: 'Certificates & licences' },
-  { id: 3, name: 'Experience & References', icon: Award, description: 'Work history & references' },
-  { id: 4, name: 'Equipment & Resources', icon: FileText, description: 'Tools & team capacity' },
-  { id: 5, name: 'Health & Safety', icon: Shield, description: 'WHS compliance & procedures' },
-  { id: 6, name: 'Banking & Payment', icon: MapPin, description: 'Financial details & terms' },
-  { id: 7, name: 'Review & Submit', icon: CheckCircle, description: 'Final review & payment' }
+  { id: 1, name: 'Business Information', shortName: 'Business', icon: Building2, description: 'Company details & ABN' },
+  { id: 2, name: 'Insurance & Licensing', shortName: 'Insurance', icon: Shield, description: 'Certificates & licences' },
+  { id: 3, name: 'Experience & References', shortName: 'Experience', icon: Award, description: 'Work history & references' },
+  { id: 4, name: 'Equipment & Resources', shortName: 'Equipment', icon: FileText, description: 'Tools & team capacity' },
+  { id: 5, name: 'Health & Safety', shortName: 'Safety', icon: ShieldCheck, description: 'WHS compliance & procedures' },
+  { id: 6, name: 'Banking & Payment', shortName: 'Banking', icon: CreditCard, description: 'Financial details & terms' },
+  { id: 7, name: 'Review & Submit', shortName: 'Review', icon: CheckCircle, description: 'Final review & payment' }
 ];
 
 function ContractorApplicationContent() {
@@ -312,137 +312,178 @@ function ContractorApplicationContent() {
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-8">
-        {/* Progress Steps */}
-        <div className="mb-12">
-          <div className="flex items-center justify-between max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-10">
+        {/* Step indicator */}
+        <div className="mb-10 sm:mb-14">
+          <p className="text-slate-400 text-sm text-center mb-4 sm:mb-6">
+            Step {currentStep} of {ONBOARDING_STEPS.length}
+          </p>
+          <div className="flex items-center mx-auto">
             {ONBOARDING_STEPS.map((step, index) => {
               const Icon = step.icon;
               const isCompleted = completedSteps.includes(step.id);
               const isCurrent = currentStep === step.id;
               const isClickable = isCompleted || step.id === completedSteps.length + 1;
-              
+              const shortName = (step as { shortName?: string; name: string }).shortName ?? step.name;
+
+              // Apply improved hover effect only for clickable, not-completed and not-current steps
               return (
-                <div key={step.id} className="flex items-center">
-                  <button
-                    onClick={() => handleStepClick(step.id)}
-                    disabled={!isClickable}
-                    className={`relative flex flex-col items-center ${isClickable ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-                  >
-                    <div className={`
-                      w-12 h-12 rounded-full flex items-center justify-center transition-all
-                      ${isCompleted ? 'bg-green-700 text-white' : 
-                        isCurrent ? 'bg-blue-600 text-white ring-4 ring-blue-600/30' : 
-                        'bg-slate-700 text-slate-400'}
-                    `}>
-                      {isCompleted ? (
-                        <CheckCircle className="h-6 w-6" />
-                      ) : (
-                        <Icon className="h-6 w-6" />
-                      )}
-                    </div>
-                    <div className="absolute top-14 w-32 text-center">
-                      <div className={`text-sm font-medium ${isCurrent ? 'text-white' : 'text-slate-400'}`}>
-                        Step {step.id}
+                <Fragment key={step.id}>
+                  <div className="flex flex-1 min-w-0 flex-col items-center">
+                    <button
+                      type="button"
+                      onClick={() => handleStepClick(step.id)}
+                      disabled={!isClickable}
+                      className={`
+                        flex flex-col items-center p-4   focus:outline-none focus-visible:ring-2 
+                        focus-visible:ring-blue-400 focus-visible:ring-offset-2 
+                        focus-visible:ring-offset-slate-900 rounded-lg w-full
+                        ${isClickable ? 'cursor-pointer' : 'cursor-not-allowed'}
+                        group
+                      `}
+                    >
+                      <div
+                        className={`
+                          w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200
+                          ${isCompleted
+                            ? 'bg-emerald-600 text-white'
+                            : isCurrent
+                              ? 'bg-blue-500 text-white ring-4 ring-blue-500/40 shadow-lg shadow-blue-500/20'
+                              : `bg-slate-700/80 text-slate-400
+                                 ${isClickable && !isCompleted && !isCurrent ? 'group-hover:bg-blue-600 group-hover:text-white' : ''}`
+                          }
+                        `}
+                      >
+                        {isCompleted ? (
+                          <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+                        ) : (
+                          <Icon className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+                        )}
                       </div>
-                      <div className={`text-xs ${isCurrent ? 'text-blue-400' : 'text-slate-400'} hidden sm:block`}>
-                        {step.name}
-                      </div>
-                    </div>
-                  </button>
-                  
+                      <span
+                        className={`
+                          mt-2 text-[10px] sm:text-xs font-medium text-center leading-tight 
+                          max-w-[4.5rem] sm:max-w-[5rem]
+                          ${isCurrent ? 'text-white' : isCompleted ? 'text-emerald-400' : 'text-slate-500'}
+                          ${isClickable && !isCompleted && !isCurrent ? 'group-hover:text-white' : ''}
+                          transition-colors duration-150
+                        `}
+                      >
+                        {shortName}
+                      </span>
+                    </button>
+                  </div>
                   {index < ONBOARDING_STEPS.length - 1 && (
-                    <div className={`
-                      w-full h-0.5 mx-2 transition-all
-                      ${completedSteps.includes(step.id) ? 'bg-green-600' : 'bg-slate-700'}
-                    `} />
+                    <div
+                      className={`
+                        hidden sm:block w-8 h-8 flex-shrink-0 transition-colors duration-200
+                        ${completedSteps.includes(step.id) ? 'bg-emerald-600' : 'bg-slate-700'}
+                      `}
+                      aria-hidden
+                    />
                   )}
-                </div>
+                </Fragment>
               );
             })}
           </div>
         </div>
 
-        {/* Step Content */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8">
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">
-                {ONBOARDING_STEPS[currentStep - 1].name}
-              </h2>
-              <p className="text-slate-400">
-                {ONBOARDING_STEPS[currentStep - 1].description}
-              </p>
-            </div>
-
-            <div className="min-h-[400px]">
-              {renderStepContent()}
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="flex items-center justify-between mt-12 pt-8 border-t border-slate-700">
-              <button
-                onClick={handlePrevious}
-                disabled={currentStep === 1}
-                className={`
-                  flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
-                  ${currentStep === 1 
-                    ? 'bg-slate-700/30 text-slate-500 cursor-not-allowed' 
-                    : 'bg-slate-700 hover:bg-slate-600 text-white'}
-                `}
-              >
-                <ArrowLeft className="h-5 w-5" />
-                Previous
-              </button>
-
-              <div className="text-slate-400">
-                Step {currentStep} of 7
+        {/* Step content card */}
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
+            <div className="p-6 sm:p-8 md:p-10">
+              <div className="flex items-start gap-4 mb-8">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  {(() => {
+                    const Icon = ONBOARDING_STEPS[currentStep - 1].icon;
+                    return <Icon className="h-6 w-6 text-blue-400" aria-hidden />;
+                  })()}
+                </div>
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    {ONBOARDING_STEPS[currentStep - 1].name}
+                  </h2>
+                  <p className="text-slate-400 text-sm sm:text-base mt-1">
+                    {ONBOARDING_STEPS[currentStep - 1].description}
+                  </p>
+                </div>
               </div>
 
-              {currentStep === 7 ? (
+              <div className="min-h-[360px]">
+                {renderStepContent()}
+              </div>
+
+              {/* Navigation */}
+              <nav
+                className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 pt-8 border-t border-slate-700/70"
+                aria-label="Step navigation"
+              >
                 <button
-                  onClick={handleSubmit}
-                  disabled={isSubmitting || completedSteps.length < 7}
+                  type="button"
+                  onClick={handlePrevious}
+                  disabled={currentStep === 1}
                   className={`
-                    flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition
-                    ${completedSteps.length === 7
-                      ? 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white'
-                      : 'bg-slate-700/30 text-slate-500 cursor-not-allowed'}
+                    order-2 sm:order-1 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
+                    ${currentStep === 1
+                      ? 'bg-slate-700/30 text-slate-500 cursor-not-allowed'
+                      : 'bg-slate-700 hover:bg-slate-600 text-white'}
                   `}
                 >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                      Submitting...
-                    </>
-                  ) : (
-                    <>
-                      Submit Application
-                      <CheckCircle className="h-5 w-5" />
-                    </>
-                  )}
+                  <ArrowLeft className="h-5 w-5" aria-hidden />
+                  Previous
                 </button>
-              ) : (
-                <button
-                  onClick={handleNext}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-lg font-medium transition"
-                >
-                  Next
-                  <ArrowRight className="h-5 w-5" />
-                </button>
-              )}
+
+                <span className="order-1 sm:order-2 text-slate-500 text-sm font-medium">
+                  Step {currentStep} of 7
+                </span>
+
+                {currentStep === 7 ? (
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    disabled={isSubmitting || completedSteps.length < 7}
+                    className={`
+                      order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
+                      ${completedSteps.length === 7
+                        ? 'bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white'
+                        : 'bg-slate-700/30 text-slate-500 cursor-not-allowed'}
+                    `}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        Submit Application
+                        <CheckCircle className="h-5 w-5" aria-hidden />
+                      </>
+                    )}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition"
+                  >
+                    Next step
+                    <ArrowRight className="h-5 w-5" aria-hidden />
+                  </button>
+                )}
+              </nav>
             </div>
           </div>
 
-          {/* Help Section */}
-          <div className="mt-8 p-6 bg-blue-900/20 backdrop-blur-sm border border-blue-500/30 rounded-xl">
+          {/* Help */}
+          <div className="mt-6 sm:mt-8 p-5 sm:p-6 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl">
             <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-blue-400 mt-0.5" />
+              <AlertCircle className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" aria-hidden />
               <div>
-                <h3 className="font-semibold text-blue-400 mb-1">Need Help?</h3>
-                <p className="text-blue-400 text-sm">
-                  Your progress is automatically saved. You can exit and return at any time to complete your application.
-                  For assistance, email contractors@nrp.com.au
+                <h3 className="font-semibold text-white mb-1">Need help?</h3>
+                <p className="text-slate-400 text-sm">
+                  Your progress is saved automatically. You can leave and come back anytime.
+                  For support, email contractors@nrp.com.au
                 </p>
               </div>
             </div>
