@@ -393,12 +393,12 @@ function ContractorLoginPageOriginal() {
           </div>
 
           {/* Footer links */}
-          <div className="mt-6 text-center space-y-2">
+          <div className="mt-6 text-center space-y-2 flex flex-col">
             <Link
               href="/contractor/apply"
-              className="text-sm text-gray-300 hover:text-white transition-colours block"
+              className="inline-flex items-center justify-center text-sm text-gray-300 hover:text-white transition-colours"
             >
-              Don't have an account? <span className="text-blue-400">Register as a contractor</span>
+              Don't have an account? <span className="text-blue-40 px-1"> Register as a contractor</span>
             </Link>
             <Link
               href="/"
