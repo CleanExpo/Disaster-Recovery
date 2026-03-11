@@ -411,7 +411,7 @@ In the `ag-nav-links` div (around line 64-68), add a "For Business" link between
 <div className="ag-nav-links">
   <Link href="/services">Services</Link>
   <Link href="/locations">Locations</Link>
-  <Link href="/for">For Business</Link>
+  <Link href="/for-business">For Business</Link>
   <Link href="/about">About NRPG</Link>
 </div>
 ```
@@ -421,7 +421,7 @@ In the `ag-nav-links` div (around line 64-68), add a "For Business" link between
 In the mobile nav drawer (around line 93-102), add the same link after Locations:
 
 ```tsx
-<Link href="/for" onClick={() => setMobileOpen(false)}>For Business</Link>
+<Link href="/for-business" onClick={() => setMobileOpen(false)}>For Business</Link>
 ```
 
 **Step 3: Verify build, commit**
@@ -478,7 +478,7 @@ Insert a new `<section>` between the existing services grid section and `<Antigr
     </Link>
   </div>
   <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-    <Link href="/for" className="ag-btn-ghost" style={{ fontSize: '1rem' }}>
+    <Link href="/for-business" className="ag-btn-ghost" style={{ fontSize: '1rem' }}>
       View All Commercial Services →
     </Link>
   </div>
