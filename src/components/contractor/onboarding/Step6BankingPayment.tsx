@@ -127,8 +127,8 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Banking & Payment Details</h2>
-        <p className="mt-2 text-gray-700">
+        <h2 className="text-2xl font-bold text-white">Banking & Payment Details</h2>
+        <p className="mt-2 text-white">
           Provide your banking information and payment preferences for seamless transactions
         </p>
       </div>
@@ -315,10 +315,12 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   {...register('invoiceEmail', { 
                     required: 'Invoice email is required',
                     pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2 }$/i,
+                      // Simple, robust email regex
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: 'Invalid email address'
                     }
                   })}
+                  className="w-full px-3 py-2 border border-black text-black rounded-md"
                   placeholder="accounts@example.com"
                 />
                 {errors.invoiceEmail && (
@@ -542,18 +544,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
           </div>
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between pt-6">
-          <Button type="button" variant="outline" onClick={onBack}>
-            Back
-          </Button>
-          <Button 
-            type="submit"
-            disabled={!agreeToTerms || !agreeToFees || !understandPaymentTerms}
-          >
-            Continue
-          </Button>
-        </div>
+   
       </form>
     </div>
   );
