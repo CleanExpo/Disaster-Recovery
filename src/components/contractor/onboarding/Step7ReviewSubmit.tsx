@@ -100,6 +100,66 @@ export default function Step7ReviewSubmit({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showFullReview, setShowFullReview] = useState(false)
 
+  // Normalise raw application data from all steps into a review-friendly shape
+  const reviewData = {
+    ...applicationData,
+    businessInfo: {
+      ...(applicationData.businessInfo || {}),
+      // Prefer companyName from step 1 if businessName is not set
+      businessName:
+        applicationData.businessInfo?.businessName ||
+        applicationData.businessInfo?.companyName ||
+        ''
+    },
+    insurance: {
+      // Map flat insurance fields from step 2 into a summary object
+      publicLiability: applicationData.generalLiabilityCoverage,
+      professionalIndemnity: applicationData.professionalIndemnityCoverage,
+      workersComp: Boolean(applicationData.workersCompPolicyNumber),
+      licenses: [
+        applicationData.contractorLicenseNumber,
+        applicationData.asbestosLicense,
+        applicationData.plumbingLicense,
+        applicationData.electricalLicense
+      ].filter(Boolean)
+    },
+    experience: {
+      yearsExperience:
+        applicationData.yearsInBusiness || applicationData.yearsInDisasterRecovery,
+      primaryServices: applicationData.specializations || [],
+      previousProjects: applicationData.workExperience || [],
+      references: applicationData.references || []
+    },
+    equipment: {
+      vehicleFleet: applicationData.vehicles || [],
+      specializedEquipment: [
+        ...(applicationData.waterExtractionEquipment || []),
+        ...(applicationData.dryingEquipment || []),
+        ...(applicationData.airQualityEquipment || []),
+        ...(applicationData.cleaningEquipment || []),
+        ...(applicationData.safetyEquipment || []),
+        ...(applicationData.measurementTools || [])
+      ],
+      teamSize: applicationData.totalEmployees,
+      technicians: applicationData.certifiedTechnicians
+    },
+    healthSafety: {
+      whsPolicy: Boolean(applicationData.whsPolicyDocument),
+      safeWorkProcedures: applicationData.safeWorkMethodStatements,
+      trainingRecords: Array.isArray(applicationData.mandatoryTraining)
+        ? applicationData.mandatoryTraining.length > 0
+        : false,
+      incidentReporting: applicationData.incidentReportingSystem
+    },
+    banking: {
+      accountName: applicationData.accountName,
+      bsb: applicationData.bsb,
+      accountNumber: applicationData.accountNumber,
+      gstRegistered: applicationData.gstRegistered,
+      paymentTerms: applicationData.paymentTerms
+    }
+  }
+
   const form = useForm<ReviewFormValues>({
     resolver: zodResolver(reviewSchema),
     defaultValues: {
@@ -116,7 +176,7 @@ export default function Step7ReviewSubmit({
 
   // Calculate completion status for each section
   const getSectionStatus = (section: string): 'complete' | 'incomplete' | 'warning' => {
-    const data = applicationData[section]
+    const data = (reviewData as any)[section]
     if (!data) return 'incomplete'
     
     // Check if all required fields are filled
@@ -147,12 +207,12 @@ export default function Step7ReviewSubmit({
       icon: <Briefcase className="h-5 w-5" />,
       status: getSectionStatus('businessInfo'),
       items: [
-        { label: 'Business Name', value: applicationData.businessInfo?.businessName || 'Not provided', required: true },
-        { label: 'ABN', value: applicationData.businessInfo?.abn || 'Not provided', required: true },
-        { label: 'Trading Name', value: applicationData.businessInfo?.tradingName || 'Not provided' },
-        { label: 'Business Type', value: applicationData.businessInfo?.businessType || 'Not provided', required: true },
-        { label: 'Year Established', value: applicationData.businessInfo?.yearEstablished || 'Not provided', required: true },
-        { label: 'Website', value: applicationData.businessInfo?.website || 'Not provided' },
+        { label: 'Business Name', value: reviewData.businessInfo?.businessName || 'Not provided', required: true },
+        { label: 'ABN', value: reviewData.businessInfo?.abn || 'Not provided', required: true },
+        { label: 'Trading Name', value: reviewData.businessInfo?.tradingName || 'Not provided' },
+        { label: 'Business Type', value: reviewData.businessInfo?.businessType || 'Not provided', required: true },
+        { label: 'Year Established', value: reviewData.businessInfo?.yearEstablished || 'Not provided', required: true },
+        { label: 'Website', value: reviewData.businessInfo?.website || 'Not provided' },
       ]
     },
     {
@@ -160,10 +220,10 @@ export default function Step7ReviewSubmit({
       icon: <Shield className="h-5 w-5" />,
       status: getSectionStatus('insurance'),
       items: [
-        { label: 'Public Liability', value: applicationData.insurance?.publicLiability ? `$${applicationData.insurance.publicLiability}` : 'Not provided', required: true },
-        { label: 'Professional Indemnity', value: applicationData.insurance?.professionalIndemnity ? `$${applicationData.insurance.professionalIndemnity}` : 'Not provided', required: true },
-        { label: 'Workers Compensation', value: applicationData.insurance?.workersComp ? 'Active' : 'Not provided', required: true },
-        { label: 'Licences', value: applicationData.insurance?.licenses?.length ? `${applicationData.insurance.licenses.length} licences` : 'None provided' },
+        { label: 'Public Liability', value: reviewData.insurance?.publicLiability || 'Not provided', required: true },
+        { label: 'Professional Indemnity', value: reviewData.insurance?.professionalIndemnity || 'Not provided', required: true },
+        { label: 'Workers Compensation', value: reviewData.insurance?.workersComp ? 'Active' : 'Not provided', required: true },
+        { label: 'Licences', value: reviewData.insurance?.licenses?.length ? `${reviewData.insurance.licenses.length} licences` : 'None provided' },
       ]
     },
     {
@@ -171,10 +231,10 @@ export default function Step7ReviewSubmit({
       icon: <User className="h-5 w-5" />,
       status: getSectionStatus('experience'),
       items: [
-        { label: 'Years in Business', value: applicationData.experience?.yearsExperience || 'Not provided', required: true },
-        { label: 'Primary Services', value: applicationData.experience?.primaryServices?.join(', ') || 'Not provided', required: true },
-        { label: 'Previous Projects', value: applicationData.experience?.previousProjects?.length ? `${applicationData.experience.previousProjects.length} projects` : 'None provided', required: true },
-        { label: 'References', value: applicationData.experience?.references?.length ? `${applicationData.experience.references.length} references` : 'None provided', required: true },
+        { label: 'Years in Business', value: reviewData.experience?.yearsExperience || 'Not provided', required: true },
+        { label: 'Primary Services', value: reviewData.experience?.primaryServices?.join(', ') || 'Not provided', required: true },
+        { label: 'Previous Projects', value: reviewData.experience?.previousProjects?.length ? `${reviewData.experience.previousProjects.length} projects` : 'None provided', required: true },
+        { label: 'References', value: reviewData.experience?.references?.length ? `${reviewData.experience.references.length} references` : 'None provided', required: true },
       ]
     },
     {
@@ -182,10 +242,10 @@ export default function Step7ReviewSubmit({
       icon: <Wrench className="h-5 w-5" />,
       status: getSectionStatus('equipment'),
       items: [
-        { label: 'Vehicle Fleet', value: applicationData.equipment?.vehicleFleet?.length ? `${applicationData.equipment.vehicleFleet.length} vehicles` : 'Not provided', required: true },
-        { label: 'Specialised Equipment', value: applicationData.equipment?.specializedEquipment?.length ? `${applicationData.equipment.specializedEquipment.length} items` : 'Not provided', required: true },
-        { label: 'Team Size', value: applicationData.equipment?.teamSize || 'Not provided', required: true },
-        { label: 'Technicians', value: applicationData.equipment?.technicians || 'Not provided' },
+        { label: 'Vehicle Fleet', value: reviewData.equipment?.vehicleFleet?.length ? `${reviewData.equipment.vehicleFleet.length} vehicles` : 'Not provided', required: true },
+        { label: 'Specialised Equipment', value: reviewData.equipment?.specializedEquipment?.length ? `${reviewData.equipment.specializedEquipment.length} items` : 'Not provided', required: true },
+        { label: 'Team Size', value: reviewData.equipment?.teamSize || 'Not provided', required: true },
+        { label: 'Technicians', value: reviewData.equipment?.technicians || 'Not provided' },
       ]
     },
     {
@@ -193,10 +253,10 @@ export default function Step7ReviewSubmit({
       icon: <Heart className="h-5 w-5" />,
       status: getSectionStatus('healthSafety'),
       items: [
-        { label: 'WHS Policy', value: applicationData.healthSafety?.whsPolicy ? 'Provided' : 'Not provided', required: true },
-        { label: 'Safe Work Procedures', value: applicationData.healthSafety?.safeWorkProcedures ? 'Documented' : 'Not provided', required: true },
-        { label: 'Training Records', value: applicationData.healthSafety?.trainingRecords ? 'Maintained' : 'Not provided', required: true },
-        { label: 'Incident Reporting', value: applicationData.healthSafety?.incidentReporting ? 'System in place' : 'Not provided', required: true },
+        { label: 'WHS Policy', value: reviewData.healthSafety?.whsPolicy ? 'Provided' : 'Not provided', required: true },
+        { label: 'Safe Work Procedures', value: reviewData.healthSafety?.safeWorkProcedures ? 'Documented' : 'Not provided', required: true },
+        { label: 'Training Records', value: reviewData.healthSafety?.trainingRecords ? 'Maintained' : 'Not provided', required: true },
+        { label: 'Incident Reporting', value: reviewData.healthSafety?.incidentReporting ? 'System in place' : 'Not provided', required: true },
       ]
     },
     {
@@ -204,11 +264,11 @@ export default function Step7ReviewSubmit({
       icon: <DollarSign className="h-5 w-5" />,
       status: getSectionStatus('banking'),
       items: [
-        { label: 'Account Name', value: applicationData.banking?.accountName || 'Not provided', required: true },
-        { label: 'BSB', value: applicationData.banking?.bsb || 'Not provided', required: true },
-        { label: 'Account Number', value: applicationData.banking?.accountNumber ? '****' + applicationData.banking.accountNumber.slice(-4) : 'Not provided', required: true },
-        { label: 'GST Registered', value: applicationData.banking?.gstRegistered ? 'Yes' : 'No', required: true },
-        { label: 'Payment Terms', value: applicationData.banking?.paymentTerms || '30 days' },
+        { label: 'Account Name', value: reviewData.banking?.accountName || 'Not provided', required: true },
+        { label: 'BSB', value: reviewData.banking?.bsb || 'Not provided', required: true },
+        { label: 'Account Number', value: reviewData.banking?.accountNumber ? '****' + String(reviewData.banking.accountNumber).slice(-4) : 'Not provided', required: true },
+        { label: 'GST Registered', value: reviewData.banking?.gstRegistered ? 'Yes' : 'No', required: true },
+        { label: 'Payment Terms', value: reviewData.banking?.paymentTerms || '30 days' },
       ]
     }
   ]
