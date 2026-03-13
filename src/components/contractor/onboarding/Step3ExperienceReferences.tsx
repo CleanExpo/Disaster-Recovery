@@ -25,7 +25,7 @@ interface Reference {
   company: string;
   position: string;
   relationship: string;
-  
+  phone: string;
   email: string;
   projectReference?: string;
 }
@@ -149,8 +149,8 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Work Experience & References</h2>
-        <p className="mt-2 text-gray-700">
+        <h2 className="text-2xl font-bold text-white">Work Experience & References</h2>
+        <p className="mt-2 text-white">
           Share your professional experience and provide references to validate your expertise
         </p>
       </div>
@@ -410,15 +410,17 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
               type="button"
               variant="outline"
               size="sm"
-              onClick={() => appendReference({
-                name: '',
-                company: '',
-                position: '',
-                relationship: '',
-                
-                email: '',
-                projectReference: ''
-              })}
+              onClick={() =>
+                appendReference({
+                  name: '',
+                  company: '',
+                  position: '',
+                  relationship: '',
+                  phone: '',
+                  email: '',
+                  projectReference: ''
+                })
+              }
             >
               <Plus className="h-4 w-4 mr-1" />
               Add Reference

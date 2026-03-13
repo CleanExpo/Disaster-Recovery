@@ -107,35 +107,15 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-4 sm:p-6 lg:p-8"
-    >
-      <div className="mx-auto max-w-4xl">
-        {/* Progress Indicator */}
-        <div className="mb-8">
-          <div className="flex items-center justify-center mb-6">
-            <div className="flex items-center space-x-2 text-sm text-gray-700">
-              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
-              <div className="w-8 h-1 bg-blue-600 rounded"></div>
-              <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
-              <div className="w-8 h-1 bg-gray-300 rounded"></div>
-              <div className="w-8 h-8 bg-gray-300 text-gray-700 rounded-full flex items-center justify-center font-semibold">3</div>
-            </div>
-          </div>
-          <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
-              Insurance & Licensing
-            </h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
-              Secure your position by providing comprehensive insurance coverage and professional licensing details
-            </p>
-          </div>
-        </div>
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-bold text-slate-50">Insurance & Licensing</h2>
+        <p className="mt-2 text-sm sm:text-base text-slate-300">
+          Secure your position by providing comprehensive insurance coverage and professional licensing details.
+        </p>
+      </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
           {/* General Liability Insurance */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -597,6 +577,5 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
           </motion.div>
         </form>
       </div>
-    </motion.div>
   );
 }
