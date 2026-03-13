@@ -1,8 +1,6 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -506,11 +504,5 @@ function SiteAuditPageOriginal() {
   );
 }
 export default function SiteAuditPage() {
-  return (
-    <>
-      <AntigravityNavbar />
-      <SiteAuditPageOriginal />
-      <AntigravityFooter />
-    </>
-  );
+  return <SiteAuditPageOriginal />;
 }

@@ -1,8 +1,6 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { Search, Plus, Eye, BarChart3, MapPin, Filter, Download, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
@@ -430,11 +428,5 @@ function SEOPagesAdminOriginal() {
   );
 }
 export default function SEOPagesAdmin() {
-  return (
-    <>
-      <AntigravityNavbar />
-      <SEOPagesAdminOriginal />
-      <AntigravityFooter />
-    </>
-  );
+  return <SEOPagesAdminOriginal />;
 }

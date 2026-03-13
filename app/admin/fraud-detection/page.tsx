@@ -1,8 +1,6 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { AlertTriangle, Shield, Eye, Search, Filter, Download, RefreshCw, CheckCircle, Clock, X } from 'lucide-react';
 import Link from 'next/link';
@@ -433,11 +431,5 @@ function FraudDetectionAdminOriginal() {
   );
 }
 export default function FraudDetectionAdmin() {
-  return (
-    <>
-      <AntigravityNavbar />
-      <FraudDetectionAdminOriginal />
-      <AntigravityFooter />
-    </>
-  );
+  return <FraudDetectionAdminOriginal />;
 }

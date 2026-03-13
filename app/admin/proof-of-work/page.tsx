@@ -1,8 +1,6 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { Search, Filter, Eye, CheckCircle, X, Clock, AlertTriangle, FileText, Image, MapPin, Calendar, DollarSign, MessageSquare} from 'lucide-react';
 import Link from 'next/link';
@@ -639,11 +637,5 @@ function ClaimReviewModal({
   );
 }
 export default function ProofOfWorkAdmin() {
-  return (
-    <>
-      <AntigravityNavbar />
-      <ProofOfWorkAdminOriginal />
-      <AntigravityFooter />
-    </>
-  );
+  return <ProofOfWorkAdminOriginal />;
 }

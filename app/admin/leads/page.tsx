@@ -1,8 +1,6 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
 import React, { useState, useEffect } from 'react';
 import { 
   Search,
@@ -627,11 +625,5 @@ function LeadManagementDashboardOriginal() {
   );
 }
 export default function LeadManagementDashboard() {
-  return (
-    <>
-      <AntigravityNavbar />
-      <LeadManagementDashboardOriginal />
-      <AntigravityFooter />
-    </>
-  );
+  return <LeadManagementDashboardOriginal />;
 }

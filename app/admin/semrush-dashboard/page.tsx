@@ -1,8 +1,6 @@
 'use client';
 
 
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -428,11 +426,5 @@ function SEMrushDashboardOriginal() {
   );
 }
 export default function SEMrushDashboard() {
-  return (
-    <>
-      <AntigravityNavbar />
-      <SEMrushDashboardOriginal />
-      <AntigravityFooter />
-    </>
-  );
+  return <SEMrushDashboardOriginal />;
 }
