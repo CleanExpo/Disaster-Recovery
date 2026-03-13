@@ -47,12 +47,62 @@ function getResidentialPresetData(): Record<string, unknown> {
   const biz = c.businessInfo as Record<string, unknown>;
   const exp = c.experience as Record<string, unknown>;
   const equipment = c.equipment as Record<string, unknown> | undefined;
+  const safety = c.healthSafety as Record<string, unknown> | undefined;
   const businessPhone =
     (biz.phone as string) && (biz.phone as string).trim().length > 0
       ? (biz.phone as string)
       : (biz.mobile as string) && (biz.mobile as string).trim().length > 0
       ? (biz.mobile as string)
       : '1300 000 000';
+
+  // Build experience projects with at least 3 entries for Step 3
+  const rawProjects = (exp?.majorProjects as Array<Record<string, unknown>>) || [];
+  const baseProjects =
+    rawProjects.length > 0
+      ? rawProjects
+      : [
+          { name: 'CBD Office Flood Recovery', value: 750000, description: 'Multi-floor commercial flood restoration' },
+          { name: 'Hospital Fire & Smoke Cleanup', value: 1250000, description: 'Smoke and soot remediation for critical care areas' },
+          { name: 'Shopping Centre Mould Remediation', value: 500000, description: 'Large-scale mould remediation in retail tenancies' }
+        ];
+  const paddedProjects =
+    baseProjects.length >= 3
+      ? baseProjects
+      : [
+          ...baseProjects,
+          ...[
+            { name: 'Regional Storm Damage Response', value: 350000, description: 'Roof, water ingress and contents drying' }
+          ].slice(0, 3 - baseProjects.length)
+        ];
+
+  // Build references with phone/email so Step 3 can be valid out of the box
+  const rawRefs = (exp?.references as Array<Record<string, unknown>>) || [];
+  const baseRefs =
+    rawRefs.length > 0
+      ? rawRefs
+      : [
+          {
+            name: 'John Smith',
+            company: 'QBE Insurance',
+            position: 'Senior Claims Manager',
+            relationship: 'Client',
+            email: 'john.smith@example.com'
+          },
+          {
+            name: 'Sarah Johnson',
+            company: 'ABC Property Management',
+            position: 'Portfolio Manager',
+            relationship: 'Property Manager',
+            email: 'sarah.johnson@example.com'
+          },
+          {
+            name: 'Michael Lee',
+            company: 'XYZ Strata',
+            position: 'Strata Manager',
+            relationship: 'Client',
+            email: 'michael.lee@example.com'
+          }
+        ];
 
   return {
     ...c,
@@ -118,18 +168,68 @@ function getResidentialPresetData(): Record<string, unknown> {
       );
       return max > 0 ? `$${max.toLocaleString('en-AU')}` : '$2,500,000';
     })(),
-    workExperience:
-      (exp?.majorProjects as Array<Record<string, unknown>>)?.map((p) => ({
-        projectName: p.name,
-        clientName: '',
-        projectType: 'Restoration',
+    workExperience: paddedProjects.map((project) => {
+      const p = project as Record<string, unknown>;
+      const client =
+        (p.client as string) ??
+        (p.clientName as string) ??
+        'Key commercial client';
+      const completion =
+        (p.completionDate as string) ?? new Date().toISOString().slice(0, 10);
+
+      return {
+      projectName: (p.name as string) ?? '',
+        clientName: client,
+        // Must match one of the allowed projectType options in Step 3
+        projectType: 'Multiple',
         projectValue: String(p.value ?? ''),
-        completionDate: '',
-        description: p.description ?? '',
+        // Provide a default completion date so the date input is filled
+        completionDate: completion,
+        description: (p.description as string) ?? '',
         challenges: '',
         outcome: ''
-      })) ?? [],
-    references: (exp?.references as Array<Record<string, unknown>>) ?? [],
+      };
+    }),
+    references: baseRefs.map((ref, idx) => {
+      const r = ref as Record<string, unknown>;
+      const basePosition =
+        (r.position as string) && (r.position as string).trim().length > 0
+          ? (r.position as string)
+          : idx === 0
+          ? 'Senior Claims Manager'
+          : idx === 1
+          ? 'Portfolio Manager'
+          : 'Strata Manager';
+
+      return {
+        name: (r.name as string) ?? '',
+        company: (r.company as string) ?? '',
+        position: basePosition,
+        relationship: (r.relationship as string) ?? 'Client',
+        phone: ((r as any).phone as string) ?? '1300 000 000',
+        email: (r.email as string) ?? 'contact@example.com',
+        projectReference: (r.projectReference as string) ?? ''
+      };
+    }),
+    // Step 4 – vehicles pre-filled for quick fill
+    vehicles: [
+      {
+        type: 'Truck',
+        make: 'Isuzu',
+        model: 'NQR',
+        year: '2021',
+        registration: 'NRPG01',
+        capacity: '3 tonne'
+      },
+      {
+        type: 'Van',
+        make: 'Toyota',
+        model: 'HiAce',
+        year: '2020',
+        registration: 'NRPG02',
+        capacity: '1.5 tonne'
+      }
+    ],
     specializations: (exp?.specializations as string[]) ?? [],
     insuranceClaimsExperience:
       'Handled 200+ insurance claims across water, fire, storm and mould events for major Australian insurers.',
@@ -183,8 +283,98 @@ function getResidentialPresetData(): Record<string, unknown> {
     backupEquipment: true,
     subcontractorNetwork: true,
     primarySuppliers: 'Demo Restoration Supply Co; National Equipment Rentals',
-    equipmentMaintenance: 'In-house technician team and OEM service agents',
     emergencyContacts: 'Operations Manager (24/7): 1300 000 000'
+    ,
+    // Step 5 – Health & Safety (map from demo healthSafety into full form shape)
+    whsPolicyDocument: 'WHS Policy v2.1',
+    whsPolicyVersion: 'v2.1',
+    whsPolicyReviewDate: new Date().toISOString().slice(0, 10),
+    safeWorkMethodStatements: (safety?.safeWorkProcedures as boolean) ?? true,
+    swmsCategories: [
+      'Water Damage Restoration',
+      'Fire Damage Restoration',
+      'Mould Remediation'
+    ],
+    safetyManagementSystem: 'internal',
+    safetyOfficerName: 'Jane Safety',
+    safetyOfficerContact: 'safety.officer@example.com',
+    safetyMeetingFrequency: 'monthly',
+    inductionProcess: true,
+    trainingRecordSystem: 'digital',
+    mandatoryTraining:
+      (safety?.training as string[] | undefined)?.map((t) => ({
+        trainingType: t,
+        provider: 'Registered RTO',
+        frequency: 'annual',
+        lastCompleted: new Date().toISOString().slice(0, 10)
+      })) ?? [
+        {
+          trainingType: 'Working at Heights',
+          provider: 'Registered RTO',
+          frequency: 'annual',
+          lastCompleted: new Date().toISOString().slice(0, 10)
+        }
+      ],
+    certifications: [
+      {
+        certificationType: 'First Aid/CPR',
+        certNumber: 'FA-12345',
+        expiryDate: new Date(
+          new Date().getFullYear() + 1,
+          new Date().getMonth(),
+          new Date().getDate()
+        )
+          .toISOString()
+          .slice(0, 10),
+        holder: 'Lead Technician'
+      }
+    ],
+    ppeProvided: (safety?.ppe as boolean) ?? true,
+    ppeTypes: [
+      'Safety Helmets/Hard Hats',
+      'Safety Glasses/Goggles',
+      'Respirators/Masks',
+      'Safety Boots',
+      'Gloves (Various Types)'
+    ],
+    equipmentMaintenance: true,
+    maintenanceSchedule: 'quarterly',
+    incidentReportingSystem: (safety?.incidentReporting as boolean) ?? true,
+    incidentReportingMethod: 'digital',
+    nearMissReporting: true,
+    incidentInvestigationProcess: true,
+    workersCompClaims: 0,
+    lostTimeInjuries: 0,
+    riskAssessmentProcess: (safety?.riskAssessments as boolean) ?? true,
+    hazardIdentification: true,
+    jsaProcess: true,
+    takesFiveImplemented: true,
+    emergencyResponsePlan: true,
+    evacuationProcedures: true,
+    firstAidCapability: true,
+    firstAiders: [
+      {
+        name: 'Jane Safety',
+        certification: 'Provide First Aid (HLTAID011)',
+        expiryDate: new Date(
+          new Date().getFullYear() + 1,
+          new Date().getMonth(),
+          new Date().getDate()
+        )
+          .toISOString()
+          .slice(0, 10)
+      }
+    ],
+    safetyAuditsFrequency: 'annual',
+    externalAudits: true,
+    lastAuditDate: new Date().toISOString().slice(0, 10),
+    complianceScore: 95,
+    mentalHealthPolicy: true,
+    eapProgram: true,
+    fatigueManagement: true,
+    commitToNRPStandards: true,
+    shareIncidentData: true,
+    participateInSafetyPrograms: true
   };
 }
 
@@ -690,58 +880,65 @@ function ContractorApplicationContent() {
                 className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 pt-8 border-t border-slate-700/70"
                 aria-label="Step navigation"
               >
-                <button
-                  type="button"
-                  onClick={handlePrevious}
-                  disabled={currentStep === 1}
-                  className={`
-                    order-2 sm:order-1 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
-                    ${currentStep === 1
-                      ? 'bg-slate-700/30 text-slate-500 cursor-not-allowed'
-                      : 'bg-slate-700 hover:bg-slate-600 text-white'}
-                  `}
-                >
-                  <ArrowLeft className="h-5 w-5" aria-hidden />
-                  Previous
-                </button>
+                {/* Hide outer nav buttons on steps that render their own internal nav (e.g. steps 2–5) */}
+                {currentStep !== 2 && currentStep !== 3 && currentStep !== 4 && currentStep !== 5 && (
+                  <button
+                    type="button"
+                    onClick={handlePrevious}
+                    disabled={currentStep === 1}
+                    className={`
+                      order-2 sm:order-1 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
+                      ${currentStep === 1
+                        ? 'bg-slate-700/30 text-slate-500 cursor-not-allowed'
+                        : 'bg-slate-700 hover:bg-slate-600 text-white'}
+                    `}
+                  >
+                    <ArrowLeft className="h-5 w-5" aria-hidden />
+                    Previous
+                  </button>
+                )}
 
                 <span className="order-1 sm:order-2 text-slate-500 text-sm font-medium">
                   Step {currentStep} of 7
                 </span>
 
-                {currentStep === 7 ? (
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    disabled={isSubmitting || completedSteps.length < 7}
-                    className={`
-                      order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
-                      ${completedSteps.length === 7
-                        ? 'bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white'
-                        : 'bg-slate-700/30 text-slate-500 cursor-not-allowed'}
-                    `}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
-                        Submitting...
-                      </>
+                {currentStep !== 2 && currentStep !== 3 && currentStep !== 4 && currentStep !== 5 && (
+                  <>
+                    {currentStep === 7 ? (
+                      <button
+                        type="button"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting || completedSteps.length < 7}
+                        className={`
+                          order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
+                          ${completedSteps.length === 7
+                            ? 'bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white'
+                            : 'bg-slate-700/30 text-slate-500 cursor-not-allowed'}
+                        `}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
+                            Submitting...
+                          </>
+                        ) : (
+                          <>
+                            Submit Application
+                            <CheckCircle className="h-5 w-5" aria-hidden />
+                          </>
+                        )}
+                      </button>
                     ) : (
-                      <>
-                        Submit Application
-                        <CheckCircle className="h-5 w-5" aria-hidden />
-                      </>
+                      <button
+                        type="button"
+                        onClick={handleNext}
+                        className="order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition"
+                      >
+                        Next step
+                        <ArrowRight className="h-5 w-5" aria-hidden />
+                      </button>
                     )}
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition"
-                  >
-                    Next step
-                    <ArrowRight className="h-5 w-5" aria-hidden />
-                  </button>
+                  </>
                 )}
               </nav>
             </div>
