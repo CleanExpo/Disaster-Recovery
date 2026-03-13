@@ -651,8 +651,21 @@ function ContractorApplicationContent() {
     setIsSubmitting(true);
     
     try {
-      // TODO: Submit to backend API
-      // const response = await fetch('/api/contractor/onboarding/submit', { ... });
+      const response = await fetch('/api/contractor/onboarding/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          application: onboardingData
+        })
+      });
+
+      if (!response.ok) {
+        console.error('Failed to save contractor application', await response.text());
+        setIsSubmitting(false);
+        return;
+      }
       
       // Clear local storage on successful submission
       localStorage.removeItem('contractor_onboarding_progress');
