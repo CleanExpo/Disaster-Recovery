@@ -544,7 +544,25 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
           </div>
         </div>
 
-   
+        {/* Navigation Buttons */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 py-6">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={onBack}
+            className="w-full sm:w-auto h-12 px-8 rounded-xl border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold transition-all duration-200 hover:shadow-md"
+          >
+            Back
+          </Button>
+          <Button
+            type="submit"
+            disabled={!agreeToTerms || !agreeToFees || !understandPaymentTerms}
+            className="w-full sm:w-auto h-12 px-8 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            Continue
+          </Button>
+        </div>
+
       </form>
     </div>
   );

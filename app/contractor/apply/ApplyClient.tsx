@@ -875,70 +875,45 @@ function ContractorApplicationContent() {
                 {renderStepContent()}
               </div>
 
-              {/* Navigation */}
+              {/* Navigation (only for step 1; other steps use their own internal nav) */}
               <nav
                 className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 pt-8 border-t border-slate-700/70"
                 aria-label="Step navigation"
               >
-                {/* Hide outer nav buttons on steps that render their own internal nav (e.g. steps 2–5) */}
-                {currentStep !== 2 && currentStep !== 3 && currentStep !== 4 && currentStep !== 5 && (
-                  <button
-                    type="button"
-                    onClick={handlePrevious}
-                    disabled={currentStep === 1}
-                    className={`
-                      order-2 sm:order-1 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
-                      ${currentStep === 1
-                        ? 'bg-slate-700/30 text-slate-500 cursor-not-allowed'
-                        : 'bg-slate-700 hover:bg-slate-600 text-white'}
-                    `}
-                  >
-                    <ArrowLeft className="h-5 w-5" aria-hidden />
-                    Previous
-                  </button>
+                {currentStep === 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handlePrevious}
+                      disabled={currentStep === 1}
+                      className={`
+                        order-2 sm:order-1 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
+                        bg-slate-700/30 text-slate-500 cursor-not-allowed
+                      `}
+                    >
+                      <ArrowLeft className="h-5 w-5" aria-hidden />
+                      Previous
+                    </button>
+
+                    <span className="order-1 sm:order-2 text-slate-500 text-sm font-medium">
+                      Step {currentStep} of 7
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      className="order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition"
+                    >
+                      Next step
+                      <ArrowRight className="h-5 w-5" aria-hidden />
+                    </button>
+                  </>
                 )}
 
-                <span className="order-1 sm:order-2 text-slate-500 text-sm font-medium">
-                  Step {currentStep} of 7
-                </span>
-
-                {currentStep !== 2 && currentStep !== 3 && currentStep !== 4 && currentStep !== 5 && (
-                  <>
-                    {currentStep === 7 ? (
-                      <button
-                        type="button"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting || completedSteps.length < 7}
-                        className={`
-                          order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium transition
-                          ${completedSteps.length === 7
-                            ? 'bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white'
-                            : 'bg-slate-700/30 text-slate-500 cursor-not-allowed'}
-                        `}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
-                            Submitting...
-                          </>
-                        ) : (
-                          <>
-                            Submit Application
-                            <CheckCircle className="h-5 w-5" aria-hidden />
-                          </>
-                        )}
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={handleNext}
-                        className="order-3 w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition"
-                      >
-                        Next step
-                        <ArrowRight className="h-5 w-5" aria-hidden />
-                      </button>
-                    )}
-                  </>
+                {currentStep !== 1 && (
+                  <span className="w-full text-center text-slate-500 text-sm font-medium">
+                    Step {currentStep} of 7
+                  </span>
                 )}
               </nav>
             </div>

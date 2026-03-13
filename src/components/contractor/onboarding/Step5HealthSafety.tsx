@@ -1186,20 +1186,24 @@ export default function Step5HealthSafety({ onNext, onPrevious, defaultValues }:
             </Alert>
           </CardContent>
 
-          <CardFooter className="flex justify-between">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onPrevious}
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Previous
-            </Button>
-            <Button type="submit">
-              Next Step
-              <ChevronRight className="h-4 w-4 ml-2" />
-            </Button>
-          </CardFooter>
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onPrevious}
+          className="w-full sm:w-auto h-12 px-8 rounded-xl border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold transition-all duration-200 hover:shadow-md"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Previous
+        </Button>
+        <Button
+          type="submit"
+          className="w-full sm:w-auto h-12 px-8 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+        >
+          Next Step
+          <ChevronRight className="h-4 w-4 ml-2" />
+        </Button>
+      </CardFooter>
         </form>
       </Form>
     </Card>
