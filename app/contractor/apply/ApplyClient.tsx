@@ -14,6 +14,7 @@ import {
   ArrowRight, ArrowLeft, Save, AlertCircle, Upload, Loader2, X, ShieldCheck
 } from 'lucide-react';
 import { ContractorOnboardingData, OnboardingProgress } from '@/types/contractor-onboarding';
+import { validateABN } from '@/lib/utils/australian-compliance';
 import { DEMO_DATA, simulateClick, autoFillForm } from '@/lib/demo-mode';
 import Step1BusinessInfo from '@/components/contractor/onboarding/Step1BusinessInfo';
 import Step2InsuranceLicensing from '@/components/contractor/onboarding/Step2InsuranceLicensing';
@@ -35,7 +36,8 @@ const ONBOARDING_STEPS = [
 
 /** Build residential restoration sample preset (used for quick-fill). Step components use mixed shapes so we use a loose type. */
 function getResidentialPresetData(): Record<string, unknown> {
-  const c = DEMO_DATA.contractor as Record<string, unknown>;
+  const raw = DEMO_DATA.contractor as Record<string, unknown>;
+  const c = raw as any;
   const ins = c.insurance as Record<string, unknown>;
   const pl = ins?.publicLiability as Record<string, unknown> | undefined;
   const pi = ins?.professionalIndemnity as Record<string, unknown> | undefined;
@@ -44,9 +46,21 @@ function getResidentialPresetData(): Record<string, unknown> {
   const bank = c.banking as Record<string, unknown> | undefined;
   const biz = c.businessInfo as Record<string, unknown>;
   const exp = c.experience as Record<string, unknown>;
+  const equipment = c.equipment as Record<string, unknown> | undefined;
+  const businessPhone =
+    (biz.phone as string) && (biz.phone as string).trim().length > 0
+      ? (biz.phone as string)
+      : (biz.mobile as string) && (biz.mobile as string).trim().length > 0
+      ? (biz.mobile as string)
+      : '1300 000 000';
+
   return {
     ...c,
-    businessInfo: c.businessInfo,
+    businessInfo: {
+      ...c.businessInfo,
+      // Ensure Step 1 has a Business Phone when using quick fill
+      phone: businessPhone
+    },
     insurance: c.insurance,
     experience: c.experience,
     equipment: c.equipment,
@@ -70,7 +84,8 @@ function getResidentialPresetData(): Record<string, unknown> {
     accountName: (bank?.accountName as string) ?? '',
     bsb: (bank?.bsb as string) ?? '',
     accountNumber: (bank?.accountNumber as string) ?? '',
-    abn: (bank?.abn as string) ?? (biz?.abn as string) ?? '',
+    // Use a known-valid sample ABN so validation passes after quick fill
+    abn: '51824753556',
     gstRegistered: (bank?.gstRegistered as boolean) ?? true,
     paymentTerms: (bank?.paymentTerms as string) === '30 days' ? '30days' : '30days',
     preferredPaymentMethod: ((bank?.preferredPaymentMethod as string) ?? 'eft').toLowerCase().replace(/ /g, '_') as 'eft' | 'cheque' | 'credit_card',
@@ -85,18 +100,91 @@ function getResidentialPresetData(): Record<string, unknown> {
     agreeToTerms: false,
     agreeToFees: false,
     understandPaymentTerms: false,
-    workExperience: (exp?.majorProjects as Array<Record<string, unknown>>)?.map((p) => ({
-      projectName: p.name,
-      clientName: '',
-      projectType: 'Restoration',
-      projectValue: String(p.value ?? ''),
-      completionDate: '',
-      description: p.description ?? '',
-      challenges: '',
-      outcome: ''
-    })) ?? [],
+    // Step 3 – experience overview
+    yearsInBusiness: String(exp?.yearsInBusiness ?? 9),
+    yearsInDisasterRecovery: String(exp?.yearsInBusiness ?? 9),
+    totalProjectsCompleted: String(
+      (exp?.majorProjects as Array<Record<string, unknown>>)?.length
+        ? (exp?.majorProjects as Array<Record<string, unknown>>).length * 20
+        : 200
+    ),
+    largestProjectValue: (() => {
+      const projects = exp?.majorProjects as Array<Record<string, unknown>> | undefined;
+      if (!projects || !projects.length) return '$2,500,000';
+      const max = Math.max(
+        ...projects
+          .map((p) => Number(p.value ?? 0))
+          .filter((v) => !Number.isNaN(v))
+      );
+      return max > 0 ? `$${max.toLocaleString('en-AU')}` : '$2,500,000';
+    })(),
+    workExperience:
+      (exp?.majorProjects as Array<Record<string, unknown>>)?.map((p) => ({
+        projectName: p.name,
+        clientName: '',
+        projectType: 'Restoration',
+        projectValue: String(p.value ?? ''),
+        completionDate: '',
+        description: p.description ?? '',
+        challenges: '',
+        outcome: ''
+      })) ?? [],
     references: (exp?.references as Array<Record<string, unknown>>) ?? [],
-    specializations: (exp?.specializations as string[]) ?? []
+    specializations: (exp?.specializations as string[]) ?? [],
+    insuranceClaimsExperience:
+      'Handled 200+ insurance claims across water, fire, storm and mould events for major Australian insurers.',
+    adjustorRelationships:
+      'Established working relationships with multiple loss adjusters; provide same-day documentation and photos.',
+    achievements:
+      'Recognised for rapid response during the 2022 Brisbane floods and multiple cyclone recovery projects.',
+    professionalMemberships:
+      'IICRC certified firm; active member of relevant Australian restoration and cleaning associations.',
+    // Step 4 – equipment & resources
+    waterExtractionEquipment: [
+      'Truck-mounted extraction unit',
+      'Portable extraction units',
+      'Submersible pumps'
+    ],
+    dryingEquipment: [
+      'Axial air movers',
+      'Refrigerant dehumidifiers',
+      'LGR dehumidifiers'
+    ],
+    airQualityEquipment: ['Air scrubbers', 'HEPA filtration units', 'Negative air machines'],
+    cleaningEquipment: ['Pressure washers', 'Carpet cleaning machines', 'HEPA vacuums'],
+    safetyEquipment: ['PPE sets (complete)', 'Respirators (P2/N95)', 'Tyvek suits'],
+    measurementTools: ['Moisture meters (pin type)', 'Thermo-hygrometers', 'Infrared cameras'],
+    totalEmployees:
+      equipment?.team && typeof equipment.team === 'object'
+        ? String((equipment.team as any).technicians ?? 20)
+        : '25',
+    certifiedTechnicians:
+      equipment?.team && typeof equipment.team === 'object'
+        ? String((equipment.team as any).technicians ?? 20)
+        : '20',
+    employees: [
+      {
+        name: 'Lead Technician',
+        role: 'Senior Restoration Technician',
+        certifications: 'IICRC WRT, ASD',
+        yearsExperience: '8'
+      }
+    ],
+    officeLocation: biz
+      ? `${biz.address ?? '123 Demo Street'}, ${biz.suburb ?? 'Brisbane'} ${
+          biz.state ?? 'QLD'
+        } ${biz.postcode ?? '4000'}`
+      : '123 Demo Street, Brisbane QLD 4000',
+    warehouseLocation: '456 Industrial Road, Brisbane QLD 4000',
+    warehouseSize: '500',
+    simultaneousProjects: '5',
+    emergencyResponseTime: '2',
+    coverage24x7: true,
+    backupEquipment: true,
+    subcontractorNetwork: true,
+    primarySuppliers: 'Demo Restoration Supply Co; National Equipment Rentals',
+    equipmentMaintenance: 'In-house technician team and OEM service agents',
+    emergencyContacts: 'Operations Manager (24/7): 1300 000 000'
   };
 }
 
@@ -116,7 +204,8 @@ const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unkn
           ...biz,
           companyName: 'Metro Commercial Cleaning Pty Ltd',
           tradingName: 'Metro Clean',
-          abn: '98765432101',
+          // Use the same valid sample ABN for this preset
+          abn: '51824753556',
           numberOfEmployees: 12,
           annualRevenue: '$500K–$1M',
           website: 'https://metroclean.com.au',
@@ -132,7 +221,8 @@ const QUICK_FILL_PRESETS: { id: string; label: string; data: Record<string, unkn
       merged.accountName = 'Metro Commercial Cleaning Pty Ltd';
       merged.bsb = '063-000';
       merged.accountNumber = '87654321';
-      merged.abn = '98765432101';
+      // Keep top-level abn in sync with the businessInfo.abn value
+      merged.abn = '51824753556';
       merged.invoiceEmail = 'apply@metroclean.com.au';
       return merged;
     })()
@@ -296,7 +386,43 @@ function ContractorApplicationContent() {
   };
 
   const validateStep = (step: number): boolean => {
-    // TODO: Implement validation for each step
+    // Step 1: Business Information must be complete and ABN valid before proceeding
+    if (step === 1) {
+      const biz = (onboardingData.businessInfo || {}) as any;
+      const missing: string[] = [];
+
+      if (!biz.companyName?.trim()) missing.push('Company Name');
+      if (!biz.abn || !validateABN(String(biz.abn))) missing.push('Valid ABN');
+      if (!biz.businessType) missing.push('Business Type');
+      if (!biz.yearEstablished) missing.push('Year Established');
+      if (!biz.numberOfEmployees) missing.push('Number of Employees');
+      if (!biz.email?.trim()) missing.push('Business Email');
+      if (!biz.phone?.trim()) missing.push('Business Phone');
+      if (!biz.address?.trim()) missing.push('Business Address');
+      if (!biz.suburb?.trim()) missing.push('Suburb');
+      if (!biz.state?.trim()) missing.push('State');
+      if (!biz.postcode?.trim()) missing.push('Postcode');
+
+      if (missing.length > 0) {
+        setValidationErrors({
+          _step1: [
+            'Please complete all required Business Information fields before continuing:',
+            ...missing
+          ]
+        });
+        return false;
+      }
+
+      // Clear any previous step 1 validation messages
+      setValidationErrors(prev => {
+        if (!prev._step1) return prev;
+        const { _step1, ...rest } = prev;
+        return rest;
+      });
+      return true;
+    }
+
+    // Other steps: keep existing behaviour for now
     return true;
   };
 
@@ -425,10 +551,10 @@ function ContractorApplicationContent() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className=" container mx-auto px-4 sm:px-6 py-6 sm:py-10">
         {/* Step indicator */}
         <div className="mb-10 sm:mb-14">
-          <p className="text-slate-400 text-sm text-center mb-4 sm:mb-6">
+          <p className="text-slate-400 text-sm  mb-4 sm:mb-6">
             Step {currentStep} of {ONBOARDING_STEPS.length}
           </p>
           <div className="flex items-center mx-auto">
@@ -527,6 +653,16 @@ function ContractorApplicationContent() {
         <div className="max-w-5xl mx-auto">
           <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
             <div className="p-6 sm:p-8 md:p-10">
+              {currentStep === 1 && validationErrors._step1 && (
+                <div className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100">
+                  <div className="font-semibold mb-1">Please fix the following before continuing:</div>
+                  <ul className="list-disc list-inside space-y-0.5">
+                    {validationErrors._step1.map((msg, idx) => (
+                      <li key={idx}>{msg}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div className="flex items-start gap-4 mb-8">
                 <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
                   {(() => {
