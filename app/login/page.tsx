@@ -1,16 +1,15 @@
 'use client'
 
-
-import { AntigravityNavbar } from '@/components/antigravity';
-import { AntigravityFooter } from '@/components/antigravity';
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
 function LoginPageOriginal() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl') || ''
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -30,10 +29,15 @@ function LoginPageOriginal() {
       if (result?.error) {
         setError('Invalid email or password')
       } else {
-        router.push('/dashboard')
+        // Use callbackUrl when present (e.g. /admin); otherwise default to /dashboard.
+        // Admin layout will redirect non-admins to /dashboard when they hit /admin.
+        const url = callbackUrl && callbackUrl.startsWith('/admin')
+          ? callbackUrl
+          : callbackUrl || '/dashboard'
+        router.push(url)
         router.refresh()
       }
-    } catch (error) {
+    } catch (err) {
       setError('An error occurred. Please try again.')
     } finally {
       setIsLoading(false)
@@ -42,6 +46,9 @@ function LoginPageOriginal() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40">
+      <style>{`
+        .login-form-input::placeholder { color: #6b7280; }
+      `}</style>
       <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border bg-card p-8">
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -61,8 +68,9 @@ function LoginPageOriginal() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="login-form-input w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
               placeholder="you@example.com"
+              style={{ color: '#111827', backgroundColor: '#ffffff' }}
             />
           </div>
 
@@ -76,8 +84,9 @@ function LoginPageOriginal() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="login-form-input w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
               placeholder="••••••••"
+              style={{ color: '#111827', backgroundColor: '#ffffff' }}
             />
           </div>
 
@@ -106,10 +115,8 @@ function LoginPageOriginal() {
 }
 export default function LoginPage() {
   return (
-    <>
-      <AntigravityNavbar />
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Loading…</div>}>
       <LoginPageOriginal />
-      <AntigravityFooter />
-    </>
-  );
+    </Suspense>
+  )
 }
