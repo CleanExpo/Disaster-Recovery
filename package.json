@@ -58,6 +58,9 @@
     "check:critical": "node scripts/core/critical-issues-monitor.js",
     "check:scripts": "node scripts/_governance/validate-script-governance.js"
   },
+  "prisma": {
+    "seed": "tsx scripts/core/seed.ts"
+  },
   "dependencies": {
     "@ai-sdk/anthropic": "^3.0.46",
     "@ai-sdk/openai": "^3.0.30",
