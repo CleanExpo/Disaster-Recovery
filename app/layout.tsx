@@ -18,6 +18,7 @@ import MobileFAB from '@/components/mobile/MobileFAB'
 import Breadcrumb from '@/components/Breadcrumb'
 import NavigationIndicator from '@/components/NavigationIndicator'
 import { AntigravityLayoutGuard } from '@/components/AntigravityLayoutGuard'
+import { LayoutChrome } from '@/components/LayoutChrome'
 import LoadingIndicator from '@/components/LoadingIndicator'
 import ProgressSpinner from '@/components/ProgressSpinner'
 import LazyImage from '@/components/LazyImage'
@@ -293,30 +294,17 @@ export default function RootLayout({
         <DynamicBreadcrumbSchema />
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
+        <Providers>
         <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
         </a>
         <GoogleTagManager />
         <MicrosoftClarity />
-        <Providers>
-          <AntigravityLayoutGuard>
-            <div className="hidden lg:block">
-              <UltraModernHeader />
-            </div>
-            <MobileNav />
-            <Breadcrumb />
-          </AntigravityLayoutGuard>
-          <NavigationIndicator />
-          <main id="main-content" className="min-h-screen">
-            {children}
-          </main>
-          <AntigravityLayoutGuard>
-            <div className="pb-16 lg:pb-0">
-              <UltraModernFooter />
-            </div>
-            <MobileFAB />
-            <MobileEmergencyCTA />
-          </AntigravityLayoutGuard>
+          <LayoutChrome>
+            <main id="main-content" className="min-h-screen">
+              {children}
+            </main>
+          </LayoutChrome>
           <LoadingIndicator />
           <ProgressSpinner />
           <LazyImage />
