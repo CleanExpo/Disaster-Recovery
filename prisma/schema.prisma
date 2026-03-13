@@ -398,6 +398,30 @@ model Contractor {
   supportTickets   ContractorSupport[]
   availability     ContractorAvailability[]
   jobs             Job[]
+
+  // Applications submitted via /contractor/apply (raw snapshot of the onboarding wizard)
+  applications ContractorApplication[]
+}
+
+model ContractorApplication {
+  id        String   @id @default(cuid())
+
+  // Optional link to a Contractor once created/approved
+  contractorId String?
+  contractor   Contractor? @relation(fields: [contractorId], references: [id])
+
+  // Core summary fields for quick lookup
+  businessName String?
+  contactName  String?
+  email        String?
+  phone        String?
+  status       String   @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, APPROVED, REJECTED
+
+  // Full JSON snapshot of the onboarding wizard data
+  data Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model ContractorCompany {
