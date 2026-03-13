@@ -479,7 +479,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                     {...register(`references.${index}.relationship` as const, {
                       required: 'Relationship is required'
                     })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md text-black"
                   >
                     <option value="">Select Relationship</option>
                     <option value="Client">Client</option>
@@ -508,7 +508,8 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                     {...register(`references.${index}.email` as const, {
                       required: 'Email is required',
                       pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2 }$/i,
+                        // Simple, robust email validation
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                         message: 'Invalid email address'
                       }
                     })}
@@ -591,15 +592,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
           </div>
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between pt-6">
-          <Button type="button" variant="outline" onClick={onBack}>
-            Back
-          </Button>
-          <Button type="submit">
-            Continue
-          </Button>
-        </div>
+
       </form>
     </div>
   );
