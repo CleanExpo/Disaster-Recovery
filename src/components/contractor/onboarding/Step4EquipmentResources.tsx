@@ -214,8 +214,8 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Equipment & Resources</h2>
-        <p className="mt-2 text-gray-700">
+        <h2 className="text-2xl font-bold text-white">Equipment & Resources</h2>
+        <p className="mt-2 text-white">
           Detail your equipment inventory, team capabilities, and operational resources
         </p>
       </div>
@@ -703,15 +703,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
           </div>
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between pt-6">
-          <Button type="button" variant="outline" onClick={onBack}>
-            Back
-          </Button>
-          <Button type="submit">
-            Continue
-          </Button>
-        </div>
+ 
       </form>
     </div>
   );
