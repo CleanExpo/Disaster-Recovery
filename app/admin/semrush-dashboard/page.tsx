@@ -1,20 +1,18 @@
 'use client';
 
-
 import { useState, useEffect } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { 
-  TrendingUp, 
-  Search, 
-  Globe, 
-  Link, 
+import Link from 'next/link';
+import {
   AlertCircle,
+  ArrowRight,
+  BarChart3,
   CheckCircle2,
   Loader2,
-  BarChart,
+  RefreshCw,
+  Search,
   Target,
-  Users
+  TrendingUp,
+  Users,
 } from 'lucide-react';
 import { semrushAPI, checkSEMrushConnection } from '@/lib/semrush-api';
 import { targetKeywords } from '@/lib/semrush-integration';
@@ -29,80 +27,45 @@ interface KeywordData {
   url?: string;
 }
 
-function SEMrushDashboardOriginal() {
+export default function SEMrushDashboardPage() {
   const [isConnected, setIsConnected] = useState(false);
   const [loading, setLoading] = useState(true);
   const [keywordData, setKeywordData] = useState<KeywordData[]>([]);
-  const [domainMetrics, setDomainMetrics] = useState<any>(null);
-  const [competitors, setCompetitors] = useState<any[]>([]);
-  const [activeTab, setActiveTab] = useState('keywords');
-
-  useEffect(() => {
-    checkConnection();
-  }, []);
+  const [domainMetrics, setDomainMetrics] = useState<{
+    organic_keywords?: number;
+    organic_traffic?: number;
+    organic_cost?: number;
+  } | null>(null);
+  const [competitors, setCompetitors] = useState<Array<{
+    domain: string;
+    competition_level?: number;
+    common_keywords?: number;
+    organic_traffic?: number;
+    organic_cost?: number;
+  }>>([]);
+  const [activeTab, setActiveTab] = useState<'keywords' | 'coverage' | 'competitors'>('keywords');
 
   const checkConnection = async () => {
     setLoading(true);
     const connected = await checkSEMrushConnection();
     setIsConnected(connected);
-    
     if (connected) {
-      await loadInitialData();
+      const metrics = await semrushAPI.getDomainOverview('disasterrecovery.com.au');
+      setDomainMetrics(metrics);
+      const competitorData = await semrushAPI.getOrganicCompetitors('disasterrecovery.com.au', 5);
+      setCompetitors(competitorData ?? []);
+    } else {
+      setDomainMetrics(null);
+      setCompetitors([]);
     }
     setLoading(false);
   };
 
-  const loadInitialData = async () => {
-    // Load domain metrics
-    const metrics = await semrushAPI.getDomainOverview('disasterrecovery.com.au');
-    setDomainMetrics(metrics);
-    
-    // Load competitors
-    const competitorData = await semrushAPI.getOrganicCompetitors('disasterrecovery.com.au', 5);
-    setCompetitors(competitorData);
-  };
+  useEffect(() => {
+    checkConnection();
+  }, []);
 
-  const analyzeKeywords = async (category: string) => {
-    setLoading(true);
-    const keywords = targetKeywords[category as keyof typeof targetKeywords];
-    const results: KeywordData[] = [];
-    
-    for (const keyword of keywords) {
-      // Check if we have a page for this keyword
-      const slug = keyword.toLowerCase().replace(/\s+/g, '-');
-      const pageExists = await checkPageExists(slug);
-      
-      // Get keyword metrics from SEMrush (if API is connected)
-      const metrics = isConnected ? await semrushAPI.getKeywordOverview(keyword) : null;
-      
-      results.push({
-        keyword,
-        volume: metrics?.volume || Math.floor(Math.random() * 5000),
-        difficulty: metrics?.difficulty || Math.floor(Math.random() * 100),
-        cpc: metrics?.cpc || Math.random() * 20,
-        competition: metrics?.competition || Math.random(),
-        pageExists,
-        url: pageExists ? `/${slug}` : undefined });
-    }
-    
-    setKeywordData(results);
-    setLoading(false);
-  };
-
-  const checkPageExists = async (slug: string): Promise<boolean> => {
-    // Check common page patterns
-    const patterns = [
-      `/services/${slug}`,
-      `/emergency/${slug}`,
-      `/locations/${slug}`,
-      `/property-types/${slug}`,
-      `/faq/${slug}`,
-      `/insurance/${slug}`,
-      `/${slug}`,
-    ];
-    
-    // In a real implementation, this would check the filesystem or database
-    // For now, we'll simulate based on known pages
+  const checkPageExists = (slug: string): boolean => {
     const existingPages = [
       'water-damage-restoration',
       'fire-damage-restoration',
@@ -112,319 +75,387 @@ function SEMrushDashboardOriginal() {
       'emergency-services',
       'after-hours',
       'weekend-emergency',
-      // Add more known pages
     ];
-    
-    return existingPages.some(page => slug.includes(page));
+    return existingPages.some((page) => slug.includes(page));
   };
 
-  const createMissingPages = async () => {
-    const missingPages = keywordData.filter(k => !k.pageExists);
-    console.log('Creating pages for:', missingPages.map(p => p.keyword));
-    // Implementation would generate pages here
-    alert(`Would create ${missingPages.length} missing pages. See console for details.`);
+  const analyzeKeywords = async (category: string) => {
+    setLoading(true);
+    const keywords = targetKeywords[category as keyof typeof targetKeywords];
+    if (!Array.isArray(keywords)) {
+      setKeywordData([]);
+      setLoading(false);
+      return;
+    }
+    const results: KeywordData[] = [];
+    for (const keyword of keywords) {
+      const slug = keyword.toLowerCase().replace(/\s+/g, '-');
+      const pageExists = checkPageExists(slug);
+      const metrics = isConnected ? await semrushAPI.getKeywordOverview(keyword) : null;
+      results.push({
+        keyword,
+        volume: metrics?.volume ?? Math.floor(Math.random() * 5000),
+        difficulty: metrics?.difficulty ?? Math.floor(Math.random() * 100),
+        cpc: metrics?.cpc ?? Math.random() * 20,
+        competition: metrics?.competition ?? Math.random(),
+        pageExists,
+        url: pageExists ? `/${slug}` : undefined,
+      });
+    }
+    setKeywordData(results);
+    setLoading(false);
   };
+
+  const createMissingPages = () => {
+    const missing = keywordData.filter((k) => !k.pageExists);
+    console.log('Creating pages for:', missing.map((p) => p.keyword));
+    alert(`Would create ${missing.length} missing pages. See console for details.`);
+  };
+
+  const missingCount = keywordData.filter((k) => !k.pageExists).length;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">SEMrush Keyword Dashboard</h1>
-          
-          {/* Connection Status */}
-          <Card className="p-6 mb-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                {loading ? (
-                  <Loader2 className="h-6 w-6 mr-3 animate-spin" />
-                ) : isConnected ? (
-                  <CheckCircle2 className="h-6 w-6 mr-3 text-green-600" />
-                ) : (
-                  <AlertCircle className="h-6 w-6 mr-3 text-blue-700" />
-                )}
-                <div>
-                  <h2 className="text-lg font-semibold">
-                    SEMrush API Status
-                  </h2>
-                  <p className="text-sm text-gray-700">
-                    {loading ? 'Checking connection...' : 
-                     isConnected ? 'Connected and ready' : 
-                     'Not connected - Add API key to .env file'}
-                  </p>
-                </div>
-              </div>
-              <Button onClick={checkConnection} variant="outline">
-                Refresh Connection
-              </Button>
+    <div className="mx-auto">
+      <header className="mb-8">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 shadow-lg shadow-amber-500/25">
+              <BarChart3 className="h-7 w-7 text-white" />
             </div>
-          </Card>
-
-          {/* Domain Overview */}
-          {domainMetrics && (
-            <Card className="p-6 mb-8">
-              <h2 className="text-xl font-bold mb-4">Domain Overview</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div>
-                  <p className="text-sm text-gray-700">Organic Keywords</p>
-                  <p className="text-2xl font-bold">{domainMetrics.organic_keywords?.toLocaleString() || '0'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-700">Organic Traffic</p>
-                  <p className="text-2xl font-bold">{domainMetrics.organic_traffic?.toLocaleString() || '0'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-700">Traffic Value</p>
-                  <p className="text-2xl font-bold">${domainMetrics.organic_cost?.toLocaleString() || '0'}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-700">Competitors</p>
-                  <p className="text-2xl font-bold">{competitors.length}</p>
-                </div>
-              </div>
-            </Card>
-          )}
-
-          {/* Tabs */}
-          <div className="flex space-x-4 mb-6">
-            <Button 
-              variant={activeTab === 'keywords' ? 'default' : 'outline'}
-              onClick={() => setActiveTab('keywords')}
-            >
-              <Search className="mr-2 h-4 w-4" />
-              Keywords
-            </Button>
-            <Button 
-              variant={activeTab === 'coverage' ? 'default' : 'outline'}
-              onClick={() => setActiveTab('coverage')}
-            >
-              <Target className="mr-2 h-4 w-4" />
-              Page Coverage
-            </Button>
-            <Button 
-              variant={activeTab === 'competitors' ? 'default' : 'outline'}
-              onClick={() => setActiveTab('competitors')}
-            >
-              <Users className="mr-2 h-4 w-4" />
-              Competitors
-            </Button>
+            <div>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                SEMrush
+              </h1>
+              <p className="mt-1 text-sm text-gray-500">
+                SEO and ranking metrics, keyword analysis and competitor data
+              </p>
+            </div>
           </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={checkConnection}
+              disabled={loading}
+              className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50"
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh connection
+            </button>
+            <Link
+              href="/admin"
+              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50"
+            >
+              Dashboard
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </header>
 
-          {/* Keywords Tab */}
-          {activeTab === 'keywords' && (
-            <Card className="p-6">
-              <h2 className="text-xl font-bold mb-4">Keyword Analysis</h2>
-              
-              {/* Keyword Categories */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                {Object.keys(targetKeywords).map(category => (
-                  <Button 
-                    key={category}
-                    onClick={() => analyzeKeywords(category)}
-                    variant="outline"
-                    className="justify-start"
-                  >
-                    <Search className="mr-2 h-4 w-4" />
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </Button>
-                ))}
-              </div>
-
-              {/* Keywords Table */}
-              {keywordData.length > 0 && (
-                <>
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="border-b">
-                          <th className="text-left p-2">Keyword</th>
-                          <th className="text-left p-2">Volume</th>
-                          <th className="text-left p-2">Difficulty</th>
-                          <th className="text-left p-2">CPC</th>
-                          <th className="text-left p-2">Page Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {keywordData.map((kw, index) => (
-                          <tr key={index} className="border-b">
-                            <td className="p-2 font-medium">{kw.keyword}</td>
-                            <td className="p-2">{kw.volume.toLocaleString()}</td>
-                            <td className="p-2">
-                              <span className={`px-2 py-1 rounded text-xs ${
-                                kw.difficulty < 30 ? 'bg-green-100 text-green-800' :
-                                kw.difficulty < 60 ? 'bg-yellow-100 text-yellow-800' :
-                                'bg-red-100 text-red-800'
-                              }`}>
-                                {kw.difficulty}%
-                              </span>
-                            </td>
-                            <td className="p-2">${kw.cpc.toFixed(2)}</td>
-                            <td className="p-2">
-                              {kw.pageExists ? (
-                                <span className="text-green-600 flex items-center">
-                                  <CheckCircle2 className="h-4 w-4 mr-1" />
-                                  Exists
-                                </span>
-                              ) : (
-                                <span className="text-blue-700 flex items-center">
-                                  <AlertCircle className="h-4 w-4 mr-1" />
-                                  Missing
-                                </span>
-                              )}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  
-                  {/* Actions */}
-                  <div className="mt-6 flex justify-between items-center">
-                    <p className="text-sm text-gray-700">
-                      {keywordData.filter(k => k.pageExists).length} of {keywordData.length} pages exist
-                    </p>
-                    <Button 
-                      onClick={createMissingPages}
-                      disabled={keywordData.filter(k => !k.pageExists).length === 0}
-                    >
-                      Create Missing Pages ({keywordData.filter(k => !k.pageExists).length})
-                    </Button>
-                  </div>
-                </>
+      <section className="mb-8">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              {loading ? (
+                <Loader2 className="h-8 w-8 animate-spin text-amber-500" />
+              ) : isConnected ? (
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                </div>
+              ) : (
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10">
+                  <AlertCircle className="h-5 w-5 text-amber-600" />
+                </div>
               )}
-            </Card>
-          )}
-
-          {/* Coverage Tab */}
-          {activeTab === 'coverage' && (
-            <Card className="p-6">
-              <h2 className="text-xl font-bold mb-4">Page Coverage Analysis</h2>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Primary Keywords Coverage */}
-                <div>
-                  <h3 className="font-semibold mb-3">Primary Keywords</h3>
-                  <div className="space-y-2">
-                    {targetKeywords.primary.map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                        <span className="text-sm">{keyword}</span>
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Longtail Keywords Coverage */}
-                <div>
-                  <h3 className="font-semibold mb-3">Longtail Keywords</h3>
-                  <div className="space-y-2">
-                    {targetKeywords.longtail.map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                        <span className="text-sm">{keyword}</span>
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Local Keywords Coverage */}
-                <div>
-                  <h3 className="font-semibold mb-3">Local Keywords</h3>
-                  <div className="space-y-2">
-                    {targetKeywords.local.map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                        <span className="text-sm">{keyword}</span>
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Commercial Keywords Coverage */}
-                <div>
-                  <h3 className="font-semibold mb-3">Commercial Keywords</h3>
-                  <div className="space-y-2">
-                    {targetKeywords.commercial.slice(0, 10).map(keyword => (
-                      <div key={keyword} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                        <span className="text-sm">{keyword}</span>
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div>
+                <h2 className="text-base font-semibold text-gray-900">SEMrush API status</h2>
+                <p className="text-sm text-gray-500">
+                  {loading
+                    ? 'Checking connection…'
+                    : isConnected
+                      ? 'Connected and ready'
+                      : 'Not connected — add API key to .env'}
+                </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              {/* Summary */}
-              <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-                <h3 className="font-semibold mb-2">Coverage Summary</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                  <div>
-                    <p className="text-sm text-gray-700">Total Keywords</p>
-                    <p className="text-2xl font-bold">70+</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-700">Pages Created</p>
-                    <p className="text-2xl font-bold text-green-600">400+</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-700">Coverage Rate</p>
-                    <p className="text-2xl font-bold text-green-600">95%</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-700">Opportunities</p>
-                    <p className="text-2xl font-bold text-blue-700">12</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          )}
+      {domainMetrics && (
+        <section className="mb-8">
+          <h2 className="sr-only">Domain overview</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <p className="text-sm font-medium text-gray-500">Organic keywords</p>
+              <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                {(domainMetrics.organic_keywords ?? 0).toLocaleString()}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <p className="text-sm font-medium text-gray-500">Organic traffic</p>
+              <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                {(domainMetrics.organic_traffic ?? 0).toLocaleString()}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <p className="text-sm font-medium text-gray-500">Traffic value</p>
+              <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">
+                ${(domainMetrics.organic_cost ?? 0).toLocaleString()}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+              <p className="text-sm font-medium text-gray-500">Competitors</p>
+              <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{competitors.length}</p>
+            </div>
+          </div>
+        </section>
+      )}
 
-          {/* Competitors Tab */}
-          {activeTab === 'competitors' && (
-            <Card className="p-6">
-              <h2 className="text-xl font-bold mb-4">Competitor Analysis</h2>
-              
-              {competitors.length > 0 ? (
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left p-2">Competitor</th>
-                        <th className="text-left p-2">Competition Level</th>
-                        <th className="text-left p-2">Common Keywords</th>
-                        <th className="text-left p-2">Organic Traffic</th>
-                        <th className="text-left p-2">Traffic Value</th>
+      <section className="mb-6">
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => setActiveTab('keywords')}
+            className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
+              activeTab === 'keywords'
+                ? 'border-amber-400 bg-amber-500 text-white hover:bg-amber-600'
+                : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            <Search className="h-4 w-4" />
+            Keywords
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('coverage')}
+            className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
+              activeTab === 'coverage'
+                ? 'border-amber-400 bg-amber-500 text-white hover:bg-amber-600'
+                : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            <Target className="h-4 w-4" />
+            Page coverage
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('competitors')}
+            className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 ${
+              activeTab === 'competitors'
+                ? 'border-amber-400 bg-amber-500 text-white hover:bg-amber-600'
+                : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            <Users className="h-4 w-4" />
+            Competitors
+          </button>
+        </div>
+      </section>
+
+      {activeTab === 'keywords' && (
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div className="border-b border-gray-200 bg-gray-50/80 px-6 py-4">
+            <h3 className="text-base font-semibold text-gray-900">Keyword analysis</h3>
+          </div>
+          <div className="p-6">
+            <p className="mb-4 text-sm text-gray-500">Select a category to load keyword data</p>
+            <div className="mb-6 flex flex-wrap gap-3">
+              {Object.keys(targetKeywords).map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => analyzeKeywords(category)}
+                  disabled={loading}
+                  className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20"
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            {keywordData.length > 0 && (
+              <>
+                <div className="overflow-x-auto rounded-xl border border-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50/80">
+                      <tr>
+                        <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Keyword</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Volume</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Difficulty</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">CPC</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Page status</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {competitors.map((comp, index) => (
-                        <tr key={index} className="border-b">
-                          <td className="p-2 font-medium">{comp.domain}</td>
-                          <td className="p-2">
-                            <div className="w-full bg-gray-200 rounded-full h-2">
-                              <div 
-                                className="bg-blue-600 h-2 rounded-full" 
-                                style={{ width: `${comp.competition_level * 100}%` }}
-                              />
-                            </div>
+                    <tbody className="divide-y divide-gray-100 bg-white">
+                      {keywordData.map((kw, index) => (
+                        <tr key={index} className="transition-colors hover:bg-gray-50/50">
+                          <td className="px-6 py-4 font-medium text-gray-900">{kw.keyword}</td>
+                          <td className="px-6 py-4 text-sm text-gray-600">{kw.volume.toLocaleString()}</td>
+                          <td className="px-6 py-4">
+                            <span
+                              className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${
+                                kw.difficulty < 30
+                                  ? 'border-emerald-200 bg-emerald-100 text-emerald-800'
+                                  : kw.difficulty < 60
+                                    ? 'border-amber-200 bg-amber-100 text-amber-800'
+                                    : 'border-red-200 bg-red-100 text-red-800'
+                              }`}
+                            >
+                              {kw.difficulty}%
+                            </span>
                           </td>
-                          <td className="p-2">{comp.common_keywords?.toLocaleString() || '0'}</td>
-                          <td className="p-2">{comp.organic_traffic?.toLocaleString() || '0'}</td>
-                          <td className="p-2">${comp.organic_cost?.toLocaleString() || '0'}</td>
+                          <td className="px-6 py-4 text-sm text-gray-600">${kw.cpc.toFixed(2)}</td>
+                          <td className="px-6 py-4">
+                            {kw.pageExists ? (
+                              <span className="inline-flex items-center gap-1.5 text-sm text-emerald-600">
+                                <CheckCircle2 className="h-4 w-4" />
+                                Exists
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1.5 text-sm text-amber-600">
+                                <AlertCircle className="h-4 w-4" />
+                                Missing
+                              </span>
+                            )}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-              ) : (
-                <p className="text-gray-700">No competitor data available. Connect SEMrush API to view competitors.</p>
-              )}
-            </Card>
-          )}
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                  <p className="text-sm text-gray-600">
+                    {keywordData.filter((k) => k.pageExists).length} of {keywordData.length} pages exist
+                  </p>
+                  <button
+                    type="button"
+                    onClick={createMissingPages}
+                    disabled={missingCount === 0}
+                    className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+                    style={{ backgroundColor: '#f59e0b' }}
+                  >
+                    Create missing pages ({missingCount})
+                  </button>
+                </div>
+              </>
+            )}
+            {loading && keywordData.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-12">
+                <Loader2 className="h-10 w-10 animate-spin text-amber-500" />
+                <p className="mt-3 text-sm text-gray-500">Loading…</p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
+
+      {activeTab === 'coverage' && (
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div className="border-b border-gray-200 bg-gray-50/80 px-6 py-4">
+            <h3 className="text-base font-semibold text-gray-900">Page coverage analysis</h3>
+          </div>
+          <div className="p-6">
+            <div className="grid gap-6 md:grid-cols-2">
+              {(['primary', 'longtail', 'local', 'commercial'] as const).map((key) => {
+                const list = targetKeywords[key];
+                if (!Array.isArray(list)) return null;
+                return (
+                  <div key={key} className="rounded-xl border border-gray-200 bg-gray-50/50 p-4">
+                    <h4 className="mb-3 font-semibold text-gray-900">
+                      {key.charAt(0).toUpperCase() + key.slice(1)} keywords
+                    </h4>
+                    <ul className="space-y-2">
+                      {list.slice(0, 8).map((keyword) => (
+                        <li key={keyword} className="flex items-center justify-between rounded-lg bg-white px-3 py-2 text-sm">
+                          <span className="text-gray-700">{keyword}</span>
+                          <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-8 rounded-xl border border-amber-200 bg-amber-50/50 p-6">
+              <h4 className="font-semibold text-gray-900">Coverage summary</h4>
+              <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div>
+                  <p className="text-sm text-gray-500">Total keywords</p>
+                  <p className="text-xl font-bold text-gray-900">70+</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Pages created</p>
+                  <p className="text-xl font-bold text-emerald-600">400+</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Coverage rate</p>
+                  <p className="text-xl font-bold text-emerald-600">95%</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Opportunities</p>
+                  <p className="text-xl font-bold text-amber-600">12</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'competitors' && (
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div className="border-b border-gray-200 bg-gray-50/80 px-6 py-4">
+            <h3 className="text-base font-semibold text-gray-900">Competitor analysis</h3>
+          </div>
+          <div className="p-6">
+            {competitors.length > 0 ? (
+              <div className="overflow-x-auto rounded-xl border border-gray-200">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50/80">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Competitor</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Competition level</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Common keywords</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Organic traffic</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Traffic value</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 bg-white">
+                    {competitors.map((comp, index) => (
+                      <tr key={index} className="transition-colors hover:bg-gray-50/50">
+                        <td className="px-6 py-4 font-medium text-gray-900">{comp.domain}</td>
+                        <td className="px-6 py-4">
+                          <div className="h-2 w-24 overflow-hidden rounded-full bg-gray-200">
+                            <div
+                              className="h-full rounded-full bg-amber-500"
+                              style={{ width: `${((comp.competition_level ?? 0) * 100).toFixed(0)}%` }}
+                            />
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {(comp.common_keywords ?? 0).toLocaleString()}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {(comp.organic_traffic ?? 0).toLocaleString()}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          ${(comp.organic_cost ?? 0).toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <TrendingUp className="h-14 w-14 text-gray-300" />
+                <p className="mt-3 text-base font-medium text-gray-600">No competitor data available</p>
+                <p className="mt-1 text-sm text-gray-500">Connect SEMrush API to view competitors.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
-}
-export default function SEMrushDashboard() {
-  return <SEMrushDashboardOriginal />;
 }
