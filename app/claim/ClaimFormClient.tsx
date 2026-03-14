@@ -503,6 +503,7 @@ function OnlineClaimPageOriginal() {
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         className="!bg-white !border-gray-300 !text-gray-900 placeholder:!text-gray-500"
                         required
+                        style={{ backgroundColor: 'white', borderColor: '#e2e8f0', color: '#1f2937' }}
                       />
                     </div>
                     <div>
