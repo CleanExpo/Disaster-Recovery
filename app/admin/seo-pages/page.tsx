@@ -1,9 +1,29 @@
 'use client';
 
-
-import { useState, useEffect } from 'react';
-import { Search, Plus, Eye, BarChart3, MapPin, Filter, Download, RefreshCw } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import {
+  ArrowRight,
+  BarChart3,
+  Eye,
+  Inbox,
+  MapPin,
+  Plus,
+  RefreshCw,
+  Search,
+} from 'lucide-react';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
 interface SEOPage {
   id: string;
@@ -20,7 +40,7 @@ interface SEOPage {
   businessType?: string;
   priorityScore: number;
   estimatedSearchVolume: number;
-  currentRankings?: any;
+  currentRankings?: unknown;
   organicClicks: number;
   publishedAt: string;
 }
@@ -32,75 +52,83 @@ interface PaginationInfo {
   pages: number;
 }
 
-function SEOPagesAdminOriginal() {
+const STATES = ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'];
+const SERVICE_TYPES = [
+  'water-damage-restoration',
+  'flood-damage-restoration',
+  'mould-remediation',
+  'fire-damage-restoration',
+  'storm-damage-repair',
+  'sewage-cleanup',
+  'smoke-damage-restoration',
+  'biohazard-cleaning',
+  'trauma-scene-cleaning',
+  'vandalism-repair',
+];
+
+function formatService(s: string) {
+  return s.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+}
+
+export default function SEOPagesAdminPage() {
   const [pages, setPages] = useState<SEOPage[]>([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState<PaginationInfo>({
     page: 1,
     limit: 50,
     total: 0,
-    pages: 0
+    pages: 0,
   });
   const [generating, setGenerating] = useState(false);
-  
-  // Filters
   const [filters, setFilters] = useState({
     search: '',
     state: '',
     serviceType: '',
-    status: 'PUBLISHED'
+    status: 'PUBLISHED',
   });
-  
-  // Generation config
   const [generationConfig, setGenerationConfig] = useState({
     limit: 100,
-    priority: 80
+    priority: 80,
   });
 
   const fetchPages = async (page = 1) => {
+    setLoading(true);
     try {
-      setLoading(true);
       const params = new URLSearchParams({
         page: page.toString(),
         limit: pagination.limit.toString(),
-        ...(filters.state && { state: filters.state }),
-        ...(filters.serviceType && { serviceType: filters.serviceType }),
-        ...(filters.status && { status: filters.status })
       });
-      
-      const response = await fetch(`/api/seo/generate-pages?${params}`);
-      const data = await response.json();
-      
-      if (data.pages) {
-        setPages(data.pages);
-        setPagination(data.pagination);
-      }
-    } catch (error) {
-      console.error('Error fetching pages:', error);
+      if (filters.state) params.set('state', filters.state);
+      if (filters.serviceType) params.set('serviceType', filters.serviceType);
+      if (filters.status) params.set('status', filters.status);
+      const res = await fetch(`/api/seo/generate-pages?${params}`);
+      const data = await res.json();
+      setPages(data.pages ?? []);
+      setPagination(data.pagination ?? { page: 1, limit: 50, total: 0, pages: 0 });
+    } catch {
+      setPages([]);
+      setPagination({ page: 1, limit: 50, total: 0, pages: 0 });
     } finally {
       setLoading(false);
     }
   };
 
   const generatePages = async () => {
+    setGenerating(true);
     try {
-      setGenerating(true);
-      const response = await fetch('/api/seo/generate-pages', {
+      const res = await fetch('/api/seo/generate-pages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(generationConfig)
+        body: JSON.stringify(generationConfig),
       });
-      
-      const data = await response.json();
-      
+      const data = await res.json();
       if (data.success) {
         alert(`Successfully generated ${data.generated} SEO pages!`);
-        fetchPages(); // Refresh the list
+        fetchPages(pagination.page);
       } else {
-        alert(`Error: ${data.error}`);
+        alert(`Error: ${data.error ?? 'Unknown error'}`);
       }
-    } catch (error) {
-      console.error('Error generating pages:', error);
+    } catch {
       alert('Failed to generate pages');
     } finally {
       setGenerating(false);
@@ -109,324 +137,373 @@ function SEOPagesAdminOriginal() {
 
   useEffect(() => {
     fetchPages();
-  }, [filters]);
+  }, [filters.state, filters.serviceType, filters.status]);
 
-  const states = ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'];
-  const serviceTypes = [
-    'water-damage-restoration',
-    'flood-damage-restoration',
-    'mould-remediation',
-    'fire-damage-restoration',
-    'storm-damage-repair',
-    'sewage-cleanup',
-    'smoke-damage-restoration',
-    'biohazard-cleaning',
-    'trauma-scene-cleaning',
-    'vandalism-repair'
-  ];
+  const handleRefresh = () => fetchPages(pagination.page);
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= pagination.pages) fetchPages(page);
+  };
+
+  const totalClicks = useMemo(() => pages.reduce((sum, p) => sum + p.organicClicks, 0), [pages]);
+  const totalVolume = useMemo(() => pages.reduce((sum, p) => sum + p.estimatedSearchVolume, 0), [pages]);
+  const avgPriority = useMemo(
+    () => (pages.length > 0 ? Math.round(pages.reduce((sum, p) => sum + p.priorityScore, 0) / pages.length) : 0),
+    [pages]
+  );
+
+  const stateChartData = useMemo(() => {
+    const counts: Record<string, number> = {};
+    pages.forEach((p) => {
+      counts[p.state] = (counts[p.state] ?? 0) + 1;
+    });
+    return Object.entries(counts).map(([name, value]) => ({ name, value }));
+  }, [pages]);
+
+  const serviceChartData = useMemo(() => {
+    const counts: Record<string, number> = {};
+    pages.forEach((p) => {
+      counts[p.serviceType] = (counts[p.serviceType] ?? 0) + 1;
+    });
+    return Object.entries(counts).map(([name, value]) => ({ name: formatService(name), value }));
+  }, [pages]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <div className="flex justify-between items-start">
+    <div className="mx-auto">
+      <header className="mb-8">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/25">
+              <Search className="h-7 w-7 text-white" />
+            </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">SEO Pages Management</h1>
-              <p className="text-gray-700">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                SEO pages
+              </h1>
+              <p className="mt-1 text-sm text-gray-500">
                 Manage and monitor your location-based SEO pages nationwide
               </p>
             </div>
-            
-            <div className="flex gap-3">
-              <button
-                onClick={() => fetchPages()}
-                disabled={loading}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-              >
-                <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-                Refresh
-              </button>
-              <button
-                onClick={generatePages}
-                disabled={generating}
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
-              >
-                <Plus className="w-4 h-4" />
-                {generating ? 'Generating...' : 'Generate Pages'}
-              </button>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={handleRefresh}
+              disabled={loading}
+              className="inline-flex items-center gap-2 rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 disabled:opacity-50"
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </button>
+            <button
+              type="button"
+              onClick={generatePages}
+              disabled={generating}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              style={{ backgroundColor: '#2563eb' }}
+            >
+              <Plus className="h-4 w-4" />
+              {generating ? 'Generating…' : 'Generate pages'}
+            </button>
+            <Link
+              href="/admin"
+              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50"
+            >
+              Dashboard
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <section className="mb-8">
+        <h2 className="sr-only">Metrics</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Total pages</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{pagination.total.toLocaleString()}</p>
+              </div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10">
+                <BarChart3 className="h-5 w-5 text-blue-600" />
+              </div>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Avg priority</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{avgPriority}</p>
+              </div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500/10">
+                <BarChart3 className="h-5 w-5 text-emerald-600" />
+              </div>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Total clicks</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{totalClicks.toLocaleString()}</p>
+              </div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10">
+                <Eye className="h-5 w-5 text-violet-600" />
+              </div>
+            </div>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Est. search vol.</p>
+                <p className="mt-1 text-2xl font-bold tabular-nums text-gray-900">{totalVolume.toLocaleString()}</p>
+              </div>
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10">
+                <Search className="h-5 w-5 text-amber-600" />
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Stats Cards */}
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-700">Total Pages</p>
-                <p className="text-3xl font-bold text-gray-900">{pagination.total.toLocaleString()}</p>
-              </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <BarChart3 className="w-6 h-6 text-blue-600" />
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-700">Avg Priority</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {pages.length > 0 ? Math.round(pages.reduce((sum, p) => sum + p.priorityScore, 0) / pages.length) : 0}
-                </p>
-              </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <BarChart3 className="w-6 h-6 text-green-600" />
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-700">Total Clicks</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {pages.reduce((sum, p) => sum + p.organicClicks, 0).toLocaleString()}
-                </p>
-              </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <Eye className="w-6 h-6 text-purple-600" />
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-700">Est. Search Vol.</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {pages.reduce((sum, p) => sum + p.estimatedSearchVolume, 0).toLocaleString()}
-                </p>
-              </div>
-              <div className="p-3 bg-orange-100 rounded-full">
-                <Search className="w-6 h-6 text-blue-700" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Generation Panel */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Generate New Pages</h3>
-          <div className="flex gap-4 items-end">
+      <section className="mb-8">
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">Generate new pages</h3>
+          <div className="flex flex-wrap items-end gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Number of Pages
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Number of pages</label>
               <input
                 type="number"
+                min={1}
+                max={1000}
                 value={generationConfig.limit}
-                onChange={(e) => setGenerationConfig({...generationConfig, limit: parseInt(e.target.value)})}
-                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                min="1"
-                max="1000"
+                onChange={(e) => setGenerationConfig((c) => ({ ...c, limit: parseInt(e.target.value, 10) || 1 }))}
+                className="mt-1 w-32 rounded-xl border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Min Priority Score
-              </label>
+              <label className="block text-sm font-medium text-gray-700">Min priority score</label>
               <input
                 type="number"
+                min={0}
+                max={100}
                 value={generationConfig.priority}
-                onChange={(e) => setGenerationConfig({...generationConfig, priority: parseInt(e.target.value)})}
-                className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                min="0"
-                max="100"
+                onChange={(e) => setGenerationConfig((c) => ({ ...c, priority: parseInt(e.target.value, 10) || 0 }))}
+                className="mt-1 w-32 rounded-xl border border-gray-300 px-4 py-2.5 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               />
             </div>
             <button
+              type="button"
               onClick={generatePages}
               disabled={generating}
-              className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+              style={{ backgroundColor: '#2563eb' }}
             >
-              <Plus className="w-4 h-4" />
-              {generating ? 'Generating...' : 'Generate Pages'}
+              <Plus className="h-4 w-4" />
+              {generating ? 'Generating…' : 'Generate pages'}
             </button>
           </div>
         </div>
+      </section>
 
-        {/* Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="flex flex-wrap gap-4 items-end">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
-              <select
-                value={filters.state}
-                onChange={(e) => setFilters({...filters, state: e.target.value})}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="">All States</option>
-                {states.map(state => (
-                  <option key={state} value={state}>{state}</option>
-                ))}
-              </select>
+      <section className="mb-8">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">By state</h3>
+            <div className="h-[260px]">
+              {stateChartData.length > 0 ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={stateChartData}
+                      dataKey="value"
+                      nameKey="name"
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={90}
+                      paddingAngle={2}
+                      label={({ name, value }) => `${name} (${value})`}
+                      labelLine={{ stroke: '#9ca3af' }}
+                    >
+                      {stateChartData.map((entry, i) => (
+                        <Cell key={entry.name} fill={['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'][i % 5]} stroke="none" />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      contentStyle={{
+                        borderRadius: 12,
+                        border: '1px solid #e5e7eb',
+                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex h-full items-center justify-center text-sm text-gray-400">No data yet</div>
+              )}
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
-              <select
-                value={filters.serviceType}
-                onChange={(e) => setFilters({...filters, serviceType: e.target.value})}
-                className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="">All Services</option>
-                {serviceTypes.map(service => (
-                  <option key={service} value={service}>
-                    {service.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                  </option>
-                ))}
-              </select>
+          </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-500">By service type</h3>
+            <div className="h-[260px]">
+              {serviceChartData.length > 0 ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={serviceChartData} margin={{ left: 0, right: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
+                    <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} angle={-25} textAnchor="end" height={60} />
+                    <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: '#6b7280' }} width={28} />
+                    <Tooltip
+                      contentStyle={{
+                        borderRadius: 12,
+                        border: '1px solid #e5e7eb',
+                        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                      }}
+                    />
+                    <Bar dataKey="value" name="Pages" fill="#2563eb" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="flex h-full items-center justify-center text-sm text-gray-400">No data yet</div>
+              )}
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Pages Table */}
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Page
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Location
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Service
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Priority
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Est. Volume
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Clicks
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {loading ? (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                      <p className="mt-2 text-gray-700">Loading pages...</p>
-                    </td>
-                  </tr>
-                ) : pages.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center">
-                      <p className="text-gray-700">No pages found</p>
-                    </td>
-                  </tr>
-                ) : pages.map((page) => (
-                  <tr key={page.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div>
-                        <div className="text-sm font-medium text-gray-900 truncate max-w-xs">
-                          {page.title}
-                        </div>
-                        <div className="text-xs text-gray-700 truncate max-w-xs">
-                          /{page.slug}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-900">
-                        <MapPin className="w-3 h-3 text-gray-700" />
-                        {page.city}, {page.state} {page.postcode}
-                      </div>
-                      {page.suburb && (
-                        <div className="text-xs text-gray-700">{page.suburb}</div>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900">{page.serviceName}</div>
-                      <div className="text-xs text-gray-700">{page.propertyType}</div>
-                      {page.businessType && (
-                        <div className="text-xs text-blue-600">{page.businessType.replace(/-/g, ' ')}</div>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className={`text-sm font-medium ${
-                        page.priorityScore >= 90 ? 'text-green-600' :
-                        page.priorityScore >= 75 ? 'text-yellow-600' : 'text-gray-700'
-                      }`}>
-                        {page.priorityScore}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900">{page.estimatedSearchVolume.toLocaleString()}</div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900">{page.organicClicks.toLocaleString()}</div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                        <Link
-                          href={`/services/${page.slug}`}
-                          className="text-blue-600 hover:text-blue-800"
-                          target="_blank"
-                        >
-                          <Eye className="w-4 h-4" />
-                        </Link>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <section>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+          <h2 className="text-lg font-semibold text-gray-900">All pages</h2>
+          <div className="flex flex-wrap items-center gap-3">
+            <select
+              value={filters.state}
+              onChange={(e) => setFilters((f) => ({ ...f, state: e.target.value }))}
+              className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            >
+              <option value="">All states</option>
+              {STATES.map((state) => (
+                <option key={state} value={state}>{state}</option>
+              ))}
+            </select>
+            <select
+              value={filters.serviceType}
+              onChange={(e) => setFilters((f) => ({ ...f, serviceType: e.target.value }))}
+              className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            >
+              <option value="">All services</option>
+              {SERVICE_TYPES.map((service) => (
+                <option key={service} value={service}>{formatService(service)}</option>
+              ))}
+            </select>
           </div>
+        </div>
 
-          {/* Pagination */}
-          {pagination.pages > 1 && (
-            <div className="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
-              <div className="flex items-center justify-between">
-                <div className="text-sm text-gray-700">
-                  Showing {((pagination.page - 1) * pagination.limit) + 1} to{' '}
-                  {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
-                  {pagination.total} results
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => fetchPages(pagination.page - 1)}
-                    disabled={pagination.page <= 1}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded disabled:opacity-50"
-                  >
-                    Previous
-                  </button>
-                  <button
-                    onClick={() => fetchPages(pagination.page + 1)}
-                    disabled={pagination.page >= pagination.pages}
-                    className="px-3 py-1 text-sm border border-gray-300 rounded disabled:opacity-50"
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          {loading && pages.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <RefreshCw className="h-10 w-10 animate-spin text-blue-500" />
+              <p className="mt-3 text-sm font-medium text-gray-500">Loading pages…</p>
             </div>
+          ) : pages.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <Inbox className="h-14 w-14 text-gray-300" />
+              <p className="mt-3 text-base font-medium text-gray-600">No SEO pages found</p>
+              <p className="mt-1 text-sm text-gray-500">Generate pages or adjust filters.</p>
+            </div>
+          ) : (
+            <>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50/80">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Page</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Location</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Service</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Priority</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Est. volume</th>
+                      <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">Clicks</th>
+                      <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 bg-white">
+                    {pages.map((page) => (
+                      <tr key={page.id} className="transition-colors hover:bg-gray-50/50">
+                        <td className="px-6 py-4">
+                          <p className="max-w-xs truncate font-medium text-gray-900">{page.title}</p>
+                          <p className="max-w-xs truncate text-xs text-gray-500">/{page.slug}</p>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-1 text-sm text-gray-900">
+                            <MapPin className="h-3 w-3 shrink-0 text-gray-500" />
+                            {page.city}, {page.state} {page.postcode}
+                          </div>
+                          {page.suburb && <p className="text-xs text-gray-500">{page.suburb}</p>}
+                        </td>
+                        <td className="px-6 py-4">
+                          <p className="text-sm font-medium text-gray-900">{page.serviceName}</p>
+                          <p className="text-xs text-gray-500">{page.propertyType}</p>
+                          {page.businessType && (
+                            <p className="text-xs text-blue-600">{page.businessType.replace(/-/g, ' ')}</p>
+                          )}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`text-sm font-medium ${
+                              page.priorityScore >= 90 ? 'text-emerald-600' : page.priorityScore >= 75 ? 'text-amber-600' : 'text-gray-700'
+                            }`}
+                          >
+                            {page.priorityScore}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-900">{page.estimatedSearchVolume.toLocaleString()}</td>
+                        <td className="px-6 py-4 text-sm text-gray-900">{page.organicClicks.toLocaleString()}</td>
+                        <td className="px-6 py-4 text-right">
+                          <Link
+                            href={`/services/${page.slug}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-white shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            style={{ backgroundColor: '#2563eb' }}
+                          >
+                            <Eye className="h-4 w-4" />
+                            View
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {pagination.pages > 1 && (
+                <div className="flex flex-wrap items-center justify-between gap-4 border-t border-gray-200 bg-gray-50/50 px-6 py-4">
+                  <p className="text-sm text-gray-600">
+                    Page <span className="font-medium">{pagination.page}</span> of{' '}
+                    <span className="font-medium">{pagination.pages}</span> ·{' '}
+                    <span className="font-medium">{pagination.total}</span> total
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(pagination.page - 1)}
+                      disabled={pagination.page <= 1}
+                      className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handlePageChange(pagination.page + 1)}
+                      disabled={pagination.page >= pagination.pages}
+                      className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
-      </div>
+      </section>
     </div>
   );
-}
-export default function SEOPagesAdmin() {
-  return <SEOPagesAdminOriginal />;
 }
