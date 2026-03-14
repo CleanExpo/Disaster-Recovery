@@ -208,7 +208,7 @@ export default function SiteAuditPage() {
       </header>
 
       {auditResults.length === 0 ? (
-        <section className="rounded-2xl border border-gray-200 bg-white p-12 shadow-sm text-center">
+        <section className="flex flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white p-12 shadow-sm text-center">
           <h2 className="text-xl font-bold text-gray-900">Run complete site audit</h2>
           <p className="mt-2 text-gray-600">
             Check all integrations, SEO, performance, and functionality
