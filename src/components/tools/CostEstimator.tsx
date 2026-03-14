@@ -453,6 +453,11 @@ export default function CostEstimator() {
                 Actual costs vary based on site-specific conditions and the accuracy
                 of the information provided.
               </p>
+              <p className="mt-3 text-sm">
+                <Link href="/rates" className="text-amber-300 hover:text-amber-200 underline">
+                  View full NRPG rate schedule
+                </Link>
+              </p>
             </div>
           </div>
         </motion.div>
