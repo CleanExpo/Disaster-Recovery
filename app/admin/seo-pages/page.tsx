@@ -84,23 +84,24 @@ export default function SEOPagesAdminPage() {
     search: '',
     state: '',
     serviceType: '',
-    status: 'PUBLISHED',
+    priorityMin: '',
   });
   const [generationConfig, setGenerationConfig] = useState({
     limit: 100,
     priority: 80,
   });
 
-  const fetchPages = async (page = 1) => {
+  const fetchPages = async (page = 1, overrides?: Partial<typeof filters>) => {
     setLoading(true);
     try {
+      const effective = { ...filters, ...overrides };
       const params = new URLSearchParams({
         page: page.toString(),
         limit: pagination.limit.toString(),
       });
-      if (filters.state) params.set('state', filters.state);
-      if (filters.serviceType) params.set('serviceType', filters.serviceType);
-      if (filters.status) params.set('status', filters.status);
+      if (effective.state) params.set('state', effective.state);
+      if (effective.serviceType) params.set('serviceType', effective.serviceType);
+      if (effective.priorityMin) params.set('priorityMin', effective.priorityMin);
       const res = await fetch(`/api/seo/generate-pages?${params}`);
       const data = await res.json();
       setPages(data.pages ?? []);
@@ -123,8 +124,9 @@ export default function SEOPagesAdminPage() {
       });
       const data = await res.json();
       if (data.success) {
-        alert(`Successfully generated ${data.generated} SEO pages!`);
-        fetchPages(pagination.page);
+        setFilters((f) => ({ ...f, priorityMin: String(generationConfig.priority) }));
+        await fetchPages(1, { priorityMin: String(generationConfig.priority) });
+        alert(data.message ?? `Successfully generated ${data.generated} SEO pages!`);
       } else {
         alert(`Error: ${data.error ?? 'Unknown error'}`);
       }
@@ -137,7 +139,7 @@ export default function SEOPagesAdminPage() {
 
   useEffect(() => {
     fetchPages();
-  }, [filters.state, filters.serviceType, filters.status]);
+  }, [filters.state, filters.serviceType, filters.priorityMin]);
 
   const handleRefresh = () => fetchPages(pagination.page);
   const handlePageChange = (page: number) => {
@@ -392,6 +394,16 @@ export default function SEOPagesAdminPage() {
               <option value="">All services</option>
               {SERVICE_TYPES.map((service) => (
                 <option key={service} value={service}>{formatService(service)}</option>
+              ))}
+            </select>
+            <select
+              value={filters.priorityMin}
+              onChange={(e) => setFilters((f) => ({ ...f, priorityMin: e.target.value }))}
+              className="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            >
+              <option value="">All priorities</option>
+              {[90, 85, 80, 75, 70, 65, 60, 0].map((p) => (
+                <option key={p} value={p}>{p === 0 ? 'Any' : `≥ ${p}`}</option>
               ))}
             </select>
           </div>
