@@ -1,37 +1,19 @@
 import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
 import { Metadata } from 'next';
-import {  MapPin, Clock, CheckCircle, Star, Shield, MessageSquare} from 'lucide-react';
-import Link from 'next/link';
+import { MapPin, Clock, CheckCircle, Star, Shield, MessageSquare } from 'lucide-react';
+import { getSEOPagePreview } from '@/lib/seo/get-page-by-slug';
 
 interface PageParams {
   slug: string[];
 }
 
+/** Resolve page from DB (when model exists) or from preview data (location combinations). */
 async function getSEOPage(slug: string) {
-  // TODO: Implement when sEOLocationPage model is added to schema
-  // const page = await prisma.sEOLocationPage.findUnique({
-  //   where: { 
-  //     slug: slug,
-  //     status: 'PUBLISHED'
-  //   }
-  // });
-  
-  // if (page) {
-  //   // Update view count
-  //   await prisma.sEOLocationPage.update({
-  //     where: { id: page.id },
-  //     data: {
-  //       organicClicks: {
-  //         increment: 1
-  //       },
-  //       lastViewedAt: new Date()
-  //     }
-  //   });
-  // }
-  
-  // return page;
-  return null;
+  // TODO: When sEOLocationPage model is added, query prisma first:
+  // const page = await prisma.sEOLocationPage.findUnique({ where: { slug, status: 'PUBLISHED' } });
+  // if (page) return page;
+  const preview = await getSEOPagePreview(slug);
+  return preview;
 }
 
 export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
