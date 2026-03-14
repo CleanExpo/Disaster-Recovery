@@ -1,14 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateLocationCombinations, calculatePagePriority, getEstimatedSearchVolume } from '@/lib/seo/locations';
 
+function buildPageList(combinations: ReturnType<typeof generateLocationCombinations>) {
+  return combinations.map((combo, index) => {
+    const { location, service, propertyType, businessType } = combo;
+    const businessSegment = businessType ? `-${businessType}` : '';
+    const suburbSegment = location.suburb ? `-${location.suburb.toLowerCase().replace(/\s+/g, '-')}` : '';
+    const slug = `${service.slug}-${propertyType.slug}${businessSegment}-${location.city.toLowerCase().replace(/\s+/g, '-')}${suburbSegment}-${location.postcode}`;
+    const priorityScore = calculatePagePriority(location, service, propertyType, businessType);
+    const estimatedSearchVolume = getEstimatedSearchVolume(location, service, propertyType);
+    const title = `${service.name} ${propertyType.name} | ${location.city} ${location.state} ${location.postcode}`;
+    const metaDescription = `${service.name} for ${propertyType.name.toLowerCase()} in ${location.city}, ${location.state}. 24/7 emergency response.`;
+    return {
+      id: `preview-${index}-${slug}`,
+      slug,
+      title,
+      metaDescription,
+      state: location.state,
+      city: location.city,
+      suburb: location.suburb,
+      postcode: location.postcode,
+      serviceType: service.slug,
+      serviceName: service.name,
+      propertyType: propertyType.slug,
+      businessType: businessType ?? undefined,
+      priorityScore,
+      estimatedSearchVolume,
+      currentRankings: null,
+      organicClicks: Math.floor(estimatedSearchVolume * 0.02),
+      publishedAt: new Date().toISOString(),
+    };
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
-    // Database persistence will be enabled when sEOLocationPage model is added.
-    await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({}));
+    const limit = Math.min(1000, Math.max(1, Number(body.limit) || 100));
+    const priority = Math.min(100, Math.max(0, Number(body.priority) ?? 80));
+
+    const combinations = generateLocationCombinations();
+    const fullList = buildPageList(combinations);
+    const filtered = fullList.filter((p) => p.priorityScore >= priority);
+    const generated = filtered.slice(0, limit);
+
     return NextResponse.json({
       success: true,
-      generated: 0,
-      message: 'SEO page generation will create pages when the database model is added. Preview is available via the list.',
+      generated: generated.length,
+      message: `Generated ${generated.length} SEO pages (preview). View them in the list below.`,
     });
   } catch (error) {
     console.error('Error in SEO generate-pages POST:', error);
@@ -26,41 +65,15 @@ export async function GET(req: NextRequest) {
     const limit = Math.min(100, Math.max(1, parseInt(searchParams.get('limit') || '50', 10)));
     const state = searchParams.get('state') || '';
     const serviceType = searchParams.get('serviceType') || '';
+    const priorityMin = searchParams.get('priorityMin');
+    const priorityFilter = priorityMin !== null && priorityMin !== '' ? Math.min(100, Math.max(0, parseInt(priorityMin, 10) || 0)) : null;
 
     const combinations = generateLocationCombinations();
-
-    let list = combinations.map((combo, index) => {
-      const { location, service, propertyType, businessType } = combo;
-      const businessSegment = businessType ? `-${businessType}` : '';
-      const suburbSegment = location.suburb ? `-${location.suburb.toLowerCase().replace(/\s+/g, '-')}` : '';
-      const slug = `${service.slug}-${propertyType.slug}${businessSegment}-${location.city.toLowerCase().replace(/\s+/g, '-')}${suburbSegment}-${location.postcode}`;
-      const priorityScore = calculatePagePriority(location, service, propertyType, businessType);
-      const estimatedSearchVolume = getEstimatedSearchVolume(location, service, propertyType);
-      const title = `${service.name} ${propertyType.name} | ${location.city} ${location.state} ${location.postcode}`;
-      const metaDescription = `${service.name} for ${propertyType.name.toLowerCase()} in ${location.city}, ${location.state}. 24/7 emergency response.`;
-      return {
-        id: `preview-${index}-${slug}`,
-        slug,
-        title,
-        metaDescription,
-        state: location.state,
-        city: location.city,
-        suburb: location.suburb,
-        postcode: location.postcode,
-        serviceType: service.slug,
-        serviceName: service.name,
-        propertyType: propertyType.slug,
-        businessType: businessType ?? undefined,
-        priorityScore,
-        estimatedSearchVolume,
-        currentRankings: null,
-        organicClicks: Math.floor(estimatedSearchVolume * 0.02),
-        publishedAt: new Date().toISOString(),
-      };
-    });
+    let list = buildPageList(combinations);
 
     if (state) list = list.filter((p) => p.state === state);
     if (serviceType) list = list.filter((p) => p.serviceType === serviceType);
+    if (priorityFilter !== null) list = list.filter((p) => p.priorityScore >= priorityFilter);
 
     const total = list.length;
     const skip = (page - 1) * limit;
