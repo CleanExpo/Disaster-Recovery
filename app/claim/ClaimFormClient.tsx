@@ -501,6 +501,7 @@ function OnlineClaimPageOriginal() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="!bg-white !border-gray-300 !text-gray-900 placeholder:!text-gray-500"
                         required
                       />
                     </div>
