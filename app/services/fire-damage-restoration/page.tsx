@@ -84,6 +84,3 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 export default function FireDamageRestorationPage() {
   return <AntigravityServicePageTemplate data={fireSmokeData} heroImage="/images/generated/disaster-recovery/hero-fire-damage.webp" />;
 }
-
-function _FireLegacyRemoved() {
-  return (
