@@ -1,6 +1,6 @@
 {
-  "name": "mass-webpage-creations",
-  "version": "1.0.1-force-deploy",
+  "name": "disaster-recovery",
+  "version": "1",
   "description": "Modern SaaS starter for local/trades agencies. Built for SMBs, ready for local dev, and scalable as you grow.",
   "private": true,
   "type": "module",
@@ -106,7 +106,7 @@
     "next": "^14.2.32",
     "next-auth": "^4.24.7",
     "node-fetch": "^2.7.0",
-    "nodemailer": "^6.10.1",
+    "nodemailer": "^7.0.13",
     "openai": "4.62.1",
     "pg": "^8.18.0",
     "prop-types": "^15.8.1",
