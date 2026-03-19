@@ -2,26 +2,25 @@
 
 /**
  * Environment Variable Validation Script
- * Prevents incorrect domain references in environment variables
- * CRITICAL: Ensures we NEVER reference disasterrecovery.com.au
+ * Validates domain references in environment variables
+ * Production domain: disasterrecovery.com.au
  */
 
 const fs = require('fs');
 const path = require('path');
 
-const FORBIDDEN_DOMAINS = [
+const ALLOWED_DOMAINS = [
   'disasterrecovery.com.au',
   'www.disasterrecovery.com.au',
-  'https://disasterrecovery.com.au',
-  'https://www.disasterrecovery.com.au',
-  'http://disasterrecovery.com.au',
-  'http://www.disasterrecovery.com.au'
+  'disaster-recovery-unite-group.vercel.app',
+  'disaster-recovery-git-main-unite-group.vercel.app',
+  'localhost',
 ];
 
-const REQUIRED_DOMAINS = {
-  production: 'disaster-recovery-seven.vercel.app',
-  staging: 'disaster-recovery-staging.vercel.app'
-};
+const FORBIDDEN_OLD_DOMAINS = [
+  'disaster-recovery-seven.vercel.app',
+  'disaster-recovery-seven-virid.vercel.app',
+];
 
 const ENV_FILES = [
   '.env',
@@ -44,30 +43,17 @@ function validateEnvFile(filePath) {
     // Skip comments and empty lines
     if (line.trim().startsWith('#') || !line.trim()) return;
 
-    // Check for forbidden domains
-    FORBIDDEN_DOMAINS.forEach(domain => {
+    // Check for stale old Vercel preview URLs
+    FORBIDDEN_OLD_DOMAINS.forEach(domain => {
       if (line.includes(domain)) {
         errors.push({
           file: filePath,
           line: index + 1,
-          error: `FORBIDDEN DOMAIN: Found reference to ${domain}. Use ${REQUIRED_DOMAINS.production} instead.`,
+          error: `STALE DOMAIN: Found reference to old domain ${domain}. Update to disasterrecovery.com.au`,
           content: line
         });
       }
     });
-
-    // Check for correct URL structure (skip database URLs and API endpoints)
-    if ((line.includes('NEXT_PUBLIC_APP_URL=') || line.includes('NEXTAUTH_URL=')) && 
-        !line.includes('disaster-recovery-seven.vercel.app') && 
-        !line.includes('disaster-recovery-staging.vercel.app') &&
-        !line.includes('localhost')) {
-      errors.push({
-        file: filePath,
-        line: index + 1,
-        error: `INVALID URL: App URLs must use disaster-recovery-seven.vercel.app domain`,
-        content: line
-      });
-    }
   });
 
   return { valid: errors.length === 0, errors };
@@ -75,13 +61,13 @@ function validateEnvFile(filePath) {
 
 function validateAllEnvFiles() {
   console.log('🔍 Validating environment variables...\n');
-  
+
   let hasErrors = false;
-  
+
   ENV_FILES.forEach(envFile => {
     const filePath = path.join(process.cwd(), envFile);
     const result = validateEnvFile(filePath);
-    
+
     if (!result.valid) {
       hasErrors = true;
       console.error(`❌ Errors in ${envFile}:`);
@@ -98,9 +84,9 @@ function validateAllEnvFiles() {
     console.error('\n⚠️  ENVIRONMENT VALIDATION FAILED');
     console.error('Fix the above errors before deploying.');
     console.error('\nCorrect domain usage:');
-    console.error('  Production: https://disaster-recovery-seven.vercel.app');
-    console.error('  Staging: https://disaster-recovery-staging.vercel.app');
-    console.error('  NEVER use: disasterrecovery.com.au\n');
+    console.error('  Production: https://www.disasterrecovery.com.au');
+    console.error('  Vercel preview: https://disaster-recovery-unite-group.vercel.app');
+    console.error('  Local: http://localhost:3000\n');
     process.exit(1);
   } else {
     console.log('\n✅ All environment variables are valid!\n');

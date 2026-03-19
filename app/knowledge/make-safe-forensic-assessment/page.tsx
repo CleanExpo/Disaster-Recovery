@@ -25,7 +25,7 @@ export default function MakeSafeForensicAssessmentPage() {
     provider: {
       '@type': 'Organization',
       name: 'NRPG',
-      url: 'https://disaster-recovery-seven-virid.vercel.app',
+      url: 'https://www.disasterrecovery.com.au',
     },
     offers: {
       '@type': 'Offer',
