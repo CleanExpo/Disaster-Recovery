@@ -72,7 +72,7 @@ Object.entries(categorized).forEach(([category, categoryPages]) => {
 const sitemapPath = path.join(process.cwd(), 'public', 'sitemap.txt');
 const sitemapContent = pages
   .filter(p => !p.includes(':')) // Exclude dynamic routes
-  .map(p => `https://disaster-recovery-seven.vercel.app${p}`)
+  .map(p => `https://www.disasterrecovery.com.au${p}`)
   .join('\n');
 
 fs.writeFileSync(sitemapPath, sitemapContent);

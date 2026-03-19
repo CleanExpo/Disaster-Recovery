@@ -17,7 +17,7 @@ export function KnowledgeSchema({
   faqs,
   datePublished = '2025-01-15',
 }: KnowledgeSchemaProps) {
-  const baseUrl = 'https://disaster-recovery-seven-virid.vercel.app';
+  const baseUrl = 'https://www.disasterrecovery.com.au';
 
   const articleSchema = JSON.stringify({
     '@context': 'https://schema.org',
