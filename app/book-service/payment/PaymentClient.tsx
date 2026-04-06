@@ -449,9 +449,9 @@ function PaymentPageContent() {
                     <MessageSquare className="h-4 w-4" />
                     Contact Support
                   </a>
-                  <a href="mailto:support@nrp.com.au" className="flex items-center gap-2 text-blue-700 hover:text-blue-800">
+                  <a href="/contact" className="flex items-center gap-2 text-blue-700 hover:text-blue-800">
                     <Mail className="h-4 w-4" />
-                    support@nrp.com.au
+                    Online Support Form
                   </a>
                 </div>
               </div>

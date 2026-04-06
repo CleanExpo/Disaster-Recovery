@@ -59,8 +59,8 @@ function ModernContactPageOriginal() {
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      title: 'Email Support',
-      value: 'help@disasterrecoverypro.com.au',
+      title: 'Online Support',
+      value: 'Submit a Support Request',
       subtext: 'Response within 2 hours',
       colour: 'from-blue-500 to-cyan-500'
     },
