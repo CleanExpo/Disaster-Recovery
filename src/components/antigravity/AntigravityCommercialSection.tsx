@@ -10,19 +10,19 @@ const stakeholderCards = [
     title: 'Property Managers',
     pain: 'Tenant calling at 2am? We respond within 60 minutes and handle everything — documentation, coordination, owner reporting.',
     cta: 'Set Up Emergency Protocol',
-    href: '/for/property-managers',
+    href: '/for-business/property-managers',
   },
   {
     title: 'Strata Managers',
     pain: 'Common property damage affecting multiple lots? We coordinate the entire restoration and provide per-lot documentation for your committee.',
     cta: 'Report Common Property Damage',
-    href: '/for/strata-managers',
+    href: '/for-business/strata-managers',
   },
   {
     title: 'Business Owners',
     pain: 'Every hour closed costs revenue. We get work started immediately so you can get back to trading — no waiting for insurer approval.',
     cta: 'Get Your Business Back Trading',
-    href: '/for/business-owners',
+    href: '/for-business/business-owners',
   },
 ];
 

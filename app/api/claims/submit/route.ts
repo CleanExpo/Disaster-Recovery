@@ -186,10 +186,8 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Build the total claim amount from the platform fee (or body override if provided)
-    const totalClaimAmount = typeof body.totalClaimAmount === 'number'
-      ? body.totalClaimAmount
-      : PLATFORM_FEE;
+    // Platform fee is server-authoritative — never trust client-supplied amount
+    const totalClaimAmount = PLATFORM_FEE;
 
     const normalizedPolicyNumber =
       typeof body.policyNumber === 'string' && body.policyNumber.trim().length > 0

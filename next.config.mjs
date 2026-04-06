@@ -5,6 +5,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: '/for/:path*', destination: '/for-business/:path*', permanent: true },
       { source: '/contractors/join', destination: '/contractors/apply', permanent: true },
       { source: '/help-center', destination: '/contact', permanent: true },
       { source: '/help', destination: '/contact', permanent: true },

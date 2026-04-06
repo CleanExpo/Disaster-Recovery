@@ -66,7 +66,7 @@ export default function ForBusinessPage() {
             <div className="prose prose-lg max-w-none">
               <p>Your tenant is calling at 2am with water pouring through the ceiling. You need a certified restoration company on-site within the hour — not tomorrow morning.</p>
               <p>We provide 24/7 emergency response, full documentation for building owners, and preferred supplier arrangements for your entire portfolio.</p>
-              <p><Link href="/for/property-managers"><strong>Property Manager Emergency Guide →</strong></Link></p>
+              <p><Link href="/for-business/property-managers"><strong>Property Manager Emergency Guide →</strong></Link></p>
             </div>
           ),
         },
@@ -76,7 +76,7 @@ export default function ForBusinessPage() {
             <div className="prose prose-lg max-w-none">
               <p>Common property damage affects every owner in the building. You need to act fast, manage emergency spending, and coordinate with insurers — all before the next committee meeting.</p>
               <p>We handle multi-unit coordination, provide per-lot documentation, and work within your emergency spending authority.</p>
-              <p><Link href="/for/strata-managers"><strong>Strata Manager Emergency Guide →</strong></Link></p>
+              <p><Link href="/for-business/strata-managers"><strong>Strata Manager Emergency Guide →</strong></Link></p>
             </div>
           ),
           background: 'light',
@@ -87,7 +87,7 @@ export default function ForBusinessPage() {
             <div className="prose prose-lg max-w-none">
               <p>Every hour your business is closed costs you revenue. You need your premises restored and your doors reopened as fast as possible.</p>
               <p>We prioritise getting you back to trading — with full business interruption documentation for your insurance claim.</p>
-              <p><Link href="/for/business-owners"><strong>Business Owner Emergency Guide →</strong></Link></p>
+              <p><Link href="/for-business/business-owners"><strong>Business Owner Emergency Guide →</strong></Link></p>
             </div>
           ),
         },
