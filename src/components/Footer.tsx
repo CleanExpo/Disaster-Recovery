@@ -4,14 +4,13 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FooterLogos } from '@/components/Logo';
 import { 
-  BUSINESS_NAME, 
-  BUSINESS_SHORT_NAME, 
-  EMAIL, 
-  WEBSITE, 
-  ABN, 
-  STATES, 
+  BUSINESS_NAME,
+  BUSINESS_SHORT_NAME,
+  WEBSITE,
+  ABN,
+  STATES,
   CITIES_BY_STATE,
-  INSURANCE_PARTNERS 
+  INSURANCE_PARTNERS
 } from '@/lib/constants';
 import { 
   MapPin, 
@@ -130,7 +129,7 @@ const Footer: React.FC = () => {
     "alternateName": BUSINESS_SHORT_NAME,
     "description": "Leading disaster recovery and restoration specialists providing 24/7 emergency response for water damage, fire damage, mould remediation, and biohazard cleanup.",
     "url": WEBSITE,
-    "email": EMAIL,
+
     "areaServed": [
       {
         "@type": "Country",
