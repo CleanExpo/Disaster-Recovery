@@ -940,7 +940,7 @@ function ContractorApplicationContent() {
                 <h3 className="font-semibold text-white mb-1">Need help?</h3>
                 <p className="text-slate-400 text-sm">
                   Your progress is saved automatically. You can leave and come back anytime.
-                  For support, email contractors@nrp.com.au
+                  For support, visit our <a href="/contact" className="text-blue-400 hover:underline">contact page</a>.
                 </p>
               </div>
             </div>
