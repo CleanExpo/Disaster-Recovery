@@ -79,7 +79,6 @@ export const generateLocalBusinessSchema = (businessInfo: BusinessLocationInfo) 
     height: 60 },
   image: NAP.ogImage,
   description: `${businessInfo.city}, ${businessInfo.stateFullName}'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.`,
-  email: NAP.email,
   address: {
     '@type': 'PostalAddress',
     streetAddress: businessInfo.streetAddress,

@@ -64,8 +64,7 @@ export default function AccessibilityPage() {
             <>
               <p>We welcome your feedback on the accessibility of the Disaster Recovery Australia website. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:</p>
               <ul style={{ listStyle: 'disc', paddingLeft: '1.5rem', marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li>Via our <a href="/contact" style={{ color: 'var(--ag-secondary-blue)', textDecoration: 'underline' }}>contact page</a></li>
-                <li>By email at accessibility@disasterrecovery.com.au</li>
+                <li>Via our <a href="/contact" style={{ color: 'var(--ag-secondary-blue)', textDecoration: 'underline' }}>online contact form</a></li>
               </ul>
               <p style={{ marginTop: '1rem' }}>We aim to respond to accessibility feedback within 2 business days.</p>
             </>

@@ -31,7 +31,6 @@ const aboutOrganizationSchema = JSON.stringify({
   url: NAP.url,
   logo: NAP.logo,
   image: NAP.ogImage,
-  email: NAP.email,
   foundingDate: '2024',
   areaServed: { '@type': 'Country', name: 'Australia' },
   description: 'Australia\'s national disaster recovery claims distribution platform. Connecting property owners with IICRC-certified contractors 24/7 for water, fire, storm, mould, and biohazard restoration.',
