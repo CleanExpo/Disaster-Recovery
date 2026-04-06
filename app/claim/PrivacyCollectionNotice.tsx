@@ -45,7 +45,7 @@ export function PrivacyCollectionNotice() {
     const values = Object.values(EN);
     translate(values).then((translated) => {
       const updated = {} as TextKeys;
-      keys.forEach((k, i) => { updated[k] = translated[i]; });
+      keys.forEach((k, i) => { updated[k] = translated[i] ?? EN[k]; });
       setTexts(updated);
       setLoading(false);
     }).catch(() => {

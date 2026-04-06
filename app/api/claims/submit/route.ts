@@ -1,8 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
 import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
 import fs from 'node:fs/promises';
+
+const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
+
+const ClaimSubmitSchema = z.object({
+  fullName:            z.string().min(1).max(200),
+  email:               z.string().email().max(254),
+  phone:               z.string().min(6).max(20),
+  propertyAddress:     z.string().min(1).max(300),
+  suburb:              z.string().min(1).max(100),
+  state:               z.enum(ALLOWED_STATES as [string, ...string[]]),
+  postcode:            z.string().regex(/^\d{4}$/),
+  damageTypes:         z.array(z.string().max(100)).min(1).max(20),
+  damageDescription:   z.string().min(1).max(5000),
+  urgencyLevel:        z.enum(['emergency','urgent','standard']).optional(),
+  policyNumber:        z.string().max(100).optional(),
+  insuranceCompany:    z.string().max(200).optional(),
+  insuranceClaimNumber:z.string().max(100).optional(),
+  accessInstructions:  z.string().max(500).optional(),
+  paymentConfirmed:    z.boolean().optional(),
+  // Internal fields — validated loosely
+  bookingId:           z.string().max(100).optional(),
+  clientId:            z.string().max(254).optional(),
+  tenantId:            z.string().max(100).optional(),
+  damagePhotos:        z.array(z.string().url().max(500)).max(20).optional(),
+  uploadedDocuments:   z.array(z.string().url().max(500)).max(20).optional(),
+});
 import path from 'node:path';
 
 // Fixed platform fee (optional at submission stage)
@@ -151,40 +178,16 @@ async function readFallbackClaim(claimId: string): Promise<TrackClaimPayload | n
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-
-    // Validate required fields
-    if (!body.fullName || !body.email || !body.phone) {
+    const raw = await request.json();
+    const parsed = ClaimSubmitSchema.safeParse(raw);
+    if (!parsed.success) {
       return NextResponse.json({
         success: false,
-        error: 'Missing required fields',
-        message: 'fullName, email, and phone are required'
+        error: 'Invalid request',
+        details: parsed.error.issues,
       }, { status: 400 });
     }
-
-    if (!body.propertyAddress || !body.suburb || !body.state || !body.postcode) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing required fields',
-        message: 'propertyAddress, suburb, state, and postcode are required'
-      }, { status: 400 });
-    }
-
-    if (!body.damageDescription) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing required fields',
-        message: 'damageDescription is required'
-      }, { status: 400 });
-    }
-
-    if (!Array.isArray(body.damageTypes) || body.damageTypes.length === 0) {
-      return NextResponse.json({
-        success: false,
-        error: 'Missing required fields',
-        message: 'At least one damage type is required'
-      }, { status: 400 });
-    }
+    const body = parsed.data;
 
     // Platform fee is server-authoritative — never trust client-supplied amount
     const totalClaimAmount = PLATFORM_FEE;
