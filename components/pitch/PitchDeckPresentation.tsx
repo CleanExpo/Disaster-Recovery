@@ -806,8 +806,6 @@ export default function PitchDeckPresentation() {
             <div className="inline-flex flex-col items-center gap-4 p-8 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-white">Contact Information</h3>
               <div className="space-y-2 text-gray-300">
-                <p>Email: invest@disasterrecovery.com.au</p>
-                <p>Phone: 1300 DISASTER</p>
                 <p>LinkedIn: /company/disaster-recovery-au</p>
               </div>
               <Button className="mt-4 px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all">
