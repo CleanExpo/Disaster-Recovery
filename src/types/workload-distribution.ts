@@ -3,7 +3,8 @@ export interface Contractor {
   companyName: string;
   contactName: string;
   email: string;
-  
+  phone?: string;
+
   address: ContractorAddress;
   serviceArea: ServiceArea;
   availability: AvailabilityStatus;
@@ -136,11 +137,12 @@ export interface ContractorPreferences {
   notificationChannels: NotificationChannel[];
 }
 
-export type NotificationChannel = 
+export type NotificationChannel =
   | 'email'
   | 'sms'
   | 'push'
-  | 'email'
+  | 'phone'
+  | 'text'
   | 'in_app';
 
 export type ContractorStatus = 
@@ -176,9 +178,9 @@ export interface Lead {
 
 export interface CustomerInfo {
   name: string;
-  
+  phone?: string;
   email?: string;
-  preferredContact: 'email' | 'email' | 'text';
+  preferredContact: 'email' | 'phone' | 'text';
   insuranceCompany?: string;
   policyNumber?: string;
 }

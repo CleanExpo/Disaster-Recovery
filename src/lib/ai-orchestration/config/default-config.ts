@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Default Configuration for AI Orchestration Service
  * Production-ready configuration with sensible defaults

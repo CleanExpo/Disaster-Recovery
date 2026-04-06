@@ -3,7 +3,7 @@
  */
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'fatal';
-export type LogCategory = 
+export type LogCategory =
   | 'auth'
   | 'contractor'
   | 'api'
@@ -17,7 +17,8 @@ export type LogCategory =
   | 'bot'
   | 'email'
   | 'lead'
-  | 'audit';
+  | 'audit'
+  | string;
 
 interface LogContext {
   userId?: string;
@@ -181,30 +182,57 @@ class Logger {
   }
 
   // Public logging methods
-  debug(category: LogCategory, message: string, context?: LogContext, metadata?: Record<string, any>): void {
-    this.log('debug', category, message, context, metadata);
+  debug(category: LogCategory, message?: string | Record<string, any>, context?: LogContext, metadata?: Record<string, any>): void {
+    const msg = typeof message === 'string' ? message : undefined;
+    const meta = typeof message === 'object' ? message : metadata;
+    this.log('debug', msg !== undefined ? category : 'system', msg !== undefined ? msg : category, context, meta as Record<string, any>);
   }
 
-  info(category: LogCategory, message: string, context?: LogContext, metadata?: Record<string, any>): void {
-    this.log('info', category, message, context, metadata);
+  info(category: LogCategory, message?: string | Record<string, any>, context?: LogContext, metadata?: Record<string, any>): void {
+    const msg = typeof message === 'string' ? message : undefined;
+    const meta = typeof message === 'object' ? message : metadata;
+    this.log('info', msg !== undefined ? category : 'system', msg !== undefined ? msg : category, context, meta as Record<string, any>);
   }
 
-  warn(category: LogCategory, message: string, context?: LogContext, metadata?: Record<string, any>): void {
-    this.log('warn', category, message, context, metadata);
+  warn(category: LogCategory, message?: string | Record<string, any>, context?: LogContext, metadata?: Record<string, any>): void {
+    const msg = typeof message === 'string' ? message : undefined;
+    const meta = typeof message === 'object' ? message : metadata;
+    this.log('warn', msg !== undefined ? category : 'system', msg !== undefined ? msg : category, context, meta as Record<string, any>);
   }
 
-  error(category: LogCategory, message: string, error?: Error, context?: LogContext, metadata?: Record<string, any>): void {
+  error(category: LogCategory, message?: string | Record<string, any> | Error, error?: Error, context?: LogContext, metadata?: Record<string, any>): void {
+    let resolvedCategory: LogCategory;
+    let resolvedMessage: string;
+    let resolvedError: Error | undefined = error;
+    let resolvedMeta: Record<string, any> | undefined = metadata;
+
+    if (message instanceof Error) {
+      resolvedCategory = 'system';
+      resolvedMessage = category;
+      resolvedError = message;
+    } else if (typeof message === 'object' && message !== null) {
+      resolvedCategory = 'system';
+      resolvedMessage = category;
+      resolvedMeta = message as Record<string, any>;
+    } else if (typeof message === 'string') {
+      resolvedCategory = category;
+      resolvedMessage = message;
+    } else {
+      resolvedCategory = 'system';
+      resolvedMessage = category;
+    }
+
     const entry: LogEntry = {
       timestamp: new Date().toISOString(),
       level: 'error',
-      category,
-      message,
+      category: resolvedCategory,
+      message: resolvedMessage,
       context,
-      metadata,
-      error: error ? {
-        name: error.name,
-        message: error.message,
-        stack: error.stack } : undefined };
+      metadata: resolvedMeta,
+      error: resolvedError ? {
+        name: resolvedError.name,
+        message: resolvedError.message,
+        stack: resolvedError.stack } : undefined };
 
     const formattedLog = this.formatLogEntry(entry);
     console.error(formattedLog);

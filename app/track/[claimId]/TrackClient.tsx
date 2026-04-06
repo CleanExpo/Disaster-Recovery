@@ -84,7 +84,7 @@ function TrackClaimPageOriginal() {
   const [timeElapsed, setTimeElapsed] = useState('');
 
   useEffect(() => {
-    if (!claimId) return;
+    if (!claimId) return undefined;
     fetchClaimData();
     const interval = setInterval(fetchClaimData, 30000); // Refresh every 30 seconds
     return () => clearInterval(interval);
@@ -98,16 +98,17 @@ function TrackClaimPageOriginal() {
         const diff = now.getTime() - created.getTime();
         const minutes = Math.floor(diff / 60000);
         const hours = Math.floor(minutes / 60);
-        
+
         if (hours > 0) {
           setTimeElapsed(`${hours}h ${minutes % 60}m ago`);
         } else {
           setTimeElapsed(`${minutes}m ago`);
         }
       }, 60000);
-      
+
       return () => clearInterval(timer);
     }
+    return undefined;
   }, [claimData]);
 
   const fetchClaimData = async () => {

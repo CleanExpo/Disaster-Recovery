@@ -11,7 +11,7 @@ import {
   Clock, 
   CheckCircle, 
   Star, 
-  email,
+  Mail,
   ArrowRight,
   Zap
 } from 'lucide-react';
@@ -183,7 +183,7 @@ export default function UltraModernHero() {
 
         <div className="relative z-10 container mx-auto px-6 py-32">
           <motion.div 
-            ref={scrollTriggerRef}
+            ref={scrollTriggerRef as React.RefObject<HTMLDivElement>}
             className="max-w-6xl mx-auto text-center scroll-trigger"
             style={{ y }}
           >

@@ -92,14 +92,16 @@ export interface InspectionReport {
   contractorId: string;
   clientId: string;
   propertyId: string;
+  bookingId?: string;
   inspectionDate: Date;
   reportDate: Date;
   inspectorName: string;
   inspectorCertifications: string[];
-  
+
   // Property Information
   propertyDetails: {
     address: string;
+    state?: string;
     propertyType: 'residential' | 'commercial' | 'industrial' | 'institutional';
     constructionType: 'wood_frame' | 'concrete' | 'steel' | 'masonry' | 'mixed';
     approximateAge: number;
@@ -412,7 +414,6 @@ export const QUALITY_CONTROL_CHECKLIST = [
 ];
 
 export default {
-  InspectionReport,
   WATER_DAMAGE_TEMPLATE,
   FIRE_DAMAGE_TEMPLATE,
   MOULD_REMEDIATION_TEMPLATE,

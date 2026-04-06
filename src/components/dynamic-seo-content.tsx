@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { email, Clock, Shield, AlertTriangle, CheckCircle2, MapPin, Star } from 'lucide-react';
+import { Mail, Clock, Shield, AlertTriangle, CheckCircle2, MapPin, Star } from 'lucide-react';
 import LeadCaptureForm from '@/components/forms/LeadCaptureForm';
 
 interface DynamicPageProps {
@@ -43,7 +43,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                 className="bg-blue-600 hover:bg-blue-700"
                 onClick={() => setShowLeadForm(true)}
               >
-                <email className="mr-2" />
+                <Mail className="mr-2" />
                 Call online support
               </Button>
               <Button 
@@ -172,7 +172,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
               className="bg-blue-600 hover:bg-blue-700"
               onClick={() => setShowLeadForm(true)}
             >
-              <email className="mr-2" />
+              <Mail className="mr-2" />
               Call online support Now
             </Button>
             <Button 

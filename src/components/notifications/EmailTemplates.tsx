@@ -131,7 +131,7 @@ const defaultTemplates: NotificationTemplate[] = [
       <div class="invoice-box">
         <h3>Invoice Details</h3>
         <p><strong>Invoice Number:</strong> {{invoiceNumber}}</p>
-        <p><strong>Amount Due:</strong> <span class="amount">${{amount}}</span></p>
+        <p><strong>Amount Due:</strong> <span class="amount">\${{amount}}</span></p>
         <p><strong>Due Date:</strong> {{dueDate}}</p>
         <p><strong>Payment Status:</strong> {{paymentStatus}}</p>
         <p><strong>Subscription Tier:</strong> {{subscriptionTier}}</p>

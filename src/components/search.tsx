@@ -63,24 +63,25 @@ export function Search() {
         setSuggestions(filteredSuggestions);
 
         // Mock quick results
-        const mockQuickResults: QuickResult[] = [
+        const allQuickResults: QuickResult[] = [
           {
             id: '1',
             title: 'Emergency Water Damage Restoration',
             description: '24/7 emergency response for water damage incidents...',
             url: '/services/water-damage',
             category: 'Water Damage',
-            type: 'service'
+            type: 'service' as const
           },
           {
-            id: '2', 
+            id: '2',
             title: 'Elite Restoration Services',
             description: 'IICRC certified contractors specialising in...',
             url: '/contractors/elite-restoration',
             category: 'Contractor',
-            type: 'contractor'
+            type: 'contractor' as const
           }
-        ].filter(r => 
+        ];
+        const mockQuickResults = allQuickResults.filter(r =>
           r.title.toLowerCase().includes(query.toLowerCase()) ||
           r.description.toLowerCase().includes(query.toLowerCase())
         );
@@ -94,6 +95,7 @@ export function Search() {
       setShowSuggestions(false);
       setSuggestions([]);
       setQuickResults([]);
+      return undefined;
     }
   }, [query]);
 

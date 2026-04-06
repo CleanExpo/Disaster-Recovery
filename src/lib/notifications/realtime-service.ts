@@ -11,7 +11,7 @@ export interface RealtimeConfig {
 }
 
 export interface RealtimeMessage {
-  type: 'notification' | 'heartbeat' | 'ack' | 'error';
+  type: 'notification' | 'heartbeat' | 'ack' | 'error' | 'sync' | 'mark_read' | 'mark_all_read' | 'history' | 'subscribe' | 'unsubscribe';
   payload?: any;
   timestamp: Date;
 }

@@ -339,4 +339,69 @@ export class IntelligentRouter {
       critical: 2.0 };
     return weights[accuracy as keyof typeof weights] || 1.0;
   }
+
+  /**
+   * Make a routing decision (alias for route with extended options)
+   */
+  async makeRoutingDecision(
+    task: string,
+    context?: any,
+    options?: {
+      forceApproach?: string;
+      preferredPrimaryAgent?: string;
+      maxTime?: number;
+      maxCost?: number;
+    }
+  ): Promise<{
+    approach: 'sequential-thinking' | 'single-agent' | 'multi-agent-discussion' | 'hybrid';
+    confidence: number;
+    reasoning: string;
+    estimatedTime?: number;
+    estimatedCost?: number;
+  }> {
+    if (options?.forceApproach) {
+      const approachMap: Record<string, 'sequential-thinking' | 'single-agent' | 'multi-agent-discussion' | 'hybrid'> = {
+        'sequential-thinking': 'sequential-thinking',
+        'single-agent': 'single-agent',
+        'multi-agent-discussion': 'multi-agent-discussion',
+        'hybrid': 'hybrid'
+      };
+      const forced = approachMap[options.forceApproach];
+      if (forced) {
+        return { approach: forced, confidence: 1.0, reasoning: 'Forced approach' };
+      }
+    }
+
+    const request: AIRequest = {
+      id: `routing-${Date.now()}`,
+      type: AITaskType.QUICK_RESPONSE,
+      prompt: task,
+      context: context || {},
+      priority: 'normal',
+      accuracyRequired: 'standard'
+    };
+
+    const decision = await this.route(request);
+    const approachMap: Record<string, 'sequential-thinking' | 'single-agent' | 'multi-agent-discussion' | 'hybrid'> = {
+      direct: 'single-agent',
+      sequential: 'sequential-thinking',
+      'multi-agent': 'multi-agent-discussion',
+      hybrid: 'hybrid'
+    };
+
+    return {
+      approach: approachMap[decision.approach] || 'single-agent',
+      confidence: decision.confidence,
+      reasoning: decision.reasoning,
+      estimatedTime: decision.estimatedDuration,
+      estimatedCost: decision.estimatedCost
+    };
+  }
+
+  /**
+   * Clear performance history
+   */
+  clearHistory(): void {
+    this.performanceHistory.clear();
+  }
 }

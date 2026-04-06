@@ -10,6 +10,7 @@ import {
   HelpCircle,
   MessageSquare,
   Mail,
+  Phone,
   Book,
   Ticket,
   Clock,
@@ -25,7 +26,8 @@ import {
   Target,
   Lightbulb,
   Award,
-  TrendingUp
+  TrendingUp,
+  Settings
 } from 'lucide-react';
 
 // Import all support components
@@ -422,5 +424,3 @@ export function HelpCenter() {
   );
 }
 
-// Add missing import
-import { Settings, MessageSquare} from 'lucide-react';

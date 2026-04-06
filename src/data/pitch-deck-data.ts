@@ -1,7 +1,7 @@
 import { 
   TrendingUp, Users, Target, Zap, Shield, Award,
   DollarSign, Globe, Rocket, BarChart3, CheckCircle,
-  ArrowRight, Star, Building2, Clock, email, AlertTriangle,
+  ArrowRight, Star, Building2, Clock, Mail, AlertTriangle,
   Bot, Network, MapPin, Search, Smartphone, Cpu
 } from 'lucide-react';
 

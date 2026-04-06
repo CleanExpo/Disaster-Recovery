@@ -5,7 +5,7 @@ import {
   Folder, File, Upload, Download, Search, Filter, Grid, List, 
   MoreHorizontal, Eye, Share2, Archive, Trash2, Star, Clock,
   FileText, Image, Video, Music, Code, Database, Lock, AlertTriangle,
-  ChevronRight, ChevronDown, Plus, Sort, RefreshCw
+  ChevronRight, ChevronDown, Plus, ArrowUpDown, RefreshCw
 } from 'lucide-react';
 import type { 
   Document, 

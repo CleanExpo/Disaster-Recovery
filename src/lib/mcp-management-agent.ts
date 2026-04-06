@@ -188,10 +188,12 @@ export class MCPManagementAgent extends EventEmitter {
         if (params.headless) args.push('--headless');
       }
 
-      const process = spawn('npx', args, {
+      const workingDir = globalThis.process.cwd();
+      const proc = spawn('npx', args, {
         shell: true,
-        cwd: process.cwd()
+        cwd: workingDir
       });
+      const process = proc;
 
       let output = '';
       let errorOutput = '';

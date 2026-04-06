@@ -139,7 +139,7 @@ export default function BeforeAfterSlider() {
             <div className="relative h-[500px]">
               <Image
                 src={currentCase.beforeImage}
-                alt={`${currentCase.title} - before restoration`}
+                alt={`${currentCase.disaster} - before restoration`}
                 fill
                 className="object-cover"
               />
@@ -165,7 +165,7 @@ export default function BeforeAfterSlider() {
               <div className="relative h-[500px]">
                 <Image
                   src={currentCase.afterImage}
-                  alt={`${currentCase.title} - after restoration`}
+                  alt={`${currentCase.disaster} - after restoration`}
                   fill
                   className="object-cover"
                   style={{ filter: 'brightness(1.2) saturate(1.2)' }} // Make it look restored

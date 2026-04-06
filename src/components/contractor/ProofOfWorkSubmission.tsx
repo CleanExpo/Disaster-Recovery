@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Upload, FileText, Image, Calendar, MapPin, DollarSign, AlertTriangle, CheckCircle, Plus, X, Eye } from 'lucide-react';
-import { DocumentUpload } from './DocumentUpload';
+import DocumentUpload from './DocumentUpload';
 
 interface ProofOfWorkEvidence {
   id: string;

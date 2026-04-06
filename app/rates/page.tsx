@@ -216,7 +216,7 @@ export default function RatesPage() {
                         border: '1px solid #e5e7eb',
                         boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                       }}
-                      formatter={(value: number, name: string) => [value, `${name} items`]}
+                      formatter={((value: number, name: string) => [value, `${name} items`]) as any}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -244,7 +244,7 @@ export default function RatesPage() {
                         border: '1px solid #e5e7eb',
                         boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                       }}
-                      formatter={(value: number) => [value, 'Items']}
+                      formatter={((value: number) => [value, 'Items']) as any}
                     />
                     <Bar dataKey="count" name="Items" fill="#10b981" radius={[4, 4, 0, 0]} />
                   </BarChart>

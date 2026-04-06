@@ -36,7 +36,7 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
   // Transform for card lifting effect
   const transformStyle = useTransform(
     [mouseXSpring, mouseYSpring],
-    ([latestX, latestY]) => `translate3d(${latestX * 10}px, ${latestY * 10}px, 0px)`
+    ([latestX, latestY]) => `translate3d(${(latestX as number) * 10}px, ${(latestY as number) * 10}px, 0px)`
   );
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -101,8 +101,8 @@ function Interactive3DCard({ title, description, imageUrl, features, responseTim
         <div className="relative h-64 overflow-hidden">
           <motion.div
             style={{
-              transform: useTransform([mouseXSpring, mouseYSpring], ([x, y]) => 
-                `translate3d(${x * 20}px, ${y * 20}px, 0px) scale(1.1)`
+              transform: useTransform([mouseXSpring, mouseYSpring], ([x, y]) =>
+                `translate3d(${(x as number) * 20}px, ${(y as number) * 20}px, 0px) scale(1.1)`
               ) }}
           >
             <Image

@@ -78,6 +78,7 @@ export function PerformanceMonitor() {
         console.error('Performance monitoring error:', e);
       }
     }
+    return undefined;
   }, []);
   
   return null;

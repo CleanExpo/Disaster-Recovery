@@ -80,7 +80,7 @@ export function AntigravityQuickAssessment() {
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
+    if (!el) return undefined;
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setBgLoaded(true); observer.disconnect(); } },
       { rootMargin: '200px' }

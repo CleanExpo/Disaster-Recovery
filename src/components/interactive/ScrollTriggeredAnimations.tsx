@@ -66,7 +66,7 @@ function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: Stagg
         delayChildren: 0.3 } } };
 
   const item = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       ...initial },
     show: {
@@ -74,7 +74,7 @@ function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: Stagg
       x: 0,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 12 } } };
 
@@ -188,16 +188,16 @@ function TextReveal({ text, className = '', delay = 0 }: TextRevealProps) {
         delayChildren: delay } } };
 
   const child = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: 20,
       filter: 'blur(4px)' },
-    show: { 
+    show: {
       opacity: 1,
       y: 0,
       filter: 'blur(0px)',
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 12 } } };
 
@@ -239,17 +239,17 @@ function ScrollCounter({ target, duration = 2000, suffix = '', className = '' }:
   const [count, setCount] = React.useState(0);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) return undefined;
 
     let startTime: number;
     let animationFrame: number;
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
-      
+
       const progress = Math.min((currentTime - startTime) / duration, 1);
       const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
-      
+
       setCount(Math.round(target * easeProgress));
 
       if (progress < 1) {

@@ -107,13 +107,13 @@ async function createSubscriptionSchedule(
 ) {
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
   
-  const schedule = await stripe.subscriptionSchedules.create({
+  const schedule = await (stripe.subscriptionSchedules.create as any)({
     from_subscription: subscriptionId,
     phases: [
       {
         // Month 1: Free trial (30 days)
         start_date: subscription.trial_end || 'now',
-        end_date: subscription.trial_end ? subscription.trial_end + 2592000 : 'now', // +30 days
+        end_date: subscription.trial_end ? (subscription.trial_end as number) + 2592000 : 'now', // +30 days
         items: [{ price: STRIPE_PRICES.SUBSCRIPTION.REGULAR }],
         coupon: 'free_month', // 100% off coupon
       },
@@ -140,30 +140,31 @@ export async function handleStripeWebhook(
   event: Stripe.Event
 ): Promise<{ success: boolean; message?: string }> {
   switch (event.type) {
-    case 'payment_intent.succeeded':
+    case 'payment_intent.succeeded': {
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
       if (paymentIntent.metadata.type === 'onboarding') {
         // Update database to mark fees as paid
         return { success: true, message: 'Onboarding payment processed' };
       }
-      break;
+      return { success: true, message: 'Payment intent succeeded' };
+    }
       
-    case 'subscription.created':
-    case 'subscription.updated':
-      const subscription = event.data.object as Stripe.Subscription;
+    case 'customer.subscription.created':
+    case 'customer.subscription.updated': {
       // Update database with subscription details
       return { success: true, message: 'Subscription updated' };
-      
-    case 'invoice.payment_succeeded':
-      const invoice = event.data.object as Stripe.Invoice;
+    }
+
+    case 'invoice.payment_succeeded': {
       // Update database with payment record
       return { success: true, message: 'Invoice paid' };
-      
-    case 'customer.subscription.deleted':
-      const deletedSub = event.data.object as Stripe.Subscription;
+    }
+
+    case 'customer.subscription.deleted': {
       // Handle subscription cancellation
       return { success: true, message: 'Subscription cancelled' };
-      
+    }
+
     default:
       return { success: true, message: `Unhandled event type: ${event.type}` };
   }

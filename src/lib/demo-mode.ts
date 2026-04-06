@@ -179,7 +179,7 @@ export const simulateTyping = async (
  */
 export const simulateClick = async (element: HTMLElement, delay: number = 575) => { // Increased by 15% from 500
   element.classList.add('ring-4', 'ring-blue-500', 'ring-offset-2');
-  element.scrollIntoView({ behaviour: 'smooth', block: 'centre' });
+  element.scrollIntoView({ behavior: 'smooth', block: 'center' });
   
   await new Promise(resolve => setTimeout(resolve, delay));
   element.click();

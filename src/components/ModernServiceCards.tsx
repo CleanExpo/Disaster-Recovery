@@ -102,7 +102,7 @@ const ModernServiceCards: React.FC = () => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   };
@@ -211,7 +211,7 @@ const ModernServiceCards: React.FC = () => {
             return (
               <motion.div
                 key={service.id}
-                ref={magneticRef}
+                ref={magneticRef as React.RefObject<HTMLDivElement>}
                 variants={cardVariants}
                 className="group relative glass-card rounded-3xl p-8 overflow-hidden noise-texture"
                 style={{

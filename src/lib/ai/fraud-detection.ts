@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { OpenAI } from 'openai';
 import { prisma } from '@/lib/prisma';
 

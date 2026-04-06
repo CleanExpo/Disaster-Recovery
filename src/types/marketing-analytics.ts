@@ -131,24 +131,54 @@ export interface TriggerCondition {
 // Additional missing interfaces
 export interface PageFlow {
   page: string;
-  sessions: number;
-  exitRate: number;
-  averageTimeOnPage: number;
-  bounceRate: number;
+  sessions?: number;
+  exitRate?: number;
+  averageTimeOnPage?: number;
+  bounceRate?: number;
+  visitors?: number;
+  [key: string]: any;
 }
 
 export interface ConversionPath {
   path: string[];
-  conversions: number;
-  conversionRate: number;
-  averageSteps: number;
+  conversions?: number;
+  conversionRate?: number;
+  averageSteps?: number;
+  revenue?: number;
+  [key: string]: any;
 }
 
 export interface DropoffPoint {
-  page: string;
-  dropoffRate: number;
-  visitors: number;
-  reason: string;
+  page?: string;
+  dropoffRate?: number;
+  visitors?: number;
+  reason?: string;
+  stage?: string;
+  [key: string]: any;
+}
+
+export interface FormAnalytics {
+  formId?: string;
+  submissions?: number;
+  completionRate?: number;
+  abandonmentRate?: number;
+  averageCompletionTime?: number;
+  fieldDropoffs?: Record<string, number>;
+  [key: string]: any;
+}
+
+export interface ScrollData {
+  scrollDepth: number;
+  percentage: number;
+  users: number;
+  [key: string]: any;
+}
+
+export interface AttentionData {
+  element: string;
+  attentionTime: number;
+  attentionScore: number;
+  [key: string]: any;
 }
 
 export interface ClickData {
@@ -820,12 +850,13 @@ export type LeadSourceType = typeof LEAD_SOURCES[number];
 // Missing interfaces for ContractorReportingDashboard
 export interface ContractorReportingData {
   contractorId: string;
-  period: AnalyticsPeriod;
-  leadMetrics: LeadPerformanceMetrics;
-  campaignResults: CampaignROI[];
-  opportunities: MarketingOpportunity[];
-  territoryPerformance: TerritoryPerformance[];
-  overview: {
+  period?: AnalyticsPeriod;
+  timeframe?: string;
+  leadMetrics?: LeadPerformanceMetrics;
+  campaignResults?: CampaignROI[];
+  opportunities?: MarketingOpportunity[];
+  territoryPerformance?: TerritoryPerformance[];
+  overview?: {
     totalLeads: number;
     qualifiedLeads: number;
     conversions: number;
@@ -833,84 +864,119 @@ export interface ContractorReportingData {
     roi: number;
     costPerLead: number;
   };
+  summary?: Record<string, any>;
+  leadPerformance?: LeadPerformanceMetrics;
+  campaignROI?: CampaignROI[] | (CampaignROI & { [key: string]: any });
+  territoryInsights?: {
+    topTerritory?: string;
+    totalTerritories?: number;
+    performance?: TerritoryPerformance[];
+    [key: string]: any;
+  };
+  marketingOpportunities?: MarketingOpportunity[];
+  [key: string]: any;
 }
 
 export interface LeadPerformanceMetrics {
-  totalLeads: number;
-  qualifiedLeads: number;
-  conversionRate: number;
-  averageResponseTime: number;
-  leadsBySource: Array<{
+  totalLeads?: number;
+  qualifiedLeads?: number;
+  conversionRate?: number;
+  averageResponseTime?: number;
+  leadsBySource?: Array<{
     source: LeadSourceType;
     count: number;
     conversionRate: number;
     cost: number;
   }>;
-  leadsByDay: Array<{
+  leadsByDay?: Array<{
     date: string;
     leads: number;
     conversions: number;
   }>;
-  leadQualityScore: number;
+  leadQualityScore?: number;
+  avgLeadValue?: number;
+  sourceBreakdown?: Record<string, number> | Array<{ source: string; leads: number; cost: number; revenue: number; roi: number; [key: string]: any }>;
+  totalSpent?: number;
+  [key: string]: any;
 }
 
 export interface CampaignROI {
-  campaignId: string;
-  name: string;
-  platform: keyof typeof AD_PLATFORMS;
-  spent: number;
-  revenue: number;
-  roi: number;
-  leads: number;
-  conversions: number;
-  costPerLead: number;
-  costPerAcquisition: number;
-  status: keyof typeof CAMPAIGN_STATUSES;
+  campaignId?: string;
+  name?: string;
+  platform?: keyof typeof AD_PLATFORMS | string;
+  spent?: number;
+  revenue?: number;
+  roi?: number;
+  leads?: number;
+  conversions?: number;
+  costPerLead?: number;
+  costPerAcquisition?: number;
+  status?: keyof typeof CAMPAIGN_STATUSES | string;
+  coFundedCampaigns?: any[];
+  totalSpent?: number;
+  [key: string]: any;
 }
 
 export interface MarketingOpportunity {
-  id: string;
-  type: 'keyword' | 'audience' | 'campaign' | 'territory' | 'seasonal';
-  title: string;
-  description: string;
-  potentialImpact: 'low' | 'medium' | 'high' | 'very_high';
-  estimatedRevenue: number;
-  estimatedCost: number;
-  timeframe: string;
-  priority: number;
-  actionRequired: string;
-  dataSource: string;
+  id?: string;
+  type: 'keyword' | 'audience' | 'campaign' | 'territory' | 'seasonal' | 'co_funded_campaign' | 'budget_increase' | string;
+  title?: string;
+  description?: string;
+  potentialImpact?: 'low' | 'medium' | 'high' | 'very_high';
+  estimatedRevenue?: number;
+  estimatedCost?: number;
+  timeframe?: string;
+  priority?: number;
+  actionRequired?: string;
+  dataSource?: string;
+  confidence?: number | string;
+  potentialRevenue?: number;
+  estimatedROI?: number;
+  benefits?: string[];
+  deadline?: string;
+  [key: string]: any;
 }
 
 // Additional missing interfaces for comprehensive marketing analytics
 
 export interface CreativePerformance {
-  creativeId: string;
-  impressions: number;
-  clicks: number;
-  conversions: number;
-  ctr: number;
-  cpc: number;
-  cpa: number;
-  performance: CampaignPerformanceMetrics;
+  creativeId?: string;
+  impressions?: number;
+  clicks?: number;
+  conversions?: number;
+  ctr?: number;
+  cpc?: number;
+  cpa?: number;
+  conversionRate?: number;
+  performance?: CampaignPerformanceMetrics;
+  [key: string]: any;
 }
 
 export interface SocialAggregatedMetrics {
-  totalFollowers: number;
-  totalEngagement: number;
-  totalReach: number;
-  engagementRate: number;
-  growthRate: number;
+  totalFollowers?: number;
+  totalEngagement?: number;
+  totalReach?: number;
+  engagementRate?: number;
+  growthRate?: number;
+  totalImpressions?: number;
+  averageEngagementRate?: number;
+  bestPlatform?: string;
+  [key: string]: any;
 }
 
 export interface ContentPerformance {
-  contentId: string;
-  views: number;
-  shares: number;
-  likes: number;
-  comments: number;
-  clickThroughRate: number;
-  engagementRate: number;
+  contentId?: string;
+  views?: number;
+  shares?: number;
+  likes?: number;
+  comments?: number;
+  clickThroughRate?: number;
+  engagementRate?: number;
+  impressions?: number;
+  clicks?: number;
+  conversions?: number;
+  ctr?: number;
+  [key: string]: any;
 }
 
 export interface SocialAdData {
@@ -925,29 +991,37 @@ export interface SocialAdData {
 }
 
 export interface PlatformInsights {
-  platform: string;
-  audienceSize: number;
-  engagementRate: number;
-  bestPostingTimes: string[];
-  topContentTypes: string[];
-  demographics: AudienceData;
+  platform?: string;
+  audienceSize?: number;
+  engagementRate?: number;
+  bestPostingTimes?: string[];
+  topContentTypes?: string[];
+  demographics?: AudienceData;
+  audienceGrowth?: number;
+  engagementTrends?: any[];
+  topPosts?: any[];
+  [key: string]: any;
 }
 
 export interface MediaAsset {
-  assetId: string;
-  type: 'image' | 'video' | 'audio' | 'document';
+  assetId?: string;
+  type?: 'image' | 'video' | 'audio' | 'document' | string;
   url: string;
-  title: string;
+  title?: string;
   description?: string;
-  performance: ContentPerformance;
+  performance?: ContentPerformance;
+  alt?: string;
+  [key: string]: any;
 }
 
 export interface AudienceData {
-  ageGroups: Record<string, number>;
-  genderSplit: Record<string, number>;
-  locations: Record<string, number>;
-  interests: string[];
-  behaviours: string[];
+  ageGroups?: Record<string, number>;
+  genderSplit?: Record<string, number>;
+  locations?: Record<string, number> | string[];
+  interests?: string[];
+  behaviours?: string[];
+  demographics?: Record<string, number>;
+  [key: string]: any;
 }
 
 export interface InfluencerData {
@@ -980,29 +1054,42 @@ export interface InfluencerPerformance {
 }
 
 export interface TouchpointData {
-  touchpointId: string;
-  channel: string;
-  timestamp: Date;
-  customerId: string;
-  sessionId: string;
+  touchpointId?: string;
+  channel?: string;
+  timestamp?: Date;
+  customerId?: string;
+  sessionId?: string;
   value?: number;
   metadata?: Record<string, any>;
+  source?: string;
+  medium?: string;
+  page?: string;
+  visits?: number;
+  interactions?: number;
+  conversions?: number;
+  bounceRate?: number;
+  [key: string]: any;
 }
 
 export interface AttributionMetrics {
-  firstTouch: number;
-  lastTouch: number;
-  linear: number;
-  timeDecay: number;
-  positionBased: number;
+  firstTouch?: number;
+  lastTouch?: number;
+  linear?: number;
+  timeDecay?: number;
+  positionBased?: number;
+  totalValue?: number | Record<string, number>;
+  [key: string]: any;
 }
 
 export interface AttributionWeights {
-  firstTouch: number;
-  lastTouch: number;
-  linear: number;
-  timeDecay: number;
-  positionBased: number;
+  firstTouch?: number;
+  lastTouch?: number;
+  linear?: number;
+  timeDecay?: number;
+  positionBased?: number;
+  firstClick?: number;
+  lastClick?: number;
+  [key: string]: any;
 }
 
 export interface ApprovalWorkflow {
@@ -1025,7 +1112,11 @@ export interface CampaignPortfolioMetrics {
 }
 
 export interface CampaignTimeline {
-  milestones: Array<{
+  startDate?: Date;
+  endDate?: Date;
+  createdDate?: Date;
+  lastModified?: Date;
+  milestones?: Array<{
     id: string;
     date: Date;
     event: string;
@@ -1035,21 +1126,26 @@ export interface CampaignTimeline {
 }
 
 export interface CampaignAsset {
-  assetId: string;
-  campaignId: string;
+  assetId?: string;
+  campaignId?: string;
+  id?: string;
   type: string;
-  url: string;
+  url?: string;
   name: string;
-  status: 'draft' | 'review' | 'approved' | 'active';
+  status: 'draft' | 'review' | 'approved' | 'active' | 'pending' | string;
   performance?: ContentPerformance;
+  platform?: string;
+  [key: string]: any;
 }
 
 export interface ApprovalStatus {
-  approvalId: string;
-  approver: string;
-  status: 'pending' | 'approved' | 'rejected';
+  approvalId?: string;
+  approver?: string;
+  status: 'pending' | 'approved' | 'rejected' | 'active' | 'review' | 'draft';
   comments?: string;
-  timestamp: Date;
+  timestamp?: Date;
+  approvedDate?: Date;
+  submittedDate?: Date;
 }
 
 export interface CampaignReport {
@@ -1071,36 +1167,46 @@ export interface CreativeTemplate {
 }
 
 export interface BudgetTemplate {
-  templateId: string;
-  name: string;
-  allocations: Record<string, number>;
-  constraints: string[];
+  templateId?: string;
+  name?: string;
+  allocations?: Record<string, number>;
+  constraints?: string[];
   description?: string;
+  recommended?: number;
+  [key: string]: any;
 }
 
 export interface CampaignSettings {
-  settingId: string;
-  campaignId: string;
-  settings: Record<string, any>;
-  lastUpdated: Date;
-  updatedBy: string;
+  settingId?: string;
+  campaignId?: string;
+  settings?: Record<string, any>;
+  lastUpdated?: Date;
+  updatedBy?: string;
+  autoOptimization?: boolean;
+  [key: string]: any;
 }
 
 export interface BudgetRestriction {
-  restrictionId: string;
-  type: 'daily' | 'weekly' | 'monthly' | 'total';
-  amount: number;
-  remaining: number;
+  restrictionId?: string;
+  type: 'daily' | 'weekly' | 'monthly' | 'total' | 'daily_limit' | 'platform_limit' | string;
+  amount?: number;
+  value?: number;
+  remaining?: number;
   threshold?: number;
+  description?: string;
+  [key: string]: any;
 }
 
 export interface AllocationPerformance {
-  channel: string;
-  allocated: number;
-  spent: number;
-  remaining: number;
-  performance: CampaignPerformanceMetrics;
-  efficiency: number;
+  channel?: string;
+  allocated?: number;
+  spent?: number;
+  remaining?: number;
+  performance?: CampaignPerformanceMetrics;
+  efficiency?: number;
+  leads?: number;
+  roi?: number;
+  [key: string]: any;
 }
 
 export interface TerritoryDemographics {
@@ -1296,4 +1402,98 @@ export interface CostSharePerformance {
   performance: CampaignPerformanceMetrics;
   efficiency: number;
   contribution: number;
+}
+
+export interface GeographicTargeting {
+  countries?: string[];
+  regions?: string[];
+  cities?: string[];
+  postcodes?: string[];
+  radius?: number;
+  radiusUnit?: 'km' | 'miles';
+  excludedLocations?: string[];
+  [key: string]: any;
+}
+
+export interface DemographicTargeting {
+  ageMin?: number;
+  ageMax?: number;
+  genders?: string[];
+  languages?: string[];
+  educationLevels?: string[];
+  jobTitles?: string[];
+  industries?: string[];
+  incomeRanges?: string[];
+  [key: string]: any;
+}
+
+export interface KeywordTargeting {
+  keyword: string;
+  matchType?: 'broad' | 'phrase' | 'exact' | 'negative';
+  bidAdjustment?: number;
+  performance?: {
+    impressions?: number;
+    clicks?: number;
+    conversions?: number;
+    ctr?: number;
+    cpc?: number;
+  };
+  [key: string]: any;
+}
+
+export interface AudienceTargeting {
+  audienceId?: string;
+  audienceName?: string;
+  type?: 'custom' | 'remarketing' | 'lookalike' | 'in_market' | 'affinity';
+  size?: number;
+  bidAdjustment?: number;
+  [key: string]: any;
+}
+
+export interface TimeTargeting {
+  dayParting?: Array<{
+    dayOfWeek: number;
+    startHour: number;
+    endHour: number;
+    bidAdjustment?: number;
+  }> | string[];
+  timezone?: string;
+  startTime?: string;
+  endTime?: string;
+  [key: string]: any;
+}
+
+export interface CreativeAsset {
+  assetId?: string;
+  type?: 'image' | 'video' | 'text' | 'html5';
+  url?: string;
+  width?: number;
+  height?: number;
+  fileSize?: number;
+  format?: string;
+  duration?: number;
+  thumbnail?: string;
+  [key: string]: any;
+}
+
+export interface CampaignSchedule {
+  startDate?: Date;
+  endDate?: Date;
+  timezone?: string;
+  recurring?: boolean;
+  frequency?: 'once' | 'daily' | 'weekly' | 'monthly';
+  dayParting?: TimeTargeting;
+  [key: string]: any;
+}
+
+export interface OptimizationSettings {
+  bidStrategy?: string;
+  targetCPA?: number;
+  targetROAS?: number;
+  targetCTR?: number;
+  autoOptimize?: boolean;
+  frequencyCap?: number;
+  frequencyCapPeriod?: 'day' | 'week' | 'month';
+  autoOptimization?: boolean;
+  [key: string]: any;
 }

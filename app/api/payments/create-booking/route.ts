@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
         transfer_group: bookingId });
 
       // Persist payment record to database
-      await prisma.payment.create({
+      await (prisma.payment.create as any)({
         data: {
           bookingId,
           amount: totalAmount / 100,

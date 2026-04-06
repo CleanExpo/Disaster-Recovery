@@ -313,7 +313,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
             </tr>
           </thead>
           <tbody>
-            {reportingData?.leadPerformance.sourceBreakdown.map((source, index) => (
+            {(reportingData?.leadPerformance?.sourceBreakdown as any[] | undefined)?.map((source: any, index: number) => (
               <tr key={index} className="border-b border-gray-100">
                 <td className="py-3 px-4 font-medium text-gray-900">{source.source}</td>
                 <td className="py-3 px-4 text-right text-gray-900">{source.leads}</td>
@@ -341,7 +341,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Co-Funded Campaign Performance</h3>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {reportingData?.campaignROI.coFundedCampaigns.map((campaign) => (
+        {((reportingData?.campaignROI as any)?.coFundedCampaigns as any[] | undefined)?.map((campaign: any) => (
           <div key={campaign.campaignId} className="border border-gray-200 rounded-lg p-4">
             <div className="flex items-center justify-between mb-3">
               <h4 className="font-medium text-gray-900">{campaign.name}</h4>
@@ -449,7 +449,7 @@ const ContractorReportingDashboard: React.FC<ContractorReportingDashboardProps> 
                   <p className="text-sm text-gray-700 mt-1">{opportunity.description}</p>
                 </div>
               </div>
-              <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getConfidenceColor(opportunity.confidence)}`}>
+              <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${getConfidenceColor(String(opportunity.confidence ?? ''))}`}>
                 {opportunity.confidence} confidence
               </span>
             </div>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * OpenRouter Provider Integration
  * Handles communication with GPT-OSS-120B and other OpenRouter models

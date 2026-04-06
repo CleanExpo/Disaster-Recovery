@@ -29,8 +29,9 @@ import type { ContractorOnboardingData } from '@/types/contractor';
 
 interface Step6AgreementsProps {
   data: Partial<ContractorOnboardingData>;
-  updateData: (data: Partial<ContractorOnboardingData>) => void;
-  errors: Record<string, string>;
+  updateData?: (data: Partial<ContractorOnboardingData>) => void;
+  errors?: Record<string, string>;
+  onEdit?: (step: number) => void;
 }
 
 interface Agreement {

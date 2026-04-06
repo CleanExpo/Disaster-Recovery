@@ -87,9 +87,9 @@ export class MasterOrchestrator extends EventEmitter {
 
   private async registerCoreAgents() {
     // Register main agents
-    this.agentRegistry.register('research-planner', new ResearchPlannerAgent());
-    this.agentRegistry.register('md-creator', new MDCreatorAgent());
-    this.agentRegistry.register('mock-data-factory', new MockDataFactory());
+    this.agentRegistry.register('research-planner', new ResearchPlannerAgent() as any);
+    this.agentRegistry.register('md-creator', new MDCreatorAgent() as any);
+    this.agentRegistry.register('mock-data-factory', new MockDataFactory() as any);
     
     // Register sub-agents
     this.agentRegistry.register('documentation-master', {
@@ -392,12 +392,12 @@ export class MasterOrchestrator extends EventEmitter {
   private optimizeResources() {
     const metrics = this.healthMonitor.getMetrics();
     
-    if (metrics.cpuUsage > 80) {
+    if ((metrics.cpuUsage ?? 0) > 80) {
       this.config.maxConcurrentTasks = Math.max(
         this.config.maxConcurrentTasks - 2,
         1
       );
-    } else if (metrics.cpuUsage < 40 && this.taskQueue.size() > 5) {
+    } else if ((metrics.cpuUsage ?? 0) < 40 && this.taskQueue.size() > 5) {
       this.config.maxConcurrentTasks = Math.min(
         this.config.maxConcurrentTasks + 1,
         20

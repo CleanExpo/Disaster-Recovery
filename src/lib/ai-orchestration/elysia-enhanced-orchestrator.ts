@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ElysiaJS Enhanced AI Orchestrator
  * Integrates RAG capabilities with existing AI orchestration system

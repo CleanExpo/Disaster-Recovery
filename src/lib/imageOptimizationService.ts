@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
-import chokidar from 'chokidar';
+import chokidar, { type FSWatcher } from 'chokidar';
 import PQueue from 'p-queue';
 import sharp from 'sharp';
 import crypto from 'crypto';
@@ -77,7 +77,7 @@ export const IMAGE_OPTIMIZATION_CONFIG = {
 
 export class ImageOptimizationService {
   private static instance: ImageOptimizationService;
-  private watcher: chokidar.FSWatcher | null = null;
+  private watcher: FSWatcher | null = null;
   private queue: PQueue;
   private optimizedCache: Map<string, string> = new Map();
   private isRunning: boolean = false;
@@ -294,15 +294,15 @@ export class ImageOptimizationService {
         
         // Convert format and compress
         if (profile.format === 'webp') {
-          optimizedBuffer = await sharpInstance.webp({ quality }).toBuffer();
+          optimizedBuffer = Buffer.from(await sharpInstance.webp({ quality }).toBuffer());
         } else if (profile.format === 'png') {
-          optimizedBuffer = await sharpInstance.png({ 
+          optimizedBuffer = Buffer.from(await sharpInstance.png({
             compressionLevel: 9,
-            palette: true }).toBuffer();
+            palette: true }).toBuffer());
         } else {
-          optimizedBuffer = await sharpInstance.jpeg({ 
+          optimizedBuffer = Buffer.from(await sharpInstance.jpeg({
             quality,
-            progressive: true }).toBuffer();
+            progressive: true }).toBuffer());
         }
         
         const optimizedSizeKB = optimizedBuffer.length / 1024;

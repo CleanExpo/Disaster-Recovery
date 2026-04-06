@@ -25,7 +25,7 @@ import {
   ArrowRight,
   BookOpen,
   ExternalLink,
-  Home, MessageSquare} from 'lucide-react';
+  Home, MessageSquare, Mail} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { KnowledgeArticle, ArticleCategory, SearchResult } from '@/types/support';
 
@@ -573,6 +573,4 @@ export function KnowledgeBase() {
   );
 }
 
-// Add missing imports
-import { MessageSquare, Mail } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';

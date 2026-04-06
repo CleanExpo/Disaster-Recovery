@@ -187,6 +187,139 @@ export interface ConsensusResult {
   recommendations: string[];
 }
 
+// ---- Additional types referenced by sub-modules ----
+
+export interface DiscussionRound {
+  round: number;
+  responses: AgentResponse[];
+  consensus?: ConsensusResult;
+}
+
+export interface Discussion {
+  id: string;
+  topic: string;
+  rounds: DiscussionRound[];
+  finalConsensus?: ConsensusResult;
+  participants?: AgentPersona[];
+  status?: 'pending' | 'in_progress' | 'completed' | 'failed';
+  startTime?: Date;
+  endTime?: Date;
+  confidenceLevel?: number;
+  context?: Record<string, any>;
+}
+
+export interface Agent {
+  id: string;
+  name: string;
+  capabilities: string[];
+  persona?: AgentPersona;
+  execute(request: AIRequest): Promise<AgentResponse>;
+}
+
+export class OrchestrationError extends Error {
+  code: string;
+  context?: Record<string, any>;
+  constructor(message: string, code: string = 'ORCHESTRATION_ERROR', context?: Record<string, any>) {
+    super(message);
+    this.name = 'OrchestrationError';
+    this.code = code;
+    this.context = context;
+  }
+}
+
+export interface WebSocketEvent {
+  type: string;
+  sessionId: string;
+  data: any;
+  payload?: any;
+}
+
+export type ThinkingStepEvent = WebSocketEvent & { step: ThinkingStep; payload?: any };
+export type AgentResponseEvent = WebSocketEvent & { response: AgentResponse; payload?: any };
+
+export interface SequentialThinkingStep {
+  id: string;
+  step: number;
+  stepNumber?: number;
+  prompt: string;
+  response: string;
+  confidence: number;
+  reasoning?: string;
+  conclusion?: string;
+  nextSteps?: string[];
+}
+
+export interface SequentialThinkingChain {
+  id: string;
+  steps: SequentialThinkingStep[];
+  conclusion?: string;
+  finalConclusion?: string;
+  confidence: number;
+  totalConfidence?: number;
+  problemStatement?: string;
+  status?: 'pending' | 'in_progress' | 'completed' | 'failed';
+  startTime?: Date;
+  endTime?: Date;
+  metadata?: Record<string, any>;
+  context?: Record<string, any>;
+  currentStep?: number;
+}
+
+export interface DisasterScenario {
+  type: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  location?: string | { address: string; coordinates?: { lat: number; lng: number } };
+  affectedAreas?: string[];
+  affectedArea?: string;
+  description: string;
+  propertyType?: string;
+  timeOfIncident?: string | Date;
+  occupancyStatus?: string;
+  weatherConditions?: string;
+  utilitiesStatus?: {
+    power?: boolean;
+    water?: boolean;
+    gas?: boolean;
+    internet?: boolean;
+  };
+}
+
+export interface EmergencyOrchestrationRequest extends AIRequest {
+  scenario: DisasterScenario;
+  urgency: 'low' | 'medium' | 'high' | 'critical';
+  constraints?: {
+    maxCost?: number;
+    maxTime?: number;
+    requiredAccuracy?: string;
+  };
+  requiredAnalysis?: string[];
+  stakeholders?: string[];
+}
+
+export interface RoutingDecision {
+  approach: 'sequential-thinking' | 'single-agent' | 'multi-agent-discussion' | 'hybrid';
+  confidence: number;
+  reasoning: string;
+  estimatedTime?: number;
+  estimatedCost?: number;
+}
+
+export interface EmergencyOrchestrationResponse {
+  success: boolean;
+  recommendations: string[];
+  immediateActions: string[];
+  resources?: string[];
+  confidence: number;
+  response: string;
+}
+
+export interface OrchestrationMetrics {
+  totalRequests: number;
+  successRate: number;
+  averageLatency: number;
+  costPerRequest: number;
+}
+
 export interface OrchestrationConfig {
   providers: ProviderConfig[];
   routing: {

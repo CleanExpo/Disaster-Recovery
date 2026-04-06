@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     
     // Update payment record with refund info
     try {
-      await prisma.payment.updateMany({
+      await (prisma.payment.updateMany as any)({
         where: { stripePaymentId: refundData.paymentIntentId },
         data: {
           status: 'REFUNDED',

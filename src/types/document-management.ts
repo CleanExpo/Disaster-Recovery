@@ -22,7 +22,7 @@ export interface Document {
   metadata: DocumentMetadata;
 }
 
-export type DocumentCategory = 
+export type DocumentCategory =
   | 'onboarding'
   | 'compliance'
   | 'insurance'
@@ -32,7 +32,11 @@ export type DocumentCategory =
   | 'training'
   | 'policy'
   | 'template'
-  | 'other';
+  | 'other'
+  | 'agreement'
+  | 'form'
+  | 'certificate'
+  | string;
 
 export type DocumentStatus = 
   | 'active'
@@ -109,14 +113,15 @@ export interface eSignatureRequest {
   settings: eSignatureSettings;
 }
 
-export type SignatureStatus = 
+export type SignatureStatus =
   | 'draft'
   | 'sent'
   | 'in_progress'
   | 'completed'
   | 'cancelled'
   | 'expired'
-  | 'declined';
+  | 'declined'
+  | 'pending_signature';
 
 export interface DocumentSigner {
   id: string;

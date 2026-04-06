@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination, EffectFade } from 'swiper/modules'
-import { useAudioPlayer, useGlobalAudioPlayer } from 'react-use-audio-player'
+import { useAudioPlayer } from 'react-use-audio-player'
 import type { Swiper as SwiperType } from 'swiper'
 
 // Import Swiper styles
@@ -48,7 +48,7 @@ export default function PitchDeckProductionV2() {
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   
   // Audio player hook
-  const { load, play, pause, stop, playing, duration, getPosition } = useAudioPlayer()
+  const { load, play, pause, stop, isPlaying: playing, duration, getPosition } = useAudioPlayer()
 
   const slides: Slide[] = [
     {

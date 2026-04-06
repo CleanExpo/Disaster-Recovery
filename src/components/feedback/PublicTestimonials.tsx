@@ -22,7 +22,8 @@ import {
   Award,
   CheckCircle,
   Image,
-  Eye
+  Eye,
+  MessageSquare
 } from 'lucide-react';
 import type { Testimonial, TestimonialDisplay } from '@/types/customer-feedback';
 
@@ -220,6 +221,7 @@ export default function PublicTestimonials({
       }, rotationInterval);
       return () => clearInterval(interval);
     }
+    return undefined;
   }, [isPlaying, selectedLayout, sortedTestimonials.length, rotationInterval]);
 
   const nextSlide = () => {

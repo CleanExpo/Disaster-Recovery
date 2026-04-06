@@ -78,7 +78,7 @@ export async function generateVisual(request: VisualRequest): Promise<Generation
     throw new Error('No response parts received from Nano Banana Pro');
   }
 
-  const imagePart = parts.find(
+  const imagePart = (parts as any[]).find(
     (p: Record<string, unknown>) => p.inlineData && typeof (p.inlineData as Record<string, unknown>).mimeType === 'string' &&
       ((p.inlineData as Record<string, unknown>).mimeType as string).startsWith('image/')
   );

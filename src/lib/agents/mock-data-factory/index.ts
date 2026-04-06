@@ -154,8 +154,7 @@ export class MockDataFactory {
   }
 
   private initializeData() {
-    // Set Australian locale for faker
-    faker.setLocale('en_AU');
+    // Locale already set via import from '@faker-js/faker/locale/en_AU'
   }
 
   private loadAustralianLocations(): LocationData[] {
@@ -257,7 +256,7 @@ export class MockDataFactory {
           state: location.state,
           postcode: location.postcode
         },
-        contactNumber: faker.email.number('04## ### ###'),
+        contactNumber: faker.phone.number(),
         email: faker.internet.email()
       },
       disaster: {

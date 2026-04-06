@@ -29,7 +29,8 @@ import {
   Database,
   UserX,
   FileDown,
-  RefreshCcw
+  RefreshCcw,
+  Eye
 } from 'lucide-react';
 import { DataSubjectRequest } from '@/types/privacy';
 

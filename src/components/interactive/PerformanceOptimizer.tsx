@@ -155,6 +155,7 @@ export function OptimizedAnimation({
       mediaQuery.addEventListener('change', handleChange);
       return () => mediaQuery.removeEventListener('change', handleChange);
     }
+    return undefined;
   }, [respectReducedMotion]);
 
   // Simplified animation for reduced motion preference

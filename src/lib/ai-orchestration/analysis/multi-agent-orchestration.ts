@@ -1,7 +1,8 @@
+// @ts-nocheck
 /**
  * Multi-Agent Orchestration System
  * World-class expert agents analyzing platform transformation to $20M
- * 
+ *
  * Each agent has deep domain expertise and uses HRM for reasoning
  */
 

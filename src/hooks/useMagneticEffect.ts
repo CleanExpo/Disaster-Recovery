@@ -6,6 +6,8 @@ interface MagneticOptions {
   strength?: number;
   scale?: number;
   duration?: number;
+  maxDistance?: number;
+  rotationFactor?: number;
 }
 
 export function useMagneticEffect(options: MagneticOptions = {}) {
@@ -14,7 +16,7 @@ export function useMagneticEffect(options: MagneticOptions = {}) {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) return undefined;
 
     let animationFrameId: number;
 
@@ -69,7 +71,7 @@ export function useParallaxEffect(strength: number = 0.5) {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) return undefined;
 
     let ticking = false;
 
@@ -99,7 +101,7 @@ export function use3DRotateEffect() {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) return undefined;
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = element.getBoundingClientRect();
@@ -129,6 +131,31 @@ export function use3DRotateEffect() {
       element.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
+
+  return elementRef;
+}
+
+export function useScrollTrigger(threshold: number = 0.1) {
+  const elementRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('triggered');
+          }
+        });
+      },
+      { threshold }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [threshold]);
 
   return elementRef;
 }

@@ -17,24 +17,10 @@
 
 import { DayContent } from './curriculum-master';
 
-// Import all curriculum modules
-import { day1Content, day2Content } from './curriculum-complete';
-import { 
-  day3Content, 
-  day4Content, 
-  day5Content, 
-  day6Content, 
-  day7Content 
-} from './curriculum-days-3-7';
-import { 
-  day8Content, 
-  day9Content, 
-  day10Content, 
-  day11Content, 
-  day12Content, 
-  day13Content, 
-  day14Content 
-} from './curriculum-days-8-14';
+// Curriculum module imports (content accessed via COMPLETE_CURRICULUM array)
+import { COMPLETE_CURRICULUM } from './curriculum-complete';
+// Re-export for convenience
+export { COMPLETE_CURRICULUM };
 
 /**
  * COMPLETE 14-DAY CURRICULUM STRUCTURE

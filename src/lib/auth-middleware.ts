@@ -13,10 +13,11 @@ import { z } from 'zod';
 export interface AuthenticatedRequest extends NextRequest {
   user?: {
     id: string;
+    userId?: string;
     email: string;
-    name: string;
+    name?: string;
     role: UserRole;
-    companyId: string;
+    companyId?: string;
     permissions: string[];
   };
 }
@@ -257,7 +258,7 @@ export function withValidation<T>(
             details: error.errors.map(e => ({
               field: e.path.join('.'),
               message: e.message,
-              received: e.received
+              received: (e as any).received
             }))
           },
           { status: 400 }

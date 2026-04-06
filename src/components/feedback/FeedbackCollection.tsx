@@ -24,7 +24,8 @@ import {
   Meh,
   Frown,
   Heart,
-  Award
+  Award,
+  Briefcase
 } from 'lucide-react';
 import type { CustomerFeedback, FeedbackPhoto } from '@/types/customer-feedback';
 

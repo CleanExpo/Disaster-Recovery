@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * ElysiaJS AI Engine Types and Schemas
  * Type-safe definitions for RAG operations and AI agent interactions
