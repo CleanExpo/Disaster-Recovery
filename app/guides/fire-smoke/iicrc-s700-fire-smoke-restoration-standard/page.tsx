@@ -1,49 +1,56 @@
 /**
- * IICRC S700:2025 — Fire & Smoke Damage Restoration Standard Guide
+ * Fire & Smoke Restoration — What to Expect from a Certified Contractor
  *
- * BUILD-002: Fire/smoke content with IICRC S700:2025 integration.
- * GAP-023: IICRC S700 not previously referenced in platform content.
+ * BUILD-002: Fire/smoke content referencing IICRC S700:2025 as the
+ * certification benchmark held by our contractors. This page describes
+ * what a certified restoration job involves, not the standard's content.
+ *
+ * IICRC compliance: references ANSI/IICRC S700:2025 by name as the
+ * professional standard our contractors hold certification to.
+ * Does NOT reproduce standards text or describe the standard's framework.
+ * Per IICRC acceptable use: contractors may state they follow the standard
+ * and describe their own process.
  *
  * ACL s18 compliant — no unverified statistics.
- * All IICRC standard descriptions are consistent with published S700:2025 scope.
  */
 
 import type { Metadata } from 'next'
 import { Flame } from 'lucide-react'
 import { AgGuidePageTemplate } from '@/components/antigravity'
 import { NAP } from '@/lib/constants'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'IICRC S700:2025 Fire & Smoke Restoration Standard | Disaster Recovery Australia',
+  title: 'Fire & Smoke Damage Restoration — What to Expect | Disaster Recovery Australia',
   description:
-    'What IICRC S700:2025 means for fire and smoke damage restoration. Smoke classification, decontamination protocols, HVAC cleaning, and what to expect from a certified restoration contractor.',
+    'What professional fire and smoke damage restoration involves. How ANSI/IICRC S700:2025-certified contractors assess, decontaminate, and document fire-damaged properties — and what this means for your insurance claim.',
   keywords: [
-    'IICRC S700',
-    'fire damage restoration standard',
+    'fire damage restoration',
     'smoke damage restoration',
-    'fire and smoke restoration',
     'IICRC certified fire restoration',
-    'smoke classification',
-    'fire damage Australia',
+    'fire restoration process Australia',
+    'smoke decontamination',
+    'fire damage insurance claim',
+    'certified fire restoration contractor',
   ],
   alternates: {
     canonical: `${NAP.url}/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard`,
   },
   openGraph: {
-    title: 'IICRC S700:2025 — Fire & Smoke Damage Restoration Standard',
+    title: 'Fire & Smoke Damage Restoration — What to Expect',
     description:
-      'Guide to IICRC S700:2025: the current standard for professional fire and smoke damage restoration in Australia. Smoke types, protocols, and what certified means for your property.',
+      'Professional fire and smoke damage restoration: what ANSI/IICRC S700:2025-certified contractors do, what documentation your insurance claim needs, and what to check when reviewing completed work.',
     url: `${NAP.url}/guides/fire-smoke/iicrc-s700-fire-smoke-restoration-standard`,
     type: 'website',
   },
 }
 
-export default function IicrcS700FireSmokeStandardPage() {
+export default function FireSmokeRestorationWhatToExpectPage() {
   return (
     <AgGuidePageTemplate
       category="Fire & Smoke"
-      title="IICRC S700:2025 — Fire & Smoke Damage Restoration Standard"
-      subtitle="What the current IICRC standard means for your property, your contractor, and your insurance claim."
+      title="Fire & Smoke Damage Restoration — What to Expect"
+      subtitle="What professional fire and smoke restoration involves, what your certified contractor should document, and what questions to ask if restoration work falls short."
       gradient="linear-gradient(135deg, #2D0A0A 0%, #741A1A 100%)"
       icon={<Flame className="h-10 w-10" />}
       lastReviewed="2026-04-08"
@@ -51,168 +58,118 @@ export default function IicrcS700FireSmokeStandardPage() {
         { label: 'Home', href: '/' },
         { label: 'Guides', href: '/guides' },
         { label: 'Fire & Smoke', href: '/guides/fire-smoke' },
-        { label: 'IICRC S700:2025' },
+        { label: 'Fire & Smoke Restoration — What to Expect' },
       ]}
       cta={{ text: 'Find a Certified Contractor', href: '/claim' }}
       sections={[
         {
-          heading: 'What is IICRC S700:2025?',
+          heading: 'The Professional Standard: ANSI/IICRC S700:2025',
           body: (
             <>
               <p>
-                IICRC S700:2025 is the current edition of the <strong>Standard for Professional Fire and Smoke Damage Restoration</strong>, published by the Institute of Inspection, Cleaning and Restoration Certification (IICRC). It defines minimum requirements for safe, effective restoration of properties damaged by fire, smoke, and related residues.
+                Fire and smoke damage restoration in Australia is performed to <strong>ANSI/IICRC S700:2025</strong> — the current edition of the Standard for Professional Fire and Smoke Damage Restoration, published by the Institute of Inspection, Cleaning and Restoration Certification (IICRC). This is the professional benchmark referenced by insurers, loss adjusters, and the Australian Financial Complaints Authority (AFCA) when assessing whether restoration work was completed appropriately.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                The 2025 edition updated protocols for smoke residue classification, decontamination procedures, HVAC system cleaning following fire exposure, and documentation requirements for insurance claims. IICRC S700:2025 is the benchmark standard referenced by insurers, loss adjusters, and courts when assessing whether restoration work was completed to an appropriate professional standard.
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                When you engage an IICRC-certified fire and smoke restoration contractor, you are engaging a professional who is trained to follow S700:2025 protocols — not the informal practices of a general builder or cleaner.
+                All contractors in the NRPG network hold current IICRC certification relevant to fire and smoke restoration. For the full ANSI/IICRC S700:2025 standard, visit{' '}
+                <a href="https://iicrc.org/s700/" target="_blank" rel="noopener noreferrer">
+                  iicrc.org
+                </a>.
               </p>
             </>
           ),
         },
         {
-          heading: 'Smoke Classification Under S700:2025',
+          heading: 'Why Professional Certification Matters After a Fire',
           background: 'light',
           body: (
             <>
               <p>
-                Not all fire residue is the same. IICRC S700:2025 classifies smoke residue by its physical and chemical characteristics, because different residue types require different cleaning agents and techniques. Applying the wrong method can permanently set stains or spread contamination.
+                Fire damage extends well beyond the burned area. Smoke travels through HVAC systems, wall cavities, and roof spaces — depositing acidic residues that corrode metals, discolour surfaces, and persist as odour in areas far from the fire origin. Different types of fire residue (from low-heat smouldering versus fast-burning materials) require different cleaning agents and techniques.
               </p>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', marginTop: '1.5rem' }}>
-                {[
-                  {
-                    type: 'Wet Smoke Residue',
-                    source: 'Low-heat, smouldering fires (rubber, plastic)',
-                    character: 'Sticky, smeary, pungent odour. Difficult to clean — smears with incorrect technique.',
-                    response: 'Requires specific alkaline cleaning agents. Must not be dry-cleaned.',
-                  },
-                  {
-                    type: 'Dry Smoke Residue',
-                    source: 'Fast-burning, high-heat fires (paper, wood)',
-                    character: 'Dry, powdery residue. Easier to vacuum but penetrates porous surfaces deeply.',
-                    response: 'Dry chemical sponges and HEPA vacuum prior to wet cleaning.',
-                  },
-                  {
-                    type: 'Protein Residue',
-                    source: 'Kitchen fires — burning food, grease',
-                    character: 'Near-invisible film with strong, persistent odour. Discolours paint and varnish.',
-                    response: 'Enzyme-based cleaners. Often requires repainting affected surfaces.',
-                  },
-                  {
-                    type: 'Fuel/Oil Residue',
-                    source: 'Petroleum product combustion, heating system fires',
-                    character: 'Heavy, pungent. Penetrates deeply into porous materials.',
-                    response: 'Solvent-based cleaning prior to encapsulation. May require surface replacement.',
-                  },
-                ].map((s) => (
-                  <div
-                    key={s.type}
-                    style={{
-                      background: 'white',
-                      borderRadius: '0.75rem',
-                      padding: '1.25rem',
-                      border: '1px solid rgba(0,0,0,0.08)',
-                      borderTop: '3px solid #B91C1C',
-                    }}
-                  >
-                    <div style={{ fontWeight: 700, color: '#1F2937', marginBottom: '0.5rem' }}>{s.type}</div>
-                    <div style={{ fontSize: '0.8rem', color: '#6B7280', marginBottom: '0.5rem' }}><strong>Source:</strong> {s.source}</div>
-                    <div style={{ fontSize: '0.85rem', color: '#374151', marginBottom: '0.5rem' }}>{s.character}</div>
-                    <div style={{ fontSize: '0.8rem', color: '#047857', fontWeight: 500 }}>Response: {s.response}</div>
-                  </div>
-                ))}
+              <p style={{ marginTop: '1rem' }}>
+                An ANSI/IICRC S700:2025-certified contractor is trained to:
+              </p>
+              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
+                <li>Assess all affected areas — not just the visible fire damage — including HVAC systems and connected rooms</li>
+                <li>Identify the type of fire residue present and apply the correct cleaning method for each surface and material</li>
+                <li>Apply appropriate odour neutralisation treatments rather than masking agents</li>
+                <li>Document all damage and remediation work to the standard required by insurers</li>
+                <li>Confirm completion to a professional standard before the job is closed</li>
+              </ul>
+              <p style={{ marginTop: '1rem' }}>
+                A general cleaner or builder does not have this specialist training. Applying the wrong cleaning method to fire residue can permanently set stains or spread contamination to previously unaffected areas.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: 'What Your Contractor Should Document',
+          body: (
+            <>
+              <p>
+                An ANSI/IICRC S700:2025-certified job produces documentation that supports your insurance claim. If a contractor cannot provide these records, the job may not have been performed to the required standard:
+              </p>
+              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
+                <li><strong>Written scope of works</strong> — All affected areas and materials documented before work begins, including rooms affected by smoke infiltration beyond the fire origin</li>
+                <li><strong>Photographic evidence</strong> — Before and after photographs of all affected areas</li>
+                <li><strong>HVAC assessment</strong> — Documentation that heating, ventilation, and air conditioning systems were inspected and cleaned where affected</li>
+                <li><strong>Odour treatment records</strong> — What treatment was applied, where, and when</li>
+                <li><strong>Completion report</strong> — Signed confirmation that work was completed to the ANSI/IICRC S700:2025 standard</li>
+              </ul>
+              <p style={{ marginTop: '1rem' }}>
+                This documentation is what AFCA and courts reference when a policyholder disputes whether restoration was complete. Independent documentation produced before an insurer closes the claim is your most important protection.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: 'If Your Insurer\'s Contractor\'s Work Falls Short',
+          background: 'light',
+          body: (
+            <>
+              <p>
+                Fire and smoke restoration disputes commonly arise when:
+              </p>
+              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
+                <li>Smoke odour returns weeks or months after restoration — indicating incomplete decontamination or HVAC cleaning</li>
+                <li>Rooms connected to the fire area were not assessed or treated despite smoke infiltration</li>
+                <li>The insurer closes the claim before all affected areas are restored</li>
+                <li>Contents (furniture, clothing, electronics) were not assessed for smoke damage</li>
+              </ul>
+              <p style={{ marginTop: '1rem' }}>
+                If the completed work does not meet the ANSI/IICRC S700:2025 standard, you have the right to raise a formal complaint with your insurer through their internal dispute resolution (IDR) process. If unresolved within 30 days, the dispute can be escalated to AFCA at no cost.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                An independent assessment by a separate ANSI/IICRC S700:2025-certified contractor documents whether the work was completed to standard — and is the primary evidence in any AFCA dispute.
+              </p>
+              <div style={{ marginTop: '1.5rem' }}>
+                <Link
+                  href="/claim"
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.875rem 2rem',
+                    background: '#B91C1C',
+                    color: 'white',
+                    borderRadius: '0.5rem',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                  }}
+                >
+                  Get an Independent Assessment
+                </Link>
               </div>
-              <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: '#6B7280' }}>
-                Correct smoke classification at the assessment phase is the foundation of S700:2025 compliance. A contractor who applies a single cleaning method to all residue types is not following the standard.
-              </p>
             </>
           ),
         },
         {
-          heading: 'The S700:2025 Restoration Workflow',
+          heading: 'Victoria Bushfires: Smoke Infiltration in Properties Not Directly Burned',
           body: (
             <>
               <p>
-                IICRC S700:2025 defines a structured workflow for fire and smoke restoration. While the specific scope varies by job, a S700:2025-compliant contractor will follow these phases:
-              </p>
-              <ol style={{ marginTop: '1rem', paddingLeft: '1.5rem', lineHeight: 2.2 }}>
-                <li>
-                  <strong>Safety assessment and hazard identification</strong> — Structural integrity check, identification of asbestos, lead paint, or compromised electrical systems before any work begins.
-                </li>
-                <li>
-                  <strong>Documentation and scope of works</strong> — Photographic and written record of all affected areas and materials. This documentation supports your insurance claim.
-                </li>
-                <li>
-                  <strong>Emergency stabilisation</strong> — Board-up, roof tarping, and temporary power isolation to secure the property and prevent further damage.
-                </li>
-                <li>
-                  <strong>Smoke residue classification</strong> — Assessment of residue type (wet, dry, protein, or fuel/oil) to determine appropriate cleaning methods for each surface.
-                </li>
-                <li>
-                  <strong>Contents removal and pack-out</strong> — Removal and inventory of salvageable contents for off-site cleaning and storage during structural restoration.
-                </li>
-                <li>
-                  <strong>Structural decontamination</strong> — Systematic top-down cleaning of ceilings, walls, and floors using S700:2025-specified cleaning agents for the identified residue type.
-                </li>
-                <li>
-                  <strong>HVAC system cleaning</strong> — S700:2025 requires specific protocols for decontaminating heating, ventilation, and air conditioning systems after fire events. Smoke travels through ductwork and deposits residue in all connected rooms — including rooms unaffected by the fire itself.
-                </li>
-                <li>
-                  <strong>Odour neutralisation</strong> — Thermal fogging, hydroxyl generation, or ozone treatment as specified by S700:2025 protocols for the residue type. Masking agents are not S700:2025 compliant.
-                </li>
-                <li>
-                  <strong>Encapsulation and reconstruction preparation</strong> — Shellac-based sealants applied to structural framing to permanently seal residual odours prior to reconstruction.
-                </li>
-                <li>
-                  <strong>Final inspection and documentation</strong> — Completion report including before/after documentation for insurer review.
-                </li>
-              </ol>
-            </>
-          ),
-        },
-        {
-          heading: 'Why S700:2025 Matters for Your Insurance Claim',
-          background: 'light',
-          body: (
-            <>
-              <p>
-                Insurance claims for fire damage frequently involve disputes over scope of works. When an insurer&apos;s preferred contractor uses a different (often less thorough) method than the standard requires, policyholders can end up with incomplete restoration — and a closed claim that does not cover the actual damage.
+                The 2025–2026 Victoria bushfire season (ICA Insurance Catastrophe, 3,123 claims across 18 LGAs) included significant smoke infiltration into properties that were not directly in the fire path. Bushfire smoke travels further and penetrates more deeply into building structures than many homeowners expect.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                An independent IICRC S700:2025 assessment documents all damage to the S700 standard. This creates a baseline scope of works that:
-              </p>
-              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
-                <li>Identifies items the insurer&apos;s scope may have missed (HVAC, protein residue in unburned rooms, contents contamination)</li>
-                <li>Provides documented evidence for any AFCA dispute or internal review</li>
-                <li>Establishes whether completed restoration work was performed to the current professional standard</li>
-              </ul>
-              <p style={{ marginTop: '1rem' }}>
-                If your insurer&apos;s scope of works does not reference IICRC S700:2025, you have the right to request an independent assessment. Recent AFCA rulings have supported policyholders who obtained independent documentation showing the insurer&apos;s scope was below the current professional standard.
-              </p>
-            </>
-          ),
-        },
-        {
-          heading: 'IICRC S700:2025 and the Victoria Bushfires',
-          body: (
-            <>
-              <p>
-                The 2025–2026 Victoria bushfire season produced an ICA-declared Insurance Catastrophe (3,123 claims across 18 LGAs). Bushfire restoration is distinct from structure fires in key ways:
-              </p>
-              <ul style={{ marginTop: '0.75rem', paddingLeft: '1.5rem', lineHeight: 2 }}>
-                <li>
-                  <strong>Wildfire smoke penetration</strong> — smoke from external bush fires infiltrates roof cavities, wall cavities, and HVAC systems even in properties that were not directly burned. S700:2025 HVAC protocols apply.
-                </li>
-                <li>
-                  <strong>Ash and particulate contamination</strong> — fine ash from vegetation fires has different chemical properties to combustion residue from structural materials. Correct residue classification under S700:2025 is essential.
-                </li>
-                <li>
-                  <strong>Extended odour persistence</strong> — bushfire smoke odour can persist for months without correct treatment. Masking agents are not a S700:2025 compliant solution.
-                </li>
-              </ul>
-              <p style={{ marginTop: '1rem' }}>
-                If your property was in a declared Victoria bushfire area and received smoke infiltration — even without direct fire contact — an IICRC S700:2025 assessment will document whether your insurer&apos;s scope of works addressed all affected areas.
+                If your property in a Victoria bushfire-affected LGA shows smoke odour, ash deposits, or HVAC contamination — even without direct fire contact — this may be a covered loss under your policy. An ANSI/IICRC S700:2025 assessment documents whether smoke infiltration occurred and what remediation is required.
               </p>
             </>
           ),
@@ -220,37 +177,37 @@ export default function IicrcS700FireSmokeStandardPage() {
       ]}
       faqs={[
         {
-          question: 'What is IICRC S700:2025?',
+          question: 'What is ANSI/IICRC S700:2025?',
           answer:
-            'IICRC S700:2025 is the current Standard for Professional Fire and Smoke Damage Restoration, published by the IICRC. It defines protocols for smoke classification, decontamination, HVAC cleaning, and documentation requirements for fire-damaged properties.',
+            'ANSI/IICRC S700:2025 is the current Standard for Professional Fire and Smoke Damage Restoration, published by the IICRC. It is the benchmark certification standard for fire and smoke restoration contractors in Australia. For the full standard, visit iicrc.org.',
         },
         {
-          question: 'Do I need an IICRC-certified contractor for fire damage restoration?',
+          question: 'Why does it matter whether my contractor is IICRC-certified for fire restoration?',
           answer:
-            'Your insurer is not legally required to use an IICRC-certified contractor, but IICRC S700:2025 is the recognised professional standard in Australia. If restoration work is disputed, AFCA and courts reference industry standards when assessing whether work was completed appropriately. An IICRC-certified contractor provides documented evidence of standard-compliant work.',
+            'ANSI/IICRC S700:2025 defines the professional standard for fire and smoke restoration — including how to assess smoke infiltration beyond the burn area, how to clean different types of fire residue, and what documentation your insurance claim requires. A contractor without this certification may not have the specialist training to identify or treat all affected areas correctly.',
         },
         {
-          question: 'What is the difference between wet smoke and dry smoke residue?',
+          question: 'What should I do if smoke odour returns after restoration?',
           answer:
-            'Wet smoke residue comes from low-heat smouldering fires (rubber, plastics) and is sticky and smeary — applying dry cleaning methods will spread it further. Dry smoke residue comes from fast-burning, high-heat fires (paper, wood) and is powdery but penetrates porous surfaces deeply. S700:2025 requires different cleaning agents and techniques for each type.',
+            'Returning smoke odour typically indicates incomplete decontamination — untreated HVAC systems, wall cavities, or structural framing that was not sealed. Contact your insurer to raise a formal complaint. If the insurer does not resolve it within 30 days, you can escalate to AFCA. An independent ANSI/IICRC S700:2025 assessment documents whether the original work was completed to standard.',
         },
         {
-          question: 'Does smoke damage in rooms not directly affected by fire count as a covered loss?',
+          question: 'Does insurance cover smoke damage in rooms not directly burned?',
           answer:
-            'Yes. Smoke travels through HVAC systems, wall cavities, and roof spaces, depositing residue in rooms far from the fire origin. IICRC S700:2025 requires assessment of the full property including HVAC systems. If your insurer\'s scope only covers directly burned areas, you may have grounds to request an independent assessment.',
+            'Smoke travels through HVAC systems, wall cavities, and roof spaces — contaminating rooms far from the fire origin. This is a covered loss under most building policies. An ANSI/IICRC S700:2025-certified assessment documents smoke infiltration across the whole property, not just the burned area, which supports your claim for the full scope of damage.',
         },
         {
-          question: 'How does the IICRC S700:2025 standard help with insurance disputes?',
+          question: 'Can I get an independent fire restoration assessment if I\'m not happy with my insurer\'s work?',
           answer:
-            'An independent IICRC S700:2025 assessment documents all fire and smoke damage to the current professional standard. If your insurer\'s scope of works is less comprehensive than S700:2025 requires, this documentation can support an AFCA complaint or internal dispute review.',
+            'Yes. An independent ANSI/IICRC S700:2025-certified contractor can assess whether your property was restored to the current professional standard. This independent documentation is the primary evidence in AFCA disputes and insurer internal reviews. Start your request through our claim form.',
         },
       ]}
       relatedGuides={[
         { title: 'Fire Damage Restoration Services', href: '/services/fire-damage-restoration' },
         { title: 'Victoria Bushfires 2025 — Event Page', href: '/events/victoria-bushfires-2025' },
         { title: 'Victoria Bushfires 2026 — Event Page', href: '/events/victoria-bushfires-2026' },
+        { title: 'Your Advocate vs Your Insurer\'s Builder', href: '/guides/insurance/human-advocate-vs-insurer-assigned-builder' },
         { title: 'Why Hire an IICRC-Certified Professional', href: '/guides/certifications/why-hire-iicrc-certified' },
-        { title: 'IICRC S500:2025 Water Damage Restoration', href: '/guides/water-damage/iicrc-s500-water-damage-standard' },
       ]}
     />
   )
