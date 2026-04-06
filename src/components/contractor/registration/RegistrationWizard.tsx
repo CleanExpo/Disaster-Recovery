@@ -12,12 +12,12 @@ import { useToast } from '@/components/ui/use-toast';
 // Import step components
 import { Step1Account } from './steps/Step1Account';
 import { Step2Company } from './steps/Step2Company';
-import { Step3Insurance } from './steps/Step3Insurance';
-import { Step4Certifications } from './steps/Step4Certifications';
-import { Step5Background } from './steps/Step5Background';
-import { Step6Subscription } from './steps/Step6Subscription';
-import { Step7Agreements } from './steps/Step7Agreements';
-import { StepReview } from './steps/StepReview';
+import { Step3Compliance as Step3Insurance } from './steps/Step3Compliance';
+import { Step4Background as Step4Certifications } from './steps/Step4Background';
+import { Step4Background as Step5Background } from './steps/Step4Background';
+import { Step5Subscription as Step6Subscription } from './steps/Step5Subscription';
+import { Step6Agreements as Step7Agreements } from './steps/Step6Agreements';
+import { Step6Agreements as StepReview } from './steps/Step6Agreements';
 
 import type { ContractorOnboardingData } from '@/types/contractor';
 
@@ -286,11 +286,11 @@ export function RegistrationWizard() {
         {/* Help Text */}
         <div className="mt-8 text-center text-sm text-gray-700">
           <p>
-            Need help? Contact our support team at{' '}
-            <a href="mailto:contractors@nrp.com.au" className="text-blue-600 hover:underline">
-              contractors@nrp.com.au
+            Need help?{' '}
+            <a href="/contact" className="text-blue-600 hover:underline">
+              Contact our support team
             </a>
-            {' '}or call{' '}
+            {' '}or use our{' '}
             <a href="/claim" className="text-blue-600 hover:underline">
               online support</a>
           </p>

@@ -1016,7 +1016,7 @@ export default function PitchDeckPowerful() {
             </div>
             
             <div className="text-white text-sm" style={{ opacity: 0.8 }}>
-              <p>Contact: invest@disasterrecovery.com.au | 1300 DISASTER</p>
+              <p>Contact us via the online form at disasterrecovery.com.au/contact</p>
               <p className="mt-2">Current investors: Angels who believe in humanity</p>
             </div>
           </motion.div>
@@ -1044,7 +1044,7 @@ export default function PitchDeckPowerful() {
 
   // Auto-play functionality
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) return undefined;
 
     const currentSlideDuration = slides[currentSlide].duration || 30;
     const interval = setInterval(() => {
