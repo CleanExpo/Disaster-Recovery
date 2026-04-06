@@ -184,9 +184,9 @@ function ExpandableFABMenu() {
     },
     {
       icon: Mail,
-      label: 'Email Documentation',
+      label: 'Contact Support',
       colour: 'bg-gradient-to-r from-green-600 to-green-700',
-      action: () => window.open('mailto:claims@disasterrecovery.com.au', '_self')
+      action: () => window.location.href = '/contact'
     },
     {
       icon: Calendar,

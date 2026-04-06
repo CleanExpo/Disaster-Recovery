@@ -239,12 +239,12 @@ const Footer: React.FC = () => {
                 </div>
               </Link>
               
-              {/* Email */}
-              <a href={`mailto:${EMAIL}`} className="group">
+              {/* Contact */}
+              <a href="/contact" className="group">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                   <Mail className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
-                  <div className="text-xl font-bold mb-2">Email Support</div>
-                  <p className="text-sm opacity-90">{EMAIL}</p>
+                  <div className="text-xl font-bold mb-2">Online Support</div>
+                  <p className="text-sm opacity-90">Submit a request</p>
                   <div className="mt-2 text-xs bg-blue-600/30 px-2 py-1 rounded-full inline-block">
                     Non-emergency inquiries
                   </div>
