@@ -214,7 +214,10 @@ function OnlineClaimPageOriginal() {
     // Terms
     understandPlatformRole: false,
     acceptContractorCommunication: false,
-    agreeToTerms: false
+    agreeToTerms: false,
+
+    // Privacy — APP 5 collection notice acknowledgement
+    privacyCollectionNotice: false
   });
 
   const step1Complete = Boolean(
@@ -237,8 +240,8 @@ function OnlineClaimPageOriginal() {
       return;
     }
 
-    if (!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms) {
-      setSubmissionError('Please accept all terms and conditions.');
+    if (!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms || !formData.privacyCollectionNotice) {
+      setSubmissionError('Please accept all terms and conditions, including the privacy collection notice.');
       return;
     }
 
@@ -849,6 +852,43 @@ function OnlineClaimPageOriginal() {
                 </div>
 
                 <div className="space-y-4">
+                  <h3 className="font-semibold">Privacy — Collection Notice (APP 5)</h3>
+                  <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 space-y-2 leading-relaxed">
+                    <p>
+                      <strong>National Restoration Professionals Group Pty Ltd</strong> (ABN 85 151 794 142), trading as <strong>Disaster Recovery Australia</strong>, is collecting your personal information on this form to match your claim with a certified IICRC restoration contractor in our network.
+                    </p>
+                    <p>
+                      The information you provide — including your name, contact details, property address, damage description, and insurance details — will be disclosed to the assigned contractor so they can contact you, inspect your property, perform restoration work, and liaise with your insurer on your behalf.
+                    </p>
+                    <p>
+                      Your payment card details are processed by Stripe and are not stored or shared by us. Your information may also be disclosed to our cloud infrastructure providers who process data on our behalf, and to regulatory bodies where required by law.
+                    </p>
+                    <p>
+                      You have the right to access and correct the personal information we hold about you. To exercise this right or to make a privacy complaint, contact us via our{' '}
+                      <Link href="/contact" className="underline font-medium">contact form</Link>.
+                      Our full{' '}
+                      <Link href="/privacy" className="underline font-medium">Privacy Policy</Link>
+                      {' '}is available at disasterrecovery.com.au/privacy.
+                    </p>
+                    <p>
+                      If you are not satisfied with our response to a complaint, you may contact the Office of the Australian Information Commissioner (OAIC) at <strong>oaic.gov.au</strong> or on <strong>1300 363 992</strong>.
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3 py-1">
+                    <Checkbox
+                      id="privacyCollectionNotice"
+                      className={CHECKBOX_CLASS}
+                      checked={formData.privacyCollectionNotice}
+                      onCheckedChange={(checked) => setFormData({...formData, privacyCollectionNotice: checked as boolean})}
+                      required
+                    />
+                    <Label htmlFor="privacyCollectionNotice" className="font-normal cursor-pointer leading-snug">
+                      I have read and understood the collection notice above. I consent to my personal information being collected, used, and disclosed as described to match my claim and perform restoration services.
+                    </Label>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
                   <h3 className="font-semibold">Understanding & Agreement</h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3 py-1">
@@ -913,7 +953,7 @@ function OnlineClaimPageOriginal() {
                   <Button
                     onClick={() => setStep(4)}
                     className="bg-blue-600 hover:bg-blue-700"
-                    disabled={!formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms}
+                    disabled={!formData.privacyCollectionNotice || !formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms}
                   >
                     Proceed to Final Review
                   </Button>
