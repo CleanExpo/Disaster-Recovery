@@ -100,8 +100,8 @@ export function AgPricingPageTemplate({
               <span className="ag-stat-label">Average Job Cost</span>
             </div>
             <div className="ag-card-stat" style={{ textAlign: 'center' }}>
-              <span className="ag-stat-value">{insuranceCoverage}</span>
-              <span className="ag-stat-label">Insurance Covered</span>
+              <span className="ag-stat-value">IICRC</span>
+              <span className="ag-stat-label">Certified Standard</span>
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@ export function AgPricingPageTemplate({
             Get Your {serviceName} Estimate for {cityName}
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '2rem', fontSize: '1.125rem' }}>
-            Transparent pricing from {minimumCallout}. {insuranceCoverage} insurance covered.
+            Transparent pricing from {minimumCallout}. Full claims documentation included.
           </p>
           <Link href="/claim" className="ag-btn-primary-glow">
             Get {cityName} Estimate
