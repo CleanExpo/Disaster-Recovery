@@ -3,6 +3,18 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      { source: '/contractors/join', destination: '/contractors/apply', permanent: true },
+      { source: '/help-center', destination: '/contact', permanent: true },
+      { source: '/help', destination: '/contact', permanent: true },
+      { source: '/support', destination: '/contact', permanent: true },
+      { source: '/cookie-policy', destination: '/cookies', permanent: true },
+      { source: '/privacy-policy', destination: '/privacy', permanent: true },
+      { source: '/insurance-claim-advocate', destination: '/how-it-works', permanent: false },
+      { source: '/contractor-terms', destination: '/terms', permanent: false },
+    ]
+  },
   async headers() {
     return [
       {
