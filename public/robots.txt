@@ -7,7 +7,6 @@ Disallow: /client-portal
 Disallow: /coming-soon
 Disallow: /contractor
 Disallow: /contractor-portal
-Disallow: /contractors
 Disallow: /crm
 Disallow: /dashboard
 Disallow: /demo
