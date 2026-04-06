@@ -11,6 +11,10 @@ const nextConfig = {
       { source: '/support', destination: '/contact', permanent: true },
       { source: '/cookie-policy', destination: '/cookies', permanent: true },
       { source: '/privacy-policy', destination: '/privacy', permanent: true },
+      { source: '/insurance-claim', destination: '/claim', permanent: true },
+      { source: '/insurance-claims', destination: '/claim', permanent: true },
+      { source: '/make-a-claim', destination: '/claim', permanent: true },
+      { source: '/lodge-a-claim', destination: '/claim', permanent: true },
       { source: '/insurance-claim-advocate', destination: '/how-it-works', permanent: false },
       { source: '/contractor-terms', destination: '/terms', permanent: false },
     ]
