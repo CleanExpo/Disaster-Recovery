@@ -2,6 +2,7 @@
 
 
 import Link from 'next/link';
+import { PrivacyCollectionNoticeSection } from './PrivacyCollectionNotice';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect, useCallback, Suspense } from 'react';
@@ -851,42 +852,10 @@ function OnlineClaimPageOriginal() {
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <h3 className="font-semibold">Privacy — Collection Notice (APP 5)</h3>
-                  <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 space-y-2 leading-relaxed">
-                    <p>
-                      <strong>National Restoration Professionals Group Pty Ltd</strong> (ABN 85 151 794 142), trading as <strong>Disaster Recovery Australia</strong>, is collecting your personal information on this form to match your claim with a certified IICRC restoration contractor in our network.
-                    </p>
-                    <p>
-                      The information you provide — including your name, contact details, property address, damage description, and insurance details — will be disclosed to the assigned contractor so they can contact you, inspect your property, perform restoration work, and liaise with your insurer on your behalf.
-                    </p>
-                    <p>
-                      Your payment card details are processed by Stripe and are not stored or shared by us. Your information may also be disclosed to our cloud infrastructure providers who process data on our behalf, and to regulatory bodies where required by law.
-                    </p>
-                    <p>
-                      You have the right to access and correct the personal information we hold about you. To exercise this right or to make a privacy complaint, contact us via our{' '}
-                      <Link href="/contact" className="underline font-medium">contact form</Link>.
-                      Our full{' '}
-                      <Link href="/privacy" className="underline font-medium">Privacy Policy</Link>
-                      {' '}is available at disasterrecovery.com.au/privacy.
-                    </p>
-                    <p>
-                      If you are not satisfied with our response to a complaint, you may contact the Office of the Australian Information Commissioner (OAIC) at <strong>oaic.gov.au</strong> or on <strong>1300 363 992</strong>.
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3 py-1">
-                    <Checkbox
-                      id="privacyCollectionNotice"
-                      className={CHECKBOX_CLASS}
-                      checked={formData.privacyCollectionNotice}
-                      onCheckedChange={(checked) => setFormData({...formData, privacyCollectionNotice: checked as boolean})}
-                      required
-                    />
-                    <Label htmlFor="privacyCollectionNotice" className="font-normal cursor-pointer leading-snug">
-                      I have read and understood the collection notice above. I consent to my personal information being collected, used, and disclosed as described to match my claim and perform restoration services.
-                    </Label>
-                  </div>
-                </div>
+                <PrivacyCollectionNoticeSection
+                  checked={formData.privacyCollectionNotice}
+                  onCheckedChange={(checked) => setFormData({...formData, privacyCollectionNotice: checked})}
+                />
 
                 <div className="space-y-4">
                   <h3 className="font-semibold">Understanding & Agreement</h3>
