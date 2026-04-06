@@ -12,6 +12,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { LanguageSelector } from '@/components/ui/language-selector';
 
 export function AntigravityNavbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -25,6 +26,7 @@ export function AntigravityNavbar() {
             ANZ&apos;s Trusted Disaster Recovery Network
           </span>
           <div className="ag-top-links">
+            <LanguageSelector />
             <Link href="/contractor/login">Contractor Portal</Link>
             <Link href="/claim">Report a Claim</Link>
           </div>
