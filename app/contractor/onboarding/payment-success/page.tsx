@@ -204,10 +204,11 @@ function PaymentSuccessPageContent() {
 
         {/* Support Information */}
         <div className="mt-8 text-center text-gray-700">
-          <p>Need help? Contact our support team at</p>
-          <a href="mailto:support@nrpaus.com.au" className="text-blue-600 hover:underline">
-            support@nrpaus.com.au
-          </a>
+          <p>Need help?{' '}
+            <a href="/contact" className="text-blue-600 hover:underline">
+              Contact our support team
+            </a>
+          </p>
         </div>
       </div>
     </div>

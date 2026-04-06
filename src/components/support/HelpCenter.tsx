@@ -119,18 +119,18 @@ export function HelpCenter() {
     },
     {
       icon: Mail,
-      title: 'Email Support',
+      title: 'Online Support',
       description: '24-48 hour response time',
-      action: () => window.location.href = 'mailto:support@nrp.com.au',
-      stats: 'support@nrp.com.au',
+      action: () => window.location.href = '/contact',
+      stats: 'Submit a request',
       available: true
     },
     {
       icon: Phone,
-      title: 'Phone Support',
-      description: 'For urgent issues only',
-      action: () => window.location.href = 'tel:online support',
-      stats: 'online support',
+      title: 'Urgent Support',
+      description: 'For urgent claims only',
+      action: () => window.location.href = '/contact',
+      stats: 'Contact us online',
       available: isBusinessHours()
     }
   ];

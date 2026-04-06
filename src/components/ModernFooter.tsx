@@ -195,9 +195,9 @@ export default function UltraModernFooter() {
                 },
                 {
                   icon: Mail,
-                  label: 'Email Support',
-                  value: 'help@disasterrecovery.com.au',
-                  href: 'mailto:help@disasterrecovery.com.au',
+                  label: 'Online Support',
+                  value: 'Submit a support request',
+                  href: '/contact',
                   colour: 'text-blue-600'
                 },
                 {
