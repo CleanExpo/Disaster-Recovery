@@ -64,7 +64,6 @@ export function AntigravityFooter() {
           <Link href="/blog">Blog &amp; Resources</Link>
           <Link href="/claim">Make a Claim</Link>
           <Link href="/rates">Rate Schedule</Link>
-          <Link href="/admin">Admin</Link>
         </div>
 
         {/* Services column */}
