@@ -32,6 +32,7 @@ export interface User {
 }
 
 export interface TokenPayload {
+  id: string;
   userId: string;
   email: string;
   role: UserRole;
@@ -94,7 +95,7 @@ export async function generateRefreshToken(userId: string): Promise<string> {
 export async function verifyToken(token: string): Promise<TokenPayload> {
   try {
     const { payload } = await jwtVerify(token, getJwtSecretKey());
-    return payload as TokenPayload;
+    return payload as unknown as TokenPayload;
   } catch (error) {
     throw new Error('Invalid or expired token');
   }

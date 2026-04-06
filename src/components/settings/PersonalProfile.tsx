@@ -41,7 +41,7 @@ const mockUserProfile: UserProfile = {
   lastName: 'Doe',
   displayName: 'John Doe',
   phoneNumber: 'Contact Form',
-  alternativeemail: 'Contact Form',
+  alternativeEmail: 'Contact Form',
   avatar: '/avatars/john-doe.jpg',
   bio: 'Experienced restoration contractor specialising in water damage and mould remediation.',
   role: {
@@ -402,7 +402,7 @@ export function PersonalProfile() {
                   id="altPhone"
                   type="tel"
                   value={isEditing ? (editedProfile.alternativePhone || '') : (profile.alternativePhone || '')}
-                  onChange={(e) => setEditedProfile({ ...editedProfile, alternativeemail: e.target.value })}
+                  onChange={(e) => setEditedProfile({ ...editedProfile, alternativeEmail: e.target.value })}
                   disabled={!isEditing}
                 />
               </div>

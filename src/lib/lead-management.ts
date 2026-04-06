@@ -211,7 +211,7 @@ export async function validateLeadQuality(data: any): Promise<{
     reasons.push('Potential spam content detected');
   }
   
-  if (await isDuplicateSubmission(data.email, data.phone || '')) {
+  if (await isDuplicateSubmission(data.email)) {
     reasons.push('Duplicate submission detected');
   }
   

@@ -122,7 +122,6 @@ export default function GoogleReviewIntegration({
       contractorId,
       customerId: 'cust-1',
       customerEmail: 'sarah.johnson@email.com',
-      customeremail: 'Contact Form',
       type: 'google',
       status: 'completed',
       sentDate: new Date('2024-03-10'),

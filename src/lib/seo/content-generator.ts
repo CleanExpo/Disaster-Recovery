@@ -406,7 +406,6 @@ export function generateSchemaMarkup(
     "alternateName": "NRPG Australia",
     "description": generateMetaDescription(location, service, propertyType, businessType),
     "url": `https://nrpaus.com.au/${generateSlug(location, service, propertyType, businessType)}`,
-    "email": "",
     "email": "emergency@nrpaus.com.au",
     "address": {
       "@type": "PostalAddress",

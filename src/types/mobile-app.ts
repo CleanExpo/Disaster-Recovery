@@ -53,7 +53,7 @@ export interface MobileJob {
   priority: 'routine' | 'urgent' | 'emergency';
   client: {
     name: string;
-    
+    phone?: string;
     email?: string;
   };
   location: JobLocation;

@@ -37,7 +37,7 @@ interface FormData {
   propertyType: PropertyType;
   urgencyLevel: UrgencyLevel;
   damageDescription: string;
-  
+
   // Step 2: Property Information
   propertyAddress: string;
   suburb: string;
@@ -45,16 +45,21 @@ interface FormData {
   postcode: string;
   propertySize: string;
   affectedArea: string;
-  
+  propertySuburb?: string;
+  propertyState?: string;
+  affectedRooms?: string;
+
   // Step 3: Contact Information
   firstName: string;
   lastName: string;
   email: string;
-  
+  contactPhone?: string;
+
   preferredContact: 'email';
-  
+
   // Step 4: Insurance & Additional
   hasInsurance: boolean;
+  insuranceStatus?: string;
   insuranceCompany: string;
   claimNumber: string;
   additionalNotes: string;

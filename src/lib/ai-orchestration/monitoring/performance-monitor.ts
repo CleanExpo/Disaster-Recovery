@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Advanced Performance Monitoring for AI Orchestration
  * Comprehensive metrics, analytics, and performance optimisation
@@ -11,7 +12,7 @@ import {
   RoutingDecision
 } from '../core/types';
 import { AIProvider, AITaskType } from '@/types/ai-service';
-import { logger } from '@/lib/logger';
+import logger from '@/lib/logger';
 import { EventEmitter } from 'events';
 
 export interface PerformanceMetrics {

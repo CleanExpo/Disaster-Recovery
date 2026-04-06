@@ -15,7 +15,7 @@ import {
   MapPin, 
   Clock, 
   HelpCircle,
-  email,
+  Mail,
   Shield,
   Flame,
   Droplets,
@@ -59,6 +59,7 @@ const Header: React.FC = () => {
       document.addEventListener('click', handleClickOutside);
       return () => document.removeEventListener('click', handleClickOutside);
     }
+    return undefined;
   }, [activeDropdown]);
 
   const handleDropdownEnter = (dropdownName: string) => {

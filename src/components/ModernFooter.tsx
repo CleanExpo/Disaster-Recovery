@@ -34,7 +34,7 @@ export default function UltraModernFooter() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behaviour: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const footerSections = [

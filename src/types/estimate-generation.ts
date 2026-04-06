@@ -495,7 +495,6 @@ export type DeliveryMethod =
 export interface RecipientInfo {
   name: string;
   email?: string;
-  email?: string;
   role: 'client' | 'insurance' | 'adjuster' | 'contractor';
 }
 

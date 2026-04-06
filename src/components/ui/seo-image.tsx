@@ -55,6 +55,7 @@ export const SEOImage: React.FC<SEOImageProps> = ({
         document.head.removeChild(script);
       };
     }
+    return undefined;
   }, [image, location, serviceType, useStructuredData]);
 
   if (!optimizedData) {

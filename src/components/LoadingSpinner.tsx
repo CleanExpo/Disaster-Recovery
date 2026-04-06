@@ -22,6 +22,7 @@ export default function LoadingSpinner({
       const timer = setTimeout(() => setShow(true), delay);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [delay]);
   
   if (!show) return null;

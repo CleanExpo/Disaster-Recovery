@@ -146,15 +146,15 @@ export function encryptPII<T extends Record<string, any>>(
   fieldsToEncrypt: string[],
   password: string
 ): T {
-  const encrypted = { ...obj };
-  
+  const encrypted: Record<string, any> = { ...obj };
+
   for (const field of fieldsToEncrypt) {
     if (encrypted[field]) {
       encrypted[field] = encryptData(JSON.stringify(encrypted[field]), password);
     }
   }
-  
-  return encrypted;
+
+  return encrypted as T;
 }
 
 /**
@@ -165,8 +165,8 @@ export function decryptPII<T extends Record<string, any>>(
   fieldsToDecrypt: string[],
   password: string
 ): T {
-  const decrypted = { ...obj };
-  
+  const decrypted: Record<string, any> = { ...obj };
+
   for (const field of fieldsToDecrypt) {
     if (decrypted[field]) {
       try {
@@ -176,8 +176,8 @@ export function decryptPII<T extends Record<string, any>>(
       }
     }
   }
-  
-  return decrypted;
+
+  return decrypted as T;
 }
 
 /**

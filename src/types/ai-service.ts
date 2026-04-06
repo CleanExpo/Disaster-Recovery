@@ -24,6 +24,9 @@ export interface AIResponse {
   provider: AIProvider;
   responseTime: number;
   cached?: boolean;
+  success?: boolean;
+  confidence?: number;
+  metadata?: Record<string, any>;
 }
 
 // Provider Configuration
@@ -54,22 +57,31 @@ export enum AITaskType {
   // Emergency Response (High Accuracy Required)
   DAMAGE_ASSESSMENT = 'damage-assessment',
   EMERGENCY_ROUTING = 'emergency-routing',
+  EMERGENCY_RESPONSE = 'emergency-response',
   SAFETY_ANALYSIS = 'safety-analysis',
-  
+
   // Business Operations (Balanced)
   LEAD_QUALIFICATION = 'lead-qualification',
   CONTRACTOR_MATCHING = 'contractor-matching',
   ESTIMATE_GENERATION = 'estimate-generation',
-  
+  COST_ESTIMATION = 'cost-estimation',
+  SCHEDULING = 'scheduling',
+
   // Content & Communication (Speed Optimised)
   CONTENT_GENERATION = 'content-generation',
   EMAIL_RESPONSES = 'email-responses',
   FAQ_ANSWERS = 'faq-answers',
-  
+  DOCUMENTATION = 'documentation',
+
   // Analytics & Reporting (Complex Reasoning)
   BUSINESS_ANALYTICS = 'business-analytics',
   MARKET_ANALYSIS = 'market-analysis',
-  COMPLIANCE_REVIEW = 'compliance-review'
+  COMPLIANCE_REVIEW = 'compliance-review',
+  CLAIM_ANALYSIS = 'claim-analysis',
+  TECHNICAL_ANALYSIS = 'technical-analysis',
+
+  // General
+  GENERAL = 'general'
 }
 
 export interface AITaskContext {

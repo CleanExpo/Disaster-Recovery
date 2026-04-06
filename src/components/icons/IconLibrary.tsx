@@ -3,6 +3,7 @@ import {
   Shield,
   Clock,
   Users,
+  Phone,
   CheckCircle2,
   ArrowRight,
   MapPin,

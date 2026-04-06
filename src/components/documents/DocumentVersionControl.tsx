@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Clock, FileText, Download, Eye, RotateCcw, GitBranch, User,
   Calendar, AlertCircle, CheckCircle, ArrowRight, ArrowLeft,
-  Compare, History, Upload, Trash2, Star, Tag, Edit3, Save
+  GitCompareArrows, History, Upload, Trash2, Star, Tag, Edit3, Save
 } from 'lucide-react';
 import type { 
   Document, 
@@ -426,7 +426,7 @@ const DocumentVersionControl: React.FC<DocumentVersionControlProps> = ({
               onClick={() => setShowCompareModal(true)}
               className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
-              <Compare className="w-4 h-4 mr-2" />
+              <GitCompareArrows className="w-4 h-4 mr-2" />
               Compare Versions
             </button>
           )}

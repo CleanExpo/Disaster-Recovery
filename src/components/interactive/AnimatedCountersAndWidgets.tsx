@@ -31,17 +31,17 @@ function AnimatedCounter({ target, duration = 2000, prefix = '', suffix = '', de
     triggerOnce: true });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) return undefined;
 
     let startTime: number;
     let animationFrame: number;
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
-      
+
       const progress = Math.min((currentTime - startTime) / duration, 1);
       const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic
-      
+
       setCount(target * easeProgress);
 
       if (progress < 1) {
@@ -149,8 +149,8 @@ function LiveAvailabilityWidget() {
           <motion.span 
             className="font-bold text-lg text-blue-600"
             key={teamStatus.responseTime}
-            initial={{ scale: 1.2, colour: '#ef4444' }}
-            animate={{ scale: 1, colour: '#2563eb' }}
+            initial={{ scale: 1.2, color: '#ef4444' }}
+            animate={{ scale: 1, color: '#2563eb' }}
             transition={{ duration: 0.3 }}
           >
             {teamStatus.responseTime} min

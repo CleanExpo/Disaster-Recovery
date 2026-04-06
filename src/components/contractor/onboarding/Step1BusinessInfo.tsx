@@ -23,7 +23,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
     annualRevenue: '',
     website: '',
     email: '',
-    
+    phone: '',
     mobile: '',
     address: '',
     suburb: '',

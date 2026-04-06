@@ -137,13 +137,22 @@ export class BrowserAutomationAgent extends EventEmitter {
   public async execute(task: ResearchTask): Promise<any> {
     this.emit('progress', { stage: 'initializing', task: task.description });
 
-    const result = {
+    const result: {
+      summary: string;
+      tests: any[];
+      screenshots: string[];
+      performance: any;
+      accessibility: any;
+      recommendations: string[];
+      confidence: number;
+      scripts?: any;
+    } = {
       summary: '',
-      tests: [] as any[],
-      screenshots: [] as string[],
-      performance: {} as any,
-      accessibility: {} as any,
-      recommendations: [] as string[],
+      tests: [],
+      screenshots: [],
+      performance: {},
+      accessibility: {},
+      recommendations: [],
       confidence: 0.90
     };
 

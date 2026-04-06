@@ -10,7 +10,7 @@ import {
   Clock, 
   CheckCircle, 
   Star, 
-  email,
+  Mail,
   ArrowRight,
   Zap,
   PlayCircle
@@ -241,7 +241,7 @@ const ModernHeroSection: React.FC = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="relative flex items-center gap-3">
-                    <email className="h-6 w-6" />
+                    <Mail className="h-6 w-6" />
                     <span>Emergency Help Now</span>
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </div>

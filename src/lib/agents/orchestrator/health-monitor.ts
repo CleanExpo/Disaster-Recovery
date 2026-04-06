@@ -29,6 +29,7 @@ interface HealthMetrics {
   tasksProcessed: number;
   errorRate: number;
   avgResponseTime: number;
+  cpuUsage?: number;
 }
 
 export class HealthMonitor extends EventEmitter {

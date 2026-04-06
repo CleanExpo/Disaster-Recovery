@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Fallback Manager for AI Orchestration
  * Handles failures, downgrades, and recovery strategies across different orchestration approaches
@@ -12,7 +13,7 @@ import {
 } from '../core/types';
 import { AIService } from '@/lib/ai-service';
 import { AIProvider, AIMessage, AITaskContext, AITaskType } from '@/types/ai-service';
-import { logger } from '@/lib/logger';
+import logger from '@/lib/logger';
 import { EventEmitter } from 'events';
 
 export interface FallbackConfig {

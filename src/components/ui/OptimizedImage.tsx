@@ -73,7 +73,7 @@ export default function OptimizedImage({
   useEffect(() => {
     if (priority) {
       setIsIntersecting(true);
-      return;
+      return undefined;
     }
 
     const observer = new IntersectionObserver(

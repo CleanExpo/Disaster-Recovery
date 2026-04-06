@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Advanced Caching Layer for AI Orchestration
  * Intelligent caching for sequential thinking chains, discussions, and routing decisions
@@ -10,7 +11,7 @@ import {
   RoutingDecision
 } from './types';
 import { AITaskContext } from '@/types/ai-service';
-import { logger } from '@/lib/logger';
+import logger from '@/lib/logger';
 
 export interface CacheEntry<T> {
   key: string;

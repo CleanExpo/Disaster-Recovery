@@ -83,6 +83,7 @@ export default function UltraModernServiceCards() {
       container.addEventListener('mousemove', handleMouseMove);
       return () => container.removeEventListener('mousemove', handleMouseMove);
     }
+    return undefined;
   }, []);
 
   return (
@@ -210,7 +211,7 @@ export default function UltraModernServiceCards() {
                   {/* CTA */}
                   <div className="flex items-center gap-2 text-sm font-medium transition-all duration-300"
                        style={{ 
-                         colour: hoveredIndex === index ? service.colour : 'rgba(255, 255, 255, 0.6)' }}>
+                         color: hoveredIndex === index ? service.colour : 'rgba(255, 255, 255, 0.6)' }}>
                     <span>Learn More</span>
                     <svg 
                       className="w-4 h-4 transition-transform duration-300"

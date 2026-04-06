@@ -110,6 +110,9 @@ const LeadAllocationEngine: React.FC<LeadAllocationEngineProps> = ({
         
         // Calculate load balancing adjustment
         const currentSharePercentage = contractor.leadStatistics.leadSharePercentage;
+        const utilizationRate = contractor.capacity.maxActiveJobs > 0
+          ? (contractor.capacity.currentActiveJobs / contractor.capacity.maxActiveJobs) * 100
+          : 0;
         let loadBalancingAdjustment = 0;
         
         if (currentSharePercentage > config.maxLeadSharePercentage) {

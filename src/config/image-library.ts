@@ -29,7 +29,7 @@ export interface ImageAsset {
   alt: string;
 }
 
-export type ImageCategory = 
+export type ImageCategory =
   | 'damage-types'
   | 'equipment-air-movers'
   | 'equipment-dehumidifiers'
@@ -38,7 +38,8 @@ export type ImageCategory =
   | 'mould-damage'
   | 'water-damage'
   | 'fire-damage'
-  | 'restoration-process';
+  | 'restoration-process'
+  | 'branding';
 
 // Image Library Database
 export const IMAGE_LIBRARY: ImageAsset[] = [

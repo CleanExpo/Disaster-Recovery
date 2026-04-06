@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { 
   Menu, X, Home, Briefcase, FileText, 
   ChevronDown, ArrowRight, Shield, Award,
-  email, Globe, Zap, Users, Building2,
+  Mail, Globe, Zap, Users, Building2,
   AlertCircle, PlayCircle, ExternalLink,
   Droplets, Flame, Bug, Wind, Building,
   Wrench, Clock, MapPin, CheckCircle,
@@ -50,7 +50,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
       description: 'Emergency restoration services',
       href: '/client',
       subItems: [
-        { label: 'Emergency Help', href: '/claim', icon: <email className="h-4 w-4" /> },
+        { label: 'Emergency Help', href: '/claim', icon: <Mail className="h-4 w-4" /> },
         { label: 'Insurance Claims', href: '/client/claims', icon: <Shield className="h-4 w-4" /> },
         { label: 'Cost Estimator', href: '/tools/cost-estimator', icon: <Zap className="h-4 w-4" /> },
         { label: 'Track Restoration', href: '/client/track', icon: <Globe className="h-4 w-4" /> },
@@ -303,7 +303,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                 className="ml-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl hover:shadow-red-500/25 transition-all duration-300 transform hover:scale-105 animate-pulse"
               >
                 <span className="flex items-center gap-2">
-                  <email className="h-5 w-5" />
+                  <Mail className="h-5 w-5" />
                   <span className="hidden xl:inline">Emergency</span>
                   <span className="xl:hidden">24/7</span>
                 </span>
@@ -377,7 +377,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-center px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold animate-pulse"
               >
-                <email className="inline-block mr-2 h-5 w-5" />
+                <Mail className="inline-block mr-2 h-5 w-5" />
                 Emergency Help Now
               </Link>
             </div>

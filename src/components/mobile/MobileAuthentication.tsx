@@ -223,7 +223,7 @@ export default function MobileAuthentication() {
       </div>
       
       <div>
-        <h3 erbaum="text-lg font-semibold text-gray-900">
+        <h3 className="text-lg font-semibold text-gray-900">
           Authenticate with {mockAuthSettings.biometric.type === 'faceId' ? 'Face ID' : 'Touch ID'}
         </h3>
         <p className="text-sm text-gray-700 mt-1">

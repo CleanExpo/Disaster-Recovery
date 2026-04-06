@@ -38,7 +38,7 @@ interface BusinessReference {
   name: string;
   relationship: string;
   companyName: string;
-  
+  phone?: string;
   email: string;
   projectDescription: string;
   canContact: boolean;

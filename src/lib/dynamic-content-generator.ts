@@ -209,7 +209,7 @@ export function generateLocationContent(
       commonIssues: generateCommonIssuesSection(location),
       serviceAreas: generateServiceAreas(location),
       weatherContext: generateWeatherContext(location),
-      regulations: generateLocalRegulations(location, service),
+      regulations: generateLocalRegulations(location, String(service)),
       emergencyResponse: generateEmergencyResponse(location),
       insurance: generateInsuranceSection(location),
       prevention: generatePreventionTips(location),

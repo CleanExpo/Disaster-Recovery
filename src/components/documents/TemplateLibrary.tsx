@@ -88,9 +88,9 @@ The Contractor agrees to provide restoration services including but not limited 
 
 3. INSURANCE REQUIREMENTS
 Contractor must maintain minimum insurance coverage:
-- General Liability: ${{min_liability_coverage}}
+- General Liability: \${{min_liability_coverage}}
 - Workers Compensation: As required by state law
-- Professional Liability: ${{professional_liability}}
+- Professional Liability: \${{professional_liability}}
 
 4. PAYMENT TERMS
 Payment terms: {{payment_terms}}

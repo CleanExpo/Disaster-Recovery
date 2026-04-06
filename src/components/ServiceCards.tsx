@@ -117,7 +117,7 @@ export default function ServiceCards() {
           {services.map((service, index) => (
             <div
               key={index}
-              ref={el => cardsRef.current[index] = el}
+              ref={el => { cardsRef.current[index] = el; }}
               className={`group relative transition-all duration-700 ${
                 isVisible[index] 
                   ? 'opacity-100 translate-y-0' 

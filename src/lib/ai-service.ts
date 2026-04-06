@@ -20,9 +20,11 @@ import logger from '@/lib/logger';
 
 // Define AIServiceError class since it's not exported from types
 class AIServiceError extends Error {
-  constructor(message: string, public code?: string) {
+  retryable: boolean;
+  constructor(message: string, public code?: string, retryable = false) {
     super(message);
     this.name = 'AIServiceError';
+    this.retryable = retryable;
   }
 }
 
@@ -51,7 +53,7 @@ export class AIService implements IAIService {
       averageResponseTime: 0,
       totalCost: 0,
       cacheHitRate: 0,
-      providerMetrics: {}
+      providerMetrics: {} as any
     };
 
     // Initialize provider metrics
@@ -231,12 +233,7 @@ export class AIService implements IAIService {
     const config = this.config.providers.find(p => p.provider === provider);
     
     if (!config) {
-      throw new AIServiceError({
-        code: 'PROVIDER_NOT_CONFIGURED',
-        message: `Provider ${provider} is not configured`,
-        provider,
-        retryable: false
-      });
+      throw new AIServiceError(`Provider ${provider} is not configured`, 'PROVIDER_NOT_CONFIGURED', false);
     }
     
     try {
@@ -252,12 +249,7 @@ export class AIService implements IAIService {
           break;
           
         default:
-          throw new AIServiceError({
-            code: 'UNSUPPORTED_PROVIDER',
-            message: `Provider ${provider} is not supported`,
-            provider,
-            retryable: false
-          });
+          throw new AIServiceError(`Provider ${provider} is not supported`, 'UNSUPPORTED_PROVIDER', false);
       }
       
       response.responseTime = Date.now() - startTime;
@@ -313,13 +305,7 @@ export class AIService implements IAIService {
     
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
-      throw new AIServiceError({
-        code: 'OPENROUTER_API_ERROR',
-        message: error.error?.message || `HTTP ${response.status}`,
-        provider: AIProvider.OPENROUTER_GPT_OSS_120B,
-        retryable: response.status >= 500,
-        context: error
-      });
+      throw new AIServiceError(error.error?.message || `HTTP ${response.status}`, 'OPENROUTER_API_ERROR', response.status >= 500);
     }
     
     const data = await response.json();
@@ -367,13 +353,7 @@ export class AIService implements IAIService {
     
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
-      throw new AIServiceError({
-        code: 'ANTHROPIC_API_ERROR',
-        message: error.error?.message || `HTTP ${response.status}`,
-        provider: AIProvider.ANTHROPIC_CLAUDE,
-        retryable: response.status >= 500,
-        context: error
-      });
+      throw new AIServiceError(error.error?.message || `HTTP ${response.status}`, 'ANTHROPIC_API_ERROR', response.status >= 500);
     }
     
     const data = await response.json();
@@ -402,7 +382,7 @@ export class AIService implements IAIService {
     // Open circuit breaker after 3 failures
     if (breaker.failures >= 3) {
       breaker.isOpen = true;
-      logger.warn(`Circuit breaker opened for provider: ${provider}`, { failures: breaker.failures });
+      logger.warn('system', `Circuit breaker opened for provider: ${provider}`, { failures: breaker.failures } as any);
     }
   }
 
@@ -466,7 +446,7 @@ export class AIService implements IAIService {
       const cached = this.getFromCache(cacheKey);
       
       if (cached) {
-        logger.info('AI response served from cache', { taskType: context.type });
+        logger.info('system', 'AI response served from cache', { taskType: context.type } as any);
         return { ...cached.response, cached: true };
       }
     }
@@ -485,30 +465,26 @@ export class AIService implements IAIService {
             this.setCache(cacheKey, response);
           }
           
-          logger.info('AI response generated successfully', {
+          logger.info('system', 'AI response generated successfully', {
             provider,
             taskType: context.type,
             responseTime: Date.now() - startTime,
             attempt: attempt + 1
-          });
+          } as any);
           
           return response;
           
         } catch (error) {
-          lastError = error instanceof AIServiceError ? error : new AIServiceError({
-            code: 'UNKNOWN_ERROR',
-            message: error instanceof Error ? error.message : 'Unknown error',
-            provider,
-            retryable: true,
-            context: error
-          });
-          
-          logger.warn('AI provider failed, trying next provider', {
+          lastError = error instanceof AIServiceError ? error : new AIServiceError(
+            error instanceof Error ? error.message : 'Unknown error', 'UNKNOWN_ERROR', true
+          );
+
+          logger.warn('system', 'AI provider failed, trying next provider', {
             provider,
             error: lastError.message,
             attempt: attempt + 1,
             retriesLeft: maxRetries - attempt - 1
-          });
+          } as any);
           
           if (!lastError.retryable) break;
         }
@@ -522,18 +498,14 @@ export class AIService implements IAIService {
     }
     
     // All providers failed
-    logger.error('All AI providers failed', {
+    logger.error('system', 'All AI providers failed', undefined, {
       taskType: context.type,
       attempts: maxRetries,
       totalTime: Date.now() - startTime,
       lastError: lastError?.message
     });
-    
-    throw lastError || new AIServiceError({
-      code: 'ALL_PROVIDERS_FAILED',
-      message: 'All AI providers failed to respond',
-      retryable: false
-    });
+
+    throw lastError || new AIServiceError('All AI providers failed to respond', 'ALL_PROVIDERS_FAILED', false);
   }
 
   async generateStreamingResponse(

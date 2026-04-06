@@ -37,7 +37,7 @@ export const performanceMonitor = {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           const lastEntry = entries[entries.length - 1];
-          resolve(lastEntry.renderTime || lastEntry.loadTime);
+          resolve((lastEntry as any).renderTime || (lastEntry as any).loadTime);
         });
         observer.observe({ entryTypes: ['largest-contentful-paint'] });
       } else {
@@ -64,7 +64,7 @@ export const performanceMonitor = {
       console.log('First Contentful Paint:', fcp.toFixed(2), 's');
     }
     if (lcp) {
-      console.log('Largest Contentful Paint:', (lcp / 1000).toFixed(2), 's');
+      console.log('Largest Contentful Paint:', ((lcp as number) / 1000).toFixed(2), 's');
     }
     console.groupEnd();
     

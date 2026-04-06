@@ -96,8 +96,7 @@ export interface DayContent {
     instructions: string[];
     submissionRequirements: string[];
   }>;
-  certification
-Requirements: Array<{
+  certificationRequirements: Array<{
     requirement: string;
     verificationMethod: string;
     passingCriteria: string;

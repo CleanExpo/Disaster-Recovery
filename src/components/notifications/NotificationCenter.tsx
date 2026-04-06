@@ -22,7 +22,8 @@ import {
   MessageSquare,
   Smartphone,
   RefreshCw,
-  MoreVertical
+  MoreVertical,
+  DollarSign
 } from 'lucide-react';
 import {
   Sheet,

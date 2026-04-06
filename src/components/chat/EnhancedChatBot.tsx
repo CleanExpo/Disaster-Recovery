@@ -28,20 +28,22 @@ export function EnhancedChatBot() {
   }, [messages]);
 
   useEffect(() => {
+    let pulse: ReturnType<typeof setInterval> | undefined;
     // Auto-show chat after 3 seconds
     const timer = setTimeout(() => {
       if (!isOpen) {
         setShowNotification(true);
         // Pulse animation to draw attention
-        const pulse = setInterval(() => {
+        pulse = setInterval(() => {
           setShowNotification(prev => !prev);
         }, 2000);
-        
-        return () => clearInterval(pulse);
       }
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (pulse) clearInterval(pulse);
+    };
   }, [isOpen]);
 
   useEffect(() => {

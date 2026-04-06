@@ -48,7 +48,7 @@ export function AntigravityBeforeAfterSlider({
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) return undefined;
 
     const handleMouseUp = () => { isSlidingRef.current = false; };
     const handleMouseMove = (e: MouseEvent) => {

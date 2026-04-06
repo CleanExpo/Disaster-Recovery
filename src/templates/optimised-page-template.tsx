@@ -27,7 +27,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { 
-  Shield, Clock, Award, email, CheckCircle, AlertTriangle,
+  Shield, Clock, Award, Mail, CheckCircle, AlertTriangle,
   TrendingUp, Users, MapPin, BookOpen, GraduationCap,
   Building2, Heart, Zap, Globe, BarChart3, PieChart,
   Activity, FileText, ExternalLink, ArrowRight
@@ -127,7 +127,7 @@ export function generateAustralianMetadata({
     formatDetection: {
       email: false,
       address: false,
-      telephone: "" },
+      telephone: false },
     openGraph: {
       title,
       description,
@@ -369,7 +369,7 @@ export const EmergencyCTA = ({
           href="/claim"
           className="flex items-center gap-2 px-4 py-2 bg-white text-red-600 rounded-lg font-bold hover:bg-gray-100 transition-all"
         >
-          <email className="h-5 w-5" />
+          <Mail className="h-5 w-5" />
           <span>Get Help Now</span>
         </Link>
       </div>

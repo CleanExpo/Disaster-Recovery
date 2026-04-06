@@ -389,7 +389,7 @@ export default function AdminLeadsPage() {
                         border: '1px solid #e5e7eb',
                         boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                       }}
-                      formatter={(value: number, name: string) => [value, name]}
+                      formatter={((value: number, name: string) => [value, name]) as any}
                     />
                   </PieChart>
                 </ResponsiveContainer>

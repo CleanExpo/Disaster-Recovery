@@ -301,7 +301,7 @@ export class SkillAssessmentEngine {
     if (!service) return { whatToExpect: [], questionsToAsk: [], redFlags: [] };
 
     return {
-      whatToExpected: [
+      whatToExpect: [
         `Service requires ${service.skillLevel} level technician`,
         `Available from ${service.averageNationalAvailability}% of contractors`,
         `Certification requirements: ${service.requiredCertifications.join(', ')}`

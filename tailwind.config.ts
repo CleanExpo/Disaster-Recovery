@@ -119,22 +119,6 @@ const config: Config = {
   				'100%': {
   					transform: 'translateX(100%)'
   				}
-  			},
-  			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
-  			},
-  			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
   			}
   		},
   		animation: {
@@ -144,9 +128,7 @@ const config: Config = {
   			'gradient-border-spin': 'gradient-border-spin 3s linear infinite',
   			'float': 'float 6s ease-in-out infinite',
   			'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
-  			'shimmer': 'shimmer 2s linear infinite',
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'shimmer': 'shimmer 2s linear infinite'
   		},
   		fontFamily: {
   			sans: [

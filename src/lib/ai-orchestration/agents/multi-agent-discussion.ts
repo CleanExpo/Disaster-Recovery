@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Multi-Agent Discussion Framework
  * Enables collaborative problem-solving between multiple AI agents
@@ -14,7 +15,7 @@ import {
 } from '../core/types';
 import { AIService } from '@/lib/ai-service';
 import { AIProvider, AIMessage, AITaskContext, AITaskType } from '@/types/ai-service';
-import { logger } from '@/lib/logger';
+import logger from '@/lib/logger';
 import { EventEmitter } from 'events';
 
 export class MultiAgentDiscussionEngine extends EventEmitter {

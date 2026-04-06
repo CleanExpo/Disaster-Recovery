@@ -164,7 +164,14 @@ export interface ContractorOnboardingData {
     numberOfEmployees: number;
     annualRevenue?: string;
     website?: string;
+    email?: string;
+    phone?: string;
+    address?: string;
+    suburb?: string;
+    state?: string;
+    postcode?: string;
   };
+  password?: string;
   
   // Step 2: Contact Details
   contactDetails: {

@@ -6,6 +6,7 @@ export interface ContractorOnboardingData {
   username: string;
   mobileNumber: string;
   companyName: string;
+  password?: string;
   acceptedTerms: boolean;
   acceptedPrivacy: boolean;
 
@@ -75,7 +76,7 @@ export interface Director {
   lastName: string;
   position: string;
   email: string;
-  
+  phone?: string;
   directorId?: string;
 }
 
