@@ -208,6 +208,9 @@ export async function POST(request: NextRequest) {
         message = `Job ${jobId} marked as completed`;
         break;
 
+      default:
+        break;
+
       case 'update':
         // Only allow safe fields to be updated
         const allowedFields = ['description', 'internalNotes', 'status'];
@@ -228,6 +231,52 @@ export async function POST(request: NextRequest) {
       where: { id: jobId },
       data: updateData,
     });
+
+    // DR-322 Path B — log outcome when job completes or is declined
+    if (action === 'complete' || action === 'decline') {
+      const now = new Date();
+      const outcomeValue = action === 'complete' ? 'COMPLETED' : 'DECLINED';
+
+      const responseMinutes = existingJob.assignedAt && existingJob.acceptedAt
+        ? Math.round((existingJob.acceptedAt.getTime() - existingJob.assignedAt.getTime()) / 60000)
+        : null;
+
+      const durationMinutes = existingJob.acceptedAt
+        ? Math.round((now.getTime() - existingJob.acceptedAt.getTime()) / 60000)
+        : null;
+
+      const totalMinutes = existingJob.createdAt
+        ? Math.round((now.getTime() - existingJob.createdAt.getTime()) / 60000)
+        : null;
+
+      // Fire-and-forget — do not block the response on logging
+      prisma.jobOutcome.create({
+        data: {
+          jobId: existingJob.id,
+          outcome: outcomeValue,
+          jobType: existingJob.serviceType,
+          contractorId: existingJob.contractorId,
+          loggedByUserId: user.id ?? 'SYSTEM',
+          state: existingJob.state,
+          suburb: existingJob.suburb,
+          postcode: existingJob.postcode,
+          urgency: existingJob.urgency,
+          insuranceClaim: existingJob.insuranceClaim,
+          insurerName: existingJob.insurerName ?? null,
+          responseMinutes,
+          durationMinutes,
+          totalMinutes,
+          metadata: {
+            assignedAt: existingJob.assignedAt?.toISOString() ?? null,
+            acceptedAt: existingJob.acceptedAt?.toISOString() ?? null,
+            startedAt: existingJob.startedAt?.toISOString() ?? null,
+            completedAt: action === 'complete' ? now.toISOString() : null,
+          },
+        },
+      }).catch((err: unknown) => {
+        console.error('[DR-322] JobOutcome log failed:', err);
+      });
+    }
 
     return NextResponse.json({
       success: true,

@@ -398,6 +398,7 @@ model Contractor {
   supportTickets   ContractorSupport[]
   availability     ContractorAvailability[]
   jobs             Job[]
+  jobOutcomes      JobOutcome[]
 
   // Applications submitted via /contractor/apply (raw snapshot of the onboarding wizard)
   applications ContractorApplication[]
@@ -1285,10 +1286,52 @@ model Job {
 
   contractor    Contractor?       @relation(fields: [contractorId], references: [id])
   conversations BotConversation[]
+  outcome       JobOutcome?
 
   @@index([status, urgency])
   @@index([contractorId, status])
   @@index([suburb, state])
+}
+
+// ============================================
+// JOB OUTCOMES — DR-322 Path B
+// Immutable log written at completion/decline time.
+// Powers KPI dashboards without touching live Job rows.
+// ============================================
+
+model JobOutcome {
+  id               String   @id @default(cuid())
+  jobId            String   @unique
+  outcome          String   // COMPLETED | DECLINED | CANCELLED
+  jobType          String
+  contractorId     String?
+  clientId         String?
+  insuranceClaimId String?
+  actualCost       Decimal?
+  hoursWorked      Decimal?
+  loggedAt         DateTime @default(now())
+  loggedByUserId   String   @default("SYSTEM")
+  tenantId         String?
+  metadata         Json?
+
+  // KPI columns — added via DR-322 Path B migration
+  state           String?
+  suburb          String?
+  postcode        String?
+  urgency         String?  // emergency | urgent | standard
+  insuranceClaim  Boolean  @default(false)
+  insurerName     String?
+  responseMinutes Int?     // assignedAt → acceptedAt
+  durationMinutes Int?     // acceptedAt → completedAt
+  totalMinutes    Int?     // createdAt → completedAt (end-to-end)
+
+  job        Job         @relation(fields: [jobId], references: [id])
+  contractor Contractor? @relation(fields: [contractorId], references: [id])
+
+  @@index([outcome, loggedAt])
+  @@index([state, jobType, loggedAt])
+  @@index([contractorId, outcome])
+  @@map("job_outcome_logs")
 }
 
 // ============================================
