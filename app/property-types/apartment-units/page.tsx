@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Apartment & Unit Disaster Recovery | $2200',
-  description: 'Specialised disaster recovery for apartments, units, and high-rise residences. 30-45 minutes response. 95% insurance coverage.',
+  description: 'Specialised disaster recovery for apartments, units, and high-rise residences. IICRC-certified contractors, 24/7 emergency response, full claims documentation.',
   keywords: ["apartment water damage","unit flood recovery","high rise restoration"],
   alternates: { canonical: 'https://disasterrecovery.com.au/property-types/apartment-units' },
 };
