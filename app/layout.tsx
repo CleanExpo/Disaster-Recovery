@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services | IICRC Certified',
     template: '%s | Disaster Recovery Australia'
   },
-  description: 'Australia\'s leading IICRC-certified disaster restoration specialists. 24/7 emergency response for water damage, fire damage, mould remediation across Sydney, Melbourne, Brisbane, Perth, Adelaide. IICRC-certified. <10,000 certified professionals nationwide.',
+  description: 'IICRC-certified disaster recovery and restoration specialists across Australia. 24/7 emergency response for water damage, fire damage, flood recovery, mould remediation and storm damage — Sydney, Melbourne, Brisbane, Perth, Adelaide and all regional areas.',
   keywords: 'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
   authors: [{ name: 'Disaster Recovery Australia' }],
   creator: 'Disaster Recovery Australia',
@@ -233,7 +233,7 @@ export default function RootLayout({
               "@id": "https://disasterrecovery.com.au/#website",
               "url": "https://disasterrecovery.com.au",
               "name": "Disaster Recovery Australia",
-              "description": "Australia's leading disaster recovery and restoration platform. 24/7 emergency response for water damage, fire damage, mould remediation, and more.",
+              "description": "IICRC-certified disaster recovery and restoration services across Australia. 24/7 emergency response for water damage, fire damage, mould remediation, and storm damage.",
               "publisher": {
                 "@id": "https://disasterrecovery.com.au/#organization"
               },

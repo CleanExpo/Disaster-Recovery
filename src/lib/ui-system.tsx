@@ -141,7 +141,7 @@ export const VALIDATION = {
 // SEO DEFAULTS
 export const SEO = {
   defaultTitle: 'Disaster Recovery - 100% Digital Emergency Response',
-  defaultDescription: 'Australia\'s #1 digital disaster recovery platform. No phone calls needed.',
+  defaultDescription: 'IICRC-certified disaster recovery platform. Start your claim online — no phone calls needed.',
   keywords: ['disaster recovery', 'digital', 'online', 'emergency', 'restoration'],
 } as const;
 
