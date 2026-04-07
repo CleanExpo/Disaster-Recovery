@@ -110,12 +110,11 @@ export default function FacilitiesManagersPage() {
                 obligations, not one who returns calls &quot;during business hours.&quot;
               </p>
               <p>
-                Our standard emergency SLA guarantees contractor contact within 60 minutes
+                Our standard emergency SLA targets contractor contact within 60 minutes
                 of claim lodgement, with on-site attendance within the hour — 24 hours a
                 day, 7 days a week, 365 days a year. This applies Australia-wide, including
                 after hours, weekends, and public holidays. There is no additional surcharge
-                for after-hours emergency dispatch. The 60-minute SLA is not aspirational;
-                it is contractual. Our NRPG contractor network has IICRC-certified
+                for after-hours emergency dispatch. Our NRPG contractor network has IICRC-certified
                 technicians rostered around the clock in every major metro area and most
                 regional centres.
               </p>

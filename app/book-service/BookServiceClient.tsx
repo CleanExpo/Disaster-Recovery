@@ -1013,7 +1013,7 @@ function BookServicePageOriginal() {
                       </p>
                       <p className="text-gray-700 mt-1">
                         <Shield className="h-4 w-4 text-blue-500 inline mr-1" />
-                        100% satisfaction guarantee
+                        IICRC-certified service standard
                       </p>
                     </div>
                   </div>

@@ -21,7 +21,7 @@ export default function SydneyFloodRecoveryPricingPage() {
       serviceName="Flood Recovery"
       minimumCallout="$2,860"
       averageCost="$15,400"
-      insuranceCoverage="95%"
+      insuranceCoverage="Policy-Dependent"
       priceRanges={[
         {
                 "type": "Minor Damage",

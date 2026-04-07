@@ -210,7 +210,7 @@ export default function HowItWorksPage() {
                 <li><strong>Australia-wide coverage</strong> — certified contractors in every state and territory</li>
                 <li><strong>24/7/365 availability</strong> — submit your claim any time, day or night, every day of the year</li>
                 <li><strong>IICRC-certified network</strong> — every contractor meets the highest industry standards</li>
-                <li><strong>60-minute response guarantee</strong> — a contractor will call you within the hour</li>
+                <li><strong>60-minute response target</strong> — our dispatch team aims to have a contractor contact you within the hour</li>
                 <li><strong>Insurance-compliant documentation</strong> — all invoicing formatted for insurer acceptance</li>
                 <li><strong>We bill you directly</strong> — work begins immediately, no insurer delays</li>
                 <li><strong>Flexible payment plans</strong> — manage costs through{' '}

@@ -21,7 +21,7 @@ export default function MelbourneFloodRecoveryPricingPage() {
       serviceName="Flood Recovery"
       minimumCallout="$2,750"
       averageCost="$15,400"
-      insuranceCoverage="95%"
+      insuranceCoverage="Policy-Dependent"
       priceRanges={[
         {
                 "type": "Minor Damage",

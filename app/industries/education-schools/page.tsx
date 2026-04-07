@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Education & Schools Disaster Recovery',
-  description: 'School and university disaster recovery with minimal disruption to learning. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+  description: 'School and university disaster recovery with minimal disruption to learning. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
   keywords: ["school disaster recovery","university restoration","education facility cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/education-schools' },
 };
@@ -18,7 +18,7 @@ export default function EducationSchoolsPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Education & Schools Disaster Recovery',
-        subtitle: 'School and university disaster recovery with minimal disruption to learning. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+        subtitle: 'School and university disaster recovery with minimal disruption to learning. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
       }}
       cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[

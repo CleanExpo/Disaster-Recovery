@@ -21,7 +21,7 @@ export default function BrisbaneFloodRecoveryPricingPage() {
       serviceName="Flood Recovery"
       minimumCallout="$2,640"
       averageCost="$15,400"
-      insuranceCoverage="95%"
+      insuranceCoverage="Policy-Dependent"
       priceRanges={[
         {
                 "type": "Minor Damage",

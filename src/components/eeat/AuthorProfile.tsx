@@ -191,7 +191,7 @@ export const defaultAuthors = {
       "Certificate IV in Government Investigations"
     ],
     experience: "18+ years",
-    bio: "David ensures all our restoration work meets Australian building codes, insurance requirements, and industry standards. He has developed our comprehensive compliance framework that guarantees every project meets or exceeds regulatory requirements.",
+    bio: "David ensures all our restoration work meets Australian building codes, insurance requirements, and industry standards. He has developed our comprehensive compliance framework that ensures every project is assessed against regulatory requirements.",
     certifications: [
       "Australian Building Codes Board Accredited",
       "Insurance Council of Australia Certified",

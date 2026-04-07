@@ -298,7 +298,7 @@ export default function LegacyHomePage() {
                 { step: '1', title: 'Report Online', desc: 'Chat, form or email' },
                 { step: '2', title: 'AI Matching', desc: 'Instant contractor match' },
                 { step: '3', title: 'Get Estimate', desc: 'Transparent pricing' },
-                { step: '4', title: 'Work Begins', desc: 'Fast response guaranteed' }
+                { step: '4', title: 'Work Begins', desc: 'Fast 60-minute response target' }
               ].map((item, index) => (
                 <motion.div
                   key={index}

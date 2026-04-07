@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Hospitality & Tourism Disaster Recovery',
-  description: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+  description: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
   keywords: ["hotel disaster recovery","resort restoration","tourism facility cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/hospitality-tourism' },
 };
@@ -18,7 +18,7 @@ export default function HospitalityTourismPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Hospitality & Tourism Disaster Recovery',
-        subtitle: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+        subtitle: 'Hotel, resort, and tourism facility disaster recovery nationwide. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
       }}
       cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[

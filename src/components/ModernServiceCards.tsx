@@ -189,7 +189,7 @@ const ModernServiceCards: React.FC = () => {
           
           <p className="text-xl text-gray-300 max-w-3xl mx-auto premium-text">
             Advanced disaster recovery technology meets decades of expertise. 
-            Every service backed by AI-powered assessments and guaranteed results.
+            Every service backed by AI-powered assessments and IICRC-certified workmanship.
           </p>
         </motion.div>
 

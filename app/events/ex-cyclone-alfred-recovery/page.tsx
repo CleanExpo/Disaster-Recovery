@@ -1,8 +1,8 @@
 /**
  * Ex-TC Alfred Recovery — Claim Disputes & Contractor Quality Guide
  *
- * BUILD-008: Ex-TC Alfred recovery-phase advocacy content.
- * 132,000 ICA claims lodged. $1.5B+ insured losses. ICA Catastrophe declared.
+ * BUILD-008 / DR-401: Ex-TC Alfred recovery-phase advocacy content.
+ * 132,000+ ICA claims lodged. $1.5B+ insured losses. ICA Catastrophe declared.
  *
  * Proof points (verified):
  * - IAG $89,000 ombudsman case: AFCA published case study
@@ -41,34 +41,34 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'My Ex-TC Alfred insurance claim was underpaid. What can I do?',
+      name: "My insurer said my claim is 'under review' — what does that mean?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "If you believe your claim has been underpaid, you can dispute it through AFCA (Australian Financial Complaints Authority) at no cost. AFCA has the power to require insurers to pay additional amounts. Recent rulings — including a $115,765 Youi storm damage judgment in April 2026 — demonstrate that courts and AFCA will hold insurers to the full extent of their obligations. You should obtain an independent IICRC-certified assessment of the full scope of damage before lodging a dispute.",
+        text: "An 'under review' status is not a rejection, but it means your claim is sitting in limbo. If your claim has been under review for more than 6 weeks without a substantive update, NRPG can escalate directly with the insurer's senior claims team to force a decision.",
       },
     },
     {
       '@type': 'Question',
-      name: 'What is ARPC cyclone cover and how does it affect my Ex-TC Alfred claim?',
+      name: "Can I switch to NRPG if I've already lodged with my insurer directly?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "The Australian Reinsurance Pool Corporation (ARPC) administers the Cyclone Reinsurance Pool. Ex-TC Alfred has been declared a Cyclone Event by ARPC, which means some cyclone damage claims are reinsured through the pool. This can affect how your insurer processes the claim. Your insurer should explain how ARPC affects your entitlements. If you have questions about your policy coverage, contact your insurer directly or seek guidance from AFCA.",
+        text: "Yes — at any point in the process. NRPG steps in and takes over communication with your insurer. There is no need to re-lodge your claim. We pick up where you are and manage the claim from that point forward.",
       },
     },
     {
       '@type': 'Question',
-      name: 'My TC Alfred restoration work was done poorly. What are my options?',
+      name: "What if I've been lowballed on my settlement?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "If work done by a contractor engaged through your insurer was substandard, you have several options: (1) Formally complain to your insurer — they are responsible for the quality of their preferred contractors; (2) Lodge a dispute with AFCA if the insurer fails to resolve it; (3) Contact the Queensland Building and Construction Commission (QBCC) if the contractor is unlicensed or the work is defective. For independent re-assessment of remaining damage, engage an IICRC-certified contractor directly.",
+        text: "Do not accept a settlement offer you believe is too low. NRPG reviews the offer, identifies scope gaps where damage items were missed or undervalued, and negotiates upward with the insurer. Independent IICRC-certified assessment is the primary tool for substantiating a higher claim value.",
       },
     },
     {
       '@type': 'Question',
-      name: 'How long do I have to dispute an Ex-TC Alfred insurance claim decision?',
+      name: 'How long does the restoration process take?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "You generally have 2 years from the date of the insurer's decision to lodge a complaint with AFCA. However, the sooner you act the better — evidence of damage can deteriorate and timelines for some government assistance grants have already passed. If you have received a claim denial or settlement offer you believe is unfair, seek an independent assessment and begin the internal dispute process with your insurer immediately.",
+        text: 'Typical timelines: structural drying takes 2–4 weeks; structural repairs take 4–12 weeks; full rebuilds take 3–6 months. These timelines depend on insurer approval speed, contractor availability, and the extent of damage. NRPG manages the schedule end-to-end to avoid unnecessary delays.',
       },
     },
   ],
@@ -84,8 +84,8 @@ export default function ExCycloneAlfredRecoveryPage() {
       />
       <AgGuidePageTemplate
         category="Ex-TC Alfred"
-        title="Ex-Cyclone Alfred: Disputed Claims & Recovery Guide"
-        subtitle="132,000 insurance claims lodged across SE Queensland and Northern NSW. If your claim was denied, underpaid or your restoration work was substandard — here is what you can do."
+        title="Still waiting on your Alfred claim? You shouldn&apos;t have to."
+        subtitle="132,000+ claims lodged. Insurers under pressure. NRPG gets yours moving."
         gradient="linear-gradient(135deg, #1A0A0A 0%, #7B1A1A 100%)"
         icon={<Shield className="h-10 w-10" />}
         lastReviewed="2026-04-07"
@@ -95,24 +95,133 @@ export default function ExCycloneAlfredRecoveryPage() {
           { label: 'Ex-Cyclone Alfred', href: '/events/cyclone-alfred-queensland-2025' },
           { label: 'Claim Disputes Guide' },
         ]}
-        cta={{ text: 'Get Independent Assessment', href: '/claim' }}
+        cta={{ text: 'Get your claim moving', href: '/claim' }}
         sections={[
           {
-            heading: 'The Scale of Ex-TC Alfred — What the Numbers Mean for You',
+            heading: 'The Situation — What Has Happened Since TC Alfred',
             body: (
               <>
                 <p>
-                  Ex-Tropical Cyclone Alfred made landfall in South East Queensland in February 2025, triggering an
-                  ICA Insurance Catastrophe declaration — the highest level of insurance industry response. More than
-                  132,000 insurance claims have been lodged, with insured losses exceeding $1.5 billion.
-                </p>
-                <p style={{ marginTop: '1rem' }}>
-                  At this scale, insurer workloads are stretched and claims processing errors — underpayments,
-                  missed damage items, and scope disputes — are a documented risk. If you believe your claim outcome
-                  does not reflect the full extent of your damage, you have rights and there are pathways to challenge
-                  it.
+                  Tropical Cyclone Alfred caused unprecedented damage across Queensland and NSW. To date,
+                  132,000+ claims have been lodged with an estimated $1.5 billion in insured losses (ICA
+                  verified). Insurers are stretched. Assessors are booked weeks out. It&apos;s not personal
+                  — it&apos;s systemic pressure. But you don&apos;t have to wait alone. NRPG specialises in
+                  getting stuck claims unstuck.
                 </p>
               </>
+            ),
+          },
+          {
+            heading: 'Why Claims Stall',
+            background: 'light',
+            body: (
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                  gap: '1.5rem',
+                  marginTop: '0.5rem',
+                }}
+              >
+                {[
+                  {
+                    title: 'Assessor Backlogs',
+                    detail:
+                      'Typical wait time for an insurer-assigned assessor is 4–8 weeks after a major event. NRPG coordinates faster assessment and escalates priority with insurer claims teams to reduce this wait.',
+                  },
+                  {
+                    title: 'Scope Disputes',
+                    detail:
+                      "When the insurer and policyholder disagree on what's covered, resolution can take an additional 4–12 weeks. NRPG brings independent IICRC-certified assessment to break deadlocks and substantiate the full scope of damage.",
+                  },
+                  {
+                    title: 'Delayed Repair Approvals',
+                    detail:
+                      'Insurers sometimes delay releasing funds while negotiating quotes with their preferred contractors. NRPG pushes for repair approval in writing and holds insurers to documented timelines.',
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    style={{
+                      background: 'white',
+                      borderRadius: '0.75rem',
+                      padding: '1.5rem',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      borderTop: '4px solid #B91C1C',
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: '1.05rem',
+                        color: '#111827',
+                        marginBottom: '0.75rem',
+                      }}
+                    >
+                      {item.title}
+                    </div>
+                    <p style={{ fontSize: '0.9rem', color: '#374151', lineHeight: 1.6 }}>
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ),
+          },
+          {
+            heading: 'What NRPG Does for Stuck Claims',
+            body: (
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                  gap: '1.5rem',
+                  marginTop: '0.5rem',
+                }}
+              >
+                {[
+                  {
+                    title: 'Dispute Escalation',
+                    detail:
+                      "NRPG formally escalates with the insurer's senior claims team, backed by detailed scope reports and photographic evidence. This moves a claim from the general queue to a decision-maker.",
+                  },
+                  {
+                    title: 'Insurer Communication',
+                    detail:
+                      "We speak the insurer's language — negotiating assessor dispatch, scope agreements, and settlement timelines using the documentation and standards insurers recognise.",
+                  },
+                  {
+                    title: 'Independent Assessment Coordination',
+                    detail:
+                      'Where a deadlock exists, NRPG coordinates independent IICRC-certified assessors to produce a binding scope report that insurers and AFCA accept as authoritative.',
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    style={{
+                      background: 'white',
+                      borderRadius: '0.75rem',
+                      padding: '1.5rem',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      borderLeft: '4px solid #B91C1C',
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: '1.05rem',
+                        color: '#111827',
+                        marginBottom: '0.75rem',
+                      }}
+                    >
+                      {item.title}
+                    </div>
+                    <p style={{ fontSize: '0.9rem', color: '#374151', lineHeight: 1.6 }}>
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
             ),
           },
           {
@@ -121,22 +230,31 @@ export default function ExCycloneAlfredRecoveryPage() {
             body: (
               <>
                 <p>
-                  Two recent rulings demonstrate that insurers are being held to account for underpayment and poor
-                  claims handling:
+                  Two recent rulings demonstrate that insurers are being held to account for underpayment and
+                  poor claims handling:
                 </p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                    gap: '1.5rem',
+                    marginTop: '1.5rem',
+                  }}
+                >
                   {[
                     {
                       label: 'Youi — $115,765',
                       date: 'April 2026',
                       source: 'Federal Circuit Court',
-                      detail: 'Court ordered Youi to pay $115,765 to a policyholder after the insurer disputed the full scope of storm damage. The ruling confirmed the policyholder\'s entitlement to the full restoration cost as documented by an independent assessor.',
+                      detail:
+                        "Court ordered Youi to pay $115,765 to a policyholder after the insurer disputed the full scope of storm damage. The ruling confirmed the policyholder's entitlement to the full restoration cost as documented by an independent assessor.",
                     },
                     {
                       label: 'IAG — $89,000',
                       date: 'AFCA Published Case',
                       source: 'Australian Financial Complaints Authority',
-                      detail: 'AFCA upheld a complaint against IAG and required payment of $89,000 additional settlement to a homeowner whose claim was underpaid. AFCA found the insurer\'s initial assessment undervalued the structural damage.',
+                      detail:
+                        "AFCA upheld a complaint against IAG and required payment of $89,000 additional settlement to a homeowner whose claim was underpaid. AFCA found the insurer's initial assessment undervalued the structural damage.",
                     },
                   ].map((r) => (
                     <div
@@ -149,14 +267,26 @@ export default function ExCycloneAlfredRecoveryPage() {
                         borderLeft: '4px solid #B91C1C',
                       }}
                     >
-                      <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#B91C1C', marginBottom: '0.25rem' }}>{r.label}</div>
-                      <div style={{ fontSize: '0.8rem', color: '#5C6A79', marginBottom: '0.75rem' }}>{r.date} · {r.source}</div>
+                      <div
+                        style={{
+                          fontSize: '1.5rem',
+                          fontWeight: 700,
+                          color: '#B91C1C',
+                          marginBottom: '0.25rem',
+                        }}
+                      >
+                        {r.label}
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: '#5C6A79', marginBottom: '0.75rem' }}>
+                        {r.date} · {r.source}
+                      </div>
                       <p style={{ fontSize: '0.9rem', color: '#374151', lineHeight: 1.6 }}>{r.detail}</p>
                     </div>
                   ))}
                 </div>
                 <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: '#5C6A79' }}>
-                  These rulings establish that independent documentation from IICRC-certified assessors carries significant weight in both AFCA and court proceedings.
+                  These rulings establish that independent documentation from IICRC-certified assessors carries
+                  significant weight in both AFCA and court proceedings.
                 </p>
               </>
             ),
@@ -166,14 +296,14 @@ export default function ExCycloneAlfredRecoveryPage() {
             body: (
               <>
                 <p>
-                  Ex-TC Alfred has been declared a Cyclone Event under the Australian Reinsurance Pool Corporation
-                  (ARPC) scheme. This affects how some cyclone damage claims are handled by your insurer, as a
-                  portion of cyclone losses are reinsured through the ARPC pool.
+                  Ex-TC Alfred has been declared a Cyclone Event under the Australian Reinsurance Pool
+                  Corporation (ARPC) scheme. This affects how some cyclone damage claims are handled by your
+                  insurer, as a portion of cyclone losses are reinsured through the ARPC pool.
                 </p>
                 <p style={{ marginTop: '1rem' }}>
-                  Your insurer should advise you how ARPC affects your specific policy. If you are unsure whether
-                  your policy includes cyclone cover under the ARPC scheme, ask your insurer directly or contact
-                  the{' '}
+                  Your insurer should advise you how ARPC affects your specific policy. If you are unsure
+                  whether your policy includes cyclone cover under the ARPC scheme, ask your insurer directly
+                  or contact the{' '}
                   <a href="https://www.afca.org.au" target="_blank" rel="noopener noreferrer">
                     Australian Financial Complaints Authority (AFCA)
                   </a>{' '}
@@ -190,23 +320,24 @@ export default function ExCycloneAlfredRecoveryPage() {
                 <p>Follow these steps in order:</p>
                 <ol style={{ marginTop: '1rem', paddingLeft: '1.5rem', lineHeight: 2.2 }}>
                   <li>
-                    <strong>Get an independent IICRC-certified assessment</strong> — document all damage that has
-                    not been included in the insurer&apos;s scope of works. This is your primary evidence for any
-                    dispute.
+                    <strong>Get an independent IICRC-certified assessment</strong> — document all damage that
+                    has not been included in the insurer&apos;s scope of works. This is your primary evidence
+                    for any dispute.
                   </li>
                   <li>
                     <strong>Lodge an internal dispute with your insurer</strong> — all Australian insurers are
-                    required to have an internal dispute resolution (IDR) process. Request a formal review of the
-                    decision in writing.
+                    required to have an internal dispute resolution (IDR) process. Request a formal review of
+                    the decision in writing.
                   </li>
                   <li>
-                    <strong>Escalate to AFCA if unresolved</strong> — if your insurer does not resolve the dispute
-                    within 30 days (or 45 days for complex cases), you can lodge a complaint with AFCA at no cost.
-                    AFCA can require the insurer to pay additional amounts.
+                    <strong>Escalate to AFCA if unresolved</strong> — if your insurer does not resolve the
+                    dispute within 30 days (or 45 days for complex cases), you can lodge a complaint with AFCA
+                    at no cost. AFCA can require the insurer to pay additional amounts.
                   </li>
                   <li>
-                    <strong>Contact the QBCC if contractor work was defective</strong> — the Queensland Building
-                    and Construction Commission handles complaints about unlicensed or defective building work.
+                    <strong>Contact the QBCC if contractor work was defective</strong> — the Queensland
+                    Building and Construction Commission handles complaints about unlicensed or defective
+                    building work.
                   </li>
                 </ol>
                 <div style={{ marginTop: '1.5rem' }}>
@@ -222,7 +353,7 @@ export default function ExCycloneAlfredRecoveryPage() {
                       fontWeight: 600,
                     }}
                   >
-                    Get Independent IICRC Assessment
+                    Get your claim moving
                   </Link>
                 </div>
               </>
@@ -233,11 +364,36 @@ export default function ExCycloneAlfredRecoveryPage() {
             body: (
               <>
                 <p>
-                  The following 16 Queensland LGAs were declared under the Disaster Recovery Funding Arrangements
-                  (DRFA) for Ex-TC Alfred:
+                  The following 16 Queensland LGAs were declared under the Disaster Recovery Funding
+                  Arrangements (DRFA) for Ex-TC Alfred:
                 </p>
-                <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem', lineHeight: 2, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))' }}>
-                  {['Brisbane', 'Bundaberg', 'Fraser Coast', 'Gold Coast', 'Gympie', 'Ipswich', 'Lockyer Valley', 'Logan', 'Moreton Bay', 'Noosa', 'Redland', 'Scenic Rim', 'Somerset', 'Southern Downs', 'Sunshine Coast', 'Toowoomba'].map((lga) => (
+                <ul
+                  style={{
+                    marginTop: '1rem',
+                    paddingLeft: '1.5rem',
+                    lineHeight: 2,
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                  }}
+                >
+                  {[
+                    'Brisbane',
+                    'Bundaberg',
+                    'Fraser Coast',
+                    'Gold Coast',
+                    'Gympie',
+                    'Ipswich',
+                    'Lockyer Valley',
+                    'Logan',
+                    'Moreton Bay',
+                    'Noosa',
+                    'Redland',
+                    'Scenic Rim',
+                    'Somerset',
+                    'Southern Downs',
+                    'Sunshine Coast',
+                    'Toowoomba',
+                  ].map((lga) => (
                     <li key={lga}>{lga}</li>
                   ))}
                 </ul>
@@ -251,24 +407,24 @@ export default function ExCycloneAlfredRecoveryPage() {
         ]}
         faqs={[
           {
-            question: 'My Ex-TC Alfred insurance claim was underpaid. What can I do?',
+            question: "My insurer said my claim is 'under review' — what does that mean?",
             answer:
-              "If you believe your claim has been underpaid, you can dispute it through AFCA (Australian Financial Complaints Authority) at no cost. AFCA has the power to require insurers to pay additional amounts. Recent rulings — including a $115,765 Youi storm damage judgment in April 2026 — demonstrate that courts and AFCA will hold insurers to the full extent of their obligations. Obtain an independent IICRC-certified assessment of the full scope of damage before lodging a dispute.",
+              "An 'under review' status is not a rejection, but it means your claim is sitting in limbo. If your claim has been under review for more than 6 weeks without a substantive update, NRPG can escalate directly with the insurer's senior claims team to force a decision.",
           },
           {
-            question: 'What is ARPC cyclone cover and how does it affect my Ex-TC Alfred claim?',
+            question: "Can I switch to NRPG if I've already lodged with my insurer directly?",
             answer:
-              "The Australian Reinsurance Pool Corporation (ARPC) administers the Cyclone Reinsurance Pool. Ex-TC Alfred has been declared a Cyclone Event by ARPC, which means some cyclone damage claims are reinsured through the pool. This can affect how your insurer processes the claim. Contact your insurer or AFCA if you are unsure how ARPC affects your entitlements.",
+              "Yes — at any point in the process. NRPG steps in and takes over communication with your insurer. There is no need to re-lodge your claim. We pick up where you are and manage the claim from that point forward.",
           },
           {
-            question: 'My TC Alfred restoration work was done poorly. What are my options?',
+            question: "What if I've been lowballed on my settlement?",
             answer:
-              "If work done by a contractor engaged through your insurer was substandard: (1) Formally complain to your insurer — they are responsible for the quality of their preferred contractors; (2) Lodge a dispute with AFCA if unresolved; (3) Contact the QBCC if the contractor is unlicensed or the work is defective. For independent re-assessment, engage an IICRC-certified contractor directly through our claim form.",
+              "Do not accept a settlement offer you believe is too low. NRPG reviews the offer, identifies scope gaps where damage items were missed or undervalued, and negotiates upward with the insurer. Independent IICRC-certified assessment is the primary tool for substantiating a higher claim value.",
           },
           {
-            question: 'How long do I have to dispute an Ex-TC Alfred claim decision?',
+            question: 'How long does the restoration process take?',
             answer:
-              "You generally have 2 years from the date of the insurer's decision to lodge a complaint with AFCA. However, act as soon as possible — damage evidence deteriorates and some government assistance deadlines have passed. If you have received a denial or settlement you believe is unfair, seek an independent assessment and begin the internal dispute process with your insurer immediately.",
+              'Typical timelines: structural drying takes 2–4 weeks; structural repairs take 4–12 weeks; full rebuilds take 3–6 months. These timelines depend on insurer approval speed, contractor availability, and the extent of damage. NRPG manages the schedule end-to-end to avoid unnecessary delays.',
           },
         ]}
         relatedGuides={[

@@ -490,7 +490,7 @@ export class PlatformTransformationAnalyzer extends EventEmitter {
         },
         persuasionArchitecture: {
           urgency: [
-            '60-minute response guarantee',
+            '60-minute response target',
             'Limited contractor availability',
             'Insurance deadline warnings',
             'Damage progression alerts'
