@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { PrivacyCollectionNoticeSection } from './PrivacyCollectionNotice';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState, useEffect, useCallback, Suspense } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
+import OfflineBanner from '@/components/claim/OfflineBanner';
+import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -227,6 +229,90 @@ function OnlineClaimPageOriginal() {
   // submission summary shown to the user; file hosting is handled server-side.
   const [capturedPhotos, setCapturedPhotos] = useState<File[]>([]);
 
+  // ── Offline persistence ──────────────────────────────────────────────────
+  const [isOffline, setIsOffline] = useState<boolean>(false);
+  const [draftBanner, setDraftBanner] = useState<{ savedAt: number } | null>(null);
+  const [savedLocally, setSavedLocally] = useState<boolean>(false);
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Load draft on mount
+  useEffect(() => {
+    loadDraft().then((draft) => {
+      if (!draft) return;
+      const ageMs = Date.now() - draft.savedAt;
+      const hours24 = 24 * 60 * 60 * 1000;
+      if (ageMs < hours24) {
+        setDraftBanner({ savedAt: draft.savedAt });
+      }
+    });
+    setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
+  }, []);
+
+  // Online/offline event listeners
+  useEffect(() => {
+    const handleOnline = async () => {
+      setIsOffline(false);
+      // Attempt to mark unsynced drafts — actual API sync is beyond client scope
+      const unsynced = await getUnsynced();
+      if (unsynced.length > 0) {
+        // Drafts exist; they will be submitted when the user completes the form
+        setSavedLocally(true);
+      }
+    };
+    const handleOffline = () => {
+      setIsOffline(true);
+    };
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  // Debounced auto-save on formData / step change
+  useEffect(() => {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => {
+      // Exclude non-serialisable fields (File[]) — use keys from formData directly
+      saveDraft({
+        id: 'current',
+        formData: formData as Record<string, unknown>,
+        step,
+        savedAt: Date.now(),
+        synced: false,
+      }).then(() => {
+        if (isOffline) setSavedLocally(true);
+      }).catch(() => {
+        // Silently ignore save errors
+      });
+    }, 500);
+    return () => {
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData, step]);
+
+  const resumeDraft = async () => {
+    const draft = await loadDraft();
+    if (draft) {
+      setFormData((prev) => ({ ...prev, ...draft.formData }));
+      setStep(draft.step);
+    }
+    setDraftBanner(null);
+  };
+
+  const discardDraft = async () => {
+    await clearDraft();
+    setDraftBanner(null);
+  };
+
+  const formatDraftTime = (ts: number) => {
+    const d = new Date(ts);
+    return d.toLocaleString('en-AU', { dateStyle: 'medium', timeStyle: 'short' });
+  };
+  // ────────────────────────────────────────────────────────────────────────
+
   const step1Complete = Boolean(
     formData.fullName?.trim() &&
     formData.phone?.trim() &&
@@ -270,6 +356,7 @@ function OnlineClaimPageOriginal() {
 
       if (result.success) {
         setClaimId(result.claimId);
+        await clearDraft();
         setStep(5); // Success step
       } else {
         setSubmissionError(result.message || 'Failed to submit claim');
@@ -393,6 +480,41 @@ function OnlineClaimPageOriginal() {
             </div>
           </div>
         </div>
+
+        {/* Offline banner */}
+        <OfflineBanner isOffline={isOffline} savedLocally={savedLocally} />
+
+        {/* Saved locally indicator (when offline) */}
+        {isOffline && savedLocally && (
+          <div className="mb-4 px-3 py-2 bg-amber-100 border border-amber-300 rounded-md text-xs text-amber-800 flex items-center gap-2">
+            <span className="font-semibold">Saved locally</span> — your progress is stored on this device.
+          </div>
+        )}
+
+        {/* Draft resume banner */}
+        {draftBanner && (
+          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-sm text-blue-900">
+              You have a saved claim draft from <strong>{formatDraftTime(draftBanner.savedAt)}</strong>. Continue?
+            </p>
+            <div className="flex gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={resumeDraft}
+                className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Resume
+              </button>
+              <button
+                type="button"
+                onClick={discardDraft}
+                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Start Fresh
+              </button>
+            </div>
+          </div>
+        )}
 
         {submissionError && (
           <Alert className="mb-6 border-red-200 bg-red-50">

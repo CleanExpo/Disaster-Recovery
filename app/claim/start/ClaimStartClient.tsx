@@ -4,11 +4,13 @@
 import Link from 'next/link';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
-import { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { Shield, Home, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send, Upload, Image, X, Info } from 'lucide-react';
 import { DEMO_DATA, simulateTyping } from '@/lib/demo-mode';
+import OfflineBanner from '@/components/claim/OfflineBanner';
+import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 
 function ClaimStartContent() {
   const searchParams = useSearchParams();
@@ -32,6 +34,76 @@ function ClaimStartContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDemoRunning, setIsDemoRunning] = useState(false);
   const [currentField, setCurrentField] = useState('');
+
+  // ── Offline persistence ────────────────────────────────────────────────
+  const [isOffline, setIsOffline] = useState<boolean>(false);
+  const [draftBanner, setDraftBanner] = useState<{ savedAt: number } | null>(null);
+  const [savedLocally, setSavedLocally] = useState<boolean>(false);
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
+    loadDraft().then((draft) => {
+      if (!draft) return;
+      const ageMs = Date.now() - draft.savedAt;
+      if (ageMs < 24 * 60 * 60 * 1000) {
+        setDraftBanner({ savedAt: draft.savedAt });
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const handleOnline = async () => {
+      setIsOffline(false);
+      const unsynced = await getUnsynced();
+      if (unsynced.length > 0) setSavedLocally(true);
+    };
+    const handleOffline = () => setIsOffline(true);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  // Debounced auto-save
+  useEffect(() => {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => {
+      saveDraft({
+        id: 'current',
+        formData: formData as Record<string, unknown>,
+        step: 1,
+        savedAt: Date.now(),
+        synced: false,
+      }).then(() => {
+        if (isOffline) setSavedLocally(true);
+      }).catch(() => {});
+    }, 500);
+    return () => {
+      if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData]);
+
+  const resumeDraft = async () => {
+    const draft = await loadDraft();
+    if (draft) {
+      const d = draft.formData as typeof formData;
+      setFormData((prev) => ({ ...prev, ...d }));
+    }
+    setDraftBanner(null);
+  };
+
+  const discardDraft = async () => {
+    await clearDraft();
+    setDraftBanner(null);
+  };
+
+  const formatDraftTime = (ts: number) =>
+    new Date(ts).toLocaleString('en-AU', { dateStyle: 'medium', timeStyle: 'short' });
+  // ─────────────────────────────────────────────────────────────────────────
 
   useEffect(() => {
     if (searchParams.get('demo') === 'auto') {
@@ -252,6 +324,7 @@ function ClaimStartContent() {
         return;
       }
 
+      await clearDraft();
       router.push(`/track/${result.claimId}`);
     } catch {
       setSubmissionError('Network error — please check your connection and try again.');
@@ -283,6 +356,41 @@ function ClaimStartContent() {
       </header>
 
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-4xl">
+        {/* Offline banner */}
+        <OfflineBanner isOffline={isOffline} savedLocally={savedLocally} />
+
+        {/* Saved locally indicator */}
+        {isOffline && savedLocally && (
+          <div className="mb-4 px-3 py-2 bg-amber-100 border border-amber-300 rounded-md text-xs text-amber-800 flex items-center gap-2">
+            <span className="font-semibold">Saved locally</span> — your progress is stored on this device.
+          </div>
+        )}
+
+        {/* Draft resume banner */}
+        {draftBanner && (
+          <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-sm text-blue-900">
+              You have a saved claim draft from <strong>{formatDraftTime(draftBanner.savedAt)}</strong>. Continue?
+            </p>
+            <div className="flex gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={resumeDraft}
+                className="px-4 py-2 text-sm font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Resume
+              </button>
+              <button
+                type="button"
+                onClick={discardDraft}
+                className="px-4 py-2 text-sm font-semibold bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                Start Fresh
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Emergency Notice */}
         <div className="mb-8 p-6 bg-red-50 border-2 border-red-200 rounded-xl">
           <div className="flex items-start gap-3">
