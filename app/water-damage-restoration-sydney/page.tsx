@@ -215,7 +215,7 @@ export default function WaterDamageRestorationSydneyPage() {
                   <li style={{ marginBottom: '0.75rem' }}>
                     <strong>Stormwater ingress in Western Sydney:</strong> Suburbs in the Hawkesbury-Nepean catchment
                     (Windsor, Richmond, Penrith) experience overland flooding during heavy rainfall events, with
-                    Category 3 (black water) requiring specialist decontamination under IICRC S500 protocols.
+                    Category 3 (black water) requiring specialist decontamination under IICRC S500:2025 protocols.
                   </li>
                 </ul>
               </>
@@ -245,7 +245,7 @@ export default function WaterDamageRestorationSydneyPage() {
           },
           {
             question: 'Are your Sydney water damage contractors IICRC certified?',
-            answer: 'Yes. Every contractor in the NRPG network maintains current IICRC Water Restoration Technician (WRT) certification, carries minimum $20 million public liability insurance, and has been vetted for quality and reliability. IICRC certification ensures contractors follow ANSI/IICRC S500-2021 standards for water damage restoration.',
+            answer: 'Yes. Every contractor in the NRPG network maintains current IICRC Water Restoration Technician (WRT) certification, carries minimum $20 million public liability insurance, and has been vetted for quality and reliability. IICRC certification ensures contractors follow ANSI/IICRC S500:2025 standards for water damage restoration.',
           },
         ]}
         relatedGuides={[

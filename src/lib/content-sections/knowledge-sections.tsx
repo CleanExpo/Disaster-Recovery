@@ -29,14 +29,14 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
       <>
         <p>
           <strong>Water damage restoration</strong> uses{' '}
-          <CitationTooltip source="IICRC S500" credibility={10} url="https://www.iicrc.org">
-            IICRC S500 protocols
+          <CitationTooltip source="IICRC S500:2025" credibility={10} url="https://www.iicrc.org">
+            IICRC S500:2025 protocols
           </CitationTooltip>{' '}
           to classify contamination into 3 categories and 4 classes based on water source and material
           saturation. Category 1 (clean water) requires extraction and drying within 24–48 hours.
           Category 3 (black water from sewage or floods) demands full containment, antimicrobial treatment,
           and removal of all porous materials. Professional restoration maintains a{' '}
-          <CitationTooltip source="IICRC S500 Water Damage Restoration Standard" credibility={10}>
+          <CitationTooltip source="IICRC S500:2025 Water Damage Restoration Standard" credibility={10}>
             vapour pressure differential of at least 4.5 mmHg
           </CitationTooltip>{' '}
           to ensure structural drying meets Australian building standards.
@@ -48,7 +48,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
         <p>
           The science of water damage restoration is governed by{' '}
           <CitationTooltip source="IICRC Standards" credibility={10} url="https://www.iicrc.org">
-            IICRC S500 — the Standard and Reference Guide for Professional Water Damage Restoration
+            IICRC S500:2025 — the Standard and Reference Guide for Professional Water Damage Restoration
           </CitationTooltip>
           . This standard classifies water damage along two axes:
         </p>
@@ -72,7 +72,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
           </li>
         </ul>
         <ProTip title="Time Is Critical">
-          <CitationTooltip source="IICRC S520 Standard" credibility={10}>
+          <CitationTooltip source="IICRC S520:2025 Standard" credibility={10}>
             Mould can begin growing within 24–48 hours
           </CitationTooltip>{' '}
           in conditions above 60% relative humidity. Every hour of delay increases restoration cost
@@ -145,7 +145,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
     vettedComparison: {
       topic: 'Water Damage Response',
       vetted: [
-        'IICRC S500 certified — follows scientific drying protocols',
+        'IICRC S500:2025 certified — follows scientific drying protocols',
         'Police-checked technicians with current Working with Children clearances',
         'Moisture mapping with thermal imaging and pin/pinless meters',
         'Daily psychrometric monitoring with documented drying logs',
@@ -179,7 +179,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
         <p>
           <strong>Professional mould remediation</strong> follows{' '}
           <CitationTooltip source="IICRC Standards" credibility={10} url="https://www.iicrc.org">
-            IICRC S520 standards
+            IICRC S520:2025 standards
           </CitationTooltip>
           , requiring negative-pressure containment at ≥0.03 Pa, HEPA-filtered air scrubbing, and
           antimicrobial treatment of affected materials. Mould can begin growing within 24–48 hours
@@ -197,7 +197,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
         <p>
           Mould remediation is governed by{' '}
           <CitationTooltip source="IICRC Standards" credibility={10} url="https://www.iicrc.org">
-            IICRC S520 — Standard for Professional Mould Remediation
+            IICRC S520:2025 — Standard for Professional Mould Remediation
           </CitationTooltip>
           . Unlike surface cleaning, professional remediation addresses the root cause (moisture),
           contains the contamination, and verifies successful treatment.
@@ -261,7 +261,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
     vettedComparison: {
       topic: 'Mould Remediation',
       vetted: [
-        'IICRC S520 certified with containment and HEPA protocols',
+        'IICRC S520:2025 certified with containment and HEPA protocols',
         'Pre- and post-remediation air testing for verification',
         'Identifies and resolves the moisture source — not just symptoms',
         'Registered antimicrobial agents used per manufacturer specifications',
@@ -616,9 +616,9 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
             structural drying in disaster restoration
           </CitationTooltip>
           . Professional restorers use psychrometric charts to calculate the grain depression (difference
-          between ambient humidity and target humidity) needed for effective evaporation. The IICRC S500
+          between ambient humidity and target humidity) needed for effective evaporation. The IICRC S500:2025
           standard requires maintaining a{' '}
-          <CitationTooltip source="IICRC S500 Water Damage Restoration Standard" credibility={10}>
+          <CitationTooltip source="IICRC S500:2025 Water Damage Restoration Standard" credibility={10}>
             vapour pressure differential of at least 4.5 mmHg
           </CitationTooltip>{' '}
           across wet materials to achieve efficient drying within Australian climate conditions.
@@ -671,7 +671,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
           the duration and cost of drying operations.
         </p>
         <ProTip variant="legal" title="Industry Standard of Care">
-          The IICRC S500 standard establishes the industry standard of care for structural drying.
+          The IICRC S500:2025 standard establishes the industry standard of care for structural drying.
           Restorers who fail to follow psychrometric drying principles may be liable for
           consequential damage (e.g., mould growth from inadequate drying). This standard is
           referenced in insurance disputes and legal proceedings.
@@ -832,8 +832,8 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
             The Bureau of Meteorology
           </CitationTooltip>{' '}
           records over 10,000 severe weather events across Australia annually.{' '}
-          <CitationTooltip source="IICRC S500 Water Damage Restoration Standard" credibility={10}>
-            IICRC S500 protocols
+          <CitationTooltip source="IICRC S500:2025 Water Damage Restoration Standard" credibility={10}>
+            IICRC S500:2025 protocols
           </CitationTooltip>{' '}
           classify floodwater as Category 3 (black water), requiring full contamination protocols
           including antimicrobial treatment, removal of all affected porous materials, and structural
@@ -850,7 +850,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
         </p>
         <h3>Floodwater Classification</h3>
         <p>
-          All floodwater is classified as Category 3 (black water) under IICRC S500, regardless of its
+          All floodwater is classified as Category 3 (black water) under IICRC S500:2025, regardless of its
           visual appearance. Floodwater collects contaminants from sewage systems, agricultural runoff,
           industrial sites, and decaying organic matter. This means every flood event requires full
           contamination protocols.
@@ -916,7 +916,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
       ],
     },
     faqs: [
-      { question: 'Is all floodwater contaminated?', answer: 'Yes. Under IICRC S500, all floodwater is classified as Category 3 (black water) regardless of its appearance. Floodwater collects contaminants from sewage, agricultural chemicals, industrial waste, and decaying matter. Even clear-looking floodwater requires full contamination protocols.' },
+      { question: 'Is all floodwater contaminated?', answer: 'Yes. Under IICRC S500:2025, all floodwater is classified as Category 3 (black water) regardless of its appearance. Floodwater collects contaminants from sewage, agricultural chemicals, industrial waste, and decaying matter. Even clear-looking floodwater requires full contamination protocols.' },
       { question: 'Does my insurance cover flood damage?', answer: 'It depends on your policy. Since 2012, Australian insurers use a standard definition of flood, but coverage inclusion varies. Many policies offer flood as an optional add-on or include it with a higher excess. Check your Product Disclosure Statement for your specific flood coverage terms.' },
       { question: 'How long after a flood does mould appear?', answer: 'Mould can begin growing within 24–48 hours of a flood event in warm, humid conditions. In tropical areas of Australia (QLD, NT, northern NSW), mould growth can appear even faster. Professional water extraction and drying should begin as soon as floodwaters recede to minimise mould risk.' },
       { question: 'What government assistance is available after a flood?', answer: 'Following declared natural disasters, the Australian Government provides Disaster Recovery Payments (up to $1,000 per adult). State governments offer essential household goods grants, structural assistance grants, and emergency accommodation. Apply through your state emergency management agency or Services Australia.' },
@@ -1042,8 +1042,8 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
           <CitationTooltip source="RIA Guidelines" credibility={9} url="https://www.restorationindustry.org">
             Restoration Industry Association (RIA)
           </CitationTooltip>
-          . Key standards include S500 (water damage), S520 (mould), S540 (fire/smoke), and S700
-          (carpet cleaning). Australian insurers overwhelmingly prefer IICRC-certified contractors
+          . Key standards include S500:2025 (water damage), S520:2025 (mould), S540 (fire/smoke), and S700:2025
+          (fire and smoke damage restoration). Australian insurers overwhelmingly prefer IICRC-certified contractors
           for insured restoration work.
         </p>
       </>
@@ -1057,11 +1057,11 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
         </p>
         <h3>The 8 Core IICRC Standards</h3>
         <ul>
-          <li><strong>S500</strong> — Standard for Professional Water Damage Restoration. Covers contamination categories, drying classes, psychrometric drying, and antimicrobial treatment.</li>
-          <li><strong>S520</strong> — Standard for Professional Mould Remediation. Covers assessment, containment, remediation protocols, and post-remediation verification.</li>
+          <li><strong>S500:2025</strong> — Standard for Professional Water Damage Restoration. Covers contamination categories, drying classes, psychrometric drying, and antimicrobial treatment.</li>
+          <li><strong>S520:2025</strong> — Standard for Professional Mould Remediation. Covers assessment, containment, remediation protocols, and post-remediation verification.</li>
           <li><strong>S540</strong> — Standard for Cleaning and Restoration of Fire/Smoke Damaged Structures. Covers smoke types, cleaning methods, deodorisation, and structural assessment.</li>
           <li><strong>S590</strong> — Standard for Professional Water Damage Restoration of HVAC Systems. Covers HVAC contamination assessment, cleaning, and verification.</li>
-          <li><strong>S700</strong> — Standard for Professional Carpet Cleaning. Covers cleaning methods, chemical selection, and quality verification.</li>
+          <li><strong>S700:2025</strong> — Standard for Professional Fire and Smoke Damage Restoration. Covers smoke residue assessment, decontamination methods, deodorisation, and structural assessment.</li>
           <li><strong>S710</strong> — Standard for Inspection of Installed Carpet. Covers installation defects, wear assessment, and manufacturer warranty evaluation.</li>
           <li><strong>S740</strong> — Standard for Professional Cleaning of Textile Floor Coverings. Covers specialised fibre types and cleaning requirements.</li>
           <li><strong>S790</strong> — Standard for Inspection of Installed Resilient Floor Coverings. Covers vinyl, tile, and engineered flooring assessment.</li>

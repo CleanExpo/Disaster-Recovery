@@ -53,17 +53,17 @@ export const SCIENTIFIC_FACTS = {
   water_damage: {
     mould_growth: {
       fact: "Mould can begin growing within 24-48 hours in conditions above 60% relative humidity",
-      source: "IICRC S520 Standard",
+      source: "IICRC S520:2025 Standard",
       technical: "Fungal growth initiates when moisture content exceeds 16% in organic materials at temperatures between 5°C and 38°C",
       common: "Mould starts growing in just 1-2 days when things stay wet" },
     drying_time: {
       fact: "Structural drying requires maintaining vapour pressure differential of at least 4.5 mmHg",
-      source: "IICRC S500 Water Damage Restoration Standard",
+      source: "IICRC S500:2025 Water Damage Restoration Standard",
       technical: "Evaporation rate = (Vapour Pressure Differential × Air Flow) / Material Resistance",
       common: "Proper drying needs the right temperature, air movement, and humidity control" },
     categories: {
       fact: "Water contamination is classified into 3 categories based on source and contamination level",
-      source: "IICRC S500",
+      source: "IICRC S500:2025",
       technical: "Category 1: <1 CFU/mL, Category 2: <10⁴ CFU/mL, Category 3: >10⁴ CFU/mL bacteria",
       common: "Clean water, grey water, and black water need different cleaning methods" } },
   fire_damage: {

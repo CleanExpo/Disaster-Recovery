@@ -180,7 +180,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
       taxable: true,
       standard: {
         standard: 'IICRC',
-        code: 'S500',
+        code: 'S500:2025',
         description: 'Standard for Professional Water Damage Restoration'
       }
     });
@@ -210,7 +210,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
       taxable: true,
       standard: {
         standard: 'IICRC',
-        code: 'S500-2021',
+        code: 'S500:2025',
         description: 'Category 2 water damage restoration'
       }
     });
@@ -257,7 +257,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
           notes: eq.purpose,
           standard: {
             standard: 'IICRC',
-            code: 'S500',
+            code: 'S500:2025',
             description: `Equipment for Class ${data.damageAssessment.class} water damage`
           }
         });
@@ -323,8 +323,8 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
         parameters: [
           { name: 'Total Area', value: data.propertyDetails.totalArea, unit: 'sqm', source: 'Assessment' },
           { name: 'Affected Area', value: totalAffectedArea, unit: 'sqm', source: 'Calculated' },
-          { name: 'Water Category', value: data.damageAssessment.category, unit: '', source: 'IICRC S500' },
-          { name: 'Water Class', value: data.damageAssessment.class, unit: '', source: 'IICRC S500' }
+          { name: 'Water Category', value: data.damageAssessment.category, unit: '', source: 'IICRC S500:2025' },
+          { name: 'Water Class', value: data.damageAssessment.class, unit: '', source: 'IICRC S500:2025' }
         ],
         formulas: [
           {
@@ -425,7 +425,7 @@ const EstimateGenerator: React.FC<EstimateGeneratorProps> = ({ jobId, assessment
           'Completion certificate'
         ],
         qualityStandards: [
-          'IICRC S500 compliance',
+          'IICRC S500:2025 compliance',
           'Target moisture content < 16%',
           'Indoor air quality standards met'
         ],

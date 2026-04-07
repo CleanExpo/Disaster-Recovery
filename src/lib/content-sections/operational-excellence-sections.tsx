@@ -28,7 +28,7 @@ const commandEcosystemData: OEPageData = {
   stats: [
     { label: 'Field Devices', value: '3 Platforms' },
     { label: 'GPS Dispatch', value: 'Real-time' },
-    { label: 'Reporting', value: 'IICRC S500' },
+    { label: 'Reporting', value: 'IICRC S500:2025' },
     { label: 'Availability', value: '24/7' },
   ],
   sections: [
@@ -123,8 +123,8 @@ const commandEcosystemData: OEPageData = {
               IICRC certification standards
             </Link>
             . When a technician logs moisture readings, the system automatically validates them
-            against IICRC S500 thresholds. When a mould remediation project progresses, the
-            platform enforces the S520 protocol sequence — containment, filtration, removal,
+            against IICRC S500:2025 thresholds. When a mould remediation project progresses, the
+            platform enforces the S520:2025 protocol sequence — containment, filtration, removal,
             treatment, verification.
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
@@ -198,7 +198,7 @@ const commandEcosystemData: OEPageData = {
     },
     {
       question: 'Is the claims management platform compliant with IICRC standards?',
-      answer: 'Yes. Every digital workflow is mapped to IICRC S500, S520, and S540 standards. The system enforces protocol sequences and validates readings against industry thresholds automatically, ensuring full compliance on every project.',
+      answer: 'Yes. Every digital workflow is mapped to IICRC S500:2025, S520:2025, and S540 standards. The system enforces protocol sequences and validates readings against industry thresholds automatically, ensuring full compliance on every project.',
     },
     {
       question: 'Can insurance adjusters access project data in real time?',
@@ -295,7 +295,7 @@ const safetyPpeData: OEPageData = {
             requires decontamination procedures to prevent cross-contamination.
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8 }}>
-            These protocols align with IICRC S520 containment standards and Australian WHS
+            These protocols align with IICRC S520:2025 containment standards and Australian WHS
             regulations. Air quality monitoring is continuous in contaminated zones, with real-time
             particle counts fed back to our command ecosystem for documentation and compliance
             verification. This systematic approach protects technicians, property occupants, and
@@ -604,8 +604,8 @@ const executivePartnersData: OEPageData = {
             <Link href="/knowledge/iicrc-certification-standards" style={{ color: 'var(--ag-primary-blue)', textDecoration: 'underline' }}>
               IICRC
             </Link>{' '}
-            is the global standard-setting body for the restoration industry. Their S500 (Water
-            Damage), S520 (Mould Remediation), and S540 (Trauma Scene) standards define how
+            is the global standard-setting body for the restoration industry. Their S500:2025 (Water
+            Damage), S520:2025 (Mould Remediation), and S540 (Trauma Scene) standards define how
             professional restoration work should be conducted.
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
@@ -712,7 +712,7 @@ const executivePartnersData: OEPageData = {
   faqs: [
     {
       question: 'What is the IICRC and why does it matter?',
-      answer: 'The IICRC (Institute of Inspection, Cleaning and Restoration Certification) is the global standard-setting body for the restoration industry. Their standards — including S500, S520, and S540 — define how professional restoration should be conducted. IICRC accreditation means a company has been independently audited and approved.',
+      answer: 'The IICRC (Institute of Inspection, Cleaning and Restoration Certification) is the global standard-setting body for the restoration industry. Their standards — including S500:2025, S520:2025, and S540 — define how professional restoration should be conducted. IICRC accreditation means a company has been independently audited and approved.',
     },
     {
       question: 'Is Disaster Recovery an IICRC-accredited firm?',
@@ -791,7 +791,7 @@ const chemicalRemediationData: OEPageData = {
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
             Our fleet uses true HEPA filtration rated to 99.97% efficiency at 0.3 microns — the
-            standard required by IICRC S520 for{' '}
+            standard required by IICRC S520:2025 for{' '}
             <Link href="/services/mould-remediation" style={{ color: 'var(--ag-primary-blue)', textDecoration: 'underline' }}>
               mould remediation
             </Link>{' '}
@@ -854,7 +854,7 @@ const chemicalRemediationData: OEPageData = {
           </p>
           <p style={{ fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
             For mould remediation projects, we construct full containment enclosures that meet
-            IICRC S520 specifications — sealed barriers with negative air pressure, decontamination
+            IICRC S520:2025 specifications — sealed barriers with negative air pressure, decontamination
             chambers, and HEPA-filtered exhaust. For{' '}
             <Link href="/services/fire-damage-restoration" style={{ color: 'var(--ag-primary-blue)', textDecoration: 'underline' }}>
               fire damage
@@ -917,7 +917,7 @@ const chemicalRemediationData: OEPageData = {
     },
     {
       question: 'What standard of HEPA filtration do you use?',
-      answer: 'All our negative air machines and air scrubbers use true HEPA filtration rated to 99.97% efficiency at 0.3 microns. This is the standard required by IICRC S520 for mould remediation and asbestos-adjacent work. Filters are replaced strictly according to manufacturer schedules.',
+      answer: 'All our negative air machines and air scrubbers use true HEPA filtration rated to 99.97% efficiency at 0.3 microns. This is the standard required by IICRC S520:2025 for mould remediation and asbestos-adjacent work. Filters are replaced strictly according to manufacturer schedules.',
     },
     {
       question: 'Are your chemical treatments EPA-registered?',

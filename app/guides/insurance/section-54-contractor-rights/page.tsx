@@ -173,7 +173,7 @@ export default function Section54ContractorRightsPage() {
                   <strong>Detailed scope of works</strong> — Every task, material, and cost itemised. This allows the insurer to review line by line and confirms that the work is reasonable, necessary, and properly priced.
                 </li>
                 <li>
-                  <strong>Daily drying and progress logs</strong> — Equipment placement records, daily moisture readings, and photographic progress. This demonstrates that drying and remediation followed IICRC S500/S520 protocols and that each step was necessary.
+                  <strong>Daily drying and progress logs</strong> — Equipment placement records, daily moisture readings, and photographic progress. This demonstrates that drying and remediation followed IICRC S500:2025/S520:2025 protocols and that each step was necessary.
                 </li>
                 <li>
                   <strong>Completion report and clearance data</strong> — Final moisture readings confirming the structure has returned to normal levels. Air quality results where applicable. Photographic evidence of completed restoration.

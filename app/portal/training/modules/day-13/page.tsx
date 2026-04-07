@@ -687,7 +687,7 @@ function Day13ModuleOriginal() {
                     <label><input type="checkbox" /> Moisture readings documentation</label>
                     <label><input type="checkbox" /> Photos showing damage extent</label>
                     <label><input type="checkbox" /> Category 3 water confirmation</label>
-                    <label><input type="checkbox" /> IICRC S500 guidelines reference</label>
+                    <label><input type="checkbox" /> IICRC S500:2025 guidelines reference</label>
                     <label><input type="checkbox" /> Health risk documentation</label>
                     <label><input type="checkbox" /> Written contamination report</label>
                   </div>

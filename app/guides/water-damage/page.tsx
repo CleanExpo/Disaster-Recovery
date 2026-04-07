@@ -534,7 +534,7 @@ function WaterDamageGuidePageOriginal() {
             },
             {
               q: 'What are the three categories of water damage?',
-              a: 'The IICRC S500 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources like broken supply lines and poses low health risk. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation. Category determines the restoration approach, equipment needed, and safety protocols.'
+              a: 'The IICRC S500:2025 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources like broken supply lines and poses low health risk. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation. Category determines the restoration approach, equipment needed, and safety protocols.'
             },
             {
               q: 'How long does water damage restoration take?',
@@ -563,7 +563,7 @@ function WaterDamageGuidePageOriginal() {
           <div><strong className="text-blue-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
           <div><strong className="text-blue-900">Category:</strong> Water Damage Restoration</div>
           <div><strong className="text-blue-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
-          <div><strong className="text-blue-900">Standard:</strong> IICRC S500 certified practices</div>
+          <div><strong className="text-blue-900">Standard:</strong> IICRC S500:2025 certified practices</div>
         </div>
       </section>
 
@@ -637,7 +637,7 @@ const waterDamageFaqSchema = JSON.stringify({
     {
       '@type': 'Question',
       name: 'What are the three categories of water damage?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The IICRC S500 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'The IICRC S500:2025 standard classifies water damage into three categories. Category 1 (Clean Water) comes from sanitary sources. Category 2 (Grey Water) from washing machines or sump pump failures can cause illness. Category 3 (Black Water) from sewage backup or river flooding is a serious health hazard requiring full PPE and professional remediation.' },
     },
     {
       '@type': 'Question',

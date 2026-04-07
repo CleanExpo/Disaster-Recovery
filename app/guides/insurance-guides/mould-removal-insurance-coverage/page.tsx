@@ -166,7 +166,7 @@ export default function MouldRemovalInsuranceCoveragePage() {
               </p>
               <ul className="list-disc pl-6 space-y-3">
                 <li>
-                  <strong>IICRC S520-certified mould assessment</strong> — Your matched contractor follows IICRC S520 (Standard for Professional Mould Remediation) protocols. This is the industry standard that insurers recognise and accept. The assessment includes visual inspection, moisture mapping, air quality sampling, and identification of the moisture source.
+                  <strong>IICRC S520:2025-certified mould assessment</strong> — Your matched contractor follows IICRC S520:2025 (Standard for Professional Mould Remediation) protocols. This is the industry standard that insurers recognise and accept. The assessment includes visual inspection, moisture mapping, air quality sampling, and identification of the moisture source.
                 </li>
                 <li>
                   <strong>Cause identification</strong> — A critical part of the assessment is identifying <em>why</em> the mould is there. Your contractor documents the moisture source — burst pipe, storm damage, appliance failure, or other — and establishes the causal chain that connects the mould to an insurable event. This is the evidence your insurer needs.

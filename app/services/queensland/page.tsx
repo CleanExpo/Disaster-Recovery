@@ -355,7 +355,7 @@ export default function QueenslandServicesPage() {
           {
             question: 'What IICRC standards do your Queensland contractors follow?',
             answer:
-              'Our contractors follow IICRC S500 (Water Damage Restoration), IICRC S520 (Mould Remediation), and IICRC S770 (Storm and Storm Surge Damage) standards, as applicable to the loss type.',
+              'Our contractors follow IICRC S500:2025 (Water Damage Restoration), IICRC S520:2025 (Mould Remediation), and IICRC S770 (Storm and Storm Surge Damage) standards, as applicable to the loss type.',
           },
         ]}
         relatedGuides={[

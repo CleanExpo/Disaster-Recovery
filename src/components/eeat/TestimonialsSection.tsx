@@ -72,7 +72,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     service: 'Mould Remediation',
     quote: 'Professional mould removal that actually worked. My family\'s health improved immediately after treatment.',
-    fullStory: 'We had been dealing with health issues for months before discovering extensive mould in our walls. The team conducted thorough testing, contained the affected areas, and performed complete remediation following IICRC S520 standards. They found and fixed the moisture source, treated all affected materials, and provided air quality testing showing complete clearance. Our health improved dramatically and they provided a 5-year warranty.',
+    fullStory: 'We had been dealing with health issues for months before discovering extensive mould in our walls. The team conducted thorough testing, contained the affected areas, and performed complete remediation following IICRC S520:2025 standards. They found and fixed the moisture source, treated all affected materials, and provided air quality testing showing complete clearance. Our health improved dramatically and they provided a 5-year warranty.',
     verified: true,
     insuranceCompany: 'Suncorp',
     propertyType: 'Residential Unit',

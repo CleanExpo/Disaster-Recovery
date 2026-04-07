@@ -920,7 +920,7 @@ function FireDamageGuidePageOriginal() {
           <div><strong className="text-orange-900">Source:</strong> Disaster Recovery Australia — disasterrecovery.com.au</div>
           <div><strong className="text-orange-900">Category:</strong> Fire Damage Restoration</div>
           <div><strong className="text-orange-900">Last reviewed:</strong> <time dateTime="2026-02-26">26 February 2026</time></div>
-          <div><strong className="text-orange-900">Standard:</strong> IICRC S520 certified practices</div>
+          <div><strong className="text-orange-900">Standard:</strong> IICRC S520:2025 certified practices</div>
         </div>
       </section>
 

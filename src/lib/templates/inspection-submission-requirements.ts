@@ -176,11 +176,11 @@ export const SUBMISSION_REQUIREMENTS: Record<string, SubmissionRequirement[]> = 
       validationRules: [
         {
           type: 'custom',
-          customValidator: (standards: string[]) => standards.includes('IICRC S520'),
-          message: 'IICRC S520 standard must be referenced for fire damage'
+          customValidator: (standards: string[]) => standards.includes('IICRC S520:2025'),
+          message: 'IICRC S520:2025 standard must be referenced for fire damage'
         }
       ],
-      errorMessage: 'IICRC S520 Fire and Smoke Damage Standard must be referenced'
+      errorMessage: 'IICRC S520:2025 Fire and Smoke Damage Standard must be referenced'
     }
   ],
 

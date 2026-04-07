@@ -5,7 +5,7 @@ import { AgGuidePageTemplate } from '@/components/antigravity';
 export const metadata: Metadata = {
   title: 'Category 3 Water Damage: Insurance Claims Guide',
   description: 'What Category 3 (black water) damage means for your insurance claim. Higher costs, health risks, specialist remediation requirements, and how to ensure your claim is properly assessed.',
-  keywords: 'category 3 water damage insurance claim, black water damage, sewage damage insurance, contaminated water restoration, IICRC S500, disaster recovery Australia',
+  keywords: 'category 3 water damage insurance claim, black water damage, sewage damage insurance, contaminated water restoration, IICRC S500:2025, disaster recovery Australia',
   alternates: { canonical: 'https://disasterrecovery.com.au/guides/insurance/category-3-water-damage-insurance' },
 };
 
@@ -30,7 +30,7 @@ export default function Category3WaterDamageInsurancePage() {
           body: (
             <>
               <p>
-                The IICRC S500 Standard for Professional Water Damage Restoration classifies water damage into three categories based on the level of contamination:
+                The IICRC S500:2025 Standard for Professional Water Damage Restoration classifies water damage into three categories based on the level of contamination:
               </p>
               <ul>
                 <li><strong>Category 1 (Clean Water)</strong> — Water from a sanitary source such as a broken supply line or leaking tap. Poses no substantial risk to occupants if contacted or consumed.</li>
@@ -158,7 +158,7 @@ export default function Category3WaterDamageInsurancePage() {
         },
         {
           question: 'Can my insurer downgrade a Category 3 event to Category 1 or 2?',
-          answer: 'Some assessors may attempt to classify contaminated water at a lower category to reduce costs. However, the IICRC S500 standard is clear: sewage, floodwater, and any water stagnant for more than 48 hours is Category 3 regardless of appearance. If you believe the classification is wrong, request the assessor confirm the category in writing and obtain an independent assessment from an IICRC-certified professional.',
+          answer: 'Some assessors may attempt to classify contaminated water at a lower category to reduce costs. However, the IICRC S500:2025 standard is clear: sewage, floodwater, and any water stagnant for more than 48 hours is Category 3 regardless of appearance. If you believe the classification is wrong, request the assessor confirm the category in writing and obtain an independent assessment from an IICRC-certified professional.',
         },
         {
           question: 'What happens if I delay Category 3 cleanup?',

@@ -308,7 +308,7 @@ export function AgGuidePageTemplate({
               </time>
             </div>
             <div>
-              <strong style={{ color: 'var(--ag-primary-blue)' }}>Standard:</strong> IICRC S500/S520 certified practices
+              <strong style={{ color: 'var(--ag-primary-blue)' }}>Standard:</strong> IICRC S500:2025/S520:2025 certified practices
             </div>
           </div>
         </div>

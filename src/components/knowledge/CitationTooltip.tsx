@@ -5,7 +5,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/h
 import { AUTHORITATIVE_SOURCES } from '@/lib/knowledge-authority';
 
 interface CitationTooltipProps {
-  /** Source name, e.g. "IICRC S500" */
+  /** Source name, e.g. "IICRC S500:2025" */
   source: string;
   /** Credibility score 1-10 */
   credibility: number;

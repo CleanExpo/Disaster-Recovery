@@ -510,7 +510,7 @@ export default function StormDamageRestorationPage() {
                     <div>
                       <p style={{ fontWeight: 600, marginBottom: '0.25rem' }}>IICRC-Certified Practices</p>
                       <p style={{ fontSize: '0.9rem' }}>
-                        All restoration work follows IICRC S500 (water damage) and IICRC S520 (mould) standards,
+                        All restoration work follows IICRC S500:2025 (water damage) and IICRC S520:2025 (mould) standards,
                         ensuring best-practice outcomes and insurer confidence in the completed works.
                       </p>
                     </div>

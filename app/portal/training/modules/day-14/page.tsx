@@ -701,10 +701,10 @@ function Day14ModuleOriginal() {
               <div className={styles.resourceCategory}>
                 <h3>Standards & Guidelines</h3>
                 <ul>
-                  <li>📄 IICRC S500 Water Damage Standard</li>
-                  <li>📄 IICRC S520 Mould Remediation Standard</li>
+                  <li>📄 IICRC S500:2025 Water Damage Standard</li>
+                  <li>📄 IICRC S520:2025 Mould Remediation Standard</li>
                   <li>📄 IICRC S540 Trauma and Crime Scene Cleanup</li>
-                  <li>📄 IICRC S700 Fire and Smoke Restoration</li>
+                  <li>📄 IICRC S700:2025 Fire and Smoke Restoration</li>
                   <li>📄 AS/NZS 4360 Risk Management</li>
                   <li>📄 Australian Mould Guidelines</li>
                 </ul>

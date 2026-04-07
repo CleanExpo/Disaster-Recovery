@@ -222,7 +222,7 @@ export interface InspectionReport {
 export const WATER_DAMAGE_TEMPLATE: Partial<InspectionReport> = {
   complianceRequirements: {
     applicableStandards: [
-      'IICRC S500 - Water Damage Restoration Standard',
+      'IICRC S500:2025 - Water Damage Restoration Standard',
       'AS/NZS 3666.1 - Air-handling and water systems in buildings',
       'Work Health and Safety Act 2011',
       'Building Code of Australia'
@@ -242,7 +242,7 @@ export const WATER_DAMAGE_TEMPLATE: Partial<InspectionReport> = {
 export const FIRE_DAMAGE_TEMPLATE: Partial<InspectionReport> = {
   complianceRequirements: {
     applicableStandards: [
-      'IICRC S520 - Fire and Smoke Damage Restoration Standard',
+      'IICRC S520:2025 - Fire and Smoke Damage Restoration Standard',
       'AS/NZS 3666.2 - Air-handling and water systems in buildings',
       'Work Health and Safety Act 2011',
       'Building Code of Australia'
@@ -262,7 +262,7 @@ export const FIRE_DAMAGE_TEMPLATE: Partial<InspectionReport> = {
 export const MOULD_REMEDIATION_TEMPLATE: Partial<InspectionReport> = {
   complianceRequirements: {
     applicableStandards: [
-      'IICRC S520 - Mould Remediation Standard',
+      'IICRC S520:2025 - Mould Remediation Standard',
       'AS/NZS 3666.1 - Air-handling and water systems in buildings',
       'Work Health and Safety Act 2011',
       'Australian Guidelines for Prevention and Control of Infection in Healthcare'

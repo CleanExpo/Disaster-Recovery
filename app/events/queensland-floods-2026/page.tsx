@@ -307,7 +307,7 @@ export default function QueenslandFloods2026Page() {
                 {
                   number: '03',
                   title: 'Full Restoration',
-                  body: 'From drying and mould remediation (IICRC S500/S520 standards) to final rebuild — one contact, one timeline.',
+                  body: 'From drying and mould remediation (IICRC S500:2025/S520:2025 standards) to final rebuild — one contact, one timeline.',
                 },
               ].map(({ number, title, body }) => (
                 <div key={number} className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">

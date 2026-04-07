@@ -203,7 +203,7 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
         <li><strong>Antimicrobial Treatment:</strong> EPA-approved treatments prevent mould and bacteria growth</li>
         <li><strong>Contents Restoration:</strong> Specialised cleaning and restoration of affected belongings</li>
       </ul>
-      <p>Every ${propertyType.name.toLowerCase()} property in ${locationName} receives a customised drying plan based on IICRC S500 standards, ensuring complete water removal and proper drying conditions.</p>`,
+      <p>Every ${propertyType.name.toLowerCase()} property in ${locationName} receives a customised drying plan based on IICRC S500:2025 standards, ensuring complete water removal and proper drying conditions.</p>`,
     
     'mould-remediation': `
       <p>Mould contamination poses serious health risks and requires specialised remediation following strict protocols. Our certified mould specialists provide:</p>
@@ -214,7 +214,7 @@ function generateServiceContent(service: typeof SERVICE_TYPES[0], propertyType: 
         <li><strong>Source Moisture Control:</strong> Identify and eliminate moisture sources causing mould growth</li>
         <li><strong>Post-Remediation Verification:</strong> Independent testing confirms successful mould removal</li>
       </ul>
-      <p>All mould remediation work follows IICRC S520 standards and Australian workplace health and safety requirements.</p>`,
+      <p>All mould remediation work follows IICRC S520:2025 standards and Australian workplace health and safety requirements.</p>`,
 
     'fire-damage-restoration': `
       <p>Fire damage restoration extends beyond visible damage to address smoke, soot, and water damage from firefighting efforts. Our comprehensive approach includes:</p>

@@ -230,7 +230,7 @@ export default function FloodDamageRestorationPage() {
             body: (
               <>
                 <p>
-                  Not all flood water is the same. The IICRC S500 standard classifies water damage into
+                  Not all flood water is the same. The IICRC S500:2025 standard classifies water damage into
                   three categories based on contamination level. Understanding these categories is
                   essential because each requires a different restoration approach, safety protocol and
                   cost structure.
@@ -305,7 +305,7 @@ export default function FloodDamageRestorationPage() {
               <>
                 <p>
                   Our IICRC-certified contractors follow a proven, systematic restoration process aligned
-                  with the IICRC S500 standard and Australian building codes. Every step is documented
+                  with the IICRC S500:2025 standard and Australian building codes. Every step is documented
                   for your insurance claim.
                 </p>
 
@@ -623,7 +623,7 @@ export default function FloodDamageRestorationPage() {
             title: 'Water Damage Restoration',
             href: '/services/water-damage-restoration',
             description:
-              'Professional water damage restoration for burst pipes, leaks and non-flood water events. IICRC S500 certified.',
+              'Professional water damage restoration for burst pipes, leaks and non-flood water events. IICRC S500:2025 certified.',
           },
           {
             title: 'Storm Damage Restoration',

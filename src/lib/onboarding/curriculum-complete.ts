@@ -212,7 +212,7 @@ As an NRPG contractor, you are part of a critical infrastructure network:
 
 **IICRC Standards Compliance:**
 - All work must meet Institute of Inspection, Cleaning and Restoration Certification standards
-- Specific standards for water (S500), fire (S520), and mould (S520) restoration
+- Specific standards for water (S500:2025), fire (S520:2025), and mould (S520:2025) restoration
 - Regular updates and continuing education requirements
 - Quality audits and performance reviews
 
@@ -472,7 +472,7 @@ During a water damage assessment, you notice that expanding the scope slightly w
 
 The IICRC provides the scientific foundation for professional restoration work. These standards are not guidelines – they are requirements for professional practice.
 
-**S500 - Standard for Professional Water Damage Restoration:**
+**S500:2025 - Standard for Professional Water Damage Restoration:**
 - **Category 1 Water**: Clean water from sanitary sources
   - Examples: Broken water supply lines, tub or sink overflows
   - Restoration approach: Extraction, drying, minimal antimicrobial treatment
@@ -488,7 +488,7 @@ The IICRC provides the scientific foundation for professional restoration work. 
   - Restoration approach: Often requires removal of affected materials
   - Safety: Full PPE, respiratory protection, medical monitoring
 
-**S520 - Standard for Professional Mould Remediation:**
+**S520:2025 - Standard for Professional Mould Remediation:**
 - **Condition 1**: Normal fungal conditions for indoor environment
 - **Condition 2**: Settled spores, non-amplification fungal growth
 - **Condition 3**: Amplification of fungi, requires professional remediation
@@ -716,8 +716,8 @@ This foundation of professional standards and ethics will guide every decision y
       },
       {
         id: "day2-obj2",
-        title: "IICRC S500 Standard Implementation",
-        description: "Apply IICRC S500 water damage restoration standards in all assessment and restoration work",
+        title: "IICRC S500:2025 Standard Implementation",
+        description: "Apply IICRC S500:2025 water damage restoration standards in all assessment and restoration work",
         measurableOutcome: "Can classify water categories, determine affected materials, and develop compliant restoration plans"
       },
       {
@@ -832,7 +832,7 @@ Water follows predictable paths through buildings:
 - **Optimal Range**: 25-30°C for most materials
 - **Monitoring**: Continuous temperature monitoring required
 
-### Water Classification System (IICRC S500)
+### Water Classification System (IICRC S500:2025)
 
 **Category 1: Clean Water**
 - **Source**: Sanitary water sources

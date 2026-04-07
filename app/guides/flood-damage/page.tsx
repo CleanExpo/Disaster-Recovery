@@ -69,7 +69,7 @@ export default function FloodDamageGuidesPage() {
                 Flooding is the costliest natural disaster in Australia, causing an average of $8.8 billion in damage annually (Insurance Council of Australia). From the 2022 Lismore floods to annual monsoonal events in North Queensland, flood damage requires specialist restoration techniques that differ significantly from standard water damage.
               </p>
               <p>
-                Floodwater is always classified as Category 3 (black water) under IICRC S500 standards, meaning it contains sewage, chemicals, and biological contaminants. This requires specialised extraction, antimicrobial treatment, and often removal of porous materials like carpet, underlay, and plasterboard. Our guides explain the process and help you make informed decisions about restoration vs replacement.
+                Floodwater is always classified as Category 3 (black water) under IICRC S500:2025 standards, meaning it contains sewage, chemicals, and biological contaminants. This requires specialised extraction, antimicrobial treatment, and often removal of porous materials like carpet, underlay, and plasterboard. Our guides explain the process and help you make informed decisions about restoration vs replacement.
               </p>
             </div>
           ),

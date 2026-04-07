@@ -276,7 +276,7 @@ const EstimatePresentation: React.FC<EstimatePresentationProps> = ({
                   <div>
                     <p className="font-semibold text-blue-900">Compliance & Standards</p>
                     <p className="text-sm text-blue-800 mt-1">
-                      This estimate complies with IICRC S500-2021 standards and Australian Consumer Law requirements.
+                      This estimate complies with IICRC S500:2025-2021 standards and Australian Consumer Law requirements.
                     </p>
                     {estimate.metadata.compliance.buildingCodes.length > 0 && (
                       <p className="text-xs text-blue-700 mt-2">

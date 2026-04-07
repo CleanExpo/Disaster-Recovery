@@ -10,7 +10,7 @@ const SLUG = 'water-damage-restoration-science';
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Science | IICRC',
   description:
-    'Comprehensive guide to water damage restoration science: IICRC S500 contamination categories, drying classes, psychrometric principles, and Australian insurance obligations.',
+    'Comprehensive guide to water damage restoration science: IICRC S500:2025 contamination categories, drying classes, psychrometric principles, and Australian insurance obligations.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/water-damage-restoration-science' },
 };
 
@@ -19,7 +19,7 @@ export default function WaterDamageRestorationSciencePage() {
     <>
       <KnowledgeSchema
         title="Water Damage Restoration Science"
-        description="IICRC S500 water damage restoration protocols, contamination categories, drying classes, and psychrometric drying science for Australian properties."
+        description="IICRC S500:2025 water damage restoration protocols, contamination categories, drying classes, and psychrometric drying science for Australian properties."
         slug={SLUG}
         faqs={getKnowledgeEntryFaqs(SLUG)}
       />
@@ -28,7 +28,7 @@ export default function WaterDamageRestorationSciencePage() {
           gradient: 'linear-gradient(135deg, #0369A1 0%, #06B6D4 100%)',
           icon: <Droplets className="h-12 w-12" />,
           title: 'Water Damage Restoration Science',
-          subtitle: 'IICRC S500 protocols, contamination categories, and psychrometric drying principles',
+          subtitle: 'IICRC S500:2025 protocols, contamination categories, and psychrometric drying principles',
         }}
         cta={{ text: 'Get Emergency Help', href: '/emergency' }}
         secondaryCta={{ text: 'Start a Claim', href: '/claim' }}
@@ -41,7 +41,7 @@ export default function WaterDamageRestorationSciencePage() {
           { label: 'Water Categories', value: '3' },
           { label: 'Drying Classes', value: '4' },
           { label: 'Mould Risk Window', value: '24-48hrs' },
-          { label: 'Standard', value: 'IICRC S500' },
+          { label: 'Standard', value: 'IICRC S500:2025' },
         ]}
         sections={getKnowledgeBaseSections(SLUG)}
         relatedPages={getRelatedPages('knowledge-base')}

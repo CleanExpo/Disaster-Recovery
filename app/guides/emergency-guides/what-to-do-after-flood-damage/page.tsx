@@ -79,14 +79,14 @@ export default function WhatToDoAfterFloodDamagePage() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Structural drying (6–48 hours):</strong> Once standing water is extracted,
                   professional-grade air movers and dehumidifiers must be deployed to begin drying the
-                  structure. IICRC S500 standards require moisture monitoring with meters and psychrometric
+                  structure. IICRC S500:2025 standards require moisture monitoring with meters and psychrometric
                   readings to track drying progress.
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Mould prevention (24–48 hours):</strong> Antimicrobial treatments should be
                   applied to affected surfaces within the first 24 hours where possible. If mould has
                   already started (visible growth or musty odour), a separate mould remediation scope
-                  under IICRC S520 may be required.
+                  under IICRC S520:2025 may be required.
                 </li>
               </ul>
               <p style={{ marginTop: '1rem' }}>
@@ -158,7 +158,7 @@ export default function WhatToDoAfterFloodDamagePage() {
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Category 3 water is always professional:</strong> Floodwater, sewage overflows,
-                  and stormwater ingress contain bacteria, viruses, and other pathogens. IICRC S500
+                  and stormwater ingress contain bacteria, viruses, and other pathogens. IICRC S500:2025
                   requires full PPE, antimicrobial treatment, and often removal of all affected porous
                   materials. This is not safe as a DIY task.
                 </li>
@@ -181,7 +181,7 @@ export default function WhatToDoAfterFloodDamagePage() {
         {
           question: 'How quickly does mould grow after flooding in Australia?',
           answer:
-            'Mould can begin colonising within 24 to 48 hours after flooding, particularly in warm, humid conditions common across Queensland, northern NSW, the Northern Territory, and during summer months nationwide. This is why the IICRC S500 standard emphasises rapid water extraction and structural drying. If mould is already visible or you detect a musty odour, a separate mould remediation scope under IICRC S520 will be required.',
+            'Mould can begin colonising within 24 to 48 hours after flooding, particularly in warm, humid conditions common across Queensland, northern NSW, the Northern Territory, and during summer months nationwide. This is why the IICRC S500:2025 standard emphasises rapid water extraction and structural drying. If mould is already visible or you detect a musty odour, a separate mould remediation scope under IICRC S520:2025 will be required.',
         },
         {
           question: 'Should I throw away everything that got wet in a flood?',

@@ -121,7 +121,7 @@ export default function MinimumTrainingRequirementsPage() {
                   <strong>Insurance requirements for certified work</strong> — Major insurers require restoration to be performed by appropriately trained and certified professionals. Work performed by untrained contractors may void the property owner&apos;s claim or result in disputes during the claims process.
                 </li>
                 <li>
-                  <strong>IICRC and industry standards alignment</strong> — The IICRC restoration standards (S500, S520, S540) reference OH&S competency as a prerequisite for all restoration work. These training courses ensure our technicians meet the baseline safety knowledge required by international restoration standards.
+                  <strong>IICRC and industry standards alignment</strong> — The IICRC restoration standards (S500:2025, S520:2025, S540) reference OH&S competency as a prerequisite for all restoration work. These training courses ensure our technicians meet the baseline safety knowledge required by international restoration standards.
                 </li>
               </ul>
             </div>

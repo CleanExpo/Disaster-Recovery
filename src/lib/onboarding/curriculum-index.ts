@@ -214,7 +214,7 @@ export const COMPETENCY_FRAMEWORK = {
     title: "Technical Restoration Skills",
     objectives: [
       "Perform water extraction and structural drying",
-      "Execute mould remediation following IICRC S520",
+      "Execute mould remediation following IICRC S520:2025",
       "Clean fire and smoke damage using appropriate methods",
       "Handle biohazard scenes safely and compliantly",
       "Operate all standard restoration equipment",
@@ -475,10 +475,10 @@ export const SUCCESS_INDICATORS = {
  */
 export const TRAINING_RESOURCES = {
   standards: [
-    "IICRC S500 - Water Damage Restoration",
-    "IICRC S520 - Mould Remediation",
+    "IICRC S500:2025 - Water Damage Restoration",
+    "IICRC S520:2025 - Mould Remediation",
     "IICRC S540 - Trauma and Crime Scene",
-    "IICRC S700 - Fire and Smoke Restoration",
+    "IICRC S700:2025 - Fire and Smoke Restoration",
     "IICRC S800 - Carpet Cleaning",
     "AS/NZS 4360 - Risk Management",
     "AS/NZS 4801 - OH&S Management"

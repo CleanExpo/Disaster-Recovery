@@ -111,11 +111,11 @@ export default function WhyMouldReturnsPage() {
           ),
         },
         {
-          heading: 'The IICRC S520 Standard for Mould Remediation',
+          heading: 'The IICRC S520:2025 Standard for Mould Remediation',
           body: (
             <>
               <p>
-                The IICRC S520 (now adopted in Australia as AS-IICRC S520:2025) is the recognised
+                The IICRC S520:2025 (now adopted in Australia as AS-IICRC S520:2025) is the recognised
                 standard for professional mould remediation. It provides the science-based
                 framework that separates genuine remediation from surface cleaning. Key principles
                 of the standard include:
@@ -155,7 +155,7 @@ export default function WhyMouldReturnsPage() {
               </ul>
               <p style={{ marginTop: '1rem' }}>
                 Disaster Recovery connects you with IICRC-certified mould remediation contractors
-                who follow the S520 standard. This is not surface cleaning — it is a systematic
+                who follow the S520:2025 standard. This is not surface cleaning — it is a systematic
                 process that addresses the mould and its cause.
               </p>
             </>
@@ -211,7 +211,7 @@ export default function WhyMouldReturnsPage() {
             <>
               <p>
                 When you engage an IICRC-certified mould remediation contractor through Disaster
-                Recovery, the process follows the S520 standard and addresses both the mould and
+                Recovery, the process follows the S520:2025 standard and addresses both the mould and
                 its cause:
               </p>
               <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
@@ -277,12 +277,12 @@ export default function WhyMouldReturnsPage() {
         {
           question: 'Does bleach kill mould permanently?',
           answer:
-            'Bleach kills surface mould spores on non-porous surfaces (tiles, glass, metal) but is largely ineffective on porous building materials. On plasterboard or timber, bleach kills surface growth but the water component can actually add moisture to the substrate, potentially promoting deeper hyphae growth. For established mould on porous materials, physical removal of the affected material — not chemical treatment alone — is required under the IICRC S520 remediation standard.',
+            'Bleach kills surface mould spores on non-porous surfaces (tiles, glass, metal) but is largely ineffective on porous building materials. On plasterboard or timber, bleach kills surface growth but the water component can actually add moisture to the substrate, potentially promoting deeper hyphae growth. For established mould on porous materials, physical removal of the affected material — not chemical treatment alone — is required under the IICRC S520:2025 remediation standard.',
         },
         {
-          question: 'What is the IICRC S520 mould remediation standard?',
+          question: 'What is the IICRC S520:2025 mould remediation standard?',
           answer:
-            'The IICRC S520 (adopted in Australia as AS-IICRC S520:2025) is the recognised standard for professional mould remediation. It sets out requirements for condition assessment, containment, source removal of affected materials, antimicrobial treatment, moisture rectification, and post-remediation verification. The standard explicitly requires that the moisture source be identified and addressed — without this, the remediation is considered incomplete. Disaster Recovery connects you with IICRC-certified contractors who follow this standard.',
+            'The IICRC S520:2025 (adopted in Australia as AS-IICRC S520:2025) is the recognised standard for professional mould remediation. It sets out requirements for condition assessment, containment, source removal of affected materials, antimicrobial treatment, moisture rectification, and post-remediation verification. The standard explicitly requires that the moisture source be identified and addressed — without this, the remediation is considered incomplete. Disaster Recovery connects you with IICRC-certified contractors who follow this standard.',
         },
         {
           question: 'How do professionals find hidden moisture causing mould?',

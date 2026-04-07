@@ -50,7 +50,7 @@ export function AntigravityContractorNetworkCTA() {
         <div className="ag-glass-panel">
           <h3>Minimum Requirements</h3>
           <ul className="ag-req-list">
-            <li>IICRC certification (S500, S520, or FSRT minimum)</li>
+            <li>IICRC certification (S500:2025, S520:2025, or FSRT minimum)</li>
             <li>Current liability insurance ($1M+ coverage)</li>
             <li>Established business with 2+ years experience</li>
             <li>Clean safety record and verified references</li>

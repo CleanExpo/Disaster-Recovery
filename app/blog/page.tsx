@@ -62,8 +62,8 @@ export default function BlogPage() {
               <p>In-depth technical articles on restoration science, industry standards, and Australian regulations.</p>
               <div className="grid md:grid-cols-2 gap-4 not-prose mt-4">
                 {[
-                  { title: 'Water Damage Restoration Science', href: '/knowledge/water-damage-restoration-science', desc: 'IICRC S500 water damage categories, classes, and drying science.' },
-                  { title: 'Mould Remediation Standards', href: '/knowledge/mould-remediation-standards', desc: 'IICRC S520 mould protocols and Australian health guidelines.' },
+                  { title: 'Water Damage Restoration Science', href: '/knowledge/water-damage-restoration-science', desc: 'IICRC S500:2025 water damage categories, classes, and drying science.' },
+                  { title: 'Mould Remediation Standards', href: '/knowledge/mould-remediation-standards', desc: 'IICRC S520:2025 mould protocols and Australian health guidelines.' },
                   { title: 'Fire Damage Restoration Process', href: '/knowledge/fire-damage-restoration-process', desc: 'Four-phase fire restoration including smoke and soot science.' },
                   { title: 'Insurance Claims Process', href: '/knowledge/insurance-claims-process-australia', desc: 'Australian insurance claims process, AFCA, and legal frameworks.' },
                   { title: 'IICRC Certification Standards', href: '/knowledge/iicrc-certification-standards', desc: 'Certification requirements, standards, and why they matter.' },

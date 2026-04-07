@@ -37,7 +37,7 @@ export const serviceFAQs: Record<string, ServiceFAQGenerator> = {
     },
     {
       question: `Are your ${locationText(city, suburb)} water damage technicians certified?`,
-      answer: `Every contractor in our network holds current IICRC Water Restoration Technician (WRT) certification, carries minimum $20 million public liability insurance, and maintains relevant state trade licences. All work follows IICRC S500 standard for professional water damage restoration.`,
+      answer: `Every contractor in our network holds current IICRC Water Restoration Technician (WRT) certification, carries minimum $20 million public liability insurance, and maintains relevant state trade licences. All work follows IICRC S500:2025 standard for professional water damage restoration.`,
     },
   ],
 
@@ -91,7 +91,7 @@ export const serviceFAQs: Record<string, ServiceFAQGenerator> = {
     },
     {
       question: `Are your ${locationText(city, suburb)} mould remediation technicians certified?`,
-      answer: `All contractors hold IICRC Applied Microbial Remediation (AMRT) certification and follow IICRC S520 standard for professional mould remediation. They carry minimum $20 million public liability insurance and use containment, HEPA filtration, and antimicrobial treatments that meet Australian standards.`,
+      answer: `All contractors hold IICRC Applied Microbial Remediation (AMRT) certification and follow IICRC S520:2025 standard for professional mould remediation. They carry minimum $20 million public liability insurance and use containment, HEPA filtration, and antimicrobial treatments that meet Australian standards.`,
     },
   ],
 
@@ -118,7 +118,7 @@ export const serviceFAQs: Record<string, ServiceFAQGenerator> = {
     },
     {
       question: `Are your ${locationText(city, suburb)} flood recovery contractors certified?`,
-      answer: `All contractors hold IICRC Water Restoration Technician (WRT) certification with additional flood-specific training. They carry minimum $20 million public liability insurance and follow IICRC S500 and S540 standards. Equipment includes truck-mounted extractors, commercial dehumidifiers, and contamination testing gear.`,
+      answer: `All contractors hold IICRC Water Restoration Technician (WRT) certification with additional flood-specific training. They carry minimum $20 million public liability insurance and follow IICRC S500:2025 and S540 standards. Equipment includes truck-mounted extractors, commercial dehumidifiers, and contamination testing gear.`,
     },
   ],
 

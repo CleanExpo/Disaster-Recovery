@@ -97,7 +97,7 @@ export default function WhenToCallDisasterRestorationPage() {
                   <strong>Visible mould of any size:</strong> Visible mould indicates an
                   established colony, which typically means the problem is larger than what you
                   can see. Mould inside wall cavities, under flooring, or in HVAC ductwork
-                  requires IICRC S520 protocol remediation.
+                  requires IICRC S520:2025 protocol remediation.
                 </li>
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Storm or structural damage:</strong> Damaged roofs, broken windows,
@@ -214,7 +214,7 @@ export default function WhenToCallDisasterRestorationPage() {
         {
           question: 'Do I need professional help for a small amount of visible mould?',
           answer:
-            'Yes. Visible mould — even a small patch — indicates an established colony that is typically larger than what you can see. Mould behind walls, under flooring, or in HVAC systems requires professional assessment and IICRC S520 protocol remediation. DIY surface cleaning does not address the root cause and the mould will return.',
+            'Yes. Visible mould — even a small patch — indicates an established colony that is typically larger than what you can see. Mould behind walls, under flooring, or in HVAC systems requires professional assessment and IICRC S520:2025 protocol remediation. DIY surface cleaning does not address the root cause and the mould will return.',
         },
         {
           question: 'How does the Disaster Recovery platform connect me with a restorer?',

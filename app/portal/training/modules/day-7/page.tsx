@@ -54,7 +54,7 @@ function Day7AssessmentOriginal() {
               "Moisture detection and measurement",
               "Drying equipment operation",
               "Psychrometry basics",
-              "IICRC S500 standards"
+              "IICRC S500:2025 standards"
             ],
             criticalKnowledge: [
               "Dry standards for materials",
@@ -116,7 +116,7 @@ function Day7AssessmentOriginal() {
             explanation: "Category 1 water becomes Category 2 after 48 hours due to microbial growth"
           },
           {
-            question: "What is the dry standard for drywall according to IICRC S500?",
+            question: "What is the dry standard for drywall according to IICRC S500:2025?",
             options: [
               "< 5% moisture content",
               "< 1% moisture content or < 16% WME",

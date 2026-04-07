@@ -16,8 +16,8 @@ export const metadata: Metadata = generateSEO({
     'AMRT certification',
     'restoration industry certification',
     'certified restoration technician',
-    'IICRC S500',
-    'IICRC S520',
+    'IICRC S500:2025',
+    'IICRC S520:2025',
   ],
   canonical: '/guides/certifications/why-hire-iicrc-certified',
 });
@@ -47,7 +47,7 @@ export default function WhyHireIicrcCertifiedPage() {
                 The <strong>Institute of Inspection Cleaning and Restoration Certification (IICRC)</strong> is the globally recognised body that sets standards for the restoration, cleaning, and inspection industries. Founded in 1972, the IICRC develops the technical standards that define how water damage, fire damage, mould remediation, and other restoration work should be performed.
               </p>
               <p>
-                IICRC is not a trade association or membership club — it is a <strong>standards-developing organisation</strong> accredited by the American National Standards Institute (ANSI). Its standards, including S500 (Water Damage Restoration), S520 (Mould Remediation), and S540 (Trauma and Crime Scene Cleanup), are the foundation documents used across Australia, New Zealand, the United States, Canada, and the United Kingdom.
+                IICRC is not a trade association or membership club — it is a <strong>standards-developing organisation</strong> accredited by the American National Standards Institute (ANSI). Its standards, including S500:2025 (Water Damage Restoration), S520:2025 (Mould Remediation), and S540 (Trauma and Crime Scene Cleanup), are the foundation documents used across Australia, New Zealand, the United States, Canada, and the United Kingdom.
               </p>
               <p>
                 In Australia, IICRC certification is recognised by all major insurance companies as the benchmark for restoration competency. While there is no single mandatory government licence for restoration work in most Australian states, IICRC certification serves as the de facto industry standard that insurers, loss adjusters, and building assessors reference when evaluating the quality of restoration work.

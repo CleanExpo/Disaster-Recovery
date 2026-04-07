@@ -48,7 +48,7 @@ export default function ProfessionalResponsePricingBreakdownPage() {
                   <strong>Structural drying</strong> — Deploying commercial-grade dehumidifiers and air movers to dry the structure to its dry standard. This phase typically runs 3 to 5 days and requires daily monitoring with calibrated moisture meters. The number of units needed depends on the affected area, materials involved, and ambient conditions.
                 </li>
                 <li>
-                  <strong>Decontamination</strong> — Antimicrobial treatment, soot and smoke residue removal, mould remediation, or biohazard cleaning depending on the damage type. Each contamination type requires specific chemicals, application methods, and safety protocols. IICRC S500 (water), S520 (mould), and FSRT (fire/smoke) standards govern these processes.
+                  <strong>Decontamination</strong> — Antimicrobial treatment, soot and smoke residue removal, mould remediation, or biohazard cleaning depending on the damage type. Each contamination type requires specific chemicals, application methods, and safety protocols. IICRC S500:2025 (water), S520:2025 (mould), and FSRT (fire/smoke) standards govern these processes.
                 </li>
                 <li>
                   <strong>Monitoring and documentation</strong> — Daily moisture readings, air quality testing, thermal imaging, and photographic records. This documentation serves two purposes: it confirms the restoration is progressing correctly, and it provides the evidence your insurer needs to process your claim.

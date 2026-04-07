@@ -141,7 +141,7 @@ export interface ProofOfWork {
           achieved: number;
         };
       }[];
-      certificationApplied: string[]; // e.g., 'IICRC S500', 'AS/NZS 4360'
+      certificationApplied: string[]; // e.g., 'IICRC S500:2025', 'AS/NZS 4360'
     };
     
     verification: {

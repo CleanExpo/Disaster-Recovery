@@ -131,7 +131,7 @@ export default function SewageBackupHealthRisksPage() {
                   <strong>Incomplete decontamination</strong> — Household disinfectants and cleaning products are not registered for sewage decontamination. Hospital-grade antimicrobials and specific contact times are required to achieve safe pathogen reduction on different materials. Bleach alone is ineffective against many sewage pathogens, particularly Cryptosporidium (which is chlorine-resistant) and many viruses.
                 </li>
                 <li>
-                  <strong>Contaminated materials left in place</strong> — Sewage-contaminated porous materials (carpet, underlay, plasterboard, insulation) cannot be decontaminated — they must be removed. Sewage wicks upward through porous materials via capillary action, contaminating areas above the visible waterline. IICRC S500 typically requires removal of plasterboard to 300mm above the visible waterline. DIY cleanup almost always leaves contaminated materials in place.
+                  <strong>Contaminated materials left in place</strong> — Sewage-contaminated porous materials (carpet, underlay, plasterboard, insulation) cannot be decontaminated — they must be removed. Sewage wicks upward through porous materials via capillary action, contaminating areas above the visible waterline. IICRC S500:2025 typically requires removal of plasterboard to 300mm above the visible waterline. DIY cleanup almost always leaves contaminated materials in place.
                 </li>
                 <li>
                   <strong>No verification</strong> — Without professional post-remediation testing, there is no way to confirm that decontamination was successful. ATP (adenosine triphosphate) testing or equivalent biological verification is required to confirm surfaces have achieved safe contamination levels before re-occupation. Visual cleanliness is not an indicator of biological safety.
@@ -149,7 +149,7 @@ export default function SewageBackupHealthRisksPage() {
           body: (
             <div className="space-y-4">
               <p>
-                Professional sewage remediation follows the IICRC S500 standard for Category 3 water damage. This is the most stringent remediation protocol and involves the following stages:
+                Professional sewage remediation follows the IICRC S500:2025 standard for Category 3 water damage. This is the most stringent remediation protocol and involves the following stages:
               </p>
 
               <h3 className="font-bold text-lg mt-6 mb-2">1. Safety Assessment and Containment</h3>
@@ -230,7 +230,7 @@ export default function SewageBackupHealthRisksPage() {
         },
         {
           question: 'What materials need to be removed after sewage backup?',
-          answer: 'IICRC S500 Category 3 protocol requires removal of all contaminated porous materials: carpet and underlay, plasterboard (cut to a minimum 300mm above the visible waterline), insulation, particleboard subfloor (if swollen or saturated), and most soft furnishings and contents that contacted the sewage. Non-porous surfaces (concrete, tiles, metal) and structural timber can be cleaned, treated with antimicrobials, and retained.',
+          answer: 'IICRC S500:2025 Category 3 protocol requires removal of all contaminated porous materials: carpet and underlay, plasterboard (cut to a minimum 300mm above the visible waterline), insulation, particleboard subfloor (if swollen or saturated), and most soft furnishings and contents that contacted the sewage. Non-porous surfaces (concrete, tiles, metal) and structural timber can be cleaned, treated with antimicrobials, and retained.',
         },
         {
           question: 'How long does professional sewage cleanup take?',

@@ -52,7 +52,7 @@ function TrainingHubOriginal() {
             "Drying equipment operation",
             "Psychrometry basics",
             "Documentation requirements",
-            "IICRC S500 standards overview"
+            "IICRC S500:2025 standards overview"
           ],
           status: "completed",
           score: 88
@@ -143,7 +143,7 @@ function TrainingHubOriginal() {
             "Remediation protocols",
             "Air quality testing",
             "Post-remediation verification",
-            "IICRC S520 standards"
+            "IICRC S520:2025 standards"
           ],
           status: "locked"
         },

@@ -155,7 +155,7 @@ export default function OperationalExcellenceIndexPage() {
         { title: 'Emergency Services', href: '/services/emergency-response', description: '24/7 emergency disaster response across Australia.' },
         { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Professional water extraction and structural drying.' },
         { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Comprehensive fire and smoke damage restoration.' },
-        { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520 certified mould removal and prevention.' },
+        { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520:2025 certified mould removal and prevention.' },
         { title: 'Knowledge Base', href: '/knowledge', description: 'Expert-verified restoration science and standards.' },
         { title: 'Start a Claim', href: '/claim', description: 'Begin your disaster recovery claim with NRP Group.' },
       ]}
