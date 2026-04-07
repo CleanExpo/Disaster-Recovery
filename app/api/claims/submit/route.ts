@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
 import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
+import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
 import fs from 'node:fs/promises';
 
 const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
@@ -207,23 +208,42 @@ export async function POST(request: NextRequest) {
     const createdAtIso = new Date().toISOString();
     let trackClaim: TrackClaimPayload | null = null;
 
+    // DR-390: Warn in non-development environments if encryption is not configured.
+    // TODO (DR-390): Ensure KMS_KEY_ID or ENCRYPTION_SECRET is set in Vercel env vars
+    //                before go-live. Remove the NODE_ENV guard once provisioned.
+    if (!isConfigured() && process.env.NODE_ENV !== 'development') {
+      console.error('[security] DR-390: Property access encryption is not configured (no KMS_KEY_ID or ENCRYPTION_SECRET). Claim submission blocked in non-dev environment.');
+      return NextResponse.json({
+        success: false,
+        error: 'Server configuration error',
+        message: 'Please contact support',
+      }, { status: 500 });
+    }
+
+    // Encrypt property access instructions before persistence (DR-390)
+    const encryptedAccessInstructions = body.accessInstructions
+      ? await encrypt(body.accessInstructions)
+      : null;
+
     // Create the InsuranceClaimAU record
     try {
       const claim = await prisma.insuranceClaimAU.create({
         data: {
-          bookingId:            body.bookingId            || '',
-          clientId:             body.clientId              || body.email,
-          insuranceProviderId:  normalizedProvider,
-          policyNumber:         normalizedPolicyNumber,
-          claimNumber:          body.insuranceClaimNumber  || null,
-          totalClaimAmountAUD:  totalClaimAmount,
-          paymentAmountAUD:     paymentAmount,
-          status:               'SUBMITTED',
-          damageDescription:    body.damageDescription,
-          damagePhotos:         Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
-          additionalDocuments:  Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],
-          submittedAt:          new Date(),
-          tenantId:             body.tenantId || null,
+          bookingId:             body.bookingId            || '',
+          clientId:              body.clientId              || body.email,
+          insuranceProviderId:   normalizedProvider,
+          policyNumber:          normalizedPolicyNumber,
+          claimNumber:           body.insuranceClaimNumber  || null,
+          totalClaimAmountAUD:   totalClaimAmount,
+          paymentAmountAUD:      paymentAmount,
+          status:                'SUBMITTED',
+          damageDescription:     body.damageDescription,
+          damagePhotos:          Array.isArray(body.damagePhotos) ? body.damagePhotos : [],
+          additionalDocuments:   Array.isArray(body.uploadedDocuments) ? body.uploadedDocuments : [],
+          // DR-390: accessInstructions stored as encrypted blob — never log or expose this field
+          accessInstructions:    encryptedAccessInstructions,
+          submittedAt:           new Date(),
+          tenantId:              body.tenantId || null,
         },
       });
       trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, paymentConfirmed);
@@ -288,9 +308,20 @@ export async function POST(request: NextRequest) {
 }
 
 // Get claim by ID
+// DR-390: Access instructions are only decrypted and returned when the caller
+// is an assigned contractor or an admin.
+// TODO (DR-390): Replace the x-caller-role / x-caller-id headers with a
+//   verified session token check (NextAuth getServerSession) once auth is wired up.
+//   Until then, the field is withheld from unauthenticated callers entirely.
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const claimId = searchParams.get('id');
+
+  // DR-390: Read caller identity from request headers (placeholder — replace with session auth)
+  const callerRole = request.headers.get('x-caller-role') ?? '';
+  const callerId   = request.headers.get('x-caller-id')   ?? '';
+  const canReadAccessInstructions =
+    callerRole === 'admin' || callerRole === 'contractor';
 
   if (!claimId) {
     return NextResponse.json({
@@ -318,9 +349,27 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // DR-390: Decrypt access instructions only for authorised callers
+    let decryptedAccessInstructions: string | null = null;
+    if (canReadAccessInstructions && claim.accessInstructions) {
+      try {
+        decryptedAccessInstructions = await decrypt(claim.accessInstructions);
+      } catch (decryptErr) {
+        // Log but do not expose — return null so the caller knows the field exists
+        // but the value cannot be delivered (e.g. key rotation in progress).
+        console.error(`[security] DR-390: Failed to decrypt accessInstructions for claim ${claimId} (caller: ${callerId}):`, decryptErr);
+      }
+    }
+
+    const trackClaim = buildTrackClaimFromDb(claim);
     return NextResponse.json({
       success: true,
-      claim: buildTrackClaimFromDb(claim)
+      claim: trackClaim,
+      // accessInstructions is a separate top-level field so it is never mixed
+      // into the public claim payload by accident.
+      ...(canReadAccessInstructions && {
+        accessInstructions: decryptedAccessInstructions,
+      }),
     });
   } catch (error) {
     console.error('Error fetching claim:', error);

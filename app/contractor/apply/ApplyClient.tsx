@@ -769,43 +769,43 @@ function ContractorApplicationContent() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
       {/* Header */}
       <header className="border-b border-slate-700/50 bg-black/30 backdrop-blur-sm sticky top-0 z-40">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <Shield className="h-8 w-8 text-blue-400" />
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
+              <Shield className="h-7 w-7 sm:h-8 sm:w-8 text-blue-400" />
               <div>
-                <div className="text-white font-semibold">NRPG</div>
-                <div className="text-slate-400 text-xs">Contractor Application</div>
+                <div className="text-white font-semibold text-sm sm:text-base">NRPG</div>
+                <div className="text-slate-400 text-xs hidden sm:block">Contractor Application</div>
               </div>
             </Link>
-            
-            <div className="flex items-center gap-4">
+
+            <div className="flex items-center gap-2 sm:gap-4">
               {isDemoRunning && (
-                <div className="flex items-center gap-2 px-4 py-2 bg-blue-600/20 text-yellow-400 rounded-lg animate-pulse">
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-blue-600/20 text-yellow-400 rounded-lg animate-pulse text-sm">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   Demo Running...
                 </div>
               )}
               {isSaving && (
-                <div className="flex items-center gap-2 text-blue-400 text-sm">
+                <div className="hidden sm:flex items-center gap-2 text-blue-400 text-sm">
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Saving progress...
+                  Saving...
                 </div>
               )}
               <button
                 onClick={saveProgress}
                 disabled={isDemoRunning}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-700/50 hover:bg-slate-700/70 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 min-h-[44px] bg-slate-700/50 hover:bg-slate-700/70 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 <Save className="h-4 w-4" />
-                Save Progress
+                <span className="hidden sm:inline">Save Progress</span>
               </button>
               <Link
                 href="/"
-                className="flex items-center gap-2 px-4 py-2 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg transition"
+                className="flex items-center gap-1.5 sm:gap-2 px-3 py-2 min-h-[44px] bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg transition text-sm"
               >
                 <X className="h-4 w-4" />
-                Exit
+                <span className="hidden sm:inline">Exit</span>
               </Link>
             </div>
           </div>

@@ -145,7 +145,7 @@ function ModernContactPageOriginal() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative z-10 px-6 pt-32 pb-20">
+      <section className="relative z-10 px-4 sm:px-6 pt-24 sm:pt-32 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -162,7 +162,7 @@ function ModernContactPageOriginal() {
               <span className="text-sm font-medium text-red-400">24/7 Online Emergency Response</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-white via-red-100 to-orange-100 bg-clip-text text-transparent">
                 Get Immediate
               </span>
@@ -181,7 +181,7 @@ function ModernContactPageOriginal() {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="relative z-10 px-6 pb-20">
+      <section className="relative z-10 px-4 sm:px-6 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {contactInfo.map((info, i) => {
@@ -214,7 +214,7 @@ function ModernContactPageOriginal() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="relative z-10 px-6 pb-20">
+      <section className="relative z-10 px-4 sm:px-6 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             {!submitted ? (
@@ -224,7 +224,7 @@ function ModernContactPageOriginal() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 className="max-w-4xl overflow-hidden mx-auto"
               >
-                <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30">
+                <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-3xl p-5 sm:p-8 md:p-12 border border-purple-500/30">
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold mb-2">
                       <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
@@ -452,7 +452,7 @@ function ModernContactPageOriginal() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="max-w-2xl mx-auto text-center"
               >
-                <div className="success bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-12 border border-green-500/30" role="alert" aria-live="polite">
+                <div className="success bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-6 sm:p-12 border border-green-500/30" role="alert" aria-live="polite">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -465,7 +465,7 @@ function ModernContactPageOriginal() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="text-4xl font-bold mb-4"
+                    className="text-2xl sm:text-4xl font-bold mb-4"
                   >
                     <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
                       Request Received!
@@ -530,7 +530,7 @@ function ModernContactPageOriginal() {
       </section>
 
       {/* Emergency Claim CTA */}
-      <section className="relative z-10 px-6 pb-20">
+      <section className="relative z-10 px-4 sm:px-6 pb-12 sm:pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -538,7 +538,7 @@ function ModernContactPageOriginal() {
           viewport={{ once: true }}
           className="max-w-4xl overflow-hidden mx-auto text-center"
         >
-          <div className="bg-gradient-to-r from-red-500/10 to-blue-600/10 rounded-3xl p-12 border border-red-500/30">
+          <div className="bg-gradient-to-r from-red-500/10 to-blue-600/10 rounded-3xl p-6 sm:p-12 border border-red-500/30">
             <Zap className="w-16 h-16 text-red-500 mx-auto mb-6" />
             <h2 className="text-3xl font-bold mb-4">
               <span className="bg-gradient-to-r from-red-400 to-blue-500 bg-clip-text text-transparent">
@@ -552,7 +552,7 @@ function ModernContactPageOriginal() {
               href="/claim"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-red-600 to-blue-700 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+              className="bg-gradient-to-r from-red-600 to-blue-700 px-8 py-3 min-h-[44px] rounded-full font-semibold inline-flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <ArrowRight className="w-5 h-5" />
               Lodge Emergency Claim

@@ -1,5 +1,151 @@
 import crypto from 'crypto';
 
+// =============================================================================
+// DR-390 — AWS KMS / AES-256-GCM envelope encryption for property access PII
+// =============================================================================
+//
+// Priority order:
+//   1. AWS KMS   — if KMS_KEY_ID env var is set
+//   2. AES-256-GCM — if ENCRYPTION_SECRET env var is set (min 32 chars)
+//   3. Dev passthrough — plaintext with console.warn (never for production)
+//
+// TODO (DR-390): Provision AWS KMS credentials before go-live:
+//   • AWS_ACCESS_KEY_ID       — IAM user / role access key
+//   • AWS_SECRET_ACCESS_KEY   — IAM user / role secret
+//   • AWS_REGION              — e.g. ap-southeast-2
+//   • KMS_KEY_ID              — ARN of the Customer Managed Key (CMK)
+//   The CMK policy must grant Encrypt + Decrypt + GenerateDataKey to the
+//   IAM identity used by the Next.js server / Lambda runtime.
+//
+// NOTE: @aws-sdk/client-kms is NOT currently in package.json.
+//   When the team provisions KMS:
+//     npm install @aws-sdk/client-kms
+//   Then replace the KMS stub block below with real SDK calls.
+// =============================================================================
+
+const KMS_PREFIX   = 'kms:v1:';
+const AES_PREFIX   = 'aes:v1:';
+const PLAIN_PREFIX = 'plain:v1:';
+
+// AES-256-GCM constants
+const IV_BYTES  = 12; // 96-bit IV recommended for GCM
+const TAG_BYTES = 16;
+
+// ─── Public API ──────────────────────────────────────────────────────────────
+
+/**
+ * Returns true when at least one encryption backend is configured.
+ * Property access routes should refuse to store data when this returns false
+ * in non-development environments.
+ */
+export function isConfigured(): boolean {
+  return Boolean(process.env.KMS_KEY_ID || process.env.ENCRYPTION_SECRET);
+}
+
+/**
+ * Encrypts a plaintext string.
+ * Returns a prefixed base64 blob that is safe to store in a standard String DB column.
+ * In dev mode (no env vars), returns the value prefixed with 'plain:v1:' and logs a warning.
+ */
+export async function encrypt(plaintext: string): Promise<string> {
+  if (!plaintext) return plaintext;
+
+  // ── 1. KMS path ─────────────────────────────────────────────────────────
+  if (process.env.KMS_KEY_ID) {
+    // TODO (DR-390): Replace this stub with real @aws-sdk/client-kms calls:
+    //
+    //   import { KMSClient, GenerateDataKeyCommand, EncryptCommand } from '@aws-sdk/client-kms';
+    //   const kms = new KMSClient({ region: process.env.AWS_REGION ?? 'ap-southeast-2' });
+    //
+    //   Envelope encrypt pattern:
+    //   1. GenerateDataKeyCommand({ KeyId: process.env.KMS_KEY_ID, KeySpec: 'AES_256' })
+    //      → { Plaintext: dataKey, CiphertextBlob: encryptedDataKey }
+    //   2. Use dataKey with aes-256-gcm to encrypt plaintext locally
+    //   3. Store: base64(encryptedDataKey_length_4bytes + encryptedDataKey + iv + tag + ciphertext)
+    //   4. On decrypt: split blob, call DecryptCommand to recover dataKey, then AES-GCM decrypt
+    //
+    // For now fall through to AES path so the code is functional while KMS is unprovisioned.
+    console.warn('[encryption] KMS_KEY_ID is set but @aws-sdk/client-kms is not installed. Falling back to AES-256-GCM. Install @aws-sdk/client-kms and replace the stub in src/lib/encryption.ts.');
+  }
+
+  // ── 2. AES-256-GCM path ─────────────────────────────────────────────────
+  if (process.env.ENCRYPTION_SECRET) {
+    const key = deriveFixedKey(process.env.ENCRYPTION_SECRET);
+    const iv  = crypto.randomBytes(IV_BYTES);
+
+    const cipher = crypto.createCipheriv('aes-256-gcm', key, iv);
+    const enc    = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()]);
+    const tag    = cipher.getAuthTag();
+
+    // Layout: iv (12) | tag (16) | ciphertext (variable)
+    const blob = Buffer.concat([iv, tag, enc]).toString('base64');
+    return `${AES_PREFIX}${blob}`;
+  }
+
+  // ── 3. Dev passthrough ───────────────────────────────────────────────────
+  console.warn(
+    '[encryption] WARNING: Neither KMS_KEY_ID nor ENCRYPTION_SECRET is configured. ' +
+    'Property access data is stored as plaintext. This must not happen in production.'
+  );
+  return `${PLAIN_PREFIX}${Buffer.from(plaintext, 'utf8').toString('base64')}`;
+}
+
+/**
+ * Decrypts a value produced by encrypt().
+ * Handles all prefix variants (kms:v1:, aes:v1:, plain:v1:, or legacy unencrypted strings).
+ */
+export async function decrypt(ciphertext: string): Promise<string> {
+  if (!ciphertext) return ciphertext;
+
+  // ── KMS blob ─────────────────────────────────────────────────────────────
+  if (ciphertext.startsWith(KMS_PREFIX)) {
+    // TODO (DR-390): Implement real KMS decryption using @aws-sdk/client-kms.
+    // Until the SDK is installed and the CMK is provisioned this path is unreachable
+    // because encrypt() never produces kms:v1: blobs.
+    throw new Error('[encryption] KMS decrypt is not yet implemented. Install @aws-sdk/client-kms and implement decrypt in src/lib/encryption.ts.');
+  }
+
+  // ── AES blob ─────────────────────────────────────────────────────────────
+  if (ciphertext.startsWith(AES_PREFIX)) {
+    if (!process.env.ENCRYPTION_SECRET) {
+      throw new Error('[encryption] AES-encrypted value found but ENCRYPTION_SECRET env var is not set.');
+    }
+    const key     = deriveFixedKey(process.env.ENCRYPTION_SECRET);
+    const buf     = Buffer.from(ciphertext.slice(AES_PREFIX.length), 'base64');
+    const iv      = buf.subarray(0, IV_BYTES);
+    const tag     = buf.subarray(IV_BYTES, IV_BYTES + TAG_BYTES);
+    const enc     = buf.subarray(IV_BYTES + TAG_BYTES);
+
+    const decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
+    decipher.setAuthTag(tag);
+    return Buffer.concat([decipher.update(enc), decipher.final()]).toString('utf8');
+  }
+
+  // ── Dev passthrough blob ─────────────────────────────────────────────────
+  if (ciphertext.startsWith(PLAIN_PREFIX)) {
+    return Buffer.from(ciphertext.slice(PLAIN_PREFIX.length), 'base64').toString('utf8');
+  }
+
+  // ── Legacy / unencrypted value — return as-is with a warning ────────────
+  console.warn('[encryption] decrypt() received a value with no recognised prefix — returning as-is. This may be a legacy plaintext value.');
+  return ciphertext;
+}
+
+// ─── Internal helpers ─────────────────────────────────────────────────────────
+
+/**
+ * Derives a stable 32-byte key from the ENCRYPTION_SECRET env var using SHA-256.
+ * PBKDF2 is not used here because the secret is already expected to be a
+ * high-entropy random value (min 32 chars enforced at startup).
+ */
+function deriveFixedKey(secret: string): Buffer {
+  return crypto.createHash('sha256').update(secret, 'utf8').digest();
+}
+
+// =============================================================================
+// Legacy password-based AES-256-GCM helpers (existing codebase usage)
+// =============================================================================
+
 // Encryption configuration
 const ALGORITHM = 'aes-256-gcm';
 const SALT_LENGTH = 64;
