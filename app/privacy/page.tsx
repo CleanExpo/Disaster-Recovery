@@ -148,6 +148,28 @@ export default function PrivacyPolicyPage() {
           ),
         },
         {
+          heading: 'AI-Assisted Features and Automated Processing',
+          body: (
+            <>
+              <p>
+                Our platform includes a multilingual interface powered by an AI language model — specifically <strong>Gemma 4</strong>, developed by Google DeepMind and accessed via Google&apos;s generative AI services. This model is used solely to translate UI text, page headings, form labels, and informational content into 23 languages, enabling users across the Asia-Pacific region and beyond to access our services in their preferred language.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>What the AI model does and does not process:</strong> The translation feature sends page content and interface strings to the AI model. It does <em>not</em> send your personal information — including your name, address, contact details, damage description, insurance information, or claim details — to the AI model. Personal information you submit through our claim intake form is handled entirely within our own systems and is not passed to any AI translation service.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Contractor matching and automated decisions:</strong> Matching your claim with an NRPG network contractor is performed by our internal contractor matching system based on location, damage category, and contractor availability. This process does not constitute automated decision-making that has a legal or similarly significant effect on you. A human contractor reviews your claim details and makes all decisions relating to the provision of restoration services. No automated system determines your entitlements, your insurance outcome, or the scope of work — those decisions rest with the contractor and your insurer.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                <strong>Cross-border processing:</strong> Google&apos;s AI services process translation requests on servers that may be located outside Australia, including in the United States. This processing is limited to UI strings and informational content (not personal information), and is consistent with the cross-border disclosure above (APP 8). We rely on Google&apos;s data processing agreements and contractual safeguards to ensure appropriate handling of any data transmitted to these services.
+              </p>
+              <p style={{ marginTop: '1rem' }}>
+                This disclosure is made in accordance with <strong>APP 3</strong> (transparency about collection practices) and <strong>APP 8</strong> (cross-border disclosure), and reflects our commitment to transparency ahead of the Privacy Act amendments taking effect 1 July 2026.
+              </p>
+            </>
+          ),
+        },
+        {
           heading: 'How We Protect Your Information (APP 11)',
           background: 'light',
           body: (
