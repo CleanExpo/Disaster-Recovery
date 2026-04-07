@@ -6,11 +6,14 @@ import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Shield, Home, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send, Upload, Image, X, Info } from 'lucide-react';
 import { DEMO_DATA, simulateTyping } from '@/lib/demo-mode';
 
 function ClaimStartContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -191,15 +194,69 @@ function ClaimStartContent() {
     });
   };
 
+  // Best-effort parse of a single address string into components.
+  // Expects formats like "123 Main St, Sydney NSW 2000" or
+  // "123 Main St, Sydney, NSW 2000". Returns empty strings on parse failure.
+  const parseAddress = (raw: string): { propertyAddress: string; suburb: string; state: string; postcode: string } => {
+    const STATES = ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA', 'NZ'];
+    const statePattern = STATES.join('|');
+    // Match: <street>, <suburb> <STATE> <postcode>
+    const match = raw.match(new RegExp(`^(.+?),\\s*(.+?)\\s+(${statePattern})\\s*(\\d{4})?\\s*$`, 'i'));
+    if (match) {
+      return {
+        propertyAddress: match[1].trim(),
+        suburb: match[2].trim(),
+        state: match[3].toUpperCase(),
+        postcode: match[4] ?? '',
+      };
+    }
+    // Fallback: use the whole string as address, leave others empty
+    return { propertyAddress: raw, suburb: '', state: '', postcode: '' };
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmissionError(null);
 
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    const { propertyAddress, suburb, state, postcode } = parseAddress(formData.address);
 
-    alert('Claim submitted successfully! (Demo Mode - No actual submission)');
-    setIsSubmitting(false);
+    const body = {
+      fullName: formData.name,
+      email: formData.email,
+      propertyAddress: propertyAddress || formData.address,
+      suburb: suburb || undefined,
+      state: state || undefined,
+      postcode: postcode || undefined,
+      damageTypes: formData.incidentType ? [formData.incidentType] : [],
+      damageDescription: formData.incidentDate
+        ? `${formData.description}\n\nDate of incident: ${formData.incidentDate}`
+        : formData.description,
+      urgencyLevel: formData.urgency as 'emergency' | 'urgent' | 'standard',
+      insuranceCompany: formData.insuranceCompany || undefined,
+      insuranceClaimNumber: formData.claimNumber || undefined,
+    };
+
+    try {
+      const res = await fetch('/api/claims/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        setSubmissionError(result.message || result.error || 'Submission failed. Please try again.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      router.push(`/track/${result.claimId}`);
+    } catch {
+      setSubmissionError('Network error — please check your connection and try again.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -557,6 +614,12 @@ function ClaimStartContent() {
           </div>
 
           {/* Submit Button */}
+          {submissionError && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
+              <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 shrink-0" />
+              <p className="text-sm text-red-700">{submissionError}</p>
+            </div>
+          )}
           <div className="flex justify-center">
             <button
               type="submit"

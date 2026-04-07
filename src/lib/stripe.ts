@@ -60,8 +60,11 @@ export async function createOnboardingPaymentIntent(
   customerId: string,
   contractorId: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
   const totalAmount = PAYMENT_AMOUNTS.APPLICATION_FEE + PAYMENT_AMOUNTS.JOINING_FEE;
-  
+
   const paymentIntent = await stripe.paymentIntents.create({
     amount: totalAmount,
     currency: 'aud',
@@ -82,6 +85,9 @@ export async function createContractorSubscription(
   customerId: string,
   contractorId: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
   // Create subscription with trial period for first free month
   const subscription = await stripe.subscriptions.create({
     customer: customerId,
@@ -103,8 +109,11 @@ export async function createContractorSubscription(
 // Create subscription schedule for promotional pricing
 async function createSubscriptionSchedule(
   subscriptionId: string,
-  customerId: string
+  _customerId: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
   
   const schedule = await (stripe.subscriptionSchedules.create as any)({
@@ -175,12 +184,14 @@ export async function createOnboardingCheckoutSession(
   contractorId: string,
   email: string,
   successUrl: string,
-  cancelUrl: string
+  cancelUrl: string,
+  _amount?: number, // accepted but ignored — amounts are defined server-side via PAYMENT_AMOUNTS
+  extraMetadata?: Record<string, string>
 ) {
   if (!stripe) {
     throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
   }
-  
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',
@@ -205,15 +216,19 @@ export async function createOnboardingCheckoutSession(
     ],
     metadata: {
       contractorId,
-      type: 'onboarding' },
+      type: 'onboarding',
+      ...extraMetadata },
     success_url: successUrl,
     cancel_url: cancelUrl });
-  
+
   return session;
 }
 
 // Verify payment status
 export async function verifyPaymentStatus(paymentIntentId: string) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
   const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
   
   return {
@@ -230,6 +245,9 @@ export async function createRefund(
   amount?: number,
   reason?: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.');
+  }
   const refund = await stripe.refunds.create({
     payment_intent: paymentIntentId,
     amount, // If not specified, refunds entire amount
