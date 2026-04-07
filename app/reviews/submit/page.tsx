@@ -37,10 +37,10 @@ function StarRatingInput({ value, onChange, hovered, onHover, onLeave }: StarRat
             onClick={() => onChange(star)}
             onMouseEnter={() => onHover(star)}
             onMouseLeave={onLeave}
-            className="focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
+            className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded min-w-[48px] min-h-[48px] flex items-center justify-center active:scale-110 transition-transform"
           >
             <Star
-              className={`w-9 h-9 transition-colors ${
+              className={`w-8 h-8 sm:w-9 sm:h-9 transition-colors ${
                 filled
                   ? 'fill-amber-400 text-amber-400'
                   : 'fill-none text-gray-300 hover:text-amber-300'
@@ -49,6 +49,27 @@ function StarRatingInput({ value, onChange, hovered, onHover, onLeave }: StarRat
           </button>
         );
       })}
+    </div>
+  );
+}
+
+function CompactStarRating({ label, value, onChange }: { label: string; value: number; onChange: (v: number) => void }) {
+  return (
+    <div className="flex items-center justify-between gap-2">
+      <span className="text-sm text-gray-600 min-w-[120px]">{label}</span>
+      <div className="flex items-center gap-0.5">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            type="button"
+            aria-label={`${label}: ${star} star${star !== 1 ? 's' : ''}`}
+            onClick={() => onChange(star)}
+            className="p-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded min-w-[36px] min-h-[36px] flex items-center justify-center"
+          >
+            <Star className={`w-5 h-5 transition-colors ${star <= value ? 'fill-amber-400 text-amber-400' : 'fill-none text-gray-300'}`} />
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
@@ -70,6 +91,10 @@ export default function ReviewSubmitPage() {
   const [hovered, setHovered] = useState(0);
   const [review, setReview] = useState('');
   const [authorName, setAuthorName] = useState('');
+  const [communication, setCommunication] = useState(0);
+  const [qualityOfWork, setQualityOfWork] = useState(0);
+  const [professionalism, setProfessionalism] = useState(0);
+  const [timeliness, setTimeliness] = useState(0);
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [reviewId, setReviewId] = useState('');
@@ -101,6 +126,10 @@ export default function ReviewSubmitPage() {
           rating,
           review: review.trim() || undefined,
           authorName: authorName.trim() || undefined,
+          communication: communication || undefined,
+          qualityOfWork: qualityOfWork || undefined,
+          professionalism: professionalism || undefined,
+          timeliness: timeliness || undefined,
         }),
       });
 
@@ -189,6 +218,17 @@ export default function ReviewSubmitPage() {
             )}
           </div>
 
+          {/* Sub-ratings */}
+          {rating > 0 && (
+            <div className="space-y-2 p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm font-semibold text-gray-700 mb-2">Rate specific areas <span className="text-gray-400 font-normal">(optional)</span></p>
+              <CompactStarRating label="Communication" value={communication} onChange={setCommunication} />
+              <CompactStarRating label="Quality of work" value={qualityOfWork} onChange={setQualityOfWork} />
+              <CompactStarRating label="Professionalism" value={professionalism} onChange={setProfessionalism} />
+              <CompactStarRating label="Timeliness" value={timeliness} onChange={setTimeliness} />
+            </div>
+          )}
+
           {/* Written review */}
           <div>
             <label htmlFor="review" className="block text-sm font-semibold text-gray-700 mb-1.5">
@@ -252,7 +292,7 @@ export default function ReviewSubmitPage() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-6 py-3 min-h-[48px] bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
           >
             {submitState === 'submitting' ? (
               <>

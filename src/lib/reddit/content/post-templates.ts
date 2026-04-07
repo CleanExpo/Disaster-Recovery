@@ -484,7 +484,7 @@ Major insurers maintain networks of 6,900 to 13,200 preferred contractors. Being
     'iicrc',
     ['carsi', 'nrpg', 'disaster-recovery'],
     'hero-banner',
-    `An estimated 70% of Australian restoration contractors lack IICRC certification — yet it's the global standard that insurers, property managers, and government agencies recognise. Here's why it matters and how to verify your contractor.
+    `Many Australian restoration contractors operate without IICRC certification — yet it's the global standard that insurers, property managers, and government agencies recognise. Here's why it matters and how to verify your contractor.
 
 ## What Is IICRC?
 
@@ -535,7 +535,7 @@ The Institute of Inspection, Cleaning and Restoration Certification (IICRC) sets
 
 {{SOURCES}}`,
     [
-      { statistic: 'An estimated 70% of Australian contractors lack IICRC certification', source: 'CARSI Industry Report', citation: 'CARSI Certification Gap Analysis 2024', year: 2024 },
+      { statistic: 'An estimated Many Australian contractors lack IICRC certification', source: 'CARSI Industry Report', citation: 'CARSI Certification Gap Analysis 2024', year: 2024 },
       { statistic: 'IICRC S500:2025 is the global standard for water damage restoration', source: 'IICRC', citation: 'IICRC S500:2025 Standard Reference Guide', year: 2022 },
       { statistic: 'Failure to properly dry resulted in $2.3M liability', source: 'Federal Court of Australia', citation: 'QBE Insurance v Maxcon [2020] FCA 1186', year: 2020 },
     ],
@@ -1109,7 +1109,7 @@ Most insurers will not accept DIY restoration work for claims. Using [CARSI-cert
     'software',
     ['restore-assist', 'disaster-recovery', 'carsi'],
     'hero-banner',
-    `With 95% of disaster recovery operations now automatable through modern software, the Australian restoration industry is shifting from handwritten scopes to digital estimating platforms. This shift is transforming how insurance claims are processed — making them faster, more transparent, and less likely to be disputed.
+    `The Australian restoration industry is shifting from handwritten scopes to digital estimating platforms. Modern software is transforming how insurance claims are processed — making them faster, more transparent, and less likely to be disputed.
 
 ## The Old Way vs The New Way
 
@@ -1145,7 +1145,7 @@ Combined with [CARSI-certified](https://carsi.com.au) contractors and the [Disas
 
 {{SOURCES}}`,
     [
-      { statistic: '95% of disaster recovery operations can be automated with modern restoration management software', source: 'Deloitte Access Economics', citation: 'The Economic Cost of Natural Disasters in Australia 2023', year: 2023 },
+      { statistic: 'Modern restoration management software can streamline many disaster recovery operations including scheduling, documentation, and claims processing', source: 'Industry observation', citation: 'General industry trend', year: 2024 },
       { statistic: 'Automated lead routing can reduce contractor response times from hours to under 60 minutes', source: 'Insurance Council of Australia', citation: 'ICA Preferred Contractor Standards 2024', year: 2024 },
       { statistic: 'Water damage accounts for 40% of the total Australian restoration market', source: 'IBISWorld', citation: 'IBISWorld Disaster Restoration Industry Report 2024', year: 2024 },
     ],
@@ -1269,11 +1269,11 @@ Australian conditions are unique:
   // ── 22. Certification Gap ───────────────────────────────────────────────
   post(
     'certification-gap-contractors',
-    'The Certification Gap: Why 70% of AU Contractors Lack IICRC Training',
+    'The Certification Gap: Why Many AU Contractors Lack IICRC Training',
     'training',
     ['carsi', 'nrpg', 'disaster-recovery'],
     'stat-infographic',
-    `Approximately 70% of Australian restoration contractors operate without IICRC certification. With 1,250 workers compensation claims filed annually in the sector, the gap represents a significant quality, safety, and consumer protection issue that affects property owners, insurers, and the contractors themselves.
+    `Many Australian restoration contractors operate without IICRC certification. With 1,250 workers compensation claims filed annually in the sector, the gap represents a significant quality, safety, and consumer protection issue that affects property owners, insurers, and the contractors themselves.
 
 ## The Numbers Behind the Gap
 
@@ -1315,7 +1315,7 @@ Certified contractors gain access to insurance panel work via [DisasterRecovery.
 
 {{SOURCES}}`,
     [
-      { statistic: '70% of Australian contractors lack IICRC certification', source: 'CARSI', citation: 'CARSI Certification Gap Analysis 2024', year: 2024 },
+      { statistic: 'Many Australian contractors lack IICRC certification', source: 'CARSI', citation: 'CARSI Certification Gap Analysis 2024', year: 2024 },
       { statistic: 'Workers compensation claims in the restoration sector total 1,250 per year', source: 'Safe Work Australia', citation: 'National WHS Statistics Report 2024', year: 2024 },
       { statistic: 'Failure to properly dry resulted in $2.3M liability', source: 'Federal Court', citation: 'QBE Insurance v Maxcon [2020] FCA 1186', year: 2020 },
     ],
@@ -1380,7 +1380,7 @@ Access the network through:
     'network',
     ['nrpg', 'disaster-recovery', 'restore-assist', 'carsi'],
     'stat-infographic',
-    `The restoration industry in Australia is 70% fragmented — dominated by independent local contractors. But a shift is happening. More independents are joining national networks like [NRPG](https://nrpg.business) for the competitive advantages that come with scale.
+    `The restoration industry in Australia is highly fragmented — dominated by independent local contractors. But a shift is happening. More independents are joining national networks like [NRPG](https://nrpg.business) for the competitive advantages that come with scale.
 
 ## The Independent Contractor Challenge
 
@@ -1502,7 +1502,7 @@ The ACCC's 2005 IAG investigation established the "choice of repairer" principle
 
 | Factor | Standard TPA / Builder | NRPG Network Contractor |
 |--------|----------------------|------------------------|
-| IICRC Certification | Often uncertified (70% lack IICRC) | Mandatory (WRT, AMRT, FSRT) |
+| IICRC Certification | Often often uncertified | Mandatory (WRT, AMRT, FSRT) |
 | Digital Scoping | Manual/handwritten | [RestoreAssist](https://restoreassist.app) platform |
 | Insurance Compliance | Basic invoicing | Pre-formatted compliant documentation |
 | Training | Ad hoc, often expired | [CARSI](https://carsi.com.au) IICRC-accredited programs |

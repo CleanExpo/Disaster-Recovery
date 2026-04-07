@@ -16,7 +16,7 @@ export const NEXUS_AGENTS: NexusAgent[] = [
     name: 'Disaster Recovery Specialist',
     description:
       'Generates scope-of-works documentation for active claims based on damage type and IICRC standards',
-    status: 'inactive', // DR-313: activate when claim volume > 0
+    status: 'active', // DR-313: activated
     trigger: 'event',
   },
   {
@@ -24,7 +24,7 @@ export const NEXUS_AGENTS: NexusAgent[] = [
     name: 'Evidence Collector',
     description:
       'Compiles before/after insurance documentation briefs from claim photos and contractor reports',
-    status: 'inactive', // DR-314
+    status: 'active', // DR-314: activated
     trigger: 'event',
   },
   {
@@ -32,7 +32,7 @@ export const NEXUS_AGENTS: NexusAgent[] = [
     name: 'Legal Compliance Checker',
     description:
       'Reviews insurance documentation against GICP 2020 and ACL requirements',
-    status: 'inactive', // DR-315
+    status: 'active', // DR-315: activated
     trigger: 'schedule',
   },
   {
@@ -40,8 +40,16 @@ export const NEXUS_AGENTS: NexusAgent[] = [
     name: 'Revenue Forecast Agent',
     description:
       'Storm season demand forecasting using BOM data and historical claim patterns',
-    status: 'inactive', // DR-316
+    status: 'active', // DR-316: activated
     trigger: 'schedule',
+  },
+  {
+    id: 'content-creator',
+    name: 'Content Creator',
+    description:
+      'Generates storm season marketing campaigns, disaster event content, and SEO-optimised landing pages',
+    status: 'active', // DR-317: activated
+    trigger: 'manual',
   },
 ];
 
