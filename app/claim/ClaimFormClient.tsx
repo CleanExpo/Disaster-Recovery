@@ -6,6 +6,7 @@ import { PrivacyCollectionNoticeSection } from './PrivacyCollectionNotice';
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
 import { useState, useEffect, useCallback, Suspense } from 'react';
+import DamageMediaCapture from '@/components/claim/DamageMediaCapture';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -220,6 +221,11 @@ function OnlineClaimPageOriginal() {
     // Privacy — APP 5 collection notice acknowledgement
     privacyCollectionNotice: false
   });
+
+  // Captured photo/video File objects — kept separate from formData because
+  // File objects are not JSON-serialisable. These are included in the
+  // submission summary shown to the user; file hosting is handled server-side.
+  const [capturedPhotos, setCapturedPhotos] = useState<File[]>([]);
 
   const step1Complete = Boolean(
     formData.fullName?.trim() &&
@@ -439,16 +445,16 @@ function OnlineClaimPageOriginal() {
         )}
 
         {/* Progress Steps */}
-        <div className="flex justify-center mb-8">
-          <div className="flex items-center space-x-4">
+        <div className="flex justify-center mb-8 overflow-x-auto">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             {[1, 2, 3, 4].map((s) => (
               <div key={s} className="flex items-center">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-sm sm:text-base ${
                   step >= s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
                 }`}>
                   {s}
                 </div>
-                {s < 4 && <div className={`w-20 h-1 ml-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`} />}
+                {s < 4 && <div className={`w-8 sm:w-20 h-1 ml-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`} />}
               </div>
             ))}
           </div>
@@ -774,21 +780,30 @@ function OnlineClaimPageOriginal() {
                     <FileText className="h-4 w-4" />
                     Documentation
                   </h3>
-                  <div className="flex items-center gap-3 py-1">
-                    <Checkbox
-                      id="hasPhotos"
-                      className={CHECKBOX_CLASS}
-                      checked={formData.hasPhotos}
-                      onCheckedChange={(checked) => setFormData({...formData, hasPhotos: checked as boolean})}
-                    />
-                    <Label htmlFor="hasPhotos" className="cursor-pointer">I have photos/videos of the damage to provide</Label>
-                  </div>
-                  <Alert>
-                    <Info className="h-4 w-4" />
-                    <AlertDescription>
-                      Your assigned contractor will request photos and documentation directly when they contact you.
-                    </AlertDescription>
-                  </Alert>
+
+                  {/* Camera / media capture */}
+                  <DamageMediaCapture
+                    label="Damage Photos & Videos"
+                    description="Capture or upload up to 10 photos or short videos of the damage. On mobile, tap 'Take Photo' to use your rear camera. Images are optimised before upload."
+                    maxFiles={10}
+                    onChange={(files) => {
+                      setCapturedPhotos(files);
+                      setFormData((prev) => ({
+                        ...prev,
+                        hasPhotos: files.length > 0,
+                      }));
+                    }}
+                  />
+
+                  {capturedPhotos.length === 0 && (
+                    <Alert>
+                      <Info className="h-4 w-4" />
+                      <AlertDescription>
+                        Photos are optional at this stage. Your assigned contractor will also
+                        request documentation directly when they contact you.
+                      </AlertDescription>
+                    </Alert>
+                  )}
                 </div>
 
                 <div className="flex justify-between">
@@ -950,6 +965,12 @@ function OnlineClaimPageOriginal() {
                       <span>Claim Intake &amp; Contractor Matching</span>
                       <span className="font-semibold">Included</span>
                     </div>
+                    {capturedPhotos.length > 0 && (
+                      <div className="flex justify-between text-sm text-gray-600">
+                        <span>Damage photos attached</span>
+                        <span className="font-medium text-green-700">{capturedPhotos.length} file{capturedPhotos.length !== 1 ? 's' : ''}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between">
                       <span>Platform fee (payable when work begins)</span>
                       <span className="font-semibold">$550</span>

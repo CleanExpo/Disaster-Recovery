@@ -1,114 +1,162 @@
-const CACHE_NAME = 'disaster-recovery-v1';
-const urlsToCache = [
-  '/',
-  '/services',
-  '/locations',
+const CACHE_NAME = 'dr-australia-v2';
+
+// Critical URLs to pre-cache for offline field access
+const OFFLINE_URLS = [
+  '/claim/start',
+  '/claim',
+  '/contact',
+  '/offline',
   '/emergency',
   '/manifest.json',
   '/icon-192x192.png',
-  '/icon-512x512.png'
+  '/icon-512x512.png',
+  '/favicon.ico',
 ];
 
-// Install event - cache resources
-self.addEventListener('install', event => {
+// Install event — pre-cache critical offline URLs
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => {
+        console.log('[SW] Pre-caching offline-capable routes');
+        // addAll fails if any request fails; use individual adds to be resilient
+        return Promise.allSettled(
+          OFFLINE_URLS.map((url) =>
+            cache.add(url).catch((err) => {
+              console.warn('[SW] Failed to cache:', url, err);
+            })
+          )
+        );
       })
-      .catch(error => {
-        console.error('Cache installation failed:', error);
-      })
+      .then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
-// Activate event - clean up old caches
-self.addEventListener('activate', event => {
+// Activate event — clean up old caches and claim clients immediately
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches
+      .keys()
+      .then((cacheNames) =>
+        Promise.all(
+          cacheNames
+            .filter((name) => name !== CACHE_NAME)
+            .map((name) => {
+              console.log('[SW] Deleting old cache:', name);
+              return caches.delete(name);
+            })
+        )
+      )
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-// Fetch event - serve from cache when possible
-self.addEventListener('fetch', event => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
+// Fetch event — strategy varies by request type
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
 
-  // Network-first strategy for API calls
-  if (event.request.url.includes('/api/')) {
+  // Skip non-GET and cross-origin requests
+  if (request.method !== 'GET') return;
+  if (!request.url.startsWith(self.location.origin)) return;
+
+  // Skip Next.js HMR and internal routes
+  if (request.url.includes('/_next/webpack-hmr')) return;
+
+  // API routes: network-first, fall back to cache
+  if (request.url.includes('/api/')) {
     event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          // Clone the response before caching
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseToCache);
-          });
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
           return response;
         })
-        .catch(() => {
-          return caches.match(event.request);
-        })
+        .catch(() => caches.match(request))
     );
     return;
   }
 
-  // Cache-first strategy for static assets
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
+  // Navigation requests (HTML pages): network-first, offline fallback
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          // Cache successful navigations for future offline use
+          if (response && response.status === 200) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
           return response;
-        }
-        return fetch(event.request).then(response => {
-          // Don't cache non-successful responses
+        })
+        .catch(() =>
+          caches.match(request).then(
+            (cached) =>
+              cached ||
+              caches.match('/offline') ||
+              caches.match('/claim/start')
+          )
+        )
+    );
+    return;
+  }
+
+  // Static assets (_next/static, images, fonts): cache-first
+  if (
+    request.url.includes('/_next/static/') ||
+    request.destination === 'image' ||
+    request.destination === 'font' ||
+    request.destination === 'style' ||
+    request.destination === 'script'
+  ) {
+    event.respondWith(
+      caches.match(request).then((cached) => {
+        if (cached) return cached;
+        return fetch(request).then((response) => {
           if (!response || response.status !== 200 || response.type !== 'basic') {
             return response;
           }
-
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseToCache);
-          });
-
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           return response;
         });
       })
-      .catch(error => {
-        console.error('Fetch failed:', error);
-        // Return offline page if available
-        if (event.request.destination === 'document') {
-          return caches.match('/offline');
-        }
-      })
-  );
+    );
+    return;
+  }
 });
 
-// Background sync for form submissions
-self.addEventListener('sync', event => {
+// Background sync — retry pending claim form submissions when back online
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'claim-submission') {
+    event.waitUntil(submitPendingClaims());
+  }
   if (event.tag === 'lead-submission') {
     event.waitUntil(submitPendingLeads());
   }
 });
 
+async function submitPendingClaims() {
+  const cache = await caches.open('pending-claims');
+  const requests = await cache.keys();
+  for (const request of requests) {
+    try {
+      const response = await fetch(request);
+      if (response.ok) {
+        await cache.delete(request);
+        console.log('[SW] Pending claim submitted successfully');
+      }
+    } catch (error) {
+      console.error('[SW] Failed to submit pending claim:', error);
+    }
+  }
+}
+
 async function submitPendingLeads() {
   const cache = await caches.open('pending-leads');
   const requests = await cache.keys();
-  
   for (const request of requests) {
     try {
       const response = await fetch(request);
@@ -116,34 +164,34 @@ async function submitPendingLeads() {
         await cache.delete(request);
       }
     } catch (error) {
-      console.error('Failed to submit lead:', error);
+      console.error('[SW] Failed to submit lead:', error);
     }
   }
 }
 
-// Push notifications
-self.addEventListener('push', event => {
+// Push notifications — emergency alerts
+self.addEventListener('push', (event) => {
   const options = {
-    body: event.data ? event.data.text() : 'New emergency alert from Disaster Recovery',
+    body: event.data
+      ? event.data.text()
+      : 'New emergency alert from Disaster Recovery Australia',
     icon: '/icon-192x192.png',
-    badge: '/badge-72x72.png',
+    badge: '/icon-72x72.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
-      primaryKey: 1
+      primaryKey: 1,
     },
     actions: [
       {
         action: 'explore',
         title: 'View Details',
-        icon: '/check-icon.png'
       },
       {
         action: 'close',
-        title: 'Close',
-        icon: '/close-icon.png'
-      }
-    ]
+        title: 'Dismiss',
+      },
+    ],
   };
 
   event.waitUntil(
@@ -152,12 +200,9 @@ self.addEventListener('push', event => {
 });
 
 // Notification click handling
-self.addEventListener('notificationclick', event => {
+self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-
   if (event.action === 'explore') {
-    event.waitUntil(
-      clients.openWindow('/emergency')
-    );
+    event.waitUntil(clients.openWindow('/emergency'));
   }
 });

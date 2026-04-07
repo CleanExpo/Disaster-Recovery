@@ -9,21 +9,23 @@ export default function RegisterServiceWorker() {
         navigator.serviceWorker
           .register('/service-worker.js')
           .then(registration => {
-            console.log('ServiceWorker registration successful:', registration.scope);
+            console.log('[SW] Registration successful:', registration.scope);
 
-            // Check for updates periodically
+            // Check for updates periodically (every 60s)
             setInterval(() => {
               registration.update();
-            }, 60000); // Check every minute
+            }, 60000);
 
-            // Handle updates
+            // Handle SW updates — prompt user to reload for new version
             registration.addEventListener('updatefound', () => {
               const newWorker = registration.installing;
               if (newWorker) {
                 newWorker.addEventListener('statechange', () => {
-                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    // New service worker available
-                    if (confirm('New version available! Reload to update?')) {
+                  if (
+                    newWorker.state === 'installed' &&
+                    navigator.serviceWorker.controller
+                  ) {
+                    if (confirm('A new version of Disaster Recovery Australia is available. Reload to update?')) {
                       window.location.reload();
                     }
                   }
@@ -32,17 +34,17 @@ export default function RegisterServiceWorker() {
             });
           })
           .catch(error => {
-            console.error('ServiceWorker registration failed:', error);
+            console.error('[SW] Registration failed:', error);
           });
       });
 
-      // Handle offline/online events
-      window.addEventListener('online', () => {
-        console.log('Back online');
+      // Redirect to offline page when navigating while offline
+      window.addEventListener('offline', () => {
+        console.log('[SW] Connection lost — offline mode active');
       });
 
-      window.addEventListener('offline', () => {
-        console.log('Gone offline');
+      window.addEventListener('online', () => {
+        console.log('[SW] Connection restored');
       });
     }
   }, []);

@@ -24,6 +24,7 @@ import ProgressSpinner from '@/components/ProgressSpinner'
 import LazyImage from '@/components/LazyImage'
 import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema'
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema'
+import RegisterServiceWorker from './register-sw'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -295,6 +296,7 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Providers>
+        <RegisterServiceWorker />
         <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
         </a>
