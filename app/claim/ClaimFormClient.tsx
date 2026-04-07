@@ -905,7 +905,7 @@ function OnlineClaimPageOriginal() {
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h4 className="font-semibold mb-2">Contractor Responsibilities:</h4>
                   <ul className="text-sm space-y-1 text-gray-700">
-                    <li className="font-bold text-red-600">• Initial phone contact within 60 MINUTES (GUARANTEED)</li>
+                    <li className="font-bold text-blue-700">• Initial phone contact aimed within 60 minutes (subject to contractor availability)</li>
                     <li>• Schedule and conduct property inspection</li>
                     <li>• Perform emergency make-safe works</li>
                     <li>• Document all damage thoroughly</li>
@@ -947,34 +947,25 @@ function OnlineClaimPageOriginal() {
                   </h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Claim Intake</span>
+                      <span>Claim Intake &amp; Contractor Matching</span>
                       <span className="font-semibold">Included</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Contractor Matching</span>
-                      <span className="font-semibold">Immediate</span>
+                      <span>Platform fee (payable when work begins)</span>
+                      <span className="font-semibold">$550</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Emergency make-safe works (held for contractor)</span>
+                      <span className="font-semibold">$2,200</span>
                     </div>
                     <div className="text-xs text-gray-500 pl-1">
-                      You will receive contact and next-step guidance after submission
+                      No payment is taken when you submit this form. You will be contacted by the assigned contractor before any charge is applied.
                     </div>
                     <div className="border-t pt-2">
                       <div className="flex justify-between text-lg font-bold">
-                        <span>Total Due</span>
-                        <span>$0.00 (submit now)</span>
+                        <span>Total (billed when restoration begins)</span>
+                        <span>$2,750</span>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="font-semibold">Payment Method</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="border-2 border-blue-600 rounded-lg p-4 cursor-pointer">
-                      <div className="flex items-center gap-2">
-                        <CreditCard className="h-5 w-5" />
-                        <span className="font-medium">Credit/Debit Card</span>
-                      </div>
-                      <p className="text-sm text-gray-700 mt-1">Secure payment via Stripe</p>
                     </div>
                   </div>
                 </div>
@@ -983,7 +974,7 @@ function OnlineClaimPageOriginal() {
                   <h4 className="font-semibold mb-2">What You're Paying For:</h4>
                   <ul className="text-sm space-y-1">
                     <li>✓ Immediate contractor matching based on location and damage type</li>
-                    <li>✓ Emergency make-safe works begin within 60 minutes</li>
+                    <li>✓ Contractor contacts you promptly to schedule emergency make-safe works</li>
                     <li>✓ $2,200 credited toward your full restoration</li>
                     <li>✓ Full claims documentation for your insurer</li>
                     <li>✓ Contractor provides formal contract with clear terms</li>
