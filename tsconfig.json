@@ -95,6 +95,9 @@
     "src/components/layout/R6Header.tsx",
     "src/hooks/useFormValidation.ts",
     "**/*.test.ts",
-    "**/*.test.tsx"
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "tests/**"
   ]
 }

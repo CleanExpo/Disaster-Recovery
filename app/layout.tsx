@@ -25,6 +25,7 @@ import LazyImage from '@/components/LazyImage'
 import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema'
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema'
 import RegisterServiceWorker from './register-sw'
+import { DirectionProvider } from '@/components/providers/DirectionProvider'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -126,7 +127,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en-AU">
+    <html lang="en-AU" dir="ltr">
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -299,6 +300,7 @@ export default function RootLayout({
       </head>
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Providers>
+        <DirectionProvider />
         <RegisterServiceWorker />
         <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
