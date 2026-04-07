@@ -15,14 +15,18 @@ export const PRICING_CONSTANTS = {
   JOINING_FEE: 220000,   // $2,200.00 in cents
   TOTAL_ONBOARDING: 247500, // $2,475.00 in cents
   
-  // Subscription tiers (monthly, in cents)
+  // Subscription tiers (monthly, in cents) — confirmed pricing 2026-04-07
   SUBSCRIPTION_TIERS: {
-    TIER_25KM: 29900,   // $299.00
-    TIER_50KM: 49900,   // $499.00  
-    TIER_75KM: 69900,   // $699.00
-    TIER_100KM: 89900,  // $899.00
-    RURAL: 119900       // $1,199.00
+    TIER_25KM: 49500,   // $495.00 — 25km Urban
+    TIER_50KM: 79500,   // $795.00 — 50km Metro
+    TIER_75KM: 99500,   // $995.00 — 75km Regional
+    TIER_100KM: 129500, // $1,295.00 — 100km+ Rural
   },
+
+  // Callout / Emergency Make-Safe fee (client-facing, in cents)
+  CALLOUT_FEE: 275000,      // $2,750.00 total
+  PLATFORM_FEE: 55000,      // $550.00 — DR retains (20%)
+  CONTRACTOR_ENTITLEMENT: 220000, // $2,200.00 — transferred to contractor (80%)
   
   // Bond amounts
   PERFORMANCE_BOND: 500000, // $5,000.00 in cents

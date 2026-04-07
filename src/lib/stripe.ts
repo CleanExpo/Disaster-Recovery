@@ -12,13 +12,25 @@ export const isStripeConfigured = () => !!process.env.STRIPE_SECRET_KEY;
 
 // Stripe Price IDs for different payment types
 export const STRIPE_PRICES = {
-  APPLICATION_FEE: process.env.STRIPE_APPLICATION_FEE_PRICE_ID || 'price_application_275',
-  JOINING_FEE: process.env.STRIPE_JOINING_FEE_PRICE_ID || 'price_joining_2200',
+  // Contractor onboarding (one-time)
+  APPLICATION_FEE: process.env.STRIPE_APPLICATION_FEE_PRICE_ID || 'price_1TJVrEGib5mMf28diz8uurMV',
+  JOINING_FEE: process.env.STRIPE_JOINING_FEE_PRICE_ID || 'price_1TJVrEGib5mMf28dmbv8SOcE',
+  // Consumer callout fee (one-time)
+  CALLOUT_FEE: process.env.STRIPE_CALLOUT_FEE_PRICE_ID || 'price_1TJVrFGib5mMf28dG3pvVzOj',
+  // Contractor subscription tiers (recurring monthly)
+  SUBSCRIPTION_TIERS: {
+    TIER_25KM: process.env.STRIPE_SUB_TIER_25KM_PRICE_ID || 'price_1TJVrFGib5mMf28diy66Zxhw',
+    TIER_50KM: process.env.STRIPE_SUB_TIER_50KM_PRICE_ID || 'price_1TJVrGGib5mMf28datKelIPp',
+    TIER_75KM: process.env.STRIPE_SUB_TIER_75KM_PRICE_ID || 'price_1TJVrGGib5mMf28dyzPtJ7t2',
+    TIER_100KM: process.env.STRIPE_SUB_TIER_100KM_PRICE_ID || 'price_1TJVrGGib5mMf28dv09Ck9zX',
+  },
+  // Promotional schedule prices (for introductory 3-month offer on base tier)
   SUBSCRIPTION: {
-    MONTH_1: process.env.STRIPE_SUB_MONTH_1_PRICE_ID || 'price_sub_month1_free',
-    MONTH_2: process.env.STRIPE_SUB_MONTH_2_PRICE_ID || 'price_sub_month2_198',
-    MONTH_3: process.env.STRIPE_SUB_MONTH_3_PRICE_ID || 'price_sub_month3_247',
-    REGULAR: process.env.STRIPE_SUB_REGULAR_PRICE_ID || 'price_sub_regular_495' }
+    MONTH_1: process.env.STRIPE_SUB_MONTH_1_PRICE_ID || 'price_1TJVrGGib5mMf28dEdUMHFza',
+    MONTH_2: process.env.STRIPE_SUB_MONTH_2_PRICE_ID || 'price_1TJVrHGib5mMf28dOTaEeb86',
+    MONTH_3: process.env.STRIPE_SUB_MONTH_3_PRICE_ID || 'price_1TJVrHGib5mMf28d7aBrgiVy',
+    REGULAR: process.env.STRIPE_SUB_REGULAR_PRICE_ID || 'price_1TJVrFGib5mMf28diy66Zxhw',
+  },
 };
 
 // Payment amounts in cents (for Stripe)
