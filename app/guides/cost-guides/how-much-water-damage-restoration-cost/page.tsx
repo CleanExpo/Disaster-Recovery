@@ -98,7 +98,7 @@ export default function HowMuchWaterDamageRestorationCostPage() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Mould risk:</strong> If mould growth has already started (common in Australian
                   humidity, particularly in QLD, NSW, and NT), a separate mould remediation scope is
-                  required under IICRC S520, adding to the overall project cost.
+                  required under IICRC S520:2025, adding to the overall project cost.
                 </li>
               </ul>
             </>

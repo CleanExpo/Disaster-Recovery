@@ -20,7 +20,7 @@ const KNOWLEDGE_ENTRIES = [
     slug: 'water-damage-restoration-science',
     title: 'Water Damage Restoration Science',
     description:
-      'IICRC S500 water contamination categories, drying classes, psychrometric principles, and Australian building code compliance.',
+      'IICRC S500:2025 water contamination categories, drying classes, psychrometric principles, and Australian building code compliance.',
     gradient: 'from-blue-600 to-cyan-500',
     icon: '💧',
   },
@@ -28,7 +28,7 @@ const KNOWLEDGE_ENTRIES = [
     slug: 'mould-remediation-standards',
     title: 'Mould Remediation Standards',
     description:
-      'IICRC S520 protocols for containment, HEPA filtration, antimicrobial treatment, and post-remediation verification.',
+      'IICRC S520:2025 protocols for containment, HEPA filtration, antimicrobial treatment, and post-remediation verification.',
     gradient: 'from-green-700 to-emerald-500',
     icon: '🔬',
   },
@@ -223,7 +223,7 @@ export default function KnowledgeHubPage() {
                     IICRC Standards
                   </h4>
                   <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: '#6B7280' }}>
-                    All technical content references IICRC S500, S520, S540, and other internationally
+                    All technical content references IICRC S500:2025, S520:2025, S540, and other internationally
                     recognised restoration standards used by insurers and regulators.
                   </p>
                 </div>
@@ -254,7 +254,7 @@ export default function KnowledgeHubPage() {
         { title: 'Emergency Services', href: '/services/emergency-response', description: '24/7 emergency disaster response across Australia.' },
         { title: 'Water Damage Restoration', href: '/services/water-damage-restoration', description: 'Professional water extraction and structural drying.' },
         { title: 'Fire Damage Restoration', href: '/services/fire-damage-restoration', description: 'Comprehensive fire and smoke damage restoration.' },
-        { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520 certified mould removal and prevention.' },
+        { title: 'Mould Remediation', href: '/services/mould-remediation', description: 'IICRC S520:2025 certified mould removal and prevention.' },
         { title: 'Insurance Claims Guide', href: '/guides/insurance', description: 'Navigate your disaster insurance claim.' },
         { title: 'Start a Claim', href: '/claim', description: 'Begin your disaster recovery claim with NRPG.' },
       ]}

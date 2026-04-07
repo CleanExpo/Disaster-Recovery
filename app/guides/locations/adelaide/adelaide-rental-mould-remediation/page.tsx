@@ -76,7 +76,7 @@ export default function AdelaideRentalMouldRemediationPage() {
           body: (
             <div className="space-y-4">
               <p>
-                Professional mould remediation in rental properties follows IICRC S520 protocols and involves a structured process designed to identify the full extent of contamination, remove mould safely, and address the underlying moisture source to prevent recurrence.
+                Professional mould remediation in rental properties follows IICRC S520:2025 protocols and involves a structured process designed to identify the full extent of contamination, remove mould safely, and address the underlying moisture source to prevent recurrence.
               </p>
               <p>
                 <strong>Step 1 — Mould assessment:</strong> An IICRC-certified assessor inspects the property using moisture meters, thermal imaging cameras, and visual inspection. In Adelaide rental properties, the assessment focuses on common problem areas: bathroom ceilings and walls (particularly above showers), bedroom walls behind furniture pushed against external walls, kitchen areas without range hoods, wardrobes on external walls, and subfloor spaces. Air quality sampling may be taken to identify mould species and spore concentrations — particularly important if occupants report respiratory symptoms.
@@ -115,7 +115,7 @@ export default function AdelaideRentalMouldRemediationPage() {
                   <strong>Formal contract</strong> — After make-safe, the contractor provides a formal contract with full terms and conditions, including the scope of remediation works, timeline, and cost. We bill you directly — the property owner or tenant who engages the service.
                 </li>
                 <li>
-                  <strong>Remediation and documentation</strong> — Full IICRC S520 remediation is completed with comprehensive documentation including pre- and post-remediation photos, moisture readings, air quality test results, and a detailed report identifying the moisture source and causation factors.
+                  <strong>Remediation and documentation</strong> — Full IICRC S520:2025 remediation is completed with comprehensive documentation including pre- and post-remediation photos, moisture readings, air quality test results, and a detailed report identifying the moisture source and causation factors.
                 </li>
                 <li>
                   <strong>Claims documentation provided</strong> — Full claims documentation is provided to support your insurance claim for reimbursement. For landlord insurance policies, the documentation covers both the remediation and the underlying repair costs. The causation report also supports any SACAT dispute resolution if landlord/tenant responsibility is contested.

@@ -82,7 +82,7 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
             <li><strong>Temporary power and lighting</strong> — enabling safe inspection and documentation</li>
           </ul>
           <p style={prose}>
-            The IICRC S500 standard (5th Edition, 2021) documents that water damage escalates from
+            The IICRC S500:2025 standard (5th Edition, 2021) documents that water damage escalates from
             Category 1 (clean water) to Category 2 (grey water) within 24–48 hours if left
             untreated. This escalation window — often misquoted as a &ldquo;mandatory response
             deadline&rdquo; — actually refers to the{' '}
@@ -573,7 +573,7 @@ export function getEmergencyMakeSafeSections(): ContentSection[] {
               </span>
             </li>
             <li style={{ marginBottom: '1rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
-              <strong>IICRC S500 — Standard for Professional Water Damage Restoration</strong>
+              <strong>IICRC S500:2025 — Standard for Professional Water Damage Restoration</strong>
               <br />
               <span style={{ color: 'var(--ag-text-muted)', fontSize: '0.9rem' }}>
                 Institute of Inspection, Cleaning and Restoration Certification —{' '}

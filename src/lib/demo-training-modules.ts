@@ -180,7 +180,7 @@ export const TRAINING_MODULES = {
       }
     ],
     certification: {
-      requirement: 'IICRC S520 Standard compliance',
+      requirement: 'IICRC S520:2025 Standard compliance',
       exam: '60 questions, 75% pass required',
       renewal: 'Annual refresher training'
     }

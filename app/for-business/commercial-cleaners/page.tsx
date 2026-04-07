@@ -93,7 +93,7 @@ export default function CommercialCleanersPage() {
               <p>
                 Surface mould on visible tiles or grout can be part of a cleaning scope. But
                 mould growing behind plasterboard, inside wall cavities, under flooring or in
-                ceiling spaces requires specialist remediation under IICRC S520 standards.
+                ceiling spaces requires specialist remediation under IICRC S520:2025 standards.
                 This involves containment, negative air pressure, HEPA filtration and often
                 demolition of affected materials. It is not something that can be addressed
                 with surface cleaning products.
@@ -113,7 +113,7 @@ export default function CommercialCleanersPage() {
               <h3>Sewage backup and biohazard</h3>
               <p>
                 Any sewage overflow is classified as Category 3 contamination under IICRC
-                S500 standards — the highest contamination level. This requires specialist
+                S500:2025 standards — the highest contamination level. This requires specialist
                 personal protective equipment, antimicrobial treatment, removal of all porous
                 materials that contacted the sewage, and clearance testing before the space
                 can be reoccupied. Biohazard situations — blood, bodily fluids, chemical
@@ -289,8 +289,8 @@ export default function CommercialCleanersPage() {
                 Commercial cleaning and disaster restoration are fundamentally different
                 disciplines. Your team is trained in cleaning methodologies, hygiene
                 standards and facility maintenance. Our contractors are IICRC-certified in
-                water damage restoration (S500), fire and smoke restoration (S540), mould
-                remediation (S520) and applied structural drying (ASD). The overlap is
+                water damage restoration (S500:2025), fire and smoke restoration (S540), mould
+                remediation (S520:2025) and applied structural drying (ASD). The overlap is
                 minimal. You would not hire a restoration company to do your daily office
                 clean, and you should not be expected to handle a Category 3 sewage overflow
                 with cleaning equipment. Different tools, different training, different scope.

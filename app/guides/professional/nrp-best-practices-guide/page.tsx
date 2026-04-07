@@ -41,13 +41,13 @@ export default function NRPBestPracticesGuidePage() {
               </p>
               <ul className="list-disc pl-6 space-y-3">
                 <li>
-                  <strong>WRT (Water Damage Restoration Technician)</strong> — Required for all water damage, flood, and burst pipe jobs. You must demonstrate competency in psychrometry, structural drying calculations, moisture mapping, and water category/class classification per IICRC S500.
+                  <strong>WRT (Water Damage Restoration Technician)</strong> — Required for all water damage, flood, and burst pipe jobs. You must demonstrate competency in psychrometry, structural drying calculations, moisture mapping, and water category/class classification per IICRC S500:2025.
                 </li>
                 <li>
                   <strong>FSRT (Fire and Smoke Restoration Technician)</strong> — Required for all fire, smoke, and soot damage jobs. Covers soot chemistry, residue types, cleaning protocols, odour elimination, and contents restoration per IICRC S540.
                 </li>
                 <li>
-                  <strong>AMRT (Applied Microbial Remediation Technician)</strong> — Required for all mould remediation jobs. Covers containment protocols, air quality testing, remediation procedures, and clearance testing per IICRC S520.
+                  <strong>AMRT (Applied Microbial Remediation Technician)</strong> — Required for all mould remediation jobs. Covers containment protocols, air quality testing, remediation procedures, and clearance testing per IICRC S520:2025.
                 </li>
               </ul>
               <p>
@@ -78,7 +78,7 @@ export default function NRPBestPracticesGuidePage() {
                   <strong>Moisture readings</strong> — Initial readings using pin-type and non-invasive meters at all affected points. Record readings on a moisture map (floor plan with numbered reference points). For water damage jobs, include ambient temperature, relative humidity, and GPP (grains per pound) readings.
                 </li>
                 <li>
-                  <strong>Daily drying logs</strong> — Moisture readings at every mapped point, equipment placement records (dehumidifiers, air movers, HEPA units), and psychrometric calculations showing drying progress. Continue until all materials reach their dry standard per IICRC S500.
+                  <strong>Daily drying logs</strong> — Moisture readings at every mapped point, equipment placement records (dehumidifiers, air movers, HEPA units), and psychrometric calculations showing drying progress. Continue until all materials reach their dry standard per IICRC S500:2025.
                 </li>
                 <li>
                   <strong>Treatment records</strong> — Antimicrobial application details (product name, concentration, application method, coverage area), containment setup and removal records for mould jobs, and any specialist treatments applied.
@@ -140,7 +140,7 @@ export default function NRPBestPracticesGuidePage() {
                   <strong>Documentation completeness</strong> — Every job must include all mandatory documentation items listed above. Random audits are conducted quarterly. A documentation completeness score below 90% triggers a review.
                 </li>
                 <li>
-                  <strong>Dry standard achievement</strong> — All materials must reach their IICRC S500 dry standard before the job is marked complete. Drying equipment must not be removed based on time alone — only verified moisture readings confirm completion.
+                  <strong>Dry standard achievement</strong> — All materials must reach their IICRC S500:2025 dry standard before the job is marked complete. Drying equipment must not be removed based on time alone — only verified moisture readings confirm completion.
                 </li>
                 <li>
                   <strong>Client satisfaction</strong> — NRPG surveys clients after every job. A satisfaction score below 4.0/5.0 over a rolling 10-job window triggers a performance review. Contractors maintaining 4.8+ receive priority job allocation.

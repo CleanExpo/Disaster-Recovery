@@ -65,7 +65,7 @@ export default function BuilderVsRestorerPage() {
                   <strong>FSRT (Fire and Smoke Restoration Technician)</strong> — Soot chemistry, smoke residue behaviour across different materials, odour elimination protocols, and contents restoration.
                 </li>
                 <li>
-                  <strong>AMRT (Applied Microbial Remediation Technician)</strong> — Mould species identification, containment protocols, air quality testing, and safe remediation following S520 standards.
+                  <strong>AMRT (Applied Microbial Remediation Technician)</strong> — Mould species identification, containment protocols, air quality testing, and safe remediation following S520:2025 standards.
                 </li>
                 <li>
                   <strong>OCT (Odour Control Technician)</strong> — Thermal fogging, ozone treatment, hydroxyl generation, and chemical counteractant application.

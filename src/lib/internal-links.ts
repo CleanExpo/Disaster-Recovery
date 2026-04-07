@@ -265,8 +265,8 @@ const RELATED_PAGES_MAP: Record<CategoryKey, RelatedPage[]> = {
     { title: 'Compare Options', href: '/compare', description: 'Side-by-side comparisons — DIY vs professional, insurance vs cash, and more.' },
   ],
   'knowledge-base': [
-    { title: 'Water Damage Science', href: '/knowledge/water-damage-restoration-science', description: 'IICRC S500 water damage categories, classes, and psychrometric drying science.' },
-    { title: 'Mould Remediation Standards', href: '/knowledge/mould-remediation-standards', description: 'IICRC S520 mould remediation protocols and Australian health guidelines.' },
+    { title: 'Water Damage Science', href: '/knowledge/water-damage-restoration-science', description: 'IICRC S500:2025 water damage categories, classes, and psychrometric drying science.' },
+    { title: 'Mould Remediation Standards', href: '/knowledge/mould-remediation-standards', description: 'IICRC S520:2025 mould remediation protocols and Australian health guidelines.' },
     { title: 'Fire Damage Restoration', href: '/knowledge/fire-damage-restoration-process', description: 'Four-phase fire restoration process including smoke and soot science.' },
     { title: 'Cost Guides', href: '/cost', description: 'Transparent restoration cost guides across Australia.' },
     { title: 'Pricing by City', href: '/pricing', description: 'City-specific pricing for all damage types.' },

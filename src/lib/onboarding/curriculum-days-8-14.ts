@@ -1026,8 +1026,8 @@ Quality control is what separates professional contractors from competitors and 
 ### Industry Quality Standards
 
 **IICRC Standards Compliance:**
-- **S500 Water Damage**: Compliance with IICRC S500 water damage restoration standard
-- **S520 Mould Remediation**: Compliance with IICRC S520 mould remediation standard  
+- **S500 Water Damage**: Compliance with IICRC S500:2025 water damage restoration standard
+- **S520 Mould Remediation**: Compliance with IICRC S520:2025 mould remediation standard  
 - **S540 Trauma Cleanup**: Compliance with IICRC S540 trauma and crime scene cleanup standard
 - **Documentation**: Maintain documentation demonstrating standards compliance
 - **Updates**: Stay current with standard updates and revisions
@@ -1856,7 +1856,7 @@ This comprehensive assessment evaluates your mastery of all aspects of disaster 
 - Professional documentation requirements
 
 **Industry Standards (20% of assessment)**
-- IICRC standards compliance (S500, S520, S540)
+- IICRC standards compliance (S500:2025, S520:2025, S540)
 - Australian regulatory requirements
 - Professional ethics and standards
 - Industry best practices
@@ -1901,7 +1901,7 @@ This comprehensive assessment evaluates your mastery of all aspects of disaster 
 *Situation*: A basement has extensive mould growth following a plumbing leak that went undetected for several weeks. The client has health concerns and wants immediate action.
 
 *Your Response Must Address*:
-- IICRC S520 condition assessment
+- IICRC S520:2025 condition assessment
 - Health and safety protocol implementation
 - Containment and remediation planning
 - Moisture source identification and correction
@@ -2018,7 +2018,7 @@ This comprehensive assessment ensures that only qualified, capable contractors r
             explanation: "Mould requires moisture, nutrients (organic materials), and appropriate temperature for growth. Controlling moisture is the most practical prevention method."
           },
           {
-            question: "According to IICRC S500, Category 1 water can become Category 2 water after how long without treatment?",
+            question: "According to IICRC S500:2025, Category 1 water can become Category 2 water after how long without treatment?",
             options: ["24 hours", "48-72 hours", "96 hours", "1 week"],
             correctAnswer: "48-72 hours",
             explanation: "Clean water (Category 1) can become contaminated (Category 2) after 48-72 hours due to bacterial growth and environmental contamination."

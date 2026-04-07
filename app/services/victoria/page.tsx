@@ -329,7 +329,7 @@ export default function VictoriaServicesPage() {
           {
             question: 'Can you handle bushfire smoke and soot damage in Victoria?',
             answer:
-              'Yes. Our IICRC S520-certified contractors specialise in smoke and soot remediation, including air quality testing, surface decontamination, HVAC cleaning and contents restoration for bushfire-affected properties across Victoria.',
+              'Yes. Our IICRC S520:2025-certified contractors specialise in smoke and soot remediation, including air quality testing, surface decontamination, HVAC cleaning and contents restoration for bushfire-affected properties across Victoria.',
           },
           {
             question: 'Do you service East Gippsland and Alpine areas after bushfires?',
@@ -344,7 +344,7 @@ export default function VictoriaServicesPage() {
           {
             question: 'Can you help with post-flood mould in Victorian properties?',
             answer:
-              'Yes. Victoria&apos;s cool, damp climate accelerates mould growth following flood events. Our IICRC S520-certified contractors provide mould assessment, containment, remediation and clearance testing for post-flood properties across the state.',
+              'Yes. Victoria&apos;s cool, damp climate accelerates mould growth following flood events. Our IICRC S520:2025-certified contractors provide mould assessment, containment, remediation and clearance testing for post-flood properties across the state.',
           },
         ]}
         relatedGuides={[

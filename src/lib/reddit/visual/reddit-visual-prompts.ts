@@ -28,7 +28,7 @@ const CATEGORY_PROMPTS: Record<PostCategory, string> = {
 
   iicrc:
     'IICRC certification badges and credentials displayed prominently, professional training environment ' +
-    'with restoration equipment stations, technicians reviewing S500 and S520 standards documentation, ' +
+    'with restoration equipment stations, technicians reviewing S500:2025 and S520:2025 standards documentation, ' +
     'hands-on equipment calibration training, certification plaques on an industrial grey wall.',
 
   mould:

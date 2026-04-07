@@ -69,7 +69,7 @@ export default function EquipmentGuidesPage() {
                 The difference between a DIY attempt and professional restoration often comes down to equipment. Commercial-grade dehumidifiers remove 10-20 times more moisture than household units. Infrared thermal cameras detect hidden moisture behind walls that a visual inspection would miss. Hydroxyl generators neutralise odour at a molecular level rather than masking it.
               </p>
               <p>
-                Understanding what equipment is being used on your property helps you evaluate quotes and ensure the contractor is following IICRC S500/S520 standards. Our equipment guides explain what each piece does, why it matters, and what it typically costs.
+                Understanding what equipment is being used on your property helps you evaluate quotes and ensure the contractor is following IICRC S500:2025/S520:2025 standards. Our equipment guides explain what each piece does, why it matters, and what it typically costs.
               </p>
             </div>
           ),

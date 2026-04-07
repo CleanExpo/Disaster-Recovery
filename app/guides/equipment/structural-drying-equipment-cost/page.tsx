@@ -157,7 +157,7 @@ export default function StructuralDryingEquipmentCostPage() {
                 <strong>Under-equipping</strong> a job (too few air movers, insufficient dehumidification capacity) extends the drying time. Longer drying means more days of equipment hire, more monitoring visits, and — critically — higher risk of secondary damage including mould, timber degradation, and odour. A job that should take 3 days with correct equipment might take 7 to 10 days with insufficient equipment, costing more in total despite the lower daily rate.
               </p>
               <p>
-                <strong>Over-equipping</strong> increases daily cost without proportionally reducing drying time beyond a certain point. Once the equipment-to-affected-area ratio is optimised (per IICRC S500 guidelines), additional units provide diminishing returns. A reputable restorer calculates the correct equipment loading based on psychrometric data, not by maximising units to inflate charges.
+                <strong>Over-equipping</strong> increases daily cost without proportionally reducing drying time beyond a certain point. Once the equipment-to-affected-area ratio is optimised (per IICRC S500:2025 guidelines), additional units provide diminishing returns. A reputable restorer calculates the correct equipment loading based on psychrometric data, not by maximising units to inflate charges.
               </p>
 
               <h3 className="font-bold text-lg mt-6 mb-2">Injection Drying vs Demolition</h3>

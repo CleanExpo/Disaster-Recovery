@@ -81,7 +81,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'After water damage, the clock is ticking. Our {{city}} IICRC-certified team follows the S500 standard for water damage restoration: assess, extract, dry, decontaminate, restore. Every step documented for your insurer. Payment plans available through Blue Fire Finance.',
+        summary: 'After water damage, the clock is ticking. Our {{city}} IICRC-certified team follows the S500:2025 standard for water damage restoration: assess, extract, dry, decontaminate, restore. Every step documented for your insurer. Payment plans available through Blue Fire Finance.',
         ctaText: 'Start Your Claim',
         ctaPath: '/claim',
         topicType: 'STANDARD',
@@ -163,7 +163,7 @@ export const postTemplates: GBPPostTemplate[] = [
     service: 'mould-remediation',
     variants: [
       {
-        summary: 'Mould in your {{city}} home? Do not ignore it — mould spreads fast and poses serious health risks. Our IICRC S520-certified mould remediation team uses containment, HEPA filtration, and antimicrobial treatment to eliminate mould at the source. Claims documentation included.',
+        summary: 'Mould in your {{city}} home? Do not ignore it — mould spreads fast and poses serious health risks. Our IICRC S520:2025-certified mould remediation team uses containment, HEPA filtration, and antimicrobial treatment to eliminate mould at the source. Claims documentation included.',
         ctaText: 'Get Help Now',
         ctaPath: '/claim',
         topicType: 'STANDARD',
@@ -175,7 +175,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'After flooding or water damage in {{city}}, mould can begin growing within 24-48 hours in hidden wall cavities. Our mould remediation specialists use moisture mapping, thermal imaging, and IICRC S520 protocols to find and eliminate mould before it spreads.',
+        summary: 'After flooding or water damage in {{city}}, mould can begin growing within 24-48 hours in hidden wall cavities. Our mould remediation specialists use moisture mapping, thermal imaging, and IICRC S520:2025 protocols to find and eliminate mould before it spreads.',
         ctaText: 'Submit a Claim',
         ctaPath: '/claim',
         topicType: 'STANDARD',
@@ -205,7 +205,7 @@ export const postTemplates: GBPPostTemplate[] = [
         topicType: 'STANDARD',
       },
       {
-        summary: 'Prevent mould after water damage: ventilate immediately, run dehumidifiers, and call professionals within 48 hours. Our {{city}} mould specialists are available 24/7 for emergency assessment. IICRC S520-certified with full claims documentation.',
+        summary: 'Prevent mould after water damage: ventilate immediately, run dehumidifiers, and call professionals within 48 hours. Our {{city}} mould specialists are available 24/7 for emergency assessment. IICRC S520:2025-certified with full claims documentation.',
         ctaText: 'Get Emergency Help',
         ctaPath: '/claim',
         topicType: 'STANDARD',
@@ -269,7 +269,7 @@ export const postTemplates: GBPPostTemplate[] = [
     service: 'flood-recovery',
     variants: [
       {
-        summary: 'Flood damage in {{city}}? Our disaster recovery network provides emergency water extraction, structural drying, and sanitisation. We follow IICRC S500 protocols for floodwater contamination. Full claims documentation — we bill you directly.',
+        summary: 'Flood damage in {{city}}? Our disaster recovery network provides emergency water extraction, structural drying, and sanitisation. We follow IICRC S500:2025 protocols for floodwater contamination. Full claims documentation — we bill you directly.',
         ctaText: 'Get Emergency Help',
         ctaPath: '/claim',
         topicType: 'STANDARD',

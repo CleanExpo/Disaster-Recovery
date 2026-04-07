@@ -8,7 +8,7 @@ export const mouldRemediationData: ServicePageData = {
   slug: 'mould-remediation',
   breadcrumbLabel: 'Microbial Recovery',
   title: 'Mould & Microbial Remediation',
-  leadText: 'Scientific, containment-based removal of toxic mould colonies. We restore indoor air quality (IAQ) to healthy, pre-condition basements using strict IICRC S520 guidelines.',
+  leadText: 'Scientific, containment-based removal of toxic mould colonies. We restore indoor air quality (IAQ) to healthy, pre-condition basements using strict IICRC S520:2025 guidelines.',
   theme: {
     headerGradient: 'linear-gradient(135deg, #062817 0%, #115E39 100%)',
     headerRadial: 'radial-gradient(circle at top right, rgba(34, 197, 94, 0.1) 0%, transparent 60%)',
@@ -41,7 +41,7 @@ export const mouldRemediationData: ServicePageData = {
       description: 'Industrial HEPA scrubbers filter the air within the containment zone 4 to 6 times per hour, trapping dead micro-particulates up to 0.3 microns before they can be inhaled.',
     },
   ],
-  protocolHeading: 'The IICRC S520 Remediation Standard',
+  protocolHeading: 'The IICRC S520:2025 Remediation Standard',
   protocolSteps: [
     {
       title: 'Initial Moisture Root-Cause:',
@@ -66,7 +66,7 @@ export const mouldRemediationData: ServicePageData = {
     description: 'Automated dispatch to the nearest available biohazard extraction fleet.',
     ctaHref: '/claim?service=mould-remediation',
     ctaText: 'Make a Claim',
-    footerNote: 'We bill you directly — full claims documentation provided. IICRC S520 compliant reporting.',
-    trustText: 'Operating strictly under IICRC S520 Standard for Professional Microbial Remediation.',
+    footerNote: 'We bill you directly — full claims documentation provided. IICRC S520:2025 compliant reporting.',
+    trustText: 'Operating strictly under IICRC S520:2025 Standard for Professional Microbial Remediation.',
   },
 };

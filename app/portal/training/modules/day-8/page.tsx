@@ -360,7 +360,7 @@ function Day8MouldRemediationOriginal() {
             guidelines: "No federal standard, follow industry best practice",
             references: [
               "AIOH guidelines",
-              "IICRC S520 standard",
+              "IICRC S520:2025 standard",
               "State health department guidelines"
             ]
           },
@@ -447,7 +447,7 @@ function Day8MouldRemediationOriginal() {
     },
     {
       id: 6,
-      title: "IICRC S520 Standards",
+      title: "IICRC S520:2025 Standards",
       duration: "75 min",
       content: {
         principles: [
@@ -539,7 +539,7 @@ function Day8MouldRemediationOriginal() {
               </Badge>
               <Button variant="outline">
                 <Download className="h-4 w-4 mr-2" />
-                S520 Standards
+                S520:2025 Standards
               </Button>
             </div>
           </div>

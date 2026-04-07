@@ -9,7 +9,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Fire & Smoke Damage Restoration',
-  description: 'Expert fire and smoke damage restoration services following IICRC S700 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response.',
+  description: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response.',
   provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
   areaServed: { '@type': 'Country', name: 'Australia' },
   serviceType: 'Fire Damage Restoration',
@@ -19,14 +19,14 @@ const serviceSchema = {
 
 export const metadata: Metadata = {
   title: 'Fire & Smoke Damage Restoration | 24/7 IICRC',
-  description: 'Expert fire and smoke damage restoration services following IICRC S700 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
+  description: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
   keywords: [
     'fire damage restoration',
     'smoke damage cleanup',
     'soot removal',
     'fire damage repair',
     'smoke odour removal',
-    'IICRC S700 certified',
+    'IICRC S700:2025 certified',
     'structural fire damage',
     'fire restoration company',
     'smoke damage restoration',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Fire & Smoke Damage Restoration | IICRC Certified Specialists',
-    description: 'Professional fire and smoke damage restoration following IICRC S700 standards. 24/7 emergency response for complete fire damage recovery.',
+    description: 'Professional fire and smoke damage restoration following IICRC S700:2025 standards. 24/7 emergency response for complete fire damage recovery.',
     images: [
       {
         url: '/images/optimised/damage/3D image of a house fire.png',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Fire & Smoke Damage Restoration | IICRC Certified',
-    description: 'Expert fire damage restoration services. IICRC S700 certified technicians. 24/7 emergency response nationwide.',
+    description: 'Expert fire damage restoration services. IICRC S700:2025 certified technicians. 24/7 emergency response nationwide.',
     images: ['/images/optimised/damage/3D image of a house fire.png'] },
   alternates: {
     canonical: '/services/fire-damage' },
@@ -73,7 +73,7 @@ export default function FireDamagePage() {
         heroImage: '/images/generated/disaster-recovery/hero-fire-damage.webp',
         icon: <Flame className="h-12 w-12" />,
         title: 'Fire & Smoke Damage Restoration',
-        subtitle: 'Expert fire and smoke damage restoration services following IICRC S700 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
+        subtitle: 'Expert fire and smoke damage restoration services following IICRC S700:2025 standards. Soot removal, smoke odour elimination, structural fire damage repair. 24/7 emergency response nationwide.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-fire-damage.webp"

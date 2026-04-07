@@ -73,7 +73,7 @@ export default function BlackMouldBathroomCeilingPage() {
           body: (
             <>
               <p>
-                IICRC S520-certified mould remediation follows a structured protocol to ensure the mould is fully
+                IICRC S520:2025-certified mould remediation follows a structured protocol to ensure the mould is fully
                 removed — not just wiped off the surface. Here is what a professional bathroom ceiling remediation
                 typically involves:
               </p>

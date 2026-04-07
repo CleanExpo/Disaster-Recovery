@@ -12,7 +12,7 @@ function ContractorPortalResourcesPageOriginal() {
       icon: Book,
       color: 'bg-blue-600',
       items: [
-        { title: 'IICRC S500 Water Damage Guide', type: 'PDF', size: '15.2 MB' },
+        { title: 'IICRC S500:2025 Water Damage Guide', type: 'PDF', size: '15.2 MB' },
         { title: 'Fire & Smoke Restoration Manual', type: 'PDF', size: '12.8 MB' },
         { title: 'Mould Remediation Best Practices', type: 'PDF', size: '8.5 MB' },
         { title: 'Safety Protocols Handbook', type: 'PDF', size: '5.3 MB' }

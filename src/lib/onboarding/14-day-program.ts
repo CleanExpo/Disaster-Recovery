@@ -379,8 +379,8 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
 
   {
     day: 6,
-    title: 'IICRC Standards - S500 Water Damage',
-    description: 'Master ANSI/IICRC S500 standard for water damage restoration',
+    title: 'IICRC Standards - S500:2025 Water Damage',
+    description: 'Master ANSI/IICRC S500:2025 standard for water damage restoration',
     objectives: [
       'Understand water categories and classes',
       'Master psychrometry principles',
@@ -390,7 +390,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
     components: {
       videos: [
         {
-          title: 'IICRC S500 Complete Overview',
+          title: 'IICRC S500:2025 Complete Overview',
           url: '/training/videos/s500-overview',
           duration: 180,
           mandatory: true
@@ -410,7 +410,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
       ],
       readings: [
         {
-          title: 'ANSI/IICRC S500 Standard Summary',
+          title: 'ANSI/IICRC S500:2025 Standard Summary',
           content: 'Key principles of water damage restoration',
           estimatedTime: 180,
           source: 'IICRC'
@@ -448,8 +448,8 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
 
   {
     day: 7,
-    title: 'IICRC Standards - S520 Mould Remediation',
-    description: 'Master ANSI/IICRC S520 mould remediation standard',
+    title: 'IICRC Standards - S520:2025 Mould Remediation',
+    description: 'Master ANSI/IICRC S520:2025 mould remediation standard',
     objectives: [
       'Understand Conditions 1, 2, and 3',
       'Master containment requirements',
@@ -459,7 +459,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
     components: {
       videos: [
         {
-          title: 'IICRC S520 Mould Standard',
+          title: 'IICRC S520:2025 Mould Standard',
           url: '/training/videos/s520-mould',
           duration: 150,
           mandatory: true
@@ -479,7 +479,7 @@ export const ONBOARDING_PROGRAM: OnboardingModule[] = [
       ],
       readings: [
         {
-          title: 'ANSI/IICRC S520 Professional Mould Remediation',
+          title: 'ANSI/IICRC S520:2025 Professional Mould Remediation',
           content: 'Complete standard review and application',
           estimatedTime: 150,
           source: 'IICRC'

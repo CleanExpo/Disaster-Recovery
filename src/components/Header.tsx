@@ -82,14 +82,14 @@ const Header: React.FC = () => {
         {
           href: "/services/water-damage",
           label: "Water Damage Restoration",
-          description: "IICRC S500 certified restoration",
+          description: "IICRC S500:2025 certified restoration",
           icon: <Droplets className="h-4 w-4 text-water-600" />,
           badge: "24/7"
         },
         {
           href: "/services/fire-damage",
           label: "Fire & Smoke Damage",
-          description: "IICRC S700 fire restoration",
+          description: "IICRC S700:2025 fire restoration",
           icon: <Flame className="h-4 w-4 text-fire-600" />,
           badge: "24/7"
         },
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
         {
           href: "/services/mould-remediation",
           label: "Mould Remediation",
-          description: "IICRC S520 mould removal",
+          description: "IICRC S520:2025 mould removal",
           icon: <Shield className="h-4 w-4 text-mould-600" />
         },
         {

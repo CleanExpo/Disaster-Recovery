@@ -197,7 +197,7 @@ export default function DocumentWaterDamageInsurancePage() {
                 <li style={{ marginBottom: '0.5rem' }}>
                   <strong>Completion report:</strong> At the end of the job, you receive a
                   comprehensive completion report with final moisture readings confirming the
-                  property has been dried to IICRC S500 standard, before-and-after photographs,
+                  property has been dried to IICRC S500:2025 standard, before-and-after photographs,
                   and a summary of all works performed.
                 </li>
               </ul>

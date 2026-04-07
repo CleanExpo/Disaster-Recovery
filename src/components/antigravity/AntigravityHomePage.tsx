@@ -22,7 +22,7 @@ const servicePillars = [
     title: 'Water & Flood Restoration',
     description: 'Emergency water extraction, structural drying, and flood damage recovery.',
     imageSrc: '/images/generated/disaster-recovery/service-water-extraction.webp',
-    certBadge: 'IICRC S500',
+    certBadge: 'IICRC S500:2025',
     href: '/services/water-damage-restoration',
   },
   {
@@ -36,7 +36,7 @@ const servicePillars = [
     title: 'Mould & Air Quality',
     description: 'Professional mould remediation and indoor air quality restoration.',
     imageSrc: '/images/generated/disaster-recovery/service-mould-remediation.webp',
-    certBadge: 'IICRC S520',
+    certBadge: 'IICRC S520:2025',
     href: '/services/mould-remediation',
   },
   {

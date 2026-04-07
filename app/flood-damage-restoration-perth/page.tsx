@@ -106,7 +106,7 @@ export default function FloodDamageRestorationPerthPage() {
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Severe flood damage (whole-of-home, contaminated water):</strong> $12,000–$30,000+. Required
                     when Category 3 (black water) from sewage overflow or river floodwater inundates the property,
-                    necessitating full decontamination under IICRC S500 protocols.
+                    necessitating full decontamination under IICRC S500:2025 protocols.
                   </li>
                   <li style={{ marginBottom: '0.5rem' }}>
                     <strong>Structural flood damage (foundation/slab affected):</strong> $20,000+. Perth&apos;s sandy soils
@@ -131,7 +131,7 @@ export default function FloodDamageRestorationPerthPage() {
                   Disaster Recovery connects you with NRPG&apos;s network of IICRC-certified flood damage restoration
                   contractors across the entire Perth metropolitan area. Every contractor in the network maintains current
                   IICRC Water Restoration Technician (WRT) certification, carries minimum $20 million public liability
-                  insurance, and includes Category 3 contaminated water specialists trained in ANSI/IICRC S500-2021
+                  insurance, and includes Category 3 contaminated water specialists trained in ANSI/IICRC S500:2025
                   protocols.
                 </p>
                 <ul style={{ marginTop: '1rem', paddingLeft: '1.5rem' }}>
@@ -235,7 +235,7 @@ export default function FloodDamageRestorationPerthPage() {
           },
           {
             question: 'How do you handle contaminated floodwater in Perth properties?',
-            answer: 'Floodwater from river inundation or sewage backup is classified as Category 3 (black water) under IICRC S500-2021 standards. Our IICRC-certified contractors follow strict decontamination protocols including full extraction, antimicrobial treatment, removal of porous materials that cannot be decontaminated (carpet, underlay, plasterboard below the flood line), and structural drying with HEPA-filtered air scrubbers. All contaminated materials are disposed of in accordance with WA waste regulations.',
+            answer: 'Floodwater from river inundation or sewage backup is classified as Category 3 (black water) under IICRC S500:2025 standards. Our IICRC-certified contractors follow strict decontamination protocols including full extraction, antimicrobial treatment, removal of porous materials that cannot be decontaminated (carpet, underlay, plasterboard below the flood line), and structural drying with HEPA-filtered air scrubbers. All contaminated materials are disposed of in accordance with WA waste regulations.',
           },
           {
             question: 'How quickly can a flood damage restoration contractor respond in Perth?',

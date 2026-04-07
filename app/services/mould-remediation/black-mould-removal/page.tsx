@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Black Mould Removal | IICRC Certified',
-  description: 'Professional black mould removal services across Australia. 24/7 emergency response for toxic black mould, stachybotrys removal. IICRC S520 certified.',
+  description: 'Professional black mould removal services across Australia. 24/7 emergency response for toxic black mould, stachybotrys removal. IICRC S520:2025 certified.',
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/mould-remediation/black-mould-removal',
   },
@@ -20,7 +20,7 @@ export default function BlackMouldRemovalPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Black Mould Removal Services',
-        subtitle: 'Professional black mould removal services across Australia. 24/7 emergency response for toxic black mould, stachybotrys removal. IICRC S520 certified.',
+        subtitle: 'Professional black mould removal services across Australia. 24/7 emergency response for toxic black mould, stachybotrys removal. IICRC S520:2025 certified.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"

@@ -145,7 +145,7 @@ export default function WesternAustraliaServicesPage() {
                   {
                     title: 'Mould Remediation',
                     href: '/services/mould-remediation',
-                    desc: 'IICRC S520-certified mould assessment and remediation for post-cyclone and post-flood WA properties.',
+                    desc: 'IICRC S520:2025-certified mould assessment and remediation for post-cyclone and post-flood WA properties.',
                   },
                   {
                     title: 'Commercial Services',

@@ -49,7 +49,7 @@ Water damage doesn't wait. Within 24-48 hours of water intrusion, mould growth b
 
 ## The Three Categories of Water Damage
 
-Not all water damage is equal. The industry standard (IICRC S500) classifies water into three categories:
+Not all water damage is equal. The industry standard (IICRC S500:2025) classifies water into three categories:
 
 {{TABLE}}
 
@@ -171,7 +171,7 @@ Ensure your assessor uses [transparent insurance estimating](https://restoreassi
 
 ## The Three Water Categories Explained
 
-The IICRC S500 standard classifies water damage into three categories based on contamination level. This classification directly determines the restoration approach, cost, and health precautions required.
+The IICRC S500:2025 standard classifies water damage into three categories based on contamination level. This classification directly determines the restoration approach, cost, and health precautions required.
 
 {{TABLE}}
 
@@ -536,28 +536,28 @@ The Institute of Inspection, Cleaning and Restoration Certification (IICRC) sets
 {{SOURCES}}`,
     [
       { statistic: 'An estimated 70% of Australian contractors lack IICRC certification', source: 'CARSI Industry Report', citation: 'CARSI Certification Gap Analysis 2024', year: 2024 },
-      { statistic: 'IICRC S500 is the global standard for water damage restoration', source: 'IICRC', citation: 'IICRC S500 Standard Reference Guide', year: 2022 },
+      { statistic: 'IICRC S500:2025 is the global standard for water damage restoration', source: 'IICRC', citation: 'IICRC S500:2025 Standard Reference Guide', year: 2022 },
       { statistic: 'Failure to properly dry resulted in $2.3M liability', source: 'Federal Court of Australia', citation: 'QBE Insurance v Maxcon [2020] FCA 1186', year: 2020 },
     ],
     ['iicrc', 'certification', 'contractors', 'standards'],
   ),
 
-  // ── 9. IICRC S500 vs S520 ──────────────────────────────────────────────
+  // ── 9. IICRC S500:2025 vs S520:2025 ──────────────────────────────────────────────
   post(
     'iicrc-s500-vs-s520',
-    'IICRC S500 vs S520: Water Damage vs Mould Remediation Standards',
+    'IICRC S500:2025 vs S520:2025: Water Damage vs Mould Remediation Standards',
     'iicrc',
     ['carsi', 'restore-assist', 'disaster-recovery'],
     'comparison-table',
-    `Two IICRC standards dominate Australian restoration: S500 (water damage) and S520 (mould remediation). They're related but distinctly different — and knowing which applies to your situation matters for both quality outcomes and insurance claims.
+    `Two IICRC standards dominate Australian restoration: S500:2025 (water damage) and S520:2025 (mould remediation). They're related but distinctly different — and knowing which applies to your situation matters for both quality outcomes and insurance claims.
 
-## S500 vs S520 at a Glance
+## S500:2025 vs S520:2025 at a Glance
 
 {{FACTS}}
 
 {{TABLE}}
 
-| Aspect | S500 (Water Damage) | S520 (Mould Remediation) |
+| Aspect | S500:2025 (Water Damage) | S520:2025 (Mould Remediation) |
 |--------|-------------------|------------------------|
 | Focus | Water extraction and drying | Mould assessment and removal |
 | When applied | Immediately after water event | When mould is discovered or suspected |
@@ -566,17 +566,17 @@ The Institute of Inspection, Cleaning and Restoration Certification (IICRC) sets
 | Typical duration | 3-7 days | 5-14 days |
 | Cost range | $2,000-$15,000 | $5,000-$25,000 |
 
-## When S500 Applies
+## When S500:2025 Applies
 
-S500 is the immediate response standard. It kicks in the moment water enters a property and covers:
+S500:2025 is the immediate response standard. It kicks in the moment water enters a property and covers:
 - Water extraction
 - Structural drying
 - Monitoring and documentation
 - Contents management
 
-## When S520 Applies
+## When S520:2025 Applies
 
-S520 applies when mould is present or suspected. It covers:
+S520:2025 applies when mould is present or suspected. It covers:
 - Mould assessment and sampling
 - Containment setup
 - Remediation procedures
@@ -584,7 +584,7 @@ S520 applies when mould is present or suspected. It covers:
 
 ## The Overlap Zone
 
-Often, both standards apply. Water damage that isn't addressed within 48 hours typically requires both S500 (drying) and S520 (mould remediation) responses. [CARSI-certified contractors](https://carsi.com.au) are trained in both standards.
+Often, both standards apply. Water damage that isn't addressed within 48 hours typically requires both S500:2025 (drying) and S520:2025 (mould remediation) responses. [CARSI-certified contractors](https://carsi.com.au) are trained in both standards.
 
 Use [digital estimating software](https://restoreassist.app) to ensure your scope covers both standards when applicable, and lodge through the [claims portal](https://disasterrecovery.com.au) for guided processing.
 
@@ -594,8 +594,8 @@ Use [digital estimating software](https://restoreassist.app) to ensure your scop
 
 {{SOURCES}}`,
     [
-      { statistic: 'IICRC S500 is the standard for water damage restoration', source: 'IICRC', citation: 'IICRC S500 Standard Reference Guide', year: 2022 },
-      { statistic: 'IICRC S520 is the standard for mould remediation', source: 'IICRC', citation: 'IICRC S520 Standard Reference Guide', year: 2022 },
+      { statistic: 'IICRC S500:2025 is the standard for water damage restoration', source: 'IICRC', citation: 'IICRC S500:2025 Standard Reference Guide', year: 2022 },
+      { statistic: 'IICRC S520:2025 is the standard for mould remediation', source: 'IICRC', citation: 'IICRC S520:2025 Standard Reference Guide', year: 2022 },
       { statistic: 'Mould remediation costs $5,000-$25,000 depending on severity', source: 'CARSI Industry Report', citation: 'CARSI Restoration Cost Survey 2024', year: 2024 },
     ],
     ['iicrc', 's500', 's520', 'standards'],
@@ -750,7 +750,7 @@ When you scrub mould without containment, you release millions of spores into th
 
 ## Professional Remediation: The Process
 
-A proper IICRC S520 remediation follows these steps:
+A proper IICRC S520:2025 remediation follows these steps:
 
 1. **Assessment** — identify species, extent, and moisture source
 2. **Containment** — poly sheeting and negative air pressure to isolate the work area
@@ -863,7 +863,7 @@ The Royal Commission into National Natural Disaster Arrangements (2020) found th
 
 ## The Hidden Cost: Water Damage from Firefighting
 
-What most people don't realise is that firefighting water often causes more damage than the fire itself. A single fire hose delivers 1,000+ litres per minute. This means most fire restorations also require water damage restoration under IICRC S500.
+What most people don't realise is that firefighting water often causes more damage than the fire itself. A single fire hose delivers 1,000+ litres per minute. This means most fire restorations also require water damage restoration under IICRC S500:2025.
 
 ## Cost Breakdown for a Typical Room Fire
 
@@ -959,7 +959,7 @@ Use the [NRPG national network](https://nrpg.business) to find contractors exper
 | Business interruption | N/A | $2,000-$10,000/day lost revenue |
 | Health authority sign-off | No | Required before reopening |
 | Insurance type | Home & contents | Commercial/hospitality specific |
-| Decontamination standard | IICRC S500 | IICRC S500 + FSANZ Code 3.2.2 |
+| Decontamination standard | IICRC S500:2025 | IICRC S500:2025 + FSANZ Code 3.2.2 |
 
 ## The Hidden Costs
 
@@ -1452,7 +1452,7 @@ Typical make-safe activities include:
 - Utility shut-off (gas, electricity, water)
 - Debris containment and hazard isolation
 
-The IICRC S500 standard (5th Edition, 2021) documents that water damage escalates from Category 1 to Category 2 within 24-48 hours if untreated. This refers to the contamination degradation timeline, not a mandatory response deadline.
+The IICRC S500:2025 standard (5th Edition, 2021) documents that water damage escalates from Category 1 to Category 2 within 24-48 hours if untreated. This refers to the contamination degradation timeline, not a mandatory response deadline.
 
 ## The $2,750 Emergency Service
 
@@ -1528,7 +1528,7 @@ Para 68: 10 business days to respond. Para 76: 10 business days to decide (once 
 - [Insurance Contracts Act 1984 (Cth)](https://classic.austlii.edu.au/au/legis/cth/consol_act/ica1984220/)
 - [ICA FAQ After a Disaster](https://insurancecouncil.com.au/resource/frequently-asked-questions-after-a-disaster/)
 - [AFCA Home Insurance Claim Delays Factsheet](https://www.afca.org.au/about-afca/publications/factsheet-home-insurance-claim-delays-and-covid-19)
-- [IICRC S500 Standard](https://iicrc.org/s500/)
+- [IICRC S500:2025 Standard](https://iicrc.org/s500/)
 - [Moneysmart — Home Insurance Claims](https://moneysmart.gov.au/home-insurance/how-to-make-a-home-insurance-claim)
 
 **Note:** The Australian Consumer Law does NOT directly apply to insurance contracts. Insurance is regulated under the ASIC Act and Insurance Contracts Act 1984.
@@ -1554,7 +1554,7 @@ Para 68: 10 business days to respond. Para 76: 10 business days to decide (once 
       {
         statistic: 'Water damage escalates from Category 1 to Category 2 within 24-48 hours if untreated',
         source: 'IICRC',
-        citation: 'ANSI/IICRC S500 5th Edition',
+        citation: 'ANSI/IICRC S500:2025 5th Edition',
         year: 2021,
       },
       {
@@ -1578,7 +1578,7 @@ Para 68: 10 business days to respond. Para 76: 10 business days to decide (once 
 
 ## Why Sewage Is Always Category 3
 
-The IICRC S500 standard classifies all sewage overflows as Category 3 (black water) regardless of source. This means:
+The IICRC S500:2025 standard classifies all sewage overflows as Category 3 (black water) regardless of source. This means:
 - **Immediate health hazard** — raw sewage contains E. coli, Salmonella, Hepatitis A, and parasites
 - **Full PPE mandatory** — respirators, Tyvek suits, chemical-resistant gloves, boot covers
 - **No DIY under any circumstances** — WorkSafe Australia classifies sewage cleanup as hazardous work

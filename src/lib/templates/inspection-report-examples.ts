@@ -287,7 +287,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
       estimatedDuration: '3-5 days',
       requiredEquipment: ['Air movers (6 units)', 'Commercial dehumidifier (2 units)', 'Water extraction equipment'],
       safetyRequirements: ['GFCI protection for all electrical equipment', 'Moisture monitoring daily'],
-      iicrcStandards: ['IICRC S500 Water Damage Restoration']
+      iicrcStandards: ['IICRC S500:2025 Water Damage Restoration']
     },
     {
       id: 'rec_002',
@@ -297,7 +297,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
       estimatedDuration: '1 day',
       requiredEquipment: ['Carpet removal tools', 'Disposal containers'],
       safetyRequirements: ['Dust masks during removal'],
-      iicrcStandards: ['IICRC S500']
+      iicrcStandards: ['IICRC S500:2025']
     },
     {
       id: 'rec_003',
@@ -307,7 +307,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
       estimatedDuration: '1 day',
       requiredEquipment: ['Scaffolding or lift equipment', 'New ceiling tiles'],
       safetyRequirements: ['Fall protection when working at height'],
-      iicrcStandards: ['IICRC S500', 'Australian Work Health and Safety standards']
+      iicrcStandards: ['IICRC S500:2025', 'Australian Work Health and Safety standards']
     },
     {
       id: 'rec_004',
@@ -388,7 +388,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
   // Regulatory Compliance  
   complianceRequirements: {
     applicableStandards: [
-      'IICRC S500 Water Damage Restoration Standard',
+      'IICRC S500:2025 Water Damage Restoration Standard',
       'AS/NZS 3666.1 Air-handling and water systems',
       'Work Health and Safety Act 2011',
       'Building Code of Australia'
@@ -493,7 +493,7 @@ export const WATER_DAMAGE_EXAMPLE: InspectionReport = {
     clientDate: new Date('2023-10-12T14:35:00Z'),
     adjusterSignature: 'Sarah Thompson, Insurance Adjuster',
     adjusterDate: new Date('2023-10-12T16:45:00Z'),
-    certificationStatement: 'I certify that this inspection was conducted in accordance with IICRC S500 standards and industry best practices. All findings and recommendations are based on visible conditions at the time of inspection and my professional assessment of the situation.'
+    certificationStatement: 'I certify that this inspection was conducted in accordance with IICRC S500:2025 standards and industry best practices. All findings and recommendations are based on visible conditions at the time of inspection and my professional assessment of the situation.'
   }
 };
 

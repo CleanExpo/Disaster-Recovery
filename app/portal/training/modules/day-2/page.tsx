@@ -313,7 +313,7 @@ function Day2WaterDamageRestorationOriginal() {
     },
     {
       id: 6,
-      title: "IICRC S500 Standards",
+      title: "IICRC S500:2025 Standards",
       duration: "75 min",
       content: {
         principles: [
@@ -411,7 +411,7 @@ function Day2WaterDamageRestorationOriginal() {
             <div className="flex items-center gap-4">
               <Badge className="bg-blue-100 text-blue-800">
                 <Droplets className="h-3 w-3 mr-1" />
-                IICRC S500 Aligned
+                IICRC S500:2025 Aligned
               </Badge>
               <Button variant="outline">
                 <Download className="h-4 w-4 mr-2" />

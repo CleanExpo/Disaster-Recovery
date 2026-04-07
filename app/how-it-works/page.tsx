@@ -157,8 +157,8 @@ export default function HowItWorksPage() {
             <div className="prose prose-lg max-w-none">
               <p>Your assigned contractor completes the full restoration to pre-loss condition. Depending on the damage type, this may include:</p>
               <ul>
-                <li><strong>Structural drying</strong> — industrial dehumidification and air movement to IICRC S500 standards</li>
-                <li><strong>Mould remediation</strong> — containment, removal, and treatment per IICRC S520 protocols</li>
+                <li><strong>Structural drying</strong> — industrial dehumidification and air movement to IICRC S500:2025 standards</li>
+                <li><strong>Mould remediation</strong> — containment, removal, and treatment per IICRC S520:2025 protocols</li>
                 <li><strong>Smoke and soot removal</strong> — chemical cleaning, deodorisation, and air scrubbing</li>
                 <li><strong>Structural repairs</strong> — rebuilding damaged walls, floors, ceilings, and fixtures</li>
                 <li><strong>Contents restoration</strong> — cleaning, restoring, or replacing damaged belongings</li>

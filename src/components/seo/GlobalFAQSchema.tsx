@@ -152,7 +152,7 @@ const globalFAQ = {
       "name": "How do I know if I need professional mould remediation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Professional mould remediation is needed when mould covers more than 1 square metre, is inside wall cavities or HVAC systems, or when occupants experience respiratory symptoms. Visible mould often indicates a larger hidden problem. A qualified mould assessor conducts air quality testing to identify species and contamination levels, then follows IICRC S520 protocols for safe removal."
+        "text": "Professional mould remediation is needed when mould covers more than 1 square metre, is inside wall cavities or HVAC systems, or when occupants experience respiratory symptoms. Visible mould often indicates a larger hidden problem. A qualified mould assessor conducts air quality testing to identify species and contamination levels, then follows IICRC S520:2025 protocols for safe removal."
       }
     },
     {

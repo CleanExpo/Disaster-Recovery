@@ -210,7 +210,7 @@ const serviceHowToData: Record<string, {
   },
   'mould-remediation': {
     name: 'How Professional Mould Remediation Works',
-    description: 'The IICRC S520–standard process for safely removing mould contamination, treating affected materials, and preventing recurrence in Australian properties.',
+    description: 'The IICRC S520:2025–standard process for safely removing mould contamination, treating affected materials, and preventing recurrence in Australian properties.',
     totalTime: 'P5D',
     steps: [
       { name: 'Mould Inspection and Air Quality Testing', text: 'A qualified mould assessor conducts visual inspection and collects air samples for laboratory analysis. This identifies the mould species present (e.g., Aspergillus, Cladosporium, Stachybotrys) and determines the scope of contamination — critical for choosing the correct remediation protocol.' },

@@ -331,7 +331,7 @@ export default function PropertyManagersPage() {
                   For water damage events, our contractors produce moisture maps showing affected areas,
                   moisture readings at each measurement point, and drying progress over the course of the
                   restoration. This data is critical for demonstrating to insurers that the scope of works
-                  was necessary and that drying was achieved to IICRC S500 standards.
+                  was necessary and that drying was achieved to IICRC S500:2025 standards.
                 </p>
 
                 <h3>Scope of Works and Methodology</h3>

@@ -228,7 +228,7 @@ export default function StormDamageRestorationGoldCoastPage() {
                     <strong>Canal estate flooding:</strong> The Gold Coast&apos;s extensive canal system can act as a conduit
                     for stormwater during intense rainfall events. Properties in canal estates including Broadbeach Waters,
                     Clear Island Waters, and Isle of Capri face rising water levels that inundate ground floors, requiring
-                    specialist water extraction and decontamination under IICRC S500 protocols.
+                    specialist water extraction and decontamination under IICRC S500:2025 protocols.
                   </li>
                 </ul>
               </>

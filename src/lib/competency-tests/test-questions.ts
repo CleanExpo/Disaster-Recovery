@@ -223,12 +223,12 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
   {
     id: 'ind_001',
     category: CompetencyCategory.INDUSTRY_STANDARDS,
-    subcategory: 'IICRC S500',
-    question: 'According to IICRC S500, what are the three categories of water in water damage restoration?',
+    subcategory: 'IICRC S500:2025',
+    question: 'According to IICRC S500:2025, what are the three categories of water in water damage restoration?',
     questionType: 'WRITTEN',
     correctAnswer: 'Category 1: Clean water from sanitary source; Category 2: Grey water with potential contamination; Category 3: Black water grossly contaminated',
-    explanation: 'IICRC S500 defines water categories based on source and contamination level. Cat 1 deteriorates to Cat 2 after 48 hours, and Cat 2 to Cat 3 after 48 hours.',
-    reference: 'IICRC S500 Standard - Section 10.2',
+    explanation: 'IICRC S500:2025 defines water categories based on source and contamination level. Cat 1 deteriorates to Cat 2 after 48 hours, and Cat 2 to Cat 3 after 48 hours.',
+    reference: 'IICRC S500:2025 Standard - Section 10.2',
     difficulty: 'BASIC',
     points: 6,
     timeLimit: 90
@@ -236,8 +236,8 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
   {
     id: 'ind_002',
     category: CompetencyCategory.INDUSTRY_STANDARDS,
-    subcategory: 'IICRC S520',
-    question: 'Under IICRC S520, what is the minimum negative pressure differential required for mould containment?',
+    subcategory: 'IICRC S520:2025',
+    question: 'Under IICRC S520:2025, what is the minimum negative pressure differential required for mould containment?',
     questionType: 'MULTIPLE_CHOICE',
     options: [
       '0.02 inches of water column',
@@ -246,8 +246,8 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
       '0.15 inches of water column'
     ],
     correctAnswer: '0.02 inches of water column',
-    explanation: 'IICRC S520 requires a minimum of 0.02 inches (5 Pascals) of negative pressure differential to prevent contaminated air from escaping containment.',
-    reference: 'IICRC S520 Standard - Section 12.2.2',
+    explanation: 'IICRC S520:2025 requires a minimum of 0.02 inches (5 Pascals) of negative pressure differential to prevent contaminated air from escaping containment.',
+    reference: 'IICRC S520:2025 Standard - Section 12.2.2',
     difficulty: 'INTERMEDIATE',
     points: 8,
     timeLimit: 60
@@ -428,7 +428,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     questionType: 'CALCULATION',
     correctAnswer: '17°C',
     explanation: 'Using psychrometric charts or formulas, at 25°C and 60% RH, the dew point is approximately 17°C. This is critical for preventing condensation during drying.',
-    reference: 'IICRC S500 - Psychrometry Principles',
+    reference: 'IICRC S500:2025 - Psychrometry Principles',
     difficulty: 'ADVANCED',
     points: 10,
     timeLimit: 120
@@ -456,11 +456,11 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     id: 'tech_003',
     category: CompetencyCategory.TECHNICAL_KNOWLEDGE,
     subcategory: 'Antimicrobials',
-    question: 'According to IICRC S520, when should antimicrobials be applied in mould remediation?',
+    question: 'According to IICRC S520:2025, when should antimicrobials be applied in mould remediation?',
     questionType: 'WRITTEN',
     correctAnswer: 'After removal of mould and cleaning, as a final step to treat remaining surfaces',
     explanation: 'Antimicrobials are not a substitute for removal. They should only be applied after physical removal and cleaning to address any remaining contamination.',
-    reference: 'IICRC S520 - Section 13.4',
+    reference: 'IICRC S520:2025 - Section 13.4',
     difficulty: 'INTERMEDIATE',
     points: 8,
     timeLimit: 90
@@ -494,7 +494,7 @@ export const COMPETENCY_TEST_QUESTIONS: CompetencyTest[] = [
     ],
     correctAnswer: 'Daily',
     explanation: 'Daily moisture documentation tracks drying progress, justifies equipment use, and provides evidence for insurance claims. It also helps identify any drying issues early.',
-    reference: 'IICRC S500 - Documentation Standards',
+    reference: 'IICRC S500:2025 - Documentation Standards',
     difficulty: 'BASIC',
     points: 5,
     timeLimit: 45

@@ -82,7 +82,7 @@ export function getEquipmentSections({ equipmentName, useCase }: EquipmentSectio
             Australian and international standards for disaster restoration:
           </p>
           <ul>
-            <li><strong>IICRC S500/S520 compliance</strong> — All equipment meets the standards set by the Institute of Inspection, Cleaning and Restoration Certification.</li>
+            <li><strong>IICRC S500:2025/S520:2025 compliance</strong> — All equipment meets the standards set by the Institute of Inspection, Cleaning and Restoration Certification.</li>
             <li><strong>Regular calibration</strong> — Equipment is calibrated according to manufacturer schedules and verified before each deployment.</li>
             <li><strong>Commercial capacity</strong> — Our equipment is rated for commercial and industrial applications, handling larger areas and more demanding conditions than consumer products.</li>
             <li><strong>Safety certified</strong> — All electrical equipment carries current Australian safety certifications and is tested and tagged in accordance with WorkSafe requirements.</li>

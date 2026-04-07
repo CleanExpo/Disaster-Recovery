@@ -54,7 +54,7 @@ export default function BrisbaneCommercialWaterDamagePage() {
           body: (
             <div className="space-y-4">
               <p>
-                Commercial water damage in Brisbane is classified under IICRC S500 into three categories, each requiring a different level of response and carrying different health implications for building occupants.
+                Commercial water damage in Brisbane is classified under IICRC S500:2025 into three categories, each requiring a different level of response and carrying different health implications for building occupants.
               </p>
               <p>
                 <strong>Category 1 — Clean water:</strong> Water from a clean supply line, such as a burst mains pipe or failed air conditioning condensate line. This is the most common source in Brisbane commercial buildings. While Category 1 water does not initially pose a health risk, it must be extracted and the structure dried within 24&ndash;48 hours — in Brisbane&rsquo;s humid subtropical climate, Category 1 water left standing rapidly degrades to Category 2 or 3 as bacteria multiply.

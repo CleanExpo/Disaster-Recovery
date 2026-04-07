@@ -254,7 +254,7 @@ export class DataVerificationService {
       ],
       'mould_remediation': [
         COMPLIANCE_CONFIG.disclaimers.noHealthAdvice,
-        "Our contractors follow IICRC S520 standards for mould remediation."
+        "Our contractors follow IICRC S520:2025 standards for mould remediation."
       ]
     };
     

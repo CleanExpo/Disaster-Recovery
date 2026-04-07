@@ -41,7 +41,7 @@ export const waterDamageData: ServicePageData = {
       description: 'By injecting high-velocity, low-humidity air directly into wall cavities and structural voids, we force rapid evaporation of deeply bound moisture.',
     },
   ],
-  protocolHeading: 'The IICRC S500 Mitigation Protocol',
+  protocolHeading: 'The IICRC S500:2025 Mitigation Protocol',
   protocolSteps: [
     {
       title: 'Hazard Assessment & Scoping:',
@@ -66,7 +66,7 @@ export const waterDamageData: ServicePageData = {
     description: 'Automated dispatch to the nearest available water extraction fleet.',
     ctaHref: '/claim?service=water-damage',
     ctaText: 'Make a Claim',
-    footerNote: 'We bill you directly — full claims documentation provided. IICRC S500 compliant reporting.',
-    trustText: 'Operating strictly under IICRC S500 Standard for Professional Water Damage Restoration.',
+    footerNote: 'We bill you directly — full claims documentation provided. IICRC S500:2025 compliant reporting.',
+    trustText: 'Operating strictly under IICRC S500:2025 Standard for Professional Water Damage Restoration.',
   },
 };

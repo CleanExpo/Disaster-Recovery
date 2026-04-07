@@ -9,7 +9,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Mould Remediation Services',
-  description: 'Professional mould remediation services following IICRC S520 standards. Black mould removal, toxic mould cleanup, mould testing and inspection. Licensed technicians available 24/7.',
+  description: 'Professional mould remediation services following IICRC S520:2025 standards. Black mould removal, toxic mould cleanup, mould testing and inspection. Licensed technicians available 24/7.',
   provider: { '@type': 'Organization', '@id': 'https://disasterrecovery.com.au/#organization' },
   areaServed: { '@type': 'Country', name: 'Australia' },
   serviceType: 'Mould Remediation',
@@ -18,14 +18,14 @@ const serviceSchema = {
 };
 
 export const metadata: Metadata = {
-  title: 'Mould Remediation Services | IICRC S520 Certified',
-  description: 'Professional mould remediation services following IICRC S520 standards. Black mould removal, toxic mould cleanup, mould testing & inspection. Licensed technicians available 24/7.',
+  title: 'Mould Remediation Services | IICRC S520:2025 Certified',
+  description: 'Professional mould remediation services following IICRC S520:2025 standards. Black mould removal, toxic mould cleanup, mould testing & inspection. Licensed technicians available 24/7.',
   keywords: [
     'mould remediation',
     'black mould removal',
     'mould removal services',
     'toxic mould cleanup',
-    'IICRC S520 certified',
+    'IICRC S520:2025 certified',
     'mould inspection',
     'mould testing',
     'mould remediation company',
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     'microbial remediation'
   ],
   openGraph: {
-    title: 'Professional Mould Remediation | IICRC S520 Certified Specialists',
-    description: 'Expert mould remediation services following IICRC S520 standards. Comprehensive black mould removal and toxic mould cleanup with 24/7 emergency response.',
+    title: 'Professional Mould Remediation | IICRC S520:2025 Certified Specialists',
+    description: 'Expert mould remediation services following IICRC S520:2025 standards. Comprehensive black mould removal and toxic mould cleanup with 24/7 emergency response.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mould Remediation Services | IICRC S520 Certified',
-    description: 'Expert mould remediation services. IICRC S520 certified technicians. Professional black mould removal available 24/7.',
+    title: 'Mould Remediation Services | IICRC S520:2025 Certified',
+    description: 'Expert mould remediation services. IICRC S520:2025 certified technicians. Professional black mould removal available 24/7.',
   },
   alternates: {
     canonical: '/services/mould-remediation' },
@@ -67,7 +67,7 @@ export default function MoldRemediationPage() {
         heroImage: '/images/generated/disaster-recovery/hero-mould-remediation.webp',
         icon: <Bug className="h-12 w-12" />,
         title: 'Mould Remediation Services',
-        subtitle: 'Professional mould remediation services following IICRC S520 standards. Black mould removal, toxic mould cleanup, mould testing & inspection. Licensed technicians available 24/7.',
+        subtitle: 'Professional mould remediation services following IICRC S520:2025 standards. Black mould removal, toxic mould cleanup, mould testing & inspection. Licensed technicians available 24/7.',
       }}
       cta={{ text: 'Get Emergency Help', href: '/claim' }}
       ctaImage="/images/generated/disaster-recovery/cta-mould-remediation.webp"
@@ -76,7 +76,7 @@ export default function MoldRemediationPage() {
         { label: 'Services', href: '/services' },
         { label: 'Mould Remediation Services' },
       ]}
-      sections={getServiceChildSections({ serviceName: 'Mould Remediation Services', parentCategory: 'Mould Remediation', context: 'IICRC S520 certified black mould removal and toxic mould cleanup' })}
+      sections={getServiceChildSections({ serviceName: 'Mould Remediation Services', parentCategory: 'Mould Remediation', context: 'IICRC S520:2025 certified black mould removal and toxic mould cleanup' })}
       relatedPages={getRelatedPages('biohazard')}
     />
     </>

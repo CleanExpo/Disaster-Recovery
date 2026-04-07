@@ -1836,7 +1836,7 @@ Daily Monitoring Requirements:
       content: `
 **Professional Water Extraction: From Arrival to Completion**
 
-The first 24 hours after water damage determine whether a $5,000 mitigation becomes a $50,000 restoration. This module covers the complete extraction and mitigation process using IICRC S500 standards.
+The first 24 hours after water damage determine whether a $5,000 mitigation becomes a $50,000 restoration. This module covers the complete extraction and mitigation process using IICRC S500:2025 standards.
 
 **Pre-Arrival Preparation:**
 
@@ -2288,7 +2288,7 @@ West: Base-30, 1m-15, 2m-8
 5. Justification for approach
 
 **Good Scope Example:**
-"Master Bedroom (5m x 4m): Remove and dispose of Category 1 water-damaged carpet and underlay (20m²). Extract water from subfloor. HEPA vacuum all surfaces. Apply antimicrobial to subfloor per IICRC S500 standards. Install drying equipment: 4 air movers, 1 dehumidifier. Monitor daily until dry standard achieved (<16% WME). Supply and install new underlay and re-install cleaned carpet."
+"Master Bedroom (5m x 4m): Remove and dispose of Category 1 water-damaged carpet and underlay (20m²). Extract water from subfloor. HEPA vacuum all surfaces. Apply antimicrobial to subfloor per IICRC S500:2025 standards. Install drying equipment: 4 air movers, 1 dehumidifier. Monitor daily until dry standard achieved (<16% WME). Supply and install new underlay and re-install cleaned carpet."
 
 **Poor Scope Example:**
 "Dry out bedroom and replace damaged materials as needed."

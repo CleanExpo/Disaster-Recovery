@@ -73,7 +73,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
       notes: `${dehumidifierCount} units for ${totalArea.toFixed(0)}sqm (1 per 55sqm)`,
       standard: {
         standard: 'IICRC',
-        code: 'S500-2021',
+        code: 'S500:2025',
         description: 'Standard for Professional Water Damage Restoration',
         methodology: 'Psychrometric calculation based on Category 2 water damage'
       }
@@ -106,7 +106,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
       notes: `${airMoverCount} units for ${totalPerimeter.toFixed(0)}m perimeter`,
       standard: {
         standard: 'IICRC',
-        code: 'S500-2021',
+        code: 'S500:2025',
         description: 'Air movement calculation',
         methodology: '1 air mover per 10-15 linear meters of affected wall'
       }
@@ -141,7 +141,7 @@ const EstimateLineItemCalculator: React.FC<LineItemCalculatorProps> = ({
       notes: `Category ${category} water extraction for ${totalArea.toFixed(0)}sqm`,
       standard: {
         standard: 'IICRC',
-        code: 'S500-2021',
+        code: 'S500:2025',
         description: 'Water extraction labour standards',
         methodology: 'Time-based calculation for Category 2 clean water'
       }

@@ -702,8 +702,8 @@ This comprehensive approach to contents restoration ensures that clients receive
       },
       {
         id: "day4-obj2",
-        title: "IICRC S520 Standard Implementation", 
-        description: "Apply IICRC S520 mould remediation standards in all assessment and remediation work",
+        title: "IICRC S520:2025 Standard Implementation", 
+        description: "Apply IICRC S520:2025 mould remediation standards in all assessment and remediation work",
         measurableOutcome: "Can classify mould conditions, establish proper containment, and execute compliant remediation procedures"
       },
       {
@@ -842,7 +842,7 @@ Effective mould remediation requires understanding mould biology, growth require
 - **Surface Sampling**: Tape lifts or swabs for surface contamination
 - **Clearance Testing**: Post-remediation verification of successful cleanup
 
-### IICRC S520 Condition Assessment
+### IICRC S520:2025 Condition Assessment
 
 **Condition 1: Normal Conditions**
 - **Definition**: Fungal ecology typical for indoor environments
@@ -907,7 +907,7 @@ This comprehensive understanding of mould biology and assessment provides the fo
         keyPoints: [
           "Mould requires moisture, nutrients, and temperature - controlling moisture is key to prevention",
           "Different mould species have different health implications and growth characteristics",
-          "IICRC S520 condition classifications determine appropriate response levels",
+          "IICRC S520:2025 condition classifications determine appropriate response levels",
           "Health effects vary widely among individuals and exposure levels",
           "Proper assessment includes visual inspection, moisture detection, and air quality testing",
           "Prevention through moisture control is more effective than remediation"
@@ -920,7 +920,7 @@ This comprehensive understanding of mould biology and assessment provides the fo
             explanation: "While mould needs nutrients and appropriate temperature, moisture is the primary controllable factor for mould prevention."
           },
           {
-            question: "According to IICRC S520, which condition requires full remediation protocol?",
+            question: "According to IICRC S520:2025, which condition requires full remediation protocol?",
             options: ["Condition 1", "Condition 2", "Condition 3", "All conditions"],
             correctAnswer: "Condition 3",
             explanation: "Condition 3 (amplifying growth) requires full remediation protocol with containment, removal, cleaning, and verification."
@@ -929,7 +929,7 @@ This comprehensive understanding of mould biology and assessment provides the fo
       }
     ],
     practicalAssignments: [
-      "Conduct a comprehensive mould risk assessment of a building using IICRC S520 protocols",
+      "Conduct a comprehensive mould risk assessment of a building using IICRC S520:2025 protocols",
       "Develop a moisture control plan for preventing mould growth in high-risk areas",
       "Create a mould remediation scope of work for various condition levels"
     ],
@@ -944,7 +944,7 @@ This comprehensive understanding of mould biology and assessment provides the fo
       },
       {
         term: "Amplifying Growth",
-        definition: "IICRC S520 Condition 3 where mould is actively growing and reproducing"
+        definition: "IICRC S520:2025 Condition 3 where mould is actively growing and reproducing"
       },
       {
         term: "Hypersensitivity Pneumonitis",
@@ -969,14 +969,14 @@ This comprehensive understanding of mould biology and assessment provides the fo
       }
     ],
     documentationRequirements: [
-      "Complete mould assessment forms following IICRC S520 protocols",
+      "Complete mould assessment forms following IICRC S520:2025 protocols",
       "Moisture mapping documentation with readings and photos",
       "Air quality testing results and interpretation",
       "Remediation protocols and safety procedures for different condition levels"
     ],
     dailyChecklist: [
       "Understand mould biology and growth requirements",
-      "Master IICRC S520 condition assessment protocols",
+      "Master IICRC S520:2025 condition assessment protocols",
       "Learn moisture detection and control techniques",
       "Develop health risk assessment skills",
       "Practice containment and remediation planning"

@@ -10,7 +10,7 @@ const SLUG = 'iicrc-certification-standards';
 export const metadata: Metadata = {
   title: 'IICRC Certification Standards',
   description:
-    'Complete guide to IICRC certification: 8 core standards (S500, S520, S540, S590, S700), certification levels, insurance recognition, and why it matters for your restoration claim.',
+    'Complete guide to IICRC certification: 8 core standards (S500:2025, S520:2025, S540, S590, S700:2025), certification levels, insurance recognition, and why it matters for your restoration claim.',
   alternates: { canonical: 'https://disasterrecovery.com.au/knowledge/iicrc-certification-standards' },
 };
 

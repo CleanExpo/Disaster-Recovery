@@ -82,7 +82,7 @@ export default function CouncilsPage() {
               </ul>
 
               <p>
-                Every restoration follows IICRC S500 (water damage), S520 (mould), or S540
+                Every restoration follows IICRC S500:2025 (water damage), S520:2025 (mould), or S540
                 (biohazard) standards as applicable. Your assets are restored to a condition
                 that meets both workplace health and safety obligations and public access
                 requirements.
