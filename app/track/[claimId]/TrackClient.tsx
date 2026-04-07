@@ -3,6 +3,7 @@
 
 import { AntigravityNavbar } from '@/components/antigravity';
 import { AntigravityFooter } from '@/components/antigravity';
+import ClaimStatusNotifier from '@/components/notifications/ClaimStatusNotifier';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
@@ -426,9 +427,14 @@ function TrackClaimPageOriginal() {
   );
 }
 export default function TrackClaimPage() {
+  const params = useParams<{ claimId: string }>();
+  const claimId = params?.claimId || '';
+
   return (
     <>
       <AntigravityNavbar />
+      {/* DR-389: Real-time claim status notifications (polling + browser push) */}
+      {claimId && <ClaimStatusNotifier claimId={claimId} />}
       <TrackClaimPageOriginal />
       <AntigravityFooter />
     </>
