@@ -1822,3 +1822,35 @@ model RedditSystemPrompt {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
+
+// =============================================================================
+// DR-389: Claim Status Push Notifications
+// =============================================================================
+
+/// Stores browser / native push subscription tokens linked to a claim.
+/// A single claim may have multiple tokens (e.g. claimant on multiple devices).
+model PushToken {
+  id        String   @id @default(cuid())
+  claimId   String
+  token     String   @db.Text
+  platform  String   @default("web") // "web" | "ios" | "android"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([claimId])
+}
+
+/// Outbox for claim status change notifications.
+/// The polling endpoint reads these; the dispatch utility writes them.
+model ClaimNotification {
+  id        String   @id @default(cuid())
+  claimId   String
+  status    String   // The new status value that triggered this notification
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([claimId, read])
+  @@index([claimId, createdAt])
+}

@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/email';
 import { generateClaimSupportPackEmail } from '@/lib/claim-support-pack';
 import { encrypt, decrypt, isConfigured } from '@/lib/encryption';
+import { dispatchClaimStatusNotification } from '@/lib/notifications';
 import fs from 'node:fs/promises';
 
 const ALLOWED_STATES = ['ACT','NSW','NT','QLD','SA','TAS','VIC','WA','NZ'];
@@ -247,6 +248,12 @@ export async function POST(request: NextRequest) {
         },
       });
       trackClaim = buildTrackClaimFromInput(claim.id, body, createdAtIso, paymentConfirmed);
+
+      // DR-389: Dispatch initial SUBMITTED notification (non-blocking)
+      void dispatchClaimStatusNotification({
+        claimId: claim.id,
+        newStatus: 'SUBMITTED',
+      });
     } catch (dbError) {
       const fallbackId = `local-${Date.now().toString(36)}`;
       trackClaim = buildTrackClaimFromInput(fallbackId, body, createdAtIso, paymentConfirmed);
