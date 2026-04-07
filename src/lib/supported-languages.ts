@@ -6,7 +6,19 @@
  * top languages spoken at home in Australia and New Zealand.
  *
  * Current coverage: 24 languages (23 non-English + English default)
+ *
+ * DR-423: RTL language support — Arabic and other RTL languages.
  */
+
+/** Language codes that use right-to-left text direction. */
+export const RTL_LANGUAGES = new Set(['ar', 'ur', 'he', 'fa', 'ps']);
+
+/**
+ * Returns true if the given BCP 47 language code uses right-to-left direction.
+ */
+export function isRTL(langCode: string): boolean {
+  return RTL_LANGUAGES.has(langCode);
+}
 
 export const SUPPORTED_LANGUAGES: Record<string, string> = {
   // ── Default ──────────────────────────────────────────────────────────────

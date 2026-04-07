@@ -529,7 +529,7 @@ function OnlineClaimPageOriginal() {
             <DollarSign className="h-5 w-5 text-blue-600" />
             Emergency Make-Safe Fee: ${PLATFORM_FEE.toFixed(2)}
           </h2>
-          <div className="space-y-1.5 text-sm text-gray-700 ml-7">
+          <div className="space-y-1.5 text-sm text-gray-700 ms-7">
             <div className="flex items-center gap-2">
               <span className="text-blue-500">├─</span>
               <span><strong>$550</strong> Platform Fee (contractor matching + claims documentation)</span>
@@ -576,7 +576,7 @@ function OnlineClaimPageOriginal() {
                 }`}>
                   {s}
                 </div>
-                {s < 4 && <div className={`w-8 sm:w-20 h-1 ml-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`} />}
+                {s < 4 && <div className={`w-8 sm:w-20 h-1 ms-2 ${step > s ? 'bg-blue-600' : 'bg-gray-200'}`} />}
               </div>
             ))}
           </div>
@@ -1101,7 +1101,7 @@ function OnlineClaimPageOriginal() {
                       <span>Emergency make-safe works (held for contractor)</span>
                       <span className="font-semibold">$2,200</span>
                     </div>
-                    <div className="text-xs text-gray-500 pl-1">
+                    <div className="text-xs text-gray-500 ps-1">
                       No payment is taken when you submit this form. You will be contacted by the assigned contractor before any charge is applied.
                     </div>
                     <div className="border-t pt-2">

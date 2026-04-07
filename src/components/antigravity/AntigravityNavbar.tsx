@@ -21,7 +21,7 @@ export function AntigravityNavbar() {
     <header className="ag-navbar-wrapper">
       {/* Top Bar */}
       <div className="ag-top-bar">
-        <div className="ag-container ag-top-bar-content">
+        <div className="ag-container ag-top-bar-content rtl:flex-row-reverse">
           <span className="ag-coverage-text">
             ANZ&apos;s Trusted Disaster Recovery Network
           </span>
@@ -34,7 +34,7 @@ export function AntigravityNavbar() {
       </div>
 
       {/* Main Nav */}
-      <nav className="ag-container ag-main-nav">
+      <nav className="ag-container ag-main-nav rtl:flex-row-reverse">
         <div className="ag-logo">
           <Link href="/">
             <div className="ag-logo-mark">
