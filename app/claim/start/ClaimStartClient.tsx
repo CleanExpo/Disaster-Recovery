@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { Shield, Home, Mail, FileText, Calendar, Camera, AlertCircle, CheckCircle, Loader2, Send, Upload, Image, X, Info } from 'lucide-react';
 import { DEMO_DATA, simulateTyping } from '@/lib/demo-mode';
 import OfflineBanner from '@/components/claim/OfflineBanner';
+import InstallPromptBanner from '@/components/pwa/InstallPromptBanner';
 import { saveDraft, loadDraft, clearDraft, getUnsynced } from '@/lib/offline-store';
 
 function ClaimStartContent() {
@@ -356,6 +357,9 @@ function ClaimStartContent() {
       </header>
 
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-4xl">
+        {/* PWA install prompt — mobile only, dismissible */}
+        <InstallPromptBanner />
+
         {/* Offline banner */}
         <OfflineBanner isOffline={isOffline} savedLocally={savedLocally} />
 

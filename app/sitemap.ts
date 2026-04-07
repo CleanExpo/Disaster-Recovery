@@ -61,6 +61,10 @@ const EXCLUDED_PREFIXES = [
   '/sitemap-page',
   '/test',
   '/workflow-demo',
+  // Redirected to canonical — /events/cyclone-narelle-western-australia-2026
+  '/events/cyclone-narelle-wa',
+  // Staged (noindex) — publication gate DR-400/GAP-066 not cleared
+  '/events/tc-maila-fnq-2026',
 ];
 
 // Priority mapping by route prefix
