@@ -71,6 +71,7 @@ export function AntigravityBrandEquipment() {
                 height={340}
                 style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                loading="lazy"
               />
             </div>
             <h3>{item.title}</h3>

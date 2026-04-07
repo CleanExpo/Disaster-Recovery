@@ -129,7 +129,10 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://api.stripe.com" />
         <link rel="alternate" hrefLang="en-AU" href="https://disasterrecovery.com.au" />
         <link rel="alternate" hrefLang="x-default" href="https://disasterrecovery.com.au" />
         <link rel="icon" href="/favicon.ico" sizes="any" />

@@ -132,7 +132,7 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           required
         />
         {errors.companyName && (
-          <p className="mt-1 text-sm text-red-400">{errors.companyName[0]}</p>
+          <p role="alert" className="mt-1 text-sm text-red-400">{errors.companyName[0]}</p>
         )}
       </div>
 
@@ -160,10 +160,13 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           <input
             type="text"
             name="abn"
+            id="abn"
             value={formatABN(businessInfo.abn)}
             onChange={(e) => handleInputChange('abn', e.target.value.replace(/\s/g, ''))}
+            aria-describedby="abn-validation-message"
+            aria-invalid={abnValidation.isValid === false ? true : undefined}
             className={`
-              w-full px-4 py-3 pr-12 bg-slate-900/50 border rounded-lg text-white placeholder-slate-400 
+              w-full px-4 py-3 pr-12 bg-slate-900/50 border rounded-lg text-white placeholder-slate-400
               focus:ring-1 transition
               ${abnValidation.isValid === true ? 'border-green-500 focus:border-green-500 focus:ring-green-500' :
                 abnValidation.isValid === false ? 'border-red-600 focus:border-red-600 focus:ring-red-500' :
@@ -186,7 +189,12 @@ export default function Step1BusinessInfo({ data, updateData, errors }: Step1Pro
           </div>
         </div>
         {abnValidation.message && (
-          <p className={`mt-1 text-sm ${abnValidation.isValid ? 'text-emerald-400' : 'text-red-400'}`}>
+          <p
+            id="abn-validation-message"
+            role="alert"
+            aria-live="polite"
+            className={`mt-1 text-sm ${abnValidation.isValid ? 'text-emerald-400' : 'text-red-400'}`}
+          >
             {abnValidation.message}
           </p>
         )}

@@ -105,6 +105,7 @@ export function AntigravityBeforeAfterSlider({
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 1000px"
               draggable={false}
+              loading="lazy"
             />
             <div className="ag-slider-label ag-label-after">{afterLabel}</div>
           </div>
@@ -118,6 +119,7 @@ export function AntigravityBeforeAfterSlider({
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 1000px"
               draggable={false}
+              loading="lazy"
             />
             <div className="ag-slider-label ag-label-before">{beforeLabel}</div>
           </div>

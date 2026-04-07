@@ -157,7 +157,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 placeholder="e.g., Commonwealth Bank"
               />
               {errors.bankName && (
-                <p className="text-red-500 text-sm mt-1">{errors.bankName.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.bankName.message}</p>
               )}
             </div>
             
@@ -169,7 +169,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 placeholder="e.g., ABC Restoration Pty Ltd"
               />
               {errors.accountName && (
-                <p className="text-red-500 text-sm mt-1">{errors.accountName.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.accountName.message}</p>
               )}
             </div>
             
@@ -188,7 +188,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 maxLength={7}
               />
               {errors.bsb && (
-                <p className="text-red-500 text-sm mt-1">{errors.bsb.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.bsb.message}</p>
               )}
             </div>
             
@@ -206,7 +206,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 placeholder="e.g., 12345678"
               />
               {errors.accountNumber && (
-                <p className="text-red-500 text-sm mt-1">{errors.accountNumber.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.accountNumber.message}</p>
               )}
             </div>
           </div>
@@ -234,7 +234,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 placeholder="e.g., 12 345 678 901"
               />
               {errors.abn && (
-                <p className="text-red-500 text-sm mt-1">{errors.abn.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.abn.message}</p>
               )}
             </div>
             
@@ -303,7 +303,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   <option value="45days">45 Days</option>
                 </select>
                 {errors.paymentTerms && (
-                  <p className="text-red-500 text-sm mt-1">{errors.paymentTerms.message}</p>
+                  <p role="alert" className="text-red-500 text-sm mt-1">{errors.paymentTerms.message}</p>
                 )}
               </div>
               
@@ -324,7 +324,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                   placeholder="accounts@example.com"
                 />
                 {errors.invoiceEmail && (
-                  <p className="text-red-500 text-sm mt-1">{errors.invoiceEmail.message}</p>
+                  <p role="alert" className="text-red-500 text-sm mt-1">{errors.invoiceEmail.message}</p>
                 )}
               </div>
             </div>
@@ -437,7 +437,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 placeholder="e.g., $50,000"
               />
               {errors.creditLimit && (
-                <p className="text-red-500 text-sm mt-1">{errors.creditLimit.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.creditLimit.message}</p>
               )}
             </div>
             
@@ -449,7 +449,7 @@ export default function Step6BankingPayment({ data, onNext, onBack }: Step6Props
                 placeholder="e.g., $20,000,000"
               />
               {errors.publicLiabilityLimit && (
-                <p className="text-red-500 text-sm mt-1">{errors.publicLiabilityLimit.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.publicLiabilityLimit.message}</p>
               )}
             </div>
             

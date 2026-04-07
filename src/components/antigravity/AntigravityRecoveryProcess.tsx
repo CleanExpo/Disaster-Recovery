@@ -62,6 +62,7 @@ export function AntigravityRecoveryProcess() {
                 width={64}
                 height={64}
                 draggable={false}
+                loading="lazy"
               />
             </div>
             <div className="ag-step-content">
