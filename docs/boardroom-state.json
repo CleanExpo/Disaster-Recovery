@@ -1,0 +1,72 @@
+{
+  "lastUpdated": "2026-04-08",
+  "session": "Linear backlog clearance + production readiness",
+  "platform": {
+    "deployment": "LIVE",
+    "url": "https://disasterrecovery.com.au",
+    "vercelProject": "disaster-recovery",
+    "repo": "CleanExpo/Disaster-Recovery",
+    "branch": "main",
+    "latestDeployment": "dpl_FiP6uGU8JHm3VFVoxi6YkR1gS2Dz",
+    "buildStatus": "READY",
+    "typescriptErrors": 0
+  },
+  "linearBoard": {
+    "todo": 0,
+    "inProgress": 0,
+    "backlog": 0,
+    "lastClearedAt": "2026-04-07"
+  },
+  "revenueReadiness": {
+    "claimSubmission": "LIVE — /api/claims/submit wired, Stripe $2,750 callout fee active",
+    "contractorOnboarding": "LIVE — Stripe subscription tiers ($495/$795/$995/$1,295) active",
+    "stripeMode": "LIVE keys configured (acct_1SzE5KGib5mMf28d)",
+    "supabaseRLS": "ENABLED — all 150+ tables protected"
+  },
+  "activeEvents": {
+    "tcMaila": {
+      "status": "PRE-LANDFALL",
+      "liveUrl": "/events/cyclone-maila-queensland-2026",
+      "stagedUrl": "/events/tc-maila-fnq-2026",
+      "stagedGate": "DR-400/GAP-066 — Toby must confirm active contractors in Cairns/Townsville/Cape York",
+      "forecastLandfall": "2026-04-11 to 2026-04-12 (FNQ)"
+    },
+    "cycloneNarelle": {
+      "status": "RECOVERY ACTIVE",
+      "liveUrl": "/events/cyclone-narelle-western-australia-2026",
+      "note": "ICA catastrophe declared. Old /events/cyclone-narelle-wa redirected (301) — had advocacy framing violations"
+    },
+    "exCycloneAlfred": {
+      "status": "RECOVERY ACTIVE",
+      "liveUrl": "/events/ex-cyclone-alfred-recovery"
+    },
+    "victoriaFires": {
+      "status": "ACTIVE — PERILS threshold monitoring",
+      "liveUrl": "/events/victoria-bushfires-2026",
+      "threshold": "Watch PERILS announcement April 13 — if ICA loss > $1B, BUILD-002 escalates to P0"
+    }
+  },
+  "humanGated": {
+    "tcMailaFNQPage": "Gate DR-400/GAP-066 — Toby confirms FNQ contractors before /events/tc-maila-fnq-2026 goes live",
+    "googleVertexDPA": "CEO/legal signature needed before Gemma 4 translation activates in production",
+    "awsKMS": "DR-373 — requires AWS credentials + provisioning",
+    "sprintReview": "DR-357 — Senior PM walkthrough task"
+  },
+  "compliance": {
+    "privacy": "APP 1-13 policy live. AI/automated processing section added (deadline 12 Apr 2026).",
+    "acl": "ACCC dark pattern audit: PASS. Drip pricing fixed. Guarantee language qualified.",
+    "asic": "Unsourced percentage stats removed (95%, 70%, 60% claims).",
+    "iicrc": "All references updated to 2025 standards (S500:2025, S520:2025, S700:2025, S220)."
+  },
+  "nextActions": {
+    "immediate": [
+      "PERILS April 13 monitoring — Victoria Fires threshold",
+      "TC Maila FNQ gate clearance — Toby confirms FNQ contractors",
+      "Google Vertex AI DPA signature"
+    ],
+    "salesLaunch": [
+      "Launch FNQ paid campaign (Google Ads + Meta) once tc-maila-fnq-2026 gate clears",
+      "Onboard first 3–5 NRPG member companies for soft launch revenue"
+    ]
+  }
+}

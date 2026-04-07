@@ -19,6 +19,8 @@ const nextConfig = {
       { source: '/lodge-a-claim', destination: '/claim', permanent: true },
       { source: '/insurance-claim-advocate', destination: '/how-it-works', permanent: false },
       { source: '/contractor-terms', destination: '/terms', permanent: false },
+      // Canonical redirect — old DR-398 page had advocacy framing violations
+      { source: '/events/cyclone-narelle-wa', destination: '/events/cyclone-narelle-western-australia-2026', permanent: true },
     ]
   },
   async headers() {
