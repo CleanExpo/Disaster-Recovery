@@ -233,7 +233,7 @@ function ContractorOnboardingPageOriginal() {
               
               <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                 <h3 className="font-semibold text-green-900 mb-2">Subscription Pricing After Onboarding</h3>
-                <div className="grid grid-cols-3 gap-4 mt-4">
+                <div className="grid grid-cols-1 xs:grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4 mt-4">
                   <div className="text-center">
                     <p className="text-sm text-gray-700">Month 1</p>
                     <p className="text-xl font-bold text-green-600">FREE</p>
@@ -265,12 +265,12 @@ function ContractorOnboardingPageOriginal() {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h1 className="text-3xl font-bold">14-Day Onboarding Program</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold">14-Day Onboarding Program</h1>
               <p className="mt-2 text-blue-800">Welcome to National Recovery Partners</p>
             </div>
-            <div className="text-right">
+            <div className="sm:text-right">
               <p className="text-sm text-blue-800">Contractor ID</p>
               <p className="font-mono font-bold">{onboardingState.contractorId}</p>
             </div>

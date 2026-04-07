@@ -225,11 +225,11 @@ function TrackClaimPageOriginal() {
   const timeRemaining = getTimeUntilContact();
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-8 sm:py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Track Your Claim</h1>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2">Track Your Claim</h1>
           <p className="text-gray-700">Claim ID: <strong>{claimData.id}</strong></p>
           <p className="text-sm text-gray-700">Submitted {timeElapsed}</p>
         </div>

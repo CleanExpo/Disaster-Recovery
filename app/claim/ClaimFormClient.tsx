@@ -367,7 +367,7 @@ function OnlineClaimPageOriginal() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-6 sm:py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -806,11 +806,11 @@ function OnlineClaimPageOriginal() {
                   )}
                 </div>
 
-                <div className="flex justify-between">
-                  <Button variant="outline" onClick={() => setStep(1)}>
+                <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
+                  <Button variant="outline" onClick={() => setStep(1)} className="w-full sm:w-auto min-h-[44px]">
                     Previous
                   </Button>
-                  <Button onClick={() => setStep(3)} className="bg-blue-600 hover:bg-blue-700">
+                  <Button onClick={() => setStep(3)} className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700">
                     Next Step
                   </Button>
                 </div>
@@ -930,13 +930,13 @@ function OnlineClaimPageOriginal() {
                   </ul>
                 </div>
 
-                <div className="flex justify-between">
-                  <Button variant="outline" onClick={() => setStep(2)}>
+                <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
+                  <Button variant="outline" onClick={() => setStep(2)} className="w-full sm:w-auto min-h-[44px]">
                     Previous
                   </Button>
                   <Button
                     onClick={() => setStep(4)}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="w-full sm:w-auto min-h-[44px] bg-blue-600 hover:bg-blue-700"
                     disabled={!formData.privacyCollectionNotice || !formData.understandPlatformRole || !formData.acceptContractorCommunication || !formData.agreeToTerms}
                   >
                     Proceed to Final Review
@@ -983,7 +983,7 @@ function OnlineClaimPageOriginal() {
                       No payment is taken when you submit this form. You will be contacted by the assigned contractor before any charge is applied.
                     </div>
                     <div className="border-t pt-2">
-                      <div className="flex justify-between text-lg font-bold">
+                      <div className="flex flex-wrap justify-between text-base sm:text-lg font-bold gap-1">
                         <span>Total (billed when restoration begins)</span>
                         <span>$2,750</span>
                       </div>
@@ -1020,13 +1020,13 @@ function OnlineClaimPageOriginal() {
                   </p>
                 </div>
 
-                <div className="flex justify-between">
-                  <Button variant="outline" onClick={() => setStep(3)}>
+                <div className="flex flex-col-reverse sm:flex-row sm:justify-between gap-3">
+                  <Button variant="outline" onClick={() => setStep(3)} className="w-full sm:w-auto min-h-[44px]">
                     Previous
                   </Button>
                   <Button
                     onClick={handleSubmit}
-                    className="bg-green-600 hover:bg-green-800"
+                    className="w-full sm:w-auto min-h-[44px] bg-green-600 hover:bg-green-800"
                     disabled={submitting}
                   >
                     {submitting ? 'Submitting Claim...' : 'Submit Claim'}

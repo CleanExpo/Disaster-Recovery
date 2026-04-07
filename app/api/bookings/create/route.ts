@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { calculateLeadScore, getLeadPriority, assignLeadToTeam, getResponseTime } from '@/lib/lead-scoring';
 import { sendEmail, emailTemplates } from '@/lib/email';
+import { encrypt, isConfigured } from '@/lib/encryption';
 
 const bookingSchema = z.object({
   // Service Details
@@ -129,10 +130,30 @@ export async function POST(request: NextRequest) {
     // Build scheduled date
     const scheduledDate = buildScheduledDate(validatedData.date, validatedData.time);
 
+    // DR-390: Warn in non-development environments if encryption is not configured.
+    // TODO (DR-390): Ensure KMS_KEY_ID or ENCRYPTION_SECRET is set in Vercel env vars
+    //                before go-live. Remove the NODE_ENV guard once provisioned.
+    if (!isConfigured() && process.env.NODE_ENV !== 'development') {
+      console.error('[security] DR-390: Property access encryption is not configured (no KMS_KEY_ID or ENCRYPTION_SECRET). Booking creation blocked in non-dev environment.');
+      return NextResponse.json({
+        success: false,
+        message: 'Server configuration error. Please try again or contact support.',
+      }, { status: 500 });
+    }
+
+    // DR-390: Encrypt access instructions before storing in internalNotes.
+    // The encrypted blob is stored as "Access instructions (encrypted): <blob>" so
+    // it is clearly marked and can be decrypted by authorised staff/contractors.
+    let encryptedAccessNote = '';
+    if (validatedData.accessInstructions) {
+      const encryptedBlob = await encrypt(validatedData.accessInstructions);
+      encryptedAccessNote = `Access instructions (encrypted): ${encryptedBlob}`;
+    }
+
     // Build internal notes (access instructions + lead scoring metadata)
     const internalNoteParts: string[] = [];
-    if (validatedData.accessInstructions) {
-      internalNoteParts.push(`Access instructions: ${validatedData.accessInstructions}`);
+    if (encryptedAccessNote) {
+      internalNoteParts.push(encryptedAccessNote);
     }
     internalNoteParts.push(`Lead score: ${leadScore}`);
     internalNoteParts.push(`Priority: ${priority}`);

@@ -34,8 +34,8 @@ function DashboardPageOriginal() {
   ]
 
   return (
-    <div className="p-8">
-      <div className="mb-8">
+    <div className="p-4 sm:p-8">
+      <div className="mb-6 sm:mb-8">
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <p className="text-muted-foreground">
           Welcome back, {session?.user.name}

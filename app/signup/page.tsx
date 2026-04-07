@@ -62,7 +62,7 @@ function SignupPageOriginal() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40">
-      <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border bg-card p-8">
+      <div className="mx-auto w-full max-w-md space-y-6 rounded-lg border bg-card p-5 sm:p-8">
         <div className="space-y-2 text-center">
           <h1 className="text-2xl font-bold">Create an account</h1>
           <p className="text-muted-foreground">
@@ -82,7 +82,7 @@ function SignupPageOriginal() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="w-full rounded-md border px-3 py-3 text-sm min-h-[44px]"
               placeholder="John Doe"
             />
           </div>
@@ -98,7 +98,7 @@ function SignupPageOriginal() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="w-full rounded-md border px-3 py-3 text-sm min-h-[44px]"
               placeholder="you@example.com"
             />
           </div>
@@ -114,7 +114,7 @@ function SignupPageOriginal() {
               value={formData.agencyName}
               onChange={handleChange}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="w-full rounded-md border px-3 py-3 text-sm min-h-[44px]"
               placeholder="Your Agency"
             />
           </div>
@@ -130,7 +130,7 @@ function SignupPageOriginal() {
               value={formData.password}
               onChange={handleChange}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="w-full rounded-md border px-3 py-3 text-sm min-h-[44px]"
               placeholder="••••••••"
               minLength={8}
             />
@@ -147,7 +147,7 @@ function SignupPageOriginal() {
               value={formData.confirmPassword}
               onChange={handleChange}
               required
-              className="w-full rounded-md border px-3 py-2 text-sm"
+              className="w-full rounded-md border px-3 py-3 text-sm min-h-[44px]"
               placeholder="••••••••"
               minLength={8}
             />

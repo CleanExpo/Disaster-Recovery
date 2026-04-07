@@ -263,7 +263,7 @@ function ClaimStartContent() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Shield className="h-8 w-8 text-blue-600" />
@@ -282,7 +282,7 @@ function ClaimStartContent() {
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12 max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-4xl">
         {/* Emergency Notice */}
         <div className="mb-8 p-6 bg-red-50 border-2 border-red-200 rounded-xl">
           <div className="flex items-start gap-3">
@@ -300,7 +300,7 @@ function ClaimStartContent() {
         {/* Claim Form */}
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Personal Information */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <Home className="h-5 w-5 text-blue-600" />
               Personal Information
@@ -361,7 +361,7 @@ function ClaimStartContent() {
           </div>
 
           {/* Insurance Information */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <FileText className="h-5 w-5 text-blue-600" />
               Insurance Information
@@ -404,7 +404,7 @@ function ClaimStartContent() {
           </div>
 
           {/* Incident Details */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
               <AlertCircle className="h-5 w-5 text-blue-600" />
               Incident Details
@@ -500,7 +500,7 @@ function ClaimStartContent() {
 
                 {/* Image Preview Grid */}
                 {imagePreview.length > 0 && (
-                  <div className="mt-4 grid grid-cols-3 gap-3">
+                  <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {imagePreview.map((preview, index) => (
                       <div key={index} className="relative group">
                         <img
@@ -550,11 +550,11 @@ function ClaimStartContent() {
                     (Select based on safety and habitability)
                   </span>
                 </label>
-                <div className="grid grid-cols-3 gap-4 mb-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-3">
                   {['standard', 'urgent', 'emergency'].map((level) => (
                     <label
                       key={level}
-                      className={`flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer transition ${
+                      className={`flex items-center justify-center p-4 min-h-[44px] border-2 rounded-lg cursor-pointer transition ${
                         formData.urgency === level
                           ? level === 'emergency'
                             ? 'border-red-600 bg-red-50'
@@ -625,7 +625,7 @@ function ClaimStartContent() {
               type="submit"
               disabled={isSubmitting || isDemoRunning}
               className={`
-                flex items-center gap-3 px-8 py-4 text-lg font-semibold rounded-xl transition-all
+                w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 min-h-[44px] text-lg font-semibold rounded-xl transition-all
                 ${isSubmitting || isDemoRunning
                   ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                   : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transform hover:scale-105'

@@ -68,7 +68,7 @@ function LoginPageOriginal() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="login-form-input w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+              className="login-form-input w-full rounded-md border border-gray-300 bg-white px-3 py-3 text-sm min-h-[44px]"
               placeholder="you@example.com"
               style={{ color: '#111827', backgroundColor: '#ffffff' }}
             />
@@ -84,7 +84,7 @@ function LoginPageOriginal() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="login-form-input w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+              className="login-form-input w-full rounded-md border border-gray-300 bg-white px-3 py-3 text-sm min-h-[44px]"
               placeholder="••••••••"
               style={{ color: '#111827', backgroundColor: '#ffffff' }}
             />

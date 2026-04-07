@@ -204,8 +204,8 @@ function ContractorPortalPageOriginal() {
                 <Building className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Contractor Portal</h1>
-                <p className="text-sm text-gray-700">{contractor?.company || 'Premium Restoration Services'}</p>
+                <h1 className="text-base sm:text-xl font-bold">Contractor Portal</h1>
+                <p className="text-xs sm:text-sm text-gray-700 truncate max-w-[150px] sm:max-w-none">{contractor?.company || 'Premium Restoration Services'}</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
@@ -223,7 +223,7 @@ function ContractorPortalPageOriginal() {
 
       <div className="container mx-auto px-4 py-8">
         {/* Stats Overview */}
-        <div className="grid md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -309,9 +309,9 @@ function ContractorPortalPageOriginal() {
               availableJobs.map(job => (
                 <Card key={job.id} className="overflow-hidden">
                   <CardHeader>
-                    <div className="flex items-start justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                       <div>
-                        <CardTitle className="flex items-center gap-2">
+                        <CardTitle className="flex items-center gap-2 flex-wrap">
                           Job #{job.id}
                           <Badge className={getUrgencyColor(job.urgency)}>
                             {job.urgency.toUpperCase()}
@@ -321,7 +321,7 @@ function ContractorPortalPageOriginal() {
                           Claim ID: {job.claimId}
                         </CardDescription>
                       </div>
-                      <div className="text-right">
+                      <div className="sm:text-right">
                         <p className="text-2xl font-bold text-green-600">${job.fee}</p>
                         <div className="flex items-center gap-1 text-sm text-red-600 font-medium">
                           <Timer className="h-4 w-4" />

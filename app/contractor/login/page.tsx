@@ -193,7 +193,7 @@ function ContractorLoginPageOriginal() {
       <div className="absolute top-0 -right-40 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000" />
       <div className="absolute -bottom-32 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000" />
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-12">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
         <div className="w-full max-w-md">
           {/* Logo and header */}
           <div className="text-center mb-8">
@@ -235,7 +235,7 @@ function ContractorLoginPageOriginal() {
           </div>
 
           {/* Main login card */}
-          <div className="glass-card backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-2xl p-8">
+          <div className="glass-card backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl shadow-2xl p-5 sm:p-8">
             {loginMethod === 'credentials' ? (
               <form id="login-form" onSubmit={handleSubmit} className="space-y-6">
                 {/* Username field */}

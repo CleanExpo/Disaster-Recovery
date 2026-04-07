@@ -1611,6 +1611,10 @@ model InsuranceClaimAU {
   invoiceUrl          String?
   estimateUrl         String?
   additionalDocuments String[]
+  // DR-390: Encrypted at rest using AES-256-GCM (or AWS KMS when provisioned).
+  // Value is a prefixed base64 blob produced by src/lib/encryption.ts encrypt().
+  // Only decrypt for contractors assigned to this claim and admin roles.
+  accessInstructions  String?   @db.Text
   submittedAt         DateTime?
   reviewedAt          DateTime?
   approvedAt          DateTime?
