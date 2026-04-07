@@ -429,6 +429,7 @@ function ContractorApplicationContent() {
   const [validationErrors, setValidationErrors] = useState<Record<string, string[]>>({});
   const [isSaving, setIsSaving] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [quickFillSelection, setQuickFillSelection] = useState<string>('');
 
   // Load saved progress from localStorage
@@ -649,9 +650,11 @@ function ContractorApplicationContent() {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    
+    setSubmitError(null);
+
     try {
-      const response = await fetch('/api/contractor/onboarding/submit', {
+      // Step 1: Submit the application and create Contractor record
+      const submitResponse = await fetch('/api/contractor/onboarding/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -661,20 +664,75 @@ function ContractorApplicationContent() {
         })
       });
 
-      if (!response.ok) {
-        console.error('Failed to save contractor application', await response.text());
+      if (!submitResponse.ok) {
+        const errText = await submitResponse.text();
+        console.error('Failed to save contractor application', errText);
+        setSubmitError('We could not save your application. Please try again.');
         setIsSubmitting(false);
         return;
       }
-      
-      // Clear local storage on successful submission
-      localStorage.removeItem('contractor_onboarding_progress');
-      
-      // Redirect to success page
-      router.push('/contractor/application-success');
+
+      const submitData = await submitResponse.json();
+      const { contractorId, paymentRequired } = submitData as {
+        contractorId: string | null;
+        paymentRequired: boolean;
+        paymentAmount: number;
+      };
+
+      // Keep localStorage for UX continuity — only remove after payment redirect
+      if (!paymentRequired || !contractorId) {
+        // No payment required (or no contractor ID) — go straight to success
+        localStorage.removeItem('contractor_onboarding_progress');
+        router.push('/contractor/application-success?payment=pending');
+        return;
+      }
+
+      // Step 2: Create Stripe checkout session
+      const businessInfo = (onboardingData as any)?.businessInfo ?? {};
+      const email: string = businessInfo.email ?? '';
+      const name: string = businessInfo.contactName ?? businessInfo.companyName ?? 'Contractor';
+
+      const paymentResponse = await fetch('/api/stripe/create-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contractorId,
+          email,
+          name,
+          paymentType: 'ONBOARDING'
+        })
+      });
+
+      // Step 3: Handle Stripe response
+      if (paymentResponse.ok) {
+        const paymentData = await paymentResponse.json() as { checkoutUrl?: string };
+        if (paymentData.checkoutUrl) {
+          // Clear localStorage only on successful redirect
+          localStorage.removeItem('contractor_onboarding_progress');
+          window.location.href = paymentData.checkoutUrl;
+          return;
+        }
+      }
+
+      // Step 4: Stripe not configured or failed — redirect to payment pending page
+      const statusCode = paymentResponse.status;
+      if (statusCode === 503 || statusCode === 501) {
+        // Stripe keys not yet added — team will contact them
+        localStorage.removeItem('contractor_onboarding_progress');
+        router.push('/contractor/application-success?payment=pending');
+        return;
+      }
+
+      // Other payment error — show message but stay on page
+      const errData = await paymentResponse.json().catch(() => ({})) as { error?: string };
+      setSubmitError(
+        errData.error ?? 'Payment setup encountered an error. Our team will contact you to complete the process.'
+      );
     } catch (error) {
       console.error('Submission error:', error);
-      // Handle error
+      setSubmitError('An unexpected error occurred. Please try again or contact support.');
     } finally {
       setIsSubmitting(false);
     }
@@ -864,6 +922,18 @@ function ContractorApplicationContent() {
                       <li key={idx}>{msg}</li>
                     ))}
                   </ul>
+                </div>
+              )}
+              {submitError && (
+                <div className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100 flex items-start gap-2">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" aria-hidden />
+                  <span>{submitError}</span>
+                </div>
+              )}
+              {isSubmitting && (
+                <div className="mb-6 rounded-xl border border-blue-500/40 bg-blue-900/20 px-4 py-3 text-sm text-blue-200 flex items-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin flex-shrink-0" aria-hidden />
+                  <span>Submitting your application and preparing payment&hellip;</span>
                 </div>
               )}
               <div className="flex items-start gap-4 mb-8">

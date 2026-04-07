@@ -1,29 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createOnboardingCheckoutSession, createStripeCustomer, isStripeConfigured } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
-import { withAuth, withRateLimit, withValidation, withSecurityHeaders, withCors, combineMiddleware } from '@/lib/auth-middleware';
-import { PaymentValidator, PaymentAuditLogger, paymentValidationSchema } from '@/lib/payment-security';
+import { withValidation } from '@/lib/auth-middleware';
+import { PaymentValidator, PaymentAuditLogger } from '@/lib/payment-security';
 import { z } from 'zod';
 
 // SECURITY: Strict validation schema for payment creation
 const createPaymentSchema = z.object({
-  contractorId: z.string().uuid('Invalid contractor ID format'),
+  contractorId: z.string().min(1, 'Contractor ID is required'),
   email: z.string().email('Invalid email format'),
-  name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long'),
+  name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name too long').optional().default('Contractor'),
   paymentType: z.literal('ONBOARDING').default('ONBOARDING') // Only onboarding payments for now
 });
 
 async function handleCreatePayment(req: NextRequest, validatedData: z.infer<typeof createPaymentSchema>) {
-  // TODO: Implement when onboardingPayment model is added
-  return NextResponse.json(
-    { error: 'Payment processing not yet implemented' },
-    { status: 501 }
-  );
-
-  /* Commented out until model is added:
   const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
   const userAgent = req.headers.get('user-agent') || 'unknown';
-  
+
   try {
     // SECURITY: Check if Stripe is configured
     if (!isStripeConfigured()) {
@@ -36,9 +29,9 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
         result: 'FAILURE',
         reason: 'Stripe not configured'
       });
-      
+
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: 'Payment processing is not configured. Please contact support.',
           code: 'PAYMENT_SYSTEM_UNAVAILABLE'
@@ -49,14 +42,10 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
 
     // SECURITY: Calculate expected amount (server-side only)
     const expectedPayment = PaymentValidator.calculateOnboardingAmount();
-    
+
     // SECURITY: Validate contractor exists and is authorised for payment
     const contractor = await prisma.contractor.findUnique({
       where: { id: validatedData.contractorId }
-      // TODO: Include onboardingPayment when relation is added
-      // include: { 
-      //   onboardingPayment: true 
-      // }
     });
 
     if (!contractor) {
@@ -69,9 +58,9 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
         result: 'FAILURE',
         reason: 'Contractor not found'
       });
-      
+
       return NextResponse.json(
-        { 
+        {
           success: false,
           error: 'Contractor not found or not authorised for payment',
           code: 'CONTRACTOR_NOT_FOUND'
@@ -80,9 +69,12 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       );
     }
 
-    // TODO: Check if contractor has already paid when onboardingPayment is available
-    const hasAlreadyPaid = false; // Placeholder - should check contractor.onboardingPayment?.status === 'COMPLETED'
-    if (hasAlreadyPaid) {
+    // Check if contractor has already paid
+    const existingPayment = await prisma.onboardingPayment.findFirst({
+      where: { contractorId: validatedData.contractorId }
+    });
+
+    if (existingPayment?.status === 'completed') {
       PaymentAuditLogger.logPaymentAttempt({
         contractorId: validatedData.contractorId,
         amount: expectedPayment.amount,
@@ -92,7 +84,7 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
         result: 'FAILURE',
         reason: 'Payment already completed'
       });
-      
+
       return NextResponse.json(
         {
           success: false,
@@ -114,57 +106,63 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       }
     );
 
-    // Check if payment already exists
-    let payment = await prisma.onboardingPayment.findUnique({
-      where: { contractorId: validatedData.contractorId }
-    });
-
-    // Create or get Stripe customer
-    let stripeCustomerId = payment?.stripeCustomerId;
-    
-    if (!stripeCustomerId) {
+    // Create Stripe customer for tracking purposes
+    let stripeCustomerId: string | undefined;
+    try {
       const customer = await createStripeCustomer(
-        validatedData.email, 
-        validatedData.name, 
+        validatedData.email,
+        validatedData.name,
         validatedData.contractorId
       );
       stripeCustomerId = customer.id;
+    } catch {
+      // Non-fatal — proceed without customer ID
     }
 
     // SECURITY: Create checkout session with server-calculated amount
-    const successUrl = `${process.env.NEXT_PUBLIC_APP_URL}/contractor/onboarding/payment-success?session_id={CHECKOUT_SESSION_ID}`;
-    const cancelUrl = `${process.env.NEXT_PUBLIC_APP_URL}/contractor/onboarding`;
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const successUrl = `${appUrl}/contractor/onboarding/payment-success?session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl = `${appUrl}/contractor/onboarding`;
+
+    // Build string-only metadata for Stripe (values must be strings)
+    const stripeMetadata: Record<string, string> = {};
+    for (const [k, v] of Object.entries(paymentMetadata)) {
+      stripeMetadata[k] = String(v);
+    }
+    if (stripeCustomerId) {
+      stripeMetadata.stripeCustomerId = stripeCustomerId;
+    }
 
     const session = await createOnboardingCheckoutSession(
       validatedData.contractorId,
       validatedData.email,
       successUrl,
       cancelUrl,
-      expectedPayment.amount, // SECURITY: Use server-calculated amount
-      paymentMetadata
+      expectedPayment.amount,
+      stripeMetadata
     );
 
-    // Create or update payment record
-    if (!payment) {
-      payment = await prisma.onboardingPayment.create({
+    // Create or update payment record using the actual schema fields
+    if (!existingPayment) {
+      await prisma.onboardingPayment.create({
         data: {
           contractorId: validatedData.contractorId,
-          stripeCustomerId,
-          status: 'PENDING',
-          amount: expectedPayment.amount,
+          status: 'pending',
+          amount: expectedPayment.amount / 100, // store in dollars
           currency: expectedPayment.currency,
-          metadata: JSON.stringify(paymentMetadata)
+          stripeSessionId: session.id,
+          metadata: JSON.stringify({ ...paymentMetadata, stripeCustomerId })
         }
       });
     } else {
-      payment = await prisma.onboardingPayment.update({
-        where: { id: payment.id },
+      await prisma.onboardingPayment.update({
+        where: { id: existingPayment.id },
         data: {
-          stripeCustomerId,
-          status: 'PENDING',
-          amount: expectedPayment.amount,
+          status: 'pending',
+          amount: expectedPayment.amount / 100,
           currency: expectedPayment.currency,
-          metadata: JSON.stringify(paymentMetadata)
+          stripeSessionId: session.id,
+          metadata: JSON.stringify({ ...paymentMetadata, stripeCustomerId })
         }
       });
     }
@@ -191,7 +189,7 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
 
   } catch (error) {
     console.error('Error creating payment session:', error);
-    
+
     PaymentAuditLogger.logPaymentAttempt({
       contractorId: validatedData.contractorId,
       amount: 0,
@@ -201,9 +199,9 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       result: 'FAILURE',
       reason: `System error: ${error instanceof Error ? error.message : 'Unknown error'}`
     });
-    
+
     return NextResponse.json(
-      { 
+      {
         success: false,
         error: 'Failed to create payment session',
         code: 'PAYMENT_SYSTEM_ERROR'
@@ -211,7 +209,6 @@ async function handleCreatePayment(req: NextRequest, validatedData: z.infer<type
       { status: 500 }
     );
   }
-  */
 }
 
 // SECURITY: Apply comprehensive security middleware
