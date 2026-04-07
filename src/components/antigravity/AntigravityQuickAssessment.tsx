@@ -125,6 +125,7 @@ export function AntigravityQuickAssessment() {
                 height={80}
                 className="ag-custom-icon"
                 draggable={false}
+                loading="lazy"
               />
             </div>
             <div className="ag-card-content">

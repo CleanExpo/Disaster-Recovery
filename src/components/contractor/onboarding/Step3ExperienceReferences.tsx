@@ -176,7 +176,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                 placeholder="e.g., 10"
               />
               {errors.yearsInBusiness && (
-                <p className="text-red-500 text-sm mt-1">{errors.yearsInBusiness.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.yearsInBusiness.message}</p>
               )}
             </div>
             
@@ -192,7 +192,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                 placeholder="e.g., 7"
               />
               {errors.yearsInDisasterRecovery && (
-                <p className="text-red-500 text-sm mt-1">{errors.yearsInDisasterRecovery.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.yearsInDisasterRecovery.message}</p>
               )}
             </div>
             
@@ -208,7 +208,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                 placeholder="e.g., 500"
               />
               {errors.totalProjectsCompleted && (
-                <p className="text-red-500 text-sm mt-1">{errors.totalProjectsCompleted.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.totalProjectsCompleted.message}</p>
               )}
             </div>
             
@@ -220,7 +220,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                 placeholder="e.g., $2,500,000"
               />
               {errors.largestProjectValue && (
-                <p className="text-red-500 text-sm mt-1">{errors.largestProjectValue.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.largestProjectValue.message}</p>
               )}
             </div>
           </div>
@@ -547,7 +547,7 @@ export default function Step3ExperienceReferences({ data, onNext, onBack }: Step
                 rows={4}
               />
               {errors.insuranceClaimsExperience && (
-                <p className="text-red-500 text-sm mt-1">{errors.insuranceClaimsExperience.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.insuranceClaimsExperience.message}</p>
               )}
             </div>
             

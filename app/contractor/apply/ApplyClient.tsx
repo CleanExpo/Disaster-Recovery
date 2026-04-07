@@ -915,7 +915,7 @@ function ContractorApplicationContent() {
           <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl shadow-xl overflow-hidden">
             <div className="p-6 sm:p-8 md:p-10">
               {currentStep === 1 && validationErrors._step1 && (
-                <div className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100">
+                <div role="alert" aria-live="polite" className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100">
                   <div className="font-semibold mb-1">Please fix the following before continuing:</div>
                   <ul className="list-disc list-inside space-y-0.5">
                     {validationErrors._step1.map((msg, idx) => (
@@ -925,7 +925,7 @@ function ContractorApplicationContent() {
                 </div>
               )}
               {submitError && (
-                <div className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100 flex items-start gap-2">
+                <div role="alert" aria-live="assertive" className="mb-6 rounded-xl border border-red-500/40 bg-red-900/30 px-4 py-3 text-sm text-red-100 flex items-start gap-2">
                   <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" aria-hidden />
                   <span>{submitError}</span>
                 </div>

@@ -175,8 +175,15 @@ function DayTrainingPageOriginal() {
           
           {/* Progress Bar */}
           <div className="mt-4">
-            <div className="w-full bg-blue-800 rounded-full h-2 overflow-hidden">
-              <div 
+            <div
+              className="w-full bg-blue-800 rounded-full h-2 overflow-hidden"
+              role="progressbar"
+              aria-valuenow={calculateModuleProgress()}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Module progress: ${calculateModuleProgress()}%`}
+            >
+              <div
                 className="bg-white h-full transition-all duration-500 rounded-full"
                 style={{ width: `${calculateModuleProgress()}%` }}
               />
@@ -315,12 +322,14 @@ function DayTrainingPageOriginal() {
                     {module.components.videos.map((video, index) => {
                       const watched = progress.videosWatched[video.title] || 0;
                       return (
-                        <div
+                        <button
                           key={index}
                           onClick={() => setCurrentVideo(index)}
-                          className={`p-4 rounded-lg border cursor-pointer transition ${
-                            currentVideo === index 
-                              ? 'border-blue-500 bg-blue-50' 
+                          aria-pressed={currentVideo === index}
+                          aria-label={`Select video: ${video.title}`}
+                          className={`w-full text-left p-4 rounded-lg border cursor-pointer transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
+                            currentVideo === index
+                              ? 'border-blue-500 bg-blue-50'
                               : 'border-gray-200 hover:border-gray-300'
                           }`}
                         >
@@ -348,8 +357,15 @@ function DayTrainingPageOriginal() {
                           </div>
                           {watched > 0 && watched < 95 && (
                             <div className="mt-3">
-                              <div className="w-full bg-gray-200 rounded-full h-1.5">
-                                <div 
+                              <div
+                                className="w-full bg-gray-200 rounded-full h-1.5"
+                                role="progressbar"
+                                aria-valuenow={watched}
+                                aria-valuemin={0}
+                                aria-valuemax={100}
+                                aria-label={`${video.title} watch progress: ${watched}%`}
+                              >
+                                <div
                                   className="bg-blue-600 h-1.5 rounded-full"
                                   style={{ width: `${watched}%` }}
                                 />
@@ -357,7 +373,7 @@ function DayTrainingPageOriginal() {
                               <p className="text-xs text-gray-500 mt-1">{watched}% watched</p>
                             </div>
                           )}
-                        </div>
+                        </button>
                       );
                     })}
                   </div>

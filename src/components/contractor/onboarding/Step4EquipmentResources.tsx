@@ -475,7 +475,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., 12"
               />
               {errors.totalEmployees && (
-                <p className="text-red-500 text-sm mt-1">{errors.totalEmployees.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.totalEmployees.message}</p>
               )}
             </div>
             
@@ -488,7 +488,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., 8"
               />
               {errors.certifiedTechnicians && (
-                <p className="text-red-500 text-sm mt-1">{errors.certifiedTechnicians.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.certifiedTechnicians.message}</p>
               )}
             </div>
           </div>
@@ -575,7 +575,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., 123 Main St, Brisbane QLD 4000"
               />
               {errors.officeLocation && (
-                <p className="text-red-500 text-sm mt-1">{errors.officeLocation.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.officeLocation.message}</p>
               )}
             </div>
             
@@ -616,7 +616,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., 5"
               />
               {errors.simultaneousProjects && (
-                <p className="text-red-500 text-sm mt-1">{errors.simultaneousProjects.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.simultaneousProjects.message}</p>
               )}
             </div>
             
@@ -628,7 +628,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., 2"
               />
               {errors.emergencyResponseTime && (
-                <p className="text-red-500 text-sm mt-1">{errors.emergencyResponseTime.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.emergencyResponseTime.message}</p>
               )}
             </div>
           </div>
@@ -676,7 +676,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., Restoration Supply Company, ABC Equipment Rentals"
               />
               {errors.primarySuppliers && (
-                <p className="text-red-500 text-sm mt-1">{errors.primarySuppliers.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.primarySuppliers.message}</p>
               )}
             </div>
             
@@ -697,7 +697,7 @@ export default function Step4EquipmentResources({ data, onNext, onBack }: Step4P
                 placeholder="e.g., Operations Manager: "
               />
               {errors.emergencyContacts && (
-                <p className="text-red-500 text-sm mt-1">{errors.emergencyContacts.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.emergencyContacts.message}</p>
               )}
             </div>
           </div>

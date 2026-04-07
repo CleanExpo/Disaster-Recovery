@@ -149,7 +149,8 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 </div>
                 <AnimatePresence>
                   {errors.generalLiabilityInsurer && (
-                    <motion.p 
+                    <motion.p
+                      role="alert"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -174,7 +175,8 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 />
                 <AnimatePresence>
                   {errors.generalLiabilityPolicyNumber && (
-                    <motion.p 
+                    <motion.p
+                      role="alert"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -199,7 +201,8 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 />
                 <AnimatePresence>
                   {errors.generalLiabilityCoverage && (
-                    <motion.p 
+                    <motion.p
+                      role="alert"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -224,7 +227,8 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 />
                 <AnimatePresence>
                   {errors.generalLiabilityExpiry && (
-                    <motion.p 
+                    <motion.p
+                      role="alert"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
@@ -301,7 +305,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 placeholder="e.g., WorkCover Queensland"
               />
               {errors.workersCompInsurer && (
-                <p className="text-red-500 text-sm mt-1">{errors.workersCompInsurer.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.workersCompInsurer.message}</p>
               )}
             </div>
             
@@ -313,7 +317,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 placeholder="e.g., WC123456789"
               />
               {errors.workersCompPolicyNumber && (
-                <p className="text-red-500 text-sm mt-1">{errors.workersCompPolicyNumber.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.workersCompPolicyNumber.message}</p>
               )}
             </div>
             
@@ -325,7 +329,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 {...register('workersCompExpiry', { required: 'Expiry date is required' })}
               />
               {errors.workersCompExpiry && (
-                <p className="text-red-500 text-sm mt-1">{errors.workersCompExpiry.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.workersCompExpiry.message}</p>
               )}
             </div>
           </div>
@@ -347,7 +351,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 placeholder="e.g., QBCC 1234567"
               />
               {errors.contractorLicenseNumber && (
-                <p className="text-red-500 text-sm mt-1">{errors.contractorLicenseNumber.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.contractorLicenseNumber.message}</p>
               )}
             </div>
             
@@ -369,7 +373,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 <option value="ACT">Australian Capital Territory</option>
               </select>
               {errors.contractorLicenseState && (
-                <p className="text-red-500 text-sm mt-1">{errors.contractorLicenseState.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.contractorLicenseState.message}</p>
               )}
             </div>
             
@@ -381,7 +385,7 @@ export default function Step2InsuranceLicensing({ data, onNext, onBack }: Step2P
                 {...register('contractorLicenseExpiry', { required: 'Expiry date is required' })}
               />
               {errors.contractorLicenseExpiry && (
-                <p className="text-red-500 text-sm mt-1">{errors.contractorLicenseExpiry.message}</p>
+                <p role="alert" className="text-red-500 text-sm mt-1">{errors.contractorLicenseExpiry.message}</p>
               )}
             </div>
           </div>

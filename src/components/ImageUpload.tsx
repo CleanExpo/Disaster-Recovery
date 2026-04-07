@@ -192,10 +192,12 @@ export default function ImageUpload({
       {preview && (
         <div className="mt-4">
           <p className="text-sm font-medium text-gray-700 mb-2">Preview:</p>
-          <img 
-            src={preview} 
-            alt="Upload preview" 
+          <img
+            src={preview}
+            alt="Upload preview"
             className="w-full h-48 object-cover rounded-lg border border-gray-300"
+            width={800}
+            height={192}
           />
         </div>
       )}

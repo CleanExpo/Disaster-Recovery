@@ -31,6 +31,7 @@ export function AntigravityServicePillarCard({
           fill
           className="object-cover object-center"
           sizes="(max-width: 768px) 100vw, 340px"
+          loading="lazy"
         />
         <div className="ag-image-overlay" />
       </div>

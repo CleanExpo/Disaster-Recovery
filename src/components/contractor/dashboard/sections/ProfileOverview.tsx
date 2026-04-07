@@ -103,7 +103,7 @@ export function ProfileOverview({ profile, onUpdate }: ProfileOverviewProps) {
           <div className="relative">
             <div className="w-20 h-20 rounded-lg bg-gray-200 flex items-center justify-center overflow-hidden">
               {editedData.companyLogo ? (
-                <img src={editedData.companyLogo} alt="Company Logo" className="w-full h-full object-cover" />
+                <img src={editedData.companyLogo} alt="Company Logo" className="w-full h-full object-cover" width={80} height={80} />
               ) : (
                 <Building2 className="h-10 w-10 text-gray-600" />
               )}

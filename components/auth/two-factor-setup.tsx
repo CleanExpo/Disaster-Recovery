@@ -305,7 +305,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                     
                     <div className="flex justify-center p-4 bg-white rounded-lg">
                       {qrCode && (
-                        <img src={qrCode} alt="2FA QR Code" className="w-48 h-48" />
+                        <img src={qrCode} alt="2FA QR Code" className="w-48 h-48" width={192} height={192} />
                       )}
                     </div>
 

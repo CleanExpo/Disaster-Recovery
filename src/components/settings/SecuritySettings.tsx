@@ -782,7 +782,7 @@ export function SecuritySettings() {
           <div className="space-y-4">
             <div className="flex justify-center">
               {qrCodeUrl && (
-                <img src={qrCodeUrl} alt="2FA QR Code" className="border p-2" />
+                <img src={qrCodeUrl} alt="2FA QR Code" className="border p-2" width={200} height={200} />
               )}
             </div>
             

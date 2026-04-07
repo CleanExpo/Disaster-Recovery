@@ -282,8 +282,15 @@ function ContractorOnboardingPageOriginal() {
               <span className="text-sm">Overall Progress</span>
               <span className="text-sm font-bold">{calculateOverallProgress()}%</span>
             </div>
-            <div className="w-full bg-blue-800 rounded-full h-3 overflow-hidden">
-              <div 
+            <div
+              className="w-full bg-blue-800 rounded-full h-3 overflow-hidden"
+              role="progressbar"
+              aria-valuenow={calculateOverallProgress()}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Overall onboarding progress: ${calculateOverallProgress()}%`}
+            >
+              <div
                 className="bg-white h-full transition-all duration-500 rounded-full"
                 style={{ width: `${calculateOverallProgress()}%` }}
               />
@@ -312,12 +319,16 @@ function ContractorOnboardingPageOriginal() {
                   const isSelected = selectedDay === module.day;
                   
                   return (
-                    <div
+                    <button
                       key={module.day}
-                      className={`p-6 cursor-pointer transition ${
-                        isSelected ? 'bg-blue-50' : 'hover:bg-gray-50'
-                      } ${status === 'locked' ? 'opacity-50' : ''}`}
+                      type="button"
+                      disabled={status === 'locked'}
+                      aria-pressed={isSelected}
+                      aria-label={`Day ${module.day}: ${module.title}${status === 'locked' ? ' (locked)' : ''}`}
                       onClick={() => status !== 'locked' && setSelectedDay(module.day)}
+                      className={`w-full text-left p-6 transition focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none ${
+                        isSelected ? 'bg-blue-50' : 'hover:bg-gray-50'
+                      } ${status === 'locked' ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                     >
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
@@ -392,7 +403,7 @@ function ContractorOnboardingPageOriginal() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
