@@ -26,6 +26,7 @@ import GlobalFAQSchema from '@/components/seo/GlobalFAQSchema'
 import DynamicBreadcrumbSchema from '@/components/seo/DynamicBreadcrumbSchema'
 import RegisterServiceWorker from './register-sw'
 import { DirectionProvider } from '@/components/providers/DirectionProvider'
+import { ConsentBanner } from '@/components/privacy/ConsentBanner'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -315,6 +316,7 @@ export default function RootLayout({
           <LoadingIndicator />
           <ProgressSpinner />
           <LazyImage />
+          <ConsentBanner />
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>

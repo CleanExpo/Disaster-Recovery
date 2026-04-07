@@ -169,40 +169,64 @@ async function submitPendingLeads() {
   }
 }
 
-// Push notifications — emergency alerts
+// Push notifications — emergency alerts and claim status updates
 self.addEventListener('push', (event) => {
-  const options = {
-    body: event.data
-      ? event.data.text()
-      : 'New emergency alert from Disaster Recovery Australia',
+  let title = 'Disaster Recovery Alert';
+  let options = {
+    body: 'New notification from Disaster Recovery Australia',
     icon: '/icon-192x192.png',
     badge: '/icon-72x72.png',
     vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1,
-    },
+    data: { url: '/emergency', dateOfArrival: Date.now() },
     actions: [
-      {
-        action: 'explore',
-        title: 'View Details',
-      },
-      {
-        action: 'close',
-        title: 'Dismiss',
-      },
+      { action: 'view', title: 'View Details' },
+      { action: 'dismiss', title: 'Dismiss' },
     ],
   };
 
-  event.waitUntil(
-    self.registration.showNotification('Disaster Recovery Alert', options)
-  );
+  if (event.data) {
+    try {
+      const payload = event.data.json();
+      title = payload.title || title;
+      options.body = payload.body || payload.message || options.body;
+      options.data = {
+        ...options.data,
+        url: payload.url || payload.data?.url || '/emergency',
+        claimId: payload.claimId || payload.data?.claimId,
+        type: payload.type || 'general',
+      };
+      if (payload.tag) options.tag = payload.tag;
+      if (payload.requireInteraction) options.requireInteraction = true;
+    } catch {
+      // Fallback to plain text
+      options.body = event.data.text();
+    }
+  }
+
+  event.waitUntil(self.registration.showNotification(title, options));
 });
 
-// Notification click handling
+// Notification click handling — route to relevant page
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  if (event.action === 'explore') {
-    event.waitUntil(clients.openWindow('/emergency'));
+
+  if (event.action === 'dismiss') return;
+
+  const data = event.notification.data || {};
+  let targetUrl = data.url || '/emergency';
+
+  if (data.claimId) {
+    targetUrl = `/claim/${data.claimId}`;
   }
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+      for (const client of windowClients) {
+        if (client.url.includes(targetUrl) && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      return clients.openWindow(targetUrl);
+    })
+  );
 });

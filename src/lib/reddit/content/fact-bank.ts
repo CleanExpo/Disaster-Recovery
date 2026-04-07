@@ -382,10 +382,10 @@ export const FACT_BANK: Record<PostCategory, GEOSignal[]> = {
       year: 2024,
     },
     {
-      statistic: '95% of disaster recovery operations can be automated with modern restoration management software',
-      source: 'Deloitte Access Economics',
-      citation: 'The Economic Cost of Natural Disasters in Australia 2023',
-      year: 2023,
+      statistic: 'Modern restoration management software can streamline many disaster recovery operations including scheduling, documentation, and claims processing',
+      source: 'Industry observation',
+      citation: 'General industry trend',
+      year: 2024,
     },
     {
       statistic: 'Average catastrophe claim processing takes 21 days — digital platforms can cut this to under 7 days',
