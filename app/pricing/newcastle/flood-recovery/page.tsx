@@ -21,7 +21,7 @@ export default function NewcastleFloodRecoveryPricingPage() {
       serviceName="Flood Recovery"
       minimumCallout="$2,310"
       averageCost="$15,400"
-      insuranceCoverage="95%"
+      insuranceCoverage="Policy-Dependent"
       priceRanges={[
         {
                 "type": "Minor Damage",

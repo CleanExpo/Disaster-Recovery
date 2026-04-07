@@ -893,11 +893,11 @@ Get your scope done through [transparent estimating](https://restoreassist.app),
   // ── 15. High-Rise Water Damage ──────────────────────────────────────────
   post(
     'high-rise-water-damage',
-    'High-Rise Water Damage: What Brisbane Strata Committees Need to Know',
+    'High-Rise Water Damage: What Strata Committees Across Australia Need to Know',
     'property',
     ['disaster-recovery', 'nrpg', 'restore-assist'],
     'process-flow',
-    `Brisbane's high-rise boom means thousands of strata committees are responsible for managing water damage events that can cascade across multiple floors. A single burst pipe on level 30 can affect 20+ units below. Here's what every committee member needs to know.
+    `Australia's high-rise boom means thousands of strata committees are responsible for managing water damage events that can cascade across multiple floors. A single burst pipe on level 30 can affect 20+ units below. Here's what every committee member needs to know.
 
 ## The Multi-Floor Cascade Risk
 

@@ -21,7 +21,7 @@ export default function AdelaideFloodRecoveryPricingPage() {
       serviceName="Flood Recovery"
       minimumCallout="$2,420"
       averageCost="$15,400"
-      insuranceCoverage="95%"
+      insuranceCoverage="Policy-Dependent"
       priceRanges={[
         {
                 "type": "Minor Damage",

@@ -445,7 +445,7 @@ export function generateMetaDescriptions(keyword: string, location?: string): st
   const templates = [
     `Professional ${keyword} services ${location ? `in ${location}` : ''}. 24/7 emergency response, IICRC-certified technicians. Use Our Online Form`,
     `Need ${keyword}? Same-day service, transparent pricing. ${location ? `Servicing all ${location} areas` : 'nationwide coverage'}. Available now — lodge a claim online.`,
-    `Expert ${keyword} with 30-minute response time. IICRC certified, 100% guarantee, insurance claims handled. ${location ? location + ' locals' : 'Australian'} trust us. Use Our Online Form`,
+    `Expert ${keyword} with rapid response. IICRC certified, insurance claims handled professionally. ${location ? location + ' locals' : 'Australian'} trust us. Use Our Online Form`,
     `Emergency ${keyword} available 24/7. Professional assessment, competitive pricing, IICRC certified. ${location ? `All ${location} suburbs` : 'All areas'} covered. Lodge a claim online.`,
     `Fast, reliable ${keyword} service. IICRC certified, transparent pricing. ${location ? `${location}'s` : "Australia's"} trusted restoration experts. Lodge a claim at disasterrecovery.com.au`
   ];

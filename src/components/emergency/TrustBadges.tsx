@@ -42,7 +42,7 @@ export default function TrustBadges() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Certified, Insured, Guaranteed
+            Certified, Insured, Compliant
           </h2>
           <p className="text-xl text-gray-700">
             Trusted by insurance companies, government agencies, and property owners nationwide
@@ -80,23 +80,23 @@ export default function TrustBadges() {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <Shield className="h-10 w-10" />
-            <h3 className="text-2xl font-bold">100% Satisfaction Guarantee</h3>
+            <h3 className="text-2xl font-bold">Service Quality Commitment</h3>
           </div>
           <p className="text-lg mb-6">
-            We guarantee our work or your money back. Every restoration is backed by our comprehensive warranty.
+            Every restoration is completed by IICRC-certified contractors holding their own independent licences, insurance, and workmanship warranties.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="bg-white/10 rounded-lg p-3">
-              <div className="font-bold mb-1">Full Warranty</div>
-              <div>12-month guarantee on all work</div>
+              <div className="font-bold mb-1">IICRC Certified</div>
+              <div>Industry-standard workmanship on all jobs</div>
             </div>
             <div className="bg-white/10 rounded-lg p-3">
               <div className="font-bold mb-1">Insurance Backed</div>
               <div>$20M public liability coverage</div>
             </div>
             <div className="bg-white/10 rounded-lg p-3">
-              <div className="font-bold mb-1">Money Back</div>
-              <div>100% refund if not satisfied</div>
+              <div className="font-bold mb-1">Documented Claims</div>
+              <div>Insurance-compliant reporting on every job</div>
             </div>
           </div>
         </motion.div>

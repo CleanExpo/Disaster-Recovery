@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Mining & Resources Disaster Recovery',
-  description: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+  description: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
   keywords: ["mining disaster recovery","mine site restoration","processing plant cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/mining-resources' },
 };
@@ -18,7 +18,7 @@ export default function MiningResourcesPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Mining & Resources Disaster Recovery',
-        subtitle: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+        subtitle: 'Specialised disaster recovery for mining operations, processing plants, and resource facilities. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
       }}
       cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[

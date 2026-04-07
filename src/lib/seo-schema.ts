@@ -88,7 +88,7 @@ export const generateFAQSchema = () => ({
       "name": "How quickly can you respond to water damage emergencies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We guarantee response within 60 minutes for emergency water damage across all major Australian cities. Our network of 115,000+ certified contractors ensures immediate availability 24/7."
+        "text": "Our target is contractor contact within 60 minutes for emergency water damage across all major Australian cities. Our network of IICRC-certified contractors ensures rapid availability 24/7."
       }
     },
     {

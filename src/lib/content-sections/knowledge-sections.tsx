@@ -579,7 +579,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
     vettedComparison: {
       topic: 'Emergency Response',
       vetted: [
-        '60-minute response guarantee with 24/7 dispatch capability',
+        '60-minute response target with 24/7 dispatch capability',
         'WHS-compliant with current Safe Work Method Statements',
         'Full equipment inventory: extractors, dehumidifiers, air scrubbers',
         'Coordinates directly with emergency services and insurers',
@@ -587,7 +587,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
         'Real-time progress reporting to property owner and insurer',
       ],
       unvetted: [
-        'No guaranteed response time — delays cost thousands more',
+        'No committed response time — delays cost thousands more',
         'May lack WHS compliance — liability risk for property owner',
         'Limited equipment — inadequate for large-scale emergencies',
         'No insurer relationship — claim process becomes adversarial',
@@ -1193,7 +1193,7 @@ const ENTRIES: Record<string, KnowledgeEntry> = {
           The Paperwork Assurance Report is your most powerful insurance document. It transforms
           your claim from &quot;I had water damage&quot; into &quot;Here is the scientific evidence of damage,
           the standards-based remediation protocol, and the documented cost to restore&quot;. Insurers
-          process documented claims 60% faster than undocumented ones.
+          process documented claims more efficiently than undocumented ones — reducing delays and disputes.
         </ProTip>
       </>
     ),

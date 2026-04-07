@@ -84,8 +84,8 @@ export default function HeroSection() {
 
         {/* Subtitle */}
         <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Professional disaster recovery services with guaranteed 
-          <span className="text-cyan-400 font-semibold"> 60-minute response time</span> across 
+          Professional disaster recovery services with targeted
+          <span className="text-cyan-400 font-semibold"> 60-minute response time</span> across
           all major Australian cities
         </p>
 

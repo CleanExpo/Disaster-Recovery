@@ -46,9 +46,9 @@ export const METRICS_SECTION = {
       icon: 'Clock'
     },
     {
-      value: '95%',
-      label: 'Automation Rate',
-      description: 'Fully automated operations with AI orchestration',
+      value: 'AI-Powered',
+      label: 'Automated Operations',
+      description: 'End-to-end AI orchestration from intake to invoicing',
       icon: 'Bot'
     }
   ]

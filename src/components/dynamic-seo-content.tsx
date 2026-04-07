@@ -107,7 +107,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                   { step: 1, title: 'Emergency Call', desc: 'Contact our 24/7 Online Support' },
                   { step: 2, title: 'Assessment', desc: 'Professional evaluation' },
                   { step: 3, title: 'Restoration', desc: 'Complete damage repair' },
-                  { step: 4, title: 'Completion', desc: 'Quality guarantee' }
+                  { step: 4, title: 'Completion', desc: 'Quality assured' }
                 ].map((item, index) => (
                   <Card key={index} className="p-4">
                     <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mb-3">

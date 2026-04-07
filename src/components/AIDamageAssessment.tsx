@@ -164,7 +164,7 @@ export default function AIDamageAssessment() {
             {/* Features */}
             <div className="mt-8 space-y-3">
               {[
-                '95% accuracy rate',
+                'AI-assisted damage detection',
                 'Instant cost estimation',
                 'Insurance-ready reports',
                 'Multiple damage type detection'

@@ -120,10 +120,10 @@ export default function UltraModernHero() {
       value: 'Pre-Approved',
       colour: 'from-purple-500 to-pink-500'
     },
-    { 
-      icon: Star, 
-      label: 'Customer Rating', 
-      value: '4.9/5 Stars',
+    {
+      icon: Star,
+      label: 'Customer Focus',
+      value: 'Verified Reviews',
       colour: 'from-blue-600 to-blue-600'
     }
   ];
@@ -267,8 +267,8 @@ export default function UltraModernHero() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          Cutting-edge restoration technology meets unparalleled expertise. 
-          <span className="text-white font-semibold"> 60-minute response</span> guaranteed.
+          Cutting-edge restoration technology meets unparalleled expertise.
+          <span className="text-white font-semibold"> 60-minute response</span> target, nationwide.
         </p>
 
         {/* CTA Buttons */}
@@ -337,7 +337,7 @@ export default function UltraModernHero() {
           {[
             { icon: '🛡️', text: '24/7 Response' },
             { icon: '✓', text: 'IICRC Certified' },
-            { icon: '⚡', text: '60min Guarantee' },
+            { icon: '⚡', text: '60min Response Target' },
             { icon: '🏆', text: 'IICRC Certified' },
           ].map((badge, index) => (
             <div

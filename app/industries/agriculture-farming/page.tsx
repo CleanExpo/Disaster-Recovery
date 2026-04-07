@@ -6,7 +6,7 @@ import { getRelatedPages } from '@/lib/internal-links';
 
 export const metadata: Metadata = {
   title: 'Agriculture & Farming Disaster Recovery',
-  description: 'Farm and agricultural facility disaster recovery including livestock areas and crop storage. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+  description: 'Farm and agricultural facility disaster recovery including livestock areas and crop storage. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
   keywords: ["farm disaster recovery","agricultural restoration","rural property cleanup"],
   alternates: { canonical: 'https://disasterrecovery.com.au/industries/agriculture-farming' },
 };
@@ -18,7 +18,7 @@ export default function AgricultureFarmingPage() {
         gradient: 'linear-gradient(135deg, #1E293B 0%, #334155 100%)',
         icon: <Building2 className="h-12 w-12" />,
         title: 'Agriculture & Farming Disaster Recovery',
-        subtitle: 'Farm and agricultural facility disaster recovery including livestock areas and crop storage. 24/7 emergency response, IICRC-certified, minimal downtime guaranteed.',
+        subtitle: 'Farm and agricultural facility disaster recovery including livestock areas and crop storage. 24/7 emergency response, IICRC-certified, rapid, IICRC-certified restoration.',
       }}
       cta={{ text: 'Get Cost Estimate', href: '/tools/cost-estimator' }}
       breadcrumbs={[
