@@ -32,13 +32,13 @@ const events = [
   },
   {
     slug: 'cyclone-maila-queensland-2026',
-    title: 'Cyclone Maila QLD 2026',
+    title: 'TC Maila — Category 4',
     type: 'Cyclone',
     phase: 'Pre-Landfall',
     state: 'QLD',
-    lgas: 'Far North Queensland',
-    description: 'Tropical Cyclone Maila is tracking towards Far North Queensland. Monitor BOM for updates.',
-    badgeColour: 'bg-amber-600',
+    lgas: 'Cairns, Townsville, Cape York',
+    description: 'Tropical Cyclone Maila (Category 4, 165 km/h) is forecast to make landfall on the Far North Queensland coast 11–12 April 2026. BOM Watch/Warning window open.',
+    badgeColour: 'bg-red-600',
   },
   {
     slug: 'victoria-bushfires-2025',
