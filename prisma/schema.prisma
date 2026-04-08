@@ -30,7 +30,7 @@ model User {
   email         String    @unique
   password      String
   name          String?
-  role          String    @default("CLIENT")
+  role          String    @default("user")  // "user" | "contractor" | "admin" | "super_admin"
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
@@ -400,9 +400,26 @@ model Contractor {
   availability     ContractorAvailability[]
   jobs             Job[]
   jobOutcomes      JobOutcome[]
+  jobOffers        JobOffer[]
 
   // Applications submitted via /contractor/apply (raw snapshot of the onboarding wizard)
   applications ContractorApplication[]
+
+  // ── Job Matching Fields ──────────────────────────────────────────────────
+  // Base location for distance calculations
+  baseLatitude  Float?
+  baseLongitude Float?
+
+  // Radius tier purchased on signup
+  serviceRadiusTier String? // "25km" | "50km" | "100km" | "rural"
+  maxKmRadius       Int?    // For rural tier — contractor's custom max km
+
+  // IICRC / industry certifications held (codes: S500, S700, S520, WRT, ASD, CDS, TCST, OCT, HST, CPT, FSRT)
+  iicrcCertifications String[] @default([])
+
+  // Round-robin tracking
+  lastJobOfferedAt DateTime?
+  rotationIndex    Int       @default(0)
 }
 
 model ContractorApplication {
@@ -1292,6 +1309,40 @@ model Job {
   @@index([status, urgency])
   @@index([contractorId, status])
   @@index([suburb, state])
+
+  jobOffers JobOffer[]
+}
+
+// ============================================
+// JOB OFFERS — Contractor matching cascade
+// Tracks each offer made to a contractor during job distribution.
+// ============================================
+
+model JobOffer {
+  id           String     @id @default(cuid())
+  jobId        String
+  job          Job        @relation(fields: [jobId], references: [id])
+  contractorId String
+  contractor   Contractor @relation(fields: [contractorId], references: [id])
+
+  // Lifecycle
+  status    String @default("pending") // "pending" | "accepted" | "declined" | "expired"
+  offeredAt DateTime @default(now())
+  expiresAt DateTime
+
+  // Unqualified contractor acceptance flow
+  requiresLiabilityAck    Boolean   @default(false)
+  liabilityAcknowledgedAt DateTime?
+
+  // Which matching pool this offer came from
+  pool String // "primary_qualified" | "primary_unqualified" | "fallback_100" | "fallback_50" | "fallback_125"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([jobId, status])
+  @@index([contractorId, status])
+  @@index([expiresAt])
 }
 
 // ============================================
