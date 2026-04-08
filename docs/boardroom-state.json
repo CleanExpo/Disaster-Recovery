@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-09",
-  "session": "Session complete: DR-466 LinkedIn updated (name='Disaster Recovery Australia', tagline, overview, website, no Wacol location). GAP-027 compliance fix: removed remaining '95% of the market' stat from pitch-deck-data.ts, investor-pitch/page.tsx, and unverified CSIRO '60%' from reddit/post-templates.ts (commit 026b9387). DR-471 confirmed active (9 scheduled tasks running). DR-465 Facebook blocked (no browser login). Bing Places Google OAuth blocked in automation. DR-467/DR-468 directory listings still pending.",
+  "session": "Session complete: DR-462 Boardroom 27 marked Done. TC Maila live page (cyclone-maila-queensland-2026) updated: Cat 4 LGAs added (Cairns/Townsville/Cape York/Mareeba/Tablelands/Daintree/Cooktown/Douglas), S700:2025 added, phone removed, QLD Hardship + SES assistance added (commits b8bf3af1+1c4b429a). Events index listing updated to Cat 4 red badge. DR-466 LinkedIn done, GAP-027 compliance fix (commits a12e4304+026b9387). DR-471 confirmed active (9 scheduled tasks). DR-465 Facebook blocked. Bing Places Google OAuth blocked. DR-467/DR-468 directory listings pending human action.",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -17,7 +17,7 @@
     "todo": 0,
     "inProgress": 2,
     "backlog": 14,
-    "done": "DR-464, DR-471, DR-469, DR-443, DR-463, DR-444, DR-445, DR-448, DR-466 completed",
+    "done": "DR-464, DR-471, DR-469, DR-443, DR-463, DR-444, DR-445, DR-448, DR-466, DR-462 completed",
     "lastClearedAt": "2026-04-09"
   },
   "revenueReadiness": {
@@ -28,11 +28,12 @@
   },
   "activeEvents": {
     "tcMaila": {
-      "status": "CATEGORY 4 — PRE-LANDFALL",
+      "status": "CATEGORY 4 — PRE-LANDFALL — LANDFALL IMMINENT",
       "liveUrl": "/events/cyclone-maila-queensland-2026",
+      "livePageUpdated": "2026-04-09 — Cat 4 LGAs, S700, QLD assistance, phone removed (commit b8bf3af1)",
       "stagedUrl": "/events/tc-maila-fnq-2026",
-      "stagedGate": "DR-400/GAP-066 — Toby must confirm active contractors in Cairns/Townsville/Cape York",
-      "forecastLandfall": "2026-04-11 to 2026-04-12 (FNQ)"
+      "stagedGate": "DR-400/GAP-066 — Phill/team must confirm active contractors in Cairns/Townsville/Cape York before publishing",
+      "forecastLandfall": "2026-04-11 to 2026-04-12 (FNQ Cape York Peninsula)"
     },
     "cycloneNarelle": {
       "status": "RECOVERY ACTIVE",
