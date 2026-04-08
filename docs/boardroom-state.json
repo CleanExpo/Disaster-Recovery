@@ -1,6 +1,6 @@
 {
   "lastUpdated": "2026-04-08",
-  "session": "Contractor onboarding production barriers — all 5 resolved",
+  "session": "Ask Maps foundation — DR-450/451/452/455 done. 15 GBP tasks remain (human-action).",
   "platform": {
     "deployment": "LIVE",
     "url": "https://disasterrecovery.com.au",
@@ -69,11 +69,31 @@
     "asic": "Unsourced percentage stats removed (95%, 70%, 60% claims).",
     "iicrc": "All references updated to 2025 standards (S500:2025, S520:2025, S700:2025, S220)."
   },
+  "askMaps": {
+    "codeComplete": ["DR-450 /faq 30-question page", "DR-451 FAQPage schema SSR", "DR-452 serviceType+areaServed+hasOfferCatalog", "DR-455 review solicitation email auto-fires on job complete"],
+    "humanAction": {
+      "urgent": [
+        "DR-443: GBP audit (Toby, due Apr 10) — checklist in docs/ask-maps-strategy-2026-04-08.md",
+        "DR-444: Update GBP service area national (Toby, due Apr 11)",
+        "DR-445: Set GBP attributes 24/7/emergency/IICRC (Toby, due Apr 11)",
+        "DR-446: Send review requests to 10 past clients (Toby, due Apr 14)",
+        "Add GOOGLE_REVIEW_URL env var to Vercel (CTO)"
+      ],
+      "phase2": [
+        "DR-447: Upload 20+ photos to GBP",
+        "DR-448: Publish first 4 Google Posts (drafts in strategy doc)",
+        "DR-449: Seed 20 Q&A on GBP (scripts in strategy doc)"
+      ]
+    },
+    "criticalGap": "GAP-074 — ZERO Google reviews. Platform invisible in Ask Maps until reviews exist."
+  },
   "nextActions": {
     "immediate": [
       "PERILS April 13 monitoring — Victoria Fires threshold",
       "TC Maila FNQ gate clearance — Toby confirms FNQ contractors",
-      "Google Vertex AI DPA signature"
+      "Google Vertex AI DPA signature",
+      "GBP audit + service area update (Toby, Apr 10–11)",
+      "Review collection campaign — first 10 Google reviews by Apr 14"
     ],
     "salesLaunch": [
       "Launch FNQ paid campaign (Google Ads + Meta) once tc-maila-fnq-2026 gate clears",
