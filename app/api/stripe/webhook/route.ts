@@ -243,16 +243,10 @@ async function handleWebhook(req: NextRequest) {
             });
             if (contractor?.email) {
               const failureReason = paymentIntent.last_payment_error?.message || 'Payment declined';
+              const displayName = contractor.username ?? 'Contractor';
               sendEmail(
                 contractor.email,
-                {
-                  subject: 'Payment Failed — NRPG Onboarding',
-                  html: `<p>Hi ${contractor.username ?? 'Contractor'},</p>
-<p>Your onboarding payment could not be processed. Reason: ${failureReason}</p>
-<p>Please visit <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au'}/contractor/onboarding">your onboarding page</a> to retry the payment.</p>
-<p>If you continue to have issues, please contact us at <a href="https://disasterrecovery.com.au/contact">disasterrecovery.com.au/contact</a>.</p>
-<p>— National Recovery Partners Group</p>`
-                }
+                emailTemplates.paymentFailed(displayName, failureReason, contractorId)
               ).catch(() => {
                 // Non-fatal — email is informational
               });
