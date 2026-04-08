@@ -21,6 +21,15 @@ const nextConfig = {
       { source: '/contractor-terms', destination: '/terms', permanent: false },
       // Canonical redirect — old DR-398 page had advocacy framing violations
       { source: '/events/cyclone-narelle-wa', destination: '/events/cyclone-narelle-western-australia-2026', permanent: true },
+      // DR-464/DR-469: Legacy WordPress URLs with old "Disaster Recovery QLD" branding → 301 to new pages
+      { source: '/about-us', destination: '/about', permanent: true },
+      { source: '/about-us-disaster-recovery-qld-our-story', destination: '/about', permanent: true },
+      { source: '/about-us-disaster-recovery-qld-our-story/:path*', destination: '/about', permanent: true },
+      { source: '/location/disaster-recovery-qld-service-locations', destination: '/locations', permanent: true },
+      { source: '/location/disaster-recovery-qld-service-locations/:path*', destination: '/locations', permanent: true },
+      { source: '/wacol-queensland-australia', destination: '/locations', permanent: true },
+      { source: '/water-damage-restoration-service/emergency-restoration-services', destination: '/services', permanent: true },
+      { source: '/water-damage-restoration-service/emergency-restoration-services/:path*', destination: '/services', permanent: true },
     ]
   },
   async headers() {
